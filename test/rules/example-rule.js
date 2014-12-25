@@ -5,7 +5,9 @@
  * @param {RuleContext} context
  */
 module.exports = function (context) {
-    return {
-
-    }
+    var exports = {};
+    exports[context.Syntax.Str] = function (node) {
+        console.log(node);
+    };
+    return exports
 };

@@ -5,7 +5,7 @@ Parse text to AST(TxtNodes)
 ## TxtNodes
 
 - `type`: type of Node
-- `value`: text value of Node
+- `raw`: text value of Node
 - `loc`: location object
 
 `loc` :
