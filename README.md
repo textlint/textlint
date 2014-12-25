@@ -4,8 +4,6 @@ The pluggable linting tool for text(plain text and markdown).
 
 ## Installation
 
-- [ ] upload npm
-
 ```
 npm install textlint
 ```
