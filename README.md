@@ -16,7 +16,7 @@ npm install textlint
 
 
 ```
-./bin/textlint.js README.md
+textlint README.md
 ```
 
 
