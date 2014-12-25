@@ -22,3 +22,7 @@ Parse text to AST(TxtNodes)
     }
 }
 ```
+
+## Warning
+
+Other properties is not assured.
