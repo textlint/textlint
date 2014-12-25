@@ -4,11 +4,21 @@ The pluggable linting tool for text(plain text and markdown).
 
 ## Installation
 
-- [ ] Describe the installation process
+```
+npm install textlint
+```
 
 ## Usage
 
-- [ ] Write usage instructions
+![img](http://monosnap.com/image/lYPymzf1agvbYOwEJMEPc5O9lnh9d8.png)
+
+- [ ] more more todo
+
+
+```
+./bin/textlint.js README.md
+```
+
 
 ## Contributing
 
@@ -24,7 +34,11 @@ MIT
 
 and
 
-`lib/load-rules.js` is:
+`lib/load-rules.js` and `cli.js` are:
 
     ESLint
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
+
+## Acknowledgements
+
+Many thanks for [ESLint](http://eslint.org/ "ESLint").
