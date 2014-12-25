@@ -1,13 +1,16 @@
 {
   "name": "textlint",
   "description": "plugable text lint tool(support markdown).",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/azu/textlint/",
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/textlint.git"
   },
   "main": "index.js",
+  "bin": {
+    "textlint": "./bin/textlint.js"
+  },
   "scripts": {
     "test": "mocha test/*.js"
   },
