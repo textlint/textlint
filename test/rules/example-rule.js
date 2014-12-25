@@ -7,7 +7,7 @@
 module.exports = function (context) {
     var exports = {};
     exports[context.Syntax.Str] = function (node) {
-        console.log(node);
+        context.report(node, "found error messag");
     };
     return exports
 };

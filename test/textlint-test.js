@@ -13,16 +13,17 @@ describe("textlint-test", function () {
             textLint.resetRules();
         });
         it("should return", function () {
-            var messages = textLint.lintMarkdown("# TEST" +
+            var result = textLint.lintMarkdown("# TEST" +
             "\n" +
-            "`potet` + **test**" +
+            "`potet` + **testongst**" +
             "\n" +
             "- list\n" +
             "- test\n" +
             "\n" +
             "hoge\n [a](http://example.com) fuga\n" +
             "------");
-            assert(messages.length === 0);
+            assert(result.filePath === "<text>");
+            assert(result.messages.length === 0);
         });
     });
 });
