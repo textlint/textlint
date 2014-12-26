@@ -14,19 +14,30 @@ describe("plaintext-parser-test", function () {
         // should has children
         assert(ast.children.length > 0);
     });
-    context("ast.children", function () {
+    it("ast.children is Paragraphes", function () {
+        var text = "First Line\n" +
+            "Second Line";
+        var ast = parse(text);
+        // first
+        assert(ast.children[0].type === Syntax.Paragraph);
+        // second
+        assert(ast.children[1].type === Syntax.Paragraph);
+    });
+
+    context("Paragraph", function () {
         it("should be alternately Str and Break", function () {
             var text = "First Line\n" +
                 "Second Line";
             var ast = parse(text);
             // first
-            assert(ast.children[0].type === Syntax.Str);
-            assert(ast.children[0].raw === "First Line");
-            assert(ast.children[1].type === Syntax.Break);
-            // second
-            assert(ast.children[2].type === Syntax.Str);
-            assert(ast.children[2].raw === "Second Line");
-            assert(ast.children[3].type === Syntax.Break);
+            var paragraphCh1 = ast.children[0].children;
+            assert(paragraphCh1[0].type === Syntax.Str);
+            assert(paragraphCh1[0].raw === "First Line");
+            assert(paragraphCh1[1].type === Syntax.Break);
+            var paragraphCh2 = ast.children[1].children;
+            assert(paragraphCh2[0].type === Syntax.Str);
+            assert(paragraphCh2[0].raw === "Second Line");
+            assert(paragraphCh2[1].type === Syntax.Break);
         });
     });
 });

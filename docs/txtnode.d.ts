@@ -5,6 +5,7 @@ declare module TxtParse {
         interface TxtNode {
             type:string;
             raw?:string;
+            children?: [TxtNode];
             loc:LineLocation;
         }
         interface LineLocation {
