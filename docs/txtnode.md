@@ -13,7 +13,7 @@ Parse text to AST(TxtNodes)
 `type` is TxtNode type.
 
 - plain text type
-- Markdown text type
+- Markdown text type is defined in [lib/parse/markdown-syntax.js](../lib/parse/markdown/markdown-syntax.js)
 
 ### `loc`
 
