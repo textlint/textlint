@@ -7,6 +7,7 @@ Parse text to AST(TxtNodes)
 - `type`: type of Node
 - `raw`: text value of Node
 - `loc`: location object
+- `range`: location info array like `[startIndex, endIndex]`
 
 ### `type`
 
