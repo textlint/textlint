@@ -8,7 +8,16 @@ Parse text to AST(TxtNodes)
 - `raw`: text value of Node
 - `loc`: location object
 
-`loc` :
+### `type`
+
+`type` is TxtNode type.
+
+- plain text type
+- Markdown text type
+
+### `loc`
+
+`loc` is location info object.
 
 ```json
 "loc": {
