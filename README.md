@@ -1,4 +1,4 @@
-# textlint
+# textlint [![Build Status](https://travis-ci.org/azu/textlint.svg)](https://travis-ci.org/azu/textlint)
 
 The pluggable linting tool for text(plain text and markdown).
 
