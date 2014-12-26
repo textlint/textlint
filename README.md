@@ -34,7 +34,7 @@ MIT
 
 and
 
-`lib/load-rules.js` and `cli.js` are:
+`lib/load-rules.js` , `util/traverse.js` and `cli.js` are:
 
     ESLint
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
