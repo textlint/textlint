@@ -20,6 +20,7 @@ All Types is defined in [lib/parse/union-syntax.js](../lib/parse/union-syntax.js
 These types are be available at all times:
 
 - Document
+- Paragraph
 - Break
 - Str
 
@@ -33,6 +34,8 @@ module.exports = function (context) {
     var exports = {};
     // root object
     exports[context.Syntax.Document] = function (node) {
+    };
+    exports[context.Syntax.Paragraph] = function (node) {
     };
     exports[context.Syntax.Str] = function (node) {
     };

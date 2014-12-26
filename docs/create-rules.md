@@ -19,6 +19,8 @@ module.exports = function (context) {
     // root object
     exports[context.Syntax.Document] = function (node) {
     };
+    exports[context.Syntax.Paragraph] = function (node) {
+    };
     exports[context.Syntax.Str] = function (node) {
         if(/found wrong use-case/.test(node.raw){
             // report error
