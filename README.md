@@ -19,6 +19,12 @@ npm install textlint
 textlint README.md
 ```
 
+## Rules
+
+Please see docs/
+
+- [docs/txtnode.md](docs/txtnode.md)
+- [docs/create-rules.md](docs/create-rules.md)
 
 ## Contributing
 

@@ -12,8 +12,36 @@ Parse text to AST(TxtNodes)
 
 `type` is TxtNode type.
 
-- plain text type
-- Markdown text type is defined in [lib/parse/markdown-syntax.js](../lib/parse/markdown/markdown-syntax.js)
+- Types of plain-text is defined in [lib/parse/markdown/markdown-syntax.js](../lib/parse/markdown/markdown-syntax.js)
+- Types of Markdown text is defined in [lib/parse/markdown-syntax.js](../lib/parse/markdown/markdown-syntax.js)
+
+All Types is defined in [lib/parse/union-syntax.js](../lib/parse/union-syntax.js)
+
+These types are be available at all times:
+
+- Document
+- Break
+- Str
+
+Minimum(recommended) rules is following code:
+
+```js
+/**
+ * @param {RuleContext} context
+ */
+module.exports = function (context) {
+    var exports = {};
+    // root object
+    exports[context.Syntax.Document] = function (node) {
+    };
+    exports[context.Syntax.Str] = function (node) {
+    };
+    exports[context.Syntax.Break] = function (node) {
+    };
+    return exports;
+};
+```
+
 
 ### `loc`
 
