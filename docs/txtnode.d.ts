@@ -1,14 +1,20 @@
-declare module TxtNode {
-    var type:string;
-    var raw:string;
-    var loc:LineLocation;
-    interface LineLocation {
-        start: Position
-        end: Position
-    }
-    interface Position {
-        line: number
-        column: number
+declare module TxtParse {
+
+    module TxtSyntax {
+        // Node
+        interface TxtNode {
+            type:string;
+            raw?:string;
+            loc:LineLocation;
+        }
+        interface LineLocation {
+            start: Position
+            end: Position
+        }
+        interface Position {
+            line: number
+            column: number
+        }
     }
 
 }
