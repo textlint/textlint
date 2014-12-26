@@ -6,6 +6,7 @@ var loadRules = require("../lib/load-rules");
 var rules = loadRules(__dirname + "/rules");
 describe("textlint-test", function () {
     beforeEach(function () {
+        // This rule found `Str` Node then occur error
         textLint.setupRules(rules);
     });
     afterEach(function () {
@@ -22,6 +23,14 @@ describe("textlint-test", function () {
             "\n" +
             "hoge\n [a](http://example.com) fuga\n" +
             "------");
+            assert(result.filePath === "<text>");
+            assert(result.messages.length > 0);
+        });
+    });
+    describe("lintText", function () {
+        it("should found error message", function () {
+            var result = textLint.lintMarkdown("It it plain text\n" +
+            "second line.");
             assert(result.filePath === "<text>");
             assert(result.messages.length > 0);
         });
