@@ -1,4 +1,4 @@
-declare module  TxtNode {
+declare module TxtNode {
     var type:string;
     var raw:string;
     var loc:LineLocation;
