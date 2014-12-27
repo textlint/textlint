@@ -19,3 +19,7 @@ Pass following object to reporter module .
     ]
 }
 ```
+
+## How to get sourcecode of a result?
+
+You can read the souce code from `filePath` property.
