@@ -25,9 +25,11 @@ module.exports = function (context) {
                     continue;
                 }
             }
-            console.log(query);
+            // [start, end]
+            var matchedStartIndex = match.index;
+            var matchedEndIndex = matchedStartIndex + (matchedString.length);
             var expected = matchedString.replace(query, dictionary.expected);
-            context.report(node, matchedString + " => " + expected);
+            context.report(node, new context.RuleError(matchedString + " => " + expected, matchedStartIndex, matchedEndIndex));
         }
     };
     return exports;
