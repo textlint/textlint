@@ -11,5 +11,5 @@ interface TextLintMessage {
 }
 interface TextLintResult {
     filePath:string;
-    messages:[TextLintMessage];
+    messages:TextLintMessage[];
 }
