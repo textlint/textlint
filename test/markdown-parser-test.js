@@ -4,11 +4,11 @@ var assert = require("power-assert");
 var parse = require("../lib/parse/markdown/markdown-parser");
 var Syntax = require("../lib/parse/markdown/markdown-syntax");
 var traverse = require("traverse");
-function findFirstTypedNode(node, type) {
+function findFirstTypedNode(node, type, value) {
     var result = null;
     traverse(node).forEach(function (x) {
         if (this.notLeaf) {
-            if (x.type === type) {
+            if (x.type === type && x.raw === value) {
                 result = x;
             }
         }
@@ -26,15 +26,19 @@ describe("markdown-parser-test", function () {
 
     });
     context(".range", function () {
-        var markdown = "# title\n\n- list\ntest";
-        var ast = parse(markdown);
-        var paragraph = findFirstTypedNode(ast, Syntax.Paragraph);
+        var markdown;
+        var ast;
+        beforeEach(function () {
+            markdown = "# AAA\ntest";
+            ast = parse(markdown);
+        });
         it("should has range array", function () {
             var expectedText = "test";
+            var paragraph = findFirstTypedNode(ast, Syntax.Paragraph, expectedText);
             var expectedStartIndex = markdown.indexOf(expectedText);
             var expectedEndIndex = markdown.length;
-            assert.deepEqual(paragraph.range, [expectedStartIndex, expectedEndIndex]);
             assert.equal(markdown.slice(expectedStartIndex, expectedEndIndex), expectedText);
+            assert.deepEqual(paragraph.range, [expectedStartIndex, expectedEndIndex]);
         });
     });
 });

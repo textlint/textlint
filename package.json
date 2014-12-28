@@ -38,6 +38,7 @@
     "minimatch": "^2.0.1",
     "object-assign": "^2.0.0",
     "optionator": "^0.5.0",
+    "structured-source": "^3.0.2",
     "technical-word-rules": "git://github.com/azu/technical-word-rules",
     "text-table": "^0.2.0",
     "traverse": "^0.6.6",
