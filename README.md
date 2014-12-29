@@ -16,7 +16,7 @@ npm install textlint
 
 
 ```
-textlint README.md
+$ textlint README.md
 ```
 
 ## CLI
@@ -24,7 +24,29 @@ textlint README.md
 See help.
 
 ```
-textlint -h
+$ textlint -h
+textlint [options] file.md [file.txt] [dir]
+
+Options:
+  -h, --help                 Show help.
+  --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
+  -f, --format String        Use a specific output format. - default: stylish
+  -v, --version              Outputs the version number.
+  --ext [String]             Specify text file extensions.
+  --no-color                 Enable color in piped output.
+  -o, --output-file path::String  Enable report to be written to a file.
+  --quiet                    Report errors only. - default: false
+  --stdin                    Lint code provided on <STDIN>. - default: false
+```
+
+### Build-in formatters
+
+See [formatters](lib/formatters).
+
+e.g.) use pretty-error.js
+
+```
+$ textlint -f pretty-error file.md
 ```
 
 ## How to create rules?
