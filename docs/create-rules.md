@@ -150,3 +150,7 @@ You should add `textlint` to npm's `keywords`
 
 - [package.json | npm Documentation](https://docs.npmjs.com/files/package.json "package.json | npm Documentation")
 - [results for textlint](https://www.npmjs.com/search?q=textlint "results for textlint")
+
+Case example:
+
+- [spellcheck-tech-word-textlint-rule](https://www.npmjs.com/package/spellcheck-tech-word-textlint-rule "spellcheck-tech-word-textlint-rule")

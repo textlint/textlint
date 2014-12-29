@@ -51,7 +51,6 @@
     "optionator": "^0.5.0",
     "structured-source": "^3.0.2",
     "style-format": "0.0.0",
-    "technical-word-rules": "git://github.com/azu/technical-word-rules",
     "text-table": "^0.2.0",
     "traverse": "^0.6.6",
     "xml-escape": "^1.0.0"
