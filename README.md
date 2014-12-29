@@ -32,7 +32,7 @@ textlint -h
 Please see docs/
 
 - [docs/txtnode.md](docs/txtnode.md)
-    - What's is Text's node?
+    - What is is TxtNode?
 - [docs/create-rules.md](docs/create-rules.md)
     - How to create rules?
     - Tutorial: creating `no-todo` rule.
@@ -51,11 +51,21 @@ MIT
 
 and
 
-`lib/load-rules.js` , `util/traverse.js`, `cli.js` and formatters are:
+`lib/load-rules.js`, `util/traverse.js`, `cli.js` and formatters are:
 
     ESLint
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
 
+## Related Work
+
+[SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint") is similar project.
+
+[SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint")'s place is equal to my `textlint`(Fortuitously, project name is equal too!).
+
+![concept](http://monosnap.com/image/Gr9CGbkSjl1FXEL0LIWzNDAj3c24JT.png)
+
+via [Natural Language Checking with Program Checking Tools](http://www.slideshare.net/renggli/text-lint "Natural Language Checking with Program Checking Tools")
+
 ## Acknowledgements
 
-Many thanks for [ESLint](http://eslint.org/ "ESLint").
+Thanks for [ESLint](http://eslint.org/ "ESLint").
