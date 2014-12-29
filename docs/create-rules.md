@@ -120,3 +120,22 @@ $ textlint README.md -f pretty-error
 ```
 
 ![result error](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
+
+## Publish info
+
+You should add `textlint` to npm's `keywords`
+
+```json
+{
+  "name": "textlint-no-todo",
+  "description": "Your custom rules description",
+  "version": "1.0.1",
+  "homepage": "https://github.com/azu/textlint-custom-rules/",
+  "keywords": [
+    "textlint"
+  ],
+}
+```
+
+- [package.json | npm Documentation](https://docs.npmjs.com/files/package.json "package.json | npm Documentation")
+- [results for textlint](https://www.npmjs.com/search?q=textlint "results for textlint")
