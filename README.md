@@ -5,7 +5,7 @@ The pluggable linting tool for text(plain text and markdown).
 ## Installation
 
 ```
-npm install textlint
+npm install textlint -g
 ```
 
 ## Usage
