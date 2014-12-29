@@ -90,4 +90,4 @@ via [Natural Language Checking with Program Checking Tools](http://www.slideshar
 
 ## Acknowledgements
 
-Thanks for [ESLint](http://eslint.org/ "ESLint").
+Thanks to [ESLint](http://eslint.org/ "ESLint").
