@@ -1,4 +1,4 @@
-# Create Rules
+# Creating Rules
 
 Textlint's AST(Abstract Syntax Tree) is defined these pages.
 
@@ -22,7 +22,8 @@ module.exports = function (context) {
     exports[context.Syntax.Paragraph] = function (node) {
     };
     exports[context.Syntax.Str] = function (node) {
-        if(/found wrong use-case/.test(node.raw){
+        var text = context.getSource(node);
+        if(/found wrong use-case/.test.(text){
             // report error
             context.report(node, "found wrong");
         }
@@ -33,4 +34,66 @@ module.exports = function (context) {
 };
 ```
 
-See [Working with Rules](http://eslint.org/docs/developer-guide/working-with-rules.html "Working with Rules") on ESLint.
+## RuleContext
+
+RuleContext object has following property:
+
+- `Syntax.*` has const values of [TxtNode type](./txtnode.md).
+    - e.g.) `context.Syntax.Str`
+- `RuleError(<message>)` is like Error object.
+    - e.g.) `new context.RuleError("found rule error")`
+- `report(<node>, <ruleError>)` is a method reports a message from one of the rules.
+    - e.g.) `context.report(node, new context.RuleError("found rule error"));`
+- `getSource(<node>)`  is a method gets the source code for the given node.
+    - e.g.) `context.getSource(node); // => "text"`
+
+
+See also [Working with Rules](http://eslint.org/docs/developer-guide/working-with-rules.html "Working with Rules") on ESLint.
+
+## Example: creating `no-todo` rules.
+
+This example aim to found `- [ ]` and `todo:` texts.
+
+```js
+"use strict";
+/**
+ * @param {RuleContext} context
+ */
+module.exports = function (context) {
+    var exports = {};
+    // When `node` is `Str` is coming, call this callback.
+    /*
+    e.g.)
+        # Header
+
+        this is Str.
+
+        Todo: quick fix this.
+    */
+    // `Str` is "this is Str." and "Todo: quick fix this.", so called this callback twice.
+    exports[context.Syntax.Str] = function (node) {
+        // get text from node
+        var text = context.getSource(node);
+        // does text contain "todo:"?
+        if (/todo:/i.test(text)) {
+            context.report(node, new context.RuleError("found Todo: " + text));
+        }
+    };
+    // When `node` is `List` is coming, call this callback.
+    /*
+    e.g.)
+        # Header
+
+        - list 1
+        - [ ] todo
+    */
+    // `List` is "- list 1" and - [ ] todo", so called this callback twice.
+    exports[context.Syntax.List] = function (node) {
+        var text = context.getSource(node);
+        if (/\[\s*?\]\s/i.test(text)) {
+            context.report(node, new context.RuleError("found Todo: " + text));
+        }
+    };
+    return exports;
+};
+```
