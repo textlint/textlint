@@ -20,7 +20,7 @@ module.exports = function (context) {
         var text = context.getSource(node);
         // does text contain "todo:"?
         if (/todo:/i.test(text)) {
-            context.report(node, new context.RuleError("found Todo: " + text));
+            context.report(node, new context.RuleError("found TODO: '" + text + "'"));
         }
     };
     // When `node`'s type is `ListItem` come, call this callback.
@@ -35,7 +35,7 @@ module.exports = function (context) {
     exports[context.Syntax.ListItem] = function (node) {
         var text = context.getSource(node);
         if (/\[\s*?\]\s/i.test(text)) {
-            context.report(node, new context.RuleError("found Todo: " + text));
+            context.report(node, new context.RuleError("found TODO: '" + text + "'"));
         }
     };
     return exports;
