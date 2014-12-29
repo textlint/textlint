@@ -1,3 +1,11 @@
+### 1.0.1 (2014-12-29)
+
+
+#### Bug Fixes
+
+* **rules:** fix no-todo rule ([a06c01e4](https://github.com/azu/textlint/commit/a06c01e443ce301d2e75a1db5a29d422caf859cf))
+
+
 ## 1.0.0 (2014-12-29)
 
 
