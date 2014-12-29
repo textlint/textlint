@@ -10,21 +10,32 @@ npm install textlint
 
 ## Usage
 
-![img](http://monosnap.com/image/lYPymzf1agvbYOwEJMEPc5O9lnh9d8.png)
+![lint result](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
 
-- [ ] more more todo
+- [ ] more more document!
 
 
 ```
 textlint README.md
 ```
 
-## Rules
+## CLI
+
+See help.
+
+```
+textlint -h
+```
+
+## How to create rules?
 
 Please see docs/
 
 - [docs/txtnode.md](docs/txtnode.md)
+    - What's is Text's node?
 - [docs/create-rules.md](docs/create-rules.md)
+    - How to create rules?
+    - Tutorial: creating `no-todo` rule.
 
 ## Contributing
 
