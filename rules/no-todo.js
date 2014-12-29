@@ -5,7 +5,7 @@
  */
 module.exports = function (context) {
     var exports = {};
-    // When `node` is `Str` is coming, call this callback.
+    // When `node`'s type is `Str` come, call this callback.
     /*
     e.g.)
         # Header
@@ -23,7 +23,7 @@ module.exports = function (context) {
             context.report(node, new context.RuleError("found Todo: " + text));
         }
     };
-    // When `node` is `List` is coming, call this callback.
+    // When `node`'s type is `ListItem` come, call this callback.
     /*
     e.g.)
         # Header
@@ -32,7 +32,7 @@ module.exports = function (context) {
         - [ ] todo
     */
     // `List` is "- list 1" and - [ ] todo", so called this callback twice.
-    exports[context.Syntax.List] = function (node) {
+    exports[context.Syntax.ListItem] = function (node) {
         var text = context.getSource(node);
         if (/\[\s*?\]\s/i.test(text)) {
             context.report(node, new context.RuleError("found Todo: " + text));
