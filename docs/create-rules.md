@@ -5,7 +5,7 @@ Textlint's AST(Abstract Syntax Tree) is defined these pages.
 - [txtnode.d.ts](./txtnode.d.ts)
 - [TxtNode interface](./txtnode.md)
 
-Each rule is represented by a object with several properties.
+Each rules are represented by a object with several properties.
 The properties are equivalent to AST node types from TxtNode.
 
 put simply you can write following:
