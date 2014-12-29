@@ -54,6 +54,11 @@ See also [Working with Rules](http://eslint.org/docs/developer-guide/working-wit
 
 This example aim to found `- [ ]` and `todo:` texts.
 
+Rule file name is equal to rule ID(i.e., no-todo.js for rule ID no-todo).
+
+
+File Name: [no-todo.js](../rules/no-todo.js)
+
 ```js
 "use strict"
 /**
@@ -117,6 +122,12 @@ Run Lint!
 
 ```sh
 $ textlint README.md -f pretty-error
+```
+
+OR
+
+```sh
+$ textlint README.md --rulesdir path/to/rules/ -f pretty-error
 ```
 
 ![result error](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
