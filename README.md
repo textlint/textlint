@@ -45,6 +45,8 @@ Options:
 
 See [formatters](lib/formatters).
 
+Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error".
+
 e.g.) use pretty-error.js
 
 ```
