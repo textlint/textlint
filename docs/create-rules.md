@@ -8,7 +8,7 @@ Textlint's AST(Abstract Syntax Tree) is defined these pages.
 Each rules are represented by a object with several properties.
 The properties are equivalent to AST node types from TxtNode.
 
-put simply you can write following:
+Put simply you can write following:
 
 ```js
 /**
@@ -25,7 +25,7 @@ module.exports = function (context) {
         var text = context.getSource(node);
         if(/found wrong use-case/.test.(text){
             // report error
-            context.report(node, "found wrong");
+            context.report(node, new context.RuleError("found wrong"));
         }
     };
     exports[context.Syntax.Break] = function (node) {
