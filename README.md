@@ -79,6 +79,7 @@ and
 
     ESLint
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
+    https://github.com/eslint/eslint/blob/master/LICENSE
 
 ## Related Work
 
