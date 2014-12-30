@@ -2,6 +2,8 @@
 
 The pluggable linting tool for text(plain text and markdown).
 
+It is similar to [ESLint](http://eslint.org/ "ESLint").
+
 ## Installation
 
 ```
