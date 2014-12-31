@@ -7,7 +7,7 @@ It is similar to [ESLint](http://eslint.org/ "ESLint").
 ## Installation
 
 ```
-npm install textlint -g
+$ npm install textlint -g
 ```
 
 ## Usage
@@ -53,7 +53,22 @@ e.g.) use pretty-error.js
 $ textlint -f pretty-error file.md
 ```
 
-## How to create rules?
+## Use as node modules
+
+You can use textlint as node modules.
+
+```
+$ npm install textlint --save-dev
+```
+
+Minimal usage:
+
+```js
+// TODO:
+```
+
+
+## FAQ: How to create rules?
 
 Please see docs/
 
