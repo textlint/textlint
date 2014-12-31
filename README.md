@@ -73,7 +73,7 @@ console.log(results[0].filePath);// => "README.md"]
 console.log(results[0].messages);// => "lint message"
 ```
 
-More core usage:
+High level usage:
 
 ```js
 var textlint = require("textlint").textlint;
