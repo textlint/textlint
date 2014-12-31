@@ -8,8 +8,7 @@ describe("cli-engine-test", function () {
     describe("executeOnFiles", function () {
         it("should found error message", function () {
             cliEngine = new CLIEngine({
-                rulesdir: [rulesDir],
-                extensions: ["md"]
+                rulesdir: [rulesDir]
             });
             var filePath = require("path").join(__dirname, "fixtures/test.md");
             var results = cliEngine.executeOnFiles([filePath]);
