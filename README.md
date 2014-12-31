@@ -43,7 +43,7 @@ Options:
 
 ### Build-in formatters
 
-See [formatters](lib/formatters).
+See [formatters/](lib/formatters).
 
 Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error".
 
@@ -64,9 +64,37 @@ $ npm install textlint --save-dev
 Minimal usage:
 
 ```js
-// TODO:
+var CLIEngine = require("textlint").CLIEngine;
+var cliEngine = new CLIEngine({
+    rulesdir: ["path/to/rule-dir"]
+});
+var results = cliEngine.executeOnFiles(["README.md"]);
+console.log(results[0].filePath);// => "README.md"]
+console.log(results[0].messages);// => "lint message"
 ```
 
+More core usage:
+
+```js
+var textlint = require("textlint").textlint;
+textlint.setupRules({
+    // rule-key : rule function(see docs/create-rules.md)
+    "rule-key": function(context){
+        var exports = {};
+        exports[context.Syntax.Str] = function (node) {
+            context.report(node, new context.RuleError("error message"));
+        };
+        return exports;
+    }
+});
+var results = cliEngine.executeOnFiles(["README.md"]);
+console.log(results[0].filePath);// => "README.md"]
+console.log(results[0].messages);// => "error message"
+```
+
+More detail:
+
+- See [docs/use-as-modules.md](docs/use-as-modules.md)
 
 ## FAQ: How to create rules?
 
