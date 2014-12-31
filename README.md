@@ -69,8 +69,8 @@ var cliEngine = new CLIEngine({
     rulesdir: ["path/to/rule-dir"]
 });
 var results = cliEngine.executeOnFiles(["README.md"]);
-console.log(results[0].filePath);// => "README.md"]
-console.log(results[0].messages);// => "lint message"
+console.log(results[0].filePath);// => "README.md"
+console.log(results[0].messages);// => [{message:"lint message"}]
 ```
 
 High level usage:
@@ -88,8 +88,8 @@ textlint.setupRules({
     }
 });
 var results = cliEngine.executeOnFiles(["README.md"]);
-console.log(results[0].filePath);// => "README.md"]
-console.log(results[0].messages);// => "error message"
+console.log(results[0].filePath);// => "README.md"
+console.log(results[0].messages);// => [{message:"lint message"}]
 ```
 
 More detail:
