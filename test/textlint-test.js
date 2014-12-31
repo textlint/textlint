@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var textLint = require("../lib/textlint");
+var textLint = require("../").textlint;
 var loadRules = require("../lib/rule/load-rules");
 var rules = loadRules(__dirname + "/rules");
 describe("textlint-test", function () {
@@ -23,13 +23,13 @@ describe("textlint-test", function () {
             "\n" +
             "hoge\n [a](http://example.com) fuga\n" +
             "------");
-            assert(result.filePath === "<text>");
+            assert(result.filePath === "<markdown>");
             assert(result.messages.length > 0);
         });
     });
     describe("lintText", function () {
         it("should found error message", function () {
-            var result = textLint.lintMarkdown("It it plain text\n" +
+            var result = textLint.lintText("It it plain text\n" +
             "second line.");
             assert(result.filePath === "<text>");
             assert(result.messages.length > 0);
