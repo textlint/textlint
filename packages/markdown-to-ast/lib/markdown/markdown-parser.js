@@ -211,6 +211,9 @@ function parse(text) {
     // affect to ast
     writer.computeAST(ast);
     var src = new StructuredSource(text);
+
+    // assign text to `raw` property on Root = Document Node
+    ast.raw = text;
     // compute location from each nodes.
     // This do merge(node, loc)
     traverse(ast).forEach(function (x) {

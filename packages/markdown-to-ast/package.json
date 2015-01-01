@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/azu/commonmark-ast-parser.git"
   },
-  "main": "index.js",
+  "main": "lib/markdown/markdown-parser.js",
   "scripts": {
     "watch": "watchify example/js/index.js -o example/app/app.js",
     "test": "mocha test/*.js"
@@ -29,6 +29,10 @@
   },
   "devDependencies": {
     "browserify": "^8.0.2",
+    "espower-loader": "^0.10.0",
+    "intelli-espower-loader": "^0.5.0",
+    "mocha": "^2.1.0",
+    "power-assert": "^0.10.0",
     "watchify": "^2.2.1"
   }
 }
