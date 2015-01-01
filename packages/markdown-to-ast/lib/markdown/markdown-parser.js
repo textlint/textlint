@@ -129,8 +129,6 @@ var renderBlock = function (block, in_tight_list) {
             this.renderBlocks(block.children, block.tight) +
             this.innersep);
         case 'Header':
-        case 'ATXHeader':// Fixme: unnecessary?
-        case 'SetextHeader':// unnecessary?
             tag = 'h' + block.level;
             return toMarkdownText(tag, [], this.renderInlines(block.inline_content, block));
         case 'IndentedCode':
