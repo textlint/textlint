@@ -10,9 +10,11 @@ var traverse = require('traverse');
 var positionNode = require("./markdown-position-node");
 var StructuredSource = require('structured-source');
 var Syntax = require("./markdown-syntax");
-var commonmark = require("commonmark");
 var stripYAMLHeader = require("strip-yaml-header");
 var objectAssign = require("object-assign");
+var commonmark = require("commonmark");
+var reader = new commonmark.DocParser();
+
 // Helper function to produce content in a pair of HTML tags.
 var toPlainText = function (tag, attribs, contents, selfclosing) {
     return contents;
@@ -84,11 +86,10 @@ var renderInlines = function (inlines, parent) {
             Object.defineProperties(inline, {
                 "end_line": {
                     value: parent.start_line + addingLineNumber
-                },
-                "raw": {
-                    value: raw
                 }
             });
+            // export `raw`
+            inline.raw = raw
         }
     }
     return result;
@@ -161,10 +162,8 @@ var renderBlocks = function (blocks, in_tight_list) {
         if (block.t !== 'ReferenceDef') {
             var raw = this.renderBlock(block, in_tight_list);
             // Mutable Change!!
-            // assign `raw` property - readonly
-            Object.defineProperty(block, "raw", {
-                value: raw
-            });
+            // export `raw` property
+            block.raw = raw;
             result.push(raw);
         }
     }
@@ -207,7 +206,6 @@ function HtmlRenderer() {
  * @returns {TxtNode}
  */
 function parse(text) {
-    var reader = new commonmark.DocParser();
     var writer = new HtmlRenderer();
     var ast = reader.parse(stripYAMLHeader(text));
     // affect to ast
@@ -224,7 +222,8 @@ function parse(text) {
             if (typeof x.t !== "undefined") {
                 // covert t to type
                 // e.g) "FencedCode" => "CodeBlock"
-                x.type = x.t;
+                x.type = Syntax[x.t];
+                // delete original `x.t`
                 delete x.t;
             }
         }
