@@ -27,12 +27,11 @@ var objectAssign = require("object-assign");
 var commonmark = require("commonmark");
 var reader = new commonmark.DocParser();
 
-// Helper function to produce content in a pair of HTML tags.
-var toMarkdownText = function (type, node, contents, selfclosing) {
+// Helper function to produce markdown text
+var toMarkdownText = function (type, node, contents) {
     // TODO: All types has not been implemented yet...
     switch (type) {
         case "ListItem":
-            console.log(node);
             return require("./type-builder/markdown-list-item")(node, contents);
         case "Link":
             return require("./type-builder/markdown-link")(node, contents);
@@ -141,8 +140,6 @@ var renderBlock = function (block, in_tight_list) {
             this.renderBlocks(block.children, block.tight) +
             this.innersep);
         case 'Header':
-        case 'ATXHeader':// Fixme: unnecessary?
-        case 'SetextHeader':// unnecessary?
             tag = 'h' + block.level;
             return toMarkdownText(tag, [], this.renderInlines(block.inline_content, block));
         case 'IndentedCode':

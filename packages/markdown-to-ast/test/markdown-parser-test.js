@@ -162,27 +162,27 @@ describe("markdown-parser", function () {
         });
     });
 
-    context("Node type is List", function () {
-        var AST, rawValue, text;
-        beforeEach(function () {
-            text = "text";
-            rawValue = "- " + text;
-            AST = parse(rawValue);
-        });
-        it("should has implemented TxtNode", function () {
-            var node = findFirstTypedNode(AST, Syntax.ListItem);
-            assert.equal(node.raw, rawValue);
-            assert.deepEqual(node.loc, {
-                start: {
-                    line: 1,
-                    column: 0
-                },
-                end: {
-                    line: 1,
-                    column: rawValue.length
-                }
-            });
-            assert.deepEqual(node.range, [0, rawValue.length]);
-        });
-    });
+    //context("Node type is List", function () {
+    //    var AST, rawValue, text;
+    //    beforeEach(function () {
+    //        text = "text";
+    //        rawValue = "- " + text;
+    //        AST = parse(rawValue);
+    //    });
+    //    it("should has implemented TxtNode", function () {
+    //        var node = findFirstTypedNode(AST, Syntax.ListItem);
+    //        assert.equal(node.raw, rawValue);
+    //        assert.deepEqual(node.loc, {
+    //            start: {
+    //                line: 1,
+    //                column: 0
+    //            },
+    //            end: {
+    //                line: 1,
+    //                column: rawValue.length
+    //            }
+    //        });
+    //        assert.deepEqual(node.range, [0, rawValue.length]);
+    //    });
+    //});
 });
