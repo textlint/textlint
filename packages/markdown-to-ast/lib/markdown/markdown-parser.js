@@ -16,7 +16,15 @@ var commonmark = require("commonmark");
 var reader = new commonmark.DocParser();
 
 // Helper function to produce content in a pair of HTML tags.
-var toPlainText = function (tag, attribs, contents, selfclosing) {
+var toMarkdownText = function (type, node, contents, selfclosing) {
+    // TODO: All types has not been implemented yet...
+    switch (type) {
+        case "ListItem":
+            console.log(node);
+            return require("./type-builder/markdown-list-item")(node, contents);
+        case "Link":
+            return require("./type-builder/markdown-link")(node, contents);
+    }
     return contents;
 };
 
@@ -24,24 +32,20 @@ var toPlainText = function (tag, attribs, contents, selfclosing) {
 var renderInline = function (inline, parent) {
     var attrs;
     switch (inline.t) {
-        case 'Str':
+        case 'Text':
             return this.escape(inline.c);
         case 'Softbreak':
             return this.softbreak;
         case 'Hardbreak':
-            return toPlainText('br', [], "", true) + '\n';
+            return toMarkdownText('br', [], "", true) + '\n';
         case 'Emph':
-            return toPlainText('em', [], this.renderInlines(inline.c, parent));
+            return toMarkdownText('em', [], this.renderInlines(inline.c, parent));
         case 'Strong':
-            return toPlainText('strong', [], this.renderInlines(inline.c, parent));
+            return toMarkdownText('strong', [], this.renderInlines(inline.c, parent));
         case 'Html':
             return inline.c;
         case 'Link':
-            attrs = [['href', this.escape(inline.destination, true)]];
-            if (inline.title) {
-                attrs.push(['title', this.escape(inline.title, true)]);
-            }
-            return toPlainText('a', attrs, this.renderInlines(inline.label, parent));
+            return toMarkdownText('Link', inline, this.renderInlines(inline.label, parent));
         case 'Image':
             attrs = [
                 ['src', this.escape(inline.destination, true)],
@@ -54,9 +58,9 @@ var renderInline = function (inline, parent) {
             if (inline.title) {
                 attrs.push(['title', this.escape(inline.title, true)]);
             }
-            return toPlainText('img', attrs, "", true);
+            return toMarkdownText('img', attrs, "", true);
         case 'Code':
-            return toPlainText('code', [], this.escape(inline.c));
+            return toMarkdownText('code', [], this.escape(inline.c));
         default:
             console.log("Unknown inline type " + inline.t);
             return "";
@@ -108,29 +112,30 @@ var renderBlock = function (block, in_tight_list) {
             if (in_tight_list) {
                 return this.renderInlines(block.inline_content, block);
             } else {
-                return toPlainText('p', [], this.renderInlines(block.inline_content, block));
+                return toMarkdownText('p', [], this.renderInlines(block.inline_content, block));
             }
             break;
         case 'BlockQuote':
             var filling = this.renderBlocks(block.children);
-            return toPlainText('blockquote', [], filling === '' ? this.innersep :
-                                                 this.innersep + filling + this.innersep);
+            return toMarkdownText('blockquote', [], filling === '' ? this.innersep :
+                                                    this.innersep + filling + this.innersep);
         case 'ListItem':
-            return toPlainText('li', [], this.renderBlocks(block.children, in_tight_list).trim());
+            return toMarkdownText('ListItem', block, this.renderBlocks(block.children, in_tight_list).trim());
         case 'List':
             tag = block.list_data.type == 'Bullet' ? 'ul' : 'ol';
             attr = (!block.list_data.start || block.list_data.start == 1) ?
                    [] : [['start', block.list_data.start.toString()]];
-            return toPlainText(tag, attr, this.innersep +
+            return toMarkdownText(tag, attr, this.innersep +
             this.renderBlocks(block.children, block.tight) +
             this.innersep);
-        case 'ATXHeader':
-        case 'SetextHeader':
+        case 'Header':
+        case 'ATXHeader':// Fixme: unnecessary?
+        case 'SetextHeader':// unnecessary?
             tag = 'h' + block.level;
-            return toPlainText(tag, [], this.renderInlines(block.inline_content, block));
+            return toMarkdownText(tag, [], this.renderInlines(block.inline_content, block));
         case 'IndentedCode':
-            return toPlainText('pre', [],
-                toPlainText('code', [], this.escape(block.string_content)));
+            return toMarkdownText('pre', [],
+                toMarkdownText('code', [], this.escape(block.string_content)));
         case 'FencedCode':
             info_words = block.info.split(/ +/);
             attr = info_words.length === 0 || info_words[0].length === 0 ?
@@ -140,14 +145,14 @@ var renderBlock = function (block, in_tight_list) {
                 this.escape(info_words[0], true)
                 ]
             ];
-            return toPlainText('pre', [],
-                toPlainText('code', attr, this.escape(block.string_content)));
+            return toMarkdownText('pre', [],
+                toMarkdownText('code', attr, this.escape(block.string_content)));
         case 'HtmlBlock':
             return block.string_content;
         case 'ReferenceDef':
             return "";
         case 'HorizontalRule':
-            return toPlainText('hr', [], "", true);
+            return toMarkdownText('hr', [], "", true);
         default:
             console.log("Unknown block type " + block.t);
             return "";
@@ -214,6 +219,7 @@ function parse(text) {
 
     // assign text to `raw` property on Root = Document Node
     ast.raw = text;
+
     // compute location from each nodes.
     // This do merge(node, loc)
     traverse(ast).forEach(function (x) {
@@ -227,7 +233,7 @@ function parse(text) {
                 // e.g) "FencedCode" => "CodeBlock"
                 x.type = Syntax[x.t];
                 // delete original `x.t`
-                delete x.t;
+                //delete x.t;
             }
         }
     });

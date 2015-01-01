@@ -1,25 +1,21 @@
 // LICENSE : MIT
 "use strict";
+
 var exports = {
-    "Document": "Document",
+    "Document": "Document", // must
     "Paragraph": "Paragraph",
     "BlockQuote": "BlockQuote",
     "ListItem": "ListItem",
     "List": "List",
-    "Bullet": "Bullet", // no need?
     "Header": "Header",
-    "ATXHeader": "Header",// removed?
-    "SetextHeader": "Header",// removed?
-    "IndentedCode": "CodeBlock",
-    "FencedCode": "CodeBlock",
+    "CodeBlock": "CodeBlock",
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
-    // inline block
-    'Text': 'Str',
-    'Softbreak': 'Break',
-    'Hardbreak': 'Break',
-    'Emph': 'Emphasis',
+    // inline
+    'Str': 'Str', // must
+    'Break': 'Break', // must
+    'Emphasis': 'Emphasis',
     'Strong': 'Strong',
     'Html': 'Html',
     'Link': 'Link',

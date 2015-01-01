@@ -2,7 +2,7 @@
 "use strict";
 var assert = require("power-assert");
 var parse = require("../");
-var Syntax = require("../lib/markdown/markdown-syntax");
+var Syntax = require("./union-syntax");
 var inspect = function (obj) {
     return JSON.stringify(obj, null, 4);
 };
@@ -11,11 +11,19 @@ function findFirstTypedNode(node, type, value) {
     var result = null;
     traverse(node).forEach(function (x) {
         if (this.notLeaf) {
-            if (x.type === type && x.raw === value) {
-                result = x;
+            if (x.type === type) {
+                if (value == null) {
+                    result = x;
+                } else if (x.raw === value) {
+                    result = x;
+                }
             }
         }
     });
+    if (result == null) {
+        console.log("Not Found type:" + type );
+        console.log(inspect(node));
+    }
     return result;
 }
 /*
@@ -69,7 +77,7 @@ describe("markdown-parser", function () {
                 assert.deepEqual(node.range, [0, rawValue.length]);
             });
         });
-        context("Str", function () {
+        context("Text", function () {
             it("should has implemented TxtNode", function () {
                 var node = findFirstTypedNode(AST, Syntax.Str, rawValue);
                 assert.equal(node.raw, rawValue);
@@ -98,7 +106,7 @@ describe("markdown-parser", function () {
         });
         context("Header", function () {
             it("should has implemented TxtNode", function () {
-                var node = findFirstTypedNode(AST, "Header", rawValue);
+                var node = findFirstTypedNode(AST, Syntax.Header, rawValue);
                 assert.equal(node.raw, rawValue);
                 assert.deepEqual(node.loc, {
                     start: {
@@ -130,5 +138,51 @@ describe("markdown-parser", function () {
                 assert.deepEqual(node.range, [0, rawValue.length]);
             });
         });
-    })
+    });
+    context("Node type is Link", function () {
+        var AST, rawValue, labelText;
+        beforeEach(function () {
+            labelText = "text";
+            rawValue = "[" + labelText + "](http://example.com)";
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.Link);
+            assert.deepEqual(node.loc, {
+                start: {
+                    line: 1,
+                    column: 0
+                },
+                end: {
+                    line: 1,
+                    column: rawValue.length
+                }
+            });
+            assert.deepEqual(node.range, [0, rawValue.length]);
+        });
+    });
+
+    context("Node type is List", function () {
+        var AST, rawValue, text;
+        beforeEach(function () {
+            text = "text";
+            rawValue = "- " + text;
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.ListItem);
+            assert.equal(node.raw, rawValue);
+            assert.deepEqual(node.loc, {
+                start: {
+                    line: 1,
+                    column: 0
+                },
+                end: {
+                    line: 1,
+                    column: rawValue.length
+                }
+            });
+            assert.deepEqual(node.range, [0, rawValue.length]);
+        });
+    });
 });
