@@ -80,15 +80,15 @@ var renderInline = function (inline, parent) {
         case 'Hardbreak':
             return toMarkdownText('br', [], "", true) + '\n';
         case CMSyntax.Emph:
-            return toMarkdownText(CMSyntax.Emph, inline, this.renderInlines(inline.c, parent));
+            return toMarkdownText(CMSyntax.Emph, inline, this.renderInlines(inline.c, inline));
         case CMSyntax.Strong:
-            return toMarkdownText(CMSyntax.Strong, inline, this.renderInlines(inline.c, parent));
+            return toMarkdownText(CMSyntax.Strong, inline, this.renderInlines(inline.c, inline));
         case 'Html':
             return inline.c;
         case CMSyntax.Link:
-            return toMarkdownText(CMSyntax.Link, inline, this.renderInlines(inline.label, parent));
+            return toMarkdownText(CMSyntax.Link, inline, this.renderInlines(inline.label, inline));
         case CMSyntax.Image:
-            return toMarkdownText(CMSyntax.Image, inline, this.renderInlines(inline.label, parent));
+            return toMarkdownText(CMSyntax.Image, inline, this.renderInlines(inline.label, inline));
         case CMSyntax.Code:
             return toMarkdownText(CMSyntax.Code, inline, inline.c);
         default:
@@ -97,10 +97,25 @@ var renderInline = function (inline, parent) {
     }
 };
 function marginLeft(parent) {
-    if (typeof parent === "object" && parent.t === CMSyntax.Header) {
-        // workaround : 0.15
-        // Why does a child node of header start with column 1?
-        return parent.level + 1;
+    if (typeof parent !== "object") {
+        return 0;
+    }
+
+    switch (parent.t) {
+        case CMSyntax.Header:
+            // workaround : 0.15
+            // Why does a child node of header start with column 1?
+            return parent.level + 1;
+        // TODO: How to know * or __ ?
+        case CMSyntax.Emph:
+            return 1;
+        case CMSyntax.Strong:
+            return 2;
+        case CMSyntax.Link:
+            return 1;
+        case CMSyntax.Image:
+            return 2;
+
     }
     return 0;// default - no effect
 }

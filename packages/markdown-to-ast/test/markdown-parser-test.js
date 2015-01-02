@@ -41,6 +41,21 @@ function shouldHaveImplementTxtNode(node, rawValue) {
     });
     assert.deepEqual(node.range, [0, rawValue.length]);
 }
+function shouldHaveImplementInlineTxtNode(node, text, allText) {
+    assert.equal(node.raw, text);
+    var startColumn = allText.indexOf(text);
+    assert.deepEqual(node.loc, {
+        start: {
+            line: 1,
+            column: startColumn
+        },
+        end: {
+            line: 1,
+            column: startColumn + text.length
+        }
+    });
+    assert.deepEqual(node.range, [startColumn, startColumn + text.length]);
+}
 /*
     NOTE:
         `line` start with 1
@@ -87,6 +102,7 @@ describe("markdown-parser", function () {
                 shouldHaveImplementTxtNode(node, rawValue);
             });
         });
+
     });
     /*
         H1  > Str
@@ -136,21 +152,9 @@ describe("markdown-parser", function () {
                 });
             });
             context("Str", function () {
-                it("should has implemented TxtNode", function () {
+                it("should have correct range", function () {
                     var node = findFirstTypedNode(AST, Syntax.Str);
-                    assert.equal(node.raw, text);
-                    var startColumn = header.indexOf(text);
-                    assert.deepEqual(node.loc, {
-                        start: {
-                            line: 1,
-                            column: startColumn
-                        },
-                        end: {
-                            line: 1,
-                            column: startColumn + text.length
-                        }
-                    });
-                    assert.deepEqual(node.range, [startColumn, startColumn + text.length]);
+                    shouldHaveImplementInlineTxtNode(node, text, header);
                 });
             });
         });
@@ -166,6 +170,12 @@ describe("markdown-parser", function () {
             var node = findFirstTypedNode(AST, Syntax.Link);
             shouldHaveImplementTxtNode(node, rawValue);
         });
+        context("Str", function () {
+            it("should have correct range", function () {
+                var node = findFirstTypedNode(AST, Syntax.Str);
+                shouldHaveImplementInlineTxtNode(node, labelText, rawValue)
+            });
+        });
     });
     context("Node type is ListItem", function () {
         it("should same the bullet_char", function () {
@@ -177,7 +187,6 @@ describe("markdown-parser", function () {
             node = findFirstTypedNode(AST, Syntax.ListItem);
             assert(/^\*/.test(node.raw));
         });
-
         it("should have marker_offser of each items", function () {
             var node, AST;
             AST = parse("- item\n" +
@@ -192,6 +201,15 @@ describe("markdown-parser", function () {
                 AST = parse(rawValue);
             var node = findFirstTypedNode(AST, Syntax.ListItem);
             shouldHaveImplementTxtNode(node, rawValue);
+        });
+        context("Str", function () {
+            it("should have correct range", function () {
+                var text = "text",
+                    rawValue = "- " + text,
+                    AST = parse(rawValue);
+                var node = findFirstTypedNode(AST, Syntax.Str);
+                shouldHaveImplementInlineTxtNode(node, text, rawValue)
+            });
         });
     });
     /*
@@ -268,14 +286,21 @@ describe("markdown-parser", function () {
         __Strong__
      */
     context("Node type is Strong", function () {
-        var AST, rawValue;
+        var AST, rawValue, text;
         beforeEach(function () {
-            rawValue = "__Strong__";
+            text = "text";
+            rawValue = "__" + text + "__";
             AST = parse(rawValue);
         });
         it("should has implemented TxtNode", function () {
             var node = findFirstTypedNode(AST, Syntax.Strong);
             shouldHaveImplementTxtNode(node, rawValue);
+        });
+        context("Str", function () {
+            it("should have correct range", function () {
+                var node = findFirstTypedNode(AST, Syntax.Str);
+                shouldHaveImplementInlineTxtNode(node, text, rawValue)
+            });
         });
     });
 
@@ -293,19 +318,32 @@ describe("markdown-parser", function () {
             var node = findFirstTypedNode(AST, Syntax.Image);
             shouldHaveImplementTxtNode(node, rawValue);
         });
+        context("Str", function () {
+            it("should have correct range", function () {
+                var node = findFirstTypedNode(AST, Syntax.Str);
+                shouldHaveImplementInlineTxtNode(node, labelText, rawValue)
+            });
+        });
     });
     /*
         *text*
     */
     context("Node type is Emphasis", function () {
-        var AST, rawValue;
+        var AST, rawValue, text;
         beforeEach(function () {
-            rawValue = "*text*";
+            text = "text";
+            rawValue = "*" + text + "*";
             AST = parse(rawValue);
         });
         it("should has implemented TxtNode", function () {
             var node = findFirstTypedNode(AST, Syntax.Emphasis);
             shouldHaveImplementTxtNode(node, rawValue);
+        });
+        context("Str", function () {
+            it("should have correct range", function () {
+                var node = findFirstTypedNode(AST, Syntax.Str);
+                shouldHaveImplementInlineTxtNode(node, text, rawValue)
+            });
         });
     });
 });
