@@ -249,7 +249,6 @@ describe("markdown-parser", function () {
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
-
     /*
         *text*
     */

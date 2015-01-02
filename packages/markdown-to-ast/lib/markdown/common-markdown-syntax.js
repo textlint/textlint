@@ -10,7 +10,6 @@ var exports = {
     "List": "List",
     "Bullet": "Bullet",
     "Header": "Header",
-    "IndentedCode": "IndentedCode",
     "CodeBlock": "CodeBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
