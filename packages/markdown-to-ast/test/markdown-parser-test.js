@@ -21,7 +21,7 @@ function findFirstTypedNode(node, type, value) {
         }
     });
     if (result == null) {
-        console.log("Not Found type:" + type );
+        console.log("Not Found type:" + type);
         console.log(inspect(node));
     }
     return result;
@@ -162,27 +162,40 @@ describe("markdown-parser", function () {
         });
     });
 
-    //context("Node type is List", function () {
-    //    var AST, rawValue, text;
-    //    beforeEach(function () {
-    //        text = "text";
-    //        rawValue = "- " + text;
-    //        AST = parse(rawValue);
-    //    });
-    //    it("should has implemented TxtNode", function () {
-    //        var node = findFirstTypedNode(AST, Syntax.ListItem);
-    //        assert.equal(node.raw, rawValue);
-    //        assert.deepEqual(node.loc, {
-    //            start: {
-    //                line: 1,
-    //                column: 0
-    //            },
-    //            end: {
-    //                line: 1,
-    //                column: rawValue.length
-    //            }
-    //        });
-    //        assert.deepEqual(node.range, [0, rawValue.length]);
-    //    });
-    //});
+    context("Node type is List", function () {
+        it("should same the bullet_char", function () {
+            var node, AST;
+            AST = parse("- item");
+            node = findFirstTypedNode(AST, Syntax.ListItem);
+            assert(/^\-/.test(node.raw));
+            AST = parse("* item");
+            node = findFirstTypedNode(AST, Syntax.ListItem);
+            assert(/^\*/.test(node.raw));
+        });
+
+        it("should have marker_offser", function () {
+            var node, AST;
+            AST = parse("- item\n" +
+            "   - item2");
+            console.log(inspect(AST));
+        });
+        it("should has implemented TxtNode", function () {
+            var text = "text",
+                rawValue = "- " + text,
+                AST = parse(rawValue);
+            var node = findFirstTypedNode(AST, Syntax.ListItem);
+            assert.equal(node.raw, rawValue);
+            assert.deepEqual(node.loc, {
+                start: {
+                    line: 1,
+                    column: 0
+                },
+                end: {
+                    line: 1,
+                    column: rawValue.length
+                }
+            });
+            assert.deepEqual(node.range, [0, rawValue.length]);
+        });
+    });
 });

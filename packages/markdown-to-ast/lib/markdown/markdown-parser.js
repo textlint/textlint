@@ -15,17 +15,45 @@ var objectAssign = require("object-assign");
 var commonmark = require("commonmark");
 var reader = new commonmark.DocParser();
 
+// block elements by level
+var _levelList = [],
+// texts line by line
+    _textLines = [];
+function initialize() {
+    _levelList = [];
+    _textLines = [];
+}
+
+function getAncestors() {
+    var i, iz, result;
+    result = [];
+    for (i = 1, iz = _levelList.length; i < iz; ++i) {
+        result.push(_levelList[i]);
+    }
+    return result;
+}
+
+function getParent(node) {
+    var parents = getAncestors();
+    for (var i = parents.length - 1; i >= 0; i--) {
+        var parent = parents[i];
+        if (parent !== node) {
+            return parent;
+        }
+    }
+}
+
 // Helper function to produce markdown text
-var toMarkdownText = function (type, node, contents) {
+function toMarkdownText(type, node, contents) {
     // TODO: All types has not been implemented yet...
     switch (type) {
         case "ListItem":
-            return require("./type-builder/markdown-list-item")(node, contents);
+            return _textLines[node.start_line - 1];
         case "Link":
             return require("./type-builder/markdown-link")(node, contents);
     }
     return contents;
-};
+}
 
 // Render an inline element as HTML.
 var renderInline = function (inline, parent) {
@@ -105,7 +133,12 @@ var renderBlock = function (block, in_tight_list) {
     var info_words;
     switch (block.t) {
         case 'Document':
+
+            // add block to stack +1
+            _levelList.push(block);
             var whole_doc = this.renderBlocks(block.children);
+            // pop block from stack -1
+            _levelList.pop();
             return (whole_doc === '' ? '' : whole_doc + '\n');
         case 'Paragraph':
             if (in_tight_list) {
@@ -115,18 +148,33 @@ var renderBlock = function (block, in_tight_list) {
             }
             break;
         case 'BlockQuote':
+            // add block to stack +1
+            _levelList.push(block);
             var filling = this.renderBlocks(block.children);
+            // pop block from stack -1
+            _levelList.pop();
             return toMarkdownText('blockquote', [], filling === '' ? this.innersep :
                                                     this.innersep + filling + this.innersep);
         case 'ListItem':
-            return toMarkdownText('ListItem', block, this.renderBlocks(block.children, in_tight_list).trim());
+            // add block to stack +1
+            _levelList.push(block);
+            var result = toMarkdownText('ListItem', block, this.renderBlocks(block.children, in_tight_list).trim());
+            // pop block from stack -1
+            _levelList.pop();
+            return result;
         case 'List':
+            // add block to stack +1
+            _levelList.push(block);
             tag = block.list_data.type == 'Bullet' ? 'ul' : 'ol';
             attr = (!block.list_data.start || block.list_data.start == 1) ?
                    [] : [['start', block.list_data.start.toString()]];
-            return toMarkdownText(tag, attr, this.innersep +
+            var result = toMarkdownText(tag, attr, this.innersep +
             this.renderBlocks(block.children, block.tight) +
             this.innersep);
+            // pop block from stack -1
+            _levelList.pop();
+            return result;
+
         case 'Header':
             tag = 'h' + block.level;
             return toMarkdownText(tag, [], this.renderInlines(block.inline_content, block));
@@ -162,9 +210,9 @@ var renderBlocks = function (blocks, in_tight_list) {
     for (var i = 0; i < blocks.length; i++) {
         var block = blocks[i];
         if (block.t !== 'ReferenceDef') {
-            var raw = this.renderBlock(block, in_tight_list);
             // Mutable Change!!
             // export `raw` property
+            var raw = this.renderBlock(block, in_tight_list);
             block.raw = raw;
             result.push(raw);
         }
@@ -208,11 +256,15 @@ function HtmlRenderer() {
  * @returns {TxtNode}
  */
 function parse(text) {
+    // initialize internal property.
+    initialize();
+    var src = new StructuredSource(text);
+    _textLines = text.split("\n");
+
     var writer = new HtmlRenderer();
     var ast = reader.parse(stripYAMLHeader(text));
     // affect to ast
     writer.computeAST(ast);
-    var src = new StructuredSource(text);
 
     // assign text to `raw` property on Root = Document Node
     ast.raw = text;

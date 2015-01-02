@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "browserify": "^8.0.2",
+    "debug": "^2.1.1",
     "espower-loader": "^0.10.0",
     "intelli-espower-loader": "^0.5.0",
     "mocha": "^2.1.0",
