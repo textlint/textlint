@@ -150,6 +150,21 @@ describe("markdown-parser", function () {
         });
     });
     /*
+        > BlockQuote
+    */
+    context("Node type is BlockQuote", function () {
+        var AST, rawValue, text;
+        beforeEach(function () {
+            text = "text";
+            rawValue = "> " + text;
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.BlockQuote);
+            assert.deepEqual(node.range, [rawValue.indexOf(text), rawValue.length]);
+        });
+    });
+    /*
     ```
     CodeBlock
     ```

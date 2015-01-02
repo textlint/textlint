@@ -53,6 +53,8 @@ function toMarkdownText(type, node, contents) {
             return require("./type-builder/markdown-link")(node, contents);
         case CMSyntax.Image:
             return require("./type-builder/markdown-image")(node, contents);
+        case CMSyntax.BlockQuote:
+            return contents;
         case CMSyntax.CodeBlock:
             return contents;
         case CMSyntax.Code:
@@ -67,10 +69,10 @@ function toMarkdownText(type, node, contents) {
 
 // Render an inline element as HTML.
 var renderInline = function (inline, parent) {
-    var attrs;
+
     switch (inline.t) {
         case 'Text':
-            return this.escape(inline.c);
+            return inline.c;
         case 'Softbreak':
             return this.softbreak;
         case 'Hardbreak':
@@ -88,7 +90,7 @@ var renderInline = function (inline, parent) {
         case CMSyntax.Code:
             return toMarkdownText(CMSyntax.Code, inline, inline.c);
         default:
-            console.log("Unknown inline type " + inline.t);
+            throw new Error("Unknown inline type " + inline.t);
             return "";
     }
 };
@@ -127,8 +129,6 @@ var renderInlines = function (inlines, parent) {
 // Render a single block element.
 var renderBlock = function (block, in_tight_list) {
     var tag;
-    var attr;
-    var info_words;
     switch (block.t) {
         case 'Document':
             // add block to stack +1
@@ -144,14 +144,13 @@ var renderBlock = function (block, in_tight_list) {
                 return toMarkdownText('p', [], this.renderInlines(block.inline_content, block));
             }
             break;
-        case 'BlockQuote':
+        case CMSyntax.BlockQuote:
             // add block to stack +1
             _levelList.push(block);
             var filling = this.renderBlocks(block.children);
             // pop block from stack -1
             _levelList.pop();
-            return toMarkdownText('blockquote', [], filling === '' ? this.innersep :
-                                                    this.innersep + filling + this.innersep);
+            return toMarkdownText(CMSyntax.BlockQuote, block, filling);
         case CMSyntax.ListItem:
             // add block to stack +1
             _levelList.push(block);
