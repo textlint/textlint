@@ -14,7 +14,7 @@ $ npm install textlint -g
 
 ![lint result](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
 
-TODO: more more document
+- [ ]  more more document
 
 
 ```

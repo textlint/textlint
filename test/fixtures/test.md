@@ -1,5 +1,5 @@
 # Test File
 
-wng word.
+wrong word.
 
 [CommonMark](https://github.com/jgm/CommonMark "CommonMark")
