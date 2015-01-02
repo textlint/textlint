@@ -11,8 +11,7 @@ var exports = {
     "Bullet": "Bullet",
     "Header": "Header",
     "IndentedCode": "IndentedCode",
-    "FencedCode": "FencedCode",
-    "HtmlBlock": "HtmlBlock",
+    "CodeBlock": "CodeBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
     // inline block

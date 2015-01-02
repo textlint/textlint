@@ -150,6 +150,24 @@ describe("markdown-parser", function () {
         });
     });
     /*
+    ```
+    CodeBlock
+    ```
+    */
+    context("Node type is CodeBlock", function () {
+        var AST, rawValue;
+        beforeEach(function () {
+            rawValue = "```\n" +
+            "Code\n" +
+            "```";
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.CodeBlock);
+            shouldHaveImplementTxtNode(node, rawValue);
+        });
+    });
+    /*
         `code`
      */
     context("Node type is Code", function () {

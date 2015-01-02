@@ -193,7 +193,7 @@ var renderBlock = function (block, in_tight_list) {
         case 'HorizontalRule':
             return toMarkdownText('hr', [], "", true);
         default:
-            console.log("Unknown block type " + block.t);
+            throw new Error("Unknown block type " + block.t);
             return "";
     }
 };
