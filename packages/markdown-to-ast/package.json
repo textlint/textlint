@@ -1,7 +1,7 @@
 {
   "name": "markdown-to-ast",
   "description": "Parse Markdown to AST with location info.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "homepage": "https://github.com/azu/markdown-to-ast/",
   "repository": {
     "type": "git",
