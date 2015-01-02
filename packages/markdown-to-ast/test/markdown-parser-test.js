@@ -96,7 +96,7 @@ describe("markdown-parser", function () {
          * text
          * =====
          **/
-        // TODO: 0.15 un-support. no way of supporting.
+            // TODO: 0.15 un-support. no way of supporting.
         context.skip("SetextHeader", function () {
             var AST, text, header;
             beforeEach(function () {
@@ -138,7 +138,19 @@ describe("markdown-parser", function () {
             context("Str", function () {
                 it("should has implemented TxtNode", function () {
                     var node = findFirstTypedNode(AST, Syntax.Str);
-                    shouldHaveImplementTxtNode(node, text);
+                    assert.equal(node.raw, text);
+                    var startColumn = header.indexOf(text);
+                    assert.deepEqual(node.loc, {
+                        start: {
+                            line: 1,
+                            column: startColumn
+                        },
+                        end: {
+                            line: 1,
+                            column: startColumn + text.length
+                        }
+                    });
+                    assert.deepEqual(node.range, [startColumn, startColumn + text.length]);
                 });
             });
         });

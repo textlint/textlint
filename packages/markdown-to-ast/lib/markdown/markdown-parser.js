@@ -96,9 +96,22 @@ var renderInline = function (inline, parent) {
             return "";
     }
 };
+function marginLeft(parent) {
+    if (typeof parent === "object" && parent.t === CMSyntax.Header) {
+        // workaround : 0.15
+        // Why does a child node of header start with column 1?
+        return parent.level + 1;
+    }
+    return 0;// default - no effect
+}
 // Render a list of inlines.
 var renderInlines = function (inlines, parent) {
     var result = '';
+    // parent node is like header or list has start margin
+    // e.g.)
+    // # header
+    // `start_column` should be 2
+    var start_margin = marginLeft(parent);
     for (var i = 0; i < inlines.length; i++) {
         var inline = inlines[i];
         if (parent != null) {
@@ -107,7 +120,7 @@ var renderInlines = function (inlines, parent) {
                     value: parent.start_line
                 },
                 "start_column": {
-                    value: parent.start_column + result.length
+                    value: parent.start_column + start_margin + result.length
                 }
             });
         }
