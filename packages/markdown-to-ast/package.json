@@ -12,6 +12,7 @@
     "lib"
   ],
   "scripts": {
+    "build": "browserify example/js/index.js -o example/app/app.js",
     "watch": "watchify example/js/index.js -o example/app/app.js",
     "test": "mocha test/*.js"
   },
