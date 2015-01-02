@@ -15,7 +15,7 @@
     }
 */
 
-var CMSyntax = require("./common-markdown-syntax");
+var CMSyntax = require("./mapping/common-markdown-syntax");
 /**
  * Compute location info from node position and `raw` value.
  * if the computation is success, then return location object.

@@ -9,7 +9,7 @@
 var traverse = require('traverse');
 var positionNode = require("./markdown-position-node");
 var StructuredSource = require('structured-source');
-var CMSyntax = require("./common-markdown-syntax");
+var CMSyntax = require("./mapping/common-markdown-syntax");
 var stripYAMLHeader = require("strip-yaml-header");
 var objectAssign = require("object-assign");
 var commonmark = require("commonmark");
@@ -273,7 +273,7 @@ function parse(text) {
     var src = new StructuredSource(text);
     _textLines = text.split("\n");
 
-    var SyntaxMap = require("./markdown-syntax");
+    var SyntaxMap = require("./mapping/markdown-syntax-map");
     var writer = new HtmlRenderer();
     var ast = reader.parse(stripYAMLHeader(text));
     // affect to ast
@@ -301,4 +301,7 @@ function parse(text) {
     });
     return ast;
 }
-module.exports = parse;
+module.exports = {
+    parse: parse,
+    Syntax: require("./union-syntax")
+};

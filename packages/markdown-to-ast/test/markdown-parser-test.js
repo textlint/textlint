@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var parse = require("../");
-var Syntax = require("./union-syntax");
+var parse = require("../").parse;
+var Syntax = require("../").Syntax;
 var inspect = function (obj) {
     return JSON.stringify(obj, null, 4);
 };

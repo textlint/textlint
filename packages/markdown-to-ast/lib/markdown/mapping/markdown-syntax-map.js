@@ -1,5 +1,7 @@
 // LICENSE : MIT
 "use strict";
+// Replace key to value mapping
+// This is not for Constants.
 var exports = {
     "Document": "Document",
     "Paragraph": "Paragraph",

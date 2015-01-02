@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-
+// public key interface
 var exports = {
     "Document": "Document", // must
     "Paragraph": "Paragraph",
