@@ -2,7 +2,7 @@
 
 txt-ast-traverse provide traversal functions for [Markdown AST](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast").
 
-This library a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast").
+This library is a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast").
 
 ## Installation
 
@@ -12,8 +12,7 @@ This library a fork of [estraverse](https://github.com/estools/estraverse "Estra
 
 - [ ] Write usage instructions
 
-
-## Node
+## Action
 
 Markdown:
 
@@ -25,38 +24,128 @@ AST:
 
 ```json
 {
-    "t": "Document",
     "start_line": 1,
     "start_column": 1,
     "end_line": 0,
     "children": [
         {
-            "t": "Paragraph",
             "start_line": 1,
             "start_column": 1,
             "end_line": 0,
             "inline_content": [
                 {
-                    "t": "Text",
-                    "c": "Hello"
+                    "c": "Hello",
+                    "raw": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        0,
+                        5
+                    ],
+                    "type": "Str"
                 },
                 {
-                    "t": "Text",
-                    "c": " "
+                    "c": " ",
+                    "raw": " ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        5,
+                        6
+                    ],
+                    "type": "Str"
                 },
                 {
-                    "t": "Emph",
                     "c": [
                         {
-                            "t": "Text",
-                            "c": "world"
+                            "c": "world",
+                            "raw": "world",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                0,
+                                5
+                            ],
+                            "type": "Str"
                         }
-                    ]
+                    ],
+                    "raw": "*world*",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        6,
+                        13
+                    ],
+                    "type": "Emphasis"
                 }
             ],
-            "children": []
+            "children": [],
+            "raw": "Hello *world*",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 13
+                }
+            },
+            "range": [
+                0,
+                13
+            ],
+            "type": "Paragraph"
         }
-    ]
+    ],
+    "raw": "Hello *world*",
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 1,
+            "column": 13
+        }
+    },
+    "range": [
+        0,
+        13
+    ],
+    "type": "Document"
 }
 ```
 
