@@ -193,4 +193,19 @@ describe("markdown-parser", function () {
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
+
+    /*
+        *text*
+    */
+    context("Node type is Strong", function () {
+        var AST, rawValue;
+        beforeEach(function () {
+            rawValue = "*text*";
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.Emphasis);
+            shouldHaveImplementTxtNode(node, rawValue);
+        });
+    });
 });

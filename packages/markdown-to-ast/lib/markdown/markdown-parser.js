@@ -57,6 +57,8 @@ function toMarkdownText(type, node, contents) {
             return require("./type-builder/markdown-code")(node, contents);
         case CMSyntax.Strong:
             return require("./type-builder/markdown-strong")(node, contents);
+        case CMSyntax.Emph:
+            return require("./type-builder/markdown-Emph")(node, contents);
     }
     return contents;
 }
@@ -71,8 +73,8 @@ var renderInline = function (inline, parent) {
             return this.softbreak;
         case 'Hardbreak':
             return toMarkdownText('br', [], "", true) + '\n';
-        case 'Emph':
-            return toMarkdownText('em', [], this.renderInlines(inline.c, parent));
+        case CMSyntax.Emph:
+            return toMarkdownText(CMSyntax.Emph, inline, this.renderInlines(inline.c, parent));
         case CMSyntax.Strong:
             return toMarkdownText(CMSyntax.Strong, inline, this.renderInlines(inline.c, parent));
         case 'Html':
