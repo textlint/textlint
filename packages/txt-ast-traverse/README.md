@@ -1,6 +1,8 @@
-# txt-traverse
+# txt-ast-traverse
 
-- [ ] Write a project description
+txt-ast-traverse provide traversal functions for [Markdown AST](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast").
+
+This library a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast").
 
 ## Installation
 
@@ -74,3 +76,10 @@ AST:
 ## License
 
 MIT
+
+and 
+
+Includes [Estraverse](https://github.com/estools/estraverse "Estraverse")
+    
+    Copyright (C) 2012-2013 Yusuke Suzuki
+    https://github.com/estools/estraverse/blob/master/LICENSE.BSD
