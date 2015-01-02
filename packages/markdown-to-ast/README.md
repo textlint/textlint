@@ -15,7 +15,7 @@ This library provide following:
 
 The interface defined as [txtnode.d.ts](typing/txtnode.d.ts).
 
-This library a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
+This library is a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
 
 
 ## DEMO
