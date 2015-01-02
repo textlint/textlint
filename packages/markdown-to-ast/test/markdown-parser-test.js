@@ -92,21 +92,54 @@ describe("markdown-parser", function () {
         H1  > Str
      */
     context("Node type is Header", function () {
-        var AST, rawValue;
-        beforeEach(function () {
-            rawValue = "string";
-            AST = parse("# " + rawValue);
-        });
-        context("Header", function () {
-            it("should has implemented TxtNode", function () {
-                var node = findFirstTypedNode(AST, Syntax.Header);
-                shouldHaveImplementTxtNode(node, rawValue);
+        /**
+         * text
+         * =====
+         **/
+        // TODO: 0.15 un-support. no way of supporting.
+        context.skip("SetextHeader", function () {
+            var AST, text, header;
+            beforeEach(function () {
+                text = "string";
+                header = text + "\n======";
+                AST = parse(header);
+                console.log(inspect(AST));
+            });
+            context("Header", function () {
+                it("should has implemented TxtNode", function () {
+                    var node = findFirstTypedNode(AST, Syntax.Header);
+                    console.log((inspect(node)));
+                    shouldHaveImplementTxtNode(node, header);
+                });
+            });
+            context("Str", function () {
+                it("should has implemented TxtNode", function () {
+                    var node = findFirstTypedNode(AST, Syntax.Str);
+                    shouldHaveImplementTxtNode(node, text);
+                });
             });
         });
-        context("Str", function () {
-            it("should has implemented TxtNode", function () {
-                var node = findFirstTypedNode(AST, Syntax.Str, rawValue);
-                shouldHaveImplementTxtNode(node, rawValue);
+        /**
+         * # text
+         * */
+        context("ATXHeader", function () {
+            var AST, text, header;
+            beforeEach(function () {
+                text = "string";
+                header = "# " + text;
+                AST = parse(header);
+            });
+            context("Header", function () {
+                it("should has implemented TxtNode", function () {
+                    var node = findFirstTypedNode(AST, Syntax.Header);
+                    shouldHaveImplementTxtNode(node, header);
+                });
+            });
+            context("Str", function () {
+                it("should has implemented TxtNode", function () {
+                    var node = findFirstTypedNode(AST, Syntax.Str);
+                    shouldHaveImplementTxtNode(node, text);
+                });
             });
         });
     });

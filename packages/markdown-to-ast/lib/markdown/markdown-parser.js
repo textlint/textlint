@@ -47,6 +47,8 @@ function getParent(node) {
 function toMarkdownText(type, node, contents) {
     // TODO: All types has not been implemented yet...
     switch (type) {
+        case CMSyntax.Header:
+            return _textLines[node.start_line - 1];
         case CMSyntax.ListItem:
             return _textLines[node.start_line - 1];
         case CMSyntax.Link:
