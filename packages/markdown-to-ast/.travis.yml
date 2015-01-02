@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - '0.10'
+after_success:
+- "./_travis/deploy-gh-pages.sh"
 env:
   global:
-    secure: PuKpWweqOljNjKmbaqtay/2RS5foYFj+nMvaB6aTAkSd8XxzsTj9cMn8gpO4zG0svVU23GIeeTJuZMr+ny0HN7lo4/vjeczKcbIETWzy7DZFU88veecbsxblVzzbBbwqfQwj6HeX/2NLQ3ajpjMzJgfjB60pKglxo20+Iamnlio=
+    - GH_REPO="azu/markdown-to-ast"
+    - secure: PuKpWweqOljNjKmbaqtay/2RS5foYFj+nMvaB6aTAkSd8XxzsTj9cMn8gpO4zG0svVU23GIeeTJuZMr+ny0HN7lo4/vjeczKcbIETWzy7DZFU88veecbsxblVzzbBbwqfQwj6HeX/2NLQ3ajpjMzJgfjB60pKglxo20+Iamnlio=
