@@ -53,6 +53,8 @@ function toMarkdownText(type, node, contents) {
             return require("./type-builder/markdown-link")(node, contents);
         case CMSyntax.Image:
             return require("./type-builder/markdown-image")(node, contents);
+        case CMSyntax.CodeBlock:
+            return contents;
         case CMSyntax.Code:
             return require("./type-builder/markdown-code")(node, contents);
         case CMSyntax.Strong:
@@ -172,20 +174,8 @@ var renderBlock = function (block, in_tight_list) {
         case CMSyntax.Header:
             tag = 'h' + block.level;
             return toMarkdownText(CMSyntax.Header, block, this.renderInlines(block.inline_content, block));
-        case 'IndentedCode':
-            return toMarkdownText('pre', [],
-                toMarkdownText('code', [], this.escape(block.string_content)));
-        case 'FencedCode':
-            info_words = block.info.split(/ +/);
-            attr = info_words.length === 0 || info_words[0].length === 0 ?
-                   [] : [
-                [
-                    'class', 'language-' +
-                this.escape(info_words[0], true)
-                ]
-            ];
-            return toMarkdownText('pre', [],
-                toMarkdownText('code', attr, this.escape(block.string_content)));
+        case CMSyntax.CodeBlock:
+            return toMarkdownText(CMSyntax.CodeBlock, block, block.string_content);
         case 'HtmlBlock':
             return block.string_content;
         case 'ReferenceDef':

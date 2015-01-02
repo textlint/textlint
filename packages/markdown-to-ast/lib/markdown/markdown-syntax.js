@@ -8,10 +8,7 @@ var exports = {
     "List": "List",
     "Bullet": "Bullet", // no need?
     "Header": "Header",
-    "ATXHeader": "Header",// removed?
-    "SetextHeader": "Header",// removed?
-    "IndentedCode": "CodeBlock",
-    "FencedCode": "CodeBlock",
+    "CodeBlock":"CodeBlock",
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
