@@ -41,7 +41,7 @@ Options:
   --stdin                    Lint code provided on <STDIN>. - default: false
 ```
 
-### Build-in formatters
+### Built-in formatters
 
 See [formatters/](lib/formatters).
 
@@ -130,7 +130,7 @@ and
 
 [SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint") is similar project.
 
-[SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint")'s place is equal to my `textlint`(Fortuitously, project name is equal too!).
+[SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint")'s place is equal to my `textlint`(Fortuitously, project's name is the same too!).
 
 ![concept](http://monosnap.com/image/Gr9CGbkSjl1FXEL0LIWzNDAj3c24JT.png)
 
