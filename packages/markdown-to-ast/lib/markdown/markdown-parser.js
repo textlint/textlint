@@ -110,7 +110,6 @@ var renderInlines = function (inlines, parent) {
         // render plaintext
         var raw = this.renderInline(inline, parent);
         result = result + raw;
-
         if (parent != null) {
             var addingLineNumber = (result.split("\n").length - 1);
             Object.defineProperties(inline, {

@@ -14,6 +14,8 @@
         }
     }
 */
+
+var CMSyntax = require("./common-markdown-syntax");
 /**
  * Compute location info from node position and `raw` value.
  * if the computation is success, then return location object.
@@ -30,6 +32,8 @@ module.exports = function (node) {
     var LINEBREAKE_MARK = /\r?\n/g;
     var lines = node.raw.split(LINEBREAKE_MARK);
     var addingColumn = lines.length - 1;
+
+
     // https://github.com/Constellation/structured-source
     // say that
     // > Line number starts with 1.
@@ -38,17 +42,36 @@ module.exports = function (node) {
     // => CommonMark's column number - 1.
     var columnMargin = 1;
     var lastLine = lines[addingColumn];
-    return {
-        loc: {
-            start: {
-                line: node.start_line,
-                column: node.start_column - columnMargin
-            },
-            end: {
-                line: node.start_line + addingColumn,
-                column: (addingColumn.length > 0) ? lastLine.length - columnMargin
-                    : node.start_column + lastLine.length - columnMargin
-            }
-        }
-    };
+    // location info
+    var loc = {};
+
+
+    var end_column;
+    if (addingColumn > 0) {
+        end_column = Math.max(lastLine.length - columnMargin, 0);
+    } else {
+        end_column = Math.max(node.start_column + lastLine.length - columnMargin, 0);
+    }
+    // if FencedCode
+    if (node.t === CMSyntax.CodeBlock && typeof node.info !== "undefined") {
+        loc["start"] = {
+            line: node.start_line + 1,
+            column: node.start_column - columnMargin
+        };
+        loc["end"] = {
+            line: node.start_line + addingColumn + 1,
+            column: end_column
+        };
+    } else {
+        loc["start"] = {
+            line: node.start_line,
+            column: node.start_column - columnMargin
+        };
+        loc["end"] = {
+            line: node.start_line + addingColumn,
+            column: end_column
+        };
+    }
+
+    return {loc: loc};
 };

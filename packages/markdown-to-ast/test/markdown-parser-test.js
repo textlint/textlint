@@ -155,20 +155,40 @@ describe("markdown-parser", function () {
     ```
     */
     context("Node type is CodeBlock", function () {
-        var AST, rawValue, code;
-        beforeEach(function () {
-            code = "var code\n";
-            rawValue = "```\n" +
-            code +
-            "```";
-            AST = parse(rawValue);
+        context("IndentCodeBlock", function () {
+            var AST, rawValue, code;
+            beforeEach(function () {
+                code = "var code;\n";
+                rawValue = "    \n" +
+                "    " + code +
+                "\n";
+                AST = parse(rawValue);
+            });
+            it("should has implemented TxtNode", function () {
+                var node = findFirstTypedNode(AST, Syntax.CodeBlock);
+                assert.equal(node.raw, code);
+                var slicedCode = rawValue.slice(node.range[0], node.range[1]);
+                assert.equal(slicedCode, code);
+            });
         });
-        it("should has implemented TxtNode", function () {
-            var node = findFirstTypedNode(AST, Syntax.CodeBlock);
-            assert.equal(node.raw, code);// CodeBlock have not contain CodeBlock mark like "```"
-            var slicedCode = rawValue.slice(node.range[0], node.range[1]);
-            assert.equal(slicedCode, code);
+        context("FencedCode", function () {
+            var AST, rawValue, code;
+            beforeEach(function () {
+                code = "var code;\n";
+                rawValue = "```\n" +
+                code +
+                "```\n";
+                AST = parse(rawValue);
+            });
+            it("should has implemented TxtNode", function () {
+                var node = findFirstTypedNode(AST, Syntax.CodeBlock);
+                assert.equal(node.raw, code);// CodeBlock have not contain CodeBlock mark like "```"
+                // slicedCode does not contain trailing brake line.
+                var slicedCode = rawValue.slice(node.range[0], node.range[1]);
+                assert.equal(slicedCode, code);
+            });
         });
+
     });
     /*
         `code`
