@@ -181,7 +181,7 @@ describe("markdown-parser", function () {
     /*
         ![text](http://example.com/a.png)
      */
-    context("Node type is Strong", function () {
+    context("Node type is Image", function () {
         var AST, rawValue, labelText;
         beforeEach(function () {
             labelText = "text";
@@ -197,7 +197,7 @@ describe("markdown-parser", function () {
     /*
         *text*
     */
-    context("Node type is Strong", function () {
+    context("Node type is Emphasis", function () {
         var AST, rawValue;
         beforeEach(function () {
             rawValue = "*text*";

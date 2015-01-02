@@ -93,10 +93,14 @@ function toMarkdownText(type, node, contents) {
             return _textLines[node.start_line - 1];
         case CMSyntax.Link:
             return require("./type-builder/markdown-link")(node, contents);
+        case CMSyntax.Image:
+            return require("./type-builder/markdown-image")(node, contents);
         case CMSyntax.Code:
             return require("./type-builder/markdown-code")(node, contents);
         case CMSyntax.Strong:
             return require("./type-builder/markdown-strong")(node, contents);
+        case CMSyntax.Emph:
+            return require("./type-builder/markdown-Emph")(node, contents);
     }
     return contents;
 }
@@ -111,27 +115,16 @@ var renderInline = function (inline, parent) {
             return this.softbreak;
         case 'Hardbreak':
             return toMarkdownText('br', [], "", true) + '\n';
-        case 'Emph':
-            return toMarkdownText('em', [], this.renderInlines(inline.c, parent));
+        case CMSyntax.Emph:
+            return toMarkdownText(CMSyntax.Emph, inline, this.renderInlines(inline.c, parent));
         case CMSyntax.Strong:
             return toMarkdownText(CMSyntax.Strong, inline, this.renderInlines(inline.c, parent));
         case 'Html':
             return inline.c;
         case CMSyntax.Link:
             return toMarkdownText(CMSyntax.Link, inline, this.renderInlines(inline.label, parent));
-        case 'Image':
-            attrs = [
-                ['src', this.escape(inline.destination, true)],
-                [
-                    'alt', this.renderInlines(inline.label, parent).
-                    replace(/\<[^>]*alt="([^"]*)"[^>]*\>/g, '$1').
-                    replace(/\<[^>]*\>/g, '')
-                ]
-            ];
-            if (inline.title) {
-                attrs.push(['title', this.escape(inline.title, true)]);
-            }
-            return toMarkdownText('img', attrs, "", true);
+        case CMSyntax.Image:
+            return toMarkdownText(CMSyntax.Image, inline, this.renderInlines(inline.label, parent));
         case CMSyntax.Code:
             return toMarkdownText(CMSyntax.Code, inline, inline.c);
         default:
@@ -179,7 +172,6 @@ var renderBlock = function (block, in_tight_list) {
     var info_words;
     switch (block.t) {
         case 'Document':
-
             // add block to stack +1
             _levelList.push(block);
             var whole_doc = this.renderBlocks(block.children);
@@ -208,22 +200,20 @@ var renderBlock = function (block, in_tight_list) {
             // pop block from stack -1
             _levelList.pop();
             return result;
-        case 'List':
+        case CMSyntax.List:
             // add block to stack +1
             _levelList.push(block);
             tag = block.list_data.type == 'Bullet' ? 'ul' : 'ol';
-            attr = (!block.list_data.start || block.list_data.start == 1) ?
-                   [] : [['start', block.list_data.start.toString()]];
-            var result = toMarkdownText(tag, attr, this.innersep +
-            this.renderBlocks(block.children, block.tight) +
-            this.innersep);
+            var contents = this.innersep +
+                this.renderBlocks(block.children, block.tight) +
+                this.innersep;
+            var result = toMarkdownText(CMSyntax.List, block, contents);
             // pop block from stack -1
             _levelList.pop();
             return result;
-
-        case 'Header':
+        case CMSyntax.Header:
             tag = 'h' + block.level;
-            return toMarkdownText(tag, [], this.renderInlines(block.inline_content, block));
+            return toMarkdownText(CMSyntax.Header, block, this.renderInlines(block.inline_content, block));
         case 'IndentedCode':
             return toMarkdownText('pre', [],
                 toMarkdownText('code', [], this.escape(block.string_content)));
@@ -336,7 +326,7 @@ function parse(text) {
     return ast;
 }
 module.exports = parse;
-},{"./common-markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/common-markdown-syntax.js","./markdown-position-node":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js","./markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-syntax.js","./type-builder/markdown-code":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-code.js","./type-builder/markdown-link":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-link.js","./type-builder/markdown-strong":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-strong.js","commonmark":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/commonmark/lib/index.js","object-assign":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/object-assign/index.js","strip-yaml-header":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/strip-yaml-header/lib/strip-yaml-header.js","structured-source":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/structured-source/lib/index.js","traverse":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/traverse/index.js"}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js":[function(require,module,exports){
+},{"./common-markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/common-markdown-syntax.js","./markdown-position-node":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js","./markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-syntax.js","./type-builder/markdown-Emph":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-Emph.js","./type-builder/markdown-code":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-code.js","./type-builder/markdown-image":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-image.js","./type-builder/markdown-link":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-link.js","./type-builder/markdown-strong":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-strong.js","commonmark":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/commonmark/lib/index.js","object-assign":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/object-assign/index.js","strip-yaml-header":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/strip-yaml-header/lib/strip-yaml-header.js","structured-source":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/structured-source/lib/index.js","traverse":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/traverse/index.js"}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 
@@ -421,6 +411,25 @@ var exports = {
     'Code': 'Code'
 };
 module.exports = exports;
+},{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-Emph.js":[function(require,module,exports){
+// LICENSE : MIT
+"use strict";
+/*
+    {
+        "c": [
+            {
+                "c": "text",
+                "type": "Str"
+            }
+        ],
+        "type": "Emphasis"
+    }
+
+    FIXME: we have no way of detect *text* or _text_
+ */
+module.exports = function (node, contents) {
+    return "*" + contents + "*";
+};
 },{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-code.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
@@ -435,6 +444,26 @@ module.exports = exports;
 module.exports = function code(node, contents) {
     return '`' + contents + '`';
 };
+},{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-image.js":[function(require,module,exports){
+// LICENSE : MIT
+"use strict";
+
+/*
+    {
+        "destination": "http://example.com/a.png",
+        "label": [
+            {
+                "c": "text",
+                "type": "Str"
+            }
+        ],
+        "type": "Image"
+    }
+ */
+module.exports = function (node, contennts) {
+    return "![" + contennts + "](" + node.destination + ")";
+};
+
 },{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-link.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
