@@ -26,6 +26,21 @@ function findFirstTypedNode(node, type, value) {
     }
     return result;
 }
+
+function shouldHaveImplementTxtNode(node, rawValue) {
+    assert.equal(node.raw, rawValue);
+    assert.deepEqual(node.loc, {
+        start: {
+            line: 1,
+            column: 0
+        },
+        end: {
+            line: 1,
+            column: rawValue.length
+        }
+    });
+    assert.deepEqual(node.range, [0, rawValue.length]);
+}
 /*
     NOTE:
         `line` start with 1
@@ -63,35 +78,13 @@ describe("markdown-parser", function () {
         context("Paragraph", function () {
             it("should has implemented TxtNode", function () {
                 var node = findFirstTypedNode(AST, Syntax.Paragraph, rawValue);
-                assert.equal(node.raw, rawValue);
-                assert.deepEqual(node.loc, {
-                    start: {
-                        line: 1,
-                        column: 0
-                    },
-                    end: {
-                        line: 1,
-                        column: rawValue.length
-                    }
-                });
-                assert.deepEqual(node.range, [0, rawValue.length]);
+                shouldHaveImplementTxtNode(node, rawValue);
             });
         });
         context("Text", function () {
             it("should has implemented TxtNode", function () {
                 var node = findFirstTypedNode(AST, Syntax.Str, rawValue);
-                assert.equal(node.raw, rawValue);
-                assert.deepEqual(node.loc, {
-                    start: {
-                        line: 1,
-                        column: 0
-                    },
-                    end: {
-                        line: 1,
-                        column: rawValue.length
-                    }
-                });
-                assert.deepEqual(node.range, [0, rawValue.length]);
+                shouldHaveImplementTxtNode(node, rawValue);
             });
         });
     });
@@ -107,35 +100,13 @@ describe("markdown-parser", function () {
         context("Header", function () {
             it("should has implemented TxtNode", function () {
                 var node = findFirstTypedNode(AST, Syntax.Header, rawValue);
-                assert.equal(node.raw, rawValue);
-                assert.deepEqual(node.loc, {
-                    start: {
-                        line: 1,
-                        column: 0
-                    },
-                    end: {
-                        line: 1,
-                        column: rawValue.length
-                    }
-                });
-                assert.deepEqual(node.range, [0, rawValue.length]);
+                shouldHaveImplementTxtNode(node, rawValue);
             });
         });
         context("Str", function () {
             it("should has implemented TxtNode", function () {
                 var node = findFirstTypedNode(AST, Syntax.Str, rawValue);
-                assert.equal(node.raw, rawValue);
-                assert.deepEqual(node.loc, {
-                    start: {
-                        line: 1,
-                        column: 0
-                    },
-                    end: {
-                        line: 1,
-                        column: rawValue.length
-                    }
-                });
-                assert.deepEqual(node.range, [0, rawValue.length]);
+                shouldHaveImplementTxtNode(node, rawValue);
             });
         });
     });
@@ -148,17 +119,7 @@ describe("markdown-parser", function () {
         });
         it("should has implemented TxtNode", function () {
             var node = findFirstTypedNode(AST, Syntax.Link);
-            assert.deepEqual(node.loc, {
-                start: {
-                    line: 1,
-                    column: 0
-                },
-                end: {
-                    line: 1,
-                    column: rawValue.length
-                }
-            });
-            assert.deepEqual(node.range, [0, rawValue.length]);
+            shouldHaveImplementTxtNode(node, rawValue);
         });
     });
 
@@ -186,18 +147,21 @@ describe("markdown-parser", function () {
                 rawValue = "- " + text,
                 AST = parse(rawValue);
             var node = findFirstTypedNode(AST, Syntax.ListItem);
-            assert.equal(node.raw, rawValue);
-            assert.deepEqual(node.loc, {
-                start: {
-                    line: 1,
-                    column: 0
-                },
-                end: {
-                    line: 1,
-                    column: rawValue.length
-                }
-            });
-            assert.deepEqual(node.range, [0, rawValue.length]);
+            shouldHaveImplementTxtNode(node, rawValue);
+        });
+    });
+    /*
+        `code`
+     */
+    context("Node type is Code", function () {
+        var AST, rawValue;
+        beforeEach(function () {
+            rawValue = "`code`";
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.Code);
+            shouldHaveImplementTxtNode(node, rawValue);
         });
     });
 });

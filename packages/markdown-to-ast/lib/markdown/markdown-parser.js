@@ -47,10 +47,12 @@ function getParent(node) {
 function toMarkdownText(type, node, contents) {
     // TODO: All types has not been implemented yet...
     switch (type) {
-        case "ListItem":
+        case Syntax.ListItem:
             return _textLines[node.start_line - 1];
-        case "Link":
+        case Syntax.Link:
             return require("./type-builder/markdown-link")(node, contents);
+        case Syntax.Code:
+            return require("./type-builder/markdown-code")(node, contents);
     }
     return contents;
 }
@@ -71,8 +73,8 @@ var renderInline = function (inline, parent) {
             return toMarkdownText('strong', [], this.renderInlines(inline.c, parent));
         case 'Html':
             return inline.c;
-        case 'Link':
-            return toMarkdownText('Link', inline, this.renderInlines(inline.label, parent));
+        case Syntax.Link:
+            return toMarkdownText(Syntax.Link, inline, this.renderInlines(inline.label, parent));
         case 'Image':
             attrs = [
                 ['src', this.escape(inline.destination, true)],
@@ -86,8 +88,8 @@ var renderInline = function (inline, parent) {
                 attrs.push(['title', this.escape(inline.title, true)]);
             }
             return toMarkdownText('img', attrs, "", true);
-        case 'Code':
-            return toMarkdownText('code', [], this.escape(inline.c));
+        case Syntax.Code:
+            return toMarkdownText(Syntax.Code, inline, inline.c);
         default:
             console.log("Unknown inline type " + inline.t);
             return "";
@@ -155,10 +157,10 @@ var renderBlock = function (block, in_tight_list) {
             _levelList.pop();
             return toMarkdownText('blockquote', [], filling === '' ? this.innersep :
                                                     this.innersep + filling + this.innersep);
-        case 'ListItem':
+        case Syntax.ListItem:
             // add block to stack +1
             _levelList.push(block);
-            var result = toMarkdownText('ListItem', block, this.renderBlocks(block.children, in_tight_list).trim());
+            var result = toMarkdownText(Syntax.ListItem, block, this.renderBlocks(block.children, in_tight_list).trim());
             // pop block from stack -1
             _levelList.pop();
             return result;
@@ -282,7 +284,7 @@ function parse(text) {
                 // e.g) "FencedCode" => "CodeBlock"
                 x.type = Syntax[x.t];
                 // delete original `x.t`
-                //delete x.t;
+                delete x.t;
             }
         }
     });
