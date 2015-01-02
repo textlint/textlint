@@ -51,6 +51,8 @@ function toMarkdownText(type, node, contents) {
             return _textLines[node.start_line - 1];
         case CMSyntax.Link:
             return require("./type-builder/markdown-link")(node, contents);
+        case CMSyntax.Image:
+            return require("./type-builder/markdown-image")(node, contents);
         case CMSyntax.Code:
             return require("./type-builder/markdown-code")(node, contents);
         case CMSyntax.Strong:
@@ -77,19 +79,8 @@ var renderInline = function (inline, parent) {
             return inline.c;
         case CMSyntax.Link:
             return toMarkdownText(CMSyntax.Link, inline, this.renderInlines(inline.label, parent));
-        case 'Image':
-            attrs = [
-                ['src', this.escape(inline.destination, true)],
-                [
-                    'alt', this.renderInlines(inline.label, parent).
-                    replace(/\<[^>]*alt="([^"]*)"[^>]*\>/g, '$1').
-                    replace(/\<[^>]*\>/g, '')
-                ]
-            ];
-            if (inline.title) {
-                attrs.push(['title', this.escape(inline.title, true)]);
-            }
-            return toMarkdownText('img', attrs, "", true);
+        case CMSyntax.Image:
+            return toMarkdownText(CMSyntax.Image, inline, this.renderInlines(inline.label, parent));
         case CMSyntax.Code:
             return toMarkdownText(CMSyntax.Code, inline, inline.c);
         default:
@@ -137,7 +128,6 @@ var renderBlock = function (block, in_tight_list) {
     var info_words;
     switch (block.t) {
         case 'Document':
-
             // add block to stack +1
             _levelList.push(block);
             var whole_doc = this.renderBlocks(block.children);
@@ -166,22 +156,20 @@ var renderBlock = function (block, in_tight_list) {
             // pop block from stack -1
             _levelList.pop();
             return result;
-        case 'List':
+        case CMSyntax.List:
             // add block to stack +1
             _levelList.push(block);
             tag = block.list_data.type == 'Bullet' ? 'ul' : 'ol';
-            attr = (!block.list_data.start || block.list_data.start == 1) ?
-                   [] : [['start', block.list_data.start.toString()]];
-            var result = toMarkdownText(tag, attr, this.innersep +
-            this.renderBlocks(block.children, block.tight) +
-            this.innersep);
+            var contents = this.innersep +
+                this.renderBlocks(block.children, block.tight) +
+                this.innersep;
+            var result = toMarkdownText(CMSyntax.List, block, contents);
             // pop block from stack -1
             _levelList.pop();
             return result;
-
-        case 'Header':
+        case CMSyntax.Header:
             tag = 'h' + block.level;
-            return toMarkdownText(tag, [], this.renderInlines(block.inline_content, block));
+            return toMarkdownText(CMSyntax.Header, block, this.renderInlines(block.inline_content, block));
         case 'IndentedCode':
             return toMarkdownText('pre', [],
                 toMarkdownText('code', [], this.escape(block.string_content)));

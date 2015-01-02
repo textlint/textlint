@@ -99,7 +99,7 @@ describe("markdown-parser", function () {
         });
         context("Header", function () {
             it("should has implemented TxtNode", function () {
-                var node = findFirstTypedNode(AST, Syntax.Header, rawValue);
+                var node = findFirstTypedNode(AST, Syntax.Header);
                 shouldHaveImplementTxtNode(node, rawValue);
             });
         });
@@ -122,8 +122,7 @@ describe("markdown-parser", function () {
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
-
-    context("Node type is List", function () {
+    context("Node type is ListItem", function () {
         it("should same the bullet_char", function () {
             var node, AST;
             AST = parse("- item");
@@ -175,6 +174,22 @@ describe("markdown-parser", function () {
         });
         it("should has implemented TxtNode", function () {
             var node = findFirstTypedNode(AST, Syntax.Strong);
+            shouldHaveImplementTxtNode(node, rawValue);
+        });
+    });
+
+    /*
+        ![text](http://example.com/a.png)
+     */
+    context("Node type is Strong", function () {
+        var AST, rawValue, labelText;
+        beforeEach(function () {
+            labelText = "text";
+            rawValue = "![" + labelText + "](http://example.com/a.png)";
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.Image);
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
