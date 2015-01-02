@@ -1,3 +1,16 @@
+## 1.3.0 (2015-01-02)
+
+
+#### Bug Fixes
+
+* **rule-context:** use union-syntax instead of markdown-syntax ([385ed4d0](https://github.com/azu/textlint/commit/385ed4d0246b5d77542d3a4c6fdc896e000656bd))
+
+
+#### Features
+
+* **markdown:** Carve out parse/markdown to module ([6b310fae](https://github.com/azu/textlint/commit/6b310fae5b88e9c71596a560be38907f2ff2de6e))
+
+
 ### 1.0.1 (2014-12-29)
 
 
