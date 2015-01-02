@@ -9,7 +9,7 @@
 var traverse = require('traverse');
 var positionNode = require("./markdown-position-node");
 var StructuredSource = require('structured-source');
-var Syntax = require("./markdown-syntax");
+var CMSyntax = require("./common-markdown-syntax");
 var stripYAMLHeader = require("strip-yaml-header");
 var objectAssign = require("object-assign");
 var commonmark = require("commonmark");
@@ -47,13 +47,13 @@ function getParent(node) {
 function toMarkdownText(type, node, contents) {
     // TODO: All types has not been implemented yet...
     switch (type) {
-        case Syntax.ListItem:
+        case CMSyntax.ListItem:
             return _textLines[node.start_line - 1];
-        case Syntax.Link:
+        case CMSyntax.Link:
             return require("./type-builder/markdown-link")(node, contents);
-        case Syntax.Code:
+        case CMSyntax.Code:
             return require("./type-builder/markdown-code")(node, contents);
-        case Syntax.Strong:
+        case CMSyntax.Strong:
             return require("./type-builder/markdown-strong")(node, contents);
     }
     return contents;
@@ -71,12 +71,12 @@ var renderInline = function (inline, parent) {
             return toMarkdownText('br', [], "", true) + '\n';
         case 'Emph':
             return toMarkdownText('em', [], this.renderInlines(inline.c, parent));
-        case Syntax.Strong:
-            return toMarkdownText(Syntax.Strong, inline, this.renderInlines(inline.c, parent));
+        case CMSyntax.Strong:
+            return toMarkdownText(CMSyntax.Strong, inline, this.renderInlines(inline.c, parent));
         case 'Html':
             return inline.c;
-        case Syntax.Link:
-            return toMarkdownText(Syntax.Link, inline, this.renderInlines(inline.label, parent));
+        case CMSyntax.Link:
+            return toMarkdownText(CMSyntax.Link, inline, this.renderInlines(inline.label, parent));
         case 'Image':
             attrs = [
                 ['src', this.escape(inline.destination, true)],
@@ -90,8 +90,8 @@ var renderInline = function (inline, parent) {
                 attrs.push(['title', this.escape(inline.title, true)]);
             }
             return toMarkdownText('img', attrs, "", true);
-        case Syntax.Code:
-            return toMarkdownText(Syntax.Code, inline, inline.c);
+        case CMSyntax.Code:
+            return toMarkdownText(CMSyntax.Code, inline, inline.c);
         default:
             console.log("Unknown inline type " + inline.t);
             return "";
@@ -159,10 +159,10 @@ var renderBlock = function (block, in_tight_list) {
             _levelList.pop();
             return toMarkdownText('blockquote', [], filling === '' ? this.innersep :
                                                     this.innersep + filling + this.innersep);
-        case Syntax.ListItem:
+        case CMSyntax.ListItem:
             // add block to stack +1
             _levelList.push(block);
-            var result = toMarkdownText(Syntax.ListItem, block, this.renderBlocks(block.children, in_tight_list).trim());
+            var result = toMarkdownText(CMSyntax.ListItem, block, this.renderBlocks(block.children, in_tight_list).trim());
             // pop block from stack -1
             _levelList.pop();
             return result;
@@ -265,6 +265,7 @@ function parse(text) {
     var src = new StructuredSource(text);
     _textLines = text.split("\n");
 
+    var SyntaxMap = require("./markdown-syntax");
     var writer = new HtmlRenderer();
     var ast = reader.parse(stripYAMLHeader(text));
     // affect to ast
@@ -284,7 +285,7 @@ function parse(text) {
             if (typeof x.t !== "undefined") {
                 // covert t to type
                 // e.g) "FencedCode" => "CodeBlock"
-                x.type = Syntax[x.t];
+                x.type = SyntaxMap[x.t];
                 // delete original `x.t`
                 delete x.t;
             }

@@ -9,7 +9,37 @@ input.addEventListener("keyup", function (event) {
     var AST = parser(value);
     output.value = JSON.stringify(AST, null, 4);
 });
-},{"../../lib/markdown/markdown-parser":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-parser.js"}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-parser.js":[function(require,module,exports){
+},{"../../lib/markdown/markdown-parser":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-parser.js"}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/common-markdown-syntax.js":[function(require,module,exports){
+// LICENSE : MIT
+"use strict";
+// This is Syntax map of CommonMarkdown AST.
+// Difference from markdown-syntax.js
+var exports = {
+    "Document": "Document",
+    "Paragraph": "Paragraph",
+    "BlockQuote": "BlockQuote",
+    "ListItem": "ListItem",
+    "List": "List",
+    "Bullet": "Bullet",
+    "Header": "Header",
+    "IndentedCode": "IndentedCode",
+    "FencedCode": "FencedCode",
+    "HtmlBlock": "HtmlBlock",
+    "ReferenceDef": "ReferenceDef",
+    "HorizontalRule": "HorizontalRule",
+    // inline block
+    'Text': 'Text',
+    'Softbreak': 'Softbreak',
+    'Hardbreak': 'Hardbreak',
+    'Emph': 'Emph',
+    'Strong': 'Strong',
+    'Html': 'Html',
+    'Link': 'Link',
+    'Image': 'Image',
+    'Code': 'Code'
+};
+module.exports = exports;
+},{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-parser.js":[function(require,module,exports){
 /*eslint-disable */
 // LICENSE : MIT
 
@@ -21,7 +51,7 @@ input.addEventListener("keyup", function (event) {
 var traverse = require('traverse');
 var positionNode = require("./markdown-position-node");
 var StructuredSource = require('structured-source');
-var Syntax = require("./markdown-syntax");
+var CMSyntax = require("./common-markdown-syntax");
 var stripYAMLHeader = require("strip-yaml-header");
 var objectAssign = require("object-assign");
 var commonmark = require("commonmark");
@@ -59,10 +89,14 @@ function getParent(node) {
 function toMarkdownText(type, node, contents) {
     // TODO: All types has not been implemented yet...
     switch (type) {
-        case "ListItem":
+        case CMSyntax.ListItem:
             return _textLines[node.start_line - 1];
-        case "Link":
+        case CMSyntax.Link:
             return require("./type-builder/markdown-link")(node, contents);
+        case CMSyntax.Code:
+            return require("./type-builder/markdown-code")(node, contents);
+        case CMSyntax.Strong:
+            return require("./type-builder/markdown-strong")(node, contents);
     }
     return contents;
 }
@@ -79,12 +113,12 @@ var renderInline = function (inline, parent) {
             return toMarkdownText('br', [], "", true) + '\n';
         case 'Emph':
             return toMarkdownText('em', [], this.renderInlines(inline.c, parent));
-        case 'Strong':
-            return toMarkdownText('strong', [], this.renderInlines(inline.c, parent));
+        case CMSyntax.Strong:
+            return toMarkdownText(CMSyntax.Strong, inline, this.renderInlines(inline.c, parent));
         case 'Html':
             return inline.c;
-        case 'Link':
-            return toMarkdownText('Link', inline, this.renderInlines(inline.label, parent));
+        case CMSyntax.Link:
+            return toMarkdownText(CMSyntax.Link, inline, this.renderInlines(inline.label, parent));
         case 'Image':
             attrs = [
                 ['src', this.escape(inline.destination, true)],
@@ -98,8 +132,8 @@ var renderInline = function (inline, parent) {
                 attrs.push(['title', this.escape(inline.title, true)]);
             }
             return toMarkdownText('img', attrs, "", true);
-        case 'Code':
-            return toMarkdownText('code', [], this.escape(inline.c));
+        case CMSyntax.Code:
+            return toMarkdownText(CMSyntax.Code, inline, inline.c);
         default:
             console.log("Unknown inline type " + inline.t);
             return "";
@@ -167,10 +201,10 @@ var renderBlock = function (block, in_tight_list) {
             _levelList.pop();
             return toMarkdownText('blockquote', [], filling === '' ? this.innersep :
                                                     this.innersep + filling + this.innersep);
-        case 'ListItem':
+        case CMSyntax.ListItem:
             // add block to stack +1
             _levelList.push(block);
-            var result = toMarkdownText('ListItem', block, this.renderBlocks(block.children, in_tight_list).trim());
+            var result = toMarkdownText(CMSyntax.ListItem, block, this.renderBlocks(block.children, in_tight_list).trim());
             // pop block from stack -1
             _levelList.pop();
             return result;
@@ -273,6 +307,7 @@ function parse(text) {
     var src = new StructuredSource(text);
     _textLines = text.split("\n");
 
+    var SyntaxMap = require("./markdown-syntax");
     var writer = new HtmlRenderer();
     var ast = reader.parse(stripYAMLHeader(text));
     // affect to ast
@@ -292,16 +327,16 @@ function parse(text) {
             if (typeof x.t !== "undefined") {
                 // covert t to type
                 // e.g) "FencedCode" => "CodeBlock"
-                x.type = Syntax[x.t];
+                x.type = SyntaxMap[x.t];
                 // delete original `x.t`
-                //delete x.t;
+                delete x.t;
             }
         }
     });
     return ast;
 }
 module.exports = parse;
-},{"./markdown-position-node":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js","./markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-syntax.js","./type-builder/markdown-link":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-link.js","commonmark":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/commonmark/lib/index.js","object-assign":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/object-assign/index.js","strip-yaml-header":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/strip-yaml-header/lib/strip-yaml-header.js","structured-source":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/structured-source/lib/index.js","traverse":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/traverse/index.js"}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js":[function(require,module,exports){
+},{"./common-markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/common-markdown-syntax.js","./markdown-position-node":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js","./markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-syntax.js","./type-builder/markdown-code":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-code.js","./type-builder/markdown-link":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-link.js","./type-builder/markdown-strong":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-strong.js","commonmark":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/commonmark/lib/index.js","object-assign":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/object-assign/index.js","strip-yaml-header":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/strip-yaml-header/lib/strip-yaml-header.js","structured-source":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/structured-source/lib/index.js","traverse":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/traverse/index.js"}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-position-node.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 
@@ -386,6 +421,20 @@ var exports = {
     'Code': 'Code'
 };
 module.exports = exports;
+},{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-code.js":[function(require,module,exports){
+// LICENSE : MIT
+"use strict";
+
+/*
+    {
+            "t": "Code",
+            "c": "code",
+            "type": "Code"
+    }
+ */
+module.exports = function code(node, contents) {
+    return '`' + contents + '`';
+};
 },{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-link.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
@@ -422,6 +471,24 @@ module.exports = function link(node, contents) {
     } else {
         return '[' + contents + '](' + node.destination + ' "' + node.title + '")';
     }
+};
+},{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/type-builder/markdown-strong.js":[function(require,module,exports){
+// LICENSE : MIT
+"use strict";
+
+/*
+ {
+    "c": [
+        {
+            "c": "str",
+            "type": "Str"
+        }
+    ],
+    "type": "Strong"
+    }
+ */
+module.exports = function (node, contents) {
+    return '__' + contents + '__';
 };
 },{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/node_modules/commonmark/lib/blocks.js":[function(require,module,exports){
 var C_GREATERTHAN = 62;
