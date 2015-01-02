@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '0.10'
 after_success:
-- "./_travis/deploy-gh-pages.sh"
+- "_travis/deploy-to-ghpages.sh"
 env:
   global:
     - GH_REPO="azu/markdown-to-ast"
