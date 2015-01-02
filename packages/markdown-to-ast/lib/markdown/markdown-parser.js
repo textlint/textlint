@@ -53,6 +53,8 @@ function toMarkdownText(type, node, contents) {
             return require("./type-builder/markdown-link")(node, contents);
         case Syntax.Code:
             return require("./type-builder/markdown-code")(node, contents);
+        case Syntax.Strong:
+            return require("./type-builder/markdown-strong")(node, contents);
     }
     return contents;
 }
@@ -69,8 +71,8 @@ var renderInline = function (inline, parent) {
             return toMarkdownText('br', [], "", true) + '\n';
         case 'Emph':
             return toMarkdownText('em', [], this.renderInlines(inline.c, parent));
-        case 'Strong':
-            return toMarkdownText('strong', [], this.renderInlines(inline.c, parent));
+        case Syntax.Strong:
+            return toMarkdownText(Syntax.Strong, inline, this.renderInlines(inline.c, parent));
         case 'Html':
             return inline.c;
         case Syntax.Link:
