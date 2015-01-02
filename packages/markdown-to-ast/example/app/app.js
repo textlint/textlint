@@ -23,8 +23,7 @@ var exports = {
     "Bullet": "Bullet",
     "Header": "Header",
     "IndentedCode": "IndentedCode",
-    "FencedCode": "FencedCode",
-    "HtmlBlock": "HtmlBlock",
+    "CodeBlock": "CodeBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
     // inline block
@@ -95,6 +94,10 @@ function toMarkdownText(type, node, contents) {
             return require("./type-builder/markdown-link")(node, contents);
         case CMSyntax.Image:
             return require("./type-builder/markdown-image")(node, contents);
+        case CMSyntax.BlockQuote:
+            return contents;
+        case CMSyntax.CodeBlock:
+            return contents;
         case CMSyntax.Code:
             return require("./type-builder/markdown-code")(node, contents);
         case CMSyntax.Strong:
@@ -107,10 +110,10 @@ function toMarkdownText(type, node, contents) {
 
 // Render an inline element as HTML.
 var renderInline = function (inline, parent) {
-    var attrs;
+
     switch (inline.t) {
         case 'Text':
-            return this.escape(inline.c);
+            return inline.c;
         case 'Softbreak':
             return this.softbreak;
         case 'Hardbreak':
@@ -128,7 +131,7 @@ var renderInline = function (inline, parent) {
         case CMSyntax.Code:
             return toMarkdownText(CMSyntax.Code, inline, inline.c);
         default:
-            console.log("Unknown inline type " + inline.t);
+            throw new Error("Unknown inline type " + inline.t);
             return "";
     }
 };
@@ -150,7 +153,6 @@ var renderInlines = function (inlines, parent) {
         // render plaintext
         var raw = this.renderInline(inline, parent);
         result = result + raw;
-
         if (parent != null) {
             var addingLineNumber = (result.split("\n").length - 1);
             Object.defineProperties(inline, {
@@ -168,8 +170,6 @@ var renderInlines = function (inlines, parent) {
 // Render a single block element.
 var renderBlock = function (block, in_tight_list) {
     var tag;
-    var attr;
-    var info_words;
     switch (block.t) {
         case 'Document':
             // add block to stack +1
@@ -185,14 +185,13 @@ var renderBlock = function (block, in_tight_list) {
                 return toMarkdownText('p', [], this.renderInlines(block.inline_content, block));
             }
             break;
-        case 'BlockQuote':
+        case CMSyntax.BlockQuote:
             // add block to stack +1
             _levelList.push(block);
             var filling = this.renderBlocks(block.children);
             // pop block from stack -1
             _levelList.pop();
-            return toMarkdownText('blockquote', [], filling === '' ? this.innersep :
-                                                    this.innersep + filling + this.innersep);
+            return toMarkdownText(CMSyntax.BlockQuote, block, filling);
         case CMSyntax.ListItem:
             // add block to stack +1
             _levelList.push(block);
@@ -214,20 +213,8 @@ var renderBlock = function (block, in_tight_list) {
         case CMSyntax.Header:
             tag = 'h' + block.level;
             return toMarkdownText(CMSyntax.Header, block, this.renderInlines(block.inline_content, block));
-        case 'IndentedCode':
-            return toMarkdownText('pre', [],
-                toMarkdownText('code', [], this.escape(block.string_content)));
-        case 'FencedCode':
-            info_words = block.info.split(/ +/);
-            attr = info_words.length === 0 || info_words[0].length === 0 ?
-                   [] : [
-                [
-                    'class', 'language-' +
-                this.escape(info_words[0], true)
-                ]
-            ];
-            return toMarkdownText('pre', [],
-                toMarkdownText('code', attr, this.escape(block.string_content)));
+        case CMSyntax.CodeBlock:
+            return toMarkdownText(CMSyntax.CodeBlock, block, block.string_content);
         case 'HtmlBlock':
             return block.string_content;
         case 'ReferenceDef':
@@ -235,7 +222,7 @@ var renderBlock = function (block, in_tight_list) {
         case 'HorizontalRule':
             return toMarkdownText('hr', [], "", true);
         default:
-            console.log("Unknown block type " + block.t);
+            throw new Error("Unknown block type " + block.t);
             return "";
     }
 };
@@ -343,6 +330,8 @@ module.exports = parse;
         }
     }
 */
+
+var CMSyntax = require("./common-markdown-syntax");
 /**
  * Compute location info from node position and `raw` value.
  * if the computation is success, then return location object.
@@ -359,6 +348,8 @@ module.exports = function (node) {
     var LINEBREAKE_MARK = /\r?\n/g;
     var lines = node.raw.split(LINEBREAKE_MARK);
     var addingColumn = lines.length - 1;
+
+
     // https://github.com/Constellation/structured-source
     // say that
     // > Line number starts with 1.
@@ -367,21 +358,40 @@ module.exports = function (node) {
     // => CommonMark's column number - 1.
     var columnMargin = 1;
     var lastLine = lines[addingColumn];
-    return {
-        loc: {
-            start: {
-                line: node.start_line,
-                column: node.start_column - columnMargin
-            },
-            end: {
-                line: node.start_line + addingColumn,
-                column: (addingColumn.length > 0) ? lastLine.length - columnMargin
-                    : node.start_column + lastLine.length - columnMargin
-            }
-        }
-    };
+    // location info
+    var loc = {};
+
+
+    var end_column;
+    if (addingColumn > 0) {
+        end_column = Math.max(lastLine.length - columnMargin, 0);
+    } else {
+        end_column = Math.max(node.start_column + lastLine.length - columnMargin, 0);
+    }
+    // if FencedCode
+    if (node.t === CMSyntax.CodeBlock && typeof node.info !== "undefined") {
+        loc["start"] = {
+            line: node.start_line + 1,
+            column: node.start_column - columnMargin
+        };
+        loc["end"] = {
+            line: node.start_line + addingColumn + 1,
+            column: end_column
+        };
+    } else {
+        loc["start"] = {
+            line: node.start_line,
+            column: node.start_column - columnMargin
+        };
+        loc["end"] = {
+            line: node.start_line + addingColumn,
+            column: end_column
+        };
+    }
+
+    return {loc: loc};
 };
-},{}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-syntax.js":[function(require,module,exports){
+},{"./common-markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/common-markdown-syntax.js"}],"/Users/azu/Dropbox/workspace/node/lib/commonmark-ast-parser/lib/markdown/markdown-syntax.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 var exports = {
@@ -392,10 +402,7 @@ var exports = {
     "List": "List",
     "Bullet": "Bullet", // no need?
     "Header": "Header",
-    "ATXHeader": "Header",// removed?
-    "SetextHeader": "Header",// removed?
-    "IndentedCode": "CodeBlock",
-    "FencedCode": "CodeBlock",
+    "CodeBlock":"CodeBlock",
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
