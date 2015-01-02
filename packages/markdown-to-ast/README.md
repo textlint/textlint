@@ -1,4 +1,4 @@
-# markdown-to-ast
+# markdown-to-ast [![Build Status](https://travis-ci.org/azu/markdown-to-ast.svg)](https://travis-ci.org/azu/markdown-to-ast)
 
 Parse Markdown to AST with location info.
 
