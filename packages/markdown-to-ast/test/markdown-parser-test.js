@@ -173,11 +173,13 @@ describe("markdown-parser", function () {
             assert(/^\*/.test(node.raw));
         });
 
-        it("should have marker_offser", function () {
+        it("should have marker_offser of each items", function () {
             var node, AST;
             AST = parse("- item\n" +
-            "   - item2");
-            console.log(inspect(AST));
+            "   - item2");// second line should has offset
+            node = findFirstTypedNode(AST, Syntax.ListItem, "   - item2");
+            assert(node);
+            assert.equal(node.raw, "   - item2");
         });
         it("should has implemented TxtNode", function () {
             var text = "text",
