@@ -6,13 +6,34 @@ This library is a fork of [estraverse](https://github.com/estools/estraverse "Es
 
 ## Installation
 
-- [ ] Describe the installation process
+```
+npm install txt-ast-traverse
+```
 
 ## Usage
 
-- [ ] Write usage instructions
+```js
+var parse = require("markdown-to-ast").parse,
+    Syntax = require("markdown-to-ast").Syntax;
+var traverse = require("txt-ast-traverse").traverse,
+    VisitorOption = require("txt-ast-traverse").VisitorOption;
+var AST = parse("# Header\nHello*world*");
+traverse(AST, {
+    enter(node) {
+        console.log("enter", node.type);
+        if (node.type === Syntax.Strong) {
+            return VisitorOption.Skip;
+        }
+    },
+    leave(node) {
+        console.log("leave", node.type);
+    }
+});
+```
 
-## Action
+Traversal rule is the same with [Estraverse](https://github.com/estools/estraverse "Estraverse").
+
+## Example
 
 Markdown:
 
@@ -149,10 +170,29 @@ AST:
 }
 ```
 
-### Classify Node
+Traversal all from Root(Document node):
 
-- So-called `Node` has `t` or `type`
-- `inline_content` wrapped Nodes.
+```
+[enter, Syntax.Document],
+// # Header
+[enter, Syntax.Header],
+[enter, Syntax.Str],
+[leave, Syntax.Str],
+[leave, Syntax.Header],
+// => Paragraph
+[enter, Syntax.Paragraph],
+[enter, Syntax.Str],
+[leave, Syntax.Str],
+// *world*
+[enter, Syntax.Emphasis],
+[enter, Syntax.Str],
+[leave, Syntax.Str],
+[leave, Syntax.Emphasis],
+// <= Paragraph
+[leave, Syntax.Paragraph],
+// End
+[leave, Syntax.Document]
+```
 
 ## Contributing
 

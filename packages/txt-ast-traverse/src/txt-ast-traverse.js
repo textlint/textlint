@@ -6,7 +6,7 @@ function isNode(node) {
     }
     return typeof node === 'object' && (typeof node.type === 'string' || typeof node.t === 'string');
 }
-function isProperty(nodeType, key) {
+function isParagraph(nodeType, key) {
     return (nodeType === "Paragraph") && 'inline_content' === key;
 }
 function TxtElement(node, path, wrap, ref) {
@@ -110,7 +110,7 @@ class Controller {
                             if (!candidate[current2]) {
                                 continue;
                             }
-                            if (isProperty(nodeType, candidates[current])) {
+                            if (isParagraph(nodeType, candidates[current])) {
                                 element = new TxtElement(candidate[current2], [key, current2], 'Property', null);
                             } else if (isNode(candidate[current2])) {
                                 element = new TxtElement(candidate[current2], [key, current2], null, null);

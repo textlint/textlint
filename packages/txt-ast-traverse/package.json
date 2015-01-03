@@ -16,6 +16,7 @@
     "lib"
   ],
   "scripts": {
+    "build":"gulp build",
     "test": "gulp test",
     "watch": "gulp watch"
   },
@@ -39,6 +40,7 @@
     "gulp-sourcemaps": "^1.2.8",
     "gulp-tag-version": "^1.2.1",
     "markdown-to-ast": "^2.0.0",
+    "mocha": "^2.1.0",
     "power-assert": "^0.10.0"
   }
 }
