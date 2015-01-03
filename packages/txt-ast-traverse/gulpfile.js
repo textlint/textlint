@@ -1,6 +1,4 @@
 "use strict";
-// LICENSE : MIT
-
 /*
   Copyright (C) 2014 Yusuke Suzuki <utatane.tea@gmail.com>
 
