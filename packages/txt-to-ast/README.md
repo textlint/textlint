@@ -20,6 +20,10 @@ The interface defined as [txtnode.d.ts](typing/txtnode.d.ts).
 npm install txt-to-ast
 ```
 
+## DEMO
+
+Try to http://azu.github.io/txt-to-ast/example/
+
 ## Usage
 
 ```js
