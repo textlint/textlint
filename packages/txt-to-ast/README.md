@@ -24,7 +24,7 @@ npm install txt-to-ast
 
 ```js
 var parse = require("txt-to-ast").parse;
-var text = "This is a text";
+var text = "This is a text\nParse text to AST";
 var AST = parse(text);
 console.log(JSON.stringify(AST, null ,4))
 /*
@@ -103,7 +103,7 @@ console.log(JSON.stringify(AST, null ,4))
         },
         {
             "type": "Paragraph",
-            "raw": "parse text to AST",
+            "raw": "Parse text to AST",
             "range": [
                 15,
                 32
@@ -121,7 +121,7 @@ console.log(JSON.stringify(AST, null ,4))
             "children": [
                 {
                     "type": "Str",
-                    "raw": "parse text to AST",
+                    "raw": "Parse text to AST",
                     "range": [
                         15,
                         32
