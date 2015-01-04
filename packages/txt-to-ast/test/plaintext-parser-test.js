@@ -107,8 +107,8 @@ describe("plaintext-parser-test", function () {
                         "column": 0
                     },
                     "end": {
-                        "line": 1,
-                        "column": 5
+                        "line": 2,
+                        "column": 0
                     }
                 },
                 "children": [
@@ -160,7 +160,7 @@ describe("plaintext-parser-test", function () {
                         "loc": {
                             "start": {
                                 "line": 1,
-                                "column": 5
+                                "column": 4
                             },
                             "end": {
                                 "line": 1,
@@ -182,7 +182,7 @@ describe("plaintext-parser-test", function () {
                 "type": "Document",
                 "range": [
                     0,
-                    5
+                    text.length
                 ],
                 "loc": {
                     "start": {
@@ -190,8 +190,8 @@ describe("plaintext-parser-test", function () {
                         "column": 0
                     },
                     "end": {
-                        "line": 1,
-                        "column": 5
+                        "line": 2,
+                        "column": 4
                     }
                 },
                 "children": [
@@ -296,14 +296,16 @@ describe("plaintext-parser-test", function () {
     });
     context("Paragraph + BR + BR + Paragraph", function () {
         it("should equal to P + BR + BR + P", function () {
-            var text = "text\ntext";
+            var text = "text\n" +
+                "\n" +
+                "text";
             var ast = parse(text);
             // Paragraph -> Break -> Paragraph
             var expected = {
                 "type": "Document",
                 "range": [
                     0,
-                    10
+                    text.length
                 ],
                 "loc": {
                     "start": {
@@ -311,8 +313,8 @@ describe("plaintext-parser-test", function () {
                         "column": 0
                     },
                     "end": {
-                        "line": 1,
-                        "column": 10
+                        "line": 3,
+                        "column": 4
                     }
                 },
                 "children": [

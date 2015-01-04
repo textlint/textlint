@@ -21,21 +21,41 @@ function parseLine(lineText, lineNumber, startIndex) {
 }
 /**
  * create BreakNode next to StrNode
- * @param {TxtNode} strNode
+ * @param {TxtNode} prevNode previous node from BreakNode
  */
-function breakNextToStrNode(strNode) {
+function createEndedBRNode(prevNode) {
     return {
         type: Syntax.Break,
         raw: "\n",
-        range: [strNode.range[1], strNode.range[1] + 1],
+        range: [prevNode.range[1], prevNode.range[1] + 1],
         loc: {
             start: {
-                line: strNode.loc.line,
-                column: strNode.loc.column + 1
+                line: prevNode.loc.end.line,
+                column: prevNode.loc.end.column
             },
             end: {
-                line: strNode.loc.line,
-                column: strNode.loc.column + 2
+                line: prevNode.loc.end.line,
+                column: prevNode.loc.end.column + 1
+            }
+        }
+    };
+}
+/**
+ * create BreakNode next to StrNode
+ */
+function createBRNode(lineNumber, startIndex) {
+    return {
+        type: Syntax.Break,
+        raw: "\n",
+        range: [startIndex, startIndex + 1],
+        loc: {
+            start: {
+                line: lineNumber,
+                column: 0
+            },
+            end: {
+                line: lineNumber,
+                column: 1
             }
         }
     };
@@ -67,6 +87,11 @@ function createParagraph(nodes) {
         children: nodes
     };
 }
+
+
+function isLastLine(text, index) {
+
+}
 /**
  * parse text and return ast mapped location info.
  * @param {string} text
@@ -76,11 +101,36 @@ function parse(text) {
     var textLineByLine = text.split(LINEBREAKE_MARK);
     // it should be alternately Str and Break
     var startIndex = 0;
+    var lastLineIndex = textLineByLine.length - 1;
+    var isLasEmptytLine = function (line, index) {
+        return index === lastLineIndex && line === "";
+    };
+    var isEmptyLine = function (line, index) {
+        return index !== lastLineIndex && line === "";
+    };
     var children = textLineByLine.reduce(function (result, currentLine, index) {
-        var strNode = parseLine(currentLine, index + 1, startIndex);
+        var lineNumber = index + 1;
+        if (isLasEmptytLine(currentLine, index)) {
+            return result;
+        }
+        // \n
+        if (isEmptyLine(currentLine, index)) {
+            var emptyBreakNode = createBRNode(lineNumber, startIndex);
+            startIndex += emptyBreakNode.raw.length;
+            result.push(emptyBreakNode);
+            return result;
+        }
+
+        // (Paragraph > Str) -> Br?
+        var strNode = parseLine(currentLine, lineNumber, startIndex);
         var paragraph = createParagraph([strNode]);
         startIndex += paragraph.raw.length;
         result.push(paragraph);
+        if (index !== lastLineIndex) {
+            var breakNode = createEndedBRNode(paragraph);
+            startIndex += breakNode.raw.length;
+            result.push(breakNode);
+        }
         return result;
     }, []);
     return {
