@@ -13,10 +13,10 @@ Parse text to AST(TxtNodes)
 
 `type` is TxtNode type.
 
-- Types of plain-text is defined in [lib/parse/plaintext/plaintext-syntax.js](..lib/parse/plaintext/plaintext-syntax.js)
+- Types of plain-text is defined in [azu/txt-to-ast](https://github.com/azu/txt-to-ast "azu/txt-to-ast")
 - Types of Markdown text is defined in [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast")
 
-All Types is defined in [lib/parse/union-syntax.js](../lib/parse/union-syntax.js)
+All Types is defined in [lib/parser/union-syntax.js](../lib/parser/union-syntax.js)
 
 These types are be available at all times:
 

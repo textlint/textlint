@@ -54,6 +54,7 @@
     "style-format": "0.0.0",
     "text-table": "^0.2.0",
     "traverse": "^0.6.6",
+    "txt-to-ast": "^1.0.1",
     "xml-escape": "^1.0.0"
   }
 }

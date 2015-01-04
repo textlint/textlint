@@ -30,7 +30,8 @@ describe("textlint-test", function () {
     describe("lintText", function () {
         it("should found error message", function () {
             var result = textLint.lintText("It it plain text\n" +
-            "second line.");
+            "\n" +
+            "Third line.");
             assert(result.filePath === "<text>");
             assert(result.messages.length > 0);
         });
