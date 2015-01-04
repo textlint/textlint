@@ -4,6 +4,8 @@ Parse plain text to AST with location info.
 
 This library is a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
 
+Markdown version : [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast "azu/markdown-to-ast")
+
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
 
