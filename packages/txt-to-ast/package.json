@@ -1,7 +1,7 @@
 {
   "name": "txt-to-ast",
   "description": "Parse text to AST.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/azu/txt-to-ast/",
   "repository": {
     "type": "git",
