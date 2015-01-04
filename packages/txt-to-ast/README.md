@@ -15,6 +15,7 @@ A `TxtNode` of the AST has following properties:
 
 The interface defined as [txtnode.d.ts](typing/txtnode.d.ts).
 
+This library is a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
 
 ## Installation
 
