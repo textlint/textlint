@@ -3,13 +3,13 @@
 "use strict";
 var input = document.getElementById("js-input"),
     output = document.getElementById("js-output");
-var parser = require("../../lib/markdown/markdown-parser").parse;
+var parser = require("../../").parse;
 input.addEventListener("keyup", function (event) {
     var value = event.target.value;
     var AST = parser(value);
     output.value = JSON.stringify(AST, null, 4);
 });
-},{"../../lib/markdown/markdown-parser":4}],2:[function(require,module,exports){
+},{"../../":4}],2:[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 // This is Syntax map of CommonMarkdown AST.
