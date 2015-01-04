@@ -4,6 +4,7 @@ Parse plain text to AST with location info.
 
 This library is a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
 
+The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
 
 - `loc` - Nodes have line and column-based location info.
