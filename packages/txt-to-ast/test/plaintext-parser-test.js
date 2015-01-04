@@ -300,6 +300,7 @@ describe("plaintext-parser-test", function () {
                 "\n" +
                 "text";
             var ast = parse(text);
+
             // Paragraph -> Break -> Paragraph
             var expected = {
                 "type": "Document",
