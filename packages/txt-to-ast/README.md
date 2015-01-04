@@ -1,4 +1,4 @@
-# txt-to-ast
+# txt-to-ast [![Build Status](https://travis-ci.org/azu/txt-to-ast.svg?branch=master)](https://travis-ci.org/azu/txt-to-ast)
 
 Parse plain text to AST with location info.
 
