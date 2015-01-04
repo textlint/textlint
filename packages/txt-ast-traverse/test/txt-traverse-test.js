@@ -122,7 +122,7 @@ describe("txt-traverse", ()=> {
             var documentParentTypes = documentParents.map((node)=> {
                 return node.type;
             });
-            assert.deepEqual(emParentTypes, [Syntax.Paragraph, Syntax.Document]);
+            assert.deepEqual(emParentTypes, [Syntax.Document, Syntax.Paragraph]);
             assert.deepEqual(documentParentTypes, []);
         });
     });

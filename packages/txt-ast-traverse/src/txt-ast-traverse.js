@@ -54,10 +54,11 @@ class Controller {
      * @public
      */
     parents() {
-        var result = [];
-        for (var i = this.__leavelist.length - 1; i > 0; i--) {
-            var parent = this.__leavelist[i].node;
-            result.push(parent);
+        var i, iz, result;
+        // first node is sentinel
+        result = [];
+        for (i = 1, iz = this.__leavelist.length; i < iz; ++i) {
+            result.push(this.__leavelist[i].node);
         }
         return result;
     }
