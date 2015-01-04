@@ -46,6 +46,31 @@ class Controller {
         return result;
     }
 
+    /**
+     * Gets parent nodes of current node.
+     * The parent nodes are returned in order from the closest parent to the outer ones.
+     * Current node is {@link current}.
+     * @returns {Array}
+     * @public
+     */
+    parents() {
+        var result = [];
+        for (var i = this.__leavelist.length - 1; i > 0; i--) {
+            var parent = this.__leavelist[i].node;
+            result.push(parent);
+        }
+        return result;
+    }
+
+    /**
+     * Gets current node during traverse.
+     * @returns {TxtNode}
+     * @public
+     */
+    current() {
+        return this.__current.node;
+    }
+
     traverse(root, visitor) {
 
         this.__willStartTraverse(root, visitor);
@@ -129,6 +154,7 @@ function traverse(root, visitor) {
     return controller.traverse(root, visitor);
 }
 export {
+    Controller,
     traverse,
     VisitorOption
     };

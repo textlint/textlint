@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { traverse, VisitorOption } from '../lib/txt-ast-traverse.js';
+import { Controller, traverse, VisitorOption } from '../lib/txt-ast-traverse.js';
 import { parse, Syntax } from "markdown-to-ast"
 import dump from "./traverse-dump.js";
 var assert = require("power-assert");
@@ -99,7 +99,45 @@ describe("txt-traverse", ()=> {
                 assert.deepEqual(results, expected);
             });
         });
-
-
+    });
+    describe("#parents", ()=> {
+        it("should return parent nodes", ()=> {
+            var AST = parse("Hello*world*");
+            var controller = new Controller();
+            var emParents = [],
+                documentParents = [];
+            controller.traverse(AST, {
+                enter(node) {
+                    if (node.type === Syntax.Document) {
+                        documentParents = controller.parents();
+                    }
+                    if (node.type === Syntax.Emphasis) {
+                        emParents = controller.parents();
+                    }
+                }
+            });
+            var emParentTypes = emParents.map((node)=> {
+                return node.type;
+            });
+            var documentParentTypes = documentParents.map((node)=> {
+                return node.type;
+            });
+            assert.deepEqual(emParentTypes, [Syntax.Paragraph, Syntax.Document]);
+            assert.deepEqual(documentParentTypes, []);
+        });
+    });
+    describe("#current", ()=> {
+        it("should return current node", ()=> {
+            var AST = parse("Hello*world*");
+            var controller = new Controller();
+            controller.traverse(AST, {
+                enter(node) {
+                    assert.equal(controller.current().type, node.type);
+                },
+                leave(node) {
+                    assert.equal(controller.current().type, node.type);
+                }
+            });
+        });
     });
 });
