@@ -196,6 +196,44 @@ Traversal all from Root(Document node):
 [leave, Syntax.Document]
 ```
 
+## NOTE
+
+You want to set property on Node.
+
+Bad example:
+
+```js
+var TraverseController = require("txt-ast-traverse").Controller;
+var controller = new TraverseController();
+controller.traverse(ast, {
+    enter: function (node, parent) {
+        node.parent = parent;// it cause a circular reference!
+        // do something
+        something(node);
+    }
+});
+```
+
+`node.parent = parent;` cause a circular reference!
+
+Correct example:
+
+```js
+var TraverseController = require("txt-ast-traverse").Controller;
+var controller = new TraverseController();
+controller.traverse(ast, {
+    enter: function (node, parent) {
+        // set property as non-enumerable value
+        Object.defineProperty(node, "parent", {
+            value: parent
+        });
+        // do something
+        something(node);
+    }
+});
+```
+
+
 ## Contributing
 
 1. Fork it!
