@@ -20,7 +20,7 @@ function getParents(node) {
  * Return true if `node` is wrapped any one of `types`.
  * @param {TxtNode} node is target node
  * @param {string[]} types are wrapped target node
- * @returns {boolean|*}
+ * @returns {boolean}
  */
 function isNodeWrapped(node, types) {
     var parents = getParents(node);

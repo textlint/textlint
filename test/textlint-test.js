@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
+var deepClone = require("clone");
 var textLint = require("../").textlint;
 var loadRules = require("../lib/rule/load-rules");
 var rules = loadRules(__dirname + "/fixtures/rules");
@@ -26,6 +27,11 @@ describe("textlint-test", function () {
             assert(result.filePath === "<markdown>");
             assert(result.messages.length > 0);
         });
+        it("should has referential transparency", function () {
+            var result_1 = deepClone(textLint.lintMarkdown("text"));
+            var result_2 = deepClone(textLint.lintMarkdown("text"));
+            assert.equal(result_1.messages.length, result_2.messages.length);
+        });
     });
     describe("lintText", function () {
         it("should found error message", function () {
@@ -34,6 +40,11 @@ describe("textlint-test", function () {
             "Third line.");
             assert(result.filePath === "<text>");
             assert(result.messages.length > 0);
+        });
+        it("should has referential transparency", function () {
+            var result_1 = deepClone(textLint.lintMarkdown("text"));
+            var result_2 = deepClone(textLint.lintMarkdown("text"));
+            assert.equal(result_1.messages.length, result_2.messages.length);
         });
     });
     describe("lintFile", function () {
