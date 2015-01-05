@@ -2,7 +2,7 @@
 "use strict";
 var assert = require("power-assert");
 var CLIEngine = require("../").CLIEngine;
-var rulesDir = __dirname + "/rules";
+var rulesDir = __dirname + "/fixtures/rules";
 describe("cli-engine-test", function () {
     var cliEngine;
     describe("executeOnFiles", function () {

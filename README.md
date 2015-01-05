@@ -12,7 +12,7 @@ $ npm install textlint -g
 
 ## Usage
 
-![lint result](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
+![todo:lint result](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
 
 - [ ]  more more document
 

@@ -2,12 +2,19 @@
 
 Parse text to AST(TxtNodes)
 
-## TxtNodes
+## [TxtNodes](./txtnode.d.ts)
+
+[TxtNodes](./txtnode.d.ts) has these properties.
 
 - `type`: type of Node
 - `raw`: text value of Node
 - `loc`: location object
 - `range`: location info array like `[startIndex, endIndex]`
+
+and for traversing property.
+
+- `children`: (optional) child nodes of this node.
+- `parent`: (optional) parent node of this node.
 
 ### `type`
 

@@ -3,7 +3,7 @@
 var assert = require("power-assert");
 var textLint = require("../").textlint;
 var loadRules = require("../lib/rule/load-rules");
-var rules = loadRules(__dirname + "/rules");
+var rules = loadRules(__dirname + "/fixtures/rules");
 describe("textlint-test", function () {
     beforeEach(function () {
         // This rule found `Str` Node then occur error
