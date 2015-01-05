@@ -11,7 +11,7 @@ Parse text to AST(TxtNodes)
 - `loc`: location object
 - `range`: location info array like `[startIndex, endIndex]`
 
-and for traversing property.
+and for traversing.
 
 - `children`: (optional) child nodes of this node.
 - `parent`: (optional) parent node of this node.
