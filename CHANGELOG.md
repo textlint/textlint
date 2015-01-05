@@ -1,3 +1,13 @@
+## 1.4.0 (2015-01-05)
+
+
+#### Features
+
+* **markdown:** update `markdown-to-ast` ver2 ([f682d9f7](https://github.com/azu/textlint/commit/f682d9f7e90252488596633f427c3742f48bef64))
+* **parser:** use new text parser ([09ef2d50](https://github.com/azu/textlint/commit/09ef2d50d934a18529212ccfcda4b5d07d0dd4b7))
+* **textlint:** change traverse rule completely ([5aaaa880](https://github.com/azu/textlint/commit/5aaaa88050da0f1a3774c7e56d7f61eea938aa0d))
+
+
 ## 1.3.0 (2015-01-02)
 
 
