@@ -1,10 +1,18 @@
 # TxtNode interface
 
-Parse text to AST(TxtNodes)
+Parse text to AST(Abstract Syntax Tree)
 
-## [TxtNodes](./txtnode.d.ts)
+## What is AST?
 
-[TxtNodes](./txtnode.d.ts) has these properties.
+[Abstract syntax tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree "Abstract syntax tree - Wikipedia, the free encyclopedia") is a tree representation of the abstract syntactic structure of text.
+
+Each node of the tree has same interface, is called `TxtNode`.
+
+[![screenshot](http://monosnap.com/image/0fqi1UF7yOv89nxJPaDWtvyqERaM49.png)](http://azu.github.io/markdown-to-ast/example/)
+
+## [TxtNode](./txtnode.d.ts) interface
+
+[TxtNode](./txtnode.d.ts) has these properties.
 
 - `type`: type of Node
 - `raw`: text value of Node
@@ -21,7 +29,9 @@ and for traversing.
 `type` is TxtNode type.
 
 - Types of plain-text is defined in [azu/txt-to-ast](https://github.com/azu/txt-to-ast "azu/txt-to-ast")
-- Types of Markdown text is defined in [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast")
+    - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
+- Types of Markdown text is defined in [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast") (compatible Markdown AST)
+    - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
 
 All Types is defined in [lib/parser/union-syntax.js](../lib/parser/union-syntax.js)
 
@@ -31,6 +41,13 @@ These types are be available at all times:
 - Paragraph
 - Break
 - Str
+
+### Online Parsing Demo
+
+- Markdown AST
+    - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
+- Plain text AST
+    - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
 
 Minimum(recommended) rules is following code:
 
