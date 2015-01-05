@@ -1,3 +1,11 @@
+### 1.4.2 (2015-01-05)
+
+
+#### Bug Fixes
+
+* **textlint:** fix message bug during  linting multiple files ([201f729d](https://github.com/azu/textlint/commit/201f729d27d12b7a874755d783604931d2c041d3))
+
+
 ## 1.4.0 (2015-01-05)
 
 
