@@ -17,10 +17,16 @@ describe("no-todo-test", function () {
             assert(result.messages.length === 1);
         });
     });
-    context('when "- [] something" is come', function () {
+    context('when "- [ ] something" is come', function () {
         it("should report error", function () {
-            var result = textlint.lintMarkdown("- [] something");
+            var result = textlint.lintMarkdown("- [ ] something");
             assert(result.messages.length === 1);
+        });
+    });
+    context('when "- [link][] something" is come', function () {
+        it("should not report error", function () {
+            var result = textlint.lintMarkdown("- [link][] ");
+            assert(result.messages.length === 0);
         });
     });
     context('when "[todo:](http://example.com)" is come', function () {

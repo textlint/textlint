@@ -149,7 +149,7 @@ module.exports = function (context) {
     // `List` is "- list 1" and - [ ] todo", so called this callback twice.
     exports[context.Syntax.ListItem] = function (node) {
         var text = context.getSource(node);
-        if (/\[\s*?\]\s/i.test(text)) {
+        if (/\[\s+\]\s/i.test(text)) {
             context.report(node, new context.RuleError("found Todo: " + text));
         }
     };
@@ -256,7 +256,7 @@ module.exports = function (context) {
     };
     exports[context.Syntax.ListItem] = function (node) {
         var text = context.getSource(node);
-        if (/\[\s*?\]\s/i.test(text)) {
+        if (/\[\s+\]\s/i.test(text)) {
             context.report(node, new context.RuleError("found TODO: '" + text + "'"));
         }
     };
