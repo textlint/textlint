@@ -4,6 +4,7 @@ Textlint's AST(Abstract Syntax Tree) is defined these pages.
 
 - [txtnode.d.ts](./txtnode.d.ts)
 - [TxtNode interface](./txtnode.md)
+    - If you want to know AST of a text, use [Online Parsing Demo](./txtnode.md#online-parsing-demo)
 
 Each rules are represented by a object with several properties.
 The properties are equivalent to AST node types from TxtNode.
