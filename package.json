@@ -1,7 +1,7 @@
 {
   "name": "textlint",
   "description": "plugable text lint tool(support markdown).",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "homepage": "https://github.com/azu/textlint/",
   "keywords": [
     "plugable",
