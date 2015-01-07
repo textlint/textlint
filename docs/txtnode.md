@@ -28,12 +28,12 @@ and for traversing.
 
 `type` is TxtNode type.
 
-- Types of plain-text is defined in [azu/txt-to-ast](https://github.com/azu/txt-to-ast "azu/txt-to-ast")
+- Types of plain-text are defined in [azu/txt-to-ast](https://github.com/azu/txt-to-ast "azu/txt-to-ast")
     - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
-- Types of Markdown text is defined in [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast")
+- Types of Markdown text are defined in [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast")
     - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
 
-All Types is defined in [lib/parser/union-syntax.js](../lib/parser/union-syntax.js)
+All Types are defined in [lib/parser/union-syntax.js](../lib/parser/union-syntax.js)
 
 These types are be available at all times:
 
