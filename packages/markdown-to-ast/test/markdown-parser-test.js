@@ -98,7 +98,7 @@ describe("markdown-parser", function () {
                     column: lines[lines.length - 1].length
                 }
             });
-            assert.deepEqual(RootDocument.range, [0, 31]);
+            assert.deepEqual(RootDocument.range, [0, text.length]);
         });
     });
     /*
