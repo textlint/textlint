@@ -130,25 +130,14 @@ var renderInlines = function (inlines, parent) {
     for (var i = 0; i < inlines.length; i++) {
         var inline = inlines[i];
         if (parent != null) {
-            Object.defineProperties(inline, {
-                "start_line": {
-                    value: parent.start_line
-                },
-                "start_column": {
-                    value: parent.start_column + start_margin + result.length
-                }
-            });
+            // attach pre-location info to node
+            inline["start_line"] = parent.start_line;
+            inline["start_column"] = parent.start_column + start_margin + result.length;
         }
         // render plaintext
         var raw = this.renderInline(inline, parent);
         result = result + raw;
         if (parent != null) {
-            var addingLineNumber = (result.split("\n").length - 1);
-            Object.defineProperties(inline, {
-                "end_line": {
-                    value: parent.start_line + addingLineNumber
-                }
-            });
             // export `raw`
             inline.raw = raw
         }
@@ -260,6 +249,21 @@ function HtmlRenderer() {
 }
 
 /**
+ * Remove undocumented properties on TxtNode from node
+ * @param {TxtNode} node already has loc,range
+ */
+function removeUnusedProperties(node) {
+    if (typeof node !== "object") {
+        return;
+    }
+    ["start_line", "end_line", "start_column", "t"].forEach(function (key) {
+        if (node.hasOwnProperty(key)) {
+            delete node[key];
+        }
+    });
+}
+
+/**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
  * @returns {TxtNode}
@@ -281,19 +285,18 @@ function parse(text) {
 
     // compute location from each nodes.
     // This do merge(node, loc)
-    traverse(ast).forEach(function (x) {
+    traverse(ast).forEach(function (node) {
         if (this.notLeaf) {
-            x = objectAssign(x, positionNode(x));
-            if (x.loc) {
-                x.range = src.locationToRange(x.loc);
+            node = objectAssign(node, positionNode(node));
+            if (node.loc) {
+                node.range = src.locationToRange(node.loc);
             }
-            if (typeof x.t !== "undefined") {
+            if (typeof node.t !== "undefined") {
                 // covert t to type
                 // e.g) "FencedCode" => "CodeBlock"
-                x.type = SyntaxMap[x.t];
-                // delete original `x.t`
-                delete x.t;
+                node.type = SyntaxMap[node.t];
             }
+            removeUnusedProperties(node);
         }
     });
     return ast;

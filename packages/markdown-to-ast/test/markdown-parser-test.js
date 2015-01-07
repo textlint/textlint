@@ -100,6 +100,27 @@ describe("markdown-parser", function () {
             });
             assert.deepEqual(RootDocument.range, [0, text.length]);
         });
+        it("should has range and loc on whole text", function () {
+            var text = "# Header\n" +
+                "\n" +
+                "text";
+            var lines = text.split("\n");
+            var RootDocument = parse(text);
+            assert.equal(RootDocument.type, Syntax.Document);
+            assert.equal(RootDocument.raw, text);
+            assert.deepEqual(RootDocument.loc, {
+                start: {
+                    line: 1,
+                    column: 0
+                },
+                end: {
+                    line: lines.length,
+                    column: lines[lines.length - 1].length
+                }
+            });
+            var slicedText = text.slice(RootDocument.range);
+            assert.deepEqual(slicedText, text);
+        });
     });
     /*
         Paragraph > Str

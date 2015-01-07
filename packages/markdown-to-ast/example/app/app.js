@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/example/js/index.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 var input = document.getElementById("js-input"),
@@ -9,7 +9,7 @@ input.addEventListener("keyup", function (event) {
     var AST = parser(value);
     output.value = JSON.stringify(AST, null, 4);
 });
-},{"../../":4}],2:[function(require,module,exports){
+},{"../../":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/markdown-parser.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/mapping/common-markdown-syntax.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 // This is Syntax map of CommonMarkdown AST.
@@ -37,7 +37,7 @@ var exports = {
     'Code': 'Code'
 };
 module.exports = exports;
-},{}],3:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/mapping/markdown-syntax-map.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 // Replace key to value mapping
@@ -66,7 +66,7 @@ var exports = {
     'Code': 'Code'
 };
 module.exports = exports;
-},{}],4:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/markdown-parser.js":[function(require,module,exports){
 /*eslint-disable */
 // LICENSE : MIT
 
@@ -199,25 +199,14 @@ var renderInlines = function (inlines, parent) {
     for (var i = 0; i < inlines.length; i++) {
         var inline = inlines[i];
         if (parent != null) {
-            Object.defineProperties(inline, {
-                "start_line": {
-                    value: parent.start_line
-                },
-                "start_column": {
-                    value: parent.start_column + start_margin + result.length
-                }
-            });
+            // attach pre-location info to node
+            inline["start_line"] = parent.start_line;
+            inline["start_column"] = parent.start_column + start_margin + result.length;
         }
         // render plaintext
         var raw = this.renderInline(inline, parent);
         result = result + raw;
         if (parent != null) {
-            var addingLineNumber = (result.split("\n").length - 1);
-            Object.defineProperties(inline, {
-                "end_line": {
-                    value: parent.start_line + addingLineNumber
-                }
-            });
             // export `raw`
             inline.raw = raw
         }
@@ -260,10 +249,7 @@ var renderBlock = function (block, in_tight_list) {
         case CMSyntax.List:
             // add block to stack +1
             _levelList.push(block);
-            tag = block.list_data.type == 'Bullet' ? 'ul' : 'ol';
-            var contents = this.innersep +
-                this.renderBlocks(block.children, block.tight) +
-                this.innersep;
+            var contents = this.renderBlocks(block.children, block.tight);
             var result = toMarkdownText(CMSyntax.List, block, contents);
             // pop block from stack -1
             _levelList.pop();
@@ -332,6 +318,21 @@ function HtmlRenderer() {
 }
 
 /**
+ * Remove undocumented properties on TxtNode from node
+ * @param {TxtNode} node already has loc,range
+ */
+function removeUnusedProperties(node) {
+    if (typeof node !== "object") {
+        return;
+    }
+    ["start_line", "end_line", "start_column", "t"].forEach(function (key) {
+        if (node.hasOwnProperty(key)) {
+            delete node[key];
+        }
+    });
+}
+
+/**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
  * @returns {TxtNode}
@@ -353,19 +354,18 @@ function parse(text) {
 
     // compute location from each nodes.
     // This do merge(node, loc)
-    traverse(ast).forEach(function (x) {
+    traverse(ast).forEach(function (node) {
         if (this.notLeaf) {
-            x = objectAssign(x, positionNode(x));
-            if (x.loc) {
-                x.range = src.locationToRange(x.loc);
+            node = objectAssign(node, positionNode(node));
+            if (node.loc) {
+                node.range = src.locationToRange(node.loc);
             }
-            if (typeof x.t !== "undefined") {
+            if (typeof node.t !== "undefined") {
                 // covert t to type
                 // e.g) "FencedCode" => "CodeBlock"
-                x.type = SyntaxMap[x.t];
-                // delete original `x.t`
-                delete x.t;
+                node.type = SyntaxMap[node.t];
             }
+            removeUnusedProperties(node);
         }
     });
     return ast;
@@ -374,7 +374,7 @@ module.exports = {
     parse: parse,
     Syntax: require("./union-syntax")
 };
-},{"./mapping/common-markdown-syntax":2,"./mapping/markdown-syntax-map":3,"./markdown-position-node":5,"./type-builder/markdown-Emph":18,"./type-builder/markdown-code":19,"./type-builder/markdown-image":20,"./type-builder/markdown-link":21,"./type-builder/markdown-strong":22,"./union-syntax":23,"commonmark":10,"object-assign":12,"strip-yaml-header":13,"structured-source":14,"traverse":17}],5:[function(require,module,exports){
+},{"./mapping/common-markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/mapping/common-markdown-syntax.js","./mapping/markdown-syntax-map":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/mapping/markdown-syntax-map.js","./markdown-position-node":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/markdown-position-node.js","./type-builder/markdown-Emph":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-Emph.js","./type-builder/markdown-code":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-code.js","./type-builder/markdown-image":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-image.js","./type-builder/markdown-link":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-link.js","./type-builder/markdown-strong":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-strong.js","./union-syntax":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/union-syntax.js","commonmark":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/index.js","object-assign":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/object-assign/index.js","strip-yaml-header":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/strip-yaml-header/lib/strip-yaml-header.js","structured-source":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/structured-source/lib/index.js","traverse":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/traverse/index.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/markdown-position-node.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 
@@ -425,12 +425,17 @@ module.exports = function (node) {
 
     var end_column;
     if (addingColumn > 0) {
-        end_column = Math.max(lastLine.length - columnMargin, 0);
+        end_column = Math.max(lastLine.length , 0);
     } else {
         end_column = Math.max(node.start_column + lastLine.length - columnMargin, 0);
     }
     // if FencedCode
     if (node.t === CMSyntax.CodeBlock && typeof node.info !== "undefined") {
+        /*
+            ```
+            start - end
+            ```
+         */
         loc["start"] = {
             line: node.start_line + 1,
             column: node.start_column - columnMargin
@@ -452,7 +457,7 @@ module.exports = function (node) {
 
     return {loc: loc};
 };
-},{"./mapping/common-markdown-syntax":2}],6:[function(require,module,exports){
+},{"./mapping/common-markdown-syntax":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/mapping/common-markdown-syntax.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/blocks.js":[function(require,module,exports){
 var C_GREATERTHAN = 62;
 var C_SPACE = 32;
 var C_OPEN_BRACKET = 91;
@@ -1153,7 +1158,7 @@ function DocParser(){
 
 module.exports = DocParser;
 
-},{"./inlines":11}],7:[function(require,module,exports){
+},{"./inlines":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/inlines.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/from-code-point.js":[function(require,module,exports){
 // derived from https://github.com/mathiasbynens/String.fromCodePoint
 /*! http://mths.be/fromcodepoint v0.2.1 by @mathias */
 if (String.fromCodePoint) {
@@ -1214,7 +1219,7 @@ if (String.fromCodePoint) {
   module.exports = fromCodePoint;
 }
 
-},{}],8:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/html-renderer.js":[function(require,module,exports){
 // Helper function to produce content in a pair of HTML tags.
 var inTags = function(tag, attribs, contents, selfclosing) {
     var result = '<' + tag;
@@ -1384,7 +1389,7 @@ function HtmlRenderer(){
 
 module.exports = HtmlRenderer;
 
-},{}],9:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/html5-entities.js":[function(require,module,exports){
 var fromCodePoint = require('./from-code-point');
 
 var entities = {
@@ -3539,7 +3544,7 @@ var entityToChar = function(m) {
 
 module.exports.entityToChar = entityToChar;
 
-},{"./from-code-point":7}],10:[function(require,module,exports){
+},{"./from-code-point":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/from-code-point.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/index.js":[function(require,module,exports){
 // commonmark.js - CommomMark in JavaScript
 // Copyright (C) 2014 John MacFarlane
 // License: BSD3.
@@ -3563,7 +3568,7 @@ module.exports.DocParser = require('./blocks');
 module.exports.HtmlRenderer = require('./html-renderer');
 module.exports.ASTRenderer = renderAST;
 
-},{"./blocks":6,"./html-renderer":8,"util":27}],11:[function(require,module,exports){
+},{"./blocks":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/blocks.js","./html-renderer":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/html-renderer.js","util":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/util/util.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/inlines.js":[function(require,module,exports){
 var fromCodePoint = require('./from-code-point.js');
 var entityToChar = require('./html5-entities.js').entityToChar;
 
@@ -4401,7 +4406,7 @@ function InlineParser(){
 module.exports = InlineParser;
 
 
-},{"./from-code-point.js":7,"./html5-entities.js":9}],12:[function(require,module,exports){
+},{"./from-code-point.js":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/from-code-point.js","./html5-entities.js":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/commonmark/lib/html5-entities.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/object-assign/index.js":[function(require,module,exports){
 'use strict';
 
 function ToObject(val) {
@@ -4429,7 +4434,7 @@ module.exports = Object.assign || function (target, source) {
 	return to;
 };
 
-},{}],13:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/strip-yaml-header/lib/strip-yaml-header.js":[function(require,module,exports){
 (function (process){
 // LICENSE : MIT
 "use strict";
@@ -4457,7 +4462,7 @@ function normalize(markdown) {
 module.exports = normalize;
 
 }).call(this,require('_process'))
-},{"_process":25}],14:[function(require,module,exports){
+},{"_process":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/structured-source/lib/index.js":[function(require,module,exports){
 "use strict";
 
 var StructuredSource = require('./structured-source.js')["default"];
@@ -4467,7 +4472,7 @@ module.exports = StructuredSource;
 
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{"./structured-source.js":15}],15:[function(require,module,exports){
+},{"./structured-source.js":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/structured-source/lib/structured-source.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/structured-source/lib/structured-source.js":[function(require,module,exports){
 "use strict";
 
 var _classProps = function (child, staticProps, instanceProps) {
@@ -4552,7 +4557,7 @@ var StructuredSource = (function () {
 
 exports["default"] = StructuredSource;
 
-},{"boundary":16}],16:[function(require,module,exports){
+},{"boundary":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/structured-source/node_modules/boundary/lib/index.js"}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/structured-source/node_modules/boundary/lib/index.js":[function(require,module,exports){
 "use strict";
 
 /*
@@ -4636,7 +4641,7 @@ exports.lowerBound = lowerBound;
 exports.upperBound = upperBound;
 exports.binarySearch = binarySearch;
 
-},{}],17:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/node_modules/traverse/index.js":[function(require,module,exports){
 var traverse = module.exports = function (obj) {
     return new Traverse(obj);
 };
@@ -4952,7 +4957,7 @@ var hasOwnProperty = Object.hasOwnProperty || function (obj, key) {
     return key in obj;
 };
 
-},{}],18:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-Emph.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 /*
@@ -4971,7 +4976,7 @@ var hasOwnProperty = Object.hasOwnProperty || function (obj, key) {
 module.exports = function (node, contents) {
     return "*" + contents + "*";
 };
-},{}],19:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-code.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 
@@ -4985,7 +4990,7 @@ module.exports = function (node, contents) {
 module.exports = function code(node, contents) {
     return '`' + contents + '`';
 };
-},{}],20:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-image.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 
@@ -5005,7 +5010,7 @@ module.exports = function (node, contennts) {
     return "![" + contennts + "](" + node.destination + ")";
 };
 
-},{}],21:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-link.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 /*
@@ -5042,7 +5047,7 @@ module.exports = function link(node, contents) {
         return '[' + contents + '](' + node.destination + ' "' + node.title + '")';
     }
 };
-},{}],22:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/type-builder/markdown-strong.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 
@@ -5060,7 +5065,7 @@ module.exports = function link(node, contents) {
 module.exports = function (node, contents) {
     return '__' + contents + '__';
 };
-},{}],23:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/lib/markdown/union-syntax.js":[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 // public key interface
@@ -5086,7 +5091,7 @@ var exports = {
     'Code': 'Code'
 };
 module.exports = exports;
-},{}],24:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/inherits/inherits_browser.js":[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -5111,7 +5116,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],25:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js":[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -5199,14 +5204,14 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],26:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/util/support/isBufferBrowser.js":[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],27:[function(require,module,exports){
+},{}],"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/util/util.js":[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5796,4 +5801,4 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":26,"_process":25,"inherits":24}]},{},[1]);
+},{"./support/isBuffer":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/util/support/isBufferBrowser.js","_process":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/process/browser.js","inherits":"/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/node_modules/watchify/node_modules/browserify/node_modules/inherits/inherits_browser.js"}]},{},["/Users/azu/Dropbox/workspace/node/lib/markdown-to-ast/example/js/index.js"]);
