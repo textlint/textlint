@@ -62,8 +62,13 @@ module.exports = function (context) {
 };
 ```
 
-You are able to see the traversing algorithm on:
+[visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
 
+![gif visualize-txt-traverse](http://gyazo.com/155c68f0f9ff35e0a549d655a787c01e.gif)
+
+**related information:**
+
+- [azu/visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
 - [azu/txt-ast-traverse](https://github.com/azu/txt-ast-traverse "azu/txt-ast-traverse")
 - [estools/estraverse](https://github.com/estools/estraverse "estools/estraverse")
 
