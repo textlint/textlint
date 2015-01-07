@@ -28,6 +28,8 @@ function findFirstTypedNode(node, type, value) {
 }
 
 function shouldHaveImplementTxtNode(node, rawValue) {
+    var lines = rawValue.split("\n");
+    var lastLine = lines[lines.length - 1];
     assert.equal(node.raw, rawValue);
     assert.deepEqual(node.loc, {
         start: {
@@ -35,8 +37,8 @@ function shouldHaveImplementTxtNode(node, rawValue) {
             column: 0
         },
         end: {
-            line: 1,
-            column: rawValue.length
+            line: lines.length,
+            column: lastLine.length
         }
     });
     assert.deepEqual(node.range, [0, rawValue.length]);
@@ -79,6 +81,24 @@ describe("markdown-parser", function () {
                 }
             });
             assert.deepEqual(RootDocument.range, [0, 0]);
+        });
+        it("should has range and loc on whole text", function () {
+            var text = "# Header\n\n" + "- list\n\n" + "text Str.";
+            var lines = text.split("\n");
+            var RootDocument = parse(text);
+            assert.equal(RootDocument.type, Syntax.Document);
+            assert.equal(RootDocument.raw, text);
+            assert.deepEqual(RootDocument.loc, {
+                start: {
+                    line: 1,
+                    column: 0
+                },
+                end: {
+                    line: lines.length,
+                    column: lines[lines.length - 1].length
+                }
+            });
+            assert.deepEqual(RootDocument.range, [0, 31]);
         });
     });
     /*
@@ -175,6 +195,14 @@ describe("markdown-parser", function () {
                 var node = findFirstTypedNode(AST, Syntax.Str);
                 shouldHaveImplementInlineTxtNode(node, labelText, rawValue)
             });
+        });
+    });
+    context("Node type is List", function () {
+        it("should has implemented TxtNode", function () {
+            var rawValue = "- list1\n- list2",
+                AST = parse(rawValue);
+            var node = findFirstTypedNode(AST, Syntax.List);
+            shouldHaveImplementTxtNode(node, rawValue);
         });
     });
     context("Node type is ListItem", function () {

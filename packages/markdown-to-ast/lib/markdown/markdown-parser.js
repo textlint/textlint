@@ -191,10 +191,7 @@ var renderBlock = function (block, in_tight_list) {
         case CMSyntax.List:
             // add block to stack +1
             _levelList.push(block);
-            tag = block.list_data.type == 'Bullet' ? 'ul' : 'ol';
-            var contents = this.innersep +
-                this.renderBlocks(block.children, block.tight) +
-                this.innersep;
+            var contents = this.renderBlocks(block.children, block.tight);
             var result = toMarkdownText(CMSyntax.List, block, contents);
             // pop block from stack -1
             _levelList.pop();

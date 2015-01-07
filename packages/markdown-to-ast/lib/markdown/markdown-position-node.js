@@ -48,12 +48,17 @@ module.exports = function (node) {
 
     var end_column;
     if (addingColumn > 0) {
-        end_column = Math.max(lastLine.length - columnMargin, 0);
+        end_column = Math.max(lastLine.length , 0);
     } else {
         end_column = Math.max(node.start_column + lastLine.length - columnMargin, 0);
     }
     // if FencedCode
     if (node.t === CMSyntax.CodeBlock && typeof node.info !== "undefined") {
+        /*
+            ```
+            start - end
+            ```
+         */
         loc["start"] = {
             line: node.start_line + 1,
             column: node.start_column - columnMargin
