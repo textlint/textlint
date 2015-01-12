@@ -6,6 +6,26 @@ var rulesDir = __dirname + "/fixtures/rules";
 var path = require("path");
 describe("cli-engine-test", function () {
     var cliEngine;
+    describe("Constructor", function () {
+        context("when args is object", function () {
+            it("should convert the object and set config", function () {
+                cliEngine = new CLIEngine({
+                    rulesdir: [rulesDir]
+                });
+                assert.deepEqual(cliEngine.config.rulePaths, [rulesDir]);
+            });
+        });
+        context("when args is Config object", function () {
+            it("should set directory to config", function () {
+                // Issue : when use Config as argus, have to export `../lib/config/config`
+                var Config = require("../lib/config/config");
+                var config = new Config();
+                config.rulePaths = [rulesDir];
+                cliEngine = new CLIEngine(config);
+                assert.deepEqual(cliEngine.config.rulePaths, [rulesDir]);
+            });
+        });
+    });
     describe("executeOnFiles", function () {
         beforeEach(function () {
             cliEngine = new CLIEngine({
