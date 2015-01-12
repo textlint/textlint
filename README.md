@@ -64,13 +64,15 @@ $ npm install textlint --save-dev
 Minimal usage:
 
 ```js
-var CLIEngine = require("textlint").CLIEngine;
-var cliEngine = new CLIEngine({
-    rulesdir: ["path/to/rule-dir"]
+var TextLintEngine = require("textlint").TextLintEngine;
+var engine = new TextLintEngine({
+    rulePaths: ["path/to/rule-dir"]
 });
-var results = cliEngine.executeOnFiles(["README.md"]);
+var results = engine.executeOnFiles(["README.md"]);
 console.log(results[0].filePath);// => "README.md"
 console.log(results[0].messages);// => [{message:"lint message"}]
+var output = engine.formatResults(results);
+console.log(output);
 ```
 
 High level usage:
