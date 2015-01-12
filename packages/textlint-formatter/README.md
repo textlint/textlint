@@ -41,6 +41,19 @@ console.log(output);
 */
 ```
 
+
+## API
+
+See [lib/_typing/textlint-formatter.d.ts](lib/_typing/textlint-formatter.d.ts)
+
+```
+// createFormatter(options)
+interface options {
+    // formatter file name
+    formatterName?: string;
+}
+```
+
 ## Contributing
 
 1. Fork it!
