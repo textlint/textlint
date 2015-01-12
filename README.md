@@ -43,8 +43,6 @@ Options:
 
 ### Built-in formatters
 
-See [formatters/](lib/formatters).
-
 Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error".
 
 e.g.) use pretty-error.js
@@ -52,6 +50,8 @@ e.g.) use pretty-error.js
 ```
 $ textlint -f pretty-error file.md
 ```
+
+More detail in [azu/textlint-formatter](https://github.com/azu/textlint-formatter "azu/textlint-formatter").
 
 ## Use as node modules
 
@@ -124,7 +124,7 @@ MIT
 
 and
 
-`lib/load-rules.js`, `util/traverse.js`, `cli.js` and formatters are:
+`lib/load-rules.js`, `util/traverse.js`, `cli.js`  are:
 
     ESLint
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
