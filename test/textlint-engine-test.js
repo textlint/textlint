@@ -87,7 +87,7 @@ describe("cli-engine-test", function () {
             beforeEach(function () {
                 engine = new TextLintEngine({
                     rulePaths: [rulesDir],
-                    formatName: path.join(__dirname, "fixtures/formatter/example-formatter.js")
+                    formatterName: path.join(__dirname, "fixtures/formatter/example-formatter.js")
                 });
             });
             it("should return custom formatted text", function () {

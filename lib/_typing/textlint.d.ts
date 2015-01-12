@@ -15,5 +15,5 @@ interface TextLintResult {
 interface TextLintConfig {
     rulePaths?:string[];
     extensions?:string[];
-    formatName?:string;
+    formatterName?:string;
 }

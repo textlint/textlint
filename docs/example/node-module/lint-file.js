@@ -10,7 +10,7 @@ function lintFile(filePath) {
     var options = {
         // load rules from [../rules]
         rulePaths: [path.join(__dirname, "..", "rules/")],
-        formatName: "pretty-error"
+        formatterName: "pretty-error"
     };
     var engine = new TextLintEngine(options);
     var filePathList = [path.resolve(process.cwd(), filePath)];
