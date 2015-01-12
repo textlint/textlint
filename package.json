@@ -21,7 +21,8 @@
     "lib",
     "docs",
     "test",
-    "rules"
+    "rules",
+    "index.js"
   ],
   "bin": {
     "textlint": "./bin/textlint.js"
