@@ -1,3 +1,16 @@
+### 2.0.3 (2015-01-12)
+
+
+#### Bug Fixes
+
+* **textlint-engine:** textlint-engine will call `resetRules` after finished lint ([641ee40e](https://github.com/azu/textlint/commit/641ee40e93cf724733b39757daf76c61f79446c0))
+
+
+#### Features
+
+* **textlint-engine:** add detection for error ([50a36f68](https://github.com/azu/textlint/commit/50a36f685fb6920a6a5d406378c37b7bfd75632b))
+
+
 ## 2.0.0 (2015-01-12)
 
 
