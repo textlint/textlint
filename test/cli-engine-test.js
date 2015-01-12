@@ -10,7 +10,7 @@ describe("cli-engine-test", function () {
         context("when args is object", function () {
             it("should convert the object and set config", function () {
                 cliEngine = new CLIEngine({
-                    rulesdir: [rulesDir]
+                    rulePaths: [rulesDir]
                 });
                 assert.deepEqual(cliEngine.config.rulePaths, [rulesDir]);
             });
@@ -29,7 +29,7 @@ describe("cli-engine-test", function () {
     describe("executeOnFiles", function () {
         beforeEach(function () {
             cliEngine = new CLIEngine({
-                rulesdir: [rulesDir]
+                rulePaths: [rulesDir]
             });
         });
         it("should found error message", function () {
@@ -45,7 +45,7 @@ describe("cli-engine-test", function () {
     describe("executeOnText", function () {
         beforeEach(function () {
             cliEngine = new CLIEngine({
-                rulesdir: [rulesDir]
+                rulePaths: [rulesDir]
             });
         });
         it("should lint a text and return results", function () {
@@ -61,7 +61,7 @@ describe("cli-engine-test", function () {
         context("when use default formatter", function () {
             beforeEach(function () {
                 cliEngine = new CLIEngine({
-                    rulesdir: [rulesDir]
+                    rulePaths: [rulesDir]
                 });
             });
             it("should format results and return formatted text", function () {
@@ -74,8 +74,8 @@ describe("cli-engine-test", function () {
         context("when loaded custom formatter", function () {
             beforeEach(function () {
                 cliEngine = new CLIEngine({
-                    rulesdir: [rulesDir],
-                    format: path.join(__dirname, "fixtures/formatter/example-formatter.js")
+                    rulePaths: [rulesDir],
+                    formatName: path.join(__dirname, "fixtures/formatter/example-formatter.js")
                 });
             });
             it("should return custom formatted text", function () {

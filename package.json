@@ -16,6 +16,13 @@
     "url": "https://github.com/azu/textlint.git"
   },
   "main": "index.js",
+  "files": [
+    "bin",
+    "lib",
+    "docs",
+    "test",
+    "rules"
+  ],
   "bin": {
     "textlint": "./bin/textlint.js"
   },
