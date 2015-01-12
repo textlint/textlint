@@ -1,3 +1,17 @@
+## 2.0.0 (2015-01-12)
+
+
+#### Bug Fixes
+
+* **cli:** fix typing ([d5285eb6](https://github.com/azu/textlint/commit/d5285eb6b5a00d3a83708c104a79830832c04980))
+* **type:** fix `range` type ([95d63070](https://github.com/azu/textlint/commit/95d6307018b2abd64cae621a0ef0a063a12a7b83))
+
+
+#### Features
+
+* **cli-engine:** cli-engine accept config object. ([e9e914ae](https://github.com/azu/textlint/commit/e9e914aea304a60c7bc02c19aa70ab33f5f919a4))
+
+
 ### 1.4.3 (2015-01-06)
 
 
