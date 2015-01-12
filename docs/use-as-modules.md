@@ -39,7 +39,10 @@ function lintFile(filePath) {
     var filePathList = [path.resolve(process.cwd(), filePath)];
     var results = engine.executeOnFiles(filePathList);
     var output = engine.formatResults(results);
-    console.log(output);
+    if (engine.isErrorResults(results)) {
+        var output = engine.formatResults(results);
+        console.log(output);
+    }
 }
 ```
 
