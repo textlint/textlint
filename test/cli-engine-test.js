@@ -2,10 +2,14 @@
 "use strict";
 var assert = require("power-assert");
 var TextLintEngine = require("../").TextLintEngine;
+var textlint = require("../").textlint;
 var rulesDir = __dirname + "/fixtures/rules";
 var path = require("path");
 describe("cli-engine-test", function () {
     var engine;
+    afterEach(function () {
+        textlint.resetRules();
+    });
     describe("Constructor", function () {
         context("when args is object", function () {
             it("should convert the object and set config", function () {
@@ -68,7 +72,7 @@ describe("cli-engine-test", function () {
                 var results = engine.executeOnText("text");
                 var output = engine.formatResults(results);
                 assert(/<text>/.test(output));
-                assert(/problems/.test(output));
+                assert(/problem/.test(output));
             });
         });
         context("when loaded custom formatter", function () {
