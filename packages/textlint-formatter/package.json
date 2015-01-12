@@ -1,0 +1,39 @@
+{
+  "name": "textlint-formatter",
+  "description": "textlint output formatter",
+  "version": "1.0.0",
+  "homepage": "https://github.com/azu/textlint-formatter/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/textlint-formatter.git"
+  },
+  "main": "lib/textlint-formatter.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "directories": {
+    "test": "test/"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/textlint-formatter/issues"
+  },
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "js-yaml": "^3.2.4",
+    "left-pad": "0.0.3",
+    "style-format": "0.0.0",
+    "text-table": "^0.2.0"
+  },
+  "devDependencies": {
+    "espower-loader": "^0.10.0",
+    "intelli-espower-loader": "^0.5.0",
+    "mocha": "^2.1.0",
+    "power-assert": "^0.10.1",
+    "textlint": "^2.0.7"
+  }
+}
