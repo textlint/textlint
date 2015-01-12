@@ -3,13 +3,16 @@
 var assert = require("power-assert");
 var CLIEngine = require("../").CLIEngine;
 var rulesDir = __dirname + "/fixtures/rules";
+var path = require("path");
 describe("cli-engine-test", function () {
     var cliEngine;
     describe("executeOnFiles", function () {
-        it("should found error message", function () {
+        beforeEach(function () {
             cliEngine = new CLIEngine({
                 rulesdir: [rulesDir]
             });
+        });
+        it("should found error message", function () {
             var filePath = require("path").join(__dirname, "fixtures/test.md");
             var results = cliEngine.executeOnFiles([filePath]);
             assert(Array.isArray(results));
@@ -20,6 +23,11 @@ describe("cli-engine-test", function () {
         });
     });
     describe("executeOnText", function () {
+        beforeEach(function () {
+            cliEngine = new CLIEngine({
+                rulesdir: [rulesDir]
+            });
+        });
         it("should lint a text and return results", function () {
             var results = cliEngine.executeOnText("text");
             assert(Array.isArray(results));
@@ -28,5 +36,34 @@ describe("cli-engine-test", function () {
             assert(Array.isArray(lintResult.messages));
             assert(lintResult.messages.length > 0);
         });
+    });
+    describe("formatResults", function () {
+        context("when use default formatter", function () {
+            beforeEach(function () {
+                cliEngine = new CLIEngine({
+                    rulesdir: [rulesDir]
+                });
+            });
+            it("should format results and return formatted text", function () {
+                var results = cliEngine.executeOnText("text");
+                var output = cliEngine.formatResults(results);
+                assert(/<text>/.test(output));
+                assert(/problems/.test(output));
+            });
+        });
+        context("when loaded custom formatter", function () {
+            beforeEach(function () {
+                cliEngine = new CLIEngine({
+                    rulesdir: [rulesDir],
+                    format: path.join(__dirname, "fixtures/formatter/example-formatter.js")
+                });
+            });
+            it("should return custom formatted text", function () {
+                var results = cliEngine.executeOnText("text");
+                var output = cliEngine.formatResults(results);
+                assert(!/<text>/.test(output));
+                assert(/example-formatter/.test(output));
+            });
+        })
     });
 });
