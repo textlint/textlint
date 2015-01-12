@@ -5,12 +5,20 @@ var TextLintEngine = require("../").TextLintEngine;
 var textlint = require("../").textlint;
 var rulesDir = __dirname + "/fixtures/rules";
 var path = require("path");
+
 describe("cli-engine-test", function () {
     var engine;
     afterEach(function () {
         textlint.resetRules();
     });
     describe("Constructor", function () {
+        context("when no-args", function () {
+            it("config should be defaults", function () {
+                engine = new TextLintEngine();
+                var defaultRulePaths = [path.join(__dirname, "..", "rules")];
+                assert.deepEqual(engine.config.rulePaths, defaultRulePaths);
+            });
+        });
         context("when args is object", function () {
             it("should convert the object and set config", function () {
                 engine = new TextLintEngine({
