@@ -2,12 +2,8 @@
 "use strict";
 var assert = require("power-assert");
 var cli = require("../").cli;
-var textlint = require("../").textlint;
 var path = require("path");
 describe("cli-test", function () {
-    afterEach(function () {
-        textlint.resetRules();
-    });
     context("when pass lint", function () {
         it("should return error when text with incorrect quotes is passed as argument", function () {
             var ruleDir = path.join(__dirname, "fixtures/rules");
