@@ -15,6 +15,35 @@ module.exports = {
 };
 ```
 
+## Example
+
+Lint a file:
+
+See [example/node-module/lint-file.js](example/node-module/lint-file.js)
+
+```js
+"use strict";
+var TextLintEngine = require("textlint").TextLintEngine;
+var path = require("path");
+function lintFile(filePath) {
+    /**
+     * @type {TextLintConfig}
+     * See lib/_typing/textlint.d.ts
+     */
+    var options = {
+        // load rules from [../rules]
+        rulePaths: [path.join(__dirname, "..", "rules/")],
+        formatName: "pretty-error"
+    };
+    var engine = new TextLintEngine(options);
+    var filePathList = [path.resolve(process.cwd(), filePath)];
+    var results = engine.executeOnFiles(filePathList);
+    var output = engine.formatResults(results);
+    console.log(output);
+}
+```
+
+
 ## Testing
 
 You can use `textlint` module to test your `textlint` custom rules.

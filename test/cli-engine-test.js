@@ -1,18 +1,18 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var CLIEngine = require("../").CLIEngine;
+var TextLintEngine = require("../").TextLintEngine;
 var rulesDir = __dirname + "/fixtures/rules";
 var path = require("path");
 describe("cli-engine-test", function () {
-    var cliEngine;
+    var engine;
     describe("Constructor", function () {
         context("when args is object", function () {
             it("should convert the object and set config", function () {
-                cliEngine = new CLIEngine({
+                engine = new TextLintEngine({
                     rulePaths: [rulesDir]
                 });
-                assert.deepEqual(cliEngine.config.rulePaths, [rulesDir]);
+                assert.deepEqual(engine.config.rulePaths, [rulesDir]);
             });
         });
         context("when args is Config object", function () {
@@ -21,20 +21,20 @@ describe("cli-engine-test", function () {
                 var Config = require("../lib/config/config");
                 var config = new Config();
                 config.rulePaths = [rulesDir];
-                cliEngine = new CLIEngine(config);
-                assert.deepEqual(cliEngine.config.rulePaths, [rulesDir]);
+                engine = new TextLintEngine(config);
+                assert.deepEqual(engine.config.rulePaths, [rulesDir]);
             });
         });
     });
     describe("executeOnFiles", function () {
         beforeEach(function () {
-            cliEngine = new CLIEngine({
+            engine = new TextLintEngine({
                 rulePaths: [rulesDir]
             });
         });
         it("should found error message", function () {
             var filePath = require("path").join(__dirname, "fixtures/test.md");
-            var results = cliEngine.executeOnFiles([filePath]);
+            var results = engine.executeOnFiles([filePath]);
             assert(Array.isArray(results));
             var fileResult = results[0];
             assert(fileResult.filePath === filePath);
@@ -44,12 +44,12 @@ describe("cli-engine-test", function () {
     });
     describe("executeOnText", function () {
         beforeEach(function () {
-            cliEngine = new CLIEngine({
+            engine = new TextLintEngine({
                 rulePaths: [rulesDir]
             });
         });
         it("should lint a text and return results", function () {
-            var results = cliEngine.executeOnText("text");
+            var results = engine.executeOnText("text");
             assert(Array.isArray(results));
             var lintResult = results[0];
             assert(lintResult.filePath === "<text>");
@@ -60,27 +60,27 @@ describe("cli-engine-test", function () {
     describe("formatResults", function () {
         context("when use default formatter", function () {
             beforeEach(function () {
-                cliEngine = new CLIEngine({
+                engine = new TextLintEngine({
                     rulePaths: [rulesDir]
                 });
             });
             it("should format results and return formatted text", function () {
-                var results = cliEngine.executeOnText("text");
-                var output = cliEngine.formatResults(results);
+                var results = engine.executeOnText("text");
+                var output = engine.formatResults(results);
                 assert(/<text>/.test(output));
                 assert(/problems/.test(output));
             });
         });
         context("when loaded custom formatter", function () {
             beforeEach(function () {
-                cliEngine = new CLIEngine({
+                engine = new TextLintEngine({
                     rulePaths: [rulesDir],
                     formatName: path.join(__dirname, "fixtures/formatter/example-formatter.js")
                 });
             });
             it("should return custom formatted text", function () {
-                var results = cliEngine.executeOnText("text");
-                var output = cliEngine.formatResults(results);
+                var results = engine.executeOnText("text");
+                var output = engine.formatResults(results);
                 assert(!/<text>/.test(output));
                 assert(/example-formatter/.test(output));
             });
