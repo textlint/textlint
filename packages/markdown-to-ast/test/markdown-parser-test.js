@@ -366,10 +366,10 @@ describe("markdown-parser", function () {
             var node = findFirstTypedNode(AST, Syntax.Image);
             shouldHaveImplementTxtNode(node, rawValue);
         });
-        context("Str", function () {
+        context("alt text is not Str Node", function () {
             it("should have correct range", function () {
                 var node = findFirstTypedNode(AST, Syntax.Str);
-                shouldHaveImplementInlineTxtNode(node, labelText, rawValue)
+                assert(node == null);
             });
         });
     });
