@@ -406,4 +406,18 @@ describe("markdown-parser", function () {
             shouldHaveImplementTxtNode(node, rawValue);
         });
     });
+    /*
+        <html>
+     */
+    context("Node type is Html", function () {
+        var AST, rawValue;
+        beforeEach(function () {
+            rawValue = "<html>text</html>";
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.Html);
+            shouldHaveImplementTxtNode(node, rawValue);
+        });
+    });
 });

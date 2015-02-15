@@ -11,7 +11,7 @@ var exports = {
     "Bullet": "Bullet", // no need?
     "heading": "Header",
     "code": "CodeBlock",
-    "HtmlBlock": "HtmlBlock",
+    "HtmlBlock": "Html",
     "ReferenceDef": "ReferenceDef",
     "horizontalRule": "HorizontalRule",
     // inline block
@@ -20,7 +20,7 @@ var exports = {
     'Hardbreak': 'Break',
     'emphasis': 'Emphasis',
     'strong': 'Strong',
-    'Html': 'Html',
+    'html': 'Html',
     'link': 'Link',
     'image': 'Image',
     'inlineCode': 'Code'
