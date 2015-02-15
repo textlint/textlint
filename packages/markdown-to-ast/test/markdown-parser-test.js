@@ -273,7 +273,7 @@ describe("markdown-parser", function () {
         });
         it("should has implemented TxtNode", function () {
             var node = findFirstTypedNode(AST, Syntax.BlockQuote);
-            assert.deepEqual(node.range, [rawValue.indexOf(text), rawValue.length]);
+            assert.deepEqual(node.range, [0, rawValue.length]);
         });
     });
     /*
@@ -285,34 +285,34 @@ describe("markdown-parser", function () {
         context("IndentCodeBlock", function () {
             var AST, rawValue, code;
             beforeEach(function () {
-                code = "var code;\n";
+                code = "var code;";
                 rawValue = "    \n" +
                 "    " + code +
-                "\n";
+                "\n\n";
                 AST = parse(rawValue);
             });
             it("should has implemented TxtNode", function () {
                 var node = findFirstTypedNode(AST, Syntax.CodeBlock);
-                assert.equal(node.raw, code);
+                assert(node.raw.indexOf(code) !== -1);
                 var slicedCode = rawValue.slice(node.range[0], node.range[1]);
-                assert.equal(slicedCode, code);
+                assert.equal(slicedCode.trim(), code);
             });
         });
         context("FencedCode", function () {
             var AST, rawValue, code;
             beforeEach(function () {
-                code = "var code;\n";
+                code = "var code;";
                 rawValue = "```\n" +
                 code +
-                "```\n";
+                "\n```";
                 AST = parse(rawValue);
             });
             it("should has implemented TxtNode", function () {
                 var node = findFirstTypedNode(AST, Syntax.CodeBlock);
-                assert.equal(node.raw, code);// CodeBlock have not contain CodeBlock mark like "```"
-                // slicedCode does not contain trailing brake line.
+                var codeBlockRaw = rawValue;
+                assert.equal(node.raw, codeBlockRaw);
                 var slicedCode = rawValue.slice(node.range[0], node.range[1]);
-                assert.equal(slicedCode, code);
+                assert.equal(slicedCode, codeBlockRaw);
             });
         });
 

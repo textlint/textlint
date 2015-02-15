@@ -10,7 +10,7 @@ var exports = {
     "list": "List",
     "Bullet": "Bullet", // no need?
     "heading": "Header",
-    "CodeBlock": "CodeBlock",
+    "code": "CodeBlock",
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
