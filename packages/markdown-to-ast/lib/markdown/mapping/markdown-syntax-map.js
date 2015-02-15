@@ -23,6 +23,6 @@ var exports = {
     'Html': 'Html',
     'link': 'Link',
     'Image': 'Image',
-    'Code': 'Code'
+    'inlineCode': 'Code'
 };
 module.exports = exports;
