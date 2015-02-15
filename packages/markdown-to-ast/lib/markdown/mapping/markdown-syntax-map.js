@@ -19,7 +19,7 @@ var exports = {
     'Softbreak': 'Break',
     'Hardbreak': 'Break',
     'Emph': 'Emphasis',
-    'Strong': 'Strong',
+    'strong': 'Strong',
     'Html': 'Html',
     'link': 'Link',
     'Image': 'Image',
