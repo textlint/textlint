@@ -153,8 +153,7 @@ describe("markdown-parser", function () {
          * text
          * =====
          **/
-            // TODO: 0.15 un-support. no way of supporting.
-        context.skip("SetextHeader", function () {
+        context("SetextHeader", function () {
             var AST, text, header;
             beforeEach(function () {
                 text = "string";
