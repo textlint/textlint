@@ -18,11 +18,11 @@ var exports = {
     'text': 'Str',
     'Softbreak': 'Break',
     'Hardbreak': 'Break',
-    'Emph': 'Emphasis',
+    'emphasis': 'Emphasis',
     'strong': 'Strong',
     'Html': 'Html',
     'link': 'Link',
-    'Image': 'Image',
+    'image': 'Image',
     'inlineCode': 'Code'
 };
 module.exports = exports;
