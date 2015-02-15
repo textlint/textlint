@@ -159,12 +159,10 @@ describe("markdown-parser", function () {
                 text = "string";
                 header = text + "\n======";
                 AST = parse(header);
-                console.log(inspect(AST));
             });
             context("Header", function () {
                 it("should has implemented TxtNode", function () {
                     var node = findFirstTypedNode(AST, Syntax.Header);
-                    console.log((inspect(node)));
                     shouldHaveImplementTxtNode(node, header);
                 });
             });
@@ -392,6 +390,20 @@ describe("markdown-parser", function () {
                 var node = findFirstTypedNode(AST, Syntax.Str);
                 shouldHaveImplementInlineTxtNode(node, text, rawValue)
             });
+        });
+    });
+    /*
+    ----
+    */
+    context("Node type is HorizontalRule", function () {
+        var AST, rawValue;
+        beforeEach(function () {
+            rawValue = "----";
+            AST = parse(rawValue);
+        });
+        it("should has implemented TxtNode", function () {
+            var node = findFirstTypedNode(AST, Syntax.HorizontalRule);
+            shouldHaveImplementTxtNode(node, rawValue);
         });
     });
 });

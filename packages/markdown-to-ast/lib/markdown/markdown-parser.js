@@ -17,11 +17,14 @@ function parse(text) {
     traverse(ast).forEach(function (node) {
         if (this.notLeaf) {
             if (node.type) {
-                node.type = SyntaxMap[node.type];
+                var replacedType = SyntaxMap[node.type];
+                if(!replacedType) {
+                    console.error("replacedType : " + replacedType + " , node.type: " + node.type);
+                }
+                node.type = replacedType;
             }
             // map `range`, `loc` and `raw` to node
             if (node.position) {
-                console.log(node.position);
                 var position = node.position;
                 var positionCompensated = {
                     start: {line: position.start.line, column: position.start.column - 1},
@@ -31,7 +34,6 @@ function parse(text) {
                 node.loc = positionCompensated;
                 node.range = range;
                 node.raw = text.slice(range[0], range[1]);
-                console.log(node.raw);
             }
         }
     });
