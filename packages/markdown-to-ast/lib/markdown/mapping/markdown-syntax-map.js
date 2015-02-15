@@ -16,8 +16,7 @@ var exports = {
     "horizontalRule": "HorizontalRule",
     // inline block
     'text': 'Str',
-    'Softbreak': 'Break',
-    'Hardbreak': 'Break',
+    'break': 'Break',
     'emphasis': 'Emphasis',
     'strong': 'Strong',
     'html': 'Html',
