@@ -25,8 +25,8 @@
     "url": "https://github.com/azu/markdown-to-ast/issues"
   },
   "dependencies": {
-    "commonmark": "^0.15.0",
-    "mdast": "^0.3.0",
+    "commonmark": "^0.17.1",
+    "mdast": "^0.4.0",
     "object-assign": "^2.0.0",
     "strip-yaml-header": "^1.0.1",
     "structured-source": "^3.0.2",
@@ -36,7 +36,7 @@
     "browserify": "^8.0.2",
     "debug": "^2.1.1",
     "espower-loader": "^0.10.0",
-    "intelli-espower-loader": "^0.5.0",
+    "intelli-espower-loader": "^0.6.0",
     "mocha": "^2.1.0",
     "power-assert": "^0.10.0",
     "watchify": "^2.2.1"
