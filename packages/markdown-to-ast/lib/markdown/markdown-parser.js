@@ -5,6 +5,21 @@
 var traverse = require('traverse');
 var StructuredSource = require('structured-source');
 /**
+ * Remove undocumented properties on TxtNode from node
+ * @param {TxtNode} node already has loc,range
+ */
+function removeUnusedProperties(node) {
+    if (typeof node !== "object") {
+        return;
+    }
+    ["position"].forEach(function (key) {
+        if (node.hasOwnProperty(key)) {
+            delete node[key];
+        }
+    });
+}
+
+/**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
  * @returns {TxtNode}
@@ -35,6 +50,7 @@ function parse(text) {
                 node.range = range;
                 node.raw = text.slice(range[0], range[1]);
             }
+            removeUnusedProperties(node);
         }
     });
     return ast;
