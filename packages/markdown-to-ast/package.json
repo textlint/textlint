@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "commonmark": "^0.15.0",
+    "mdast": "^0.3.0",
     "object-assign": "^2.0.0",
     "strip-yaml-header": "^1.0.1",
     "structured-source": "^3.0.2",

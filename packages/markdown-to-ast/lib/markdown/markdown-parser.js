@@ -269,34 +269,29 @@ function removeUnusedProperties(node) {
  * @returns {TxtNode}
  */
 function parse(text) {
-    // initialize internal property.
-    initialize();
-    var src = new StructuredSource(text);
-    _textLines = text.split("\n");
-
+    var mdast = require('mdast');
+    var ast = mdast.parse(text);
     var SyntaxMap = require("./mapping/markdown-syntax-map");
-    var writer = new HtmlRenderer();
-    var ast = reader.parse(stripYAMLHeader(text));
-    // affect to ast
-    writer.computeAST(ast);
-
-    // assign text to `raw` property on Root = Document Node
-    ast.raw = text;
-
-    // compute location from each nodes.
-    // This do merge(node, loc)
+    var src = new StructuredSource(text);
     traverse(ast).forEach(function (node) {
         if (this.notLeaf) {
-            node = objectAssign(node, positionNode(node));
-            if (node.loc) {
-                node.range = src.locationToRange(node.loc);
+            if (node.type) {
+                node.type = SyntaxMap[node.type];
             }
-            if (typeof node.t !== "undefined") {
-                // covert t to type
-                // e.g) "FencedCode" => "CodeBlock"
-                node.type = SyntaxMap[node.t];
+            // map `range`, `loc` and `raw` to node
+            if (node.position) {
+                console.log(node.position);
+                var position = node.position;
+                var positionCompensated = {
+                    start: {line: position.start.line, column: position.start.column - 1},
+                    end: {line: position.end.line, column: position.end.column - 1}
+                };
+                var range = src.locationToRange(positionCompensated);
+                node.loc = positionCompensated;
+                node.range = range;
+                node.raw = text.slice(range[0], range[1]);
+                console.log(node.raw);
             }
-            removeUnusedProperties(node);
         }
     });
     return ast;

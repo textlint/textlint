@@ -240,9 +240,9 @@ describe("markdown-parser", function () {
             var node, AST;
             AST = parse("- item\n" +
             "   - item2");// second line should has offset
-            node = findFirstTypedNode(AST, Syntax.ListItem, "   - item2");
+            node = findFirstTypedNode(AST, Syntax.ListItem, " - item2");
             assert(node);
-            assert.equal(node.raw, "   - item2");
+            assert.equal(node.raw, " - item2");
         });
         it("should has implemented TxtNode", function () {
             var text = "text",

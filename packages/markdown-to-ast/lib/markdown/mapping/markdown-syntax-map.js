@@ -3,25 +3,25 @@
 // Replace key to value mapping
 // This is not for Constants.
 var exports = {
-    "Document": "Document",
-    "Paragraph": "Paragraph",
-    "BlockQuote": "BlockQuote",
-    "ListItem": "ListItem",
-    "List": "List",
+    "root": "Document",
+    "paragraph": "Paragraph",
+    "blockquote": "BlockQuote",
+    "listItem": "ListItem",
+    "list": "List",
     "Bullet": "Bullet", // no need?
-    "Header": "Header",
-    "CodeBlock":"CodeBlock",
+    "heading": "Header",
+    "CodeBlock": "CodeBlock",
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
     // inline block
-    'Text': 'Str',
+    'text': 'Str',
     'Softbreak': 'Break',
     'Hardbreak': 'Break',
     'Emph': 'Emphasis',
     'Strong': 'Strong',
     'Html': 'Html',
-    'Link': 'Link',
+    'link': 'Link',
     'Image': 'Image',
     'Code': 'Code'
 };
