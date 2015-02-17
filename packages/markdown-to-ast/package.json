@@ -25,10 +25,7 @@
     "url": "https://github.com/azu/markdown-to-ast/issues"
   },
   "dependencies": {
-    "commonmark": "^0.17.1",
     "mdast": "^0.4.0",
-    "object-assign": "^2.0.0",
-    "strip-yaml-header": "^1.0.1",
     "structured-source": "^3.0.2",
     "traverse": "^0.6.6"
   },
