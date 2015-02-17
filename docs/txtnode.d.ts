@@ -3,6 +3,7 @@ declare module TxtSyntax {
     interface TxtNode {
         type:string;
         raw?:string;
+        value?:string;
         range?: number[]
         loc:LineLocation;
         parent?:TxtNode;
