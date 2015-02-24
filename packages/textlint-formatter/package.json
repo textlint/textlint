@@ -23,7 +23,7 @@
     "url": "https://github.com/azu/textlint-formatter/issues"
   },
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "js-yaml": "^3.2.4",
     "left-pad": "0.0.3",
     "style-format": "0.0.0",
