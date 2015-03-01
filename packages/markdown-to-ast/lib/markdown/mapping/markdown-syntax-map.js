@@ -22,6 +22,7 @@ var exports = {
     'html': 'Html',
     'link': 'Link',
     'image': 'Image',
-    'inlineCode': 'Code'
+    'inlineCode': 'Code',
+    'yaml': 'Yaml'
 };
 module.exports = exports;
