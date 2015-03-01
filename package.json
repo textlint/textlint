@@ -54,7 +54,7 @@
     "mkdirp": "^0.5.0",
     "object-assign": "^2.0.0",
     "optionator": "^0.5.0",
-    "textlint-formatter": "^1.0.1",
+    "textlint-formatter": "^1.1.1",
     "traverse": "^0.6.6",
     "txt-ast-traverse": "^1.2.0",
     "txt-to-ast": "^1.0.1",
