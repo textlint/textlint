@@ -1,7 +1,7 @@
 {
   "name": "textlint-formatter",
   "description": "textlint output formatter",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "https://github.com/azu/textlint-formatter/",
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
+    "format-text": "0.0.3",
     "js-yaml": "^3.2.4",
     "left-pad": "0.0.3",
     "style-format": "0.0.0",
@@ -31,7 +32,6 @@
   },
   "devDependencies": {
     "espower-loader": "^0.10.0",
-    "format-text": "0.0.3",
     "intelli-espower-loader": "^0.6.0",
     "mocha": "^2.1.0",
     "power-assert": "^0.10.1",
