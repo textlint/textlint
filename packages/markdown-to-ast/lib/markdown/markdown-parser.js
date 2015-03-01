@@ -4,6 +4,7 @@
 "use strict";
 var traverse = require('traverse');
 var StructuredSource = require('structured-source');
+var debug = require("debug")("markdown-to-ast");
 /**
  * Remove undocumented properties on TxtNode from node
  * @param {TxtNode} node already has loc,range
@@ -34,7 +35,7 @@ function parse(text) {
             if (node.type) {
                 var replacedType = SyntaxMap[node.type];
                 if(!replacedType) {
-                    console.error("replacedType : " + replacedType + " , node.type: " + node.type);
+                    debug("replacedType : " + replacedType + " , node.type: " + node.type);
                 }
                 node.type = replacedType;
             }
