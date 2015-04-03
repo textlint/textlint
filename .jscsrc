@@ -1,0 +1,7 @@
+{
+  "preset": "yandex",
+  "validateQuoteMarks": null,
+  "disallowQuotedKeysInObjects": null,
+  "requireSpacesInAnonymousFunctionExpression": null,
+  "requireSpaceBetweenArguments": null
+}

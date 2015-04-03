@@ -43,6 +43,7 @@
     "eslint": "^0.14.1",
     "espower-loader": "^0.10.0",
     "intelli-espower-loader": "^0.6.0",
+    "jscs": "^1.12.0",
     "mocha": "^2.1.0",
     "power-assert": "^0.10.0"
   },
