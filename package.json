@@ -40,12 +40,12 @@
   },
   "devDependencies": {
     "clone": "^1.0.0",
-    "eslint": "^0.14.1",
-    "espower-loader": "^0.10.0",
-    "intelli-espower-loader": "^0.6.0",
+    "eslint": "^0.20.0",
+    "espower-loader": "^0.11.0",
+    "intelli-espower-loader": "^0.7.0",
     "jscs": "^1.12.0",
     "mocha": "^2.1.0",
-    "power-assert": "^0.10.0"
+    "power-assert": "^0.11.0"
   },
   "dependencies": {
     "concat-stream": "^1.4.7",
@@ -54,7 +54,7 @@
     "markdown-to-ast": "^3.0.1",
     "mkdirp": "^0.5.0",
     "object-assign": "^2.0.0",
-    "optionator": "^0.5.0",
+    "optionator": "^0.6.0",
     "textlint-formatter": "^1.1.1",
     "traverse": "^0.6.6",
     "txt-ast-traverse": "^1.2.0",
