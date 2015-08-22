@@ -101,7 +101,7 @@ module.exports = {
     parse: parse,
     Syntax: require("./union-syntax")
 };
-},{"./mapping/markdown-syntax-map":2,"./union-syntax":4,"debug":5,"mdast":8,"structured-source":18,"traverse":21}],4:[function(require,module,exports){
+},{"./mapping/markdown-syntax-map":2,"./union-syntax":4,"debug":9,"mdast":12,"structured-source":37,"traverse":40}],4:[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 // public key interface
@@ -128,6 +128,1775 @@ var exports = {
 };
 module.exports = exports;
 },{}],5:[function(require,module,exports){
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+
+var base64 = require('base64-js')
+var ieee754 = require('ieee754')
+var isArray = require('is-array')
+
+exports.Buffer = Buffer
+exports.SlowBuffer = SlowBuffer
+exports.INSPECT_MAX_BYTES = 50
+Buffer.poolSize = 8192 // not used by this implementation
+
+var rootParent = {}
+
+/**
+ * If `Buffer.TYPED_ARRAY_SUPPORT`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (most compatible, even IE6)
+ *
+ * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+ * Opera 11.6+, iOS 4.2+.
+ *
+ * Due to various browser bugs, sometimes the Object implementation will be used even
+ * when the browser supports typed arrays.
+ *
+ * Note:
+ *
+ *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+ *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+ *
+ *   - Safari 5-7 lacks support for changing the `Object.prototype.constructor` property
+ *     on objects.
+ *
+ *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+ *
+ *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+ *     incorrect length in some situations.
+
+ * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+ * get the Object implementation, which is slower but behaves correctly.
+ */
+Buffer.TYPED_ARRAY_SUPPORT = (function () {
+  function Bar () {}
+  try {
+    var arr = new Uint8Array(1)
+    arr.foo = function () { return 42 }
+    arr.constructor = Bar
+    return arr.foo() === 42 && // typed array instances can be augmented
+        arr.constructor === Bar && // constructor can be set
+        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+  } catch (e) {
+    return false
+  }
+})()
+
+function kMaxLength () {
+  return Buffer.TYPED_ARRAY_SUPPORT
+    ? 0x7fffffff
+    : 0x3fffffff
+}
+
+/**
+ * Class: Buffer
+ * =============
+ *
+ * The Buffer constructor returns instances of `Uint8Array` that are augmented
+ * with function properties for all the node `Buffer` API functions. We use
+ * `Uint8Array` so that square bracket notation works as expected -- it returns
+ * a single octet.
+ *
+ * By augmenting the instances, we can avoid modifying the `Uint8Array`
+ * prototype.
+ */
+function Buffer (arg) {
+  if (!(this instanceof Buffer)) {
+    // Avoid going through an ArgumentsAdaptorTrampoline in the common case.
+    if (arguments.length > 1) return new Buffer(arg, arguments[1])
+    return new Buffer(arg)
+  }
+
+  this.length = 0
+  this.parent = undefined
+
+  // Common case.
+  if (typeof arg === 'number') {
+    return fromNumber(this, arg)
+  }
+
+  // Slightly less common case.
+  if (typeof arg === 'string') {
+    return fromString(this, arg, arguments.length > 1 ? arguments[1] : 'utf8')
+  }
+
+  // Unusual.
+  return fromObject(this, arg)
+}
+
+function fromNumber (that, length) {
+  that = allocate(that, length < 0 ? 0 : checked(length) | 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < length; i++) {
+      that[i] = 0
+    }
+  }
+  return that
+}
+
+function fromString (that, string, encoding) {
+  if (typeof encoding !== 'string' || encoding === '') encoding = 'utf8'
+
+  // Assumption: byteLength() return value is always < kMaxLength.
+  var length = byteLength(string, encoding) | 0
+  that = allocate(that, length)
+
+  that.write(string, encoding)
+  return that
+}
+
+function fromObject (that, object) {
+  if (Buffer.isBuffer(object)) return fromBuffer(that, object)
+
+  if (isArray(object)) return fromArray(that, object)
+
+  if (object == null) {
+    throw new TypeError('must start with number, buffer, array or string')
+  }
+
+  if (typeof ArrayBuffer !== 'undefined') {
+    if (object.buffer instanceof ArrayBuffer) {
+      return fromTypedArray(that, object)
+    }
+    if (object instanceof ArrayBuffer) {
+      return fromArrayBuffer(that, object)
+    }
+  }
+
+  if (object.length) return fromArrayLike(that, object)
+
+  return fromJsonObject(that, object)
+}
+
+function fromBuffer (that, buffer) {
+  var length = checked(buffer.length) | 0
+  that = allocate(that, length)
+  buffer.copy(that, 0, 0, length)
+  return that
+}
+
+function fromArray (that, array) {
+  var length = checked(array.length) | 0
+  that = allocate(that, length)
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+// Duplicate of fromArray() to keep fromArray() monomorphic.
+function fromTypedArray (that, array) {
+  var length = checked(array.length) | 0
+  that = allocate(that, length)
+  // Truncating the elements is probably not what people expect from typed
+  // arrays with BYTES_PER_ELEMENT > 1 but it's compatible with the behavior
+  // of the old Buffer constructor.
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+function fromArrayBuffer (that, array) {
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    array.byteLength
+    that = Buffer._augment(new Uint8Array(array))
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    that = fromTypedArray(that, new Uint8Array(array))
+  }
+  return that
+}
+
+function fromArrayLike (that, array) {
+  var length = checked(array.length) | 0
+  that = allocate(that, length)
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+// Deserialize { type: 'Buffer', data: [1,2,3,...] } into a Buffer object.
+// Returns a zero-length buffer for inputs that don't conform to the spec.
+function fromJsonObject (that, object) {
+  var array
+  var length = 0
+
+  if (object.type === 'Buffer' && isArray(object.data)) {
+    array = object.data
+    length = checked(array.length) | 0
+  }
+  that = allocate(that, length)
+
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+function allocate (that, length) {
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = Buffer._augment(new Uint8Array(length))
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    that.length = length
+    that._isBuffer = true
+  }
+
+  var fromPool = length !== 0 && length <= Buffer.poolSize >>> 1
+  if (fromPool) that.parent = rootParent
+
+  return that
+}
+
+function checked (length) {
+  // Note: cannot use `length < kMaxLength` here because that fails when
+  // length is NaN (which is otherwise coerced to zero.)
+  if (length >= kMaxLength()) {
+    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
+  }
+  return length | 0
+}
+
+function SlowBuffer (subject, encoding) {
+  if (!(this instanceof SlowBuffer)) return new SlowBuffer(subject, encoding)
+
+  var buf = new Buffer(subject, encoding)
+  delete buf.parent
+  return buf
+}
+
+Buffer.isBuffer = function isBuffer (b) {
+  return !!(b != null && b._isBuffer)
+}
+
+Buffer.compare = function compare (a, b) {
+  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
+    throw new TypeError('Arguments must be Buffers')
+  }
+
+  if (a === b) return 0
+
+  var x = a.length
+  var y = b.length
+
+  var i = 0
+  var len = Math.min(x, y)
+  while (i < len) {
+    if (a[i] !== b[i]) break
+
+    ++i
+  }
+
+  if (i !== len) {
+    x = a[i]
+    y = b[i]
+  }
+
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+Buffer.isEncoding = function isEncoding (encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'binary':
+    case 'base64':
+    case 'raw':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      return true
+    default:
+      return false
+  }
+}
+
+Buffer.concat = function concat (list, length) {
+  if (!isArray(list)) throw new TypeError('list argument must be an Array of Buffers.')
+
+  if (list.length === 0) {
+    return new Buffer(0)
+  }
+
+  var i
+  if (length === undefined) {
+    length = 0
+    for (i = 0; i < list.length; i++) {
+      length += list[i].length
+    }
+  }
+
+  var buf = new Buffer(length)
+  var pos = 0
+  for (i = 0; i < list.length; i++) {
+    var item = list[i]
+    item.copy(buf, pos)
+    pos += item.length
+  }
+  return buf
+}
+
+function byteLength (string, encoding) {
+  if (typeof string !== 'string') string = '' + string
+
+  var len = string.length
+  if (len === 0) return 0
+
+  // Use a for loop to avoid recursion
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'ascii':
+      case 'binary':
+      // Deprecated
+      case 'raw':
+      case 'raws':
+        return len
+      case 'utf8':
+      case 'utf-8':
+        return utf8ToBytes(string).length
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return len * 2
+      case 'hex':
+        return len >>> 1
+      case 'base64':
+        return base64ToBytes(string).length
+      default:
+        if (loweredCase) return utf8ToBytes(string).length // assume utf8
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+Buffer.byteLength = byteLength
+
+// pre-set for values that may exist in the future
+Buffer.prototype.length = undefined
+Buffer.prototype.parent = undefined
+
+function slowToString (encoding, start, end) {
+  var loweredCase = false
+
+  start = start | 0
+  end = end === undefined || end === Infinity ? this.length : end | 0
+
+  if (!encoding) encoding = 'utf8'
+  if (start < 0) start = 0
+  if (end > this.length) end = this.length
+  if (end <= start) return ''
+
+  while (true) {
+    switch (encoding) {
+      case 'hex':
+        return hexSlice(this, start, end)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Slice(this, start, end)
+
+      case 'ascii':
+        return asciiSlice(this, start, end)
+
+      case 'binary':
+        return binarySlice(this, start, end)
+
+      case 'base64':
+        return base64Slice(this, start, end)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return utf16leSlice(this, start, end)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = (encoding + '').toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+Buffer.prototype.toString = function toString () {
+  var length = this.length | 0
+  if (length === 0) return ''
+  if (arguments.length === 0) return utf8Slice(this, 0, length)
+  return slowToString.apply(this, arguments)
+}
+
+Buffer.prototype.equals = function equals (b) {
+  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  if (this === b) return true
+  return Buffer.compare(this, b) === 0
+}
+
+Buffer.prototype.inspect = function inspect () {
+  var str = ''
+  var max = exports.INSPECT_MAX_BYTES
+  if (this.length > 0) {
+    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+    if (this.length > max) str += ' ... '
+  }
+  return '<Buffer ' + str + '>'
+}
+
+Buffer.prototype.compare = function compare (b) {
+  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  if (this === b) return 0
+  return Buffer.compare(this, b)
+}
+
+Buffer.prototype.indexOf = function indexOf (val, byteOffset) {
+  if (byteOffset > 0x7fffffff) byteOffset = 0x7fffffff
+  else if (byteOffset < -0x80000000) byteOffset = -0x80000000
+  byteOffset >>= 0
+
+  if (this.length === 0) return -1
+  if (byteOffset >= this.length) return -1
+
+  // Negative offsets start from the end of the buffer
+  if (byteOffset < 0) byteOffset = Math.max(this.length + byteOffset, 0)
+
+  if (typeof val === 'string') {
+    if (val.length === 0) return -1 // special case: looking for empty string always fails
+    return String.prototype.indexOf.call(this, val, byteOffset)
+  }
+  if (Buffer.isBuffer(val)) {
+    return arrayIndexOf(this, val, byteOffset)
+  }
+  if (typeof val === 'number') {
+    if (Buffer.TYPED_ARRAY_SUPPORT && Uint8Array.prototype.indexOf === 'function') {
+      return Uint8Array.prototype.indexOf.call(this, val, byteOffset)
+    }
+    return arrayIndexOf(this, [ val ], byteOffset)
+  }
+
+  function arrayIndexOf (arr, val, byteOffset) {
+    var foundIndex = -1
+    for (var i = 0; byteOffset + i < arr.length; i++) {
+      if (arr[byteOffset + i] === val[foundIndex === -1 ? 0 : i - foundIndex]) {
+        if (foundIndex === -1) foundIndex = i
+        if (i - foundIndex + 1 === val.length) return byteOffset + foundIndex
+      } else {
+        foundIndex = -1
+      }
+    }
+    return -1
+  }
+
+  throw new TypeError('val must be string, number or Buffer')
+}
+
+// `get` is deprecated
+Buffer.prototype.get = function get (offset) {
+  console.log('.get() is deprecated. Access using array indexes instead.')
+  return this.readUInt8(offset)
+}
+
+// `set` is deprecated
+Buffer.prototype.set = function set (v, offset) {
+  console.log('.set() is deprecated. Access using array indexes instead.')
+  return this.writeUInt8(v, offset)
+}
+
+function hexWrite (buf, string, offset, length) {
+  offset = Number(offset) || 0
+  var remaining = buf.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+
+  // must be an even number of digits
+  var strLen = string.length
+  if (strLen % 2 !== 0) throw new Error('Invalid hex string')
+
+  if (length > strLen / 2) {
+    length = strLen / 2
+  }
+  for (var i = 0; i < length; i++) {
+    var parsed = parseInt(string.substr(i * 2, 2), 16)
+    if (isNaN(parsed)) throw new Error('Invalid hex string')
+    buf[offset + i] = parsed
+  }
+  return i
+}
+
+function utf8Write (buf, string, offset, length) {
+  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+function asciiWrite (buf, string, offset, length) {
+  return blitBuffer(asciiToBytes(string), buf, offset, length)
+}
+
+function binaryWrite (buf, string, offset, length) {
+  return asciiWrite(buf, string, offset, length)
+}
+
+function base64Write (buf, string, offset, length) {
+  return blitBuffer(base64ToBytes(string), buf, offset, length)
+}
+
+function ucs2Write (buf, string, offset, length) {
+  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+Buffer.prototype.write = function write (string, offset, length, encoding) {
+  // Buffer#write(string)
+  if (offset === undefined) {
+    encoding = 'utf8'
+    length = this.length
+    offset = 0
+  // Buffer#write(string, encoding)
+  } else if (length === undefined && typeof offset === 'string') {
+    encoding = offset
+    length = this.length
+    offset = 0
+  // Buffer#write(string, offset[, length][, encoding])
+  } else if (isFinite(offset)) {
+    offset = offset | 0
+    if (isFinite(length)) {
+      length = length | 0
+      if (encoding === undefined) encoding = 'utf8'
+    } else {
+      encoding = length
+      length = undefined
+    }
+  // legacy write(string, encoding, offset, length) - remove in v0.13
+  } else {
+    var swap = encoding
+    encoding = offset
+    offset = length | 0
+    length = swap
+  }
+
+  var remaining = this.length - offset
+  if (length === undefined || length > remaining) length = remaining
+
+  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+    throw new RangeError('attempt to write outside buffer bounds')
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'hex':
+        return hexWrite(this, string, offset, length)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Write(this, string, offset, length)
+
+      case 'ascii':
+        return asciiWrite(this, string, offset, length)
+
+      case 'binary':
+        return binaryWrite(this, string, offset, length)
+
+      case 'base64':
+        // Warning: maxLength not taken into account in base64Write
+        return base64Write(this, string, offset, length)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return ucs2Write(this, string, offset, length)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+Buffer.prototype.toJSON = function toJSON () {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  }
+}
+
+function base64Slice (buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return base64.fromByteArray(buf)
+  } else {
+    return base64.fromByteArray(buf.slice(start, end))
+  }
+}
+
+function utf8Slice (buf, start, end) {
+  end = Math.min(buf.length, end)
+  var firstByte
+  var secondByte
+  var thirdByte
+  var fourthByte
+  var bytesPerSequence
+  var tempCodePoint
+  var codePoint
+  var res = []
+  var i = start
+
+  for (; i < end; i += bytesPerSequence) {
+    firstByte = buf[i]
+    codePoint = 0xFFFD
+
+    if (firstByte > 0xEF) {
+      bytesPerSequence = 4
+    } else if (firstByte > 0xDF) {
+      bytesPerSequence = 3
+    } else if (firstByte > 0xBF) {
+      bytesPerSequence = 2
+    } else {
+      bytesPerSequence = 1
+    }
+
+    if (i + bytesPerSequence <= end) {
+      switch (bytesPerSequence) {
+        case 1:
+          if (firstByte < 0x80) {
+            codePoint = firstByte
+          }
+          break
+        case 2:
+          secondByte = buf[i + 1]
+          if ((secondByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
+            if (tempCodePoint > 0x7F) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 3:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
+            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 4:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          fourthByte = buf[i + 3]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
+            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
+              codePoint = tempCodePoint
+            }
+          }
+      }
+    }
+
+    if (codePoint === 0xFFFD) {
+      // we generated an invalid codePoint so make sure to only advance by 1 byte
+      bytesPerSequence = 1
+    } else if (codePoint > 0xFFFF) {
+      // encode to utf16 (surrogate pair dance)
+      codePoint -= 0x10000
+      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
+      codePoint = 0xDC00 | codePoint & 0x3FF
+    }
+
+    res.push(codePoint)
+  }
+
+  return String.fromCharCode.apply(String, res)
+}
+
+function asciiSlice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; i++) {
+    ret += String.fromCharCode(buf[i] & 0x7F)
+  }
+  return ret
+}
+
+function binarySlice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; i++) {
+    ret += String.fromCharCode(buf[i])
+  }
+  return ret
+}
+
+function hexSlice (buf, start, end) {
+  var len = buf.length
+
+  if (!start || start < 0) start = 0
+  if (!end || end < 0 || end > len) end = len
+
+  var out = ''
+  for (var i = start; i < end; i++) {
+    out += toHex(buf[i])
+  }
+  return out
+}
+
+function utf16leSlice (buf, start, end) {
+  var bytes = buf.slice(start, end)
+  var res = ''
+  for (var i = 0; i < bytes.length; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+  }
+  return res
+}
+
+Buffer.prototype.slice = function slice (start, end) {
+  var len = this.length
+  start = ~~start
+  end = end === undefined ? len : ~~end
+
+  if (start < 0) {
+    start += len
+    if (start < 0) start = 0
+  } else if (start > len) {
+    start = len
+  }
+
+  if (end < 0) {
+    end += len
+    if (end < 0) end = 0
+  } else if (end > len) {
+    end = len
+  }
+
+  if (end < start) end = start
+
+  var newBuf
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    newBuf = Buffer._augment(this.subarray(start, end))
+  } else {
+    var sliceLen = end - start
+    newBuf = new Buffer(sliceLen, undefined)
+    for (var i = 0; i < sliceLen; i++) {
+      newBuf[i] = this[i + start]
+    }
+  }
+
+  if (newBuf.length) newBuf.parent = this.parent || this
+
+  return newBuf
+}
+
+/*
+ * Need to make sure that buffer isn't trying to write out of bounds.
+ */
+function checkOffset (offset, ext, length) {
+  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
+  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
+}
+
+Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    checkOffset(offset, byteLength, this.length)
+  }
+
+  var val = this[offset + --byteLength]
+  var mul = 1
+  while (byteLength > 0 && (mul *= 0x100)) {
+    val += this[offset + --byteLength] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  return this[offset]
+}
+
+Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return this[offset] | (this[offset + 1] << 8)
+}
+
+Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return (this[offset] << 8) | this[offset + 1]
+}
+
+Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return ((this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16)) +
+      (this[offset + 3] * 0x1000000)
+}
+
+Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] * 0x1000000) +
+    ((this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    this[offset + 3])
+}
+
+Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var i = byteLength
+  var mul = 1
+  var val = this[offset + --i]
+  while (i > 0 && (mul *= 0x100)) {
+    val += this[offset + --i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  if (!(this[offset] & 0x80)) return (this[offset])
+  return ((0xff - this[offset] + 1) * -1)
+}
+
+Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset] | (this[offset + 1] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset + 1] | (this[offset] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset]) |
+    (this[offset + 1] << 8) |
+    (this[offset + 2] << 16) |
+    (this[offset + 3] << 24)
+}
+
+Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] << 24) |
+    (this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    (this[offset + 3])
+}
+
+Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, true, 23, 4)
+}
+
+Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, false, 23, 4)
+}
+
+Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, true, 52, 8)
+}
+
+Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, false, 52, 8)
+}
+
+function checkInt (buf, value, offset, ext, max, min) {
+  if (!Buffer.isBuffer(buf)) throw new TypeError('buffer must be a Buffer instance')
+  if (value > max || value < min) throw new RangeError('value is out of bounds')
+  if (offset + ext > buf.length) throw new RangeError('index out of range')
+}
+
+Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+
+  var mul = 1
+  var i = 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+
+  var i = byteLength - 1
+  var mul = 1
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  this[offset] = value
+  return offset + 1
+}
+
+function objectWriteUInt16 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; i++) {
+    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+      (littleEndian ? i : 1 - i) * 8
+  }
+}
+
+Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = value
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+function objectWriteUInt32 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffffffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; i++) {
+    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+  }
+}
+
+Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset + 3] = (value >>> 24)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 1] = (value >>> 8)
+    this[offset] = value
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = value
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = 0
+  var mul = 1
+  var sub = value < 0 ? 1 : 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = byteLength - 1
+  var mul = 1
+  var sub = value < 0 ? 1 : 0
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  if (value < 0) value = 0xff + value + 1
+  this[offset] = value
+  return offset + 1
+}
+
+Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = value
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = value
+    this[offset + 1] = (value >>> 8)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 3] = (value >>> 24)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (value < 0) value = 0xffffffff + value + 1
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = value
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+function checkIEEE754 (buf, value, offset, ext, max, min) {
+  if (value > max || value < min) throw new RangeError('value is out of bounds')
+  if (offset + ext > buf.length) throw new RangeError('index out of range')
+  if (offset < 0) throw new RangeError('index out of range')
+}
+
+function writeFloat (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+  return offset + 4
+}
+
+Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, false, noAssert)
+}
+
+function writeDouble (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+  return offset + 8
+}
+
+Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, false, noAssert)
+}
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function copy (target, targetStart, start, end) {
+  if (!start) start = 0
+  if (!end && end !== 0) end = this.length
+  if (targetStart >= target.length) targetStart = target.length
+  if (!targetStart) targetStart = 0
+  if (end > 0 && end < start) end = start
+
+  // Copy 0 bytes; we're done
+  if (end === start) return 0
+  if (target.length === 0 || this.length === 0) return 0
+
+  // Fatal error conditions
+  if (targetStart < 0) {
+    throw new RangeError('targetStart out of bounds')
+  }
+  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
+  if (end < 0) throw new RangeError('sourceEnd out of bounds')
+
+  // Are we oob?
+  if (end > this.length) end = this.length
+  if (target.length - targetStart < end - start) {
+    end = target.length - targetStart + start
+  }
+
+  var len = end - start
+  var i
+
+  if (this === target && start < targetStart && targetStart < end) {
+    // descending copy from end
+    for (i = len - 1; i >= 0; i--) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+    // ascending copy from start
+    for (i = 0; i < len; i++) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else {
+    target._set(this.subarray(start, start + len), targetStart)
+  }
+
+  return len
+}
+
+// fill(value, start=0, end=buffer.length)
+Buffer.prototype.fill = function fill (value, start, end) {
+  if (!value) value = 0
+  if (!start) start = 0
+  if (!end) end = this.length
+
+  if (end < start) throw new RangeError('end < start')
+
+  // Fill 0 bytes; we're done
+  if (end === start) return
+  if (this.length === 0) return
+
+  if (start < 0 || start >= this.length) throw new RangeError('start out of bounds')
+  if (end < 0 || end > this.length) throw new RangeError('end out of bounds')
+
+  var i
+  if (typeof value === 'number') {
+    for (i = start; i < end; i++) {
+      this[i] = value
+    }
+  } else {
+    var bytes = utf8ToBytes(value.toString())
+    var len = bytes.length
+    for (i = start; i < end; i++) {
+      this[i] = bytes[i % len]
+    }
+  }
+
+  return this
+}
+
+/**
+ * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
+ * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
+ */
+Buffer.prototype.toArrayBuffer = function toArrayBuffer () {
+  if (typeof Uint8Array !== 'undefined') {
+    if (Buffer.TYPED_ARRAY_SUPPORT) {
+      return (new Buffer(this)).buffer
+    } else {
+      var buf = new Uint8Array(this.length)
+      for (var i = 0, len = buf.length; i < len; i += 1) {
+        buf[i] = this[i]
+      }
+      return buf.buffer
+    }
+  } else {
+    throw new TypeError('Buffer.toArrayBuffer not supported in this browser')
+  }
+}
+
+// HELPER FUNCTIONS
+// ================
+
+var BP = Buffer.prototype
+
+/**
+ * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
+ */
+Buffer._augment = function _augment (arr) {
+  arr.constructor = Buffer
+  arr._isBuffer = true
+
+  // save reference to original Uint8Array set method before overwriting
+  arr._set = arr.set
+
+  // deprecated
+  arr.get = BP.get
+  arr.set = BP.set
+
+  arr.write = BP.write
+  arr.toString = BP.toString
+  arr.toLocaleString = BP.toString
+  arr.toJSON = BP.toJSON
+  arr.equals = BP.equals
+  arr.compare = BP.compare
+  arr.indexOf = BP.indexOf
+  arr.copy = BP.copy
+  arr.slice = BP.slice
+  arr.readUIntLE = BP.readUIntLE
+  arr.readUIntBE = BP.readUIntBE
+  arr.readUInt8 = BP.readUInt8
+  arr.readUInt16LE = BP.readUInt16LE
+  arr.readUInt16BE = BP.readUInt16BE
+  arr.readUInt32LE = BP.readUInt32LE
+  arr.readUInt32BE = BP.readUInt32BE
+  arr.readIntLE = BP.readIntLE
+  arr.readIntBE = BP.readIntBE
+  arr.readInt8 = BP.readInt8
+  arr.readInt16LE = BP.readInt16LE
+  arr.readInt16BE = BP.readInt16BE
+  arr.readInt32LE = BP.readInt32LE
+  arr.readInt32BE = BP.readInt32BE
+  arr.readFloatLE = BP.readFloatLE
+  arr.readFloatBE = BP.readFloatBE
+  arr.readDoubleLE = BP.readDoubleLE
+  arr.readDoubleBE = BP.readDoubleBE
+  arr.writeUInt8 = BP.writeUInt8
+  arr.writeUIntLE = BP.writeUIntLE
+  arr.writeUIntBE = BP.writeUIntBE
+  arr.writeUInt16LE = BP.writeUInt16LE
+  arr.writeUInt16BE = BP.writeUInt16BE
+  arr.writeUInt32LE = BP.writeUInt32LE
+  arr.writeUInt32BE = BP.writeUInt32BE
+  arr.writeIntLE = BP.writeIntLE
+  arr.writeIntBE = BP.writeIntBE
+  arr.writeInt8 = BP.writeInt8
+  arr.writeInt16LE = BP.writeInt16LE
+  arr.writeInt16BE = BP.writeInt16BE
+  arr.writeInt32LE = BP.writeInt32LE
+  arr.writeInt32BE = BP.writeInt32BE
+  arr.writeFloatLE = BP.writeFloatLE
+  arr.writeFloatBE = BP.writeFloatBE
+  arr.writeDoubleLE = BP.writeDoubleLE
+  arr.writeDoubleBE = BP.writeDoubleBE
+  arr.fill = BP.fill
+  arr.inspect = BP.inspect
+  arr.toArrayBuffer = BP.toArrayBuffer
+
+  return arr
+}
+
+var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
+
+function base64clean (str) {
+  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+  // Node converts strings with length < 2 to ''
+  if (str.length < 2) return ''
+  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+  while (str.length % 4 !== 0) {
+    str = str + '='
+  }
+  return str
+}
+
+function stringtrim (str) {
+  if (str.trim) return str.trim()
+  return str.replace(/^\s+|\s+$/g, '')
+}
+
+function toHex (n) {
+  if (n < 16) return '0' + n.toString(16)
+  return n.toString(16)
+}
+
+function utf8ToBytes (string, units) {
+  units = units || Infinity
+  var codePoint
+  var length = string.length
+  var leadSurrogate = null
+  var bytes = []
+
+  for (var i = 0; i < length; i++) {
+    codePoint = string.charCodeAt(i)
+
+    // is surrogate component
+    if (codePoint > 0xD7FF && codePoint < 0xE000) {
+      // last char was a lead
+      if (!leadSurrogate) {
+        // no lead yet
+        if (codePoint > 0xDBFF) {
+          // unexpected trail
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+
+        } else if (i + 1 === length) {
+          // unpaired lead
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+        }
+
+        // valid lead
+        leadSurrogate = codePoint
+
+        continue
+      }
+
+      // 2 leads in a row
+      if (codePoint < 0xDC00) {
+        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+        leadSurrogate = codePoint
+        continue
+      }
+
+      // valid surrogate pair
+      codePoint = leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00 | 0x10000
+
+    } else if (leadSurrogate) {
+      // valid bmp char, but last char was a lead
+      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+    }
+
+    leadSurrogate = null
+
+    // encode utf8
+    if (codePoint < 0x80) {
+      if ((units -= 1) < 0) break
+      bytes.push(codePoint)
+    } else if (codePoint < 0x800) {
+      if ((units -= 2) < 0) break
+      bytes.push(
+        codePoint >> 0x6 | 0xC0,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x10000) {
+      if ((units -= 3) < 0) break
+      bytes.push(
+        codePoint >> 0xC | 0xE0,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x110000) {
+      if ((units -= 4) < 0) break
+      bytes.push(
+        codePoint >> 0x12 | 0xF0,
+        codePoint >> 0xC & 0x3F | 0x80,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else {
+      throw new Error('Invalid code point')
+    }
+  }
+
+  return bytes
+}
+
+function asciiToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    // Node's code seems to be doing this and not & 0x7F..
+    byteArray.push(str.charCodeAt(i) & 0xFF)
+  }
+  return byteArray
+}
+
+function utf16leToBytes (str, units) {
+  var c, hi, lo
+  var byteArray = []
+  for (var i = 0; i < str.length; i++) {
+    if ((units -= 2) < 0) break
+
+    c = str.charCodeAt(i)
+    hi = c >> 8
+    lo = c % 256
+    byteArray.push(lo)
+    byteArray.push(hi)
+  }
+
+  return byteArray
+}
+
+function base64ToBytes (str) {
+  return base64.toByteArray(base64clean(str))
+}
+
+function blitBuffer (src, dst, offset, length) {
+  for (var i = 0; i < length; i++) {
+    if ((i + offset >= dst.length) || (i >= src.length)) break
+    dst[i + offset] = src[i]
+  }
+  return i
+}
+
+},{"base64-js":6,"ieee754":7,"is-array":8}],6:[function(require,module,exports){
+var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+;(function (exports) {
+	'use strict';
+
+  var Arr = (typeof Uint8Array !== 'undefined')
+    ? Uint8Array
+    : Array
+
+	var PLUS   = '+'.charCodeAt(0)
+	var SLASH  = '/'.charCodeAt(0)
+	var NUMBER = '0'.charCodeAt(0)
+	var LOWER  = 'a'.charCodeAt(0)
+	var UPPER  = 'A'.charCodeAt(0)
+	var PLUS_URL_SAFE = '-'.charCodeAt(0)
+	var SLASH_URL_SAFE = '_'.charCodeAt(0)
+
+	function decode (elt) {
+		var code = elt.charCodeAt(0)
+		if (code === PLUS ||
+		    code === PLUS_URL_SAFE)
+			return 62 // '+'
+		if (code === SLASH ||
+		    code === SLASH_URL_SAFE)
+			return 63 // '/'
+		if (code < NUMBER)
+			return -1 //no match
+		if (code < NUMBER + 10)
+			return code - NUMBER + 26 + 26
+		if (code < UPPER + 26)
+			return code - UPPER
+		if (code < LOWER + 26)
+			return code - LOWER + 26
+	}
+
+	function b64ToByteArray (b64) {
+		var i, j, l, tmp, placeHolders, arr
+
+		if (b64.length % 4 > 0) {
+			throw new Error('Invalid string. Length must be a multiple of 4')
+		}
+
+		// the number of equal signs (place holders)
+		// if there are two placeholders, than the two characters before it
+		// represent one byte
+		// if there is only one, then the three characters before it represent 2 bytes
+		// this is just a cheap hack to not do indexOf twice
+		var len = b64.length
+		placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
+
+		// base64 is 4/3 + up to two characters of the original data
+		arr = new Arr(b64.length * 3 / 4 - placeHolders)
+
+		// if there are placeholders, only get up to the last complete 4 chars
+		l = placeHolders > 0 ? b64.length - 4 : b64.length
+
+		var L = 0
+
+		function push (v) {
+			arr[L++] = v
+		}
+
+		for (i = 0, j = 0; i < l; i += 4, j += 3) {
+			tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
+			push((tmp & 0xFF0000) >> 16)
+			push((tmp & 0xFF00) >> 8)
+			push(tmp & 0xFF)
+		}
+
+		if (placeHolders === 2) {
+			tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
+			push(tmp & 0xFF)
+		} else if (placeHolders === 1) {
+			tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
+			push((tmp >> 8) & 0xFF)
+			push(tmp & 0xFF)
+		}
+
+		return arr
+	}
+
+	function uint8ToBase64 (uint8) {
+		var i,
+			extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
+			output = "",
+			temp, length
+
+		function encode (num) {
+			return lookup.charAt(num)
+		}
+
+		function tripletToBase64 (num) {
+			return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
+		}
+
+		// go through the array every three bytes, we'll deal with trailing stuff later
+		for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+			temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
+			output += tripletToBase64(temp)
+		}
+
+		// pad the end with zeros, but make sure to not forget the extra bytes
+		switch (extraBytes) {
+			case 1:
+				temp = uint8[uint8.length - 1]
+				output += encode(temp >> 2)
+				output += encode((temp << 4) & 0x3F)
+				output += '=='
+				break
+			case 2:
+				temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
+				output += encode(temp >> 10)
+				output += encode((temp >> 4) & 0x3F)
+				output += encode((temp << 2) & 0x3F)
+				output += '='
+				break
+		}
+
+		return output
+	}
+
+	exports.toByteArray = b64ToByteArray
+	exports.fromByteArray = uint8ToBase64
+}(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
+
+},{}],7:[function(require,module,exports){
+exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+  var e, m
+  var eLen = nBytes * 8 - mLen - 1
+  var eMax = (1 << eLen) - 1
+  var eBias = eMax >> 1
+  var nBits = -7
+  var i = isLE ? (nBytes - 1) : 0
+  var d = isLE ? -1 : 1
+  var s = buffer[offset + i]
+
+  i += d
+
+  e = s & ((1 << (-nBits)) - 1)
+  s >>= (-nBits)
+  nBits += eLen
+  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+  m = e & ((1 << (-nBits)) - 1)
+  e >>= (-nBits)
+  nBits += mLen
+  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+  if (e === 0) {
+    e = 1 - eBias
+  } else if (e === eMax) {
+    return m ? NaN : ((s ? -1 : 1) * Infinity)
+  } else {
+    m = m + Math.pow(2, mLen)
+    e = e - eBias
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
+}
+
+exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+  var e, m, c
+  var eLen = nBytes * 8 - mLen - 1
+  var eMax = (1 << eLen) - 1
+  var eBias = eMax >> 1
+  var rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0)
+  var i = isLE ? 0 : (nBytes - 1)
+  var d = isLE ? 1 : -1
+  var s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0
+
+  value = Math.abs(value)
+
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0
+    e = eMax
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2)
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--
+      c *= 2
+    }
+    if (e + eBias >= 1) {
+      value += rt / c
+    } else {
+      value += rt * Math.pow(2, 1 - eBias)
+    }
+    if (value * c >= 2) {
+      e++
+      c /= 2
+    }
+
+    if (e + eBias >= eMax) {
+      m = 0
+      e = eMax
+    } else if (e + eBias >= 1) {
+      m = (value * c - 1) * Math.pow(2, mLen)
+      e = e + eBias
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen)
+      e = 0
+    }
+  }
+
+  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
+
+  e = (e << mLen) | m
+  eLen += mLen
+  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
+
+  buffer[offset + i - d] |= s * 128
+}
+
+},{}],8:[function(require,module,exports){
+
+/**
+ * isArray
+ */
+
+var isArray = Array.isArray;
+
+/**
+ * toString
+ */
+
+var str = Object.prototype.toString;
+
+/**
+ * Whether or not the given `val`
+ * is an array.
+ *
+ * example:
+ *
+ *        isArray([]);
+ *        // > true
+ *        isArray(arguments);
+ *        // > false
+ *        isArray('');
+ *        // > false
+ *
+ * @param {mixed} val
+ * @return {bool}
+ */
+
+module.exports = isArray || function (val) {
+  return !! val && '[object Array]' == str.call(val);
+};
+
+},{}],9:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -141,17 +1910,10 @@ exports.formatArgs = formatArgs;
 exports.save = save;
 exports.load = load;
 exports.useColors = useColors;
-
-/**
- * Use chrome.storage.local if we are in an app
- */
-
-var storage;
-
-if (typeof chrome !== 'undefined' && typeof chrome.storage !== 'undefined')
-  storage = chrome.storage.local;
-else
-  storage = localstorage();
+exports.storage = 'undefined' != typeof chrome
+               && 'undefined' != typeof chrome.storage
+                  ? chrome.storage.local
+                  : localstorage();
 
 /**
  * Colors.
@@ -259,9 +2021,9 @@ function log() {
 function save(namespaces) {
   try {
     if (null == namespaces) {
-      storage.removeItem('debug');
+      exports.storage.removeItem('debug');
     } else {
-      storage.debug = namespaces;
+      exports.storage.debug = namespaces;
     }
   } catch(e) {}
 }
@@ -276,7 +2038,7 @@ function save(namespaces) {
 function load() {
   var r;
   try {
-    r = storage.debug;
+    r = exports.storage.debug;
   } catch(e) {}
   return r;
 }
@@ -304,7 +2066,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":6}],6:[function(require,module,exports){
+},{"./debug":10}],10:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -503,7 +2265,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":7}],7:[function(require,module,exports){
+},{"ms":11}],11:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -544,6 +2306,8 @@ module.exports = function(val, options){
  */
 
 function parse(str) {
+  str = '' + str;
+  if (str.length > 10000) return;
   var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
   if (!match) return;
   var n = parseFloat(match[1]);
@@ -628,164 +2392,166 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],8:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module mdast
+ * @fileoverview Markdown processor powered by plugins.
+ */
+
 'use strict';
 
 /*
- * Dependencies..
+ * Dependencies.
  */
 
-var Ware = require('ware');
+var unified = require('unified');
+var Parser = require('./lib/parse.js');
+var Compiler = require('./lib/stringify.js');
 
 /*
- * Components.
+ * Exports.
  */
 
-var parse = require('./lib/parse.js');
-var stringify = require('./lib/stringify.js');
+module.exports = unified({
+    'name': 'mdast',
+    'type': 'ast',
+    'Parser': Parser,
+    'Compiler': Compiler
+});
 
+},{"./lib/parse.js":15,"./lib/stringify.js":16,"unified":27}],13:[function(require,module,exports){
 /**
- * Throws if passed an exception.
- *
- * Here until the following PR is merged into
- * segmentio/ware:
- *
- *   https://github.com/segmentio/ware/pull/21
- *
- * @param {Error?} exception
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module mdast:defaults
+ * @fileoverview Default values for parse and
+ *  stringification settings.
  */
-function fail(exception) {
-    if (exception) {
-        throw exception;
-    }
-}
 
-/**
- * Construct an MDAST instance.
- *
- * @constructor {MDAST}
- */
-function MDAST() {
-    this.ware = new Ware();
-}
-
-/**
- * Parse a value and apply plugins.
- *
- * @return {Root}
- */
-function runParse(_, options) {
-    var node;
-
-    if (!options) {
-        options = {};
-    }
-
-    node = parse.apply(this, arguments);
-
-    this.ware.run(node, options, this, fail);
-
-    return node;
-}
-
-/**
- * Construct an MDAST instance and use a plugin.
- *
- * @return {MDAST}
- */
-function use(plugin) {
-    var self = this;
-
-    if (!(self instanceof MDAST)) {
-        self = new MDAST();
-    }
-
-    self.ware.use(plugin);
-
-    return self;
-}
+'use strict';
 
 /*
- * Prototype.
- */
-
-MDAST.prototype.parse = runParse;
-MDAST.prototype.stringify = stringify;
-MDAST.prototype.use = use;
-
-/*
- * Expose `mdast`.
+ * Note that `stringify.entities` is a string.
  */
 
 module.exports = {
-    'parse': parse,
-    'stringify': stringify,
-    'use': use
+    'parse': {
+        'position': true,
+        'gfm': true,
+        'yaml': true,
+        'commonmark': false,
+        'footnotes': false,
+        'pedantic': false,
+        'breaks': false
+    },
+    'stringify': {
+        'entities': 'false',
+        'setext': false,
+        'closeAtx': false,
+        'looseTable': false,
+        'spacedTable': true,
+        'incrementListMarker': true,
+        'fences': false,
+        'fence': '`',
+        'bullet': '-',
+        'listItemIndent': 'tab',
+        'rule': '*',
+        'ruleSpaces': true,
+        'ruleRepetition': 3,
+        'strong': '*',
+        'emphasis': '_'
+    }
 };
 
-},{"./lib/parse.js":10,"./lib/stringify.js":11,"ware":15}],9:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /* This file is generated by `script/build-expressions.js` */
-module.exports={
-  "rules": {
-    "newline":/^\n+/,
-    "bullet":/(?:[*+-]|\d+\.)/,
-    "code":/^( {4}[^\n]+\n*)+/,
-    "horizontalRule":/^( *[-*_]){3,} *(?=\n|$)/,
-    "heading":/^ *((#{1,6}) *)([^\n]+?) *#* *(?=\n|$)/,
-    "lineHeading":/^([^\n]+)\n *(=|-){2,} *(?=\n|$)/,
-    "linkDefinition":/^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$)/,
-    "blockText":/^[^\n]+/,
-    "item":/^( *)((?:[*+-]|\d+\.)) [^\n]*(?:\n(?!\1(?:[*+-]|\d+\.) )[^\n]*)*/gm,
-    "list":/^( *)((?:[*+-]|\d+\.))((?: [\s\S]+?)(?:\n+(?=\1?(?:[-*_] *){3,}(?=\n|$))|\n+(?= *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$))|\n{2,}(?! )(?!\1(?:[*+-]|\d+\.) )|\s*$))/,
-    "blockquote":/^( *>[^\n]+(\n(?! *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$))[^\n]+)*)+/,
-    "html":/^ *(?:<!--[\s\S]*?--> *(?:\n|\s*$)|<((?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)\w+(?!:\/|[^\w\s@]*@)\b)[\s\S]+?<\/\1> *(?:\n{2,}|\s*$)|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)\w+(?!:\/|[^\w\s@]*@)\b(?:"[^"]*"|'[^']*'|[^'">])*?> *(?:\n{2,}|\s*$))/,
-    "paragraph":/^(?:(?:[^\n]+\n?(?!( *[-*_]){3,} *(?=\n|$)| *((#{1,6}) *)([^\n]+?) *#* *(?=\n|$)|([^\n]+)\n *(=|-){2,} *(?=\n|$)|( *>[^\n]+(\n(?! *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$))[^\n]+)*)+|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)\w+(?!:\/|[^\w\s@]*@)\b| *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$)))+)/,
-    "escape":/^\\([\\`*{}\[\]()#+\-.!_>])/,
-    "autoLink":/^<([^ >]+(@|:\/)[^ >]+)>/,
-    "tag":/^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
-    "invalidLink":/^(!?\[)((?:\[[^\]]*\]|[^\[\]])*)\]/,
-    "strong":/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
-    "emphasis":/^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
-    "inlineCode":/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
-    "break":/^ {2,}\n(?!\s*$)/,
-    "text":/^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/,
-    "inside":/(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/,
-    "href":/\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/,
-    "link":/^(!?\[)((?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*)\]\(\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*\)/,
-    "referenceLink":/^(!?\[)((?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*)\]\s*\[([^\]]*)\]/
+module.exports = {
+  'rules': {
+    'newline': /^\n([ \t]*\n)*/,
+    'code': /^((?: {4}|\t)[^\n]*\n?([ \t]*\n)*)+/,
+    'horizontalRule': /^[ \t]*([-*_])( *\1){2,} *(?=\n|$)/,
+    'heading': /^([ \t]*)(#{1,6})(?:([ \t]+)([^\n]+?))??(?:[ \t]+#+)?[ \t]*(?=\n|$)/,
+    'lineHeading': /^(\ {0,3})([^\n]+?)[ \t]*\n\ {0,3}(=|-){1,}[ \t]*(?=\n|$)/,
+    'definition': /^[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$)/,
+    'bullet': /(?:[*+-]|\d+\.)/,
+    'indent': /^([ \t]*)((?:[*+-]|\d+\.))( {1,4}(?! )| |\t)/,
+    'item': /([ \t]*)((?:[*+-]|\d+\.))( {1,4}(?! )| |\t)[^\n]*(?:\n(?!\1(?:[*+-]|\d+\.)[ \t])[^\n]*)*/gm,
+    'list': /^([ \t]*)((?:[*+-]|\d+\.))[ \t][\s\S]+?(?:(?=\n+\1?(?:[-*_][ \t]*){3,}(?:\n|$))|(?=\n+[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))|\n{2,}(?![ \t])(?!\1(?:[*+-]|\d+\.)[ \t])|$)/,
+    'blockquote': /^(?=[ \t]*>)(?:(?:(?:[ \t]*>[^\n]*\n)*(?:[ \t]*>[^\n]+(?=\n|$))|(?![ \t]*>)(?![ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))[^\n]+)(?:\n|$))*(?:[ \t]*>[ \t]*(?:\n[ \t]*>[ \t]*)*)?/,
+    'html': /^(?:[ \t]*(?:(?:(?:<(?:article|header|aside|hgroup|blockquote|hr|iframe|body|li|map|button|object|canvas|ol|caption|output|col|p|colgroup|pre|dd|progress|div|section|dl|table|td|dt|tbody|embed|textarea|fieldset|tfoot|figcaption|th|figure|thead|footer|tr|form|ul|h1|h2|h3|h4|h5|h6|video|script|style)(?:(?:\s+)(?:[a-zA-Z_:][a-zA-Z0-9_.:-]*)(?:(?:\s+)?=(?:\s+)?(?:[^"'=<>`]+|'[^']*'|"[^"]*"))?)*(?:\s+)?\/?>?)|(?:<\/(?:article|header|aside|hgroup|blockquote|hr|iframe|body|li|map|button|object|canvas|ol|caption|output|col|p|colgroup|pre|dd|progress|div|section|dl|table|td|dt|tbody|embed|textarea|fieldset|tfoot|figcaption|th|figure|thead|footer|tr|form|ul|h1|h2|h3|h4|h5|h6|video|script|style)(?:\s+)?>))|<!--[\s\S]*?-->|(?:<\?(?:[^\?]|\?(?!>))+\?>)|(?:<![a-zA-Z]+\s+[\s\S]+?>)|(?:<!\[CDATA\[[\s\S]+?\]\]>))[\s\S]*?[ \t]*?(?:\n{2,}|\s*$))/i,
+    'paragraph': /^(?:(?:[^\n]+\n?(?![ \t]*([-*_])( *\1){2,} *(?=\n|$)|([ \t]*)(#{1,6})(?:([ \t]+)([^\n]+?))??(?:[ \t]+#+)?[ \t]*(?=\n|$)|(\ {0,3})([^\n]+?)[ \t]*\n\ {0,3}(=|-){1,}[ \t]*(?=\n|$)|[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$)|(?=[ \t]*>)(?:(?:(?:[ \t]*>[^\n]*\n)*(?:[ \t]*>[^\n]+(?=\n|$))|(?![ \t]*>)(?![ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))[^\n]+)(?:\n|$))*(?:[ \t]*>[ \t]*(?:\n[ \t]*>[ \t]*)*)?|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)(?!mailto:)\w+(?!:\/|[^\w\s@]*@)\b))+)/,
+    'escape': /^\\([\\`*{}\[\]()#+\-.!_>])/,
+    'autoLink': /^<([^ >]+(@|:\/)[^ >]+)>/,
+    'tag': /^(?:(?:<(?:[a-zA-Z][a-zA-Z0-9]*)(?:(?:\s+)(?:[a-zA-Z_:][a-zA-Z0-9_.:-]*)(?:(?:\s+)?=(?:\s+)?(?:[^"'=<>`]+|'[^']*'|"[^"]*"))?)*(?:\s+)?\/?>)|(?:<\/(?:[a-zA-Z][a-zA-Z0-9]*)(?:\s+)?>)|<!--[\s\S]*?-->|(?:<\?(?:[^\?]|\?(?!>))+\?>)|(?:<![a-zA-Z]+\s+[\s\S]+?>)|(?:<!\[CDATA\[[\s\S]+?\]\]>))/,
+    'strong': /^(_)_((?:\\[\s\S]|[^\\])+?)__(?!_)|^(\*)\*((?:\\[\s\S]|[^\\])+?)\*\*(?!\*)/,
+    'emphasis': /^\b(_)((?:__|\\[\s\S]|[^\\])+?)_\b|^(\*)((?:\*\*|\\[\s\S]|[^\\])+?)\*(?!\*)/,
+    'inlineCode': /^(`+)((?!`)[\s\S]*?(?:`\s+|[^`]))?(\1)(?!`)/,
+    'break': /^ {2,}\n(?!\s*$)/,
+    'inlineText': /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/,
+    'link': /^(!?\[)((?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*)\]\(\s*(?:(?!<)((?:\((?:\\[\s\S]|[^\)])*?\)|\\[\s\S]|[\s\S])*?)|<([\s\S]*?)>)(?:\s+['"]([\s\S]*?)['"])?\s*\)/,
+    'shortcutReference': /^(!?\[)((?:\\[\s\S]|[^\[\]])+?)\]/,
+    'reference': /^(!?\[)((?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*)\]\s*\[((?:\\[\s\S]|[^\[\]])*)\]/
   },
-  "tables": {
-    "table":/^( *\|(.+))\n( *\|( *[-:]+[-| :]*)\n)((?: *\|.*(?:\n|$))*)/,
-    "looseTable":/^( *(\S.*\|.*))\n( *([-:]+ *\|[-| :]*)\n)((?:.*\|.*(?:\n|$))*)/
+  'gfm': {
+    'fences': /^( *)(([`~])\3{2,})[ \t]*([^\n`~]+)?[ \t]*(?:\n([\s\S]*?))??(?:\n\ {0,3}\2\3*[ \t]*(?=\n|$)|$)/,
+    'paragraph': /^(?:(?:[^\n]+\n?(?![ \t]*([-*_])( *\1){2,} *(?=\n|$)|( *)(([`~])\5{2,})[ \t]*([^\n`~]+)?[ \t]*(?:\n([\s\S]*?))??(?:\n\ {0,3}\4\5*[ \t]*(?=\n|$)|$)|([ \t]*)((?:[*+-]|\d+\.))[ \t][\s\S]+?(?:(?=\n+\8?(?:[-*_][ \t]*){3,}(?:\n|$))|(?=\n+[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))|\n{2,}(?![ \t])(?!\8(?:[*+-]|\d+\.)[ \t])|$)|([ \t]*)(#{1,6})(?:([ \t]+)([^\n]+?))??(?:[ \t]+#+)?[ \t]*(?=\n|$)|(\ {0,3})([^\n]+?)[ \t]*\n\ {0,3}(=|-){1,}[ \t]*(?=\n|$)|[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$)|(?=[ \t]*>)(?:(?:(?:[ \t]*>[^\n]*\n)*(?:[ \t]*>[^\n]+(?=\n|$))|(?![ \t]*>)(?![ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))[^\n]+)(?:\n|$))*(?:[ \t]*>[ \t]*(?:\n[ \t]*>[ \t]*)*)?|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)(?!mailto:)\w+(?!:\/|[^\w\s@]*@)\b))+)/,
+    'table': /^( *\|(.+))\n( *\|( *[-:]+[-| :]*)\n)((?: *\|.*(?:\n|$))*)/,
+    'looseTable': /^( *(\S.*\|.*))\n( *([-:]+ *\|[-| :]*)\n)((?:.*\|.*(?:\n|$))*)/,
+    'escape': /^\\([\\`*{}\[\]()#+\-.!_>~|])/,
+    'url': /^https?:\/\/[^\s<]+[^<.,:;"')\]\s]/,
+    'deletion': /^~~(?=\S)([\s\S]*?\S)~~/,
+    'inlineText': /^[\s\S]+?(?=[\\<!\[_*`~]|https?:\/\/| {2,}\n|$)/
   },
-  "gfm": {
-    "fences":/^ *(`{3,}|~{3,}) *(\S+)? *\n([\s\S]*?)\s*\1 *(?=\n|$)/,
-    "paragraph":/^(?:(?:[^\n]+\n?(?! *(`{3,}|~{3,}) *(\S+)? *\n([\s\S]*?)\s*\2 *(?=\n|$)|( *)((?:[*+-]|\d+\.))((?: [\s\S]+?)(?:\n+(?=\3?(?:[-*_] *){3,}(?=\n|$))|\n+(?= *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$))|\n{2,}(?! )(?!\1(?:[*+-]|\d+\.) )|\s*$))|( *[-*_]){3,} *(?=\n|$)| *((#{1,6}) *)([^\n]+?) *#* *(?=\n|$)|([^\n]+)\n *(=|-){2,} *(?=\n|$)|( *>[^\n]+(\n(?! *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$))[^\n]+)*)+|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)\w+(?!:\/|[^\w\s@]*@)\b| *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?=\n|$)))+)/,
-    "escape":/^\\([\\`*{}\[\]()#+\-.!_>~|])/,
-    "url":/^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
-    "deletion":/^~~(?=\S)([\s\S]*?\S)~~/,
-    "text":/^[\s\S]+?(?=[\\<!\[_*`~]|https?:\/\/| {2,}\n|$)/
+  'footnotes': {
+    'footnoteDefinition': /^( *\[\^([^\]]+)\]: *)([^\n]+(\n+ +[^\n]+)*)/
   },
-  "footnotes": {
-    "footnoteDefinition":/^( *\[\^([^\]]+)\]: *)([^\n]+(\n+ +[^\n]+)*)/
+  'yaml': {
+    'yamlFrontMatter': /^-{3}\n([\s\S]+?\n)?-{3}/
   },
-  "yaml": {
-    "yamlFrontMatter":/^-{3}\n([\s\S]+?\n)?-{3}/
+  'pedantic': {
+    'heading': /^([ \t]*)(#{1,6})([ \t]*)([^\n]*?)[ \t]*#*[ \t]*(?=\n|$)/,
+    'strong': /^(_)_(?=\S)([\s\S]*?\S)__(?!_)|^(\*)\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
+    'emphasis': /^(_)(?=\S)([\s\S]*?\S)_(?!_)|^(\*)(?=\S)([\s\S]*?\S)\*(?!\*)/
   },
-  "pedantic": {
-    "strong":/^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
-    "emphasis":/^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
+  'commonmark': {
+    'list': /^([ \t]*)((?:[*+-]|\d+[\.\)]))[ \t][\s\S]+?(?:(?=\n+\1?(?:[-*_][ \t]*){3,}(?:\n|$))|(?=\n+[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))|\n{2,}(?![ \t])(?!\1(?:[*+-]|\d+[\.\)])[ \t])|$)/,
+    'item': /([ \t]*)((?:[*+-]|\d+[\.\)]))( {1,4}(?! )| |\t)[^\n]*(?:\n(?!\1(?:[*+-]|\d+[\.\)])[ \t])[^\n]*)*/gm,
+    'bullet': /(?:[*+-]|\d+[\.\)])/,
+    'indent': /^([ \t]*)((?:[*+-]|\d+[\.\)]))( {1,4}(?! )| |\t)/,
+    'html': /^(?:[ \t]*(?:(?:(?:<(?:article|header|aside|hgroup|blockquote|hr|iframe|body|li|map|button|object|canvas|ol|caption|output|col|p|colgroup|pre|dd|progress|div|section|dl|table|td|dt|tbody|embed|textarea|fieldset|tfoot|figcaption|th|figure|thead|footer|tr|form|ul|h1|h2|h3|h4|h5|h6|video|script|style)(?:(?:\s+)(?:[a-zA-Z_:][a-zA-Z0-9_.:-]*)(?:(?:\s+)?=(?:\s+)?(?:[^"'=<>`]+|'[^']*'|"[^"]*"))?)*(?:\s+)?\/?>?)|(?:<\/(?:article|header|aside|hgroup|blockquote|hr|iframe|body|li|map|button|object|canvas|ol|caption|output|col|p|colgroup|pre|dd|progress|div|section|dl|table|td|dt|tbody|embed|textarea|fieldset|tfoot|figcaption|th|figure|thead|footer|tr|form|ul|h1|h2|h3|h4|h5|h6|video|script|style)(?:\s+)?>))|(?:<!--(?!-?>)(?:[^-]|-(?!-))*-->)|(?:<\?(?:[^\?]|\?(?!>))+\?>)|(?:<![a-zA-Z]+\s+[\s\S]+?>)|(?:<!\[CDATA\[[\s\S]+?\]\]>))[\s\S]*?[ \t]*?(?:\n{2,}|\s*$))/i,
+    'tag': /^(?:(?:<(?:[a-zA-Z][a-zA-Z0-9]*)(?:(?:\s+)(?:[a-zA-Z_:][a-zA-Z0-9_.:-]*)(?:(?:\s+)?=(?:\s+)?(?:[^"'=<>`]+|'[^']*'|"[^"]*"))?)*(?:\s+)?\/?>)|(?:<\/(?:[a-zA-Z][a-zA-Z0-9]*)(?:\s+)?>)|(?:<!--(?!-?>)(?:[^-]|-(?!-))*-->)|(?:<\?(?:[^\?]|\?(?!>))+\?>)|(?:<![a-zA-Z]+\s+[\s\S]+?>)|(?:<!\[CDATA\[[\s\S]+?\]\]>))/,
+    'link': /^(!?\[)((?:(?:\[(?:\[(?:\\[\s\S]|[^\[\]])*?\]|\\[\s\S]|[^\[\]])*?\])|\\[\s\S]|[^\[\]])*?)\]\(\s*(?:(?!<)((?:\((?:\\[\s\S]|[^\(\)\s])*?\)|\\[\s\S]|[^\(\)\s])*?)|<([^\n]*?)>)(?:\s+(?:\'((?:\\[\s\S]|[^\'])*?)\'|"((?:\\[\s\S]|[^"])*?)"|\(((?:\\[\s\S]|[^\)])*?)\)))?\s*\)/,
+    'reference': /^(!?\[)((?:(?:\[(?:\[(?:\\[\s\S]|[^\[\]])*?\]|\\[\s\S]|[^\[\]])*?\])|\\[\s\S]|[^\[\]])*?)\]\s*\[((?:\\[\s\S]|[^\[\]])*)\]/,
+    'paragraph': /^(?:(?:[^\n]+\n?(?!\ {0,3}([-*_])( *\1){2,} *(?=\n|$)|(\ {0,3})(#{1,6})(?:([ \t]+)([^\n]+?))??(?:[ \t]+#+)?\ {0,3}(?=\n|$)|(?=\ {0,3}>)(?:(?:(?:\ {0,3}>[^\n]*\n)*(?:\ {0,3}>[^\n]+(?=\n|$))|(?!\ {0,3}>)(?!\ {0,3}\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?\ {0,3}(?=\n|$))[^\n]+)(?:\n|$))*(?:\ {0,3}>\ {0,3}(?:\n\ {0,3}>\ {0,3})*)?|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)(?!mailto:)\w+(?!:\/|[^\w\s@]*@)\b))+)/,
+    'blockquote': /^(?=[ \t]*>)(?:(?:(?:[ \t]*>[^\n]*\n)*(?:[ \t]*>[^\n]+(?=\n|$))|(?![ \t]*>)(?![ \t]*([-*_])( *\1){2,} *(?=\n|$)|([ \t]*)((?:[*+-]|\d+\.))[ \t][\s\S]+?(?:(?=\n+\3?(?:[-*_][ \t]*){3,}(?:\n|$))|(?=\n+[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))|\n{2,}(?![ \t])(?!\3(?:[*+-]|\d+\.)[ \t])|$)|( *)(([`~])\10{2,})[ \t]*([^\n`~]+)?[ \t]*(?:\n([\s\S]*?))??(?:\n\ {0,3}\9\10*[ \t]*(?=\n|$)|$)|((?: {4}|\t)[^\n]*\n?([ \t]*\n)*)+|[ \t]*\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?[ \t]*(?=\n|$))[^\n]+)(?:\n|$))*(?:[ \t]*>[ \t]*(?:\n[ \t]*>[ \t]*)*)?/,
+    'escape': /^\\(\n|[\\`*{}\[\]()#+\-.!_>"$%&',\/:;<=?@^~|])/
   },
-  "breaks": {
-    "break":/^ *\n(?!\s*$)/,
-    "text":/^[\s\S]+?(?=[\\<!\[_*`]| *\n|$)/
+  'commonmarkGFM': {
+    'paragraph': /^(?:(?:[^\n]+\n?(?!\ {0,3}([-*_])( *\1){2,} *(?=\n|$)|( *)(([`~])\5{2,})\ {0,3}([^\n`~]+)?\ {0,3}(?:\n([\s\S]*?))??(?:\n\ {0,3}\4\5*\ {0,3}(?=\n|$)|$)|(\ {0,3})((?:[*+-]|\d+\.))[ \t][\s\S]+?(?:(?=\n+\8?(?:[-*_]\ {0,3}){3,}(?:\n|$))|(?=\n+\ {0,3}\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?\ {0,3}(?=\n|$))|\n{2,}(?![ \t])(?!\8(?:[*+-]|\d+\.)[ \t])|$)|(\ {0,3})(#{1,6})(?:([ \t]+)([^\n]+?))??(?:[ \t]+#+)?\ {0,3}(?=\n|$)|(?=\ {0,3}>)(?:(?:(?:\ {0,3}>[^\n]*\n)*(?:\ {0,3}>[^\n]+(?=\n|$))|(?!\ {0,3}>)(?!\ {0,3}\[((?:[^\\](?:\\|\\(?:\\{2})+)\]|[^\]])+)\]:[ \t\n]*(<[^>\[\]]+>|[^\s\[\]]+)(?:[ \t\n]+['"(]((?:[^\n]|\n(?!\n))*?)['")])?\ {0,3}(?=\n|$))[^\n]+)(?:\n|$))*(?:\ {0,3}>\ {0,3}(?:\n\ {0,3}>\ {0,3})*)?|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)(?!mailto:)\w+(?!:\/|[^\w\s@]*@)\b))+)/
   },
-  "breaksGFM": {
-    "text":/^[\s\S]+?(?=[\\<!\[_*`~]|https?:\/\/| *\n|$)/
+  'breaks': {
+    'break': /^ *\n(?!\s*$)/,
+    'inlineText': /^[\s\S]+?(?=[\\<!\[_*`]| *\n|$)/
+  },
+  'breaksGFM': {
+    'inlineText': /^[\s\S]+?(?=[\\<!\[_*`~]|https?:\/\/| *\n|$)/
   }
 };
 
-},{}],10:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module mdast:parse
+ * @fileoverview Parse a markdown document into an
+ *   abstract syntax tree.
+ */
+
 'use strict';
 
 /*
@@ -793,22 +2559,26 @@ module.exports={
  */
 
 var he = require('he');
+var repeat = require('repeat-string');
+var trim = require('trim');
+var trimTrailingLines = require('trim-trailing-lines');
+var extend = require('extend.js');
 var utilities = require('./utilities.js');
-var expressions = require('./expressions.js');
+var defaultExpressions = require('./expressions.js');
+var defaultOptions = require('./defaults.js').parse;
 
 /*
- * Cached methods.
+ * Methods.
  */
 
-var copy = utilities.copy;
 var raise = utilities.raise;
-var trimRight = utilities.trimRight;
-var trimRightLines = utilities.trimRightLines;
 var clean = utilities.clean;
 var validate = utilities.validate;
+var normalize = utilities.normalizeIdentifier;
+var arrayPush = [].push;
 
 /*
- * Constants.
+ * Characters.
  */
 
 var AT_SIGN = '@';
@@ -817,9 +2587,17 @@ var EQUALS = '=';
 var EXCLAMATION_MARK = '!';
 var MAILTO_PROTOCOL = 'mailto:';
 var NEW_LINE = '\n';
-var SLASH = '\\';
 var SPACE = ' ';
+var TAB = '\t';
 var EMPTY = '';
+var LT = '<';
+var GT = '>';
+var BRACKET_OPEN = '[';
+
+/*
+ * Types.
+ */
+
 var BLOCK = 'block';
 var INLINE = 'inline';
 var HORIZONTAL_RULE = 'horizontalRule';
@@ -848,65 +2626,282 @@ var INLINE_CODE = 'inlineCode';
 var BREAK = 'break';
 var ROOT = 'root';
 
+/**
+ * Wrapper around he's `decode` function.
+ *
+ * @example
+ *   decode('&amp;'); // '&'
+ *   decode('&amp'); // '&'
+ *
+ * @param {string} value
+ * @param {function(string)} eat
+ * @return {string}
+ * @throws {Error} - When `eat.file.quiet` is not `true`.
+ *   However, by default `he` does not throw on incorrect
+ *   encoded entities, but when
+ *   `he.decode.options.strict: true`, they occur on
+ *   entities with a missing closing semi-colon.
+ */
+function decode(value, eat) {
+    try {
+        return he.decode(value);
+    } catch (exception) {
+        eat.file.fail(exception, eat.now());
+    }
+}
+
+/**
+ * Factory to de-escape a value, based on an expression
+ * at `key` in `scope`.
+ *
+ * @example
+ *   var expressions = {escape: /\\(a)/}
+ *   var descape = descapeFactory(expressions, 'escape');
+ *
+ * @param {Object} scope - Map of expressions.
+ * @param {string} key - Key in `map` at which the
+ *   non-global expression exists.
+ * @return {function(string): string} - Function which
+ *   takes a value and returns its unescaped version.
+ */
+function descapeFactory(scope, key) {
+    var globalExpression;
+    var expression;
+
+    /**
+     * Private method to get a global expression
+     * from the expression at `key` in `scope`.
+     * This method is smart about not recreating
+     * the expressions every time.
+     *
+     * @private
+     * @return {RegExp}
+     */
+    function generate() {
+        if (scope[key] !== globalExpression) {
+            globalExpression = scope[key];
+            expression = new RegExp(
+                scope[key].source.replace(CARET, EMPTY), 'g'
+            );
+        }
+
+        return expression;
+    }
+
+    /**
+     * De-escape a string using the expression at `key`
+     * in `scope`.
+     *
+     * @example
+     *   var expressions = {escape: /\\(a)/}
+     *   var descape = descapeFactory(expressions, 'escape');
+     *   descape('\a'); // 'a'
+     *
+     * @param {string} value - Escaped string.
+     * @return {string} - Unescaped string.
+     */
+    function descape(value) {
+        return value.replace(generate(), '$1');
+    }
+
+    return descape;
+}
+
+/*
+ * Tab size.
+ */
+
+var TAB_SIZE = 4;
+
 /*
  * Expressions.
  */
 
-var EXPRESSION_INITIAL_SPACES = /^ +/;
-var EXPRESSION_RIGHT_ALIGNMENT = /^ *-+: *$/;
-var EXPRESSION_CENTER_ALIGNMENT = /^ *:-+: *$/;
-var EXPRESSION_SPACES_ONLY_LINE = /^ +$/gm;
-var EXPRESSION_TABLE_FENCE = /^ *|\| *$/g;
-var EXPRESSION_TABLE_INITIAL = /^ *\| */g;
-var EXPRESSION_TABLE_CONTENT = /([\s\S]+?)( *\| *\n?|\n?$)/g;
-var EXPRESSION_TABLE_BORDER = / *\| */;
-var EXPRESSION_BLOCK_QUOTE = /^ *> ?/gm;
-var EXPRESSION_BULLET = /^ *([*+-]|\d+\.) +/;
-var EXPRESSION_INITIAL_INDENT = /^ {1,4}/gm;
-var EXPRESSION_INITIAL_TAB = /^( {4})?/gm;
+var EXPRESSION_RIGHT_ALIGNMENT = /^[ \t]*-+:[ \t]*$/;
+var EXPRESSION_CENTER_ALIGNMENT = /^[ \t]*:-+:[ \t]*$/;
+var EXPRESSION_LEFT_ALIGNMENT = /^[ \t]*:-+[ \t]*$/;
+var EXPRESSION_TABLE_FENCE = /^[ \t]*|\|[ \t]*$/g;
+var EXPRESSION_TABLE_INITIAL = /^[ \t]*\|/g;
+var EXPRESSION_TABLE_CONTENT =
+    /[ \t]*?((?:\\[\s\S]|[^\|])+?)([ \t]?\|[ \t]?\n?|\n?$)/g;
+var EXPRESSION_TABLE_BORDER = /[ \t]*\|[ \t]*/;
+var EXPRESSION_BLOCK_QUOTE = /^[ \t]*>[ \t]?/gm;
+var EXPRESSION_BULLET = /^([ \t]*)([*+-]|\d+[.)])( {1,4}(?! )| |\t)([^\n]*)/;
+var EXPRESSION_PEDANTIC_BULLET = /^([ \t]*)([*+-]|\d+[.)])([ \t]+)/;
+var EXPRESSION_INITIAL_INDENT = /^( {1,4}|\t)?/gm;
+var EXPRESSION_INITIAL_TAB = /^( {4}|\t)?/gm;
 var EXPRESSION_HTML_LINK_OPEN = /^<a /i;
 var EXPRESSION_HTML_LINK_CLOSE = /^<\/a>/i;
-var EXPRESSION_WHITE_SPACES = /\s+/g;
 var EXPRESSION_LOOSE_LIST_ITEM = /\n\n(?!\s*$)/;
+var EXPRESSION_TASK_ITEM = /^\[([\ \t]|x|X)\][\ \t]/;
+
+/*
+ * A map of characters, and their column length,
+ * which can be used as indentation.
+ */
+
+var INDENTATION_CHARACTERS = {};
+
+INDENTATION_CHARACTERS[SPACE] = SPACE.length;
+INDENTATION_CHARACTERS[TAB] = TAB_SIZE;
 
 /**
- * Remove the minimum indent from `value`.
+ * Gets indentation information for a line.
+ *
+ * @example
+ *   getIndent('  foo');
+ *   // {indent: 2, stops: {1: 0, 2: 1}}
+ *
+ *   getIndent('\tfoo');
+ *   // {indent: 4, stops: {4: 0}}
+ *
+ *   getIndent('  \tfoo');
+ *   // {indent: 4, stops: {1: 0, 2: 1, 4: 2}}
+ *
+ *   getIndent('\t  foo')
+ *   // {indent: 6, stops: {4: 0, 5: 1, 6: 2}}
+ *
+ * @param {string} value - Indented line.
+ * @return {Object}
+ */
+function getIndent(value) {
+    var index = 0;
+    var indent = 0;
+    var character = value.charAt(index);
+    var stops = {};
+    var size;
+
+    while (character in INDENTATION_CHARACTERS) {
+        size = INDENTATION_CHARACTERS[character];
+
+        indent += size;
+
+        if (size > 1) {
+            indent = Math.floor(indent / size) * size;
+        }
+
+        stops[indent] = index;
+
+        character = value.charAt(++index);
+    }
+
+    return {
+        'indent': indent,
+        'stops': stops
+    };
+}
+
+/**
+ * Remove the minimum indent from every line in `value`.
+ * Supports both tab, spaced, and mixed indentation (as
+ * well as possible).
+ *
+ * @example
+ *   removeIndentation('  foo'); // 'foo'
+ *   removeIndentation('    foo', 2); // '  foo'
+ *   removeIndentation('\tfoo', 2); // '  foo'
+ *   removeIndentation('  foo\n bar'); // ' foo\n bar'
  *
  * @param {string} value
- * @return {string}
+ * @param {number?} [maximum] - Maximum indentation
+ *   to remove.
+ * @return {string} - Unindented `value`.
  */
-function removeIndent(value) {
+function removeIndentation(value, maximum) {
     var values = value.split(NEW_LINE);
-    var index = values.length;
+    var position = values.length + 1;
     var minIndent = Infinity;
-    var indent;
-    var expression;
+    var matrix = [];
+    var index;
+    var indentation;
+    var stops;
+    var padding;
 
-    while (index--) {
-        if (values[index].length === 0) {
+    values.unshift(repeat(SPACE, maximum) + EXCLAMATION_MARK);
+
+    while (position--) {
+        indentation = getIndent(values[position]);
+
+        matrix[position] = indentation.stops;
+
+        if (trim(values[position]).length === 0) {
             continue;
         }
 
-        indent = values[index].match(EXPRESSION_INITIAL_SPACES);
-
-        if (indent) {
-            indent = indent[0].length;
-
-            if (indent > 0 && indent < minIndent) {
-                minIndent = indent;
+        if (indentation.indent) {
+            if (indentation.indent > 0 && indentation.indent < minIndent) {
+                minIndent = indentation.indent;
             }
         } else {
             minIndent = Infinity;
+
             break;
         }
     }
 
     if (minIndent !== Infinity) {
-        expression = new RegExp('^ {1,' + minIndent + '}');
-        index = values.length;
+        position = values.length;
 
-        while (index--) {
-            values[index] = values[index].replace(expression, EMPTY);
+        while (position--) {
+            stops = matrix[position];
+            index = minIndent;
+
+            while (index && !(index in stops)) {
+                index--;
+            }
+
+            if (
+                trim(values[position]).length !== 0 &&
+                minIndent &&
+                index !== minIndent
+            ) {
+                padding = TAB;
+            } else {
+                padding = EMPTY;
+            }
+
+            values[position] = padding + values[position].slice(
+                index in stops ? stops[index] + 1 : 0
+            );
+        }
+    }
+
+    values.shift();
+
+    return values.join(NEW_LINE);
+}
+
+/**
+ * Ensure that `value` is at least indented with
+ * `indent` spaces.  Does not support tabs. Does support
+ * multiple lines.
+ *
+ * @example
+ *   ensureIndentation('foo', 2); // '  foo'
+ *   ensureIndentation('  foo', 4); // '    foo'
+ *
+ * @param {string} value
+ * @param {number} indent - The maximum amount of
+ *   spacing to insert.
+ * @return {string} - indented `value`.
+ */
+function ensureIndentation(value, indent) {
+    var values = value.split(NEW_LINE);
+    var length = values.length;
+    var index = -1;
+    var line;
+    var position;
+
+    while (++index < length) {
+        line = values[index];
+
+        position = -1;
+
+        while (++position < indent) {
+            if (line.charAt(position) !== SPACE) {
+                values[index] = repeat(SPACE, indent - position) + line;
+                break;
+            }
         }
     }
 
@@ -916,28 +2911,117 @@ function removeIndent(value) {
 /**
  * Get the alignment from a table rule.
  *
- * @param {Array.<Array.<Object>>} rows
- * @return {Array.<string>}
+ * @example
+ *   getAlignment([':-', ':-:', '-:', '--']);
+ *   // ['left', 'center', 'right', null];
+ *
+ * @param {Array.<string>} cells
+ * @return {Array.<string?>}
  */
-function getAlignment(rows) {
+function getAlignment(cells) {
     var results = [];
     var index = -1;
-    var length = rows.length;
+    var length = cells.length;
     var alignment;
 
     while (++index < length) {
-        alignment = rows[index];
+        alignment = cells[index];
 
         if (EXPRESSION_RIGHT_ALIGNMENT.test(alignment)) {
             results[index] = 'right';
         } else if (EXPRESSION_CENTER_ALIGNMENT.test(alignment)) {
             results[index] = 'center';
-        } else {
+        } else if (EXPRESSION_LEFT_ALIGNMENT.test(alignment)) {
             results[index] = 'left';
+        } else {
+            results[index] = null;
         }
     }
 
     return results;
+}
+
+/**
+ * Construct a state `toggler`: a function which inverses
+ * `property` in context based on its current value.
+ * The by `toggler` returned function restores that value.
+ *
+ * @example
+ *   var context = {};
+ *   var key = 'foo';
+ *   var val = true;
+ *   context[key] = val;
+ *   context.enter = stateToggler(key, val);
+ *   context[key]; // true
+ *   var exit = context.enter();
+ *   context[key]; // false
+ *   var nested = context.enter();
+ *   context[key]; // false
+ *   nested();
+ *   context[key]; // false
+ *   exit();
+ *   context[key]; // true
+ *
+ * @param {string} key - Property to toggle.
+ * @param {boolean} state - It's default state.
+ * @return {function(): function()} - Enter.
+ */
+function stateToggler(key, state) {
+    /**
+     * Construct a toggler for the bound `key`.
+     *
+     * @return {Function} - Exit state.
+     */
+    function enter() {
+        var self = this;
+        var current = self[key];
+
+        self[key] = !state;
+
+        /**
+         * State canceler, cancels the state, if allowed.
+         */
+        function exit() {
+            self[key] = current;
+        }
+
+        return exit;
+    }
+
+    return enter;
+}
+
+/**
+ * Construct a state toggler which doesn't toggle.
+ *
+ * @example
+ *   var context = {};
+ *   var key = 'foo';
+ *   var val = true;
+ *   context[key] = val;
+ *   context.enter = noopToggler();
+ *   context[key]; // true
+ *   var exit = context.enter();
+ *   context[key]; // true
+ *   exit();
+ *   context[key]; // true
+ *
+ * @return {function(): function()} - Enter.
+ */
+function noopToggler() {
+    /**
+     * No-operation.
+     */
+    function exit() {}
+
+    /**
+     * @return {Function}
+     */
+    function enter() {
+        return exit;
+    }
+
+    return enter;
 }
 
 /*
@@ -947,152 +3031,244 @@ function getAlignment(rows) {
 var MERGEABLE_NODES = {};
 
 /**
- * Merge two HTML nodes: `token` into `prev`.
+ * Merge two text nodes: `node` into `prev`.
  *
- * @param {Object} prev
- * @param {Object} token
- * @return {Object} `prev`.
+ * @param {Object} prev - Preceding sibling.
+ * @param {Object} node - Following sibling.
+ * @return {Object} - `prev`.
  */
-MERGEABLE_NODES.html = function (prev, token) {
-    prev.value += NEW_LINE + NEW_LINE + token.value;
+MERGEABLE_NODES.text = function (prev, node) {
+    prev.value += node.value;
 
     return prev;
 };
 
 /**
- * Merge two text nodes: `token` into `prev`.
+ * Merge two blockquotes: `node` into `prev`, unless in
+ * CommonMark mode.
  *
- * @param {Object} prev
- * @param {Object} token
- * @return {Object} `prev`.
+ * @param {Object} prev - Preceding sibling.
+ * @param {Object} node - Following sibling.
+ * @return {Object} - `prev`, or `node` in CommonMark mode.
  */
-MERGEABLE_NODES.text = function (prev, token, type) {
-    prev.value += (type === BLOCK ? NEW_LINE : EMPTY) + token.value;
+MERGEABLE_NODES.blockquote = function (prev, node) {
+    if (this.options.commonmark) {
+        return node;
+    }
+
+    prev.children = prev.children.concat(node.children);
 
     return prev;
 };
 
 /**
- * Merge two blockquotes: `token` into `prev`.
+ * Merge two lists: `node` into `prev`. Knows, about
+ * which bullets were used.
  *
- * @param {Object} prev
- * @param {Object} token
- * @return {Object} `prev`.
+ * @param {Object} prev - Preceding sibling.
+ * @param {Object} node - Following sibling.
+ * @return {Object} - `prev`, or `node` when the lists are
+ *   of different types (a different bullet is used).
  */
-MERGEABLE_NODES.blockquote = function (prev, token) {
-    prev.children = prev.children.concat(token.children);
+MERGEABLE_NODES.list = function (prev, node) {
+    if (
+        !this.currentBullet ||
+        this.currentBullet !== this.previousBullet ||
+        this.currentBullet.length !== 1
+    ) {
+        return node;
+    }
+
+    prev.children = prev.children.concat(node.children);
 
     return prev;
 };
 
 /**
- * Tokenise a line.
+ * Tokenise a line.  Unsets `currentBullet` and
+ * `previousBullet` if more than one lines are found, thus
+ * preventing lists from merging when they use different
+ * bullets.
+ *
+ * @example
+ *   tokenizeNewline(eat, '\n\n');
  *
  * @param {function(string)} eat
  * @param {string} $0 - Lines.
  */
 function tokenizeNewline(eat, $0) {
+    if ($0.length > 1) {
+        this.currentBullet = null;
+        this.previousBullet = null;
+    }
+
     eat($0);
 }
 
 /**
- * Tokenise a code block.
+ * Tokenise an indented code block.
+ *
+ * @example
+ *   tokenizeCode(eat, '\tfoo');
  *
  * @param {function(string)} eat
  * @param {string} $0 - Whole code.
+ * @return {Node} - `code` node.
  */
 function tokenizeCode(eat, $0) {
-    $0 = trimRightLines($0);
+    $0 = trimTrailingLines($0);
 
-    eat($0)(this.renderCodeBlock($0));
+    return eat($0)(this.renderCodeBlock(
+        removeIndentation($0, TAB_SIZE), null, eat)
+    );
 }
 
 /**
  * Tokenise a fenced code block.
  *
+ * @example
+ *   var $0 = '```js\nfoo()\n```';
+ *   tokenizeFences(eat, $0, '', '```', '`', 'js', 'foo()\n');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole code.
- * @param {string} $1 - Fence.
- * @param {string} $2 - Programming language flag.
- * @param {string} $3 - Content.
+ * @param {string} $1 - Initial spacing.
+ * @param {string} $2 - Initial fence.
+ * @param {string} $3 - Fence marker.
+ * @param {string} $4 - Programming language flag.
+ * @param {string} $5 - Content.
+ * @return {Node} - `code` node.
  */
-function tokenizeFences(eat, $0, $1, $2, $3) {
-    eat($0)(this.renderCodeBlock($3, $2));
+function tokenizeFences(eat, $0, $1, $2, $3, $4, $5) {
+    $0 = trimTrailingLines($0);
+
+    /*
+     * If the initial fence was preceded by spaces,
+     * exdent that amount of white space from the code
+     * block.  Because it's possible that the code block
+     * is exdented, we first have to ensure at least
+     * those spaces are available.
+     */
+
+    if ($1) {
+        $5 = removeIndentation(ensureIndentation($5, $1.length), $1.length);
+    }
+
+    return eat($0)(this.renderCodeBlock($5, $4, eat));
 }
 
 /**
  * Tokenise an ATX-style heading.
  *
+ * @example
+ *   tokenizeHeading(eat, ' # foo', ' ', '#', ' ', 'foo');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole heading.
- * @param {string} $1 - Initial hashes and spacing.
+ * @param {string} $1 - Initial spacing.
  * @param {string} $2 - Hashes.
- * @param {string} $3 - Content.
+ * @param {string} $3 - Internal spacing.
+ * @param {string} $4 - Content.
+ * @return {Node} - `heading` node.
  */
-function tokenizeHeading(eat, $0, $1, $2, $3) {
-    var offset = this.offset;
-    var line = eat.now().line;
+function tokenizeHeading(eat, $0, $1, $2, $3, $4) {
+    var now = eat.now();
 
-    offset[line] = (offset[line] || 0) + $1.length;
+    now.column += ($1 + $2 + ($3 || '')).length;
 
-    eat($0)(this.renderHeading($3, $2.length));
+    return eat($0)(this.renderHeading($4, $2.length, now));
 }
 
 /**
  * Tokenise a Setext-style heading.
  *
+ * @example
+ *   tokenizeLineHeading(eat, 'foo\n===', '', 'foo', '=');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole heading.
- * @param {string} $1 - Content.
- * @param {string} $2 - Underline.
+ * @param {string} $1 - Initial spacing.
+ * @param {string} $2 - Content.
+ * @param {string} $3 - Underline marker.
+ * @return {Node} - `heading` node.
  */
-function tokenizeLineHeading(eat, $0, $1, $2) {
-    eat($0)(this.renderHeading($1, $2 === EQUALS ? 1 : 2));
+function tokenizeLineHeading(eat, $0, $1, $2, $3) {
+    var now = eat.now();
+
+    now.column += $1.length;
+
+    return eat($0)(this.renderHeading($2, $3 === EQUALS ? 1 : 2, now));
 }
 
 /**
  * Tokenise a horizontal rule.
  *
+ * @example
+ *   tokenizeHorizontalRule(eat, '***');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole rule.
+ * @return {Node} - `horizontalRule` node.
  */
 function tokenizeHorizontalRule(eat, $0) {
-    eat($0)(this.renderVoid(HORIZONTAL_RULE));
+    return eat($0)(this.renderVoid(HORIZONTAL_RULE));
 }
 
 /**
  * Tokenise a blockquote.
  *
+ * @example
+ *   tokenizeBlockquote(eat, '> Foo');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole blockquote.
+ * @return {Node} - `blockquote` node.
  */
 function tokenizeBlockquote(eat, $0) {
     var now = eat.now();
+    var indent = this.indent(now.line);
+    var value = trimTrailingLines($0);
+    var add = eat(value);
 
-    eat($0)(this.renderBlockquote($0, now));
+    value = value.replace(EXPRESSION_BLOCK_QUOTE, function (prefix) {
+        indent(prefix.length);
+
+        return '';
+    });
+
+    return add(this.renderBlockquote(value, now));
 }
 
 /**
  * Tokenise a list.
  *
+ * @example
+ *   tokenizeList(eat, '- Foo', '', '-');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole list.
  * @param {string} $1 - Indent.
  * @param {string} $2 - Bullet.
+ * @return {Node} - `list` node.
  */
 function tokenizeList(eat, $0, $1, $2) {
     var self = this;
     var firstBullet = $2;
-    var matches = trimRight($0).match(self.rules.item);
+    var value = trimTrailingLines($0);
+    var matches = value.match(self.rules.item);
     var length = matches.length;
-    var index = -1;
+    var index = 0;
+    var isLoose = false;
     var now;
     var bullet;
-    var add;
     var item;
     var enterTop;
     var exitBlockquote;
-    var list;
+    var node;
+    var indent;
+    var size;
+    var position;
+    var end;
 
     /*
      * Determine if all list-items belong to the
@@ -1105,12 +3281,15 @@ function tokenizeList(eat, $0, $1, $2) {
 
             if (
                 firstBullet !== bullet &&
-                !(
-                    firstBullet.length > 1 &&
-                    bullet.length > 1
+                (
+                    firstBullet.length === 1 && bullet.length === 1 ||
+                    bullet.charAt(bullet.length - 1) !==
+                    firstBullet.charAt(firstBullet.length - 1)
                 )
             ) {
                 matches = matches.slice(0, index);
+                matches[index - 1] = trimTrailingLines(matches[index - 1]);
+
                 length = matches.length;
 
                 break;
@@ -1118,45 +3297,94 @@ function tokenizeList(eat, $0, $1, $2) {
         }
     }
 
+    if (self.options.commonmark) {
+        index = -1;
+
+        while (++index < length) {
+            item = matches[index];
+            indent = self.rules.indent.exec(item);
+            indent = indent[1] + repeat(SPACE, indent[2].length) + indent[3];
+            size = getIndent(indent).indent;
+            position = indent.length;
+            end = item.length;
+
+            while (++position < end) {
+                if (
+                    item.charAt(position) === NEW_LINE &&
+                    item.charAt(position - 1) === NEW_LINE &&
+                    getIndent(item.slice(position + 1)).indent < size
+                ) {
+                    matches[index] = item.slice(0, position - 1);
+
+                    matches = matches.slice(0, index + 1);
+                    length = matches.length;
+
+                    break;
+                }
+            }
+        }
+    }
+
+    self.previousBullet = self.currentBullet;
+    self.currentBullet = firstBullet;
+
     index = -1;
 
-    add = eat(EMPTY);
+    node = eat(matches.join(NEW_LINE)).reset(
+        self.renderList([], firstBullet)
+    );
 
     enterTop = self.exitTop();
     exitBlockquote = self.enterBlockquote();
-
-    list = add(self.renderList([], firstBullet.length > 1));
 
     while (++index < length) {
         item = matches[index];
         now = eat.now();
 
-        item = eat(item)(list, self.renderListItem(item, now));
+        item = eat(item)(self.renderListItem(item, now), node);
 
-        eat(NEW_LINE);
+        if (item.loose) {
+            isLoose = true;
+        }
+
+        if (index !== length - 1) {
+            eat(NEW_LINE);
+        }
     }
 
-    list.position.end.line = item.position.end.line;
-    list.position.end.column = item.position.end.column;
+    node.loose = isLoose;
 
     enterTop();
     exitBlockquote();
+
+    return node;
 }
 
 /**
- * Tokenise a link definition.
+ * Tokenise HTML.
+ *
+ * @example
+ *   tokenizeHtml(eat, '<span>foo</span>');
  *
  * @param {function(string)} eat
  * @param {string} $0 - Whole HTML.
+ * @return {Node} - `html` node.
  */
 function tokenizeHtml(eat, $0) {
-    $0 = trimRightLines($0);
+    $0 = trimTrailingLines($0);
 
-    eat($0)(this.renderRaw(HTML, $0));
+    return eat($0)(this.renderRaw(HTML, $0));
 }
 
 /**
- * Tokenise a link definition.
+ * Tokenise a definition.
+ *
+ * @example
+ *   var $0 = '[foo]: http://example.com "Example Domain"';
+ *   var $1 = 'foo';
+ *   var $2 = 'http://example.com';
+ *   var $3 = 'Example Domain';
+ *   tokenizeDefinition(eat, $0, $1, $2, $3);
  *
  * @property {boolean} onlyAtTop
  * @property {boolean} notInBlockquote
@@ -1165,32 +3393,59 @@ function tokenizeHtml(eat, $0) {
  * @param {string} $1 - Key.
  * @param {string} $2 - URL.
  * @param {string} $3 - Title.
+ * @return {Node} - `definition` node.
  */
-function tokenizeLinkDefinition(eat, $0, $1, $2, $3) {
-    this.links[$1.toLowerCase()] = eat($0)({}, this.renderLink(
-        true, $2, null, $3
-    ));
+function tokenizeDefinition(eat, $0, $1, $2, $3) {
+    var link = $2;
+
+    /*
+     * Remove angle-brackets from `link`.
+     */
+
+    if (link.charAt(0) === LT && link.charAt(link.length - 1) === GT) {
+        link = link.slice(1, -1);
+    }
+
+    return eat($0)({
+        'type': 'definition',
+        'identifier': normalize($1),
+        'title': $3 ? decode(this.descape($3), eat) : null,
+        'link': decode(this.descape(link), eat)
+    });
 }
 
-tokenizeLinkDefinition.onlyAtTop = true;
-tokenizeLinkDefinition.notInBlockquote = true;
+tokenizeDefinition.onlyAtTop = true;
+tokenizeDefinition.notInBlockquote = true;
 
 /**
  * Tokenise YAML front matter.
+ *
+ * @example
+ *   var $0 = '---\nfoo: bar\n---';
+ *   var $1 = 'foo: bar';
+ *   tokenizeYAMLFrontMatter(eat, $0, $1);
  *
  * @property {boolean} onlyAtStart
  * @param {function(string)} eat
  * @param {string} $0 - Whole front matter.
  * @param {string} $1 - Content.
+ * @return {Node} - `yaml` node.
  */
 function tokenizeYAMLFrontMatter(eat, $0, $1) {
-    eat($0)(this.renderRaw(YAML, $1 ? trimRightLines($1) : EMPTY));
+    return eat($0)(this.renderRaw(YAML, $1 ? trimTrailingLines($1) : EMPTY));
 }
 
 tokenizeYAMLFrontMatter.onlyAtStart = true;
 
 /**
  * Tokenise a footnote definition.
+ *
+ * @example
+ *   var $0 = '[foo]: Bar.';
+ *   var $1 = '[foo]';
+ *   var $2 = 'foo';
+ *   var $3 = 'Bar.';
+ *   tokenizeFootnoteDefinition(eat, $0, $1, $2, $3);
  *
  * @property {boolean} onlyAtTop
  * @property {boolean} notInBlockquote
@@ -1199,28 +3454,22 @@ tokenizeYAMLFrontMatter.onlyAtStart = true;
  * @param {string} $1 - Whole key.
  * @param {string} $2 - Key.
  * @param {string} $3 - Whole value.
+ * @return {Node} - `footnoteDefinition` node.
  */
 function tokenizeFootnoteDefinition(eat, $0, $1, $2, $3) {
     var self = this;
     var now = eat.now();
-    var line = now.line;
-    var offset = self.offset;
-    var token;
+    var indent = self.indent(now.line);
 
     $3 = $3.replace(EXPRESSION_INITIAL_TAB, function (value) {
-        offset[line] = (offset[line] || 0) + value.length;
-        line++;
+        indent(value.length);
 
         return EMPTY;
     });
 
     now.column += $1.length;
 
-    token = eat($0)({},
-        self.renderFootnoteDefinition($2.toLowerCase(), $3, now
-    ));
-
-    self.footnotes[token.id] = token;
+    return eat($0)(self.renderFootnoteDefinition(normalize($2), $3, now));
 }
 
 tokenizeFootnoteDefinition.onlyAtTop = true;
@@ -1228,6 +3477,15 @@ tokenizeFootnoteDefinition.notInBlockquote = true;
 
 /**
  * Tokenise a table.
+ *
+ * @example
+ *   var $0 = ' | foo |\n | --- |\n | bar |';
+ *   var $1 = ' | foo |';
+ *   var $2 = '| foo |';
+ *   var $3 = ' | --- |';
+ *   var $4 = '| --- |';
+ *   var $5 = ' | bar |';
+ *   tokenizeTable(eat, $0, $1, $2, $3, $4, $5);
  *
  * @property {boolean} onlyAtTop
  * @param {function(string)} eat
@@ -1237,25 +3495,28 @@ tokenizeFootnoteDefinition.notInBlockquote = true;
  * @param {string} $3 - Whole alignment.
  * @param {string} $4 - Trimmed alignment.
  * @param {string} $5 - Rows.
+ * @return {Node} - `table` node.
  */
 function tokenizeTable(eat, $0, $1, $2, $3, $4, $5) {
     var self = this;
-    var table;
+    var node;
     var index;
     var length;
-    var queue;
 
-    table = eat(EMPTY)({
+    $0 = trimTrailingLines($0);
+
+    node = eat($0).reset({
         'type': TABLE,
         'align': [],
         'children': []
     });
 
     /**
-     * Eat a fence.
+     * Eat a fence.  Returns an empty string so it can be
+     * passed to `String#replace()`.
      *
-     * @param {string} value
-     * @return {string} - Empty.
+     * @param {string} value - Fence.
+     * @return {string} - Empty string.
      */
     function eatFence(value) {
         eat(value);
@@ -1266,77 +3527,54 @@ function tokenizeTable(eat, $0, $1, $2, $3, $4, $5) {
     /**
      * Factory to eat a cell to a bound `row`.
      *
-     * @param {Object} row
-     * @return {Function}
+     * @param {Object} row - Parent to add cells to.
+     * @return {Function} - `eatCell` bound to `row`.
      */
     function eatCellFactory(row) {
         /**
-         * Eat a cell.
+         * Eat a cell.  Returns an empty string so it can be
+         * passed to `String#replace()`.
          *
-         * @param {string} value
-         * @param {string} content
-         * @param {string} pipe
-         * @return {string} - Empty.
+         * @param {string} value - Complete match.
+         * @param {string} content - Cell content.
+         * @param {string} pipe - Fence.
+         * @return {string} - Empty string.
          */
-        return function (value, content, pipe, pos, input) {
-            var lastIndex = content.length;
+        function eatCell(value, content, pipe) {
+            var cell = trim.left(content);
+            var diff = content.length - cell.length;
+            var now;
 
-            /*
-             * Support escaped pipes in table cells.
-             */
+            eat(content.slice(0, diff));
 
-            while (lastIndex--) {
-                if (content.charAt(lastIndex) !== SLASH) {
-                    break;
-                }
+            now = eat.now();
 
-                if (content.charAt(--lastIndex) !== SLASH) {
-                    /*
-                     * Escaped pipe, add it to normal
-                     * content, or, queue it for the
-                     * next cell.
-                     */
-
-                    if (pos + content.length + 1 === input.length) {
-                        content += pipe;
-                        pipe = EMPTY;
-
-                        break;
-                    } else {
-                        queue = content + pipe;
-
-                        return content + pipe;
-                    }
-                }
-            }
-
-            if (queue) {
-                content = queue + content;
-                queue = EMPTY;
-            }
-
-            eat(content)(row, self.renderBlock(TABLE_CELL, content));
+            eat(cell)(self.renderInline(
+                TABLE_CELL, trim.right(cell), now
+            ), row);
 
             eat(pipe);
 
             return EMPTY;
-        };
+        }
+
+        return eatCell;
     }
 
     /**
      * Eat a row of type `type`.
      *
-     * @param {string} type
-     * @param {string} value
+     * @param {string} type - Type of the returned node,
+     *   such as `tableHeader` or `tableRow`.
+     * @param {string} value - Row, including initial and
+     *   final fences.
      */
     function renderRow(type, value) {
-        var row = eat(EMPTY)(table, self.renderBlock(type, []));
+        var row = eat(value).reset(self.renderParent(type, []), node);
 
         value
             .replace(EXPRESSION_TABLE_INITIAL, eatFence)
             .replace(EXPRESSION_TABLE_CONTENT, eatCellFactory(row));
-
-        row.position.end = eat.now();
     }
 
     /*
@@ -1357,13 +3595,13 @@ function tokenizeTable(eat, $0, $1, $2, $3, $4, $5) {
         .replace(EXPRESSION_TABLE_FENCE, EMPTY)
         .split(EXPRESSION_TABLE_BORDER);
 
-    table.align = getAlignment($4);
+    node.align = getAlignment($4);
 
     /*
      * Add the table rows to table's children.
      */
 
-    $5 = trimRightLines($5).split(NEW_LINE);
+    $5 = trimTrailingLines($5).split(NEW_LINE);
 
     index = -1;
     length = $5.length;
@@ -1376,204 +3614,348 @@ function tokenizeTable(eat, $0, $1, $2, $3, $4, $5) {
         }
     }
 
-    table.position.end = eat.now();
+    return node;
 }
 
 tokenizeTable.onlyAtTop = true;
 
 /**
- * Tokenise a paragraph token.
+ * Tokenise a paragraph node.
  *
- * @property {boolean} onlyAtTop
+ * @example
+ *   tokenizeParagraph(eat, 'Foo.');
+ *
  * @param {function(string)} eat
- * @param {string} $0
+ * @param {string} $0 - Whole paragraph.
+ * @return {Node?} - `paragraph` node, when the node does
+ *   not just contain white space.
  */
 function tokenizeParagraph(eat, $0) {
-    $0 = trimRight($0);
+    var now = eat.now();
 
-    eat($0)(this.renderBlock(PARAGRAPH, $0));
+    if (trim($0) === EMPTY) {
+        eat($0);
+
+        return null;
+    }
+
+    $0 = trimTrailingLines($0);
+
+    return eat($0)(this.renderInline(PARAGRAPH, $0, now));
 }
 
-tokenizeParagraph.onlyAtTop = true;
-
 /**
- * Tokenise a text token.
+ * Tokenise a text node.
+ *
+ * @example
+ *   tokenizeText(eat, 'foo');
  *
  * @param {function(string)} eat
- * @param {string} $0
+ * @param {string} $0 - Whole text.
+ * @return {Node} - `text` node.
  */
 function tokenizeText(eat, $0) {
-    eat($0)(this.renderRaw(TEXT, $0));
+    return eat($0)(this.renderRaw(TEXT, $0));
 }
 
 /**
- * Create a code-block token.
+ * Create a code-block node.
  *
- * @param {string?} value
- * @param {string?} language
- * @return {Object}
+ * @example
+ *   renderCodeBlock('foo()', 'js', now());
+ *
+ * @param {string?} [value] - Code.
+ * @param {string?} [language] - Optional language flag.
+ * @param {Function} eat
+ * @return {Object} - `code` node.
  */
-function renderCodeBlock(value, language) {
+function renderCodeBlock(value, language, eat) {
     return {
         'type': CODE,
-        'lang': language || null,
-        'value': trimRightLines(removeIndent(value || EMPTY))
+        'lang': language ? decode(this.descape(language), eat) : null,
+        'value': trimTrailingLines(value || EMPTY)
     };
 }
 
 /**
- * Create a list token.
+ * Create a list node.
  *
- * @param {string} children
- * @param {boolean} ordered
- * @return {Object}
+ * @example
+ *   var children = [renderListItem('- foo')];
+ *   renderList(children, '-');
+ *
+ * @param {string} children - Children.
+ * @param {string} bullet - First bullet.
+ * @return {Object} - `list` node.
  */
-function renderList(children, ordered) {
+function renderList(children, bullet) {
+    var start = parseInt(bullet, 10);
+
+    if (start !== start) {
+        start = null;
+    }
+
+    /*
+     * `loose` should be added later.
+     */
+
     return {
         'type': LIST,
-        'ordered': ordered,
+        'ordered': bullet.length > 1,
+        'start': start,
+        'loose': null,
         'children': children
     };
 }
 
 /**
- * Create a list-item token.
+ * Create a list-item using overly simple mechanics.
  *
- * @param {string} token
- * @return {Object}
+ * @example
+ *   renderPedanticListItem('- _foo_', now());
+ *
+ * @param {string} value - List-item.
+ * @param {Object} position - List-item location.
+ * @return {string} - Cleaned `value`.
  */
-function renderListItem(token, position) {
-    var space = 0;
-    var offset = this.offset;
-    var line = position.line;
-    var expression;
-    var loose;
+function renderPedanticListItem(value, position) {
+    var self = this;
+    var indent = self.indent(position.line);
 
-    /*
-     * Remove the list token's bullet.
+    /**
+     * A simple replacer which removed all matches,
+     * and adds their length to `offset`.
+     *
+     * @param {string} $0
+     * @return {string}
      */
-
-    token = token.replace(EXPRESSION_BULLET, function ($0) {
-        space = $0.length;
-
-        offset[line] = (offset[line] || 0) + space;
-
-        /*
-         * Make sure that the first nine numbered list items
-         * can indent with an extra space:
-         */
-
-        space = Math.ceil(space / 2) * 2;
+    function replacer($0) {
+        indent($0.length);
 
         return EMPTY;
-    });
-
-    /*
-     * Exdent whatever the list token contains.  Hacky.
-     */
-
-    if (this.options.pedantic) {
-        expression = EXPRESSION_INITIAL_INDENT;
-    } else {
-        expression = new RegExp('^( {0,' + space + '})', 'gm');
     }
 
-    token = token.replace(expression, function ($0) {
-        offset[line] = (offset[line] || 0) + $0.length;
-        line++;
-
-        return EMPTY;
-    });
-
     /*
-     * Determine whether token is loose or not.
+     * Remove the list-item's bullet.
      */
 
-    loose = EXPRESSION_LOOSE_LIST_ITEM.test(token) ||
-        token.charAt(token.length - 1) === NEW_LINE;
+    value = value.replace(EXPRESSION_PEDANTIC_BULLET, replacer);
 
-    return {
-        'type': LIST_ITEM,
-        'loose': loose,
-        'children': this.tokenizeBlock(token, position)
-    };
+    /*
+     * The initial line was also matched by the below, so
+     * we reset the `line`.
+     */
+
+    indent = self.indent(position.line);
+
+    return value.replace(EXPRESSION_INITIAL_INDENT, replacer);
 }
 
 /**
- * Create a footnote-definition token.
+ * Create a list-item using sane mechanics.
  *
- * @param {string} id
- * @param {string} value
- * @return {Object}
+ * @example
+ *   renderNormalListItem('- _foo_', now());
+ *
+ * @param {string} value - List-item.
+ * @param {Object} position - List-item location.
+ * @return {string} - Cleaned `value`.
  */
-function renderFootnoteDefinition(id, value, position) {
+function renderNormalListItem(value, position) {
+    var self = this;
+    var indent = self.indent(position.line);
+    var bullet;
+    var rest;
+    var lines;
+    var trimmedLines;
+    var index;
+    var length;
+    var max;
+
+    /*
+     * Remove the list-item's bullet.
+     */
+
+    value = value.replace(EXPRESSION_BULLET, function ($0, $1, $2, $3, $4) {
+        bullet = $1 + $2 + $3;
+        rest = $4;
+
+       /*
+        * Make sure that the first nine numbered list items
+        * can indent with an extra space.  That is, when
+        * the bullet did not receive an extra final space.
+        */
+
+        if (Number($2) < 10 && bullet.length % 2 === 1) {
+            $2 = SPACE + $2;
+        }
+
+        max = $1 + repeat(SPACE, $2.length) + $3;
+
+        return max + rest;
+    });
+
+    lines = value.split(NEW_LINE);
+
+    trimmedLines = removeIndentation(
+        value, getIndent(max).indent
+    ).split(NEW_LINE);
+
+    /*
+     * We replaced the initial bullet with something
+     * else above, which was used to trick
+     * `removeIndentation` into removing some more
+     * characters when possible. However, that could
+     * result in the initial line to be stripped more
+     * than it should be.
+     */
+
+    trimmedLines[0] = rest;
+
+    indent(bullet.length);
+
+    index = 0;
+    length = lines.length;
+
+    while (++index < length) {
+        indent(lines[index].length - trimmedLines[index].length);
+    }
+
+    return trimmedLines.join(NEW_LINE);
+}
+
+/*
+ * A map of two functions which can create list items.
+ */
+
+var LIST_ITEM_MAP = {};
+
+LIST_ITEM_MAP.true = renderPedanticListItem;
+LIST_ITEM_MAP.false = renderNormalListItem;
+
+/**
+ * Create a list-item node.
+ *
+ * @example
+ *   renderListItem('- _foo_', now());
+ *
+ * @param {Object} value - List-item.
+ * @param {Object} position - List-item location.
+ * @return {Object} - `listItem` node.
+ */
+function renderListItem(value, position) {
+    var self = this;
+    var checked = null;
+    var node;
+    var task;
+    var indent;
+
+    value = LIST_ITEM_MAP[self.options.pedantic].apply(self, arguments);
+
+    if (self.options.gfm) {
+        task = value.match(EXPRESSION_TASK_ITEM);
+
+        if (task) {
+            indent = task[0].length;
+            checked = task[1].toLowerCase() === 'x';
+
+            self.indent(position.line)(indent);
+            value = value.slice(indent);
+        }
+    }
+
+    node = {
+        'type': LIST_ITEM,
+        'loose': EXPRESSION_LOOSE_LIST_ITEM.test(value) ||
+            value.charAt(value.length - 1) === NEW_LINE
+    };
+
+    if (self.options.gfm) {
+        node.checked = checked;
+    }
+
+    node.children = self.tokenizeBlock(value, position);
+
+    return node;
+}
+
+/**
+ * Create a footnote-definition node.
+ *
+ * @example
+ *   renderFootnoteDefinition('1', '_foo_', now());
+ *
+ * @param {string} identifier - Unique reference.
+ * @param {string} value - Contents
+ * @param {Object} position - Definition location.
+ * @return {Object} - `footnoteDefinition` node.
+ */
+function renderFootnoteDefinition(identifier, value, position) {
     var self = this;
     var exitBlockquote = self.enterBlockquote();
-    var token;
+    var node;
 
-    token = {
+    node = {
         'type': FOOTNOTE_DEFINITION,
-        'id': id,
+        'identifier': identifier,
         'children': self.tokenizeBlock(value, position)
     };
 
     exitBlockquote();
 
-    self.footnotesAsArray.push(id);
-
-    return token;
+    return node;
 }
 
 /**
- * Create a heading token.
+ * Create a heading node.
  *
- * @param {string} value
- * @param {number} depth
- * @return {Object}
+ * @example
+ *   renderHeading('_foo_', 1, now());
+ *
+ * @param {string} value - Content.
+ * @param {number} depth - Heading depth.
+ * @param {Object} position - Heading content location.
+ * @return {Object} - `heading` node
  */
-function renderHeading(value, depth) {
+function renderHeading(value, depth, position) {
     return {
         'type': HEADING,
         'depth': depth,
-        'children': value
+        'children': this.tokenizeInline(value, position)
     };
 }
 
 /**
- * Create a blockquote token.
+ * Create a blockquote node.
  *
- * @param {string} value
- * @return {Object}
+ * @example
+ *   renderBlockquote('_foo_', eat);
+ *
+ * @param {string} value - Content.
+ * @param {Object} now - Position.
+ * @return {Object} - `blockquote` node.
  */
-function renderBlockquote(value, position) {
+function renderBlockquote(value, now) {
     var self = this;
-    var line = position.line;
-    var offset = self.offset;
     var exitBlockquote = self.enterBlockquote();
-    var token;
-
-    value = value.replace(EXPRESSION_BLOCK_QUOTE, function ($0) {
-        offset[line] = (offset[line] || 0) + $0.length;
-        line++;
-
-        return EMPTY;
-    });
-
-    token = {
+    var node = {
         'type': BLOCKQUOTE,
-        'children': this.tokenizeBlock(value, position)
+        'children': this.tokenizeBlock(value, now)
     };
 
     exitBlockquote();
 
-    return token;
+    return node;
 }
 
 /**
- * Create a void token.
+ * Create a void node.
  *
- * @param {string} type
- * @return {Object}
+ * @example
+ *   renderVoid('horizontalRule');
+ *
+ * @param {string} type - Node type.
+ * @return {Object} - Node of type `type`.
  */
 function renderVoid(type) {
     return {
@@ -1582,13 +3964,16 @@ function renderVoid(type) {
 }
 
 /**
- * Create a children token.
+ * Create a parent.
  *
- * @param {string} type
- * @param {string|Array.<Object>} children
- * @return {Object}
+ * @example
+ *   renderParent('paragraph', '_foo_');
+ *
+ * @param {string} type - Node type.
+ * @param {Array.<Object>} children - Child nodes.
+ * @return {Object} - Node of type `type`.
  */
-function renderBlock(type, children) {
+function renderParent(type, children) {
     return {
         'type': type,
         'children': children
@@ -1596,11 +3981,14 @@ function renderBlock(type, children) {
 }
 
 /**
- * Create a raw token.
+ * Create a raw node.
  *
- * @param {string} type
- * @param {string} value
- * @return {Object}
+ * @example
+ *   renderRaw('inlineCode', 'foo()');
+ *
+ * @param {string} type - Node type.
+ * @param {string} value - Contents.
+ * @return {Object} - Node of type `type`.
  */
 function renderRaw(type, value) {
     return {
@@ -1610,91 +3998,132 @@ function renderRaw(type, value) {
 }
 
 /**
- * Create a link token.
+ * Create a link node.
  *
- * @param {boolean} isLink - Whether page or image reference.
- * @param {string} href
- * @param {string} text
- * @param {string?} title
- * @return {Object}
+ * @example
+ *   renderLink(true, 'example.com', 'example', 'Example Domain', now(), eat);
+ *   renderLink(false, 'fav.ico', 'example', 'Example Domain', now(), eat);
+ *
+ * @param {boolean} isLink - Whether linking to a document
+ *   or an image.
+ * @param {string} href - URI reference.
+ * @param {string} text - Content.
+ * @param {string?} title - Title.
+ * @param {Object} position - Location of link.
+ * @param {function(string)} eat
+ * @return {Object} - `link` or `image` node.
  */
-function renderLink(isLink, href, text, title, position) {
-    var exitLink = this.enterLink();
-    var token;
+function renderLink(isLink, href, text, title, position, eat) {
+    var self = this;
+    var exitLink = self.enterLink();
+    var node;
 
-    token = {
+    node = {
         'type': isLink ? LINK : IMAGE,
-        'title': title || null
+        'title': title ? decode(self.descape(title), eat) : null
     };
 
+    href = decode(href, eat);
+
     if (isLink) {
-        token.href = href;
-        token.children = this.tokenizeInline(text, position);
+        node.href = href;
+        node.children = self.tokenizeInline(text, position);
     } else {
-        token.src = href;
-        token.alt = text || null;
+        node.src = href;
+        node.alt = text ? decode(self.descape(text), eat) : null;
     }
 
     exitLink();
 
-    return token;
+    return node;
 }
 
 /**
- * Create a footnote token.
+ * Create a footnote node.
  *
- * @param {string} id
- * @return {Object}
- */
-function renderFootnote(id) {
-    return {
-        'type': FOOTNOTE,
-        'id': id
-    };
-}
-
-/**
- * Add a token with inline content.
+ * @example
+ *   renderFootnote('_foo_', now());
  *
- * @param {string} type
- * @param {string} value
- * @return {Object}
+ * @param {string} value - Contents.
+ * @param {Object} position - Location of footnote.
+ * @return {Object} - `footnote` node.
  */
-function renderInline(type, value, location) {
-    return {
-        'type': type,
-        'children': this.tokenizeInline(value, location)
-    };
+function renderFootnote(value, position) {
+    return this.renderInline(FOOTNOTE, value, position);
 }
 
 /**
- * Tokenise an escaped sequence.
+ * Add a node with inline content.
+ *
+ * @example
+ *   renderInline('strong', '_foo_', now());
+ *
+ * @param {string} type - Node type.
+ * @param {string} value - Contents.
+ * @param {Object} position - Location of node.
+ * @return {Object} - Node of type `type`.
+ */
+function renderInline(type, value, position) {
+    return this.renderParent(type, this.tokenizeInline(value, position));
+}
+
+/**
+ * Add a node with block content.
+ *
+ * @example
+ *   renderBlock('blockquote', 'Foo.', now());
+ *
+ * @param {string} type - Node type.
+ * @param {string} value - Contents.
+ * @param {Object} position - Location of node.
+ * @return {Object} - Node of type `type`.
+ */
+function renderBlock(type, value, position) {
+    return this.renderParent(type, this.tokenizeBlock(value, position));
+}
+
+/**
+ * Tokenise an escape sequence.
+ *
+ * @example
+ *   tokenizeEscape(eat, '\\a', 'a');
  *
  * @param {function(string)} eat
  * @param {string} $0 - Whole escape.
  * @param {string} $1 - Escaped character.
+ * @return {Node} - `escape` node.
  */
 function tokenizeEscape(eat, $0, $1) {
-    eat($0)(this.renderRaw(ESCAPE, $1));
+    return eat($0)(this.renderRaw(ESCAPE, $1));
 }
 
 /**
  * Tokenise a URL in carets.
  *
+ * @example
+ *   tokenizeAutoLink(eat, '<http://foo.bar>', 'http://foo.bar', '');
+ *
  * @property {boolean} notInLink
  * @param {function(string)} eat
  * @param {string} $0 - Whole link.
  * @param {string} $1 - URL.
- * @param {string?} $2 - Protocol or at.
+ * @param {string?} [$2] - Protocol or at.
+ * @return {Node} - `link` node.
  */
 function tokenizeAutoLink(eat, $0, $1, $2) {
+    var self = this;
     var href = $1;
     var text = $1;
     var now = eat.now();
     var offset = 1;
+    var tokenize;
+    var node;
 
     if ($2 === AT_SIGN) {
-        if (text.substr(0, MAILTO_PROTOCOL.length) !== MAILTO_PROTOCOL) {
+        if (
+            text.substr(0, MAILTO_PROTOCOL.length).toLowerCase() !==
+            MAILTO_PROTOCOL
+        ) {
             href = MAILTO_PROTOCOL + text;
         } else {
             text = text.substr(MAILTO_PROTOCOL.length);
@@ -1704,7 +4133,18 @@ function tokenizeAutoLink(eat, $0, $1, $2) {
 
     now.column += offset;
 
-    eat($0)(this.renderLink(true, href, text, null, now));
+    /*
+     * Temporarily remove support for escapes in autolinks.
+     */
+
+    tokenize = self.inlineTokenizers.escape;
+    self.inlineTokenizers.escape = null;
+
+    node = eat($0)(self.renderLink(true, href, text, null, now, eat));
+
+    self.inlineTokenizers.escape = tokenize;
+
+    return node;
 }
 
 tokenizeAutoLink.notInLink = true;
@@ -1712,24 +4152,31 @@ tokenizeAutoLink.notInLink = true;
 /**
  * Tokenise a URL in text.
  *
+ * @example
+ *   tokenizeURL(eat, 'http://foo.bar');
+ *
  * @property {boolean} notInLink
  * @param {function(string)} eat
  * @param {string} $0 - Whole link.
- * @param {string} $1 - URL.
+ * @return {Node} - `link` node.
  */
-function tokenizeURL(eat, $0, $1) {
+function tokenizeURL(eat, $0) {
     var now = eat.now();
 
-    eat($0)(this.renderLink(true, $1, $1, null, now));
+    return eat($0)(this.renderLink(true, $0, $0, null, now, eat));
 }
 
 tokenizeURL.notInLink = true;
 
 /**
- * Tokenise HTML.
+ * Tokenise an HTML tag.
+ *
+ * @example
+ *   tokenizeTag(eat, '<span foo="bar">');
  *
  * @param {function(string)} eat
  * @param {string} $0 - Content.
+ * @return {Node} - `html` node.
  */
 function tokenizeTag(eat, $0) {
     var self = this;
@@ -1740,20 +4187,34 @@ function tokenizeTag(eat, $0) {
         self.inLink = false;
     }
 
-    eat($0)(self.renderRaw(HTML, $0));
+    return eat($0)(self.renderRaw(HTML, $0));
 }
 
 /**
  * Tokenise a link.
  *
+ * @example
+ *   tokenizeLink(
+ *     eat, '![foo](fav.ico "Favicon")', '![', 'foo', null,
+ *     'fav.ico', 'Foo Domain'
+ *   );
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole link.
- * @param {string} $1 - Content.
- * @param {string} $2 - URL.
- * @param {string?} $3 - Title.
+ * @param {string} $1 - Prefix.
+ * @param {string} $2 - Text.
+ * @param {string?} $3 - URL wrapped in angle braces.
+ * @param {string?} $4 - Literal URL.
+ * @param {string?} $5 - Title wrapped in single or double
+ *   quotes.
+ * @param {string?} [$6] - Title wrapped in double quotes.
+ * @param {string?} [$7] - Title wrapped in parentheses.
+ * @return {Node?} - `link` node, `image` node, or `null`.
  */
-function tokenizeLink(eat, $0, $1, $2, $3, $4) {
-    var isLink = $0.charAt(0) !== EXCLAMATION_MARK;
+function tokenizeLink(eat, $0, $1, $2, $3, $4, $5, $6, $7) {
+    var isLink = $1 === BRACKET_OPEN;
+    var href = $4 || $3 || '';
+    var title = $7 || $6 || $5;
     var now;
 
     if (!isLink || !this.inLink) {
@@ -1761,246 +4222,342 @@ function tokenizeLink(eat, $0, $1, $2, $3, $4) {
 
         now.column += $1.length;
 
-        eat($0)(this.renderLink(isLink, $3, $2, $4, now));
+        return eat($0)(this.renderLink(
+            isLink, this.descape(href), $2, title, now, eat
+        ));
     }
+
+    return null;
 }
 
 /**
- * Tokenise a reference link, invalid link, or inline
- * footnote, or reference footnote.
+ * Tokenise a reference link, image, or footnote;
+ * shortcut reference link, or footnote.
  *
- * @property {boolean} notInLink
+ * @example
+ *   tokenizeReference(eat, '[foo]', '[', 'foo');
+ *   tokenizeReference(eat, '[foo][]', '[', 'foo', '');
+ *   tokenizeReference(eat, '[foo][bar]', '[', 'foo', 'bar');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole link.
  * @param {string} $1 - Prefix.
- * @param {string} $2 - URL.
+ * @param {string} $2 - identifier.
  * @param {string} $3 - Content.
+ * @return {Node?} - `linkReference`, `imageReference`, or
+ *   `footnoteReference`.  Returns null when this is a link
+ *   reference, but we're already in a link.
  */
-function tokenizeReferenceLink(eat, $0, $1, $2, $3) {
+function tokenizeReference(eat, $0, $1, $2, $3) {
     var self = this;
-    var text = ($3 || $2).replace(EXPRESSION_WHITE_SPACES, SPACE);
-    var url = self.links[text.toLowerCase()];
-    var token;
-    var now;
+    var text = $2;
+    var identifier = $3 || $2;
+    var type = $1 === BRACKET_OPEN ? 'link' : 'image';
+    var isFootnote = self.options.footnotes && identifier.charAt(0) === CARET;
+    var now = eat.now();
+    var referenceType;
+    var node;
+    var exitLink;
 
-    if (
-        self.options.footnotes &&
-        text.charAt(0) === CARET &&
-        self.footnotes[text.substr(1)]
-    ) {
-        /*
-         * All block-level footnote-definitions
-         * are already found.  If we find the
-         * provided ID in the footnotes hash, its
-         * most certainly a footnote.
-         */
-
-        eat($0)(self.renderFootnote(text.substr(1)));
-    } else if (!url || !url.href) {
-        if (
-            self.options.footnotes &&
-            text.charAt(0) === CARET &&
-            text.indexOf(SPACE) > -1
-        ) {
-            /*
-             * All user-defined footnote IDs are
-             * already found.  Thus, we can safely
-             * choose any not-yet-used number as
-             * footnote IDs, without being afraid
-             * these IDs will be defined later.
-             */
-
-            while (self.footnoteCounter in self.footnotes) {
-                self.footnoteCounter++;
-            }
-
-            now = eat.now();
-
-            /*
-             * Add initial bracket plus caret.
-             */
-
-            now.column += $1.length + 1;
-
-            token = self.renderFootnoteDefinition(
-                String(self.footnoteCounter), text.substr(1), now
-            );
-
-            self.footnotes[token.id] = token;
-
-            eat($0)(self.renderFootnote(token.id));
-        } else {
-            eat($0.charAt(0))(self.renderRaw(TEXT, $0.charAt(0)));
-        }
+    if ($3 === undefined) {
+        referenceType = 'shortcut';
+    } else if ($3 === '') {
+        referenceType = 'collapsed';
     } else {
-        now = eat.now($1);
-
-        now.column += $1.length;
-
-        eat($0)(self.renderLink(
-            $0.charAt(0) !== EXCLAMATION_MARK, url.href, $2, url.title, now
-        ));
+        referenceType = 'full';
     }
-}
 
-tokenizeReferenceLink.notInLink = true;
+    if (referenceType !== 'shortcut') {
+        isFootnote = false;
+    }
+
+    if (isFootnote) {
+        identifier = identifier.substr(1);
+    }
+
+    if (isFootnote) {
+        if (identifier.indexOf(SPACE) !== -1) {
+            return eat($0)(self.renderFootnote(identifier, eat.now()));
+        } else {
+            type = 'footnote';
+        }
+    }
+
+    if (self.inLink && type === 'link') {
+        return null;
+    }
+
+    now.column += $1.length;
+
+    node = {
+        'type': type + 'Reference',
+        'identifier': normalize(identifier)
+    };
+
+    if (type === 'link' || type === 'image') {
+        node.referenceType = referenceType;
+    }
+
+    if (type === 'link') {
+        exitLink = self.enterLink();
+        node.children = self.tokenizeInline(text, now);
+        exitLink();
+    } else if (type === 'image') {
+        node.alt = decode(self.descape(text), eat);
+    }
+
+    return eat($0)(node);
+}
 
 /**
  * Tokenise strong emphasis.
  *
+ * @example
+ *   tokenizeStrong(eat, '**foo**', '**', 'foo');
+ *   tokenizeStrong(eat, '__foo__', null, null, '__', 'foo');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole emphasis.
- * @param {string?} $1 - Content.
+ * @param {string?} $1 - Marker.
  * @param {string?} $2 - Content.
+ * @param {string?} [$3] - Marker.
+ * @param {string?} [$4] - Content.
+ * @return {Node?} - `strong` node, when not empty.
  */
-function tokenizeStrong(eat, $0, $1, $2) {
+function tokenizeStrong(eat, $0, $1, $2, $3, $4) {
     var now = eat.now();
+    var value = $2 || $4;
+
+    if (trim(value) === EMPTY) {
+        return null;
+    }
 
     now.column += 2;
 
-    eat($0)(this.renderInline(STRONG, $2 || $1, now));
+    return eat($0)(this.renderInline(STRONG, value, now));
 }
 
 /**
  * Tokenise slight emphasis.
  *
+ * @example
+ *   tokenizeEmphasis(eat, '*foo*', '*', 'foo');
+ *   tokenizeEmphasis(eat, '_foo_', null, null, '_', 'foo');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole emphasis.
- * @param {string?} $1 - Content.
+ * @param {string?} $1 - Marker.
  * @param {string?} $2 - Content.
+ * @param {string?} [$3] - Marker.
+ * @param {string?} [$4] - Content.
+ * @return {Node?} - `emphasis` node, when not empty.
  */
-function tokenizeEmphasis(eat, $0, $1, $2) {
+function tokenizeEmphasis(eat, $0, $1, $2, $3, $4) {
     var now = eat.now();
+    var marker = $1 || $3;
+    var value = $2 || $4;
+
+    if (
+        trim(value) === EMPTY ||
+        value.charAt(0) === marker ||
+        value.charAt(value.length - 1) === marker
+    ) {
+        return null;
+    }
 
     now.column += 1;
 
-    eat($0)(this.renderInline(EMPHASIS, $2 || $1, now));
+    return eat($0)(this.renderInline(EMPHASIS, value, now));
 }
 
 /**
  * Tokenise a deletion.
  *
+ * @example
+ *   tokenizeDeletion(eat, '~~foo~~', '~~', 'foo');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole deletion.
  * @param {string} $1 - Content.
+ * @return {Node} - `delete` node.
  */
 function tokenizeDeletion(eat, $0, $1) {
     var now = eat.now();
 
     now.column += 2;
 
-    eat($0)(this.renderInline(DELETE, $1, now));
+    return eat($0)(this.renderInline(DELETE, $1, now));
 }
 
 /**
  * Tokenise inline code.
  *
+ * @example
+ *   tokenizeInlineCode(eat, '`foo()`', '`', 'foo()');
+ *
  * @param {function(string)} eat
  * @param {string} $0 - Whole code.
- * @param {string} $1 - Delimiter.
+ * @param {string} $1 - Initial markers.
  * @param {string} $2 - Content.
+ * @return {Node} - `inlineCode` node.
  */
 function tokenizeInlineCode(eat, $0, $1, $2) {
-    eat($0)(this.renderRaw(INLINE_CODE, trimRight($2)));
+    return eat($0)(this.renderRaw(INLINE_CODE, trim($2 || '')));
 }
 
 /**
  * Tokenise a break.
  *
- * @param {function(string)} eat
- * @param {string} $0
- */
-function tokenizeBreak(eat, $0) {
-    eat($0)(this.renderVoid(BREAK));
-}
-
-/**
- * Tokenise inline text.
+ * @example
+ *   tokenizeBreak(eat, '  \n');
  *
  * @param {function(string)} eat
  * @param {string} $0
+ * @return {Node} - `break` node.
  */
-function tokenizeInlineText(eat, $0) {
-    eat($0)(this.renderRaw(TEXT, $0));
+function tokenizeBreak(eat, $0) {
+    return eat($0)(this.renderVoid(BREAK));
 }
 
 /**
  * Construct a new parser.
  *
- * @param {Object?} options
- * @constructor Parser
+ * @example
+ *   var parser = new Parser(new VFile('Foo'));
+ *
+ * @constructor
+ * @class {Parser}
+ * @param {VFile} file - File to parse.
+ * @param {Object?} [options] - Passed to
+ *   `Parser#setOptions()`.
  */
-function Parser(options) {
+function Parser(file, options) {
     var self = this;
-    var rules = copy({}, expressions.rules);
+    var rules = extend({}, self.expressions.rules);
 
-    /*
-     * Create space for definition/reference type nodes.
-     */
-
-    self.links = {};
-    self.footnotes = {};
-    self.footnotesAsArray = [];
-
-    self.options = options;
-
-    self.rules = rules;
-
-    self.footnoteCounter = 1;
-
+    self.file = file;
     self.inLink = false;
     self.atTop = true;
     self.atStart = true;
     self.inBlockquote = false;
 
-    if (options.breaks) {
-        copy(rules, expressions.breaks);
-    }
+    self.rules = rules;
+    self.descape = descapeFactory(rules, 'escape');
 
-    if (options.gfm) {
-        copy(rules, expressions.gfm);
-    }
+    self.options = extend({}, self.options);
 
-    if (options.gfm && options.breaks) {
-        copy(rules, expressions.breaksGFM);
-    }
-
-    /*
-     * Tables only occur with `gfm: true`.
-     */
-
-    if (options.tables) {
-        copy(rules, expressions.tables);
-    }
-
-    if (options.pedantic) {
-        copy(rules, expressions.pedantic);
-    }
-
-    if (options.yaml) {
-        copy(rules, expressions.yaml);
-    }
-
-    if (options.footnotes) {
-        copy(rules, expressions.footnotes);
-    }
+    self.setOptions(options);
 }
 
 /**
- * Parse `value` into an AST.
+ * Set options.  Does not overwrite previously set
+ * options.
  *
- * @param {string} value
- * @return {Object}
+ * @example
+ *   var parser = new Parser();
+ *   parser.setOptions({gfm: true});
+ *
+ * @this {Parser}
+ * @throws {Error} - When an option is invalid.
+ * @param {Object?} [options] - Parse settings.
+ * @return {Parser} - `self`.
  */
-Parser.prototype.parse = function (value) {
+Parser.prototype.setOptions = function (options) {
     var self = this;
-    var footnotes;
-    var footnotesAsArray;
-    var id;
-    var index;
-    var token;
-    var start;
-    var last;
+    var expressions = self.expressions;
+    var rules = self.rules;
+    var current = self.options;
+    var key;
+
+    if (options === null || options === undefined) {
+        options = {};
+    } else if (typeof options === 'object') {
+        options = extend({}, options);
+    } else {
+        raise(options, 'options');
+    }
+
+    self.options = options;
+
+    for (key in defaultOptions) {
+        validate.boolean(options, key, current[key]);
+
+        if (options[key]) {
+            extend(rules, expressions[key]);
+        }
+    }
+
+    if (options.gfm && options.breaks) {
+        extend(rules, expressions.breaksGFM);
+    }
+
+    if (options.gfm && options.commonmark) {
+        extend(rules, expressions.commonmarkGFM);
+    }
+
+    if (options.commonmark) {
+        self.enterBlockquote = noopToggler();
+    }
+
+    return self;
+};
+
+/*
+ * Expose `defaults`.
+ */
+
+Parser.prototype.options = defaultOptions;
+
+/*
+ * Expose `expressions`.
+ */
+
+Parser.prototype.expressions = defaultExpressions;
+
+/**
+ * Factory to track indentation for each line corresponding
+ * to the given `start` and the number of invocations.
+ *
+ * @param {number} start - Starting line.
+ * @return {function(offset)} - Indenter.
+ */
+Parser.prototype.indent = function (start) {
+    var self = this;
+    var line = start;
+
+    /**
+     * Intender which increments the global offset,
+     * starting at the bound line, and further incrementing
+     * each line for each invocation.
+     *
+     * @example
+     *   indenter(2)
+     *
+     * @param {number} offset - Number to increment the
+     *   offset.
+     */
+    function indenter(offset) {
+        self.offset[line] = (self.offset[line] || 0) + offset;
+
+        line++;
+    }
+
+    return indenter;
+};
+
+/**
+ * Parse the bound file.
+ *
+ * @example
+ *   new Parser(new File('_Foo_.')).parse();
+ *
+ * @this {Parser}
+ * @return {Object} - `root` node.
+ */
+Parser.prototype.parse = function () {
+    var self = this;
+    var value = clean(String(self.file));
+    var node;
 
     /*
      * Add an `offset` matrix, used to keep track of
@@ -2009,94 +4566,547 @@ Parser.prototype.parse = function (value) {
 
     self.offset = {};
 
-    token = self.renderBlock(ROOT, self.tokenizeAll(
-        self.tokenizeBlock(clean(value))
-    ));
+    node = self.renderBlock(ROOT, value);
 
-    if (self.options.footnotes) {
-        footnotes = self.footnotes;
-        footnotesAsArray = self.footnotesAsArray;
+    if (self.options.position) {
+        node.position = {
+            'start': {
+                'line': 1,
+                'column': 1
+            }
+        };
 
-        index = -1;
+        node.position.end = self.eof || node.position.start;
+    }
 
-        while (footnotesAsArray[++index]) {
-            id = footnotesAsArray[index];
+    return node;
+};
 
-            footnotes[id].children = self.tokenizeAll(footnotes[id].children);
+/*
+ * Enter and exit helpers.
+ */
+
+Parser.prototype.enterLink = stateToggler('inLink', false);
+Parser.prototype.exitTop = stateToggler('atTop', true);
+Parser.prototype.exitStart = stateToggler('atStart', true);
+Parser.prototype.enterBlockquote = stateToggler('inBlockquote', false);
+
+/*
+ * Expose helpers
+ */
+
+Parser.prototype.renderRaw = renderRaw;
+Parser.prototype.renderVoid = renderVoid;
+Parser.prototype.renderParent = renderParent;
+Parser.prototype.renderInline = renderInline;
+Parser.prototype.renderBlock = renderBlock;
+
+Parser.prototype.renderLink = renderLink;
+Parser.prototype.renderCodeBlock = renderCodeBlock;
+Parser.prototype.renderBlockquote = renderBlockquote;
+Parser.prototype.renderList = renderList;
+Parser.prototype.renderListItem = renderListItem;
+Parser.prototype.renderFootnoteDefinition = renderFootnoteDefinition;
+Parser.prototype.renderHeading = renderHeading;
+Parser.prototype.renderFootnote = renderFootnote;
+
+/**
+ * Construct a tokenizer.  This creates both
+ * `tokenizeInline` and `tokenizeBlock`.
+ *
+ * @example
+ *   Parser.prototype.tokenizeInline = tokenizeFactory('inline');
+ *
+ * @param {string} type - Name of parser, used to find
+ *   its expressions (`%sMethods`) and tokenizers
+ *   (`%Tokenizers`).
+ * @return {function(string, Object?): Array.<Object>}
+ */
+function tokenizeFactory(type) {
+    /**
+     * Tokenizer for a bound `type`
+     *
+     * @example
+     *   parser = new Parser();
+     *   parser.tokenizeInline('_foo_');
+     *
+     * @param {string} value - Content.
+     * @param {Object?} [location] - Offset at which `value`
+     *   starts.
+     * @return {Array.<Object>} - Nodes.
+     */
+    function tokenize(value, location) {
+        var self = this;
+        var offset = self.offset;
+        var tokens = [];
+        var rules = self.rules;
+        var methods = self[type + 'Methods'];
+        var tokenizers = self[type + 'Tokenizers'];
+        var line = location ? location.line : 1;
+        var column = location ? location.column : 1;
+        var patchPosition = self.options.position;
+        var add;
+        var index;
+        var length;
+        var method;
+        var name;
+        var match;
+        var matched;
+        var valueLength;
+        var eater;
+
+        /*
+         * Trim white space only lines.
+         */
+
+        if (!value) {
+            return tokens;
         }
 
-        token.footnotes = footnotes;
+        /**
+         * Update line and column based on `value`.
+         *
+         * @example
+         *   updatePosition('foo');
+         *
+         * @param {string} subvalue
+         */
+        function updatePosition(subvalue) {
+            var character = -1;
+            var subvalueLength = subvalue.length;
+            var lastIndex = -1;
+
+            while (++character < subvalueLength) {
+                if (subvalue.charAt(character) === NEW_LINE) {
+                    lastIndex = character;
+                    line++;
+                }
+            }
+
+            if (lastIndex === -1) {
+                column = column + subvalue.length;
+            } else {
+                column = subvalue.length - lastIndex;
+            }
+
+            if (line in offset) {
+                if (lastIndex !== -1) {
+                    column += offset[line];
+                } else if (column <= offset[line]) {
+                    column = offset[line] + 1;
+                }
+            }
+        }
+
+        /**
+         * Get offset. Called before the fisrt character is
+         * eaten to retrieve the range's offsets.
+         *
+         * @return {Function} - `done`, to be called when
+         *   the last character is eaten.
+         */
+        function getOffset() {
+            var indentation = [];
+            var pos = line + 1;
+
+            /**
+             * Done. Called when the last character is
+             * eaten to retrieve the range's offsets.
+             *
+             * @return {Array.<number>} - Offset.
+             */
+            function done() {
+                var last = line + 1;
+
+                while (pos < last) {
+                    indentation.push((offset[pos] || 0) + 1);
+
+                    pos++;
+                }
+
+                return indentation;
+            }
+
+            return done;
+        }
+
+        /**
+         * Get the current position.
+         *
+         * @example
+         *   position = now(); // {line: 1, column: 1}
+         *
+         * @return {Object}
+         */
+        function now() {
+            return {
+                'line': line,
+                'column': column
+            };
+        }
+
+        /**
+         * Store position information for a node.
+         *
+         * @example
+         *   start = now();
+         *   updatePosition('foo');
+         *   location = new Position(start);
+         *   // {start: {line: 1, column: 1}, end: {line: 1, column: 3}}
+         *
+         * @param {Object} start
+         */
+        function Position(start) {
+            this.start = start;
+            this.end = now();
+        }
+
+        /**
+         * Throw when a value is incorrectly eaten.
+         * This shouldn’t happen but will throw on new,
+         * incorrect rules.
+         *
+         * @example
+         *   // When the current value is set to `foo bar`.
+         *   validateEat('foo');
+         *   eat('foo');
+         *
+         *   validateEat('bar');
+         *   // throws, because the space is not eaten.
+         *
+         * @param {string} subvalue - Value to be eaten.
+         * @throws {Error} - When `subvalue` cannot be eaten.
+         */
+        function validateEat(subvalue) {
+            /* istanbul ignore if */
+            if (value.substring(0, subvalue.length) !== subvalue) {
+                self.file.fail(
+                    'Incorrectly eaten value: please report this ' +
+                    'warning on http://git.io/vUYWz', now()
+                );
+            }
+        }
+
+        /**
+         * Mark position and patch `node.position`.
+         *
+         * @example
+         *   var update = position();
+         *   updatePosition('foo');
+         *   update({});
+         *   // {
+         *   //   position: {
+         *   //     start: {line: 1, column: 1}
+         *   //     end: {line: 1, column: 3}
+         *   //   }
+         *   // }
+         *
+         * @returns {function(Node): Node}
+         */
+        function position() {
+            var before = now();
+
+            /**
+             * Add the position to a node.
+             *
+             * @example
+             *   update({type: 'text', value: 'foo'});
+             *
+             * @param {Node} node - Node to attach position
+             *   on.
+             * @return {Node} - `node`.
+             */
+            function update(node, indent) {
+                var prev = node.position;
+                var start = prev ? prev.start : before;
+                var combined = [];
+                var n = prev && prev.end.line;
+                var l = before.line;
+
+                node.position = new Position(start);
+
+                /*
+                 * If there was already a `position`, this
+                 * node was merged.  Fixing `start` wasn't
+                 * hard, but the indent is different.
+                 * Especially because some information, the
+                 * indent between `n` and `l` wasn't
+                 * tracked.  Luckily, that space is
+                 * (should be?) empty, so we can safely
+                 * check for it now.
+                 */
+
+                if (prev) {
+                    combined = prev.indent;
+
+                    if (n < l) {
+                        while (++n < l) {
+                            combined.push((offset[n] || 0) + 1);
+                        }
+
+                        combined.push(before.column);
+                    }
+
+                    indent = combined.concat(indent);
+                }
+
+                node.position.indent = indent;
+
+                return node;
+            }
+
+            return update;
+        }
+
+        /**
+         * Add `node` to `parent`s children or to `tokens`.
+         * Performs merges where possible.
+         *
+         * @example
+         *   add({});
+         *
+         *   add({}, {children: []});
+         *
+         * @param {Object} node - Node to add.
+         * @param {Object} [parent] - Parent to insert into.
+         * @return {Object} - Added or merged into node.
+         */
+        add = function (node, parent) {
+            var isMultiple = 'length' in node;
+            var prev;
+            var children;
+
+            if (!parent) {
+                children = tokens;
+            } else {
+                children = parent.children;
+            }
+
+            if (isMultiple) {
+                arrayPush.apply(children, node);
+            } else {
+                if (type === INLINE && node.type === TEXT) {
+                    node.value = decode(node.value, eater);
+                }
+
+                prev = children[children.length - 1];
+
+                if (
+                    prev &&
+                    node.type === prev.type &&
+                    node.type in MERGEABLE_NODES
+                ) {
+                    node = MERGEABLE_NODES[node.type].call(
+                        self, prev, node
+                    );
+                }
+
+                if (node !== prev) {
+                    children.push(node);
+                }
+
+                if (self.atStart && tokens.length) {
+                    self.exitStart();
+                }
+            }
+
+            return node;
+        };
+
+        /**
+         * Remove `subvalue` from `value`.
+         * Expects `subvalue` to be at the start from
+         * `value`, and applies no validation.
+         *
+         * @example
+         *   eat('foo')({type: 'text', value: 'foo'});
+         *
+         * @param {string} subvalue - Removed from `value`,
+         *   and passed to `updatePosition`.
+         * @return {Function} - Wrapper around `add`, which
+         *   also adds `position` to node.
+         */
+        function eat(subvalue) {
+            var indent = getOffset();
+            var pos = position();
+            var current = now();
+
+            validateEat(subvalue);
+
+            /**
+             * Add the given arguments, add `position` to
+             * the returned node, and return the node.
+             *
+             * @return {Node}
+             */
+            function apply() {
+                return pos(add.apply(null, arguments), indent);
+            }
+
+            /**
+             * Functions just like apply, but resets the
+             * content:  the line and column are reversed,
+             * and the eaten value is re-added.
+             *
+             * This is useful for nodes with a single
+             * type of content, such as lists and tables.
+             *
+             * See `apply` above for what parameters are
+             * expected.
+             *
+             * @return {Node}
+             */
+            function reset() {
+                var node = apply.apply(null, arguments);
+
+                line = current.line;
+                column = current.column;
+                value = subvalue + value;
+
+                return node;
+            }
+
+            apply.reset = reset;
+
+            value = value.substring(subvalue.length);
+
+            updatePosition(subvalue);
+
+            indent = indent();
+
+            return apply;
+        }
+
+        /**
+         * Same as `eat` above, but will not add positional
+         * information to nodes.
+         *
+         * @example
+         *   noEat('foo')({type: 'text', value: 'foo'});
+         *
+         * @param {string} subvalue - Removed from `value`.
+         * @return {Function} - Wrapper around `add`.
+         */
+        function noEat(subvalue) {
+            validateEat(subvalue);
+
+            /**
+             * Add the given arguments, and return the
+             * node.
+             *
+             * @return {Node}
+             */
+            function apply() {
+                return add.apply(null, arguments);
+            }
+
+            /**
+             * Functions just like apply, but resets the
+             * content: the eaten value is re-added.
+             *
+             * @return {Node}
+             */
+            function reset() {
+                var node = apply.apply(null, arguments);
+
+                value = subvalue + value;
+
+                return node;
+            }
+
+            apply.reset = reset;
+
+            value = value.substring(subvalue.length);
+
+            return apply;
+        }
+
+        /*
+         * Expose the eater, depending on if `position`s
+         * should be patched on nodes.
+         */
+
+        eater = patchPosition ? eat : noEat;
+
+        /*
+         * Expose `now` on `eater`.
+         */
+
+        eater.now = now;
+
+        /*
+         * Expose `file` on `eater`.
+         */
+
+        eater.file = self.file;
+
+        /*
+         * Sync initial offset.
+         */
+
+        updatePosition(EMPTY);
+
+        /*
+         * Iterate over `value`, and iterate over all
+         * block-expressions.  When one matches, invoke
+         * its companion function.  If no expression
+         * matches, something failed (should not happen)
+         * and an exception is thrown.
+         */
+
+        while (value) {
+            index = -1;
+            length = methods.length;
+            matched = false;
+
+            while (++index < length) {
+                name = methods[index];
+                method = tokenizers[name];
+
+                if (
+                    method &&
+                    rules[name] &&
+                    (!method.onlyAtStart || self.atStart) &&
+                    (!method.onlyAtTop || self.atTop) &&
+                    (!method.notInBlockquote || !self.inBlockquote) &&
+                    (!method.notInLink || !self.inLink)
+                ) {
+                    match = rules[name].exec(value);
+
+                    if (match) {
+                        valueLength = value.length;
+
+                        method.apply(self, [eater].concat(match));
+
+                        matched = valueLength !== value.length;
+
+                        if (matched) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            /* istanbul ignore if */
+            if (!matched) {
+                self.file.fail('Infinite loop', eater.now());
+
+                /*
+                 * Errors are not thrown on `File#fail`
+                 * when `quiet: true`.
+                 */
+
+                break;
+            }
+        }
+
+        self.eof = now();
+
+        return tokens;
     }
 
-    last = token.children[token.children.length - 1];
-
-    token.position = {};
-
-    start = {
-        'line': 1,
-        'column': 1
-    };
-
-    token.position.start = start;
-
-    token.position.end = last ? last.position.end : start;
-
-    return token;
-};
-
-/**
- * Lex loop.
- *
- * @param {Array.<Object>} tokens
- * @return {Array.<Object>}
- */
-Parser.prototype.tokenizeAll = function (tokens) {
-    var self = this;
-    var out = [];
-    var index = -1;
-    var length = tokens.length;
-
-    while (++index < length) {
-        out[index] = self.tokenizeOne(tokens[index]);
-    }
-
-    return out;
-};
-
-/**
- * Tokenise a token.
- *
- * @param {Object} token
- * @return {Object}
- */
-Parser.prototype.tokenizeOne = function (token) {
-    var self = this;
-    var type = token.type;
-    var position = token.position;
-
-    if (type === TEXT) {
-        token = self.renderBlock(PARAGRAPH, token.value);
-        token.position = position;
-        token = self.tokenizeOne(token);
-    } else if (
-        type === HEADING ||
-        type === PARAGRAPH ||
-        type === TABLE_CELL
-    ) {
-        token.children = self.tokenizeInline(token.children, position.start);
-    } else if (
-        type === BLOCKQUOTE ||
-        type === LIST ||
-        type === LIST_ITEM ||
-        type === TABLE ||
-        type === TABLE_HEADER ||
-        type === TABLE_ROW
-    ) {
-        token.children = self.tokenizeAll(token.children);
-    }
-
-    return token;
-};
+    return tokenize;
+}
 
 /*
  * Expose tokenizers for block-level nodes.
@@ -2113,12 +5123,11 @@ Parser.prototype.blockTokenizers = {
     'blockquote': tokenizeBlockquote,
     'list': tokenizeList,
     'html': tokenizeHtml,
-    'linkDefinition': tokenizeLinkDefinition,
+    'definition': tokenizeDefinition,
     'footnoteDefinition': tokenizeFootnoteDefinition,
     'looseTable': tokenizeTable,
     'table': tokenizeTable,
-    'paragraph': tokenizeParagraph,
-    'blockText': tokenizeText
+    'paragraph': tokenizeParagraph
 };
 
 /*
@@ -2130,13 +5139,13 @@ Parser.prototype.blockMethods = [
     'newline',
     'code',
     'fences',
-    'heading',
-    'lineHeading',
-    'horizontalRule',
     'blockquote',
+    'heading',
+    'horizontalRule',
     'list',
+    'lineHeading',
     'html',
-    'linkDefinition',
+    'definition',
     'footnoteDefinition',
     'looseTable',
     'table',
@@ -2145,269 +5154,21 @@ Parser.prototype.blockMethods = [
 ];
 
 /**
- * Construct a tokenizer.
+ * Block tokenizer.
  *
- * @param {string} type
- * @return {function(string, Object?): Array.<Object>}
- */
-function tokenizeFactory(type) {
-    /**
-     * Tokenizer for a bound `type`
-     *
-     * @param {string} value
-     * @return {Array.<Object>}
-     */
-    return function (value, location) {
-        var self = this;
-        var offset = self.offset;
-        var tokens = [];
-        var rules = self.rules;
-        var methods = self[type + 'Methods'];
-        var tokenizers = self[type + 'Tokenizers'];
-        var line = location ? location.line : 1;
-        var column = location ? location.column : 1;
-        var index;
-        var length;
-        var method;
-        var name;
-        var match;
-        var matched;
-        var valueLength;
-        var err;
-
-        /*
-         * Trim white space only lines.
-         */
-
-        value = (value || EMPTY).replace(EXPRESSION_SPACES_ONLY_LINE, EMPTY);
-
-        if (!value) {
-            return tokens;
-        }
-
-        /**
-         * Update line and column based on `value`.
-         *
-         * @param {string} subvalue
-         */
-        function updatePosition(subvalue) {
-            var lines = subvalue.match(/\n/g);
-            var lastIndex = subvalue.lastIndexOf(NEW_LINE);
-
-            if (lines) {
-                line += lines.length;
-            }
-
-            if (lastIndex === -1) {
-                column = column + subvalue.length;
-            } else {
-                column = subvalue.length - lastIndex;
-            }
-
-            if (line in offset) {
-                if (lines) {
-                    column += offset[line];
-                } else if (column <= offset[line]) {
-                    column = offset[line] + 1;
-                }
-            }
-        }
-
-        /**
-         * Get the current position.
-         *
-         * @return {Object}
-         */
-        function now() {
-            return {
-                'line': line,
-                'column': column
-            };
-        }
-
-        /**
-         * Store position information for a node.
-         *
-         * @param {Object} start
-         */
-        function Position(start) {
-            this.start = start;
-            this.end = now();
-        }
-
-        /**
-         * Mark position and patch `node.position`.
-         *
-         * @returns {function(Node): Node}
-         */
-        function position() {
-          var start = now();
-
-          return function (node) {
-              start = node.position ? node.position.start : start;
-
-              node.position = new Position(start);
-
-              return node;
-          };
-        }
-
-        /**
-         * Add `token` to `parent`, or `tokens`.
-         *
-         * @param {Object} parent
-         * @param {Object?} token
-         * @return {Object} The added or merged token.
-         */
-        function add(parent, token) {
-            var prev;
-            var children;
-
-            if (!token) {
-                children = tokens;
-                token = parent;
-            } else {
-                if (!parent.children) {
-                    parent.children = [];
-                }
-
-                children = parent.children;
-            }
-
-            prev = children[children.length - 1];
-
-            if (type === INLINE && token.type === TEXT) {
-                token.value = he.decode(token.value);
-            }
-
-            if (
-                prev &&
-                token.type === prev.type &&
-                token.type in MERGEABLE_NODES
-            ) {
-                token = MERGEABLE_NODES[token.type](prev, token, type);
-            } else {
-                children.push(token);
-            }
-
-            if (self.atStart && tokens.length) {
-                self.exitStart();
-            }
-
-            return token;
-        }
-
-        /**
-         * Remove `subvalue` from `value`.
-         * Expects `subvalue` to be at the start from `value`,
-         * and applies no validation.
-         *
-         * @param {string} subvalue
-         * @return {Function} See add.
-         */
-        function eat(subvalue) {
-            var pos = position();
-
-            value = value.substring(subvalue.length);
-
-            updatePosition(subvalue);
-
-            return function () {
-                return pos(add.apply(null, arguments));
-            };
-        }
-
-        /*
-         * Expose `now` on `eat`.
-         */
-
-        eat.now = now;
-
-        /*
-         * Sync initial offset.
-         */
-
-        updatePosition(EMPTY);
-
-        /*
-         * Iterate over `value`, and iterate over all
-         * block-expressions.  When one matches, invoke
-         * its companion function.  If no expression
-         * matches, something failed (should not happen)
-         * and an expression is thrown.
-         */
-
-        while (value) {
-            index = -1;
-            length = methods.length;
-            matched = false;
-
-            while (++index < length) {
-                name = methods[index];
-
-                method = tokenizers[name];
-
-                match = rules[name] &&
-                    (!method.onlyAtStart || self.atStart) &&
-                    (!method.onlyAtTop || self.atTop) &&
-                    (!method.notInBlockquote || !self.inBlockquote) &&
-                    (!method.notInLink || !self.inLink) &&
-                    rules[name].exec(value);
-
-                if (match) {
-                    valueLength = value.length;
-
-                    method.apply(self, [eat].concat(match));
-
-                    matched = valueLength !== value.length;
-
-                    if (matched) {
-                        break;
-                    }
-                }
-            }
-
-            /* istanbul ignore if */
-            if (!matched) {
-                err = new Error(line + ':' + column + ': Infinite loop');
-                err.reason = 'Infinite loop';
-                err.line = line;
-                err.column = column;
-
-                throw err;
-            }
-        }
-
-        return tokens;
-    };
-}
-
-/**
- * Lex `value`.
+ * @example
+ *   var parser = new Parser();
+ *   parser.tokenizeBlock('> foo.');
  *
- * @param {string} value
- * @return {Array.<Object>}
+ * @param {string} value - Content.
+ * @return {Array.<Object>} - Nodes.
  */
 
 Parser.prototype.tokenizeBlock = tokenizeFactory(BLOCK);
 
 /*
- * Expose helpers
+ * Expose tokenizers for inline-level nodes.
  */
-
-Parser.prototype.renderRaw = renderRaw;
-Parser.prototype.renderVoid = renderVoid;
-Parser.prototype.renderBlock = renderBlock;
-Parser.prototype.renderInline = renderInline;
-
-Parser.prototype.renderLink = renderLink;
-Parser.prototype.renderCodeBlock = renderCodeBlock;
-Parser.prototype.renderBlockquote = renderBlockquote;
-Parser.prototype.renderList = renderList;
-Parser.prototype.renderListItem = renderListItem;
-Parser.prototype.renderFootnoteDefinition = renderFootnoteDefinition;
-Parser.prototype.renderHeading = renderHeading;
-Parser.prototype.renderFootnote = renderFootnote;
 
 Parser.prototype.inlineTokenizers = {
     'escape': tokenizeEscape,
@@ -2415,15 +5176,19 @@ Parser.prototype.inlineTokenizers = {
     'url': tokenizeURL,
     'tag': tokenizeTag,
     'link': tokenizeLink,
-    'referenceLink': tokenizeReferenceLink,
-    'invalidLink': tokenizeReferenceLink,
+    'reference': tokenizeReference,
+    'shortcutReference': tokenizeReference,
     'strong': tokenizeStrong,
     'emphasis': tokenizeEmphasis,
     'deletion': tokenizeDeletion,
     'inlineCode': tokenizeInlineCode,
     'break': tokenizeBreak,
-    'text': tokenizeInlineText
+    'inlineText': tokenizeText
 };
+
+/*
+ * Expose order in which to parse inline-level nodes.
+ */
 
 Parser.prototype.inlineMethods = [
     'escape',
@@ -2431,140 +5196,110 @@ Parser.prototype.inlineMethods = [
     'url',
     'tag',
     'link',
-    'referenceLink',
-    'invalidLink',
+    'reference',
+    'shortcutReference',
     'strong',
     'emphasis',
     'deletion',
     'inlineCode',
     'break',
-    'text'
+    'inlineText'
 ];
 
 /**
- * Tokenise an inline value.
+ * Inline tokenizer.
  *
- * @param {string} value
- * @return {Array.<Object>}
+ * @example
+ *   var parser = new Parser();
+ *   parser.tokenizeInline('_foo_');
+ *
+ * @param {string} value - Content.
+ * @return {Array.<Object>} - Nodes.
  */
 
 Parser.prototype.tokenizeInline = tokenizeFactory(INLINE);
 
-/**
- * Construct a state toggler.
- *
- * @param {string} property - Thing th toggle
- * @param {boolean} state - It's default state.
- * @return {Function} - Toggler.
- */
-function stateToggler(property, state) {
-    /**
-     * Construct a toggler for the bound property.
-     *
-     * @return {Function} - Callback to cancel the state.
-     */
-    return function () {
-        var self = this;
-        var current = self[property];
-
-        self[property] = !state;
-
-        /**
-         * State cancler, cancels the state if allowed.
-         */
-        return function () {
-            self[property] = current;
-        };
-    };
-}
-
-Parser.prototype.enterLink = stateToggler('inLink', false);
-Parser.prototype.exitTop = stateToggler('atTop', true);
-Parser.prototype.exitStart = stateToggler('atStart', true);
-Parser.prototype.enterBlockquote = stateToggler('inBlockquote', false);
-
-/**
- * Transform a markdown document into an AST.
- *
- * @param {string} value
- * @param {Object?} options
- * @param {Function?} CustomParser
- * @return {Object}
- */
-function parse(value, options, CustomParser) {
-    if (typeof value !== 'string') {
-        raise(value, 'value');
-    }
-
-    if (options === null || options === undefined) {
-        options = {};
-    } else if (typeof options !== 'object') {
-        raise(options, 'options');
-    } else {
-        options = copy({}, options);
-    }
-
-    validate.bool(options, 'gfm', true);
-    validate.bool(options, 'tables', options.gfm);
-    validate.bool(options, 'yaml', true);
-    validate.bool(options, 'footnotes', false);
-    validate.bool(options, 'breaks', false);
-    validate.bool(options, 'pedantic', false);
-
-    if (!options.gfm && options.tables) {
-        throw new Error(
-            'Invalid value `' + options.tables + '` with ' +
-            '`gfm: ' + options.gfm + '` for `options.tables`'
-        );
-    }
-
-    return new (CustomParser || Parser)(options).parse(value);
-}
-
 /*
- * Expose `Parser` on `parse`.
+ * Expose `tokenizeFactory` so dependencies could create
+ * their own tokenizers.
  */
 
-parse.Parser = Parser;
+Parser.prototype.tokenizeFactory = tokenizeFactory;
 
 /*
  * Expose `parse` on `module.exports`.
  */
 
-module.exports = parse;
+module.exports = Parser;
 
-},{"./expressions.js":9,"./utilities.js":12,"he":13}],11:[function(require,module,exports){
+},{"./defaults.js":13,"./expressions.js":14,"./utilities.js":17,"extend.js":20,"he":21,"repeat-string":24,"trim":26,"trim-trailing-lines":25}],16:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module mdast:stringify
+ * @fileoverview Compile an abstract syntax tree into
+ *   a markdown document.
+ */
+
 'use strict';
 
 /*
  * Dependencies.
  */
 
+var he = require('he');
 var table = require('markdown-table');
+var repeat = require('repeat-string');
+var extend = require('extend.js');
+var ccount = require('ccount');
+var longestStreak = require('longest-streak');
 var utilities = require('./utilities.js');
+var defaultOptions = require('./defaults.js').stringify;
 
 /*
- * Cached methods.
+ * Methods.
  */
 
-var copy = utilities.copy;
 var raise = utilities.raise;
-var trimLeft = utilities.trimLeft;
 var validate = utilities.validate;
 
 /*
  * Constants.
  */
 
-var HALF = 2;
 var INDENT = 4;
 var MINIMUM_CODE_FENCE_LENGTH = 3;
+var YAML_FENCE_LENGTH = 3;
+var MINIMUM_RULE_LENGTH = 3;
+var MAILTO = 'mailto:';
+
+/*
+ * Expressions.
+ */
+
+var EXPRESSIONS_WHITE_SPACE = /\s/;
+
+/*
+ * Naive fence expression.
+ */
+
+var FENCE = /([`~])\1{2}/;
+
+/*
+ * Expression for a protocol.
+ *
+ * @see http://en.wikipedia.org/wiki/URI_scheme#Generic_syntax
+ */
+
+var PROTOCOL = /^[a-z][a-z+.-]+:\/?/i;
 
 /*
  * Characters.
  */
 
-var ANGLE_BRACKET = '>';
+var ANGLE_BRACKET_CLOSE = '>';
+var ANGLE_BRACKET_OPEN = '<';
 var ASTERISK = '*';
 var CARET = '^';
 var COLON = ':';
@@ -2580,6 +5315,7 @@ var PARENTHESIS_CLOSE = ')';
 var PIPE = '|';
 var PLUS = '+';
 var QUOTE_DOUBLE = '"';
+var QUOTE_SINGLE = '\'';
 var SPACE = ' ';
 var SQUARE_BRACKET_OPEN = '[';
 var SQUARE_BRACKET_CLOSE = ']';
@@ -2596,7 +5332,18 @@ var GAP = BREAK + LINE;
 var DOUBLE_TILDE = TILDE + TILDE;
 
 /*
- * Define allowed list-bullet characters.
+ * Allowed entity options.
+ */
+
+var ENTITY_OPTIONS = {};
+
+ENTITY_OPTIONS.true = true;
+ENTITY_OPTIONS.false = true;
+ENTITY_OPTIONS.numbers = true;
+ENTITY_OPTIONS.escape = true;
+
+/*
+ * Allowed list-bullet characters.
  */
 
 var LIST_BULLETS = {};
@@ -2606,7 +5353,7 @@ LIST_BULLETS[DASH] = true;
 LIST_BULLETS[PLUS] = true;
 
 /*
- * Define allowed horizontal-rule bullet characters.
+ * Allowed horizontal-rule bullet characters.
  */
 
 var HORIZONTAL_RULE_BULLETS = {};
@@ -2616,7 +5363,7 @@ HORIZONTAL_RULE_BULLETS[DASH] = true;
 HORIZONTAL_RULE_BULLETS[UNDERSCORE] = true;
 
 /*
- * Define allowed emphasis characters.
+ * Allowed emphasis characters.
  */
 
 var EMPHASIS_MARKERS = {};
@@ -2625,7 +5372,7 @@ EMPHASIS_MARKERS[UNDERSCORE] = true;
 EMPHASIS_MARKERS[ASTERISK] = true;
 
 /*
- * Define allowed emphasis characters.
+ * Allowed fence markers.
  */
 
 var FENCE_MARKERS = {};
@@ -2634,7 +5381,7 @@ FENCE_MARKERS[TICK] = true;
 FENCE_MARKERS[TILDE] = true;
 
 /*
- * Define which method to use based on `list.ordered`.
+ * Which method to use based on `list.ordered`.
  */
 
 var ORDERED_MAP = {};
@@ -2642,72 +5389,201 @@ var ORDERED_MAP = {};
 ORDERED_MAP.true = 'visitOrderedItems';
 ORDERED_MAP.false = 'visitUnorderedItems';
 
-/**
- * Helper to get the keys in an object.
- *
- * @param {Object} object
- * @return {Array.<string>}
+/*
+ * Allowed list-item-indent's.
  */
-function getKeys(object) {
-    var results = [];
-    var key;
 
-    for (key in object) {
-        results.push(key);
+var LIST_ITEM_INDENTS = {};
+
+var LIST_ITEM_TAB = 'tab';
+var LIST_ITEM_ONE = '1';
+var LIST_ITEM_MIXED = 'mixed';
+
+LIST_ITEM_INDENTS[LIST_ITEM_ONE] = true;
+LIST_ITEM_INDENTS[LIST_ITEM_TAB] = true;
+LIST_ITEM_INDENTS[LIST_ITEM_MIXED] = true;
+
+/*
+ * Which checkbox to use.
+ */
+
+var CHECKBOX_MAP = {};
+
+CHECKBOX_MAP.null = EMPTY;
+CHECKBOX_MAP.undefined = EMPTY;
+CHECKBOX_MAP.true = SQUARE_BRACKET_OPEN + 'x' + SQUARE_BRACKET_CLOSE + SPACE;
+CHECKBOX_MAP.false = SQUARE_BRACKET_OPEN + SPACE + SQUARE_BRACKET_CLOSE +
+    SPACE;
+
+/**
+ * Encode noop.
+ * Simply returns the given value.
+ *
+ * @example
+ *   var encode = encodeNoop();
+ *   encode('AT&T') // 'AT&T'
+ *
+ * @param {string} value - Content.
+ * @return {string} - Content, without any modifications.
+ */
+function encodeNoop(value) {
+    return value;
+}
+
+/**
+ * Factory to encode HTML entities.
+ * Creates a no-operation function when `type` is
+ * `'false'`, a function which encodes using named
+ * references when `type` is `'true'`, and a function
+ * which encodes using numbered references when `type` is
+ * `'numbers'`.
+ *
+ * By default this should not throw errors, but he does
+ * throw an error when in `strict` mode:
+ *
+ *     he.encode.options.strict = true;
+ *     encodeFactory('true')('\x01') // throws
+ *
+ * These are thrown on the currently compiled `File`.
+ *
+ * @example
+ *   var file = new File();
+ *
+ *   var encode = encodeFactory('false', file);
+ *   encode('AT&T') // 'AT&T'
+ *
+ *   encode = encodeFactory('true', file);
+ *   encode('AT&T') // 'AT&amp;T'
+ *
+ *   encode = encodeFactory('numbers', file);
+ *   encode('AT&T') // 'ATT&#x26;T'
+ *
+ * @param {string} type - Either `'true'`, `'false'`, or
+ *   `numbers`.
+ * @param {File} file - Currently compiled virtual file.
+ * @return {function(string): string} - Function which
+ *   takes a value and returns its encoded version.
+ */
+function encodeFactory(type, file) {
+    var options = {};
+    var fn;
+
+    if (type === 'false') {
+        return encodeNoop;
     }
 
-    return results;
-}
+    if (type === 'true') {
+        options.useNamedReferences = true;
+    }
 
-/**
- * Repeat `character` `times` times.
- *
- * @param {number} times
- * @param {string} character
- * @return {string}
- */
-function repeat(times, character) {
-    return new Array(times + 1).join(character);
-}
+    fn = type === 'escape' ? 'escape' : 'encode';
 
-/**
- * Get the count of the longest repeating streak
- * of `character` in `value`.
- *
- * @param {string} value
- * @param {string} character
- * @return {number}
- */
-function getLongestRepetition(value, character) {
-    var highestCount = 0;
-    var index = -1;
-    var length = value.length;
-    var currentCount;
-    var currentCharacter;
-
-    while (++index < length) {
-        currentCharacter = value.charAt(index);
-
-        if (currentCharacter === character) {
-            currentCount++;
-
-            if (currentCount > highestCount) {
-                highestCount = currentCount;
-            }
-        } else {
-            currentCount = 0;
+    /**
+     * Encode HTML entities using `he` using bound options.
+     *
+     * @see https://github.com/mathiasbynens/he#strict
+     *
+     * @example
+     *   // When `type` is `'true'`.
+     *   encode('AT&T'); // 'AT&amp;T'
+     *
+     *   // When `type` is `'numbers'`.
+     *   encode('AT&T'); // 'ATT&#x26;T'
+     *
+     * @param {string} value - Content.
+     * @param {Object} node - Node which is compiled.
+     * @return {string} - Encoded content.
+     * @throws {Error} - When `file.quiet` is not `true`.
+     *   However, by default `he` does not throw on
+     *   parse errors, but when
+     *   `he.encode.options.strict: true`, they occur on
+     *   invalid HTML.
+     */
+    function encode(value, node) {
+        try {
+            return he[fn](value, options);
+        } catch (exception) {
+            file.fail(exception, node.position);
         }
     }
 
-    return highestCount;
+    return encode;
 }
 
 /**
- * Pad `value` with `level * INDENT` spaces.
+ * Wrap `url` in angle brackets when needed, or when
+ * forced.
  *
- * @param {string} value
- * @param {number} level
- * @return {string}
+ * In links, images, and definitions, the URL part needs
+ * to be enclosed when it:
+ *
+ * - has a length of `0`;
+ * - contains white-space;
+ * - has more or less opening than closing parentheses.
+ *
+ * @example
+ *   encloseURI('foo bar') // '<foo bar>'
+ *   encloseURI('foo(bar(baz)') // '<foo(bar(baz)>'
+ *   encloseURI('') // '<>'
+ *   encloseURI('example.com') // 'example.com'
+ *   encloseURI('example.com', true) // '<example.com>'
+ *
+ * @param {string} uri
+ * @param {boolean?} [always] - Force enclosing.
+ * @return {boolean} - Properly enclosed `uri`.
+ */
+function encloseURI(uri, always) {
+    if (
+        always ||
+        !uri.length ||
+        EXPRESSIONS_WHITE_SPACE.test(uri) ||
+        ccount(uri, PARENTHESIS_OPEN) !== ccount(uri, PARENTHESIS_CLOSE)
+    ) {
+        return ANGLE_BRACKET_OPEN + uri + ANGLE_BRACKET_CLOSE;
+    }
+
+    return uri;
+}
+
+/**
+ * There is currently no way to support nested delimiters
+ * across Markdown.pl, CommonMark, and GitHub (RedCarpet).
+ * The following code supports Markdown.pl and GitHub.
+ * CommonMark is not supported when mixing double- and
+ * single quotes inside a title.
+ *
+ * @see https://github.com/vmg/redcarpet/issues/473
+ * @see https://github.com/jgm/CommonMark/issues/308
+ *
+ * @example
+ *   encloseTitle('foo') // '"foo"'
+ *   encloseTitle('foo \'bar\' baz') // '"foo \'bar\' baz"'
+ *   encloseTitle('foo "bar" baz') // '\'foo "bar" baz\''
+ *   encloseTitle('foo "bar" \'baz\'') // '"foo "bar" \'baz\'"'
+ *
+ * @param {string} title - Content.
+ * @return {string} - Properly enclosed title.
+ */
+function encloseTitle(title) {
+    var delimiter = QUOTE_DOUBLE;
+
+    if (title.indexOf(delimiter) !== -1) {
+        delimiter = QUOTE_SINGLE;
+    }
+
+    return delimiter + title + delimiter;
+}
+
+/**
+ * Pad `value` with `level * INDENT` spaces.  Respects
+ * lines. Ignores empty lines.
+ *
+ * @example
+ *   pad('foo', 1) // '    foo'
+ *
+ * @param {string} value - Content.
+ * @param {number} level - Indentation level.
+ * @return {string} - Padded `value`.
  */
 function pad(value, level) {
     var index;
@@ -2716,7 +5592,7 @@ function pad(value, level) {
     value = value.split(LINE);
 
     index = value.length;
-    padding = repeat(level * INDENT, SPACE);
+    padding = repeat(SPACE, level * INDENT);
 
     while (index--) {
         if (value[index].length !== 0) {
@@ -2730,46 +5606,23 @@ function pad(value, level) {
 /**
  * Construct a new compiler.
  *
- * @param {Object?} options
- * @constructor Compiler
+ * @example
+ *   var compiler = new Compiler(new File('> foo.'));
+ *
+ * @constructor
+ * @class {Compiler}
+ * @param {File} file - Virtual file.
+ * @param {Object?} [options] - Passed to
+ *   `Compiler#setOptions()`.
  */
-function Compiler(options) {
+function Compiler(file, options) {
     var self = this;
-    var ruleRepetition;
 
-    self.footnoteCounter = 0;
-    self.linkCounter = 0;
-    self.links = [];
+    self.file = file;
 
-    if (options === null || options === undefined) {
-        options = {};
-    } else if (typeof options !== 'object') {
-        raise(options, 'options');
-    } else {
-        options = copy({}, options);
-    }
+    self.options = extend({}, self.options);
 
-    validate.map(options, 'bullet', LIST_BULLETS, DASH);
-    validate.map(options, 'rule', HORIZONTAL_RULE_BULLETS, ASTERISK);
-    validate.map(options, 'emphasis', EMPHASIS_MARKERS, UNDERSCORE);
-    validate.map(options, 'strong', EMPHASIS_MARKERS, ASTERISK);
-    validate.map(options, 'fence', FENCE_MARKERS, TICK);
-    validate.bool(options, 'ruleSpaces', true);
-    validate.bool(options, 'setext', false);
-    validate.bool(options, 'closeAtx', false);
-    validate.bool(options, 'looseTable', false);
-    validate.bool(options, 'spacedTable', true);
-    validate.bool(options, 'referenceLinks', false);
-    validate.bool(options, 'fences', false);
-    validate.num(options, 'ruleRepetition', 3);
-
-    ruleRepetition = options.ruleRepetition;
-
-    if (ruleRepetition < 3 || ruleRepetition !== ruleRepetition) {
-        raise(ruleRepetition, 'options.ruleRepetition');
-    }
-
-    self.options = options;
+    self.setOptions(options);
 }
 
 /*
@@ -2778,47 +5631,140 @@ function Compiler(options) {
 
 var compilerPrototype = Compiler.prototype;
 
-/**
- * Visit a token.
- *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+/*
+ * Expose defaults.
  */
-compilerPrototype.visit = function (token, parent, level) {
-    if (!level) {
-        level = 0;
-    }
 
-    level += 1;
+compilerPrototype.options = defaultOptions;
 
-    if (!(token.type in this)) {
-        throw new Error(
-            'Missing compiler for node of type `' +
-            token.type + '`: ' + token
-        );
-    }
+/*
+ * Map of applicable enum's.
+ */
 
-    return this[token.type](token, parent, level);
+var maps = {
+    'entities': ENTITY_OPTIONS,
+    'bullet': LIST_BULLETS,
+    'rule': HORIZONTAL_RULE_BULLETS,
+    'listItemIndent': LIST_ITEM_INDENTS,
+    'emphasis': EMPHASIS_MARKERS,
+    'strong': EMPHASIS_MARKERS,
+    'fence': FENCE_MARKERS
 };
 
 /**
- * Visit all tokens.
+ * Set options.  Does not overwrite previously set
+ * options.
  *
- * @param {Object} parent
- * @param {number} level
- * @return {Array.<string>}
+ * @example
+ *   var compiler = new Compiler();
+ *   compiler.setOptions({bullet: '*'});
+ *
+ * @this {Compiler}
+ * @throws {Error} - When an option is invalid.
+ * @param {Object?} [options] - Stringify settings.
+ * @return {Compiler} - `self`.
  */
-compilerPrototype.visitAll = function (parent, level) {
+compilerPrototype.setOptions = function (options) {
     var self = this;
-    var tokens = parent.children;
+    var current = self.options;
+    var ruleRepetition;
+    var key;
+
+    if (options === null || options === undefined) {
+        options = {};
+    } else if (typeof options === 'object') {
+        options = extend({}, options);
+    } else {
+        raise(options, 'options');
+    }
+
+    for (key in defaultOptions) {
+        validate[typeof current[key]](
+            options, key, current[key], maps[key]
+        );
+    }
+
+    ruleRepetition = options.ruleRepetition;
+
+    if (ruleRepetition && ruleRepetition < MINIMUM_RULE_LENGTH) {
+        raise(ruleRepetition, 'options.ruleRepetition');
+    }
+
+    self.encode = encodeFactory(String(options.entities), self.file);
+
+    self.options = options;
+
+    return self;
+};
+
+/**
+ * Visit a node.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.visit({
+ *     type: 'strong',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *   // '**Foo**'
+ *
+ * @param {Object} node - Node.
+ * @param {Object?} [parent] - `node`s parent.
+ * @return {string} - Compiled `node`.
+ */
+compilerPrototype.visit = function (node, parent) {
+    var self = this;
+
+    /*
+     * Fail on unknown nodes.
+     */
+
+    if (typeof self[node.type] !== 'function') {
+        self.file.fail(
+            'Missing compiler for node of type `' +
+            node.type + '`: `' + node + '`',
+            node
+        );
+    }
+
+    return self[node.type](node, parent);
+};
+
+/**
+ * Visit all children of `parent`.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.all({
+ *     type: 'strong',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     },
+ *     {
+ *       type: 'text',
+ *       value: 'Bar'
+ *     }]
+ *   });
+ *   // ['Foo', 'Bar']
+ *
+ * @param {Object} parent - Parent node of children.
+ * @return {Array.<string>} - List of compiled children.
+ */
+compilerPrototype.all = function (parent) {
+    var self = this;
+    var children = parent.children;
     var values = [];
     var index = -1;
-    var length = tokens.length;
+    var length = children.length;
 
     while (++index < length) {
-        values[index] = self.visit(tokens[index], parent, level);
+        values[index] = self.visit(children[index], parent);
     }
 
     return values;
@@ -2827,27 +5773,55 @@ compilerPrototype.visitAll = function (parent, level) {
 /**
  * Visit ordered list items.
  *
- * @param {Object} token
- * @param {number} level
- * @return {Array.<string>}
+ * Starts the list with
+ * `node.start` and increments each following list item
+ * bullet by one:
+ *
+ *     2. foo
+ *     3. bar
+ *
+ * In `incrementListMarker: false` mode, does not increment
+ * each marker and stays on `node.start`:
+ *
+ *     1. foo
+ *     1. bar
+ *
+ * Adds an extra line after an item if it has
+ * `loose: true`.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.visitOrderedItems({
+ *     type: 'list',
+ *     ordered: true,
+ *     children: [{
+ *       type: 'listItem',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // '1.  bar'
+ *
+ * @param {Object} node - `list` node with
+ *   `ordered: true`.
+ * @return {string} - Markdown list.
  */
-compilerPrototype.visitOrderedItems = function (token, level) {
+compilerPrototype.visitOrderedItems = function (node) {
     var self = this;
+    var increment = self.options.incrementListMarker;
     var values = [];
-    var tokens = token.children;
+    var start = node.start;
+    var children = node.children;
+    var length = children.length;
     var index = -1;
-    var length = tokens.length;
     var bullet;
-    var indent;
-
-    level = level + 1;
 
     while (++index < length) {
-        bullet = (index + 1) + DOT + SPACE;
-        indent = Math.ceil(bullet.length / HALF) * HALF;
-
-        values[index] = bullet +
-            self.listItem(tokens[index], token, level, indent);
+        bullet = (increment ? start + index : start) + DOT;
+        values[index] = self.listItem(children[index], node, index, bullet);
     }
 
     return values.join(LINE);
@@ -2856,101 +5830,194 @@ compilerPrototype.visitOrderedItems = function (token, level) {
 /**
  * Visit unordered list items.
  *
- * @param {Object} token
- * @param {number} level
- * @return {Array.<string>}
+ * Uses `options.bullet` as each item's bullet.
+ *
+ * Adds an extra line after an item if it has
+ * `loose: true`.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.visitUnorderedItems({
+ *     type: 'list',
+ *     ordered: false,
+ *     children: [{
+ *       type: 'listItem',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // '-   bar'
+ *
+ * @param {Object} node - `list` node with
+ *   `ordered: false`.
+ * @return {string} - Markdown list.
  */
-compilerPrototype.visitUnorderedItems = function (token, level) {
+compilerPrototype.visitUnorderedItems = function (node) {
     var self = this;
     var values = [];
-    var tokens = token.children;
+    var children = node.children;
+    var length = children.length;
     var index = -1;
-    var length = tokens.length;
-    var bullet;
-    var indent;
-
-    level = level + 1;
-
-    bullet = this.options.bullet + SPACE;
-    indent = Math.ceil(bullet.length / HALF) * HALF;
+    var bullet = self.options.bullet;
 
     while (++index < length) {
-        values[index] = bullet +
-            self.listItem(tokens[index], token, level, indent);
+        values[index] = self.listItem(children[index], node, index, bullet);
     }
 
     return values.join(LINE);
 };
 
 /**
- * Stringify a root.
+ * Stringify a block node with block children (e.g., `root`
+ * or `blockquote`).
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * Knows about code following a list, or adjacent lists
+ * with similar bullets, and places an extra newline
+ * between them.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.block({
+ *     type: 'root',
+ *     children: [{
+ *       type: 'paragraph',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // 'bar'
+ *
+ * @param {Object} node - `root` node.
+ * @return {string} - Markdown block content.
  */
-compilerPrototype.root = function (token, parent, level) {
+compilerPrototype.block = function (node) {
     var self = this;
     var values = [];
-    var tokens = token.children;
+    var children = node.children;
+    var length = children.length;
     var index = -1;
-    var length = tokens.length;
     var child;
-    var prevType;
+    var prev;
 
     while (++index < length) {
-        child = tokens[index];
+        child = children[index];
 
-        if (prevType) {
+        if (prev) {
             /*
-             * Duplicate tokens, such as a list
+             * Duplicate nodes, such as a list
              * directly following another list,
              * often need multiple new lines.
+             *
+             * Additionally, code blocks following a list
+             * might easily be mistaken for a paragraph
+             * in the list itself.
              */
 
-            if (child.type === prevType && prevType === 'list') {
+            if (child.type === prev.type && prev.type === 'list') {
+                values.push(prev.ordered === child.ordered ? GAP : BREAK);
+            } else if (
+                prev.type === 'list' &&
+                child.type === 'code' &&
+                !child.lang
+            ) {
                 values.push(GAP);
             } else {
                 values.push(BREAK);
             }
         }
 
-        values.push(self.visit(child, token, level));
+        values.push(self.visit(child, node));
 
-        prevType = child.type;
+        prev = child;
     }
 
-    values = values.join(EMPTY);
+    return values.join(EMPTY);
+};
 
-    if (values.charAt(values.length - 1) !== LINE) {
-        values += LINE;
-    }
-
-    return values;
+/**
+ * Stringify a root.
+ *
+ * Adds a final newline to ensure valid POSIX files.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.root({
+ *     type: 'root',
+ *     children: [{
+ *       type: 'paragraph',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // 'bar'
+ *
+ * @param {Object} node - `root` node.
+ * @return {string} - Markdown document.
+ */
+compilerPrototype.root = function (node) {
+    return this.block(node) + LINE;
 };
 
 /**
  * Stringify a heading.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * In `setext: true` mode and when `depth` is smaller than
+ * three, creates a setext header:
+ *
+ *     Foo
+ *     ===
+ *
+ * Otherwise, an ATX header is generated:
+ *
+ *     ### Foo
+ *
+ * In `closeAtx: true` mode, the header is closed with
+ * hashes:
+ *
+ *     ### Foo ###
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.heading({
+ *     type: 'heading',
+ *     depth: 2,
+ *     children: [{
+ *       type: 'strong',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // '## **bar**'
+ *
+ * @param {Object} node - `heading` node.
+ * @return {string} - Markdown heading.
  */
-compilerPrototype.heading = function (token, parent, level) {
-    var setext = this.options.setext;
-    var closeAtx = this.options.closeAtx;
-    var depth = token.depth;
-    var content = this.visitAll(token, level).join(EMPTY);
+compilerPrototype.heading = function (node) {
+    var self = this;
+    var setext = self.options.setext;
+    var closeAtx = self.options.closeAtx;
+    var depth = node.depth;
+    var content = self.all(node).join(EMPTY);
     var prefix;
 
-    if (setext && (depth === 1 || depth === 2)) {
+    if (setext && depth < 3) {
         return content + LINE +
-            repeat(content.length, depth === 1 ? EQUALS : DASH);
+            repeat(depth === 1 ? EQUALS : DASH, content.length);
     }
 
-    prefix = repeat(token.depth, HASH);
+    prefix = repeat(HASH, node.depth);
     content = prefix + SPACE + content;
 
     if (closeAtx) {
@@ -2963,136 +6030,242 @@ compilerPrototype.heading = function (token, parent, level) {
 /**
  * Stringify text.
  *
- * @param {Object} token
- * @return {string}
+ * Supports named entities in `settings.encode: true` mode:
+ *
+ *     AT&amp;T
+ *
+ * Supports numbered entities in `settings.encode: numbers`
+ * mode:
+ *
+ *     AT&#x26;T
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.text({
+ *     type: 'text',
+ *     value: 'foo'
+ *   });
+ *   // 'foo'
+ *
+ * @param {Object} node - `text` node.
+ * @return {string} - Raw markdown text.
  */
-compilerPrototype.text = function (token) {
-    return token.value;
+compilerPrototype.text = function (node) {
+    return this.encode(node.value, node);
 };
 
 /**
  * Stringify escaped text.
  *
- * @param {Object} token
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.escape({
+ *     type: 'escape',
+ *     value: '\n'
+ *   });
+ *   // '\\\n'
+ *
+ * @param {Object} node - `escape` node.
+ * @return {string} - Markdown escape.
  */
-compilerPrototype.escape = function (token) {
-    return '\\' + token.value;
+compilerPrototype.escape = function (node) {
+    return '\\' + node.value;
 };
 
 /**
  * Stringify a paragraph.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.paragraph({
+ *     type: 'paragraph',
+ *     children: [{
+ *       type: 'strong',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // '**bar**'
+ *
+ * @param {Object} node - `paragraph` node.
+ * @return {string} - Markdown paragraph.
  */
-compilerPrototype.paragraph = function (token, parent, level) {
-    return this.visitAll(token, level).join(EMPTY);
+compilerPrototype.paragraph = function (node) {
+    return this.all(node).join(EMPTY);
 };
 
 /**
  * Stringify a block quote.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.paragraph({
+ *     type: 'blockquote',
+ *     children: [{
+ *       type: 'paragraph',
+ *       children: [{
+ *         type: 'strong',
+ *         children: [{
+ *           type: 'text',
+ *           value: 'bar'
+ *         }]
+ *       }]
+ *     }]
+ *   });
+ *   // '> **bar**'
+ *
+ * @param {Object} node - `blockquote` node.
+ * @return {string} - Markdown block quote.
  */
-compilerPrototype.blockquote = function (token, parent, level) {
-    return ANGLE_BRACKET + SPACE + this.visitAll(token, level)
-        .join(BREAK).split(LINE).join(LINE + ANGLE_BRACKET + SPACE);
+compilerPrototype.blockquote = function (node) {
+    var indent = ANGLE_BRACKET_CLOSE + SPACE;
+
+    return indent + this.block(node).split(LINE).join(LINE + indent);
 };
 
 /**
- * Stringify a link.
+ * Stringify a list. See `Compiler#visitOrderedList()` and
+ * `Compiler#visitUnorderedList()` for internal working.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.visitUnorderedItems({
+ *     type: 'list',
+ *     ordered: false,
+ *     children: [{
+ *       type: 'listItem',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // '-   bar'
+ *
+ * @param {Object} node - `list` node.
+ * @return {string} - Markdown list.
  */
-compilerPrototype.link = function (token, parent, level) {
+compilerPrototype.list = function (node) {
+    return this[ORDERED_MAP[node.ordered]](node);
+};
+
+/**
+ * Stringify a list item.
+ *
+ * Prefixes the content with a checked checkbox when
+ * `checked: true`:
+ *
+ *     [x] foo
+ *
+ * Prefixes the content with an unchecked checkbox when
+ * `checked: false`:
+ *
+ *     [ ] foo
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.listItem({
+ *     type: 'listItem',
+ *     checked: true,
+ *     children: [{
+ *       type: 'text',
+ *       value: 'bar'
+ *     }]
+ *   }, {
+ *     type: 'list',
+ *     ordered: false,
+ *     children: [{
+ *       type: 'listItem',
+ *       checked: true,
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   }, 0, '*');
+ *   '-   [x] bar'
+ *
+ * @param {Object} node - `listItem` node.
+ * @param {Object} parent - `list` node.
+ * @param {number} position - Index of `node` in `parent`.
+ * @param {string} bullet - Bullet to use.  This, and the
+ *   `listItemIndent` setting define the used indent.
+ * @return {string} - Markdown list item.
+ */
+compilerPrototype.listItem = function (node, parent, position, bullet) {
     var self = this;
-    var link = token.href;
+    var style = self.options.listItemIndent;
+    var children = node.children;
+    var values = [];
+    var index = -1;
+    var length = children.length;
+    var loose = node.loose;
     var value;
+    var indent;
+    var spacing;
 
-    value = SQUARE_BRACKET_OPEN +
-        self.visitAll(token, level).join(EMPTY) + SQUARE_BRACKET_CLOSE;
-
-    if (token.title) {
-        link += SPACE + QUOTE_DOUBLE + token.title + QUOTE_DOUBLE;
+    while (++index < length) {
+        values[index] = self.visit(children[index], node);
     }
 
-    if (self.options.referenceLinks) {
-        value += SQUARE_BRACKET_OPEN + (++self.linkCounter) +
-            SQUARE_BRACKET_CLOSE;
+    value = CHECKBOX_MAP[node.checked] + values.join(loose ? BREAK : LINE);
 
-        self.links.push(
-            SQUARE_BRACKET_OPEN + self.linkCounter + SQUARE_BRACKET_CLOSE +
-            COLON + SPACE + link
-        );
+    if (
+        style === LIST_ITEM_ONE ||
+        (style === LIST_ITEM_MIXED && value.indexOf(LINE) === -1)
+    ) {
+        indent = bullet.length + 1;
+        spacing = SPACE;
     } else {
-        value += PARENTHESIS_OPEN + link + PARENTHESIS_CLOSE;
+        indent = Math.ceil((bullet.length + 1) / INDENT) * INDENT;
+        spacing = repeat(SPACE, indent - bullet.length);
+    }
+
+    value = bullet + spacing + pad(value, indent / INDENT).slice(indent);
+
+    if (loose && parent.children.length - 1 !== position) {
+        value += LINE;
     }
 
     return value;
 };
 
 /**
- * Stringify a list.
- *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
- */
-compilerPrototype.list = function (token, parent, level) {
-    return this[ORDERED_MAP[token.ordered]](token, level);
-};
-
-/**
- * Stringify a list item.
- *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @param {number} padding
- * @return {string}
- */
-compilerPrototype.listItem = function (token, parent, level, padding) {
-    var self = this;
-    var tokens = token.children;
-    var values = [];
-    var index = -1;
-    var length = tokens.length;
-    var value;
-
-    while (++index < length) {
-        values[index] = self.visit(tokens[index], token, level);
-    }
-
-    value = values.join(token.loose ? BREAK : LINE);
-
-    if (token.loose) {
-        value += LINE;
-    }
-
-    value = pad(value, padding / INDENT);
-
-    return trimLeft(value);
-};
-
-/**
  * Stringify inline code.
  *
- * @param {Object} token
- * @return {string}
+ * Knows about internal ticks (`\``), and ensures one more
+ * tick is used to enclose the inline code:
+ *
+ *     ```foo ``bar`` baz```
+ *
+ * Even knows about inital and final ticks:
+ *
+ *     `` `foo ``
+ *     `` foo` ``
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.inlineCode({
+ *     type: 'inlineCode',
+ *     value: 'foo(); `bar`; baz()'
+ *   });
+ *   // '``foo(); `bar`; baz()``'
+ *
+ * @param {Object} node - `inlineCode` node.
+ * @return {string} - Markdown inline code.
  */
-compilerPrototype.inlineCode = function (token) {
-    var value = token.value;
-    var ticks = repeat(getLongestRepetition(value, TICK) + 1, TICK);
+compilerPrototype.inlineCode = function (node) {
+    var value = node.value;
+    var ticks = repeat(TICK, longestStreak(value, TICK) + 1);
     var start = ticks;
     var end = ticks;
 
@@ -3104,18 +6277,27 @@ compilerPrototype.inlineCode = function (token) {
         end = SPACE + end;
     }
 
-    return start + token.value + end;
+    return start + node.value + end;
 };
 
 /**
  * Stringify YAML front matter.
  *
- * @param {Object} token
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.yaml({
+ *     type: 'yaml',
+ *     value: 'foo: bar'
+ *   });
+ *   // '---\nfoo: bar\n---'
+ *
+ * @param {Object} node - `yaml` node.
+ * @return {string} - Markdown YAML document.
  */
-compilerPrototype.yaml = function (token) {
-    var delimiter = repeat(3, DASH);
-    var value = token.value ? LINE + token.value : EMPTY;
+compilerPrototype.yaml = function (node) {
+    var delimiter = repeat(DASH, YAML_FENCE_LENGTH);
+    var value = node.value ? LINE + node.value : EMPTY;
 
     return delimiter + value + LINE + delimiter;
 };
@@ -3123,46 +6305,131 @@ compilerPrototype.yaml = function (token) {
 /**
  * Stringify a code block.
  *
- * @param {Object} token
- * @return {string}
+ * Creates indented code when:
+ *
+ * - No language tag exists;
+ * - Not in `fences: true` mode;
+ * - A non-empty value exists.
+ *
+ * Otherwise, GFM fenced code is created:
+ *
+ *     ```js
+ *     foo();
+ *     ```
+ *
+ * When in ``fence: `~` `` mode, uses tildes as fences:
+ *
+ *     ~~~js
+ *     foo();
+ *     ~~~
+ *
+ * Knows about internal fences (Note: GitHub/Kramdown does
+ * not support this):
+ *
+ *     ````javascript
+ *     ```markdown
+ *     foo
+ *     ```
+ *     ````
+ *
+ * Supports named entities in the language flag with
+ * `settings.encode` mode.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.code({
+ *     type: 'code',
+ *     lang: 'js',
+ *     value: 'fooo();'
+ *   });
+ *   // '```js\nfooo();\n```'
+ *
+ * @param {Object} node - `code` node.
+ * @return {string} - Markdown code block.
  */
-compilerPrototype.code = function (token) {
-    var value = token.value;
+compilerPrototype.code = function (node) {
+    var value = node.value;
     var marker = this.options.fence;
+    var language = this.encode(node.lang || EMPTY, node);
     var fence;
 
     /*
      * Probably pedantic.
      */
 
-    if (!token.lang && !this.options.fences && value) {
+    if (!language && !this.options.fences && value) {
         return pad(value, 1);
     }
 
-    fence = getLongestRepetition(value, marker) + 1;
+    fence = longestStreak(value, marker) + 1;
 
-    fence = repeat(Math.max(fence, MINIMUM_CODE_FENCE_LENGTH), marker);
+    /*
+     * Fix GFM / RedCarpet bug, where fence-like characters
+     * inside fenced code can exit a code-block.
+     * Yes, even when the outer fence uses different
+     * characters, or is longer.
+     * Thus, we can only pad the code to make it work.
+     */
 
-    return fence + (token.lang || EMPTY) + LINE + value + LINE + fence;
+    if (FENCE.test(value)) {
+        value = pad(value, 1);
+    }
+
+    fence = repeat(marker, Math.max(fence, MINIMUM_CODE_FENCE_LENGTH));
+
+    return fence + language + LINE + value + LINE + fence;
 };
 
 /**
  * Stringify HTML.
  *
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.html({
+ *     type: 'html',
+ *     value: '<div>bar</div>'
+ *   });
+ *   // '<div>bar</div>'
+ *
+ * @param {Object} node - `html` node.
+ * @return {string} - Markdown HTML.
  */
-compilerPrototype.html = function (token) {
-    return token.value;
+compilerPrototype.html = function (node) {
+    return node.value;
 };
 
 /**
  * Stringify a horizontal rule.
  *
- * @return {string}
+ * The character used is configurable by `rule`: (`'_'`)
+ *
+ *     ___
+ *
+ * The number of repititions is defined through
+ * `ruleRepetition`: (`6`)
+ *
+ *     ******
+ *
+ * Whether spaces delimit each character, is configured
+ * through `ruleSpaces`: (`true`)
+ *
+ *     * * *
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.horizontalRule({
+ *     type: 'horizontalRule'
+ *   });
+ *   // '***'
+ *
+ * @return {string} - Markdown rule.
  */
 compilerPrototype.horizontalRule = function () {
     var options = this.options;
-    var rule = repeat(options.ruleRepetition, options.rule);
+    var rule = repeat(options.rule, options.ruleRepetition);
 
     if (options.ruleSpaces) {
         rule = rule.split(EMPTY).join(SPACE);
@@ -3174,74 +6441,364 @@ compilerPrototype.horizontalRule = function () {
 /**
  * Stringify a strong.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * The marker used is configurable by `strong`, which
+ * defaults to an asterisk (`'*'`) but also accepts an
+ * underscore (`'_'`):
+ *
+ *     _foo_
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.strong({
+ *     type: 'strong',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *   // '**Foo**'
+ *
+ * @param {Object} node - `strong` node.
+ * @return {string} - Markdown strong-emphasised text.
  */
-compilerPrototype.strong = function (token, parent, level) {
+compilerPrototype.strong = function (node) {
     var marker = this.options.strong;
 
     marker = marker + marker;
 
-    return marker + this.visitAll(token, level).join(EMPTY) + marker;
+    return marker + this.all(node).join(EMPTY) + marker;
 };
 
 /**
  * Stringify an emphasis.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * The marker used is configurable by `emphasis`, which
+ * defaults to an underscore (`'_'`) but also accepts an
+ * asterisk (`'*'`):
+ *
+ *     *foo*
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.emphasis({
+ *     type: 'emphasis',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *   // '_Foo_'
+ *
+ * @param {Object} node - `emphasis` node.
+ * @return {string} - Markdown emphasised text.
  */
-compilerPrototype.emphasis = function (token, parent, level) {
+compilerPrototype.emphasis = function (node) {
     var marker = this.options.emphasis;
 
-    return marker + this.visitAll(token, level).join(EMPTY) + marker;
+    return marker + this.all(node).join(EMPTY) + marker;
 };
 
 /**
- * Stringify a break.
+ * Stringify a hard break.
  *
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.break({
+ *     type: 'break'
+ *   });
+ *   // '  \n'
+ *
+ * @return {string} - Hard markdown break.
  */
 compilerPrototype.break = function () {
-    return LINE;
+    return SPACE + SPACE + LINE;
 };
 
 /**
  * Stringify a delete.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.delete({
+ *     type: 'delete',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *   // '~~Foo~~'
+ *
+ * @param {Object} node - `delete` node.
+ * @return {string} - Markdown strike-through.
  */
-compilerPrototype.delete = function (token, parent, level) {
-    return DOUBLE_TILDE +
-        this.visitAll(token, level).join(EMPTY) + DOUBLE_TILDE;
+compilerPrototype.delete = function (node) {
+    return DOUBLE_TILDE + this.all(node).join(EMPTY) + DOUBLE_TILDE;
+};
+
+/**
+ * Stringify a link.
+ *
+ * When no title exists, the compiled `children` equal
+ * `href`, and `href` starts with a protocol, an auto
+ * link is created:
+ *
+ *     <http://example.com>
+ *
+ * Otherwise, is smart about enclosing `href` (see
+ * `encloseURI()`) and `title` (see `encloseTitle()`).
+ *
+ *    [foo](<foo at bar dot com> 'An "example" e-mail')
+ *
+ * Supports named entities in the `href` and `title` when
+ * in `settings.encode` mode.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.link({
+ *     type: 'link',
+ *     href: 'http://example.com',
+ *     title: 'Example Domain',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *   // '[Foo](http://example.com "Example Domain")'
+ *
+ * @param {Object} node - `link` node.
+ * @return {string} - Markdown link.
+ */
+compilerPrototype.link = function (node) {
+    var self = this;
+    var url = self.encode(node.href, node);
+    var value = self.all(node).join(EMPTY);
+
+    if (
+        node.title === null &&
+        PROTOCOL.test(url) &&
+        (url === value || url === MAILTO + value)
+    ) {
+        return encloseURI(url, true);
+    }
+
+    url = encloseURI(url);
+
+    if (node.title) {
+        url += SPACE + encloseTitle(self.encode(node.title, node));
+    }
+
+    value = SQUARE_BRACKET_OPEN + value + SQUARE_BRACKET_CLOSE;
+
+    value += PARENTHESIS_OPEN + url + PARENTHESIS_CLOSE;
+
+    return value;
+};
+
+/**
+ * Stringify a link label.
+ *
+ * Because link references are easily, mistakingly,
+ * created (for example, `[foo]`), reference nodes have
+ * an extra property depicting how it looked in the
+ * original document, so stringification can cause minimal
+ * changes.
+ *
+ * @example
+ *   label({
+ *     type: 'referenceImage',
+ *     referenceType: 'full',
+ *     identifier: 'foo'
+ *   });
+ *   // '[foo]'
+ *
+ *   label({
+ *     type: 'referenceImage',
+ *     referenceType: 'collapsed',
+ *     identifier: 'foo'
+ *   });
+ *   // '[]'
+ *
+ *   label({
+ *     type: 'referenceImage',
+ *     referenceType: 'shortcut',
+ *     identifier: 'foo'
+ *   });
+ *   // ''
+ *
+ * @param {Object} node - `linkReference` or
+ *   `imageReference` node.
+ * @return {string} - Markdown label reference.
+ */
+function label(node) {
+    var value = EMPTY;
+    var type = node.referenceType;
+
+    if (type === 'full') {
+        value = node.identifier;
+    }
+
+    if (type !== 'shortcut') {
+        value = SQUARE_BRACKET_OPEN + value + SQUARE_BRACKET_CLOSE;
+    }
+
+    return value;
+}
+
+/**
+ * Stringify a link reference.
+ *
+ * See `label()` on how reference labels are created.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.linkReference({
+ *     type: 'linkReference',
+ *     referenceType: 'collapsed',
+ *     identifier: 'foo',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *   // '[Foo][]'
+ *
+ * @param {Object} node - `linkReference` node.
+ * @return {string} - Markdown link reference.
+ */
+compilerPrototype.linkReference = function (node) {
+    return SQUARE_BRACKET_OPEN +
+        this.all(node).join(EMPTY) + SQUARE_BRACKET_CLOSE +
+        label(node);
+};
+
+/**
+ * Stringify an image reference.
+ *
+ * See `label()` on how reference labels are created.
+ *
+ * Supports named entities in the `alt` when
+ * in `settings.encode` mode.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.imageReference({
+ *     type: 'imageReference',
+ *     referenceType: 'full',
+ *     identifier: 'foo',
+ *     alt: 'Foo'
+ *   });
+ *   // '![Foo][foo]'
+ *
+ * @param {Object} node - `imageReference` node.
+ * @return {string} - Markdown image reference.
+ */
+compilerPrototype.imageReference = function (node) {
+    var alt = this.encode(node.alt, node);
+
+    return EXCLAMATION_MARK +
+        SQUARE_BRACKET_OPEN + alt + SQUARE_BRACKET_CLOSE +
+        label(node);
+};
+
+/**
+ * Stringify a footnote reference.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.footnoteReference({
+ *     type: 'footnoteReference',
+ *     identifier: 'foo'
+ *   });
+ *   // '[^foo]'
+ *
+ * @param {Object} node - `footnoteReference` node.
+ * @return {string} - Markdown footnote reference.
+ */
+compilerPrototype.footnoteReference = function (node) {
+    return SQUARE_BRACKET_OPEN + CARET + node.identifier +
+        SQUARE_BRACKET_CLOSE;
+};
+
+/**
+ * Stringify an link- or image definition.
+ *
+ * Is smart about enclosing `href` (see `encloseURI()`) and
+ * `title` (see `encloseTitle()`).
+ *
+ *    [foo]: <foo at bar dot com> 'An "example" e-mail'
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.definition({
+ *     type: 'definition',
+ *     link: 'http://example.com',
+ *     title: 'Example Domain',
+ *     identifier: 'foo'
+ *   });
+ *   // '[foo]: http://example.com "Example Domain"'
+ *
+ * @param {Object} node - `definition` node.
+ * @return {string} - Markdown link- or image definition.
+ */
+compilerPrototype.definition = function (node) {
+    var value = SQUARE_BRACKET_OPEN + node.identifier + SQUARE_BRACKET_CLOSE;
+    var url = encloseURI(node.link);
+
+    if (node.title) {
+        url += SPACE + encloseTitle(node.title);
+    }
+
+    return value + COLON + SPACE + url;
 };
 
 /**
  * Stringify an image.
  *
- * @param {Object} token
- * @return {string}
+ * Is smart about enclosing `href` (see `encloseURI()`) and
+ * `title` (see `encloseTitle()`).
+ *
+ *    ![foo](</fav icon.png> 'My "favourite" icon')
+ *
+ * Supports named entities in `src`, `alt`, and `title`
+ * when in `settings.encode` mode.
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.image({
+ *     type: 'image',
+ *     href: 'http://example.png/favicon.png',
+ *     title: 'Example Icon',
+ *     alt: 'Foo'
+ *   });
+ *   // '![Foo](http://example.png/favicon.png "Example Icon")'
+ *
+ * @param {Object} node - `image` node.
+ * @return {string} - Markdown image.
  */
-compilerPrototype.image = function (token) {
+compilerPrototype.image = function (node) {
+    var encode = this.encode;
+    var url = encloseURI(encode(node.src, node));
     var value;
 
-    value = EXCLAMATION_MARK + SQUARE_BRACKET_OPEN + (token.alt || EMPTY) +
-        SQUARE_BRACKET_CLOSE;
-
-    value += PARENTHESIS_OPEN + token.src;
-
-    if (token.title) {
-        value += SPACE + QUOTE_DOUBLE + token.title + QUOTE_DOUBLE;
+    if (node.title) {
+        url += SPACE + encloseTitle(encode(node.title, node));
     }
 
-    value += PARENTHESIS_CLOSE;
+    value = EXCLAMATION_MARK +
+        SQUARE_BRACKET_OPEN + encode(node.alt || EMPTY, node) +
+        SQUARE_BRACKET_CLOSE;
+
+    value += PARENTHESIS_OPEN + url + PARENTHESIS_CLOSE;
 
     return value;
 };
@@ -3249,54 +6806,146 @@ compilerPrototype.image = function (token) {
 /**
  * Stringify a footnote.
  *
- * @param {Object} token
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.footnote({
+ *     type: 'footnote',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *   // '[^Foo]'
+ *
+ * @param {Object} node - `footnote` node.
+ * @return {string} - Markdown footnote.
  */
-compilerPrototype.footnote = function (token) {
-    return SQUARE_BRACKET_OPEN + CARET + token.id + SQUARE_BRACKET_CLOSE;
+compilerPrototype.footnote = function (node) {
+    return SQUARE_BRACKET_OPEN + CARET + this.all(node).join(EMPTY) +
+        SQUARE_BRACKET_CLOSE;
 };
 
 /**
  * Stringify a footnote definition.
  *
- * @param {Object} token
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.footnoteDefinition({
+ *     type: 'footnoteDefinition',
+ *     identifier: 'foo',
+ *     children: [{
+ *       type: 'paragraph',
+ *       children: [{
+ *         type: 'text',
+ *         value: 'bar'
+ *       }]
+ *     }]
+ *   });
+ *   // '[^foo]: bar'
+ *
+ * @param {Object} node - `footnoteDefinition` node.
+ * @return {string} - Markdown footnote definition.
  */
-compilerPrototype.footnoteDefinition = function (token) {
-    return this.visitAll(token).join(BREAK + repeat(INDENT, SPACE));
+compilerPrototype.footnoteDefinition = function (node) {
+    var id = node.identifier.toLowerCase();
+
+    return SQUARE_BRACKET_OPEN + CARET + id +
+        SQUARE_BRACKET_CLOSE + COLON + SPACE +
+        this.all(node).join(BREAK + repeat(SPACE, INDENT));
 };
 
 /**
  * Stringify table.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * Creates a fenced table by default, but not in
+ * `looseTable: true` mode:
+ *
+ *     Foo | Bar
+ *     :-: | ---
+ *     Baz | Qux
+ *
+ * NOTE: Be careful with `looseTable: true` mode, as a
+ * loose table inside an indented code block on GitHub
+ * renders as an actual table!
+ *
+ * Creates a spaces table by default, but not in
+ * `spacedTable: false`:
+ *
+ *     |Foo|Bar|
+ *     |:-:|---|
+ *     |Baz|Qux|
+ *
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.table({
+ *     type: 'table',
+ *     align: ['center', null],
+ *     children: [
+ *       {
+ *         type: 'tableHeader',
+ *         children: [
+ *           {
+ *             type: 'tableCell'
+ *             children: [{
+ *               type: 'text'
+ *               value: 'Foo'
+ *             }]
+ *           },
+ *           {
+ *             type: 'tableCell'
+ *             children: [{
+ *               type: 'text'
+ *               value: 'Bar'
+ *             }]
+ *           }
+ *         ]
+ *       },
+ *       {
+ *         type: 'tableRow',
+ *         children: [
+ *           {
+ *             type: 'tableCell'
+ *             children: [{
+ *               type: 'text'
+ *               value: 'Baz'
+ *             }]
+ *           },
+ *           {
+ *             type: 'tableCell'
+ *             children: [{
+ *               type: 'text'
+ *               value: 'Qux'
+ *             }]
+ *           }
+ *         ]
+ *       }
+ *     ]
+ *   });
+ *   // '| Foo | Bar |\n| :-: | --- |\n| Baz | Qux |'
+ *
+ * @param {Object} node - `table` node.
+ * @return {string} - Markdown table.
  */
-compilerPrototype.table = function (token, parent, level) {
+compilerPrototype.table = function (node) {
     var self = this;
     var loose = self.options.looseTable;
     var spaced = self.options.spacedTable;
-    var rows = token.children;
+    var rows = node.children;
     var index = rows.length;
     var result = [];
     var start;
 
     while (index--) {
-        result[index] = self.visitAll(rows[index], level);
+        result[index] = self.all(rows[index]);
     }
 
     start = loose ? EMPTY : spaced ? PIPE + SPACE : PIPE;
 
-    /*
-     * There was a bug in markdown-table@0.3.0, fixed
-     * in markdown-table@0.3.1, which modified the `align`
-     * array, changing the AST.
-     */
-
     return table(result, {
-        'align': token.align.concat(),
+        'align': node.align,
         'start': start,
         'end': start.split(EMPTY).reverse().join(EMPTY),
         'delimiter': spaced ? SPACE + PIPE + SPACE : PIPE
@@ -3306,154 +6955,113 @@ compilerPrototype.table = function (token, parent, level) {
 /**
  * Stringify a table cell.
  *
- * @param {Object} token
- * @param {Object} parent
- * @param {number} level
- * @return {string}
+ * @example
+ *   var compiler = new Compiler();
+ *
+ *   compiler.tableCell({
+ *     type: 'tableCell',
+ *     children: [{
+ *       type: 'text'
+ *       value: 'Qux'
+ *     }]
+ *   });
+ *   // 'Qux'
+ *
+ * @param {Object} node - `tableCell` node.
+ * @return {string} - Markdown table cell.
  */
-compilerPrototype.tableCell = function (token, parent, level) {
-    return this.visitAll(token, level).join(EMPTY);
+compilerPrototype.tableCell = function (node) {
+    return this.all(node).join(EMPTY);
 };
 
 /**
- * Visit the footnote definition block.
+ * Stringify the bound file.
  *
- * @param {Object} footnotes
- * @return {string}
+ * @example
+ *   var file = new VFile('__Foo__');
+ *
+ *   file.namespace('mdast').ast = {
+ *     type: 'strong',
+ *     children: [{
+ *       type: 'text',
+ *       value: 'Foo'
+ *     }]
+ *   });
+ *
+ *   new Compiler(file).compile();
+ *   // '**Foo**'
+ *
+ * @this {Compiler}
+ * @return {string} - Markdown document.
  */
-compilerPrototype.visitFootnoteDefinitions = function (footnotes) {
-    var self = this;
-    var keys = getKeys(footnotes);
-    var index = -1;
-    var length = keys.length;
-    var results = [];
-    var key;
-
-    if (!length) {
-        return EMPTY;
-    }
-
-    while (++index < length) {
-        key = keys[index];
-
-        results.push(
-            SQUARE_BRACKET_OPEN + CARET + key + SQUARE_BRACKET_CLOSE +
-            COLON + SPACE + self.visit(footnotes[key], null)
-        );
-    }
-
-    return LINE + results.join(LINE) + LINE;
+compilerPrototype.compile = function () {
+    return this.visit(this.file.namespace('mdast').ast);
 };
-
-/**
- * Stringify an ast.
- *
- * @param {Object} ast
- * @param {Object?} options
- * @param {Function?} CustomCompiler
- * @return {string}
- */
-function stringify(ast, options, CustomCompiler) {
-    var compiler = new (CustomCompiler || Compiler)(options);
-    var footnotes;
-    var value;
-
-    if (ast && ast.footnotes) {
-        footnotes = copy({}, ast.footnotes);
-
-        compiler.footnotes = footnotes;
-    }
-
-    value = compiler.visit(ast);
-
-    if (compiler.links.length) {
-        value += LINE + compiler.links.join(LINE) + LINE;
-    }
-
-    if (footnotes) {
-        value += compiler.visitFootnoteDefinitions(footnotes);
-    }
-
-    return value;
-}
-
-/*
- * Expose `Compiler` on `stringify`.
- */
-
-stringify.Compiler = Compiler;
 
 /*
  * Expose `stringify` on `module.exports`.
  */
 
-module.exports = stringify;
+module.exports = Compiler;
 
-},{"./utilities.js":12,"markdown-table":14}],12:[function(require,module,exports){
+},{"./defaults.js":13,"./utilities.js":17,"ccount":18,"extend.js":20,"he":21,"longest-streak":22,"markdown-table":23,"repeat-string":24}],17:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module mdast:utilities
+ * @fileoverview Collection of tiny helpers useful for
+ *   both parsing and compiling markdown.
+ */
+
 'use strict';
 
 /*
- * Cached methods.
+ * Dependencies.
  */
 
-var has = Object.prototype.hasOwnProperty;
+var collapseWhiteSpace = require('collapse-white-space');
 
 /*
  * Expressions.
  */
 
-var WHITE_SPACE_FINAL = /\s+$/;
-var NEW_LINE_FINAL = /\n+$/;
-var WHITE_SPACE_INITIAL = /^\s+/;
 var EXPRESSION_LINE_BREAKS = /\r\n|\r/g;
-var EXPRESSION_TAB = /\t/g;
 var EXPRESSION_SYMBOL_FOR_NEW_LINE = /\u2424/g;
-var EXPRESSION_NO_BREAK_SPACE = /\u00a0/g;
+var EXPRESSION_BOM = /^\ufeff/;
 
 /**
- * Shallow copy `context` into `target`.
+ * Throw an exception with in its `message` `value`
+ * and `name`.
  *
- * @param {Object} target
- * @return {Object} context
- * @return {Object} - target.
- */
-function copy(target, context) {
-    var key;
-
-    for (key in context) {
-        if (has.call(context, key)) {
-            target[key] = context[key];
-        }
-    }
-
-    return target;
-}
-
-/**
- * Throw an exception with in its message the value,
- * and its name.
- *
- * @param {*} value
- * @param {string} name
+ * @param {*} value - Invalid value.
+ * @param {string} name - Setting name.
  */
 function raise(value, name) {
     throw new Error(
         'Invalid value `' + value + '` ' +
-        'for `' + name + '`'
+        'for setting `' + name + '`'
     );
 }
 
 /**
  * Validate a value to be boolean. Defaults to `def`.
- * Raises an exception with `options.$name` when not
+ * Raises an exception with `context[name]` when not
  * a boolean.
  *
- * @param {Object} obj
- * @param {string} name
- * @param {boolean} def
+ * @example
+ *   validateBoolean({foo: null}, 'foo', true) // true
+ *   validateBoolean({foo: false}, 'foo', true) // false
+ *   validateBoolean({foo: 'bar'}, 'foo', true) // Throws
+ *
+ * @throws {Error} - When a setting is neither omitted nor
+ *   a boolean.
+ * @param {Object} context - Settings.
+ * @param {string} name - Setting name.
+ * @param {boolean} def - Default value.
  */
-function validateBoolean(obj, name, def) {
-    var value = obj[name];
+function validateBoolean(context, name, def) {
+    var value = context[name];
 
     if (value === null || value === undefined) {
         value = def;
@@ -3463,44 +7071,59 @@ function validateBoolean(obj, name, def) {
         raise(value, 'options.' + name);
     }
 
-    obj[name] = value;
+    context[name] = value;
 }
 
 /**
  * Validate a value to be boolean. Defaults to `def`.
- * Raises an exception with `options.$name` when not
+ * Raises an exception with `context[name]` when not
  * a boolean.
  *
- * @param {Object} obj
- * @param {string} name
- * @param {number} def
+ * @example
+ *   validateNumber({foo: null}, 'foo', 1) // 1
+ *   validateNumber({foo: 2}, 'foo', 1) // 2
+ *   validateNumber({foo: 'bar'}, 'foo', 1) // Throws
+ *
+ * @throws {Error} - When a setting is neither omitted nor
+ *   a number.
+ * @param {Object} context - Settings.
+ * @param {string} name - Setting name.
+ * @param {number} def - Default value.
  */
-function validateNumber(obj, name, def) {
-    var value = obj[name];
+function validateNumber(context, name, def) {
+    var value = context[name];
 
     if (value === null || value === undefined) {
         value = def;
     }
 
-    if (typeof value !== 'number') {
+    if (typeof value !== 'number' || value !== value) {
         raise(value, 'options.' + name);
     }
 
-    obj[name] = value;
+    context[name] = value;
 }
 
 /**
  * Validate a value to be in `map`. Defaults to `def`.
- * Raises an exception with `options.$name` when not
+ * Raises an exception with `context[name]` when not
  * not in `map`.
  *
- * @param {Object} obj
- * @param {string} name
- * @param {Object} map
- * @param {boolean} def
+ * @example
+ *   var map = {bar: true, baz: true};
+ *   validateString({foo: null}, 'foo', 'bar', map) // 'bar'
+ *   validateString({foo: 'baz'}, 'foo', 'bar', map) // 'baz'
+ *   validateString({foo: true}, 'foo', 'bar', map) // Throws
+ *
+ * @throws {Error} - When a setting is neither omitted nor
+ *   in `map`.
+ * @param {Object} context - Settings.
+ * @param {string} name - Setting name.
+ * @param {string} def - Default value.
+ * @param {Object} map - Enum.
  */
-function validateMap(obj, name, map, def) {
-    var value = obj[name];
+function validateString(context, name, def, map) {
+    var value = context[name];
 
     if (value === null || value === undefined) {
         value = def;
@@ -3510,90 +7133,163 @@ function validateMap(obj, name, map, def) {
         raise(value, 'options.' + name);
     }
 
-    obj[name] = value;
-}
-
-/**
- * Remove final white space from `value`.
- *
- * @param {string} value
- * @return {string}
- */
-function trimRight(value) {
-    return String(value).replace(WHITE_SPACE_FINAL, '');
-}
-
-/**
- * Remove final new line characters from `value`.
- *
- * @param {string} value
- * @return {string}
- */
-function trimRightLines(value) {
-    return String(value).replace(NEW_LINE_FINAL, '');
-}
-
-/**
- * Remove initial white space from `value`.
- *
- * @param {string} value
- * @return {string}
- */
-function trimLeft(value) {
-    return String(value).replace(WHITE_SPACE_INITIAL, '');
+    context[name] = value;
 }
 
 /**
  * Clean a string in preperation of parsing.
  *
- * @param {string} value
- * @return {string}
+ * @example
+ *   clean('\ufefffoo'); // 'foo'
+ *   clean('foo\r\nbar'); // 'foo\nbar'
+ *   clean('foo\u2424bar'); // 'foo\nbar'
+ *
+ * @param {string} value - Content to clean.
+ * @return {string} - Cleaned content.
  */
 function clean(value) {
     return String(value)
+        .replace(EXPRESSION_BOM, '')
         .replace(EXPRESSION_LINE_BREAKS, '\n')
-        .replace(EXPRESSION_TAB, '    ')
-        .replace(EXPRESSION_NO_BREAK_SPACE, ' ')
         .replace(EXPRESSION_SYMBOL_FOR_NEW_LINE, '\n');
 }
 
-/*
- * Expose `copy`.
+/**
+ * Normalize an identifier.  Collapses multiple white space
+ * characters into a single space, and removes casing.
+ *
+ * @example
+ *   normalizeIdentifier('FOO\t bar'); // 'foo bar'
+ *
+ * @param {string} value - Content to normalize.
+ * @return {string} - Normalized content.
  */
-
-exports.copy = copy;
-
-/*
- * Expose `raise`.
- */
-
-exports.raise = raise;
+function normalizeIdentifier(value) {
+    return collapseWhiteSpace(value).toLowerCase();
+}
 
 /*
  * Expose `validate`.
  */
 
 exports.validate = {
-    'bool': validateBoolean,
-    'map': validateMap,
-    'num': validateNumber
+    'boolean': validateBoolean,
+    'string': validateString,
+    'number': validateNumber
 };
 
 /*
- * Expose `trim` methods.
+ * Expose.
  */
 
-exports.trimLeft = trimLeft;
-exports.trimRight = trimRight;
-exports.trimRightLines = trimRightLines;
+exports.normalizeIdentifier = normalizeIdentifier;
+exports.clean = clean;
+exports.raise = raise;
+
+},{"collapse-white-space":19}],18:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer. All rights reserved.
+ * @module ccount
+ * @fileoverview Count characters.
+ */
+
+'use strict';
+
+/**
+ * Count how many characters `character` occur in `value`.
+ *
+ * @example
+ *   ccount('foo(bar(baz)', '(') // 2
+ *   ccount('foo(bar(baz)', ')') // 1
+ *
+ * @param {string} value - Content, coerced to string.
+ * @param {string} character - Single character to look
+ *   for.
+ * @return {number} - Count.
+ * @throws {Error} - when `character` is not a single
+ *   character.
+ */
+function ccount(value, character) {
+    var index = -1;
+    var count = 0;
+    var length;
+
+    value = String(value);
+    length = value.length;
+
+    if (typeof character !== 'string' || character.length !== 1) {
+        throw new Error('Expected character');
+    }
+
+    while (++index < length) {
+        if (value.charAt(index) === character) {
+            count++;
+        }
+    }
+
+    return count;
+}
 
 /*
- * Expose `clean`.
+ * Expose.
  */
 
-exports.clean = clean;
+module.exports = ccount;
 
-},{}],13:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
+'use strict';
+
+/*
+ * Constants.
+ */
+
+var WHITE_SPACE_COLLAPSABLE = /\s+/g;
+var SPACE = ' ';
+
+/**
+ * Replace multiple white-space characters with a single space.
+ *
+ * @example
+ *   collapse(' \t\nbar \nbaz\t'); // ' bar baz '
+ *
+ * @param {string} value - Value with uncollapsed white-space,
+ *   coerced to string.
+ * @return {string} - Value with collapsed white-space.
+ */
+function collapse(value) {
+    return String(value).replace(WHITE_SPACE_COLLAPSABLE, SPACE);
+}
+
+/*
+ * Expose.
+ */
+
+module.exports = collapse;
+
+},{}],20:[function(require,module,exports){
+/**
+ * Extend an object with another.
+ *
+ * @param {Object, ...} src, ...
+ * @return {Object} merged
+ * @api private
+ */
+
+module.exports = function(src) {
+  var objs = [].slice.call(arguments, 1), obj;
+
+  for (var i = 0, len = objs.length; i < len; i++) {
+    obj = objs[i];
+    for (var prop in obj) {
+      src[prop] = obj[prop];
+    }
+  }
+
+  return src;
+}
+
+},{}],21:[function(require,module,exports){
 (function (global){
 /*! http://mths.be/he v0.5.0 by @mathias | MIT license */
 ;(function(root) {
@@ -3926,52 +7622,90 @@ exports.clean = clean;
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],14:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
+'use strict';
+
+/**
+ * Get the count of the longest repeating streak of
+ * `character` in `value`.
+ *
+ * @example
+ *   longestStreak('` foo `` bar `', '`') // 2
+ *
+ * @param {string} value - Content, coerced to string.
+ * @param {string} character - Single character to look
+ *   for.
+ * @return {number} - Number of characters at the place
+ *   where `character` occurs in its longest streak in
+ *   `value`.
+ * @throws {Error} - when `character` is not a single
+ *   character.
+ */
+function longestStreak(value, character) {
+    var count = 0;
+    var maximum = 0;
+    var index = -1;
+    var length;
+
+    value = String(value);
+    length = value.length;
+
+    if (typeof character !== 'string' || character.length !== 1) {
+        throw new Error('Expected character');
+    }
+
+    while (++index < length) {
+        if (value.charAt(index) === character) {
+            count++;
+
+            if (count > maximum) {
+                maximum = count;
+            }
+        } else {
+            count = 0;
+        }
+    }
+
+    return maximum;
+}
+
+/*
+ * Expose.
+ */
+
+module.exports = longestStreak;
+
+},{}],23:[function(require,module,exports){
 'use strict';
 
 /*
  * Useful expressions.
  */
 
-var EXPRESSION_DOT,
-    EXPRESSION_LAST_DOT;
-
-EXPRESSION_DOT = /\./;
-
-EXPRESSION_LAST_DOT = /\.[^.]*$/;
+var EXPRESSION_DOT = /\./;
+var EXPRESSION_LAST_DOT = /\.[^.]*$/;
 
 /*
  * Allowed alignment values.
  */
 
-var LEFT,
-    RIGHT,
-    CENTER,
-    DOT,
-    ALLIGNMENT;
+var LEFT = 'l';
+var RIGHT = 'r';
+var CENTER = 'c';
+var DOT = '.';
+var NULL = '';
 
-LEFT = 'l';
-RIGHT = 'r';
-CENTER = 'c';
-DOT = '.';
-
-ALLIGNMENT = [LEFT, RIGHT, CENTER, DOT];
+var ALLIGNMENT = [LEFT, RIGHT, CENTER, DOT, NULL];
 
 /*
  * Characters.
  */
 
-var COLON,
-    DASH,
-    PIPE,
-    SPACE,
-    NEW_LINE;
-
-COLON = ':';
-DASH = '-';
-PIPE = '|';
-SPACE = ' ';
-NEW_LINE = '\n';
+var COLON = ':';
+var DASH = '-';
+var PIPE = '|';
+var SPACE = ' ';
+var NEW_LINE = '\n';
 
 /**
  * Get the length of `value`.
@@ -3979,7 +7713,7 @@ NEW_LINE = '\n';
  * @param {string} value
  * @return {number}
  */
-function calculateStringLengthNoop(value) {
+function lengthNoop(value) {
     return String(value).length;
 }
 
@@ -4001,9 +7735,7 @@ function pad(length, character) {
  * @return {number}
  */
 function dotindex(value) {
-    var match;
-
-    match = EXPRESSION_LAST_DOT.exec(value);
+    var match = EXPRESSION_LAST_DOT.exec(value);
 
     return match ? match.index + 1 : value.length;
 }
@@ -4022,63 +7754,42 @@ function dotindex(value) {
  * @return {string} Pretty table
  */
 function markdownTable(table, options) {
-    var delimiter,
-        start,
-        end,
-        alignment,
-        align,
-        rule,
-        calculateStringLength,
-        sizes,
-        rows,
-        rowIndex,
-        rowLength,
-        row,
-        cells,
-        cellCount,
-        index,
-        position,
-        size,
-        value,
-        spacing,
-        before,
-        after;
+    var settings = options || {};
+    var delimiter = settings.delimiter;
+    var start = settings.start;
+    var end = settings.end;
+    var alignment = settings.align;
+    var calculateStringLength = settings.stringLength || lengthNoop;
+    var cellCount = 0;
+    var rowIndex = -1;
+    var rowLength = table.length;
+    var sizes = [];
+    var align;
+    var rule;
+    var rows;
+    var row;
+    var cells;
+    var index;
+    var position;
+    var size;
+    var value;
+    var spacing;
+    var before;
+    var after;
 
-    if (!options) {
-        options = {};
-    }
-
-    delimiter = options.delimiter;
+    alignment = alignment ? alignment.concat() : [];
 
     if (delimiter === null || delimiter === undefined) {
         delimiter = SPACE + PIPE + SPACE;
     }
 
-    start = options.start;
-
     if (start === null || start === undefined) {
         start = PIPE + SPACE;
     }
 
-    end = options.end;
-
     if (end === null || end === undefined) {
         end = SPACE + PIPE;
     }
-
-    if (options.align) {
-        alignment = options.align.concat();
-    } else {
-        alignment = [];
-    }
-
-    calculateStringLength = options.stringLength || calculateStringLengthNoop;
-
-    rowIndex = -1;
-    rowLength = table.length;
-    cellCount = 0;
-
-    sizes = [];
 
     while (++rowIndex < rowLength) {
         row = table[rowIndex];
@@ -4120,7 +7831,7 @@ function markdownTable(table, options) {
         }
 
         if (ALLIGNMENT.indexOf(align) === -1) {
-            align = LEFT;
+            align = NULL;
         }
 
         alignment[index] = align;
@@ -4220,7 +7931,7 @@ function markdownTable(table, options) {
         rows[rowIndex] = cells.join(delimiter);
     }
 
-    if (options.rule !== false) {
+    if (settings.rule !== false) {
         index = -1;
         rule = [];
 
@@ -4231,9 +7942,9 @@ function markdownTable(table, options) {
              * When `align` is left, don't add colons.
              */
 
-            value = align !== LEFT && align !== RIGHT ? COLON : DASH;
+            value = align === RIGHT || align === NULL ? DASH : COLON;
             value += pad(sizes[index] - 2, DASH);
-            value += align !== LEFT ? COLON : DASH;
+            value += align !== LEFT && align !== NULL ? COLON : DASH;
 
             rule[index] = value;
         }
@@ -4250,7 +7961,1425 @@ function markdownTable(table, options) {
 
 module.exports = markdownTable;
 
-},{}],15:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
+/*!
+ * repeat-string <https://github.com/jonschlinkert/repeat-string>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+'use strict';
+
+/**
+ * Expose `repeat`
+ */
+
+module.exports = repeat;
+
+/**
+ * Repeat the given `string` the specified `number`
+ * of times.
+ *
+ * **Example:**
+ *
+ * ```js
+ * var repeat = require('repeat-string');
+ * repeat('A', 5);
+ * //=> AAAAA
+ * ```
+ *
+ * @param {String} `string` The string to repeat
+ * @param {Number} `number` The number of times to repeat the string
+ * @return {String} Repeated string
+ * @api public
+ */
+
+function repeat(str, num) {
+  if (typeof str !== 'string') {
+    throw new TypeError('repeat-string expects a string.');
+  }
+
+  if (num === 1) return str;
+  if (num === 2) return str + str;
+
+  var max = str.length * num;
+  if (cache !== str || typeof cache === 'undefined') {
+    cache = str;
+    res = '';
+  }
+
+  while (max > res.length && num > 0) {
+    if (num & 1) {
+      res += str;
+    }
+
+    num >>= 1;
+    if (!num) break;
+    str += str;
+  }
+
+  return res.substr(0, max);
+}
+
+/**
+ * Results cache
+ */
+
+var res = '';
+var cache;
+
+},{}],25:[function(require,module,exports){
+'use strict';
+
+/*
+ * Constants.
+ */
+
+var LINE = '\n';
+
+/**
+ * Remove final newline characters from `value`.
+ *
+ * @example
+ *   trimTrailingLines('foo\nbar'); // 'foo\nbar'
+ *   trimTrailingLines('foo\nbar\n'); // 'foo\nbar'
+ *   trimTrailingLines('foo\nbar\n\n'); // 'foo\nbar'
+ *
+ * @param {string} value - Value with trailing newlines,
+ *   coerced to string.
+ * @return {string} - Value without trailing newlines.
+ */
+function trimTrailingLines(value) {
+    var index;
+
+    value = String(value);
+    index = value.length;
+
+    while (value.charAt(--index) === LINE) { /* empty */ }
+
+    return value.slice(0, index + 1);
+}
+
+/*
+ * Expose.
+ */
+
+module.exports = trimTrailingLines;
+
+},{}],26:[function(require,module,exports){
+
+exports = module.exports = trim;
+
+function trim(str){
+  return str.replace(/^\s*|\s*$/g, '');
+}
+
+exports.left = function(str){
+  return str.replace(/^\s*/, '');
+};
+
+exports.right = function(str){
+  return str.replace(/\s*$/, '');
+};
+
+},{}],27:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module unified
+ * @fileoverview Parse / Transform / Compile / Repeat.
+ */
+
+'use strict';
+
+/*
+ * Dependencies.
+ */
+
+var bail = require('bail');
+var ware = require('ware');
+var AttachWare = require('attach-ware')(ware);
+var VFile = require('vfile');
+var unherit = require('unherit');
+
+/*
+ * Processing pipeline.
+ */
+
+var pipeline = ware()
+    .use(function (ctx) {
+        ctx.tree = ctx.context.parse(ctx.file, ctx.settings);
+    })
+    .use(function (ctx, next) {
+        ctx.context.run(ctx.tree, ctx.file, next);
+    })
+    .use(function (ctx) {
+        ctx.result = ctx.context.stringify(ctx.tree, ctx.file, ctx.settings);
+    });
+
+/**
+ * Construct a new Processor class based on the
+ * given options.
+ *
+ * @param {Object} options - Configuration.
+ * @param {string} options.name - Private storage.
+ * @param {string} options.type - Type of syntax tree.
+ * @param {Function} options.Parser - Class to turn a
+ *   virtual file into a syntax tree.
+ * @param {Function} options.Compiler - Class to turn a
+ *   syntax tree into a string.
+ * @return {Processor} - A new constructor.
+ */
+function unified(options) {
+    var name = options.name;
+    var type = options.type;
+    var Parser = options.Parser;
+    var Compiler = options.Compiler;
+
+    /**
+     * Construct a Processor instance.
+     *
+     * @constructor
+     * @class {Processor}
+     */
+    function Processor(processor) {
+        var self = this;
+
+        if (!(self instanceof Processor)) {
+            return new Processor(processor);
+        }
+
+        self.ware = new AttachWare(processor && processor.ware);
+        self.ware.context = self;
+
+        self.Parser = unherit(Parser);
+        self.Compiler = unherit(Compiler);
+    }
+
+    /**
+     * Either return `context` if its an instance
+     * of `Processor` or construct a new `Processor`
+     * instance.
+     *
+     * @private
+     * @param {Processor?} [context] - Context object.
+     * @return {Processor} - Either `context` or a new
+     *   Processor instance.
+     */
+    function instance(context) {
+        return context instanceof Processor ? context : new Processor();
+    }
+
+    /**
+     * Attach a plugin.
+     *
+     * @this {Processor?} - Either a Processor instance or
+     *   the Processor constructor.
+     * @return {Processor}
+     */
+    function use() {
+        var self = instance(this);
+
+        self.ware.use.apply(self.ware, arguments);
+
+        return self;
+    }
+
+    /**
+     * Transform.
+     *
+     * @this {Processor?} - Either a Processor instance or
+     *   the Processor constructor.
+     * @param {Node} [node] - Syntax tree.
+     * @param {VFile?} [file] - Virtual file.
+     * @param {Function?} [done] - Callback.
+     * @return {Node} - `node`.
+     */
+    function run(node, file, done) {
+        var self = this;
+        var space;
+
+        if (typeof file === 'function') {
+            done = file;
+            file = null;
+        }
+
+        if (!file && node && !node.type) {
+            file = node;
+            node = null;
+        }
+
+        file = new VFile(file);
+        space = file.namespace(name);
+
+        if (!node) {
+            node = space[type] || node;
+        } else if (!space[type]) {
+            space[type] = node;
+        }
+
+        if (!node) {
+            throw new Error('Expected node, got ' + node);
+        }
+
+        done = typeof done === 'function' ? done : bail;
+
+        /*
+         * Only run when this is an instance of Processor,
+         * and when there are transformers.
+         */
+
+        if (self.ware && self.ware.fns) {
+            self.ware.run(node, file, done);
+        } else {
+            done(null, node, file);
+        }
+
+        return node;
+    }
+
+    /**
+     * Parse a file.
+     *
+     * Patches the parsed node onto the `name`
+     * namespace on the `type` property.
+     *
+     * @this {Processor?} - Either a Processor instance or
+     *   the Processor constructor.
+     * @param {string|VFile} value - Input to parse.
+     * @param {Object?} [settings] - Configuration.
+     * @return {Node} - `node`.
+     */
+    function parse(value, settings) {
+        var file = new VFile(value);
+        var CustomParser = (this && this.Parser) || Parser;
+        var node = new CustomParser(file, settings).parse();
+
+        file.namespace(name)[type] = node;
+
+        return node;
+    }
+
+    /**
+     * Compile a file.
+     *
+     * Used the parsed node at the `name`
+     * namespace at `type` when no node was given.
+     *
+     * @this {Processor?} - Either a Processor instance or
+     *   the Processor constructor.
+     * @param {Object} [node] - Syntax tree.
+     * @param {VFile} [file] - File with syntax tree.
+     * @param {Object?} [settings] - Configuration.
+     * @return {string} - Compiled `file`.
+     */
+    function stringify(node, file, settings) {
+        var CustomCompiler = (this && this.Compiler) || Compiler;
+        var space;
+
+        if (settings === null || settings === undefined) {
+            settings = file;
+            file = null;
+        }
+
+        if (!file && node && !node.type) {
+            file = node;
+            node = null;
+        }
+
+        file = new VFile(file);
+        space = file.namespace(name);
+
+        if (!node) {
+            node = space[type] || node;
+        } else if (!space[type]) {
+            space[type] = node;
+        }
+
+        if (!node) {
+            throw new Error('Expected node, got ' + node);
+        }
+
+        return new CustomCompiler(file, settings).compile();
+    }
+
+    /**
+     * Parse / Transform / Compile.
+     *
+     * @this {Processor?} - Either a Processor instance or
+     *   the Processor constructor.
+     * @param {string|VFile} value - Input to process.
+     * @param {Object?} [settings] - Configuration.
+     * @param {Function?} [done] - Callback.
+     * @return {string?} - Parsed document, when
+     *   transformation was async.
+     */
+    function process(value, settings, done) {
+        var self = instance(this);
+        var file = new VFile(value);
+        var result = null;
+
+        if (typeof settings === 'function') {
+            done = settings;
+            settings = null;
+        }
+
+        pipeline.run({
+            'context': self,
+            'file': file,
+            'settings': settings || {}
+        }, function (err, res) {
+            result = res && res.result;
+
+            if (done) {
+                done(err, file, result);
+            } else if (err) {
+                bail(err);
+            }
+        });
+
+        return result;
+    }
+
+    /*
+     * Methods / functions.
+     */
+
+    var proto = Processor.prototype;
+
+    Processor.use = proto.use = use;
+    Processor.parse = proto.parse = parse;
+    Processor.run = proto.run = run;
+    Processor.stringify = proto.stringify = stringify;
+    Processor.process = proto.process = process;
+
+    return Processor;
+}
+
+/*
+ * Expose.
+ */
+
+module.exports = unified;
+
+},{"attach-ware":28,"bail":29,"unherit":30,"vfile":33,"ware":34}],28:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module attach-ware
+ * @fileoverview Middleware with configuration.
+ * @example
+ *   var ware = require('attach-ware')(require('ware'));
+ *
+ *   var middleware = ware()
+ *     .use(function (context, options) {
+ *         if (!options.condition) return;
+ *
+ *         return function (req, res, next) {
+ *           res.x = 'hello';
+ *           next();
+ *         };
+ *     }, {
+ *         'condition': true
+ *     })
+ *     .use(function (context, options) {
+ *         if (!options.condition) return;
+ *
+ *         return function (req, res, next) {
+ *           res.y = 'world';
+ *           next();
+ *         };
+ *     }, {
+ *         'condition': false
+ *     });
+ *
+ *   middleware.run({}, {}, function (err, req, res) {
+ *     res.x; // "hello"
+ *     res.y; // undefined
+ *   });
+ */
+
+'use strict';
+
+var slice = [].slice;
+var unherit = require('unherit');
+
+/**
+ * Clone `Ware` without affecting the super-class and
+ * turn it into configurable middleware.
+ *
+ * @param {Function} Ware - Ware-like constructor.
+ * @return {Function} AttachWare - Configurable middleware.
+ */
+function patch(Ware) {
+    /*
+     * Methods.
+     */
+
+    var useFn = Ware.prototype.use;
+
+    /**
+     * @constructor
+     * @class {AttachWare}
+     */
+    var AttachWare = unherit(Ware);
+
+    AttachWare.prototype.foo = true;
+
+    /**
+     * Attach configurable middleware.
+     *
+     * @memberof {AttachWare}
+     * @this {AttachWare}
+     * @param {Function} attach
+     * @return {AttachWare} - `this`.
+     */
+    function use(attach) {
+        var self = this;
+        var params = slice.call(arguments, 1);
+        var index;
+        var length;
+        var fn;
+
+        /*
+         * Accept other `AttachWare`.
+         */
+
+        if (attach instanceof AttachWare) {
+            if (attach.attachers) {
+                return self.use(attach.attachers);
+            }
+
+            return self;
+        }
+
+        /*
+         * Accept normal ware.
+         */
+
+        if (attach instanceof Ware) {
+            self.fns = self.fns.concat(attach.fns);
+            return self;
+        }
+
+        /*
+         * Multiple attachers.
+         */
+
+        if ('length' in attach && typeof attach !== 'function') {
+            index = -1;
+            length = attach.length;
+
+            while (++index < length) {
+                self.use.apply(self, [attach[index]].concat(params));
+            }
+
+            return self;
+        }
+
+        /*
+         * Single attacher.
+         */
+
+        fn = attach.apply(null, [self.context || self].concat(params));
+
+        /*
+         * Store the attacher to not break `new Ware(otherWare)`
+         * functionality.
+         */
+
+        if (!self.attachers) {
+            self.attachers = [];
+        }
+
+        self.attachers.push(attach);
+
+        /*
+         * Pass `fn` to the original `Ware#use()`.
+         */
+
+        if (fn) {
+            useFn.call(self, fn);
+        }
+
+        return self;
+    }
+
+    AttachWare.prototype.use = use;
+
+    return function (fn) {
+        return new AttachWare(fn);
+    };
+}
+
+module.exports = patch;
+
+},{"unherit":30}],29:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer. All rights reserved.
+ * @module bail
+ * @fileoverview Throw a given error.
+ */
+
+'use strict';
+
+/**
+ * Throw a given error.
+ *
+ * @example
+ *   bail();
+ *
+ * @example
+ *   bail(new Error('failure'));
+ *   // Error: failure
+ *   //     at repl:1:6
+ *   //     at REPLServer.defaultEval (repl.js:154:27)
+ *   //     ...
+ *
+ * @param {Error?} [err] - Optional error.
+ * @throws {Error} - `err`, when given.
+ */
+function bail(err) {
+    if (err) {
+        throw err;
+    }
+}
+
+/*
+ * Expose.
+ */
+
+module.exports = bail;
+
+},{}],30:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module unherit
+ * @fileoverview Create a custom constructor which can be modified
+ *   without affecting the original class.
+ * @example
+ *   var EventEmitter = require('events').EventEmitter;
+ *   var Emitter = unherit(EventEmitter);
+ *   // Create a private class which acts just like
+ *   // `EventEmitter`.
+ *
+ *   Emitter.prototype.defaultMaxListeners = 0;
+ *   // Now, all instances of `Emitter` have no maximum
+ *   // listeners, without affecting other `EventEmitter`s.
+ */
+
+'use strict';
+
+/*
+ * Dependencies.
+ */
+
+var clone = require('clone');
+var inherits = require('inherits');
+
+/**
+ * Create a custom constructor which can be modified
+ * without affecting the original class.
+ *
+ * @param {Function} Super - Super-class.
+ * @return {Function} - Constructor acting like `Super`,
+ *   which can be modified without affecting the original
+ *   class.
+ */
+function unherit(Super) {
+    var base = clone(Super.prototype);
+    var result;
+    var key;
+
+    /**
+     * Constructor accepting a single argument,
+     * which itself is an `arguments` object.
+     */
+    function From(parameters) {
+        return Super.apply(this, parameters);
+    }
+
+    /**
+     * Constructor accepting variadic arguments.
+     */
+    function Of() {
+        if (!(this instanceof Of)) {
+            return new From(arguments);
+        }
+
+        return Super.apply(this, arguments);
+    }
+
+    inherits(Of, Super);
+    inherits(From, Of);
+
+    /*
+     * Both do duplicate work. However, cloning the
+     * prototype ensures clonable things are cloned
+     * and thus used. The `inherits` call ensures
+     * `instanceof` still thinks an instance subclasses
+     * `Super`.
+     */
+
+    result = Of.prototype;
+
+    for (key in base) {
+        result[key] = base[key];
+    }
+
+    return Of;
+}
+
+/*
+ * Expose.
+ */
+
+module.exports = unherit;
+
+},{"clone":31,"inherits":32}],31:[function(require,module,exports){
+(function (Buffer){
+var clone = (function() {
+'use strict';
+
+/**
+ * Clones (copies) an Object using deep copying.
+ *
+ * This function supports circular references by default, but if you are certain
+ * there are no circular references in your object, you can save some CPU time
+ * by calling clone(obj, false).
+ *
+ * Caution: if `circular` is false and `parent` contains circular references,
+ * your program may enter an infinite loop and crash.
+ *
+ * @param `parent` - the object to be cloned
+ * @param `circular` - set to true if the object to be cloned may contain
+ *    circular references. (optional - true by default)
+ * @param `depth` - set to a number if the object is only to be cloned to
+ *    a particular depth. (optional - defaults to Infinity)
+ * @param `prototype` - sets the prototype to be used when cloning an object.
+ *    (optional - defaults to parent prototype).
+*/
+function clone(parent, circular, depth, prototype) {
+  var filter;
+  if (typeof circular === 'object') {
+    depth = circular.depth;
+    prototype = circular.prototype;
+    filter = circular.filter;
+    circular = circular.circular
+  }
+  // maintain two arrays for circular references, where corresponding parents
+  // and children have the same index
+  var allParents = [];
+  var allChildren = [];
+
+  var useBuffer = typeof Buffer != 'undefined';
+
+  if (typeof circular == 'undefined')
+    circular = true;
+
+  if (typeof depth == 'undefined')
+    depth = Infinity;
+
+  // recurse this function so we don't reset allParents and allChildren
+  function _clone(parent, depth) {
+    // cloning null always returns null
+    if (parent === null)
+      return null;
+
+    if (depth == 0)
+      return parent;
+
+    var child;
+    var proto;
+    if (typeof parent != 'object') {
+      return parent;
+    }
+
+    if (clone.__isArray(parent)) {
+      child = [];
+    } else if (clone.__isRegExp(parent)) {
+      child = new RegExp(parent.source, __getRegExpFlags(parent));
+      if (parent.lastIndex) child.lastIndex = parent.lastIndex;
+    } else if (clone.__isDate(parent)) {
+      child = new Date(parent.getTime());
+    } else if (useBuffer && Buffer.isBuffer(parent)) {
+      child = new Buffer(parent.length);
+      parent.copy(child);
+      return child;
+    } else {
+      if (typeof prototype == 'undefined') {
+        proto = Object.getPrototypeOf(parent);
+        child = Object.create(proto);
+      }
+      else {
+        child = Object.create(prototype);
+        proto = prototype;
+      }
+    }
+
+    if (circular) {
+      var index = allParents.indexOf(parent);
+
+      if (index != -1) {
+        return allChildren[index];
+      }
+      allParents.push(parent);
+      allChildren.push(child);
+    }
+
+    for (var i in parent) {
+      var attrs;
+      if (proto) {
+        attrs = Object.getOwnPropertyDescriptor(proto, i);
+      }
+
+      if (attrs && attrs.set == null) {
+        continue;
+      }
+      child[i] = _clone(parent[i], depth - 1);
+    }
+
+    return child;
+  }
+
+  return _clone(parent, depth);
+}
+
+/**
+ * Simple flat clone using prototype, accepts only objects, usefull for property
+ * override on FLAT configuration object (no nested props).
+ *
+ * USE WITH CAUTION! This may not behave as you wish if you do not know how this
+ * works.
+ */
+clone.clonePrototype = function clonePrototype(parent) {
+  if (parent === null)
+    return null;
+
+  var c = function () {};
+  c.prototype = parent;
+  return new c();
+};
+
+// private utility functions
+
+function __objToStr(o) {
+  return Object.prototype.toString.call(o);
+};
+clone.__objToStr = __objToStr;
+
+function __isDate(o) {
+  return typeof o === 'object' && __objToStr(o) === '[object Date]';
+};
+clone.__isDate = __isDate;
+
+function __isArray(o) {
+  return typeof o === 'object' && __objToStr(o) === '[object Array]';
+};
+clone.__isArray = __isArray;
+
+function __isRegExp(o) {
+  return typeof o === 'object' && __objToStr(o) === '[object RegExp]';
+};
+clone.__isRegExp = __isRegExp;
+
+function __getRegExpFlags(re) {
+  var flags = '';
+  if (re.global) flags += 'g';
+  if (re.ignoreCase) flags += 'i';
+  if (re.multiline) flags += 'm';
+  return flags;
+};
+clone.__getRegExpFlags = __getRegExpFlags;
+
+return clone;
+})();
+
+if (typeof module === 'object' && module.exports) {
+  module.exports = clone;
+}
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":5}],32:[function(require,module,exports){
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+},{}],33:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module vfile
+ * @fileoverview Virtual file format to attach additional
+ *   information related to processed input.  Similar to
+ *   `wearefractal/vinyl`.  Additionally, `VFile` can be
+ *   passed directly to ESLint formatters to visualise
+ *   warnings and errors relating to a file.
+ * @example
+ *   var VFile = require('vfile');
+ *
+ *   var file = new VFile({
+ *     'directory': '~',
+ *     'filename': 'example',
+ *     'extension': 'txt',
+ *     'contents': 'Foo *bar* baz'
+ *   });
+ *
+ *   file.toString(); // 'Foo *bar* baz'
+ *   file.filePath(); // '~/example.txt'
+ *
+ *   file.move({'extension': 'md'});
+ *   file.filePath(); // '~/example.md'
+ *
+ *   file.warn('Something went wrong', {'line': 2, 'column': 3});
+ *   // { [~/example.md:2:3: Something went wrong]
+ *   //   name: '~/example.md:2:3',
+ *   //   file: '~/example.md',
+ *   //   reason: 'Something went wrong',
+ *   //   line: 2,
+ *   //   column: 3,
+ *   //   fatal: false }
+ */
+
+'use strict';
+
+var SEPARATOR = '/';
+
+try {
+    SEPARATOR = require('pa' + 'th').sep;
+} catch (e) { /* empty */ }
+
+/**
+ * File-related message with location information.
+ *
+ * @typedef {Error} VFileMessage
+ * @property {string} name - (Starting) location of the
+ *   message, preceded by its file-path when available,
+ *   and joined by `:`. Used internally by the native
+ *   `Error#toString()`.
+ * @property {string} file - File-path.
+ * @property {string} reason - Reason for message.
+ * @property {number?} line - Line of message, when
+ *   available.
+ * @property {number?} column - Column of message, when
+ *   available.
+ * @property {string?} stack - Stack of message, when
+ *   available.
+ * @property {boolean?} fatal - Whether the associated file
+ *   is still processable.
+ */
+
+/**
+ * Stringify a position.
+ *
+ * @example
+ *   stringify({'line': 1, 'column': 3}) // '1:3'
+ *   stringify({'line': 1}) // '1:1'
+ *   stringify({'column': 3}) // '1:3'
+ *   stringify() // '1:1'
+ *
+ * @private
+ * @param {Object?} [position] - Single position, like
+ *   those available at `node.position.start`.
+ * @return {string}
+ */
+function stringify(position) {
+    if (!position) {
+        position = {};
+    }
+
+    return (position.line || 1) + ':' + (position.column || 1);
+}
+
+/**
+ * ESLint's formatter API expects `filePath` to be a
+ * string.  This hack supports invocation as well as
+ * implicit coercion.
+ *
+ * @example
+ *   var file = new VFile({
+ *     'filename': 'example',
+ *     'extension': 'txt'
+ *   });
+ *
+ *   filePath = filePathFactory(file);
+ *
+ *   String(filePath); // 'example.txt'
+ *   filePath(); // 'example.txt'
+ *
+ * @private
+ * @param {VFile} file - Virtual file.
+ * @return {Function}
+ */
+function filePathFactory(file) {
+    /**
+     * Get the filename, with extension and directory, if applicable.
+     *
+     * @example
+     *   var file = new VFile({
+     *     'directory': '~',
+     *     'filename': 'example',
+     *     'extension': 'txt'
+     *   });
+     *
+     *   String(file.filePath); // ~/example.txt
+     *   file.filePath() // ~/example.txt
+     *
+     * @memberof {VFile}
+     * @property {Function} toString - Itself. ESLint's
+     *   formatter API expects `filePath` to be `string`.
+     *   This hack supports invocation as well as implicit
+     *   coercion.
+     * @return {string} - If the `vFile` has a `filename`,
+     *   it will be prefixed with the directory (slashed),
+     *   if applicable, and suffixed with the (dotted)
+     *   extension (if applicable).  Otherwise, an empty
+     *   string is returned.
+     */
+    function filePath() {
+        var directory = file.directory;
+        var separator;
+
+        if (file.filename || file.extension) {
+            separator = directory.charAt(directory.length - 1);
+
+            if (separator === '/' || separator === '\\') {
+                directory = directory.slice(0, -1);
+            }
+
+            if (directory === '.') {
+                directory = '';
+            }
+
+            return (directory ? directory + SEPARATOR : '') +
+                file.filename +
+                (file.extension ? '.' + file.extension : '');
+        }
+
+        return '';
+    }
+
+    filePath.toString = filePath;
+
+    return filePath;
+}
+
+/**
+ * Construct a new file.
+ *
+ * @example
+ *   var file = new VFile({
+ *     'directory': '~',
+ *     'filename': 'example',
+ *     'extension': 'txt',
+ *     'contents': 'Foo *bar* baz'
+ *   });
+ *
+ *   file === VFile(file) // true
+ *   file === new VFile(file) // true
+ *   VFile('foo') instanceof VFile // true
+ *
+ * @constructor
+ * @class {VFile}
+ * @param {Object|VFile|string} [options] - either an
+ *   options object, or the value of `contents` (both
+ *   optional).  When a `file` is passed in, it's
+ *   immediately returned.
+ * @property {string} [contents=''] - Content of file.
+ * @property {string} [directory=''] - Path to parent
+ *   directory.
+ * @property {string} [filename=''] - Filename.
+ *   A file-path can still be generated when no filename
+ *   exists.
+ * @property {string} [extension=''] - Extension.
+ *   A file-path can still be generated when no extension
+ *   exists.
+ * @property {boolean?} quiet - Whether an error created by
+ *   `VFile#fail()` is returned (when truthy) or thrown
+ *   (when falsey). Ensure all `messages` associated with
+ *   a file are handled properly when setting this to
+ *   `true`.
+ * @property {Array.<VFileMessage>} messages - List of associated
+ *   messages.
+ */
+function VFile(options) {
+    var self = this;
+
+    /*
+     * No `new` operator.
+     */
+
+    if (!(self instanceof VFile)) {
+        return new VFile(options);
+    }
+
+    /*
+     * Given file.
+     */
+
+    if (
+        options &&
+        typeof options.message === 'function' &&
+        typeof options.hasFailed === 'function'
+    ) {
+        return options;
+    }
+
+    if (!options) {
+        options = {};
+    } else if (typeof options === 'string') {
+        options = {
+            'contents': options
+        };
+    }
+
+    self.contents = options.contents || '';
+
+    self.messages = [];
+
+    /*
+     * Make sure eslint’s formatters stringify `filePath`
+     * properly.
+     */
+
+    self.filePath = filePathFactory(self);
+
+    self.history = [];
+
+    self.move({
+        'filename': options.filename,
+        'directory': options.directory,
+        'extension': options.extension
+    })
+}
+
+/**
+ * Get the value of the file.
+ *
+ * @example
+ *   var vFile = new VFile('Foo');
+ *   String(vFile); // 'Foo'
+ *
+ * @this {VFile}
+ * @memberof {VFile}
+ * @return {string} - value at the `contents` property
+ *   in context.
+ */
+function toString() {
+    return this.contents;
+}
+
+/**
+ * Move a file by passing a new directory, filename,
+ * and extension.  When these are not given, the default
+ * values are kept.
+ *
+ * @example
+ *   var file = new VFile({
+ *     'directory': '~',
+ *     'filename': 'example',
+ *     'extension': 'txt',
+ *     'contents': 'Foo *bar* baz'
+ *   });
+ *
+ *   file.move({'directory': '/var/www'});
+ *   file.filePath(); // '/var/www/example.txt'
+ *
+ *   file.move({'extension': 'md'});
+ *   file.filePath(); // '/var/www/example.md'
+ *
+ * @this {VFile}
+ * @memberof {VFile}
+ * @param {Object?} [options] - Configuration.
+ * @return {VFile} - Context object.
+ */
+function move(options) {
+    var self = this;
+    var before = self.filePath();
+    var after;
+
+    if (!options) {
+        options = {};
+    }
+
+    self.directory = options.directory || self.directory || '';
+    self.filename = options.filename || self.filename || '';
+    self.extension = options.extension || self.extension || '';
+
+    after = self.filePath();
+
+    if (after && before !== after) {
+        self.history.push(after);
+    }
+
+    return self;
+}
+
+/**
+ * Create a message with `reason` at `position`.
+ * When an error is passed in as `reason`, copies the
+ * stack.  This does not add a message to `messages`.
+ *
+ * @example
+ *   var file = new VFile();
+ *
+ *   file.message('Something went wrong');
+ *   // { [1:1: Something went wrong]
+ *   //   name: '1:1',
+ *   //   file: '',
+ *   //   reason: 'Something went wrong',
+ *   //   line: null,
+ *   //   column: null }
+ *
+ * @this {VFile}
+ * @memberof {VFile}
+ * @param {string|Error} reason - Reason for message.
+ * @param {Node|Location|Position} [position] - Location
+ *   of message in file.
+ * @return {VFileMessage} - File-related message with
+ *   location information.
+ */
+function message(reason, position) {
+    var filePath = this.filePath();
+    var range;
+    var err;
+    var location = {
+        'start': {
+            'line': null,
+            'column': null
+        },
+        'end': {
+            'line': null,
+            'column': null
+        }
+    };
+
+    /*
+     * Node / location / position.
+     */
+
+    if (position && position.position) {
+        position = position.position;
+    }
+
+    if (position && position.start) {
+        range = stringify(position.start) + '-' + stringify(position.end);
+        location = position;
+        position = position.start;
+    } else {
+        range = stringify(position);
+
+        if (position) {
+            location.start = position;
+            location.end.line = null;
+            location.end.column = null;
+        }
+    }
+
+    err = new Error(reason.message || reason);
+
+    err.name = (filePath ? filePath + ':' : '') + range;
+    err.file = filePath;
+    err.reason = reason.message || reason;
+    err.line = position ? position.line : null;
+    err.column = position ? position.column : null;
+    err.location = location;
+
+    if (reason.stack) {
+        err.stack = reason.stack;
+    }
+
+    return err;
+}
+
+/**
+ * Warn. Creates a non-fatal message (see `VFile#message()`),
+ * and adds it to the file's `messages` list.
+ *
+ * @example
+ *   var file = new VFile();
+ *
+ *   file.warn('Something went wrong');
+ *   // { [1:1: Something went wrong]
+ *   //   name: '1:1',
+ *   //   file: '',
+ *   //   reason: 'Something went wrong',
+ *   //   line: null,
+ *   //   column: null,
+ *   //   fatal: false }
+ *
+ * @see VFile#message
+ * @this {VFile}
+ * @memberof {VFile}
+ */
+function warn() {
+    var err = this.message.apply(this, arguments);
+
+    err.fatal = false;
+
+    this.messages.push(err);
+
+    return err;
+}
+
+/**
+ * Fail. Creates a fatal message (see `VFile#message()`),
+ * sets `fatal: true`, adds it to the file's
+ * `messages` list.
+ *
+ * If `quiet` is not `true`, throws the error.
+ *
+ * @example
+ *   var file = new VFile();
+ *
+ *   file.fail('Something went wrong');
+ *   // 1:1: Something went wrong
+ *   //     at VFile.exception (vfile/index.js:296:11)
+ *   //     at VFile.fail (vfile/index.js:360:20)
+ *   //     at repl:1:6
+ *
+ *   file.quiet = true;
+ *   file.fail('Something went wrong');
+ *   // { [1:1: Something went wrong]
+ *   //   name: '1:1',
+ *   //   file: '',
+ *   //   reason: 'Something went wrong',
+ *   //   line: null,
+ *   //   column: null,
+ *   //   fatal: true }
+ *
+ * @this {VFile}
+ * @memberof {VFile}
+ * @throws {VFileMessage} - When not `quiet: true`.
+ * @param {string|Error} reason - Reason for failure.
+ * @param {Node|Location|Position} [position] - Place
+ *   of failure in file.
+ * @return {VFileMessage} - Unless thrown, of course.
+ */
+function fail(reason, position) {
+    var err = this.message(reason, position);
+
+    err.fatal = true;
+
+    this.messages.push(err);
+
+    if (!this.quiet) {
+        throw err;
+    }
+
+    return err;
+}
+
+/**
+ * Check if a fatal message occurred making the file no
+ * longer processable.
+ *
+ * @example
+ *   var file = new VFile();
+ *   file.quiet = true;
+ *
+ *   file.hasFailed(); // false
+ *
+ *   file.fail('Something went wrong');
+ *   file.hasFailed(); // true
+ *
+ * @this {VFile}
+ * @memberof {VFile}
+ * @return {boolean} - `true` if at least one of file's
+ *   `messages` has a `fatal` property set to `true`
+ */
+function hasFailed() {
+    var messages = this.messages;
+    var index = -1;
+    var length = messages.length;
+
+    while (++index < length) {
+        if (messages[index].fatal) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Access metadata.
+ *
+ * @example
+ *   var file = new VFile('Foo');
+ *
+ *   file.namespace('foo').bar = 'baz';
+ *
+ *   console.log(file.namespace('foo').bar) // 'baz';
+ *
+ * @this {VFile}
+ * @memberof {VFile}
+ * @param {string} key - Namespace key.
+ * @return {Object} - Private space.
+ */
+function namespace(key) {
+    var self = this;
+    var space = self.data;
+
+    if (!space) {
+        space = self.data = {};
+    }
+
+    if (!space[key]) {
+        space[key] = {};
+    }
+
+    return space[key];
+}
+
+/*
+ * Methods.
+ */
+
+var vFilePrototype = VFile.prototype;
+
+vFilePrototype.move = move;
+vFilePrototype.toString = toString;
+vFilePrototype.message = message;
+vFilePrototype.warn = warn;
+vFilePrototype.fail = fail;
+vFilePrototype.hasFailed = hasFailed;
+vFilePrototype.namespace = namespace;
+
+/*
+ * Expose.
+ */
+
+module.exports = VFile;
+
+},{}],34:[function(require,module,exports){
 /**
  * Module Dependencies
  */
@@ -4263,6 +9392,16 @@ var wrap = require('wrap-fn');
  */
 
 module.exports = Ware;
+
+/**
+ * Throw an error.
+ *
+ * @param {Error} error
+ */
+
+function fail (err) {
+  throw err;
+}
 
 /**
  * Initialize a new `Ware` manager, with optional `fns`.
@@ -4317,7 +9456,7 @@ Ware.prototype.run = function () {
 
   // next step
   function next (err) {
-    if (err) return done(err);
+    if (err) return (done || fail)(err);
     var fn = fns[i++];
     var arr = slice.call(args);
 
@@ -4333,7 +9472,7 @@ Ware.prototype.run = function () {
   return this;
 };
 
-},{"wrap-fn":16}],16:[function(require,module,exports){
+},{"wrap-fn":35}],35:[function(require,module,exports){
 /**
  * Module Dependencies
  */
@@ -4460,7 +9599,7 @@ function once(fn) {
   };
 }
 
-},{"co":17}],17:[function(require,module,exports){
+},{"co":36}],36:[function(require,module,exports){
 
 /**
  * slice() reference.
@@ -4756,7 +9895,7 @@ function error(err) {
   });
 }
 
-},{}],18:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 "use strict";
 
 var StructuredSource = require('./structured-source.js')["default"];
@@ -4766,7 +9905,7 @@ module.exports = StructuredSource;
 
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{"./structured-source.js":19}],19:[function(require,module,exports){
+},{"./structured-source.js":38}],38:[function(require,module,exports){
 "use strict";
 
 var _classProps = function (child, staticProps, instanceProps) {
@@ -4851,7 +9990,7 @@ var StructuredSource = (function () {
 
 exports["default"] = StructuredSource;
 
-},{"boundary":20}],20:[function(require,module,exports){
+},{"boundary":39}],39:[function(require,module,exports){
 "use strict";
 
 /*
@@ -4935,7 +10074,7 @@ exports.lowerBound = lowerBound;
 exports.upperBound = upperBound;
 exports.binarySearch = binarySearch;
 
-},{}],21:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 var traverse = module.exports = function (obj) {
     return new Traverse(obj);
 };
