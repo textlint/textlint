@@ -236,7 +236,7 @@ describe("markdown-parser", function () {
         it("should have marker_offser of each items", function () {
             var node, AST;
             AST = parse("- item\n" +
-            "   - item2");// second line should has offset
+                "   - item2");// second line should has offset
             node = findFirstTypedNode(AST, Syntax.ListItem, " - item2");
             assert(node);
             assert.equal(node.raw, " - item2");
@@ -284,8 +284,8 @@ describe("markdown-parser", function () {
             beforeEach(function () {
                 code = "var code;";
                 rawValue = "    \n" +
-                "    " + code +
-                "\n\n";
+                    "    " + code +
+                    "\n\n";
                 AST = parse(rawValue);
             });
             it("should has implemented TxtNode", function () {
@@ -300,8 +300,8 @@ describe("markdown-parser", function () {
             beforeEach(function () {
                 code = "var code;";
                 rawValue = "```\n" +
-                code +
-                "\n```";
+                    code +
+                    "\n```";
                 AST = parse(rawValue);
             });
             it("should has implemented TxtNode", function () {
@@ -406,7 +406,7 @@ describe("markdown-parser", function () {
     context("Node type is Html", function () {
         var AST, rawValue;
         beforeEach(function () {
-            rawValue = "<html>text</html>";
+            rawValue = "<p>text</p>";
             AST = parse(rawValue);
         });
         it("should has implemented TxtNode", function () {
