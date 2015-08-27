@@ -283,7 +283,7 @@ You should add `textlint` to npm's `keywords`
 
 ```json
 {
-  "name": "textlint-no-todo",
+  "name": "textlint-rule-no-todo",
   "description": "Your custom rules description",
   "version": "1.0.1",
   "homepage": "https://github.com/azu/textlint-custom-rules/",
@@ -292,6 +292,10 @@ You should add `textlint` to npm's `keywords`
   ],
 }
 ```
+
+We recommend that plugin's name should start with `textlint-rule-*`.
+
+e.g.) textlint-rule-no-todo
 
 - [package.json | npm Documentation](https://docs.npmjs.com/files/package.json "package.json | npm Documentation")
 - [results for textlint](https://www.npmjs.com/search?q=textlint "results for textlint")
