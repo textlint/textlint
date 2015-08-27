@@ -21,11 +21,11 @@ Should use textlint with `--rule` or `--ruledir`.
 - [ ]  more more document
 
 
-```
+```sh
 # install textlint rule
-$ npm install --save-dev textlint-rule-no-todo
+npm install --save-dev textlint-rule-no-todo
 # use with `textlint-rule-no-todo` rule
-$ textlint --rule textlint-rule-no-todo README.md
+textlint --rule textlint-rule-no-todo README.md
 ```
 
 ## CLI
