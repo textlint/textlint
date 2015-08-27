@@ -12,13 +12,20 @@ $ npm install textlint -g
 
 ## Usage
 
+textlint has not default rule!!
+
+Should use textlint with `--rule` or `--ruledir`.
+
 ![todo:lint result](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
 
 - [ ]  more more document
 
 
 ```
-$ textlint README.md
+# install textlint rule
+$ npm install --save-dev textlint-rule-no-todo
+# use with `textlint-rule-no-todo` rule
+$ textlint --rule textlint-rule-no-todo README.md
 ```
 
 ## CLI
@@ -31,6 +38,7 @@ textlint [options] file.md [file.txt] [dir]
 
 Options:
   -h, --help                 Show help.
+  --rule [path::String]      Set rule package name and set all default rules to off.
   --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
   -f, --format String        Use a specific output format. - default: stylish
   -v, --version              Outputs the version number.
@@ -39,6 +47,12 @@ Options:
   -o, --output-file path::String  Enable report to be written to a file.
   --quiet                    Report errors only. - default: false
   --stdin                    Lint code provided on <STDIN>. - default: false
+```
+
+also allow to use with multiple rules.
+
+```sh
+$ textlint --rule textlint-rule-no-todo --rule textlint-rule-some README.md
 ```
 
 ### Built-in formatters
@@ -120,9 +134,7 @@ Please see docs/
 
 ## License
 
-MIT
-
-and
+MIT and
 
 `lib/load-rules.js`, `util/traverse.js`, `cli.js`  are:
 
