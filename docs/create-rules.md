@@ -302,4 +302,5 @@ e.g.) textlint-rule-no-todo
 
 Case example:
 
+- [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo")
 - [spellcheck-tech-word-textlint-rule](https://www.npmjs.com/package/spellcheck-tech-word-textlint-rule "spellcheck-tech-word-textlint-rule")
