@@ -44,7 +44,7 @@
     "intelli-espower-loader": "^1.0.0",
     "jscs": "^2.1.0",
     "mocha": "^2.1.0",
-    "power-assert": "^0.10.0",
+    "power-assert": "^1.0.0",
     "textlint-rule-no-todo": "^1.0.2"
   },
   "dependencies": {
