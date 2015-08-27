@@ -5,18 +5,18 @@ var TextLintEngine = require("../").TextLintEngine;
 var textlint = require("../").textlint;
 var rulesDir = __dirname + "/fixtures/rules";
 var path = require("path");
-
+var ruleManger = require("../lib/rule/rule-manager");
 describe("cli-engine-test", function () {
     var engine;
     afterEach(function () {
+        engine.resetRules();
         textlint.resetRules();
     });
     describe("Constructor", function () {
         context("when no-args", function () {
-            it("config should be defaults", function () {
+            it("config should be empty", function () {
                 engine = new TextLintEngine();
-                var defaultRulePaths = [path.join(__dirname, "..", "rules")];
-                assert.deepEqual(engine.config.rulePaths, defaultRulePaths);
+                assert.deepEqual(engine.config.rulePaths, []);
             });
         });
         context("when args is object", function () {
@@ -35,6 +35,30 @@ describe("cli-engine-test", function () {
                 config.rulePaths = [rulesDir];
                 engine = new TextLintEngine(config);
                 assert.deepEqual(engine.config.rulePaths, [rulesDir]);
+            });
+        });
+    });
+    describe("setup rule", function () {
+        context("when (textlint-rule-)no-todo is specified", function () {
+            it("should set directory to config", function () {
+                engine = new TextLintEngine({
+                    rules: ["no-todo"]
+                });
+                engine.setupRules();
+                var ruleNames = ruleManger.getAllRuleNames();
+                assert(ruleNames.length > 0);
+                assert.equal(ruleNames[0], "textlint-rule-no-todo");
+            });
+        });
+        context("when textlint-rule-no-todo is specified", function () {
+            it("should set directory to config", function () {
+                engine = new TextLintEngine({
+                    rules: ["textlint-rule-no-todo"]
+                });
+                engine.setupRules();
+                var ruleNames = ruleManger.getAllRuleNames();
+                assert(ruleNames.length > 0);
+                assert.equal(ruleNames[0], "textlint-rule-no-todo");
             });
         });
     });

@@ -44,7 +44,8 @@
     "intelli-espower-loader": "^1.0.0",
     "jscs": "^2.1.0",
     "mocha": "^2.1.0",
-    "power-assert": "^0.11.0"
+    "power-assert": "^0.10.0",
+    "textlint-rule-no-todo": "^1.0.2"
   },
   "dependencies": {
     "concat-stream": "^1.4.7",
@@ -56,6 +57,7 @@
     "optionator": "^0.6.0",
     "textlint-formatter": "^1.1.1",
     "traverse": "^0.6.6",
+    "try-resolve": "^1.0.1",
     "txt-ast-traverse": "^1.2.0",
     "txt-to-ast": "^1.0.1",
     "xml-escape": "^1.0.0"
