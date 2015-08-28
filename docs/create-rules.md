@@ -3,7 +3,7 @@
 Textlint's AST(Abstract Syntax Tree) is defined these pages.
 
 - [txtnode.d.ts](./txtnode.d.ts)
-- [TxtNode interface](./txtnode.md)
+- [txtnode.md](./txtnode.md)
     - If you want to know AST of a text, use [Online Parsing Demo](./txtnode.md#online-parsing-demo)
 
 Each rules are represented by a object with several properties.
@@ -303,4 +303,4 @@ e.g.) textlint-rule-no-todo
 Case example:
 
 - [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo")
-- [spellcheck-tech-word-textlint-rule](https://www.npmjs.com/package/spellcheck-tech-word-textlint-rule "spellcheck-tech-word-textlint-rule")
+- [azu/textlint-rule-spellcheck-tech-word](https://github.com/azu/textlint-rule-spellcheck-tech-word "azu/textlint-rule-spellcheck-tech-word")
