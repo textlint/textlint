@@ -30,7 +30,38 @@ describe("textlint-formatter-test", function () {
                 ]);
                 assert(output.length > 0);
             });
-
+        });
+        it("run all formatter", function () {
+            var formatterNames = [
+                "checkstyle",
+                "compact",
+                "jslint-xml",
+                "junit",
+                "pretty-error",
+                "stylish",
+                "tap"
+            ];
+            formatterNames.forEach(function (name) {
+                var formatter = createFormatter({
+                    formatterName: name
+                });
+                var output = formatter([
+                    {
+                        filePath: __dirname + "/fixtures/myfile.js",
+                        messages: [
+                            {
+                                ruleId: "semi",
+                                line: 1,
+                                column: 15,
+                                message: "Expected a semicolon."
+                            }
+                        ]
+                    }
+                ]);
+                assert(output.length > 0);
+                console.log(output);
+                console.log("==================");
+            });
         });
     });
 

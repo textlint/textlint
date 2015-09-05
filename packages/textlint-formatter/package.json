@@ -28,7 +28,8 @@
     "js-yaml": "^3.2.4",
     "left-pad": "0.0.3",
     "style-format": "0.0.0",
-    "text-table": "^0.2.0"
+    "text-table": "^0.2.0",
+    "xml-escape": "^1.0.0"
   },
   "devDependencies": {
     "espower-loader": "^0.10.0",

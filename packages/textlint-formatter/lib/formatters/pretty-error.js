@@ -7,7 +7,7 @@ var format = require("format-text");
 var leftpad = require("left-pad");
 var style = require("style-format");
 
-var template = style('{bold}{red}{title} {grey}{filename}:{failingLineNo}:{failingColNo}{reset}\n'
+var template = style('{grey}{ruleId}: {bold}{red}{title} {grey}{filename}:{failingLineNo}:{failingColNo}{reset}\n'
 + '    {red}{v}\n'
 + '    {grey}{previousLineNo}. {previousLine}\n'
 + '    {reset}{failingLineNo}. {failingLine}\n'
@@ -76,6 +76,7 @@ function prettifyError(code, filePath, message) {
         nextLineNo.length);
 
     return format(template, {
+        ruleId: message.ruleId,
         title: message.message,
         filename: filePath,
         previousLine: parsed[0].code,
