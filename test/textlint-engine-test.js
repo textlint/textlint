@@ -40,25 +40,25 @@ describe("cli-engine-test", function () {
     });
     describe("setup rule", function () {
         context("when (textlint-rule-)no-todo is specified", function () {
-            it("should set directory to config", function () {
+            it("should set `no-todo` as key to rule dict", function () {
                 engine = new TextLintEngine({
                     rules: ["no-todo"]
                 });
                 engine.setupRules();
                 var ruleNames = ruleManger.getAllRuleNames();
                 assert(ruleNames.length > 0);
-                assert.equal(ruleNames[0], "textlint-rule-no-todo");
+                assert.equal(ruleNames[0], "no-todo");
             });
         });
         context("when textlint-rule-no-todo is specified", function () {
-            it("should set directory to config", function () {
+            it("should set `no-todo` as key to rule dict", function () {
                 engine = new TextLintEngine({
                     rules: ["textlint-rule-no-todo"]
                 });
                 engine.setupRules();
                 var ruleNames = ruleManger.getAllRuleNames();
                 assert(ruleNames.length > 0);
-                assert.equal(ruleNames[0], "textlint-rule-no-todo");
+                assert.equal(ruleNames[0], "no-todo");
             });
         });
     });
