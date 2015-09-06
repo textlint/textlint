@@ -7,13 +7,14 @@ var format = require("format-text");
 var leftpad = require("left-pad");
 var style = require("style-format");
 
-var template = style('{grey}{ruleId}: {bold}{red}{title} {grey}{filename}:{failingLineNo}:{failingColNo}{reset}\n'
-+ '    {red}{v}\n'
-+ '    {grey}{previousLineNo}. {previousLine}\n'
-+ '    {reset}{failingLineNo}. {failingLine}\n'
-+ '    {grey}{nextLineNo}. {nextLine}\n'
-+ '    {red}{^}{reset}\n'
-+ '{reset}');
+var template = style('{grey}{ruleId}: {bold}{red}{title}\n'
+    + '{grey}{filename}:{failingLineNo}:{failingColNo}{reset}\n'
+    + '    {red}{v}\n'
+    + '    {grey}{previousLineNo}. {previousLine}\n'
+    + '    {reset}{failingLineNo}. {failingLine}\n'
+    + '    {grey}{nextLineNo}. {nextLine}\n'
+    + '    {red}{^}{reset}\n'
+    + '{reset}');
 
 
 /**
