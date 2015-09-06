@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "no-todo": {
+      "use-task-list": true
+    }
+  }
+}

@@ -55,6 +55,7 @@
     "mkdirp": "^0.5.0",
     "object-assign": "^4.0.1",
     "optionator": "^0.6.0",
+    "rc-loader": "^1.0.0",
     "textlint-formatter": "^1.1.1",
     "traverse": "^0.6.6",
     "try-resolve": "^1.0.1",
