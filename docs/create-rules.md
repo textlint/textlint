@@ -277,6 +277,36 @@ As as result, linting following text with modified rule, a result was no error.
 
 The rule created is [no-todo.js](../rules/no-todo.js).
 
+### Rule Config
+
+`.textlintrc` is the config file for textlint.
+
+For example, there are a config file:
+
+```json
+{
+  "rules": {
+    "very-nice-rule": {
+        "key": "value"
+    },
+  }
+}
+```
+
+`very-nice-rule.js` rule get the options defined by the config file.
+
+```js
+module.exports = function(context, options){
+    console.log(options);
+    /*
+        {
+          "key": "value"
+        }
+    */
+}
+```
+
+
 ## Information for Publishing
 
 You should add `textlint` to npm's `keywords`
