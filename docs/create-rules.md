@@ -277,6 +277,36 @@ As as result, linting following text with modified rule, a result was no error.
 
 The rule created is [no-todo.js](../rules/no-todo.js).
 
+### Rule Config
+
+`.textlintrc` is the config file for textlint.
+
+For example, there are a config file:
+
+```json
+{
+  "rules": {
+    "very-nice-rule": {
+        "key": "value"
+    },
+  }
+}
+```
+
+`very-nice-rule.js` rule get the options defined by the config file.
+
+```js
+module.exports = function(context, options){
+    console.log(options);
+    /*
+        {
+          "key": "value"
+        }
+    */
+}
+```
+
+
 ## Information for Publishing
 
 You should add `textlint` to npm's `keywords`
@@ -289,7 +319,7 @@ You should add `textlint` to npm's `keywords`
   "homepage": "https://github.com/azu/textlint-custom-rules/",
   "keywords": [
     "textlint"
-  ],
+  ]
 }
 ```
 
@@ -297,10 +327,12 @@ We recommend that plugin's name should start with `textlint-rule-*`.
 
 e.g.) textlint-rule-no-todo
 
+npm info:
+
 - [package.json | npm Documentation](https://docs.npmjs.com/files/package.json "package.json | npm Documentation")
 - [results for textlint](https://www.npmjs.com/search?q=textlint "results for textlint")
 
-Case example:
+Example rules:
 
 - [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo")
 - [azu/textlint-rule-spellcheck-tech-word](https://github.com/azu/textlint-rule-spellcheck-tech-word "azu/textlint-rule-spellcheck-tech-word")

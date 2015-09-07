@@ -1,5 +1,5 @@
 interface TextLintMessage {
-    id: string;
+    ruleId: string;
     message: string;
     line: number;
     column: number;
