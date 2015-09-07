@@ -25,7 +25,8 @@ Should use textlint with `--rule` or `--ruledir`.
 # install textlint rule
 npm install --save-dev textlint-rule-no-todo
 # use with `textlint-rule-no-todo` rule
-textlint --rule textlint-rule-no-todo README.md
+# shorten `textlint-rule-no-todo` to `no-todo`.
+textlint --rule no-todo README.md
 ```
 
 ## CLI
@@ -34,26 +35,61 @@ See help.
 
 ```
 $ textlint -h
-textlint [options] file.md [file.txt] [dir]
-
-Options:
-  -h, --help                 Show help.
-  --rule [path::String]      Set rule package name and set all default rules to off.
-  --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
-  -f, --format String        Use a specific output format. - default: stylish
-  -v, --version              Outputs the version number.
-  --ext [String]             Specify text file extensions.
-  --no-color                 Enable color in piped output.
-  -o, --output-file path::String  Enable report to be written to a file.
-  --quiet                    Report errors only. - default: false
-  --stdin                    Lint code provided on <STDIN>. - default: false
+  textlint [options] file.md [file.txt] [dir]
+  
+  Options:
+    -h, --help                 Show help.
+    -c, --config path::String  Use configuration from this file or sharable config.
+    --rule [path::String]      Set rule package name and set all default rules to off.
+    --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
+    -f, --format String        Use a specific output format. - default: stylish
+    -v, --version              Outputs the version number.
+    --ext [String]             Specify text file extensions.
+    --no-color                 Enable color in piped output.
+    -o, --output-file path::String  Enable report to be written to a file.
+    --quiet                    Report errors only. - default: false
+    --stdin                    Lint code provided on <STDIN>. - default: false
 ```
 
 also allow to use with multiple rules.
 
 ```sh
-$ textlint --rule textlint-rule-no-todo --rule textlint-rule-some README.md
+$ textlint --rule no-todo --rule very-nice-rule README.md
 ```
+
+### Config file
+
+`.textlintrc` is config file that is loaded as YAML, JSON or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
+
+```
+$ textlint --rule no-todo --rule very-nice-rule README.md
+```
+
+is equal
+
+```json
+{
+  "rules": {
+    "no-todo": true,
+    "very-nice-rule": true,
+  }
+}
+```
+
+The config object can define rule's option.
+
+```json
+{
+  "rules": {
+    "no-todo": false,// disable
+    "very-nice-rule": {
+        "key": "value"
+    },
+  }
+}
+```
+
+Pass rule's options("key": "value") to `very-nice-rule`.
 
 ### Built-in formatters
 
