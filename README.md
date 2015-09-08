@@ -57,7 +57,7 @@ also allow to use with multiple rules.
 $ textlint --rule no-todo --rule very-nice-rule README.md
 ```
 
-### Config file
+### .textlintrc
 
 `.textlintrc` is config file that is loaded as YAML, JSON or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
 
@@ -65,7 +65,7 @@ $ textlint --rule no-todo --rule very-nice-rule README.md
 $ textlint --rule no-todo --rule very-nice-rule README.md
 ```
 
-is equal
+is equal to
 
 ```json
 {
@@ -81,15 +81,25 @@ The config object can define rule's option.
 ```json
 {
   "rules": {
-    "no-todo": false,// disable
+    "no-todo": false, // disable
     "very-nice-rule": {
         "key": "value"
-    },
+    }
   }
 }
 ```
 
 Pass rule's options("key": "value") to `very-nice-rule`.
+
+It mean that use the following format:
+
+```js
+{
+  "rules": {
+    "<rule-name>": true | false | object
+  }
+}
+```
 
 ### Built-in formatters
 
