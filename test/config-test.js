@@ -3,13 +3,24 @@
 var assert = require("power-assert");
 var Config = require("../lib/config/config");
 var path = require("path");
-describe("Config", function () {
+describe("config", function () {
     context("on default", function () {
         it("should has not rules", function () {
             var config = new Config();
             assert(config.rules.length === 0);
+            assert(Object.keys(config.rulesConfig).length === 0);
             assert(config.rulePaths.length === 0);
         });
+    });
+    context("when set `configFile`", function () {
+        it("should has config.rules", function () {
+            var config = new Config({
+                configFile: path.join(__dirname, "fixtures", ".textlintrc")
+            });
+            assert(config.rules.length > 0);
+            assert(Object.keys(config.rulesConfig).length > 0);
+            assert(config.rulePaths.length === 0);
+        })
     });
     describe("#initWithCLIOptions", function () {
         context("when init with command line options", function () {
