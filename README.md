@@ -101,6 +101,12 @@ It mean that use the following format:
 }
 ```
 
+### Rule list
+
+See [Collection of textlint rule · azu/textlint Wiki](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · azu/textlint Wiki").
+
+If you create new rule, and add it to the wiki :)
+
 ### Built-in formatters
 
 Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error".
