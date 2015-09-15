@@ -1,4 +1,4 @@
-./.textlintrc
-./gulpfile.js
-./test.md
-./webdb.yml
+.textlintrc
+gulpfile.js
+test.md
+webdb.yml
