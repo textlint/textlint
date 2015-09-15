@@ -8,7 +8,6 @@ module.exports = function(options) {
   var filePaths = [];
   
   return through.obj(function(file, enc, cb) {
-    console.log(file)
     filePaths.push(file.path);
     this.push(file);
     cb();
