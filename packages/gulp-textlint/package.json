@@ -1,0 +1,22 @@
+{
+  "name": "gulp-textlint",
+  "description": "gulp plugin for textlint",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nakajmg/gulp-textlint.git"
+  },
+  "author": "nakajmg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nakajmg/gulp-textlint/issues"
+  },
+  "homepage": "https://github.com/nakajmg/gulp-textlint",
+  "dependencies": {
+    "gulp-util": "^3.0.6",
+    "textlint": "^3.3.2",
+    "textlint-rule-prh": "^1.0.3",
+    "through2": "^2.0.0"
+  }
+}
