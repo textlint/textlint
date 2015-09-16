@@ -85,6 +85,15 @@ describe("cli-engine-test", function () {
                 assert(ruleManger.getRule("no-todo") === ruleObject);
             });
         });
+        context("when use directory option", function () {
+            it("should load rule from directory", function () {
+                engine = new TextLintEngine();
+                var directory = __dirname + "/fixtures/rules/";
+                engine.loadRule("example-rule", directory);
+                var ruleNames = ruleManger.getAllRuleNames();
+                assert(ruleNames.length === 1);
+            });
+        });
     });
     describe("executeOnFiles", function () {
         beforeEach(function () {
