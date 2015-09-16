@@ -62,6 +62,30 @@ describe("cli-engine-test", function () {
             });
         });
     });
+    describe("#loadRule", function () {
+        context("when the rule is **not** defined", function () {
+            it("should define the rule", function () {
+                engine = new TextLintEngine();
+                engine.loadRule("textlint-rule-no-todo");
+                var ruleNames = ruleManger.getAllRuleNames();
+                assert(ruleNames.length > 0);
+                assert.equal(ruleNames[0], "no-todo");
+            });
+        });
+        context("when the rule is defined", function () {
+            it("should not re-load rule", function () {
+                engine = new TextLintEngine();
+                engine.loadRule("textlint-rule-no-todo");
+                var ruleNames = ruleManger.getAllRuleNames();
+                assert(ruleNames.length === 1);
+                var ruleObject = ruleManger.getRule(ruleNames[0]);
+                // loadRule should ignore
+                engine.loadRule("textlint-rule-no-todo");
+                // should equal prev loaded object
+                assert(ruleManger.getRule("no-todo") === ruleObject);
+            });
+        });
+    });
     describe("executeOnFiles", function () {
         beforeEach(function () {
             engine = new TextLintEngine({
