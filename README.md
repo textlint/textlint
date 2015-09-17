@@ -176,6 +176,16 @@ Please see docs/
     - How to create rules?
     - Tutorial: creating `no-todo` rule.
 
+## Use with XXX
+
+- [nakajmg/gulp-textlint](https://github.com/nakajmg/gulp-textlint "nakajmg/gulp-textlint")
+
+> gulp plugin for textlint.
+
+- [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
+
+> The plugin for Atom Linter provides an interface to textlint.
+
 ## Contributing
 
 1. Fork it!
