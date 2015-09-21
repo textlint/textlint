@@ -89,7 +89,8 @@ describe("cli-engine-test", function () {
             it("should load rule from directory", function () {
                 engine = new TextLintEngine();
                 var directory = __dirname + "/fixtures/rules/";
-                engine.loadRule("example-rule", directory);
+                engine.setRuleDirectory(directory);
+                engine.loadRule("example-rule");
                 var ruleNames = ruleManger.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
