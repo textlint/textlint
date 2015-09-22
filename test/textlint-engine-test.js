@@ -118,7 +118,7 @@ describe("cli-engine-test", function () {
             var beforeRuleNames = ruleManger.getAllRuleNames();
             engine.executeOnFiles([filePath]);
             var afterRuleNames = ruleManger.getAllRuleNames();
-            assert.deepStrictEqual(beforeRuleNames, afterRuleNames);
+            assert.deepEqual(beforeRuleNames, afterRuleNames);
         });
     });
     describe("executeOnText", function () {
@@ -141,7 +141,7 @@ describe("cli-engine-test", function () {
             var beforeRuleNames = ruleManger.getAllRuleNames();
             engine.executeOnText("text");
             var afterRuleNames = ruleManger.getAllRuleNames();
-            assert.deepStrictEqual(beforeRuleNames, afterRuleNames);
+            assert.deepEqual(beforeRuleNames, afterRuleNames);
         });
     });
     describe("formatResults", function () {
