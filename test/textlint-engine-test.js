@@ -85,12 +85,10 @@ describe("cli-engine-test", function () {
                 assert(ruleManger.getRule("no-todo") === ruleObject);
             });
         });
-        context("when use directory option", function () {
-            it("should load rule from directory", function () {
+        context("when use absolute path", function () {
+            it("should load rule from path", function () {
                 engine = new TextLintEngine();
-                var directory = __dirname + "/fixtures/rules/";
-                engine.setRuleDirectory(directory);
-                engine.loadRule("example-rule");
+                engine.loadRule(path.join(__dirname, "/fixtures/rules/", "example-rule"));
                 var ruleNames = ruleManger.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
