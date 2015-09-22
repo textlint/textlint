@@ -88,7 +88,7 @@ describe("cli-engine-test", function () {
         context("when use the rule directory", function () {
             it("should load rule from path", function () {
                 engine = new TextLintEngine();
-                engine.setRuleDirectory(path.join(__dirname, "/fixtures/rules/"));
+                engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
                 engine.addRule("example-rule");
                 engine.setupRules();
                 var ruleNames = ruleManger.getAllRuleNames();
@@ -113,7 +113,7 @@ describe("cli-engine-test", function () {
         });
         it("should lint a file with same rules", function () {
             var filePath = require("path").join(__dirname, "fixtures/test.md");
-            engine.setRuleDirectory(path.join(__dirname, "/fixtures/rules/"));
+            engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
             engine.addRule("example-rule");
             var beforeRuleNames = ruleManger.getAllRuleNames();
             engine.executeOnFiles([filePath]);
@@ -136,7 +136,7 @@ describe("cli-engine-test", function () {
             assert(lintResult.messages.length > 0);
         });
         it("should lint a text with same rules", function () {
-            engine.setRuleDirectory(path.join(__dirname, "/fixtures/rules/"));
+            engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
             engine.addRule("example-rule");
             var beforeRuleNames = ruleManger.getAllRuleNames();
             engine.executeOnText("text");
