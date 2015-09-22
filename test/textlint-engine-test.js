@@ -85,10 +85,12 @@ describe("cli-engine-test", function () {
                 assert(ruleManger.getRule("no-todo") === ruleObject);
             });
         });
-        context("when use absolute path", function () {
+        context("when use the rule directory", function () {
             it("should load rule from path", function () {
                 engine = new TextLintEngine();
-                engine.loadRule(path.join(__dirname, "/fixtures/rules/", "example-rule"));
+                engine.setRuleDirectory(path.join(__dirname, "/fixtures/rules/"));
+                engine.addRule("example-rule");
+                engine.setupRules();
                 var ruleNames = ruleManger.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
@@ -109,6 +111,15 @@ describe("cli-engine-test", function () {
             assert(Array.isArray(fileResult.messages));
             assert(fileResult.messages.length > 0);
         });
+        it("should lint a file with same rules", function () {
+            var filePath = require("path").join(__dirname, "fixtures/test.md");
+            engine.setRuleDirectory(path.join(__dirname, "/fixtures/rules/"));
+            engine.addRule("example-rule");
+            var beforeRuleNames = ruleManger.getAllRuleNames();
+            engine.executeOnFiles([filePath]);
+            var afterRuleNames = ruleManger.getAllRuleNames();
+            assert.deepStrictEqual(beforeRuleNames, afterRuleNames);
+        });
     });
     describe("executeOnText", function () {
         beforeEach(function () {
@@ -123,6 +134,14 @@ describe("cli-engine-test", function () {
             assert(lintResult.filePath === "<text>");
             assert(Array.isArray(lintResult.messages));
             assert(lintResult.messages.length > 0);
+        });
+        it("should lint a text with same rules", function () {
+            engine.setRuleDirectory(path.join(__dirname, "/fixtures/rules/"));
+            engine.addRule("example-rule");
+            var beforeRuleNames = ruleManger.getAllRuleNames();
+            engine.executeOnText("text");
+            var afterRuleNames = ruleManger.getAllRuleNames();
+            assert.deepStrictEqual(beforeRuleNames, afterRuleNames);
         });
     });
     describe("formatResults", function () {
