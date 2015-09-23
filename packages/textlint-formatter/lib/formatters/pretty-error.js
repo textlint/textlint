@@ -102,12 +102,15 @@ function prettifyError(code, filePath, message) {
  */
 module.exports = function (results) {
     var output = "";
-    output += results.map(function (result) {
+    results.forEach(function (result) {
         var code = require("fs").readFileSync(result.filePath, "utf-8");
-        return result.messages.map(function (message) {
-            return prettifyError(code, result.filePath, message);
-        }).join("\n");
-    }).join("\n");
+        result.messages.forEach(function (message) {
+            var r = prettifyError(code, result.filePath, message);
+            if (r) {
+                output += r + "\n";
+            }
+        });
+    });
 
     return output;
 };

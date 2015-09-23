@@ -54,6 +54,12 @@ describe("textlint-formatter-test", function () {
                                 line: 1,
                                 column: 15,
                                 message: "Expected a semicolon."
+                            },
+                            {
+                                ruleId: "semi",
+                                line: 2,
+                                column: 16,
+                                message: "Expected a semicolon."
                             }
                         ]
                     }
