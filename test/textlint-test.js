@@ -1,10 +1,12 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
+var path = require("path");
 var deepClone = require("clone");
 var textLint = require("../").textlint;
-var RuleContext = require("../lib/rule/rule-context");
 var loadRules = require("../lib/rule/load-rules");
+var Config = require("../lib/config/config");
+var RuleContext = require("../lib/rule/rule-context");
 var rules = loadRules(__dirname + "/fixtures/rules");
 describe("textlint-test", function () {
     beforeEach(function () {
@@ -44,6 +46,23 @@ describe("textlint-test", function () {
                 }, {
                     "rule-name": ruleConfig
                 });
+            });
+        });
+        context("when pass textlintConfig to setupRules", function () {
+            it("should RuleContext has `config` object", function () {
+                var configFile = path.join(__dirname, "fixtures", ".textlintrc");
+                var textlintConfig = new Config({
+                    configFile: configFile
+                });
+                var rule = function (context, config) {
+                    assert(context instanceof RuleContext);
+                    assert(context.config instanceof Config);
+                    assert.equal(context.config.configFile, configFile);
+                    return {};
+                };
+                textLint.setupRules({
+                    "rule-name": rule
+                }, null, textlintConfig);
             });
         });
     });

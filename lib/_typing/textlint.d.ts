@@ -13,6 +13,9 @@ interface TextLintResult {
 
 // Config - pass a object to config.js when initialize Config.
 interface TextLintConfig {
+    rules: string[];
+    rulesBaseDirectory?: string;
+    configFile?: string;
     rulePaths?:string[];
     extensions?:string[];
     formatterName?:string;
