@@ -46,8 +46,6 @@
     "babel": "^5.8.23",
     "clone": "^1.0.0",
     "espower-babel": "^3.3.0",
-    "espower-loader": "^1.0.0",
-    "intelli-espower-loader": "^1.0.0",
     "jscs": "^2.1.0",
     "mocha": "^2.3.3",
     "power-assert": "^1.0.1",
