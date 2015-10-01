@@ -1,8 +1,8 @@
 // LICENSE : MIT
 'use strict';
 function RuleContext(ruleId, textLint, textLintConfig) {
-    Object.defineProperty(this, 'id', { value: ruleId });
-    Object.defineProperty(this, 'config', { value: textLintConfig });
+    Object.defineProperty(this, 'id', {value: ruleId});
+    Object.defineProperty(this, 'config', {value: textLintConfig});
     /**
      *
      * @param {TxtNode} node

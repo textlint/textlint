@@ -83,13 +83,12 @@ class Config {
     }
 
     toJSON() {
-        const r = Object.create(null);
-        const that = this;
+        let r = Object.create(null);
         Object.keys(this).forEach(key => {
-            if (!that.hasOwnProperty(key)) {
+            if (!this.hasOwnProperty(key)) {
                 return;
             }
-            const value = that[key];
+            const value = this[key];
             if (value == null) {
                 return;
             }
@@ -105,7 +104,7 @@ class Config {
  * @returns {Config}
  */
 Config.initWithCLIOptions = function (cliOptions) {
-    const options = {};
+    let options = {};
     options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
     options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
     options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;

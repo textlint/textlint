@@ -19,7 +19,7 @@ function load(configFilePath) {
         return require(tryResolve(configFilePath));
     } else {
         // auto or specify config file
-        const config = configFilePath ? { config: configFilePath } : null;
+        const config = configFilePath ? {config: configFilePath} : null;
         return rc(CONFIG_FILENAME, {}, config);
     }
 }

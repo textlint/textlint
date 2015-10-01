@@ -109,7 +109,7 @@ api.lintText = function (text) {
     const controller = new TraverseController();
     controller.traverse(ast, {
         enter(node, parent) {
-            Object.defineProperty(node, 'parent', { value: parent });
+            Object.defineProperty(node, 'parent', {value: parent});
             api.emit(node.type, node);
         },
         leave(node) {
@@ -135,7 +135,7 @@ api.lintMarkdown = function (markdown) {
     const controller = new TraverseController();
     controller.traverse(ast, {
         enter(node, parent) {
-            Object.defineProperty(node, 'parent', { value: parent });
+            Object.defineProperty(node, 'parent', {value: parent});
             api.emit(node.type, node);
         },
         leave(node) {
@@ -156,9 +156,9 @@ api.lintFile = function (filePath) {
     const absoluteFilePath = path.resolve(process.cwd(), filePath);
     const text = fs.readFileSync(absoluteFilePath, 'utf-8');
     if (require('is-md')(filePath)) {
-        return objectAssign(api.lintMarkdown(text), { filePath: absoluteFilePath });
+        return objectAssign(api.lintMarkdown(text), {filePath: absoluteFilePath});
     } else {
-        return objectAssign(api.lintText(text), { filePath: absoluteFilePath });
+        return objectAssign(api.lintText(text), {filePath: absoluteFilePath});
     }
 };
 // ===== Export RuleContext
@@ -187,7 +187,9 @@ api.pushReport = function (ruleId, txtNode, error) {
  */
 api.getSource = function (node, beforeCount, afterCount) {
     if (node) {
-        return currentText !== null ? currentText.slice(Math.max(node.range[0] - (beforeCount || 0), 0), node.range[1] + (afterCount || 0)) : null;
+        return currentText !== null
+            ? currentText.slice(Math.max(node.range[0] - (beforeCount || 0), 0), node.range[1] + (afterCount || 0))
+            : null;
     } else {
         return currentText;
     }

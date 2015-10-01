@@ -6,7 +6,7 @@ module.exports = optionator({
     concatRepeatedArrays: true,
     mergeRepeatedObjects: true,
     options: [
-        { heading: 'Options' },
+        {heading: 'Options'},
         {
             option: 'help',
             alias: 'h',

@@ -18,6 +18,7 @@ const debug = require('debug')('textlint:traverse');
  */
 function walk(name, extensions, exclude, callback) {
     const stat = fs.statSync(name);
+
     function traverse(dir, stack) {
         stack.push(dir);
         fs.readdirSync(path.join.apply(path, stack)).forEach(file => {
@@ -42,6 +43,7 @@ function walk(name, extensions, exclude, callback) {
         });
         stack.pop();
     }
+
     const basename = path.basename(name);
     // don't ignore cases like 'eslint ./'
     if (basename !== '.' && basename !== '..' && basename[0] === '.' || exclude && exclude(name)) {
