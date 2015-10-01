@@ -29,8 +29,8 @@ describe("cli-engine-test", function () {
         });
         context("when args is Config object", function () {
             it("should set directory to config", function () {
-                // Issue : when use Config as argus, have to export `../lib/config/config`
-                var Config = require("../lib/config/config");
+                // Issue : when use Config as argus, have to export `../src/config/config`
+                var Config = require("../src/config/config");
                 var config = new Config();
                 config.rulePaths = [rulesDir];
                 engine = new TextLintEngine(config);

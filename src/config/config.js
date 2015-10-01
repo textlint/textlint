@@ -47,7 +47,7 @@ class Config {
      * @constructor
      */
     constructor(options) {
-        if (typeof options !== 'object') {
+        if (typeof options === 'undefined') {
             return objectAssign(this, defaultOptions);
         }
         // TODO: add `noUseConfig` option

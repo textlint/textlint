@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var Config = require("../lib/config/config");
+var Config = require("../src/config/config");
 var path = require("path");
 describe("config", function () {
     context("on default", function () {
