@@ -32,7 +32,6 @@ class TextLintEngine {
      */
     setupRules(config = this.config) {
         debug('config %O', config);
-        const that = this;
         // --ruledir
         if (config.rulePaths) {
             // load in additional rules
@@ -45,7 +44,7 @@ class TextLintEngine {
         if (config.rules) {
             // load in additional rules
             config.rules.forEach(ruleName => {
-                that.loadRule(ruleName);
+                this.loadRule(ruleName);
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
@@ -158,9 +157,8 @@ class TextLintEngine {
      * @returns {Boolean} Whether or not the results contain error message.
      */
     isErrorResults(results) {
-        const that = this;
         return results.some(result => {
-            return result.messages.some(that.isErrorMessage);
+            return result.messages.some(this.isErrorMessage);
         });
     }
 }
