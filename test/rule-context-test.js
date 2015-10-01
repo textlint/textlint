@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var textlint = require("../").textlint;
+var textlint = require("../src/").textlint;
 describe("rule-context-test", function () {
     afterEach(function () {
         textlint.resetRules();

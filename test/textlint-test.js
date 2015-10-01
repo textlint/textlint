@@ -3,10 +3,10 @@
 var assert = require("power-assert");
 var path = require("path");
 var deepClone = require("clone");
-var textLint = require("../").textlint;
-var loadRules = require("../lib/rule/load-rules");
-var Config = require("../lib/config/config");
-var RuleContext = require("../lib/rule/rule-context");
+var textLint = require("../src/").textlint;
+var loadRules = require("../src/rule/load-rules");
+var Config = require("../src/config/config");
+var RuleContext = require("../src/rule/rule-context");
 var rules = loadRules(__dirname + "/fixtures/rules");
 describe("textlint-test", function () {
     beforeEach(function () {

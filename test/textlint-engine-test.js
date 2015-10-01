@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var TextLintEngine = require("../").TextLintEngine;
-var textlint = require("../").textlint;
+var TextLintEngine = require("../src/").TextLintEngine;
+var textlint = require("../src/").textlint;
 var rulesDir = __dirname + "/fixtures/rules";
 var path = require("path");
-var ruleManger = require("../lib/rule/rule-manager");
+var ruleManger = require("../src/rule/rule-manager");
 describe("cli-engine-test", function () {
     var engine;
     afterEach(function () {

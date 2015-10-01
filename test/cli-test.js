@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var cli = require("../").cli;
+var cli = require("../src/").cli;
 var path = require("path");
 describe("cli-test", function () {
     context("when pass lint", function () {
