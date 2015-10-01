@@ -28,6 +28,9 @@
     "textlint": "./bin/textlint.js"
   },
   "scripts": {
+    "build": "babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build",
     "test:example": "./test/example-test.sh",
     "test": "mocha test/*.js && npm run test:example"
   },
