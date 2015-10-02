@@ -35,5 +35,6 @@
 
  */
 import TextlintCore from "./textlint-core";
+// singleton instance
 const api = new TextlintCore();
 module.exports = api;
