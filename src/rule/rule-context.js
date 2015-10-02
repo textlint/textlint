@@ -14,7 +14,7 @@ function RuleContext(ruleId, textLint, textLintConfig) {
     // Const Values
     this.Syntax = require('../parser/union-syntax');
     /** {@link textLint.getSource} */
-    this.getSource = textLint.getSource.bind(this);
+    this.getSource = textLint.getSource.bind(textLint);
     // CustomError object
     this.RuleError = require('./rule-error');
 }
