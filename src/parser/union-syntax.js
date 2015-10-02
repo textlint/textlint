@@ -1,6 +1,6 @@
 // LICENSE : MIT
 'use strict';
-let exports = {
+const Syntax = {
     'Document': 'Document',
     // must
     'Paragraph': 'Paragraph',
@@ -24,4 +24,4 @@ let exports = {
     'Image': 'Image',
     'Code': 'Code'
 };
-module.exports = exports;
+export default Syntax;
