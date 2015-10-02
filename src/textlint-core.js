@@ -164,14 +164,15 @@ export default class TextlintCore extends EventEmitter {
      * @param {TxtNode=} node The AST node to get the text for.
      * @param {int=} beforeCount The number of characters before the node to retrieve.
      * @param {int=} afterCount The number of characters after the node to retrieve.
-     * @returns {string} The text representing the AST node.
+     * @returns {string|null} The text representing the AST node.
      */
     getSource(node, beforeCount, afterCount) {
         let currentText = this.currentText;
+        if (currentText == null) {
+            return null;
+        }
         if (node) {
-            return currentText !== null
-                ? currentText.slice(Math.max(node.range[0] - (beforeCount || 0), 0), node.range[1] + (afterCount || 0))
-                : null;
+            return currentText.slice(Math.max(node.range[0] - (beforeCount || 0), 0), node.range[1] + (afterCount || 0));
         } else {
             return currentText;
         }
