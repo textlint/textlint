@@ -1,0 +1,17 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm install",
+    "test": "textlint -f pretty-error README.md"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "devDependencies": {
+    "textlint": "file:../..",
+    "textlint-rule-max-number-of-lines": "^1.0.2",
+    "textlint-rule-no-todo": "^1.0.3"
+  }
+}

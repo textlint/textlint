@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "no-todo": true,
+    "max-number-of-lines": {
+      "max": 30
+    }
+  }
+}

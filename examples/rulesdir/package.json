@@ -1,0 +1,15 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm install",
+    "test": "textlint --rulesdir ../../rules README.md"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "devDependencies": {
+    "textlint": "file:../.."
+  }
+}
