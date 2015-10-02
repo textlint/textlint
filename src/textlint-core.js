@@ -173,7 +173,9 @@ export default class TextlintCore extends EventEmitter {
             return null;
         }
         if (node) {
-            return currentText.slice(Math.max(node.range[0] - (beforeCount || 0), 0), node.range[1] + (afterCount || 0));
+            let start = Math.max(node.range[0] - (beforeCount || 0), 0);
+            let end = node.range[1] + (afterCount || 0);
+            return currentText.slice(start, end);
         } else {
             return currentText;
         }

@@ -82,8 +82,9 @@ class TextLintEngine {
         if (ruleManager.isDefinedRule(ruleName)) {
             return;
         }
-        const directory = this.config.rulesBaseDirectory || '';
-        const pkgPath = tryResolve(path.join(directory, `textlint-rule-${ ruleName }`)) || tryResolve(path.join(directory, ruleName));
+        const baseDir = this.config.rulesBaseDirectory || '';
+        const textlintRuleName = `textlint-rule-${ ruleName }`;
+        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));
         if (!pkgPath) {
             throw new ReferenceError(`${ ruleName } is not found`);
         }
