@@ -15,7 +15,7 @@
     "type": "git",
     "url": "https://github.com/azu/textlint.git"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
     "bin",
     "lib",
