@@ -5,7 +5,7 @@ class RuleError {
      * RuleError is like Error object.
      * It's used for adding to TextLintResult.
      * @param {string} message error message should start with lowercase letter
-     * @param {object?} paddingLocation - the object has padding {line, column} for actual error reason
+     * @param {object|number} [paddingLocation] - the object has padding {line, column} for actual error reason
      * @constructor
      */
     constructor(message, paddingLocation) {
