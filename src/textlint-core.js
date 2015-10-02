@@ -142,6 +142,7 @@ export default class TextlintCore extends EventEmitter {
     }
 
     // ===== Export RuleContext
+    // TODO: curve out context module?
     /**
      * push new RuleError to results
      * @param {string} ruleId
