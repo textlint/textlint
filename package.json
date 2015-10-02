@@ -28,7 +28,8 @@
     "textlint": "./bin/textlint.js"
   },
   "scripts": {
-    "test": "mocha test/*.js"
+    "test:example": "./test/example-test.sh",
+    "test": "mocha test/*.js && npm run test:example"
   },
   "directories": {
     "test": "test/"

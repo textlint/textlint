@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "npm install",
-    "test": "textlint README.md"
+    "test": "textlint -f pretty-error README.md"
   },
   "author": "azu",
   "license": "MIT",

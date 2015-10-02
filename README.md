@@ -20,6 +20,7 @@ Should use textlint with `--rule` or `--ruledir`.
 
 - [ ]  more more document
 
+:information_source: See [examples/cli](examples/cli)
 
 ```sh
 # install textlint rule
@@ -29,9 +30,10 @@ npm install --save-dev textlint-rule-no-todo
 textlint --rule no-todo README.md
 ```
 
+
 ## CLI
 
-See help.
+See command help.
 
 ```
 $ textlint -h
@@ -51,7 +53,7 @@ $ textlint -h
     --stdin                    Lint code provided on <STDIN>. - default: false
 ```
 
-also allow to use with multiple rules.
+Allow to use with multiple rules.
 
 ```sh
 $ textlint --rule no-todo --rule very-nice-rule README.md
@@ -100,6 +102,8 @@ It mean that use the following format:
   }
 }
 ```
+
+:information_source: See [examples/config-file](examples/config-file)
 
 ### Rule list - [Collection of textlint rule](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · azu/textlint Wiki")
 

@@ -3,7 +3,7 @@
 ## Usage
 
     npm run textlint
-    # textlint --rule no-todo README.md
+    # textlint --rulesdir ../../rules README.md
 
 ## How to report Error
 

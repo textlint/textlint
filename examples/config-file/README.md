@@ -3,7 +3,7 @@
 ## Usage
 
     npm run textlint
-    # textlint README.md
+    # textlint -f pretty-error README.md
 
 
 ## textlintrc
