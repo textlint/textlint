@@ -2,7 +2,7 @@
 "use strict";
 var assert = require("power-assert");
 var path = require("path");
-var loadConfig = require("../lib/config/config-loader");
+var loadConfig = require("../src/config/config-loader");
 describe("config-loader", function () {
     it("should load config file", function () {
         var configFile = path.join(__dirname, "fixtures", ".textlintrc");

@@ -1,8 +1,7 @@
 // LICENSE : MIT
-"use strict";
-
-var loadRuleDir = require("./load-rules");
-var objectAssign = require("object-assign");
+'use strict';
+const loadRuleDir = require('./load-rules');
+const objectAssign = require('object-assign');
 // dictionary dictionary
 /**
  * @typedef {{key: Function}} RulesObject
@@ -11,7 +10,7 @@ var objectAssign = require("object-assign");
  * Defined all rules in this object.
  * @type {RulesObject}
  */
-var rules = {};
+let rules = {};
 function getAllRuleNames() {
     return Object.keys(rules);
 }
@@ -21,7 +20,6 @@ function getAllRuleNames() {
 function getAllRules() {
     return rules;
 }
-
 function getRule(ruleKey) {
     return rules[ruleKey];
 }
@@ -45,7 +43,6 @@ function loadRules(ruleDir) {
 function defineRule(ruleKey, ruleHandler) {
     rules[ruleKey] = ruleHandler;
 }
-
 function resetRules() {
     rules = Object.create(null);
 }

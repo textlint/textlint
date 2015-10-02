@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var TextLintEngine = require("../").TextLintEngine;
-var textlint = require("../").textlint;
+var TextLintEngine = require("../src/").TextLintEngine;
+var textlint = require("../src/").textlint;
 var rulesDir = __dirname + "/fixtures/rules";
 var path = require("path");
-var ruleManger = require("../lib/rule/rule-manager");
+var ruleManger = require("../src/rule/rule-manager");
 describe("cli-engine-test", function () {
     var engine;
     afterEach(function () {
@@ -29,8 +29,8 @@ describe("cli-engine-test", function () {
         });
         context("when args is Config object", function () {
             it("should set directory to config", function () {
-                // Issue : when use Config as argus, have to export `../lib/config/config`
-                var Config = require("../lib/config/config");
+                // Issue : when use Config as argus, have to export `../src/config/config`
+                var Config = require("../src/config/config");
                 var config = new Config();
                 config.rulePaths = [rulesDir];
                 engine = new TextLintEngine(config);

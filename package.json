@@ -6,6 +6,7 @@
   "keywords": [
     "plugable",
     "text",
+    "textlint",
     "markdown",
     "lint",
     "linting",
@@ -15,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/azu/textlint.git"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
     "bin",
     "lib",
@@ -28,8 +29,11 @@
     "textlint": "./bin/textlint.js"
   },
   "scripts": {
+    "build": "babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build",
     "test:example": "./test/example-test.sh",
-    "test": "mocha test/*.js && npm run test:example"
+    "test": "mocha test/*.js && jscs src && npm run test:example"
   },
   "directories": {
     "test": "test/"
@@ -40,12 +44,12 @@
     "url": "https://github.com/azu/textlint/issues"
   },
   "devDependencies": {
+    "babel": "^5.8.23",
     "clone": "^1.0.0",
-    "espower-loader": "^1.0.0",
-    "intelli-espower-loader": "^1.0.0",
+    "espower-babel": "^3.3.0",
     "jscs": "^2.1.0",
-    "mocha": "^2.1.0",
-    "power-assert": "^1.0.0",
+    "mocha": "^2.3.3",
+    "power-assert": "^1.0.1",
     "textlint-rule-no-todo": "^1.0.2"
   },
   "dependencies": {

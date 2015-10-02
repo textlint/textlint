@@ -2,13 +2,10 @@
  * @fileoverview Simple directory traversal logic.
  * @author Nicholas C. Zakas
  */
-
-"use strict";
-
-var fs = require("fs");
-var path = require("path");
-var debug = require("debug")("textlint:traverse");
-
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const debug = require('debug')('textlint:traverse');
 /**
  * Walks a path recursively calling the callback on each file.
  * @param {string} name The file or directory path.
@@ -20,29 +17,23 @@ var debug = require("debug")("textlint:traverse");
  * @private
  */
 function walk(name, extensions, exclude, callback) {
-
-    var stat = fs.statSync(name);
+    const stat = fs.statSync(name);
 
     function traverse(dir, stack) {
         stack.push(dir);
-
-        fs.readdirSync(path.join.apply(path, stack)).forEach(function (file) {
-
+        fs.readdirSync(path.join.apply(path, stack)).forEach(file => {
             // skip all hidded things (dirs, files, links)
-            if (file[0] === ".") {
+            if (file[0] === '.') {
                 return;
             }
-
-            var filePath = path.join.apply(path, stack.concat([file]));
-            var fileStat = fs.statSync(filePath);
-
+            const filePath = path.join.apply(path, stack.concat([file]));
+            const fileStat = fs.statSync(filePath);
             // if this file or directory is excluded from linting, skip over it.
             if (exclude && exclude(filePath)) {
                 // console.log("Ignoring " + filePath);
-                debug("Ignoring " + filePath);
+                debug(`Ignoring ${ filePath }`);
                 return;
             }
-
             // only call callback for files with correct extensions
             if (fileStat.isFile() && extensions.indexOf(path.extname(filePath)) > -1) {
                 callback(filePath);
@@ -53,16 +44,12 @@ function walk(name, extensions, exclude, callback) {
         stack.pop();
     }
 
-    var basename = path.basename(name);
-
+    const basename = path.basename(name);
     // don't ignore cases like 'eslint ./'
-    if ((basename !== "." && basename !== ".." && basename[0] === ".") ||
-        (exclude && exclude(name))) {
-
-        debug("Ignoring " + name);
+    if (basename !== '.' && basename !== '..' && basename[0] === '.' || exclude && exclude(name)) {
+        debug(`Ignoring ${ name }`);
         return;
     }
-
     // always call callback for any files that are passed on the command line
     if (stat.isFile()) {
         callback(name);
@@ -70,7 +57,6 @@ function walk(name, extensions, exclude, callback) {
         traverse(name, []);
     }
 }
-
 /**
  * Traverses multiple directories and calls a callback on each file.
  * @param {Object} options The option for the traversal.
@@ -80,12 +66,10 @@ function walk(name, extensions, exclude, callback) {
  * @returns {void}
  */
 module.exports = function traverse(options, callback) {
-    var files = options.files;
-    var exclude = options.exclude;
-    var extensions = options.extensions;
-
-    files.forEach(function (file) {
+    const files = options.files;
+    const exclude = options.exclude;
+    const extensions = options.extensions;
+    files.forEach(file => {
         walk(file, extensions, exclude, callback);
     });
-
 };

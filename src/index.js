@@ -4,9 +4,9 @@
 // cli > TextLintEngine > textlint
 module.exports = {
     // Command line interface
-    cli: require("./lib/cli"),
+    cli: require("./cli"),
     // TextLintEngine is a wrapper around `textlint` for linting multiple files
-    TextLintEngine: require("./lib/textlint-engine"),
+    TextLintEngine: require("./textlint-engine"),
     // Core API for linting a single text.
-    textlint: require("./lib/textlint")
+    textlint: require("./textlint")
 };
