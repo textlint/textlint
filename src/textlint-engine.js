@@ -1,13 +1,13 @@
 // LICENSE : MIT
 'use strict';
 const textLint = require('./textlint');
-const fileTraverse = require('./util/traverse');
 const Config = require('./config/config');
 const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
 const path = require('path');
 const ruleManager = require('./rule/rule-manager');
-const debug = require('debug')('text:cli-engine');
+import { findFiles } from "./util/find-util";
+const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
     /**
      * Process files are wanted to lint.
@@ -107,7 +107,7 @@ class TextLintEngine {
      */
     executeOnFiles(files) {
         this.setupRules(this.config);
-        const targetFiles = findFiles(files, this.config);
+        const targetFiles = findFiles(files, this.config.extensions);
         const results = targetFiles.map(file => {
             return textLint.lintFile(file);
         });
@@ -162,22 +162,5 @@ class TextLintEngine {
         });
     }
 }
-/**
- * filter files by config
- * @param files
- * @param {Config} config
- */
-function findFiles(files, config) {
-    const processed = [];
-    // sync
-    fileTraverse({
-        files: files,
-        extensions: config.extensions,
-        exclude: false
-    }, filename => {
-        debug(`Processing ${ filename }`);
-        processed.push(filename);
-    });
-    return processed;
-}
+
 module.exports = TextLintEngine;

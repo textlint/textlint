@@ -2,7 +2,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-let debug = require('debug');
+const debug = require('debug')('textlint:cli');
 const mkdirp = require('mkdirp');
 const options = require('./options');
 const TextLintEngine = require('./textlint-engine');
@@ -13,7 +13,6 @@ const Config = require('./config/config');
     processing role is cli-engine.js.
     @see cli-engine.js
  */
-debug = debug('text:cli');
 /**
  * Print results of lining text.
  * @param {string} output the output text which is formatted by {@link TextLintEngine.formatResults}

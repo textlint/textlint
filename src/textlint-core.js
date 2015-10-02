@@ -12,7 +12,7 @@ const isMarkdown = require('is-md');
 const path = require('path');
 const fs = require('fs');
 const EventEmitter = require('events').EventEmitter;
-const debug = require('debug')('text:core');
+const debug = require('debug')('textlint:core');
 // add all the node types as listeners
 function addListenRule(rule, target) {
     Object.keys(rule).forEach(nodeType => {
