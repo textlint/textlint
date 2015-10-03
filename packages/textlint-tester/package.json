@@ -1,0 +1,43 @@
+{
+  "name": "textlint-tester",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azu/textlint-tester.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/azu/textlint-tester",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/textlint-tester/issues"
+  },
+  "version": "1.0.0",
+  "description": "testing tool for textlint",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build",
+    "test": "ava test/*-test.js"
+  },
+  "keywords": [
+    "textlint",
+    "test",
+    "testing"
+  ],
+  "dependencies": {
+    "ava": "^0.2.0",
+    "textlint": "^3.6.1"
+  },
+  "devDependencies": {
+    "ava": "^0.2.0",
+    "babel": "^5.8.23",
+    "espower-babel": "^3.3.0",
+    "mocha": "^2.3.3",
+    "power-assert": "^1.0.1",
+    "textlint-rule-no-todo": "^1.0.3"
+  }
+}
