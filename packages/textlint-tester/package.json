@@ -13,7 +13,11 @@
   },
   "version": "0.1.0",
   "description": "testing tool for textlint rule.",
-  "main": "index.js",
+  "main": "lib/textlint-tester.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "directories": {
     "test": "test"
   },
