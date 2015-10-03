@@ -35,9 +35,11 @@ tester.run("max-number-of-lines", maxNumberOfLine, {
     ],
     invalid: [
         {
-            text: `1
+            text: `
+1
 2
-3            `,
+3
+`.trim(),
             options: {
                 max: 2
             },
