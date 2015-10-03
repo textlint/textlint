@@ -8,6 +8,9 @@
 
 ## Usage
 
+1. Write tests by using `textlint-tester`
+2. Run tests by [Mocha](http://mochajs.org/ "Mocha")
+
 ### TextLintTester
 
 #### TextLintTester#run(ruleName, rule, {valid=[], invalid=[]})
