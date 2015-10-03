@@ -8,8 +8,21 @@
 
 ## Usage
 
+### TextLintTester
+
+#### TextLintTester#run(ruleName, rule, {valid=[], invalid=[]})
+
+- `{string} ruleName` ruleName is name of thee rule
+- `{Function} rule` rule is the function of rule
+- `{string[]|object[]} valid`
+    - e.g.) `["text", { text : "text" }]`
+- `{object[]} invalid`
+    - e.g.) `[{text: "text", errors: [ messages : "expected message" ]}`
+
+### example
+
 ```js
-var TextLintTester = require("../src/textlint-tester");
+var TextLintTester = require("textlint-tester");
 // rules
 var noTodo = require("textlint-rule-no-todo");
 var maxNumberOfLine = require("textlint-rule-max-number-of-lines");
