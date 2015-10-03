@@ -12,7 +12,7 @@
     "url": "https://github.com/azu/textlint-tester/issues"
   },
   "version": "0.1.0",
-  "description": "testing tool for textlint",
+  "description": "testing tool for textlint rule.",
   "main": "index.js",
   "directories": {
     "test": "test"
