@@ -21,7 +21,7 @@
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
-    "test": "ava test/*-test.js"
+    "test": "mocha"
   },
   "keywords": [
     "textlint",
@@ -29,15 +29,12 @@
     "testing"
   ],
   "dependencies": {
-    "ava": "^0.2.0",
     "textlint": "^3.6.1"
   },
   "devDependencies": {
-    "ava": "^0.2.0",
     "babel": "^5.8.23",
-    "espower-babel": "^3.3.0",
     "mocha": "^2.3.3",
-    "power-assert": "^1.0.1",
+    "textlint-rule-max-number-of-lines": "^1.0.2",
     "textlint-rule-no-todo": "^1.0.3"
   }
 }
