@@ -67,8 +67,14 @@ ${JSON.stringify(lintResult, null, 4)}`);
         });
     }
 
+    /**
+     * run test for textlint rule.
+     * @param {string} ruleName ruleName is name of thee rule
+     * @param {Function} rule rule is the function of rule
+     * @param {string[]|object[]} valid
+     * @param {object[]} invalid
+     */
     run(ruleName, rule, {valid=[], invalid=[]}) {
-        var result = {};
         describe(ruleName, ()=> {
             valid.forEach(state => {
                 this.testValidPattern(ruleName, rule, state);
@@ -77,6 +83,5 @@ ${JSON.stringify(lintResult, null, 4)}`);
                 this.testInvalidPattern(ruleName, rule, state);
             });
         });
-        return result.suite;
     }
 }
