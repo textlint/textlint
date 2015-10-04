@@ -3,6 +3,7 @@
 const path = require('path');
 const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
+const concat = require("unique-concat");
 import { loadRulesConfig } from "./plugin-loader";
 /**
  * Get rule keys from textlintrc config object.
@@ -53,6 +54,7 @@ class Config {
         let options = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
+        options.plugins = cliOptions.plugin ? cliOptions.plugin : defaultOptions.plugins;
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
@@ -92,12 +94,14 @@ class Config {
          * @type {string[]}
          */
         this.rules = options.rules ? options.rules : defaultOptions.rules;
-        this.rules = this.rules.concat(ruleKeys);
+        this.rules = concat(this.rules, ruleKeys);
 
         // => load plugins
         // this.rules has not contain plugin rules
         // =====================
         this.plugins = userConfig.plugins ? userConfig.plugins : defaultOptions.plugins;
+        // --plugin
+        this.plugins = concat(this.plugins, options.plugins || []);
         const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, userConfig.plugins);
         this.rulesConfig = objectAssign({}, texlintRulesConfig, pluginRulesConfig);
         /**

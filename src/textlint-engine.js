@@ -47,7 +47,7 @@ class TextLintEngine {
                 this.loadRule(ruleName);
             });
         }
-        // TODO: --plugin
+        // --plugin
         if (config.plugins) {
             // load in additional rules from plugin
             config.plugins.forEach(pluginName => {

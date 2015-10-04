@@ -21,6 +21,12 @@ module.exports = optionator({
             example: '--config /path/to/.textlintrc'
         },
         {
+            option: 'plugin',
+            type: '[String]',
+            description: 'Specify plugins',
+            example: '--plugin plugin-name'
+        },
+        {
             option: 'rule',
             type: '[path::String]',
             description: 'Set rule package name and set all default rules to off.'
