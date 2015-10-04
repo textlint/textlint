@@ -13,6 +13,6 @@
     "textlint": "file:../.."
   },
   "dependencies": {
-    "textlint-plugin-jtf-style": "^0.1.3"
+    "textlint-plugin-jtf-style": "^0.1.5"
   }
 }
