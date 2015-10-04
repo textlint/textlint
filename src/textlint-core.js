@@ -7,7 +7,7 @@
 const objectAssign = require('object-assign');
 const TraverseController = require('txt-ast-traverse').Controller;
 const RuleContext = require('./rule/rule-context');
-const ruleManager = require('./rule/rule-manager');
+const RuleManager = require('./rule/rule-manager');
 const isMarkdown = require('is-md');
 const path = require('path');
 const fs = require('fs');
@@ -22,6 +22,7 @@ function addListenRule(rule, target) {
 export default class TextlintCore extends EventEmitter {
     constructor() {
         super();
+        this.ruleManager = new RuleManager();
         this.initializeForLinting();
     }
 
@@ -66,7 +67,7 @@ export default class TextlintCore extends EventEmitter {
      */
     resetRules() {
         this.removeAllListeners();
-        ruleManager.resetRules();
+        this.ruleManager.resetRules();
         this.initializeForLinting();
     }
 
