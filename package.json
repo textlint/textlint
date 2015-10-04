@@ -67,6 +67,7 @@
     "try-resolve": "^1.0.1",
     "txt-ast-traverse": "^1.2.0",
     "txt-to-ast": "^1.0.1",
+    "unique-concat": "^0.2.2",
     "xml-escape": "^1.0.0"
   }
 }

@@ -61,6 +61,33 @@ describe("cli-engine-test", function () {
             });
         });
     });
+    describe("#loadPlugin", function () {
+        context("when the rule is **not** defined", function () {
+            it("should define rules of plugin", function () {
+                engine = new TextLintEngine();
+                engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/plugins/"));
+                engine.loadPlugin("example");
+                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                assert(ruleNames.length > 0);
+                assert.equal(ruleNames[0], "example/example-rule");
+            });
+        });
+        context("when the rule is defined", function () {
+            it("should not re-load rule", function () {
+                engine = new TextLintEngine();
+                engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/plugins/"));
+                engine.loadPlugin("example");
+                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 1);
+                var ruleObject = textlint.ruleManager.getRule(ruleNames[0]);
+                // loadRule should ignore
+                engine.loadPlugin("example");
+                // should equal prev loaded object
+                assert(textlint.ruleManager.getRule("example/example-rule") === ruleObject);
+            });
+        });
+    });
+
     describe("#loadRule", function () {
         context("when the rule is **not** defined", function () {
             it("should define the rule", function () {

@@ -5,6 +5,7 @@ const Config = require('./config/config');
 const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
 const path = require('path');
+import assert from "assert";
 import { findFiles } from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
@@ -12,7 +13,7 @@ class TextLintEngine {
      * Process files are wanted to lint.
      * TextLintEngine is a wrapper of textlint.js.
      * Aim to be called from cli with cli options.
-     * @param {TextLintConfig|} options the options is command line options or Config object.
+     * @param {TextLintConfig} options the options is command line options or Config object.
      * @constructor
      */
     constructor(options) {
@@ -46,6 +47,13 @@ class TextLintEngine {
                 this.loadRule(ruleName);
             });
         }
+        // --plugin
+        if (config.plugins) {
+            // load in additional rules from plugin
+            config.plugins.forEach(pluginName => {
+                this.loadPlugin(pluginName);
+            });
+        }
         const textlintConfig = config ? config.toJSON() : {};
         textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig, textlintConfig);
     }
@@ -70,6 +78,26 @@ class TextLintEngine {
     }
 
     /**
+     * load rule from plugin name.
+     * plugin module has `rules` object and define rule with plugin prefix.
+     * @param {string} pluginName
+     */
+    loadPlugin(pluginName) {
+        // TODO: ignore already loaded plugin
+        const pluginNameWithoutPrefix = pluginName.replace(/^textlint\-plugin\-/, '');
+        const baseDir = this.config.rulesBaseDirectory || '';
+        const textlintRuleName = `textlint-plugin-${ pluginName }`;
+        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
+        if (!pkgPath) {
+            throw new ReferenceError(`plugin: ${ pluginName } is not found`);
+        }
+        debug('Loading rules from plugin: %s', pkgPath);
+        const plugin = require(pkgPath.normalize());
+        assert(plugin.hasOwnProperty("rules"), "plugins should has `rules` object");
+        textLint.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
+    }
+
+    /**
      * load rule file with `ruleName` and define rule.
      * if rule is not found, then throw ReferenceError.
      * if already rule is loaded, do not anything.
@@ -86,7 +114,7 @@ class TextLintEngine {
         const textlintRuleName = `textlint-rule-${ ruleName }`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));
         if (!pkgPath) {
-            throw new ReferenceError(`${ ruleName } is not found`);
+            throw new ReferenceError(`rule: ${ ruleName } is not found`);
         }
         debug('Loading rules from %s', pkgPath);
         const plugin = require(pkgPath);

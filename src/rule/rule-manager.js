@@ -45,6 +45,20 @@ export default class RuleManager {
     }
 
     /**
+     * Registers all given rules of a plugin.
+     * @param {Object} pluginRules A key/value map of rule definitions.
+     * @param {String} pluginName The name of the plugin without prefix (`textlint-plugin-`).
+     * @returns {void}
+     */
+    importPlugin(pluginRules, pluginName) {
+        Object.keys(pluginRules).forEach(ruleId => {
+            let qualifiedRuleId = pluginName + "/" + ruleId;
+            let ruleCreator = pluginRules[ruleId];
+            this.defineRule(qualifiedRuleId, ruleCreator);
+        });
+    }
+
+    /**
      *
      * @param {string} ruleKey
      * @param ruleHandler

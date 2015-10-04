@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "jtf-style"
+  ],
+  "rules": {
+    "jtf-style/4.1.1.句点(。)": false
+  }
+}

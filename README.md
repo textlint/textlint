@@ -105,6 +105,28 @@ It mean that use the following format:
 
 :information_source: See [examples/config-file](examples/config-file)
 
+### Plugin
+
+textlint plugin is a set of rules and rulesConfig.
+
+To enable plugin, put the "plugin-name` into `.textlinrc`.
+
+```js
+// `.textlinrc`
+{
+    "plugins": [
+        "plugin-name"
+    ],
+    // overwrite-plugins rules config
+    // <plugin>/<rule>
+    "rules": {
+        "plugin-name/rule-name" : false
+    }
+}
+```
+
+:information_source: See [docs/plugin.md](docs/plugin.md)
+
 ### Rule list - [Collection of textlint rule](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · azu/textlint Wiki")
 
 See [Collection of textlint rule · azu/textlint Wiki](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · azu/textlint Wiki").
