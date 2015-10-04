@@ -20,7 +20,31 @@ describe("config", function () {
             assert(config.rules.length > 0);
             assert(Object.keys(config.rulesConfig).length > 0);
             assert(config.rulePaths.length === 0);
-        })
+        });
+    });
+    context("when has `plugins` in configFile", function () {
+        it("should set config's `plugins`", function () {
+            var config = new Config({
+                rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
+                configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
+            });
+            assert(config.plugins.length === 2);
+            assert(config.plugins[0] === "example-plugin");
+            assert(config.plugins[1] === "configurable-plugin");
+        });
+        it("should has rulesConfig that is loaded from plugins", function () {
+            var config = new Config({
+                rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
+                configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
+            });
+            const exampleRule = "example-rule";
+            const exampleRulesOptions = require("./fixtures/plugins/example-plugin").rulesConfig[exampleRule];
+            const configurableRule = "configurable-rule";
+            const configurableRulesOptions = require("./fixtures/plugins/configurable-plugin").rulesConfig[configurableRule];
+            // "example-rule" : true
+            assert.strictEqual(config.rulesConfig[exampleRule], exampleRulesOptions);
+            assert.deepEqual(config.rulesConfig[configurableRule], configurableRulesOptions);
+        });
     });
     describe("#initWithCLIOptions", function () {
         context("when init with command line options", function () {

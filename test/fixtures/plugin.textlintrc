@@ -1,0 +1,6 @@
+{
+  "plugins": [
+    "example-plugin",
+    "configurable-plugin"
+  ]
+}
