@@ -5,7 +5,6 @@ const Config = require('./config/config');
 const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
 const path = require('path');
-const ruleManager = require('./rule/rule-manager');
 import { findFiles } from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
@@ -37,7 +36,7 @@ class TextLintEngine {
             // load in additional rules
             config.rulePaths.forEach(rulesdir => {
                 debug('Loading rules from %o', rulesdir);
-                ruleManager.loadRules(rulesdir);
+                textLint.ruleManager.loadRules(rulesdir);
             });
         }
         // --rule
@@ -48,7 +47,7 @@ class TextLintEngine {
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-        textLint.setupRules(ruleManager.getAllRules(), textlintConfig.rulesConfig, textlintConfig);
+        textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig, textlintConfig);
     }
 
     /**
@@ -79,7 +78,7 @@ class TextLintEngine {
     loadRule(ruleName) {
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
-        if (ruleManager.isDefinedRule(ruleName)) {
+        if (textLint.ruleManager.isDefinedRule(ruleName)) {
             return;
         }
         const baseDir = this.config.rulesBaseDirectory || '';
@@ -91,7 +90,7 @@ class TextLintEngine {
         debug('Loading rules from %s', pkgPath);
         const plugin = require(pkgPath);
         const definedRuleName = ruleName.replace(/^textlint\-rule\-/, '');
-        ruleManager.defineRule(definedRuleName, plugin);
+        textLint.ruleManager.defineRule(definedRuleName, plugin);
     }
 
     /**
