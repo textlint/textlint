@@ -92,7 +92,7 @@ class TextLintEngine {
             throw new ReferenceError(`plugin: ${ pluginName } is not found`);
         }
         debug('Loading rules from plugin: %s', pkgPath);
-        const plugin = require(pkgPath);
+        const plugin = require(pkgPath.normalize());
         assert(plugin.hasOwnProperty("rules"), "plugins should has `rules` object");
         textLint.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
     }
