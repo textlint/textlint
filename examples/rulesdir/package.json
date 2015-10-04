@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm install",
+    "pretest": "npm rm textlint && npm i",
     "test": "textlint --rulesdir ../../rules README.md"
   },
   "author": "azu",

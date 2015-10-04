@@ -86,11 +86,6 @@ class Config {
          * ruleConfig is a merged object that are rules and pluginRules.
          */
         this.rulesConfig = userConfig.rules ? userConfig.rules : defaultOptions.rulesConfig;
-        // => load plugins
-        // =====================
-        this.plugins = userConfig.plugins ? userConfig.plugins : defaultOptions.plugins;
-        const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, userConfig.plugins);
-        this.rulesConfig = objectAssign({}, this.rulesConfig, pluginRulesConfig);
         // rule names
         const ruleKeys = availableRuleKeys(this.rulesConfig);
         /**
@@ -98,6 +93,13 @@ class Config {
          */
         this.rules = options.rules ? options.rules : defaultOptions.rules;
         this.rules = this.rules.concat(ruleKeys);
+
+        // => load plugins
+        // this.rules has not contain plugin rules
+        // =====================
+        this.plugins = userConfig.plugins ? userConfig.plugins : defaultOptions.plugins;
+        const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, userConfig.plugins);
+        this.rulesConfig = objectAssign({}, this.rulesConfig, pluginRulesConfig);
         /**
          * @type {string[]}
          */

@@ -49,7 +49,7 @@ class TextLintEngine {
         }
         // TODO: --plugin
         if (config.plugins) {
-            // load in additional rules
+            // load in additional rules from plugin
             config.plugins.forEach(pluginName => {
                 this.loadPlugin(pluginName);
             });

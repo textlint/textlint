@@ -1,5 +1,5 @@
 {
-  "name": "cli",
+  "name": "plugin",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,8 +10,9 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../..",
-    "textlint-rule-max-number-of-lines": "^1.0.2",
-    "textlint-rule-no-todo": "^1.0.3"
+    "textlint": "file:../.."
+  },
+  "dependencies": {
+    "textlint-plugin-jtf-style": "^0.1.3"
   }
 }
