@@ -54,7 +54,7 @@ export default class RuleManager {
         Object.keys(pluginRules).forEach(ruleId => {
             let qualifiedRuleId = pluginName + "/" + ruleId;
             let ruleCreator = pluginRules[ruleId];
-            this.define(qualifiedRuleId, ruleCreator);
+            this.defineRule(qualifiedRuleId, ruleCreator);
         });
     }
 

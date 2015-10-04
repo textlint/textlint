@@ -47,6 +47,13 @@ class TextLintEngine {
                 this.loadRule(ruleName);
             });
         }
+        // TODO: --plugin
+        if (config.plugins) {
+            // load in additional rules
+            config.plugins.forEach(pluginName => {
+                this.loadPlugin(pluginName);
+            });
+        }
         const textlintConfig = config ? config.toJSON() : {};
         textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig, textlintConfig);
     }
@@ -80,9 +87,9 @@ class TextLintEngine {
         const pluginNameWithoutPrefix = pluginName.replace(/^textlint\-plugin\-/, '');
         const baseDir = this.config.rulesBaseDirectory || '';
         const textlintRuleName = `textlint-plugin-${ pluginName }`;
-        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));
+        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
         if (!pkgPath) {
-            throw new ReferenceError(`${ pluginName } is not found`);
+            throw new ReferenceError(`plugin: ${ pluginName } is not found`);
         }
         debug('Loading rules from plugin: %s', pkgPath);
         const plugin = require(pkgPath);
@@ -107,7 +114,7 @@ class TextLintEngine {
         const textlintRuleName = `textlint-rule-${ ruleName }`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));
         if (!pkgPath) {
-            throw new ReferenceError(`${ ruleName } is not found`);
+            throw new ReferenceError(`rule: ${ ruleName } is not found`);
         }
         debug('Loading rules from %s', pkgPath);
         const plugin = require(pkgPath);
