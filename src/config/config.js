@@ -54,13 +54,14 @@ class Config {
         // configFile is optional
         const userConfig = loadConfig(options.configFile);
         /**
-         * @type {object}
-         */
-        this.rulesConfig = userConfig.rules ? userConfig.rules : defaultOptions.rulesConfig;
-        /**
          * @type {string|null} path to .textlintrc file.
          */
         this.configFile = userConfig.config ? userConfig.config : options.configFile;
+        /**
+         * @type {object} ruleConfig is a object of rules[key] : option.
+         * ruleConfig is a merged object that are rules and pluginRules.
+         */
+        this.rulesConfig = userConfig.rules ? userConfig.rules : defaultOptions.rulesConfig;
         // rule names
         const ruleKeys = availableRuleKeys(this.rulesConfig);
         /**

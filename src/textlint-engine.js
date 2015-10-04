@@ -78,7 +78,8 @@ class TextLintEngine {
     loadRule(ruleName) {
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
-        if (textLint.ruleManager.isDefinedRule(ruleName)) {
+        const definedRuleName = ruleName.replace(/^textlint\-rule\-/, '');
+        if (textLint.ruleManager.isDefinedRule(definedRuleName)) {
             return;
         }
         const baseDir = this.config.rulesBaseDirectory || '';
@@ -89,7 +90,6 @@ class TextLintEngine {
         }
         debug('Loading rules from %s', pkgPath);
         const plugin = require(pkgPath);
-        const definedRuleName = ruleName.replace(/^textlint\-rule\-/, '');
         textLint.ruleManager.defineRule(definedRuleName, plugin);
     }
 
