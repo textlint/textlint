@@ -85,9 +85,9 @@ class Config {
          * @type {object} ruleConfig is a object of rules[key] : option.
          * ruleConfig is a merged object that are rules and pluginRules.
          */
-        this.rulesConfig = userConfig.rules ? userConfig.rules : defaultOptions.rulesConfig;
-        // rule names
-        const ruleKeys = availableRuleKeys(this.rulesConfig);
+        const texlintRulesConfig = userConfig.rules ? userConfig.rules : defaultOptions.rulesConfig;
+        // rule names that are defined in ,textlintrc
+        const ruleKeys = availableRuleKeys(texlintRulesConfig);
         /**
          * @type {string[]}
          */
@@ -99,7 +99,7 @@ class Config {
         // =====================
         this.plugins = userConfig.plugins ? userConfig.plugins : defaultOptions.plugins;
         const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, userConfig.plugins);
-        this.rulesConfig = objectAssign({}, this.rulesConfig, pluginRulesConfig);
+        this.rulesConfig = objectAssign({}, texlintRulesConfig, pluginRulesConfig);
         /**
          * @type {string[]}
          */
