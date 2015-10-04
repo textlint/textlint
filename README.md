@@ -116,7 +116,12 @@ To enable plugin, put the "plugin-name` into `.textlinrc`.
 {
     "plugins": [
         "plugin-name"
-    ]
+    ],
+    // overwrite-plugins rules config
+    // <plugin>/<rule>
+    "rules": {
+        "plugin-name/rule-name" : false
+    }
 }
 ```
 
