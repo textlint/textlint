@@ -29,7 +29,7 @@ describe("config", function () {
                 configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
             });
             assert(config.plugins.length === 2);
-            assert(config.plugins[0] === "example-plugin");
+            assert(config.plugins[0] === "example");
             assert(config.plugins[1] === "configurable-plugin");
         });
         it("should has rulesConfig that is loaded from plugins", function () {
@@ -38,7 +38,7 @@ describe("config", function () {
                 configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
             });
             const exampleRule = "example-rule";
-            const exampleRulesOptions = require("./fixtures/plugins/example-plugin").rulesConfig[exampleRule];
+            const exampleRulesOptions = require("./fixtures/plugins/textlint-plugin-example").rulesConfig[exampleRule];
             const configurableRule = "configurable-rule";
             const configurableRulesOptions = require("./fixtures/plugins/configurable-plugin").rulesConfig[configurableRule];
             // "example-rule" : true
