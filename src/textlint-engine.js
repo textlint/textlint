@@ -57,7 +57,7 @@ class TextLintEngine {
                 let plugin = this.loadPlugin(pluginName);
                 // register plugin.Processor
                 if (plugin.hasOwnProperty("Processor")) {
-                    Processors.push(plugin["Processor"]);
+                    Processors.push(plugin.Processor);
                 }
             });
         }
