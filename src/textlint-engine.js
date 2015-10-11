@@ -7,6 +7,8 @@ const tryResolve = require('try-resolve');
 const path = require('path');
 import assert from "assert";
 import { findFiles } from "./util/find-util";
+import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
+import TextProcessor from "./plugins/text/TextProcessor";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
     /**
@@ -48,14 +50,21 @@ class TextLintEngine {
             });
         }
         // --plugin
+        let Processors = [MarkdownProcessor, TextProcessor];
         if (config.plugins) {
             // load in additional rules from plugin
             config.plugins.forEach(pluginName => {
-                this.loadPlugin(pluginName);
+                let plugin = this.loadPlugin(pluginName);
+                // register plugin.Processor
+                if (plugin.hasOwnProperty("Processor")) {
+                    Processors.push(plugin["Processor"]);
+                }
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-        textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig, textlintConfig);
+
+        textLint.setupProcessors(Processors, textlintConfig);
+        textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig);
     }
 
     /**
@@ -95,6 +104,7 @@ class TextLintEngine {
         const plugin = require(pkgPath.normalize());
         assert(plugin.hasOwnProperty("rules"), "plugins should has `rules` object");
         textLint.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
+        return plugin;
     }
 
     /**

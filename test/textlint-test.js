@@ -51,7 +51,7 @@ describe("textlint-test", function () {
         context("when pass textlintConfig to setupRules", function () {
             it("should RuleContext has `config` object", function () {
                 var configFile = path.join(__dirname, "fixtures", ".textlintrc");
-                var textlintConfig = new Config({
+                textLint.config = new Config({
                     configFile: configFile
                 });
                 var rule = function (context, config) {
@@ -62,7 +62,7 @@ describe("textlint-test", function () {
                 };
                 textLint.setupRules({
                     "rule-name": rule
-                }, null, textlintConfig);
+                }, null);
             });
         });
     });
