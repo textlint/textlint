@@ -57,7 +57,6 @@
     "concat-stream": "^1.4.7",
     "debug": "^2.1.0",
     "is-md": "^1.0.0",
-    "markdown-extensions": "^1.1.0",
     "markdown-to-ast": "^3.0.5",
     "mkdirp": "^0.5.0",
     "object-assign": "^4.0.1",

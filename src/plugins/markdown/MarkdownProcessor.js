@@ -1,14 +1,22 @@
 // LICENSE : MIT
 "use strict";
-const markdownExtensions = require("markdown-extensions");
 import {parse} from "markdown-to-ast";
 export default class MarkdownProcessor {
     constructor(config) {
         this.config = config;
     }
 
-    availableExtensions() {
-        return markdownExtensions;
+    static availableExtensions() {
+        return [
+            ".md",
+            ".markdown",
+            ".mdown",
+            ".mkdn",
+            ".mkd",
+            ".mdwn",
+            ".mkdown",
+            ".ron"
+        ];
     }
 
     processor(ext) {

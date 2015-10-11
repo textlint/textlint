@@ -6,7 +6,7 @@ export default class TextProcessor {
         this.config = config;
     }
 
-    availableExtensions() {
+    static availableExtensions() {
         return [".text", ".txt"];
     }
 

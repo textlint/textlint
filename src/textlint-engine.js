@@ -25,6 +25,8 @@ class TextLintEngine {
         } else {
             this.config = new Config(options);
         }
+        // default Processor Constructors
+        this.Processors = [MarkdownProcessor, TextProcessor];
     }
 
     /**
@@ -50,20 +52,18 @@ class TextLintEngine {
             });
         }
         // --plugin
-        let Processors = [MarkdownProcessor, TextProcessor];
         if (config.plugins) {
             // load in additional rules from plugin
             config.plugins.forEach(pluginName => {
                 let plugin = this.loadPlugin(pluginName);
                 // register plugin.Processor
                 if (plugin.hasOwnProperty("Processor")) {
-                    Processors.push(plugin.Processor);
+                    this.Processors.push(plugin.Processor);
                 }
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-
-        textLint.setupProcessors(Processors, textlintConfig);
+        textLint.setupProcessors(this.Processors, textlintConfig);
         textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig);
     }
 
@@ -145,7 +145,12 @@ class TextLintEngine {
      */
     executeOnFiles(files) {
         this.setupRules(this.config);
-        const targetFiles = findFiles(files, this.config.extensions);
+        let availableExtensions = this.config.extensions;
+        // execute files that are filtered by availableExtensions.
+        this.Processors.forEach(Processor => {
+            availableExtensions = availableExtensions.concat(Processor.availableExtensions());
+        });
+        const targetFiles = findFiles(files, availableExtensions);
         const results = targetFiles.map(file => {
             return textLint.lintFile(file);
         });

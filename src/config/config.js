@@ -32,13 +32,7 @@ const defaultOptions = Object.freeze({
     rulesConfig: {},
     // rule directories
     rulePaths: [],
-    extensions: [
-        '.md',
-        '.mdk',
-        '.markdown',
-        '.mkdn',
-        '.txt'
-    ],
+    extensions: [],
     // formatter-file-name
     // e.g.) stylish.js => set "stylish"
     formatterName: 'stylish'
@@ -61,7 +55,8 @@ class Config {
         return new Config(options);
     }
 
-;
+    ;
+
     /**
      * initialize with options.
      * @param {TextLintConfig} options the option object is defined as TextLintConfig.
