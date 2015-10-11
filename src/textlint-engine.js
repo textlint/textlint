@@ -63,7 +63,7 @@ class TextLintEngine {
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-        textLint.setupProcessors(this.Processors, textlintConfig);
+        textLint._setupProcessors(this.Processors, textlintConfig);
         textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig);
     }
 

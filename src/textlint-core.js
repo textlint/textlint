@@ -12,7 +12,7 @@ const isMarkdown = require('is-md');
 const path = require('path');
 const fs = require('fs');
 const EventEmitter = require('events').EventEmitter;
-const deepClone = require("clone");
+const UnionSyntax = require("./parser/union-syntax");
 const debug = require('debug')('textlint:core');
 import {getProcessorMatchExtension} from "./plugins/proccesor-helper";
 import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
@@ -35,6 +35,9 @@ export default class TextlintCore extends EventEmitter {
             new TextProcessor(config)
         ];
         this.ruleManager = new RuleManager();
+        // temporary property
+        this.messages = [];
+        this.currentText = "";
         this.initializeForLinting();
     }
 
@@ -43,7 +46,8 @@ export default class TextlintCore extends EventEmitter {
         this.currentText = text || "";
     }
 
-    setupProcessors(processorConstructors, textLintConfig) {
+    // Unstable API
+    _setupProcessors(processorConstructors, textLintConfig) {
         this.config = textLintConfig;
         this.processors = processorConstructors.map(Processtor => {
             return new Processtor(textLintConfig);
@@ -113,7 +117,7 @@ export default class TextlintCore extends EventEmitter {
     }
 
     /**
-     * lint plain text by registered rules.
+     * lint text by registered rules.
      * The result contains target filePath and error messages.
      * @param {string} text
      * @param {string} ext ext is extension. default: .txt
@@ -145,8 +149,8 @@ export default class TextlintCore extends EventEmitter {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
         const text = fs.readFileSync(absoluteFilePath, 'utf-8');
-        const processors = getProcessorMatchExtension(this.processors, ext);
-        return this._lintByProcessor(processors, text, ext, absoluteFilePath);
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._lintByProcessor(processor, text, ext, absoluteFilePath);
     }
 
     // ===== Export RuleContext
@@ -167,6 +171,11 @@ export default class TextlintCore extends EventEmitter {
             column: error.column ? txtNode.loc.start.column + error.column : txtNode.loc.start.column,
             severity: 2
         }, txtNode));
+    }
+
+    // TODO: allow to use Syntax which is defined by Plugin Processor.
+    getSyntax() {
+        return UnionSyntax;
     }
 
     /**

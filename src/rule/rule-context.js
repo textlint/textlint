@@ -13,7 +13,11 @@ function RuleContext(ruleId, textLint, textLintConfig) {
         textLint.pushReport(ruleId, node, error);
     };
     // Const Values
-    this.Syntax = require('../parser/union-syntax');
+    Object.defineProperty(this, 'Syntax', {
+        get(){
+            return textLint.getSyntax();
+        }
+    });
     /** {@link textLint.getSource} */
     this.getSource = textLint.getSource.bind(textLint);
     // CustomError object
