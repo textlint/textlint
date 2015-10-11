@@ -161,13 +161,13 @@ class TextLintEngine {
     /**
      * If want to lint a text, use it.
      * But, if you have a target file, use {@link executeOnFiles} instead of it.
-     * @param text plain text for lint
+     * @param {string} text linting text content
+     * @param {string} ext ext is a type for linting. default: ".txt"
      * @returns {TextLintResult[]}
-     * @todo specify the files format for lint by config.filetype?
      */
-    executeOnText(text) {
+    executeOnText(text, ext = ".txt") {
         this.setupRules(this.config);
-        const results = [textLint.lintText(text)];
+        const results = [textLint.lintText(text, ext)];
         textLint.resetRules();
         return results;
     }
