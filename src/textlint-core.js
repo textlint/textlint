@@ -155,6 +155,7 @@ export default class TextlintCore extends EventEmitter {
         this.messages.push(objectAssign({
             ruleId: ruleId,
             message: error.message,
+            // See https://github.com/azu/textlint/blob/master/docs/txtnode.md#loc
             line: error.line ? txtNode.loc.start.line + error.line : txtNode.loc.start.line,
             column: error.column ? txtNode.loc.start.column + error.column : txtNode.loc.start.column,
             severity: 2

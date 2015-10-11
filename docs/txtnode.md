@@ -88,6 +88,13 @@ module.exports = function (context) {
 }
 ```
 
+- `line` start with 1 (1-indexed).
+- `column` start with 0 (0-indexed).
+
+This is for compatibility with JavaScript AST.
+
+- [Why do `line` of location in JavaScript AST(ESTree) start with 1 and not 0?](https://gist.github.com/azu/8866b2cb9b7a933e01fe "Why do `line` of location in JavaScript AST(ESTree) start with 1 and not 0?")
+
 ## Warning
 
 Other properties is not assured.
