@@ -1,2 +1,2 @@
-var code = "str"
-var code2 = "str"
+var code = "コードCode"
+var code2 = "コードCodeコード2"

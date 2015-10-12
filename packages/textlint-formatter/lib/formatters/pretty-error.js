@@ -6,7 +6,9 @@
 var format = require("format-text");
 var leftpad = require("left-pad");
 var style = require("style-format");
-
+var stringWidth = require("../stringWidth");
+// width is 2
+var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
 var template = style('{grey}{ruleId}: {bold}{red}{title}\n'
     + '{grey}{filename}:{failingLineNo}:{failingColNo}{reset}\n'
     + '    {red}{v}\n'
@@ -38,7 +40,7 @@ function failingCode(code, message) {
 
         result.push({
             line: message.line,
-            col: message.column,
+            col: message.column + 1,// message default col is 0
             code: lines[i],
             failed: true
         });
@@ -47,9 +49,11 @@ function failingCode(code, message) {
     return result;
 }
 
-function showColumn(code, tabn, ch) {
+function showColumn(codes, ch) {
     var result = '';
-    var i = String(code[1].line).length + code[1].col + 1 + tabn;
+    var codeObject = codes[1];
+    var sliced = codeObject.code.slice(0, codeObject.col);
+    var i = widthOfString(sliced) + 1;
 
     while (i--) {
         result += ' ';
@@ -75,22 +79,21 @@ function prettifyError(code, filePath, message) {
     var linumlen = Math.max(previousLineNo.length,
         failingLineNo.length,
         nextLineNo.length);
-
     return format(template, {
         ruleId: message.ruleId,
         title: message.message,
         filename: filePath,
-        previousLine: parsed[0].code,
+        previousLine: parsed[0].code ? parsed[0].code : "",
         previousLineNo: leftpad(previousLineNo, linumlen),
         previousColNo: parsed[0].col,
         failingLine: parsed[1].code,
         failingLineNo: leftpad(failingLineNo, linumlen),
         failingColNo: parsed[1].col,
-        nextLine: parsed[2].code,
+        nextLine: parsed[2].code ? parsed[2].code : "",
         nextLineNo: leftpad(nextLineNo, linumlen),
         nextColNo: parsed[2].col,
-        '^': showColumn(parsed, linumlen - failingLineNo.length, '^'),
-        'v': showColumn(parsed, linumlen - failingLineNo.length, 'v')
+        '^': showColumn(parsed, '^'),
+        'v': showColumn(parsed, 'v')
     });
 }
 

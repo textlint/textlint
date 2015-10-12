@@ -52,13 +52,25 @@ describe("textlint-formatter-test", function () {
                             {
                                 ruleId: "semi",
                                 line: 1,
-                                column: 15,
+                                column: 0,
+                                message: "0 pattern."
+                            },
+                            {
+                                ruleId: "semi",
+                                line: 2,
+                                column: 26,
+                                message: "Expected a semicolon."
+                            },
+                            {
+                                ruleId: "semi",
+                                line: 1,
+                                column: 21,
                                 message: "Expected a semicolon."
                             },
                             {
                                 ruleId: "semi",
                                 line: 2,
-                                column: 16,
+                                column: 26,
                                 message: "Expected a semicolon."
                             }
                         ]

@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
+    "eastasianwidth": "^0.1.1",
     "format-text": "0.0.3",
     "js-yaml": "^3.2.4",
     "left-pad": "0.0.3",
