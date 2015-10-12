@@ -40,7 +40,7 @@ function failingCode(code, message) {
 
         result.push({
             line: message.line,
-            col: message.column + 1,// message default col is 0
+            col: message.column,
             code: lines[i],
             failed: true
         });
