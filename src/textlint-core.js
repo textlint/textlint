@@ -163,14 +163,17 @@ export default class TextlintCore extends EventEmitter {
      */
     pushReport(ruleId, txtNode, error) {
         debug('pushReport %s', error);
-        this.messages.push(objectAssign({
+        var lineNumber = error.line ? txtNode.loc.start.line + error.line : txtNode.loc.start.line;
+        var columnNumber = error.column ? txtNode.loc.start.column + error.column : txtNode.loc.start.column;
+        // add TextLintMessage
+        this.messages.push({
             ruleId: ruleId,
             message: error.message,
-            // See https://github.com/azu/textlint/blob/master/docs/txtnode.md#loc
-            line: error.line ? txtNode.loc.start.line + error.line : txtNode.loc.start.line,
-            column: error.column ? txtNode.loc.start.column + error.column : txtNode.loc.start.column,
-            severity: 2
-        }, txtNode));
+            // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
+            line: lineNumber,        // start with 1(1-based line number)
+            column: columnNumber + 1,// start with 1(1-based column number)
+            severity: 2 // it's for compatible ESLint formatter
+        });
     }
 
     // TODO: allow to use Syntax which is defined by Plugin Processor.

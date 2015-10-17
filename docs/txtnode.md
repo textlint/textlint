@@ -88,12 +88,20 @@ module.exports = function (context) {
 }
 ```
 
-- `line` start with 1 (1-indexed).
-- `column` start with 0 (0-indexed).
+- `line` of location start with 1 (1-indexed).
+- `column` of location start with 0 (**0-indexed**).
 
 This is for compatibility with JavaScript AST.
 
 - [Why do `line` of location in JavaScript AST(ESTree) start with 1 and not 0?](https://gist.github.com/azu/8866b2cb9b7a933e01fe "Why do `line` of location in JavaScript AST(ESTree) start with 1 and not 0?")
+
+**Important Note:**
+
+> Text -> AST TxtNode(**0-based columns** here) -> textlint -> TextLintMessage(1-based columns)
+
+`TxtNode` has **0-based columns**, but The result of linting which is named `TextLintMessage` has **1-based columns**.
+
+This means that textlint's rule handle `TxtNode`( **0-based columns** ), but the result of textlint's API output `TextLintMessage`( **1-based columns** ).
 
 ## Warning
 

@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("power-assert");
-var textlint = require("../../").textlint;
-describe("no-todo-test", function () {
+import assert from "power-assert";
+import {textlint} from "../src/index";
+describe("no-todo-rule-test", function () {
     beforeEach(function () {
         textlint.setupRules({
-            "no-todo": require("../../rules/no-todo")
+            "no-todo": require("./fixtures/rules/no-todo")
         });
     });
     afterEach(function () {
@@ -15,6 +15,20 @@ describe("no-todo-test", function () {
         it("should report error", function () {
             var result = textlint.lintMarkdown("TODO: something");
             assert(result.messages.length === 1);
+            // TextLintMessage
+            var message = result.messages[0];
+            assert.equal(message.line, 1); // 1-based
+            assert.equal(message.column, 1);// 1-based
+            assert.equal(message.message, "found TODO: 'TODO: something'");
+        });
+        it("should report error", function () {
+            var result = textlint.lintMarkdown("123456789TODO: something");
+            assert(result.messages.length === 1);
+            // TextLintMessage
+            var message = result.messages[0];
+            assert.equal(message.line, 1); // 1-based
+            assert.equal(message.column, 10);// 1-based
+            assert.equal(message.message, "found TODO: '123456789TODO: something'");
         });
     });
     context('when "- [ ] something" is come', function () {

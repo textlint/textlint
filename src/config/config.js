@@ -6,7 +6,7 @@ const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
 import { loadRulesConfig } from "./plugin-loader";
 /**
- * Get rule keys from textlintrc config object.
+ * Get rule keys from `.textlintrc` config object.
  * @param rulesConfig
  * @returns {string[]}
  */

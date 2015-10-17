@@ -11,9 +11,10 @@ class RuleError {
     constructor(message, paddingLocation) {
         this.message = message;
         if (typeof paddingLocation === 'object') {
+            // padding lineNumber
             this.line = paddingLocation.line;
-            // start with 0
-            this.column = paddingLocation.column;    // start with 0
+            // padding column
+            this.column = paddingLocation.column;
         } else if (typeof paddingLocation === 'number') {
             // this is deprecated
             // should pass padding as object.
@@ -22,8 +23,8 @@ class RuleError {
     }
 
     toString() {
-        return `${ this.column }:${ this.line }:<RuleError>${ this.message } @:${ this.line ? this.line + ':'
-            : '' }${ this.column ? this.column + ':' : '' }`;
+        let position = `${ this.line ? this.line + ':' : '' }${ this.column ? this.column + ':' : '' }`;
+        return `${ this.column }:${ this.line }:<RuleError>${ this.message } @:${position}`;
     }
 }
 module.exports = RuleError;
