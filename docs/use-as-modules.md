@@ -28,8 +28,8 @@ var TextLintEngine = require("textlint").TextLintEngine;
 var path = require("path");
 function lintFile(filePath) {
     /**
-     * @type {TextLintConfig}
-     * See lib/_typing/textlint.d.ts
+     * TextLintConfig
+     * See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
      */
     var options = {
         // load rules from [../rules]
@@ -41,7 +41,7 @@ function lintFile(filePath) {
     var results = engine.executeOnFiles(filePathList);
     /* 
     See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
-    messages are `TextLintMessage` array.
+    messages are TextLintMessage` array.
     [
         "filePath": "path/to/file",
         "messages" :[
