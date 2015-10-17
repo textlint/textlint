@@ -3,7 +3,7 @@ interface TextLintMessage {
     message: string;
     line: number; // start with 1
     column: number;// start with 1
-    // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(1-based columns)
+    // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
     severity?: number;
 }
 // lint result

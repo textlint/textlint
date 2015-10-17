@@ -162,7 +162,18 @@ var engine = new TextLintEngine({
 });
 var results = engine.executeOnFiles(["README.md"]);
 console.log(results[0].filePath);// => "README.md"
-console.log(results[0].messages);// => [{message:"lint message"}]
+// messages are `TextLintMessage` array.
+console.log(results[0].messages);
+/* 
+[
+    {
+        id: "rule-name",
+        message:"lint message",
+        line: 1, // 1-based columns(TextLintMessage)
+        column:1 // 1-based columns(TextLintMessage)
+    }
+]
+ */
 if (engine.isErrorResults(results)) {
     var output = engine.formatResults(results);
     console.log(output);

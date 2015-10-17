@@ -15,6 +15,8 @@ module.exports = {
 };
 ```
 
+Recommend to use `TextLintEngine`.
+
 ## Example
 
 Lint a file:
@@ -22,7 +24,6 @@ Lint a file:
 See [example/node-module/lint-file.js](example/node-module/lint-file.js)
 
 ```js
-"use strict";
 var TextLintEngine = require("textlint").TextLintEngine;
 var path = require("path");
 function lintFile(filePath) {
@@ -38,6 +39,21 @@ function lintFile(filePath) {
     var engine = new TextLintEngine(options);
     var filePathList = [path.resolve(process.cwd(), filePath)];
     var results = engine.executeOnFiles(filePathList);
+    /* 
+    See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
+    messages are `TextLintMessage` array.
+    [
+        "filePath": "path/to/file",
+        "messages" :[
+            {
+                id: "rule-name",
+                message:"lint message",
+                line: 1, // 1-based columns(TextLintMessage)
+                column:1 // 1-based columns(TextLintMessage)
+            }
+        ]
+    ]
+     */
     var output = engine.formatResults(results);
     if (engine.isErrorResults(results)) {
         var output = engine.formatResults(results);
@@ -46,11 +62,11 @@ function lintFile(filePath) {
 }
 ```
 
-
 ## Testing
 
-You can use `textlint` module to test your `textlint` custom rules.
+You can use [textlint-tester](https://github.com/azu/textlint-tester "textlint-tester") for testing your custom rule.
 
+- [textlint-tester](https://github.com/azu/textlint-tester "textlint-tester")
 - [create-rules.md](./create-rules.md)
 
 Consult link: [spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule](https://github.com/azu/spellcheck-tech-word-textlint-rule/blob/master/test/test.js "spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule")
