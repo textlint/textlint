@@ -22,7 +22,7 @@ function walk(name, extensions, exclude, callback) {
     function traverse(dir, stack) {
         stack.push(dir);
         fs.readdirSync(path.join.apply(path, stack)).forEach(file => {
-            // skip all hidded things (dirs, files, links)
+            // skip all hidden things (dirs, files, links)
             if (file[0] === '.') {
                 return;
             }
@@ -45,14 +45,16 @@ function walk(name, extensions, exclude, callback) {
     }
 
     const basename = path.basename(name);
-    // don't ignore cases like 'eslint ./'
+    // don't ignore cases like 'textlint ./'
     if (basename !== '.' && basename !== '..' && basename[0] === '.' || exclude && exclude(name)) {
         debug(`Ignoring ${ name }`);
         return;
     }
     // always call callback for any files that are passed on the command line
     if (stat.isFile()) {
-        callback(name);
+        if (extensions.indexOf(path.extname(name)) > -1) {
+            callback(name);
+        }
     } else {
         traverse(name, []);
     }

@@ -129,7 +129,7 @@ describe("cli-engine-test", function () {
             });
         });
         it("should found error message", function () {
-            var filePath = require("path").join(__dirname, "fixtures/test.md");
+            var filePath = path.join(__dirname, "fixtures/test.md");
             var results = engine.executeOnFiles([filePath]);
             assert(Array.isArray(results));
             var fileResult = results[0];
@@ -138,7 +138,7 @@ describe("cli-engine-test", function () {
             assert(fileResult.messages.length > 0);
         });
         it("should lint a file with same rules", function () {
-            var filePath = require("path").join(__dirname, "fixtures/test.md");
+            var filePath = path.join(__dirname, "fixtures/test.md");
             engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
             engine.addRule("example-rule");
             var beforeRuleNames = textlint.ruleManager.getAllRuleNames();
@@ -146,6 +146,14 @@ describe("cli-engine-test", function () {
             var afterRuleNames = textlint.ruleManager.getAllRuleNames();
             assert.deepEqual(beforeRuleNames, afterRuleNames);
         });
+        context("when process file that has un-available ext ", function () {
+            it("should return empty results ", function () {
+                var filePath = path.join(__dirname, "fixtures/test.unknown");
+                var results = engine.executeOnFiles([filePath]);
+                assert(Array.isArray(results));
+                assert(results.length === 0);
+            });
+        })
     });
     describe("executeOnText", function () {
         beforeEach(function () {

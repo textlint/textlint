@@ -12,7 +12,11 @@ const isMarkdown = require('is-md');
 const path = require('path');
 const fs = require('fs');
 const EventEmitter = require('events').EventEmitter;
+const UnionSyntax = require("./parser/union-syntax");
 const debug = require('debug')('textlint:core');
+import {getProcessorMatchExtension} from "./plugins/proccesor-helper";
+import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
+import TextProcessor from "./plugins/text/TextProcessor";
 // add all the node types as listeners
 function addListenRule(rule, target) {
     Object.keys(rule).forEach(nodeType => {
@@ -20,9 +24,20 @@ function addListenRule(rule, target) {
     });
 }
 export default class TextlintCore extends EventEmitter {
-    constructor() {
+    constructor(config) {
         super();
+        // this.config often is undefined.
+        this.config = config;
+        // FIXME: in the future, this.processors is empty by default.
+        // Markdown and Text are for backward compatibility.
+        this.processors = [
+            new MarkdownProcessor(config),
+            new TextProcessor(config)
+        ];
         this.ruleManager = new RuleManager();
+        // temporary property
+        this.messages = [];
+        this.currentText = "";
         this.initializeForLinting();
     }
 
@@ -31,21 +46,27 @@ export default class TextlintCore extends EventEmitter {
         this.currentText = text || "";
     }
 
+    // Unstable API
+    _setupProcessors(processorConstructors, textLintConfig) {
+        this.config = textLintConfig;
+        this.processors = processorConstructors.map(Processtor => {
+            return new Processtor(textLintConfig);
+        });
+    }
+
     /**
      * Register rules to EventEmitter.
      * if want to release rules, please call {@link this.resetRules}.
      * @param {object} rules rule objects array
      * @param {object} [rulesConfig] ruleConfig is object
-     * @param {TextLintConfig} [textLintConfig]
      */
-    setupRules(rules, rulesConfig, textLintConfig) {
+    setupRules(rules, rulesConfig) {
         Object.keys(rules).forEach(key => {
             debug('use "%s" rule', key);
             const ruleCreator = rules[key];
             if (typeof ruleCreator !== 'function') {
                 throw new Error(`Definition for rule '${ key }' was not found.`);
             }
-            let rule;
             const ruleConfig = rulesConfig && rulesConfig[key];
             // "rule-name" : false => disable
             // TODO: move to RuleManager?
@@ -53,7 +74,7 @@ export default class TextlintCore extends EventEmitter {
                 return;
             }
             try {
-                rule = ruleCreator(new RuleContext(key, this, textLintConfig), ruleConfig);
+                let rule = ruleCreator(new RuleContext(key, this, this.config), ruleConfig);
                 addListenRule(rule, this);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
@@ -71,17 +92,12 @@ export default class TextlintCore extends EventEmitter {
         this.initializeForLinting();
     }
 
-    /**
-     * lint plain text by registered rules.
-     * The result contains target filePath and error messages.
-     * @param {string} text
-     * @returns {TextLintResult}
-     */
-    lintText(text) {
+    _lintByProcessor(processor, text, ext, filePath) {
         require('assert')(text.length > 0);
         this.initializeForLinting(text);
-        const parse = require('txt-to-ast').parse;
-        const ast = parse(text);
+        require('assert')(processor, `processor is not found for ${ext}`);
+        const {preProcess, postProcess} = processor.processor(ext);
+        const ast = preProcess(text);
         const controller = new TraverseController();
         let that = this;
         controller.traverse(ast, {
@@ -93,38 +109,35 @@ export default class TextlintCore extends EventEmitter {
                 that.emit(`${ node.type }:exit`, node);
             }
         });
-        return {
-            filePath: '<text>',
-            messages: this.messages
-        };
+        let result = postProcess(this.messages, filePath);
+        if (result.filePath == null) {
+            result.filePath = `<Unkown${ext}>`;
+        }
+        return result;
+    }
+
+    /**
+     * lint text by registered rules.
+     * The result contains target filePath and error messages.
+     * @param {string} text
+     * @param {string} ext ext is extension. default: .txt
+     * @returns {TextLintResult}
+     */
+    lintText(text, ext = ".txt") {
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._lintByProcessor(processor, text, ext);
     }
 
     /**
      * lint markdown text by registered rules.
      * The result contains target filePath and error messages.
-     * @param {string} markdown markdown format text
+     * @param {string} text markdown format text
      * @returns {TextLintResult}
      */
-    lintMarkdown(markdown) {
-        require('assert')(markdown.length > 0);
-        this.initializeForLinting(markdown);
-        const parse = require('markdown-to-ast').parse;
-        const ast = parse(markdown);
-        const controller = new TraverseController();
-        let that = this;
-        controller.traverse(ast, {
-            enter(node, parent) {
-                Object.defineProperty(node, 'parent', {value: parent});
-                that.emit(node.type, node);
-            },
-            leave(node) {
-                that.emit(`${ node.type }:exit`, node);
-            }
-        });
-        return {
-            filePath: '<markdown>',
-            messages: this.messages
-        };
+    lintMarkdown(text) {
+        const ext = ".md";
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._lintByProcessor(processor, text, ext);
     }
 
     /**
@@ -134,12 +147,10 @@ export default class TextlintCore extends EventEmitter {
      */
     lintFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
+        const ext = path.extname(absoluteFilePath);
         const text = fs.readFileSync(absoluteFilePath, 'utf-8');
-        if (isMarkdown(filePath)) {
-            return objectAssign(this.lintMarkdown(text), {filePath: absoluteFilePath});
-        } else {
-            return objectAssign(this.lintText(text), {filePath: absoluteFilePath});
-        }
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._lintByProcessor(processor, text, ext, absoluteFilePath);
     }
 
     // ===== Export RuleContext
@@ -160,6 +171,11 @@ export default class TextlintCore extends EventEmitter {
             column: error.column ? txtNode.loc.start.column + error.column : txtNode.loc.start.column,
             severity: 2
         }, txtNode));
+    }
+
+    // TODO: allow to use Syntax which is defined by Plugin Processor.
+    getSyntax() {
+        return UnionSyntax;
     }
 
     /**

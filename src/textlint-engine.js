@@ -7,6 +7,8 @@ const tryResolve = require('try-resolve');
 const path = require('path');
 import assert from "assert";
 import { findFiles } from "./util/find-util";
+import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
+import TextProcessor from "./plugins/text/TextProcessor";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
     /**
@@ -23,6 +25,8 @@ class TextLintEngine {
         } else {
             this.config = new Config(options);
         }
+        // default Processor Constructors
+        this.Processors = [MarkdownProcessor, TextProcessor];
     }
 
     /**
@@ -51,11 +55,16 @@ class TextLintEngine {
         if (config.plugins) {
             // load in additional rules from plugin
             config.plugins.forEach(pluginName => {
-                this.loadPlugin(pluginName);
+                let plugin = this.loadPlugin(pluginName);
+                // register plugin.Processor
+                if (plugin.hasOwnProperty("Processor")) {
+                    this.Processors.unshift(plugin.Processor);
+                }
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-        textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig, textlintConfig);
+        textLint._setupProcessors(this.Processors, textlintConfig);
+        textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig);
     }
 
     /**
@@ -95,6 +104,7 @@ class TextLintEngine {
         const plugin = require(pkgPath.normalize());
         assert(plugin.hasOwnProperty("rules"), "plugins should has `rules` object");
         textLint.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
+        return plugin;
     }
 
     /**
@@ -135,7 +145,12 @@ class TextLintEngine {
      */
     executeOnFiles(files) {
         this.setupRules(this.config);
-        const targetFiles = findFiles(files, this.config.extensions);
+        let availableExtensions = this.config.extensions;
+        // execute files that are filtered by availableExtensions.
+        this.Processors.forEach(Processor => {
+            availableExtensions = availableExtensions.concat(Processor.availableExtensions());
+        });
+        const targetFiles = findFiles(files, availableExtensions);
         const results = targetFiles.map(file => {
             return textLint.lintFile(file);
         });
@@ -146,13 +161,13 @@ class TextLintEngine {
     /**
      * If want to lint a text, use it.
      * But, if you have a target file, use {@link executeOnFiles} instead of it.
-     * @param text plain text for lint
+     * @param {string} text linting text content
+     * @param {string} ext ext is a type for linting. default: ".txt"
      * @returns {TextLintResult[]}
-     * @todo specify the files format for lint by config.filetype?
      */
-    executeOnText(text) {
+    executeOnText(text, ext = ".txt") {
         this.setupRules(this.config);
-        const results = [textLint.lintText(text)];
+        const results = [textLint.lintText(text, ext)];
         textLint.resetRules();
         return results;
     }
