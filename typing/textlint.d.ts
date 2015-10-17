@@ -2,9 +2,8 @@ interface TextLintMessage {
     id: string;
     message: string;
     line: number; // start with 1
-    column: number;// start with 0
-    // This is for compatibility with JavaScript AST.
-    // https://gist.github.com/azu/8866b2cb9b7a933e01fe
+    column: number;// start with 1
+    // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(1-based columns)
     severity?: number;
 }
 // lint result
