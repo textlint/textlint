@@ -39,7 +39,8 @@ describe("textlint-formatter-test", function () {
                 "junit",
                 "pretty-error",
                 "stylish",
-                "tap"
+                "tap",
+                "json"
             ];
             formatterNames.forEach(function (name) {
                 var formatter = createFormatter({
