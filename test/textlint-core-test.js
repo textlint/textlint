@@ -1,5 +1,5 @@
 import assert from "power-assert";
-import TextLintCore from "../src/textlint-core";
+import {TextLintCore} from "../src/index";
 import rule from "./fixtures/rules/example-rule";
 describe("textlint-core", function () {
     // Test: https://github.com/azu/textlint/issues/30
