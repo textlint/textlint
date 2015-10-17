@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
-// FIX: to be fix
-import TextLintCore from "textlint/lib/textlint-core";
+import {TextLintCore} from "textlint";
 import assert from "assert";
 const describe = (typeof global.describe === "function") ? global.describe : function (text, method) {
     return method.apply(this);

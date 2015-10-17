@@ -15,13 +15,21 @@ tester.run("no-todo", noTodo, {
         {
             text: "- [ ] string",
             errors: [
-                {message: "found TODO: '- [ ] string'"}
+                {
+                    message: "found TODO: '- [ ] string'",
+                    line: 1,
+                    column: 1
+                }
             ]
         },
         {
             text: "TODO: string",
             errors: [
-                {message: "found TODO: 'TODO: string'"}
+                {
+                    message: "found TODO: 'TODO: string'",
+                    line: 1,
+                    column: 1
+                }
             ]
         }
     ]
