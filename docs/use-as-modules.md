@@ -1,18 +1,23 @@
 # Use as node modules
 
-`textlint` module expose these header at [index.js](../index.js)
+`textlint` module expose these header at [index.js](../src/index.js)
 
 ```js
-// Level of abstraction
-// cli > TextLintEngine > textlint
+// Level of abstraction(descending order)
+// cli > TextLintEngine > TextLintCore(textlint)
 module.exports = {
     // Command line interface
-    cli: require("./lib/cli"),
-    // TextLintEngine is a wrapper around `textlint` for linting multiple files
-    TextLintEngine: require("./lib/textlint-engine"),
-    // Core API for linting a single text.
-    textlint: require("./lib/textlint")
+    cli: require("./cli"),
+    // TextLintEngine is a wrapper around `textlint` for linting **multiple** files
+    // include formatter, detecting utils
+    // Recommend: It is easy to use
+    TextLintEngine: require("./textlint-engine"),
+    // It is a singleton object of TextLintCore
+    textlint: require("./textlint"),
+    // Core API for linting a **single** text or file.
+    TextLintCore: require("./textlint-core")
 };
+
 ```
 
 Recommend to use `TextLintEngine`.
