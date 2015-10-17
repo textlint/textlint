@@ -135,7 +135,7 @@ If you create new rule, and add it to the wiki :)
 
 ### Built-in formatters
 
-Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error".
+Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error", "json".
 
 e.g.) use pretty-error.js
 
