@@ -170,8 +170,8 @@ export default class TextlintCore extends EventEmitter {
             ruleId: ruleId,
             message: error.message,
             // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
-            line: lineNumber,
-            column: columnNumber + 1,
+            line: lineNumber,        // start with 1(1-based line number)
+            column: columnNumber + 1,// start with 1(1-based column number)
             severity: 2 // it's for compatible ESLint formatter
         });
     }
