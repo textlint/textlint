@@ -11,11 +11,11 @@ var stringWidth = require("../stringWidth");
 var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
 var template = style('{grey}{ruleId}: {bold}{red}{title}\n'
     + '{grey}{filename}:{failingLineNo}:{failingColNo}{reset}\n'
-    + '    {red}{v}\n'
+    + '    {red}  {v}\n'
     + '    {grey}{previousLineNo}. {previousLine}\n'
     + '    {reset}{failingLineNo}. {failingLine}\n'
     + '    {grey}{nextLineNo}. {nextLine}\n'
-    + '    {red}{^}{reset}\n'
+    + '    {red}  {^}{reset}\n'
     + '{reset}');
 
 
