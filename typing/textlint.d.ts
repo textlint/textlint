@@ -1,5 +1,5 @@
 interface TextLintMessage {
-    id: string;
+    ruleId: string;
     message: string;
     line: number; // start with 1
     column: number;// start with 1
