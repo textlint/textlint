@@ -23,11 +23,34 @@ function addListenRule(rule, target) {
         target.on(nodeType, rule[nodeType]);
     });
 }
+
+/**
+ *
+ * @param ruleConfig
+ * @returns {number}
+ */
+function getSeverity(ruleConfig) {
+    const ERROR = 2;
+    const WARNING = 1;
+    const NONE = 0;
+    if (ruleConfig === undefined) {
+        return ERROR;
+    }
+    // true or false
+    if (typeof ruleConfig === "boolean") {
+        return ruleConfig ? ERROR : NONE;
+    }
+    if (ruleConfig.warning) {
+        return WARNING;
+    }
+    return NONE;
+}
 export default class TextlintCore extends EventEmitter {
     constructor(config) {
         super();
         // this.config often is undefined.
         this.config = config;
+        this.rulesConfig = null;
         // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
         this.processors = [
@@ -60,7 +83,8 @@ export default class TextlintCore extends EventEmitter {
      * @param {object} rules rule objects array
      * @param {object} [rulesConfig] ruleConfig is object
      */
-    setupRules(rules, rulesConfig) {
+    setupRules(rules, rulesConfig = {}) {
+        this.rulesConfig = rulesConfig;
         Object.keys(rules).forEach(key => {
             debug('use "%s" rule', key);
             const ruleCreator = rules[key];
@@ -165,6 +189,8 @@ export default class TextlintCore extends EventEmitter {
         debug('pushReport %s', error);
         var lineNumber = error.line ? txtNode.loc.start.line + error.line : txtNode.loc.start.line;
         var columnNumber = error.column ? txtNode.loc.start.column + error.column : txtNode.loc.start.column;
+        var ruleConfig = this.rulesConfig[ruleId];
+        let severity = getSeverity(ruleConfig);
         // add TextLintMessage
         this.messages.push({
             ruleId: ruleId,
@@ -172,7 +198,7 @@ export default class TextlintCore extends EventEmitter {
             // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
             line: lineNumber,        // start with 1(1-based line number)
             column: columnNumber + 1,// start with 1(1-based column number)
-            severity: 2 // it's for compatible ESLint formatter
+            severity: severity // it's for compatible ESLint formatter
         });
     }
 
