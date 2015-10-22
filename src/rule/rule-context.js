@@ -14,15 +14,12 @@ const SeverityLevel = {
  * @returns {number}
  */
 function getSeverity(ruleConfig) {
-    const ERROR = 2;
-    const WARNING = 1;
-    const NONE = 0;
     if (ruleConfig == null) {
-        return ERROR;
+        return SeverityLevel.error;
     }
     // rule:<true|false>
     if (typeof ruleConfig === "boolean") {
-        return ruleConfig ? ERROR : NONE;
+        return ruleConfig ? SeverityLevel.error : SeverityLevel.none;
     }
     if (ruleConfig.severity) {
         assert(SeverityLevel[ruleConfig.severity] !== undefined, `please set
@@ -31,7 +28,7 @@ function getSeverity(ruleConfig) {
 }`);
         return SeverityLevel[ruleConfig.severity];
     }
-    return NONE;
+    return SeverityLevel.none;
 }
 
 function RuleContext(ruleId, textLint, textLintConfig, ruleConfig) {
