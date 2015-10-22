@@ -95,7 +95,6 @@ export default class TextlintCore extends EventEmitter {
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
-        require('assert')(text.length > 0);
         this.initializeForLinting(text);
         require('assert')(processor, `processor is not found for ${ext}`);
         const {preProcess, postProcess} = processor.processor(ext);

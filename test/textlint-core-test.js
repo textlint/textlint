@@ -16,6 +16,20 @@ describe("textlint-core", function () {
             assert(results2.messages.length === 0);
         });
     });
+    context("when a linting text is empty", function () {
+      it("should not throw an exceptoin", function () {
+        var textlint = new TextLintCore();
+        textlint.setupRules({
+            "example-rule": rule
+        });
+        var result1 = textlint.lintText("");
+        assert(result1.messages.length === 0);
+        var result2 = textlint.lintMarkdown("");
+        assert(result2.messages.length === 0);
+        var result3 = textlint.lintFile('./test/fixtures/empty.md');
+        assert(result3.messages.length === 0);
+      });
+    });
     describe("ruleConfig", function () {
         context("when set ruleConfig.severity", function () {
             it("message.severity should used the config", function () {
