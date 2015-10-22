@@ -103,7 +103,7 @@ It mean that use the following format:
 }
 ```
 
-:information_source: 
+:information_source: for more details
 
 - [docs/configuring](docs/configuring.md)
 - [examples/config-file](examples/config-file)
