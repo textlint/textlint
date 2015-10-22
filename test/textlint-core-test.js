@@ -17,14 +17,14 @@ describe("textlint-core", function () {
         });
     });
     describe("ruleConfig", function () {
-        context("when set ruleConfig.warning", function () {
-            it("message.severity should be warning", function () {
+        context("when set ruleConfig.severity", function () {
+            it("message.severity should used the config", function () {
                 var textlint = new TextLintCore();
                 textlint.setupRules({
                     "rule-name": require("./fixtures/rules/example-rule")
                 }, {
                     "rule-name": {
-                        warning: true
+                        severity: "warning"
                     }
                 });
                 var result = textlint.lintMarkdown("# Test");
@@ -32,6 +32,35 @@ describe("textlint-core", function () {
                 assert(result.messages.length > 0);
                 let message = result.messages[0];
                 assert(message.severity === 1);
+            });
+            it("message.severity should be warning", function () {
+                var textlint = new TextLintCore();
+                textlint.setupRules({
+                    "rule-name": require("./fixtures/rules/example-rule")
+                }, {
+                    "rule-name": {
+                        severity: "error"
+                    }
+                });
+                var result = textlint.lintMarkdown("# Test");
+                assert(result.filePath === "<markdown>");
+                assert(result.messages.length > 0);
+                let message = result.messages[0];
+                assert(message.severity === 2);
+            });
+        });
+        context("when set wrong ruleConfig.severity", function () {
+            it("should throw error", function () {
+                var textlint = new TextLintCore();
+                assert.throws(function () {
+                    textlint.setupRules({
+                        "rule-name": require("./fixtures/rules/example-rule")
+                    }, {
+                        "rule-name": {
+                            severity: "xxxxxxxx"
+                        }
+                    });
+                })
             });
         });
     });

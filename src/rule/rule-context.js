@@ -1,6 +1,13 @@
 // LICENSE : MIT
 'use strict';
 const RuleError = require('./rule-error');
+const assert = require('assert');
+const SeverityLevel = {
+    "none": 0,
+    "info": 0,
+    "warning": 1,
+    "error": 2
+};
 /**
  *
  * @param ruleConfig
@@ -13,12 +20,16 @@ function getSeverity(ruleConfig) {
     if (ruleConfig == null) {
         return ERROR;
     }
-    // true or false
+    // rule:<true|false>
     if (typeof ruleConfig === "boolean") {
         return ruleConfig ? ERROR : NONE;
     }
-    if (ruleConfig.warning) {
-        return WARNING;
+    if (ruleConfig.severity) {
+        assert(SeverityLevel[ruleConfig.severity] !== undefined, `please set
+"rule-key": {
+    "severity": "<warning|error>"
+}`);
+        return SeverityLevel[ruleConfig.severity];
     }
     return NONE;
 }
