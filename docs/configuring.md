@@ -50,7 +50,7 @@ For rules creator:
 
 ```
 // "very-nice-rule"
-export function rule(contet, config){
+export default function rule(contet, config){
     console.log(config);
     /* { "key" : "value" } */
 }
