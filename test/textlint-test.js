@@ -102,7 +102,7 @@ describe("textlint-test", function () {
     });
     describe("lintFile", function () {
         it("filePath is loaded file path", function () {
-            var filePath = require("path").join(__dirname, "fixtures/test.md");
+            var filePath = path.join(__dirname, "fixtures/test.md");
             var result = textLint.lintFile(filePath);
             assert(result.filePath === filePath);
         });

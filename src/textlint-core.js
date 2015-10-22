@@ -23,11 +23,12 @@ function addListenRule(rule, target) {
         target.on(nodeType, rule[nodeType]);
     });
 }
+
 export default class TextlintCore extends EventEmitter {
     constructor(config) {
         super();
         // this.config often is undefined.
-        this.config = config;
+        this.config = config || {};
         // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
         this.processors = [
@@ -60,7 +61,7 @@ export default class TextlintCore extends EventEmitter {
      * @param {object} rules rule objects array
      * @param {object} [rulesConfig] ruleConfig is object
      */
-    setupRules(rules, rulesConfig) {
+    setupRules(rules, rulesConfig = {}) {
         Object.keys(rules).forEach(key => {
             debug('use "%s" rule', key);
             const ruleCreator = rules[key];
@@ -74,7 +75,8 @@ export default class TextlintCore extends EventEmitter {
                 return;
             }
             try {
-                let rule = ruleCreator(new RuleContext(key, this, this.config), ruleConfig);
+                var ruleContext = new RuleContext(key, this, this.config, ruleConfig);
+                let rule = ruleCreator(ruleContext, ruleConfig);
                 addListenRule(rule, this);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
@@ -158,13 +160,14 @@ export default class TextlintCore extends EventEmitter {
     /**
      * push new RuleError to results
      * @param {string} ruleId
-     * @param {TxtNode} txtNode
+     * @param {TxtNode} node
+     * @param {number} severity
      * @param {RuleError} error
      */
-    pushReport(ruleId, txtNode, error) {
+    pushReport({ruleId, node, severity, error}) {
         debug('pushReport %s', error);
-        var lineNumber = error.line ? txtNode.loc.start.line + error.line : txtNode.loc.start.line;
-        var columnNumber = error.column ? txtNode.loc.start.column + error.column : txtNode.loc.start.column;
+        var lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
+        var columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
         // add TextLintMessage
         this.messages.push({
             ruleId: ruleId,
@@ -172,7 +175,7 @@ export default class TextlintCore extends EventEmitter {
             // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
             line: lineNumber,        // start with 1(1-based line number)
             column: columnNumber + 1,// start with 1(1-based column number)
-            severity: 2 // it's for compatible ESLint formatter
+            severity: severity // it's for compatible ESLint formatter
         });
     }
 
