@@ -10,7 +10,7 @@ Put the config of rules into `.textlintrc`
 
 ## rules
 
-### Enable/Diabel
+### Enable/Disable rule
 
 ```json
 {
