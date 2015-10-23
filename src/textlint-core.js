@@ -43,8 +43,6 @@ class RuleContextDelegator extends EventEmitter {
         return this.messages;
     }
 
-    // ===== Export RuleContext
-    // TODO: curve out context module?
     /**
      * push new RuleError to results
      * @param {string} ruleId
