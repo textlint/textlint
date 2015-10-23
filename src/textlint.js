@@ -37,6 +37,4 @@
 import TextlintCore from "./textlint-core";
 // singleton instance
 const api = new TextlintCore();
-// set unlimited listeners (see https://github.com/azu/textlint/issues/33)
-api.setMaxListeners(0);
 module.exports = api;

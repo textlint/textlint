@@ -28,11 +28,19 @@ class RuleContextDelegator extends EventEmitter {
 
     constructor(text) {
         super();
-        this.currentText = text;
+        // set unlimited listeners (see https://github.com/azu/textlint/issues/33)
+        this.setMaxListeners(0);
+        this.messages = [];
+        this.currentText = text || "";
     }
 
-    setText(text) {
+    resetState(text = "") {
         this.currentText = text;
+        this.messages = [];
+    }
+
+    getMessages() {
+        return this.messages;
     }
 
     // ===== Export RuleContext
@@ -57,7 +65,7 @@ class RuleContextDelegator extends EventEmitter {
             column: columnNumber + 1,// start with 1(1-based column number)
             severity: severity // it's for compatible ESLint formatter
         };
-        this.emit("message", message);
+        this.messages.push(message);
     }
 
     // TODO: allow to use Syntax which is defined by Plugin Processor.
@@ -87,9 +95,8 @@ class RuleContextDelegator extends EventEmitter {
     }
 }
 
-export default class TextlintCore extends EventEmitter {
+export default class TextlintCore {
     constructor(config) {
-        super();
         // this.config often is undefined.
         this.config = config || {};
         // FIXME: in the future, this.processors is empty by default.
@@ -100,16 +107,6 @@ export default class TextlintCore extends EventEmitter {
         ];
         this.ruleManager = new RuleManager();
         this.delegator = new RuleContextDelegator();
-        // temporary property
-        this.messages = [];
-        this.delegator.on("message", (message) => {
-            this.messages.push(message);
-        });
-    }
-
-    initializeForLinting(text) {
-        this.messages = [];
-        this.delegator.setText(text || "");
     }
 
     // Unstable API
@@ -142,7 +139,7 @@ export default class TextlintCore extends EventEmitter {
             try {
                 var ruleContext = new RuleContext(key, this.delegator, this.config, ruleConfig);
                 let rule = ruleCreator(ruleContext, ruleConfig);
-                addListenRule(rule, this);
+                addListenRule(rule, this.delegator);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
                 throw ex;
@@ -154,14 +151,13 @@ export default class TextlintCore extends EventEmitter {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        this.removeAllListeners();
+        this.delegator.removeAllListeners();
         this.ruleManager.resetRules();
-        this.initializeForLinting();
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
-        this.initializeForLinting(text);
         require('assert')(processor, `processor is not found for ${ext}`);
+        this.delegator.resetState(text);
         const {preProcess, postProcess} = processor.processor(ext);
         const ast = preProcess(text);
         const controller = new TraverseController();
@@ -169,13 +165,14 @@ export default class TextlintCore extends EventEmitter {
         controller.traverse(ast, {
             enter(node, parent) {
                 Object.defineProperty(node, 'parent', {value: parent});
-                that.emit(node.type, node);
+                that.delegator.emit(node.type, node);
             },
             leave(node) {
-                that.emit(`${ node.type }:exit`, node);
+                that.delegator.emit(`${ node.type }:exit`, node);
             }
         });
-        let result = postProcess(this.messages, filePath);
+        let messages = this.delegator.messages;
+        let result = postProcess(messages, filePath);
         if (result.filePath == null) {
             result.filePath = `<Unkown${ext}>`;
         }
