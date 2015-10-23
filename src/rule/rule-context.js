@@ -28,7 +28,7 @@ function getSeverity(ruleConfig) {
 }`);
         return SeverityLevel[ruleConfig.severity];
     }
-    return SeverityLevel.none;
+    return SeverityLevel.error;
 }
 
 function RuleContext(ruleId, textLint, textLintConfig, ruleConfig) {
