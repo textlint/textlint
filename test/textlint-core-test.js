@@ -17,18 +17,18 @@ describe("textlint-core", function () {
         });
     });
     context("when a linting text is empty", function () {
-      it("should not throw an exceptoin", function () {
-        var textlint = new TextLintCore();
-        textlint.setupRules({
-            "example-rule": rule
+        it("should not throw an exception", function () {
+            var textlint = new TextLintCore();
+            textlint.setupRules({
+                "example-rule": rule
+            });
+            var result1 = textlint.lintText("");
+            assert(result1.messages.length === 0);
+            var result2 = textlint.lintMarkdown("");
+            assert(result2.messages.length === 0);
+            var result3 = textlint.lintFile('./test/fixtures/empty.md');
+            assert(result3.messages.length === 0);
         });
-        var result1 = textlint.lintText("");
-        assert(result1.messages.length === 0);
-        var result2 = textlint.lintMarkdown("");
-        assert(result2.messages.length === 0);
-        var result3 = textlint.lintFile('./test/fixtures/empty.md');
-        assert(result3.messages.length === 0);
-      });
     });
     describe("ruleConfig", function () {
         context("when set ruleConfig.severity", function () {
@@ -47,7 +47,24 @@ describe("textlint-core", function () {
                 let message = result.messages[0];
                 assert(message.severity === 1);
             });
-            it("message.severity should be warning", function () {
+        });
+        context("when not set ruleConfig.severity", function () {
+            it("message.severity should be error", function () {
+                var textlint = new TextLintCore();
+                textlint.setupRules({
+                    "rule-name": require("./fixtures/rules/example-rule")
+                }, {
+                    "rule-name": {
+                        foo: "bar"
+                    }
+                });
+                var result = textlint.lintMarkdown("# Test");
+                assert(result.filePath === "<markdown>");
+                assert(result.messages.length > 0);
+                let message = result.messages[0];
+                assert(message.severity === 2);
+            });
+            it("message.severity should be error", function () {
                 var textlint = new TextLintCore();
                 textlint.setupRules({
                     "rule-name": require("./fixtures/rules/example-rule")
@@ -74,7 +91,7 @@ describe("textlint-core", function () {
                             severity: "xxxxxxxx"
                         }
                     });
-                })
+                });
             });
         });
     });
