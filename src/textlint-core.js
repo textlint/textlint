@@ -39,10 +39,6 @@ class RuleContextDelegator extends EventEmitter {
         this.messages = [];
     }
 
-    getMessages() {
-        return this.messages;
-    }
-
     /**
      * push new RuleError to results
      * @param {string} ruleId
