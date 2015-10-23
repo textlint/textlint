@@ -24,6 +24,69 @@ function addListenRule(rule, target) {
     });
 }
 
+class RuleContextDelegator extends EventEmitter {
+
+    constructor(text) {
+        super();
+        this.currentText = text;
+    }
+
+    setText(text) {
+        this.currentText = text;
+    }
+
+    // ===== Export RuleContext
+    // TODO: curve out context module?
+    /**
+     * push new RuleError to results
+     * @param {string} ruleId
+     * @param {TxtNode} node
+     * @param {number} severity
+     * @param {RuleError} error
+     */
+    pushReport({ruleId, node, severity, error}) {
+        debug('pushReport %s', error);
+        var lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
+        var columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
+        // add TextLintMessage
+        var message = {
+            ruleId: ruleId,
+            message: error.message,
+            // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
+            line: lineNumber,        // start with 1(1-based line number)
+            column: columnNumber + 1,// start with 1(1-based column number)
+            severity: severity // it's for compatible ESLint formatter
+        };
+        this.emit("message", message);
+    }
+
+    // TODO: allow to use Syntax which is defined by Plugin Processor.
+    getSyntax() {
+        return UnionSyntax;
+    }
+
+    /**
+     * Gets the source code for the given node.
+     * @param {TxtNode=} node The AST node to get the text for.
+     * @param {int=} beforeCount The number of characters before the node to retrieve.
+     * @param {int=} afterCount The number of characters after the node to retrieve.
+     * @returns {string|null} The text representing the AST node.
+     */
+    getSource(node, beforeCount, afterCount) {
+        let currentText = this.currentText;
+        if (currentText == null) {
+            return null;
+        }
+        if (node) {
+            let start = Math.max(node.range[0] - (beforeCount || 0), 0);
+            let end = node.range[1] + (afterCount || 0);
+            return currentText.slice(start, end);
+        } else {
+            return currentText;
+        }
+    }
+}
+
 export default class TextlintCore extends EventEmitter {
     constructor(config) {
         super();
@@ -36,15 +99,17 @@ export default class TextlintCore extends EventEmitter {
             new TextProcessor(config)
         ];
         this.ruleManager = new RuleManager();
+        this.delegator = new RuleContextDelegator();
         // temporary property
         this.messages = [];
-        this.currentText = "";
-        this.initializeForLinting();
+        this.delegator.on("message", (message) => {
+            this.messages.push(message);
+        });
     }
 
     initializeForLinting(text) {
         this.messages = [];
-        this.currentText = text || "";
+        this.delegator.setText(text || "");
     }
 
     // Unstable API
@@ -75,7 +140,7 @@ export default class TextlintCore extends EventEmitter {
                 return;
             }
             try {
-                var ruleContext = new RuleContext(key, this, this.config, ruleConfig);
+                var ruleContext = new RuleContext(key, this.delegator, this.config, ruleConfig);
                 let rule = ruleCreator(ruleContext, ruleConfig);
                 addListenRule(rule, this);
             } catch (ex) {
@@ -152,55 +217,5 @@ export default class TextlintCore extends EventEmitter {
         const text = fs.readFileSync(absoluteFilePath, 'utf-8');
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._lintByProcessor(processor, text, ext, absoluteFilePath);
-    }
-
-    // ===== Export RuleContext
-    // TODO: curve out context module?
-    /**
-     * push new RuleError to results
-     * @param {string} ruleId
-     * @param {TxtNode} node
-     * @param {number} severity
-     * @param {RuleError} error
-     */
-    pushReport({ruleId, node, severity, error}) {
-        debug('pushReport %s', error);
-        var lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
-        var columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
-        // add TextLintMessage
-        this.messages.push({
-            ruleId: ruleId,
-            message: error.message,
-            // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
-            line: lineNumber,        // start with 1(1-based line number)
-            column: columnNumber + 1,// start with 1(1-based column number)
-            severity: severity // it's for compatible ESLint formatter
-        });
-    }
-
-    // TODO: allow to use Syntax which is defined by Plugin Processor.
-    getSyntax() {
-        return UnionSyntax;
-    }
-
-    /**
-     * Gets the source code for the given node.
-     * @param {TxtNode=} node The AST node to get the text for.
-     * @param {int=} beforeCount The number of characters before the node to retrieve.
-     * @param {int=} afterCount The number of characters after the node to retrieve.
-     * @returns {string|null} The text representing the AST node.
-     */
-    getSource(node, beforeCount, afterCount) {
-        let currentText = this.currentText;
-        if (currentText == null) {
-            return null;
-        }
-        if (node) {
-            let start = Math.max(node.range[0] - (beforeCount || 0), 0);
-            let end = node.range[1] + (afterCount || 0);
-            return currentText.slice(start, end);
-        } else {
-            return currentText;
-        }
     }
 }
