@@ -24,9 +24,76 @@ function addListenRule(rule, target) {
     });
 }
 
-export default class TextlintCore extends EventEmitter {
-    constructor(config) {
+/**
+ * The Agent communicate between RuleContext and Rules.
+ */
+class RuleContextAgent extends EventEmitter {
+
+    constructor(text) {
         super();
+        // set unlimited listeners (see https://github.com/azu/textlint/issues/33)
+        this.setMaxListeners(0);
+        this.messages = [];
+        this.currentText = text || "";
+    }
+
+    resetState(text = "") {
+        this.currentText = text;
+        this.messages = [];
+    }
+
+    /**
+     * push new RuleError to results
+     * @param {string} ruleId
+     * @param {TxtNode} node
+     * @param {number} severity
+     * @param {RuleError} error
+     */
+    pushReport({ruleId, node, severity, error}) {
+        debug('pushReport %s', error);
+        var lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
+        var columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
+        // add TextLintMessage
+        var message = {
+            ruleId: ruleId,
+            message: error.message,
+            // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
+            line: lineNumber,        // start with 1(1-based line number)
+            column: columnNumber + 1,// start with 1(1-based column number)
+            severity: severity // it's for compatible ESLint formatter
+        };
+        this.messages.push(message);
+    }
+
+    // TODO: allow to use Syntax which is defined by Plugin Processor.
+    getSyntax() {
+        return UnionSyntax;
+    }
+
+    /**
+     * Gets the source code for the given node.
+     * @param {TxtNode=} node The AST node to get the text for.
+     * @param {int=} beforeCount The number of characters before the node to retrieve.
+     * @param {int=} afterCount The number of characters after the node to retrieve.
+     * @returns {string|null} The text representing the AST node.
+     */
+    getSource(node, beforeCount, afterCount) {
+        let currentText = this.currentText;
+        if (currentText == null) {
+            return null;
+        }
+        if (node) {
+            let start = Math.max(node.range[0] - (beforeCount || 0), 0);
+            let end = node.range[1] + (afterCount || 0);
+            return currentText.slice(start, end);
+        } else {
+            return currentText;
+        }
+    }
+}
+
+export default class TextlintCore {
+    constructor(config) {
         // this.config often is undefined.
         this.config = config || {};
         // FIXME: in the future, this.processors is empty by default.
@@ -36,15 +103,7 @@ export default class TextlintCore extends EventEmitter {
             new TextProcessor(config)
         ];
         this.ruleManager = new RuleManager();
-        // temporary property
-        this.messages = [];
-        this.currentText = "";
-        this.initializeForLinting();
-    }
-
-    initializeForLinting(text) {
-        this.messages = [];
-        this.currentText = text || "";
+        this.ruleContextAgent = new RuleContextAgent();
     }
 
     // Unstable API
@@ -75,9 +134,9 @@ export default class TextlintCore extends EventEmitter {
                 return;
             }
             try {
-                var ruleContext = new RuleContext(key, this, this.config, ruleConfig);
+                var ruleContext = new RuleContext(key, this.ruleContextAgent, this.config, ruleConfig);
                 let rule = ruleCreator(ruleContext, ruleConfig);
-                addListenRule(rule, this);
+                addListenRule(rule, this.ruleContextAgent);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
                 throw ex;
@@ -89,14 +148,13 @@ export default class TextlintCore extends EventEmitter {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        this.removeAllListeners();
+        this.ruleContextAgent.removeAllListeners();
         this.ruleManager.resetRules();
-        this.initializeForLinting();
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
-        this.initializeForLinting(text);
         require('assert')(processor, `processor is not found for ${ext}`);
+        this.ruleContextAgent.resetState(text);
         const {preProcess, postProcess} = processor.processor(ext);
         const ast = preProcess(text);
         const controller = new TraverseController();
@@ -104,13 +162,14 @@ export default class TextlintCore extends EventEmitter {
         controller.traverse(ast, {
             enter(node, parent) {
                 Object.defineProperty(node, 'parent', {value: parent});
-                that.emit(node.type, node);
+                that.ruleContextAgent.emit(node.type, node);
             },
             leave(node) {
-                that.emit(`${ node.type }:exit`, node);
+                that.ruleContextAgent.emit(`${ node.type }:exit`, node);
             }
         });
-        let result = postProcess(this.messages, filePath);
+        let messages = this.ruleContextAgent.messages;
+        let result = postProcess(messages, filePath);
         if (result.filePath == null) {
             result.filePath = `<Unkown${ext}>`;
         }
@@ -152,55 +211,5 @@ export default class TextlintCore extends EventEmitter {
         const text = fs.readFileSync(absoluteFilePath, 'utf-8');
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._lintByProcessor(processor, text, ext, absoluteFilePath);
-    }
-
-    // ===== Export RuleContext
-    // TODO: curve out context module?
-    /**
-     * push new RuleError to results
-     * @param {string} ruleId
-     * @param {TxtNode} node
-     * @param {number} severity
-     * @param {RuleError} error
-     */
-    pushReport({ruleId, node, severity, error}) {
-        debug('pushReport %s', error);
-        var lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
-        var columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
-        // add TextLintMessage
-        this.messages.push({
-            ruleId: ruleId,
-            message: error.message,
-            // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
-            line: lineNumber,        // start with 1(1-based line number)
-            column: columnNumber + 1,// start with 1(1-based column number)
-            severity: severity // it's for compatible ESLint formatter
-        });
-    }
-
-    // TODO: allow to use Syntax which is defined by Plugin Processor.
-    getSyntax() {
-        return UnionSyntax;
-    }
-
-    /**
-     * Gets the source code for the given node.
-     * @param {TxtNode=} node The AST node to get the text for.
-     * @param {int=} beforeCount The number of characters before the node to retrieve.
-     * @param {int=} afterCount The number of characters after the node to retrieve.
-     * @returns {string|null} The text representing the AST node.
-     */
-    getSource(node, beforeCount, afterCount) {
-        let currentText = this.currentText;
-        if (currentText == null) {
-            return null;
-        }
-        if (node) {
-            let start = Math.max(node.range[0] - (beforeCount || 0), 0);
-            let end = node.range[1] + (afterCount || 0);
-            return currentText.slice(start, end);
-        } else {
-            return currentText;
-        }
     }
 }
