@@ -24,7 +24,10 @@ function addListenRule(rule, target) {
     });
 }
 
-class RuleContextDelegator extends EventEmitter {
+/**
+ * The Agent communicate between RuleContext and Rules.
+ */
+class RuleContextAgent extends EventEmitter {
 
     constructor(text) {
         super();
@@ -100,7 +103,7 @@ export default class TextlintCore {
             new TextProcessor(config)
         ];
         this.ruleManager = new RuleManager();
-        this.delegator = new RuleContextDelegator();
+        this.ruleContextAgent = new RuleContextAgent();
     }
 
     // Unstable API
@@ -131,9 +134,9 @@ export default class TextlintCore {
                 return;
             }
             try {
-                var ruleContext = new RuleContext(key, this.delegator, this.config, ruleConfig);
+                var ruleContext = new RuleContext(key, this.ruleContextAgent, this.config, ruleConfig);
                 let rule = ruleCreator(ruleContext, ruleConfig);
-                addListenRule(rule, this.delegator);
+                addListenRule(rule, this.ruleContextAgent);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
                 throw ex;
@@ -145,13 +148,13 @@ export default class TextlintCore {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        this.delegator.removeAllListeners();
+        this.ruleContextAgent.removeAllListeners();
         this.ruleManager.resetRules();
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
         require('assert')(processor, `processor is not found for ${ext}`);
-        this.delegator.resetState(text);
+        this.ruleContextAgent.resetState(text);
         const {preProcess, postProcess} = processor.processor(ext);
         const ast = preProcess(text);
         const controller = new TraverseController();
@@ -159,13 +162,13 @@ export default class TextlintCore {
         controller.traverse(ast, {
             enter(node, parent) {
                 Object.defineProperty(node, 'parent', {value: parent});
-                that.delegator.emit(node.type, node);
+                that.ruleContextAgent.emit(node.type, node);
             },
             leave(node) {
-                that.delegator.emit(`${ node.type }:exit`, node);
+                that.ruleContextAgent.emit(`${ node.type }:exit`, node);
             }
         });
-        let messages = this.delegator.messages;
+        let messages = this.ruleContextAgent.messages;
         let result = postProcess(messages, filePath);
         if (result.filePath == null) {
             result.filePath = `<Unkown${ext}>`;
