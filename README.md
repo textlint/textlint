@@ -226,6 +226,8 @@ Please see docs/
 
 > The plugin for Atom Linter provides an interface to textlint.
 
+## Who's using textlint?
+
 - [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/vuejs.org "vuejs-jp/vuejs.org")
 
 > The vuejs.org for japanese
