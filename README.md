@@ -230,7 +230,7 @@ Please see docs/
 
 - [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/vuejs.org "vuejs-jp/vuejs.org")
 
-> The vuejs.org for japanese
+> The vuejs.org for japanese.
 
 ## Contributing
 
