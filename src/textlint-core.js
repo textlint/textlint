@@ -17,6 +17,7 @@ const debug = require('debug')('textlint:core');
 import {getProcessorMatchExtension} from "./plugins/proccesor-helper";
 import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
 import TextProcessor from "./plugins/text/TextProcessor";
+import HTMLProcessor from "./plugins/html/HTMLProcessor";
 // add all the node types as listeners
 function addListenRule(rule, target) {
     Object.keys(rule).forEach(nodeType => {
@@ -83,6 +84,9 @@ class RuleContextAgent extends EventEmitter {
             return null;
         }
         if (node) {
+            if(!node.range) {
+                console.log(node);
+            }
             let start = Math.max(node.range[0] - (beforeCount || 0), 0);
             let end = node.range[1] + (afterCount || 0);
             return currentText.slice(start, end);
@@ -100,7 +104,8 @@ export default class TextlintCore {
         // Markdown and Text are for backward compatibility.
         this.processors = [
             new MarkdownProcessor(config),
-            new TextProcessor(config)
+            new TextProcessor(config),
+            new HTMLProcessor(config)
         ];
         this.ruleManager = new RuleManager();
         this.ruleContextAgent = new RuleContextAgent();
