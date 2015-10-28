@@ -15,8 +15,7 @@ export default class HTMLProcessor {
     processor(ext) {
         return {
             preProcess(text, filePath) {
-                var ast = parse(text);
-                return ast;
+                return parse(text);
             },
             postProcess(messages, filePath) {
                 return {

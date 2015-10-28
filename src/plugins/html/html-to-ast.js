@@ -19,8 +19,8 @@ function removeUnusedProperties(node) {
     });
 }
 export function parse(html) {
-    var ast = hast.parse(html);
-    var src = new StructuredSource(html);
+    const ast = hast.parse(html);
+    const src = new StructuredSource(html);
     traverse(ast).forEach(function (node) {
         if (this.notLeaf) {
             // avoid conflict <input type="text" />
@@ -48,14 +48,14 @@ export function parse(html) {
             }
             // map `range`, `loc` and `raw` to node
             if (node.position) {
-                var position = node.position;
+                let position = node.position;
                 // TxtNode's line start with 1
                 // TxtNode's column start with 0
-                var positionCompensated = {
+                let positionCompensated = {
                     start: {line: position.start.line, column: position.start.column - 1},
                     end: {line: position.end.line, column: position.end.column - 1}
                 };
-                var range = src.locationToRange(positionCompensated);
+                let range = src.locationToRange(positionCompensated);
                 node.loc = positionCompensated;
                 node.range = range;
                 node.raw = html.slice(range[0], range[1]);
