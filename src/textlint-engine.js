@@ -38,6 +38,7 @@ class TextLintEngine {
      * set up lint rules using {@lint Config} object.
      * The {@lint Config} object was created with initialized {@link TextLintEngine} (as-known Constructor).
      * @param {Config} config the config is parsed object
+     * @private
      */
     _setupRules(config) {
         debug('config %O', config);
