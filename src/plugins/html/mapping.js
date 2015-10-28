@@ -14,6 +14,7 @@ export const tagNameToType = {
     "a": "Link",
     "img": "Image"
 };
+
 export const nodeTypes = {
     "root": "Document",
     "paragraph": "Paragraph",

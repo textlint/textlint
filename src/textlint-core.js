@@ -84,9 +84,6 @@ class RuleContextAgent extends EventEmitter {
             return null;
         }
         if (node) {
-            if(!node.range) {
-                console.log(node);
-            }
             let start = Math.max(node.range[0] - (beforeCount || 0), 0);
             let end = node.range[1] + (afterCount || 0);
             return currentText.slice(start, end);
