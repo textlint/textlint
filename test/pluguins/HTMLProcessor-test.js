@@ -35,7 +35,7 @@ describe("HTMLProcessor-test", function () {
         context("when target file is a HTML", function () {
             beforeEach(function () {
                 textlint = new TextLintCore();
-                textlint._setupProcessors([HTMLProcessor]);
+                textlint.addProcessor(HTMLProcessor);
                 textlint.setupRules({
                     "example-rule": require("../fixtures/rules/example-rule")
                 });
