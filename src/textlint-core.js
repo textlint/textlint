@@ -7,7 +7,6 @@
 const objectAssign = require('object-assign');
 const TraverseController = require('txt-ast-traverse').Controller;
 const RuleContext = require('./rule/rule-context');
-const RuleManager = require('./rule/rule-manager');
 const isMarkdown = require('is-md');
 const path = require('path');
 const fs = require('fs');
@@ -104,7 +103,6 @@ export default class TextlintCore {
             new TextProcessor(config),
             new HTMLProcessor(config)
         ];
-        this.ruleManager = new RuleManager();
         this.ruleContextAgent = new RuleContextAgent();
     }
 
@@ -151,7 +149,6 @@ export default class TextlintCore {
      */
     resetRules() {
         this.ruleContextAgent.removeAllListeners();
-        this.ruleManager.resetRules();
     }
 
     _lintByProcessor(processor, text, ext, filePath) {

@@ -1,6 +1,7 @@
 // LICENSE : MIT
 'use strict';
-const textLint = require('./textlint');
+const TextLintCore = require('./textlint-core');
+const RuleManager = require('./rule/rule-manager');
 const Config = require('./config/config');
 const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
@@ -26,23 +27,27 @@ class TextLintEngine {
         } else {
             this.config = new Config(options);
         }
+        this.textLint = new TextLintCore(this.config);
+        this.ruleManager = new RuleManager();
         // default Processor Constructors
         this.Processors = [MarkdownProcessor, TextProcessor, HTMLProcessor];
+        this._setupRules(this.config);
     }
 
     /**
      * set up lint rules using {@lint Config} object.
      * The {@lint Config} object was created with initialized {@link TextLintEngine} (as-known Constructor).
      * @param {Config} config the config is parsed object
+     * @private
      */
-    setupRules(config = this.config) {
+    _setupRules(config) {
         debug('config %O', config);
         // --ruledir
         if (config.rulePaths) {
             // load in additional rules
             config.rulePaths.forEach(rulesdir => {
                 debug('Loading rules from %o', rulesdir);
-                textLint.ruleManager.loadRules(rulesdir);
+                this.ruleManager.loadRules(rulesdir);
             });
         }
         // --rule
@@ -64,8 +69,8 @@ class TextLintEngine {
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-        textLint._setupProcessors(this.Processors, textlintConfig);
-        textLint.setupRules(textLint.ruleManager.getAllRules(), textlintConfig.rulesConfig);
+        this.textLint._setupProcessors(this.Processors, textlintConfig);
+        this.textLint.setupRules(this.ruleManager.getAllRules(), textlintConfig.rulesConfig);
     }
 
     /**
@@ -76,15 +81,24 @@ class TextLintEngine {
     addRule(ruleName) {
         if (Array.isArray(this.config.rules) && this.config.rules.indexOf(ruleName) === -1) {
             this.config.rules.push(ruleName);
+            this._setupRules(this.config);
         }
     }
 
     /**
      * set directory to use as root directory to load rule.
      * @param {string} directory as root directory to load rule
+     * @deprecated please use
+     *
+     * ```
+     * new TextLintEngine({
+     *  rulesBaseDirectory: directory
+     * })
+     * ```
      */
     setRulesBaseDirectory(directory) {
         this.config.rulesBaseDirectory = directory;
+        this._setupRules(this.config);
     }
 
     /**
@@ -104,7 +118,7 @@ class TextLintEngine {
         debug('Loading rules from plugin: %s', pkgPath);
         const plugin = require(pkgPath.normalize());
         assert(plugin.hasOwnProperty("rules"), "plugins should has `rules` object");
-        textLint.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
+        this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
         return plugin;
     }
 
@@ -118,7 +132,7 @@ class TextLintEngine {
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
         const definedRuleName = ruleName.replace(/^textlint\-rule\-/, '');
-        if (textLint.ruleManager.isDefinedRule(definedRuleName)) {
+        if (this.ruleManager.isDefinedRule(definedRuleName)) {
             return;
         }
         const baseDir = this.config.rulesBaseDirectory || '';
@@ -129,14 +143,15 @@ class TextLintEngine {
         }
         debug('Loading rules from %s', pkgPath);
         const plugin = require(pkgPath);
-        textLint.ruleManager.defineRule(definedRuleName, plugin);
+        this.ruleManager.defineRule(definedRuleName, plugin);
     }
 
     /**
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        textLint.resetRules();
+        this.textLint.resetRules();
+        this.ruleManager.resetRules();
     }
 
     /**
@@ -145,7 +160,6 @@ class TextLintEngine {
      * @returns {TextLintResult[]} The results for all files that were linted.
      */
     executeOnFiles(files) {
-        this.setupRules(this.config);
         let availableExtensions = this.config.extensions;
         // execute files that are filtered by availableExtensions.
         this.Processors.forEach(Processor => {
@@ -153,9 +167,8 @@ class TextLintEngine {
         });
         const targetFiles = findFiles(files, availableExtensions);
         const results = targetFiles.map(file => {
-            return textLint.lintFile(file);
+            return this.textLint.lintFile(file);
         });
-        textLint.resetRules();
         return results;
     }
 
@@ -167,9 +180,7 @@ class TextLintEngine {
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
-        this.setupRules(this.config);
-        const results = [textLint.lintText(text, ext)];
-        textLint.resetRules();
+        const results = [this.textLint.lintText(text, ext)];
         return results;
     }
 
