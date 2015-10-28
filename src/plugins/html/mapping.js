@@ -2,6 +2,10 @@
 "use strict";
 export const tagNameToType = {
     "p": "Paragraph",
+    "ui": "ListItem",
+    "li": "List",
+    "q": "BlockQuote",
+    "blockquote": "BlockQuote",
     "code": "CodeBlock",
     "hr": "horizontalRule",
     "br": "break",

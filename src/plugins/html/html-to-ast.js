@@ -23,13 +23,13 @@ export function parse(html) {
     var src = new StructuredSource(html);
     traverse(ast).forEach(function (node) {
         if (this.notLeaf) {
-            if (node.type && node.value) {
+            // avoid conflict <input type="text" />
+            // AST node has type and position
+            if (node.type && node.position) {
                 node.original_type = node.type;
-                // conflict ..<input type="text" value="" />
-                if (this.parent.node.tagName !== "input") {
-                    node.type = nodeTypes[node.type];
-                }
+                node.type = nodeTypes[node.type];
             }
+            // other element is "Html"
             if (node.tagName && !node.type) {
                 let type = tagNameToType[node.tagName];
                 if (type) {
