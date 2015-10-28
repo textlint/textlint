@@ -87,6 +87,13 @@ class TextLintEngine {
     /**
      * set directory to use as root directory to load rule.
      * @param {string} directory as root directory to load rule
+     * @deprecated please use
+     *
+     * ```
+     * new TextLintEngine({
+     *  rulesBaseDirectory: directory
+     * })
+     * ```
      */
     setRulesBaseDirectory(directory) {
         this.config.rulesBaseDirectory = directory;
