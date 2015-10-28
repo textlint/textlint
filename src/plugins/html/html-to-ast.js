@@ -26,7 +26,20 @@ export function parse(html) {
             // avoid conflict <input type="text" />
             // AST node has type and position
             if (node.type && node.position) {
-                node.type = nodeTypes[node.type];
+                // case: element => Html or ...
+                if (node.tagName && node.type === "element") {
+                    let type = tagNameToType[node.tagName];
+                    if (type) {
+                        // p => Paragraph...
+                        node.type = type;
+                    } else {
+                        // other element is "Html"
+                        node.type = "Html";
+                    }
+                } else {
+                    // text => Str...
+                    node.type = nodeTypes[node.type];
+                }
             } else if (node.type === "root") {
                 // FIXME: workaround, should fix hast
                 node.type = nodeTypes[node.type];
@@ -36,15 +49,6 @@ export function parse(html) {
                     start: {line: position.start.line, column: position.start.column + 1},
                     end: {line: position.end.line, column: position.end.column + 1}
                 };
-            }
-            // other element is "Html"
-            if (node.tagName && !node.type) {
-                let type = tagNameToType[node.tagName];
-                if (type) {
-                    node.type = type;
-                } else {
-                    node.type = "Html";
-                }
             }
             // map `range`, `loc` and `raw` to node
             if (node.position) {

@@ -32,8 +32,6 @@ export const nodeTypes = {
     'break': 'Break',
     'emphasis': 'Emphasis',
     'strong': 'Strong',
-    // special type?
-    "element": "Html",
     'html': 'Html',
     'link': 'Link',
     'image': 'Image',
