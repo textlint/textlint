@@ -2,14 +2,12 @@
 "use strict";
 var assert = require("power-assert");
 var TextLintEngine = require("../src/").TextLintEngine;
-var textlint = require("../src/").textlint;
 var rulesDir = __dirname + "/fixtures/rules";
-var path = require("path");
+var path = require('path');
 describe("cli-engine-test", function () {
     var engine;
     afterEach(function () {
         engine.resetRules();
-        textlint.resetRules();
     });
     describe("Constructor", function () {
         context("when no-args", function () {
@@ -44,7 +42,7 @@ describe("cli-engine-test", function () {
                     rules: ["no-todo"]
                 });
                 engine.setupRules();
-                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -55,7 +53,7 @@ describe("cli-engine-test", function () {
                     rules: ["textlint-rule-no-todo"]
                 });
                 engine.setupRules();
-                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -67,7 +65,7 @@ describe("cli-engine-test", function () {
                 engine = new TextLintEngine();
                 engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/plugins/"));
                 engine.loadPlugin("example");
-                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "example/example-rule");
             });
@@ -77,13 +75,13 @@ describe("cli-engine-test", function () {
                 engine = new TextLintEngine();
                 engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/plugins/"));
                 engine.loadPlugin("example");
-                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length === 1);
-                var ruleObject = textlint.ruleManager.getRule(ruleNames[0]);
+                var ruleObject = engine.ruleManager.getRule(ruleNames[0]);
                 // loadRule should ignore
                 engine.loadPlugin("example");
                 // should equal prev loaded object
-                assert(textlint.ruleManager.getRule("example/example-rule") === ruleObject);
+                assert(engine.ruleManager.getRule("example/example-rule") === ruleObject);
             });
         });
     });
@@ -93,7 +91,7 @@ describe("cli-engine-test", function () {
             it("should define the rule", function () {
                 engine = new TextLintEngine();
                 engine.loadRule("textlint-rule-no-todo");
-                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -102,13 +100,13 @@ describe("cli-engine-test", function () {
             it("should not re-load rule", function () {
                 engine = new TextLintEngine();
                 engine.loadRule("textlint-rule-no-todo");
-                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length === 1);
-                var ruleObject = textlint.ruleManager.getRule(ruleNames[0]);
+                var ruleObject = engine.ruleManager.getRule(ruleNames[0]);
                 // loadRule should ignore
                 engine.loadRule("textlint-rule-no-todo");
                 // should equal prev loaded object
-                assert(textlint.ruleManager.getRule("no-todo") === ruleObject);
+                assert(engine.ruleManager.getRule("no-todo") === ruleObject);
             });
         });
         context("when use the rule directory", function () {
@@ -117,18 +115,16 @@ describe("cli-engine-test", function () {
                 engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
                 engine.addRule("example-rule");
                 engine.setupRules();
-                var ruleNames = textlint.ruleManager.getAllRuleNames();
+                var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
         });
     });
     describe("executeOnFiles", function () {
-        beforeEach(function () {
+        it("should found error message", function () {
             engine = new TextLintEngine({
                 rulePaths: [rulesDir]
             });
-        });
-        it("should found error message", function () {
             var filePath = path.join(__dirname, "fixtures/test.md");
             var results = engine.executeOnFiles([filePath]);
             assert(Array.isArray(results));
@@ -138,12 +134,13 @@ describe("cli-engine-test", function () {
             assert(fileResult.messages.length > 0);
         });
         it("should lint a file with same rules", function () {
+            engine = new TextLintEngine();
             var filePath = path.join(__dirname, "fixtures/test.md");
             engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
-            engine.addRule("example-rule");
-            var beforeRuleNames = textlint.ruleManager.getAllRuleNames();
+            engine.loadRule("example-rule");
+            var beforeRuleNames = engine.ruleManager.getAllRuleNames();
             engine.executeOnFiles([filePath]);
-            var afterRuleNames = textlint.ruleManager.getAllRuleNames();
+            var afterRuleNames = engine.ruleManager.getAllRuleNames();
             assert.deepEqual(beforeRuleNames, afterRuleNames);
         });
         context("when process file that has un-available ext ", function () {
@@ -156,12 +153,10 @@ describe("cli-engine-test", function () {
         })
     });
     describe("executeOnText", function () {
-        beforeEach(function () {
+        it("should lint a text and return results", function () {
             engine = new TextLintEngine({
                 rulePaths: [rulesDir]
             });
-        });
-        it("should lint a text and return results", function () {
             var results = engine.executeOnText("text");
             assert(Array.isArray(results));
             var lintResult = results[0];
@@ -170,11 +165,12 @@ describe("cli-engine-test", function () {
             assert(lintResult.messages.length > 0);
         });
         it("should lint a text with same rules", function () {
+            engine = new TextLintEngine();
             engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
-            engine.addRule("example-rule");
-            var beforeRuleNames = textlint.ruleManager.getAllRuleNames();
+            engine.loadRule("example-rule");
+            var beforeRuleNames = engine.ruleManager.getAllRuleNames();
             engine.executeOnText("text");
-            var afterRuleNames = textlint.ruleManager.getAllRuleNames();
+            var afterRuleNames = engine.ruleManager.getAllRuleNames();
             assert.deepEqual(beforeRuleNames, afterRuleNames);
         });
     });
