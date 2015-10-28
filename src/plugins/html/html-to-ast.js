@@ -26,8 +26,16 @@ export function parse(html) {
             // avoid conflict <input type="text" />
             // AST node has type and position
             if (node.type && node.position) {
-                node.original_type = node.type;
                 node.type = nodeTypes[node.type];
+            } else if (node.type === "root") {
+                // FIXME: workaround, should fix hast
+                node.type = nodeTypes[node.type];
+                let position = src.rangeToLocation([0, html.length]);
+                // reverse adjust
+                node.position = {
+                    start: {line: position.start.line, column: position.start.column + 1},
+                    end: {line: position.end.line, column: position.end.column + 1}
+                };
             }
             // other element is "Html"
             if (node.tagName && !node.type) {
