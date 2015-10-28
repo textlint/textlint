@@ -12,6 +12,13 @@ describe("HTMLProcessor-test", function () {
             var result = parse(`<div><p><span>aaaa</span></p></div>`);
             assert(result.type === "Document");
         });
+        it("script should CodeBlock", function () {
+            var result = parse(`<script> var a = 1; </script>`);
+            let script = result.children[0];
+            script.children.forEach(code => {
+                assert.equal(code.type, "CodeBlock");
+            });
+        });
         it("should map type to TxtNode's type", function () {
             function createTag(tagName) {
                 return `<${tagName}></${tagName}>`;
@@ -26,7 +33,6 @@ describe("HTMLProcessor-test", function () {
                     assert.equal(firstChild.type, expectedType);
                 });
             }
-
             testMap(tagNameToType);
         });
     });

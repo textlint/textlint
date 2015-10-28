@@ -18,28 +18,38 @@ function removeUnusedProperties(node) {
         }
     });
 }
+function mapNodeType(node, parent) {
+    if (parent) {
+        let parentNode = parent.parent.node;
+        if (parentNode.tagName === "script") {
+            return "CodeBlock";
+        }
+    }
+    if (node.tagName && node.type === "element") {
+        let mappedType = tagNameToType[node.tagName];
+        if (mappedType) {
+            // p => Paragraph...
+            return mappedType;
+        } else {
+            // other element is "Html"
+            return "Html";
+        }
+    } else {
+        // text => Str
+        return nodeTypes[node.type];
+    }
+}
 export function parse(html) {
     const ast = hast.parse(html);
     const src = new StructuredSource(html);
-    traverse(ast).forEach(function (node) {
+    var tr = traverse(ast);
+    tr.forEach(function (node) {
         if (this.notLeaf) {
             // avoid conflict <input type="text" />
             // AST node has type and position
             if (node.type && node.position) {
                 // case: element => Html or ...
-                if (node.tagName && node.type === "element") {
-                    let type = tagNameToType[node.tagName];
-                    if (type) {
-                        // p => Paragraph...
-                        node.type = type;
-                    } else {
-                        // other element is "Html"
-                        node.type = "Html";
-                    }
-                } else {
-                    // text => Str...
-                    node.type = nodeTypes[node.type];
-                }
+                node.type = mapNodeType(node, this.parent);
             } else if (node.type === "root") {
                 // FIXME: workaround, should fix hast
                 node.type = nodeTypes[node.type];
