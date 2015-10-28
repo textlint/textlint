@@ -158,7 +158,7 @@ export default class TextlintCore {
         require('assert')(processor, `processor is not found for ${ext}`);
         this.ruleContextAgent.resetState(text);
         const {preProcess, postProcess} = processor.processor(ext);
-        const ast = preProcess(text);
+        const ast = preProcess(text, filePath);
         const controller = new TraverseController();
         let that = this;
         controller.traverse(ast, {
