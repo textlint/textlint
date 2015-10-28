@@ -63,10 +63,7 @@ class Config {
      * @returns {Config}
      * @constructor
      */
-    constructor(options) {
-        if (typeof options === 'undefined') {
-            return objectAssign(this, defaultOptions);
-        }
+    constructor(options = {}) {
         // TODO: add `noUseConfig` option
         // configFile is optional
         // => load .textlintrc

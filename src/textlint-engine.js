@@ -31,6 +31,7 @@ class TextLintEngine {
         this.ruleManager = new RuleManager();
         // default Processor Constructors
         this.Processors = [MarkdownProcessor, TextProcessor, HTMLProcessor];
+        this._setupRules(this.config);
     }
 
     /**
@@ -38,7 +39,7 @@ class TextLintEngine {
      * The {@lint Config} object was created with initialized {@link TextLintEngine} (as-known Constructor).
      * @param {Config} config the config is parsed object
      */
-    setupRules(config = this.config) {
+    _setupRules(config) {
         debug('config %O', config);
         // --ruledir
         if (config.rulePaths) {
@@ -79,6 +80,7 @@ class TextLintEngine {
     addRule(ruleName) {
         if (Array.isArray(this.config.rules) && this.config.rules.indexOf(ruleName) === -1) {
             this.config.rules.push(ruleName);
+            this._setupRules(this.config);
         }
     }
 
@@ -88,6 +90,7 @@ class TextLintEngine {
      */
     setRulesBaseDirectory(directory) {
         this.config.rulesBaseDirectory = directory;
+        this._setupRules(this.config);
     }
 
     /**
@@ -139,6 +142,7 @@ class TextLintEngine {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
+        this.textLint.resetRules();
         this.ruleManager.resetRules();
     }
 
@@ -148,8 +152,6 @@ class TextLintEngine {
      * @returns {TextLintResult[]} The results for all files that were linted.
      */
     executeOnFiles(files) {
-        console.log(this.config);
-        this.setupRules(this.config);
         let availableExtensions = this.config.extensions;
         // execute files that are filtered by availableExtensions.
         this.Processors.forEach(Processor => {
@@ -159,7 +161,6 @@ class TextLintEngine {
         const results = targetFiles.map(file => {
             return this.textLint.lintFile(file);
         });
-        this.textLint.resetRules();
         return results;
     }
 
@@ -171,9 +172,7 @@ class TextLintEngine {
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
-        this.setupRules(this.config);
         const results = [this.textLint.lintText(text, ext)];
-        this.textLint.resetRules();
         return results;
     }
 

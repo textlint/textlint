@@ -4,7 +4,7 @@ var assert = require("power-assert");
 var TextLintEngine = require("../src/").TextLintEngine;
 var rulesDir = __dirname + "/fixtures/rules";
 var path = require('path');
-describe("cli-engine-test", function () {
+describe("textlint-engine-test", function () {
     var engine;
     afterEach(function () {
         engine.resetRules();
@@ -41,7 +41,6 @@ describe("cli-engine-test", function () {
                 engine = new TextLintEngine({
                     rules: ["no-todo"]
                 });
-                engine.setupRules();
                 var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
@@ -52,7 +51,6 @@ describe("cli-engine-test", function () {
                 engine = new TextLintEngine({
                     rules: ["textlint-rule-no-todo"]
                 });
-                engine.setupRules();
                 var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
@@ -114,7 +112,6 @@ describe("cli-engine-test", function () {
                 engine = new TextLintEngine();
                 engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
                 engine.addRule("example-rule");
-                engine.setupRules();
                 var ruleNames = engine.ruleManager.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
@@ -137,7 +134,7 @@ describe("cli-engine-test", function () {
             engine = new TextLintEngine();
             var filePath = path.join(__dirname, "fixtures/test.md");
             engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
-            engine.loadRule("example-rule");
+            engine.addRule("example-rule");
             var beforeRuleNames = engine.ruleManager.getAllRuleNames();
             engine.executeOnFiles([filePath]);
             var afterRuleNames = engine.ruleManager.getAllRuleNames();
