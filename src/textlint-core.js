@@ -93,9 +93,9 @@ class RuleContextAgent extends EventEmitter {
 }
 
 export default class TextlintCore {
-    constructor(config) {
+    constructor(config = {}) {
         // this.config often is undefined.
-        this.config = config || {};
+        this.config = config;
         // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
         this.processors = [
@@ -106,14 +106,11 @@ export default class TextlintCore {
         this.ruleContextAgent = new RuleContextAgent();
     }
 
-    // Unstable API
-    _setupProcessors(processorConstructors, textLintConfig) {
-        this.config = textLintConfig;
-        this.processors = processorConstructors.map(Processtor => {
-            return new Processtor(textLintConfig);
-        });
+    // unstable API
+    addProcessor(Processtor) {
+        // add first
+        this.processors.unshift(new Processtor(this.config));
     }
-
     /**
      * Register rules to EventEmitter.
      * if want to release rules, please call {@link this.resetRules}.

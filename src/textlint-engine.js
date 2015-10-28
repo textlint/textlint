@@ -8,9 +8,6 @@ const tryResolve = require('try-resolve');
 const path = require('path');
 import assert from "assert";
 import { findFiles } from "./util/find-util";
-import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
-import TextProcessor from "./plugins/text/TextProcessor";
-import HTMLProcessor from "./plugins/html/HTMLProcessor";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
     /**
@@ -29,8 +26,6 @@ class TextLintEngine {
         }
         this.textLint = new TextLintCore(this.config);
         this.ruleManager = new RuleManager();
-        // default Processor Constructors
-        this.Processors = [MarkdownProcessor, TextProcessor, HTMLProcessor];
         this._setupRules(this.config);
     }
 
@@ -64,12 +59,11 @@ class TextLintEngine {
                 let plugin = this.loadPlugin(pluginName);
                 // register plugin.Processor
                 if (plugin.hasOwnProperty("Processor")) {
-                    this.Processors.unshift(plugin.Processor);
+                    this.textLint.addProcessor(plugin.Processor);
                 }
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-        this.textLint._setupProcessors(this.Processors, textlintConfig);
         this.textLint.setupRules(this.ruleManager.getAllRules(), textlintConfig.rulesConfig);
     }
 
@@ -162,7 +156,8 @@ class TextLintEngine {
     executeOnFiles(files) {
         let availableExtensions = this.config.extensions;
         // execute files that are filtered by availableExtensions.
-        this.Processors.forEach(Processor => {
+        this.textLint.processors.forEach(processor => {
+            let Processor = processor.constructor;
             availableExtensions = availableExtensions.concat(Processor.availableExtensions());
         });
         const targetFiles = findFiles(files, availableExtensions);
