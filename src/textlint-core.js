@@ -10,6 +10,7 @@ const RuleContext = require('./rule/rule-context');
 const isMarkdown = require('is-md');
 const path = require('path');
 const fs = require('fs');
+const assert = require('assert');
 const EventEmitter = require('events').EventEmitter;
 const UnionSyntax = require("./parser/union-syntax");
 const debug = require('debug')('textlint:core');
@@ -111,6 +112,7 @@ export default class TextlintCore {
         // add first
         this.processors.unshift(new Processtor(this.config));
     }
+
     /**
      * Register rules to EventEmitter.
      * if want to release rules, please call {@link this.resetRules}.
@@ -149,9 +151,11 @@ export default class TextlintCore {
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
-        require('assert')(processor, `processor is not found for ${ext}`);
+        assert(processor, `processor is not found for ${ext}`);
         this.ruleContextAgent.resetState(text);
         const {preProcess, postProcess} = processor.processor(ext);
+        assert(typeof preProcess === "function" && typeof postProcess === "function"
+            , `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
         const controller = new TraverseController();
         let that = this;
@@ -169,6 +173,7 @@ export default class TextlintCore {
         if (result.filePath == null) {
             result.filePath = `<Unkown${ext}>`;
         }
+        assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
         return result;
     }
 
