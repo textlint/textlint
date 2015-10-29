@@ -2,14 +2,14 @@
   "name": "textlint-plugin-html",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/textlint-plugin-html.git"
+    "url": "git+https://github.com/textlint/textlint-plugin-html.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/textlint-plugin-html",
+  "homepage": "https://github.com/textlint/textlint-plugin-html",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/textlint-plugin-html/issues"
+    "url": "https://github.com/textlint/textlint-plugin-html/issues"
   },
   "version": "0.1.2",
   "description": "textlint HTML processsor plugin.",
