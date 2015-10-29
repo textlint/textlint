@@ -1,6 +1,6 @@
 # textlint-tester
 
-[Mocha](http://mochajs.org/ "Mocha") test helper library for [textlint](https://github.com/azu/textlint "textlint") rule.
+[Mocha](http://mochajs.org/ "Mocha") test helper library for [textlint](https://github.com/textlint/textlint "textlint") rule.
 
 ## Installation
 

@@ -2,14 +2,14 @@
   "name": "textlint-tester",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/textlint-tester.git"
+    "url": "git+https://github.com/textlint/textlint-tester.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/textlint-tester",
+  "homepage": "https://github.com/textlint/textlint-tester",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/textlint-tester/issues"
+    "url": "https://github.com/textlint/textlint-tester/issues"
   },
   "version": "0.2.0",
   "description": "testing tool for textlint rule.",
