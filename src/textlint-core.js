@@ -17,7 +17,7 @@ const debug = require('debug')('textlint:core');
 import {getProcessorMatchExtension} from "./plugins/proccesor-helper";
 import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
 import TextProcessor from "./plugins/text/TextProcessor";
-import HTMLProcessor from "./plugins/html/HTMLProcessor";
+import {Processor as HTMLProcessor} from "textlint-plugin-html";
 // add all the node types as listeners
 function addListenRule(rule, target) {
     Object.keys(rule).forEach(nodeType => {

@@ -66,6 +66,7 @@
     "rc-loader": "^1.0.0",
     "structured-source": "^3.0.2",
     "textlint-formatter": "^1.1.1",
+    "textlint-plugin-html": "^0.1.2",
     "traverse": "^0.6.6",
     "try-resolve": "^1.0.1",
     "txt-ast-traverse": "^1.2.0",
