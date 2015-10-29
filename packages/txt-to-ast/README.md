@@ -1,10 +1,10 @@
-# txt-to-ast [![Build Status](https://travis-ci.org/azu/txt-to-ast.svg?branch=master)](https://travis-ci.org/azu/txt-to-ast)
+# txt-to-ast [![Build Status](https://travis-ci.org/textlint/txt-to-ast.svg?branch=master)](https://travis-ci.org/textlint/txt-to-ast)
 
 Parse plain text to AST with location info.
 
-This library is a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
+This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
-Markdown version : [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast "azu/markdown-to-ast")
+Markdown version : [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast "textlint/markdown-to-ast")
 
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:

@@ -2,10 +2,10 @@
   "name": "txt-to-ast",
   "description": "Parse text to AST.",
   "version": "1.0.1",
-  "homepage": "https://github.com/azu/txt-to-ast/",
+  "homepage": "https://github.com/textlint/txt-to-ast/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/azu/txt-to-ast.git"
+    "url": "https://github.com/textlint/txt-to-ast.git"
   },
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "author": "azu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/txt-to-ast/issues"
+    "url": "https://github.com/textlint/txt-to-ast/issues"
   },
   "devDependencies": {
     "browserify": "^8.0.3",
