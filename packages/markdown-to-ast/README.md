@@ -1,4 +1,4 @@
-# markdown-to-ast [![Build Status](https://travis-ci.org/azu/markdown-to-ast.svg)](https://travis-ci.org/azu/markdown-to-ast)
+# markdown-to-ast [![Build Status](https://travis-ci.org/textlint/markdown-to-ast.svg)](https://travis-ci.org/textlint/markdown-to-ast)
 
 Parse Markdown to AST with location info.
 
@@ -15,7 +15,7 @@ A `TxtNode` of the AST has following properties:
 
 The interface defined as [txtnode.d.ts](typing/txtnode.d.ts).
 
-This library is a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
+This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
 
 ## DEMO
@@ -140,7 +140,7 @@ var AST = parse(markdown);
 
 The interface of a node on AST is defined as [txtnode.d.ts](typing/txtnode.d.ts).
 
-If you want to know real use-case, please see [azu/textlint](https://github.com/azu/textlint "azu/textlint").
+If you want to know real use-case, please see [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
 ## Tests
 
