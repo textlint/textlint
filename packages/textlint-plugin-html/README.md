@@ -1,4 +1,4 @@
-# textlint-plugin-html
+# textlint-plugin-html [![Build Status](https://travis-ci.org/azu/textlint-plugin-html.svg?branch=master)](https://travis-ci.org/azu/textlint-plugin-html)
 
 Add HTML support for [textlint](https://github.com/azu/textlint "textlint").
 
