@@ -5,7 +5,7 @@
     "AST",
     "traverse"
   ],
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage": "https://github.com/textlint/txt-ast-traverse/",
   "repository": {
     "type": "git",
