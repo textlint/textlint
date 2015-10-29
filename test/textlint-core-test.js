@@ -2,7 +2,7 @@ import assert from "power-assert";
 import {TextLintCore} from "../src/index";
 import rule from "./fixtures/rules/example-rule";
 describe("textlint-core", function () {
-    // Test: https://github.com/azu/textlint/issues/30
+    // Test: https://github.com/textlint/textlint/issues/30
     context("when new textlint-core", function () {
         it("should be clean rule-manager", function () {
             var textlint = new TextLintCore();

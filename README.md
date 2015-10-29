@@ -1,4 +1,4 @@
-# textlint [![Build Status](https://travis-ci.org/azu/textlint.svg)](https://travis-ci.org/azu/textlint)
+# textlint [![Build Status](https://travis-ci.org/textlint/textlint.svg)](https://travis-ci.org/textlint/textlint)
 
 The pluggable linting tool for text(plain text and markdown).
 
@@ -130,9 +130,9 @@ To enable plugin, put the "plugin-name` into `.textlinrc`.
 
 :information_source: See [docs/plugin.md](docs/plugin.md)
 
-### Rule list - [Collection of textlint rule](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · azu/textlint Wiki")
+### Rule list - [Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 
-See [Collection of textlint rule · azu/textlint Wiki](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · azu/textlint Wiki").
+See [Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki").
 
 If you create new rule, and add it to the wiki :)
 
@@ -146,7 +146,7 @@ e.g.) use pretty-error.js
 $ textlint -f pretty-error file.md
 ```
 
-More detail in [azu/textlint-formatter](https://github.com/azu/textlint-formatter "azu/textlint-formatter").
+More detail in [textlint/textlint-formatter](https://github.com/textlint/textlint-formatter "textlint/textlint-formatter").
 
 ## Use as node modules
 

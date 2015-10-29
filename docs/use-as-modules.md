@@ -34,7 +34,7 @@ var path = require("path");
 function lintFile(filePath) {
     /**
      * TextLintConfig
-     * See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
+     * See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
      */
     var options = {
         // load rules from [../rules]
@@ -45,7 +45,7 @@ function lintFile(filePath) {
     var filePathList = [path.resolve(process.cwd(), filePath)];
     var results = engine.executeOnFiles(filePathList);
     /* 
-    See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
+    See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
     messages are TextLintMessage` array.
     [
         "filePath": "path/to/file",
@@ -69,9 +69,9 @@ function lintFile(filePath) {
 
 ## Testing
 
-You can use [textlint-tester](https://github.com/azu/textlint-tester "textlint-tester") for testing your custom rule.
+You can use [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester") for testing your custom rule.
 
-- [textlint-tester](https://github.com/azu/textlint-tester "textlint-tester")
+- [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester")
 - [create-rules.md](./create-rules.md)
 
 Consult link: [spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule](https://github.com/azu/spellcheck-tech-word-textlint-rule/blob/master/test/test.js "spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule")

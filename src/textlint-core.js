@@ -32,7 +32,7 @@ class RuleContextAgent extends EventEmitter {
 
     constructor(text) {
         super();
-        // set unlimited listeners (see https://github.com/azu/textlint/issues/33)
+        // set unlimited listeners (see https://github.com/textlint/textlint/issues/33)
         this.setMaxListeners(0);
         this.messages = [];
         this.currentText = text || "";
@@ -58,7 +58,7 @@ class RuleContextAgent extends EventEmitter {
         var message = {
             ruleId: ruleId,
             message: error.message,
-            // See https://github.com/azu/textlint/blob/master/typing/textlint.d.ts
+            // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
             line: lineNumber,        // start with 1(1-based line number)
             column: columnNumber + 1,// start with 1(1-based column number)
             severity: severity // it's for compatible ESLint formatter

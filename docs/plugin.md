@@ -53,11 +53,11 @@ module.exports = {
 
 ## Processor
 
-- [ ] Write Pre/PostProcessor https://github.com/azu/textlint/pull/36
+- [ ] Write Pre/PostProcessor https://github.com/textlint/textlint/pull/36
 
 ## Testing
 
-You can test the rules of your plugin the same way as bundled textlint rules using [textlint-tester](https://github.com/azu/textlint-tester "textlint-tester").
+You can test the rules of your plugin the same way as bundled textlint rules using [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
 
 ```js
 var TextLintTester = require("textlint-tester");

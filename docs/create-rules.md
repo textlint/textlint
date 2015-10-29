@@ -69,7 +69,7 @@ module.exports = function (context) {
 **related information:**
 
 - [azu/visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
-- [azu/txt-ast-traverse](https://github.com/azu/txt-ast-traverse "azu/txt-ast-traverse")
+- [textlint/txt-ast-traverse](https://github.com/textlint/txt-ast-traverse "textlint/txt-ast-traverse")
 - [estools/estraverse](https://github.com/estools/estraverse "estools/estraverse")
 
 ## RuleContext
@@ -316,7 +316,7 @@ You should add `textlint` to npm's `keywords`
   "name": "textlint-rule-no-todo",
   "description": "Your custom rules description",
   "version": "1.0.1",
-  "homepage": "https://github.com/azu/textlint-custom-rules/",
+  "homepage": "https://github.com/textlint/textlint-custom-rules/",
   "keywords": [
     "textlint"
   ]

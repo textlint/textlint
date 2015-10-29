@@ -2,7 +2,7 @@
 "use strict";
 // Level of abstraction(descending order)
 // cli > TextLintEngine > TextLintCore(textlint)
-// See: https://github.com/azu/textlint/blob/master/docs/use-as-modules.md
+// See: https://github.com/textlint/textlint/blob/master/docs/use-as-modules.md
 module.exports = {
     // Command line interface
     cli: require("./cli"),

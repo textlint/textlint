@@ -2,7 +2,7 @@
   "name": "textlint",
   "description": "plugable text lint tool(support markdown).",
   "version": "4.2.1",
-  "homepage": "https://github.com/azu/textlint/",
+  "homepage": "https://github.com/textlint/textlint/",
   "keywords": [
     "plugable",
     "text",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/azu/textlint.git"
+    "url": "https://github.com/textlint/textlint.git"
   },
   "main": "lib/index.js",
   "files": [
@@ -42,7 +42,7 @@
   "author": "azu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/textlint/issues"
+    "url": "https://github.com/textlint/textlint/issues"
   },
   "devDependencies": {
     "babel": "^5.8.23",
