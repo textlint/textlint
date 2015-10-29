@@ -19,6 +19,11 @@ describe("HTMLProcessor-test", function () {
                 assert.equal(code.type, "CodeBlock");
             });
         });
+        it("<p> should Paragraph", function () {
+            var result = parse(`<p>test</p>`);
+            let pTag = result.children[0];
+            assert.equal(pTag.type, "Paragraph");
+        });
         it("should map type to TxtNode's type", function () {
             function createTag(tagName) {
                 return `<${tagName}></${tagName}>`;
