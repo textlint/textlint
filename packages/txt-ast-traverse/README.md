@@ -1,10 +1,10 @@
-# txt-ast-traverse [![Build Status](https://travis-ci.org/azu/txt-ast-traverse.svg)](https://travis-ci.org/azu/txt-ast-traverse)
+# txt-ast-traverse [![Build Status](https://travis-ci.org/textlint/txt-ast-traverse.svg)](https://travis-ci.org/textlint/txt-ast-traverse)
 
-txt-ast-traverse provide traversal functions for [Markdown AST](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast").
+txt-ast-traverse provide traversal functions for [Markdown AST](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast").
 
-This traverse function is a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [azu/markdown-to-ast](https://github.com/azu/markdown-to-ast/ "azu/markdown-to-ast").
+This traverse function is a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast").
 
-This library is a part of [azu/textlint](https://github.com/azu/textlint "azu/textlint").
+This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
 ## Installation
 

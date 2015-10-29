@@ -6,10 +6,10 @@
     "traverse"
   ],
   "version": "1.2.0",
-  "homepage": "https://github.com/azu/txt-ast-traverse/",
+  "homepage": "https://github.com/textlint/txt-ast-traverse/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/azu/txt-ast-traverse.git"
+    "url": "https://github.com/textlint/txt-ast-traverse.git"
   },
   "main": "lib/txt-ast-traverse.js",
   "files": [
@@ -26,7 +26,7 @@
   "author": "azu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/azu/txt-ast-traverse/issues"
+    "url": "https://github.com/textlint/txt-ast-traverse/issues"
   },
   "devDependencies": {
     "commonmark": "^0.15.0",
