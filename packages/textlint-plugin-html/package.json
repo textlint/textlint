@@ -1,0 +1,49 @@
+{
+  "name": "textlint-plugin-html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azu/textlint-plugin-html.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/azu/textlint-plugin-html",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/textlint-plugin-html/issues"
+  },
+  "version": "1.0.0",
+  "description": "textli processsor plugin.",
+  "main": "lib/HTMLProcessor.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha"
+  },
+  "keywords": [
+    "textlint",
+    "plugin",
+    "html",
+    "lint"
+  ],
+  "devDependencies": {
+    "babel": "^5.8.29",
+    "espower-babel": "^3.3.0",
+    "mocha": "^2.3.3",
+    "power-assert": "^1.1.0",
+    "textlint": "^4.2.1",
+    "textlint-rule-no-todo": "^1.0.3"
+  },
+  "dependencies": {
+    "hast": "0.0.2",
+    "structured-source": "^3.0.2",
+    "traverse": "^0.6.6"
+  }
+}
