@@ -1,4 +1,4 @@
-# textlint-tester
+# textlint-tester [![Build Status](https://travis-ci.org/textlint/textlint-tester.svg?branch=master)](https://travis-ci.org/textlint/textlint-tester)
 
 [Mocha](http://mochajs.org/ "Mocha") test helper library for [textlint](https://github.com/textlint/textlint "textlint") rule.
 
