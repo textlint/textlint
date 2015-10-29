@@ -12,8 +12,8 @@
     "url": "https://github.com/azu/textlint-plugin-html/issues"
   },
   "version": "0.1.1",
-  "description": "textli processsor plugin.",
-  "main": "lib/HTMLProcessor.js",
+  "description": "textlint HTML processsor plugin.",
+  "main": "lib/index.js",
   "files": [
     "lib",
     "src"
