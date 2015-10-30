@@ -172,10 +172,10 @@ class TextLintEngine {
             return this.textLint.lintFile(file);
         });
         // warning message: experimental support
-        targetFiles.filter(filePath => {
+        const fileExtList = targetFiles.map(filePath => {
             return path.extname(filePath);
         });
-        if (isExperiment(this.config) && targetFiles.indexOf(".html") !== -1) {
+        if (isExperiment(this.config) && fileExtList.indexOf(".html") !== -1) {
             console.log(`Currently, "HTML" is experimental support.
 
 If you find error and please file issue:
