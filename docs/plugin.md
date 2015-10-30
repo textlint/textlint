@@ -51,9 +51,68 @@ module.exports = {
 };
 ```
 
-## Processor
+## Processor(optional) 
 
-- [ ] Write Pre/PostProcessor https://github.com/textlint/textlint/pull/36
+Plugin has a `Processor` that is optional.
+
+```js
+// index.js
+module.exports = {
+    Processor: require("./SomeProcessor")
+};
+```
+
+`Processor` class defined pre/post process of the file and available file types.
+
+textlint already support `.txt` and `.md`. These are implemented by `Processor`
+
+- [textlint/textlint-plugin-markdown](https://github.com/textlint/textlint-plugin-markdown)
+- [textlint/textlint-plugin-text](https://github.com/textlint/textlint-plugin-text)
+- [textlint/textlint-plugin-html](https://github.com/textlint/textlint-plugin-html)
+
+`Processor` class example code:
+
+```js
+// TextProcessor.js
+import {parse} from "txt-to-ast";
+export default class TextProcessor {
+    constructor(config) {
+        this.config = config;
+    }
+    // available ".ext" list
+    static availableExtensions() {
+        return [
+            ".txt",
+            ".text"
+        ];
+    }
+    // define pre/post process
+    // in other words, parse and generate process
+    processor(ext) {
+        return {
+            preProcess(text, filePath) {
+                return parse(text);
+            },
+            postProcess(messages, filePath) {
+                return {
+                    messages,
+                    filePath: filePath ? filePath : "<text>"
+                };
+            }
+        };
+    }
+}
+```
+
+You can use Processor plugin in the same way a plugin.
+
+```
+{
+    "plugins": [
+        "<Processor Plugin>
+    ]
+}
+```
 
 ## Testing
 
