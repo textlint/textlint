@@ -69,9 +69,10 @@ textlint support `.txt` and `.md`. it is implemented by `Processor`
 - [textlint/textlint-plugin-text](https://github.com/textlint/textlint-plugin-text)
 - [textlint/textlint-plugin-html](https://github.com/textlint/textlint-plugin-html)
 
-`Processor` class example code
+`Processor` class example code:
 
 ```js
+import {parse} from "txt-to-ast";
 export default class TextProcessor {
     constructor(config) {
         this.config = config;
