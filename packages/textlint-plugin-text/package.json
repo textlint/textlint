@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "textlint-rule-no-todo": "^1.0.3",
-    "babel-cli": "^6.0.12",
+    "babel": "^5.0.0",
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.3",
     "power-assert": "^1.1.0",
