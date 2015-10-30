@@ -6,6 +6,7 @@
  */
 const objectAssign = require('object-assign');
 const TraverseController = require('txt-ast-traverse').Controller;
+const traverseController = new TraverseController();
 const RuleContext = require('./rule/rule-context');
 const isMarkdown = require('is-md');
 const path = require('path');
@@ -157,9 +158,9 @@ export default class TextlintCore {
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
-        const controller = new TraverseController();
+
         let that = this;
-        controller.traverse(ast, {
+        traverseController.traverse(ast, {
             enter(node, parent) {
                 Object.defineProperty(node, 'parent', {value: parent});
                 that.ruleContextAgent.emit(node.type, node);
