@@ -7,10 +7,10 @@
 const objectAssign = require('object-assign');
 const TraverseController = require('txt-ast-traverse').Controller;
 const traverseController = new TraverseController();
-const RuleContext = require('./rule/rule-context');
 const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
+const RuleContext = require('./rule/rule-context');
 const RuleContextAgent = require("./RuleContextAgent");
 const debug = require('debug')('textlint:core');
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
@@ -88,7 +88,6 @@ export default class TextlintCore {
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
-
         let that = this;
         traverseController.traverse(ast, {
             enter(node, parent) {

@@ -9,6 +9,13 @@ const path = require('path');
 import assert from "assert";
 import { findFiles } from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
+
+function isExperiment(config) {
+    var formatterName = config.formatterName;
+    if (formatterName === "stylish" || formatterName === "pretty-error" || formatterName === "compact") {
+        return true;
+    }
+}
 class TextLintEngine {
     /**
      * Process files are wanted to lint.
@@ -164,6 +171,17 @@ class TextLintEngine {
         const results = targetFiles.map(file => {
             return this.textLint.lintFile(file);
         });
+        // warning message: experimental support
+        targetFiles.filter(filePath => {
+            return path.extname(filePath);
+        });
+        if (isExperiment(this.config) && targetFiles.indexOf(".html") !== -1) {
+            console.log(`Currently, "HTML" is experimental support.
+
+If you find error and please file issue:
+https://github.com/textlint/textlint/issues/new
+`);
+        }
         return results;
     }
 
