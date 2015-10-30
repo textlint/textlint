@@ -14,9 +14,9 @@ const assert = require('assert');
 const EventEmitter = require('events').EventEmitter;
 const UnionSyntax = require("./parser/union-syntax");
 const debug = require('debug')('textlint:core');
-import {getProcessorMatchExtension} from "./plugins/proccesor-helper";
-import MarkdownProcessor from "./plugins/markdown/MarkdownProcessor";
-import TextProcessor from "./plugins/text/TextProcessor";
+import {getProcessorMatchExtension} from "./util/proccesor-helper";
+import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
+import {Processor as TextProcessor} from "textlint-plugin-text";
 import {Processor as HTMLProcessor} from "textlint-plugin-html";
 // add all the node types as listeners
 function addListenRule(rule, target) {
