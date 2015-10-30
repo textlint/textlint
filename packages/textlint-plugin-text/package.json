@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint-plugin-text/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "text support for textlint",
   "main": "lib/index.js",
   "files": [
