@@ -91,6 +91,9 @@ export default class TextProcessor {
     processor(ext) {
         return {
             preProcess(text, filePath) {
+                // parsed result is a AST object
+                // AST is consist of TxtNode
+                // https://github.com/textlint/textlint/blob/master/docs/txtnode.md
                 return parse(text);
             },
             postProcess(messages, filePath) {
