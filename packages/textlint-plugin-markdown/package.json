@@ -13,7 +13,7 @@
   },
   "version": "1.0.0",
   "description": "Markdown support for textlint.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
     "lib",
     "src"
