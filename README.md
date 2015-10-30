@@ -110,7 +110,7 @@ It mean that use the following format:
 
 ### Plugin
 
-textlint plugin is a set of rules and rulesConfig.
+textlint plugin is a set of rules and rulesConfig or customize parser.
 
 To enable plugin, put the "plugin-name` into `.textlinrc`.
 
