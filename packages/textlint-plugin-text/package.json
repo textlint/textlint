@@ -37,6 +37,7 @@
     "txt-to-ast": "^1.0.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.0.12",
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.3",
     "power-assert": "^1.1.0",

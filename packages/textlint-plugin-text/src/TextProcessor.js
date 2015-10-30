@@ -16,7 +16,6 @@ export default class TextProcessor {
     processor(ext) {
         return {
             preProcess(text, filePath) {
-                console.log(JSON.stringify(parse(text)), null, 4);
                 return parse(text);
             },
             postProcess(messages, filePath) {
