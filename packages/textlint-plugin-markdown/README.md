@@ -9,8 +9,9 @@ Markdown support for [textlint](https://github.com/textlint/textlint "textlint")
 ## Usage
 
 Built-in support on textlint.
-
 No need configuration.
+
+Manually add Markdown plugin to do following:
 
 ```
 {
