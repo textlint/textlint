@@ -33,10 +33,10 @@
     "text"
   ],
   "dependencies": {
-    "textlint-rule-no-todo": "^1.0.3",
     "txt-to-ast": "^1.0.2"
   },
   "devDependencies": {
+    "textlint-rule-no-todo": "^1.0.3",
     "babel-cli": "^6.0.12",
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.3",
