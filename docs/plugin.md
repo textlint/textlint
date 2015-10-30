@@ -64,7 +64,7 @@ module.exports = {
 
 `Processor` class defined pre/post process of the file and available file types.
 
-textlint support `.txt` and `.md`. it is implemented by `Processor`
+textlint already support `.txt` and `.md`. These are implemented by `Processor`
 
 - [textlint/textlint-plugin-markdown](https://github.com/textlint/textlint-plugin-markdown)
 - [textlint/textlint-plugin-text](https://github.com/textlint/textlint-plugin-text)
