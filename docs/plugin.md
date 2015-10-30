@@ -79,7 +79,7 @@ export default class TextProcessor {
     constructor(config) {
         this.config = config;
     }
-    // avaible ".ext" list
+    // available ".ext" list
     static availableExtensions() {
         return [
             ".txt",
