@@ -56,6 +56,7 @@ module.exports = {
 Plugin has a `Processor` that is optional.
 
 ```js
+// index.js
 module.exports = {
     Processor: require("./SomeProcessor")
 };
@@ -72,6 +73,7 @@ textlint support `.txt` and `.md`. it is implemented by `Processor`
 `Processor` class example code:
 
 ```js
+// TextProcessor.js
 import {parse} from "txt-to-ast";
 export default class TextProcessor {
     constructor(config) {
@@ -102,6 +104,15 @@ export default class TextProcessor {
 }
 ```
 
+You can use Processor plugin in the same way a plugin.
+
+```
+{
+    "plugins": [
+        "<Processor Plugin>
+    ]
+}
+```
 
 ## Testing
 
