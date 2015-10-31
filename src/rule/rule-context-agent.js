@@ -43,7 +43,7 @@ export default class RuleContextAgent extends EventEmitter {
         if (!(error instanceof RuleError)) {
             // `error` is a any data.
             let data = error;
-            message["data"] = data;
+            message.data = data;
         }
         this.messages.push(message);
     }
