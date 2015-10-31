@@ -6,7 +6,7 @@ describe("rule-context-test", function () {
     afterEach(function () {
         textlint.resetRules();
     });
-    context("to traverse rule", function () {
+    context("in traverse", function () {
         var callCount;
         beforeEach(function () {
             callCount = 0;
@@ -90,6 +90,26 @@ describe("rule-context-test", function () {
                 });
                 textlint.lintMarkdown(expectedText);
             });
+        });
+    });
+    context("report", function () {
+        it("also report data", function () {
+            var expectedData = {message: "message", key: "value"};
+            textlint.setupRules({
+                // rule-key : rule function(see docs/create-rules.md)
+                "rule-key": function (context) {
+                    return {
+                        [context.Syntax.Str](node){
+                            context.report(node, expectedData);
+                        }
+                    }
+                }
+            });
+            let result = textlint.lintMarkdown("test");
+            assert(result.messages.length === 1);
+            let message = result.messages[0];
+            assert.equal(message.message, expectedData.message);
+            assert.deepEqual(message.data, expectedData);
         });
     });
 });

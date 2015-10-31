@@ -1,6 +1,7 @@
 const EventEmitter = require('events').EventEmitter;
 const UnionSyntax = require("../parser/union-syntax");
 const debug = require('debug')('textlint:rule-context-agent');
+const RuleError = require("./rule-error");
 /**
  * The Agent communicate between RuleContext and Rules.
  */
@@ -24,14 +25,14 @@ export default class RuleContextAgent extends EventEmitter {
      * @param {string} ruleId
      * @param {TxtNode} node
      * @param {number} severity
-     * @param {RuleError} error
+     * @param {RuleError|any} error error is a RuleError instance or any data
      */
     pushReport({ruleId, node, severity, error}) {
         debug('pushReport %s', error);
-        var lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
-        var columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
+        let lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
+        let columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
         // add TextLintMessage
-        var message = {
+        let message = {
             ruleId: ruleId,
             message: error.message,
             // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
@@ -39,6 +40,11 @@ export default class RuleContextAgent extends EventEmitter {
             column: columnNumber + 1,// start with 1(1-based column number)
             severity: severity // it's for compatible ESLint formatter
         };
+        if (!(error instanceof RuleError)) {
+            // `error` is a any data.
+            let data = error;
+            message["data"] = data;
+        }
         this.messages.push(message);
     }
 

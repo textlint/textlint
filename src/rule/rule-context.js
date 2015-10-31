@@ -31,26 +31,26 @@ function getSeverity(ruleConfig) {
     return SeverityLevel.error;
 }
 
-function RuleContext(ruleId, textLint, textLintConfig, ruleConfig) {
+function RuleContext(ruleId, agent, textLintConfig, ruleConfig) {
     Object.defineProperty(this, 'id', {value: ruleId});
     Object.defineProperty(this, 'config', {value: textLintConfig});
     let severity = getSeverity(ruleConfig);
     /**
      *
      * @param {TxtNode} node
-     * @param {RuleError} error
+     * @param {RuleError|any} error error is a RuleError instance or any data
      */
     this.report = function (node, error) {
-        textLint.pushReport({ruleId, node, severity, error});
+        agent.pushReport({ruleId, node, severity, error});
     };
     // Const Values
     Object.defineProperty(this, 'Syntax', {
         get(){
-            return textLint.getSyntax();
+            return agent.getSyntax();
         }
     });
     /** {@link textLint.getSource} */
-    this.getSource = textLint.getSource.bind(textLint);
+    this.getSource = agent.getSource.bind(agent);
     // CustomError object
     this.RuleError = RuleError;
 }
