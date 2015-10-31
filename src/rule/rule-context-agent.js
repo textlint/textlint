@@ -1,6 +1,6 @@
 const EventEmitter = require('events').EventEmitter;
-const UnionSyntax = require("./parser/union-syntax");
-const debug = require('debug')('textlint:RuleContextAgent');
+const UnionSyntax = require("../parser/union-syntax");
+const debug = require('debug')('textlint:rule-context-agent');
 /**
  * The Agent communicate between RuleContext and Rules.
  */

@@ -11,7 +11,7 @@ const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
 const RuleContext = require('./rule/rule-context');
-const RuleContextAgent = require("./RuleContextAgent");
+const RuleContextAgent = require("./rule/rule-context-agent");
 const debug = require('debug')('textlint:core');
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
