@@ -70,17 +70,18 @@ const cli = {
             console.log(options.generateHelp());
         } else {
             debug(`Running on ${ text ? 'text' : 'files' }`);
-            return this.executeWithOptions(currentOptions, text);
+            return this.executeWithOptions(currentOptions, files, text);
         }
         return 0;
     },
     /**
      * execute with cli options
      * @param {object} cliOptions
+     * @param {string[]} files files are file path list
      * @param {string} text?
      * @returns {number} exit status
      */
-    executeWithOptions(cliOptions, text){
+    executeWithOptions(cliOptions, files, text){
         const config = Config.initWithCLIOptions(cliOptions);
         const engine = new TextLintEngine(config);
         const results = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
