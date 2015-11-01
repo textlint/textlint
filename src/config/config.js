@@ -57,12 +57,11 @@ class Config {
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
-        return Config.initWithAutoLoading(options);
+        return this.initWithAutoLoading(options);
     }
 
     // load config and merge options.
     static initWithAutoLoading(options = {}) {
-        // TODO: add `noUseConfig` option
         // configFile is optional
         // => load .textlintrc
         // ===================
