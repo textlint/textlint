@@ -20,11 +20,7 @@
   "files": [
     "bin",
     "lib",
-    "src",
-    "docs",
-    "test",
-    "rules",
-    "index.js"
+    "src"
   ],
   "bin": {
     "textlint": "./bin/textlint.js"

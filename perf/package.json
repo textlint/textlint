@@ -1,11 +1,8 @@
 {
-  "name": "perf",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "perf": "npm rm textlint && npm i -q && node perf.js"
   },
+  "private": true,
   "author": "azu",
   "license": "MIT",
   "dependencies": {
