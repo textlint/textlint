@@ -40,8 +40,8 @@ module.exports = optionator({
             option: 'format',
             alias: 'f',
             type: 'String',
-            default: 'stylish',
-            description: 'Use a specific output format.'
+            description: 'Use a specific output format.',
+            example: '--format pretty-error'
         },
         {
             option: 'version',
