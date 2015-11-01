@@ -70,17 +70,26 @@ const cli = {
             console.log(options.generateHelp());
         } else {
             debug(`Running on ${ text ? 'text' : 'files' }`);
-            const config = Config.initWithCLIOptions(currentOptions);
-            const engine = new TextLintEngine(config);
-            const results = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
-            const output = engine.formatResults(results);
-            if (printResults(output, currentOptions)) {
-                return engine.isErrorResults(results) ? 1 : 0;
-            } else {
-                return 1;
-            }
+            return this.executeWithOptions(currentOptions, text);
         }
         return 0;
+    },
+    /**
+     * execute with cli options
+     * @param {object} cliOptions
+     * @param {string} text?
+     * @returns {number} exit status
+     */
+    executeWithOptions(cliOptions, text){
+        const config = Config.initWithCLIOptions(cliOptions);
+        const engine = new TextLintEngine(config);
+        const results = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
+        const output = engine.formatResults(results);
+        if (printResults(output, cliOptions)) {
+            return engine.isErrorResults(results) ? 1 : 0;
+        } else {
+            return 1;
+        }
     }
 };
 module.exports = cli;
