@@ -11,6 +11,9 @@ import { loadRulesConfig } from "./plugin-loader";
  * @returns {string[]}
  */
 function availableRuleKeys(rulesConfig) {
+    if (!rulesConfig) {
+        return [];
+    }
     return Object.keys(rulesConfig).filter(key => {
         // ignore `false` value
         return typeof rulesConfig[key] === 'object' || rulesConfig[key] === true;
@@ -37,6 +40,8 @@ const defaultOptions = Object.freeze({
     // e.g.) stylish.js => set "stylish"
     formatterName: 'stylish'
 });
+
+// Priority: CLI > Code options > config file
 class Config {
     /**
      * Create config object form command line options
@@ -52,10 +57,32 @@ class Config {
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
-        return new Config(options);
+        return Config.initWithAutoLoading(options);
     }
 
-    ;
+    // load config and merge options.
+    static initWithAutoLoading(options = {}) {
+        // TODO: add `noUseConfig` option
+        // configFile is optional
+        // => load .textlintrc
+        // ===================
+        const configFileRawOptions = loadConfig(options.configFile) || {};
+        const configFileRules = availableRuleKeys(configFileRawOptions.rules);
+        const configFileOptions = {
+            rulesConfig: configFileRawOptions.rules,
+            plugins: configFileRawOptions.plugins
+        };
+        // merge options and configFileOptions
+        // Priority options > configFile
+        const userOptions = objectAssign({}, configFileOptions, options);
+        // @type {string[]} rules rules is key list of rule names
+        const optionRules = options.rules || [];
+        const rules = concat(optionRules, configFileRules);
+        const mergedOptions = objectAssign({}, userOptions, {
+            rules
+        });
+        return new Config(mergedOptions);
+    }
 
     /**
      * initialize with options.
@@ -64,38 +91,26 @@ class Config {
      * @constructor
      */
     constructor(options = {}) {
-        // TODO: add `noUseConfig` option
-        // configFile is optional
-        // => load .textlintrc
-        // ===================
-        const userConfig = loadConfig(options.configFile);
         /**
          * @type {string|null} path to .textlintrc file.
          */
-        this.configFile = userConfig.config ? userConfig.config : options.configFile;
+        this.configFile = options.configFile;
         this.rulesBaseDirectory = options.rulesBaseDirectory ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
-        /**
-         * @type {object} ruleConfig is a object of rules[key] : option.
-         * ruleConfig is a merged object that are rules and pluginRules.
-         */
-        const texlintRulesConfig = userConfig.rules ? userConfig.rules : defaultOptions.rulesConfig;
         // rule names that are defined in ,textlintrc
-        const ruleKeys = availableRuleKeys(texlintRulesConfig);
         /**
-         * @type {string[]}
+         * @type {string[]} rule key list
          */
         this.rules = options.rules ? options.rules : defaultOptions.rules;
-        this.rules = concat(this.rules, ruleKeys);
 
         // => load plugins
         // this.rules has not contain plugin rules
         // =====================
-        this.plugins = userConfig.plugins ? userConfig.plugins : defaultOptions.plugins;
+        this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
         // --plugin
         this.plugins = concat(this.plugins, options.plugins || []);
-        const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, userConfig.plugins);
-        this.rulesConfig = objectAssign({}, texlintRulesConfig, pluginRulesConfig);
+        const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, this.plugins);
+        this.rulesConfig = objectAssign({}, options.rulesConfig, pluginRulesConfig);
         /**
          * @type {string[]}
          */

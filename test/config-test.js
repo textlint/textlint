@@ -14,7 +14,7 @@ describe("config", function () {
     });
     context("when set `configFile`", function () {
         it("should has config.rules", function () {
-            var config = new Config({
+            var config = Config.initWithAutoLoading({
                 configFile: path.join(__dirname, "fixtures", ".textlintrc")
             });
             assert(config.rules.length > 0);
@@ -22,9 +22,29 @@ describe("config", function () {
             assert(config.rulePaths.length === 0);
         });
     });
+    context("when exist `rules` adn `configFile`", function () {
+        it("should not overwrite rules of options by config", function () {
+            var options = {
+                rules: {
+                    // overwrite config file options by this
+                    "no-todo": {
+                        "key": "value"
+                    }
+                }
+            };
+            var config = Config.initWithAutoLoading({
+                rules: Object.keys(options.rules),
+                rulesConfig: options.rules,
+                configFile: path.join(__dirname, "fixtures", ".textlintrc")
+            });
+            assert(config.rules.length > 0);
+            assert.deepEqual(config.rules, ["no-todo"]);
+            assert.deepEqual(config.rulesConfig, options.rules);
+        });
+    });
     context("when has `plugins` in configFile", function () {
         it("should set config's `plugins`", function () {
-            var config = new Config({
+            var config = Config.initWithAutoLoading({
                 rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
                 configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
             });
@@ -33,7 +53,7 @@ describe("config", function () {
             assert(config.plugins[1] === "configurable-plugin");
         });
         it("should has rulesConfig that is loaded from plugins", function () {
-            var config = new Config({
+            var config = Config.initWithAutoLoading({
                 rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
                 configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
             });
