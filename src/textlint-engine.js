@@ -29,7 +29,7 @@ class TextLintEngine {
             // Almost internal use-case
             this.config = options;
         } else {
-            this.config = new Config(options);
+            this.config = Config.initWithAutoLoading(options);
         }
         this.textLint = new TextLintCore(this.config);
         this.ruleManager = new RuleManager();

@@ -24,8 +24,9 @@ describe("textlint-engine-test", function () {
             it("should set directory to config", function () {
                 // Issue : when use Config as argus, have to export `../src/config/config`
                 var Config = require("../src/config/config");
-                var config = new Config();
-                config.rulePaths = [rulesDir];
+                var config = new Config({
+                    rulePaths: [rulesDir]
+                });
                 let engine = new TextLintEngine(config);
                 assert.deepEqual(engine.config.rulePaths, [rulesDir]);
             });
