@@ -34,7 +34,8 @@
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "test:example": "./test/example-test.sh",
-    "test": "mocha test/*.js && jscs src && npm run test:example"
+    "test": "mocha test/*.js && jscs src && npm run test:example",
+    "perf": "cd perf && npm run perf"
   },
   "directories": {
     "test": "test/"
