@@ -1,0 +1,21 @@
+{
+  "name": "perf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "perf": "npm rm textlint && npm i -q && node perf.js"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "dependencies": {
+    "shelljs": "^0.5.3",
+    "textlint": "file:./..",
+    "textlint-plugin-jtf-style": "^0.8.5",
+    "textlint-rule-max-ten": "^1.1.0",
+    "textlint-rule-no-mix-dearu-desumasu": "^1.0.1",
+    "textlint-rule-no-start-duplicated-conjunction": "^1.0.3",
+    "textlint-rule-prh": "^2.0.0",
+    "textlint-rule-spellcheck-tech-word": "^4.0.1"
+  }
+}

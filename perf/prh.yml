@@ -1,0 +1,65 @@
+version: 1
+rules:
+
+# 大文字小文字全角半角の統一
+  - expected: Cookie
+# 以下と等価 正規表現には強制でgフラグが付く
+# - expected: Cookie
+#   pattern: "/[CcＣｃ][OoＯｏ][OoＯｏ][KkＫｋ][IiＩｉ][EeＥｅ]/g"
+#   options:
+#     wordBoundary: false
+#   specs: []
+
+# 正規表現で置換もできる
+  - expected: ECMAScript $1
+    pattern: /ECMAScript([0-9]+)/
+# 変換結果についてテストも書ける
+  - expected: jQuery
+    specs:
+      - from: jquery
+        to:   jQuery
+      - from: ＪＱＵＥＲＹ
+        to:   jQuery
+
+# 変換結果が期待通りではなかった場合、ルールのロードに失敗する
+# - expected: JavaScript
+#   specs:
+#     - from: JAVASCRIPT
+#       to:   JavaScprit # この場合はテスト側が間違ってる！
+# Error: JavaScript spec failed. "JAVASCRIPT", expected "JavaScprit", but got "JavaScript", /[JjＪｊ][AaＡａ][VvＶｖ][AaＡａ][SsＳｓ][CcＣｃ][RrＲｒ][IiＩｉ][PpＰｐ][TtＴｔ]/g
+
+# 表現の統一を図る
+  - expected: デフォルト
+    pattern:  ディフォルト
+
+# patternは複数記述可能
+  - expected: ハードウェア
+    pattern:
+      - ハードウエアー
+      - ハードウエア   # 正規表現に変換する都合上短いものを後に書いたほうがよい
+      - ハードウェアー
+
+# patternには正規表現が利用可能 否定戻り先読みが欲しい…(JSにはない
+  - expected: $1ソフトウェア
+    pattern:  /([^経])ソフトウエア/
+    specs:
+      # 普通に変換
+      - from: 広義のソフトウエア
+        to:   広義のソフトウェア
+      # 日経ソフトウエア(書名)は変換しない
+      - from: 日経ソフトウエア
+        to:   日経ソフトウエア
+
+# 単語境界の区別
+  - expected: js
+  # pattern: "/\b[JjＪｊ][SsＳｓ]\b/g" # と等価 \b が前後に付与される
+    options:
+      wordBoundary: true
+    specs:
+      - from: foo JS bar
+        to:   foo js bar
+      - from: foo altJS bar
+        to:   foo altJS bar
+      # 日本語+単語境界の仕様は自分で調べてね…！
+      - from: 今日もJS祭り
+        to:   今日もjs祭り
