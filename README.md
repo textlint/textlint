@@ -244,7 +244,7 @@ Please see docs/
 
 MIT and
 
-`lib/load-rules.js`, `util/traverse.js`, `cli.js`  are:
+`lib/load-rules.js`, `util/traverse.js`, `cli.js` and `timing.js` are:
 
     ESLint
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
@@ -262,4 +262,4 @@ via [Natural Language Checking with Program Checking Tools](http://www.slideshar
 
 ## Acknowledgements
 
-Thanks to [ESLint](http://eslint.org/ "ESLint").
+Many thanks to [ESLint](http://eslint.org/ "ESLint").
