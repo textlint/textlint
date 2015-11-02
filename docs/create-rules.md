@@ -336,3 +336,22 @@ Example rules:
 
 - [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo")
 - [azu/textlint-rule-spellcheck-tech-word](https://github.com/azu/textlint-rule-spellcheck-tech-word "azu/textlint-rule-spellcheck-tech-word")
+
+## Performance
+
+### Rule Performance
+
+textlint has a built-in method to track performance of individual rules.
+Setting the `TIMING=1` environment variable will trigger the display.
+It show their individual running time and relative performance impact as a percentage of total rule processing time.
+
+```
+$ TIMING=1 textlint README.md
+Rule                            | Time (ms) | Relative
+:-------------------------------|----------:|--------:
+spellcheck-tech-word            |   124.277 |    70.7%
+prh                             |    18.419 |    10.5%
+no-mix-dearu-desumasu           |    13.965 |     7.9%
+max-ten                         |    13.246 |     7.5%
+no-start-duplicated-conjunction |     5.911 |     3.4%
+```

@@ -13,14 +13,17 @@ const assert = require('assert');
 const RuleContext = require('./rule/rule-context');
 const RuleContextAgent = require("./rule/rule-context-agent");
 const debug = require('debug')('textlint:core');
+const timing = require("./util/timing");
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
 import {Processor as HTMLProcessor} from "textlint-plugin-html";
 // add all the node types as listeners
-function addListenRule(rule, target) {
+function addListenRule(key, rule, target) {
     Object.keys(rule).forEach(nodeType => {
-        target.on(nodeType, rule[nodeType]);
+        target.on(nodeType, timing.enabled
+            ? timing.time(key, rule[nodeType])
+            : rule[nodeType]);
     });
 }
 
@@ -66,7 +69,7 @@ export default class TextlintCore {
             try {
                 var ruleContext = new RuleContext(key, this.ruleContextAgent, this.config, ruleConfig);
                 let rule = ruleCreator(ruleContext, ruleConfig);
-                addListenRule(rule, this.ruleContextAgent);
+                addListenRule(key, rule, this.ruleContextAgent);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
                 throw ex;
