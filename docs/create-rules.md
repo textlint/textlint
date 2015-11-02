@@ -85,7 +85,8 @@ RuleContext object has following property:
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
 - `getSource(<node>)`  is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
-
+- `getFilePath()` return file path that is linting target.
+    - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
 
 See also [Working with Rules](http://eslint.org/docs/developer-guide/working-with-rules.html "Working with Rules") on ESLint.
 
