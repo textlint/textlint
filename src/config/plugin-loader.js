@@ -17,6 +17,7 @@ export function loadRulesConfig(baseDir = ".", pluginNames = []) {
             debug(`${pluginName} has not rulesConfig`);
             return;
         }
+        // plugin/keyで設定しないと意味ないのでは??
         pluginRulesConfig = ObjectAssign({}, pluginRulesConfig, plugin.rulesConfig);
     });
     return pluginRulesConfig;

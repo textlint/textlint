@@ -67,18 +67,21 @@ class Config {
         // ===================
         const configFileRawOptions = loadConfig(options.configFile) || {};
         const configFileRules = availableRuleKeys(configFileRawOptions.rules);
-        const configFileOptions = {
-            rulesConfig: configFileRawOptions.rules,
-            plugins: configFileRawOptions.plugins
-        };
-        // merge options and configFileOptions
-        // Priority options > configFile
-        const userOptions = objectAssign({}, configFileOptions, options);
+        const configFilePlugins = configFileRawOptions.plugins || [];
+        const configFileRulesConfig = configFileRawOptions.rules;
         // @type {string[]} rules rules is key list of rule names
         const optionRules = options.rules || [];
+        const optionRulesConfig = options.rulesConfig || {};
+        const optionPlugins = options.plugins || [];
+        // merge options and configFileOptions
+        // Priority options > configFile
         const rules = concat(optionRules, configFileRules);
-        const mergedOptions = objectAssign({}, userOptions, {
-            rules
+        const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
+        const plugins = concat(optionPlugins, configFilePlugins);
+        const mergedOptions = objectAssign({}, options, {
+            rules,
+            rulesConfig,
+            plugins
         });
         return new Config(mergedOptions);
     }
@@ -106,8 +109,6 @@ class Config {
         // this.rules has not contain plugin rules
         // =====================
         this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
-        // --plugin
-        this.plugins = concat(this.plugins, options.plugins || []);
         const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, this.plugins);
         this.rulesConfig = objectAssign({}, options.rulesConfig, pluginRulesConfig);
         /**
@@ -139,4 +140,6 @@ class Config {
         return r;
     }
 }
+Config.RuleNamePrefix = "textlint-rule-";
+Config.PluginNamePrefix = "textlint-plugin-";
 module.exports = Config;
