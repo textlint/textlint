@@ -86,7 +86,7 @@ export default class TextlintCore {
 
     _lintByProcessor(processor, text, ext, filePath) {
         assert(processor, `processor is not found for ${ext}`);
-        this.ruleContextAgent.resetState(text);
+        this.ruleContextAgent.resetState(text, filePath);
         const {preProcess, postProcess} = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             `processor should implement {preProcess, postProcess}`);

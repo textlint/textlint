@@ -13,10 +13,12 @@ export default class RuleContextAgent extends EventEmitter {
         this.setMaxListeners(0);
         this.messages = [];
         this.currentText = text || "";
+        this.currentFilePath = null;
     }
 
-    resetState(text = "") {
+    resetState(text = "", filePath) {
         this.currentText = text;
+        this.currentFilePath = filePath;
         this.messages = [];
     }
 
@@ -51,6 +53,10 @@ export default class RuleContextAgent extends EventEmitter {
     // TODO: allow to use Syntax which is defined by Plugin Processor.
     getSyntax() {
         return UnionSyntax;
+    }
+
+    getFilePath() {
+        return this.currentFilePath;
     }
 
     /**

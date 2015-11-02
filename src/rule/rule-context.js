@@ -49,7 +49,7 @@ function RuleContext(ruleId, agent, textLintConfig, ruleConfig) {
             return agent.getSyntax();
         }
     });
-    /** {@link textLint.getSource} */
+    this.getFilePath = agent.getFilePath.bind(agent);
     this.getSource = agent.getSource.bind(agent);
     // CustomError object
     this.RuleError = RuleError;
