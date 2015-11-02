@@ -118,7 +118,6 @@ class TextLintEngine {
         }
         debug('Loading rules from plugin: %s', pkgPath);
         const plugin = require(pkgPath.normalize());
-        assert(plugin.hasOwnProperty("rules"), "plugins should has `rules` object");
         this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
         return plugin;
     }
