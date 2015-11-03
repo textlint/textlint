@@ -11,10 +11,14 @@ export function mapRulesConfig(rulesConfig, pluginName) {
     });
     return mapped;
 }
-export function loadRulesConfig(baseDir = ".", pluginNames = []) {
+// load rulesConfig from plugins
+export default function loadRulesConfigFromPlugins(pluginNames = [], {
+    baseDir = ".",
+    pluginPrefix
+    }) {
     var pluginRulesConfig = {};
     pluginNames.forEach(pluginName => {
-        const textlintRuleName = `textlint-plugin-${ pluginName }`;
+        const textlintRuleName = `${pluginPrefix}${ pluginName }`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
         if (!pkgPath) {
             throw new ReferenceError(`${ pluginName } is not found`);

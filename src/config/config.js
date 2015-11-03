@@ -4,7 +4,7 @@ const path = require('path');
 const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
-import { loadRulesConfig } from "./plugin-loader";
+import loadRulesConfigFromPlugins from "./plugin-loader";
 /**
  * Get rule keys from `.textlintrc` config object.
  * @param rulesConfig
@@ -44,6 +44,35 @@ const defaultOptions = Object.freeze({
 // Priority: CLI > Code options > config file
 class Config {
     /**
+     * @return {string} rc config filename
+     * it's name use as `.<name>rc`
+     */
+    static get CONFIG_FILE_NAME() {
+        return "textlint";
+    }
+
+    /**
+     * @return {string} config package prefix
+     */
+    static get CONFIG_PACKAGE_PREFIX() {
+        return "textlint-config-"
+    }
+
+    /**
+     * @return {string} rule package's name prefix
+     */
+    static get RULE_NAME_PREFIX() {
+        return "textlint-rule-"
+    }
+
+    /**
+     * @return {string} plugins package's name prefix
+     */
+    static get PLUGIN_NAME_PREFIX() {
+        return "textlint-plugin-"
+    }
+
+    /**
      * Create config object form command line options
      * See options.js
      * @param {object} cliOptions the options is command line option object. @see options.js
@@ -65,7 +94,10 @@ class Config {
         // configFile is optional
         // => load .textlintrc
         // ===================
-        const configFileRawOptions = loadConfig(options.configFile) || {};
+        const configFileRawOptions = loadConfig(options.configFile, {
+                configPackagePrefix: this.CONFIG_PACKAGE_PREFIX,
+                configFileName: this.CONFIG_FILE_NAME
+            }) || {};
         const configFileRules = availableRuleKeys(configFileRawOptions.rules);
         const configFilePlugins = configFileRawOptions.plugins || [];
         const configFileRulesConfig = configFileRawOptions.rules;
@@ -109,7 +141,10 @@ class Config {
         // this.rules has not contain plugin rules
         // =====================
         this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
-        const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, this.plugins);
+        const pluginRulesConfig = loadRulesConfigFromPlugins(this.plugins, {
+            baseDir: this.rulesBaseDirectory,
+            pluginPrefix: this.constructor.PLUGIN_NAME_PREFIX
+        });
         this.rulesConfig = objectAssign({}, pluginRulesConfig, options.rulesConfig);
         /**
          * @type {string[]}
@@ -140,6 +175,4 @@ class Config {
         return r;
     }
 }
-Config.RuleNamePrefix = "textlint-rule-";
-Config.PluginNamePrefix = "textlint-plugin-";
 module.exports = Config;

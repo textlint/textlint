@@ -25,6 +25,10 @@ class TextLintEngine {
      * @constructor
      */
     constructor(options) {
+        /**
+         * @type {Config}
+         */
+        this.config = null;
         if (options instanceof Config) {
             // Almost internal use-case
             this.config = options;
@@ -109,9 +113,11 @@ class TextLintEngine {
      */
     loadPlugin(pluginName) {
         // TODO: ignore already loaded plugin
-        const pluginNameWithoutPrefix = pluginName.replace(/^textlint\-plugin\-/, '');
+        const PLUGIN_NAME_PREFIX = this.config.constructor.PLUGIN_NAME_PREFIX;
+        const prefixMatch = new RegExp("^" + PLUGIN_NAME_PREFIX);
+        const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, '');
         const baseDir = this.config.rulesBaseDirectory || '';
-        const textlintRuleName = `textlint-plugin-${ pluginName }`;
+        const textlintRuleName = `${PLUGIN_NAME_PREFIX}${ pluginName }`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
         if (!pkgPath) {
             throw new ReferenceError(`plugin: ${ pluginName } is not found`);
@@ -131,12 +137,14 @@ class TextLintEngine {
     loadRule(ruleName) {
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
-        const definedRuleName = ruleName.replace(/^textlint\-rule\-/, '');
+        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
+        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const definedRuleName = ruleName.replace(prefixMatch, '');
         if (this.ruleManager.isDefinedRule(definedRuleName)) {
             return;
         }
         const baseDir = this.config.rulesBaseDirectory || '';
-        const textlintRuleName = `textlint-rule-${ ruleName }`;
+        const textlintRuleName = `${RULE_NAME_PREFIX}${ ruleName }`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));
         if (!pkgPath) {
             throw new ReferenceError(`rule: ${ ruleName } is not found`);
