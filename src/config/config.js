@@ -55,21 +55,21 @@ class Config {
      * @return {string} config package prefix
      */
     static get CONFIG_PACKAGE_PREFIX() {
-        return "textlint-config-"
+        return "textlint-config-";
     }
 
     /**
      * @return {string} rule package's name prefix
      */
     static get RULE_NAME_PREFIX() {
-        return "textlint-rule-"
+        return "textlint-rule-";
     }
 
     /**
      * @return {string} plugins package's name prefix
      */
     static get PLUGIN_NAME_PREFIX() {
-        return "textlint-plugin-"
+        return "textlint-plugin-";
     }
 
     /**
