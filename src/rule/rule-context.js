@@ -41,7 +41,12 @@ function RuleContext(ruleId, agent, textLintConfig, ruleConfig) {
      * @param {RuleError|any} error error is a RuleError instance or any data
      */
     this.report = function (node, error) {
-        agent.pushReport({ruleId, node, severity, error});
+        if (error instanceof RuleError) {
+            agent.pushReport({ruleId, node, severity, error});
+        } else {
+            let level = error.severity || SeverityLevel.info;
+            agent.pushReport({ruleId, node, severity: level, error});
+        }
     };
     // Const Values
     Object.defineProperty(this, 'Syntax', {
