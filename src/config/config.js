@@ -110,7 +110,7 @@ class Config {
         // =====================
         this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
         const pluginRulesConfig = loadRulesConfig(this.rulesBaseDirectory, this.plugins);
-        this.rulesConfig = objectAssign({}, options.rulesConfig, pluginRulesConfig);
+        this.rulesConfig = objectAssign({}, pluginRulesConfig, options.rulesConfig);
         /**
          * @type {string[]}
          */

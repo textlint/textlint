@@ -67,6 +67,20 @@ describe("config", function () {
             assert.strictEqual(config.rulesConfig[`example/${exampleRule}`], exampleRulesOptions);
             assert.deepEqual(config.rulesConfig[`configurable-plugin/${configurableRule}`], configurableRulesOptions);
         });
+        context("when textlintrc and plugin has same RulesOptions[key]", function () {
+            it("should overwrite plugin's option by textlintrc'S options", function () {
+                var config = Config.initWithAutoLoading({
+                    rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
+                    configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
+                });
+                const pluginName = "configurable-plugin";
+                const ruleName = "overwrited-rule";
+                const originalRuleConfig = require("./fixtures/plugins/configurable-plugin").rulesConfig[ruleName];
+                const actualRuleConfig = config.rulesConfig[`${pluginName}/${ruleName}`];
+                assert.notEqual(actualRuleConfig, originalRuleConfig);
+                assert(actualRuleConfig === false); // overwrite by config file
+            });
+        });
     });
     describe("#initWithCLIOptions", function () {
         context("when init with command line options", function () {
