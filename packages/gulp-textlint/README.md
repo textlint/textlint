@@ -10,7 +10,7 @@ gulp plugin for [textlint](https://github.com/azu/textlint).
 
 ```js
 var gulp = require('gulp');
-var texlint = require('gulp-textlint');
+var textlint = require('gulp-textlint');
 
 gulp.task('textlint', function() {
   return gulp.src('./path/to/src/**/*.md')
