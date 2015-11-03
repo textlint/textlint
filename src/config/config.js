@@ -115,7 +115,7 @@ class Config {
             rulesConfig,
             plugins
         });
-        return new Config(mergedOptions);
+        return new this(mergedOptions);
     }
 
     /**
