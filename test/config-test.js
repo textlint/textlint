@@ -58,14 +58,14 @@ describe("config", function () {
                 configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
             });
             const exampleRule = "example-rule";
-            var examplePlugin = require("./fixtures/plugins/textlint-plugin-example");
+            const examplePlugin = require("./fixtures/plugins/textlint-plugin-example");
             const exampleRulesOptions = examplePlugin.rulesConfig[exampleRule];
             const configurableRule = "configurable-rule";
-            var configurablePlugin = require("./fixtures/plugins/configurable-plugin");
+            const configurablePlugin = require("./fixtures/plugins/configurable-plugin");
             const configurableRulesOptions = configurablePlugin.rulesConfig[configurableRule];
-            // "example-rule" : true
-            assert.strictEqual(config.rulesConfig[exampleRule], exampleRulesOptions);
-            assert.deepEqual(config.rulesConfig[configurableRule], configurableRulesOptions);
+            // "<plugin>/example-rule" : true
+            assert.strictEqual(config.rulesConfig[`example/${exampleRule}`], exampleRulesOptions);
+            assert.deepEqual(config.rulesConfig[`configurable-plugin/${configurableRule}`], configurableRulesOptions);
         });
     });
     describe("#initWithCLIOptions", function () {
