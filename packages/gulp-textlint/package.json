@@ -15,8 +15,7 @@
   "homepage": "https://github.com/nakajmg/gulp-textlint",
   "dependencies": {
     "gulp-util": "^3.0.6",
-    "textlint": "^3.3.2",
-    "textlint-rule-prh": "^1.0.3",
+    "textlint": "^4.7.5",
     "through2": "^2.0.0"
   }
 }
