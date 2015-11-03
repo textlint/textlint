@@ -4,6 +4,13 @@ const tryResolve = require('try-resolve');
 const ObjectAssign = require("object-assign");
 const debug = require('debug')('textlint:plugin-loader');
 const path = require("path");
+export function mapRulesConfig(rulesConfig, pluginName) {
+    let mapped = {};
+    Object.keys(rulesConfig).forEach(key => {
+        mapped[`${pluginName}/${key}`] = rulesConfig[key];
+    });
+    return mapped;
+}
 export function loadRulesConfig(baseDir = ".", pluginNames = []) {
     var pluginRulesConfig = {};
     pluginNames.forEach(pluginName => {
@@ -17,8 +24,8 @@ export function loadRulesConfig(baseDir = ".", pluginNames = []) {
             debug(`${pluginName} has not rulesConfig`);
             return;
         }
-        // plugin/keyで設定しないと意味ないのでは??
-        pluginRulesConfig = ObjectAssign({}, pluginRulesConfig, plugin.rulesConfig);
+        // set config of <rule> to "<plugin>/<rule>"
+        ObjectAssign(pluginRulesConfig, mapRulesConfig(plugin.rulesConfig, pluginName));
     });
     return pluginRulesConfig;
 }

@@ -2,5 +2,8 @@
   "plugins": [
     "example",
     "configurable-plugin"
-  ]
+  ],
+  "rules": {
+    "configurable-plugin/overwrited-rule": false
+  }
 }
