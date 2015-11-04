@@ -1,0 +1,80 @@
+version: 1
+
+# もし、もっと別なルールを使いたい時は以下のURLを参照して真似してください。
+# https://github.com/vvakame/prh/tree/master/misc
+# おすすめは techbooster.yml です。
+
+# 別の設定ファイルを読み込み、mergeすることもできます。
+imports:
+  # - ./techbooster.yml
+
+rules:
+
+  # 大文字小文字全角半角の統一
+  - expected: Cookie
+  # 以下と等価 正規表現には強制でgフラグが付く
+  # - expected: Cookie
+  #   pattern: "/[CcＣｃ][OoＯｏ][OoＯｏ][KkＫｋ][IiＩｉ][EeＥｅ]/g"
+  #   options:
+  #     wordBoundary: false
+  #   specs: []
+
+  # 変換結果についてテストも書ける
+  - expected: jQuery
+    specs:
+      - from: jquery
+        to:   jQuery
+      - from: ＪＱＵＥＲＹ
+        to:   jQuery
+
+  # 変換結果が期待通りではなかった場合、ルールのロードに失敗する つまり、ルールのテストが書ける
+  # - expected: JavaScript
+  #   specs:
+  #     - from: JAVASCRIPT
+  #       to:   JavaScprit # この場合はテスト側が間違ってる！
+  # Error: JavaScript spec failed. "JAVASCRIPT", expected "JavaScprit", but got "JavaScript", /[JjＪｊ][AaＡａ][VvＶｖ][AaＡａ][SsＳｓ][CcＣｃ][RrＲｒ][IiＩｉ][PpＰｐ][TtＴｔ]/g
+
+  # 表現の統一を図る
+  - expected: デフォルト
+    pattern:  ディフォルト
+
+  # patternは複数記述可能 patterns としてもOK
+  - expected: ハードウェア
+    patterns:
+      - ハードウエアー # 正規表現に変換する都合上、より長いものを先に書いたほうがよい
+      - ハードウェアー
+      - ハードウエア
+
+  # patternには正規表現が利用可能
+  - expected: （$1）
+    pattern:  /\(([^)]+)\)/
+    specs:
+      # 半角括弧を全角括弧へ
+      - from: (そのとおり)
+        to:   （そのとおり）
+
+  # 否定戻り先読みが欲しいがJSにはない… regexpMustEmptyで、特定のキャプチャグループが空であることを指定して代用とする
+  - expected: ソフトウェア
+    pattern:  /(日経)?ソフトウエア/
+    regexpMustEmpty: $1
+    specs:
+      # 普通に変換
+      - from: 広義のソフトウエア
+        to:   広義のソフトウェア
+      # 日経ソフトウエア(書名)は変換しない
+      - from: 日経ソフトウエア
+        to:   日経ソフトウエア
+
+  # 単語境界の区別
+  - expected: js
+  # pattern: "/\b[JjＪｊ][SsＳｓ]\b/g" # と等価 \b が前後に付与される
+    options:
+      wordBoundary: true
+    specs:
+      - from: foo JS bar
+        to:   foo js bar
+      - from: foo altJS bar
+        to:   foo altJS bar
+      # 日本語+単語境界の仕様は自分で調べてね…！
+      - from: 今日もJS祭り
+        to:   今日もjs祭り

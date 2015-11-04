@@ -12,6 +12,9 @@
   "bugs": {
     "url": "https://github.com/textlint/gulp-textlint/issues"
   },
+  "scripts": {
+    "test": "cd example && npm test"
+  },
   "homepage": "https://github.com/textlint/gulp-textlint",
   "dependencies": {
     "gulp-util": "^3.0.6",

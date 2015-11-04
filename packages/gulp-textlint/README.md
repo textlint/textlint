@@ -1,4 +1,4 @@
-# gulp-textlint
+# gulp-textlint [![Build Status](https://travis-ci.org/textlint/gulp-textlint.svg?branch=master)](https://travis-ci.org/textlint/gulp-textlint)
 
 gulp plugin for [textlint](https://github.com/azu/textlint).
 
