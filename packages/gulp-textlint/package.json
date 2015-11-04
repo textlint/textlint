@@ -5,14 +5,14 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nakajmg/gulp-textlint.git"
+    "url": "https://github.com/textlint/gulp-textlint.git"
   },
   "author": "nakajmg",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nakajmg/gulp-textlint/issues"
+    "url": "https://github.com/textlint/gulp-textlint/issues"
   },
-  "homepage": "https://github.com/nakajmg/gulp-textlint",
+  "homepage": "https://github.com/textlint/gulp-textlint",
   "dependencies": {
     "gulp-util": "^3.0.6",
     "textlint": "^4.7.5",
