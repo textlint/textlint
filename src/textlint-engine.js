@@ -195,7 +195,7 @@ If you find error and please file issue:
 https://github.com/textlint/textlint/issues/new
 `);
         }
-        return results;
+        return Promise.all(results);
     }
 
     /**
@@ -206,8 +206,9 @@ https://github.com/textlint/textlint/issues/new
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
-        const results = [this.textLint.lintText(text, ext)];
-        return results;
+        return this.textLint.lintText(text, ext).then(result => {
+            return [result];
+        });
     }
 
     /**
