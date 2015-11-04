@@ -92,22 +92,31 @@ export default class TextlintCore {
             `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
         let that = this;
+        let promiseQueue = [];
         traverseController.traverse(ast, {
             enter(node, parent) {
                 Object.defineProperty(node, 'parent', {value: parent});
-                that.ruleContextAgent.emit(node.type, node);
+                let promise = that.ruleContextAgent.emit(node.type, node);
+                if(promise) {
+                    promiseQueue.push(promise);
+                }
             },
             leave(node) {
-                that.ruleContextAgent.emit(`${ node.type }:exit`, node);
+                let promise = that.ruleContextAgent.emit(`${ node.type }:exit`, node);
+                if(promise) {
+                    promiseQueue.push(promise);
+                }
             }
         });
-        let messages = this.ruleContextAgent.messages;
-        let result = postProcess(messages, filePath);
-        if (result.filePath == null) {
-            result.filePath = `<Unkown${ext}>`;
-        }
-        assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
-        return result;
+        return Promise.all(promiseQueue).then(() => {
+            let messages = this.ruleContextAgent.messages;
+            let result = postProcess(messages, filePath);
+            if (result.filePath == null) {
+                result.filePath = `<Unkown${ext}>`;
+            }
+            assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+            return result;
+        });
     }
 
     /**

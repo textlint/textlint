@@ -1,4 +1,4 @@
-const EventEmitter = require('events').EventEmitter;
+const EventEmitter = require("carrack");
 const UnionSyntax = require("../parser/union-syntax");
 const debug = require('debug')('textlint:rule-context-agent');
 const RuleError = require("./rule-error");
