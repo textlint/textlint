@@ -10,11 +10,13 @@ if (useStdIn) {
     process.stdin.pipe(concat({encoding: "string"}, function (text) {
         cli.execute(process.argv, text).then(function (code) {
             exitCode = code;
+            process.exit(exitCode);
         });
     }));
 } else {
     cli.execute(process.argv).then(function (code) {
         exitCode = code;
+        process.exit(exitCode);
     });
 }
 
