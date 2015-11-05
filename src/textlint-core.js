@@ -95,17 +95,20 @@ export default class TextlintCore {
         let promiseQueue = [];
         traverseController.traverse(ast, {
             enter(node, parent) {
-                Object.defineProperty(node, 'parent', {value: parent});
-                let promise = that.ruleContextAgent.emit(node.type, node);
-                if(promise) {
+                const type = node.type;
+                if (that.ruleContextAgent.listenerCount(type) > 0) {
+                    Object.defineProperty(node, 'parent', {value: parent});
+                    let promise = that.ruleContextAgent.emit(type, node);
                     promiseQueue.push(promise);
                 }
             },
             leave(node) {
-                let promise = that.ruleContextAgent.emit(`${ node.type }:exit`, node);
-                if(promise) {
+                const type = `${node.type}:exit`;
+                if (that.ruleContextAgent.listenerCount(type) > 0) {
+                    let promise = that.ruleContextAgent.emit(type, node);
                     promiseQueue.push(promise);
                 }
+
             }
         });
         return Promise.all(promiseQueue).then(() => {
