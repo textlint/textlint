@@ -3,6 +3,9 @@
   "description": "gulp plugin for textlint",
   "version": "0.0.1",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/gulp-textlint.git"
