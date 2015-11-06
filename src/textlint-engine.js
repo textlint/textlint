@@ -7,6 +7,7 @@ const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
 const path = require('path');
 import assert from "assert";
+import { isPluginRuleKey } from "./util/plugin-uil";
 import { findFiles } from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
 
@@ -140,6 +141,11 @@ class TextLintEngine {
         const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
         const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
         const definedRuleName = ruleName.replace(prefixMatch, '');
+        // ignore plugin's rule
+        if (isPluginRuleKey(definedRuleName)) {
+            console.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
+            return;
+        }
         if (this.ruleManager.isDefinedRule(definedRuleName)) {
             return;
         }

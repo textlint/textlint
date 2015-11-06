@@ -4,6 +4,7 @@ const path = require('path');
 const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
+import {isPluginRuleKey} from "../util/plugin-uil";
 import loadRulesConfigFromPlugins from "./plugin-loader";
 /**
  * Get rule keys from `.textlintrc` config object.
@@ -15,6 +16,10 @@ function availableRuleKeys(rulesConfig) {
         return [];
     }
     return Object.keys(rulesConfig).filter(key => {
+        // `<plugin>/<rule-key>` should ignored
+        if (isPluginRuleKey(key)) {
+            return false;
+        }
         // ignore `false` value
         return typeof rulesConfig[key] === 'object' || rulesConfig[key] === true;
     });
@@ -134,6 +139,8 @@ class Config {
         // rule names that are defined in ,textlintrc
         /**
          * @type {string[]} rule key list
+         * but, plugins's rules are not contained in `rules`
+         * plugins's rule are loaded in TextLintEngine
          */
         this.rules = options.rules ? options.rules : defaultOptions.rules;
 
