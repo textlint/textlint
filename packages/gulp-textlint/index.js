@@ -17,6 +17,7 @@ module.exports = function(options) {
       results = textlint.executeOnFiles(filePaths);
       if (textlint.isErrorResults(results)) {
         gutil.log(textlint.formatResults(results));
+        this.emit('error', new gutil.PluginError('textlint','Lint failed.'));
       }
     }
     catch(e) {
