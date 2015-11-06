@@ -43,20 +43,22 @@ describe("config", function () {
         });
     });
     context("when has `plugins` in configFile", function () {
-        it("should set config's `plugins`", function () {
-            var config = Config.initWithAutoLoading({
+        let config;
+        beforeEach(function () {
+            config = Config.initWithAutoLoading({
                 rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
                 configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
             });
+        });
+        it("should set config's `plugins`", function () {
             assert(config.plugins.length === 2);
             assert(config.plugins[0] === "example");
             assert(config.plugins[1] === "configurable-plugin");
         });
+        it("should not set plugin's rule to config's `rules`", function () {
+            assert(config.rules.length === 0);
+        });
         it("should has rulesConfig that is loaded from plugins", function () {
-            var config = Config.initWithAutoLoading({
-                rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
-                configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
-            });
             const exampleRule = "example-rule";
             const examplePlugin = require("./fixtures/plugins/textlint-plugin-example");
             const exampleRulesOptions = examplePlugin.rulesConfig[exampleRule];
@@ -68,11 +70,7 @@ describe("config", function () {
             assert.deepEqual(config.rulesConfig[`configurable-plugin/${configurableRule}`], configurableRulesOptions);
         });
         context("when textlintrc and plugin has same RulesOptions[key]", function () {
-            it("should overwrite plugin's option by textlintrc'S options", function () {
-                var config = Config.initWithAutoLoading({
-                    rulesBaseDirectory: path.join(__dirname, "fixtures", "plugins"),
-                    configFile: path.join(__dirname, "fixtures", "plugin.textlintrc")
-                });
+            it("should overwrite plugin's option by textlintrc's options", function () {
                 const pluginName = "configurable-plugin";
                 const ruleName = "overwrited-rule";
                 const originalRuleConfig = require("./fixtures/plugins/configurable-plugin").rulesConfig[ruleName];
