@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
+import {testValid, testInvalid} from "./test-util";
 import {TextLintCore} from "textlint";
-import assert from "assert";
 const describe = (typeof global.describe === "function") ? global.describe : function (text, method) {
     return method.apply(this);
 };
@@ -9,25 +9,19 @@ const describe = (typeof global.describe === "function") ? global.describe : fun
 const it = (typeof global.it === "function") ? global.it : function (text, method) {
     return method.apply(this);
 };
+
 export default class TextLintTester {
     testValidPattern(ruleName, rule, valid) {
         let text = valid.text || valid;
+        let options = valid.options || {};
+        var textlint = new TextLintCore();
+        textlint.setupRules({
+            [ruleName]: rule
+        }, {
+            [ruleName]: options
+        });
         it(text, ()=> {
-            let options = valid.options || {};
-            assert.strictEqual(typeof text, "string", "valid should has string of text.");
-            var textlint = new TextLintCore();
-            textlint.setupRules({
-                [ruleName]: rule
-            }, {
-                [ruleName]: options
-            });
-            var results = textlint.lintMarkdown(text);
-            assert.strictEqual(results.messages.length, 0, `valid: should have no errors but had Error results:
-===Text===:
-${text}
-
-==Result==:
-${JSON.stringify(results, null, 4)}`);
+            testValid(textlint, text);
         });
     }
 
@@ -35,62 +29,43 @@ ${JSON.stringify(results, null, 4)}`);
         let text = invalid.text;
         let options = invalid.options || {};
         let errors = invalid.errors;
+        var textlint = new TextLintCore();
+        textlint.setupRules({
+            [ruleName]: rule
+        }, {
+            [ruleName]: options
+        });
         it(text, ()=> {
-            assert.strictEqual(typeof text, "string", `invalid property should have text string
-e.g.)
-invalid : [
-    {
-        text: "example text",
-        errors: [{
-            message: "expected message"
-        }]
+            testInvalid(textlint, text, errors);
+        });
     }
-]
-`);
-            assert.ok(Array.isArray(errors), `invalid property should have array of expected error
-e.g.)
-invalid : [
-    {
-        text: "example text",
-        errors: [{
-            message: "expected message"
-        }]
-    }
-]
-            `);
-            let errorLength = errors.length;
+
+    testState(ruleName, rule, valid, invliad) {
+        let validListNoOptions = valid.filter(state => {
+            return state.options === undefined;
+        });
+        let invalidListNoOptions = invliad.filter(state => {
+            return state.options === undefined;
+        });
+        if (validListNoOptions.length === 0 || invalidListNoOptions.length === 0) {
+            return;
+        }
+        it(`should reset state each time`, function () {
+            // invalid -> valid using same textlint instance
+            // it test that finish invalid test and should reset rule stat
             var textlint = new TextLintCore();
             textlint.setupRules({
                 [ruleName]: rule
             }, {
-                [ruleName]: options
+                [ruleName]: true
             });
-            var lintResult = textlint.lintMarkdown(text);
-            assert.strictEqual(lintResult.messages.length, errorLength, `invalid: should have ${errorLength} errors but had ${lintResult.messages.length}:
-===Text===:
-${text}
-
-==Result==:
-${JSON.stringify(lintResult, null, 4)}`);
-            errors.forEach((error, index) => {
-                let { ruleId, message, line, column } = error;
-                let resultMessageObject = lintResult.messages[index];
-                if (ruleId !== undefined) {
-                    let resultRuleId = resultMessageObject.ruleId;
-                    assert.strictEqual(resultRuleId, ruleId, `"ruleId should be "${ruleId}"`);
-                }
-                if (message !== undefined) {
-                    let resultMessage = resultMessageObject.message;
-                    assert.strictEqual(resultMessage, message, `"message should be "${message}"`);
-                }
-                if (line !== undefined) {
-                    let resultLine = resultMessageObject.line;
-                    assert.strictEqual(resultLine, line, `line should be ${line}`);
-                }
-                if (column !== undefined) {
-                    let resultColumn = resultMessageObject.column;
-                    assert.strictEqual(resultColumn, column, `"column should be ${column}`);
-                }
+            invalidListNoOptions.forEach(state => {
+                let text = state.text   ;
+                testInvalid(textlint, text, state.errors)
+            });
+            validListNoOptions.forEach(state => {
+                let text = state.text || state;
+                testValid(textlint, text);
             });
         });
     }
@@ -104,12 +79,13 @@ ${JSON.stringify(lintResult, null, 4)}`);
      */
     run(ruleName, rule, {valid=[], invalid=[]}) {
         describe(ruleName, ()=> {
-            valid.forEach(state => {
-                this.testValidPattern(ruleName, rule, state);
-            });
             invalid.forEach(state => {
                 this.testInvalidPattern(ruleName, rule, state);
             });
+            valid.forEach(state => {
+                this.testValidPattern(ruleName, rule, state);
+            });
+            this.testState(ruleName, rule, valid, invalid);
         });
     }
 }
