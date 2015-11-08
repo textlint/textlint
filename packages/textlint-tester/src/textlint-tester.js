@@ -59,11 +59,11 @@ export default class TextLintTester {
             }, {
                 [ruleName]: true
             });
-            invalidListNoOptions.forEach(state => {
-                let text = state.text;
-                testInvalid(textlint, text, state.errors)
-            });
             try {
+                invalidListNoOptions.forEach(state => {
+                    let text = state.text;
+                    testInvalid(textlint, text, state.errors)
+                });
                 validListNoOptions.forEach(state => {
                     let text = state.text || state;
                     testValid(textlint, text);
@@ -81,6 +81,7 @@ export default function(context){
     }
 }
                 `);
+                console.error(e.message);
             }
         });
     }
