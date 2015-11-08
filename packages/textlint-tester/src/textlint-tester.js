@@ -60,13 +60,28 @@ export default class TextLintTester {
                 [ruleName]: true
             });
             invalidListNoOptions.forEach(state => {
-                let text = state.text   ;
+                let text = state.text;
                 testInvalid(textlint, text, state.errors)
             });
-            validListNoOptions.forEach(state => {
-                let text = state.text || state;
-                testValid(textlint, text);
-            });
+            try {
+                validListNoOptions.forEach(state => {
+                    let text = state.text || state;
+                    testValid(textlint, text);
+                });
+            } catch (e) {
+                throw new Error(`${ruleName} should reset own state each time.
+
+export default function(context){
+    var state = {};
+    return {
+        [context.Syntax.Document](){
+            state = {};// reset state each time
+        }
+        // ...
+    }
+}
+                `);
+            }
         });
     }
 
