@@ -7,19 +7,13 @@ const RuleError = require("./rule-error");
  */
 export default class RuleContextAgent extends EventEmitter {
 
-    constructor(text) {
+    constructor(text = "", filePath) {
         super();
         // set unlimited listeners (see https://github.com/textlint/textlint/issues/33)
         this.setMaxListeners(0);
         this.messages = [];
-        this.currentText = text || "";
-        this.currentFilePath = null;
-    }
-
-    resetState(text = "", filePath) {
         this.currentText = text;
         this.currentFilePath = filePath;
-        this.messages = [];
     }
 
     /**

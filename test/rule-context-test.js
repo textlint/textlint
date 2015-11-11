@@ -78,7 +78,7 @@ describe("rule-context-test", function () {
                     return exports;
                 }
             });
-            textlint.lintMarkdown(expectedText);
+            return textlint.lintMarkdown(expectedText);
         });
         it("should get text with padding from TxtNode", function () {
             var expectedText = "this is text.";
@@ -93,7 +93,7 @@ describe("rule-context-test", function () {
                     return exports;
                 }
             });
-            textlint.lintMarkdown(expectedText);
+            return textlint.lintMarkdown(expectedText);
         });
     });
     describe("#report", function () {
