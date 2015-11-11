@@ -98,7 +98,7 @@ export default class TextlintCore {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        // No did
+        // noop
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
