@@ -120,12 +120,13 @@ describe("textlint-engine-test", function () {
                 rulePaths: [rulesDir]
             });
             var filePath = path.join(__dirname, "fixtures/test.md");
-            var results = engine.executeOnFiles([filePath]);
-            assert(Array.isArray(results));
-            var fileResult = results[0];
-            assert(fileResult.filePath === filePath);
-            assert(Array.isArray(fileResult.messages));
-            assert(fileResult.messages.length > 0);
+            return engine.executeOnFiles([filePath]).then(results => {
+                assert(Array.isArray(results));
+                var fileResult = results[0];
+                assert(fileResult.filePath === filePath);
+                assert(Array.isArray(fileResult.messages));
+                assert(fileResult.messages.length > 0);
+            });
         });
         it("should lint a file with same rules", function () {
             let engine = new TextLintEngine();
@@ -133,17 +134,19 @@ describe("textlint-engine-test", function () {
             engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
             engine.addRule("example-rule");
             var beforeRuleNames = engine.ruleManager.getAllRuleNames();
-            engine.executeOnFiles([filePath]);
-            var afterRuleNames = engine.ruleManager.getAllRuleNames();
-            assert.deepEqual(beforeRuleNames, afterRuleNames);
+            return engine.executeOnFiles([filePath]).then(() => {
+                var afterRuleNames = engine.ruleManager.getAllRuleNames();
+                assert.deepEqual(beforeRuleNames, afterRuleNames);
+            });
         });
         context("when process file that has un-available ext ", function () {
             it("should return empty results ", function () {
                 let engine = new TextLintEngine();
                 var filePath = path.join(__dirname, "fixtures/test.unknown");
-                var results = engine.executeOnFiles([filePath]);
-                assert(Array.isArray(results));
-                assert(results.length === 0);
+                return engine.executeOnFiles([filePath]).then(results => {
+                    assert(Array.isArray(results));
+                    assert(results.length === 0);
+                });
             });
         });
     });
@@ -152,21 +155,23 @@ describe("textlint-engine-test", function () {
             let engine = new TextLintEngine({
                 rulePaths: [rulesDir]
             });
-            var results = engine.executeOnText("text");
-            assert(Array.isArray(results));
-            var lintResult = results[0];
-            assert(lintResult.filePath === "<text>");
-            assert(Array.isArray(lintResult.messages));
-            assert(lintResult.messages.length > 0);
+            return engine.executeOnText("text").then(results => {
+                assert(Array.isArray(results));
+                var lintResult = results[0];
+                assert(lintResult.filePath === "<text>");
+                assert(Array.isArray(lintResult.messages));
+                assert(lintResult.messages.length > 0);
+            });
         });
         it("should lint a text with same rules", function () {
             let engine = new TextLintEngine();
             engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/"));
             engine.loadRule("example-rule");
             var beforeRuleNames = engine.ruleManager.getAllRuleNames();
-            engine.executeOnText("text");
-            var afterRuleNames = engine.ruleManager.getAllRuleNames();
-            assert.deepEqual(beforeRuleNames, afterRuleNames);
+            return engine.executeOnText("text").then(() => {
+                var afterRuleNames = engine.ruleManager.getAllRuleNames();
+                assert.deepEqual(beforeRuleNames, afterRuleNames);
+            });
         });
     });
     describe("formatResults", function () {
@@ -175,10 +180,11 @@ describe("textlint-engine-test", function () {
                 let engine = new TextLintEngine({
                     rulePaths: [rulesDir]
                 });
-                var results = engine.executeOnText("text");
-                var output = engine.formatResults(results);
-                assert(/<text>/.test(output));
-                assert(/problem/.test(output));
+                return engine.executeOnText("text").then(results => {
+                    var output = engine.formatResults(results);
+                    assert(/<text>/.test(output));
+                    assert(/problem/.test(output));
+                });
             });
         });
         context("when loaded custom formatter", function () {
@@ -187,10 +193,11 @@ describe("textlint-engine-test", function () {
                     rulePaths: [rulesDir],
                     formatterName: path.join(__dirname, "fixtures/formatter/example-formatter.js")
                 });
-                var results = engine.executeOnText("text");
-                var output = engine.formatResults(results);
-                assert(!/<text>/.test(output));
-                assert(/example-formatter/.test(output));
+                return engine.executeOnText("text").then(results => {
+                    var output = engine.formatResults(results);
+                    assert(!/<text>/.test(output));
+                    assert(/example-formatter/.test(output));
+                });
             });
         });
     });

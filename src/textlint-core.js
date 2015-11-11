@@ -96,8 +96,8 @@ export default class TextlintCore {
         traverseController.traverse(ast, {
             enter(node, parent) {
                 const type = node.type;
+                Object.defineProperty(node, 'parent', {value: parent});
                 if (that.ruleContextAgent.listenerCount(type) > 0) {
-                    Object.defineProperty(node, 'parent', {value: parent});
                     let promise = that.ruleContextAgent.emit(type, node);
                     promiseQueue.push(promise);
                 }

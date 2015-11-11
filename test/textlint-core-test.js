@@ -9,25 +9,40 @@ describe("textlint-core", function () {
             textlint.setupRules({
                 "example-rule": rule
             });
-            var results1 = textlint.lintMarkdown("test");
-            assert(results1.messages.length === 1);
-            var textlint2 = new TextLintCore();
-            var results2 = textlint2.lintMarkdown("test");
-            assert(results2.messages.length === 0);
+            return textlint.lintMarkdown("test").then(result => {
+                assert(result.messages.length === 1);
+            }).then(() => {
+                var newTextLint = new TextLintCore();
+                // no rule
+                return newTextLint.lintMarkdown("test");
+            }).then((result) => {
+                assert(result.messages.length === 0)
+            });
+
         });
     });
     context("when a linting text is empty", function () {
-        it("should not throw an exception", function () {
-            var textlint = new TextLintCore();
+        let textlint;
+        beforeEach(function () {
+            textlint = new TextLintCore();
             textlint.setupRules({
                 "example-rule": rule
             });
-            var result1 = textlint.lintText("");
-            assert(result1.messages.length === 0);
-            var result2 = textlint.lintMarkdown("");
-            assert(result2.messages.length === 0);
-            var result3 = textlint.lintFile('./test/fixtures/empty.md');
-            assert(result3.messages.length === 0);
+        });
+        it("should not throw an exception", function () {
+            return textlint.lintText("").then((result) => {
+                assert(result.messages.length === 0);
+            });
+        });
+        it("should not throw an exception", function () {
+            return textlint.lintMarkdown("").then((result) => {
+                assert(result.messages.length === 0);
+            });
+        });
+        it("should not throw an exception", function () {
+            return textlint.lintFile('./test/fixtures/empty.md').then((result) => {
+                assert(result.messages.length === 0);
+            });
         });
     });
     describe("ruleConfig", function () {
@@ -41,11 +56,14 @@ describe("textlint-core", function () {
                         severity: "warning"
                     }
                 });
-                var result = textlint.lintMarkdown("# Test");
-                assert(result.filePath === "<markdown>");
-                assert(result.messages.length > 0);
-                let message = result.messages[0];
-                assert(message.severity === 1);
+                return textlint.lintMarkdown("# Test").then(result => {
+
+                    assert(result.filePath === "<markdown>");
+                    assert(result.messages.length > 0);
+                    let message = result.messages[0];
+                    assert(message.severity === 1);
+
+                });
             });
         });
         context("when not set ruleConfig.severity", function () {
@@ -58,11 +76,12 @@ describe("textlint-core", function () {
                         foo: "bar"
                     }
                 });
-                var result = textlint.lintMarkdown("# Test");
-                assert(result.filePath === "<markdown>");
-                assert(result.messages.length > 0);
-                let message = result.messages[0];
-                assert(message.severity === 2);
+                return textlint.lintMarkdown("# Test").then(result => {
+                    assert(result.filePath === "<markdown>");
+                    assert(result.messages.length > 0);
+                    let message = result.messages[0];
+                    assert(message.severity === 2);
+                });
             });
             it("message.severity should be error", function () {
                 var textlint = new TextLintCore();
@@ -73,11 +92,12 @@ describe("textlint-core", function () {
                         severity: "error"
                     }
                 });
-                var result = textlint.lintMarkdown("# Test");
-                assert(result.filePath === "<markdown>");
-                assert(result.messages.length > 0);
-                let message = result.messages[0];
-                assert(message.severity === 2);
+                return textlint.lintMarkdown("# Test").then(result => {
+                    assert(result.filePath === "<markdown>");
+                    assert(result.messages.length > 0);
+                    let message = result.messages[0];
+                    assert(message.severity === 2);
+                });
             });
         });
         context("when set wrong ruleConfig.severity", function () {
