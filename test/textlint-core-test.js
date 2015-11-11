@@ -108,9 +108,10 @@ describe("textlint-core", function () {
                         "rule-name": require("./fixtures/rules/example-rule")
                     }, {
                         "rule-name": {
-                            severity: "xxxxxxxx"
+                            severity: "xxxxxxxx"// wrong config
                         }
                     });
+                    textlint.lintText("test");
                 });
             });
         });
