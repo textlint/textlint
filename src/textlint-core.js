@@ -56,11 +56,17 @@ export default class TextlintCore {
         const ignoreDisableRules = (rules) => {
             let resultRules = Object.create(null);
             Object.keys(rules).forEach(key => {
-                const ruleConfig = rulesConfig && rulesConfig[key];
+                const ruleCreator = rules[key];
+                if (typeof ruleCreator !== 'function') {
+                    throw new Error(`Definition for rule '${ key }' was not found.`);
+                }
                 // "rule-name" : false => disable
+                const ruleConfig = rulesConfig && rulesConfig[key];
                 if (ruleConfig !== false) {
+                    debug('use "%s" rule', key);
                     resultRules[key] = rules[key];
                 }
+
             });
             return resultRules;
         };
@@ -72,11 +78,7 @@ export default class TextlintCore {
         const rules = this.rules || {};
         let ruleContextAgent = new RuleContextAgent(text, filePath);
         Object.keys(rules).forEach(key => {
-            debug('use "%s" rule', key);
             const ruleCreator = rules[key];
-            if (typeof ruleCreator !== 'function') {
-                throw new Error(`Definition for rule '${ key }' was not found.`);
-            }
             const ruleConfig = this.rulesConfig[key];
             try {
                 let ruleContext = new RuleContext(key, ruleContextAgent, this.config, ruleConfig);
