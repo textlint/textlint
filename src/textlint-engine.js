@@ -36,18 +36,14 @@ class TextLintEngine {
             this.config = Config.initWithAutoLoading(options);
         }
         this.textLint = new TextLintCore(this.config);
-        let availableExtensions = this.config.extensions;
+        this.ruleManager = new RuleManager();
+        // load rule/plugin/processor
+        this._setupRules(this.config);
         // execute files that are filtered by availableExtensions.
-        this.textLint.processors.forEach(processor => {
-            let Processor = processor.constructor;
-            availableExtensions = availableExtensions.concat(Processor.availableExtensions());
-        });
         this.availableExtensions = this.textLint.processors.reduce((availableExtensions, processor) => {
             let Processor = processor.constructor;
             return availableExtensions.concat(Processor.availableExtensions());
         }, this.config.extensions);
-        this.ruleManager = new RuleManager();
-        this._setupRules(this.config);
     }
 
     /**
