@@ -1,5 +1,6 @@
 // LICENSE : MIT
 'use strict';
+const Promise = require("bluebird");
 const fs = require('fs');
 const path = require('path');
 const debug = require('debug')('textlint:cli');
