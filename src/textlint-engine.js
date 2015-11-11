@@ -37,6 +37,16 @@ class TextLintEngine {
             this.config = Config.initWithAutoLoading(options);
         }
         this.textLint = new TextLintCore(this.config);
+        let availableExtensions = this.config.extensions;
+        // execute files that are filtered by availableExtensions.
+        this.textLint.processors.forEach(processor => {
+            let Processor = processor.constructor;
+            availableExtensions = availableExtensions.concat(Processor.availableExtensions());
+        });
+        this.availableExtensions = this.textLint.processors.reduce((availableExtensions, processor) => {
+            let Processor = processor.constructor;
+            return availableExtensions.concat(Processor.availableExtensions());
+        }, this.config.extensions);
         this.ruleManager = new RuleManager();
         this._setupRules(this.config);
     }
@@ -174,13 +184,7 @@ class TextLintEngine {
      * @returns {TextLintResult[]} The results for all files that were linted.
      */
     executeOnFiles(files) {
-        let availableExtensions = this.config.extensions;
-        // execute files that are filtered by availableExtensions.
-        this.textLint.processors.forEach(processor => {
-            let Processor = processor.constructor;
-            availableExtensions = availableExtensions.concat(Processor.availableExtensions());
-        });
-        const targetFiles = findFiles(files, availableExtensions);
+        const targetFiles = findFiles(files, this.availableExtensions);
         const results = targetFiles.map(file => {
             return this.textLint.lintFile(file);
         });
