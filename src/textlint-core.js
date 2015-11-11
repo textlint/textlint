@@ -31,6 +31,8 @@ export default class TextlintCore {
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;
+        this.rules = {};
+        this.rulesConfig = {};
         // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
         this.processors = [
@@ -52,7 +54,7 @@ export default class TextlintCore {
      * @param {object} rules rule objects array
      * @param {object} [rulesConfig] ruleConfig is object
      */
-    setupRules(rules, rulesConfig = {}) {
+    setupRules(rules = {}, rulesConfig = {}) {
         const ignoreDisableRules = (rules) => {
             let resultRules = Object.create(null);
             Object.keys(rules).forEach(key => {
@@ -75,7 +77,7 @@ export default class TextlintCore {
     }
 
     _createRuleContextAgent(text, filePath) {
-        const rules = this.rules || {};
+        const rules = this.rules;
         let ruleContextAgent = new RuleContextAgent(text, filePath);
         Object.keys(rules).forEach(key => {
             const ruleCreator = rules[key];
@@ -96,6 +98,7 @@ export default class TextlintCore {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
+        // No did
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
