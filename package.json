@@ -52,6 +52,7 @@
     "textlint-rule-no-todo": "^1.0.2"
   },
   "dependencies": {
+    "bluebird": "^3.0.5",
     "carrack": "0.0.1",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.0",

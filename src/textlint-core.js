@@ -4,7 +4,7 @@
     textlint-core.js is a class
     textlint.js is a singleton object that is instance of textlint-core.js.
  */
-const objectAssign = require('object-assign');
+const Promise = require("bluebird");
 const TraverseController = require('txt-ast-traverse').Controller;
 const traverseController = new TraverseController();
 const path = require('path');

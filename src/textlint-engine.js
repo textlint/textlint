@@ -1,5 +1,6 @@
 // LICENSE : MIT
 'use strict';
+const Promise = require("bluebird");
 const TextLintCore = require('./textlint-core');
 const RuleManager = require('./rule/rule-manager');
 const Config = require('./config/config');
