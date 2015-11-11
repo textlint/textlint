@@ -10,3 +10,7 @@ npm run perf
 
 - https://github.com/azu/JavaScript-Plugin-Architecture
 - https://github.com/GitbookIO/javascript
+
+## Profiling
+
+`run.js` is useful for spyjs.
