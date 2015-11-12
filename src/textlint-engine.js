@@ -172,7 +172,7 @@ class TextLintEngine {
     /**
      * Executes the current configuration on an array of file and directory names.
      * @param {String[]}  files An array of file and directory names.
-     * @returns {TextLintResult[]} The results for all files that were linted.
+     * @returns {Promise.<TextLintResult[]>} The results for all files that were linted.
      */
     executeOnFiles(files) {
         const targetFiles = findFiles(files, this.availableExtensions);
@@ -198,7 +198,7 @@ https://github.com/textlint/textlint/issues/new
      * But, if you have a target file, use {@link executeOnFiles} instead of it.
      * @param {string} text linting text content
      * @param {string} ext ext is a type for linting. default: ".txt"
-     * @returns {TextLintResult[]}
+     * @returns {Promise.<TextLintResult[]>}
      */
     executeOnText(text, ext = ".txt") {
         return this.textLint.lintText(text, ext).then(result => {

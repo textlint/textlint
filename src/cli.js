@@ -53,7 +53,7 @@ const cli = {
      * Executes the CLI based on an array of arguments that is passed in.
      * @param {string|Array|Object} args The arguments to process.
      * @param {string} [text] The text to lint (used for TTY).
-     * @returns {int} The exit code for the operation.
+     * @returns {Promise.<number>} The exit code for the operation.
      */
     execute(args, text) {
         var currentOptions;
@@ -80,7 +80,7 @@ const cli = {
      * @param {object} cliOptions
      * @param {string[]} files files are file path list
      * @param {string} text?
-     * @returns {number} exit status
+     * @returns {Promise.<number>} exit status
      */
     executeWithOptions(cliOptions, files, text){
         const config = Config.initWithCLIOptions(cliOptions);
