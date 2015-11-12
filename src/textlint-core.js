@@ -171,7 +171,6 @@ export default class TextlintCore {
         const ext = path.extname(absoluteFilePath);
         const text = fs.readFileSync(absoluteFilePath, 'utf-8');
         const processor = getProcessorMatchExtension(this.processors, ext);
-        this.lintFile()
         return this._lintByProcessor(processor, text, ext, absoluteFilePath);
     }
 
