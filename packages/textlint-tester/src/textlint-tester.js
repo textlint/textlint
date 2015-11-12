@@ -59,15 +59,23 @@ export default class TextLintTester {
             }, {
                 [ruleName]: true
             });
-            var invalidPromises = invalidListNoOptions.map(state => {
-                let text = state.text;
-                testInvalid(textlint, text, state.errors)
-            });
-            var validPromises = validListNoOptions.map(state => {
-                let text = state.text || state;
-                return testValid(textlint, text);
-            });
-            return Promise.all([invalidPromises, validPromises]).catch(error => {
+            function runInvalids() {
+                return invalidListNoOptions.map(state => {
+                    let text = state.text;
+                    return testInvalid(textlint, text, state.errors)
+                });
+            }
+
+            function runValids() {
+                return validListNoOptions.map(state => {
+                    let text = state.text || state;
+                    return testValid(textlint, text);
+                });
+            }
+
+            return Promise.all(runInvalids()).then(() => {
+                return Promise.all(runValids());
+            }).catch((error) => {
                 throw new Error(`${ruleName} should reset own state each time.
 
 export default function(context){
