@@ -21,7 +21,7 @@ export default class TextLintTester {
             [ruleName]: options
         });
         it(text, ()=> {
-            testValid(textlint, text);
+            return testValid(textlint, text);
         });
     }
 
@@ -36,15 +36,15 @@ export default class TextLintTester {
             [ruleName]: options
         });
         it(text, ()=> {
-            testInvalid(textlint, text, errors);
+            return testInvalid(textlint, text, errors);
         });
     }
 
-    testState(ruleName, rule, valid, invliad) {
+    testState(ruleName, rule, valid, invalid) {
         let validListNoOptions = valid.filter(state => {
             return state.options === undefined;
         });
-        let invalidListNoOptions = invliad.filter(state => {
+        let invalidListNoOptions = invalid.filter(state => {
             return state.options === undefined;
         });
         if (validListNoOptions.length === 0 || invalidListNoOptions.length === 0) {
@@ -59,16 +59,15 @@ export default class TextLintTester {
             }, {
                 [ruleName]: true
             });
-            try {
-                invalidListNoOptions.forEach(state => {
-                    let text = state.text;
-                    testInvalid(textlint, text, state.errors)
-                });
-                validListNoOptions.forEach(state => {
-                    let text = state.text || state;
-                    testValid(textlint, text);
-                });
-            } catch (e) {
+            var invalidPromises = invalidListNoOptions.map(state => {
+                let text = state.text;
+                testInvalid(textlint, text, state.errors)
+            });
+            var validPromises = validListNoOptions.map(state => {
+                let text = state.text || state;
+                return testValid(textlint, text);
+            });
+            return Promise.all([invalidPromises, validPromises]).catch(error => {
                 throw new Error(`${ruleName} should reset own state each time.
 
 export default function(context){
@@ -81,8 +80,8 @@ export default function(context){
     }
 }
                 `);
-                console.error(e.message);
-            }
+                console.error(error.message);
+            });
         });
     }
 
