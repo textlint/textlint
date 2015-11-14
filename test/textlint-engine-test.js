@@ -113,6 +113,15 @@ describe("textlint-engine-test", function () {
                 assert(ruleNames.length === 1);
             });
         });
+        context("Issue #81 - no assing module.exports = rule", function () {
+            it("should interop-require the rule", function () {
+                let engine = new TextLintEngine();
+                engine.setRulesBaseDirectory(path.join(__dirname, "/fixtures/rules/issue81"));
+                engine.addRule("no-default-assign-rule");
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 1);
+            });
+        });
     });
     describe("executeOnFiles", function () {
         it("should found error message", function () {
@@ -210,5 +219,6 @@ describe("textlint-engine-test", function () {
             assert.equal(engine.config.rulesBaseDirectory, directory);
         });
     });
+
 });
 
