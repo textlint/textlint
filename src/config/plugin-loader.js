@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
+const interopRequire = require('interop-require');
 const tryResolve = require('try-resolve');
 const ObjectAssign = require("object-assign");
 const debug = require('debug')('textlint:plugin-loader');
@@ -23,7 +24,7 @@ export default function loadRulesConfigFromPlugins(pluginNames = [], {
         if (!pkgPath) {
             throw new ReferenceError(`${ pluginName } is not found`);
         }
-        var plugin = require(pkgPath);
+        var plugin = interopRequire(pkgPath);
         if (!plugin.hasOwnProperty("rulesConfig")) {
             debug(`${pluginName} has not rulesConfig`);
             return;

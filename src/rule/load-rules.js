@@ -4,6 +4,7 @@
  * @fileoverview Module for loading rules from files and directories.
  * @author Michael Ficarra
  */
+const interopRequire = require('interop-require');
 const fs = require('fs');
 const path = require('path');
 /**
@@ -22,7 +23,8 @@ module.exports = function (rulesDir) {
         if (path.extname(file) !== '.js') {
             return;
         }
-        rules[file.slice(0, -3)] = require(path.join(rulesDir, file));
+        const withoutExt = file.slice(0, -3);
+        rules[withoutExt] = interopRequire(path.join(rulesDir, file));
     });
     return rules;
 };

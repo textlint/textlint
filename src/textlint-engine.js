@@ -1,6 +1,7 @@
 // LICENSE : MIT
 'use strict';
-const Promise = require("bluebird");
+const Promise = require('bluebird');
+const interopRequire = require('interop-require');
 const TextLintCore = require('./textlint-core');
 const RuleManager = require('./rule/rule-manager');
 const Config = require('./config/config');
@@ -131,7 +132,7 @@ class TextLintEngine {
             throw new ReferenceError(`plugin: ${ pluginName } is not found`);
         }
         debug('Loading rules from plugin: %s', pkgPath);
-        const plugin = require(pkgPath);
+        const plugin = interopRequire(pkgPath);
         this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
         return plugin;
     }
@@ -163,8 +164,9 @@ class TextLintEngine {
             throw new ReferenceError(`rule: ${ ruleName } is not found`);
         }
         debug('Loading rules from %s', pkgPath);
-        const plugin = require(pkgPath);
-        this.ruleManager.defineRule(definedRuleName, plugin);
+        const ruleCreator = interopRequire(pkgPath);
+        console.log(ruleCreator);
+        this.ruleManager.defineRule(definedRuleName, ruleCreator);
     }
 
     /**
