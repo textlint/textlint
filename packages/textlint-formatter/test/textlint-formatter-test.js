@@ -53,7 +53,7 @@ describe("textlint-formatter-test", function () {
                             {
                                 ruleId: "semi",
                                 line: 1,
-                                column: 0,
+                                column: 1,
                                 message: "0 pattern."
                             },
                             {
