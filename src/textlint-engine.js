@@ -165,7 +165,6 @@ class TextLintEngine {
         }
         debug('Loading rules from %s', pkgPath);
         const ruleCreator = interopRequire(pkgPath);
-        console.log(ruleCreator);
         this.ruleManager.defineRule(definedRuleName, ruleCreator);
     }
 
