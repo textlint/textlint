@@ -4,7 +4,7 @@
     textlint-core.js is a class
     textlint.js is a singleton object that is instance of textlint-core.js.
  */
-const objectAssign = require('object-assign');
+const Promise = require("bluebird");
 const TraverseController = require('txt-ast-traverse').Controller;
 const traverseController = new TraverseController();
 const path = require('path');
@@ -31,6 +31,8 @@ export default class TextlintCore {
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;
+        this.rules = {};
+        this.rulesConfig = {};
         // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
         this.processors = [
@@ -38,7 +40,6 @@ export default class TextlintCore {
             new TextProcessor(config),
             new HTMLProcessor(config)
         ];
-        this.ruleContextAgent = new RuleContextAgent();
     }
 
     // unstable API
@@ -53,61 +54,87 @@ export default class TextlintCore {
      * @param {object} rules rule objects array
      * @param {object} [rulesConfig] ruleConfig is object
      */
-    setupRules(rules, rulesConfig = {}) {
+    setupRules(rules = {}, rulesConfig = {}) {
+        const ignoreDisableRules = (rules) => {
+            let resultRules = Object.create(null);
+            Object.keys(rules).forEach(key => {
+                const ruleCreator = rules[key];
+                if (typeof ruleCreator !== 'function') {
+                    throw new Error(`Definition for rule '${ key }' was not found.`);
+                }
+                // "rule-name" : false => disable
+                const ruleConfig = rulesConfig && rulesConfig[key];
+                if (ruleConfig !== false) {
+                    debug('use "%s" rule', key);
+                    resultRules[key] = rules[key];
+                }
+
+            });
+            return resultRules;
+        };
+        this.rules = ignoreDisableRules(rules);
+        this.rulesConfig = rulesConfig;
+    }
+
+    _createRuleContextAgent(text, filePath) {
+        const rules = this.rules;
+        let ruleContextAgent = new RuleContextAgent(text, filePath);
         Object.keys(rules).forEach(key => {
-            debug('use "%s" rule', key);
             const ruleCreator = rules[key];
-            if (typeof ruleCreator !== 'function') {
-                throw new Error(`Definition for rule '${ key }' was not found.`);
-            }
-            const ruleConfig = rulesConfig && rulesConfig[key];
-            // "rule-name" : false => disable
-            // TODO: move to RuleManager?
-            if (ruleConfig === false) {
-                return;
-            }
+            const ruleConfig = this.rulesConfig[key];
             try {
-                var ruleContext = new RuleContext(key, this.ruleContextAgent, this.config, ruleConfig);
+                let ruleContext = new RuleContext(key, ruleContextAgent, this.config, ruleConfig);
                 let rule = ruleCreator(ruleContext, ruleConfig);
-                addListenRule(key, rule, this.ruleContextAgent);
+                addListenRule(key, rule, ruleContextAgent);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
                 throw ex;
             }
         });
+        return ruleContextAgent;
     }
 
     /**
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        this.ruleContextAgent.removeAllListeners();
+        // noop
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
         assert(processor, `processor is not found for ${ext}`);
-        this.ruleContextAgent.resetState(text, filePath);
         const {preProcess, postProcess} = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
-        let that = this;
+        let promiseQueue = [];
+        const ruleContextAgent = this._createRuleContextAgent(text, filePath);
         traverseController.traverse(ast, {
             enter(node, parent) {
+                const type = node.type;
                 Object.defineProperty(node, 'parent', {value: parent});
-                that.ruleContextAgent.emit(node.type, node);
+                if (ruleContextAgent.listenerCount(type) > 0) {
+                    let promise = ruleContextAgent.emit(type, node);
+                    promiseQueue.push(promise);
+                }
             },
             leave(node) {
-                that.ruleContextAgent.emit(`${ node.type }:exit`, node);
+                const type = `${node.type}:exit`;
+                if (ruleContextAgent.listenerCount(type) > 0) {
+                    let promise = ruleContextAgent.emit(type, node);
+                    promiseQueue.push(promise);
+                }
             }
         });
-        let messages = this.ruleContextAgent.messages;
-        let result = postProcess(messages, filePath);
-        if (result.filePath == null) {
-            result.filePath = `<Unkown${ext}>`;
-        }
-        assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
-        return result;
+        return Promise.all(promiseQueue).then(() => {
+            let messages = ruleContextAgent.messages;
+            let result = postProcess(messages, filePath);
+            if (result.filePath == null) {
+                result.filePath = `<Unkown${ext}>`;
+            }
+            assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+            return result;
+        });
     }
 
     /**

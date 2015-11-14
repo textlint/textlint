@@ -16,26 +16,29 @@ describe("cli-test", function () {
     context("when pass linting", function () {
         it("should return error when text with incorrect quotes is passed as argument", function () {
             var ruleDir = path.join(__dirname, "fixtures/rules");
-            var result = cli.execute("--rulesdir " + ruleDir, "text");
-            assert.equal(result, 1);
+            return cli.execute("--rulesdir " + ruleDir, "text").then(result => {
+                assert.equal(result, 1)
+            });
         });
         it("should return error", function () {
             var ruleDir = path.join(__dirname, "fixtures/rules");
             var targetFile = path.join(__dirname, "fixtures/test.md");
-            var result = cli.execute(`--rulesdir ${ruleDir} ${targetFile}`);
-            assert.equal(result, 1);
+            return cli.execute(`--rulesdir ${ruleDir} ${targetFile}`).then(result => {
+                assert.equal(result, 1);
+            });
         });
     });
     context("when fail linting", function () {
         it("should return no error when use no-todo rules is specified", function () {
-            var result = cli.execute("", "text");
-            assert.equal(result, 0);
+            cli.execute("", "text").then(result => {
+                assert.equal(result, 0);
+            });
         });
         it("should return 0(no error)", function () {
-            var ruleDir = path.join(__dirname, "fixtures/rules");
             var targetFile = path.join(__dirname, "fixtures/test.md");
-            var result = cli.execute(`${targetFile}`);
-            assert.equal(result, 0);
+            return cli.execute(`${targetFile}`).then(result => {
+                assert.equal(result, 0);
+            });
         });
     });
 });

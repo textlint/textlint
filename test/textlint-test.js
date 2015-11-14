@@ -68,7 +68,7 @@ describe("textlint-test", function () {
     });
     describe("lintMarkdown", function () {
         it("should found error message", function () {
-            var result = textLint.lintMarkdown("# TEST" +
+            var text = "# TEST" +
                 "\n" +
                 "`potet` + **testongst**" +
                 "\n" +
@@ -76,35 +76,39 @@ describe("textlint-test", function () {
                 "- test\n" +
                 "\n" +
                 "hoge\n [a](http://example.com) fuga\n" +
-                "------");
-            assert(result.filePath === "<markdown>");
-            assert(result.messages.length > 0);
+                "------";
+            return textLint.lintMarkdown(text).then(result => {
+                assert(result.filePath === "<markdown>");
+                assert(result.messages.length > 0);
+            });
         });
         it("should has referential transparency", function () {
-            var result_1 = deepClone(textLint.lintMarkdown("text"));
-            var result_2 = deepClone(textLint.lintMarkdown("text"));
-            assert.equal(result_1.messages.length, result_2.messages.length);
+            var p1 = textLint.lintMarkdown("text");
+            var p2 = textLint.lintMarkdown("text");
+            return Promise.all([p1, p2]).then(([r1, r2]) => {
+                var result_1 = deepClone(r1);
+                var result_2 = deepClone(r2);
+                assert.equal(result_1.messages.length, result_2.messages.length);
+            })
         });
     });
     describe("lintText", function () {
         it("should found error message", function () {
-            var result = textLint.lintText("It it plain text\n" +
+            var text = "It it plain text\n" +
                 "\n" +
-                "Third line.");
-            assert(result.filePath === "<text>");
-            assert(result.messages.length > 0);
-        });
-        it("should has referential transparency", function () {
-            var result_1 = deepClone(textLint.lintMarkdown("text"));
-            var result_2 = deepClone(textLint.lintMarkdown("text"));
-            assert.equal(result_1.messages.length, result_2.messages.length);
+                "Third line.";
+            return textLint.lintText(text).then(result => {
+                assert(result.filePath === "<text>");
+                assert(result.messages.length > 0);
+            });
         });
     });
     describe("lintFile", function () {
         it("filePath is loaded file path", function () {
             var filePath = path.join(__dirname, "fixtures/test.md");
-            var result = textLint.lintFile(filePath);
-            assert(result.filePath === filePath);
+            return textLint.lintFile(filePath).then(result => {
+                assert(result.filePath === filePath);
+            });
         });
     });
 });

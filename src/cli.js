@@ -1,5 +1,6 @@
 // LICENSE : MIT
 'use strict';
+const Promise = require("bluebird");
 const fs = require('fs');
 const path = require('path');
 const debug = require('debug')('textlint:cli');
@@ -60,7 +61,7 @@ const cli = {
             currentOptions = options.parse(args);
         } catch (error) {
             console.error(error.message);
-            return 1;
+            return Promise.resolve(1);
         }
         const files = currentOptions._;
         if (currentOptions.version) {
@@ -72,7 +73,7 @@ const cli = {
             debug(`Running on ${ text ? 'text' : 'files' }`);
             return this.executeWithOptions(currentOptions, files, text);
         }
-        return 0;
+        return Promise.resolve(0);
     },
     /**
      * execute with cli options
@@ -84,13 +85,15 @@ const cli = {
     executeWithOptions(cliOptions, files, text){
         const config = Config.initWithCLIOptions(cliOptions);
         const engine = new TextLintEngine(config);
-        const results = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
-        const output = engine.formatResults(results);
-        if (printResults(output, cliOptions)) {
-            return engine.isErrorResults(results) ? 1 : 0;
-        } else {
-            return 1;
-        }
+        const resultsPromise = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
+        return resultsPromise.then(results => {
+            const output = engine.formatResults(results);
+            if (printResults(output, cliOptions)) {
+                return engine.isErrorResults(results) ? 1 : 0;
+            } else {
+                return 1;
+            }
+        });
     }
 };
 module.exports = cli;

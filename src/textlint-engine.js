@@ -1,5 +1,6 @@
 // LICENSE : MIT
 'use strict';
+const Promise = require("bluebird");
 const TextLintCore = require('./textlint-core');
 const RuleManager = require('./rule/rule-manager');
 const Config = require('./config/config');
@@ -38,7 +39,13 @@ class TextLintEngine {
         }
         this.textLint = new TextLintCore(this.config);
         this.ruleManager = new RuleManager();
+        // load rule/plugin/processor
         this._setupRules(this.config);
+        // execute files that are filtered by availableExtensions.
+        this.availableExtensions = this.textLint.processors.reduce((availableExtensions, processor) => {
+            let Processor = processor.constructor;
+            return availableExtensions.concat(Processor.availableExtensions());
+        }, this.config.extensions);
     }
 
     /**
@@ -124,7 +131,7 @@ class TextLintEngine {
             throw new ReferenceError(`plugin: ${ pluginName } is not found`);
         }
         debug('Loading rules from plugin: %s', pkgPath);
-        const plugin = require(pkgPath.normalize());
+        const plugin = require(pkgPath);
         this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
         return plugin;
     }
@@ -174,13 +181,7 @@ class TextLintEngine {
      * @returns {TextLintResult[]} The results for all files that were linted.
      */
     executeOnFiles(files) {
-        let availableExtensions = this.config.extensions;
-        // execute files that are filtered by availableExtensions.
-        this.textLint.processors.forEach(processor => {
-            let Processor = processor.constructor;
-            availableExtensions = availableExtensions.concat(Processor.availableExtensions());
-        });
-        const targetFiles = findFiles(files, availableExtensions);
+        const targetFiles = findFiles(files, this.availableExtensions);
         const results = targetFiles.map(file => {
             return this.textLint.lintFile(file);
         });
@@ -195,7 +196,7 @@ If you find error and please file issue:
 https://github.com/textlint/textlint/issues/new
 `);
         }
-        return results;
+        return Promise.all(results);
     }
 
     /**
@@ -206,8 +207,9 @@ https://github.com/textlint/textlint/issues/new
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
-        const results = [this.textLint.lintText(text, ext)];
-        return results;
+        return this.textLint.lintText(text, ext).then(result => {
+            return [result];
+        });
     }
 
     /**

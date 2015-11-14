@@ -1,4 +1,4 @@
-const EventEmitter = require('events').EventEmitter;
+const EventEmitter = require("carrack");
 const UnionSyntax = require("../parser/union-syntax");
 const debug = require('debug')('textlint:rule-context-agent');
 const RuleError = require("./rule-error");
@@ -7,19 +7,13 @@ const RuleError = require("./rule-error");
  */
 export default class RuleContextAgent extends EventEmitter {
 
-    constructor(text) {
+    constructor(text = "", filePath) {
         super();
         // set unlimited listeners (see https://github.com/textlint/textlint/issues/33)
         this.setMaxListeners(0);
         this.messages = [];
-        this.currentText = text || "";
-        this.currentFilePath = null;
-    }
-
-    resetState(text = "", filePath) {
         this.currentText = text;
         this.currentFilePath = filePath;
-        this.messages = [];
     }
 
     /**

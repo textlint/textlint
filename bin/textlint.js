@@ -8,10 +8,16 @@ var exitCode = 0,
 
 if (useStdIn) {
     process.stdin.pipe(concat({encoding: "string"}, function (text) {
-        exitCode = cli.execute(process.argv, text);
+        cli.execute(process.argv, text).then(function (code) {
+            exitCode = code;
+            process.exit(exitCode);
+        });
     }));
 } else {
-    exitCode = cli.execute(process.argv);
+    cli.execute(process.argv).then(function (code) {
+        exitCode = code;
+        process.exit(exitCode);
+    });
 }
 
 /*
