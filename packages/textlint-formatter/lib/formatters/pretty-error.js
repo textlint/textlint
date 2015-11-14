@@ -10,7 +10,7 @@ var stringWidth = require("../stringWidth");
 // width is 2
 var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
 var template = style('{grey}{ruleId}: {bold}{red}{title}\n'
-    + '{grey}{filename}:{failingLineNo}:{failingColNo}{reset}\n'
+    + '{grey}{filename}{reset}\n'
     + '    {red}  {v}\n'
     + '    {grey}{previousLineNo}. {previousLine}\n'
     + '    {reset}{failingLineNo}. {failingLine}\n'
@@ -76,13 +76,12 @@ function prettifyError(code, filePath, message) {
     var previousLineNo = String(parsed[0].line);
     var failingLineNo = String(parsed[1].line);
     var nextLineNo = String(parsed[2].line);
-    var linumlen = Math.max(previousLineNo.length,
-        failingLineNo.length,
+    var linumlen = Math.max(previousLineNo.length, failingLineNo.length,
         nextLineNo.length);
     return format(template, {
         ruleId: message.ruleId,
         title: message.message,
-        filename: filePath,
+        filename: filePath + ":" + message.line + ":" + message.column,
         previousLine: parsed[0].code ? parsed[0].code : "",
         previousLineNo: leftpad(previousLineNo, linumlen),
         previousColNo: parsed[0].col,
