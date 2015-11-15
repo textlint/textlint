@@ -16,6 +16,7 @@ Each node of the tree has same interface, is called `TxtNode`.
 
 - `type`: type of Node
 - `raw`: text value of Node
+- `value`: alias to `raw` (it is compability of [nlcst](https://github.com/wooorm/nlcst "nlcst"))
 - `loc`: location object
 - `range`: location info array like `[startIndex, endIndex]`
 
