@@ -42,6 +42,8 @@ These types are be available at all times:
 - Break
 - Str
 
+TODO: if you want to get other type, please file issue.
+
 ### Online Parsing Demo
 
 - Markdown AST
