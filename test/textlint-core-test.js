@@ -103,15 +103,15 @@ describe("textlint-core", function () {
         context("when set wrong ruleConfig.severity", function () {
             it("should throw error", function () {
                 var textlint = new TextLintCore();
-                assert.throws(function () {
-                    textlint.setupRules({
-                        "rule-name": require("./fixtures/rules/example-rule")
-                    }, {
-                        "rule-name": {
-                            severity: "xxxxxxxx"// wrong config
-                        }
-                    });
-                    textlint.lintText("test");
+                textlint.setupRules({
+                    "rule-name": require("./fixtures/rules/example-rule")
+                }, {
+                    "rule-name": {
+                        severity: "xxxxxxxx"// wrong config
+                    }
+                });
+                return textlint.lintText("test").catch(error => {
+                    assert(error instanceof Error);
                 });
             });
         });
