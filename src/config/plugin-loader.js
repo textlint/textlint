@@ -7,6 +7,9 @@ const debug = require('debug')('textlint:plugin-loader');
 const path = require("path");
 export function mapRulesConfig(rulesConfig, pluginName) {
     let mapped = {};
+    if (rulesConfig === undefined) {
+        return mapped;
+    }
     Object.keys(rulesConfig).forEach(key => {
         mapped[`${pluginName}/${key}`] = rulesConfig[key];
     });

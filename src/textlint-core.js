@@ -17,7 +17,6 @@ const timing = require("./util/timing");
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
-import {Processor as HTMLProcessor} from "textlint-plugin-html";
 // add all the node types as listeners
 function addListenRule(key, rule, target) {
     Object.keys(rule).forEach(nodeType => {
@@ -37,8 +36,7 @@ export default class TextlintCore {
         // Markdown and Text are for backward compatibility.
         this.processors = [
             new MarkdownProcessor(config),
-            new TextProcessor(config),
-            new HTMLProcessor(config)
+            new TextProcessor(config)
         ];
     }
 

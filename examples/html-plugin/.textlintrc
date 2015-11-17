@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "html"
+  ],
+  "rules": {
+    "sentence-length": {
+      "max": 15
+    }
+  }
+}

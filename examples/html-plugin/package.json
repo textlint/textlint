@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "textlint": "textlint -f pretty-error index.html",
+    "pretest": "npm rm textlint && npm i",
+    "test": "npm run textlint"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "devDependencies": {
+    "textlint": "file:../..",
+    "textlint-plugin-html": "^0.1.2",
+    "textlint-rule-sentence-length": "^1.0.4"
+  }
+}
