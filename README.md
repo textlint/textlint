@@ -130,6 +130,28 @@ To enable plugin, put the "plugin-name` into `.textlinrc`.
 
 :information_source: See [docs/plugin.md](docs/plugin.md)
 
+#### Processor Plugin
+
+Processor Plugin add new file format support.
+If you want to use textlint for HTML, use [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html") as plugin.
+
+    npm install textlint-plugin-html
+    
+and Add "html" to `.textlintrc`
+
+```
+{
+    "plugins": [
+        "html"
+    ]
+}
+```
+
+Run textlint and work!
+
+- Example : [examples/html-plugin](examples/html-plugin)
+- Document: [docs/plugin.md](docs/plugin.md)
+
 ### Rule list - [Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 
 See [Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki").
