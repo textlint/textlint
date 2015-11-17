@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "bluebird": "^3.0.5",
-    "carrack": "0.0.1",
+    "carrack": "0.0.3",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.0",
     "interop-require": "^1.0.0",
