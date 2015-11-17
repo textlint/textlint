@@ -57,10 +57,13 @@ describe("rule-context-test", function () {
                 });
             });
             it("should call Str callback, 1+1", function () {
-                textlint.lintMarkdown("text");
-                assert(callCount === 1);
-                textlint.lintText("text");
-                assert(callCount === 2);
+                return textlint.lintMarkdown("text").then(()=> {
+                    assert(callCount === 1);
+                }).then(()=> {
+                    return textlint.lintText("text");
+                }).then(()=> {
+                    assert(callCount === 2);
+                });
             });
         });
     });
@@ -109,7 +112,7 @@ describe("rule-context-test", function () {
                     }
                 }
             });
-            return textlint.lintMarkdown("test").then(result =>{
+            return textlint.lintMarkdown("test").then(result => {
                 assert(result.messages.length === 1);
                 let message = result.messages[0];
                 assert.equal(message.message, expectedData.message);
