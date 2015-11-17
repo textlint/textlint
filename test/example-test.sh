@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+NODE_ENV=production
 rootDir=$(git rev-parse --show-toplevel)
 cd ${rootDir}/examples/cli && npm test
 cd ${rootDir}/examples/config-file && npm test

@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "perf": "npm rm textlint && npm i -q && node perf.js"
+    "perf": "npm rm textlint && npm i --production && node perf.js"
   },
   "private": true,
   "author": "azu",
