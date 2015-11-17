@@ -55,6 +55,15 @@ describe("textlint-engine-test", function () {
         });
     });
     describe("#loadPlugin", function () {
+        context("when Plugin has not rules", function () {
+            it("should not throw Error", function () {
+                let engine = new TextLintEngine({
+                    plugins: ["markdown"]
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 0);
+            });
+        });
         context("when the rule is **not** defined", function () {
             it("should define rules of plugin", function () {
                 let engine = new TextLintEngine();

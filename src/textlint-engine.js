@@ -12,13 +12,6 @@ import assert from "assert";
 import { isPluginRuleKey } from "./util/plugin-uil";
 import { findFiles } from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
-
-function isExperiment(config) {
-    var formatterName = config.formatterName;
-    if (formatterName === "stylish" || formatterName === "pretty-error" || formatterName === "compact") {
-        return true;
-    }
-}
 class TextLintEngine {
     /**
      * Process files are wanted to lint.
@@ -133,7 +126,10 @@ class TextLintEngine {
         }
         debug('Loading rules from plugin: %s', pkgPath);
         const plugin = interopRequire(pkgPath);
-        this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
+        // Processor plugin doesn't define rules
+        if (plugin.hasOwnProperty("rules")) {
+            this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
+        }
         return plugin;
     }
 
@@ -190,13 +186,6 @@ class TextLintEngine {
         const fileExtList = targetFiles.map(filePath => {
             return path.extname(filePath);
         });
-        if (isExperiment(this.config) && fileExtList.indexOf(".html") !== -1) {
-            console.log(`Currently, "HTML" is experimental support.
-
-If you find error and please file issue:
-https://github.com/textlint/textlint/issues/new
-`);
-        }
         return Promise.all(results);
     }
 
