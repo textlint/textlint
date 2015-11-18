@@ -21,6 +21,12 @@ Manually add text plugin to do following:
 }
 ```
 
+Lint HTML file with textlint
+
+```
+$ textlint index.html
+```
+
 ## Tests
 
     npm test
