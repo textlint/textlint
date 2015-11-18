@@ -33,7 +33,7 @@
     "testing"
   ],
   "dependencies": {
-    "textlint": "^5.0.0 || ^5.0.0-beta"
+    "textlint": "^5.0.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
