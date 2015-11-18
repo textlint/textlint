@@ -112,7 +112,7 @@ You can use Processor plugin in the same way a plugin.
 ```
 {
     "plugins": [
-        "<Processor Plugin>
+        "<Processor Plugin>"
     ]
 }
 ```
