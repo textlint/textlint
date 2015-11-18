@@ -43,27 +43,30 @@ function lintFile(filePath) {
     };
     var engine = new TextLintEngine(options);
     var filePathList = [path.resolve(process.cwd(), filePath)];
-    var results = engine.executeOnFiles(filePathList);
-    /* 
-    See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-    messages are TextLintMessage` array.
-    [
-        "filePath": "path/to/file",
-        "messages" :[
-            {
-                id: "rule-name",
-                message:"lint message",
-                line: 1, // 1-based columns(TextLintMessage)
-                column:1 // 1-based columns(TextLintMessage)
-            }
+    engine.executeOnFiles(filePathList).then(function(results){
+        /* 
+        See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
+        messages are TextLintMessage` array.
+        [
+            "filePath": "path/to/file",
+            "messages" :[
+                {
+                    id: "rule-name",
+                    message:"lint message",
+                    line: 1, // 1-based columns(TextLintMessage)
+                    column:1 // 1-based columns(TextLintMessage)
+                }
+            ]
         ]
-    ]
-     */
-    var output = engine.formatResults(results);
-    if (engine.isErrorResults(results)) {
+         */
         var output = engine.formatResults(results);
-        console.log(output);
-    }
+        if (engine.isErrorResults(results)) {
+            var output = engine.formatResults(results);
+            console.log(output);
+        }
+    }).catch(function(error){
+        console.error(error);
+    });
 }
 ```
 

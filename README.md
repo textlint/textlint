@@ -181,34 +181,35 @@ $ npm install textlint --save-dev
 Minimal usage:
 
 ```js
-var TextLintEngine = require("textlint").TextLintEngine;
-var engine = new TextLintEngine({
+import {TextLintEngine} from "textlint";
+const engine = new TextLintEngine({
     rulePaths: ["path/to/rule-dir"]
 });
-var results = engine.executeOnFiles(["README.md"]);
-console.log(results[0].filePath);// => "README.md"
-// messages are `TextLintMessage` array.
-console.log(results[0].messages);
-/* 
-[
-    {
-        id: "rule-name",
-        message:"lint message",
-        line: 1, // 1-based columns(TextLintMessage)
-        column:1 // 1-based columns(TextLintMessage)
+engine.executeOnFiles(["README.md"]).then(results => {
+    console.log(results[0].filePath);// => "README.md"
+    // messages are `TextLintMessage` array.
+    console.log(results[0].messages);
+    /* 
+    [
+        {
+            id: "rule-name",
+            message:"lint message",
+            line: 1, // 1-based columns(TextLintMessage)
+            column:1 // 1-based columns(TextLintMessage)
+        }
+    ]
+     */
+    if (engine.isErrorResults(results)) {
+        var output = engine.formatResults(results);
+        console.log(output);
     }
-]
- */
-if (engine.isErrorResults(results)) {
-    var output = engine.formatResults(results);
-    console.log(output);
-}
+});
 ```
 
 High level usage:
 
 ```js
-var textlint = require("textlint").textlint;
+import {textlint} from "textlint";
 textlint.setupRules({
     // rule-key : rule function(see docs/create-rules.md)
     "rule-key": function(context){
@@ -219,9 +220,10 @@ textlint.setupRules({
         return exports;
     }
 });
-var results = cliEngine.executeOnFiles(["README.md"]);
-console.log(results[0].filePath);// => "README.md"
-console.log(results[0].messages);// => [{message:"lint message"}]
+cliEngine.executeOnFiles(["README.md"]).then(results => {
+    console.log(results[0].filePath);// => "README.md"
+    console.log(results[0].messages);// => [{message:"lint message"}]
+});
 ```
 
 More detail:
