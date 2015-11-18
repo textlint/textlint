@@ -111,6 +111,23 @@ module.exports = function (context) {
 };
 ```
 
+### How to write async task in the rule
+
+Return Promise object in the node function and the rule work asynchronously.
+
+```js
+export default function (context) {
+    return {
+        [Syntax.Str](node){
+            // textlint wait for resolved the promise.
+            return new Promise((resolve, reject) => {
+                // async task
+            });
+        }
+    }
+}
+```
+
 ## Example: creating `no-todo` rules.
 
 This example aim to found `- [ ]` and `todo:` texts.
