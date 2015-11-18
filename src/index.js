@@ -11,6 +11,7 @@ module.exports = {
     // Recommend: It is easy to use
     TextLintEngine: require("./textlint-engine"),
     // It is a singleton object of TextLintCore
+    // Recommend: use TextLintCore
     textlint: require("./textlint"),
     // Core API for linting a **single** text or file.
     TextLintCore: require("./textlint-core")
