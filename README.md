@@ -206,7 +206,7 @@ engine.executeOnFiles(["README.md"]).then(results => {
 });
 ```
 
-High level usage:
+Low level usage:
 
 ```js
 import {textlint} from "textlint";
@@ -220,7 +220,7 @@ textlint.setupRules({
         return exports;
     }
 });
-cliEngine.executeOnFiles(["README.md"]).then(results => {
+textlint.lintMarkdown("# title").then(results => {
     console.log(results[0].filePath);// => "README.md"
     console.log(results[0].messages);// => [{message:"lint message"}]
 });
