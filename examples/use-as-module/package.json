@@ -2,6 +2,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "pretest": "npm rm textlint && npm i",
     "test": "node index.js"
   },
   "author": "azu",
