@@ -26,5 +26,5 @@ export default function computeLocation(node, padding) {
     return {
         line,
         column
-    }
-}
+    };
+};
