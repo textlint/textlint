@@ -4,27 +4,24 @@ var TextLintEngine = require('textlint').TextLintEngine;
 
 module.exports = function(options) {
   options = options || {};
-  var textlint = new TextLintEngine(options);  
+  var textlint = new TextLintEngine(options);
   var filePaths = [];
-  
+
   return through.obj(function(file, enc, cb) {
     filePaths.push(file.path);
     this.push(file);
     cb();
   }, function(cb) {
-    var results;
-    try {
-      results = textlint.executeOnFiles(filePaths);
+    var that = this;
+    textlint.executeOnFiles(filePaths).then(function (results) {
       if (textlint.isErrorResults(results)) {
         gutil.log(textlint.formatResults(results));
-        this.emit('error', new gutil.PluginError('textlint','Lint failed.'));
+        that.emit('error', new gutil.PluginError('textlint','Lint failed.'));
       }
-    }
-    catch(e) {
-      this.emit('error', new gutil.PluginError('textlint', 'Lint failed.'));
+    }).catch(function(error){
+      that.emit('error', new gutil.PluginError('textlint', 'Lint failed.'))
+    }).then(function() {
       cb();
-    }
-    this.emit("end");
-    cb();
-  });  
+    });
+  });
 };
