@@ -100,7 +100,48 @@ describe("rule-context-test", function () {
         });
     });
     describe("#report", function () {
-        it("also report data", function () {
+        context("RuleError", function () {
+            it("could has padding column", function () {
+                textlint.setupRules({
+                    "rule-key": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                let ruleError = new context.RuleError("error", 1);
+                                context.report(node, ruleError);
+                            }
+                        }
+                    }
+                });
+                return textlint.lintMarkdown("test").then(result => {
+                    assert(result.messages.length === 1);
+                    let message = result.messages[0];
+                    assert.equal(message.line, 1);
+                    assert.equal(message.column, 2);
+                });
+            });
+            it("could has padding location", function () {
+                textlint.setupRules({
+                    "rule-key": function (context) {
+                        return {
+                            [context.Syntax.Code](node){
+                                let ruleError = new context.RuleError("error", {
+                                    line: 5,// if line >=1
+                                    column: 5// then start with 0 + column
+                                });
+                                context.report(node, ruleError);
+                            }
+                        }
+                    }
+                });
+                return textlint.lintMarkdown("test`code`test").then(result => {
+                    assert(result.messages.length === 1);
+                    let message = result.messages[0];
+                    assert.equal(message.line, 6);
+                    assert.equal(message.column, 5 + 1);
+                });
+            });
+        });
+        it("can also report data", function () {
             var expectedData = {message: "message", key: "value"};
             textlint.setupRules({
                 // rule-key : rule function(see docs/create-rules.md)
