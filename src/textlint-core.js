@@ -5,6 +5,7 @@
     textlint.js is a singleton object that is instance of textlint-core.js.
  */
 const Promise = require("bluebird");
+const EventEmitter = require("events").EventEmitter;
 const TraverseController = require('txt-ast-traverse').Controller;
 const traverseController = new TraverseController();
 const path = require('path');
@@ -107,18 +108,21 @@ export default class TextlintCore {
         const ast = preProcess(text, filePath);
         let promiseQueue = [];
         const ruleContextAgent = this._createRuleContextAgent(text, filePath);
+        const listenerCount = (typeof ruleContextAgent.listenerCount !== 'undefined')
+            ? ruleContextAgent.listenerCount.bind(ruleContextAgent) // Node 4.x >=
+            : EventEmitter.listenerCount.bind(EventEmitter, ruleContextAgent);// Node 0.12
         traverseController.traverse(ast, {
             enter(node, parent) {
                 const type = node.type;
                 Object.defineProperty(node, 'parent', {value: parent});
-                if (ruleContextAgent.listenerCount(type) > 0) {
+                if (listenerCount(type) > 0) {
                     let promise = ruleContextAgent.emit(type, node);
                     promiseQueue.push(promise);
                 }
             },
             leave(node) {
                 const type = `${node.type}:exit`;
-                if (ruleContextAgent.listenerCount(type) > 0) {
+                if (listenerCount(type) > 0) {
                     let promise = ruleContextAgent.emit(type, node);
                     promiseQueue.push(promise);
                 }
