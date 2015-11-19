@@ -2,6 +2,7 @@ const EventEmitter = require("carrack");
 const UnionSyntax = require("../parser/union-syntax");
 const debug = require('debug')('textlint:rule-context-agent');
 const RuleError = require("./rule-error");
+const computeLocation = require("./compute-location");
 /**
  * The Agent communicate between RuleContext and Rules.
  */
@@ -25,15 +26,14 @@ export default class RuleContextAgent extends EventEmitter {
      */
     pushReport({ruleId, node, severity, error}) {
         debug('pushReport %s', error);
-        let lineNumber = error.line ? node.loc.start.line + error.line : node.loc.start.line;
-        let columnNumber = error.column ? node.loc.start.column + error.column : node.loc.start.column;
+        let {line,column} = computeLocation(node, error);
         // add TextLintMessage
         let message = {
             ruleId: ruleId,
             message: error.message,
             // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-            line: lineNumber,        // start with 1(1-based line number)
-            column: columnNumber + 1,// start with 1(1-based column number)
+            line: line,        // start with 1(1-based line number)
+            column: column + 1,// start with 1(1-based column number)
             severity: severity // it's for compatible ESLint formatter
         };
         if (!(error instanceof RuleError)) {

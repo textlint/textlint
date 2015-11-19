@@ -4,5 +4,6 @@
   "disallowTrailingWhitespace": null,
   "disallowQuotedKeysInObjects": null,
   "requireSpacesInAnonymousFunctionExpression": null,
-  "requireSpaceBetweenArguments": null
+  "requireSpaceBetweenArguments": null,
+  "requireLineFeedAtFileEnd": null
 }
