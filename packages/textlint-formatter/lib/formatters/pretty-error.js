@@ -68,7 +68,7 @@ function showColumn(codes, ch) {
  * @param {TextLintMessage} message
  * @returns {*}
  */
-function prettifyError(code, filePath, message) {
+function prettyError(code, filePath, message) {
     if (!code) {
         return;
     }
@@ -96,7 +96,7 @@ function prettifyError(code, filePath, message) {
     });
 }
 
-
+module.exports.prettyError = prettyError;
 /**
  *
  * @param {[TextLintResult]} results
@@ -107,7 +107,7 @@ module.exports = function (results) {
     results.forEach(function (result) {
         var code = require("fs").readFileSync(result.filePath, "utf-8");
         result.messages.forEach(function (message) {
-            var r = prettifyError(code, result.filePath, message);
+            var r = prettyError(code, result.filePath, message);
             if (r) {
                 output += r + "\n";
             }
