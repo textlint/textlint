@@ -96,13 +96,12 @@ function prettyError(code, filePath, message) {
     });
 }
 
-module.exports.prettyError = prettyError;
 /**
  *
  * @param {[TextLintResult]} results
  * @returns {string}
  */
-module.exports = function (results) {
+function formatter(results) {
     var output = "";
     results.forEach(function (result) {
         var code = require("fs").readFileSync(result.filePath, "utf-8");
@@ -115,4 +114,6 @@ module.exports = function (results) {
     });
 
     return output;
-};
+}
+module.exports = formatter;
+module.exports.prettyError = prettyError;
