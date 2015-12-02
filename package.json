@@ -29,8 +29,10 @@
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
+    "lint:doc": "eslint docs/ --ext md",
+    "lint:js": "jscs src",
     "test:example": "./test/example-test.sh",
-    "test": "mocha test/*.js && jscs src && npm run test:example",
+    "test": "mocha test/*.js && npm run lint:doc && npm run lint:js && npm run test:example",
     "perf": "cd perf && npm run perf"
   },
   "directories": {
@@ -44,6 +46,8 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "clone": "^1.0.0",
+    "eslint": "^1.10.3",
+    "eslint-plugin-markdown": "eslint/eslint-plugin-markdown",
     "espower-babel": "^3.3.0",
     "jscs": "^2.1.0",
     "mocha": "^2.3.3",
