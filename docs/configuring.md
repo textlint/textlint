@@ -79,10 +79,10 @@ it mean that
 
 Can use the following format:
 
-```js
+```json
 {
   "rules": {
-    "<rule-name>": true | false | object
+    "<rule-name>": true || false || object
   }
 }
 ```
@@ -95,8 +95,7 @@ textlint plugin is a set of rules and rulesConfig.
 
 To enable plugin, put the "plugin-name` into `.textlinrc`.
 
-```js
-// `.textlinrc`
+```json
 {
     "plugins": [
         "plugin-name"

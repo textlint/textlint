@@ -15,29 +15,41 @@ The basic source code format for a rule is:
 /**
  * @param {RuleContext} context
  */
-module.exports = function (context) {
+export default function (context) {
     // rule object
-    var exports = {};
-    exports[context.Syntax.Document] = function (node) {
-    };
-    exports[context.Syntax.Paragraph] = function (node) {
-    };
-    exports[context.Syntax.Str] = function (node) {
-        var text = context.getSource(node);
-        if(/found wrong use-case/.test.(text){
-            // report error
-            context.report(node, new context.RuleError("found wrong"));
+    return {
+        [context.Syntax.Document](node) {
+        },
+        
+        [context.Syntax.Paragraph](node) {
+        },
+        
+        [context.Syntax.Str](node) {
+            var text = context.getSource(node);
+            if(/found wrong use-case/.test(text)){
+                // report error
+                context.report(node, new context.RuleError("found wrong"));
+            }
+        },
+        
+        [context.Syntax.Break](node) {
         }
     };
-    exports[context.Syntax.Break] = function (node) {
-    };
-    return exports;
-};
+}
 ```
 
 If your rule wants to know when an `Str` node is found in the AST, then add a method called `context.Syntax.Str`, such as:
 
 ```js
+// ES6
+export default function (context) {
+    return {
+        [context.Syntax.Str] = function (node) {
+            // this method is called
+        }
+    };
+}
+// or ES5
 module.exports = function (context) {
     var exports = {};
     exports[context.Syntax.Str] = function (node) {
@@ -53,13 +65,14 @@ You can also specify to visit the node on the other side of the traversal, as it
 
 
 ```js
-module.exports = function (context) {
-    var exports = {};
-    exports[context.Syntax.Str + ":exit"] = function (node) {
-        // this method is called
+export default function (context) {
+    return {
+        // Str:exit
+        [`${context.Syntax.Str}:exit`](node) {
+            // this method is called
+        }
     };
-    return exports;
-};
+}
 ```
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
@@ -97,18 +110,18 @@ You will use mainly method is `context.report()`, which publishes a error (defin
 For example:
 
 ```js
-module.exports = function (context) {
-    var exports = {};
-    exports[context.Syntax.Str] = function (node) {
-        // get source code of this `node`
-        var text = context.getSource(node);
-        if(/found wrong use-case/.test.(text){
-            // report error
-            context.report(node, new context.RuleError("found wrong"));
+export default function (context) {
+    return {
+        [context.Syntax.Str] = function (node) {
+            // get source code of this `node`
+            var text = context.getSource(node);
+            if(/found wrong use-case/.test(text)){
+                // report error
+                context.report(node, new context.RuleError("found wrong"));
+            }
         }
     };
-    return exports;
-};
+}
 ```
 
 ### How to write async task in the rule
@@ -117,6 +130,7 @@ Return Promise object in the node function and the rule work asynchronously.
 
 ```js
 export default function (context) {
+    const {Syntax} = context;
     return {
         [Syntax.Str](node){
             // textlint wait for resolved the promise.
@@ -124,7 +138,7 @@ export default function (context) {
                 // async task
             });
         }
-    }
+    };
 }
 ```
 
@@ -137,48 +151,36 @@ Rule file name is equal to rule ID(i.e., no-todo.js for rule ID no-todo).
 File Name: `no-todo.js`
 
 ```js
-"use strict"
 /**
  * @param {RuleContext} context
  */
-module.exports = function (context) {
-    var exports = {};
-    // When `node`'s type is `Str` come, call this callback.
-    /*
-    e.g.)
-        # Header
-
-        this is Str.
-
-        Todo: quick fix this.
-    */
-    // `Str` is "this is Str." and "Todo: quick fix this.", so called this callback twice.
-    exports[context.Syntax.Str] = function (node) {
-        // get text from node
-        var text = context.getSource(node);
-        // does text contain "todo:"?
-        if (/todo:/i.test(text)) {
-            context.report(node, new context.RuleError("found Todo: " + text));
+export default function (context) {
+    const {Syntax, getSource, RuleError, report} = context;
+    return {
+        /*
+            # Header
+            Todo: quick fix this.
+        */
+        [Syntax.Str](node) {
+            // get text from node
+            var text = getSource(node);
+            // does text contain "todo:"?
+            if (/todo:/i.test(text)) {
+                report(node, new RuleError("found TODO: '" + text + "'"));
+            }
+        },
+        /*
+            # Header
+            - [ ] Todo
+        */
+        [Syntax.ListItem](node) {
+            var text = getSource(node);
+            if (/\[\s+\]\s/i.test(text)) {
+                report(node, new RuleError("found TODO: '" + text + "'"));
+            }
         }
     };
-    // When `node`'s type is `ListItem` come, call this callback.
-    /*
-    e.g.)
-        # Header
-
-        - list 1
-        - [ ] todo
-    */
-    // `List` is "- list 1" and - [ ] todo", so called this callback twice.
-    exports[context.Syntax.ListItem] = function (node) {
-        var text = context.getSource(node);
-        if (/\[\s+\]\s/i.test(text)) {
-            context.report(node, new context.RuleError("found Todo: " + text));
-        }
-    };
-    return exports;
-};
-
+}
 ```
 
 Example text:
@@ -257,34 +259,37 @@ function isNodeWrapped(node, types) {
 /**
  * @param {RuleContext} context
  */
-module.exports = function (context) {
-    var exports = {};
-    // When `Node`'s type is `Str` come, call this callback.
-    /*
-    e.g.)
-        - [ ] TODO
-        
-    Exception) [todo:text](http://example.com)
-    */
-    exports[context.Syntax.Str] = function (node) {
-        var Syntax = context.Syntax;
-        // not apply this rule to the node that is child of `Link`, `Image` or `BlockQuote` Node.
-        if (isNodeWrapped(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
-            return;
-        }
-        var text = context.getSource(node);
-        if (/todo:/i.test(text)) {
-            context.report(node, new context.RuleError("found TODO: '" + text + "'"));
+export default function (context) {
+    const {Syntax, getSource, RuleError, report} = context;
+    return {
+        /*
+            # Header
+            Todo: quick fix this.
+        */
+        [Syntax.Str](node) {
+            // not apply this rule to the node that is child of `Link`, `Image` or `BlockQuote` Node.
+            if (isNodeWrapped(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
+                return;
+            }
+            // get text from node
+            var text = getSource(node);
+            // does text contain "todo:"?
+            if (/todo:/i.test(text)) {
+                report(node, new RuleError("found TODO: '" + text + "'"));
+            }
+        },
+        /*
+            # Header
+            - [ ] Todo
+        */
+        [Syntax.ListItem](node) {
+            var text = getSource(node);
+            if (/\[\s+\]\s/i.test(text)) {
+                report(node, new RuleError("found TODO: '" + text + "'"));
+            }
         }
     };
-    exports[context.Syntax.ListItem] = function (node) {
-        var text = context.getSource(node);
-        if (/\[\s+\]\s/i.test(text)) {
-            context.report(node, new context.RuleError("found TODO: '" + text + "'"));
-        }
-    };
-    return exports;
-};
+}
 ```
 
 As as result, linting following text with modified rule, a result was no error.
@@ -293,7 +298,8 @@ As as result, linting following text with modified rule, a result was no error.
 [todo:image](http://example.com)
 ```
 
-The rule created is [no-todo.js](../rules/no-todo.js).
+- The created rule is [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo").
+- These helper functions like `getParents` are implemented in [textlint/textlint-rule-helper](https://github.com/textlint/textlint-rule-helper "textlint/textlint-rule-helper").
 
 ### Rule Config
 
@@ -306,7 +312,7 @@ For example, there are a config file:
   "rules": {
     "very-nice-rule": {
         "key": "value"
-    },
+    }
   }
 }
 ```
@@ -314,7 +320,7 @@ For example, there are a config file:
 `very-nice-rule.js` rule get the options defined by the config file.
 
 ```js
-module.exports = function(context, options){
+export default function(context, options){
     console.log(options);
     /*
         {
