@@ -242,7 +242,7 @@ Please see docs/
 
 ## Use with XXX
 
-- [nakajmg/gulp-textlint](https://github.com/nakajmg/gulp-textlint "nakajmg/gulp-textlint")
+- [nakajmg/gulp-textlint](https://github.com/textlint/gulp-textlint "nakajmg/gulp-textlint")
 
 > gulp plugin for textlint.
 
@@ -252,7 +252,7 @@ Please see docs/
 
 ## Who's using textlint?
 
-- [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/vuejs.org "vuejs-jp/vuejs.org")
+- [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
 
 > The vuejs.org for japanese.
 
