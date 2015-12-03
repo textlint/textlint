@@ -100,7 +100,7 @@ Pass rule's options("key": "value") to `very-nice-rule`.
 
 It mean that use the following format:
 
-```js
+```
 {
   // Allow to comment in JSON
   "rules": {
@@ -120,7 +120,7 @@ textlint plugin is a set of rules and rulesConfig or customize parser.
 
 To enable plugin, put the "plugin-name` into `.textlinrc`.
 
-```js
+```
 // `.textlinrc`
 {
     "plugins": [

@@ -29,7 +29,7 @@
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
-    "lint:doc": "eslint docs/ --ext md",
+    "lint:doc": "eslint docs/ ./README.md --ext md",
     "lint:js": "jscs src",
     "test:example": "./test/example-test.sh",
     "test": "mocha test/*.js && npm run lint:doc && npm run lint:js && npm run test:example",
