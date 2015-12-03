@@ -57,19 +57,20 @@ Minimum(recommended) rules is following code:
 /**
  * @param {RuleContext} context
  */
-module.exports = function (context) {
-    var exports = {};
+export default function (context) {
+    const {Syntax} = context;
     // root object
-    exports[context.Syntax.Document] = function (node) {
+    return {
+        [Syntax.Document](node) {
+        },
+        [Syntax.Paragraph](node) {
+        },
+        [Syntax.Str](node) {
+        },
+        [Syntax.Break](node) {
+        }
     };
-    exports[context.Syntax.Paragraph] = function (node) {
-    };
-    exports[context.Syntax.Str] = function (node) {
-    };
-    exports[context.Syntax.Break] = function (node) {
-    };
-    return exports;
-};
+}
 ```
 
 
