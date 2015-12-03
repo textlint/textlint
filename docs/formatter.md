@@ -4,6 +4,7 @@ Pass following object to reporter module .
 
 ```js
 var results = [
+    // TextLintResult object
     {
         filePath: "./myfile.js",
         messages: [
@@ -15,10 +16,9 @@ var results = [
             }
         ]
     }
-]
-
+];
 ```
 
-## How to get sourcecode of a result?
+## How to get source code from result?
 
 You can read the source code from `filePath` property or `raw` property of `Document` node.

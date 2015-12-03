@@ -59,7 +59,6 @@ function lintFile(filePath) {
             ]
         ]
          */
-        var output = engine.formatResults(results);
         if (engine.isErrorResults(results)) {
             var output = engine.formatResults(results);
             console.log(output);

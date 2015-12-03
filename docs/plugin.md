@@ -13,7 +13,7 @@ This rules property should be an object containing a key-value mapping of rule I
 The rule ID does not have to follow any naming convention (so it can just be `no-todo`, for instance).
 
 ```js
-module.exports = {
+export default {
     rules: {
         "no-todo": function (context, options) {
             // rule implementation ...
@@ -37,17 +37,17 @@ You can provide default configuration for the rules included in your plugin by m
 rulesConfig follows the same pattern as you would use in your `.textlintrc` config rules property, but without plugin name as a prefix.
    
 ```js
-module.exports = {
-   rules: {
-       "myFirstRule": require("./lib/rules/my-first-rule"),
-       "mySecondRule": require("./lib/rules/my-second-rule")
-   },
-   rulesConfig: {
-       "myFirstRule": true,
-       "mySecondRule": {
-          "key": "value"
-       }
-   }
+export default {
+    rules: {
+        "myFirstRule": require("./lib/rules/my-first-rule"),
+        "mySecondRule": require("./lib/rules/my-second-rule")
+    },
+    rulesConfig: {
+        "myFirstRule": true,
+        "mySecondRule": {
+            "key": "value"
+        }
+    }
 };
 ```
 
@@ -57,7 +57,7 @@ Plugin has a `Processor` that is optional.
 
 ```js
 // index.js
-module.exports = {
+export default {
     Processor: require("./SomeProcessor")
 };
 ```
