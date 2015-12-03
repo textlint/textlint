@@ -25,8 +25,8 @@ Use textlint with `--rule` or `--ruledir`, `.textlintrc` config file.
 npm install --save-dev textlint-rule-no-todo
 ```
 
-- use with `textlint-rule-no-todo` rule
-- shorten `textlint-rule-no-todo` to `no-todo`.
+Use with `textlint-rule-no-todo` rule.
+(allow to short `textlint-rule-no-todo` to `no-todo`)
 
 ```sh
 textlint --rule no-todo README.md
@@ -83,7 +83,14 @@ is equal to
 }
 ```
 
-The config object can define rule's option.
+and
+
+```sh
+$ textlint README.md
+# Automatically load `.textlintrc` in current directory
+```
+
+`.textlintrc` can define rule's option.
 
 ```json
 {
