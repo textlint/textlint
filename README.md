@@ -72,7 +72,7 @@ Example:
 $ textlint --rule no-todo --rule very-nice-rule README.md
 ```
 
-is equal to
+is equal to create `.textlintrc` file
 
 ```json
 {
@@ -83,7 +83,7 @@ is equal to
 }
 ```
 
-and
+and run `textlint` command
 
 ```sh
 $ textlint README.md
