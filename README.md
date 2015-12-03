@@ -2,7 +2,7 @@
 
 The pluggable linting tool for text(plain text and markdown).
 
-It is similar to [ESLint](http://eslint.org/ "ESLint").
+textlint is similar to [ESLint](http://eslint.org/ "ESLint").
 
 ## Installation
 
@@ -12,24 +12,25 @@ $ npm install textlint -g
 
 ## Usage
 
-textlint has not default rule!!
-
-Should use textlint with `--rule` or `--ruledir`.
-
 ![todo:lint result](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
 
 - [ ]  more more document
 
-:information_source: See [examples/cli](examples/cli)
+textlint has not default rule!!
+
+Use textlint with `--rule` or `--ruledir`, `.textlintrc` config file.
 
 ```sh
-# install textlint rule
+# Install textlint's rule
 npm install --save-dev textlint-rule-no-todo
-# use with `textlint-rule-no-todo` rule
-# shorten `textlint-rule-no-todo` to `no-todo`.
-textlint --rule no-todo README.md
 ```
 
+- use with `textlint-rule-no-todo` rule
+- shorten `textlint-rule-no-todo` to `no-todo`.
+
+```sh
+textlint --rule no-todo README.md
+```
 
 ## CLI
 
@@ -59,9 +60,13 @@ Allow to use with multiple rules.
 $ textlint --rule no-todo --rule very-nice-rule README.md
 ```
 
+Example:
+
+- :information_source: See [examples/cli](examples/cli)
+
 ### .textlintrc
 
-`.textlintrc` is config file that is loaded as YAML, JSON or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
+`.textlintrc` is config file that is loaded as JSON, YAML or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
 
 ```
 $ textlint --rule no-todo --rule very-nice-rule README.md
@@ -97,6 +102,7 @@ It mean that use the following format:
 
 ```js
 {
+  // Allow to comment in JSON
   "rules": {
     "<rule-name>": true | false | object
   }
@@ -226,7 +232,7 @@ textlint.lintMarkdown("# title").then(results => {
 });
 ```
 
-More detail:
+More detail on:
 
 - See [docs/use-as-modules.md](docs/use-as-modules.md)
 
