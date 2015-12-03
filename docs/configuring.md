@@ -79,7 +79,7 @@ it mean that
 
 Can use the following format:
 
-```json
+```
 {
   "rules": {
     "<rule-name>": true || false || object
