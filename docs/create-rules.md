@@ -113,7 +113,7 @@ var error = new RuleError("message");
 var error = new RuleError("message", {
     line: paddingLine, // padding line number from node.loc.start.line. default: 0
     column: paddingColumn // padding column number from node.loc.start.column. default: 0
-};
+});
 ```
 
 
