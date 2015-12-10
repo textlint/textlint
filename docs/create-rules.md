@@ -92,14 +92,32 @@ RuleContext object has following property:
 - `Syntax.*` is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
     - [lib/parser/union-syntax.js](../lib/parser/union-syntax.js)
-- `RuleError(<message>)` is like Error object.
-    - e.g.) `new context.RuleError("found rule error")`
 - `report(<node>, <ruleError>)` is a method reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
 - `getSource(<node>)`  is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath()` return file path that is linting target.
     - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
+
+## RuleError
+
+RuleError is a object like Error.
+Use it with `report` function.
+
+- `RuleError(<message>, [{ loc , column }])`
+    - e.g.) `new context.RuleError("found rule error")`
+
+```js
+var error = new RuleError("message");
+// or
+var paddingLine = 1;
+var paddingColumn = 1;
+var errorWithPadding = new RuleError("message", {
+    line: paddingLine, // padding line number from node.loc.start.line. default: 0
+    column: paddingColumn // padding column number from node.loc.start.column. default: 0
+});
+```
+
 
 See also [Working with Rules](http://eslint.org/docs/developer-guide/working-with-rules.html "Working with Rules") on ESLint.
 
