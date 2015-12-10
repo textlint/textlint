@@ -110,7 +110,9 @@ Use it with `report` function.
 ```js
 var error = new RuleError("message");
 // or
-var error = new RuleError("message", {
+var paddingLine = 1;
+var paddingColumn = 1;
+var errorWithPadding = new RuleError("message", {
     line: paddingLine, // padding line number from node.loc.start.line. default: 0
     column: paddingColumn // padding column number from node.loc.start.column. default: 0
 });
