@@ -45,9 +45,6 @@ function availableRulesConfig(rulesConfig){
     }
     let filteredConfig = {};
     Object.keys(rulesConfig).forEach(key => {
-        if (isPluginRuleKey(key)) {
-            return;
-        }
         if (isPresetRuleKey(key)) {
             return;
         }
@@ -65,6 +62,7 @@ const defaultOptions = Object.freeze({
     // always should start with empty
     disabledRules: [],
     // preset package names
+    // e.g.) ["preset-foo"]
     presets: [],
     // plugin package names
     plugins: [],
@@ -157,7 +155,7 @@ class Config {
         const configFileDisabledRules = configRulesObject.disable;
         const configPresets = configRulesObject.presets;
         const configFilePlugins = configFileRawOptions.plugins || [];
-        const configFileRulesConfig = availableRulesConfig(configFileRawOptions.rules)
+        const configFileRulesConfig = availableRulesConfig(configFileRawOptions.rules);
         // @type {string[]} rules rules is key list of rule names
         const optionRules = options.rules || [];
         const optionDisbaledRules = options.disabledRules || [];

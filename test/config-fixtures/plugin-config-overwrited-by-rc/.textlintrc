@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "pl-example"
+  ],
+  "rules": {
+    "pl-example/example-rule": false
+  }
+}
