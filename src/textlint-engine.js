@@ -9,7 +9,7 @@ const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
 const path = require('path');
 import assert from "assert";
-import { isPluginRuleKey } from "./util/plugin-uil";
+import { isPluginRuleKey } from "./util/config-util";
 import { findFiles } from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
@@ -63,6 +63,12 @@ class TextLintEngine {
             // load in additional rules
             config.rules.forEach(ruleName => {
                 this.loadRule(ruleName);
+            });
+        }
+        // TODO: --preset
+        if (config.presets) {
+            config.presets.forEach(presetName => {
+                this.loadPreset(presetName);
             });
         }
         // --plugin
@@ -131,6 +137,30 @@ class TextLintEngine {
             this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
         }
         return plugin;
+    }
+
+    loadPreset(presetName) {
+        // ignore already defined rule
+        // ignore rules from rulePaths because avoid ReferenceError is that try to require.
+        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
+        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, '');
+        // ignore plugin's rule
+        if (isPluginRuleKey(presetRuleNameWithoutPrefix)) {
+            console.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
+            return;
+        }
+        const baseDir = this.config.rulesBaseDirectory || '';
+        const textlintRuleName = `${RULE_NAME_PREFIX}${ presetRuleNameWithoutPrefix }`;
+        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, presetName));
+        if (!pkgPath) {
+            throw new ReferenceError(`preset: ${ presetRuleNameWithoutPrefix } is not found`);
+        }
+        debug('Loading rules from preset: %s', pkgPath);
+        const preset = interopRequire(pkgPath);
+        // Processor plugin doesn't define rules
+        this.ruleManager.importPlugin(preset.rules, presetRuleNameWithoutPrefix);
+        return preset;
     }
 
     /**

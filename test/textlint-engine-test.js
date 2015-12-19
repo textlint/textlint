@@ -33,6 +33,19 @@ describe("textlint-engine-test", function () {
         });
     });
     describe("setup rule", function () {
+        context("when rule is a scoped module", function () {
+            it("should define rule", function () {
+                let engine = new TextLintEngine({
+                    rules: ["@textlint/textlint-rule-example"],
+                    rulesBaseDirectory: path.join(__dirname, "/fixtures/rules/")
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 1);
+                const ruleName = ruleNames[0];
+                assert(ruleName === "@textlint/textlint-rule-example");
+                assert(typeof engine.ruleManager.getRule(ruleName) === "function");
+            });
+        });
         context("when (textlint-rule-)no-todo is specified", function () {
             it("should set `no-todo` as key to rule dict", function () {
                 let engine = new TextLintEngine({
@@ -64,6 +77,19 @@ describe("textlint-engine-test", function () {
                 assert(ruleNames.length === 0);
             });
         });
+        context("when Plugin is a scoped module", function () {
+            it("should define rule of plugin", function () {
+                let engine = new TextLintEngine({
+                    plugins: ["@textlint/textlint-plugin-example"],
+                    rulesBaseDirectory: path.join(__dirname, "/fixtures/plugins/")
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 1);
+                const ruleName = ruleNames[0];
+                assert(ruleName === "@textlint/textlint-plugin-example/example-rule");
+                assert(typeof engine.ruleManager.getRule(ruleName) === "function");
+            });
+        });
         context("when the rule is **not** defined", function () {
             it("should define rules of plugin", function () {
                 let engine = new TextLintEngine();
@@ -86,6 +112,50 @@ describe("textlint-engine-test", function () {
                 engine.loadPlugin("example");
                 // should equal prev loaded object
                 assert(engine.ruleManager.getRule("example/example-rule") === ruleObject);
+            });
+        });
+    });
+
+    describe("#loadPreset", function () {
+        context("when preset is a scoped module", function () {
+            it("should define rule of preset", function () {
+                let engine = new TextLintEngine({
+                    presets: ["@textlint/textlint-rule-preset-example"],
+                    rulesBaseDirectory: path.join(__dirname, "/fixtures/presets/")
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 1);
+                const ruleName = ruleNames[0];
+                assert(ruleName === "@textlint/textlint-rule-preset-example/example-rule");
+                assert(typeof engine.ruleManager.getRule(ruleName) === "function");
+            });
+        });
+        context("when the rule is **not** defined", function () {
+            it("should define rules of preset", function () {
+                let engine = new TextLintEngine({
+                    presets: ["preset-example"],
+                    rulesBaseDirectory: path.join(__dirname, "/fixtures/presets/")
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 2);
+                assert.equal(ruleNames[0], "preset-example/a");
+                assert.equal(ruleNames[1], "preset-example/b");
+            });
+        });
+        context("when the rule is defined", function () {
+            it("should not load rule", function () {
+                let engine = new TextLintEngine({
+                    presets: ["preset-example"],
+                    rulesBaseDirectory: path.join(__dirname, "/fixtures/presets/")
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 2);
+                var ruleObject = engine.ruleManager.getRule("preset-example/a");
+                // loadRule should ignore
+                engine.loadPreset("preset-example");
+                assert(ruleNames.length === 2);
+                // should equal prev loaded object
+                assert(engine.ruleManager.getRule("preset-example/a") === ruleObject);
             });
         });
     });

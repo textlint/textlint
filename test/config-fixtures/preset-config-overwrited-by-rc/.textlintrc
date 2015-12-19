@@ -1,0 +1,8 @@
+{
+  "rules": {
+    "preset-foo": {
+      "a": false
+    },
+    "preset-bar": true
+  }
+}

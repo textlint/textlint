@@ -1,0 +1,9 @@
+{
+  "rules": [],
+  "presets": [
+    "@textlint/textlint-rule-preset-foo"
+  ],
+  "rulesConfig": {
+    "@textlint/textlint-rule-preset-foo/a": true
+  }
+}

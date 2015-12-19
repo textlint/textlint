@@ -29,18 +29,18 @@ describe("textlint-core", function () {
                 "example-rule": rule
             });
         });
-        it("should not throw an exception", function () {
+        it("should not throw an exception @ text", function () {
             return textlint.lintText("").then((result) => {
                 assert(result.messages.length === 0);
             });
         });
-        it("should not throw an exception", function () {
+        it("should not throw an exception @ markdown", function () {
             return textlint.lintMarkdown("").then((result) => {
                 assert(result.messages.length === 0);
             });
         });
-        it("should not throw an exception", function () {
-            return textlint.lintFile('./test/fixtures/empty.md').then((result) => {
+        it("should not throw an exception @ file", function () {
+            return textlint.lintFile(__dirname + '/fixtures/empty.md').then((result) => {
                 assert(result.messages.length === 0);
             });
         });

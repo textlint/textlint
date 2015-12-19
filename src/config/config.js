@@ -4,8 +4,10 @@ const path = require('path');
 const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
-import {isPluginRuleKey} from "../util/plugin-uil";
+import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
+import { mapRulesConfig } from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
+import loadRulesConfigFromPresets from "./preset-loader";
 /**
  * Get rule keys from `.textlintrc` config object.
  * @param rulesConfig
@@ -13,16 +15,24 @@ import loadRulesConfigFromPlugins from "./plugin-loader";
  */
 function separateAvailableOrDisable(rulesConfig) {
     const ruleOf = {
+        presets: [],
         available: [],
         disable: []
     };
     if (!rulesConfig) {
         return ruleOf;
     }
-    Object.keys(rulesConfig).filter(key => {
+    Object.keys(rulesConfig).forEach(key => {
+        // `textlint-rule-preset-XXX`
+        if (isPresetRuleKey(key)) {
+            if (typeof rulesConfig[key] === 'object' || rulesConfig[key] === true) {
+                ruleOf.presets.push(key);
+            }
+            return;
+        }
         // `<plugin>/<rule-key>` should ignored
         if (isPluginRuleKey(key)) {
-            return false;
+            return;
         }
         // ignore `false` value
         if (typeof rulesConfig[key] === 'object' || rulesConfig[key] === true) {
@@ -33,6 +43,21 @@ function separateAvailableOrDisable(rulesConfig) {
     });
     return ruleOf;
 }
+function buildUpRulesConfig(rulesConfig) {
+    if (!rulesConfig) {
+        return {};
+    }
+    let filteredConfig = {};
+    Object.keys(rulesConfig).forEach(key => {
+        if (isPresetRuleKey(key)) {
+            // <preset>/<rule>
+            objectAssign(filteredConfig, mapRulesConfig(rulesConfig[key], key));
+            return;
+        }
+        filteredConfig[key] = rulesConfig[key];
+    });
+    return filteredConfig;
+}
 /**
  * @type {TextLintConfig}
  */
@@ -42,6 +67,9 @@ const defaultOptions = Object.freeze({
     // disabled rule package names
     // always should start with empty
     disabledRules: [],
+    // preset package names
+    // e.g.) ["preset-foo"]
+    presets: [],
     // plugin package names
     plugins: [],
     // rules base directory that is related `rules`.
@@ -83,6 +111,13 @@ class Config {
     }
 
     /**
+     * @return {string} rule preset package's name prefix
+     */
+    static get RULE_PRESET_NAME_PREFIX() {
+        return "textlint-rule-preset";
+    }
+
+    /**
      * @return {string} plugins package's name prefix
      */
     static get PLUGIN_NAME_PREFIX() {
@@ -99,8 +134,9 @@ class Config {
         let options = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
-        // TODO: CLI --disable <rule>
-        options.disabledRules = defaultOptions.rules;
+        // TODO: CLI --disable <rule>?
+        options.disabledRules = defaultOptions.disabledRules;
+        options.presets = cliOptions.preset ? cliOptions.preset : defaultOptions.presets;
         options.plugins = cliOptions.plugin ? cliOptions.plugin : defaultOptions.plugins;
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
@@ -122,24 +158,28 @@ class Config {
         const configFileRules = configRulesObject.available;
         // disable rules
         const configFileDisabledRules = configRulesObject.disable;
+        const configPresets = configRulesObject.presets;
         const configFilePlugins = configFileRawOptions.plugins || [];
-        const configFileRulesConfig = configFileRawOptions.rules;
+        const configFileRulesConfig = buildUpRulesConfig(configFileRawOptions.rules);
         // @type {string[]} rules rules is key list of rule names
         const optionRules = options.rules || [];
         const optionDisbaledRules = options.disabledRules || [];
         const optionRulesConfig = options.rulesConfig || {};
         const optionPlugins = options.plugins || [];
+        const optionPresets = options.presets || [];
         // merge options and configFileOptions
         // Priority options > configFile
         const rules = concat(optionRules, configFileRules);
         const disabledRules = concat(optionDisbaledRules, configFileDisabledRules);
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
+        const presets = concat(optionPresets, configPresets);
         const mergedOptions = objectAssign({}, options, {
             rules,
             disabledRules,
             rulesConfig,
-            plugins
+            plugins,
+            presets
         });
         return new this(mergedOptions);
     }
@@ -170,6 +210,10 @@ class Config {
          * These rule is set `false` to options
          */
         this.disabledRules = options.disabledRules ? options.disabledRules : defaultOptions.disabledRules;
+        /**
+         * @type {string[]} preset key list
+         */
+        this.presets = options.presets ? options.presets : defaultOptions.presets;
         // => load plugins
         // this.rules has not contain plugin rules
         // =====================
@@ -178,7 +222,11 @@ class Config {
             baseDir: this.rulesBaseDirectory,
             pluginPrefix: this.constructor.PLUGIN_NAME_PREFIX
         });
-        this.rulesConfig = objectAssign({}, pluginRulesConfig, options.rulesConfig);
+        const presetRulesConfig = loadRulesConfigFromPresets(this.presets, {
+            baseDir: this.rulesBaseDirectory,
+            rulePrefix: this.constructor.RULE_NAME_PREFIX
+        });
+        this.rulesConfig = objectAssign({}, presetRulesConfig, pluginRulesConfig, options.rulesConfig);
         /**
          * @type {string[]}
          */

@@ -59,7 +59,7 @@ export default class TextlintCore {
             Object.keys(rules).forEach(key => {
                 const ruleCreator = rules[key];
                 if (typeof ruleCreator !== 'function') {
-                    throw new Error(`Definition for rule '${ key }' was not found.`);
+                    throw new Error(`Definition of rule '${ key }' was not found.`);
                 }
                 // "rule-name" : false => disable
                 const ruleConfig = rulesConfig && rulesConfig[key];
