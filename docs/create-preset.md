@@ -12,7 +12,7 @@ module.exports = {
     "rulesConfig": {
         "no-todo": true
     }
-}
+};
 ```
 
 - `"rules"` is rule creator object.
@@ -36,7 +36,7 @@ module.exports = {
         "ruleB": require("textlint-rule-B")
     },
     "rulesConfig": {
-        "ruleA": true
+        "ruleA": true,
         "ruleB": true
     }
 };
@@ -46,12 +46,12 @@ Usage of "textlint-rule-preset-gizmo":
 
 `.textlintrc`
 
-```js
+```json
 {
     "rules": {
         "preset-gizmo": {
             "ruleA": false
-            /* ruleB's options is defined by preset-gizmo
+            /* ruleB's options is defined by preset-gizmo */
         }
     }
 }
