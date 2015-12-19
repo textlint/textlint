@@ -155,7 +155,8 @@ class Config {
          * @type {string|null} path to .textlintrc file.
          */
         this.configFile = options.configFile;
-        this.rulesBaseDirectory = options.rulesBaseDirectory ? options.rulesBaseDirectory
+        this.rulesBaseDirectory = options.rulesBaseDirectory
+            ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // rule names that are defined in ,textlintrc
         /**

@@ -49,6 +49,7 @@
     "eslint": "^1.10.3",
     "eslint-plugin-markdown": "eslint/eslint-plugin-markdown",
     "espower-babel": "^3.3.0",
+    "glob": "^6.0.1",
     "jscs": "^2.1.0",
     "mocha": "^2.3.3",
     "power-assert": "^1.0.1",
