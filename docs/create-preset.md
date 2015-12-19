@@ -56,3 +56,23 @@ Usage of "textlint-rule-preset-gizmo":
     }
 }
 ```
+
+
+## Publishing
+
+You should add `textlint` to npm's `keywords`
+
+```json
+{
+  "name": "textlint-rule-preset-foo-bar",
+  "description": "Your preset of rules description",
+  "version": "1.0.1",
+  "keywords": [
+    "textlint"
+  ]
+}
+```
+
+We recommend that preset's name should start with `textlint-rule-preset-*`.
+
+e.g.) textlint-rule-preset-foo-bar
