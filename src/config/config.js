@@ -28,7 +28,9 @@ function separateAvailableOrDisable(rulesConfig) {
             return;
         }
         if (isPresetRuleKey(key)) {
-            ruleOf.presets.push(key);
+            if (typeof rulesConfig[key] === 'object' || rulesConfig[key] === true) {
+                ruleOf.presets.push(key);
+            }
             return;
         }
         // ignore `false` value

@@ -10,6 +10,10 @@ export function mapRulesConfig(rulesConfig, presetName) {
     if (rulesConfig === undefined) {
         return mapped;
     }
+    // ignore "preset-foo": false
+    if (typeof rulesConfig !== "object") {
+        return mapped;
+    }
     Object.keys(rulesConfig).forEach(key => {
         mapped[`${presetName}/${key}`] = rulesConfig[key];
     });
