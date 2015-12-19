@@ -53,7 +53,7 @@ function buildUpRulesConfig(rulesConfig) {
         }
         filteredConfig[key] = rulesConfig[key];
     });
-    return filteredConfig
+    return filteredConfig;
 }
 /**
  * @type {TextLintConfig}
