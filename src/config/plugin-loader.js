@@ -22,10 +22,10 @@ export default function loadRulesConfigFromPlugins(pluginNames = [], {
     }) {
     var pluginRulesConfig = {};
     pluginNames.forEach(pluginName => {
-        const textlintRuleName = `${pluginPrefix}${ pluginName }`;
+        const textlintRuleName = `${pluginPrefix}${pluginName}`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
         if (!pkgPath) {
-            throw new ReferenceError(`${ pluginName } is not found`);
+            throw new ReferenceError(`${ pluginName } is not found. Try to load ${path.join(baseDir, pluginName)}`);
         }
         var plugin = interopRequire(pkgPath);
         if (!plugin.hasOwnProperty("rulesConfig")) {

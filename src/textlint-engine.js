@@ -9,7 +9,7 @@ const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
 const path = require('path');
 import assert from "assert";
-import { isPluginRuleKey } from "./util/plugin-uil";
+import { isPluginRuleKey } from "./util/config-util";
 import { findFiles } from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
@@ -152,7 +152,7 @@ class TextLintEngine {
         }
         const baseDir = this.config.rulesBaseDirectory || '';
         const textlintRuleName = `${RULE_NAME_PREFIX}${ presetRuleNameWithoutPrefix }`;
-        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
+        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, presetName));
         if (!pkgPath) {
             throw new ReferenceError(`preset: ${ presetRuleNameWithoutPrefix } is not found`);
         }

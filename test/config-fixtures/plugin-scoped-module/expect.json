@@ -1,0 +1,6 @@
+{
+  "rules": [],
+  "rulesConfig": {
+    "@textlint/textlint-plugin-pl-example/example-rule": true
+  }
+}

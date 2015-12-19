@@ -4,7 +4,7 @@ const path = require('path');
 const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
-import {isPluginRuleKey, isPresetRuleKey} from "../util/plugin-uil";
+import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
 import { mapRulesConfig } from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
@@ -23,14 +23,15 @@ function separateAvailableOrDisable(rulesConfig) {
         return ruleOf;
     }
     Object.keys(rulesConfig).forEach(key => {
-        // `<plugin>/<rule-key>` should ignored
-        if (isPluginRuleKey(key)) {
-            return;
-        }
+        // `textlint-rule-preset-XXX`
         if (isPresetRuleKey(key)) {
             if (typeof rulesConfig[key] === 'object' || rulesConfig[key] === true) {
                 ruleOf.presets.push(key);
             }
+            return;
+        }
+        // `<plugin>/<rule-key>` should ignored
+        if (isPluginRuleKey(key)) {
             return;
         }
         // ignore `false` value

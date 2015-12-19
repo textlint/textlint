@@ -1,0 +1,5 @@
+{
+  "plugins": [
+    "@textlint/textlint-plugin-pl-example"
+  ]
+}
