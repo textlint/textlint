@@ -29,7 +29,12 @@ module.exports = optionator({
         {
             option: 'rule',
             type: '[path::String]',
-            description: 'Set rule package name and set all default rules to off.'
+            description: 'Set rule package name'
+        },
+        {
+            option: 'preset',
+            type: '[path::String]',
+            description: 'Set preset package name and load rules from preset package.'
         },
         {
             option: 'rulesdir',

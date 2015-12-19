@@ -133,11 +133,10 @@ class Config {
         let options = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
-        // TODO: CLI --disable <rule>
-        options.disabledRules = defaultOptions.rules;
-        // TODO: CLI --preset <preset-rule>
-        options.presets = defaultOptions.presets;
-        options.plugins = cliOptions.preset ? cliOptions.preset : defaultOptions.plugins;
+        // TODO: CLI --disable <rule>?
+        options.disabledRules = defaultOptions.disabledRules;
+        options.presets = cliOptions.preset ? cliOptions.preset : defaultOptions.presets;
+        options.plugins = cliOptions.plugin ? cliOptions.plugin : defaultOptions.plugins;
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
