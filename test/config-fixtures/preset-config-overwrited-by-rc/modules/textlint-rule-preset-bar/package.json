@@ -1,0 +1,5 @@
+{
+  "name": "textlint-rule-preset-bar",
+  "main": "index.js",
+  "private": true
+}

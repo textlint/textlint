@@ -5,6 +5,7 @@ const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
 import {isPluginRuleKey, isPresetRuleKey} from "../util/plugin-uil";
+import { mapRulesConfig } from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
 /**
@@ -39,13 +40,15 @@ function separateAvailableOrDisable(rulesConfig) {
     });
     return ruleOf;
 }
-function availableRulesConfig(rulesConfig){
-    if(!rulesConfig) {
+function availableRulesConfig(rulesConfig) {
+    if (!rulesConfig) {
         return {};
     }
     let filteredConfig = {};
     Object.keys(rulesConfig).forEach(key => {
         if (isPresetRuleKey(key)) {
+            // <preset>/<rule>
+            objectAssign(filteredConfig, mapRulesConfig(rulesConfig[key], key));
             return;
         }
         filteredConfig[key] = rulesConfig[key];

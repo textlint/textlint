@@ -5,13 +5,13 @@ const tryResolve = require('try-resolve');
 const ObjectAssign = require("object-assign");
 const debug = require('debug')('textlint:plugin-loader');
 const path = require("path");
-export function mapRulesConfig(rulesConfig, pluginName) {
+export function mapRulesConfig(rulesConfig, presetName) {
     let mapped = {};
     if (rulesConfig === undefined) {
         return mapped;
     }
     Object.keys(rulesConfig).forEach(key => {
-        mapped[`${pluginName}/${key}`] = rulesConfig[key];
+        mapped[`${presetName}/${key}`] = rulesConfig[key];
     });
     return mapped;
 }
@@ -34,7 +34,7 @@ export default function findRulesAndConfig(ruleNames = [], {
         if (!preset.hasOwnProperty("rulesConfig")) {
             throw new Error(`${ruleName} has not rulesConfig`);
         }
-        // set config of <rule> to "<plugin>/<rule>"
+        // set config of <rule> to "<preset>/<rule>"
         ObjectAssign(presetRulesConfig, mapRulesConfig(preset.rulesConfig, ruleName));
     });
     return presetRulesConfig;
