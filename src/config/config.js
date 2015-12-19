@@ -9,20 +9,29 @@ import loadRulesConfigFromPlugins from "./plugin-loader";
 /**
  * Get rule keys from `.textlintrc` config object.
  * @param rulesConfig
- * @returns {string[]}
+ * @returns {{available: string[], disable: string[]}}
  */
-function availableRuleKeys(rulesConfig) {
+function separateAvailableOrDisable(rulesConfig) {
+    const ruleOf = {
+        available: [],
+        disable: []
+    };
     if (!rulesConfig) {
-        return [];
+        return ruleOf;
     }
-    return Object.keys(rulesConfig).filter(key => {
+    Object.keys(rulesConfig).filter(key => {
         // `<plugin>/<rule-key>` should ignored
         if (isPluginRuleKey(key)) {
             return false;
         }
         // ignore `false` value
-        return typeof rulesConfig[key] === 'object' || rulesConfig[key] === true;
+        if (typeof rulesConfig[key] === 'object' || rulesConfig[key] === true) {
+            ruleOf.available.push(key);
+        } else {
+            ruleOf.disable.push(key);
+        }
     });
+    return ruleOf;
 }
 /**
  * @type {TextLintConfig}
@@ -30,6 +39,9 @@ function availableRuleKeys(rulesConfig) {
 const defaultOptions = Object.freeze({
     // rule package names
     rules: [],
+    // disabled rule package names
+    // always should start with empty
+    disabledRules: [],
     // plugin package names
     plugins: [],
     // rules base directory that is related `rules`.
@@ -87,6 +99,8 @@ class Config {
         let options = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
+        // TODO: CLI --disable <rule>
+        options.disabledRules = defaultOptions.rules;
         options.plugins = cliOptions.plugin ? cliOptions.plugin : defaultOptions.plugins;
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
@@ -103,20 +117,27 @@ class Config {
                 configPackagePrefix: this.CONFIG_PACKAGE_PREFIX,
                 configFileName: this.CONFIG_FILE_NAME
             }) || {};
-        const configFileRules = availableRuleKeys(configFileRawOptions.rules);
+        const configRulesObject = separateAvailableOrDisable(configFileRawOptions.rules);
+        // available rules
+        const configFileRules = configRulesObject.available;
+        // disable rules
+        const configFileDisabledRules = configRulesObject.disable;
         const configFilePlugins = configFileRawOptions.plugins || [];
         const configFileRulesConfig = configFileRawOptions.rules;
         // @type {string[]} rules rules is key list of rule names
         const optionRules = options.rules || [];
+        const optionDisbaledRules = options.disabledRules || [];
         const optionRulesConfig = options.rulesConfig || {};
         const optionPlugins = options.plugins || [];
         // merge options and configFileOptions
         // Priority options > configFile
         const rules = concat(optionRules, configFileRules);
+        const disabledRules = concat(optionDisbaledRules, configFileDisabledRules);
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
         const mergedOptions = objectAssign({}, options, {
             rules,
+            disabledRules,
             rulesConfig,
             plugins
         });
@@ -143,7 +164,11 @@ class Config {
          * plugins's rule are loaded in TextLintEngine
          */
         this.rules = options.rules ? options.rules : defaultOptions.rules;
-
+        /**
+         * @type {string[]} rule key list
+         * These rule is set `false` to options
+         */
+        this.disabledRules = options.disabledRules ? options.disabledRules : defaultOptions.disabledRules;
         // => load plugins
         // this.rules has not contain plugin rules
         // =====================
