@@ -1,6 +1,6 @@
 # textlint [![Build Status](https://travis-ci.org/textlint/textlint.svg)](https://travis-ci.org/textlint/textlint)
 
-The pluggable linting tool for text(plain text and markdown).
+The pluggable linting tool for text and markdown.
 
 textlint is similar to [ESLint](http://eslint.org/ "ESLint").
 
