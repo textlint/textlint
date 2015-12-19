@@ -40,7 +40,7 @@ function separateAvailableOrDisable(rulesConfig) {
     });
     return ruleOf;
 }
-function availableRulesConfig(rulesConfig) {
+function buildUpRulesConfig(rulesConfig) {
     if (!rulesConfig) {
         return {};
     }
@@ -158,7 +158,7 @@ class Config {
         const configFileDisabledRules = configRulesObject.disable;
         const configPresets = configRulesObject.presets;
         const configFilePlugins = configFileRawOptions.plugins || [];
-        const configFileRulesConfig = availableRulesConfig(configFileRawOptions.rules);
+        const configFileRulesConfig = buildUpRulesConfig(configFileRawOptions.rules);
         // @type {string[]} rules rules is key list of rule names
         const optionRules = options.rules || [];
         const optionDisbaledRules = options.disabledRules || [];
