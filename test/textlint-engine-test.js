@@ -89,6 +89,37 @@ describe("textlint-engine-test", function () {
             });
         });
     });
+    describe("#loadPreset", function () {
+        context("when the rule is **not** defined", function () {
+            it("should define rules of preset", function () {
+                let engine = new TextLintEngine({
+                    presets: ["preset-example"],
+                    rulesBaseDirectory: path.join(__dirname, "/fixtures/presets/")
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 2);
+                assert.equal(ruleNames[0], "preset-example/a");
+                assert.equal(ruleNames[1], "preset-example/b");
+            });
+        });
+        context("when the rule is defined", function () {
+            it("should not load rule", function () {
+                let engine = new TextLintEngine({
+                    presets: ["preset-example"],
+                    rulesBaseDirectory: path.join(__dirname, "/fixtures/presets/")
+                });
+                var ruleNames = engine.ruleManager.getAllRuleNames();
+                assert(ruleNames.length === 2);
+                var ruleObject = engine.ruleManager.getRule("preset-example/a");
+                // loadRule should ignore
+                engine.loadPreset("preset-example");
+                assert(ruleNames.length === 2);
+                // should equal prev loaded object
+                assert(engine.ruleManager.getRule("preset-example/a") === ruleObject);
+            });
+        });
+    });
+
 
     describe("#loadRule", function () {
         context("when the rule is **not** defined", function () {
