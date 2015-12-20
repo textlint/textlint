@@ -43,7 +43,19 @@ function separateAvailableOrDisable(rulesConfig) {
     });
     return ruleOf;
 }
-function buildUpRulesConfig(rulesConfig) {
+/**
+ * Convert config of preset to rulesConfig flat path format.
+ *
+ * e.g.)
+ * {
+ *  "preset-a" : { "key": "value"}
+ * }
+ * => {"preset-a/key": "value"}
+ *
+ * @param rulesConfig
+ * @returns {{string: string}}
+ */
+function convertRulesConfigToFlatPath(rulesConfig) {
     if (!rulesConfig) {
         return {};
     }
@@ -146,9 +158,9 @@ class Config {
 
     // load config and merge options.
     static initWithAutoLoading(options = {}) {
+        // => ConfigFile
         // configFile is optional
         // => load .textlintrc
-        // ===================
         const configFileRawOptions = loadConfig(options.configFile, {
                 configPackagePrefix: this.CONFIG_PACKAGE_PREFIX,
                 configFileName: this.CONFIG_FILE_NAME
@@ -160,14 +172,14 @@ class Config {
         const configFileDisabledRules = configRulesObject.disable;
         const configPresets = configRulesObject.presets;
         const configFilePlugins = configFileRawOptions.plugins || [];
-        const configFileRulesConfig = buildUpRulesConfig(configFileRawOptions.rules);
-        // @type {string[]} rules rules is key list of rule names
+        const configFileRulesConfig = convertRulesConfigToFlatPath(configFileRawOptions.rules);
+        // => Options
         const optionRules = options.rules || [];
         const optionDisbaledRules = options.disabledRules || [];
         const optionRulesConfig = options.rulesConfig || {};
         const optionPlugins = options.plugins || [];
         const optionPresets = options.presets || [];
-        // merge options and configFileOptions
+        // => Merge options and configFileOptions
         // Priority options > configFile
         const rules = concat(optionRules, configFileRules);
         const disabledRules = concat(optionDisbaledRules, configFileDisabledRules);
