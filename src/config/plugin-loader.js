@@ -25,7 +25,7 @@ export default function loadRulesConfigFromPlugins(pluginNames = [], {
         const textlintRuleName = `${pluginPrefix}${pluginName}`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
         if (!pkgPath) {
-            throw new ReferenceError(`${ pluginName } is not found. Try to load ${path.join(baseDir, pluginName)}`);
+            throw new ReferenceError(`plugin:${ pluginName } is not found. Fail to load ${path.join(baseDir, pluginName)}`);
         }
         var plugin = interopRequire(pkgPath);
         if (!plugin.hasOwnProperty("rulesConfig")) {
