@@ -89,7 +89,33 @@ Can use the following format:
 
 :information_source: See [examples/config-file](../examples/config-file)
 
-### Plugin
+## rule-preset
+
+rule-preset is a collection of rules.
+
+The way of configuration is same with textlint-rule.
+
+```js
+{
+  "rules": {
+    "preset-example": true
+  }
+}
+```
+
+Put the config of `textlint-rule-foo` rule in `text-rule-preset-bar` rule-preset.
+
+```js
+{
+  "rules": {
+    "preset-example": {
+        "foo": true // configuration for "textlint-rule-foo"
+    }
+  }
+}
+```
+
+## Plugin
 
 textlint plugin is a set of rules and rulesConfig.
 
@@ -109,3 +135,8 @@ To enable plugin, put the "plugin-name` into `.textlinrc`.
 ```
 
 :information_source: See [docs/plugin.md](docs/plugin.md)
+
+
+## Overview
+
+![rule-preset-plugin](resources/rule-preset-plugin.png)
