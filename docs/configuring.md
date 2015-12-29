@@ -8,7 +8,7 @@
 
 Put the config of rules into `.textlintrc`
 
-## rules
+## rule
 
 ### Enable/Disable rule
 
