@@ -2,9 +2,9 @@
 
 Parse Markdown to AST with location info.
 
-This library is not parser itself, it is dependent on [wooorm/mdast](https://github.com/wooorm/mdast "wooorm/mdast").
+This library is not parser itself, it is dependent on [wooorm/remark](https://github.com/wooorm/remark).
 
-> Markdown -> mdast -> markdown-to-ast -> TxtNodes
+> Markdown -> remark -> markdown-to-ast -> TxtNodes
 
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
