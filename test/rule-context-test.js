@@ -15,7 +15,7 @@ describe("rule-context-test", function () {
         context(":enter", function () {
             beforeEach(function () {
                 textlint.setupRules({
-                    // rule-key : rule function(see docs/create-rules.md)
+                    // rule-key : rule function(see docs/rule.md)
                     "rule-key": function (context) {
                         var exports = {};
                         exports[context.Syntax.Str] = function (node) {
@@ -42,7 +42,7 @@ describe("rule-context-test", function () {
         context(":exit", function () {
             beforeEach(function () {
                 textlint.setupRules({
-                    // rule-key : rule function(see docs/create-rules.md)
+                    // rule-key : rule function(see docs/rule.md)
                     "rule-key": function (context) {
                         var exports = {};
                         exports[context.Syntax.Str + ":exit"] = function (node) {
@@ -71,7 +71,7 @@ describe("rule-context-test", function () {
         it("should get text from TxtNode", function () {
             var expectedText = "this is text.";
             textlint.setupRules({
-                // rule-key : rule function(see docs/create-rules.md)
+                // rule-key : rule function(see docs/rule.md)
                 "rule-key": function (context) {
                     var exports = {};
                     exports[context.Syntax.Document] = function (node) {
@@ -86,7 +86,7 @@ describe("rule-context-test", function () {
         it("should get text with padding from TxtNode", function () {
             var expectedText = "this is text.";
             textlint.setupRules({
-                // rule-key : rule function(see docs/create-rules.md)
+                // rule-key : rule function(see docs/rule.md)
                 "rule-key": function (context) {
                     var exports = {};
                     exports[context.Syntax.Document] = function (node) {
@@ -144,7 +144,7 @@ describe("rule-context-test", function () {
         it("can also report data", function () {
             var expectedData = {message: "message", key: "value"};
             textlint.setupRules({
-                // rule-key : rule function(see docs/create-rules.md)
+                // rule-key : rule function(see docs/rule.md)
                 "rule-key": function (context) {
                     return {
                         [context.Syntax.Str](node){

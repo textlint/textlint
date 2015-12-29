@@ -74,6 +74,6 @@ function lintFile(filePath) {
 You can use [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester") for testing your custom rule.
 
 - [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester")
-- [create-rules.md](./create-rules.md)
+- [rule.md](./rule.md)
 
 Consult link: [spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule](https://github.com/azu/spellcheck-tech-word-textlint-rule/blob/master/test/test.js "spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule")

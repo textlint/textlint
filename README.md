@@ -224,7 +224,7 @@ Low level usage:
 ```js
 import {textlint} from "textlint";
 textlint.setupRules({
-    // rule-key : rule function(see docs/create-rules.md)
+    // rule-key : rule function(see docs/rule.md)
     "rule-key": function(context){
         var exports = {};
         exports[context.Syntax.Str] = function (node) {
@@ -243,13 +243,27 @@ More detail on:
 
 - See [docs/use-as-modules.md](docs/use-as-modules.md)
 
+
+## Conclution
+
+textlint has three extensible points
+
+- [rule](docs/rule.md)
+    - rule is a rule for linting.
+- [rule-preset](docs/rule-preset.md)
+    - rule-preset contains rules.
+- [plugin](docs/plugin.md)
+    - plugin contains rules and a processor.
+
+![rule-preset-plugin](docs/resources/rule-preset-plugin.png)
+
 ## FAQ: How to create rules?
 
 Please see docs/
 
 - [docs/txtnode.md](docs/txtnode.md)
     - What is is TxtNode?
-- [docs/create-rules.md](docs/create-rules.md)
+- [docs/rule.md](docs/rule.md)
     - How to create rules?
     - Tutorial: creating `no-todo` rule.
 
