@@ -29,7 +29,7 @@ export default {
 
 This is the same way of textlint rule.
  
-See [create-rules.md](./create-rules.md).
+See [docs/rule.md](./rule.md).
 
 ## Default Configuration for Plugins
    
