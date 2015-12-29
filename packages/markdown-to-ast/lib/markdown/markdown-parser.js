@@ -5,6 +5,7 @@
 var traverse = require('traverse');
 var StructuredSource = require('structured-source');
 var debug = require("debug")("markdown-to-ast");
+var remark = require("remark");
 /**
  * Remove undocumented properties on TxtNode from node
  * @param {TxtNode} node already has loc,range
@@ -26,8 +27,7 @@ function removeUnusedProperties(node) {
  * @returns {TxtNode}
  */
 function parse(text) {
-    var mdast = require('mdast');
-    var ast = mdast.parse(text);
+    var ast = remark.parse(text);
     var SyntaxMap = require("./mapping/markdown-syntax-map");
     var src = new StructuredSource(text);
     traverse(ast).forEach(function (node) {
