@@ -95,7 +95,7 @@ rule-preset is a collection of rules.
 
 The way of configuration is same with textlint-rule.
 
-```js
+```json
 {
   "rules": {
     "preset-example": true
@@ -105,7 +105,7 @@ The way of configuration is same with textlint-rule.
 
 Put the config of `textlint-rule-foo` rule in `text-rule-preset-bar` rule-preset.
 
-```js
+```json
 {
   "rules": {
     "preset-example": {
