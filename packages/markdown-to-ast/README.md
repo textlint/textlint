@@ -2,7 +2,7 @@
 
 Parse Markdown to AST with location info.
 
-This library is not parser itself, it is dependent on [wooorm/remark](https://github.com/wooorm/remark).
+This library is not parser itself, it dependent on [wooorm/remark](https://github.com/wooorm/remark).
 
 > Markdown -> remark -> markdown-to-ast -> TxtNodes
 
