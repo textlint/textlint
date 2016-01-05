@@ -22,3 +22,7 @@ var results = [
 ## How to get source code from result?
 
 You can read the source code from `filePath` property or `raw` property of `Document` node.
+
+## Built-in
+
+[textlint/textlint-formatter](https://github.com/textlint/textlint-formatter "textlint/textlint-formatter")
