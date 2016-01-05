@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-var fs = require("fs"),
-    path = require("path");
-
+var fs = require("fs");
+var path = require("path");
+var tryResolve = require('try-resolve');
 /**
  * Create formatter function from {@link options}
  * @param {TextLintFormatter.options} options
@@ -16,7 +16,12 @@ function createFormatter(options) {
     } else if (fs.existsSync(path.resolve(process.cwd(), formatName))) {
         formatterPath = path.resolve(process.cwd(), formatName);
     } else {
-        formatterPath = path.join(__dirname, "formatters/", formatName);
+        var pkgPath = tryResolve("textlint-formatter-" + formatName) || tryResolve(formatName);
+        if (pkgPath) {
+            formatterPath = pkgPath;
+        } else {
+            formatterPath = path.join(__dirname, "formatters/", formatName);
+        }
     }
     try {
         var formatter = require(formatterPath);

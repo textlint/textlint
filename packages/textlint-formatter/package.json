@@ -30,6 +30,7 @@
     "left-pad": "0.0.4",
     "style-format": "0.0.0",
     "text-table": "^0.2.0",
+    "try-resolve": "^1.0.1",
     "xml-escape": "^1.0.0"
   },
   "devDependencies": {
