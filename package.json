@@ -20,7 +20,8 @@
   "files": [
     "bin",
     "lib",
-    "src"
+    "src",
+    "typing"
   ],
   "bin": {
     "textlint": "./bin/textlint.js"
