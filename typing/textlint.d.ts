@@ -23,9 +23,21 @@ interface TextLintConfig {
     // e.g.) stylish.js => set "stylish"
     formatName?:string;
     // plugin package names
-    plugins?: string[],
+    plugins?: string[];
+    // rules base directory that is related `rules`.
+    rulesBaseDirectory?: string;
+    // ".textlint" file path
+    configFile?: string;
+    // disabled rule package names
+    // always should start with empty
+    disabledRules?: string[],
+    // preset package names
+    // e.g.) ["preset-foo"]
+    presets?: string[],
     // rules base directory that is related `rules`.
     rulesBaseDirectory?: string,
     // ".textlint" file path
     configFile?: string,
+    // rules config object
+    rulesConfig?: Object,
 }
