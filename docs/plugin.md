@@ -151,6 +151,14 @@ tester.run("no-todo", noTodo, {
 });
 ```
 
+### Example
+
+(limited) XML plugin
+
+- [azu/textlint-plugin-xml-example](https://github.com/azu/textlint-plugin-xml-example "azu/textlint-plugin-xml-example")
+
+----
+
 
 The plugin system is a inspired/fork of ESLint.
 
