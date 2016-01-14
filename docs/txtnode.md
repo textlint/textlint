@@ -39,7 +39,6 @@ These types are be available at all times:
 
 - Document
 - Paragraph
-- Break
 - Str
 
 TODO: if you want to get other type, please file issue.
