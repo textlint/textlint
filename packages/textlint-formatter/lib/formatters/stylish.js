@@ -5,7 +5,10 @@
 "use strict";
 
 var chalk = require("chalk"),
-    table = require("text-table");
+    table = require("text-table"),
+    stringWidth = require("../stringWidth");
+
+var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -68,7 +71,7 @@ module.exports = function(results) {
                 {
                     align: ["", "r", "l"],
                     stringLength: function(str) {
-                        return chalk.stripColor(str).length;
+                        return widthOfString(chalk.stripColor(str));
                     }
                 }
             ).split("\n").map(function(el) {
