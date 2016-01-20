@@ -11,11 +11,11 @@ var stringWidth = require("../stringWidth");
 var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
 var template = style('{grey}{ruleId}: {bold}{red}{title}\n'
     + '{grey}{filename}{reset}\n'
-    + '    {red}  {v}\n'
+    + '    {red}{paddingForLineNo}  {v}\n'
     + '    {grey}{previousLineNo}. {previousLine}\n'
     + '    {reset}{failingLineNo}. {failingLine}\n'
     + '    {grey}{nextLineNo}. {nextLine}\n'
-    + '    {red}  {^}{reset}\n'
+    + '    {red}{paddingForLineNo}  {^}{reset}\n'
     + '{reset}');
 
 
@@ -53,7 +53,7 @@ function showColumn(codes, ch) {
     var result = '';
     var codeObject = codes[1];
     var sliced = codeObject.code.slice(0, codeObject.col);
-    var i = widthOfString(sliced) + 1;
+    var i = widthOfString(sliced) - 1;
 
     while (i--) {
         result += ' ';
@@ -91,6 +91,7 @@ function prettyError(code, filePath, message) {
         nextLine: parsed[2].code ? parsed[2].code : "",
         nextLineNo: leftpad(nextLineNo, linumlen),
         nextColNo: parsed[2].col,
+        paddingForLineNo: leftpad('', linumlen),
         '^': showColumn(parsed, '^'),
         'v': showColumn(parsed, 'v')
     });
