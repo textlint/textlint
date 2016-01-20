@@ -71,7 +71,10 @@ module.exports = function(results) {
                 {
                     align: ["", "r", "l"],
                     stringLength: function(str) {
-                        return widthOfString(chalk.stripColor(str));
+                        var lines = chalk.stripColor(str).split("\n");
+                        return Math.max.apply(null, lines.map(function(line) {
+                            return widthOfString(line);
+                        }));
                     }
                 }
             ).split("\n").map(function(el) {
