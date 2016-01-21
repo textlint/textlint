@@ -63,7 +63,7 @@ module.exports = optionator({
             option: 'color',
             type: 'Boolean',
             default: 'true',
-            description: 'Enable color in piped output.'
+            description: 'Disable color in piped output.'
         },
         {
             option: 'output-file',

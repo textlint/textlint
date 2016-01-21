@@ -48,7 +48,7 @@ $ textlint -h
     -f, --format String        Use a specific output format. - default: stylish
     -v, --version              Outputs the version number.
     --ext [String]             Specify text file extensions.
-    --no-color                 Enable color in piped output.
+    --no-color                 Disable color in piped output.
     -o, --output-file path::String  Enable report to be written to a file.
     --quiet                    Report errors only. - default: false
     --stdin                    Lint code provided on <STDIN>. - default: false
