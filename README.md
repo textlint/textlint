@@ -43,9 +43,11 @@ $ textlint -h
   Options:
     -h, --help                 Show help.
     -c, --config path::String  Use configuration from this file or sharable config.
-    --rule [path::String]      Set rule package name and set all default rules to off.
+    --plugin [String]          Specify plugins
+    --rule [path::String]      Set rule package name
+    --preset [path::String]    Set preset package name and load rules from preset package.
     --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
-    -f, --format String        Use a specific output format. - default: stylish
+    -f, --format String        Use a specific output format.
     -v, --version              Outputs the version number.
     --ext [String]             Specify text file extensions.
     --no-color                 Disable color in piped output.
