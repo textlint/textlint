@@ -127,7 +127,7 @@ It mean that use the following format:
 
 textlint plugin is a set of rules and rulesConfig or customize parser.
 
-To enable plugin, put the "plugin-name` into `.textlinrc`.
+To enable plugin, put the "plugin-name" into `.textlinrc`.
 
 ```js
 // `.textlinrc`

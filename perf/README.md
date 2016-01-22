@@ -1,4 +1,4 @@
-# Perfoamcen tests
+# Performance tests
 
 ## Usage
 

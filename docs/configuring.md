@@ -119,7 +119,7 @@ Put the config of `textlint-rule-foo` rule in `text-rule-preset-bar` rule-preset
 
 textlint plugin is a set of rules and rulesConfig.
 
-To enable plugin, put the "plugin-name` into `.textlinrc`.
+To enable plugin, put the "plugin-name" into `.textlinrc`.
 
 ```json
 {
