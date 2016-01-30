@@ -1,8 +1,10 @@
-# textlint [![Build Status](https://travis-ci.org/textlint/textlint.svg)](https://travis-ci.org/textlint/textlint)
+![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)
 
-The pluggable linting tool for text and markdown.
+> The pluggable linting tool for text and markdown.  
+> textlint is similar to [ESLint](http://eslint.org/ "ESLint").
 
-textlint is similar to [ESLint](http://eslint.org/ "ESLint").
+[![Build Status](https://travis-ci.org/textlint/textlint.svg)](https://travis-ci.org/textlint/textlint)
+
 
 ## Installation
 
