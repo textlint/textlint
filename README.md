@@ -248,7 +248,7 @@ More detail on:
 - See [docs/use-as-modules.md](docs/use-as-modules.md)
 
 
-## Conclution
+## Conclusion
 
 textlint has three extensible points
 
