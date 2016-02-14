@@ -26,28 +26,33 @@
 
 ```js
 var TextLintTester = require("textlint-tester");
-// rules
-var noTodo = require("textlint-rule-no-todo");
-var maxNumberOfLine = require("textlint-rule-max-number-of-lines");
 var tester = new TextLintTester();
-// ruleName, rule, expected[]
+// rule
+var noTodo = require("textlint-rule-no-todo");
+// ruleName, rule, { valid, invalid }
 tester.run("no-todo", noTodo, {
     valid: [
         "string, test desu",
         {
-            text: "日本語 is Japanese."
+            // text with options
+            text: "日本語 is Japanese.",
+            options: {
+                "key": "value"
+            }
         }
     ],
     invalid: [
-        // text, expected errors
         {
             text: "- [ ] string",
             errors: [
-                {message: "found TODO: '- [ ] string'"}
+                {
+                    message: "found TODO: '- [ ] string'"
+                }
             ]
         },
         {
             text: "TODO: string",
+            options: {"key": "value"},
             errors: [
                 {
                     message: "found TODO: 'TODO: string'",
