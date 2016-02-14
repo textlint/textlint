@@ -6,7 +6,7 @@ Textlint's AST(Abstract Syntax Tree) is defined these pages.
 - [txtnode.md](./txtnode.md)
     - If you want to know AST of a text, use [Online Parsing Demo](./txtnode.md#online-parsing-demo)
 
-Each rules are represented by a object with several properties.
+Each rules are represented by a object with some properties.
 The properties are equivalent to AST node types from TxtNode.
 
 The basic source code format for a rule is:
@@ -164,7 +164,9 @@ export default function (context) {
 
 This example aim to found `- [ ]` and `todo:` texts.
 
-Rule file name is equal to rule ID(i.e., no-todo.js for rule ID no-todo).
+Rule file name is equal to rule ID.
+
+e.g.) no-todo.js for rule ID no-todo.
 
 File Name: `no-todo.js`
 

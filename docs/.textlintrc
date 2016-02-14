@@ -1,0 +1,24 @@
+{
+  "rules": {
+    "unexpanded-acronym": {
+      "ignore_acronyms": [
+        "XML",
+        "YAML",
+        "JSON",
+        "TODO",
+        "API"
+      ]
+    },
+    "rousseau": {
+      "showLevels": [
+        "warning",
+        "error"
+      ],
+      "ignoreTypes": [
+        "sentence:uppercase",
+        "passive",
+        "weasel"
+      ]
+    }
+  }
+}

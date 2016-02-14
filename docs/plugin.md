@@ -33,8 +33,8 @@ See [docs/rule.md](./rule.md).
 
 ## Default Configuration for Plugins
    
-You can provide default configuration for the rules included in your plugin by modifying exported object to include rulesConfig property.
-rulesConfig follows the same pattern as you would use in your `.textlintrc` config rules property, but without plugin name as a prefix.
+You can provide default configuration for the rules included in your plugin by modifying exported object to include `rulesConfig` property.
+`rulesConfig` follows the same pattern as you would use in your `.textlintrc` config rules property, but without plugin name as a prefix.
    
 ```js
 export default {

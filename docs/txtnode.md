@@ -101,7 +101,7 @@ This is for compatibility with JavaScript AST.
 
 > Text -> AST TxtNode(**0-based columns** here) -> textlint -> TextLintMessage(1-based columns)
 
-`TxtNode` has **0-based columns**, but The result of linting which is named `TextLintMessage` has **1-based columns**.
+`TxtNode` has **0-based columns**, but The result of linting which named `TextLintMessage` has **1-based columns**.
 
 This means that textlint's rule handle `TxtNode`( **0-based columns** ), but the result of textlint's API output `TextLintMessage`( **1-based columns** ).
 

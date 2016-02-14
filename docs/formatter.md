@@ -1,6 +1,6 @@
 # Formatter
 
-Pass following object to reporter module .
+Pass following object to reporter module.
 
 ```js
 var results = [
