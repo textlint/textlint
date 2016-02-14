@@ -4,7 +4,7 @@
 
 - `.textlintrc`
 
-`.textlintrc` is config file that is loaded as YAML, JSON or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
+`.textlintrc` is config file that loaded as YAML, JSON or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
 
 Put the config of rules into `.textlintrc`
 
@@ -23,8 +23,8 @@ Put the config of rules into `.textlintrc`
 
 It means that 
 
-- enable "no-todo" rule
-- disable "very-nice-rule" rule
+- enable `"no-todo"` rule
+- disable `"very-nice-rule"` rule
 
 ### Rule's config
 
@@ -43,8 +43,8 @@ Each rule's config can accept a `object`.
 
 It means that
 
-- enable "no-todo" rule
-- enable "very-nice-rule" rule and pass `{ "key" : "value" }` to the rule
+- enable `"no-todo"` rule
+- enable `"very-nice-rule"` rule and pass `{ "key" : "value" }` to the rule
 
 For rules creator:
 
