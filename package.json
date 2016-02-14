@@ -56,6 +56,7 @@
     "mocha": "^2.3.3",
     "power-assert": "^1.0.1",
     "textlint-plugin-html": "^0.1.2",
+    "textlint-rule-alex": "^1.0.1",
     "textlint-rule-helper": "^1.1.3",
     "textlint-rule-no-todo": "^1.0.2",
     "textlint-rule-rousseau": "^1.3.0",
