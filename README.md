@@ -1,10 +1,20 @@
-![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)
+[![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)](http://textlint.github.io/)
 
 > The pluggable linting tool for text and markdown.  
-> textlint is similar to [ESLint](http://eslint.org/ "ESLint").
+> It is similar to [ESLint](http://eslint.org/ "ESLint"), but textlint for natural language.
 
 [![Build Status](https://travis-ci.org/textlint/textlint.svg)](https://travis-ci.org/textlint/textlint)
 
+## Online Demo
+
+Visit [http://textlint.github.io/](http://textlint.github.io/) and type text!
+
+## Features
+
+- No bundle rules.
+- To use rule, run simply `npm install textlint-rule-xxx`. See a [collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
+- [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are support by default. Additionally, [HTML](https://github.com/textlint/textlint-plugin-html) and other format support by custom plugin
+- [Formatter(reporter)](https://github.com/textlint/textlint-formatter) is used both by bundled and custom formatters
 
 ## Installation
 
