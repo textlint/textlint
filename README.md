@@ -291,6 +291,8 @@ Please see docs/
 
 > The plugin for Atom Linter provides an interface to textlint.
 
+![linter-textlint](docs/resources/linter-textlint.gif)
+
 ## Who's using textlint?
 
 - [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
