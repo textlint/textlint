@@ -65,7 +65,7 @@ class TextLintEngine {
                 this.loadRule(ruleName);
             });
         }
-        // TODO: --preset
+        // --preset
         if (config.presets) {
             config.presets.forEach(presetName => {
                 this.loadPreset(presetName);

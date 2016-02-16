@@ -43,7 +43,7 @@ function printResults(output, options) {
     }
     return true;
 }
-// Public Interface
+
 /**
  * Encapsulates all CLI behavior for eslint. Makes it easier to test as well as
  * for other Node.js programs to effectively run the CLI.
@@ -53,7 +53,7 @@ const cli = {
      * Executes the CLI based on an array of arguments that is passed in.
      * @param {string|Array|Object} args The arguments to process.
      * @param {string} [text] The text to lint (used for TTY).
-     * @returns {int} The exit code for the operation.
+     * @returns {Promise<number>} The exit code for the operation.
      */
     execute(args, text) {
         var currentOptions;
@@ -80,11 +80,21 @@ const cli = {
      * @param {object} cliOptions
      * @param {string[]} files files are file path list
      * @param {string} text?
-     * @returns {number} exit status
+     * @returns {Promise<number>} exit status
      */
     executeWithOptions(cliOptions, files, text){
         const config = Config.initWithCLIOptions(cliOptions);
         const engine = new TextLintEngine(config);
+        // TODO: should indirect access ruleManager
+        if (!engine.ruleManager.hasRuleAtLeastOne()) {
+            console.log(`
+== Not have rules, textlint do not anything ==
+=> How to set rule?
+See https://github.com/textlint/textlint/blob/master/docs/configuring.md
+`);
+
+            return Promise.resolve(0);
+        }
         const resultsPromise = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
         return resultsPromise.then(results => {
             const output = engine.formatResults(results);

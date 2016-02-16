@@ -41,4 +41,16 @@ describe("cli-test", function () {
             });
         });
     });
+    context(" When not set rules", function () {
+        it("show suggestion message from FAQ", function (done) {
+            console.log = function mockLog(message) {
+                assert(message.length > 0);
+                done();
+            };
+            var targetFile = path.join(__dirname, "fixtures/test.md");
+            cli.execute(`${targetFile}`).then(result => {
+                assert.equal(result, 0);
+            });
+        });
+    })
 });

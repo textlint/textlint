@@ -12,7 +12,15 @@ export default class RuleManager {
          * Defined all rules in this object.
          * @type {RulesObject}
          */
-        this.rules = [];
+        this.rules = {};
+    }
+
+    /**
+     * has rule at least one > 0
+     * @returns {boolean}
+     */
+    hasRuleAtLeastOne(){
+        return this.getAllRuleNames().length > 0;
     }
 
     getAllRuleNames() {
