@@ -261,6 +261,32 @@ describe("textlint-engine-test", function () {
                 assert.deepEqual(beforeRuleNames, afterRuleNames);
             });
         });
+        context("when specify ext", function () {
+            it("should lint text as ext", function () {
+                let engine = new TextLintEngine({
+                    rulePaths: [rulesDir]
+                });
+                return engine.executeOnText("text", ".md").then(results => {
+                    assert(Array.isArray(results));
+                    var lintResult = results[0];
+                    assert(lintResult.filePath === "<markdown>");
+                    assert(Array.isArray(lintResult.messages));
+                    assert(lintResult.messages.length > 0);
+                });
+            });
+            it("should lint text as ext( of path )", function () {
+                let engine = new TextLintEngine({
+                    rulePaths: [rulesDir]
+                });
+                return engine.executeOnText("text", "index.md").then(results => {
+                    assert(Array.isArray(results));
+                    var lintResult = results[0];
+                    assert(lintResult.filePath === "<markdown>");
+                    assert(Array.isArray(lintResult.messages));
+                    assert(lintResult.messages.length > 0);
+                });
+            });
+        });
     });
     describe("formatResults", function () {
         context("when use default formatter", function () {

@@ -55,11 +55,6 @@ module.exports = optionator({
             description: 'Outputs the version number.'
         },
         {
-            option: 'ext',
-            type: '[String]',
-            description: 'Specify text file extensions.'
-        },
-        {
             option: 'color',
             type: 'Boolean',
             default: 'true',
@@ -78,10 +73,19 @@ module.exports = optionator({
             description: 'Report errors only.'
         },
         {
+            heading: "Using stdin"
+        },
+        {
             option: 'stdin',
             type: 'Boolean',
             default: 'false',
-            description: 'Lint code provided on <STDIN>.'
+            description: 'Lint text provided on <STDIN>.'
+        },
+        {
+            option: "stdin-filename",
+            type: "String",
+            description: "Specify filename to process STDIN as",
+            example: 'cat ./README.md | textlint --stdin --stdin-filename README.md'
         }
     ]
 });
