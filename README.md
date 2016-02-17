@@ -291,6 +291,10 @@ Please see docs/
 
 - [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
 
+> SublimeText
+
+[joeybaker/sublimelinter-textlint](https://github.com/joeybaker/sublimelinter-textlint)
+
 > The plugin for Atom Linter provides an interface to textlint.
 
 ![linter-textlint](docs/resources/linter-textlint.gif)
