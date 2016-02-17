@@ -79,7 +79,7 @@ module.exports = optionator({
             option: 'stdin',
             type: 'Boolean',
             default: 'false',
-            description: 'Lint code provided on <STDIN>.'
+            description: 'Lint text provided on <STDIN>.'
         },
         {
             option: "stdin-filename",

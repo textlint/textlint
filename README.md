@@ -66,7 +66,7 @@ Options:
   --quiet                    Report errors only. - default: false
 
 Using stdin:
-  --stdin                    Lint code provided on <STDIN>. - default: false
+  --stdin                    Lint text provided on <STDIN>. - default: false
   --stdin-filename String    Specify filename to process STDIN as
 ```
 
