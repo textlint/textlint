@@ -293,7 +293,7 @@ Please see docs/
 
 > SublimeText
 
-[joeybaker/sublimelinter-textlint](https://github.com/joeybaker/sublimelinter-textlint)
+- [joeybaker/sublimelinter-textlint](https://github.com/joeybaker/sublimelinter-textlint)
 
 > The plugin for Atom Linter provides an interface to textlint.
 
