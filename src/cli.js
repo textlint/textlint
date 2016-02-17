@@ -9,10 +9,10 @@ const options = require('./options');
 const TextLintEngine = require('./textlint-engine');
 const Config = require('./config/config');
 /*
-    cli.js is command line **interface**
+ cli.js is command line **interface**
 
-    processing role is cli-engine.js.
-    @see cli-engine.js
+ processing role is cli-engine.js.
+ @see cli-engine.js
  */
 /**
  * Print results of lining text.
@@ -70,8 +70,10 @@ const cli = {
         } else if (currentOptions.help || !files.length && !text) {
             console.log(options.generateHelp());
         } else {
-            debug(`Running on ${ text ? 'text' : 'files' }`);
-            return this.executeWithOptions(currentOptions, files, text);
+            // specify file name of stdin content
+            const stdinFilename = currentOptions.stdinFilename;
+            debug(`Running on ${ text ? 'text' : 'files' }, stdin-filename: ${stdinFilename}`);
+            return this.executeWithOptions(currentOptions, files, text, stdinFilename);
         }
         return Promise.resolve(0);
     },
@@ -80,9 +82,10 @@ const cli = {
      * @param {object} cliOptions
      * @param {string[]} files files are file path list
      * @param {string} text?
+     * @param {string} stdinFilename?
      * @returns {Promise<number>} exit status
      */
-    executeWithOptions(cliOptions, files, text){
+    executeWithOptions(cliOptions, files, text, stdinFilename){
         const config = Config.initWithCLIOptions(cliOptions);
         const engine = new TextLintEngine(config);
         // TODO: should indirect access ruleManager
@@ -95,7 +98,7 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 
             return Promise.resolve(0);
         }
-        const resultsPromise = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
+        const resultsPromise = text ? engine.executeOnText(text, stdinFilename) : engine.executeOnFiles(files);
         return resultsPromise.then(results => {
             const output = engine.formatResults(results);
             if (printResults(output, cliOptions)) {

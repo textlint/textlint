@@ -8,9 +8,8 @@ const Config = require('./config/config');
 const createFormatter = require('textlint-formatter');
 const tryResolve = require('try-resolve');
 const path = require('path');
-import assert from "assert";
-import { isPluginRuleKey } from "./util/config-util";
-import { findFiles } from "./util/find-util";
+import {isPluginRuleKey} from "./util/config-util";
+import {findFiles} from "./util/find-util";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
     /**
@@ -227,7 +226,12 @@ class TextLintEngine {
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
-        return this.textLint.lintText(text, ext).then(result => {
+        // filepath or ext
+        const actualExt = ext[0] === "." ? ext : path.extname(ext);
+        if (actualExt.length === 0) {
+            throw new Error("should specify the extension.\nex) .md");
+        }
+        return this.textLint.lintText(text, actualExt).then(result => {
             return [result];
         });
     }
