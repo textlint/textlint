@@ -319,6 +319,10 @@ MIT and
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
     https://github.com/eslint/eslint/blob/master/LICENSE
 
+## Logos & Icons
+
+Download from [textlint/media](https://github.com/textlint/media "textlint/media: Official logo and icon.").
+
 ## Related Work
 
 [SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint") is similar project.
