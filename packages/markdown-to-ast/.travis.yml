@@ -1,7 +1,6 @@
 sudo: false
 language: node_js
-node_js:
-- '0.10'
+node_js: "stable"
 after_success:
 - npm run build
 - "_travis/deploy-to-ghpages.sh"
