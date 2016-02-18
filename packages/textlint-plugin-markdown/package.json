@@ -2,14 +2,14 @@
   "name": "textlint-plugin-markdown",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/textlinttextlint-plugin-markdown.git"
+    "url": "git+https://github.com/textlint/textlint-plugin-markdown.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/textlinttextlint-plugin-markdown",
+  "homepage": "https://github.com/textlint/textlint-plugin-markdown",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/textlinttextlint-plugin-markdown/issues"
+    "url": "https://github.com/textlint/textlint-plugin-markdown/issues"
   },
   "version": "1.0.2",
   "description": "Markdown support for textlint.",
