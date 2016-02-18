@@ -287,7 +287,7 @@ Please see docs/
 
 - [nakajmg/gulp-textlint](https://github.com/textlint/gulp-textlint "nakajmg/gulp-textlint")
 
-> gulp plugin for textlint.
+> gulp plugin
 
 - [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
 
