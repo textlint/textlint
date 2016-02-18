@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint-plugin-markdown/issues"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Markdown support for textlint.",
   "main": "lib/index.js",
   "files": [
