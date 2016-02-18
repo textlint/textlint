@@ -13,7 +13,7 @@ var exports = {
     "code": "CodeBlock",
     "HtmlBlock": "Html",
     "ReferenceDef": "ReferenceDef",
-    "horizontalRule": "HorizontalRule",
+    "thematicBreak": "HorizontalRule",
     // inline block
     'text': 'Str',
     'break': 'Break',
