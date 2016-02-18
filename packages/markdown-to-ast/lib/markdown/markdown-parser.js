@@ -34,10 +34,11 @@ function parse(text) {
         if (this.notLeaf) {
             if (node.type) {
                 var replacedType = SyntaxMap[node.type];
-                if(!replacedType) {
+                if (!replacedType) {
                     debug("replacedType : " + replacedType + " , node.type: " + node.type);
+                } else {
+                    node.type = replacedType;
                 }
-                node.type = replacedType;
             }
             // map `range`, `loc` and `raw` to node
             if (node.position) {
