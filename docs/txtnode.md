@@ -33,7 +33,7 @@ and for traversing.
 - Types of Markdown text are defined in [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast")
     - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
 
-All Types are defined in [lib/parser/union-syntax.js](../lib/parser/union-syntax.js)
+All Types are defined in [src/parser/union-syntax.js](../src/parser/union-syntax.js)
 
 These types are be available at all times:
 
