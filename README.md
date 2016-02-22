@@ -16,6 +16,12 @@ Visit [http://textlint.github.io/](http://textlint.github.io/) and type text!
 - [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are support by default. Additionally, [HTML](https://github.com/textlint/textlint-plugin-html) and other formats are supported by plugins.
 - [Formatter(reporter)](https://github.com/textlint/textlint-formatter) is used both by bundled and custom formatters
 
+## Quick Tour
+
+Quick tour of textlint!
+
+Read [Getting Started](./docs/getting-started.md) :squirrel:
+
 ## Installation
 
 ```
