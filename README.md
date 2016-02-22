@@ -20,7 +20,7 @@ Visit [http://textlint.github.io/](http://textlint.github.io/) and type text!
 
 Quick tour of textlint!
 
-:squirrel: Read [Getting Started](./docs/getting-started.md)
+Read [Getting Started](./docs/getting-started.md) :squirrel:
 
 ## Installation
 
