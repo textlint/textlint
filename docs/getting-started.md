@@ -1,6 +1,6 @@
 # Getting Started with textlint
 
-**textlint** does follow the following steps:
+**textlint** does the following steps:
 
 1. textlint load rules, every single rule is a plugin and you can add more at runtime.
 2. textlint parse *texts* using Markdown/Text/HTML parser plugin.
