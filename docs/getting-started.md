@@ -4,7 +4,7 @@
 
 1. textlint load rules, every single rule is a plugin and you can add more at runtime.
 2. textlint parse *texts* using Markdown/Text/HTML parsing.
-3. textlint uses an AST to evaluate patterns in *texts*.
+3. textlint uses an AST([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree "Abstract syntax tree") to evaluate patterns in *texts*.
 4. textlint report errors/warning if exist errors/warnings.
 
 
@@ -20,7 +20,7 @@ You can find a rule in [A Collection of textlint rule](https://github.com/textli
 
 As an example, let's install [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "textlint-rule-no-todo").
 
-    npm install -g textlint-rule-no-todo
+    $ npm install -g textlint-rule-no-todo
 
 ## Usage
 
@@ -53,7 +53,7 @@ Create a `.textlintrc` file in your directory. In it, you'll see some rules conf
 
 You can run textlint without any command line options:
 
-     textlint file.md
+     $ textlint file.md
      # Automatically, load `.textlintrc` in your directory
 
 ## Next Steps
@@ -61,4 +61,4 @@ You can run textlint without any command line options:
 - Learn about advanced [configuring](./configuring.md) of textlint.
 - Explore [textlint's rules](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule)
 - Can't find just the right rule? Make your own [custom rule](./rule.md).
-- Can't handling `.XXX` file? Make your own [custom plugin](./plugin.md).
+- Can't handling `.ext` file? Make your own [custom plugin](./plugin.md).
