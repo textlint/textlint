@@ -3,7 +3,7 @@
 **textlint** does follow the following steps:
 
 1. textlint load rules, every single rule is a plugin and you can add more at runtime.
-2. textlint parse *texts* using Markdown/Text/HTML parsing.
+2. textlint parse *texts* using Markdown/Text/HTML parser plugin.
 3. textlint uses an AST([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree "Abstract syntax tree") to evaluate patterns in *texts*.
 4. textlint report errors/warning if exist errors/warnings.
 
