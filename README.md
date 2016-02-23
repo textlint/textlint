@@ -30,9 +30,7 @@ $ npm install textlint -g
 
 ## Usage
 
-![todo:lint result](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
-
-- [ ]  more more document
+![screenshot lint pretty-error](docs/resources/screenshot-lint-pretty-error.png)
 
 textlint has no default rule!!
 

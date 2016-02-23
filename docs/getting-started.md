@@ -29,7 +29,7 @@ As an example, let's install [textlint-rule-no-todo](https://github.com/azu/text
 ``` markdown
 # file.md
 
-- [ ] write some some
+- [ ] Write usage instructions
 
 `- [ ]` is a code and not error.
 
@@ -40,6 +40,8 @@ You can run textlint on any Markdown files:
 ```sh
 $ textlint --rule no-todo file.md
 ```
+
+![screenshot lint error](./resources/screenshot-lint-error.png)
 
 We recommended that use textlint with `.textlintrc` configuration file.
 
