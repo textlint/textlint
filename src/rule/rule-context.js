@@ -31,6 +31,15 @@ function getSeverity(ruleConfig) {
     return SeverityLevel.error;
 }
 
+/**
+ * Rule context object is passed to each rule as `context`
+ * @param ruleId
+ * @param agent
+ * @param textLintConfig
+ * @param ruleConfig
+ * @returns {*}
+ * @constructor
+ */
 function RuleContext(ruleId, agent, textLintConfig, ruleConfig) {
     Object.defineProperty(this, 'id', {value: ruleId});
     Object.defineProperty(this, 'config', {value: textLintConfig});
@@ -41,6 +50,7 @@ function RuleContext(ruleId, agent, textLintConfig, ruleConfig) {
      * @param {RuleError|any} error error is a RuleError instance or any data
      */
     this.report = function (node, error) {
+        assert(!(node instanceof RuleError), "should be `report(node, ruleError);`");
         if (error instanceof RuleError) {
             agent.pushReport({ruleId, node, severity, error});
         } else {
