@@ -24,6 +24,8 @@
 
 ### example
 
+`test/example-test.js`:
+
 ```js
 var TextLintTester = require("textlint-tester");
 var tester = new TextLintTester();
@@ -63,6 +65,12 @@ tester.run("no-todo", noTodo, {
         }
     ]
 });
+```
+
+Run the tests:
+
+```sh
+mocha test/
 ```
 
 ## Tests
