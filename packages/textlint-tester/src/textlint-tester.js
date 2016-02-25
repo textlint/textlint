@@ -50,47 +50,6 @@ export default class TextLintTester {
         if (validListNoOptions.length === 0 || invalidListNoOptions.length === 0) {
             return;
         }
-        it(`should reset state each time`, function () {
-            // invalid -> valid using same textlint instance
-            // it test that finish invalid test and should reset rule stat
-            var textlint = new TextLintCore();
-            textlint.setupRules({
-                [ruleName]: rule
-            }, {
-                [ruleName]: true
-            });
-            function runInvalids() {
-                return invalidListNoOptions.map(state => {
-                    let text = state.text;
-                    return testInvalid(textlint, text, state.errors)
-                });
-            }
-
-            function runValids() {
-                return validListNoOptions.map(state => {
-                    let text = state.text || state;
-                    return testValid(textlint, text);
-                });
-            }
-
-            return Promise.all(runInvalids()).then(() => {
-                return Promise.all(runValids());
-            }).catch((error) => {
-                throw new Error(`${ruleName} should reset own state each time.
-
-export default function(context){
-    var state = {};
-    return {
-        [context.Syntax.Document](){
-            state = {};// reset state each time
-        }
-        // ...
-    }
-}
-                `);
-                console.error(error.message);
-            });
-        });
     }
 
     /**
