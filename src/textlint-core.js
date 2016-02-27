@@ -5,27 +5,15 @@
     textlint.js is a singleton object that is instance of textlint-core.js.
  */
 const Promise = require("bluebird");
-const EventEmitter = require("events").EventEmitter;
-const TraverseController = require('txt-ast-traverse').Controller;
-const traverseController = new TraverseController();
 const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
-const RuleContext = require('./rule/rule-context');
-const RuleContextAgent = require("./rule/rule-context-agent");
+const SourceCode = require("./rule/source-code");
 const debug = require('debug')('textlint:core');
-const timing = require("./util/timing");
+import CoreTask from "./textlint-core-task";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
-// add all the node types as listeners
-function addListenRule(key, rule, target) {
-    Object.keys(rule).forEach(nodeType => {
-        target.on(nodeType, timing.enabled
-            ? timing.time(key, rule[nodeType])
-            : rule[nodeType]);
-    });
-}
 
 export default class TextlintCore {
     constructor(config = {}) {
@@ -42,9 +30,9 @@ export default class TextlintCore {
     }
 
     // unstable API
-    addProcessor(Processtor) {
+    addProcessor(Processor) {
         // add first
-        this.processors.unshift(new Processtor(this.config));
+        this.processors.unshift(new Processor(this.config));
     }
 
     /**
@@ -75,24 +63,6 @@ export default class TextlintCore {
         this.rulesConfig = rulesConfig;
     }
 
-    _createRuleContextAgent(text, filePath) {
-        const rules = this.rules;
-        let ruleContextAgent = new RuleContextAgent(text, filePath);
-        Object.keys(rules).forEach(key => {
-            const ruleCreator = rules[key];
-            const ruleConfig = this.rulesConfig[key];
-            try {
-                let ruleContext = new RuleContext(key, ruleContextAgent, this.config, ruleConfig);
-                let rule = ruleCreator(ruleContext, ruleConfig);
-                addListenRule(key, rule, ruleContextAgent);
-            } catch (ex) {
-                ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
-                throw ex;
-            }
-        });
-        return ruleContextAgent;
-    }
-
     /**
      * Remove all registered rule and clear messages.
      */
@@ -106,36 +76,27 @@ export default class TextlintCore {
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
-        let promiseQueue = [];
-        const ruleContextAgent = this._createRuleContextAgent(text, filePath);
-        const listenerCount = (typeof ruleContextAgent.listenerCount !== 'undefined')
-            ? ruleContextAgent.listenerCount.bind(ruleContextAgent) // Node 4.x >=
-            : EventEmitter.listenerCount.bind(EventEmitter, ruleContextAgent);// Node 0.12
-        traverseController.traverse(ast, {
-            enter(node, parent) {
-                const type = node.type;
-                Object.defineProperty(node, 'parent', {value: parent});
-                if (listenerCount(type) > 0) {
-                    let promise = ruleContextAgent.emit(type, node);
-                    promiseQueue.push(promise);
-                }
-            },
-            leave(node) {
-                const type = `${node.type}:exit`;
-                if (listenerCount(type) > 0) {
-                    let promise = ruleContextAgent.emit(type, node);
-                    promiseQueue.push(promise);
-                }
-            }
+        const sourceCode = new SourceCode(text, filePath);
+        const task = new CoreTask({
+            config: this.config,
+            rules: this.rules,
+            rulesConfig: this.rulesConfig,
+            sourceCode: sourceCode
         });
-        return Promise.all(promiseQueue).then(() => {
-            let messages = ruleContextAgent.messages;
-            let result = postProcess(messages, filePath);
-            if (result.filePath == null) {
-                result.filePath = `<Unkown${ext}>`;
-            }
-            assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
-            return result;
+        return new Promise((resolve, reject) => {
+            const messages = [];
+            task.on(CoreTask.events.message, message => {
+                messages.push(message);
+            });
+            task.on(CoreTask.events.complete, () => {
+                const result = postProcess(messages, filePath);
+                if (result.filePath == null) {
+                    result.filePath = `<Unkown${ext}>`;
+                }
+                assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+                resolve(result);
+            });
+            task.process(ast);
         });
     }
 
