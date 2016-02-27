@@ -20,7 +20,7 @@ export default class TextLintCoreTask extends EventEmitter {
             message: "message",
             // receive complete event
             complete: "complete"
-        }
+        };
     }
 
     constructor({config, rules, rulesConfig, sourceCode}) {
@@ -122,6 +122,6 @@ export default class TextLintCoreTask extends EventEmitter {
         });
         Promise.all(promiseQueue).then(() => {
             this.emit(TextLintCoreTask.events.complete);
-        })
+        });
     }
 }
