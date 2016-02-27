@@ -34,13 +34,14 @@ function getSeverity(ruleConfig) {
 /**
  * Rule context object is passed to each rule as `context`
  * @param ruleId
- * @param agent
+ * @param sourceCode
+ * @param report
  * @param textLintConfig
  * @param ruleConfig
  * @returns {*}
  * @constructor
  */
-function RuleContext(ruleId, agent, textLintConfig, ruleConfig) {
+function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
     Object.defineProperty(this, 'id', {value: ruleId});
     Object.defineProperty(this, 'config', {value: textLintConfig});
     let severity = getSeverity(ruleConfig);
@@ -52,20 +53,20 @@ function RuleContext(ruleId, agent, textLintConfig, ruleConfig) {
     this.report = function (node, error) {
         assert(!(node instanceof RuleError), "should be `report(node, ruleError);`");
         if (error instanceof RuleError) {
-            agent.pushReport({ruleId, node, severity, error});
+            report({ruleId, node, severity, error});
         } else {
             let level = error.severity || SeverityLevel.info;
-            agent.pushReport({ruleId, node, severity: level, error});
+            report({ruleId, node, severity: level, error});
         }
     };
     // Const Values
     Object.defineProperty(this, 'Syntax', {
         get(){
-            return agent.getSyntax();
+            return sourceCode.getSyntax();
         }
     });
-    this.getFilePath = agent.getFilePath.bind(agent);
-    this.getSource = agent.getSource.bind(agent);
+    this.getFilePath = sourceCode.getFilePath.bind(sourceCode);
+    this.getSource = sourceCode.getSource.bind(sourceCode);
     // CustomError object
     this.RuleError = RuleError;
 }
