@@ -1,7 +1,7 @@
 {
   "name": "textlint",
   "description": "The pluggable linting tool for text and markdown.",
-  "version": "5.3.1",
+  "version": "5.4.0",
   "homepage": "https://github.com/textlint/textlint/",
   "keywords": [
     "plugable",
