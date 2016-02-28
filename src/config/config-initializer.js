@@ -11,13 +11,14 @@ const Config = require('../config/config');
  */
 const init = {
     /**
-     * Create .textlintrc file in the current working directory
+     * Create .textlintrc file
+     * @params {string} dir The directory of .textlintrc file
      * @returns {int} The exit code for the operation.
      */
-    initializeConfig() {
+    initializeConfig(dir) {
         let rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
-        let output = JSON.stringify({"rules":{}}, null, '  ');
-        const filePath = path.resolve(process.cwd(), rcFile);
+        let output = JSON.stringify({"rules":{}}, null, 2);
+        const filePath = path.resolve(dir, rcFile);
         try {
             if (fs.existsSync(filePath)) {
                 throw new Error(`${ rcFile } is already existed.`);
