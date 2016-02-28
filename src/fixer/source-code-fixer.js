@@ -37,6 +37,8 @@ function SourceCodeFixer() {
 SourceCodeFixer.applyFixes = (sourceCode, messages) => {
     debug("Applying fixes");
     const text = sourceCode.text;
+    // TODO: we collect applied messages.
+    // As as result, show diff
     const remainingMessages = [];
     const fixes = [];
     let lastFixPos = text.length + 1;
