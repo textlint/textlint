@@ -40,11 +40,12 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
     // TODO: we collect applied messages.
     // As as result, show diff
     const remainingMessages = [];
+    const applyingMessages = [];
     const fixes = [];
     let lastFixPos = text.length + 1;
-    let prefix = (sourceCode.hasBOM() ? BOM : "");
+    let prefix = (sourceCode.hasBOM ? BOM : "");
     messages.forEach(problem => {
-        if (problem.data.hasOwnProperty("fix")) {
+        if (problem.data && problem.data.hasOwnProperty("fix")) {
             fixes.push(problem);
         } else {
             remainingMessages.push(problem);
@@ -56,7 +57,7 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
 
         // sort in reverse order of occurrence
         fixes.sort((a, b) => {
-            if (a.fix.range[1] <= b.fix.range[0]) {
+            if (a.data.fix.range[1] <= b.data.fix.range[0]) {
                 return 1;
             } else {
                 return -1;
@@ -87,6 +88,7 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
 
                 chars.splice(start, end - start, insertionText);
                 lastFixPos = start;
+                applyingMessages.push(problem);
             } else {
                 remainingMessages.push(problem);
             }
@@ -94,14 +96,16 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
 
         return {
             fixed: true,
-            messages: remainingMessages.sort(compareMessagesByLocation),
+            applyingMessages: applyingMessages,
+            remainingMessages: remainingMessages.sort(compareMessagesByLocation),
             output: prefix + chars.join("")
         };
     } else {
         debug("No fixes to apply");
         return {
             fixed: false,
-            messages,
+            applyingMessages,
+            remainingMessages,
             output: prefix + text
         };
     }
