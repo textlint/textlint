@@ -12,6 +12,7 @@ const SourceCode = require("./rule/source-code");
 const SourceCodeFixer = require("./fixer/source-code-fixer");
 const debug = require('debug')('textlint:core');
 import CoreTask from "./textlint-core-task";
+import assertRuleModule from "./rule/assert-rule-shape";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
@@ -47,9 +48,7 @@ export default class TextlintCore {
             let resultRules = Object.create(null);
             Object.keys(rules).forEach(key => {
                 const ruleCreator = rules[key];
-                //if (typeof ruleCreator !== 'function') {
-                //    throw new Error(`Definition of rule '${ key }' was not found.`);
-                //}
+                assertRuleModule(ruleCreator, key);
                 // "rule-name" : false => disable
                 const ruleConfig = rulesConfig && rulesConfig[key];
                 if (ruleConfig !== false) {
@@ -160,7 +159,7 @@ export default class TextlintCore {
         const fixerRules = Object.keys(this.rules).map(ruleName => {
             return this.rules[ruleName];
         }).filter(rule => {
-            return typeof rule["fixer"] !== "undefined";
+            return typeof rule.fixer !== "undefined";
         });
         const {preProcess, postProcess} = processor.processor(ext);
         const fixerProcessList = fixerRules.map(rule => {
