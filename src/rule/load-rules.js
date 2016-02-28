@@ -21,7 +21,7 @@ module.exports = function (rulesDir) {
             return;
         }
         const withoutExt = file.slice(0, -3);
-        rules[withoutExt] = interopRequire(path.join(rulesDir, file));
+        rules[withoutExt] = interopRequire(path.join(rulesDirAbsolutePath, file));
     });
     return rules;
 };
