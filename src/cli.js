@@ -8,6 +8,7 @@ const mkdirp = require('mkdirp');
 const options = require('./options');
 const TextLintEngine = require('./textlint-engine');
 const Config = require('./config/config');
+const configInit = require('./config/config-initializer');
 /*
  cli.js is command line **interface**
 
@@ -67,6 +68,8 @@ const cli = {
         if (currentOptions.version) {
             // version from package.json
             console.log(`v${ require('../package.json').version }`);
+        } else if (currentOptions.init) {
+            return configInit.initializeConfig(process.cwd());
         } else if (currentOptions.help || !files.length && !text) {
             console.log(options.generateHelp());
         } else {

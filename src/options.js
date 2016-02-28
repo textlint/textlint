@@ -67,6 +67,12 @@ module.exports = optionator({
             description: 'Enable report to be written to a file.'
         },
         {
+            option: 'init',
+            type: 'Boolean',
+            default: 'false',
+            description: 'Create the config file if not existed.'
+        },
+        {
             option: 'quiet',
             type: 'Boolean',
             default: 'false',
