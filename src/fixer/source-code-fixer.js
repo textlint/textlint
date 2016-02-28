@@ -1,5 +1,5 @@
 const debug = require("debug")("textlint:text-fixer");
-
+import SourceCode from "../rule/source-code";
 const BOM = "\uFEFF";
 
 /**
@@ -86,9 +86,14 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
                     insertionText = insertionText.slice(1);
                 }
 
-                chars.splice(start, end - start, insertionText);
+                const replacedChars = chars.splice(start, end - start, insertionText);
                 lastFixPos = start;
-                applyingMessages.push(problem);
+                const copyOfMessage = JSON.parse(JSON.stringify(problem));
+                copyOfMessage.data.fix = {
+                    range: [start, start + insertionText.length],
+                    text: replacedChars.join("")
+                };
+                applyingMessages.push(copyOfMessage);
             } else {
                 remainingMessages.push(problem);
             }
@@ -96,7 +101,7 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
 
         return {
             fixed: true,
-            applyingMessages: applyingMessages,
+            applyingMessages: applyingMessages.reverse(),
             remainingMessages: remainingMessages.sort(compareMessagesByLocation),
             output: prefix + chars.join("")
         };
@@ -109,6 +114,29 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
             output: prefix + text
         };
     }
+};
+
+/**
+ * Revert text using applied fixes.
+ * This method used the result of `SourceCodeFixer.applyFixes`,
+ * @param {SourceCode} sourceCode The source code to apply the changes to.
+ * @param {TextLintMessage[]} applyingMessages The array of applyingMessages reported by SourceCodeFixer#applyFixes
+ * @returns {string} An object containing the fixed text and any unfixed messages.
+ */
+SourceCodeFixer.revertFixes = (sourceCode, applyingMessages) => {
+    debug("Restore applied fixes");
+    let text = sourceCode.text;
+    applyingMessages.forEach(message => {
+        const newSource = new SourceCode({
+            text,
+            ast: sourceCode.ast, // it's dummy
+            ext: sourceCode.ext,
+            filePath: sourceCode.filePath
+        });
+        const result = SourceCodeFixer.applyFixes(newSource, [message]);
+        text = result.output;
+    });
+    return text;
 };
 
 export default SourceCodeFixer;

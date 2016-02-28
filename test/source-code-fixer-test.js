@@ -166,6 +166,7 @@ describe("SourceCodeFixer", function () {
             it("should insert text at the end of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_AT_END]);
                 assert.equal(result.output, TEST_CODE + INSERT_AT_END.data.fix.text);
+                assert.equal(result.applyingMessages.length, 1);
                 assert.equal(result.remainingMessages.length, 0);
             });
 
@@ -531,4 +532,42 @@ describe("SourceCodeFixer", function () {
 
     });
 
+    describe("revert apply fixes", function () {
+
+        var sourceCode;
+
+        beforeEach(function () {
+            sourceCode = new SourceCode({
+                text: TEST_CODE,
+                ast: TEST_AST,
+                ext: ".md"
+            });
+        });
+        it("should replace text at the beginning and end of the code", function () {
+            var result = SourceCodeFixer.applyFixes(sourceCode, [REPLACE_ID, REPLACE_VAR, REPLACE_NUM]);
+            assert.equal(result.remainingMessages.length, 0);
+            assert.equal(result.output, "let foo = 5 * 7;");
+            assert.ok(result.fixed);
+            // revert
+            var newSource = new SourceCode({
+                text: result.output,
+                ast: parse(result.output),
+                ext: ".md"
+            });
+            const revertText = SourceCodeFixer.revertFixes(newSource, result.applyingMessages);
+            assert.equal(revertText, sourceCode.text);
+        });
+        it("should only apply one fix when ranges overlap and one message has no fix", function () {
+            var result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_MIDDLE, REPLACE_ID, NO_FIX]);
+            // revert
+            const text = result.output;
+            var newSource = new SourceCode({
+                text: text,
+                ast: parse(text),
+                ext: ".md"
+            });
+            const revertText = SourceCodeFixer.revertFixes(newSource, result.applyingMessages);
+            assert.equal(revertText, sourceCode.text);
+        });
+    });
 });
