@@ -1,7 +1,8 @@
 // LICENSE : MIT
 'use strict';
-const RuleError = require('./rule-error');
 const assert = require('assert');
+const RuleFixer = require("../fixer/rule-fixer");
+const RuleError = require('./rule-error');
 const SeverityLevel = {
     "none": 0,
     "info": 0,
@@ -69,5 +70,7 @@ function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
     this.getSource = sourceCode.getSource.bind(sourceCode);
     // CustomError object
     this.RuleError = RuleError;
+    // fixer
+    this.fixer = new RuleFixer();
 }
 module.exports = RuleContext;

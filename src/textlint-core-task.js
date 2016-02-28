@@ -71,7 +71,12 @@ export default class TextLintCoreTask extends EventEmitter {
             const ruleConfig = rulesConfig[key];
             try {
                 const ruleContext = new RuleContext(key, sourceCode, report, textLintConfig, ruleConfig);
-                const rule = ruleCreator(ruleContext, ruleConfig);
+                let rule;
+                if (typeof ruleCreator === "function") {
+                    rule = ruleCreator(ruleContext, ruleConfig);
+                } else if (ruleCreator.hasOwnProperty("fixer")) {
+                    rule = ruleCreator.fixer(ruleContext, ruleConfig);
+                }
                 this._addListenRule(key, rule);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
