@@ -9,6 +9,7 @@ const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
 const SourceCode = require("./rule/source-code");
+const SourceCodeFixer = require("./fixer/source-code-fixer");
 const debug = require('debug')('textlint:core');
 import CoreTask from "./textlint-core-task";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
@@ -76,7 +77,12 @@ export default class TextlintCore {
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
-        const sourceCode = new SourceCode(text, filePath);
+        const sourceCode = new SourceCode({
+            text,
+            ast,
+            ext,
+            filePath
+        });
         const task = new CoreTask({
             config: this.config,
             rules: this.rules,
@@ -156,16 +162,22 @@ export default class TextlintCore {
         }).filter(rule => {
             return typeof rule["fixer"] !== "undefined";
         });
+        const {preProcess, postProcess} = processor.processor(ext);
         const fixerProcessList = fixerRules.map(rule => {
-            return (textForProcessing) => {
-                const {preProcess, postProcess} = processor.processor(ext);
-                const ast = preProcess(textForProcessing, filePath);
-                const sourceCode = new SourceCode(text, filePath);
+            return (sourceText) => {
+                // create new SourceCode object
+                const newSourceCode = new SourceCode({
+                    text: sourceText,
+                    ast: preProcess(sourceText),
+                    filePath,
+                    ext
+                });
+                // create new Task
                 const task = new CoreTask({
                     config: this.config,
                     rules: [rule],
                     rulesConfig: this.rulesConfig,
-                    sourceCode: sourceCode
+                    sourceCode: newSourceCode
                 });
                 return new Promise((resolve, reject) => {
                     const messages = [];
@@ -177,24 +189,22 @@ export default class TextlintCore {
                         if (result.filePath == null) {
                             result.filePath = `<Unkown${ext}>`;
                         }
-                        assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
-                        const SourceCodeFixer = require("./fixer/source-code-fixer");
-                        const applied = SourceCodeFixer.applyFixes(textForProcessing, messages);
-                        if (applied.fixed) {
-                            console.log("FIXED: " + applied.output);
-                            resolve(applied.output);
-                            return;
+                        var applied = SourceCodeFixer.applyFixes(newSourceCode, messages);
+                        // if not fixed, still use current sourceText
+                        if (!applied.fixed) {
+                            return resolve(sourceText);
                         }
-                        resolve(textForProcessing);
+                        // if fixed, use fixed text at next
+                        resolve(applied.output);
                     });
-                    task.process(ast);
+                    task.process(newSourceCode.ast);
                 });
             };
         });
 
         return fixerProcessList.reduce((promise, fixerProcess) => {
-            return promise.then((text) => {
-                return fixerProcess(text);
+            return promise.then((sourceText) => {
+                return fixerProcess(sourceText);
             });
         }, Promise.resolve(text));
     };

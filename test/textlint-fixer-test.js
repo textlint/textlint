@@ -14,6 +14,8 @@ describe("textlint-fixer", function () {
             });
             return textlint.fixText("This is fix", ".md").then(result => {
                 assert.equal(result, "This is fixed.");
+            }).catch(e => {
+                console.error(e);
             });
         });
     });

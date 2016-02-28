@@ -1,16 +1,41 @@
+const path = require("path");
 const UnionSyntax = require("../parser/union-syntax");
+const assert = require("assert");
+/**
+ * Validates that the given AST has the required information.
+ * @param {TxtSyntax.TxtNode} ast The Program node of the AST to check.
+ * @throws {Error} If the AST doesn't contain the correct information.
+ * @returns {void}
+ * @private
+ */
+function validate(ast) {
+    if (!ast.loc) {
+        throw new Error("AST is missing location information.");
+    }
+
+    if (!ast.range) {
+        throw new Error("AST is missing range information");
+    }
+}
+
 /**
  * This class represent of source code.
  */
 export default class SourceCode {
-
-    constructor(text = "", filePath) {
-        // set unlimited listeners (see https://github.com/textlint/textlint/issues/33)
+    constructor({text = "", ast, ext, filePath}) {
+        validate(ast);
+        assert(ext || filePath, "should be set either of fileExt or filePath.");
         this.text = text;
+        this.ast = ast;
         this.filePath = filePath;
+        // fileType .md .txt ...
+        this.ext = ext;
     }
 
-    // TODO: allow to use Syntax which is defined by Plugin Processor.
+    hasBOM() {
+        return this.text.charCodeAt(0) === 0xFEFF;
+    }
+
     getSyntax() {
         return UnionSyntax;
     }
