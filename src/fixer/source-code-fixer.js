@@ -1,6 +1,5 @@
 const debug = require("debug")("textlint:text-fixer");
 
-
 const BOM = "\uFEFF";
 
 /**
@@ -31,27 +30,17 @@ function SourceCodeFixer() {
 /**
  * Applies the fixes specified by the messages to the given text. Tries to be
  * smart about the fixes and won't apply fixes over the same area in the text.
- * @param {string} text The source code to apply the changes to.
+ * @param {SourceCode} sourceCode The source code to apply the changes to.
  * @param {TextLintMessage[]} messages The array of messages reported by ESLint.
  * @returns {Object} An object containing the fixed text and any unfixed messages.
  */
-SourceCodeFixer.applyFixes = (text, messages) => {
+SourceCodeFixer.applyFixes = (sourceCode, messages) => {
     debug("Applying fixes");
-    if (!text) {
-        debug("No source code to fix");
-        return {
-            fixed: false,
-            messages,
-            output: ""
-        };
-    }
-
+    const text = sourceCode.text;
     const remainingMessages = [];
     const fixes = [];
     let lastFixPos = text.length + 1;
-    let prefix = "";
-
-    console.log(messages);
+    let prefix = (sourceCode.hasBOM() ? BOM : "");
     messages.forEach(problem => {
         if (problem.data.hasOwnProperty("fix")) {
             fixes.push(problem);
@@ -76,7 +65,8 @@ SourceCodeFixer.applyFixes = (text, messages) => {
         const chars = text.split("");
 
         fixes.forEach(problem => {
-            const fix = problem.data.fix;// message.fixを取り出してる
+            // pickup fix range
+            const fix = problem.data.fix;
             let start = fix.range[0];
             const end = fix.range[1];
             let insertionText = fix.text;
