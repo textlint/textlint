@@ -67,6 +67,7 @@ Options:
   -v, --version              Outputs the version number.
   --no-color                 Disable color in piped output.
   -o, --output-file path::String  Enable report to be written to a file.
+  --init                     Create the config file if not existed. - default: false
   --quiet                    Report errors only. - default: false
 
 Using stdin:
