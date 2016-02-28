@@ -54,6 +54,7 @@
     "espower-babel": "^3.3.0",
     "glob": "^6.0.1",
     "jscs": "^2.1.0",
+    "markdown-to-ast": "^3.2.3",
     "mocha": "^2.3.3",
     "power-assert": "^1.0.1",
     "shelljs": "^0.6.0",

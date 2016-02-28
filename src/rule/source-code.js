@@ -25,15 +25,12 @@ export default class SourceCode {
     constructor({text = "", ast, ext, filePath}) {
         validate(ast);
         assert(ext || filePath, "should be set either of fileExt or filePath.");
-        this.text = text;
+        this.hasBOM = text.charCodeAt(0) === 0xFEFF;
+        this.text = (this.hasBOM ? text.slice(1) : text);
         this.ast = ast;
         this.filePath = filePath;
         // fileType .md .txt ...
         this.ext = ext;
-    }
-
-    hasBOM() {
-        return this.text.charCodeAt(0) === 0xFEFF;
     }
 
     getSyntax() {
