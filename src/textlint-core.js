@@ -11,8 +11,11 @@ const assert = require('assert');
 const SourceCode = require("./rule/source-code");
 const SourceCodeFixer = require("./fixer/source-code-fixer");
 const debug = require('debug')('textlint:core');
-import CoreTask from "./textlint-core-task";
-import assertRuleModule from "./rule/assert-rule-shape";
+import CoreTask from "./task/textlint-core-task";
+import {assertRuleShape} from "./rule/rule-creator-helper";
+import FixerTask from "./task/fixer-task";
+import LinterTask from "./task/linter-task";
+
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
@@ -48,7 +51,7 @@ export default class TextlintCore {
             let resultRules = Object.create(null);
             Object.keys(rules).forEach(key => {
                 const ruleCreator = rules[key];
-                assertRuleModule(ruleCreator, key);
+                assertRuleShape(ruleCreator, key);
                 // "rule-name" : false => disable
                 const ruleConfig = rulesConfig && rulesConfig[key];
                 if (ruleConfig !== false) {
@@ -82,7 +85,7 @@ export default class TextlintCore {
             ext,
             filePath
         });
-        const task = new CoreTask({
+        const task = new LinterTask({
             config: this.config,
             rules: this.rules,
             rulesConfig: this.rulesConfig,
@@ -162,6 +165,9 @@ export default class TextlintCore {
             return typeof rule.fixer !== "undefined";
         });
         const {preProcess, postProcess} = processor.processor(ext);
+        // messages
+        const appliedMessages = [];
+        const remainingMessages = [];
         const fixerProcessList = fixerRules.map(rule => {
             return (sourceText) => {
                 // create new SourceCode object
@@ -172,7 +178,7 @@ export default class TextlintCore {
                     ext
                 });
                 // create new Task
-                const task = new CoreTask({
+                const task = new FixerTask({
                     config: this.config,
                     rules: [rule],
                     rulesConfig: this.rulesConfig,
@@ -201,10 +207,17 @@ export default class TextlintCore {
             };
         });
 
-        return fixerProcessList.reduce((promise, fixerProcess) => {
+        var promiseTasks = fixerProcessList.reduce((promise, fixerProcess) => {
             return promise.then((sourceText) => {
                 return fixerProcess(sourceText);
             });
         }, Promise.resolve(text));
+        return promiseTasks.then(text => {
+            return {
+                text,
+                appliedMessages,
+                remainingMessages
+            };
+        });
     };
 }
