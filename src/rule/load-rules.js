@@ -1,9 +1,5 @@
 'use strict';
 // https://github.com/eslint/eslint/blob/master/lib/load-rules.js
-/**
- * @fileoverview Module for loading rules from files and directories.
- * @author Michael Ficarra
- */
 const interopRequire = require('interop-require');
 const fs = require('fs');
 const path = require('path');
@@ -13,13 +9,9 @@ const path = require('path');
  * @returns {Object} Loaded rule modules by rule ids (file names).
  */
 module.exports = function (rulesDir) {
-    if (!rulesDir) {
-        rulesDir = path.join(__dirname, 'rules');
-    } else {
-        rulesDir = path.resolve(process.cwd(), rulesDir);
-    }
+    const rulesDirAbsolutePath = path.resolve(process.cwd(), rulesDir);
     const rules = Object.create(null);
-    fs.readdirSync(rulesDir).forEach(file => {
+    fs.readdirSync(rulesDirAbsolutePath).forEach(file => {
         if (path.extname(file) !== '.js') {
             return;
         }

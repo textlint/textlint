@@ -46,9 +46,9 @@ export default class TextlintCore {
             let resultRules = Object.create(null);
             Object.keys(rules).forEach(key => {
                 const ruleCreator = rules[key];
-                if (typeof ruleCreator !== 'function') {
-                    throw new Error(`Definition of rule '${ key }' was not found.`);
-                }
+                //if (typeof ruleCreator !== 'function') {
+                //    throw new Error(`Definition of rule '${ key }' was not found.`);
+                //}
                 // "rule-name" : false => disable
                 const ruleConfig = rulesConfig && rulesConfig[key];
                 if (ruleConfig !== false) {
@@ -136,4 +136,66 @@ export default class TextlintCore {
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._lintByProcessor(processor, text, ext, absoluteFilePath);
     }
+
+    fixFile(filePath) {
+        const absoluteFilePath = path.resolve(process.cwd(), filePath);
+        const ext = path.extname(absoluteFilePath);
+        const text = fs.readFileSync(absoluteFilePath, 'utf-8');
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._fixProcess(processor, text, ext, filePath);
+    }
+
+    fixText(text, ext = ".txt") {
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._fixProcess(processor, text, ext);
+    }
+
+    _fixProcess(processor, text, ext, filePath) {
+        const fixerRules = Object.keys(this.rules).map(ruleName => {
+            return this.rules[ruleName];
+        }).filter(rule => {
+            return typeof rule["fixer"] !== "undefined";
+        });
+        const fixerProcessList = fixerRules.map(rule => {
+            return (textForProcessing) => {
+                const {preProcess, postProcess} = processor.processor(ext);
+                const ast = preProcess(textForProcessing, filePath);
+                const sourceCode = new SourceCode(text, filePath);
+                const task = new CoreTask({
+                    config: this.config,
+                    rules: [rule],
+                    rulesConfig: this.rulesConfig,
+                    sourceCode: sourceCode
+                });
+                return new Promise((resolve, reject) => {
+                    const messages = [];
+                    task.on(CoreTask.events.message, message => {
+                        messages.push(message);
+                    });
+                    task.on(CoreTask.events.complete, () => {
+                        const result = postProcess(messages, filePath);
+                        if (result.filePath == null) {
+                            result.filePath = `<Unkown${ext}>`;
+                        }
+                        assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+                        const SourceCodeFixer = require("./fixer/source-code-fixer");
+                        const applied = SourceCodeFixer.applyFixes(textForProcessing, messages);
+                        if (applied.fixed) {
+                            console.log("FIXED: " + applied.output);
+                            resolve(applied.output);
+                            return;
+                        }
+                        resolve(textForProcessing);
+                    });
+                    task.process(ast);
+                });
+            };
+        });
+
+        return fixerProcessList.reduce((promise, fixerProcess) => {
+            return promise.then((text) => {
+                return fixerProcess(text);
+            });
+        }, Promise.resolve(text));
+    };
 }

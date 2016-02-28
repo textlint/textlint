@@ -6,8 +6,8 @@ export default class SourceCode {
 
     constructor(text = "", filePath) {
         // set unlimited listeners (see https://github.com/textlint/textlint/issues/33)
-        this.currentText = text;
-        this.currentFilePath = filePath;
+        this.text = text;
+        this.filePath = filePath;
     }
 
     // TODO: allow to use Syntax which is defined by Plugin Processor.
@@ -16,7 +16,7 @@ export default class SourceCode {
     }
 
     getFilePath() {
-        return this.currentFilePath;
+        return this.filePath;
     }
 
     /**
@@ -27,7 +27,7 @@ export default class SourceCode {
      * @returns {string|null} The text representing the AST node.
      */
     getSource(node, beforeCount, afterCount) {
-        let currentText = this.currentText;
+        let currentText = this.text;
         if (currentText == null) {
             return null;
         }
