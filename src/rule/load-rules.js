@@ -9,7 +9,12 @@ const path = require('path');
  * @returns {Object} Loaded rule modules by rule ids (file names).
  */
 module.exports = function (rulesDir) {
-    const rulesDirAbsolutePath = path.resolve(process.cwd(), rulesDir);
+    let rulesDirAbsolutePath;
+    if (!rulesDir) {
+        rulesDirAbsolutePath = path.join(__dirname, 'rules');
+    } else {
+        rulesDirAbsolutePath = path.resolve(process.cwd(), rulesDir);
+    }
     const rules = Object.create(null);
     fs.readdirSync(rulesDirAbsolutePath).forEach(file => {
         if (path.extname(file) !== '.js') {
