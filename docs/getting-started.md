@@ -47,7 +47,13 @@ We recommended that use textlint with `.textlintrc` configuration file.
 
 ## Configuration
 
-Create a `.textlintrc` file in your directory. In it, you'll see some rules configured like this:
+Create a `.textlintrc` file in your directory. 
+
+```sh
+$ textlint --init
+```
+
+In it, you'll see some rules configured like this:
 
 ```json
 {
