@@ -1,14 +1,15 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("power-assert");
-var cli = require("../src/").cli;
-var path = require("path");
+const assert = require("power-assert");
+const cli = require("../src/").cli;
+const path = require("path");
+const spawnSync = require('child_process').spawnSync;
 describe("cli-test", function () {
     let originLog = console.log;
     before(function () {
         // mock console API
         console.log = function mockLog() {
-        }
+        };
     });
     after(function () {
         console.log = originLog;
@@ -52,5 +53,21 @@ describe("cli-test", function () {
                 done();
             });
         });
-    })
+    });
+    // Regression testing
+    // (node) warning: possible EventEmitter memory leak detected. 11 Str listeners added. Use emitter.setMaxListeners() to increase limit.
+    describe("EventEmitter memory leak detected", function () {
+        it("should not show in console", function () {
+            // testing stderr https://github.com/nodejs/node/blob/082cc8d6d8f5c7c797e58cefeb475b783c730635/test/parallel/test-util-internal.js#L53-L59
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const bin = path.join(__dirname, "../bin/textlint.js");
+            const args = [
+                '--preset',
+                'textlint-rule-preset-jtf-style',
+                `${targetFile}`
+            ];
+            const result = spawnSync(`${bin}`, args, {encoding: 'utf8'});
+            assert.strictEqual(result.stderr.indexOf('memory leak detected'), -1);
+        });
+    });
 });

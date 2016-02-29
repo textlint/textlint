@@ -60,6 +60,7 @@
     "textlint-rule-alex": "^1.0.1",
     "textlint-rule-helper": "^1.1.3",
     "textlint-rule-no-todo": "^1.0.2",
+    "textlint-rule-preset-jtf-style": "^2.0.0",
     "textlint-rule-rousseau": "^1.3.0",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
   },
