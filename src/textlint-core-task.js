@@ -10,6 +10,10 @@ const computeLocation = require("./rule/compute-location");
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 class RuleTypeEmitter extends PromiseEventEmitter {
+    constructor(){
+        super();
+        this.setMaxListeners(0);
+    }
 }
 export default class TextLintCoreTask extends EventEmitter {
     static get events() {
