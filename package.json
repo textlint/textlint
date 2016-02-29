@@ -31,6 +31,7 @@
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
+    "pretest": "npm run --if-present build",
     "lint:doc": "eslint docs/ --ext md && ./bin/textlint.js -c docs/.textlintrc docs/*.md -f pretty-error",
     "lint:js": "jscs src",
     "test:example": "./test/example-test.sh",
