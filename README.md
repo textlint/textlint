@@ -290,9 +290,13 @@ Please see docs/
 
 ## Use with XXX
 
-- [nakajmg/gulp-textlint](https://github.com/textlint/gulp-textlint "nakajmg/gulp-textlint")
+- [gulp-textlint](https://github.com/textlint/gulp-textlint "gulp-textlint")
 
 > gulp plugin
+
+- [grunt-textlint](https://github.com/textlint/grunt-textlint "grunt-textlint")
+
+> Grunt plugin
 
 - [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
 
