@@ -212,9 +212,9 @@ export default class TextlintCore {
                 return fixerProcess(sourceText);
             });
         }, Promise.resolve(text));
-        return promiseTasks.then(text => {
+        return promiseTasks.then(output => {
             return {
-                text,
+                output,
                 appliedMessages,
                 remainingMessages
             };
