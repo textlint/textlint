@@ -13,8 +13,8 @@ describe("textlint-fixer", function () {
                 "fixer-rule-replace": ruleReplace
             });
             return textlint.fixText("This is fix", ".md").then(result => {
-                assert(typeof result.text === "string");
-                assert.equal(result.text, "This is fixed.");
+                assert(typeof result.output === "string");
+                assert.equal(result.output, "This is fixed.");
             });
         });
     });
