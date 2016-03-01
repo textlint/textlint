@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
+import assert from "assert";
 import {testValid, testInvalid} from "./test-util";
 import {TextLintCore} from "textlint";
 const describe = (typeof global.describe === "function") ? global.describe : function (text, method) {
@@ -38,17 +39,14 @@ export default class TextLintTester {
         it(text, ()=> {
             return testInvalid(textlint, text, errors);
         });
-    }
-
-    testState(ruleName, rule, valid, invalid) {
-        let validListNoOptions = valid.filter(state => {
-            return state.options === undefined;
-        });
-        let invalidListNoOptions = invalid.filter(state => {
-            return state.options === undefined;
-        });
-        if (validListNoOptions.length === 0 || invalidListNoOptions.length === 0) {
-            return;
+        // --fix
+        if (invalid.hasOwnProperty("output")) {
+            it(`Fixer: ${text}`, ()=> {
+                return textlint.fixText(text, ".md").then(result => {
+                    const output = invalid.output;
+                    assert.strictEqual(result.output, output);
+                });
+            });
         }
     }
 
@@ -67,7 +65,6 @@ export default class TextLintTester {
             valid.forEach(state => {
                 this.testValidPattern(ruleName, rule, state);
             });
-            this.testState(ruleName, rule, valid, invalid);
         });
     }
 }
