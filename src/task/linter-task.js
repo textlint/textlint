@@ -26,7 +26,7 @@ export default class TextLintCoreTask extends CoreTask {
             const ruleConfig = rulesConfig[key];
             try {
                 const ruleContext = new RuleContext(key, sourceCode, report, textLintConfig, ruleConfig);
-                const ruleObject = getLinter(ruleCreator, key)(ruleContext, ruleConfig);
+                const ruleObject = getLinter(ruleCreator)(ruleContext, ruleConfig);
                 this._addListenRule(key, ruleObject);
             } catch (ex) {
                 ex.message = `Error while loading rule '${ key }': ${ ex.message }`;

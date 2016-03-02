@@ -7,7 +7,7 @@ const assert = require("assert");
  * @param {any} ruleModule
  * @param {string} key
  */
-export function assertRuleShape(ruleModule, key) {
+export function assertRuleShape(ruleModule, key = "") {
     if (ruleModule === undefined) {
         throw new Error(`Definition of rule '${ key }' was not found.`);
     }
@@ -27,22 +27,33 @@ module.exports = function(context){
         }
     }
 }
-
-export function getLinter(ruleCreator, key) {
+/**
+ * get linter function from ruleCreator
+ * if not found, throw error
+ * @param {any} ruleCreator
+ * @returns {Function} linter function
+ */
+export function getLinter(ruleCreator) {
     if (typeof ruleCreator.linter === "function") {
         return ruleCreator.linter;
     }
     if (typeof ruleCreator === "function") {
         return ruleCreator;
     }
-    throw new Error(`Not found linter function in ${key}`);
+    throw new Error(`Not found linter function in the ruleCreator`);
 }
-export function getFixer(ruleCreator, key) {
+/**
+ * get fixer function from ruleCreator
+ * if not found, throw error
+ * @param {any} ruleCreator
+ * @returns {Function} fixer function
+ */
+export function getFixer(ruleCreator) {
     if (typeof ruleCreator.fixer === "function") {
         return ruleCreator.fixer;
     }
     if (typeof ruleCreator === "function") {
         return ruleCreator;
     }
-    throw new Error(`Not found fixer function in ${key}`);
+    throw new Error(`Not found fixer function in the ruleCreator`);
 }
