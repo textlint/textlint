@@ -45,7 +45,7 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
     let lastFixPos = text.length + 1;
     let prefix = (sourceCode.hasBOM ? BOM : "");
     messages.forEach(problem => {
-        if (problem.data && problem.data.hasOwnProperty("fix")) {
+        if (problem && problem.hasOwnProperty("fix")) {
             fixes.push(problem);
         } else {
             remainingMessages.push(problem);
@@ -57,7 +57,7 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
 
         // sort in reverse order of occurrence
         fixes.sort((a, b) => {
-            if (a.data.fix.range[1] <= b.data.fix.range[0]) {
+            if (a.fix.range[1] <= b.fix.range[0]) {
                 return 1;
             } else {
                 return -1;
@@ -69,7 +69,7 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
 
         fixes.forEach(problem => {
             // pickup fix range
-            const fix = problem.data.fix;
+            const fix = problem.fix;
             let start = fix.range[0];
             const end = fix.range[1];
             let insertionText = fix.text;
@@ -89,7 +89,7 @@ SourceCodeFixer.applyFixes = (sourceCode, messages) => {
                 const replacedChars = chars.splice(start, end - start, insertionText);
                 lastFixPos = start;
                 const copyOfMessage = JSON.parse(JSON.stringify(problem));
-                copyOfMessage.data.fix = {
+                copyOfMessage.fix = {
                     range: [start, start + insertionText.length],
                     text: replacedChars.join("")
                 };

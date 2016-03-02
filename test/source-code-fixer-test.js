@@ -8,83 +8,65 @@ const TEST_CODE = "var answer = 6 * 7;";
 const TEST_AST = parse(TEST_CODE);
 const INSERT_AT_END = {
     message: "End",
-    data: {
-        fix: {
-            range: [TEST_CODE.length, TEST_CODE.length],
-            text: "// end"
-        }
+    fix: {
+        range: [TEST_CODE.length, TEST_CODE.length],
+        text: "// end"
     }
 };
 const INSERT_AT_START = {
     message: "Start",
-    data: {
-        fix: {
-            range: [0, 0],
-            text: "// start\n"
-        }
+    fix: {
+        range: [0, 0],
+        text: "// start\n"
     }
 };
 const INSERT_IN_MIDDLE = {
     message: "Multiply",
-    data: {
-        fix: {
-            range: [13, 13],
-            text: "5 *"
-        }
+    fix: {
+        range: [13, 13],
+        text: "5 *"
     }
 };
 const REPLACE_ID = {
     message: "foo",
-    data: {
-        fix: {
-            range: [4, 10],
-            text: "foo"
-        }
+    fix: {
+        range: [4, 10],
+        text: "foo"
     }
 };
 const REPLACE_VAR = {
     message: "let",
-    data: {
-        fix: {
-            range: [0, 3],
-            text: "let"
-        }
+    fix: {
+        range: [0, 3],
+        text: "let"
     }
 };
 const REPLACE_NUM = {
     message: "5",
-    data: {
-        fix: {
-            range: [13, 14],
-            text: "5"
-        }
+    fix: {
+        range: [13, 14],
+        text: "5"
     }
 };
 const REMOVE_START = {
     message: "removestart",
-    data: {
-        fix: {
-            range: [0, 4],
-            text: ""
-        }
+    fix: {
+        range: [0, 4],
+        text: ""
     }
 };
 const REMOVE_MIDDLE = {
     message: "removemiddle",
-    data: {
-        fix: {
-            range: [5, 10],
-            text: ""
-        }
+    fix: {
+        range: [5, 10],
+        text: ""
     }
 };
 const REMOVE_END = {
     message: "removeend",
-    data: {
-        fix: {
-            range: [14, 18],
-            text: ""
-        }
+    fix: {
+        range: [14, 18],
+        text: ""
     }
 };
 const NO_FIX = {
@@ -92,38 +74,30 @@ const NO_FIX = {
 };
 const INSERT_BOM = {
     message: "insert-bom",
-    data: {
-        fix: {
-            range: [0, 0],
-            text: "\uFEFF"
-        }
+    fix: {
+        range: [0, 0],
+        text: "\uFEFF"
     }
 };
 const INSERT_BOM_WITH_TEXT = {
     message: "insert-bom",
-    data: {
-        fix: {
-            range: [0, 0],
-            text: "\uFEFF// start\n"
-        }
+    fix: {
+        range: [0, 0],
+        text: "\uFEFF// start\n"
     }
 };
 const REMOVE_BOM = {
     message: "remove-bom",
-    data: {
-        fix: {
-            range: [-1, 0],
-            text: ""
-        }
+    fix: {
+        range: [-1, 0],
+        text: ""
     }
 };
 const REPLACE_BOM_WITH_TEXT = {
     message: "remove-bom",
-    data: {
-        fix: {
-            range: [-1, 0],
-            text: "// start\n"
-        }
+    fix: {
+        range: [-1, 0],
+        text: "// start\n"
     }
 };
 const NO_FIX1 = {
@@ -165,31 +139,30 @@ describe("SourceCodeFixer", function () {
 
             it("should insert text at the end of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_AT_END]);
-                assert.equal(result.output, TEST_CODE + INSERT_AT_END.data.fix.text);
+                assert.equal(result.output, TEST_CODE + INSERT_AT_END.fix.text);
                 assert.equal(result.applyingMessages.length, 1);
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_AT_START]);
-                assert.equal(result.output, INSERT_AT_START.data.fix.text + TEST_CODE);
+                assert.equal(result.output, INSERT_AT_START.fix.text + TEST_CODE);
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text in the middle of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE]);
-                assert.equal(result.output, TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.data.fix.text + "6 *"));
+                assert.equal(result.output, TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *"));
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning, middle, and end of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE, INSERT_AT_START, INSERT_AT_END]);
-                assert.equal(result.output, INSERT_AT_START.data.fix.text + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.data.fix.text + "6 *") + INSERT_AT_END.data.fix.text);
+                assert.equal(result.output, INSERT_AT_START.fix.text + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *") + INSERT_AT_END.fix.text);
                 assert.equal(result.remainingMessages.length, 0);
             });
 
         });
-
 
         describe("Text Replacement", function () {
 
@@ -363,25 +336,25 @@ describe("SourceCodeFixer", function () {
 
             it("should insert text at the end of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_AT_END]);
-                assert.equal(result.output, "\uFEFF" + TEST_CODE + INSERT_AT_END.data.fix.text);
+                assert.equal(result.output, "\uFEFF" + TEST_CODE + INSERT_AT_END.fix.text);
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_AT_START]);
-                assert.equal(result.output, "\uFEFF" + INSERT_AT_START.data.fix.text + TEST_CODE);
+                assert.equal(result.output, "\uFEFF" + INSERT_AT_START.fix.text + TEST_CODE);
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text in the middle of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE]);
-                assert.equal(result.output, "\uFEFF" + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.data.fix.text + "6 *"));
+                assert.equal(result.output, "\uFEFF" + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *"));
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning, middle, and end of the code", function () {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE, INSERT_AT_START, INSERT_AT_END]);
-                assert.equal(result.output, "\uFEFF" + INSERT_AT_START.data.fix.text + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.data.fix.text + "6 *") + INSERT_AT_END.data.fix.text);
+                assert.equal(result.output, "\uFEFF" + INSERT_AT_START.fix.text + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *") + INSERT_AT_END.fix.text);
                 assert.equal(result.remainingMessages.length, 0);
             });
 

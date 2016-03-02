@@ -5,9 +5,10 @@
  *
  * @param {TxtNode} node
  * @param {RuleError} padding
- * @returns {{line: number, column: number}}
+ * @returns {{line: number, column: number, fix?: FixCommand}}
  */
 export default function computeLocation(node, padding) {
+    const nodeRange = node.range;
     let line = node.loc.start.line;
     let column = node.loc.start.column;
     if (padding.line > 0) {
@@ -22,6 +23,18 @@ export default function computeLocation(node, padding) {
         if (padding.column) {
             column += padding.column;
         }
+    }
+    // fix(command) is relative from node's range
+    if (padding.fix) {
+        const fix = {
+            range: [nodeRange[0] + padding.fix.range[0], nodeRange[0] + padding.fix.range[1]],
+            text: padding.fix.text
+        };
+        return {
+            line,
+            column,
+            fix
+        };
     }
     return {
         line,

@@ -21,13 +21,12 @@ class RuleError {
             this.line = paddingLocation.line;
             // padding column
             this.column = paddingLocation.column;
+            // fixCommand object
+            this.fix = paddingLocation.fix;
         } else if (typeof paddingLocation === 'number') {
             // this is deprecated
             // should pass padding as object.
             this.column = paddingLocation;
-        }
-        if (typeof paddingLocation.fix !== "undefined") {
-            this.fix = paddingLocation.fix;
         }
     }
 

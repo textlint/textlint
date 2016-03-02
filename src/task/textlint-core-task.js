@@ -44,16 +44,9 @@ export default class TextLintCoreTask extends EventEmitter {
      */
     report({ruleId, node, severity, error}) {
         debug('pushReport %s', error);
-        const {line, column} = computeLocation(node, error);
-        // TOOD: compute
-        // message.fix = fix
-
-        const fixInfo = {
-            range: [],
-            text: ""
-        };
+        const {line, column, fix} = computeLocation(node, error);
         // add TextLintMessage
-        let message = {
+        const message = {
             ruleId: ruleId,
             message: error.message,
             // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
@@ -61,6 +54,9 @@ export default class TextLintCoreTask extends EventEmitter {
             column: column + 1,// start with 1(1-based column number)
             severity: severity // it's for compatible ESLint formatter
         };
+        if (fix) {
+            message.fix = fix;
+        }
         if (!(error instanceof RuleError)) {
             // `error` is a any data.
             const data = error;
