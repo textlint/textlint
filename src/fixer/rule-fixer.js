@@ -1,3 +1,4 @@
+import assert from "assert";
 /**
  * Creates a fix command that inserts text at the specified index in the source text.
  * @param {int} index The 0-based index at which to insert the new text.
@@ -6,6 +7,7 @@
  * @private
  */
 function insertTextAt(index, text) {
+    assert(text, "text must be string");
     return {
         range: [index, index],
         text

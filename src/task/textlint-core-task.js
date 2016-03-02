@@ -44,7 +44,14 @@ export default class TextLintCoreTask extends EventEmitter {
      */
     report({ruleId, node, severity, error}) {
         debug('pushReport %s', error);
-        let {line, column} = computeLocation(node, error);
+        const {line, column} = computeLocation(node, error);
+        // TOOD: compute
+        // message.fix = fix
+
+        const fixInfo = {
+            range: [],
+            text: ""
+        };
         // add TextLintMessage
         let message = {
             ruleId: ruleId,
