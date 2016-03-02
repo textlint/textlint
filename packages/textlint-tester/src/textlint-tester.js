@@ -11,6 +11,22 @@ const it = (typeof global.it === "function") ? global.it : function (text, metho
     return method.apply(this);
 };
 
+/**
+ * get fixer function from ruleCreator
+ * if not found, throw error
+ * @param {Function} ruleCreator
+ * @param {string} ruleName
+ * @returns {Function} fixer function
+ */
+function assertHasFixer(ruleCreator, ruleName) {
+    if (typeof ruleCreator.fixer === "function") {
+        return;
+    }
+    if (typeof ruleCreator === "function") {
+        return;
+    }
+    throw new Error("Not found `fixer` function in the ruleCreator: " + ruleName);
+}
 export default class TextLintTester {
     testValidPattern(ruleName, rule, valid) {
         let text = valid.text || valid;
@@ -42,6 +58,7 @@ export default class TextLintTester {
         // --fix
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${text}`, ()=> {
+                assertHasFixer(rule, ruleName);
                 return textlint.fixText(text, ".md").then(result => {
                     const output = invalid.output;
                     assert.strictEqual(result.output, output);
