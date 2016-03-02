@@ -160,15 +160,18 @@ export default class TextlintCore {
 
     _fixProcess(processor, text, ext, filePath) {
         const fixerRules = Object.keys(this.rules).map(ruleName => {
-            return this.rules[ruleName];
-        }).filter(rule => {
+            return {
+                ruleName,
+                rule: this.rules[ruleName]
+            };
+        }).filter(({rule}) => {
             return typeof rule.fixer !== "undefined";
         });
         const {preProcess, postProcess} = processor.processor(ext);
         // messages
         const appliedMessages = [];
         const remainingMessages = [];
-        const fixerProcessList = fixerRules.map(rule => {
+        const fixerProcessList = fixerRules.map(({ruleName, rule}) => {
             return (sourceText) => {
                 // create new SourceCode object
                 const newSourceCode = new SourceCode({
@@ -180,7 +183,8 @@ export default class TextlintCore {
                 // create new Task
                 const task = new FixerTask({
                     config: this.config,
-                    rules: [rule],
+                    // { ruleName : rule }
+                    rules: {[ruleName]: rule},
                     rulesConfig: this.rulesConfig,
                     sourceCode: newSourceCode
                 });

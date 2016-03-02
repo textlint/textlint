@@ -109,7 +109,7 @@ describe("rule-context-test", function () {
                                 let ruleError = new context.RuleError("error", 1);
                                 context.report(node, ruleError);
                             }
-                        }
+                        };
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
@@ -150,7 +150,7 @@ describe("rule-context-test", function () {
                         [context.Syntax.Str](node){
                             context.report(node, expectedData);
                         }
-                    }
+                    };
                 }
             });
             return textlint.lintMarkdown("test").then(result => {
@@ -174,7 +174,7 @@ describe("rule-context-test", function () {
                         };
                     }
                 });
-                textlint.lintMarkdown("test");
+                return textlint.lintMarkdown("test");
             });
         });
         context("when linting file", function () {
@@ -190,7 +190,7 @@ describe("rule-context-test", function () {
                         };
                     }
                 });
-                textlint.lintFile(lintFilePath);
+                return textlint.lintFile(lintFilePath);
             });
         });
     });
