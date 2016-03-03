@@ -14,6 +14,7 @@ export default {
                 }
                 var add = fixer.insertTextAfter(node, ".");
                 report(node, {
+                    message: "add .",
                     fix: add
                 });
             }

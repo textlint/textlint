@@ -17,6 +17,7 @@ export default {
                 const length = "fix".length;
                 var replace = fixer.replaceTextRange([index, index + length], "fixed");
                 report(node, {
+                    message: "fixed",
                     fix: replace
                 });
             }

@@ -169,7 +169,8 @@ export default class TextlintCore {
         });
         const {preProcess, postProcess} = processor.processor(ext);
         // messages
-        const appliedMessages = [];
+        let resultFilePath = filePath;
+        const applyingMessages = [];
         const remainingMessages = [];
         const fixerProcessList = fixerRules.map(({ruleName, rule}) => {
             return (sourceText) => {
@@ -195,10 +196,11 @@ export default class TextlintCore {
                     });
                     task.on(CoreTask.events.complete, () => {
                         const result = postProcess(messages, filePath);
-                        if (result.filePath == null) {
-                            result.filePath = `<Unkown${ext}>`;
-                        }
-                        var applied = SourceCodeFixer.applyFixes(newSourceCode, messages);
+                        resultFilePath = result.filePath;
+                        const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);
+                        // add messages
+                        Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
+                        Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
                         // if not fixed, still use current sourceText
                         if (!applied.fixed) {
                             return resolve(sourceText);
@@ -211,15 +213,17 @@ export default class TextlintCore {
             };
         });
 
-        var promiseTasks = fixerProcessList.reduce((promise, fixerProcess) => {
+        const promiseTask = fixerProcessList.reduce((promise, fixerProcess) => {
             return promise.then((sourceText) => {
                 return fixerProcess(sourceText);
             });
         }, Promise.resolve(text));
-        return promiseTasks.then(output => {
+
+        return promiseTask.then(output => {
             return {
+                filePath: resultFilePath,
                 output,
-                appliedMessages,
+                applyingMessages,
                 remainingMessages
             };
         });
