@@ -9,6 +9,7 @@ const options = require('./options');
 const TextLintEngine = require('./textlint-engine');
 const Config = require('./config/config');
 const configInit = require('./config/config-initializer');
+const TextLintFixer = require("./textlint-fixer");
 /*
  cli.js is command line **interface**
 
@@ -76,7 +77,16 @@ const cli = {
             // specify file name of stdin content
             const stdinFilename = currentOptions.stdinFilename;
             debug(`Running on ${ text ? 'text' : 'files' }, stdin-filename: ${stdinFilename}`);
-            return this.executeWithOptions(currentOptions, files, text, stdinFilename);
+            if (currentOptions.fix) {
+                // --fix
+                return this.fixWithOptions(currentOptions, files, text, stdinFilename).then(results => {
+                    const fixer = new TextLintFixer(results);
+                    return fixer.write();
+                });
+            } else {
+                // lint
+                return this.executeWithOptions(currentOptions, files, text, stdinFilename);
+            }
         }
         return Promise.resolve(0);
     },
@@ -110,6 +120,22 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                 return 1;
             }
         });
+    },
+    fixWithOptions(cliOptions, files, text, stdinFilename){
+        const config = Config.initWithCLIOptions(cliOptions);
+        const engine = new TextLintEngine(config);
+        // TODO: should indirect access ruleManager
+        if (!engine.ruleManager.hasRuleAtLeastOne()) {
+            console.log(`
+== Not have rules, textlint do not anything ==
+=> How to set rule?
+See https://github.com/textlint/textlint/blob/master/docs/configuring.md
+`);
+
+            return Promise.resolve(0);
+        }
+        const resultsPromise = text ? engine.fixText(text, stdinFilename) : engine.fixFiles(files);
+        return resultsPromise;
     }
 };
 module.exports = cli;

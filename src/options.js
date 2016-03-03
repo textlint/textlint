@@ -79,6 +79,12 @@ module.exports = optionator({
             description: 'Report errors only.'
         },
         {
+            option: "fix",
+            type: "Boolean",
+            default: false,
+            description: "Automatically fix problems"
+        },
+        {
             heading: "Using stdin"
         },
         {

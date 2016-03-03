@@ -2,7 +2,7 @@
 'use strict';
 const Promise = require('bluebird');
 const interopRequire = require('interop-require');
-const TextLintCore = require('./textlint-core');
+import TextLintCore from "./textlint-core";
 const RuleManager = require('./rule/rule-manager');
 const Config = require('./config/config');
 const createFormatter = require('textlint-formatter');
@@ -30,7 +30,12 @@ class TextLintEngine {
         } else {
             this.config = Config.initWithAutoLoading(options);
         }
+
+        /**
+         * @type {TextLintCore}
+         */
         this.textLint = new TextLintCore(this.config);
+
         this.ruleManager = new RuleManager();
         // load rule/plugin/processor
         this._setupRules(this.config);
@@ -211,10 +216,6 @@ class TextLintEngine {
         const results = targetFiles.map(file => {
             return this.textLint.lintFile(file);
         });
-        // warning message: experimental support
-        const fileExtList = targetFiles.map(filePath => {
-            return path.extname(filePath);
-        });
         return Promise.all(results);
     }
 
@@ -232,6 +233,37 @@ class TextLintEngine {
             throw new Error("should specify the extension.\nex) .md");
         }
         return this.textLint.lintText(text, actualExt).then(result => {
+            return [result];
+        });
+    }
+
+    /**
+     * Fixes the current configuration on an array of file and directory names.
+     * @param {String[]}  files An array of file and directory names.
+     * @returns {TextLintResult[]} The results for all files that were linted.
+     */
+    fixFiles(files) {
+        const targetFiles = findFiles(files, this.availableExtensions);
+        const results = targetFiles.map(file => {
+            return this.textLint.fixFile(file);
+        });
+        return Promise.all(results);
+    }
+
+    /**
+     * If want to lint a text, use it.
+     * But, if you have a target file, use {@link executeOnFiles} instead of it.
+     * @param {string} text linting text content
+     * @param {string} ext ext is a type for linting. default: ".txt"
+     * @returns {TextLintResult[]}
+     */
+    fixText(text, ext = ".txt") {
+        // filepath or ext
+        const actualExt = ext[0] === "." ? ext : path.extname(ext);
+        if (actualExt.length === 0) {
+            throw new Error("should specify the extension.\nex) .md");
+        }
+        return this.textLint.fixText(text, actualExt).then(result => {
             return [result];
         });
     }
