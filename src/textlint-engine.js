@@ -240,7 +240,7 @@ class TextLintEngine {
     /**
      * Fixes the current configuration on an array of file and directory names.
      * @param {String[]}  files An array of file and directory names.
-     * @returns {TextLintResult[]} The results for all files that were linted.
+     * @returns {TextLintFixResult[]} The results for all files that were linted.
      */
     fixFiles(files) {
         const targetFiles = findFiles(files, this.availableExtensions);
@@ -255,7 +255,7 @@ class TextLintEngine {
      * 
      * @param {string} text linting text content
      * @param {string} ext ext is a type for linting. default: ".txt"
-     * @returns {TextLintResult[]}
+     * @returns {TextLintFixResult[]}
      */
     fixText(text, ext = ".txt") {
         // filepath or ext

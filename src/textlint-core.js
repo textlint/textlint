@@ -145,6 +145,11 @@ export default class TextlintCore {
         return this._lintByProcessor(processor, text, ext, absoluteFilePath);
     }
 
+    /**
+     * fix file and return fix result object
+     * @param {string} filePath
+     * @returns {TextLintFixResult}
+     */
     fixFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
@@ -153,6 +158,12 @@ export default class TextlintCore {
         return this._fixProcess(processor, text, ext, filePath);
     }
 
+    /**
+     * fix texts and return fix result object
+     * @param {string} text
+     * @param {string} ext
+     * @returns {TextLintFixResult}
+     */
     fixText(text, ext = ".txt") {
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._fixProcess(processor, text, ext);

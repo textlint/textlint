@@ -14,6 +14,13 @@ interface TextLintResult {
     filePath:string;
     messages:TextLintMessage[];
 }
+// fix result
+interface TextLintFixResult {
+    filePath: string;
+    output: string;
+    applyingMessages: TextLintMessage[];
+    remainingMessages: TextLintMessage[];
+}
 // Config - pass a object to config.js when initialize Config.
 interface TextLintConfig {
     // rule directories path
