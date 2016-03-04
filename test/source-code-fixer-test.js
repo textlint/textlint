@@ -113,16 +113,6 @@ const NO_FIX2 = {
 
 describe("SourceCodeFixer", function () {
 
-    describe("constructor", function () {
-
-        it("Should not be able to add anything to this", function () {
-            var result = new SourceCodeFixer();
-            assert.throws(function () {
-                result.test = 1;
-            });
-        });
-    });
-
     describe("applyFixes() with no BOM", function () {
 
         var sourceCode;
