@@ -5,18 +5,19 @@ const reporter = (context) => {
     return {
         [Syntax.Str](node){
             const text = getSource(node);
-            if (/\.$/.test(text)) {
+            const matchRegexp = /<REMOVE_MARK>/;
+            if (!matchRegexp.test(text)) {
                 return;
             }
-            var add = fixer.insertTextAfter(node, ".");
+            const index = text.search(matchRegexp);
+            const length = "<REMOVE_MARK>".length;
             report(node, {
-                message: "Added",
-                fix: add
+                message: "Removed",
+                fix: fixer.removeRange([index, index + length])
             });
         }
     };
 };
-
 export default {
     linter: reporter,
     fixer: reporter

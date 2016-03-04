@@ -4,6 +4,7 @@ import assert from "power-assert";
 import TextLintCore from "../src/textlint-core";
 import ruleAdd from "./fixtures/fixer-rules/fixer-rule-add";
 import ruleReplace from "./fixtures/fixer-rules/fixer-rule-replace";
+import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";
 import fs from "fs";
 import {parse} from "markdown-to-ast";
 import SourceCodeFixer from "../src/fixer/source-code-fixer";
@@ -27,18 +28,21 @@ describe("textlint-fixer", function () {
     });
     context("#fixFile", function () {
         it("should return text added and replaced", function () {
-            var textlint = new TextLintCore();
-            textlint.setupRules({
-                "fixer-rule-add": ruleAdd,
-                "fixer-rule-replace": ruleReplace
-            });
-            var filePath = __dirname + "/fixtures/fixer-rules/fix.md";
-            return textlint.fixFile(filePath).then(result => {
+            const textlint = new TextLintCore();
+            const rules = {
+                "fixer-rule-remove": ruleRemove,
+                "fixer-rule-replace": ruleReplace,
+                "fixer-rule-add": ruleAdd
+            };
+            textlint.setupRules(rules);
+            const inputFilePath = __dirname + "/fixtures/fixer-rules/input.md";
+            const expectedOutput = fs.readFileSync(__dirname + "/fixtures/fixer-rules/output.md", "utf-8");
+            return textlint.fixFile(inputFilePath).then(result => {
                 assert(typeof result.output === "string");
-                assert(result.filePath === filePath);
-                assert.equal(result.applyingMessages.length, 2);
+                assert(result.filePath === inputFilePath);
+                assert.equal(result.applyingMessages.length, Object.keys(rules).length);
                 assert.equal(result.remainingMessages.length, 0);
-                assert.equal(result.output, "This is fixed.");
+                assert.equal(result.output, expectedOutput);
             });
         });
     });
@@ -47,17 +51,18 @@ describe("textlint-fixer", function () {
             const textlint = new TextLintCore();
             textlint.setupRules({
                 "fixer-rule-add": ruleAdd,
-                "fixer-rule-replace": ruleReplace
+                "fixer-rule-replace": ruleReplace,
+                "fixer-rule-remove": ruleRemove
             });
-            const filePath = __dirname + "/fixtures/fixer-rules/fix.md";
-            const text = fs.readFileSync(filePath, "utf-8");
+            const inputFilePath = __dirname + "/fixtures/fixer-rules/input.md";
+            const text = fs.readFileSync(inputFilePath, "utf-8");
             const sourceCode = new SourceCode({
                 text,
                 ast: parse(text),
                 ext: ".md",
-                filePath
+                filePath: inputFilePath
             });
-            return textlint.fixFile(filePath).then(result => {
+            return textlint.fixFile(inputFilePath).then(result => {
                 const reResult = SourceCodeFixer.sequentiallyApplyFixes(sourceCode, result.originalMessages);
                 assert(reResult.fixed);
                 assert.equal(reResult, result.output);
