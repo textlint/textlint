@@ -251,8 +251,8 @@ class TextLintEngine {
     }
 
     /**
-     * If want to lint a text, use it.
-     * But, if you have a target file, use {@link executeOnFiles} instead of it.
+     * Fix texts with ext option.
+     * 
      * @param {string} text linting text content
      * @param {string} ext ext is a type for linting. default: ".txt"
      * @returns {TextLintResult[]}

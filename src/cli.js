@@ -9,7 +9,7 @@ const options = require('./options');
 const TextLintEngine = require('./textlint-engine');
 const Config = require('./config/config');
 const configInit = require('./config/config-initializer');
-const TextLintFixer = require("./textlint-fixer");
+const TextLintFixer = require("./fixer/textlint-fixer");
 /*
  cli.js is command line **interface**
 

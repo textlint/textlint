@@ -61,7 +61,7 @@ describe("cli-test", function () {
         context("when has rule", function () {
             it("should execute fixer", function (done) {
                 const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
-                const targetFile = path.join(__dirname, "fixtures/fixer-rules/test.md");
+                const targetFile = path.join(__dirname, "fixtures/test.md");
                 cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`).then(result => {
                     assert.equal(result, 0);
                     done();
