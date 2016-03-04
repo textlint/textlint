@@ -220,6 +220,9 @@ export default class TextlintCore {
         }, Promise.resolve(text));
 
         return promiseTask.then(output => {
+            debug(`Finish Processing: ${resultFilePath}`);
+            debug(`applyingMessages: ${applyingMessages.length}`);
+            debug(`remainingMessages: ${remainingMessages.length}`);
             return {
                 filePath: resultFilePath,
                 output,

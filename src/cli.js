@@ -105,7 +105,8 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 
         if (cliOptions.fix) {
             // --fix
-            return this.fixWithOptions(cliOptions, files, text, stdinFilename).then(results => {
+            const resultsPromise = text ? engine.fixText(text, stdinFilename) : engine.fixFiles(files);
+            return resultsPromise.then(results => {
                 const fixer = new TextLintFixer(results);
                 const output = fixer.formatResults();
                 printResults(output, cliOptions);
@@ -123,22 +124,6 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                 return 1;
             }
         });
-    },
-    fixWithOptions(cliOptions, files, text, stdinFilename){
-        const config = Config.initWithCLIOptions(cliOptions);
-        const engine = new TextLintEngine(config);
-        // TODO: should indirect access ruleManager
-        if (!engine.ruleManager.hasRuleAtLeastOne()) {
-            console.log(`
-== Not have rules, textlint do not anything ==
-=> How to set rule?
-See https://github.com/textlint/textlint/blob/master/docs/configuring.md
-`);
-
-            return Promise.resolve(0);
-        }
-        const resultsPromise = text ? engine.fixText(text, stdinFilename) : engine.fixFiles(files);
-        return resultsPromise;
     }
 };
 module.exports = cli;

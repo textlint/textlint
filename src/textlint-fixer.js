@@ -29,7 +29,7 @@ function format(results) {
         total += messages.length;
 
         messages.forEach(function (message) {
-            output += "Fixed✔";
+            output += "Fixed✔ ";
             output += result.filePath + ": ";
             output += "line " + (message.line || 0);
             output += ", col " + (message.column || 0);
