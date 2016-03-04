@@ -4,6 +4,10 @@ import assert from "power-assert";
 import TextLintCore from "../src/textlint-core";
 import ruleAdd from "./fixtures/fixer-rules/fixer-rule-add";
 import ruleReplace from "./fixtures/fixer-rules/fixer-rule-replace";
+import fs from "fs";
+import {parse} from "markdown-to-ast";
+import SourceCodeFixer from "../src/fixer/source-code-fixer";
+import SourceCode from "../src/rule/source-code";
 describe("textlint-fixer", function () {
     context("#fixText", function () {
         it("should return text added and replaced", function () {
@@ -37,6 +41,27 @@ describe("textlint-fixer", function () {
                 assert.equal(result.output, "This is fixed.");
             });
         });
-
+    });
+    context("reproduce from applyingMessages", function () {
+        it("should return text added and replaced", function () {
+            const textlint = new TextLintCore();
+            textlint.setupRules({
+                "fixer-rule-add": ruleAdd,
+                "fixer-rule-replace": ruleReplace
+            });
+            const filePath = __dirname + "/fixtures/fixer-rules/fix.md";
+            const text = fs.readFileSync(filePath, "utf-8");
+            const sourceCode = new SourceCode({
+                text,
+                ast: parse(text),
+                ext: ".md",
+                filePath
+            });
+            return textlint.fixFile(filePath).then(result => {
+                const reResult = SourceCodeFixer.sequentiallyApplyFixes(sourceCode, result.originalMessages);
+                assert(reResult.fixed);
+                assert.equal(reResult, result.output);
+            });
+        });
     });
 });

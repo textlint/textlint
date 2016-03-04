@@ -183,6 +183,7 @@ export default class TextlintCore {
         let resultFilePath = filePath;
         const applyingMessages = [];
         const remainingMessages = [];
+        const originalMessages = [];
         const fixerProcessList = fixerRules.map(({ruleName, rule}) => {
             return (sourceText) => {
                 // create new SourceCode object
@@ -212,6 +213,7 @@ export default class TextlintCore {
                         // add messages
                         Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
                         Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
+                        Array.prototype.push.apply(originalMessages, applied.messages);
                         // if not fixed, still use current sourceText
                         if (!applied.fixed) {
                             return resolve(sourceText);
@@ -237,6 +239,7 @@ export default class TextlintCore {
             return {
                 filePath: resultFilePath,
                 output,
+                originalMessages,
                 applyingMessages,
                 remainingMessages
             };

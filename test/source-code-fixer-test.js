@@ -517,19 +517,20 @@ describe("SourceCodeFixer", function () {
                 ast: parse(result.output),
                 ext: ".md"
             });
-            const revertText = SourceCodeFixer.revertFixes(newSource, result.applyingMessages);
+            // Sequentially apply applied message to applied output = revert
+            const revertText = SourceCodeFixer.sequentiallyApplyFixes(newSource, result.applyingMessages);
             assert.equal(revertText, sourceCode.text);
         });
         it("should only apply one fix when ranges overlap and one message has no fix", function () {
-            var result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_MIDDLE, REPLACE_ID, NO_FIX]);
+            const result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_MIDDLE, REPLACE_ID, NO_FIX]);
             // revert
             const text = result.output;
-            var newSource = new SourceCode({
+            const newSource = new SourceCode({
                 text: text,
                 ast: parse(text),
                 ext: ".md"
             });
-            const revertText = SourceCodeFixer.revertFixes(newSource, result.applyingMessages);
+            const revertText = SourceCodeFixer.sequentiallyApplyFixes(newSource, result.applyingMessages);
             assert.equal(revertText, sourceCode.text);
         });
     });

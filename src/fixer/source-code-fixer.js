@@ -19,6 +19,9 @@ function compareMessagesByLocation(a, b) {
     }
 }
 
+function clone(object) {
+    return JSON.parse(JSON.stringify(object));
+}
 /**
  * Utility for apply fixes to source code.
  * @constructor
@@ -35,14 +38,14 @@ export default class SourceCodeFixer {
     static applyFixes(sourceCode, messages) {
         debug("Applying fixes");
         const text = sourceCode.text;
-        // TODO: we collect applied messages.
         // As as result, show diff
         const remainingMessages = [];
         const applyingMessages = [];
+        const cloneMessages = messages.slice();
         const fixes = [];
         let lastFixPos = text.length + 1;
         let prefix = (sourceCode.hasBOM ? BOM : "");
-        messages.forEach(problem => {
+        cloneMessages.forEach(problem => {
             if (problem && problem.hasOwnProperty("fix")) {
                 fixes.push(problem);
             } else {
@@ -86,7 +89,7 @@ export default class SourceCodeFixer {
 
                     const replacedChars = chars.splice(start, end - start, insertionText);
                     lastFixPos = start;
-                    const copyOfMessage = JSON.parse(JSON.stringify(problem));
+                    const copyOfMessage = clone(problem);
                     copyOfMessage.fix = {
                         range: [start, start + insertionText.length],
                         text: replacedChars.join("")
@@ -99,14 +102,16 @@ export default class SourceCodeFixer {
 
             return {
                 fixed: true,
-                applyingMessages: applyingMessages.reverse(),
-                remainingMessages: remainingMessages.sort(compareMessagesByLocation),
+                messages: cloneMessages,// have order
+                applyingMessages: applyingMessages.reverse(),// have order
+                remainingMessages: remainingMessages.sort(compareMessagesByLocation),// have not order
                 output: prefix + chars.join("")
             };
         } else {
             debug("No fixes to apply");
             return {
                 fixed: false,
+                messages: cloneMessages,
                 applyingMessages,
                 remainingMessages,
                 output: prefix + text
@@ -115,13 +120,12 @@ export default class SourceCodeFixer {
     };
 
     /**
-     * Revert text using applied fixes.
-     * This method used the result of `SourceCodeFixer.applyFixes`,
+     * Sequentially Applies the fixes specified by the messages to the given text.
      * @param {SourceCode} sourceCode The source code to apply the changes to.
-     * @param {TextLintMessage[]} applyingMessages The array of applyingMessages reported by SourceCodeFixer#applyFixes
+     * @param {TextLintMessage[]} applyingMessages The array of TextLintMessage reported by SourceCodeFixer#applyFixes
      * @returns {string} An object containing the fixed text and any unfixed messages.
      */
-    static revertFixes(sourceCode, applyingMessages) {
+    static sequentiallyApplyFixes(sourceCode, applyingMessages) {
         debug("Restore applied fixes");
         let text = sourceCode.text;
         applyingMessages.forEach(message => {
