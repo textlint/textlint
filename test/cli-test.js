@@ -18,7 +18,7 @@ describe("cli-test", function () {
         it("should return error when text with incorrect quotes is passed as argument", function () {
             var ruleDir = path.join(__dirname, "fixtures/rules");
             return cli.execute("--rulesdir " + ruleDir, "text").then(result => {
-                assert.equal(result, 1)
+                assert.equal(result, 1);
             });
         });
         it("should return error", function () {
@@ -42,7 +42,37 @@ describe("cli-test", function () {
             });
         });
     });
-    context(" When not set rules", function () {
+    context("When run with --fix", function () {
+        context("when not set rules", function () {
+            it("show suggestion message from FAQ", function (done) {
+                let isCalled = false;
+                console.log = function mockLog(message) {
+                    isCalled = true;
+                    assert(message.length > 0);
+                };
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                cli.execute(`${targetFile} --fix`).then(result => {
+                    assert.equal(result, 0);
+                    assert(isCalled);
+                    done();
+                });
+            });
+        });
+        context("when has rule", function () {
+            it("should execute fixer", function (done) {
+                console.log = function mockLog(message) {
+                    assert(message.length > 0);
+                };
+                const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                cli.execute(`--rulesdir ${ruleDir} ${targetFile} --fix`).then(result => {
+                    assert.equal(result, 0);
+                    done();
+                });
+            });
+        });
+    });
+    context("When not set rules", function () {
         it("show suggestion message from FAQ", function (done) {
             console.log = function mockLog(message) {
                 assert(message.length > 0);

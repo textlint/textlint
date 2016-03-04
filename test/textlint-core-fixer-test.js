@@ -28,7 +28,7 @@ describe("textlint-fixer", function () {
                 "fixer-rule-add": ruleAdd,
                 "fixer-rule-replace": ruleReplace
             });
-            var filePath = __dirname + "/fixer-rules/fix.md";
+            var filePath = __dirname + "/fixtures/fixer-rules/fix.md";
             return textlint.fixFile(filePath).then(result => {
                 assert(typeof result.output === "string");
                 assert(result.filePath === filePath);

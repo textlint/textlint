@@ -77,16 +77,7 @@ const cli = {
             // specify file name of stdin content
             const stdinFilename = currentOptions.stdinFilename;
             debug(`Running on ${ text ? 'text' : 'files' }, stdin-filename: ${stdinFilename}`);
-            if (currentOptions.fix) {
-                // --fix
-                return this.fixWithOptions(currentOptions, files, text, stdinFilename).then(results => {
-                    const fixer = new TextLintFixer(results);
-                    return fixer.write();
-                });
-            } else {
-                // lint
-                return this.executeWithOptions(currentOptions, files, text, stdinFilename);
-            }
+            return this.executeWithOptions(currentOptions, files, text, stdinFilename);
         }
         return Promise.resolve(0);
     },
@@ -111,6 +102,18 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 
             return Promise.resolve(0);
         }
+
+        if (cliOptions.fix) {
+            // --fix
+            return this.fixWithOptions(cliOptions, files, text, stdinFilename).then(results => {
+                const fixer = new TextLintFixer(results);
+                const output = fixer.formatResults();
+                printResults(output, cliOptions);
+                // return exit code
+                return fixer.write() ? 0 : 1;
+            });
+        }
+
         const resultsPromise = text ? engine.executeOnText(text, stdinFilename) : engine.executeOnFiles(files);
         return resultsPromise.then(results => {
             const output = engine.formatResults(results);
