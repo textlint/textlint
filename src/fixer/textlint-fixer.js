@@ -1,5 +1,3 @@
-// LICENSE : MIT
-"use strict";
 import * as fs from "fs";
 
 /**
@@ -19,23 +17,22 @@ function getMessageType(message) {
 }
 function format(results) {
 
-    var output, total;
-    output = "";
-    total = 0;
+    let output = "";
+    let total = 0;
 
-    results.forEach(function (result) {
+    results.forEach(result => {
 
-        var messages = result.applyingMessages;
+        const messages = result.applyingMessages;
         total += messages.length;
 
-        messages.forEach(function (message) {
+        messages.forEach(message => {
             output += "Fixed✔ ";
-            output += result.filePath + ": ";
-            output += "line " + (message.line || 0);
-            output += ", col " + (message.column || 0);
-            output += ", " + getMessageType(message);
-            output += " - " + message.message;
-            output += message.ruleId ? " (" + message.ruleId + ")" : "";
+            output += `${result.filePath}: `;
+            output += `line ${message.line || 0}`;
+            output += `, col ${message.column || 0}`;
+            output += `, ${getMessageType(message)}`;
+            output += ` - ${message.message}`;
+            output += message.ruleId ? ` (${message.ruleId})` : "";
             output += "\n";
 
         });
@@ -43,7 +40,7 @@ function format(results) {
     });
 
     if (total > 0) {
-        output += "\n" + total + " problem" + (total !== 1 ? "s" : "");
+        output += `${total !== 1}\n${total} problem${total !== 1 ? "s" : ""}`;
     }
 
     return output;
