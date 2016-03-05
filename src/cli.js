@@ -10,6 +10,7 @@ const TextLintEngine = require('./textlint-engine');
 const Config = require('./config/config');
 const configInit = require('./config/config-initializer');
 const TextLintFixer = require("./fixer/textlint-fixer");
+import throwExperimental from "./util/throw-experimental";
 /*
  cli.js is command line **interface**
 
@@ -105,6 +106,7 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 
         if (cliOptions.fix) {
             // --fix
+            throwExperimental("--fix is experimental. use `--experimental --fix`");
             const resultsPromise = text ? engine.fixText(text, stdinFilename) : engine.fixFiles(files);
             return resultsPromise.then(results => {
                 const fixer = new TextLintFixer(results);

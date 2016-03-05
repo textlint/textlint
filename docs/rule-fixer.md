@@ -92,7 +92,7 @@ The `context.fixer.` object has the following methods:
 Best practices for fixes:
 
 1. Make fixes that are as small as possible. Anything more than a single character is risky and could prevent other, simpler fixes from being made.
-2. Only make one fix per message.
+2. Make one fix per message.
 
 Via [Documentation - ESLint - Pluggable JavaScript linter](http://eslint.org/docs/developer-guide/working-with-rules#applying-fixes "Documentation - ESLint - Pluggable JavaScript linter")
 
