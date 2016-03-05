@@ -7,7 +7,7 @@
 
 ## Online Demo
 
-Visit [http://textlint.github.io/](http://textlint.github.io/) and type text!
+Visit [https://textlint.github.io/](https://textlint.github.io/) and type text!
 
 ## Features
 
