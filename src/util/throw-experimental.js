@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const experimental = process.argv.indexOf("--experimental");
+const experimental = process.argv.indexOf("--experimental") !== -1;
 let isRunningFromCLI = false;
 export function setRunningCLI(status) {
     isRunningFromCLI = status;
