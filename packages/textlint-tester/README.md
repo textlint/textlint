@@ -20,9 +20,9 @@
 - `{string[]|object[]} valid`
     - e.g.) `["text", { text : "text" }]`
 - `{object[]} invalid`
-    - e.g.) `[{text: "text", errors: [ messages : "expected message" ]}`
+    - e.g.) `[{text: "text", output:"text", errors: [ messages : "expected message" ]}`
 
-### example
+### Example
 
 `test/example-test.js`:
 
@@ -30,14 +30,14 @@
 var TextLintTester = require("textlint-tester");
 var tester = new TextLintTester();
 // rule
-var noTodo = require("textlint-rule-no-todo");
+var rule = require("textlint-rule-no-todo");
 // ruleName, rule, { valid, invalid }
-tester.run("no-todo", noTodo, {
+tester.run("no-todo", rule, {
     valid: [
-        "string, test desu",
+        "this is test",
         {
             // text with options
-            text: "日本語 is Japanese.",
+            text: "this is test",
             options: {
                 "key": "value"
             }
@@ -62,6 +62,17 @@ tester.run("no-todo", noTodo, {
                     column: 1
                 }
             ]
+        },
+        {
+         text: "TODO: string",
+         output: "string" // <= fixed output 
+         errors: [
+             {
+                 message: "found TODO: 'TODO: string'",
+                 line: 1,
+                 column: 1
+             }
+         ]
         }
     ]
 });
