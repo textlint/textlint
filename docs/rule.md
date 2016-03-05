@@ -98,6 +98,8 @@ RuleContext object has following property:
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath()` return file path that is linting target.
     - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
+- `fixer` is creator of fix command.
+    - See [How to create Fixable Rule?](./rule-fixer.md) for details
 
 ## RuleError
 
