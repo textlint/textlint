@@ -40,7 +40,7 @@ function format(results) {
     });
 
     if (total > 0) {
-        output += `${total !== 1}\n${total} problem${total !== 1 ? "s" : ""}`;
+        output += `\n\n${total} problem${total !== 1 ? "s" : ""}`;
     }
 
     return output;

@@ -7,7 +7,7 @@ var useStdIn = (process.argv.indexOf("--stdin") > -1);
 var setRunningCLI = require("../lib/util/throw-experimental").setRunningCLI;
 // it is for --experimental logger
 // update state
-setRunningCLI(require.main === module);
+setRunningCLI(!module.parent);
 
 if (useStdIn) {
     process.stdin.pipe(concat({encoding: "string"}, function (text) {
