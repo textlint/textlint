@@ -1,8 +1,14 @@
+interface TextLintFixCommand {
+    text: string;
+    range: [number,number],
+}
 interface TextLintMessage {
     ruleId: string;
     message: string;
     // optional data
     data?: any;
+    // FixCommand
+    fix?: TextLintFixCommand;
     // location info
     line: number; // start with 1
     column: number;// start with 1
@@ -13,6 +19,13 @@ interface TextLintMessage {
 interface TextLintResult {
     filePath:string;
     messages:TextLintMessage[];
+}
+// fix result
+interface TextLintFixResult {
+    filePath: string;
+    output: string;
+    applyingMessages: TextLintMessage[];
+    remainingMessages: TextLintMessage[];
 }
 // Config - pass a object to config.js when initialize Config.
 interface TextLintConfig {

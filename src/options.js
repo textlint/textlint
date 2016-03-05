@@ -79,6 +79,23 @@ module.exports = optionator({
             description: 'Report errors only.'
         },
         {
+            heading: "Experimental"
+        },
+        {
+            option: "experimental",
+            type: "Boolean",
+            default: false,
+            description: "Enable experimental flag.Some feature use on experimental.",
+            example: "--experimental"
+        },
+        {
+            option: "fix",
+            type: "Boolean",
+            default: false,
+            description: "Automatically fix problems",
+            example: "--experimental --fix"
+        },
+        {
             heading: "Using stdin"
         },
         {

@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 "use strict";
-var concat = require("concat-stream"),
-    cli = require("../lib/cli");
-
-var exitCode = 0,
-    useStdIn = (process.argv.indexOf("--stdin") > -1);
+var concat = require("concat-stream");
+var cli = require("../lib/cli");
+var exitCode = 0;
+var useStdIn = (process.argv.indexOf("--stdin") > -1);
+var setRunningCLI = require("../lib/util/throw-experimental").setRunningCLI;
+// it is for --experimental logger
+// update state
+setRunningCLI(require.main === module);
 
 if (useStdIn) {
     process.stdin.pipe(concat({encoding: "string"}, function (text) {

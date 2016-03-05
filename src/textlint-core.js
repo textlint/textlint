@@ -9,8 +9,13 @@ const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
 const SourceCode = require("./rule/source-code");
+const SourceCodeFixer = require("./fixer/source-code-fixer");
 const debug = require('debug')('textlint:core');
-import CoreTask from "./textlint-core-task";
+import CoreTask from "./task/textlint-core-task";
+import {assertRuleShape} from "./rule/rule-creator-helper";
+import FixerTask from "./task/fixer-task";
+import LinterTask from "./task/linter-task";
+
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
@@ -46,9 +51,7 @@ export default class TextlintCore {
             let resultRules = Object.create(null);
             Object.keys(rules).forEach(key => {
                 const ruleCreator = rules[key];
-                if (typeof ruleCreator !== 'function') {
-                    throw new Error(`Definition of rule '${ key }' was not found.`);
-                }
+                assertRuleShape(ruleCreator, key);
                 // "rule-name" : false => disable
                 const ruleConfig = rulesConfig && rulesConfig[key];
                 if (ruleConfig !== false) {
@@ -76,8 +79,13 @@ export default class TextlintCore {
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             `processor should implement {preProcess, postProcess}`);
         const ast = preProcess(text, filePath);
-        const sourceCode = new SourceCode(text, filePath);
-        const task = new CoreTask({
+        const sourceCode = new SourceCode({
+            text,
+            ast,
+            ext,
+            filePath
+        });
+        const task = new LinterTask({
             config: this.config,
             rules: this.rules,
             rulesConfig: this.rulesConfig,
@@ -136,4 +144,105 @@ export default class TextlintCore {
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._lintByProcessor(processor, text, ext, absoluteFilePath);
     }
+
+    /**
+     * fix file and return fix result object
+     * @param {string} filePath
+     * @returns {TextLintFixResult}
+     */
+    fixFile(filePath) {
+        const absoluteFilePath = path.resolve(process.cwd(), filePath);
+        const ext = path.extname(absoluteFilePath);
+        const text = fs.readFileSync(absoluteFilePath, 'utf-8');
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._fixProcess(processor, text, ext, filePath);
+    }
+
+    /**
+     * fix texts and return fix result object
+     * @param {string} text
+     * @param {string} ext
+     * @returns {TextLintFixResult}
+     */
+    fixText(text, ext = ".txt") {
+        const processor = getProcessorMatchExtension(this.processors, ext);
+        return this._fixProcess(processor, text, ext);
+    }
+
+    _fixProcess(processor, text, ext, filePath) {
+        const fixerRules = Object.keys(this.rules).map(ruleName => {
+            return {
+                ruleName,
+                rule: this.rules[ruleName]
+            };
+        }).filter(({rule}) => {
+            return typeof rule.fixer !== "undefined";
+        });
+        const {preProcess, postProcess} = processor.processor(ext);
+        // messages
+        let resultFilePath = filePath;
+        const applyingMessages = [];
+        const remainingMessages = [];
+        const originalMessages = [];
+        const fixerProcessList = fixerRules.map(({ruleName, rule}) => {
+            return (sourceText) => {
+                // create new SourceCode object
+                const newSourceCode = new SourceCode({
+                    text: sourceText,
+                    ast: preProcess(sourceText),
+                    filePath,
+                    ext
+                });
+                // create new Task
+                const task = new FixerTask({
+                    config: this.config,
+                    // { ruleName : rule }
+                    rules: {[ruleName]: rule},
+                    rulesConfig: this.rulesConfig,
+                    sourceCode: newSourceCode
+                });
+                return new Promise((resolve, reject) => {
+                    const messages = [];
+                    task.on(CoreTask.events.message, message => {
+                        messages.push(message);
+                    });
+                    task.on(CoreTask.events.complete, () => {
+                        const result = postProcess(messages, filePath);
+                        resultFilePath = result.filePath;
+                        const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);
+                        // add messages
+                        Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
+                        Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
+                        Array.prototype.push.apply(originalMessages, applied.messages);
+                        // if not fixed, still use current sourceText
+                        if (!applied.fixed) {
+                            return resolve(sourceText);
+                        }
+                        // if fixed, use fixed text at next
+                        resolve(applied.output);
+                    });
+                    task.process(newSourceCode.ast);
+                });
+            };
+        });
+
+        const promiseTask = fixerProcessList.reduce((promise, fixerProcess) => {
+            return promise.then((sourceText) => {
+                return fixerProcess(sourceText);
+            });
+        }, Promise.resolve(text));
+
+        return promiseTask.then(output => {
+            debug(`Finish Processing: ${resultFilePath}`);
+            debug(`applyingMessages: ${applyingMessages.length}`);
+            debug(`remainingMessages: ${remainingMessages.length}`);
+            return {
+                filePath: resultFilePath,
+                output,
+                originalMessages,
+                applyingMessages,
+                remainingMessages
+            };
+        });
+    };
 }
