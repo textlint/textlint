@@ -1,4 +1,4 @@
-const debug = require("debug")("textlint:text-fixer");
+const debug = require("debug")("textlint:source-code-fixer");
 import SourceCode from "../rule/source-code";
 const BOM = "\uFEFF";
 

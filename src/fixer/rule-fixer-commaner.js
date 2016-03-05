@@ -1,9 +1,10 @@
 import assert from "assert";
 
 /**
+ * Fix Command object has `range` and `text`.
  * @typedef {Object} FixCommand
- * @property {number[]} range
- * @property {string} text
+ * @property {number[]} range range is an array of numbers : [start, end]
+ * @property {string} text text is replace value.
  */
 /**
  * Creates a fix command that inserts text at the specified index in the source text.
@@ -21,6 +22,7 @@ function insertTextAt(index, text) {
 }
 /**
  * Creates code fixing commands for rules.
+ * It create command for fixing texts.
  * @constructor
  */
 export default class RuleFixer {

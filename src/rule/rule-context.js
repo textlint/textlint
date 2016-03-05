@@ -1,7 +1,7 @@
 // LICENSE : MIT
 'use strict';
 const assert = require('assert');
-const RuleFixer = require("../fixer/rule-fixer");
+const RuleFixer = require("../fixer/rule-fixer-commaner");
 const RuleError = require('./rule-error');
 const SeverityLevel = {
     "none": 0,
