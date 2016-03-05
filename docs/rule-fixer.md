@@ -19,6 +19,8 @@ export default {
 };
 ```
 
+:information_source: You should know [Creating Rules](./rule.md) in advance.
+
 Now, you can implement `fixer` like that:
 
 ```js
