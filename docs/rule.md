@@ -106,22 +106,36 @@ RuleContext object has following property:
 RuleError is a object like Error.
 Use it with `report` function.
 
-- `RuleError(<message>, [{ loc , column }])`
-    - e.g.) `new context.RuleError("found rule error")`
+- `RuleError(<message>, [{ line , column }])`
+    - e.g.) `new context.RuleError("Found rule error")`
 
 ```js
 var error = new RuleError("message");
-// or
+// 
+// OR
+// location-based error
 var paddingLine = 1;
 var paddingColumn = 1;
 var errorWithPadding = new RuleError("message", {
     line: paddingLine, // padding line number from node.loc.start.line. default: 0
     column: paddingColumn // padding column number from node.loc.start.column. default: 0
 });
+// context.report(node, errorWithPadding);
+//
+// OR
+// index-based error
+var paddingIndex = 1;
+var errorWithPaddingIndex = new RuleError("message", {
+    index: paddingIndex // padding index value from `node.range[0]`. default: 0
+});
+// context.report(node, errorWithPaddingIndex);
 ```
 
+### :warning: Caution :warning:
 
-See also [Working with Rules](http://eslint.org/docs/developer-guide/working-with-rules.html "Working with Rules") on ESLint.
+- `index` could **not** used with `line` and `column`.
+    - It means that to use `{ line, column }` or `{ index }`
+- `index`, `line`, `column` is a **relative** value from the `node` which is reported.
 
 ## Report error
 
@@ -173,22 +187,31 @@ e.g.) no-todo.js for rule ID no-todo.
 File Name: `no-todo.js`
 
 ```js
+import {RuleHelper} from "textlint-rule-helper";
 /**
  * @param {RuleContext} context
  */
 export default function (context) {
-    const {Syntax, getSource, RuleError, report} = context;
+    var helper = new RuleHelper(context);
+    var Syntax = context.Syntax;
     return {
         /*
             # Header
             Todo: quick fix this.
         */
         [Syntax.Str](node) {
+            var Syntax = context.Syntax;
+            if (helper.isChildNode(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
+                return;
+            }
             // get text from node
-            var text = getSource(node);
+            var text = context.getSource(node);
             // does text contain "todo:"?
-            if (/todo:/i.test(text)) {
-                report(node, new RuleError("found TODO: '" + text + "'"));
+            var match = text.match(/todo:/i);
+            if (match) {
+                context.report(node, new context.RuleError(`Found TODO: '${text}'`, {
+                    index: match.index
+                }));
             }
         },
         /*
@@ -196,9 +219,12 @@ export default function (context) {
             - [ ] Todo
         */
         [Syntax.ListItem](node) {
-            var text = getSource(node);
-            if (/\[\s+\]\s/i.test(text)) {
-                report(node, new RuleError("found TODO: '" + text + "'"));
+            var text = context.getSource(node);
+            var match = text.match(/\[\s+\]\s/i);
+            if (match) {
+                context.report(node, new context.RuleError(`Found TODO: '${text}'`, {
+                    index: match.index
+                }));
             }
         }
     };

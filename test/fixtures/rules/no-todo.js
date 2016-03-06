@@ -22,7 +22,7 @@ export default function (context) {
             // does text contain "todo:"?
             var match = text.match(/todo:/i);
             if (match) {
-                context.report(node, new context.RuleError(`found TODO: '${text}'`, {
+                context.report(node, new context.RuleError(`Found TODO: '${text}'`, {
                     index: match.index
                 }));
             }
@@ -35,10 +35,10 @@ export default function (context) {
             var text = context.getSource(node);
             var match = text.match(/\[\s+\]\s/i);
             if (match) {
-                context.report(node, new context.RuleError(`found TODO: '${text}'`, {
+                context.report(node, new context.RuleError(`Found TODO: '${text}'`, {
                     index: match.index
                 }));
             }
         }
-    }
+    };
 };
