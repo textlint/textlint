@@ -23,7 +23,7 @@ export default function (context) {
             var match = text.match(/todo:/i);
             if (match) {
                 context.report(node, new context.RuleError(`found TODO: '${text}'`, {
-                    column: match.index
+                    index: match.index
                 }));
             }
         },
@@ -36,7 +36,7 @@ export default function (context) {
             var match = text.match(/\[\s+\]\s/i);
             if (match) {
                 context.report(node, new context.RuleError(`found TODO: '${text}'`, {
-                    column: match.index
+                    index: match.index
                 }));
             }
         }

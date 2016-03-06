@@ -4,7 +4,7 @@ var concat = require("concat-stream");
 var cli = require("../lib/cli");
 var exitCode = 0;
 var useStdIn = (process.argv.indexOf("--stdin") > -1);
-var setRunningCLI = require("../lib/util/throw-experimental").setRunningCLI;
+var setRunningCLI = require("../lib/util/throw-log").setRunningCLI;
 // it is for --experimental logger
 // update state
 setRunningCLI(!module.parent);

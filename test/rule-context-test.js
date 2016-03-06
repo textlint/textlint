@@ -1,7 +1,8 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("power-assert");
-import { TextLintCore } from "../src/index";
+import {TextLintCore} from "../src/index";
+import {setRunningTest, throwIfTesting} from "../src/util/throw-log";
 describe("rule-context-test", function () {
     let textlint;
     beforeEach(function () {
@@ -101,22 +102,49 @@ describe("rule-context-test", function () {
     });
     describe("#report", function () {
         context("RuleError", function () {
+            beforeEach(function () {
+                setRunningTest(true);
+            });
+            context("[backward compatible]", function () {
+                beforeEach(function () {
+                    setRunningTest(false);
+                });
+                it("could use 2nd arguments as padding column", function () {
+                    textlint.setupRules({
+                        "rule-key": function (context) {
+                            return {
+                                [context.Syntax.Str](node){
+                                    // FIXME: this is un-document
+                                    // Please remove next version
+                                    let ruleError = new context.RuleError("error", 1);
+                                    context.report(node, ruleError);
+                                }
+                            };
+                        }
+                    });
+                    return textlint.lintMarkdown("test").then(result => {
+                        assert(result.messages.length === 1);
+                        let message = result.messages[0];
+                        assert.equal(message.line, 1);
+                        assert.equal(message.column, 2);
+                    });
+                });
+            });
             it("could has padding column", function () {
                 textlint.setupRules({
                     "rule-key": function (context) {
                         return {
                             [context.Syntax.Str](node){
+                                // throw error in testing
                                 let ruleError = new context.RuleError("error", 1);
                                 context.report(node, ruleError);
                             }
                         };
                     }
                 });
-                return textlint.lintMarkdown("test").then(result => {
-                    assert(result.messages.length === 1);
-                    let message = result.messages[0];
-                    assert.equal(message.line, 1);
-                    assert.equal(message.column, 2);
+                // catch error
+                return textlint.lintMarkdown("test").catch(error => {
+                    assert(error instanceof Error);
                 });
             });
             it("could has padding location", function () {
@@ -130,7 +158,7 @@ describe("rule-context-test", function () {
                                 });
                                 context.report(node, ruleError);
                             }
-                        }
+                        };
                     }
                 });
                 return textlint.lintMarkdown("test`code`test").then(result => {

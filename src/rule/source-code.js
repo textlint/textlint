@@ -1,6 +1,7 @@
 const path = require("path");
-const UnionSyntax = require("../parser/union-syntax");
 const assert = require("assert");
+const StructuredSource = require('structured-source');
+const UnionSyntax = require("../parser/union-syntax");
 /**
  * Validates that the given AST has the required information.
  * @param {TxtSyntax.TxtNode} ast The Program node of the AST to check.
@@ -27,6 +28,10 @@ export default class SourceCode {
         assert(ext || filePath, "should be set either of fileExt or filePath.");
         this.hasBOM = text.charCodeAt(0) === 0xFEFF;
         this.text = (this.hasBOM ? text.slice(1) : text);
+        /**
+         * @type StructuredSource
+         */
+        this._structuredSource = new StructuredSource(this.text);
         this.ast = ast;
         this.filePath = filePath;
         // fileType .md .txt ...
@@ -60,5 +65,38 @@ export default class SourceCode {
         } else {
             return currentText;
         }
+    }
+
+    // StructuredSource wrapper
+    /**
+     * @param {SourceLocation} loc - location indicator.
+     * @return {[ number, number ]} range.
+     */
+    locationToRange(loc) {
+        return this._structuredSource.locationToRange(loc);
+    }
+
+    /**
+     * @param {[ number, number ]} range - pair of indice.
+     * @return {SourceLocation} location.
+     */
+    rangeToLocation(range) {
+        return this._structuredSource.rangeToLocation(range);
+    }
+
+    /**
+     * @param {Position} pos - position indicator.
+     * @return {number} index.
+     */
+    positionToIndex(pos) {
+        return this._structuredSource.positionToIndex(pos);
+    }
+
+    /**
+     * @param {number} index - index to the source code.
+     * @return {Position} position.
+     */
+    indexToPosition(index) {
+        return this._structuredSource.indexToPosition(index);
     }
 }

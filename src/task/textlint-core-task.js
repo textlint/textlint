@@ -4,7 +4,7 @@ const EventEmitter = require("events");
 const TraverseController = require('txt-ast-traverse').Controller;
 const RuleError = require("./../rule/rule-error");
 const PromiseEventEmitter = require("carrack");
-const computeLocation = require("./../rule/compute-location");
+const SourceLocation = require("./../rule/source-location");
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 // Promised EventEmitter
@@ -32,6 +32,7 @@ export default class TextLintCoreTask extends EventEmitter {
         this.rules = rules;
         this.rulesConfig = rulesConfig;
         this.sourceCode = sourceCode;
+        this.sourceLocation = new SourceLocation(this.sourceCode);
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
@@ -44,7 +45,7 @@ export default class TextLintCoreTask extends EventEmitter {
      */
     report({ruleId, node, severity, error}) {
         debug('pushReport %s', error);
-        const {line, column, fix} = computeLocation(node, error);
+        const {line, column, fix} = this.sourceLocation.adjust(node, error);
         // add TextLintMessage
         const message = {
             ruleId: ruleId,

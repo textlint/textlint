@@ -76,6 +76,7 @@
     "object-assign": "^4.0.1",
     "optionator": "^0.8.0",
     "rc-loader": "^1.0.0",
+    "structured-source": "^3.0.2",
     "textlint-formatter": "^1.5.0",
     "textlint-plugin-markdown": "^1.0.3",
     "textlint-plugin-text": "^1.0.1",
