@@ -107,13 +107,17 @@ RuleError is a object like Error.
 Use it with `report` function.
 
 - `RuleError(<message>, [{ line , column }])`
-    - e.g.) `new context.RuleError("Found rule error")`
+    - e.g.) `new context.RuleError("Found rule error");`
+    - e.g.) `new context.RuleError("Found rule error", { line: paddingLine, column: paddingColumn});`
+- `RuleError(<message>, [{ index }])`
+    - e.g.) `new context.RuleError("Found rule error", { index: paddingIndex });`
 
 ```js
+// No padding information
 var error = new RuleError("message");
 // 
 // OR
-// location-based error
+// add location-based padding
 var paddingLine = 1;
 var paddingColumn = 1;
 var errorWithPadding = new RuleError("message", {
@@ -123,7 +127,7 @@ var errorWithPadding = new RuleError("message", {
 // context.report(node, errorWithPadding);
 //
 // OR
-// index-based error
+// add index-based padding
 var paddingIndex = 1;
 var errorWithPaddingIndex = new RuleError("message", {
     index: paddingIndex // padding index value from `node.range[0]`. default: 0
