@@ -2,7 +2,7 @@
 "use strict";
 import assert from "assert";
 import {testValid, testInvalid} from "./test-util";
-import {TextLintCore} from "textlint";
+import {TextLintCore, _logger} from "textlint";
 const describe = (typeof global.describe === "function") ? global.describe : function (text, method) {
     return method.apply(this);
 };
@@ -28,6 +28,12 @@ function assertHasFixer(ruleCreator, ruleName) {
     throw new Error("Not found `fixer` function in the ruleCreator: " + ruleName);
 }
 export default class TextLintTester {
+    constructor() {
+        if (_logger !== undefined) {
+            _logger.setRunningTest(true);
+        }
+    }
+
     testValidPattern(ruleName, rule, valid) {
         let text = valid.text || valid;
         let options = valid.options || {};
