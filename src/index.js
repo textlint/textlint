@@ -14,5 +14,9 @@ module.exports = {
     // Recommend: use TextLintCore
     textlint: require("./textlint"),
     // Core API for linting a **single** text or file.
-    TextLintCore: require("./textlint-core")
+    TextLintCore: require("./textlint-core"),
+
+    // for debug, don't use direct
+    // It is used in textlint-tester
+    _logger: require("./util/throw-log")
 };

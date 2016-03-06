@@ -19,7 +19,7 @@ describe("no-todo-rule-test", function () {
                 var message = result.messages[0];
                 assert.equal(message.line, 1); // 1-based
                 assert.equal(message.column, 1);// 1-based
-                assert.equal(message.message, "found TODO: 'TODO: something'");
+                assert.equal(message.message, "Found TODO: 'TODO: something'");
             });
         });
         it("should report error", function () {
@@ -29,7 +29,7 @@ describe("no-todo-rule-test", function () {
                 var message = result.messages[0];
                 assert.equal(message.line, 1); // 1-based
                 assert.equal(message.column, 10);// 1-based
-                assert.equal(message.message, "found TODO: '123456789TODO: something'");
+                assert.equal(message.message, "Found TODO: '123456789TODO: something'");
             });
         });
     });
