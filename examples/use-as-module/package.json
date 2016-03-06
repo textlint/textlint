@@ -2,7 +2,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "pretest": "npm rm textlint && npm i",
+    "pretest": "npm rm textlint && npm --cache-min 9999999 i",
     "test": "node index.js"
   },
   "author": "azu",

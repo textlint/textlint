@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "textlint": "textlint -f pretty-error index.html",
-    "pretest": "npm rm textlint && npm i",
+    "pretest": "npm rm textlint && npm --cache-min 9999999 i",
     "test": "npm run textlint"
   },
   "author": "azu",
