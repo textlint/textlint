@@ -35,7 +35,8 @@
     "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && ./bin/textlint.js -c docs/.textlintrc docs/*.md -f pretty-error",
     "lint:js": "eslint src/",
     "test:example": "./test/example-test.sh",
-    "test": "mocha test/*.js && npm run lint:doc && npm run lint:js && npm run test:example",
+    "test:js": "npm run lint:js && mocha test/*.js",
+    "test": "npm-run-all -p lint:doc test:js test:example",
     "perf": "cd perf && npm run perf"
   },
   "directories": {
@@ -55,6 +56,7 @@
     "glob": "^6.0.1",
     "markdown-to-ast": "^3.2.3",
     "mocha": "^2.3.3",
+    "npm-run-all": "^1.5.1",
     "power-assert": "^1.0.1",
     "shelljs": "^0.6.0",
     "textlint-plugin-html": "^0.1.2",
