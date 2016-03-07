@@ -3,7 +3,6 @@
 const interopRequire = require('interop-require');
 const tryResolve = require('try-resolve');
 const ObjectAssign = require("object-assign");
-const debug = require('debug')('textlint:plugin-loader');
 const path = require("path");
 export function mapRulesConfig(rulesConfig, presetName) {
     let mapped = {};

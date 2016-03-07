@@ -96,6 +96,9 @@ export default class TextlintCore {
             task.on(CoreTask.events.message, message => {
                 messages.push(message);
             });
+            task.on(CoreTask.events.error, error => {
+                reject(error);
+            });
             task.on(CoreTask.events.complete, () => {
                 const result = postProcess(messages, filePath);
                 if (result.filePath == null) {
@@ -206,6 +209,9 @@ export default class TextlintCore {
                     task.on(CoreTask.events.message, message => {
                         messages.push(message);
                     });
+                    task.on(CoreTask.events.error, error => {
+                        reject(error);
+                    });
                     task.on(CoreTask.events.complete, () => {
                         const result = postProcess(messages, filePath);
                         resultFilePath = result.filePath;
@@ -244,5 +250,5 @@ export default class TextlintCore {
                 remainingMessages
             };
         });
-    };
+    }
 }

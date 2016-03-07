@@ -1,4 +1,3 @@
-const path = require("path");
 const assert = require("assert");
 const StructuredSource = require('structured-source');
 const UnionSyntax = require("../parser/union-syntax");

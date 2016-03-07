@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const fs = require('fs');
 const path = require('path');
 const Config = require('../config/config');
-
+const Logger = require("../util/logger");
 // Public Interface
 /**
  * Initializer class for config of textlint.
@@ -17,7 +17,7 @@ const init = {
      */
     initializeConfig(dir) {
         let rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
-        let output = JSON.stringify({"rules":{}}, null, 2);
+        let output = JSON.stringify({"rules": {}}, null, 2);
         const filePath = path.resolve(dir, rcFile);
         try {
             if (fs.existsSync(filePath)) {
@@ -25,7 +25,7 @@ const init = {
             }
             fs.writeFileSync(filePath, output);
         } catch (error) {
-            console.error(error.message);
+            Logger.error(error.message);
             return Promise.resolve(1);
         }
         return Promise.resolve(0);

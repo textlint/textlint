@@ -22,7 +22,9 @@ export default class TextLintCoreTask extends EventEmitter {
             // receive message from each rules
             message: "message",
             // receive complete event
-            complete: "complete"
+            complete: "complete",
+            // receive error event
+            error: "error"
         };
     }
 
@@ -99,6 +101,8 @@ export default class TextLintCoreTask extends EventEmitter {
         });
         Promise.all(promiseQueue).then(() => {
             this.emit(TextLintCoreTask.events.complete);
+        }).catch(error => {
+            this.emit(TextLintCoreTask.events.error, error);
         });
     }
 }

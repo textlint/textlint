@@ -117,7 +117,7 @@ export default class SourceCodeFixer {
                 output: prefix + text
             };
         }
-    };
+    }
 
     /**
      * Sequentially Applies the fixes specified by the messages to the given text.

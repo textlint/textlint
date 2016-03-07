@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
 /**
  * Validate rule module.
  * if invalid throw error

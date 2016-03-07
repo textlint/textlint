@@ -3,8 +3,8 @@
  * @author Brandon Mills
  * @copyright 2014 Brandon Mills. All rights reserved.
  */
-
 "use strict";
+import Logger from "./logger";
 
 /* istanbul ignore next */
 /**
@@ -87,7 +87,7 @@ function display(data) {
         return ALIGN[index](":", w + 1, "-");
     }).join("|"));
 
-    console.log(table.join("\n"));
+    Logger.log(table.join("\n"));
 }
 
 /* istanbul ignore next */

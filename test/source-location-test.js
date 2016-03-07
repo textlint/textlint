@@ -35,7 +35,7 @@ describe("compute-location", function () {
             });
         });
     });
-    context("index", function () {
+    context("index only", function () {
         it("should return column, line", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
@@ -59,6 +59,35 @@ describe("compute-location", function () {
             assert.equal(line, 1);
             assert.equal(column, 15);
             assert(!fix);
+
+        });
+    });
+
+    context("index and column", function () {
+        it("should throw error", function () {
+            const sourceLocation = new SourceLocation(sourceCode);
+            const node = {
+                type: "Str",
+                range: [10, 20],
+                loc: {
+                    start: {
+                        line: 1,
+                        column: 10
+                    },
+                    end: {
+                        line: 1,
+                        column: 20
+                    }
+                }
+            };
+            const ruleError = {
+                column: 5,
+                index: 5
+            };
+            // 
+            assert.throws(() => {
+                sourceLocation.adjust(node, ruleError);
+            });
 
         });
     });

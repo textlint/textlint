@@ -10,6 +10,7 @@ const tryResolve = require('try-resolve');
 const path = require('path');
 import {isPluginRuleKey} from "./util/config-util";
 import {findFiles} from "./util/find-util";
+import Logger from "./util/logger";
 const debug = require('debug')('textlint:cli-engine');
 class TextLintEngine {
     /**
@@ -151,7 +152,7 @@ class TextLintEngine {
         const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, '');
         // ignore plugin's rule
         if (isPluginRuleKey(presetRuleNameWithoutPrefix)) {
-            console.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
+            Logger.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
             return;
         }
         const baseDir = this.config.rulesBaseDirectory || '';
@@ -181,7 +182,7 @@ class TextLintEngine {
         const definedRuleName = ruleName.replace(prefixMatch, '');
         // ignore plugin's rule
         if (isPluginRuleKey(definedRuleName)) {
-            console.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
+            Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
             return;
         }
         if (this.ruleManager.isDefinedRule(definedRuleName)) {
@@ -252,7 +253,7 @@ class TextLintEngine {
 
     /**
      * Fix texts with ext option.
-     * 
+     *
      * @param {string} text linting text content
      * @param {string} ext ext is a type for linting. default: ".txt"
      * @returns {TextLintFixResult[]}

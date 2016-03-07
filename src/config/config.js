@@ -1,6 +1,5 @@
 // LICENSE : MIT
 'use strict';
-const path = require('path');
 const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
