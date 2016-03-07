@@ -1,5 +1,5 @@
 // LICENSE : MIT
-'use strict';
+"use strict";
 /*
     Api is an implemented of linting text.
 

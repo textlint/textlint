@@ -16,7 +16,7 @@ describe("textlint-core", function () {
                 // no rule
                 return newTextLint.lintMarkdown("test");
             }).then((result) => {
-                assert(result.messages.length === 0)
+                assert(result.messages.length === 0);
             });
 
         });
@@ -40,7 +40,7 @@ describe("textlint-core", function () {
             });
         });
         it("should not throw an exception @ file", function () {
-            return textlint.lintFile(__dirname + '/fixtures/empty.md').then((result) => {
+            return textlint.lintFile(__dirname + "/fixtures/empty.md").then((result) => {
                 assert(result.messages.length === 0);
             });
         });

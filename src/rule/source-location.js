@@ -1,5 +1,7 @@
 // LICENSE : MIT
 "use strict";
+const assert = require("assert");
+const ObjectAssign = require("object-assign");
 import {throwIfTesting} from "../util/throw-log";
 export default class SourceLocation {
     /**
@@ -18,16 +20,13 @@ export default class SourceLocation {
      * @returns {{line: number, column: number, fix?: FixCommand}}
      */
     adjust(node, padding) {
-        const nodeRange = node.range;
-        let line = node.loc.start.line;
-        let column = node.loc.start.column;
         /*
             FIXME: It is old way and un-document way
             new RuleError("message", index);
          */
-        let _paddingIndex;
+        let _backwardCompatibleIndexValue;
         if (typeof padding === "number") {
-            _paddingIndex = padding;
+            _backwardCompatibleIndexValue = padding;
             throwIfTesting(`This is un-document way:
 report(node, new RuleError("message", index);
 
@@ -40,6 +39,7 @@ report(node, new RuleError("message", {
         }
         // when running from textlint-tester, assert
         if (padding.line === undefined && padding.column !== undefined) {
+            // FIXME: Backward compatible <= textlint.5.5
             throwIfTesting(`Have to use a sets with "line" and "column".
 report(node, new RuleError("message", {
     line: paddingLineNumber,
@@ -54,9 +54,12 @@ report(node, new RuleError("message", {
 `);
         }
 
-        // line and column OR index
+        // Not use {column, line} with {index}
         if ((padding.line !== undefined || padding.column !== undefined) && padding.index !== undefined) {
-            throwIfTesting(`Have to use {line, column} or index.
+            // Introduced textlint 5.6
+            // https://github.com/textlint/textlint/releases/tag/5.6.0
+            // Always throw Error
+            throw new Error(`Have to use {line, column} or index.
 => use either one of the two
 
 report(node, new RuleError("message", {
@@ -72,52 +75,78 @@ report(node, new RuleError("message", {
 `);
         }
 
-        // use {index}
+        const adjustedLoc = this._adjustLoc(node, padding, _backwardCompatibleIndexValue);
+        const adjustedFix = this._adjustFix(node, padding);
+        /*
+        {
+            line,
+            column
+            fix?
+        }
+         */
+        return ObjectAssign({}, adjustedLoc, adjustedFix);
+    }
+
+    _adjustLoc(node, padding, _paddingIndex) {
+        const nodeRange = node.range;
+        const line = node.loc.start.line;
+        const column = node.loc.start.column;
+        // when use {index}
         if (padding.index !== undefined || _paddingIndex !== undefined) {
             const startNodeIndex = nodeRange[0];
             const paddingIndex = _paddingIndex || padding.index;
             const position = this.source.indexToPosition(startNodeIndex + paddingIndex);
-            column = position.column;
-            line = position.line;
-        } else {
-            // use {line, column}
-            if (padding.line > 0) {
-                line += padding.line;
-                // when report with padding {line, column}, message.column should be 0 + padding.column.
-                // In other word, padding line > 0 and message.column start with 0.
-                if (padding.column) {
-                    // means 0 + padding column
-                    column = padding.column;
-                }
-            } else {
-                // FIXME: backward compatible @ un-document
-                // Remove next version 6?
-                /*
-                    new RuleError({
-                        column: index
-                    });
-                 */
-                if (padding.column) {
-                    column += padding.column;
-                }
-            }
-        }
-
-        if (!padding.fix) {
             return {
-                line,
-                column
+                column: position.column,
+                line: position.line
             };
         }
-        // fix(command) is relative from node's range
-        const fix = {
-            range: [nodeRange[0] + padding.fix.range[0], nodeRange[0] + padding.fix.range[1]],
-            text: padding.fix.text
-        };
+        // when use {line, column}
+        if (padding.line > 0) {
+            const addedLine = line + padding.line;
+            // when report with padding {line, column}, message.column should be 0 + padding.column.
+            // In other word, padding line > 0 and message.column start with 0.
+            if (padding.column) {
+                // means 0 + padding column
+                return {
+                    line: addedLine,
+                    column: padding.column
+                };
+            } else {
+                return {
+                    line: addedLine,
+                    column
+                };
+            }
+        }
+        // FIXME: backward compatible @ un-document
+        // Remove next version 6?
+        /*
+            new RuleError({
+                column: index
+            });
+         */
+        if (padding.column) {
+            return {
+                line,
+                column: column + padding.column
+            };
+        }
+    }
+
+    _adjustFix(node, padding) {
+        const nodeRange = node.range;
+        // if not found `fix`, return empty object
+        if (padding.fix === undefined) {
+            return {};
+        }
+        assert(typeof padding.fix === "object", "fix should be FixCommand object");
         return {
-            line,
-            column,
-            fix
+            // fix(command) is relative from node's range
+            fix: {
+                range: [nodeRange[0] + padding.fix.range[0], nodeRange[0] + padding.fix.range[1]],
+                text: padding.fix.text
+            }
         };
     }
 }

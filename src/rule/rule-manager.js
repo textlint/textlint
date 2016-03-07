@@ -1,7 +1,7 @@
 // LICENSE : MIT
-'use strict';
-const loadRuleDir = require('./load-rules');
-const objectAssign = require('object-assign');
+"use strict";
+const loadRuleDir = require("./load-rules");
+const objectAssign = require("object-assign");
 // dictionary dictionary
 export default class RuleManager {
     constructor() {
@@ -60,8 +60,8 @@ export default class RuleManager {
      */
     importPlugin(pluginRules, pluginName) {
         Object.keys(pluginRules).forEach(ruleId => {
-            let qualifiedRuleId = pluginName + "/" + ruleId;
-            let ruleCreator = pluginRules[ruleId];
+            const qualifiedRuleId = pluginName + "/" + ruleId;
+            const ruleCreator = pluginRules[ruleId];
             this.defineRule(qualifiedRuleId, ruleCreator);
         });
     }

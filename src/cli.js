@@ -1,16 +1,17 @@
 // LICENSE : MIT
-'use strict';
+"use strict";
 const Promise = require("bluebird");
-const fs = require('fs');
-const path = require('path');
-const debug = require('debug')('textlint:cli');
-const mkdirp = require('mkdirp');
-const options = require('./options');
-const TextLintEngine = require('./textlint-engine');
-const Config = require('./config/config');
-const configInit = require('./config/config-initializer');
-const TextLintFixer = require("./fixer/textlint-fixer");
+const fs = require("fs");
+const path = require("path");
+const debug = require("debug")("textlint:cli");
+const mkdirp = require("mkdirp");
+const options = require("./options");
+const TextLintEngine = require("./textlint-engine");
+const Config = require("./config/config");
+const configInit = require("./config/config-initializer");
+import TextLintFixer from "./fixer/textlint-fixer";
 import {throwWithoutExperimental} from "./util/throw-log";
+import Logger from "./util/logger";
 /*
  cli.js is command line **interface**
 
@@ -31,18 +32,18 @@ function printResults(output, options) {
     if (outputFile) {
         const filePath = path.resolve(process.cwd(), outputFile);
         if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-            console.error('Cannot write to output file path, it is a directory: %s', outputFile);
+            Logger.error("Cannot write to output file path, it is a directory: %s", outputFile);
             return false;
         }
         try {
             mkdirp.sync(path.dirname(filePath));
             fs.writeFileSync(filePath, output);
         } catch (ex) {
-            console.error('There was a problem writing the output file:\n%s', ex);
+            Logger.error("There was a problem writing the output file:\n%s", ex);
             return false;
         }
     } else {
-        console.log(output);
+        Logger.log(output);
     }
     return true;
 }
@@ -63,21 +64,21 @@ const cli = {
         try {
             currentOptions = options.parse(args);
         } catch (error) {
-            console.error(error.message);
+            Logger.error(error.message);
             return Promise.resolve(1);
         }
         const files = currentOptions._;
         if (currentOptions.version) {
             // version from package.json
-            console.log(`v${ require('../package.json').version }`);
+            Logger.log(`v${ require("../package.json").version }`);
         } else if (currentOptions.init) {
             return configInit.initializeConfig(process.cwd());
         } else if (currentOptions.help || !files.length && !text) {
-            console.log(options.generateHelp());
+            Logger.log(options.generateHelp());
         } else {
             // specify file name of stdin content
             const stdinFilename = currentOptions.stdinFilename;
-            debug(`Running on ${ text ? 'text' : 'files' }, stdin-filename: ${stdinFilename}`);
+            debug(`Running on ${ text ? "text" : "files" }, stdin-filename: ${stdinFilename}`);
             return this.executeWithOptions(currentOptions, files, text, stdinFilename);
         }
         return Promise.resolve(0);
@@ -95,7 +96,7 @@ const cli = {
         const engine = new TextLintEngine(config);
         // TODO: should indirect access ruleManager
         if (!engine.ruleManager.hasRuleAtLeastOne()) {
-            console.log(`
+            Logger.log(`
 == Not have rules, textlint do not anything ==
 => How to set rule?
 See https://github.com/textlint/textlint/blob/master/docs/configuring.md

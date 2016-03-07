@@ -1,11 +1,10 @@
 // LICENSE : MIT
-'use strict';
-const path = require('path');
-const objectAssign = require('object-assign');
-const loadConfig = require('./config-loader');
+"use strict";
+const objectAssign = require("object-assign");
 const concat = require("unique-concat");
+const loadConfig = require("./config-loader");
 import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
-import { mapRulesConfig } from "./preset-loader";
+import {mapRulesConfig} from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
 /**
@@ -25,7 +24,7 @@ function separateAvailableOrDisable(rulesConfig) {
     Object.keys(rulesConfig).forEach(key => {
         // `textlint-rule-preset-XXX`
         if (isPresetRuleKey(key)) {
-            if (typeof rulesConfig[key] === 'object' || rulesConfig[key] === true) {
+            if (typeof rulesConfig[key] === "object" || rulesConfig[key] === true) {
                 ruleOf.presets.push(key);
             }
             return;
@@ -35,7 +34,7 @@ function separateAvailableOrDisable(rulesConfig) {
             return;
         }
         // ignore `false` value
-        if (typeof rulesConfig[key] === 'object' || rulesConfig[key] === true) {
+        if (typeof rulesConfig[key] === "object" || rulesConfig[key] === true) {
             ruleOf.available.push(key);
         } else {
             ruleOf.disable.push(key);
@@ -59,7 +58,7 @@ function convertRulesConfigToFlatPath(rulesConfig) {
     if (!rulesConfig) {
         return {};
     }
-    let filteredConfig = {};
+    const filteredConfig = {};
     Object.keys(rulesConfig).forEach(key => {
         if (isPresetRuleKey(key)) {
             // <preset>/<rule>
@@ -95,7 +94,7 @@ const defaultOptions = Object.freeze({
     extensions: [],
     // formatter-file-name
     // e.g.) stylish.js => set "stylish"
-    formatterName: 'stylish'
+    formatterName: "stylish"
 });
 
 // Priority: CLI > Code options > config file
@@ -143,7 +142,7 @@ class Config {
      * @returns {Config}
      */
     static initWithCLIOptions(cliOptions) {
-        let options = {};
+        const options = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
         // TODO: CLI --disable <rule>?
@@ -254,7 +253,7 @@ class Config {
     }
 
     toJSON() {
-        let r = Object.create(null);
+        const r = Object.create(null);
         Object.keys(this).forEach(key => {
             if (!this.hasOwnProperty(key)) {
                 return;
@@ -263,7 +262,7 @@ class Config {
             if (value == null) {
                 return;
             }
-            r[key] = typeof value.toJSON !== 'undefined' ? value.toJSON() : value;
+            r[key] = typeof value.toJSON !== "undefined" ? value.toJSON() : value;
         });
         return r;
     }

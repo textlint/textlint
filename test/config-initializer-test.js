@@ -1,5 +1,5 @@
 // LICENSE : MIT
-'use strict';
+"use strict";
 var assert = require("power-assert");
 var Config = require("../src/config/config");
 var configInit = require("../src/config/config-initializer");
@@ -42,7 +42,7 @@ describe("config-initializer-test", function () {
         before(function(){
             // mock console API
             console.error = function mockErrorLog() {
-            }
+            };
         });
 
         after(function() {

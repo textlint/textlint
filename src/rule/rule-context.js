@@ -1,8 +1,8 @@
 // LICENSE : MIT
-'use strict';
-const assert = require('assert');
+"use strict";
+const assert = require("assert");
 const RuleFixer = require("../fixer/rule-fixer-commaner");
-const RuleError = require('./rule-error');
+const RuleError = require("./rule-error");
 const SeverityLevel = {
     "none": 0,
     "info": 0,
@@ -43,9 +43,9 @@ function getSeverity(ruleConfig) {
  * @constructor
  */
 function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
-    Object.defineProperty(this, 'id', {value: ruleId});
-    Object.defineProperty(this, 'config', {value: textLintConfig});
-    let severity = getSeverity(ruleConfig);
+    Object.defineProperty(this, "id", {value: ruleId});
+    Object.defineProperty(this, "config", {value: textLintConfig});
+    const severity = getSeverity(ruleConfig);
     /**
      *
      * @param {TxtNode} node
@@ -56,12 +56,12 @@ function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
         if (error instanceof RuleError) {
             report({ruleId, node, severity, error});
         } else {
-            let level = error.severity || SeverityLevel.info;
+            const level = error.severity || SeverityLevel.info;
             report({ruleId, node, severity: level, error});
         }
     };
     // Const Values
-    Object.defineProperty(this, 'Syntax', {
+    Object.defineProperty(this, "Syntax", {
         get(){
             return sourceCode.getSyntax();
         }

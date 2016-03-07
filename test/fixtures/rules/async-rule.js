@@ -5,11 +5,11 @@ export default function (context) {
     return {
         [Syntax.Str](node){
             return new Promise((resolve) => {
-                setTimeout(()=> {
+                setTimeout(() => {
                     report(node, new RuleError("async error"));
                     resolve();
                 }, 100);
             });
         }
-    }
+    };
 }

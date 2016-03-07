@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
 /**
  * Validate rule module.
  * if invalid throw error
@@ -40,7 +39,7 @@ export function getLinter(ruleCreator) {
     if (typeof ruleCreator === "function") {
         return ruleCreator;
     }
-    throw new Error(`Not found linter function in the ruleCreator`);
+    throw new Error("Not found linter function in the ruleCreator");
 }
 /**
  * get fixer function from ruleCreator
@@ -55,5 +54,5 @@ export function getFixer(ruleCreator) {
     if (typeof ruleCreator === "function") {
         return ruleCreator;
     }
-    throw new Error(`Not found fixer function in the ruleCreator`);
+    throw new Error("Not found fixer function in the ruleCreator");
 }

@@ -1,10 +1,10 @@
 // LICENSE : MIT
-'use strict';
-const Promise = require('bluebird');
-const fs = require('fs');
-const path = require('path');
-const Config = require('../config/config');
-
+"use strict";
+const Promise = require("bluebird");
+const fs = require("fs");
+const path = require("path");
+const Config = require("../config/config");
+const Logger = require("../util/logger");
 // Public Interface
 /**
  * Initializer class for config of textlint.
@@ -16,8 +16,8 @@ const init = {
      * @returns {int} The exit code for the operation.
      */
     initializeConfig(dir) {
-        let rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
-        let output = JSON.stringify({"rules":{}}, null, 2);
+        const rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
+        const output = JSON.stringify({"rules": {}}, null, 2);
         const filePath = path.resolve(dir, rcFile);
         try {
             if (fs.existsSync(filePath)) {
@@ -25,7 +25,7 @@ const init = {
             }
             fs.writeFileSync(filePath, output);
         } catch (error) {
-            console.error(error.message);
+            Logger.error(error.message);
             return Promise.resolve(1);
         }
         return Promise.resolve(0);

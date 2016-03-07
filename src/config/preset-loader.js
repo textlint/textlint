@@ -1,12 +1,11 @@
 // LICENSE : MIT
 "use strict";
-const interopRequire = require('interop-require');
-const tryResolve = require('try-resolve');
+const interopRequire = require("interop-require");
+const tryResolve = require("try-resolve");
 const ObjectAssign = require("object-assign");
-const debug = require('debug')('textlint:plugin-loader');
 const path = require("path");
 export function mapRulesConfig(rulesConfig, presetName) {
-    let mapped = {};
+    const mapped = {};
     if (rulesConfig === undefined) {
         return mapped;
     }
@@ -23,8 +22,8 @@ export function mapRulesConfig(rulesConfig, presetName) {
 export default function findRulesAndConfig(ruleNames = [], {
     baseDir = ".",
     rulePrefix
-    }) {
-    let presetRulesConfig = {};
+}) {
+    const presetRulesConfig = {};
     ruleNames.forEach(ruleName => {
         const textlintRuleName = `${rulePrefix}${ ruleName }`;
         const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));

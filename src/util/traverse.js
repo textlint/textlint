@@ -2,10 +2,10 @@
  * @fileoverview Simple directory traversal logic.
  * @author Nicholas C. Zakas
  */
-'use strict';
-const fs = require('fs');
-const path = require('path');
-const debug = require('debug')('textlint:traverse');
+"use strict";
+const fs = require("fs");
+const path = require("path");
+const debug = require("debug")("textlint:traverse");
 /**
  * Walks a path recursively calling the callback on each file.
  * @param {string} name The file or directory path.
@@ -23,7 +23,7 @@ function walk(name, extensions, exclude, callback) {
         stack.push(dir);
         fs.readdirSync(path.join.apply(path, stack)).forEach(file => {
             // skip all hidden things (dirs, files, links)
-            if (file[0] === '.') {
+            if (file[0] === ".") {
                 return;
             }
             const filePath = path.join.apply(path, stack.concat([file]));
@@ -46,7 +46,7 @@ function walk(name, extensions, exclude, callback) {
 
     const basename = path.basename(name);
     // don't ignore cases like 'textlint ./'
-    if (basename !== '.' && basename !== '..' && basename[0] === '.' || exclude && exclude(name)) {
+    if (basename !== "." && basename !== ".." && basename[0] === "." || exclude && exclude(name)) {
         debug(`Ignoring ${ name }`);
         return;
     }
