@@ -52,7 +52,7 @@ module.exports = function (results) {
                 messages.map(function (message) {
                     var messageType;
                     // fixable
-                    var fixableIcon = message.fix ? chalk[greenColor].bold("\u2713") : "";
+                    var fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
                     if (message.fix) {
                         totalFixable++;
                     }

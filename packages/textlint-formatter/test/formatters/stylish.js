@@ -231,8 +231,8 @@ describe("formatter:stylish", function () {
         it("should return a string with multiple entries", function () {
             var result = formatter(code);
             assert.equal(result, "\nfoo.js\n  " +
-                "5:10  \u2713error  Unexpected foo  foo\n\nbar.js\n  " +
-                "6:11  \u2713warning  Unexpected bar  bar\n\n" +
+                "5:10  \u2713 error  Unexpected foo  foo\n\nbar.js\n  " +
+                "6:11  \u2713 warning  Unexpected bar  bar\n\n" +
                 "\u2716 2 problems (1 error, 1 warning)\n" +
                 "\u2713 2 fixable problems.\n" +
                 "Try to run: $ textlint --fix\n");
