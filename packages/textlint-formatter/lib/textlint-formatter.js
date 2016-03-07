@@ -5,8 +5,8 @@ var path = require("path");
 var tryResolve = require('try-resolve');
 /**
  * Create formatter function from {@link options}
- * @param {TextLintFormatter.options} options
- * @returns {TextLintFormatter.format} the returned Function is formatter
+ * @param {object} options
+ * @returns {Function} the returned Function is formatter
  */
 function createFormatter(options) {
     var formatName = options.formatterName;
