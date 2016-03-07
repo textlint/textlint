@@ -1,9 +1,9 @@
 // LICENSE : MIT
-'use strict';
-const Promise = require('bluebird');
-const fs = require('fs');
-const path = require('path');
-const Config = require('../config/config');
+"use strict";
+const Promise = require("bluebird");
+const fs = require("fs");
+const path = require("path");
+const Config = require("../config/config");
 const Logger = require("../util/logger");
 // Public Interface
 /**

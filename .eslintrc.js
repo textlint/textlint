@@ -186,7 +186,10 @@ module.exports = {
         "prefer-spread": "off",
         "prefer-template": "off",
         "quote-props": "off",
-        "quotes": "off",
+        "quotes": [
+            "error",
+            "double"
+        ],
         "radix": "error",
         "require-jsdoc": "off",
         "require-yield": "error",

@@ -1,5 +1,5 @@
 // LICENSE : MIT
-'use strict';
+"use strict";
 /**
  * @typedef {Object} RuleError~Padding
  * @property {number} line
@@ -16,7 +16,7 @@ class RuleError {
      */
     constructor(message, paddingLocation) {
         this.message = message;
-        if (typeof paddingLocation === 'object') {
+        if (typeof paddingLocation === "object") {
             /**
              * padding lineNumber
              * @type {number}
@@ -37,7 +37,7 @@ class RuleError {
              * @type {FixCommand}
              */
             this.fix = paddingLocation.fix;
-        } else if (typeof paddingLocation === 'number') {
+        } else if (typeof paddingLocation === "number") {
             // this is deprecated
             // should pass padding as object.
             this.column = paddingLocation;
@@ -45,7 +45,7 @@ class RuleError {
     }
 
     toString() {
-        let position = `${ this.line ? this.line + ':' : '' }${ this.column ? this.column + ':' : '' }`;
+        let position = `${ this.line ? this.line + ":" : "" }${ this.column ? this.column + ":" : "" }`;
         return `${ this.column }:${ this.line }:<RuleError>${ this.message } @:${position}`;
     }
 }

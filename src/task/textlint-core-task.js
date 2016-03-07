@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const EventEmitter = require("events");
-const TraverseController = require('txt-ast-traverse').Controller;
+const TraverseController = require("txt-ast-traverse").Controller;
 const RuleError = require("./../rule/rule-error");
 const PromiseEventEmitter = require("carrack");
 const SourceLocation = require("./../rule/source-location");
@@ -46,7 +46,7 @@ export default class TextLintCoreTask extends EventEmitter {
      * @param {RuleError|any} error error is a RuleError instance or any data
      */
     report({ruleId, node, severity, error}) {
-        debug('pushReport %s', error);
+        debug("pushReport %s", error);
         const {line, column, fix} = this.sourceLocation.adjust(node, error);
         // add TextLintMessage
         const message = {
@@ -75,7 +75,7 @@ export default class TextLintCoreTask extends EventEmitter {
      */
     process(astTree) {
         const promiseQueue = [];
-        const listenerCount = (typeof this.ruleTypeEmitter.listenerCount !== 'undefined')
+        const listenerCount = (typeof this.ruleTypeEmitter.listenerCount !== "undefined")
             ? this.ruleTypeEmitter.listenerCount.bind(this.ruleTypeEmitter) // Node 4.x >=
             : EventEmitter.listenerCount.bind(EventEmitter, this.ruleTypeEmitter);// Node 0.12
 
@@ -85,7 +85,7 @@ export default class TextLintCoreTask extends EventEmitter {
         traverseController.traverse(astTree, {
             enter(node, parent) {
                 const type = node.type;
-                Object.defineProperty(node, 'parent', {value: parent});
+                Object.defineProperty(node, "parent", {value: parent});
                 if (listenerCount(type) > 0) {
                     let promise = ruleTypeEmitter.emit(type, node);
                     promiseQueue.push(promise);

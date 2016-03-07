@@ -1,14 +1,14 @@
 // LICENSE : MIT
-'use strict';
-const rc = require('rc-loader');
-const tryResolve = require('try-resolve');
-const interopRequire = require('interop-require');
+"use strict";
+const rc = require("rc-loader");
+const tryResolve = require("try-resolve");
+const interopRequire = require("interop-require");
 function isConfigModule(filePath, configPackagePrefix) {
     if (filePath == null) {
         return false;
     }
     // scoped module package || textlint-config-* module
-    return filePath.charAt(0) === '@' || filePath.indexOf(configPackagePrefix) !== -1;
+    return filePath.charAt(0) === "@" || filePath.indexOf(configPackagePrefix) !== -1;
 }
 function load(configFilePath, {configFileName,configPackagePrefix}) {
     if (isConfigModule(configFilePath, configPackagePrefix)) {

@@ -20,8 +20,6 @@ export default class SourceLocation {
      * @returns {{line: number, column: number, fix?: FixCommand}}
      */
     adjust(node, padding) {
-        let line = node.loc.start.line;
-        let column = node.loc.start.column;
         /*
             FIXME: It is old way and un-document way
             new RuleError("message", index);

@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-const fileTraverse = require('./traverse');
-const debug = require('debug')('textlint:find-util');
+const fileTraverse = require("./traverse");
+const debug = require("debug")("textlint:find-util");
 /**
  * filter files by config
  * @param files

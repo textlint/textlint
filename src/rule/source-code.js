@@ -1,5 +1,5 @@
 const assert = require("assert");
-const StructuredSource = require('structured-source');
+const StructuredSource = require("structured-source");
 const UnionSyntax = require("../parser/union-syntax");
 /**
  * Validates that the given AST has the required information.

@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const interopRequire = require('interop-require');
-const tryResolve = require('try-resolve');
+const interopRequire = require("interop-require");
+const tryResolve = require("try-resolve");
 const ObjectAssign = require("object-assign");
-const debug = require('debug')('textlint:plugin-loader');
+const debug = require("debug")("textlint:plugin-loader");
 const path = require("path");
 export function mapRulesConfig(rulesConfig, pluginName) {
     let mapped = {};

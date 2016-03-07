@@ -1,16 +1,16 @@
 // LICENSE : MIT
-'use strict';
+"use strict";
 /*
     textlint-core.js is a class
     textlint.js is a singleton object that is instance of textlint-core.js.
  */
 const Promise = require("bluebird");
-const path = require('path');
-const fs = require('fs');
-const assert = require('assert');
+const path = require("path");
+const fs = require("fs");
+const assert = require("assert");
 const SourceCode = require("./rule/source-code");
 const SourceCodeFixer = require("./fixer/source-code-fixer");
-const debug = require('debug')('textlint:core');
+const debug = require("debug")("textlint:core");
 import CoreTask from "./task/textlint-core-task";
 import {assertRuleShape} from "./rule/rule-creator-helper";
 import FixerTask from "./task/fixer-task";
@@ -55,7 +55,7 @@ export default class TextlintCore {
                 // "rule-name" : false => disable
                 const ruleConfig = rulesConfig && rulesConfig[key];
                 if (ruleConfig !== false) {
-                    debug('use "%s" rule', key);
+                    debug("use \"%s\" rule", key);
                     resultRules[key] = rules[key];
                 }
 
@@ -77,7 +77,7 @@ export default class TextlintCore {
         assert(processor, `processor is not found for ${ext}`);
         const {preProcess, postProcess} = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
-            `processor should implement {preProcess, postProcess}`);
+            "processor should implement {preProcess, postProcess}");
         const ast = preProcess(text, filePath);
         const sourceCode = new SourceCode({
             text,
@@ -143,7 +143,7 @@ export default class TextlintCore {
     lintFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
-        const text = fs.readFileSync(absoluteFilePath, 'utf-8');
+        const text = fs.readFileSync(absoluteFilePath, "utf-8");
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._lintByProcessor(processor, text, ext, absoluteFilePath);
     }
@@ -156,7 +156,7 @@ export default class TextlintCore {
     fixFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
-        const text = fs.readFileSync(absoluteFilePath, 'utf-8');
+        const text = fs.readFileSync(absoluteFilePath, "utf-8");
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._fixProcess(processor, text, ext, filePath);
     }

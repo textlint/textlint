@@ -1,7 +1,7 @@
 // LICENSE : MIT
-'use strict';
-const loadRuleDir = require('./load-rules');
-const objectAssign = require('object-assign');
+"use strict";
+const loadRuleDir = require("./load-rules");
+const objectAssign = require("object-assign");
 // dictionary dictionary
 export default class RuleManager {
     constructor() {
