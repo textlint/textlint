@@ -36,6 +36,7 @@ module.exports = function (results) {
     var errors = 0;
     var warnings = 0;
     var summaryColor = "yellow";
+    var greenColor = "green";
 
     results.forEach(function (result) {
         var messages = result.messages;
@@ -51,7 +52,7 @@ module.exports = function (results) {
                 messages.map(function (message) {
                     var messageType;
                     // fixable
-                    var fixableIcon = message.fix ? "\u2713" : "";
+                    var fixableIcon = message.fix ? chalk[greenColor].bold("\u2713") : "";
                     if (message.fix) {
                         totalFixable++;
                     }
@@ -98,7 +99,7 @@ module.exports = function (results) {
     }
 
     if (totalFixable > 0) {
-        output += "✓ " + totalFixable + " fixable " + pluralize("problem", totalFixable) +".\n";
+        output += chalk[greenColor].bold("✓ " + totalFixable + " fixable " + pluralize("problem", totalFixable) +".\n");
         output += "Try to run: $ " + chalk.underline("textlint --fix") +"\n";
     }
 
