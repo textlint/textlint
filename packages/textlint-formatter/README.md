@@ -54,6 +54,11 @@ interface options {
 }
 ```
 
+## Other formatter
+
+- [azu/textlint-formatter-codecov: textlint formatter for codecov json.](https://github.com/azu/textlint-formatter-codecov)
+- [azu/textlint-formatter-lcov: textlint formatter for lcov format](https://github.com/azu/textlint-formatter-lcov)
+
 ## Contributing
 
 1. Fork it!

@@ -1,6 +1,7 @@
 /**
- * @fileoverview Compact reporter
- * @author Nicholas C. Zakas
+ * @fileoverview unix-style formatter.
+ * @author oshi-shinobu
+ * @copyright 2015 oshi-shinobu. All rights reserved.
  */
 "use strict";
 
@@ -9,10 +10,9 @@
 //------------------------------------------------------------------------------
 
 /**
- * Returns the severity of warning or error
- * @param {object} message message object to examine
- * @returns {string} severity level
- * @private
+ * Returns a canonical error level string based upon the error message passed in.
+ * @param {object} message Individual error message provided by eslint
+ * @returns {String} Error level string
  */
 function getMessageType(message) {
     if (message.fatal || message.severity === 2) {
@@ -39,12 +39,12 @@ module.exports = function(results) {
 
         messages.forEach(function(message) {
 
-            output += result.filePath + ": ";
-            output += "line " + (message.line || 0);
-            output += ", col " + (message.column || 0);
-            output += ", " + getMessageType(message);
-            output += " - " + message.message;
-            output += message.ruleId ? " (" + message.ruleId + ")" : "";
+            output += result.filePath + ":";
+            output += (message.line || 0) + ":";
+            output += (message.column || 0) + ":";
+            output += " " + message.message + " ";
+            output += "[" + getMessageType(message) +
+                      (message.ruleId ? "/" + message.ruleId : "") + "]";
             output += "\n";
 
         });

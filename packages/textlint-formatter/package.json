@@ -28,16 +28,21 @@
     "format-text": "0.0.3",
     "js-yaml": "^3.2.4",
     "left-pad": "0.0.4",
+    "pluralize": "^1.2.1",
     "style-format": "0.0.0",
+    "table": "^3.7.8",
     "text-table": "^0.2.0",
     "try-resolve": "^1.0.1",
     "xml-escape": "^1.0.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "espower-loader": "^1.0.0",
     "intelli-espower-loader": "^1.0.0",
     "mocha": "^2.1.0",
     "power-assert": "^1.1.0",
+    "proxyquire": "^1.7.4",
+    "sinon": "^1.17.3",
     "textlint": "^4.0.0"
   }
 }
