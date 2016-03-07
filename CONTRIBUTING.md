@@ -68,14 +68,22 @@ If you want to fix `docs/`
 
 Welcome to fix the document!
 
-### Fixing Code
+### Fixing bugs in code
 
 If you want to fix `src/` or `test/`, `example/`.
 
-1. Fix code!
+1. Fix the bug in code!
 2. Commit your changes: git commit -am 'fix(<file-name>): Short description'`
 3. Run the tests: `npm test`
 4. Submit a pull request :D
+
+Adding :new: feature in the same way.
+
+1. Add feature
+2. Commit your changes: git commit -am 'feat(<file-name>): Short description'`
+3. Write tests
+4. Run the tests: `npm test`
+5. Submit a pull request :D
 
 #### Testing
 
