@@ -10,11 +10,35 @@ describe("compute-location", function () {
     beforeEach(function () {
         _logger.setRunningTest(true);
     });
-    context("column only", function () {
-        it("preserve line and change column", function () {
+    context("message only", function () {
+        it("should return node's start location", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
-                type: "Str",
+                type: "String",
+                range: [10, 20],
+                loc: {
+                    start: {
+                        line: 1,
+                        column: 10
+                    },
+                    end: {
+                        line: 1,
+                        column: 20
+                    }
+                }
+            };
+            const ruleError = new RuleError("message");
+            const {line, column, fix} = sourceLocation.adjust(node, ruleError);
+            assert.equal(line, 1);
+            assert.equal(column, 10);
+            assert(!fix);
+        });
+    });
+    context("column only", function () {
+        context("[Backward Compatible] should handle column as index", function () {
+            const sourceLocation = new SourceLocation(sourceCode);
+            const node = {
+                type: "String",
                 range: [10, 20],
                 loc: {
                     start: {
@@ -28,18 +52,46 @@ describe("compute-location", function () {
                 }
             };
             const ruleError = {
+                // == index
                 column: 5
             };
-            assert.throws(() => {
-                sourceLocation.adjust(node, ruleError);
+            const {line, column, fix} = sourceLocation.adjust(node, ruleError);
+            assert.equal(line, 1);
+            assert.equal(column, 15);
+            assert(!fix);
+        });
+        context("[textlint-tester] when testing", function () {
+            it("should throw error in testing.", function () {
+                const sourceLocation = new SourceLocation(sourceCode);
+                const node = {
+                    type: "String",
+                    range: [10, 20],
+                    loc: {
+                        start: {
+                            line: 1,
+                            column: 10
+                        },
+                        end: {
+                            line: 1,
+                            column: 20
+                        }
+                    }
+                };
+                const ruleError = {
+                    column: 5
+                };
+                assert.throws(() => {
+                    sourceLocation.adjust(node, ruleError);
+                });
             });
+
         });
     });
     context("index only", function () {
         it("should return column, line", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
-                type: "Str",
+                type: "String",
                 range: [10, 20],
                 loc: {
                     start: {
@@ -67,7 +119,7 @@ describe("compute-location", function () {
         it("should throw error", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
-                type: "Str",
+                type: "String",
                 range: [10, 20],
                 loc: {
                     start: {
@@ -84,18 +136,45 @@ describe("compute-location", function () {
                 column: 5,
                 index: 5
             };
-            // 
+            //
             assert.throws(() => {
                 sourceLocation.adjust(node, ruleError);
             });
-
         });
     });
+    context("line only", function () {
+        it("should throw error", function () {
+            const sourceLocation = new SourceLocation(sourceCode);
+            const node = {
+                type: "String",
+                range: [10, 20],
+                loc: {
+                    start: {
+                        line: 1,
+                        column: 10
+                    },
+                    end: {
+                        line: 1,
+                        column: 20
+                    }
+                }
+            };
+            const ruleError = {
+                line: 1
+            };
+
+            const {line, column, fix} = sourceLocation.adjust(node, ruleError);
+            assert.equal(line, 2);
+            assert.equal(column, 10);
+            assert(!fix);
+        });
+    });
+
     context("paddingObject is plain object", function () {
         it("should accept this that same as RuleError", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
-                type: "Str",
+                type: "String",
                 range: [10, 20],
                 loc: {
                     start: {
@@ -123,11 +202,11 @@ describe("compute-location", function () {
             assert.deepEqual(fix.range, [11, 15]);
         });
     });
-    context("fix", function () {
+    context("fix only", function () {
         it("range should be absolute of value", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
-                type: "Str",
+                type: "String",
                 range: [10, 20],
                 loc: {
                     start: {
@@ -141,6 +220,35 @@ describe("compute-location", function () {
                 }
             };
             const ruleError = new RuleError("message", {
+                fix: {
+                    range: [1, 5],
+                    text: "replace"
+                }
+            });
+            const {fix} = sourceLocation.adjust(node, ruleError);
+            assert.deepEqual(fix.range, [11, 15]);
+        });
+    });
+    context("full set", function () {
+        it("should return {line, column, fix}", function () {
+            const sourceLocation = new SourceLocation(sourceCode);
+            const node = {
+                type: "String",
+                range: [10, 20],
+                loc: {
+                    start: {
+                        line: 1,
+                        column: 10
+                    },
+                    end: {
+                        line: 1,
+                        column: 20
+                    }
+                }
+            };
+            const ruleError = new RuleError("message", {
+                line: 1,
+                column: 1,
                 fix: {
                     range: [1, 5],
                     text: "replace"

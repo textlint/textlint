@@ -91,6 +91,7 @@ report(node, new RuleError("message", {
         const nodeRange = node.range;
         const line = node.loc.start.line;
         const column = node.loc.start.column;
+
         // when use {index}
         if (padding.index !== undefined || _paddingIndex !== undefined) {
             const startNodeIndex = nodeRange[0];
@@ -102,23 +103,33 @@ report(node, new RuleError("message", {
             };
         }
         // when use {line, column}
-        if (padding.line > 0) {
-            const addedLine = line + padding.line;
-            // when report with padding {line, column}, message.column should be 0 + padding.column.
-            // In other word, padding line > 0 and message.column start with 0.
-            if (padding.column) {
-                // means 0 + padding column
-                return {
-                    line: addedLine,
-                    column: padding.column
-                };
-            } else {
-                return {
-                    line: addedLine,
-                    column
-                };
+        if (padding.line !== undefined && padding.column !== undefined) {
+            if (padding.line > 0) {
+                const addedLine = line + padding.line;
+                // when report with padding {line, column}, message.column should be 0 + padding.column.
+                // In other word, padding line > 0 and message.column start with 0.
+                if (padding.column > 0) {
+                    return {
+                        line: addedLine,
+                        column: padding.column
+                    };
+                } else {
+                    return {
+                        line: addedLine,
+                        column
+                    };
+                }
             }
         }
+        // when use { line }
+        if (padding.line !== undefined && padding.line > 0) {
+            const addedLine = line + padding.line;
+            return {
+                line: addedLine,
+                column
+            };
+        }
+        // when use { column }
         // FIXME: backward compatible @ un-document
         // Remove next version 6?
         /*
@@ -126,12 +137,18 @@ report(node, new RuleError("message", {
                 column: index
             });
          */
-        if (padding.column) {
+        if (padding.column !== undefined && padding.column > 0) {
+            const addedColumn = column + padding.column;
             return {
                 line,
-                column: column + padding.column
+                column: addedColumn
             };
         }
+
+        return {
+            column,
+            line
+        };
     }
 
     _adjustFix(node, padding) {

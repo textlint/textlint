@@ -152,7 +152,7 @@ describe("rule-context-test", function () {
                     "rule-key": function (context) {
                         return {
                             [context.Syntax.Code](node){
-                                let ruleError = new context.RuleError("error", {
+                                const ruleError = new context.RuleError("error", {
                                     line: 5,// if line >=1
                                     column: 5// then start with 0 + column
                                 });

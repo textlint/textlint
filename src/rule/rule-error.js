@@ -44,13 +44,13 @@ class RuleError {
         }
     }
 
-    toJSON() {
-        return {
+    toString() {
+        return JSON.stringify({
             line: this.line,
             column: this.column,
             index: this.index,
             fix: this.fix
-        };
+        });
     }
 }
 module.exports = RuleError;
