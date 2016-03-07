@@ -87,14 +87,14 @@ export default class TextLintCoreTask extends EventEmitter {
                 const type = node.type;
                 Object.defineProperty(node, "parent", {value: parent});
                 if (listenerCount(type) > 0) {
-                    let promise = ruleTypeEmitter.emit(type, node);
+                    const promise = ruleTypeEmitter.emit(type, node);
                     promiseQueue.push(promise);
                 }
             },
             leave(node) {
                 const type = `${node.type}:exit`;
                 if (listenerCount(type) > 0) {
-                    let promise = ruleTypeEmitter.emit(type, node);
+                    const promise = ruleTypeEmitter.emit(type, node);
                     promiseQueue.push(promise);
                 }
             }

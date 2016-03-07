@@ -42,7 +42,7 @@ class TextLintEngine {
         this._setupRules(this.config);
         // execute files that are filtered by availableExtensions.
         this.availableExtensions = this.textLint.processors.reduce((availableExtensions, processor) => {
-            let Processor = processor.constructor;
+            const Processor = processor.constructor;
             return availableExtensions.concat(Processor.availableExtensions());
         }, this.config.extensions);
     }
@@ -80,7 +80,7 @@ class TextLintEngine {
         if (config.plugins) {
             // load in additional rules from plugin
             config.plugins.forEach(pluginName => {
-                let plugin = this.loadPlugin(pluginName);
+                const plugin = this.loadPlugin(pluginName);
                 // register plugin.Processor
                 if (plugin.hasOwnProperty("Processor")) {
                     this.textLint.addProcessor(plugin.Processor);

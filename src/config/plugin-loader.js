@@ -6,7 +6,7 @@ const ObjectAssign = require("object-assign");
 const debug = require("debug")("textlint:plugin-loader");
 const path = require("path");
 export function mapRulesConfig(rulesConfig, pluginName) {
-    let mapped = {};
+    const mapped = {};
     if (rulesConfig === undefined) {
         return mapped;
     }

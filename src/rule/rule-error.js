@@ -44,9 +44,13 @@ class RuleError {
         }
     }
 
-    toString() {
-        let position = `${ this.line ? this.line + ":" : "" }${ this.column ? this.column + ":" : "" }`;
-        return `${ this.column }:${ this.line }:<RuleError>${ this.message } @:${position}`;
+    toJSON() {
+        return {
+            line: this.line,
+            column: this.column,
+            index: this.index,
+            fix: this.fix
+        };
     }
 }
 module.exports = RuleError;

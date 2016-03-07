@@ -45,7 +45,7 @@ function getSeverity(ruleConfig) {
 function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
     Object.defineProperty(this, "id", {value: ruleId});
     Object.defineProperty(this, "config", {value: textLintConfig});
-    let severity = getSeverity(ruleConfig);
+    const severity = getSeverity(ruleConfig);
     /**
      *
      * @param {TxtNode} node
@@ -56,7 +56,7 @@ function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
         if (error instanceof RuleError) {
             report({ruleId, node, severity, error});
         } else {
-            let level = error.severity || SeverityLevel.info;
+            const level = error.severity || SeverityLevel.info;
             report({ruleId, node, severity: level, error});
         }
     };

@@ -3,7 +3,7 @@
 const assert = require("power-assert");
 const cli = require("../src/").cli;
 const path = require("path");
-const spawnSync = require('child_process').spawnSync;
+const spawnSync = require("child_process").spawnSync;
 describe("cli-test", function () {
     let originLog = console.log;
     before(function () {
@@ -89,12 +89,12 @@ describe("cli-test", function () {
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const bin = path.join(__dirname, "../bin/textlint.js");
             const args = [
-                '--preset',
-                'textlint-rule-preset-jtf-style',
+                "--preset",
+                "textlint-rule-preset-jtf-style",
                 `${targetFile}`
             ];
-            const result = spawnSync(`${bin}`, args, {encoding: 'utf8'});
-            assert.strictEqual(result.stderr.indexOf('memory leak detected'), -1);
+            const result = spawnSync(`${bin}`, args, {encoding: "utf8"});
+            assert.strictEqual(result.stderr.indexOf("memory leak detected"), -1);
         });
     });
 });

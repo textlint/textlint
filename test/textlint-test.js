@@ -89,7 +89,7 @@ describe("textlint-test", function () {
                 var result_1 = deepClone(r1);
                 var result_2 = deepClone(r2);
                 assert.equal(result_1.messages.length, result_2.messages.length);
-            })
+            });
         });
     });
     describe("lintText", function () {

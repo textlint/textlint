@@ -53,13 +53,13 @@ export default class SourceCode {
      * @returns {string|null} The text representing the AST node.
      */
     getSource(node, beforeCount, afterCount) {
-        let currentText = this.text;
+        const currentText = this.text;
         if (currentText == null) {
             return null;
         }
         if (node) {
-            let start = Math.max(node.range[0] - (beforeCount || 0), 0);
-            let end = node.range[1] + (afterCount || 0);
+            const start = Math.max(node.range[0] - (beforeCount || 0), 0);
+            const end = node.range[1] + (afterCount || 0);
             return currentText.slice(start, end);
         } else {
             return currentText;

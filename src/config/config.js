@@ -1,10 +1,10 @@
 // LICENSE : MIT
 "use strict";
 const objectAssign = require("object-assign");
-const loadConfig = require("./config-loader");
 const concat = require("unique-concat");
+const loadConfig = require("./config-loader");
 import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
-import { mapRulesConfig } from "./preset-loader";
+import {mapRulesConfig} from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
 /**
@@ -58,7 +58,7 @@ function convertRulesConfigToFlatPath(rulesConfig) {
     if (!rulesConfig) {
         return {};
     }
-    let filteredConfig = {};
+    const filteredConfig = {};
     Object.keys(rulesConfig).forEach(key => {
         if (isPresetRuleKey(key)) {
             // <preset>/<rule>
@@ -142,7 +142,7 @@ class Config {
      * @returns {Config}
      */
     static initWithCLIOptions(cliOptions) {
-        let options = {};
+        const options = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
         // TODO: CLI --disable <rule>?
@@ -253,7 +253,7 @@ class Config {
     }
 
     toJSON() {
-        let r = Object.create(null);
+        const r = Object.create(null);
         Object.keys(this).forEach(key => {
             if (!this.hasOwnProperty(key)) {
                 return;

@@ -10,4 +10,4 @@ module.exports = function (context, options) {
         context.report(node, new context.RuleError("found error message"));
     };
     return exports;
-}
+};

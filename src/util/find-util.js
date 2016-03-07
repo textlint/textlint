@@ -8,7 +8,7 @@ const debug = require("debug")("textlint:find-util");
  * @param {string[]} extensions extensions array
  */
 export function findFiles(files, extensions) {
-    let processed = [];
+    const processed = [];
     // sync
     fileTraverse({
         files: files,

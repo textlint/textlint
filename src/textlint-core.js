@@ -48,7 +48,7 @@ export default class TextlintCore {
      */
     setupRules(rules = {}, rulesConfig = {}) {
         const ignoreDisableRules = (rules) => {
-            let resultRules = Object.create(null);
+            const resultRules = Object.create(null);
             Object.keys(rules).forEach(key => {
                 const ruleCreator = rules[key];
                 assertRuleShape(ruleCreator, key);

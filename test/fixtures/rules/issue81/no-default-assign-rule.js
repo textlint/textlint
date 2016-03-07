@@ -8,5 +8,5 @@ module.exports.default = function (context) {
     exports[context.Str] = function (node) {
         context.report(node, new context.RuleError("error"));
     };
-    return exports
+    return exports;
 };

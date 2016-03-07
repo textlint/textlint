@@ -31,7 +31,7 @@ describe("rule-context-test", function () {
                 });
             });
             it("should call Str callback, 1+1", function () {
-                return textlint.lintMarkdown("text").then(()=> {
+                return textlint.lintMarkdown("text").then(() => {
                     assert(callCount === 1);
                 }).then(() => {
                     return textlint.lintText("text");
@@ -58,11 +58,11 @@ describe("rule-context-test", function () {
                 });
             });
             it("should call Str callback, 1+1", function () {
-                return textlint.lintMarkdown("text").then(()=> {
+                return textlint.lintMarkdown("text").then(() => {
                     assert(callCount === 1);
-                }).then(()=> {
+                }).then(() => {
                     return textlint.lintText("text");
-                }).then(()=> {
+                }).then(() => {
                     assert(callCount === 2);
                 });
             });

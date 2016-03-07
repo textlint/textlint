@@ -89,8 +89,8 @@ report(node, new RuleError("message", {
 
     _adjustLoc(node, padding, _paddingIndex) {
         const nodeRange = node.range;
-        let line = node.loc.start.line;
-        let column = node.loc.start.column;
+        const line = node.loc.start.line;
+        const column = node.loc.start.column;
         // when use {index}
         if (padding.index !== undefined || _paddingIndex !== undefined) {
             const startNodeIndex = nodeRange[0];
@@ -103,18 +103,18 @@ report(node, new RuleError("message", {
         }
         // when use {line, column}
         if (padding.line > 0) {
-            line += padding.line;
+            const addedLine = line + padding.line;
             // when report with padding {line, column}, message.column should be 0 + padding.column.
             // In other word, padding line > 0 and message.column start with 0.
             if (padding.column) {
                 // means 0 + padding column
                 return {
-                    line,
+                    line: addedLine,
                     column: padding.column
                 };
             } else {
                 return {
-                    line,
+                    line: addedLine,
                     column
                 };
             }

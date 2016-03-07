@@ -16,8 +16,8 @@ const init = {
      * @returns {int} The exit code for the operation.
      */
     initializeConfig(dir) {
-        let rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
-        let output = JSON.stringify({"rules": {}}, null, 2);
+        const rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
+        const output = JSON.stringify({"rules": {}}, null, 2);
         const filePath = path.resolve(dir, rcFile);
         try {
             if (fs.existsSync(filePath)) {

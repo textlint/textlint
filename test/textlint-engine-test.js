@@ -3,7 +3,7 @@
 var assert = require("power-assert");
 var TextLintEngine = require("../src/").TextLintEngine;
 var rulesDir = __dirname + "/fixtures/rules";
-var path = require('path');
+var path = require("path");
 describe("textlint-engine-test", function () {
     describe("Constructor", function () {
         context("when no-args", function () {

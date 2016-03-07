@@ -3,7 +3,8 @@ module.exports = {
         "browser": true,
         "commonjs": true,
         "node": true,
-        "es6": true
+        "es6": true,
+        "mocha": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
@@ -180,7 +181,7 @@ module.exports = {
         "operator-linebreak": "error",
         "padded-blocks": "off",
         "prefer-arrow-callback": "off",
-        "prefer-const": "off",
+        "prefer-const": "error",
         "prefer-reflect": "off",
         "prefer-rest-params": "off",
         "prefer-spread": "off",

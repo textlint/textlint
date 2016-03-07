@@ -13,7 +13,7 @@ describe("Async", function () {
                 return {
                     [Syntax.Str](node){
                         return new Promise((resolve) => {
-                            setTimeout(()=> {
+                            setTimeout(() => {
                                 report(node, new RuleError("before"));
                                 resolve();
                             }, 100);
