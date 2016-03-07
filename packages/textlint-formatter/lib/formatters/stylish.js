@@ -28,15 +28,16 @@ function pluralize(word, count) {
 // Public Interface
 //------------------------------------------------------------------------------
 
-module.exports = function(results) {
+module.exports = function (results) {
 
-    var output = "\n",
-        total = 0,
-        errors = 0,
-        warnings = 0,
-        summaryColor = "yellow";
+    var output = "\n";
+    var total = 0;
+    var totalFixable = 0;
+    var errors = 0;
+    var warnings = 0;
+    var summaryColor = "yellow";
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         var messages = result.messages;
 
         if (messages.length === 0) {
@@ -47,15 +48,19 @@ module.exports = function(results) {
         output += chalk.underline(result.filePath) + "\n";
 
         output += table(
-                messages.map(function(message) {
+                messages.map(function (message) {
                     var messageType;
-
+                    // fixable
+                    var fixableIcon = message.fix ? "\u2713" : "";
+                    if (message.fix) {
+                        totalFixable++;
+                    }
                     if (message.fatal || message.severity === 2) {
-                        messageType = chalk.red("error");
+                        messageType = fixableIcon + chalk.red("error");
                         summaryColor = "red";
                         errors++;
                     } else {
-                        messageType = chalk.yellow("warning");
+                        messageType = fixableIcon + chalk.yellow("warning");
                         warnings++;
                     }
 
@@ -70,18 +75,18 @@ module.exports = function(results) {
                 }),
                 {
                     align: ["", "r", "l"],
-                    stringLength: function(str) {
+                    stringLength: function (str) {
                         var lines = chalk.stripColor(str).split("\n");
-                        return Math.max.apply(null, lines.map(function(line) {
+                        return Math.max.apply(null, lines.map(function (line) {
                             return widthOfString(line);
                         }));
                     }
                 }
-            ).split("\n").map(function(el) {
-                    return el.replace(/(\d+)\s+(\d+)/, function(m, p1, p2) {
-                        return chalk.gray(p1 + ":" + p2);
-                    });
-                }).join("\n") + "\n\n";
+            ).split("\n").map(function (el) {
+                return el.replace(/(\d+)\s+(\d+)/, function (m, p1, p2) {
+                    return chalk.gray(p1 + ":" + p2);
+                });
+            }).join("\n") + "\n\n";
     });
 
     if (total > 0) {
@@ -90,6 +95,11 @@ module.exports = function(results) {
             " (", errors, pluralize(" error", errors), ", ",
             warnings, pluralize(" warning", warnings), ")\n"
         ].join(""));
+    }
+
+    if (totalFixable > 0) {
+        output += "✓ " + totalFixable + " fixable " + pluralize("problem", totalFixable) +".\n";
+        output += "Try to run: $ " + chalk.underline("textlint --fix") +"\n";
     }
 
     return total > 0 ? output : "";
