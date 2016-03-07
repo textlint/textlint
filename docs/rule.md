@@ -28,7 +28,7 @@ export default function (context) {
             var text = context.getSource(node);
             if(/found wrong use-case/.test(text)){
                 // report error
-                context.report(node, new context.RuleError("found wrong"));
+                context.report(node, new context.RuleError("Found wrong"));
             }
         },
         
@@ -44,7 +44,7 @@ If your rule wants to know when an `Str` node is found in the AST, then add a me
 // ES6
 export default function (context) {
     return {
-        [context.Syntax.Str] = function (node) {
+        [context.Syntax.Str](node) {
             // this method is called
         }
     };
@@ -150,12 +150,12 @@ For example:
 ```js
 export default function (context) {
     return {
-        [context.Syntax.Str] = function (node) {
+        [context.Syntax.Str](node) {
             // get source code of this `node`
             var text = context.getSource(node);
             if(/found wrong use-case/.test(text)){
                 // report error
-                context.report(node, new context.RuleError("found wrong"));
+                context.report(node, new context.RuleError("Found wrong"));
             }
         }
     };
