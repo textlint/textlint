@@ -100,7 +100,7 @@ module.exports = function (results) {
 
     if (totalFixable > 0) {
         output += chalk[greenColor].bold("✓ " + totalFixable + " fixable " + pluralize("problem", totalFixable) +".\n");
-        output += "Try to run: $ " + chalk.underline("textlint --fix") +"\n";
+        output += "Try to run: $ " + chalk.underline("textlint --fix [file]") +"\n";
     }
 
     return total > 0 ? output : "";

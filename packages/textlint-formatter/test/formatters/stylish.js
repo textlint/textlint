@@ -235,7 +235,7 @@ describe("formatter:stylish", function () {
                 "6:11  \u2713 warning  Unexpected bar  bar\n\n" +
                 "\u2716 2 problems (1 error, 1 warning)\n" +
                 "\u2713 2 fixable problems.\n" +
-                "Try to run: $ textlint --fix\n");
+                "Try to run: $ textlint --fix [file]\n");
             assert.equal(chalkStub.yellow.bold.callCount, 0);
             assert.equal(chalkStub.red.bold.callCount, 1);
         });
