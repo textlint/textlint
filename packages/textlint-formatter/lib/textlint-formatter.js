@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 var fs = require("fs");
+var assert = require("assert");
 var path = require("path");
 var tryResolve = require('try-resolve');
 
@@ -15,6 +16,7 @@ var tryResolve = require('try-resolve');
  * @returns {Function} the returned Function is formatter
  */
 function createFormatter(options) {
+    assert(typeof options === "object", "options should be object");
     var formatName = options.formatterName;
     var noColor = options.noColor !== undefined ? options.noColor : false;
     var formatterPath;
@@ -36,7 +38,9 @@ function createFormatter(options) {
         throw new Error("Could not find formatter " + formatName + "\n" + ex);
     }
     return function (results) {
-        return formatter(results, options);
+        return formatter(results, {
+            noColor: noColor
+        });
     };
 }
 module.exports = createFormatter;

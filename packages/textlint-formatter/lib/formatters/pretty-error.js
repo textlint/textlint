@@ -105,8 +105,7 @@ function prettyError(code, filePath, message) {
  * @returns {string}
  */
 function formatter(results, options) {
-    var safeOptions = typeof options !== undefined ? options : {};
-    var noColor = safeOptions.noColor !== undefined ? safeOptions.noColor : false;
+    var noColor = options.noColor !== undefined ? options.noColor : false;
     var output = "";
     results.forEach(function (result) {
         var code = require("fs").readFileSync(result.filePath, "utf-8");
@@ -117,7 +116,7 @@ function formatter(results, options) {
             }
         });
     });
-
+    // --no-color 
     if (noColor) {
         return stripAnsi(output);
     }
