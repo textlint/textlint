@@ -6,6 +6,7 @@
 var format = require("format-text");
 var leftpad = require("left-pad");
 var style = require("style-format");
+var stripAnsi = require("strip-ansi");
 var stringWidth = require("../stringWidth");
 // width is 2
 var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
@@ -100,9 +101,12 @@ function prettyError(code, filePath, message) {
 /**
  *
  * @param {[TextLintResult]} results
+ * @param {TextLintFormatterOption} options
  * @returns {string}
  */
-function formatter(results) {
+function formatter(results, options) {
+    var safeOptions = typeof options !== undefined ? options : {};
+    var noColor = safeOptions.noColor !== undefined ? safeOptions.noColor : false;
     var output = "";
     results.forEach(function (result) {
         var code = require("fs").readFileSync(result.filePath, "utf-8");
@@ -114,6 +118,9 @@ function formatter(results) {
         });
     });
 
+    if (noColor) {
+        return stripAnsi(output);
+    }
     return output;
 }
 module.exports = formatter;

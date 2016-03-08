@@ -3,13 +3,20 @@
 var fs = require("fs");
 var path = require("path");
 var tryResolve = require('try-resolve');
+
+/** @typedef {Object} TextLintFormatterOption
+ *  @property {string} formatterName
+ *  @property {boolean} noColor
+ */
+
 /**
  * Create formatter function from {@link options}
- * @param {object} options
+ * @param {TextLintFormatterOption} options
  * @returns {Function} the returned Function is formatter
  */
 function createFormatter(options) {
     var formatName = options.formatterName;
+    var noColor = options.noColor !== undefined ? options.noColor : false;
     var formatterPath;
     if (fs.existsSync(formatName)) {
         formatterPath = formatName;
@@ -28,6 +35,8 @@ function createFormatter(options) {
     } catch (ex) {
         throw new Error("Could not find formatter " + formatName + "\n" + ex);
     }
-    return formatter;
+    return function (results) {
+        return formatter(results, options);
+    };
 }
 module.exports = createFormatter;

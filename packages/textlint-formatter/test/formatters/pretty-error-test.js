@@ -24,7 +24,9 @@ describe("pretty-error", function () {
                     ]
                 }
             ];
-            var output = stripAnsi(prettyError(code));
+            var output = prettyError(code, {
+                noColor: true
+            });
             assert.equal(output, `foo: Unexpected foo.
 ${fooFile}:1:1
        v
@@ -69,7 +71,9 @@ ${fooFile}:1:1
                     ]
                 }
             ];
-            var output = stripAnsi(prettyError(code));
+            var output = prettyError(code, {
+                noColor: true
+            });
             assert.equal(output, `foo: Unexpected foo.
 ${fooFile}:5:10
                 v
@@ -108,7 +112,9 @@ ${barFile}:6:11
                     ]
                 }
             ];
-            var output = stripAnsi(prettyError(code));
+            var output = prettyError(code, {
+                noColor: true
+            });
             assert.equal(output, `foo: Unexpected foo.
 ${fooFile}:6:1
        v
