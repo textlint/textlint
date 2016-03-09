@@ -94,7 +94,9 @@ const defaultOptions = Object.freeze({
     extensions: [],
     // formatter-file-name
     // e.g.) stylish.js => set "stylish"
-    formatterName: "stylish"
+    formatterName: "stylish",
+    // --no-color
+    color: true,
 });
 
 // Priority: CLI > Code options > config file
@@ -152,6 +154,7 @@ class Config {
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
+        options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
         return this.initWithAutoLoading(options);
     }
 
@@ -250,6 +253,10 @@ class Config {
          * @type {string}
          */
         this.formatterName = options.formatterName ? options.formatterName : defaultOptions.formatterName;
+        /**
+         * @type {boolean}
+         */
+        this.color = options.color !== undefined ? options.color : defaultOptions.color;
     }
 
     toJSON() {

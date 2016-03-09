@@ -277,7 +277,11 @@ class TextLintEngine {
      *  console.log(formatResults(results));
      */
     formatResults(results) {
-        const formatter = createFormatter({formatterName: this.config.formatterName});
+        const formatterConfig = {
+            formatterName: this.config.formatterName,
+            color: this.config.color
+        };
+        const formatter = createFormatter(formatterConfig);
         return formatter(results);
     }
 

@@ -5,5 +5,6 @@
   "plugins": [],
   "rulePaths": [],
   "rules": [],
-  "rulesConfig": {}
+  "rulesConfig": {},
+  "color": true
 }
