@@ -100,7 +100,7 @@ npm test
 
 #### Coding Style
 
-The repository of textlint use [ESLint](http://eslint.org/ "ESLint").
+The repository use [ESLint](http://eslint.org/ "ESLint").
 
 You can run lint:
 
