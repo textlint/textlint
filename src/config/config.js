@@ -96,7 +96,7 @@ const defaultOptions = Object.freeze({
     // e.g.) stylish.js => set "stylish"
     formatterName: "stylish",
     // --no-color
-    color: true,
+    color: true
 });
 
 // Priority: CLI > Code options > config file
