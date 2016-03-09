@@ -3,6 +3,7 @@
 const objectAssign = require("object-assign");
 const concat = require("unique-concat");
 const loadConfig = require("./config-loader");
+import FormatterConfig from "./formatter-config";
 import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
@@ -91,10 +92,7 @@ const defaultOptions = Object.freeze({
     rulesConfig: {},
     // rule directories
     rulePaths: [],
-    extensions: [],
-    // formatter-file-name
-    // e.g.) stylish.js => set "stylish"
-    formatterName: "stylish"
+    extensions: []
 });
 
 // Priority: CLI > Code options > config file
@@ -137,7 +135,7 @@ class Config {
 
     /**
      * Create config object form command line options
-     * See options.js
+     * Main purpose remap cli to ConfigOptions
      * @param {object} cliOptions the options is command line option object. @see options.js
      * @returns {Config}
      */
@@ -151,7 +149,8 @@ class Config {
         options.plugins = cliOptions.plugin ? cliOptions.plugin : defaultOptions.plugins;
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
-        options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
+        options.formatterName = cliOptions.formatter;
+        options.color = cliOptions.color;
         return this.initWithAutoLoading(options);
     }
 
@@ -246,10 +245,11 @@ class Config {
          * @type {string[]}
          */
         this.rulePaths = options.rulePaths ? options.rulePaths : defaultOptions.rulePaths;
+
         /**
-         * @type {string}
+         * @type {FormatterConfig}
          */
-        this.formatterName = options.formatterName ? options.formatterName : defaultOptions.formatterName;
+        this.formatterConfig = new FormatterConfig(options);
     }
 
     toJSON() {

@@ -1,9 +1,12 @@
 {
   "disabledRules": [],
   "extensions": [],
-  "formatterName": "stylish",
   "plugins": [],
   "rulePaths": [],
   "rules": [],
-  "rulesConfig": {}
+  "rulesConfig": {},
+  "formatterConfig": {
+    "formatterName": "stylish",
+    "color": true
+  }
 }
