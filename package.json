@@ -32,7 +32,7 @@
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "pretest": "npm run --if-present build",
-    "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && ./bin/textlint.js -c docs/.textlintrc docs/*.md -f pretty-error",
+    "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && ./bin/textlint.js -c docs/.textlintrc docs/*.md CONTRIBUTING.md -f pretty-error",
     "lint:js": "eslint src/",
     "test:example": "./test/example-test.sh",
     "test:js": "npm run lint:js && mocha test/*.js",
