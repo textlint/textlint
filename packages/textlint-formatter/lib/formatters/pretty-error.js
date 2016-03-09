@@ -15,7 +15,7 @@ var summaryColor = "yellow";
 var greenColor = "green";
 // width is 2
 var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
-var template = style('{gray}{ruleId}: {red}{title}{reset}\n'
+var template = style('{grey}{ruleId}: {red}{title}{reset}\n'
     + '{grey}{filename}{reset}\n'
     + '    {red}{paddingForLineNo}  {v}{reset}\n'
     + '    {grey}{previousLineNo}. {previousLine}{reset}\n'

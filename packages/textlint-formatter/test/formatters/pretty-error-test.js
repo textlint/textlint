@@ -25,7 +25,7 @@ describe("pretty-error", function () {
                 }
             ];
             var output = prettyError(code, {
-                noColor: true
+                color: false
             });
             assert.equal(output, `foo: Unexpected foo.
 ${fooFile}:1:1
@@ -80,7 +80,7 @@ ${fooFile}:1:1
                 }
             ];
             var output = prettyError(code, {
-                noColor: true
+                color: false
             });
             assert.equal(output, `✓ foo: Unexpected foo.
 ${fooFile}:5:10
@@ -124,7 +124,7 @@ Try to run: $ textlint --fix [file]
                 }
             ];
             var output = prettyError(code, {
-                noColor: true
+                color: false
             });
             assert.equal(output, `foo: Unexpected foo.
 ${fooFile}:6:1
@@ -158,7 +158,7 @@ ${fooFile}:6:1
                 }
             ];
             var output = prettyError(code, {
-                noColor: true
+                color: false
             });
             assert.equal(output, `foo: Unexpected foo.
 ${fooFile}:6:1
@@ -194,7 +194,7 @@ ${fooFile}:6:1
                 }
             ];
             var output = prettyError(code, {
-                noColor: true
+                color: false
             });
             assert.equal(output, `✓ foo: Unexpected foo.
 ${ckjFile}:2:16
