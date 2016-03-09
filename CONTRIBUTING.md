@@ -61,8 +61,10 @@ fix #134
 If you want to fix `docs/`
 
 1. Fix document!
-2. Commit your changes: git commit -am 'docs(<file-name>): Short description'`
-3. Run the tests: `npm run lint:doc`
+2. Commit your changes
+  - `git commit -am 'docs(<file-name>): Short description'`
+3. Run the tests
+  - `npm run lint:doc`
 4. Submit a pull request :D
 
 Welcome to fix the document!
@@ -72,16 +74,20 @@ Welcome to fix the document!
 If you want to fix `src/` or `test/`, `example/`.
 
 1. Fix the bug in code!
-2. Commit your changes: git commit -am 'fix(<file-name>): Short description'`
-3. Run the tests: `npm test`
+2. Commit your changes
+  - `git commit -am 'fix(<file-name>): Short description'`
+3. Run the tests
+  - `npm test`
 4. Submit a pull request :D
 
 Adding :new: feature in the same way.
 
 1. Add feature
-2. Commit your changes: git commit -am 'feat(<file-name>): Short description'`
+2. Commit your changes
+  - `git commit -am 'feat(<file-name>): Short description'`
 3. Write tests
-4. Run the tests: `npm test`
+4. Run the tests
+  - `npm test`
 5. Submit a pull request :D
 
 #### Testing
