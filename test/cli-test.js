@@ -4,14 +4,14 @@ const assert = require("power-assert");
 const cli = require("../src/").cli;
 const path = require("path");
 const spawnSync = require("child_process").spawnSync;
+const originLog = console.log;
 describe("cli-test", function () {
-    let originLog = console.log;
-    before(function () {
-        // mock console API
+    beforeEach(function () {
         console.log = function mockLog() {
+            // mock console API
         };
     });
-    after(function () {
+    afterEach(function () {
         console.log = originLog;
     });
     context("when pass linting", function () {
