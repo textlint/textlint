@@ -1,7 +1,9 @@
 // LICENSE : MIT
 "use strict";
+var path = require("path");
 var assert = require("power-assert");
 var createFormatter = require("../");
+
 describe("textlint-formatter-test", function () {
     describe("createFormatter", function () {
         it("should return formatter function", function () {
@@ -46,6 +48,7 @@ describe("textlint-formatter-test", function () {
                 var formatter = createFormatter({
                     formatterName: name
                 });
+                const ckjFile = path.join(__dirname, "./fixtures", "ckj.md");
                 var output = formatter([
                     {
                         filePath: __dirname + "/fixtures/myfile.js",
@@ -75,7 +78,24 @@ describe("textlint-formatter-test", function () {
                                 message: "Expected a semicolon."
                             }
                         ]
+                    },
+
+                    {
+                        filePath: ckjFile,
+                        messages: [
+                            {
+                                message: "Unexpected !!!.",
+                                severity: 2,
+                                line: 2,
+                                column: 16,
+                                ruleId: "foo",
+                                fix: {
+                                    range: [40, 45],
+                                    text: "fixed 1"
+                                }
+                            }                        ]
                     }
+
                 ]);
                 assert(output.length > 0);
                 console.log(output);
