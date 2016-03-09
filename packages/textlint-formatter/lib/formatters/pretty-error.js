@@ -10,16 +10,19 @@ var style = require("style-format");
 var stripAnsi = require("strip-ansi");
 var pluralize = require("pluralize");
 var stringWidth = require("../stringWidth");
+// color set
+var summaryColor = "yellow";
+var greenColor = "green";
 // width is 2
 var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
-var template = style('{grey}{ruleId}: {bold}{red}{title}\n'
+var template = style('{gray}{ruleId}: {red}{title}{reset}\n'
     + '{grey}{filename}{reset}\n'
-    + '    {red}{paddingForLineNo}  {v}\n'
-    + '    {grey}{previousLineNo}. {previousLine}\n'
-    + '    {reset}{failingLineNo}. {failingLine}\n'
-    + '    {grey}{nextLineNo}. {nextLine}\n'
+    + '    {red}{paddingForLineNo}  {v}{reset}\n'
+    + '    {grey}{previousLineNo}. {previousLine}{reset}\n'
+    + '    {reset}{failingLineNo}. {failingLine}{reset}\n'
+    + '    {grey}{nextLineNo}. {nextLine}{reset}\n'
     + '    {red}{paddingForLineNo}  {^}{reset}\n'
-    + '{reset}');
+    + '');
 
 
 /**
@@ -107,9 +110,8 @@ function prettyError(code, filePath, message) {
  * @returns {string}
  */
 function formatter(results, options) {
-    var noColor = options.noColor !== undefined ? options.noColor : false;
-    var summaryColor = "yellow";
-    var greenColor = "green";
+    // default: true
+    var useColor = options.color !== undefined ? options.color : true;
     var output = "";
     var total = 0;
     var errors = 0;
@@ -153,8 +155,7 @@ function formatter(results, options) {
         output += "Try to run: $ " + chalk.underline("textlint --fix [file]") + "\n";
     }
 
-    // --no-color 
-    if (noColor) {
+    if (!useColor) {
         return stripAnsi(output);
     }
     return output;

@@ -38,9 +38,7 @@ function createFormatter(options) {
         throw new Error("Could not find formatter " + formatName + "\n" + ex);
     }
     return function (results) {
-        return formatter(results, {
-            noColor: noColor
-        });
+        return formatter(results, options);
     };
 }
 module.exports = createFormatter;
