@@ -303,7 +303,7 @@ describe("textlint-engine-test", function () {
         });
         context("when loaded custom formatter", function () {
             it("should return custom formatted text", function () {
-                const engine = new TextLintEngine({
+                let engine = new TextLintEngine({
                     rulePaths: [rulesDir],
                     formatterName: path.join(__dirname, "fixtures/formatter/example-formatter.js")
                 });

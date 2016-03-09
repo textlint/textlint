@@ -1,18 +1,17 @@
 // LICENSE : MIT
 "use strict";
-const debug = require("debug")("textlint:cli-engine");
 const Promise = require("bluebird");
 const interopRequire = require("interop-require");
+import TextLintCore from "./textlint-core";
+const RuleManager = require("./rule/rule-manager");
+const Config = require("./config/config");
 const createFormatter = require("textlint-formatter");
 const tryResolve = require("try-resolve");
 const path = require("path");
-const ObjectAssign = require("object-assign");
-import TextLintCore from "./textlint-core";
-import RuleManager from "./rule/rule-manager";
-import Config from "./config/config";
 import {isPluginRuleKey} from "./util/config-util";
 import {findFiles} from "./util/find-util";
 import Logger from "./util/logger";
+const debug = require("debug")("textlint:cli-engine");
 class TextLintEngine {
     /**
      * Process files are wanted to lint.
@@ -273,14 +272,12 @@ class TextLintEngine {
     /**
      * format {@link results} and return output text.
      * @param {TextLintResult[]} results the collection of result
-     * @param {FormatterConfig} formatterConfig
      * @returns {string} formatted output text
      * @example
      *  console.log(formatResults(results));
      */
-    formatResults(results, formatterConfig) {
-        const mappedFormatterConfig = ObjectAssign({}, this.config.formatterConfig.toJSON(), formatterConfig);
-        const formatter = createFormatter(mappedFormatterConfig);
+    formatResults(results) {
+        const formatter = createFormatter({formatterName: this.config.formatterName});
         return formatter(results);
     }
 
