@@ -4,9 +4,11 @@
 // Author : azer
 "use strict";
 var format = require("format-text");
+var chalk = require("chalk");
 var leftpad = require("left-pad");
 var style = require("style-format");
 var stripAnsi = require("strip-ansi");
+var pluralize = require("pluralize");
 var stringWidth = require("../stringWidth");
 // width is 2
 var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
@@ -100,22 +102,57 @@ function prettyError(code, filePath, message) {
 
 /**
  *
- * @param {[TextLintResult]} results
+ * @param {TextLintResult[]} results
  * @param {TextLintFormatterOption} options
  * @returns {string}
  */
 function formatter(results, options) {
     var noColor = options.noColor !== undefined ? options.noColor : false;
+    var summaryColor = "yellow";
+    var greenColor = "green";
     var output = "";
+    var total = 0;
+    var errors = 0;
+    var warnings = 0;
+    var totalFixable = 0;
     results.forEach(function (result) {
         var code = require("fs").readFileSync(result.filePath, "utf-8");
-        result.messages.forEach(function (message) {
-            var r = prettyError(code, result.filePath, message);
+        var messages = result.messages;
+        if (messages.length === 0) {
+            return;
+        }
+        total += messages.length;
+        messages.forEach(function (message) {
+            // fixable
+            var fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
+            if (message.fix) {
+                totalFixable++;
+            }
+            if (message.fatal || message.severity === 2) {
+                errors++;
+            } else {
+                warnings++;
+            }
+            var r = fixableIcon + prettyError(code, result.filePath, message);
             if (r) {
                 output += r + "\n";
             }
         });
     });
+
+    if (total > 0) {
+        output += chalk[summaryColor].bold([
+            "\u2716 ", total, pluralize(" problem", total),
+            " (", errors, pluralize(" error", errors), ", ",
+            warnings, pluralize(" warning", warnings), ")\n"
+        ].join(""));
+    }
+
+    if (totalFixable > 0) {
+        output += chalk[greenColor].bold("✓ " + totalFixable + " fixable " + pluralize("problem", totalFixable) + ".\n");
+        output += "Try to run: $ " + chalk.underline("textlint --fix [file]") + "\n";
+    }
+
     // --no-color 
     if (noColor) {
         return stripAnsi(output);
