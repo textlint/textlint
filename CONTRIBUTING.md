@@ -49,9 +49,8 @@ feat(rule): context.report support index-based position
 
 support following syntax
 
-```
+e.g.) 
 context.report(node, new RuleError({ index: index }));
-```
 
 fix #134
 ```
