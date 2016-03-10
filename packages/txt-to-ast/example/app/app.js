@@ -22,9 +22,12 @@ module.exports = {
 var Syntax = require("./plaintext-syntax");
 var LINEBREAKE_MARK = /\r?\n/g;
 function parseLine(lineText, lineNumber, startIndex) {
+    // Inline Node have `value`. It it not part of TxtNode.
+    // TODO: https://github.com/textlint/textlint/issues/141
     return {
         type: Syntax.Str,
         raw: lineText,
+        value: lineText,
         range: [startIndex, startIndex + lineText.length],
         loc: {
             start: {
@@ -46,6 +49,7 @@ function createEndedBRNode(prevNode) {
     return {
         type: Syntax.Break,
         raw: "\n",
+        value: "\n",
         range: [prevNode.range[1], prevNode.range[1] + 1],
         loc: {
             start: {

@@ -70,6 +70,7 @@ describe("plaintext-parser-test", function () {
                             {
                                 "type": "Str",
                                 "raw": "Hello world",
+                                "value": "Hello world",
                                 "range": [
                                     0,
                                     11
@@ -136,6 +137,7 @@ describe("plaintext-parser-test", function () {
                             {
                                 "type": "Str",
                                 "raw": "text",
+                                "value": "text",
                                 "range": [
                                     0,
                                     4
@@ -156,6 +158,7 @@ describe("plaintext-parser-test", function () {
                     {
                         "type": "Break",
                         "raw": "\n",
+                        "value": "\n",
                         "range": [
                             4,
                             5
@@ -220,6 +223,7 @@ describe("plaintext-parser-test", function () {
                             {
                                 "type": "Str",
                                 "raw": "text",
+                                "value": "text",
                                 "range": [
                                     0,
                                     4
@@ -240,6 +244,7 @@ describe("plaintext-parser-test", function () {
                     {
                         "type": "Break",
                         "raw": "\n",
+                        "value": "\n",
                         "range": [
                             4,
                             5
@@ -276,6 +281,7 @@ describe("plaintext-parser-test", function () {
                             {
                                 "type": "Str",
                                 "raw": "text",
+                                "value": "text",
                                 "range": [
                                     5,
                                     9
@@ -345,6 +351,7 @@ describe("plaintext-parser-test", function () {
                             {
                                 "type": "Str",
                                 "raw": "text",
+                                "value": "text",
                                 "range": [
                                     0,
                                     4
@@ -365,6 +372,7 @@ describe("plaintext-parser-test", function () {
                     {
                         "type": "Break",
                         "raw": "\n",
+                        "value": "\n",
                         "range": [
                             4,
                             5
@@ -419,6 +427,7 @@ describe("plaintext-parser-test", function () {
                             {
                                 "type": "Str",
                                 "raw": "text",
+                                "value": "text",
                                 "range": [
                                     6,
                                     10
