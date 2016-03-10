@@ -12,20 +12,18 @@ const SourceCode = require("./rule/source-code");
 const SourceCodeFixer = require("./fixer/source-code-fixer");
 const debug = require("debug")("textlint:core");
 import CoreTask from "./task/textlint-core-task";
-import {assertRuleShape} from "./rule/rule-creator-helper";
 import FixerTask from "./task/fixer-task";
 import LinterTask from "./task/linter-task";
 
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
-
+import RuleCreatorSet from "./rule/rule-creator-set";
 export default class TextlintCore {
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;
-        this.rules = {};
-        this.rulesConfig = {};
+        this.ruleCreatorSet = new RuleCreatorSet();
         // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
         this.processors = [
@@ -47,30 +45,14 @@ export default class TextlintCore {
      * @param {object} [rulesConfig] ruleConfig is object
      */
     setupRules(rules = {}, rulesConfig = {}) {
-        const ignoreDisableRules = (rules) => {
-            const resultRules = Object.create(null);
-            Object.keys(rules).forEach(key => {
-                const ruleCreator = rules[key];
-                assertRuleShape(ruleCreator, key);
-                // "rule-name" : false => disable
-                const ruleConfig = rulesConfig && rulesConfig[key];
-                if (ruleConfig !== false) {
-                    debug("use \"%s\" rule", key);
-                    resultRules[key] = rules[key];
-                }
-
-            });
-            return resultRules;
-        };
-        this.rules = ignoreDisableRules(rules);
-        this.rulesConfig = rulesConfig;
+        this.ruleCreatorSet = new RuleCreatorSet(rules, rulesConfig);
     }
 
     /**
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        // noop
+        this.ruleCreatorSet = new RuleCreatorSet();
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
@@ -87,8 +69,7 @@ export default class TextlintCore {
         });
         const task = new LinterTask({
             config: this.config,
-            rules: this.rules,
-            rulesConfig: this.rulesConfig,
+            ruleCreatorSet: this.ruleCreatorSet,
             sourceCode: sourceCode
         });
         return new Promise((resolve, reject) => {
@@ -173,21 +154,14 @@ export default class TextlintCore {
     }
 
     _fixProcess(processor, text, ext, filePath) {
-        const fixerRules = Object.keys(this.rules).map(ruleName => {
-            return {
-                ruleName,
-                rule: this.rules[ruleName]
-            };
-        }).filter(({rule}) => {
-            return typeof rule.fixer !== "undefined";
-        });
         const {preProcess, postProcess} = processor.processor(ext);
+
         // messages
         let resultFilePath = filePath;
         const applyingMessages = [];
         const remainingMessages = [];
         const originalMessages = [];
-        const fixerProcessList = fixerRules.map(({ruleName, rule}) => {
+        const fixerProcessList = this.ruleCreatorSet.mapFixer(fixerRuleCreatorSet => {
             return (sourceText) => {
                 // create new SourceCode object
                 const newSourceCode = new SourceCode({
@@ -199,9 +173,7 @@ export default class TextlintCore {
                 // create new Task
                 const task = new FixerTask({
                     config: this.config,
-                    // { ruleName : rule }
-                    rules: {[ruleName]: rule},
-                    rulesConfig: this.rulesConfig,
+                    ruleCreatorSet: fixerRuleCreatorSet,
                     sourceCode: newSourceCode
                 });
                 return new Promise((resolve, reject) => {

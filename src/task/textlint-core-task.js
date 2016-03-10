@@ -28,11 +28,10 @@ export default class TextLintCoreTask extends EventEmitter {
         };
     }
 
-    constructor({config, rules, rulesConfig, sourceCode}) {
+    constructor({config, ruleCreatorSet, sourceCode}) {
         super();
         this.config = config;
-        this.rules = rules;
-        this.rulesConfig = rulesConfig;
+        this.ruleCreatorSet = ruleCreatorSet;
         this.sourceCode = sourceCode;
         this.sourceLocation = new SourceLocation(this.sourceCode);
         this.ruleTypeEmitter = new RuleTypeEmitter();

@@ -41,6 +41,16 @@ export function getLinter(ruleCreator) {
     }
     throw new Error("Not found linter function in the ruleCreator");
 }
+
+/**
+ * detect that ruleCreator has fixer function  
+ * @param {any} ruleCreator
+ * @returns {boolean} fixer function
+ */
+export function hasFixer(ruleCreator) {
+    return typeof ruleCreator.fixer === "function";
+    
+}
 /**
  * get fixer function from ruleCreator
  * if not found, throw error

@@ -15,9 +15,9 @@ export default class TextLintCoreTask extends CoreTask {
      * @private
      */
     _setupRuleCreatorListener() {
-        const rules = this.rules;
+        const rules = this.ruleCreatorSet.rules;
+        const rulesConfig = this.ruleCreatorSet.rulesConfig;
         const config = this.config;
-        const rulesConfig = this.rulesConfig;
         const textLintConfig = config;
         const sourceCode = this.sourceCode;
         const report = this.report.bind(this);
