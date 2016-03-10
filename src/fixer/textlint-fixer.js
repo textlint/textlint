@@ -1,5 +1,5 @@
 import * as fs from "fs";
-
+import format from "./formatters/compats";
 /**
  * @param {TextLintResult} result
  */
@@ -15,36 +15,6 @@ function getMessageType(message) {
         return "Warning";
     }
 }
-function format(results) {
-
-    let output = "";
-    let total = 0;
-
-    results.forEach(result => {
-
-        const messages = result.applyingMessages;
-        total += messages.length;
-
-        messages.forEach(message => {
-            output += "Fixed✔ ";
-            output += `${result.filePath}: `;
-            output += `line ${message.line || 0}`;
-            output += `, col ${message.column || 0}`;
-            output += `, ${getMessageType(message)}`;
-            output += ` - ${message.message}`;
-            output += message.ruleId ? ` (${message.ruleId})` : "";
-            output += "\n";
-
-        });
-
-    });
-
-    if (total > 0) {
-        output += `\n\nFixed ${total} problem${total !== 1 ? "s" : ""}`;
-    }
-
-    return output;
-}
 export default class TextLintFixer {
     /**
      *
@@ -54,12 +24,24 @@ export default class TextLintFixer {
         this.results = results;
     }
 
-    formatResults() {
-        return format(this.results);
+    findFixable(code, filePath) {
+
     }
 
-    write() {
-        this.results.forEach(overWriteResult);
+    /**
+     *
+     * @param {TextLintMessage[]} lintMessageResult
+     */
+    fixFixable(lintMessageResult) {
+
+    }
+
+    formatResults(fixResults) {
+        return format(fixResults);
+    }
+
+    write(fixResults) {
+        fixResults.forEach(overWriteResult);
         return true;
     }
 }
