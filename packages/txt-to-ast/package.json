@@ -1,7 +1,7 @@
 {
   "name": "txt-to-ast",
   "description": "Parse text to AST.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/textlint/txt-to-ast/",
   "repository": {
     "type": "git",
