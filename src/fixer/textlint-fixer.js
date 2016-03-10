@@ -40,8 +40,8 @@ export default class TextLintFixer {
         return format(fixResults);
     }
 
-    write(fixResults) {
-        fixResults.forEach(overWriteResult);
+    write(textFixMessages) {
+        textFixMessages.forEach(overWriteResult);
         return true;
     }
 }
