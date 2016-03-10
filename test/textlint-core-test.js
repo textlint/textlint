@@ -116,4 +116,23 @@ describe("textlint-core", function () {
             });
         });
     });
+    describe("#resetRules", function () {
+        it("should reset rules", function () {
+            var textlint = new TextLintCore();
+            textlint.setupRules({
+                "rule-name": require("./fixtures/rules/example-rule")
+            });
+            return textlint.lintText("wrong", ".md").then(result => {
+                // should be 0>
+                assert(result.messages.length > 0);
+            }).then(() => {
+                textlint.resetRules();
+            }).then(() => {
+                // should be 0
+                return textlint.lintText("wrong", ".md").then(result => {
+                    assert(result.messages.length === 0);
+                });
+            });
+        });
+    });
 });
