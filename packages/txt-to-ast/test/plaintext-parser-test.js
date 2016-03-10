@@ -11,6 +11,7 @@ describe("plaintext-parser-test", function () {
             assert(typeof ast === "object");
             // top type is always Document
             assert.equal(ast.type, Syntax.Document);
+            assert.equal(ast.raw, text);
             assert.deepEqual(ast.loc, {
                 start: {
                     line: 1,
@@ -36,6 +37,7 @@ describe("plaintext-parser-test", function () {
                     0,
                     11
                 ],
+                "raw": text,
                 "loc": {
                     "start": {
                         "line": 1,
@@ -101,6 +103,7 @@ describe("plaintext-parser-test", function () {
                     0,
                     5
                 ],
+                "raw": text,
                 "loc": {
                     "start": {
                         "line": 1,
@@ -184,6 +187,7 @@ describe("plaintext-parser-test", function () {
                     0,
                     text.length
                 ],
+                "raw": text,
                 "loc": {
                     "start": {
                         "line": 1,
@@ -308,6 +312,7 @@ describe("plaintext-parser-test", function () {
                     0,
                     text.length
                 ],
+                "raw": text,
                 "loc": {
                     "start": {
                         "line": 1,
