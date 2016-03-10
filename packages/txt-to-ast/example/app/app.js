@@ -154,6 +154,7 @@ function parse(text) {
     }, []);
     return {
         type: Syntax.Document,
+        raw: text,
         range: [0, text.length],
         loc: {
             start: {
