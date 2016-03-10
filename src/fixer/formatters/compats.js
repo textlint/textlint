@@ -1,5 +1,13 @@
 // LICENSE : MIT
 "use strict";
+function getMessageType(message) {
+    if (message.fatal || message.severity === 2) {
+        return "Error";
+    } else {
+        return "Warning";
+    }
+}
+
 export default function format(results) {
     let output = "";
     let total = 0;

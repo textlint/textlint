@@ -8,13 +8,6 @@ function overWriteResult(result) {
     const output = result.output;
     fs.writeFileSync(targetFilePath, output, "utf-8");
 }
-function getMessageType(message) {
-    if (message.fatal || message.severity === 2) {
-        return "Error";
-    } else {
-        return "Warning";
-    }
-}
 export default class TextLintFixer {
     /**
      *
@@ -22,18 +15,6 @@ export default class TextLintFixer {
      */
     constructor(results) {
         this.results = results;
-    }
-
-    findFixable(code, filePath) {
-
-    }
-
-    /**
-     *
-     * @param {TextLintMessage[]} lintMessageResult
-     */
-    fixFixable(lintMessageResult) {
-
     }
 
     formatResults(fixResults) {
