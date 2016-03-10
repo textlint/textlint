@@ -4,20 +4,19 @@
     textlint-core.js is a class
     textlint.js is a singleton object that is instance of textlint-core.js.
  */
-const Promise = require("bluebird");
 const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
 const SourceCode = require("./rule/source-code");
-const SourceCodeFixer = require("./fixer/source-code-fixer");
-const debug = require("debug")("textlint:core");
-import FixerTask from "./task/fixer-task";
-import LinterTask from "./task/linter-task";
-import TaskRunner from "./task/task-runner";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
 import RuleCreatorSet from "./rule/rule-creator-set";
+
+// Linter
+import FixerProcessor from "./fixer/fixer-processor";
+import LinterProcessor from "./linter/linter-processor";
+
 export default class TextlintCore {
     constructor(config = {}) {
         // this.config often is undefined.
@@ -66,18 +65,11 @@ export default class TextlintCore {
             ext,
             filePath
         });
-        const task = new LinterTask({
+        const linterProcessor = new LinterProcessor(processor);
+        return linterProcessor.process({
             config: this.config,
             ruleCreatorSet: this.ruleCreatorSet,
             sourceCode: sourceCode
-        });
-        return TaskRunner.process(task).then(messages => {
-            const result = postProcess(messages, filePath);
-            if (result.filePath == null) {
-                result.filePath = `<Unkown${ext}>`;
-            }
-            assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
-            return result;
         });
     }
 
@@ -143,64 +135,22 @@ export default class TextlintCore {
     }
 
     _fixProcess(processor, text, ext, filePath) {
+        assert(processor, `processor is not found for ${ext}`);
         const {preProcess, postProcess} = processor.processor(ext);
-
-        // messages
-        let resultFilePath = filePath;
-        const applyingMessages = [];
-        const remainingMessages = [];
-        const originalMessages = [];
-        const fixerProcessList = this.ruleCreatorSet.mapFixer(fixerRuleCreatorSet => {
-            return (sourceText) => {
-                // create new SourceCode object
-                const newSourceCode = new SourceCode({
-                    text: sourceText,
-                    ast: preProcess(sourceText),
-                    filePath,
-                    ext
-                });
-                // create new Task
-                const task = new FixerTask({
-                    config: this.config,
-                    ruleCreatorSet: fixerRuleCreatorSet,
-                    sourceCode: newSourceCode
-                });
-
-                return TaskRunner.process(task).then(messages => {
-                    const result = postProcess(messages, filePath);
-                    resultFilePath = result.filePath;
-                    const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);
-                    // add messages
-                    Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
-                    Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
-                    Array.prototype.push.apply(originalMessages, applied.messages);
-                    // if not fixed, still use current sourceText
-                    if (!applied.fixed) {
-                        return sourceText;
-                    }
-                    // if fixed, use fixed text at next
-                    return applied.output;
-                });
-            };
+        assert(typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implement {preProcess, postProcess}");
+        const ast = preProcess(text, filePath);
+        const sourceCode = new SourceCode({
+            text,
+            ast,
+            ext,
+            filePath
         });
-
-        const promiseTask = fixerProcessList.reduce((promise, fixerProcess) => {
-            return promise.then((sourceText) => {
-                return fixerProcess(sourceText);
-            });
-        }, Promise.resolve(text));
-
-        return promiseTask.then(output => {
-            debug(`Finish Processing: ${resultFilePath}`);
-            debug(`applyingMessages: ${applyingMessages.length}`);
-            debug(`remainingMessages: ${remainingMessages.length}`);
-            return {
-                filePath: resultFilePath,
-                output,
-                originalMessages,
-                applyingMessages,
-                remainingMessages
-            };
+        const fixerProcessor = new FixerProcessor(processor);
+        return fixerProcessor.process({
+            config: this.config,
+            ruleCreatorSet: this.ruleCreatorSet,
+            sourceCode: sourceCode
         });
     }
 }
