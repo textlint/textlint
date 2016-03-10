@@ -71,8 +71,7 @@ export default class TextlintCore {
             ruleCreatorSet: this.ruleCreatorSet,
             sourceCode: sourceCode
         });
-        const taskRunner = new TaskRunner(task);
-        return taskRunner.process().then(messages => {
+        return TaskRunner.process(task).then(messages => {
             const result = postProcess(messages, filePath);
             if (result.filePath == null) {
                 result.filePath = `<Unkown${ext}>`;
@@ -167,8 +166,7 @@ export default class TextlintCore {
                     sourceCode: newSourceCode
                 });
 
-                const taskRunner = new TaskRunner(task);
-                return taskRunner.process().then(messages => {
+                return TaskRunner.process(task).then(messages => {
                     const result = postProcess(messages, filePath);
                     resultFilePath = result.filePath;
                     const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);

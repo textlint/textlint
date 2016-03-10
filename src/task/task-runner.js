@@ -3,30 +3,24 @@
 import CoreTask from "./textlint-core-task";
 export default class TaskRunner {
     /**
-     * @param {TextLintCoreTask} task
-     */
-    constructor(task) {
-        this.task = task;
-    }
-
-    /**
      * Task and return promise
+     * @param {TextLintCoreTask} task
      * @returns {Promise}
      */
-    process() {
+    static process(task) {
         return new Promise((resolve, reject) => {
             const messages = [];
-            this.task.on(CoreTask.events.message, message => {
+            task.on(CoreTask.events.message, message => {
                 messages.push(message);
             });
-            this.task.on(CoreTask.events.error, error => {
+            task.on(CoreTask.events.error, error => {
                 reject(error);
             });
-            this.task.on(CoreTask.events.complete, () => {
-                this.task.removeAllListeners();
+            task.on(CoreTask.events.complete, () => {
+                task.removeAllListeners();
                 resolve(messages);
             });
-            this.task.process();
+            task.start();
         });
     }
 }

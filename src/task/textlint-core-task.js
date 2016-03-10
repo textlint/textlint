@@ -70,10 +70,10 @@ export default class TextLintCoreTask extends EventEmitter {
     }
 
     /**
-     * start process and start emitting events.
+     * start process and emitting events.
      * You can listen message by `task.on("message", message => {})`
      */
-    process() {
+    start() {
         const promiseQueue = [];
         const listenerCount = (typeof this.ruleTypeEmitter.listenerCount !== "undefined")
             ? this.ruleTypeEmitter.listenerCount.bind(this.ruleTypeEmitter) // Node 4.x >=
