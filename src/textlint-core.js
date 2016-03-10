@@ -11,10 +11,9 @@ const assert = require("assert");
 const SourceCode = require("./rule/source-code");
 const SourceCodeFixer = require("./fixer/source-code-fixer");
 const debug = require("debug")("textlint:core");
-import CoreTask from "./task/textlint-core-task";
 import FixerTask from "./task/fixer-task";
 import LinterTask from "./task/linter-task";
-
+import TaskRunner from "./task/task-runner";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
@@ -72,23 +71,14 @@ export default class TextlintCore {
             ruleCreatorSet: this.ruleCreatorSet,
             sourceCode: sourceCode
         });
-        return new Promise((resolve, reject) => {
-            const messages = [];
-            task.on(CoreTask.events.message, message => {
-                messages.push(message);
-            });
-            task.on(CoreTask.events.error, error => {
-                reject(error);
-            });
-            task.on(CoreTask.events.complete, () => {
-                const result = postProcess(messages, filePath);
-                if (result.filePath == null) {
-                    result.filePath = `<Unkown${ext}>`;
-                }
-                assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
-                resolve(result);
-            });
-            task.process(ast);
+        const taskRunner = new TaskRunner(task);
+        return taskRunner.process().then(messages => {
+            const result = postProcess(messages, filePath);
+            if (result.filePath == null) {
+                result.filePath = `<Unkown${ext}>`;
+            }
+            assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+            return result;
         });
     }
 
@@ -176,30 +166,22 @@ export default class TextlintCore {
                     ruleCreatorSet: fixerRuleCreatorSet,
                     sourceCode: newSourceCode
                 });
-                return new Promise((resolve, reject) => {
-                    const messages = [];
-                    task.on(CoreTask.events.message, message => {
-                        messages.push(message);
-                    });
-                    task.on(CoreTask.events.error, error => {
-                        reject(error);
-                    });
-                    task.on(CoreTask.events.complete, () => {
-                        const result = postProcess(messages, filePath);
-                        resultFilePath = result.filePath;
-                        const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);
-                        // add messages
-                        Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
-                        Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
-                        Array.prototype.push.apply(originalMessages, applied.messages);
-                        // if not fixed, still use current sourceText
-                        if (!applied.fixed) {
-                            return resolve(sourceText);
-                        }
-                        // if fixed, use fixed text at next
-                        resolve(applied.output);
-                    });
-                    task.process(newSourceCode.ast);
+
+                const taskRunner = new TaskRunner(task);
+                return taskRunner.process().then(messages => {
+                    const result = postProcess(messages, filePath);
+                    resultFilePath = result.filePath;
+                    const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);
+                    // add messages
+                    Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
+                    Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
+                    Array.prototype.push.apply(originalMessages, applied.messages);
+                    // if not fixed, still use current sourceText
+                    if (!applied.fixed) {
+                        return sourceText;
+                    }
+                    // if fixed, use fixed text at next
+                    return applied.output;
                 });
             };
         });

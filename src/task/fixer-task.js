@@ -20,7 +20,7 @@ export default class TextLintCoreTask extends CoreTask {
         const config = this.config;
         const textLintConfig = config;
         const sourceCode = this.sourceCode;
-        const report = this.report.bind(this);
+        const report = this.createReporter(sourceCode);
         Object.keys(rules).forEach(key => {
             const ruleCreator = rules[key];
             const ruleConfig = rulesConfig[key];
