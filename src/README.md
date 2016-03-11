@@ -1,0 +1,25 @@
+# Architecture
+
+## CLI
+
+- [options.js](./options.js)
+    - Parse cli options
+- [cli.js](./cli.js)
+    - create config
+    - run engine
+    - output result
+    
+## Engine
+
+Process files are wanted to lint/fix.
+
+- textlint-engine.js
+- rule-manager.js
+
+## Core
+
+Process file/text wanted to lint/fix
+
+- textlint-core.js
+- source-code.js
+- rule-creator-set.js

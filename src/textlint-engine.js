@@ -2,13 +2,13 @@
 "use strict";
 const Promise = require("bluebird");
 const interopRequire = require("interop-require");
-import TextLintCore from "./textlint-core";
-const RuleManager = require("./rule/rule-manager");
-const Config = require("./config/config");
 const createFormatter = require("textlint-formatter");
 const tryResolve = require("try-resolve");
 const path = require("path");
 import {isPluginRuleKey} from "./util/config-util";
+import TextLintCore from "./textlint-core";
+import RuleManager from "./rule/rule-manager";
+import Config from "./config/config";
 import {findFiles} from "./util/find-util";
 import Logger from "./util/logger";
 const debug = require("debug")("textlint:cli-engine");
