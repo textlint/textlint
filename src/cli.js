@@ -95,7 +95,7 @@ const cli = {
         const config = Config.initWithCLIOptions(cliOptions);
         const engine = new TextLintEngine(config);
         // TODO: should indirect access ruleManager
-        if (!engine.ruleManager.hasRuleAtLeastOne()) {
+        if (!engine.hasRuleAtLeastOne()) {
             Logger.log(`
 == Not have rules, textlint do not anything ==
 => How to set rule?

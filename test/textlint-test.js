@@ -4,10 +4,10 @@ var assert = require("power-assert");
 var path = require("path");
 var deepClone = require("clone");
 var textLint = require("../src/").textlint;
-var loadRules = require("../src/rule/load-rules");
+import {loadFromDir} from "../src/engine/rule-loader";
 var Config = require("../src/config/config");
 var RuleContext = require("../src/rule/rule-context");
-var rules = loadRules(__dirname + "/fixtures/rules");
+var rules = loadFromDir(__dirname + "/fixtures/rules");
 describe("textlint-test", function () {
     beforeEach(function () {
         // This rule found `Str` Node then occur error

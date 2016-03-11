@@ -7,7 +7,8 @@ const tryResolve = require("try-resolve");
 const path = require("path");
 import {isPluginRuleKey} from "./util/config-util";
 import TextLintCore from "./textlint-core";
-import RuleManager from "./rule/rule-manager";
+import RuleManager from "./engine/rule-manager";
+import RuleSet from "./engine/rule-set";
 import Config from "./config/config";
 import {findFiles} from "./util/find-util";
 import Logger from "./util/logger";
@@ -37,7 +38,8 @@ class TextLintEngine {
          */
         this.textLint = new TextLintCore(this.config);
 
-        this.ruleManager = new RuleManager();
+        this.ruleSet = new RuleSet();
+        this.ruleManager = new RuleManager(this.ruleSet);
         // load rule/plugin/processor
         this._setupRules(this.config);
         // execute files that are filtered by availableExtensions.
@@ -88,7 +90,7 @@ class TextLintEngine {
             });
         }
         const textlintConfig = config ? config.toJSON() : {};
-        this.textLint.setupRules(this.ruleManager.getAllRules(), textlintConfig.rulesConfig);
+        this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
     }
 
     /**
@@ -185,7 +187,7 @@ class TextLintEngine {
             Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
             return;
         }
-        if (this.ruleManager.isDefinedRule(definedRuleName)) {
+        if (this.ruleSet.isDefinedRule(definedRuleName)) {
             return;
         }
         const baseDir = this.config.rulesBaseDirectory || "";
@@ -196,7 +198,7 @@ class TextLintEngine {
         }
         debug("Loading rules from %s", pkgPath);
         const ruleCreator = interopRequire(pkgPath);
-        this.ruleManager.defineRule(definedRuleName, ruleCreator);
+        this.ruleSet.defineRule(definedRuleName, ruleCreator);
     }
 
     /**
@@ -204,7 +206,7 @@ class TextLintEngine {
      */
     resetRules() {
         this.textLint.resetRules();
-        this.ruleManager.resetRules();
+        this.ruleSet.resetRules();
     }
 
     /**
@@ -304,6 +306,10 @@ class TextLintEngine {
         return results.some(result => {
             return result.messages.some(this.isErrorMessage);
         });
+    }
+
+    hasRuleAtLeastOne() {
+        return this.ruleSet.hasRuleAtLeastOne();
     }
 }
 
