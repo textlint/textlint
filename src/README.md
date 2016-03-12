@@ -1,5 +1,20 @@
 # Architecture
 
+## Overview
+
+![overview](https://monosnap.com/file/5YipQ1aokyShGwTvqTu35lY5rEOCTX.png)
+
+```
+title: Archtecture
+CLI->Engine: file*s*
+Engine->Core: file
+Core->Task: AST
+Task->Task: Lint
+Task-->Core: Message
+Core-->Engine: Results
+Engine-->CLI: output
+```
+
 ## CLI
 
 - [options.js](./options.js)
