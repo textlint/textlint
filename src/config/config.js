@@ -236,10 +236,7 @@ class Config {
         // this.rules has not contain plugin rules
         // =====================
         this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
-        const pluginRulesConfig = loadRulesConfigFromPlugins(this.plugins, {
-            baseDir: this.rulesBaseDirectory,
-            pluginPrefix: this.constructor.PLUGIN_NAME_PREFIX
-        });
+        const pluginRulesConfig = loadRulesConfigFromPlugins(this.plugins, moduleResolver);
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = objectAssign({}, presetRulesConfig, pluginRulesConfig, options.rulesConfig);
         /**
