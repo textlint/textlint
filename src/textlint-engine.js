@@ -12,6 +12,7 @@ import RuleSet from "./engine/rule-set";
 import Config from "./config/config";
 import {findFiles} from "./util/find-util";
 import Logger from "./util/logger";
+import TextLintModuleResolver from "./engine/textlint-module-resolver";
 const debug = require("debug")("textlint:cli-engine");
 class TextLintEngine {
     /**
@@ -37,7 +38,10 @@ class TextLintEngine {
          * @type {TextLintCore}
          */
         this.textLint = new TextLintCore(this.config);
-
+        /**
+         * @type {TextLintModuleResolver}
+         */
+        this.moduleResolver = new TextLintModuleResolver(this.config);
         this.ruleSet = new RuleSet();
         this.ruleManager = new RuleManager(this.ruleSet);
         // load rule/plugin/processor
@@ -106,19 +110,14 @@ class TextLintEngine {
     }
 
     /**
-     * set directory to use as root directory to load rule.
-     * @param {string} directory as root directory to load rule
-     * @deprecated please use
-     *
-     * ```
-     * new TextLintEngine({
-     *  rulesBaseDirectory: directory
-     * })
-     * ```
+     * @deprecated remove this method
      */
-    setRulesBaseDirectory(directory) {
-        this.config.rulesBaseDirectory = directory;
-        this._setupRules(this.config);
+    setRulesBaseDirectory() {
+        throw new Error(`Should not use setRulesBaseDirectory(), insteadof use         
+new TextLintEngine({
+ rulesBaseDirectory: directory
+})
+        `);
     }
 
     /**
@@ -131,12 +130,7 @@ class TextLintEngine {
         const PLUGIN_NAME_PREFIX = this.config.constructor.PLUGIN_NAME_PREFIX;
         const prefixMatch = new RegExp("^" + PLUGIN_NAME_PREFIX);
         const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
-        const baseDir = this.config.rulesBaseDirectory || "";
-        const textlintRuleName = `${PLUGIN_NAME_PREFIX}${ pluginName }`;
-        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
-        if (!pkgPath) {
-            throw new ReferenceError(`plugin: ${ pluginName } is not found`);
-        }
+        const pkgPath = this.moduleResolver.resolvePluginPackageName(pluginName);
         debug("Loading rules from plugin: %s", pkgPath);
         const plugin = interopRequire(pkgPath);
         // Processor plugin doesn't define rules
