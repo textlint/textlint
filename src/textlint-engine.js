@@ -13,7 +13,7 @@ import Config from "./config/config";
 import {findFiles} from "./util/find-util";
 import Logger from "./util/logger";
 import TextLintModuleResolver from "./engine/textlint-module-resolver";
-class TextLintEngine {
+export default class TextLintEngine {
     /**
      * Process files are wanted to lint.
      * TextLintEngine is a wrapper of textlint.js.
@@ -311,5 +311,3 @@ new TextLintEngine({
         return this.ruleSet.hasRuleAtLeastOne();
     }
 }
-
-module.exports = TextLintEngine;
