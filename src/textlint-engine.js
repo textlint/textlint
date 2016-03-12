@@ -5,6 +5,7 @@ const interopRequire = require("interop-require");
 const createFormatter = require("textlint-formatter");
 const tryResolve = require("try-resolve");
 const path = require("path");
+const debug = require("debug")("textlint:cli-engine");
 import {isPluginRuleKey} from "./util/config-util";
 import TextLintCore from "./textlint-core";
 import RuleManager from "./engine/rule-manager";
@@ -13,7 +14,6 @@ import Config from "./config/config";
 import {findFiles} from "./util/find-util";
 import Logger from "./util/logger";
 import TextLintModuleResolver from "./engine/textlint-module-resolver";
-const debug = require("debug")("textlint:cli-engine");
 class TextLintEngine {
     /**
      * Process files are wanted to lint.
@@ -167,9 +167,7 @@ new TextLintEngine({
             Logger.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
             return;
         }
-        const baseDir = this.config.rulesBaseDirectory || "";
-        const textlintRuleName = `${RULE_NAME_PREFIX}${ presetRuleNameWithoutPrefix }`;
-        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, presetName));
+        const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
         if (!pkgPath) {
             throw new ReferenceError(`preset: ${ presetRuleNameWithoutPrefix } is not found`);
         }

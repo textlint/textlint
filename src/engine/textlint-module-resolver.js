@@ -99,7 +99,22 @@ export default class TextLintModuleResolver {
         const baseDir = this.baseDirectory;
         const PREFIX = this.RULE_PRESET_NAME_PREFIX;
         const fullPackageName = `${PREFIX}${packageName}`;
-        // <preset-name> or textlint-rule-preset-<rule-name> or preset-<preset-name>
+
+        /* Implementation Node
+        
+        preset name is defined in config file:
+        In the case, `packageName` is "preset-gizmo"
+        TextLintModuleResolver resolve "preset-gizmo" to "textlint-rule-preset-gizmo"
+
+        {
+            "rules": {
+                "preset-gizmo": {
+                    "ruleA": false
+
+            }
+        }
+         */
+        // <preset-name> or textlint-rule-preset-<rule-name>
         const packageNameWithoutPreset = packageName.replace(/^preset\-/, "");
         const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
         // preset-<preset-name> or textlint-rule-preset-<preset-name>
