@@ -3,7 +3,6 @@
 const assert = require("assert");
 const path = require("path");
 const tryResolve = require("try-resolve");
-import {isRuleModule} from "../rule/rule-creator-helper";
 const validateConfigConstructor = (ConfigConstructor) => {
     assert(ConfigConstructor.CONFIG_PACKAGE_PREFIX &&
         ConfigConstructor.RULE_NAME_PREFIX &&
@@ -27,11 +26,12 @@ const validateConfigConstructor = (ConfigConstructor) => {
 export default class TextLintModuleResolver {
     /**
      *
-     * @param {Config} config
+     * @param {Config} ConfigConstructor config constructor like object
+     * It has static property like CONFIG_PACKAGE_PREFIX etc...
+     * @param {string} [baseDirectory]
      * @constructor
      */
-    constructor(config) {
-        const ConfigConstructor = config.constructor;
+    constructor(ConfigConstructor, baseDirectory = "") {
         validateConfigConstructor(ConfigConstructor);
         /**
          * @return {string} config package prefix
@@ -53,7 +53,7 @@ export default class TextLintModuleResolver {
         /**
          * @type {string} baseDirectory for resolving
          */
-        this.baseDirectory = config.rulesBaseDirectory || "";
+        this.baseDirectory = baseDirectory;
     }
 
     /**
@@ -99,8 +99,15 @@ export default class TextLintModuleResolver {
         const baseDir = this.baseDirectory;
         const PREFIX = this.RULE_PRESET_NAME_PREFIX;
         const fullPackageName = `${PREFIX}${packageName}`;
-        // <plugin-name> or textlint-rule-preset-<rule-name>
-        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
+        // <preset-name> or textlint-rule-preset-<rule-name> or preset-<preset-name>
+        const packageNameWithoutPreset = packageName.replace(/^preset\-/, "");
+        const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
+        // preset-<preset-name> or textlint-rule-preset-<preset-name>
+        const pkgPath = tryResolve(path.join(baseDir, fullFullPackageName)) ||
+            tryResolve(path.join(baseDir, packageNameWithoutPreset)) ||
+            // <preset-name> or textlint-rule-preset-<rule-name>
+            tryResolve(path.join(baseDir, fullPackageName)) ||
+            tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failure to load textlint's preset module: "${packageName}" is not found.`);
         }

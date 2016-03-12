@@ -1,9 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const interopRequire = require("interop-require");
-const tryResolve = require("try-resolve");
 const ObjectAssign = require("object-assign");
-const path = require("path");
 export function mapRulesConfig(rulesConfig, presetName) {
     const mapped = {};
     if (rulesConfig === undefined) {
@@ -19,18 +17,17 @@ export function mapRulesConfig(rulesConfig, presetName) {
     return mapped;
 }
 // load rulesConfig from plugins
-export default function findRulesAndConfig(ruleNames = [], {
-    baseDir = ".",
-    rulePrefix
-}) {
+/**
+ *
+ * @param ruleNames
+ * @param {TextLintModuleResolver} resolver
+ * @returns {{}}
+ */
+export default function findRulesAndConfig(ruleNames = [], resolver) {
     const presetRulesConfig = {};
     ruleNames.forEach(ruleName => {
-        const textlintRuleName = `${rulePrefix}${ ruleName }`;
-        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));
-        if (!pkgPath) {
-            throw new ReferenceError(`${ ruleName } is not found`);
-        }
-        var preset = interopRequire(pkgPath);
+        const pkgPath = resolver.resolvePresetPackageName(ruleName);
+        const preset = interopRequire(pkgPath);
         if (!preset.hasOwnProperty("rules")) {
             throw new Error(`${ruleName} has not rules`);
         }

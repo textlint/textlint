@@ -7,6 +7,7 @@ import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
+import TextLintModuleResolver from "../engine/textlint-module-resolver";
 /**
  * Get rule keys from `.textlintrc` config object.
  * @param rulesConfig
@@ -127,7 +128,7 @@ class Config {
      * @return {string} rule preset package's name prefix
      */
     static get RULE_PRESET_NAME_PREFIX() {
-        return "textlint-rule-preset";
+        return "textlint-rule-preset-";
     }
 
     /**
@@ -205,6 +206,7 @@ class Config {
      * @constructor
      */
     constructor(options = {}) {
+
         /**
          * @type {string|null} path to .textlintrc file.
          */
@@ -213,6 +215,8 @@ class Config {
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // rule names that are defined in ,textlintrc
+        const moduleResolver = new TextLintModuleResolver(this.constructor, this.rulesBaseDirectory);
+
         /**
          * @type {string[]} rule key list
          * but, plugins's rules are not contained in `rules`
@@ -236,10 +240,7 @@ class Config {
             baseDir: this.rulesBaseDirectory,
             pluginPrefix: this.constructor.PLUGIN_NAME_PREFIX
         });
-        const presetRulesConfig = loadRulesConfigFromPresets(this.presets, {
-            baseDir: this.rulesBaseDirectory,
-            rulePrefix: this.constructor.RULE_NAME_PREFIX
-        });
+        const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = objectAssign({}, presetRulesConfig, pluginRulesConfig, options.rulesConfig);
         /**
          * @type {string[]}

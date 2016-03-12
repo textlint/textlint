@@ -41,7 +41,7 @@ class TextLintEngine {
         /**
          * @type {TextLintModuleResolver}
          */
-        this.moduleResolver = new TextLintModuleResolver(this.config);
+        this.moduleResolver = new TextLintModuleResolver(this.config.constructor, this.config.rulesBaseDirectory);
         this.ruleSet = new RuleSet();
         this.ruleManager = new RuleManager(this.ruleSet);
         // load rule/plugin/processor
@@ -141,9 +141,25 @@ new TextLintEngine({
     }
 
     loadPreset(presetName) {
-        // ignore already defined rule
-        // ignore rules from rulePaths because avoid ReferenceError is that try to require.
+        /*
+         - ignore already defined rule
+         - ignore rules from rulePaths because avoid ReferenceError is that try to require.
+
+         Caution: Rules of preset are defined as following.
+             {
+                "rules": {
+                    "preset-gizmo": {
+                        "ruleA": false
+
+                }
+            }
+
+        It mean that "ruleA" is defined as "preset-gizmo/ruleA"
+
+         */
         const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
+        // Strip **rule** prefix
+        // textlint-rule-preset-gizmo -> preset-gizmo
         const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
         const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, "");
         // ignore plugin's rule

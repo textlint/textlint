@@ -6,11 +6,7 @@ import TextLintModuleResolver from "../src/engine/textlint-module-resolver";
 import Config from "../src/config/config";
 const FIXTURE_DIR = path.join(__dirname, "fixtures", "engine", "textlint-module-resolver");
 const createResolve = (ruleBaseDir) => {
-    const options = ruleBaseDir ? {
-        rulesBaseDirectory: ruleBaseDir
-    } : {};
-    const config = new Config(options);
-    return new TextLintModuleResolver(config);
+    return new TextLintModuleResolver(Config, ruleBaseDir);
 };
 describe("textlint-module-resolver", function () {
     describe("#resolveRulePackageName", function () {
@@ -66,6 +62,25 @@ describe("textlint-module-resolver", function () {
     });
     describe("#resolvePresetPackageName", function () {
         it("should resolve preset module", function () {
+            context("In Configuration", function () {
+                /*
+                {
+                    "rules": {
+                        "preset-gizmo": {
+                            "ruleA": false
+                        }
+                    }
+                }
+                */
+                it("should resolve plugin package name", function () {
+                    const resolver = createResolve();
+                    const shortPkg = resolver.resolvePresetPackageName("preset-jtf-style");
+                    assert.equal(typeof shortPkg, "string");
+                    const long = resolver.resolvePresetPackageName("textlint-rule-preset-jtf-style");
+                    assert.equal(typeof long, "string");
+                    assert.equal(shortPkg, long);
+                });
+            });
             it("should resolve plugin package name", function () {
                 const resolver = createResolve();
                 const shortPkg = resolver.resolvePresetPackageName("jtf-style");
