@@ -33,15 +33,12 @@ export default class TextLintEngine {
          */
         this.textLint = new TextLintCore(this.config);
 
-        // dirty flag
-        this._isChangedLoadingRules = false;
         /**
          * @type {RuleSet} ruleSet is used for linting/fixiing
          */
         this.ruleSet = new RuleSet();
         this.moduleLoader = new TextLintModuleLoader(this.config);
         this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
-            this._isChangedLoadingRules = true;
             this.ruleSet.defineRule(ruleName, ruleCreator);
         });
         this.moduleLoader.on(TextLintModuleLoader.Event.processor, (Processor) => {
