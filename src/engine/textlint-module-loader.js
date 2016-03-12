@@ -1,0 +1,180 @@
+// LICENSE : MIT
+"use strict";
+const EventEmitter = require("events");
+const interopRequire = require("interop-require");
+const debug = require("debug")("textlint:module-loader");
+import {isPluginRuleKey} from "../util/config-util";
+import {loadFromDir} from "./rule-loader";
+import Logger from "../util/logger";
+import TextLintModuleResolver from "./textlint-module-resolver";
+
+/**
+ * create entities from plugin/preset
+ * entities is a array which contain [key, value]
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+ * @param {Object} pluginRules
+ * @param {string} prefixKey
+ * @returns {Array}
+ */
+const createEntities = (pluginRules, prefixKey) => {
+    const entities = [];
+    Object.keys(pluginRules).forEach(ruleId => {
+        const qualifiedRuleId = prefixKey + "/" + ruleId;
+        const ruleCreator = pluginRules[ruleId];
+        entities.push([qualifiedRuleId, ruleCreator]);
+    });
+    return entities;
+};
+export default class TextLintModuleLoader extends EventEmitter {
+    static get Event() {
+        return {
+            rule: "rule",
+            processor: "preset",
+            error: "error"
+        };
+    }
+
+    constructor(config) {
+        super();
+        /**
+         * @type {Config} config is need for static prefix value
+         */
+        this.config = config;
+        /**
+         * @type {TextLintModuleResolver}
+         */
+        this.moduleResolver = new TextLintModuleResolver(this.config.constructor, this.config.rulesBaseDirectory);
+    }
+
+    /**
+     * set up lint rules using {@lint Config} object.
+     * The {@lint Config} object was created with initialized {@link TextLintEngine} (as-known Constructor).
+     * @param {Config} config the config is parsed object
+     */
+    loadFromConfig(config) {
+        debug("config %O", config);
+        // --ruledir
+        if (config.rulePaths) {
+            // load in additional rules
+            config.rulePaths.forEach(rulesDir => {
+                debug("Loading rules from %o", rulesDir);
+                const rules = loadFromDir(rulesDir);
+                Object.keys(rules).forEach(ruleName => {
+                    const entry = [ruleName, rules[ruleName]];
+                    this.emit(TextLintModuleLoader.Event.rule, entry);
+                });
+            });
+        }
+        // --rule
+        if (config.rules) {
+            // load in additional rules
+            config.rules.forEach(ruleName => {
+                this.loadRule(ruleName);
+            });
+        }
+        // --preset
+        if (config.presets) {
+            config.presets.forEach(presetName => {
+                this.loadPreset(presetName);
+            });
+        }
+        // --plugin
+        if (config.plugins) {
+            // load in additional rules from plugin
+            config.plugins.forEach(pluginName => {
+                this.loadPlugin(pluginName);
+            });
+        }
+    }
+
+    /**
+     * load rule from plugin name.
+     * plugin module has `rules` object and define rule with plugin prefix.
+     * @param {string} pluginName
+     */
+    loadPlugin(pluginName) {
+        const pkgPath = this.moduleResolver.resolvePluginPackageName(pluginName);
+        debug("Loading rules from plugin: %s", pkgPath);
+        const plugin = interopRequire(pkgPath);
+        const PLUGIN_NAME_PREFIX = this.config.constructor.PLUGIN_NAME_PREFIX;
+        const prefixMatch = new RegExp("^" + PLUGIN_NAME_PREFIX);
+        const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
+        // Processor plugin doesn't define rules
+        if (plugin.hasOwnProperty("rules")) {
+            const entities = createEntities(plugin.rules, pluginNameWithoutPrefix);
+            entities.forEach(entry => {
+                this.emit(TextLintModuleLoader.Event.rule, entry);
+            });
+        }
+        // register plugin.Processor
+        if (plugin.hasOwnProperty("Processor")) {
+            this.emit(TextLintModuleLoader.Event.processor, plugin.Processor);
+        }
+    }
+
+    loadPreset(presetName) {
+        /*
+         Caution: Rules of preset are defined as following.
+             {
+                "rules": {
+                    "preset-gizmo": {
+                        "ruleA": false
+
+                }
+            }
+
+        It mean that "ruleA" is defined as "preset-gizmo/ruleA"
+
+         */
+        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
+        // Strip **rule** prefix
+        // textlint-rule-preset-gizmo -> preset-gizmo
+        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, "");
+        // ignore plugin's rule
+        if (isPluginRuleKey(presetRuleNameWithoutPrefix)) {
+            Logger.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
+            return;
+        }
+
+        const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
+        debug("Loading rules from preset: %s", pkgPath);
+        const preset = interopRequire(pkgPath);
+        const entities = createEntities(preset.rules, presetRuleNameWithoutPrefix);
+        entities.forEach(entry => {
+            this.emit(TextLintModuleLoader.Event.rule, entry);
+        });
+    }
+
+    /**
+     * load rule file with `ruleName` and define rule.
+     * if rule is not found, then throw ReferenceError.
+     * if already rule is loaded, do not anything.
+     * @param {string} ruleName
+     */
+    loadRule(ruleName) {
+        /*
+           Task
+             - check already define
+             - resolve package name
+             - load package
+             - emit rule
+      */
+        // ignore already defined rule
+        // ignore rules from rulePaths because avoid ReferenceError is that try to require.
+        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
+        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const definedRuleName = ruleName.replace(prefixMatch, "");
+        // ignore plugin's rule
+        if (isPluginRuleKey(definedRuleName)) {
+            Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
+            return;
+        }
+        const pkgPath = this.moduleResolver.resolveRulePackageName(ruleName);
+        debug("Loading rules from %s", pkgPath);
+        const ruleCreator = interopRequire(pkgPath);
+        const ruleEntry = [definedRuleName, ruleCreator];
+        this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
+    }
+}
+

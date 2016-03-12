@@ -92,6 +92,8 @@ const defaultOptions = Object.freeze({
     rulesConfig: {},
     // rule directories
     rulePaths: [],
+    // available extensions
+    // if set the option, should filter by extension.
     extensions: [],
     // formatter-file-name
     // e.g.) stylish.js => set "stylish"

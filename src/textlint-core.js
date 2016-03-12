@@ -30,7 +30,11 @@ export default class TextlintCore {
         ];
     }
 
-    // unstable API
+    /**
+     * unstable API
+     * @param Processor
+     * @private
+     */
     addProcessor(Processor) {
         // add first
         this.processors.unshift(new Processor(this.config));

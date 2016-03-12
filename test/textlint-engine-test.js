@@ -190,7 +190,7 @@ describe("textlint-engine-test", function () {
                 const engine = new TextLintEngine({
                     rulesBaseDirectory: path.join(__dirname, "/fixtures/rules/")
                 });
-                engine.addRule("example-rule");
+                engine.loadRule("example-rule");
                 var ruleNames = engine.ruleSet.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
@@ -200,7 +200,7 @@ describe("textlint-engine-test", function () {
                 const engine = new TextLintEngine({
                     rulesBaseDirectory: path.join(__dirname, "/fixtures/rules/issue81")
                 });
-                engine.addRule("no-default-assign-rule");
+                engine.loadRule("no-default-assign-rule");
                 var ruleNames = engine.ruleSet.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
@@ -225,7 +225,7 @@ describe("textlint-engine-test", function () {
                 rulesBaseDirectory: path.join(__dirname, "/fixtures/rules/")
             });
             var filePath = path.join(__dirname, "fixtures/test.md");
-            engine.addRule("example-rule");
+            engine.loadRule("example-rule");
             var beforeRuleNames = engine.ruleSet.getAllRuleNames();
             return engine.executeOnFiles([filePath]).then(() => {
                 var afterRuleNames = engine.ruleSet.getAllRuleNames();

@@ -1,18 +1,13 @@
 // LICENSE : MIT
 "use strict";
 const Promise = require("bluebird");
-const interopRequire = require("interop-require");
 const createFormatter = require("textlint-formatter");
 const path = require("path");
-const debug = require("debug")("textlint:cli-engine");
-import {isPluginRuleKey} from "./util/config-util";
 import TextLintCore from "./textlint-core";
-import RuleManager from "./engine/rule-manager";
 import RuleSet from "./engine/rule-set";
 import Config from "./config/config";
 import {findFiles} from "./util/find-util";
-import Logger from "./util/logger";
-import TextLintModuleResolver from "./engine/textlint-module-resolver";
+import TextLintModuleLoader from "./engine/textlint-module-loader";
 export default class TextLintEngine {
     /**
      * Process files are wanted to lint.
@@ -37,75 +32,32 @@ export default class TextLintEngine {
          * @type {TextLintCore}
          */
         this.textLint = new TextLintCore(this.config);
+
+        // dirty flag
+        this._isChangedLoadingRules = false;
         /**
-         * @type {TextLintModuleResolver}
+         * @type {RuleSet} ruleSet is used for linting/fixiing
          */
-        this.moduleResolver = new TextLintModuleResolver(this.config.constructor, this.config.rulesBaseDirectory);
         this.ruleSet = new RuleSet();
-        this.ruleManager = new RuleManager(this.ruleSet);
+        this.moduleLoader = new TextLintModuleLoader(this.config);
+        this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
+            this._isChangedLoadingRules = true;
+            this.ruleSet.defineRule(ruleName, ruleCreator);
+        });
+        this.moduleLoader.on(TextLintModuleLoader.Event.processor, (Processor) => {
+            this.textLint.addProcessor(Processor);
+        });
         // load rule/plugin/processor
-        this._setupRules(this.config);
+        this.moduleLoader.loadFromConfig(this.config);
         // execute files that are filtered by availableExtensions.
         this.availableExtensions = this.textLint.processors.reduce((availableExtensions, processor) => {
             const Processor = processor.constructor;
             return availableExtensions.concat(Processor.availableExtensions());
         }, this.config.extensions);
-    }
 
-    /**
-     * set up lint rules using {@lint Config} object.
-     * The {@lint Config} object was created with initialized {@link TextLintEngine} (as-known Constructor).
-     * @param {Config} config the config is parsed object
-     * @private
-     */
-    _setupRules(config) {
-        debug("config %O", config);
-        // --ruledir
-        if (config.rulePaths) {
-            // load in additional rules
-            config.rulePaths.forEach(rulesdir => {
-                debug("Loading rules from %o", rulesdir);
-                this.ruleManager.loadRules(rulesdir);
-            });
-        }
-        // --rule
-        if (config.rules) {
-            // load in additional rules
-            config.rules.forEach(ruleName => {
-                this.loadRule(ruleName);
-            });
-        }
-        // --preset
-        if (config.presets) {
-            config.presets.forEach(presetName => {
-                this.loadPreset(presetName);
-            });
-        }
-        // --plugin
-        if (config.plugins) {
-            // load in additional rules from plugin
-            config.plugins.forEach(pluginName => {
-                const plugin = this.loadPlugin(pluginName);
-                // register plugin.Processor
-                if (plugin.hasOwnProperty("Processor")) {
-                    this.textLint.addProcessor(plugin.Processor);
-                }
-            });
-        }
-        const textlintConfig = config ? config.toJSON() : {};
+        // reset
+        const textlintConfig = this.config ? this.config.toJSON() : {};
         this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
-    }
-
-    /**
-     * add rule to config.rules
-     * if rule already exists, then not added
-     * @param {string} ruleName
-     */
-    addRule(ruleName) {
-        if (Array.isArray(this.config.rules) && this.config.rules.indexOf(ruleName) === -1) {
-            this.config.rules.push(ruleName);
-            this._setupRules(this.config);
-        }
     }
 
     /**
@@ -119,85 +71,19 @@ new TextLintEngine({
         `);
     }
 
-    /**
-     * load rule from plugin name.
-     * plugin module has `rules` object and define rule with plugin prefix.
-     * @param {string} pluginName
-     */
     loadPlugin(pluginName) {
-        // TODO: ignore already loaded plugin
-        const PLUGIN_NAME_PREFIX = this.config.constructor.PLUGIN_NAME_PREFIX;
-        const prefixMatch = new RegExp("^" + PLUGIN_NAME_PREFIX);
-        const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
-        const pkgPath = this.moduleResolver.resolvePluginPackageName(pluginName);
-        debug("Loading rules from plugin: %s", pkgPath);
-        const plugin = interopRequire(pkgPath);
-        // Processor plugin doesn't define rules
-        if (plugin.hasOwnProperty("rules")) {
-            this.ruleManager.importPlugin(plugin.rules, pluginNameWithoutPrefix);
-        }
-        return plugin;
+        this.moduleLoader.loadPlugin(pluginName);
+        return this.ruleSet;
     }
 
     loadPreset(presetName) {
-        /*
-         - ignore already defined rule
-         - ignore rules from rulePaths because avoid ReferenceError is that try to require.
-
-         Caution: Rules of preset are defined as following.
-             {
-                "rules": {
-                    "preset-gizmo": {
-                        "ruleA": false
-
-                }
-            }
-
-        It mean that "ruleA" is defined as "preset-gizmo/ruleA"
-
-         */
-        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
-        // Strip **rule** prefix
-        // textlint-rule-preset-gizmo -> preset-gizmo
-        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
-        const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, "");
-        // ignore plugin's rule
-        if (isPluginRuleKey(presetRuleNameWithoutPrefix)) {
-            Logger.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
-            return;
-        }
-        const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
-        debug("Loading rules from preset: %s", pkgPath);
-        const preset = interopRequire(pkgPath);
-        // Processor plugin doesn't define rules
-        this.ruleManager.importPlugin(preset.rules, presetRuleNameWithoutPrefix);
-        return preset;
+        this.moduleLoader.loadPreset(presetName);
+        return this.ruleSet;
     }
 
-    /**
-     * load rule file with `ruleName` and define rule.
-     * if rule is not found, then throw ReferenceError.
-     * if already rule is loaded, do not anything.
-     * @param {string} ruleName
-     */
     loadRule(ruleName) {
-        // ignore already defined rule
-        // ignore rules from rulePaths because avoid ReferenceError is that try to require.
-        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
-        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
-        const definedRuleName = ruleName.replace(prefixMatch, "");
-        // ignore plugin's rule
-        if (isPluginRuleKey(definedRuleName)) {
-            Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
-            return;
-        }
-        if (this.ruleSet.isDefinedRule(definedRuleName)) {
-            return;
-        }
-        const pkgPath = this.moduleResolver.resolveRulePackageName(ruleName);
-        debug("Loading rules from %s", pkgPath);
-        const ruleCreator = interopRequire(pkgPath);
-        this.ruleSet.defineRule(definedRuleName, ruleCreator);
+        this.moduleLoader.loadRule(ruleName);
+        return this.ruleSet;
     }
 
     /**
@@ -214,6 +100,10 @@ new TextLintEngine({
      * @returns {TextLintResult[]} The results for all files that were linted.
      */
     executeOnFiles(files) {
+        // reset
+        const textlintConfig = this.config ? this.config.toJSON() : {};
+        this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
+
         const targetFiles = findFiles(files, this.availableExtensions);
         const results = targetFiles.map(file => {
             return this.textLint.lintFile(file);
@@ -229,6 +119,10 @@ new TextLintEngine({
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
+        // reset
+        const textlintConfig = this.config ? this.config.toJSON() : {};
+        this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
+
         // filepath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);
         if (actualExt.length === 0) {
