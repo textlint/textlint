@@ -15,9 +15,9 @@ describe("textlint-module-resolver", function () {
             const resolver = createResolve();
             const shortPkg = resolver.resolveRulePackageName("no-todo");
             assert.equal(typeof shortPkg, "string");
-            const long = resolver.resolveRulePackageName("textlint-rule-no-todo");
-            assert.equal(typeof long, "string");
-            assert.equal(shortPkg, long);
+            const longPkg = resolver.resolveRulePackageName("textlint-rule-no-todo");
+            assert.equal(typeof longPkg, "string");
+            assert.equal(shortPkg, longPkg);
         });
         it("should resolve rule file path", function () {
             const resolver = createResolve(FIXTURE_DIR);
@@ -40,9 +40,9 @@ describe("textlint-module-resolver", function () {
                 const resolver = createResolve();
                 const shortPkg = resolver.resolvePluginPackageName("text");
                 assert.equal(typeof shortPkg, "string");
-                const long = resolver.resolvePluginPackageName("textlint-plugin-text");
-                assert.equal(typeof long, "string");
-                assert.equal(shortPkg, long);
+                const longPkg = resolver.resolvePluginPackageName("textlint-plugin-text");
+                assert.equal(typeof longPkg, "string");
+                assert.equal(shortPkg, longPkg);
             });
             it("should resolve plugin file path", function () {
                 const resolver = createResolve(FIXTURE_DIR);
@@ -76,18 +76,18 @@ describe("textlint-module-resolver", function () {
                     const resolver = createResolve();
                     const shortPkg = resolver.resolvePresetPackageName("preset-jtf-style");
                     assert.equal(typeof shortPkg, "string");
-                    const long = resolver.resolvePresetPackageName("textlint-rule-preset-jtf-style");
-                    assert.equal(typeof long, "string");
-                    assert.equal(shortPkg, long);
+                    const longPkg = resolver.resolvePresetPackageName("textlint-rule-preset-jtf-style");
+                    assert.equal(typeof longPkg, "string");
+                    assert.equal(shortPkg, longPkg);
                 });
             });
             it("should resolve plugin package name", function () {
                 const resolver = createResolve();
                 const shortPkg = resolver.resolvePresetPackageName("jtf-style");
                 assert.equal(typeof shortPkg, "string");
-                const long = resolver.resolvePresetPackageName("textlint-rule-preset-jtf-style");
-                assert.equal(typeof long, "string");
-                assert.equal(shortPkg, long);
+                const longPkg = resolver.resolvePresetPackageName("textlint-rule-preset-jtf-style");
+                assert.equal(typeof longPkg, "string");
+                assert.equal(shortPkg, longPkg);
             });
             it("should resolve plugin file path", function () {
                 const resolver = createResolve(FIXTURE_DIR);
