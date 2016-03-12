@@ -1,36 +1,9 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-const RuleFixer = require("../fixer/rule-fixer-commaner");
-const RuleError = require("./rule-error");
-const SeverityLevel = {
-    "none": 0,
-    "info": 0,
-    "warning": 1,
-    "error": 2
-};
-/**
- *
- * @param ruleConfig
- * @returns {number}
- */
-function getSeverity(ruleConfig) {
-    if (ruleConfig == null) {
-        return SeverityLevel.error;
-    }
-    // rule:<true|false>
-    if (typeof ruleConfig === "boolean") {
-        return ruleConfig ? SeverityLevel.error : SeverityLevel.none;
-    }
-    if (ruleConfig.severity) {
-        assert(SeverityLevel[ruleConfig.severity] !== undefined, `please set
-"rule-key": {
-    "severity": "<warning|error>"
-}`);
-        return SeverityLevel[ruleConfig.severity];
-    }
-    return SeverityLevel.error;
-}
+import RuleFixer from "../fixer/rule-fixer-commaner";
+import RuleError from "./rule-error";
+import {SeverityLevel, getSeverity} from "../shared/rule-severity";
 
 /**
  * Rule context object is passed to each rule as `context`
@@ -42,7 +15,7 @@ function getSeverity(ruleConfig) {
  * @returns {*}
  * @constructor
  */
-function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
+export default function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
     Object.defineProperty(this, "id", {value: ruleId});
     Object.defineProperty(this, "config", {value: textLintConfig});
     const severity = getSeverity(ruleConfig);
@@ -73,4 +46,3 @@ function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
     // fixer
     this.fixer = new RuleFixer();
 }
-module.exports = RuleContext;

@@ -34,7 +34,7 @@ export default class TextLintEngine {
         this.textLint = new TextLintCore(this.config);
 
         /**
-         * @type {RuleSet} ruleSet is used for linting/fixiing
+         * @type {RuleSet} ruleSet is used for linting/fixer
          */
         this.ruleSet = new RuleSet();
         this.moduleLoader = new TextLintModuleLoader(this.config);
@@ -131,7 +131,7 @@ new TextLintEngine({
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
-        // filepath or ext
+        // filePath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);
         if (actualExt.length === 0) {
             throw new Error("should specify the extension.\nex) .md");

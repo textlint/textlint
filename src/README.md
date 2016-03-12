@@ -30,3 +30,10 @@ Process file/text wanted to lint/fix
 - task/
 - linter/
 - fixer/
+
+## Shared
+
+These are shared between config and engine and core.
+
+- rule-severity
+- union-syntax
