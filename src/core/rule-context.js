@@ -29,7 +29,7 @@ export default function RuleContext(ruleId, sourceCode, report, textLintConfig, 
         if (error instanceof RuleError) {
             report({ruleId, node, severity, error});
         } else {
-            const level = error.severity || SeverityLevel.info;
+            const level = error.severity || SeverityLevel.error;
             report({ruleId, node, severity: level, error});
         }
     };
