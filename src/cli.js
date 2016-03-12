@@ -95,7 +95,7 @@ const cli = {
         const config = Config.initWithCLIOptions(cliOptions);
         const engine = new TextLintEngine(config);
         // TODO: should indirect access ruleManager
-        if (!engine.ruleManager.hasRuleAtLeastOne()) {
+        if (!engine.hasRuleAtLeastOne()) {
             Logger.log(`
 == Not have rules, textlint do not anything ==
 => How to set rule?
@@ -110,11 +110,11 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
             throwWithoutExperimental("--fix is experimental. use `--experimental --fix`");
             const resultsPromise = text ? engine.fixText(text, stdinFilename) : engine.fixFiles(files);
             return resultsPromise.then(results => {
-                const fixer = new TextLintFixer(results);
-                const output = fixer.formatResults();
+                const fixer = new TextLintFixer();
+                const output = fixer.formatResults(results);
                 printResults(output, cliOptions);
                 // return exit code
-                return fixer.write() ? 0 : 1;
+                return fixer.write(results) ? 0 : 1;
             });
         }
 

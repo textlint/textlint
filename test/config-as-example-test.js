@@ -11,11 +11,17 @@ describe("config-as-example", function () {
         const projectDir = path.dirname(textlintrcPath);
         const dirName = projectDir.split("/").pop();
         it(`test ${dirName}`, function () {
-            const config = Config.initWithAutoLoading({
-                configFile: textlintrcPath,
-                // == node_modules/
-                rulesBaseDirectory: path.join(__dirname, "config-fixtures", dirName, "modules")
-            });
+            let config;
+            try {
+                config = Config.initWithAutoLoading({
+                    configFile: textlintrcPath,
+                    // == node_modules/
+                    rulesBaseDirectory: path.join(__dirname, "config-fixtures", dirName, "modules")
+                });
+            } catch (error) {
+                console.error(`Fail: ${dirName}`);
+                throw error;
+            }
             const expect = require(path.join(projectDir, "expect.json"));
             const actual = config.toJSON();
             Object.keys(expect).forEach(key => {

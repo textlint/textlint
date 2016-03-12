@@ -1,10 +1,8 @@
 // LICENSE : MIT
 "use strict";
 const interopRequire = require("interop-require");
-const tryResolve = require("try-resolve");
 const ObjectAssign = require("object-assign");
 const debug = require("debug")("textlint:plugin-loader");
-const path = require("path");
 export function mapRulesConfig(rulesConfig, pluginName) {
     const mapped = {};
     if (rulesConfig === undefined) {
@@ -16,19 +14,17 @@ export function mapRulesConfig(rulesConfig, pluginName) {
     return mapped;
 }
 // load rulesConfig from plugins
-export default function loadRulesConfigFromPlugins(pluginNames = [], {
-    baseDir = ".",
-    pluginPrefix
-    }) {
+/**
+ *
+ * @param pluginNames
+ * @param {TextLintModuleResolver} moduleResolver
+ * @returns {{}}
+ */
+export default function loadRulesConfigFromPlugins(pluginNames = [], moduleResolver) {
     var pluginRulesConfig = {};
     pluginNames.forEach(pluginName => {
-        const textlintRuleName = `${pluginPrefix}${pluginName}`;
-        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
-        if (!pkgPath) {
-            throw new ReferenceError(`plugin:${ pluginName } is not found.
-Fail to load ${path.join(baseDir, pluginName)}`);
-        }
-        var plugin = interopRequire(pkgPath);
+        const pkgPath = moduleResolver.resolvePluginPackageName(pluginName);
+        const plugin = interopRequire(pkgPath);
         if (!plugin.hasOwnProperty("rulesConfig")) {
             debug(`${pluginName} has not rulesConfig`);
             return;

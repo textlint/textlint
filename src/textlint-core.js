@@ -4,28 +4,24 @@
     textlint-core.js is a class
     textlint.js is a singleton object that is instance of textlint-core.js.
  */
-const Promise = require("bluebird");
 const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
-const SourceCode = require("./rule/source-code");
-const SourceCodeFixer = require("./fixer/source-code-fixer");
-const debug = require("debug")("textlint:core");
-import CoreTask from "./task/textlint-core-task";
-import {assertRuleShape} from "./rule/rule-creator-helper";
-import FixerTask from "./task/fixer-task";
-import LinterTask from "./task/linter-task";
-
+import SourceCode from "./core/source-code";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
+import RuleCreatorSet from "./core/rule-creator-set";
+
+// Linter
+import FixerProcessor from "./fixer/fixer-processor";
+import LinterProcessor from "./linter/linter-processor";
 
 export default class TextlintCore {
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;
-        this.rules = {};
-        this.rulesConfig = {};
+        this.ruleCreatorSet = new RuleCreatorSet();
         // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
         this.processors = [
@@ -34,7 +30,11 @@ export default class TextlintCore {
         ];
     }
 
-    // unstable API
+    /**
+     * unstable API
+     * @param Processor
+     * @private
+     */
     addProcessor(Processor) {
         // add first
         this.processors.unshift(new Processor(this.config));
@@ -47,30 +47,14 @@ export default class TextlintCore {
      * @param {object} [rulesConfig] ruleConfig is object
      */
     setupRules(rules = {}, rulesConfig = {}) {
-        const ignoreDisableRules = (rules) => {
-            const resultRules = Object.create(null);
-            Object.keys(rules).forEach(key => {
-                const ruleCreator = rules[key];
-                assertRuleShape(ruleCreator, key);
-                // "rule-name" : false => disable
-                const ruleConfig = rulesConfig && rulesConfig[key];
-                if (ruleConfig !== false) {
-                    debug("use \"%s\" rule", key);
-                    resultRules[key] = rules[key];
-                }
-
-            });
-            return resultRules;
-        };
-        this.rules = ignoreDisableRules(rules);
-        this.rulesConfig = rulesConfig;
+        this.ruleCreatorSet = new RuleCreatorSet(rules, rulesConfig);
     }
 
     /**
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        // noop
+        this.ruleCreatorSet = new RuleCreatorSet();
     }
 
     _lintByProcessor(processor, text, ext, filePath) {
@@ -85,29 +69,11 @@ export default class TextlintCore {
             ext,
             filePath
         });
-        const task = new LinterTask({
+        const linterProcessor = new LinterProcessor(processor);
+        return linterProcessor.process({
             config: this.config,
-            rules: this.rules,
-            rulesConfig: this.rulesConfig,
+            ruleCreatorSet: this.ruleCreatorSet,
             sourceCode: sourceCode
-        });
-        return new Promise((resolve, reject) => {
-            const messages = [];
-            task.on(CoreTask.events.message, message => {
-                messages.push(message);
-            });
-            task.on(CoreTask.events.error, error => {
-                reject(error);
-            });
-            task.on(CoreTask.events.complete, () => {
-                const result = postProcess(messages, filePath);
-                if (result.filePath == null) {
-                    result.filePath = `<Unkown${ext}>`;
-                }
-                assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
-                resolve(result);
-            });
-            task.process(ast);
         });
     }
 
@@ -173,82 +139,22 @@ export default class TextlintCore {
     }
 
     _fixProcess(processor, text, ext, filePath) {
-        const fixerRules = Object.keys(this.rules).map(ruleName => {
-            return {
-                ruleName,
-                rule: this.rules[ruleName]
-            };
-        }).filter(({rule}) => {
-            return typeof rule.fixer !== "undefined";
-        });
+        assert(processor, `processor is not found for ${ext}`);
         const {preProcess, postProcess} = processor.processor(ext);
-        // messages
-        let resultFilePath = filePath;
-        const applyingMessages = [];
-        const remainingMessages = [];
-        const originalMessages = [];
-        const fixerProcessList = fixerRules.map(({ruleName, rule}) => {
-            return (sourceText) => {
-                // create new SourceCode object
-                const newSourceCode = new SourceCode({
-                    text: sourceText,
-                    ast: preProcess(sourceText),
-                    filePath,
-                    ext
-                });
-                // create new Task
-                const task = new FixerTask({
-                    config: this.config,
-                    // { ruleName : rule }
-                    rules: {[ruleName]: rule},
-                    rulesConfig: this.rulesConfig,
-                    sourceCode: newSourceCode
-                });
-                return new Promise((resolve, reject) => {
-                    const messages = [];
-                    task.on(CoreTask.events.message, message => {
-                        messages.push(message);
-                    });
-                    task.on(CoreTask.events.error, error => {
-                        reject(error);
-                    });
-                    task.on(CoreTask.events.complete, () => {
-                        const result = postProcess(messages, filePath);
-                        resultFilePath = result.filePath;
-                        const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);
-                        // add messages
-                        Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
-                        Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
-                        Array.prototype.push.apply(originalMessages, applied.messages);
-                        // if not fixed, still use current sourceText
-                        if (!applied.fixed) {
-                            return resolve(sourceText);
-                        }
-                        // if fixed, use fixed text at next
-                        resolve(applied.output);
-                    });
-                    task.process(newSourceCode.ast);
-                });
-            };
+        assert(typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implement {preProcess, postProcess}");
+        const ast = preProcess(text, filePath);
+        const sourceCode = new SourceCode({
+            text,
+            ast,
+            ext,
+            filePath
         });
-
-        const promiseTask = fixerProcessList.reduce((promise, fixerProcess) => {
-            return promise.then((sourceText) => {
-                return fixerProcess(sourceText);
-            });
-        }, Promise.resolve(text));
-
-        return promiseTask.then(output => {
-            debug(`Finish Processing: ${resultFilePath}`);
-            debug(`applyingMessages: ${applyingMessages.length}`);
-            debug(`remainingMessages: ${remainingMessages.length}`);
-            return {
-                filePath: resultFilePath,
-                output,
-                originalMessages,
-                applyingMessages,
-                remainingMessages
-            };
+        const fixerProcessor = new FixerProcessor(processor);
+        return fixerProcessor.process({
+            config: this.config,
+            ruleCreatorSet: this.ruleCreatorSet,
+            sourceCode: sourceCode
         });
     }
 }

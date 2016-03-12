@@ -2,9 +2,9 @@
 "use strict";
 const EventEmitter = require("events");
 const TraverseController = require("txt-ast-traverse").Controller;
-const RuleError = require("./../rule/rule-error");
 const PromiseEventEmitter = require("carrack");
-const SourceLocation = require("./../rule/source-location");
+import RuleError from "../core/rule-error";
+import SourceLocation from "../core/source-location";
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 // Promised EventEmitter
@@ -28,52 +28,52 @@ export default class TextLintCoreTask extends EventEmitter {
         };
     }
 
-    constructor({config, rules, rulesConfig, sourceCode}) {
+    constructor({config, ruleCreatorSet, sourceCode}) {
         super();
         this.config = config;
-        this.rules = rules;
-        this.rulesConfig = rulesConfig;
+        this.ruleCreatorSet = ruleCreatorSet;
         this.sourceCode = sourceCode;
-        this.sourceLocation = new SourceLocation(this.sourceCode);
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
-    /**
-     * push new RuleError to results
-     * @param {string} ruleId
-     * @param {TxtNode} node
-     * @param {number} severity
-     * @param {RuleError|any} error error is a RuleError instance or any data
-     */
-    report({ruleId, node, severity, error}) {
-        debug("pushReport %s", error);
-        const {line, column, fix} = this.sourceLocation.adjust(node, error);
-        // add TextLintMessage
-        const message = {
-            ruleId: ruleId,
-            message: error.message,
-            // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-            line: line,        // start with 1(1-based line number)
-            column: column + 1,// start with 1(1-based column number)
-            severity: severity // it's for compatible ESLint formatter
+    createReporter(sourceCode) {
+        const sourceLocation = new SourceLocation(sourceCode);
+        /**
+         * push new RuleError to results
+         * @param {string} ruleId
+         * @param {TxtNode} node
+         * @param {number} severity
+         * @param {RuleError|any} error error is a RuleError instance or any data
+         */
+        return ({ruleId, node, severity, error}) => {
+            debug("pushReport %s", error);
+            const {line, column, fix} = sourceLocation.adjust(node, error);
+            // add TextLintMessage
+            const message = {
+                ruleId: ruleId,
+                message: error.message,
+                // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
+                line: line,        // start with 1(1-based line number)
+                column: column + 1,// start with 1(1-based column number)
+                severity: severity // it's for compatible ESLint formatter
+            };
+            if (fix) {
+                message.fix = fix;
+            }
+            if (!(error instanceof RuleError)) {
+                // `error` is a any data.
+                const data = error;
+                message.data = data;
+            }
+            this.emit(TextLintCoreTask.events.message, message);
         };
-        if (fix) {
-            message.fix = fix;
-        }
-        if (!(error instanceof RuleError)) {
-            // `error` is a any data.
-            const data = error;
-            message.data = data;
-        }
-        this.emit(TextLintCoreTask.events.message, message);
     }
 
     /**
-     * Process ast tree.
+     * start process and emitting events.
      * You can listen message by `task.on("message", message => {})`
-     * @param {TxtNode} astTree astTree is compatible TxtNode tree.
      */
-    process(astTree) {
+    start() {
         const promiseQueue = [];
         const listenerCount = (typeof this.ruleTypeEmitter.listenerCount !== "undefined")
             ? this.ruleTypeEmitter.listenerCount.bind(this.ruleTypeEmitter) // Node 4.x >=
@@ -82,7 +82,7 @@ export default class TextLintCoreTask extends EventEmitter {
         this.emit(TextLintCoreTask.events.start);
 
         const ruleTypeEmitter = this.ruleTypeEmitter;
-        traverseController.traverse(astTree, {
+        traverseController.traverse(this.sourceCode.ast, {
             enter(node, parent) {
                 const type = node.type;
                 Object.defineProperty(node, "parent", {value: parent});

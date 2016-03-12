@@ -1,13 +1,13 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("power-assert");
-var path = require("path");
-var deepClone = require("clone");
-var textLint = require("../src/").textlint;
-var loadRules = require("../src/rule/load-rules");
-var Config = require("../src/config/config");
-var RuleContext = require("../src/rule/rule-context");
-var rules = loadRules(__dirname + "/fixtures/rules");
+const assert = require("power-assert");
+const path = require("path");
+const deepClone = require("clone");
+const textLint = require("../src/").textlint;
+import {loadFromDir} from "../src/engine/rule-loader";
+import Config from "../src/config/config";
+import RuleContext from "../src/core/rule-context";
+const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
 describe("textlint-test", function () {
     beforeEach(function () {
         // This rule found `Str` Node then occur error
@@ -19,7 +19,7 @@ describe("textlint-test", function () {
     describe("#setupRules", function () {
         context("when pass only rules object", function () {
             it("should pass RuleContext instance to Rule function", function () {
-                var rule = function (context, config) {
+                const rule = function (context, config) {
                     assert(context instanceof RuleContext);
                     assert.strictEqual(context.id, "rule-name");
                     assert.strictEqual(config, undefined);
@@ -35,7 +35,7 @@ describe("textlint-test", function () {
                 var ruleConfig = {
                     "key": "value"
                 };
-                var rule = function (context, config) {
+                const rule = function (context, config) {
                     assert(context instanceof RuleContext);
                     assert.equal(context.id, "rule-name");
                     assert.deepEqual(config, ruleConfig);
@@ -54,7 +54,7 @@ describe("textlint-test", function () {
                 textLint.config = new Config({
                     configFile: configFile
                 });
-                var rule = function (context, config) {
+                const rule = (context, config) => {
                     assert(context instanceof RuleContext);
                     assert(context.config instanceof Config);
                     assert.equal(context.config.configFile, configFile);

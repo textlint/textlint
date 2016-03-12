@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import CoreTask from "./textlint-core-task";
-import RuleContext from "./../rule/rule-context";
+import RuleContext from "../core/rule-context";
 import timing from "./../util/timing";
-import {getFixer} from "../rule/rule-creator-helper";
+import {getFixer} from "../core/rule-creator-helper";
 export default class TextLintCoreTask extends CoreTask {
     constructor(...args) {
         super(...args);
@@ -15,12 +15,12 @@ export default class TextLintCoreTask extends CoreTask {
      * @private
      */
     _setupRuleCreatorListener() {
-        const rules = this.rules;
+        const rules = this.ruleCreatorSet.rules;
+        const rulesConfig = this.ruleCreatorSet.rulesConfig;
         const config = this.config;
-        const rulesConfig = this.rulesConfig;
         const textLintConfig = config;
         const sourceCode = this.sourceCode;
-        const report = this.report.bind(this);
+        const report = this.createReporter(sourceCode);
         Object.keys(rules).forEach(key => {
             const ruleCreator = rules[key];
             const ruleConfig = rulesConfig[key];

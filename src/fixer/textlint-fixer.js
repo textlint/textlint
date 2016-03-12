@@ -1,5 +1,5 @@
 import * as fs from "fs";
-
+import format from "./formatters/compats";
 /**
  * @param {TextLintResult} result
  */
@@ -7,43 +7,6 @@ function overWriteResult(result) {
     const targetFilePath = result.filePath;
     const output = result.output;
     fs.writeFileSync(targetFilePath, output, "utf-8");
-}
-function getMessageType(message) {
-    if (message.fatal || message.severity === 2) {
-        return "Error";
-    } else {
-        return "Warning";
-    }
-}
-function format(results) {
-
-    let output = "";
-    let total = 0;
-
-    results.forEach(result => {
-
-        const messages = result.applyingMessages;
-        total += messages.length;
-
-        messages.forEach(message => {
-            output += "Fixed✔ ";
-            output += `${result.filePath}: `;
-            output += `line ${message.line || 0}`;
-            output += `, col ${message.column || 0}`;
-            output += `, ${getMessageType(message)}`;
-            output += ` - ${message.message}`;
-            output += message.ruleId ? ` (${message.ruleId})` : "";
-            output += "\n";
-
-        });
-
-    });
-
-    if (total > 0) {
-        output += `\n\nFixed ${total} problem${total !== 1 ? "s" : ""}`;
-    }
-
-    return output;
 }
 export default class TextLintFixer {
     /**
@@ -54,12 +17,12 @@ export default class TextLintFixer {
         this.results = results;
     }
 
-    formatResults() {
-        return format(this.results);
+    formatResults(fixResults) {
+        return format(fixResults);
     }
 
-    write() {
-        this.results.forEach(overWriteResult);
+    write(textFixMessages) {
+        textFixMessages.forEach(overWriteResult);
         return true;
     }
 }
