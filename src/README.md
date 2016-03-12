@@ -26,8 +26,9 @@ Engine-->CLI: output
     
 ## Engine
 
-Process files are wanted to lint/fix.
+Process file**s** are wanted to lint/fix and prepare configuration of rules and plugins.
 
+- engine/ directory
 - textlint-engine.js
 - rule-manager.js
 - textlint-module-resolver.js
@@ -39,6 +40,7 @@ Don't shared between engine and core.
 
 Process file/text wanted to lint/fix
 
+- `core/` directory
 - textlint-core.js
 - source-code.js
 - rule-creator-set.js
