@@ -1,5 +1,7 @@
 # Creating fixable rule
 
+## Status: **experimental** :construction:
+
 textlint has `linter` and also has `fixer`.
 
 ```js
@@ -58,11 +60,10 @@ const reporter = (context) => {
             const index = text.search(matchRegexp);
             const length = "fix".length;
             const replace = fixer.replaceTextRange([index, index + length], "fixed");
-            report(node, {
-                message: "Replaced ",
+            report(node, new RuleError("Replaced", {
                 // "You fix this"
                 //      ^ index
-                column: index, 
+                index: index, 
                 // "You fix this"
                 //      ^^^
                 //     fixed 
@@ -94,7 +95,38 @@ Best practices for fixes:
 1. Make fixes that are as small as possible. Anything more than a single character is risky and could prevent other, simpler fixes from being made.
 2. Make one fix per message.
 
-Via [Documentation - ESLint - Pluggable JavaScript linter](http://eslint.org/docs/developer-guide/working-with-rules#applying-fixes "Documentation - ESLint - Pluggable JavaScript linter")
+## Publishing
+
+You can publish fixable rule to npm that is the same way of a [rule](./rule.md)
+
+Be careful to following points.
+
+### `fixable` feature is newer
+
+Old `textlint` not support fixable feature, so old `textlint` don't understand `fixable`.
+As a result, old `textlint` simply throw error.
+
+> Error: Definition for rule 'rule-name' was not found.
+
+We recommended that add `peerDependencies` to `package.json`
+
+```
+  "peerDependencies": {
+    "textlint": ">= 5.5.0"
+  }
+```
+
+### Display fixable or not
+
+If your textlint's rule is *fixable*, display "this rule is fixable!".
+
+We have *fixable* rule badge and use it!
+
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+
+```markdown
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+```
 
 ## Terms
 
