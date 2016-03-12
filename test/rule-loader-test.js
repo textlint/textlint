@@ -4,7 +4,7 @@ const path = require("path");
 import assert from "power-assert";
 import {loadFromDir} from "../src/engine/rule-loader";
 import {assertRuleShape} from "../src/rule/rule-creator-helper";
-const fixtureDir = path.join(__dirname, "fixtures", "rule-loader");
+const fixtureDir = path.join(__dirname, "fixtures", "engine", "rule-loader");
 describe("engine/rule-loader", function () {
     it("should return object", function () {
         const rules = loadFromDir(fixtureDir);
