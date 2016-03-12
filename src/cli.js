@@ -5,10 +5,11 @@ const fs = require("fs");
 const path = require("path");
 const debug = require("debug")("textlint:cli");
 const mkdirp = require("mkdirp");
-const options = require("./options");
-const TextLintEngine = require("./textlint-engine");
-const Config = require("./config/config");
-const configInit = require("./config/config-initializer");
+import options from "./options";
+import TextLintEngine from "./textlint-engine";
+import TextFixEngine from "./textfix-engine";
+import Config from "./config/config";
+import configInit from "./config/config-initializer";
 import TextLintFixer from "./fixer/textlint-fixer";
 import {throwWithoutExperimental} from "./util/throw-log";
 import Logger from "./util/logger";
@@ -18,6 +19,12 @@ import Logger from "./util/logger";
  processing role is cli-engine.js.
  @see cli-engine.js
  */
+
+/** @typedef {Object} TextLintFormatterOption
+ *  @property {string} formatterName
+ *  @property {boolean} noColor
+ */
+
 /**
  * Print results of lining text.
  * @param {string} output the output text which is formatted by {@link TextLintEngine.formatResults}
@@ -93,9 +100,9 @@ const cli = {
      */
     executeWithOptions(cliOptions, files, text, stdinFilename){
         const config = Config.initWithCLIOptions(cliOptions);
-        const engine = new TextLintEngine(config);
+        const lintEngine = new TextLintEngine(config);
         // TODO: should indirect access ruleManager
-        if (!engine.hasRuleAtLeastOne()) {
+        if (!lintEngine.hasRuleAtLeastOne()) {
             Logger.log(`
 == Not have rules, textlint do not anything ==
 => How to set rule?
@@ -108,21 +115,23 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
         if (cliOptions.fix) {
             // --fix
             throwWithoutExperimental("--fix is experimental. use `--experimental --fix`");
-            const resultsPromise = text ? engine.fixText(text, stdinFilename) : engine.fixFiles(files);
+            const fixEngine = new TextFixEngine(config);
+            const resultsPromise = text ? fixEngine.executeOnText(text, stdinFilename)
+                : fixEngine.executeOnFiles(files);
             return resultsPromise.then(results => {
                 const fixer = new TextLintFixer();
-                const output = fixer.formatResults(results);
+                const output = fixEngine.formatResults(results);
                 printResults(output, cliOptions);
                 // return exit code
                 return fixer.write(results) ? 0 : 1;
             });
         }
 
-        const resultsPromise = text ? engine.executeOnText(text, stdinFilename) : engine.executeOnFiles(files);
+        const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
         return resultsPromise.then(results => {
-            const output = engine.formatResults(results);
+            const output = lintEngine.formatResults(results);
             if (printResults(output, cliOptions)) {
-                return engine.isErrorResults(results) ? 1 : 0;
+                return lintEngine.isErrorResults(results) ? 1 : 0;
             } else {
                 return 1;
             }

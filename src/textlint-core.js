@@ -17,6 +17,9 @@ import RuleCreatorSet from "./core/rule-creator-set";
 import FixerProcessor from "./fixer/fixer-processor";
 import LinterProcessor from "./linter/linter-processor";
 
+/**
+ * @class {TextlintCore}
+ */
 export default class TextlintCore {
     constructor(config = {}) {
         // this.config often is undefined.
@@ -42,7 +45,7 @@ export default class TextlintCore {
 
     /**
      * Register rules to EventEmitter.
-     * if want to release rules, please call {@link this.resetRules}.
+     * if want to release rules, please call {@link resetRules}.
      * @param {object} rules rule objects array
      * @param {object} [rulesConfig] ruleConfig is object
      */
@@ -117,7 +120,7 @@ export default class TextlintCore {
     /**
      * fix file and return fix result object
      * @param {string} filePath
-     * @returns {TextLintFixResult}
+     * @returns {Promise.<TextLintFixResult>}
      */
     fixFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
@@ -131,13 +134,22 @@ export default class TextlintCore {
      * fix texts and return fix result object
      * @param {string} text
      * @param {string} ext
-     * @returns {TextLintFixResult}
+     * @returns {Promise.<TextLintFixResult>}
      */
     fixText(text, ext = ".txt") {
         const processor = getProcessorMatchExtension(this.processors, ext);
         return this._fixProcess(processor, text, ext);
     }
 
+    /**
+     * process text and return {Promise.<TextLintFixResult>}
+     * @param processor
+     * @param text
+     * @param ext
+     * @param filePath
+     * @returns {Promise.<TextLintFixResult>}
+     * @private
+     */
     _fixProcess(processor, text, ext, filePath) {
         assert(processor, `processor is not found for ${ext}`);
         const {preProcess, postProcess} = processor.processor(ext);

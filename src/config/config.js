@@ -97,7 +97,7 @@ const defaultOptions = Object.freeze({
     extensions: [],
     // formatter-file-name
     // e.g.) stylish.js => set "stylish"
-    formatterName: "stylish",
+    formatterName: undefined,
     // --no-color
     color: true
 });
