@@ -7,7 +7,7 @@ import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
-import TextLintModuleResolver from "../engine/textlint-module-resolver";
+import TextLintModuleResolver from "../rule/textlint-module-resolver";
 /**
  * Get rule keys from `.textlintrc` config object.
  * @param rulesConfig
