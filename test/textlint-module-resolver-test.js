@@ -11,7 +11,6 @@ const createResolve = (ruleBaseDir) => {
 describe("textlint-module-resolver", function () {
     describe("#resolveRulePackageName", function () {
         it("should resolve rule package name", function () {
-            // TODO: should test not start with textlint-rule-*, but it is textlint module.
             const resolver = createResolve();
             const shortPkg = resolver.resolveRulePackageName("no-todo");
             assert.equal(typeof shortPkg, "string");
