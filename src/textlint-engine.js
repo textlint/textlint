@@ -8,6 +8,7 @@ import RuleSet from "./engine/rule-set";
 import Config from "./config/config";
 import {findFiles} from "./util/find-util";
 import TextLintModuleLoader from "./engine/textlint-module-loader";
+import {SeverityLevel} from "./shared/rule-severity";
 export default class TextLintEngine {
     /**
      * Process files are wanted to lint.
@@ -194,7 +195,7 @@ new TextLintEngine({
      * @returns {boolean} Whether or not the message is an error message.
      */
     isErrorMessage(message) {
-        return message.severity === 2;
+        return message.severity === SeverityLevel.error;
     }
 
     /**
