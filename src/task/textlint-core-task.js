@@ -2,9 +2,9 @@
 "use strict";
 const EventEmitter = require("events");
 const TraverseController = require("txt-ast-traverse").Controller;
-const RuleError = require("./../rule/rule-error");
 const PromiseEventEmitter = require("carrack");
-const SourceLocation = require("./../rule/source-location");
+import RuleError from "../core/rule-error";
+import SourceLocation from "../core/source-location";
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 // Promised EventEmitter

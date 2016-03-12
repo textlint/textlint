@@ -2,7 +2,7 @@
 "use strict";
 import path from "path";
 import {TextLintCore, TextLintEngine} from "../src/index";
-import RuleContext from "../src/rule/rule-context";
+import RuleContext from "../src/core/rule-context";
 import assert from "power-assert";
 describe("Fixer Rule", function () {
     it("should context and receive options", function () {

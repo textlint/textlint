@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import assert from "power-assert";
-import SourceLocation from "../src/rule/source-location";
-import RuleError from "../src/rule/rule-error";
+import SourceLocation from "../src/core/source-location";
+import RuleError from "../src/core/rule-error";
 import createDummySourceCode from "./util/dummy-source-code";
 import {_logger} from "../src";
 const sourceCode = createDummySourceCode();

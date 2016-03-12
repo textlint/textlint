@@ -7,11 +7,11 @@
 const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
-const SourceCode = require("./rule/source-code");
+import SourceCode from "./core/source-code";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
-import RuleCreatorSet from "./rule/rule-creator-set";
+import RuleCreatorSet from "./core/rule-creator-set";
 
 // Linter
 import FixerProcessor from "./fixer/fixer-processor";

@@ -8,7 +8,7 @@ import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";
 import fs from "fs";
 import {parse} from "markdown-to-ast";
 import SourceCodeFixer from "../src/fixer/source-code-fixer";
-import SourceCode from "../src/rule/source-code";
+import SourceCode from "../src/core/source-code";
 describe("textlint-fixer", function () {
     context("#fixText", function () {
         it("should return text added and replaced", function () {

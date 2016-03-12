@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import CoreTask from "./textlint-core-task";
-import RuleContext from "./../rule/rule-context";
+import RuleContext from "../core/rule-context";
 import timing from "./../util/timing";
-import {getLinter} from "../rule/rule-creator-helper";
+import {getLinter} from "../core/rule-creator-helper";
 export default class TextLintCoreTask extends CoreTask {
     constructor(...args) {
         super(...args);

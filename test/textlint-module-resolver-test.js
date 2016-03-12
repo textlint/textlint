@@ -2,7 +2,7 @@
 "use strict";
 const path = require("path");
 import assert from "power-assert";
-import TextLintModuleResolver from "../src/rule/textlint-module-resolver";
+import TextLintModuleResolver from "../src/engine/textlint-module-resolver";
 import Config from "../src/config/config";
 const FIXTURE_DIR = path.join(__dirname, "fixtures", "engine", "textlint-module-resolver");
 const createResolve = (ruleBaseDir) => {

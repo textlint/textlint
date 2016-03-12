@@ -12,7 +12,7 @@ import RuleSet from "./engine/rule-set";
 import Config from "./config/config";
 import {findFiles} from "./util/find-util";
 import Logger from "./util/logger";
-import TextLintModuleResolver from "./rule/textlint-module-resolver";
+import TextLintModuleResolver from "./engine/textlint-module-resolver";
 export default class TextLintEngine {
     /**
      * Process files are wanted to lint.

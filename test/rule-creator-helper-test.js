@@ -8,7 +8,7 @@ import {
     getFixer,
     isRuleModule,
     assertRuleShape
-}from "../src/rule/rule-creator-helper";
+}from "../src/core/rule-creator-helper";
 import FixerRule from "./fixtures/rule-creator-helper/fixer";
 import FixerOnlyRule from "./fixtures/rule-creator-helper/fixer-only-is-bad";
 import LinterRule from "./fixtures/rule-creator-helper/linter";

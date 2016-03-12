@@ -3,7 +3,7 @@
 const debug = require("debug")("textlint:fixer-processor");
 import assert from "assert";
 import FixerTask from "../task/fixer-task";
-import SourceCode from "../rule/source-code";
+import SourceCode from "../core/source-code";
 import SourceCodeFixer from "../fixer/source-code-fixer";
 import TaskRunner from "../task/task-runner";
 export default class FixerProcessor {
