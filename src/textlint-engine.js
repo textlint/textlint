@@ -48,6 +48,7 @@ export default class TextLintEngine {
         // load rule/plugin/processor
         this.moduleLoader.loadFromConfig(this.config);
         // execute files that are filtered by availableExtensions.
+        // TODO: it very hackable way, should be fixed
         this.availableExtensions = this.textLint.processors.reduce((availableExtensions, processor) => {
             const Processor = processor.constructor;
             return availableExtensions.concat(Processor.availableExtensions());
