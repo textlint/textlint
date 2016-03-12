@@ -168,9 +168,6 @@ new TextLintEngine({
             return;
         }
         const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
-        if (!pkgPath) {
-            throw new ReferenceError(`preset: ${ presetRuleNameWithoutPrefix } is not found`);
-        }
         debug("Loading rules from preset: %s", pkgPath);
         const preset = interopRequire(pkgPath);
         // Processor plugin doesn't define rules
@@ -198,12 +195,7 @@ new TextLintEngine({
         if (this.ruleSet.isDefinedRule(definedRuleName)) {
             return;
         }
-        const baseDir = this.config.rulesBaseDirectory || "";
-        const textlintRuleName = `${RULE_NAME_PREFIX}${ ruleName }`;
-        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, ruleName));
-        if (!pkgPath) {
-            throw new ReferenceError(`rule: ${ ruleName } is not found`);
-        }
+        const pkgPath = this.moduleResolver.resolveRulePackageName(ruleName);
         debug("Loading rules from %s", pkgPath);
         const ruleCreator = interopRequire(pkgPath);
         this.ruleSet.defineRule(definedRuleName, ruleCreator);
