@@ -16,7 +16,7 @@ import TextLintModuleResolver from "./textlint-module-resolver";
  * @param {string} prefixKey
  * @returns {Array}
  */
-const createEntities = (pluginRules, prefixKey) => {
+export const createEntities = (pluginRules, prefixKey) => {
     const entities = [];
     Object.keys(pluginRules).forEach(ruleId => {
         const qualifiedRuleId = prefixKey + "/" + ruleId;
