@@ -54,10 +54,8 @@ export default class TextLintEngine {
             const Processor = processor.constructor;
             return availableExtensions.concat(Processor.availableExtensions());
         }, this.config.extensions);
-
-        // reset
-        const textlintConfig = this.config ? this.config.toJSON() : {};
-        this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
+        // set settings to textlint core
+        this._setupRules();
     }
 
     /**
@@ -71,19 +69,40 @@ new TextLintEngine({
         `);
     }
 
+    /**
+     * load plugin manually
+     * Note: it high cost, please use config
+     * @param {string} pluginName
+     */
     loadPlugin(pluginName) {
         this.moduleLoader.loadPlugin(pluginName);
-        return this.ruleSet;
+        this._setupRules();
     }
 
+    /**
+     * load plugin manually
+     * Note: it high cost, please use config
+     * @param {string} presetName
+     */
     loadPreset(presetName) {
         this.moduleLoader.loadPreset(presetName);
-        return this.ruleSet;
+        this._setupRules();
     }
 
+    /**
+     * load plugin manually
+     * Note: it high cost, please use config
+     * @param {string} ruleName
+     */
     loadRule(ruleName) {
         this.moduleLoader.loadRule(ruleName);
-        return this.ruleSet;
+        this._setupRules();
+    }
+
+    _setupRules() {
+        // reset
+        const textlintConfig = this.config ? this.config.toJSON() : {};
+        this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
     }
 
     /**
@@ -100,10 +119,6 @@ new TextLintEngine({
      * @returns {TextLintResult[]} The results for all files that were linted.
      */
     executeOnFiles(files) {
-        // reset
-        const textlintConfig = this.config ? this.config.toJSON() : {};
-        this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
-
         const targetFiles = findFiles(files, this.availableExtensions);
         const results = targetFiles.map(file => {
             return this.textLint.lintFile(file);
@@ -119,10 +134,6 @@ new TextLintEngine({
      * @returns {TextLintResult[]}
      */
     executeOnText(text, ext = ".txt") {
-        // reset
-        const textlintConfig = this.config ? this.config.toJSON() : {};
-        this.textLint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
-
         // filepath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);
         if (actualExt.length === 0) {
