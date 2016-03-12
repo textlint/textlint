@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("power-assert");
-var TextLintEngine = require("../src/").TextLintEngine;
-var rulesDir = __dirname + "/fixtures/rules";
-var path = require("path");
+const assert = require("power-assert");
+const path = require("path");
+const TextLintEngine = require("../src/").TextLintEngine;
+const rulesDir = path.join(__dirname, "fixtures/rules");
 describe("textlint-engine-test", function () {
     describe("Constructor", function () {
         context("when no-args", function () {

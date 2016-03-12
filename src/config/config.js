@@ -2,7 +2,7 @@
 "use strict";
 const objectAssign = require("object-assign");
 const concat = require("unique-concat");
-const loadConfig = require("./config-loader");
+import loadConfig from "./config-loader";
 import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
