@@ -4,15 +4,16 @@ const assert = require("power-assert");
 const cli = require("../src/").cli;
 const path = require("path");
 const spawnSync = require("child_process").spawnSync;
-const originLog = console.log;
+import Logger from "../src/util/logger";
+const originLog = Logger.log;
 describe("cli-test", function () {
     beforeEach(function () {
-        console.log = function mockLog() {
+        Logger.log = function mockLog() {
             // mock console API
         };
     });
     afterEach(function () {
-        console.log = originLog;
+        Logger.log = originLog;
     });
     context("when pass linting", function () {
         it("should return error when text with incorrect quotes is passed as argument", function () {
@@ -42,11 +43,118 @@ describe("cli-test", function () {
             });
         });
     });
+    context("When run with --rule", function () {
+        it("should lint the file with long name", function (done) {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const ruleModuleName = "textlint-rule-no-todo";
+            cli.execute(`${targetFile} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+                done();
+            });
+        });
+        it("should lint the file with short name", function (done) {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const ruleModuleName = "no-todo";
+            cli.execute(`${targetFile} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+                done();
+            });
+        });
+    });
+    context("When run with --preset", function () {
+        it("should lint the file with long name", function (done) {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const ruleModuleName = "textlint-rule-preset-jtf-style";
+            cli.execute(`${targetFile} --preset ${ruleModuleName}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+                done();
+            });
+        });
+        it("should lint the file with middle name", function (done) {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const ruleModuleName = "preset-jtf-style";
+            cli.execute(`${targetFile} --preset ${ruleModuleName}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+                done();
+            });
+        });
+        it("should lint the file with long name", function (done) {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const ruleModuleName = "jtf-style";
+            cli.execute(`${targetFile} --preset ${ruleModuleName}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+                done();
+            });
+        });
+    });
+
+    context("When run with --preset", function () {
+        it("should lint the file with long name", function (done) {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const longName = "textlint-plugin-html";
+            const ruleModuleName = "no-todo";
+            cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+                done();
+            });
+        });
+        it("should lint the file with long name", function (done) {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const shortName = "html";
+            const ruleModuleName = "no-todo";
+            cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+                done();
+            });
+        });
+    });
     context("When run with --fix", function () {
         context("when not set rules", function () {
             it("show suggestion message from FAQ", function (done) {
                 let isCalled = false;
-                console.log = function mockLog(message) {
+                Logger.log = function mockLog(message) {
                     isCalled = true;
                     assert(message.length > 0);
                 };
@@ -71,7 +179,7 @@ describe("cli-test", function () {
     });
     context("When not set rules", function () {
         it("show suggestion message from FAQ", function (done) {
-            console.log = function mockLog(message) {
+            Logger.log = function mockLog(message) {
                 assert(message.length > 0);
             };
             var targetFile = path.join(__dirname, "fixtures/test.md");
