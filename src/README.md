@@ -2,10 +2,10 @@
 
 ## Overview
 
-![overview](https://monosnap.com/file/5YipQ1aokyShGwTvqTu35lY5rEOCTX.png)
+![overview](https://monosnap.com/file/7XRjyiTviKHE4t4CAeYzh6UuBc3zGp.png)
 
 ```
-title: Archtecture
+title: Architecture
 CLI->Engine: file*s*
 Engine->Core: file
 Core->Task: AST
