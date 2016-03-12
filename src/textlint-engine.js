@@ -3,7 +3,6 @@
 const Promise = require("bluebird");
 const interopRequire = require("interop-require");
 const createFormatter = require("textlint-formatter");
-const tryResolve = require("try-resolve");
 const path = require("path");
 const debug = require("debug")("textlint:cli-engine");
 import {isPluginRuleKey} from "./util/config-util";
