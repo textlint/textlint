@@ -68,7 +68,7 @@ const reporter = (context) => {
                 //      ^^^
                 //     fixed 
                 fix: replace
-            });
+            }));
         }
     };
 };
@@ -104,7 +104,7 @@ Be careful to following points.
 ### `fixable` feature is newer
 
 Old `textlint` not support fixable feature, so old `textlint` don't understand `fixable`.
-As a result, old `textlint` simply throw error.
+As a result, old `textlint` throw error.
 
 > Error: Definition for rule 'rule-name' was not found.
 
