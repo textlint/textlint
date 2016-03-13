@@ -1,20 +1,28 @@
-import * as fs from "fs";
-import format from "./formatters/compats";
+const Promise = require("bluebird");
+const fs = require("fs");
 /**
  * @param {TextLintResult} result
  */
 function overWriteResult(result) {
-    const targetFilePath = result.filePath;
-    const output = result.output;
-    fs.writeFileSync(targetFilePath, output, "utf-8");
+    return new Promise((resolve, reject) => {
+        const targetFilePath = result.filePath;
+        const output = result.output;
+        fs.writeFile(targetFilePath, output, (error, result) => {
+            if (error) {
+                return reject(error);
+            }
+            resolve(result);
+        });
+    });
 }
 export default class TextLintFixer {
-    formatResults(fixResults) {
-        return format(fixResults);
-    }
-
+    /**
+     * write output to each files and return promise
+     * @param textFixMessages
+     * @returns {Promise}
+     */
     write(textFixMessages) {
-        textFixMessages.forEach(overWriteResult);
-        return true;
+        const promises = textFixMessages.map(overWriteResult);
+        return Promise.all(promises);
     }
 }
