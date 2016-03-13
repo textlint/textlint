@@ -11,7 +11,7 @@ module.exports = {
     // <Recommend>: It is easy to use
     // You can see engine/textlint-engine-core.js for more detail
     TextLintEngine: require("./textlint-engine"),
-    // TextLintEngine is a wrapper around `textlint` for linting **multiple** files
+    // TextFixEngine is a wrapper around `textlint` for linting **multiple** files
     // include formatter, detecting utils
     // <Recommend>: It is easy to use
     // You can see engine/textlint-engine-core.js for more detail
