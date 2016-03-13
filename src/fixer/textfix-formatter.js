@@ -1,25 +1,36 @@
 // LICENSE : MIT
 "use strict";
-const textlintCreateFormatter = require("textlint-formatter");
-const stylish = require("./formatters/stylish");
+const fs = require("fs");
+const path = require("path");
+const tryResolve = require("try-resolve");
+const interopRequire = require("interop-require");
+const debug = require("debug")("textlint:textfix-formatter");
 export default function createFormatter(formatterConfig) {
-    if (formatterConfig.formatterName) {
-        const formatter = textlintCreateFormatter(formatterConfig);
-        /**
-         * @type {TextLintFixResult[]} results
-         */
-        return function (results) {
-            // FIXME: hack for compatible TextLintFixResult and textlint-formatter
-            if (results.remainingMessages) {
-                // alias messages
-                results.messages = results.remainingMessages;
-            }
-            return formatter(results);
-        };
+    const formatterName = formatterConfig.formatterName;
+    debug("try formatterName: " + formatterName);
+    let formatter;
+    let formatterPath;
+    if (fs.existsSync(formatterName)) {
+        formatterPath = formatterName;
+    } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
+        formatterPath = path.resolve(process.cwd(), formatterName);
+    } else {
+        var pkgPath = tryResolve("textlint-formatter-" + formatterName) || tryResolve(formatterName);
+        if (pkgPath) {
+            formatterPath = pkgPath;
+        } else {
+            formatterPath = path.join(__dirname, "formatters/", formatterName);
+        }
     }
-    // builtin
-    function builtinFormatter(code) {
-        return stylish(code, formatterConfig);
+    try {
+        formatter = interopRequire(formatterPath);
+    } catch (ex) {
+        throw new Error(`Could not find formatter ${formatterName}
+See https://github.com/textlint/textlint/issues/148
+${ex}`);
     }
-    return builtinFormatter;
+    debug("use formatter: " + formatterPath);
+    return function (results) {
+        return formatter(results, formatterConfig);
+    };
 }

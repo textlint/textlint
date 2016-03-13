@@ -34,7 +34,7 @@ interface TextLintConfig {
     extensions?:string[];
     // formatter file name
     // e.g.) stylish.js => set "stylish"
-    formatName?:string;
+    formatterName?:string;
     // plugin package names
     plugins?: string[];
     // rules base directory that is related `rules`.
