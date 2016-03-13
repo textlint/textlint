@@ -95,8 +95,10 @@ const defaultOptions = Object.freeze({
     // available extensions
     // if set the option, should filter by extension.
     extensions: [],
-    // formatter-file-name
+    // formatter file name
     // e.g.) stylish.js => set "stylish"
+    // NOTE: default formatter is defined in Engine,
+    // because There is difference between TextLintEngine and TextFixEngine.
     formatterName: undefined,
     // --no-color
     color: true
