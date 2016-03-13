@@ -125,7 +125,7 @@ new TextLintEngine({
         const textlintConfig = this.config ? this.config.toJSON() : {};
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
         // set Processor
-        this.textlint.setupProcessorMap(this.processorMap);
+        this.textlint.setupProcessors(this.processorMap.toJSON());
     }
 
     /**

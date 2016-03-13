@@ -10,7 +10,9 @@ describe("HTMLPlugin", function () {
     context("when target file is a HTML", function () {
         beforeEach(function () {
             textlint = new TextLintCore();
-            textlint.addProcessor(HTMLProcessor);
+            textlint.setupProcessors({
+                html: HTMLProcessor
+            });
             textlint.setupRules({
                 "example-rule": require("../fixtures/rules/example-rule")
             });
@@ -19,8 +21,12 @@ describe("HTMLPlugin", function () {
             assert(textlint.processors.length === 3);
         });
         it("should ignore duplicated processor", function () {
-            textlint.setupProcessorMap(new MapLike([["html", HTMLProcessor]]));
-            textlint.setupProcessorMap(new MapLike([["html", HTMLProcessor]]));
+            textlint.setupProcessors({
+                html: HTMLProcessor
+            });
+            textlint.setupProcessors({
+                html: HTMLProcessor
+            });
             assert(textlint.processors.length === 3);
         });
         it("should report error", function () {

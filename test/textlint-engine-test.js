@@ -77,17 +77,23 @@ describe("textlint-engine-test", function () {
                 assert(ruleNames.length === 0);
             });
         });
-        context("when Plugin is a scoped module", function () {
-            it("should define rule of plugin", function () {
+        context("when Processor Plugin is a scoped module", function () {
+            it("should define processor of plugin", function () {
                 const engine = new TextLintEngine({
-                    plugins: ["@textlint/textlint-plugin-example"],
-                    rulesBaseDirectory: path.join(__dirname, "/fixtures/plugins/")
+                    plugins: ["html"]
+                });
+                const processorList = engine.processorMap;
+                assert(processorList.keys().length > 0);
+                assert(processorList.values().length > 0);
+            });
+        });
+        context("when Plugin has not rules", function () {
+            it("should not throw Error", function () {
+                const engine = new TextLintEngine({
+                    plugins: ["markdown"]
                 });
                 var ruleNames = engine.ruleMap.getAllRuleNames();
-                assert(ruleNames.length === 1);
-                const ruleName = ruleNames[0];
-                assert(ruleName === "@textlint/textlint-plugin-example/example-rule");
-                assert(typeof engine.ruleMap.getRule(ruleName) === "function");
+                assert(ruleNames.length === 0);
             });
         });
         context("when the rule is **not** defined", function () {

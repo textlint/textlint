@@ -35,19 +35,6 @@ export default class TextlintCore {
     }
 
     /**
-     * {name: Processor}
-     * @param {MapLike} processorMap
-     * @private
-     */
-    setupProcessorMap(processorMap) {
-        this.processors.length = 0;
-        processorMap.values().forEach(Processor => {
-            this.addProcessor(Processor);
-        });
-        this.processors = this.processors.concat(this._defaultProcessors);
-    }
-
-    /**
      * unstable API
      * @param Processor
      * @private
@@ -58,7 +45,21 @@ export default class TextlintCore {
     }
 
     /**
-     * Register rules to EventEmitter.
+     * register Processors
+     * @param {Object} processors
+     */
+    setupProcessors(processors = {}) {
+        this.processors.length = 0;
+        Object.keys(processors).forEach(key => {
+            const Processor = processors[key];
+            this.addProcessor(Processor);
+        });
+        this.processors = this.processors.concat(this._defaultProcessors);
+    }
+
+
+    /**
+     * Register rules and rulesConfig.
      * if want to release rules, please call {@link resetRules}.
      * @param {object} rules rule objects array
      * @param {object} [rulesConfig] ruleConfig is object
