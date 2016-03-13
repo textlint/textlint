@@ -123,7 +123,9 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                 const output = fixEngine.formatResults(results);
                 printResults(output, cliOptions);
                 // return exit code
-                return fixer.write(results) ? 0 : 1;
+                return fixer.write(results).then(() => {
+                    return 0;
+                });
             });
         }
         // lint as default
