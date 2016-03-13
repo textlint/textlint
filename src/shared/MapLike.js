@@ -1,12 +1,17 @@
 // LICENSE : MIT
 "use strict";
+const assert = require("assert");
 /*
     ES6 Map like object.
     This is not iterable.
  */
 export default class MapLike {
-    constructor() {
+    constructor(entries = []) {
         this._store = Object.create(null);
+        entries.forEach(entry => {
+            assert(Array.isArray(entry), "new MapLike([ [key, value] ])");
+            this.set(entry[0], entry[1]);
+        });
     }
 
     /**
@@ -30,11 +35,12 @@ export default class MapLike {
      */
     values() {
         /* eslint-disable guard-for-in */
-        const stores = this._store;
+        const keys = this.keys();
+        const store = this._store;
         const results = [];
-        for (const value in stores) {
-            results.push(value);
-        }
+        keys.forEach(key => {
+            results.push(store[key]);
+        });
         return results;
         /* eslint-enable guard-for-in */
     }
@@ -62,15 +68,19 @@ export default class MapLike {
      * set value for key
      * @param {string} key
      * @param {*} value
+     * @return {MapLike}
      */
     set(key, value) {
         this._store[key] = value;
+        return this;
     }
 
     /**
      * clear defined key,value
+     * @returns {MapLike}
      */
     clear() {
         this._store = Object.create(null);
+        return this;
     }
 }

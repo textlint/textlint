@@ -5,6 +5,7 @@ const createFormatter = require("textlint-formatter");
 const path = require("path");
 import TextLintCore from "./../textlint-core";
 import RuleMap from "./rule-map";
+import ProcessorMap from "./processor-map";
 import Config from "../config/config";
 import {findFiles} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
@@ -55,12 +56,16 @@ export default class TextLintEngineCore {
          * @type {RuleMap} ruleMap is used for linting/fixer
          */
         this.ruleMap = new RuleMap();
+        /**
+         * @type {ProcessorMap}
+         */
+        this.processorMap = new ProcessorMap();
         this.moduleLoader = new TextLintModuleLoader(this.config);
         this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
             this.ruleMap.defineRule(ruleName, ruleCreator);
         });
         this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
-            this.textlint.addProcessor(Processor);
+            this.processorMap.set(pluginName, Processor);
         });
         // load rule/plugin/processor
         this.moduleLoader.loadFromConfig(this.config);
@@ -116,9 +121,11 @@ new TextLintEngine({
     }
 
     _setupRules() {
-        // reset
+        // set Rules
         const textlintConfig = this.config ? this.config.toJSON() : {};
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
+        // set Processor
+        this.textlint.setupProcessorMap(this.processorMap);
     }
 
     /**

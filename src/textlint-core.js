@@ -25,12 +25,26 @@ export default class TextlintCore {
         // this.config often is undefined.
         this.config = config;
         this.ruleCreatorSet = new RuleCreatorSet();
-        // FIXME: in the future, this.processors is empty by default.
         // Markdown and Text are for backward compatibility.
-        this.processors = [
+        // FIXME: in the future, this.processors is empty by default.
+        this._defaultProcessors = [
             new MarkdownProcessor(config),
             new TextProcessor(config)
         ];
+        this.processors = this._defaultProcessors.slice();
+    }
+
+    /**
+     * {name: Processor}
+     * @param {MapLike} processorMap
+     * @private
+     */
+    setupProcessorMap(processorMap) {
+        this.processors.length = 0;
+        processorMap.values().forEach(Processor => {
+            this.addProcessor(Processor);
+        });
+        this.processors = this.processors.concat(this._defaultProcessors);
     }
 
     /**
