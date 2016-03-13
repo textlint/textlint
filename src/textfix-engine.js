@@ -1,13 +1,13 @@
 "use strict";
-const createFormatter = require("textlint-formatter");
 import TextLintEngineCore from "./engine/textlint-engine-core";
+import createFormatter from "./fixer/textfix-formatter";
 /**
- * TextLintEngine a adapter for TextLintEngineCore.
+ * TextFixEngine a adapter for TextLintEngineCore.
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
  */
-export default class TextLintEngine {
+export default class TextFixEngine {
     /**
-     * TextLintEngine is a adaptor of TextLintEngineCore.
+     * TextFixEngine is a adaptor of TextLintEngineCore.
      * @param {Config} config
      * @returns {TextLintEngineCore}
      */
@@ -19,13 +19,13 @@ export default class TextLintEngine {
              */
             onFile: (textlintCore) => {
                 /**
-                 * Executes the current configuration on an array of file and directory names.
-                 * TextLintEngine#executeOnFile
+                 * Fixes the current configuration on an array of file and directory names.
+                 * TextFixEngine#executeOnFiles
                  * @param {String[]}  files An array of file and directory names.
-                 * @returns {TextLintResult[]} The results for all files that were linted.
+                 * @returns {TextLintFixResult[]} The results for all files that were linted.
                  */
-                return function executeOnFile(file) {
-                    return textlintCore.lintFile(file);
+                return (file) => {
+                    return textlintCore.fixFile(file);
                 };
             },
             /**
@@ -34,24 +34,20 @@ export default class TextLintEngine {
              */
             onText: (textlintCore) => {
                 /**
-                 * lint text, and return TextLintResult[]
-                 * TextLintEngine#executeOnText
+                 * Fix texts with ext option.
+                 * TextFixEngine#executeOnText
                  * @param {string} text linting text content
                  * @param {string} ext ext is a type for linting. default: ".txt"
-                 * @returns {TextLintResult[]}
+                 * @returns {TextLintFixResult[]}
                  */
-                return function executeOnText(text, ext) {
-                    return textlintCore.lintText(text, ext);
+                return (text, ext) => {
+                    return textlintCore.fixText(text, ext);
                 };
             },
             /**
              * @param {TextLintFormatterOption} formatterConfig
              */
             onFormat: (formatterConfig) => {
-                // default formatter name: stylish
-                if (!formatterConfig.formatterName) {
-                    formatterConfig.formatterName = "stylish";
-                }
                 return createFormatter(formatterConfig);
             }
         };

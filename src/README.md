@@ -15,6 +15,9 @@ Core-->Engine: Results
 Engine-->CLI: output
 ```
 
+- CLI know Engine
+- Engine know Core
+
 ## CLI
 
 - [options.js](./options.js)
@@ -47,6 +50,11 @@ Process file/text wanted to lint/fix
 - task/
 - linter/
 - fixer/
+
+To be clear about difference of linter and fixer.
+
+- *Linter* process in parallel.
+- *Fixer* process in series.
 
 ## Shared
 

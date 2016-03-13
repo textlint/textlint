@@ -2,7 +2,7 @@
 "use strict";
 const objectAssign = require("object-assign");
 const concat = require("unique-concat");
-const loadConfig = require("./config-loader");
+import loadConfig from "./config-loader";
 import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
 import loadRulesConfigFromPlugins from "./plugin-loader";
@@ -95,9 +95,11 @@ const defaultOptions = Object.freeze({
     // available extensions
     // if set the option, should filter by extension.
     extensions: [],
-    // formatter-file-name
+    // formatter file name
     // e.g.) stylish.js => set "stylish"
-    formatterName: "stylish",
+    // NOTE: default formatter is defined in Engine,
+    // because There is difference between TextLintEngine and TextFixEngine.
+    formatterName: undefined,
     // --no-color
     color: true
 });

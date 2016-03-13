@@ -9,14 +9,6 @@ function overWriteResult(result) {
     fs.writeFileSync(targetFilePath, output, "utf-8");
 }
 export default class TextLintFixer {
-    /**
-     *
-     * @param {TextLintResult[]}results
-     */
-    constructor(results) {
-        this.results = results;
-    }
-
     formatResults(fixResults) {
         return format(fixResults);
     }

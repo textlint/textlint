@@ -1,7 +1,5 @@
 // LICENSE : MIT
 "use strict";
-// LICENSE : MIT
-"use strict";
 class Processor {
     constructor(config) {
         this.config = config;

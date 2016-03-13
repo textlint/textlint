@@ -1,59 +1,59 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("power-assert");
-var Config = require("../src/config/config");
-var configInit = require("../src/config/config-initializer");
-var loadConfig = require("../src/config/config-loader");
-var path = require("path");
-var os = require("os");
-var sh = require("shelljs");
-
+const assert = require("power-assert");
+const path = require("path");
+const os = require("os");
+const sh = require("shelljs");
+import Config from "../src/config/config";
+import configInit from "../src/config/config-initializer";
+import loadConfig from "../src/config/config-loader";
+import Logger from "../src/util/logger";
 /*
     config file generate test
  */
 describe("config-initializer-test", function () {
-    var configDir;
-    let originErrorLog = console.error;
+    let configDir;
+    const originErrorLog = Logger.error;
 
-    before(function() {
+    before(function () {
         configDir = os.tmpdir() + "/textlint-config";
         sh.mkdir("-p", configDir);
     });
 
-    after(function() {
+    after(function () {
         sh.rm("-r", configDir);
     });
 
     context("when .textlintrc is not existed", function () {
-        it("should create new file", function() {
-            configInit.initializeConfig(configDir).then(function(result){
-                assert.equal(result, 0);
+        it("should create new file", function () {
+            const configFile = path.join(configDir, ".textlintrc");
+            return configInit.initializeConfig(configDir).then(function (exitStatus) {
+                assert.equal(exitStatus, 0);
+                const result = loadConfig(configFile, {
+                    configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
+                    configFileName: Config.CONFIG_FILE_NAME
+                });
+                assert.equal(typeof result.rules, "object");
+                assert(Object.keys(result.rules).length === 0);
             });
-            var configFile = path.join(configDir, ".textlintrc");
-            var result = loadConfig(configFile, {
-                configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
-                configFileName: Config.CONFIG_FILE_NAME
-            });
-            assert.equal(typeof result.rules, "object");
-            assert(Object.keys(result.rules).length === 0);
         });
     });
     context("when .textlintrc is existed", function () {
-        before(function(){
+        before(function () {
             // mock console API
-            console.error = function mockErrorLog() {
+            Logger.error = function mockErrorLog() {
             };
         });
 
-        after(function() {
-            console.error = originErrorLog;
+        after(function () {
+            Logger.error = originErrorLog;
         });
 
-        it("should be an error", function() {
-            console.error = function mockErrorLog(message) {
+        it("should be an error", function () {
+            Logger.error = function mockErrorLog(message) {
                 assert.equal(message, ".textlintrc is already existed.");
             };
-            configInit.initializeConfig(configDir).then(function(result) {
+            return configInit.initializeConfig(configDir).then(function (result) {
                 assert.equal(result, 1);
             });
         });

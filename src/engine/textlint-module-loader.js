@@ -108,7 +108,8 @@ export default class TextLintModuleLoader extends EventEmitter {
         }
         // register plugin.Processor
         if (plugin.hasOwnProperty("Processor")) {
-            this.emit(TextLintModuleLoader.Event.processor, plugin.Processor);
+            const processorEntry = [pluginNameWithoutPrefix, plugin.Processor];
+            this.emit(TextLintModuleLoader.Event.processor, processorEntry);
         }
     }
 

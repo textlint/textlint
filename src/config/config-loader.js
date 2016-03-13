@@ -10,7 +10,7 @@ function isConfigModule(filePath, configPackagePrefix) {
     // scoped module package || textlint-config-* module
     return filePath.charAt(0) === "@" || filePath.indexOf(configPackagePrefix) !== -1;
 }
-function load(configFilePath, {configFileName,configPackagePrefix}) {
+export default function load(configFilePath, {configFileName, configPackagePrefix}) {
     if (isConfigModule(configFilePath, configPackagePrefix)) {
         // config as a module - shared config
         // FIXME: not tested function
@@ -21,4 +21,3 @@ function load(configFilePath, {configFileName,configPackagePrefix}) {
         return rc(configFileName, {}, config);
     }
 }
-module.exports = load;

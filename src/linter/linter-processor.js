@@ -4,6 +4,10 @@ import assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
 export default class LinterProcessor {
+    /**
+     * 
+     * @param {Processor} processor
+     */
     constructor(processor) {
         this.processor = processor;
     }
