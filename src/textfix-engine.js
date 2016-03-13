@@ -48,6 +48,10 @@ export default class TextFixEngine {
              * @param {TextLintFormatterOption} formatterConfig
              */
             onFormat: (formatterConfig) => {
+                // default formatter name: stylish
+                if (!formatterConfig.formatterName) {
+                    formatterConfig.formatterName = "stylish";
+                }
                 return createFormatter(formatterConfig);
             }
         };
