@@ -4,7 +4,7 @@ const Promise = require("bluebird");
 const createFormatter = require("textlint-formatter");
 const path = require("path");
 import TextLintCore from "./../textlint-core";
-import RuleSet from "./rule-set";
+import RuleMap from "./rule-map";
 import Config from "../config/config";
 import {findFiles} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
@@ -52,14 +52,14 @@ export default class TextLintEngineCore {
          */
         this.executor = executor;
         /**
-         * @type {RuleSet} ruleSet is used for linting/fixer
+         * @type {RuleMap} ruleMap is used for linting/fixer
          */
-        this.ruleSet = new RuleSet();
+        this.ruleMap = new RuleMap();
         this.moduleLoader = new TextLintModuleLoader(this.config);
         this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
-            this.ruleSet.defineRule(ruleName, ruleCreator);
+            this.ruleMap.defineRule(ruleName, ruleCreator);
         });
-        this.moduleLoader.on(TextLintModuleLoader.Event.processor, (Processor) => {
+        this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
             this.textlint.addProcessor(Processor);
         });
         // load rule/plugin/processor
@@ -118,7 +118,7 @@ new TextLintEngine({
     _setupRules() {
         // reset
         const textlintConfig = this.config ? this.config.toJSON() : {};
-        this.textlint.setupRules(this.ruleSet.getAllRules(), textlintConfig.rulesConfig);
+        this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
     }
 
     /**
@@ -126,7 +126,7 @@ new TextLintEngine({
      */
     resetRules() {
         this.textlint.resetRules();
-        this.ruleSet.resetRules();
+        this.ruleMap.resetRules();
     }
 
     /**
@@ -212,6 +212,6 @@ new TextLintEngine({
     }
 
     hasRuleAtLeastOne() {
-        return this.ruleSet.hasRuleAtLeastOne();
+        return this.ruleMap.hasRuleAtLeastOne();
     }
 }

@@ -3,7 +3,7 @@
 const assert = require("power-assert");
 const path = require("path");
 const deepClone = require("clone");
-const textLint = require("../src/").textlint;
+const textlint = require("../src/").textlint;
 import {loadFromDir} from "../src/engine/rule-loader";
 import Config from "../src/config/config";
 import RuleContext from "../src/core/rule-context";
@@ -11,10 +11,10 @@ const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
 describe("textlint-test", function () {
     beforeEach(function () {
         // This rule found `Str` Node then occur error
-        textLint.setupRules(rules);
+        textlint.setupRules(rules);
     });
     afterEach(function () {
-        textLint.resetRules();
+        textlint.resetRules();
     });
     describe("#setupRules", function () {
         context("when pass only rules object", function () {
@@ -25,7 +25,7 @@ describe("textlint-test", function () {
                     assert.strictEqual(config, undefined);
                     return {};
                 };
-                textLint.setupRules({
+                textlint.setupRules({
                     "rule-name": rule
                 });
             });
@@ -41,7 +41,7 @@ describe("textlint-test", function () {
                     assert.deepEqual(config, ruleConfig);
                     return {};
                 };
-                textLint.setupRules({
+                textlint.setupRules({
                     "rule-name": rule
                 }, {
                     "rule-name": ruleConfig
@@ -51,7 +51,7 @@ describe("textlint-test", function () {
         context("when pass textlintConfig to setupRules", function () {
             it("should RuleContext has `config` object", function () {
                 var configFile = path.join(__dirname, "fixtures", ".textlintrc");
-                textLint.config = new Config({
+                textlint.config = new Config({
                     configFile: configFile
                 });
                 const rule = (context, config) => {
@@ -60,7 +60,7 @@ describe("textlint-test", function () {
                     assert.equal(context.config.configFile, configFile);
                     return {};
                 };
-                textLint.setupRules({
+                textlint.setupRules({
                     "rule-name": rule
                 }, null);
             });
@@ -77,14 +77,14 @@ describe("textlint-test", function () {
                 "\n" +
                 "hoge\n [a](http://example.com) fuga\n" +
                 "------";
-            return textLint.lintMarkdown(text).then(result => {
+            return textlint.lintMarkdown(text).then(result => {
                 assert(result.filePath === "<markdown>");
                 assert(result.messages.length > 0);
             });
         });
         it("should has referential transparency", function () {
-            var p1 = textLint.lintMarkdown("text");
-            var p2 = textLint.lintMarkdown("text");
+            var p1 = textlint.lintMarkdown("text");
+            var p2 = textlint.lintMarkdown("text");
             return Promise.all([p1, p2]).then(([r1, r2]) => {
                 var result_1 = deepClone(r1);
                 var result_2 = deepClone(r2);
@@ -97,7 +97,7 @@ describe("textlint-test", function () {
             var text = "It it plain text\n" +
                 "\n" +
                 "Third line.";
-            return textLint.lintText(text).then(result => {
+            return textlint.lintText(text).then(result => {
                 assert(result.filePath === "<text>");
                 assert(result.messages.length > 0);
             });
@@ -106,7 +106,7 @@ describe("textlint-test", function () {
     describe("lintFile", function () {
         it("filePath is loaded file path", function () {
             var filePath = path.join(__dirname, "fixtures/test.md");
-            return textLint.lintFile(filePath).then(result => {
+            return textlint.lintFile(filePath).then(result => {
                 assert(result.filePath === filePath);
             });
         });
