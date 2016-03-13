@@ -100,22 +100,22 @@ const cli = {
      */
     executeWithOptions(cliOptions, files, text, stdinFilename){
         const config = Config.initWithCLIOptions(cliOptions);
-        const lintEngine = new TextLintEngine(config);
-        // TODO: should indirect access ruleManager
-        if (!lintEngine.hasRuleAtLeastOne()) {
+        const showEmptyRuleWarning = () => {
             Logger.log(`
 == Not have rules, textlint do not anything ==
 => How to set rule?
 See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 `);
-
-            return Promise.resolve(0);
-        }
+        };
 
         if (cliOptions.fix) {
             // --fix
             throwWithoutExperimental("--fix is experimental. use `--experimental --fix`");
             const fixEngine = new TextFixEngine(config);
+            if (!fixEngine.hasRuleAtLeastOne()) {
+                showEmptyRuleWarning();
+                return Promise.resolve(0);
+            }
             const resultsPromise = text ? fixEngine.executeOnText(text, stdinFilename)
                 : fixEngine.executeOnFiles(files);
             return resultsPromise.then(results => {
@@ -126,7 +126,12 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                 return fixer.write(results) ? 0 : 1;
             });
         }
-
+        // lint as default
+        const lintEngine = new TextLintEngine(config);
+        if (!lintEngine.hasRuleAtLeastOne()) {
+            showEmptyRuleWarning();
+            return Promise.resolve(0);
+        }
         const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
         return resultsPromise.then(results => {
             const output = lintEngine.formatResults(results);
