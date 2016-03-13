@@ -110,7 +110,7 @@ export default class TextlintCore {
      * The result contains target filePath and error messages.
      * @param {string} text
      * @param {string} ext ext is extension. default: .txt
-     * @returns {TextLintResult}
+     * @returns {Promise.<TextLintResult>}
      */
     lintText(text, ext = ".txt") {
         const processor = getProcessorMatchExtension(this.processors, ext);
@@ -121,7 +121,7 @@ export default class TextlintCore {
      * lint markdown text by registered rules.
      * The result contains target filePath and error messages.
      * @param {string} text markdown format text
-     * @returns {TextLintResult}
+     * @returns {Promise.<TextLintResult>}
      */
     lintMarkdown(text) {
         const ext = ".md";
@@ -131,7 +131,7 @@ export default class TextlintCore {
     /**
      * lint file and return result object
      * @param {string} filePath
-     * @returns {TextLintResult} result
+     * @returns {Promise.<TextLintResult>} result
      */
     lintFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
