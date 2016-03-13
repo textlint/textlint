@@ -1,10 +1,25 @@
 // LICENSE : MIT
 "use strict";
 const textlintCreateFormatter = require("textlint-formatter");
-import compat from "./formatters/compats";
+const stylish = require("./formatters/stylish");
 export default function createFormatter(formatterConfig) {
     if (formatterConfig.formatterName) {
-        return textlintCreateFormatter(formatterConfig);
+        const formatter = textlintCreateFormatter(formatterConfig);
+        /**
+         * @type {TextLintFixResult[]} results
+         */
+        return function (results) {
+            // FIXME: hack for compatible TextLintFixResult and textlint-formatter
+            if (results.remainingMessages) {
+                // alias messages
+                results.messages = results.remainingMessages;
+            }
+            return formatter(results);
+        };
     }
-    return compat;
+    // builtin
+    function builtinFormatter(code) {
+        return stylish(code, formatterConfig);
+    }
+    return builtinFormatter;
 }
