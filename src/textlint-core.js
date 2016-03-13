@@ -12,11 +12,11 @@ import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
 import {Processor as TextProcessor} from "textlint-plugin-text";
 import RuleCreatorSet from "./core/rule-creator-set";
-
-// Linter
+// = Processors
+// sequence
 import FixerProcessor from "./fixer/fixer-processor";
+// parallel
 import LinterProcessor from "./linter/linter-processor";
-
 /**
  * @class {TextlintCore}
  */
@@ -75,7 +75,17 @@ export default class TextlintCore {
         this.ruleCreatorSet = new RuleCreatorSet();
     }
 
-    _lintByProcessor(processor, text, ext, filePath) {
+    /**
+     * process text in parallel for Rules and return {Promise.<TextLintResult>}
+     * In other word, parallel flow process.
+     * @param processor
+     * @param text
+     * @param ext
+     * @param filePath
+     * @returns {Promise.<TextLintResult>}
+     * @private
+     */
+    _parallelProcess(processor, text, ext, filePath) {
         assert(processor, `processor is not found for ${ext}`);
         const {preProcess, postProcess} = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
@@ -104,7 +114,7 @@ export default class TextlintCore {
      */
     lintText(text, ext = ".txt") {
         const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._lintByProcessor(processor, text, ext);
+        return this._parallelProcess(processor, text, ext);
     }
 
     /**
@@ -115,8 +125,7 @@ export default class TextlintCore {
      */
     lintMarkdown(text) {
         const ext = ".md";
-        const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._lintByProcessor(processor, text, ext);
+        return this.lintText(text, ext);
     }
 
     /**
@@ -129,7 +138,7 @@ export default class TextlintCore {
         const ext = path.extname(absoluteFilePath);
         const text = fs.readFileSync(absoluteFilePath, "utf-8");
         const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._lintByProcessor(processor, text, ext, absoluteFilePath);
+        return this._parallelProcess(processor, text, ext, absoluteFilePath);
     }
 
     /**
@@ -142,7 +151,7 @@ export default class TextlintCore {
         const ext = path.extname(absoluteFilePath);
         const text = fs.readFileSync(absoluteFilePath, "utf-8");
         const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._fixProcess(processor, text, ext, filePath);
+        return this._sequenceProcess(processor, text, ext, filePath);
     }
 
     /**
@@ -153,11 +162,12 @@ export default class TextlintCore {
      */
     fixText(text, ext = ".txt") {
         const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._fixProcess(processor, text, ext);
+        return this._sequenceProcess(processor, text, ext);
     }
 
     /**
-     * process text and return {Promise.<TextLintFixResult>}
+     * process text in series for Rules and return {Promise.<TextLintFixResult>}
+     * In other word, sequence flow process.
      * @param processor
      * @param text
      * @param ext
@@ -165,7 +175,7 @@ export default class TextlintCore {
      * @returns {Promise.<TextLintFixResult>}
      * @private
      */
-    _fixProcess(processor, text, ext, filePath) {
+    _sequenceProcess(processor, text, ext, filePath) {
         assert(processor, `processor is not found for ${ext}`);
         const {preProcess, postProcess} = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
