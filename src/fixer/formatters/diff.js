@@ -19,7 +19,16 @@ function isModified(part) {
     }
     return typeof part === "object" && (part.removed || part.added);
 }
-
+function addMarkEachLine(mark, text) {
+    if (text.length === 0) {
+        return "\n";
+    }
+    const lines = text.split("\n");
+    const markedLines = lines.filter(line => line.length > 0).map(line => {
+        return mark + line;
+    });
+    return markedLines.join("\n") + "\n";
+}
 module.exports = function (results, options) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
@@ -61,7 +70,7 @@ module.exports = function (results, options) {
                     const lines = part.value.split("\n");
                     output += chalk[greyColor](lines[0]) + "\n";
                 }
-                output += chalk[greyColor]("...") + "\n";
+                output += chalk[greyColor]("...");
                 if (isModified(nextLine)) {
                     const lines = part.value.split("\n");
                     output += chalk[greyColor](lines[lines.length - 1]) + "\n";
@@ -76,16 +85,20 @@ module.exports = function (results, options) {
             // green for additions, red for deletions
             // grey for common parts
             let lineColor;
+            let diffMark = "";
             if (part.added) {
                 lineColor = "green";
+                diffMark = "+ ";
             } else if (part.removed) {
                 lineColor = "red";
+                diffMark = "- ";
             } else {
                 lineColor = "grey";
+                diffMark = "";
             }
-            output += chalk[lineColor](part.value);
+            output += chalk[lineColor](addMarkEachLine(diffMark, part.value));
         });
-        output += "\n";
+        output += "\n\n";
     });
 
     if (totalFixed > 0) {
