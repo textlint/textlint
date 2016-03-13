@@ -51,6 +51,11 @@ Process file/text wanted to lint/fix
 - linter/
 - fixer/
 
+To be clear about difference of linter and fixer.
+
+- *Linter** process in parallel.
+- *Fixer* process in series.
+
 ## Shared
 
 These are shared between config and engine and core.
