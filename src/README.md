@@ -53,7 +53,7 @@ Process file/text wanted to lint/fix
 
 To be clear about difference of linter and fixer.
 
-- *Linter** process in parallel.
+- *Linter* process in parallel.
 - *Fixer* process in series.
 
 ## Shared
