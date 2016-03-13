@@ -15,6 +15,9 @@ Core-->Engine: Results
 Engine-->CLI: output
 ```
 
+- CLI know Engine
+- Engine know Core
+
 ## CLI
 
 - [options.js](./options.js)

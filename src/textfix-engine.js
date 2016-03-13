@@ -6,6 +6,11 @@ import createFormatter from "./fixer/textfix-formatter";
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
  */
 export default class TextFixEngine {
+    /**
+     * TextFixEngine is a adaptor of TextLintEngineCore.
+     * @param {Config} config
+     * @returns {TextLintEngineCore}
+     */
     constructor(config) {
         const executor = {
             /**

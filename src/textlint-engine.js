@@ -6,6 +6,11 @@ import TextLintEngineCore from "./engine/textlint-engine-core";
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
  */
 export default class TextLintEngine {
+    /**
+     * TextLintEngine is a adaptor of TextLintEngineCore.
+     * @param {Config} config
+     * @returns {TextLintEngineCore}
+     */
     constructor(config) {
         const executor = {
             /**
