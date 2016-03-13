@@ -79,7 +79,7 @@ export default class TextLintEngineCore {
      */
     setRulesBaseDirectory() {
         throw new Error(`Should not use setRulesBaseDirectory(), insteadof use         
-new ${this.constructor.name}({
+new TextLintEngine({
  rulesBaseDirectory: directory
 })
         `);
