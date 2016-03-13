@@ -1,0 +1,9 @@
+version: 1
+rules:
+  - expected: Cookie
+  - expected: jQuery
+    specs:
+      - from: jquery
+        to:   jQuery
+      - from: ＪＱＵＥＲＹ
+        to:   jQuery

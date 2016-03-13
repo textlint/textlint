@@ -122,7 +122,12 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                 const fixer = new TextLintFixer();
                 const output = fixEngine.formatResults(results);
                 printResults(output, cliOptions);
-                // return exit code
+                // --dry-run
+                if(cliOptions.dryRun){
+                    debug("Enable dry-run mode.");
+                    return Promise.resolve(0);
+                }
+                // modify file and return exit status
                 return fixer.write(results).then(() => {
                     return 0;
                 });
