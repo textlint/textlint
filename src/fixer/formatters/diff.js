@@ -1,5 +1,4 @@
 "use strict";
-require("colors");
 var fs = require("fs");
 var existsSync = require("exists-sync");
 var jsdiff = require("diff");
@@ -60,12 +59,12 @@ module.exports = function (results, options) {
                  */
                 if (isModified(prevLine)) {
                     const lines = part.value.split("\n");
-                    output += lines[0][greyColor] + "\n";
+                    output += chalk[greyColor](lines[0]) + "\n";
                 }
-                output += "..."[greyColor] + "\n";
+                output += chalk[greyColor]("...") + "\n";
                 if (isModified(nextLine)) {
                     const lines = part.value.split("\n");
-                    output += lines[lines.length - 1][greyColor] + "\n";
+                    output += chalk[greyColor](lines[lines.length - 1]) + "\n";
                 }
                 /*
                     ...
@@ -76,15 +75,15 @@ module.exports = function (results, options) {
             }
             // green for additions, red for deletions
             // grey for common parts
-            var color;
+            let lineColor;
             if (part.added) {
-                color = "green";
+                lineColor = "green";
             } else if (part.removed) {
-                color = "red";
+                lineColor = "red";
             } else {
-                color = "grey";
+                lineColor = "grey";
             }
-            output += part.value[color];
+            output += chalk[lineColor](part.value);
         });
         output += "\n";
     });
