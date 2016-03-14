@@ -5,10 +5,9 @@
 "use strict";
 
 var chalk = require("chalk"),
-    table = require("text-table"),
-    stringWidth = require("../stringWidth");
+    table = require("text-table");
 
-var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
+var widthOfString = require("string-width");
 
 //------------------------------------------------------------------------------
 // Helpers

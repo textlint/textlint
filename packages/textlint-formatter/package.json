@@ -24,11 +24,11 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
-    "eastasianwidth": "^0.1.1",
     "format-text": "0.0.3",
     "js-yaml": "^3.2.4",
     "left-pad": "0.0.4",
     "pluralize": "^1.2.1",
+    "string-width": "^1.0.1",
     "strip-ansi": "^3.0.1",
     "style-format": "0.0.0",
     "table": "^3.7.8",

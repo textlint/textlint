@@ -9,12 +9,11 @@ var leftpad = require("left-pad");
 var style = require("style-format");
 var stripAnsi = require("strip-ansi");
 var pluralize = require("pluralize");
-var stringWidth = require("../stringWidth");
+// width is 2
+var widthOfString = require("string-width");
 // color set
 var summaryColor = "yellow";
 var greenColor = "green";
-// width is 2
-var widthOfString = stringWidth({ambiguousEastAsianCharWidth: 2});
 var template = style('{grey}{ruleId}: {red}{title}{reset}\n'
     + '{grey}{filename}{reset}\n'
     + '    {red}{paddingForLineNo}  {v}{reset}\n'
