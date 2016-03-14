@@ -200,6 +200,7 @@ Some rules are fixable using the `--fix` command line flag.
 
 ``` sh
 $ textlint --fix README.md
+# As a possible, textlint fix the content.
 ```
 
 ![fixable-error](./docs/resources/fixable-error.png)
