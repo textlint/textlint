@@ -188,13 +188,32 @@ Run textlint and work!
 
 ### Rule list - [Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 
-See [Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki").
+See [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki").
 
 If you create new rule, and add it to the wiki :)
 
+### Fixable
+
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+
+Some rules are fixable using the `--fix` command line flag.
+
+``` sh
+$ textlint --fix README.md
+```
+
+![fixable-error](./docs/resources/fixable-error.png)
+
+Also, support [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing) "dry run") mode.
+
+```
+$ textlint --fix --dry-run --formatter diff README.md
+# show the difference between fixed content and original content.
+```
+
 ### Built-in formatters
 
-Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error", "json".
+Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "table", "pretty-error", "json", "unix".
 
 e.g.) use pretty-error.js
 
