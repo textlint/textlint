@@ -100,7 +100,7 @@ export default optionator({
             type: "Boolean",
             default: false,
             description: "Enable dry-run mode for --fix.Only show result, don't change the file.",
-            example: "--experimental --fix --dry-runr"
+            example: "--experimental --fix --dry-run"
         },
         {
             heading: "Using stdin"
