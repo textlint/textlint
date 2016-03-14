@@ -11,3 +11,5 @@
 - [Use textlint as node modules](./use-as-modules.md)
 - Others
     - [TxtNode interface](./txtnode.md)
+- FAQ
+    - [Have to use {line, column} or index](./faq/line-column-or-index.md)
