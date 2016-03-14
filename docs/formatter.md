@@ -1,13 +1,17 @@
 # Formatter
 
-Pass following object to reporter module.
+## Result of linting
+
+Pass following array of [TextLintResult](https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts "TextLintResult") to reporter module.
 
 ```js
+// results of linting
 var results = [
     // TextLintResult object
     {
         filePath: "./myfile.js",
         messages: [
+            // TextLintMessage object
             {
                 ruleId: "semi",
                 line: 1,
@@ -19,9 +23,19 @@ var results = [
 ];
 ```
 
+`TextLintMessage` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts "textlint.d.ts").
+
+It is compatible for [ESLint formatter](http://eslint.org/docs/developer-guide/working-with-custom-formatters "Documentation - ESLint - Pluggable JavaScript linter"). 
+
 ## How to get source code from result?
 
-You can read the source code from `filePath` property or `raw` property of `Document` node.
+You can read the source code from `filePath` property.
+
+## Built-in formatter
+
+textlint use `textlint-formatter` module as built-in formatter.
+
+- [textlint/textlint-formatter](https://github.com/textlint/textlint-formatter "textlint/textlint-formatter")
 
 ## Custom Formatter
 
@@ -36,7 +50,3 @@ textlint -f textlint-formatter-codecov
 # ==
 textlint -f codecov
 ```
-
-## Built-in
-
-[textlint/textlint-formatter](https://github.com/textlint/textlint-formatter "textlint/textlint-formatter")
