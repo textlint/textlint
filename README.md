@@ -64,11 +64,16 @@ Options:
   --preset [path::String]    Set preset package name and load rules from preset package.
   --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
   -f, --format String        Use a specific output format.
+  --fix                      Automatically fix problems
+  --dry-run                  Enable dry-run mode for --fix. Only show result, don't change the file.
   -v, --version              Outputs the version number.
   --no-color                 Disable color in piped output.
   -o, --output-file path::String  Enable report to be written to a file.
   --init                     Create the config file if not existed. - default: false
   --quiet                    Report errors only. - default: false
+
+Experimental:
+  --experimental             Enable experimental flag.Some feature use on experimental.
 
 Using stdin:
   --stdin                    Lint text provided on <STDIN>. - default: false
