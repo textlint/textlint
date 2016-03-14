@@ -1,3 +1,4 @@
+// "range" is replaced by "text"
 interface TextLintFixCommand {
     text: string;
     range: [number,number],
@@ -10,19 +11,26 @@ interface TextLintMessage {
     // FixCommand
     fix?: TextLintFixCommand;
     // location info
+    // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
     line: number; // start with 1
     column: number;// start with 1
-    // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
+    // severity
+    /*
+     "info": 0,
+     "warning": 1,
+     "error": 2
+     */
     severity?: number;
 }
-// lint result
+// Linting result
 interface TextLintResult {
     filePath:string;
     messages:TextLintMessage[];
 }
-// fix result
+// Fixing result
 interface TextLintFixResult {
     filePath: string;
+    // fixed content
     output: string;
     applyingMessages: TextLintMessage[];
     remainingMessages: TextLintMessage[];
@@ -31,6 +39,7 @@ interface TextLintFixResult {
 interface TextLintConfig {
     // rule directories path
     rulePaths?:string[];
+    // filter file extensions
     extensions?:string[];
     // formatter file name
     // e.g.) stylish.js => set "stylish"
