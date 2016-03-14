@@ -41,7 +41,7 @@ report(node, new RuleError("message", {
         if (padding.line === undefined && padding.column !== undefined) {
             // FIXME: Backward compatible <= textlint.5.5
             throwIfTesting(`Have to use a sets with "line" and "column".
-See https://github.com/textlint/textlint/blob/master/docs/faq/line-column-or-index.md            
+See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/line-column-or-index.md            
 
 report(node, new RuleError("message", {
     line: paddingLineNumber,
