@@ -8,34 +8,13 @@ const formatter = (code) => {
     return diff(code, {color: false});
 };
 describe("formatter:diff", function () {
-      context("when contain fixable", function () {
+    context("when single modified", function () {
         it("should return output", function () {
-            const fooFile = path.join(__dirname, "../fixtures", "foo.md");
-            const fixedFooFile = path.join(__dirname, "../fixtures", "foo-fixed.md");
-            const expectedOutput = fs.readFileSync(fixedFooFile, "utf-8");
-            const code = [
-                {
-                    filePath: fooFile,
-                    output: expectedOutput,
-                    applyingMessages: [
-                        {
-                            message: "Unexpected foo.",
-                            severity: 2,
-                            line: 5,
-                            column: 9,
-                            ruleId: "foo",
-                            fix: {
-                                range: [44, 48],
-                                text: ""
-                            }
-                        }
-                    ],
-                    remainingMessages: []
-                }
-            ];
-            var output = formatter(code);
+            const input = path.join(__dirname, "../fixtures", "single.md");
+            const code = require("../fixtures/single");
+            const output = formatter(code);
             assert.equal(output, `
-${fooFile}
+${input}
 ...
 - 5th line foo
 + 5th line
@@ -46,45 +25,13 @@ ${fooFile}
 `);
         });
     });
-    context("when contain multiple fixable", function () {
+    context("when double modified", function () {
         it("should return output", function () {
-            const fooFile = path.join(__dirname, "../fixtures", "bar.md");
-            const fixedFooFile = path.join(__dirname, "../fixtures", "bar-fixed.md");
-            const expectedOutput = fs.readFileSync(fixedFooFile, "utf-8");
-            const code = [
-                {
-                    filePath: fooFile,
-                    output: expectedOutput,
-                    applyingMessages: [
-                        {
-                            message: "Unexpected foo.",
-                            severity: 2,
-                            line: 5,
-                            column: 1,
-                            ruleId: "foo",
-                            fix: {
-                                range: [36, 40],
-                                text: "5th line"
-                            }
-                        },
-                        {
-                            message: "Unexpected bar.",
-                            severity: 2,
-                            line: 6,
-                            column: 1,
-                            ruleId: "foo",
-                            fix: {
-                                range: [40, 44],
-                                text: "6th line"
-                            }
-                        }
-                    ],
-                    remainingMessages: []
-                }
-            ];
-            var output = formatter(code);
+            const input = path.join(__dirname, "../fixtures", "double.md");
+            const code = require("../fixtures/double");
+            const output = formatter(code);
             assert.equal(output, `
-${fooFile}
+${input}
 ...
 - foo
 - bar
@@ -94,6 +41,56 @@ ${fooFile}
 
 
 ✔ Fixed 2 problems
+`);
+        });
+    });
+    context("when multiple files results", function () {
+        it("should return output", function () {
+            const singleFile = path.join(__dirname, "../fixtures", "single.md");
+            const multiple = path.join(__dirname, "../fixtures", "multiple.md");
+            const code = require("../fixtures/multiple");
+            const output = formatter(code);
+            assert.equal(output, `
+${singleFile}
+...
+- 5th line foo
++ 5th line
+6th line
+...
+
+${multiple}
+- foo bar
++ 1st line
+2nd line
+...
+- foo bar
++ 4th line
+5th line
+...
+- foo bar
++ 7th line
+
+
+✔ Fixed 7 problems
+`);
+        });
+    });
+
+    context("when remaining messages", function () {
+        it("should return output", function () {
+            const input = path.join(__dirname, "../fixtures", "remaining.md");
+            const code = require("../fixtures/remaining");
+            const output = formatter(code);
+            assert.equal(output, `
+${input}
+...
+- 5th line foo
++ 5th line
+6th line XXX
+...
+
+✔ Fixed 1 problem
+✖ Remaining 1 problem
 `);
         });
     });
