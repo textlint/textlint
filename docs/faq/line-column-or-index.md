@@ -1,10 +1,10 @@
 # Have to use {line, column} or index
 
-## For developer
+**Target:** Developer
 
 - Related: [context.report(node, { index }): index-based report · Issue #134 · textlint/textlint](https://github.com/textlint/textlint/issues/134 "context.report(node, { index }): index-based report · Issue #134 · textlint/textlint")
 
-### Bad Case
+### What is this?
 
 There is wrong that `column` doesn't consider line break.
 
@@ -65,7 +65,7 @@ Expected:
 
 You can use `index` instead of this.
 
-### Good
+### Solution
 
 ```js
 const paddingLocation = {

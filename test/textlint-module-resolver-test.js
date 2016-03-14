@@ -30,7 +30,7 @@ describe("textlint-module-resolver", function () {
             const packageName = "NOT_FOUND_FILE";
             assert.throws(() => {
                 resolver.resolveRulePackageName(packageName);
-            }, /Failure to load textlint's rule module/);
+            }, /Failed to load textlint's rule module/);
         });
     });
     describe("#resolvePluginPackageName", function () {
@@ -55,7 +55,7 @@ describe("textlint-module-resolver", function () {
                 const packageName = "NOT_FOUND_FILE";
                 assert.throws(() => {
                     resolver.resolvePluginPackageName(packageName);
-                }, /Failure to load textlint's plugin module/);
+                }, /Failed to load textlint's plugin module/);
             });
         });
     });
@@ -100,10 +100,8 @@ describe("textlint-module-resolver", function () {
                 const packageName = "NOT_FOUND_FILE";
                 assert.throws(() => {
                     resolver.resolvePresetPackageName(packageName);
-                }, /Failure to load textlint's preset module/);
+                }, /Failed to load textlint's preset module/);
             });
         });
-    });
-    it("should resolve formatter module", function () {
     });
 });

@@ -13,3 +13,4 @@
     - [TxtNode interface](./txtnode.md)
 - FAQ(Frequently Asked Questions)
     - [Have to use {line, column} or index](./faq/line-column-or-index.md)
+    - [Failed to load textlint's module: "${packageName}" is not found](./faq/failed-to-load-textlints-module.md)
