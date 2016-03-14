@@ -68,7 +68,7 @@ export default class TextLintModuleResolver {
         // <rule-name> or textlint-rule-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
-            throw new ReferenceError(`Failure to load textlint's rule module: "${packageName}" is not found.`);
+            throw new ReferenceError(`Failed to load textlint's rule module: "${packageName}" is not found.`);
         }
         return pkgPath;
     }
@@ -85,7 +85,7 @@ export default class TextLintModuleResolver {
         // <plugin-name> or textlint-plugin-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
-            throw new ReferenceError(`Failure to load textlint's plugin module: "${packageName}" is not found.`);
+            throw new ReferenceError(`Failed to load textlint's plugin module: "${packageName}" is not found.`);
         }
         return pkgPath;
     }
@@ -124,7 +124,7 @@ export default class TextLintModuleResolver {
             tryResolve(path.join(baseDir, fullPackageName)) ||
             tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
-            throw new ReferenceError(`Failure to load textlint's preset module: "${packageName}" is not found.`);
+            throw new ReferenceError(`Failed to load textlint's preset module: "${packageName}" is not found.`);
         }
         return pkgPath;
     }
