@@ -9,7 +9,7 @@ Pass following array of [TextLintResult](https://github.com/textlint/textlint/bl
 var results = [
     // TextLintResult object
     {
-        filePath: "./myfile.js",
+        filePath: "./myfile.md",
         messages: [
             // TextLintMessage object
             {
