@@ -15,7 +15,7 @@ function stringToArray(value) {
 }
 
 export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+    const {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){
             const text = getSource(node);
@@ -31,7 +31,7 @@ export default function (context) {
                 }
             }
         }
-    }
+    };
 }
 ```
 
@@ -68,20 +68,20 @@ You can use `index` instead of this.
 ### Good
 
 ```js
-var paddingLocation = {
+const paddingLocation = {
     line: 1,
     column: 2
 };
 report(node, new RuleError("message", {
     line: paddingLocation.line,
     column: paddingLocation.column
-});
+}));
 ```
 
 OR use "index" property
 
 ```
-var paddingIndexValue = 1;
+const paddingIndexValue = 1;
 report(node, new RuleError("message", {
     index: paddingIndexValue
 });
@@ -96,7 +96,7 @@ function stringToArray(value) {
 }
 
 export default function (context) {
-    let {Syntax, RuleError, report, getSource} = context;
+    const {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){
             const text = getSource(node);
@@ -111,6 +111,6 @@ export default function (context) {
                 }
             }
         }
-    }
+    };
 }
 ```
