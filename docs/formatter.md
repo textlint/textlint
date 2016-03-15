@@ -27,6 +27,79 @@ var results = [
 
 It is compatible for [ESLint formatter](http://eslint.org/docs/developer-guide/working-with-custom-formatters "Documentation - ESLint - Pluggable JavaScript linter"). 
 
+### Simple usage from Command line
+
+We can get the raw output to stdout using `json` formatter.
+
+```sh
+$ textlint --format json <file>
+[
+    // TextLintResult object
+    {
+        filePath: "./myfile.md",
+        messages: [
+            // TextLintMessage object
+            {
+                ruleId: "semi",
+                line: 1,
+                column: 23,
+                message: "Expected a semicolon."
+            }
+        ]
+    }
+];
+```
+
+## Result of fixing
+
+`textlint` support [fixable rule](./rule-fixable.md)
+
+Fixable result is a bit difference for things of linting.
+
+```js
+// results of fixing
+var results = [
+  // TextLintFixResult
+  {
+    "filePath": "./myfile.md",
+    // fixed content string
+    "output": "fixed content",
+    // applied fixable messages
+    // messages is a array of `TextLintMessage`
+    "applyingMessages": [],
+    // not fixable messages
+    // messages is a array of `TextLintMessage`
+    "remainingMessages": [],
+    // original means original for applyingMessages and remainingMessages
+    // pre-applyingMessages + remainingMessages
+    // messages is a array of `TextLintMessage`
+    "originalMessages": []
+  }
+];
+```
+
+`TextLintFixResult` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts "textlint.d.ts").
+
+It is not compatible for ESLint.
+
+### Simple usage from Command line
+
+We can get the raw output to stdout using `json` formatter.
+
+```sh
+$ textlint --fix --format json <file>
+[
+  {
+    "filePath": "./myfile.md",
+    "output": "content string",
+    "originalMessages": [],
+    "applyingMessages": [],
+    "remainingMessages": []
+  }
+]
+```
+
+
 ## How to get source code from result?
 
 You can read the source code from `filePath` property.

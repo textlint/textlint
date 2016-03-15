@@ -23,8 +23,14 @@ export default class FixerProcessor {
         const {preProcess, postProcess} = this.processor.processor(sourceCode.ext);
         // messages
         let resultFilePath = sourceCode.filePath;
+        // applied fixing messages
+        // Revert = Sequentially apply applied message to applied output
+        // SourceCodeFixer.sequentiallyApplyFixes(fixedOutput, result.applyingMessages);
         const applyingMessages = [];
+        // not applied fixing messages
         const remainingMessages = [];
+        // original means original for applyingMessages and remainingMessages
+        // pre-applyingMessages + remainingMessages
         const originalMessages = [];
         const fixerProcessList = ruleCreatorSet.mapFixer(fixerRuleCreatorSet => {
             return (sourceText) => {

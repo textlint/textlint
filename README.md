@@ -64,11 +64,16 @@ Options:
   --preset [path::String]    Set preset package name and load rules from preset package.
   --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
   -f, --format String        Use a specific output format.
+  --fix                      Automatically fix problems
+  --dry-run                  Enable dry-run mode for --fix. Only show result, don't change the file.
   -v, --version              Outputs the version number.
   --no-color                 Disable color in piped output.
   -o, --output-file path::String  Enable report to be written to a file.
   --init                     Create the config file if not existed. - default: false
   --quiet                    Report errors only. - default: false
+
+Experimental:
+  --experimental             Enable experimental flag.Some feature use on experimental.
 
 Using stdin:
   --stdin                    Lint text provided on <STDIN>. - default: false
@@ -188,13 +193,33 @@ Run textlint and work!
 
 ### Rule list - [Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 
-See [Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki").
+See [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki").
 
 If you create new rule, and add it to the wiki :)
 
+### Fixable
+
+[![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+
+Some rules are fixable using the `--fix` command line flag.
+
+``` sh
+$ textlint --fix README.md
+# As a possible, textlint fix the content.
+```
+
+![fixable-error](./docs/resources/fixable-error.png)
+
+Also, support [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing) "dry run") mode.
+
+```
+$ textlint --fix --dry-run --formatter diff README.md
+# show the difference between fixed content and original content.
+```
+
 ### Built-in formatters
 
-Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error", "json".
+Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "table", "pretty-error", "json", "unix".
 
 e.g.) use pretty-error.js
 
