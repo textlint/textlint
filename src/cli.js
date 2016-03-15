@@ -11,7 +11,6 @@ import TextFixEngine from "./textfix-engine";
 import Config from "./config/config";
 import configInit from "./config/config-initializer";
 import TextLintFixer from "./fixer/textlint-fixer";
-import {throwWithoutExperimental} from "./util/throw-log";
 import Logger from "./util/logger";
 /*
  cli.js is command line **interface**
@@ -110,7 +109,6 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 
         if (cliOptions.fix) {
             // --fix
-            throwWithoutExperimental("--fix is experimental. use `--experimental --fix`");
             const fixEngine = new TextFixEngine(config);
             if (!fixEngine.hasRuleAtLeastOne()) {
                 showEmptyRuleWarning();
