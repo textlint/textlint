@@ -49,6 +49,20 @@ export default optionator({
             example: "--format pretty-error"
         },
         {
+            option: "fix",
+            type: "Boolean",
+            default: false,
+            description: "Automatically fix problems",
+            example: "--fix"
+        },
+        {
+            option: "dry-run",
+            type: "Boolean",
+            default: false,
+            description: "Enable dry-run mode for --fix. Only show result, don't change the file.",
+            example: "--fix --dry-run"
+        },
+        {
             option: "version",
             alias: "v",
             type: "Boolean",
@@ -87,20 +101,6 @@ export default optionator({
             default: false,
             description: "Enable experimental flag.Some feature use on experimental.",
             example: "--experimental"
-        },
-        {
-            option: "fix",
-            type: "Boolean",
-            default: false,
-            description: "Automatically fix problems",
-            example: "--experimental --fix"
-        },
-        {
-            option: "dry-run",
-            type: "Boolean",
-            default: false,
-            description: "Enable dry-run mode for --fix.Only show result, don't change the file.",
-            example: "--experimental --fix --dry-run"
         },
         {
             heading: "Using stdin"
