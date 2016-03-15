@@ -32,7 +32,12 @@ interface TextLintFixResult {
     filePath: string;
     // fixed content
     output: string;
+    // applied fixable messages
     applyingMessages: TextLintMessage[];
+    // not fixable messages
+    originalMessages: TextLintMessage[];
+    // original means original for applyingMessages and remainingMessages
+    // pre-applyingMessages + remainingMessages
     remainingMessages: TextLintMessage[];
 }
 // Config - pass a object to config.js when initialize Config.
