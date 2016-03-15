@@ -2,7 +2,7 @@
 
 ## Overview
 
-![overview](https://monosnap.com/file/7XRjyiTviKHE4t4CAeYzh6UuBc3zGp.png)
+![overview](../docs/resources/architecture.png)
 
 ```
 title: Architecture
@@ -30,6 +30,7 @@ Engine-->CLI: output
 ## Engine
 
 Process file**s** are wanted to lint/fix and prepare configuration of rules and plugins.
+After all, return a **array** of `TextLintResult` or `TextLintFixResult`
 
 - engine/ directory
 - textlint-engine.js
@@ -41,7 +42,9 @@ Don't shared between engine and core.
 
 ## Core
 
-Process file/text wanted to lint/fix
+Process file/text wanted to lint/fix.
+After all, return a `TextLintResult` or `TextLintFixResult`
+
 
 - `core/` directory
 - textlint-core.js

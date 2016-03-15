@@ -1,18 +1,31 @@
 # Use as node modules
 
+## Overview
+
+![overview](./resources/architecture.png)
+
+
 `textlint` module expose these header at [index.js](../src/index.js)
 
 ```js
 // Level of abstraction(descending order)
 // cli > TextLintEngine > TextLintCore(textlint)
+// See: https://github.com/textlint/textlint/blob/master/docs/use-as-modules.md
 module.exports = {
     // Command line interface
     cli: require("./cli"),
     // TextLintEngine is a wrapper around `textlint` for linting **multiple** files
     // include formatter, detecting utils
-    // Recommend: It is easy to use
+    // <Recommend>: It is easy to use
+    // You can see engine/textlint-engine-core.js for more detail
     TextLintEngine: require("./textlint-engine"),
+    // TextFixEngine is a wrapper around `textlint` for linting **multiple** files
+    // include formatter, detecting utils
+    // <Recommend>: It is easy to use
+    // You can see engine/textlint-engine-core.js for more detail
+    TextFixEngine: require("./textfix-engine"),
     // It is a singleton object of TextLintCore
+    // Recommend: use TextLintCore
     textlint: require("./textlint"),
     // Core API for linting a **single** text or file.
     TextLintCore: require("./textlint-core")
@@ -21,6 +34,32 @@ module.exports = {
 ```
 
 Recommend to use `TextLintEngine`.
+
+## Architecture
+
+See [src/README.md](../src/README.md) for details.
+
+### CLI(Command Line Interface)
+
+CLI parse command arguments, and run Engine with the options.
+
+### Engine
+
+textlint has two engines `TextLintEngine` and `TextFixEngine`.
+
+Both engine
+
+- handle **multiple** files or text string.
+- return a array of `TextLintResult` or `TextLintFixResult`
+    - actually, return a Promise like `Promise<TextLintResult[]>`
+
+### Core
+
+textlint's core 
+
+- handle a **single** file or text string.
+- return `TextLintResult` or `TextLintFixResult`
+    - actually, return a Promise like `Promise<TextLintResult>`
 
 ## Example
 
