@@ -44,7 +44,7 @@ interface TextLintFixResult {
 interface TextLintConfig {
     // rule directories path
     rulePaths?:string[];
-    // filter file extensions
+    // filter by file extensions
     extensions?:string[];
     // formatter file name
     // e.g.) stylish.js => set "stylish"
