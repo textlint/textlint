@@ -18,6 +18,8 @@ Engine-->CLI: output
 - CLI know Engine
 - Engine know Core
 
+textlint apply [Separation of Concern](http://weblogs.asp.net/arturtrosin/separation-of-concern-vs-single-responsibility-principle-soc-vs-srp "Separation of Concern").
+
 ## CLI
 
 - [options.js](./options.js)
@@ -26,6 +28,13 @@ Engine-->CLI: output
     - create config
     - run engine
     - output result
+    
+### Concern
+
+- Parse command line options
+- Run Engine
+- Receive results
+- output to stdout/stderr
     
 ## Engine
 
@@ -39,6 +48,12 @@ After all, return a **array** of `TextLintResult` or `TextLintFixResult`
 
 These are shared between config and engine.
 Don't shared between engine and core.
+
+### Concern
+
+- Prepare rules from config
+- Pass rules and configs to Core
+- Could handle multiple files
 
 ## Core
 
@@ -58,6 +73,13 @@ To be clear about difference of linter and fixer.
 
 - *Linter* process in parallel.
 - *Fixer* process in series.
+
+### Concern
+
+- Handle AST of the text
+- Do linting to the AST
+- Create fixable messages from the result
+- Could handle a single files
 
 ## Shared
 
