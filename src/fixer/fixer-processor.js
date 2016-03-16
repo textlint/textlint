@@ -82,7 +82,7 @@ export default class FixerProcessor {
             return {
                 filePath: resultFilePath,
                 output,
-                originalMessages,
+                messages: originalMessages,
                 applyingMessages,
                 remainingMessages
             };

@@ -70,10 +70,10 @@ var results = [
     // not fixable messages
     // messages is a array of `TextLintMessage`
     "remainingMessages": [],
-    // original means original for applyingMessages and remainingMessages
+    // original is the same one of `TextLintResult`
     // pre-applyingMessages + remainingMessages
     // messages is a array of `TextLintMessage`
-    "originalMessages": []
+    "messages": []
   }
 ];
 ```
@@ -92,7 +92,7 @@ $ textlint --fix --format json <file>
   {
     "filePath": "./myfile.md",
     "output": "content string",
-    "originalMessages": [],
+    "messages": [],
     "applyingMessages": [],
     "remainingMessages": []
   }
