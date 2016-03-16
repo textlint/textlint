@@ -32,10 +32,11 @@ interface TextLintFixResult {
     filePath: string;
     // fixed content
     output: string;
+    // all messages = pre-applyingMessages + remainingMessages
+    // it is same with one of `TextLintResult`
+    messages: TextLintMessage[];
     // applied fixable messages
     applyingMessages: TextLintMessage[];
-    // not fixable messages
-    originalMessages: TextLintMessage[];
     // original means original for applyingMessages and remainingMessages
     // pre-applyingMessages + remainingMessages
     remainingMessages: TextLintMessage[];
