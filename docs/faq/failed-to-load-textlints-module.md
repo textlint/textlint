@@ -15,13 +15,9 @@
 1. Update `textlint` and the rule and preset, plugin.
 2. Check your `.textlintrc` option value. 
 
-**1** :
- 
-This error is caused by mismatch between `textlint and Other(rule and preset, plugin).
+**1**: This error is caused by mismatch between `textlint` and the other(rule and preset, plugin).
 
-**2** :
-
-This error is caused by invalid config value.
+**2**: This error is caused by invalid config value.
 
 - Check the rule name in `.textlintrc` and `package.json`
 
