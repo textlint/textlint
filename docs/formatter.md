@@ -70,7 +70,7 @@ var results = [
     // not fixable messages
     // messages is a array of `TextLintMessage`
     "remainingMessages": [],
-    // original is the same one of `TextLintResult`
+    // messages is the same one of `TextLintResult`
     // pre-applyingMessages + remainingMessages
     // messages is a array of `TextLintMessage`
     "messages": []
