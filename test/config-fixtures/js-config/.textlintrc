@@ -1,4 +1,4 @@
-{
+module.exports = {
   "rules": {
     "a": true,
     "b": true,
