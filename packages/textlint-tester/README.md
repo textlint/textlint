@@ -4,7 +4,7 @@
 
 ## Installation
 
-    npm install -D textlint-tester
+    npm install -D textlint-tester mocha
 
 ## Usage
 
@@ -81,12 +81,12 @@ tester.run("no-todo", rule, {
 Run the tests:
 
 ```sh
-mocha test/
+$(npm bin)/mocha test/
 ```
 
 ## Tests
 
-    mocha test/
+    $(npm bin)/mocha test/
     # npm test
 
 ## Contributing
