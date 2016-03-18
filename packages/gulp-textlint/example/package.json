@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "textlint": "gulp textlint",
-    "test": "npm rm textlint && npm i --production && npm run textlint"
+    "test": "npm rm gulp-textlint && npm i --production && npm run textlint"
   },
   "author": "azu",
   "license": "MIT",

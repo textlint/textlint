@@ -56,3 +56,7 @@ Then execute `watch` task with `-t` option.
 ```sh
 gulp watch -t "./path/to/*.md"
 ```
+
+## Example
+
+Please See [example/](./example/).
