@@ -13,6 +13,10 @@
   },
   "version": "1.0.1",
   "main": "lib/textlint-ast-test.js",
+  "files": [
+    "src/",
+    "lib/"
+  ],
   "directories": {
     "test": "test"
   },
