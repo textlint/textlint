@@ -117,6 +117,10 @@ You can use Processor plugin in the same way a plugin.
 }
 ```
 
+Your Processor plugins's `preProcess` method should return `TxtAST` object.
+
+:information_source: Please see document about `TxtAST` before implementing Processor/Parser.
+
 ## Testing
 
 You can test the rules of your plugin the same way as bundled textlint rules using [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").

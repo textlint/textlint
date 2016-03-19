@@ -29,7 +29,7 @@ export default class RuleFixer {
     /**
      * Creates a fix command that inserts text after the given node or token.
      * The fix is not applied until applyFixes() is called.
-     * @param {TxtSyntax.TxtNode} node The node or token to insert after.
+     * @param {TxtAST.TxtNode} node The node or token to insert after.
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
@@ -52,7 +52,7 @@ export default class RuleFixer {
     /**
      * Creates a fix command that inserts text before the given node or token.
      * The fix is not applied until applyFixes() is called.
-     * @param {TxtSyntax.TxtNode} node The node or token to insert before.
+     * @param {TxtAST.TxtNode} node The node or token to insert before.
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
@@ -75,7 +75,7 @@ export default class RuleFixer {
     /**
      * Creates a fix command that replaces text at the node or token.
      * The fix is not applied until applyFixes() is called.
-     * @param {TxtSyntax.TxtNode} node The node or token to remove.
+     * @param {TxtAST.TxtNode} node The node or token to remove.
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
@@ -101,7 +101,7 @@ export default class RuleFixer {
     /**
      * Creates a fix command that removes the node or token from the source.
      * The fix is not applied until applyFixes() is called.
-     * @param {TxtSyntax.TxtNode} node The node or token to remove.
+     * @param {TxtAST.TxtNode} node The node or token to remove.
      * @returns {FixCommand} The fix command.
      */
     remove(node) {

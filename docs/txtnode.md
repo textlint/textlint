@@ -1,6 +1,6 @@
-# TxtNode interface
+# TxtAST interface
 
-Parse text to AST(Abstract Syntax Tree)
+TxtAST is define AST(Abstract Syntax Tree) for processing in textlint.
 
 ## What is AST?
 
@@ -8,21 +8,56 @@ Parse text to AST(Abstract Syntax Tree)
 
 Each node of the tree has same interface, is called `TxtNode`.
 
-[![screenshot](http://monosnap.com/image/0fqi1UF7yOv89nxJPaDWtvyqERaM49.png)](http://azu.github.io/markdown-to-ast/example/)
+[![markdown-to-ast.](./resources/markdown-to-ast.png)](http://azu.github.io/markdown-to-ast/example/)
 
 ## [TxtNode](./txtnode.d.ts) interface
 
-[TxtNode](./txtnode.d.ts) has these properties.
+### `TxtNode`
+
+[`TxtNode`](./txtnode.d.ts) has these properties.
+
+```typescript
+interface TxtNode {
+    type:string;
+    raw:string;
+    range:number[]
+    loc:LineLocation;
+    // parent is runtime information
+    // Not need in AST
+    parent?:TxtNode;
+}
+```
 
 - `type`: type of Node
-- `raw`: text value of Node
+- `raw`: raw value of Node
 - `loc`: location object
 - `range`: location info array like `[startIndex, endIndex]`
+- `parent`: (optional) parent node of this node. it is attached in runtime.
 
-and for traversing.
+### `TxtTextNode` 
 
-- `children`: (optional) child nodes of this node.
-- `parent`: (optional) parent node of this node.
+`TxtInlineNode` is inherit the `TxtNode` abstract interface.
+
+```typescript
+interface TxtTextNode extends TxtNode {
+    value:string
+}
+```
+
+- `value`: the value of inline node.
+
+### `TxtParentNode`
+ 
+`TxtParentNode` is inherit the `TxtNode` abstract interface.
+
+```typescript
+// Parent Node
+interface TxtParentNode extends TxtNode {
+    children:TxtNode[] | TxtTextNode[] | TxtParentNode[];
+}
+```
+
+- `children`: child nodes of this node.
 
 ### `type`
 
@@ -105,6 +140,137 @@ This is for compatibility with JavaScript AST.
 
 This means that textlint's rule handle `TxtNode`( **0-based columns** ), but [formatter](./formatter.md "Formatter") handle `TextLintMessage`( **1-based columns** ).
 
+## Example
+
+Input: `*text*`
+
+Output: AST by [markdown-to-ast](https://github.com/textlint/markdown-to-ast "markdown-to-ast")
+
+```js
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "text",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                1,
+                                5
+                            ],
+                            "raw": "text"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "raw": "*text*"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 6
+                }
+            },
+            "range": [
+                0,
+                6
+            ],
+            "raw": "*text*"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 1,
+            "column": 6
+        }
+    },
+    "range": [
+        0,
+        6
+    ],
+    "raw": "*text*"
+}
+```
+
+Illustration
+
+```
+          *   text   *
+          |   |__|   |
+          |   value  |
+          |__________|
+               raw
+```
+
+- Document is a `TxtParentNode` and type is Document
+    - have `child`, but not have `value`
+- Paragraph is a `TxtParentNode` and type is Paragraph
+    - have `children`, but not have `value`
+*Emphasis* is a `TxtTextNode` and type is Emphasis
+    - have `value`
+"text" is a `TxtTextNode` and type is Str
+    - have `value`
+
+## Unist
+
+`TxtAST` have a minimum of compatibility for [unist: Universal Syntax Tree](https://github.com/wooorm/unist "wooorm/unist: Universal Syntax Tree").
+
+We discuss about Unist in [Compliances tests for TxtNode #141](https://github.com/textlint/textlint/issues/141 "Compliances tests for TxtNode #141").
+
+## for Processor plugin creator
+
+You can use [textlint-ast-test](https://github.com/textlint/textlint-ast-test "textlint-ast-test") for testing your processor plugin's parse.
+
+- [textlint/textlint-ast-test: Compliance tests for textlint's AST](https://github.com/textlint/textlint-ast-test "textlint/textlint-ast-test: Compliance tests for textlint&#39;s AST")
+
+```js
+import {test, isTextlintAST} from "textlint-ast-test";
+// your implement
+import yourParse from "your-parser";
+// recommenced: test much pattern test
+const AST = yourParse("This is text");
+
+// Validate AST  
+test(AST);// if the AST is invalid, then throw Error
+
+isTextlintAST(AST);// true or false
+```
 ## Warning
 
 Other properties is not assured.
