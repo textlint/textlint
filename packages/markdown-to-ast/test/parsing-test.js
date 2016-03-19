@@ -3,7 +3,6 @@
 // parse all fixture and should has
 var assert = require("power-assert");
 var parse = require("../").parse;
-var Syntax = require("../").Syntax;
 var TraverseController = require('txt-ast-traverse').Controller;
 var traverseController = new TraverseController();
 var fs = require('fs');

@@ -7,21 +7,6 @@ var StructuredSource = require('structured-source');
 var debug = require("debug")("markdown-to-ast");
 var remark = require("remark");
 /**
- * Remove undocumented properties on TxtNode from node
- * @param {TxtNode} node already has loc,range
- */
-function removeUnusedProperties(node) {
-    if (typeof node !== "object") {
-        return;
-    }
-    ["position"].forEach(function (key) {
-        if (node.hasOwnProperty(key)) {
-            delete node[key];
-        }
-    });
-}
-
-/**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
  * @returns {TxtNode}
@@ -51,8 +36,15 @@ function parse(text) {
                 node.loc = positionCompensated;
                 node.range = range;
                 node.raw = text.slice(range[0], range[1]);
+                // Compatible for https://github.com/wooorm/unist, but hidden
+                Object.defineProperty(node, "position", {
+                    enumerable: false,
+                    configurable: false,
+                    writable: false,
+                    value: position
+                });
+
             }
-            removeUnusedProperties(node);
         }
     });
     return ast;
