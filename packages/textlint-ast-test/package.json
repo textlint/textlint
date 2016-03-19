@@ -29,7 +29,7 @@
     "test",
     "suite"
   ],
-  "description": "Compliances tests for textlint's AST(Abstract Syntax Tree).",
+  "description": "Compliance tests for textlint's AST(Abstract Syntax Tree).",
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-plugin-add-module-exports": "^0.1.2",

@@ -1,6 +1,6 @@
 # textlint-ast-test
 
-Compliances tests for [textlint](https://github.com/textlint/textlint "textlint")'s AST(Abstract Syntax Tree).
+Compliance tests for [textlint](https://github.com/textlint/textlint "textlint")'s AST(Abstract Syntax Tree).
 
 - [textlint/txtnode.md at master · textlint/textlint](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint")
 
