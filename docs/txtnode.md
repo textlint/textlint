@@ -155,7 +155,7 @@ Input: `*text*`
 
 Output: AST by [markdown-to-ast](https://github.com/textlint/markdown-to-ast "markdown-to-ast")
 
-```js
+```json
 {
     "type": "Document",
     "children": [
