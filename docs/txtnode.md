@@ -18,13 +18,23 @@ Each node of the tree has same interface, is called `TxtNode`.
 
 ```typescript
 interface TxtNode {
-    type:string;
-    raw:string;
-    range:number[]
-    loc:LineLocation;
+    type: string;
+    raw: string;
+    range: [number, number]
+    loc: LineLocation;
     // parent is runtime information
     // Not need in AST
-    parent?:TxtNode;
+    parent?: TxtNode;
+}
+interface LineLocation {
+    start: Position;
+    end: Position;
+}
+interface Position {
+    line: number; // start with 1
+    column: number;// start with 0
+    // This is for compatibility with JavaScript AST.
+    // https://gist.github.com/azu/8866b2cb9b7a933e01fe
 }
 ```
 
@@ -40,7 +50,7 @@ interface TxtNode {
 
 ```typescript
 interface TxtTextNode extends TxtNode {
-    value:string
+    value: string
 }
 ```
 
@@ -51,9 +61,8 @@ interface TxtTextNode extends TxtNode {
 `TxtParentNode` is inherit the `TxtNode` abstract interface.
 
 ```typescript
-// Parent Node
 interface TxtParentNode extends TxtNode {
-    children:TxtNode[] | TxtTextNode[] | TxtParentNode[];
+    children: TxtNode[] | TxtTextNode[];
 }
 ```
 
