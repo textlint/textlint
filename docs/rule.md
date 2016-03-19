@@ -526,7 +526,7 @@ Example rules:
 A. You should
 
 - Add `textlint >= 5.5` to `peerDependencies`
-    - e.g.) https://github.com/azu/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json#L47-L49
+    - See example: [textlint-rule-no-todo/package.json](https://github.com/azu/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json#L47-L49)
 - Release the rule module as *major* because it has breaking change.
 
 #### Q. `textlint` does major update. Do my rule module major update?
