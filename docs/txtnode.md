@@ -42,6 +42,7 @@ interface Position {
 
 - `type`: type of Node
 - `raw`: raw value of Node
+    - if you want to get raw value, please use `getSource(<node>)` instead of it.
 - `loc`: location object
 - `range`: location info array like `[startIndex, endIndex]`
 - `parent`: (optional) parent node of this node. it is attached in runtime.
