@@ -1,4 +1,4 @@
-import assert from "power-assert";
+import assert from "assert";
 import {test, isTxtAST} from "../src/textlint-ast-test";
 const txtParse = require("txt-to-ast").parse;
 const markdownParse = require("markdown-to-ast").parse;
@@ -32,6 +32,17 @@ This is ⏩ emoji
             const AST = markdownParse(text);
             test(AST);
             assert(isTxtAST(AST));
+        });
+    });
+
+    context("when invalid case", function () {
+        it("should not throw", function () {
+            assert.throws(function () {
+                test({
+                    type: "string"
+                });
+            });
+            assert(!isTxtAST({}));
         });
     });
 });

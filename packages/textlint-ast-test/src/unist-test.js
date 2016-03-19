@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 // https://github.com/wooorm/unist
 export function isUnist(node) {
     try {
