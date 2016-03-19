@@ -4,7 +4,7 @@ Parse Markdown to AST with location info.
 
 This library is not parser itself, it dependent on [wooorm/remark](https://github.com/wooorm/remark).
 
-> Markdown -> remark -> markdown-to-ast -> TxtNodes
+> Markdown -> remark -> markdown-to-ast -> `TxtNode`s
 
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
@@ -12,11 +12,13 @@ A `TxtNode` of the AST has following properties:
 - `loc` - Nodes have line and column-based location info.
 - `range` - Nodes have an index-based location range (array).
 - `raw` - Node have a `raw` text.
+- `value` - Node have a `value` of text.
 
-The interface defined as [txtnode.d.ts](typing/txtnode.d.ts).
+The interface are defined in [textlint/txtnode.md](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint")
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
+If you need to markdown parse, please use directory [wooorm/remark](https://github.com/wooorm/remark).
 
 ## DEMO
 
@@ -137,8 +139,6 @@ var AST = parse(markdown);
 }
 */
 ```
-
-The interface of a node on AST is defined as [txtnode.d.ts](typing/txtnode.d.ts).
 
 If you want to know real use-case, please see [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
