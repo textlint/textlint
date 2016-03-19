@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/textlint-ast-test/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/textlint-ast-test.js",
   "directories": {
     "test": "test"
