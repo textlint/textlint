@@ -16,7 +16,7 @@ import {SeverityLevel, getSeverity} from "../shared/rule-severity";
  * @param ruleId
  * @param sourceCode
  * @param {ReportCallback} report
- * @param textLintConfig
+ * @param {Config} textLintConfig
  * @param ruleConfig
  * @returns {*}
  * @constructor
