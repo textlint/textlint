@@ -2,7 +2,7 @@
 "use strict";
 const assert = require("power-assert");
 import {test as UnistTest} from "./unist-test";
-export function isTextlintAST(node) {
+export function isTxtAST(node) {
     try {
         test(node);
     } catch (error) {

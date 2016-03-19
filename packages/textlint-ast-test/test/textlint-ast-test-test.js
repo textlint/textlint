@@ -1,5 +1,5 @@
 import assert from "power-assert";
-import {test} from "../src/textlint-ast-test";
+import {test, isTxtAST} from "../src/textlint-ast-test";
 const txtParse = require("txt-to-ast").parse;
 const markdownParse = require("markdown-to-ast").parse;
 describe("textlint-ast-test", function () {
@@ -14,6 +14,7 @@ This is ⏩ emoji
 
             const AST = txtParse(text);
             test(AST);
+            assert(isTxtAST(AST));
         });
     });
     context("when txt-to-ast", function () {
@@ -30,6 +31,7 @@ This is ⏩ emoji
 `;
             const AST = markdownParse(text);
             test(AST);
+            assert(isTxtAST(AST));
         });
     });
 });

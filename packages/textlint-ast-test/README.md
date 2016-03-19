@@ -17,18 +17,18 @@ If you create [Processor](https://github.com/textlint/textlint/blob/master/docs/
 
 if the AST is invalid, then throw Error
 
-### `isTextlintAST(textlintAST): boolean`
+### `isTxtAST(textlintAST): boolean`
 
 if the AST is valid, then return `true`.
 
 ```js
-import {test, isTextlintAST} from "textlint-ast-test";
+import {test, isTxtAST} from "textlint-ast-test";
 import yourParse from "your-parser";
 // recommenced: test much pattern test
 const AST = yourParse("This is text");
 test(AST);// if the AST is invalid, then throw Error
 
-isTextlintAST(AST);// true or false
+isTxtAST(AST);// true or false
 ```
 ## Tests
 
