@@ -38,20 +38,26 @@ export default class TextLintCoreTask extends EventEmitter {
 
     createReporter(sourceCode) {
         const sourceLocation = new SourceLocation(sourceCode);
+
+        /**
+         * @typedef {Object} ReportMessage
+         * @property {string} ruleId
+         * @property {TxtNode} node
+         * @property {number} severity
+         * @property {RuleError} ruleError error is a RuleError instance or any data
+         */
         /**
          * push new RuleError to results
-         * @param {string} ruleId
-         * @param {TxtNode} node
-         * @param {number} severity
-         * @param {RuleError|any} error error is a RuleError instance or any data
+         * @param {ReportMessage} reportedMessage
          */
-        return ({ruleId, node, severity, error}) => {
-            debug("pushReport %s", error);
-            const {line, column, fix} = sourceLocation.adjust(node, error);
+        const reportFunction = (reportedMessage) => {
+            const {ruleId, severity, ruleError} = reportedMessage;
+            debug("%s pushReport %s", ruleId, ruleError);
+            const {line, column, fix} = sourceLocation.adjust(reportedMessage);
             // add TextLintMessage
             const message = {
                 ruleId: ruleId,
-                message: error.message,
+                message: ruleError.message,
                 // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
                 line: line,        // start with 1(1-based line number)
                 column: column + 1,// start with 1(1-based column number)
@@ -60,13 +66,14 @@ export default class TextLintCoreTask extends EventEmitter {
             if (fix) {
                 message.fix = fix;
             }
-            if (!(error instanceof RuleError)) {
+            if (!(ruleError instanceof RuleError)) {
                 // `error` is a any data.
-                const data = error;
+                const data = ruleError;
                 message.data = data;
             }
             this.emit(TextLintCoreTask.events.message, message);
         };
+        return reportFunction;
     }
 
     /**

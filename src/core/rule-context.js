@@ -6,10 +6,16 @@ import RuleError from "./rule-error";
 import {SeverityLevel, getSeverity} from "../shared/rule-severity";
 
 /**
+ * This callback is displayed as a global member.
+ * @callback ReportCallback
+ * @param {ReportMessage} message
+ */
+
+/**
  * Rule context object is passed to each rule as `context`
  * @param ruleId
  * @param sourceCode
- * @param report
+ * @param {ReportCallback} report
  * @param textLintConfig
  * @param ruleConfig
  * @returns {*}
@@ -20,17 +26,17 @@ export default function RuleContext(ruleId, sourceCode, report, textLintConfig, 
     Object.defineProperty(this, "config", {value: textLintConfig});
     const severity = getSeverity(ruleConfig);
     /**
-     *
+     * report function that is called in a rule
      * @param {TxtNode} node
-     * @param {RuleError|any} error error is a RuleError instance or any data
+     * @param {RuleError|any} ruleError error is a RuleError instance or any data
      */
-    this.report = function (node, error) {
+    this.report = function (node, ruleError) {
         assert(!(node instanceof RuleError), "should be `report(node, ruleError);`");
-        if (error instanceof RuleError) {
-            report({ruleId, node, severity, error});
+        if (ruleError instanceof RuleError) {
+            report({ruleId, node, severity, ruleError});
         } else {
-            const level = error.severity || SeverityLevel.error;
-            report({ruleId, node, severity: level, error});
+            const level = ruleError.severity || SeverityLevel.error;
+            report({ruleId, node, severity: level, ruleError});
         }
     };
     // Const Values

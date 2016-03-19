@@ -2,7 +2,7 @@
 "use strict";
 const assert = require("power-assert");
 import {TextLintCore} from "../src/index";
-import {setRunningTest, throwIfTesting} from "../src/util/throw-log";
+import {setRunningTest} from "../src/util/throw-log";
 describe("rule-context-test", function () {
     let textlint;
     beforeEach(function () {

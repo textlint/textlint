@@ -14,20 +14,21 @@ export default class SourceLocation {
 
     /**
      * adjust node's location with error's padding location.
-     *
-     * @param {TxtNode} node
-     * @param {RuleError} padding
+     * @param {ReportMessage} reportedMessage
      * @returns {{line: number, column: number, fix?: FixCommand}}
      */
-    adjust(node, padding) {
+    adjust(reportedMessage) {
+        const {node, ruleError, ruleId} = reportedMessage;
+        const errorPrefix = `[${ruleId}]` || "";
+        const padding = ruleError;
         /*
-            FIXME: It is old way and un-document way
+            FIXME: It is old and un-document way
             new RuleError("message", index);
          */
         let _backwardCompatibleIndexValue;
         if (typeof padding === "number") {
             _backwardCompatibleIndexValue = padding;
-            throwIfTesting(`This is un-document way:
+            throwIfTesting(`${errorPrefix} This is un-document way:
 report(node, new RuleError("message", index);
 
 Please use { index }: 
@@ -40,7 +41,7 @@ report(node, new RuleError("message", {
         // when running from textlint-tester, assert
         if (padding.line === undefined && padding.column !== undefined) {
             // FIXME: Backward compatible <= textlint.5.5
-            throwIfTesting(`Have to use a sets with "line" and "column".
+            throwIfTesting(`${errorPrefix} Have to use a sets with "line" and "column".
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/line-column-or-index.md            
 
 report(node, new RuleError("message", {
@@ -61,7 +62,7 @@ report(node, new RuleError("message", {
             // Introduced textlint 5.6
             // https://github.com/textlint/textlint/releases/tag/5.6.0
             // Always throw Error
-            throw new Error(`Have to use {line, column} or index.
+            throw new Error(`${errorPrefix} Have to use {line, column} or index.
 => use either one of the two
 
 report(node, new RuleError("message", {
@@ -123,7 +124,7 @@ report(node, new RuleError("message", {
                 }
             }
         }
-        // when use { line }
+        // when use { line } only
         if (padding.line !== undefined && padding.line > 0) {
             const addedLine = line + padding.line;
             return {
@@ -131,7 +132,7 @@ report(node, new RuleError("message", {
                 column
             };
         }
-        // when use { column }
+        // when use { column } only
         // FIXME: backward compatible @ un-document
         // Remove next version 6?
         /*

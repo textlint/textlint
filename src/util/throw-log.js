@@ -20,7 +20,7 @@ export function throwWithoutExperimental(message) {
 }
 /**
  * if current is in testing, throw error message.
- * @param message
+ * @param {string} message
  */
 export function throwIfTesting(message) {
     if (isRunningFromTester) {
