@@ -518,6 +518,22 @@ Example rules:
 - [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo")
 - [azu/textlint-rule-spellcheck-tech-word](https://github.com/azu/textlint-rule-spellcheck-tech-word "azu/textlint-rule-spellcheck-tech-word")
 
+### FAQ: Publishing
+
+
+#### Q. `textlint @ 5.5.x` has new feature. My rule module want to use it.
+
+A. You should
+
+- Add `textlint >= 5.5` to `peerDependencies`
+    - e.g.) https://github.com/azu/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json#L47-L49
+- Release the rule module as *major* because it has breaking change.
+
+#### Q. `textlint` does major update. Do my rule module major update?
+
+A. If the update contain breaking change, should update as *major*.
+if not, update as *major* or *minor*.
+
 ## Performance
 
 ### Rule Performance
