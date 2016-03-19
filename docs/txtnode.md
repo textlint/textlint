@@ -77,13 +77,35 @@ interface TxtParentNode extends TxtNode {
 - Types of Markdown text are defined in [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast")
     - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
 
-All Types are defined in [src/parser/union-syntax.js](../src/parser/union-syntax.js)
+All Types are defined in [src/shared/union-syntax.js](../src/shared/union-syntax.js)
 
 These types are be available at all times:
 
-- Document
-- Paragraph
-- Str
+```
+const Syntax = {
+    "Document": "Document",
+    "Paragraph": "Paragraph",
+    "BlockQuote": "BlockQuote",
+    "ListItem": "ListItem",
+    "List": "List",
+    "Header": "Header",
+    "CodeBlock": "CodeBlock",
+    "HtmlBlock": "HtmlBlock",
+    "ReferenceDef": "ReferenceDef",
+    "HorizontalRule": "HorizontalRule",
+    // inline
+    "Str": "Str",
+    "Break": "Break", // well-known Hard Break
+    "Emphasis": "Emphasis",
+    "Strong": "Strong",
+    "Html": "Html",
+    "Link": "Link",
+    "Image": "Image",
+    "Code": "Code"
+};
+```
+
+The type is based on HTML tag.
 
 TODO: if you want to get other type, please file issue.
 
