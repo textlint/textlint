@@ -264,7 +264,7 @@ We discuss about Unist in [Compliances tests for TxtNode #141](https://github.co
 
 ## for Processor plugin creator
 
-You can use [textlint-ast-test](https://github.com/textlint/textlint-ast-test "textlint-ast-test") for testing your processor plugin's parse.
+You can use [textlint-ast-test](https://github.com/textlint/textlint-ast-test "textlint-ast-test") for testing your processor plugin's parser.
 
 - [textlint/textlint-ast-test: Compliance tests for textlint's AST](https://github.com/textlint/textlint-ast-test "textlint/textlint-ast-test: Compliance tests for textlint&#39;s AST")
 
