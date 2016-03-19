@@ -1,6 +1,6 @@
 # TxtAST interface
 
-TxtAST is define AST(Abstract Syntax Tree) for processing in textlint.
+TxtAST define AST(Abstract Syntax Tree) for processing in textlint.
 
 ## What is AST?
 
