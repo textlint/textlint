@@ -201,6 +201,8 @@ export default function (context) {
         /*
             # Header
             Todo: quick fix this.
+            ^^^^^
+            Hit!
         */
         [Syntax.Str](node) {
             // get text from node
@@ -216,6 +218,8 @@ export default function (context) {
         /*
             # Header
             - [ ] Todo
+              ^^^
+              Hit!
         */
         [Syntax.ListItem](node) {
             var text = context.getSource(node);
@@ -320,10 +324,15 @@ export default function (context) {
                 return;
             }
             // get text from node
-            var text = getSource(node);
+            const text = getSource(node);
             // does text contain "todo:"?
-            if (/todo:/i.test(text)) {
-                report(node, new RuleError("found TODO: '" + text + "'"));
+            const match = text.match(/todo:/i);
+            if (match) {
+                const todoText = text.substring(match.index);
+                report(node, new RuleError(`Found TODO: '${todoText}'`, {
+                    // correct position
+                    index: match.index
+                }));
             }
         },
         /*
@@ -331,9 +340,12 @@ export default function (context) {
             - [ ] Todo
         */
         [Syntax.ListItem](node) {
-            var text = getSource(node);
-            if (/\[\s+\]\s/i.test(text)) {
-                report(node, new RuleError("found TODO: '" + text + "'"));
+            const text = context.getSource(node);
+            const match = text.match(/\[\s+\]\s/i);
+            if (match) {
+                report(node, new context.RuleError(`Found TODO: '${text}'`, {
+                    index: match.index
+                }));
             }
         }
     };
@@ -348,6 +360,103 @@ As as result, linting following text with modified rule, a result was no error.
 
 - The created rule is [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo").
 - These helper functions like `getParents` are implemented in [textlint/textlint-rule-helper](https://github.com/textlint/textlint-rule-helper "textlint/textlint-rule-helper").
+
+### How to test the rule?
+
+Use [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester")!
+
+#### Installation
+
+[textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester") depend on [Mocha](https://mochajs.org/ "Mocha").
+
+    npm install -D textlint-tester mocha
+
+#### Usage of textlint-tester 
+
+1. Write tests by using textlint-tester
+2. Run tests by Mocha
+
+`test/textlint-rule-no-todo-test.js`:
+
+```js
+const TextLintTester = require("textlint-tester");
+const tester = new TextLintTester();
+// rule
+import rule from "../src/no-todo";
+// ruleName, rule, { valid, invalid }
+tester.run("no-todo", rule, {
+    valid: [
+        // no match
+        "text",
+        // partial match
+        "TODOS:",
+        // ignore node's type
+        "[TODO: this is todo](http://example.com)",
+        "![TODO: this is todo](http://example.com/img)",
+        "> TODO: this is todo"
+
+    ],
+    invalid: [
+        // single match
+        {
+            text: "TODO: this is TODO",
+            errors: [
+                {
+                    message: "Found TODO: 'TODO: this is TODO'",
+                    line: 1,
+                    column: 1
+                }
+            ]
+        },
+        // multiple match in multiple lines
+        {
+            text: `TODO: this is TODO
+            
+- [ ] TODO`,
+            errors: [
+                {
+                    message: "Found TODO: 'TODO: this is TODO'",
+                    line: 1,
+                    column: 1
+                },
+                {
+                    message: "Found TODO: '- [ ] TODO'",
+                    line: 3,
+                    column: 3
+                }
+            ]
+        },
+        // multiple hit items in a line
+        {
+            text: "TODO: A TODO: B",
+            errors: [
+                {
+                    message: "Found TODO: 'TODO: A TODO: B'",
+                    line: 1,
+                    column: 1
+                }
+            ]
+        },
+        // exact match or empty
+        {
+            text: "THIS IS TODO:",
+            errors: [
+                {
+                    message: "Found TODO: 'TODO:'",
+                    line: 1,
+                    column: 9
+                }
+            ]
+        }
+    ]
+});
+```
+
+Run the tests:
+
+    $(npm bin)/mocha test/
+
+:information_source: Please see [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo") for details.
 
 ### Rule Config
 
