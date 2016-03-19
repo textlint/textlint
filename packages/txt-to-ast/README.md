@@ -12,8 +12,11 @@ A `TxtNode` of the AST has following properties:
 - `loc` - Nodes have line and column-based location info.
 - `range` - Nodes have an index-based location range (array).
 - `raw` - Node have a `raw` text.
+- `value` - Node have a `value` of text.
 
-The interface defined as [txtnode.d.ts](typing/txtnode.d.ts).
+The interface are defined in [textlint/txtnode.md](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint")
+
+This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
 ## Installation
 
