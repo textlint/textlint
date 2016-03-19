@@ -20,7 +20,7 @@ if the AST is invalid, then throw Error
 
 if the AST is valid, then return `true`.
 
-```
+```js
 import {test, isTextlintAST} from "textlint-ast-test";
 import yourParse from "your-parser";
 // recommenced: test much pattern test
