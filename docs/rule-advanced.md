@@ -362,7 +362,7 @@ const tester = new TextLintTester();
 // rule
 import rule from "../src/textlint-rule-en-max-word-count";
 // ruleName, rule, { valid, invalid }
-tester.run("no-todo", rule, {
+tester.run("max-word-count", rule, {
     valid: [
         // no match
         {
