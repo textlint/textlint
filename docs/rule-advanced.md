@@ -76,7 +76,10 @@ This is text.
 
 is described as `Paragraph.children = ["Str"]`
 
-:information_source: Use [Markdown-to-AST demo](http://azu.github.io/markdown-to-ast/example/)
+:information_source: 
+
+- Please see [txtnode.md](./txtnode.md) for Abstract Syntax Tree details.
+- Use [Markdown-to-AST demo](http://azu.github.io/markdown-to-ast/example/)
 
 But, Following `Paragraph` node contain `Code` node. 
 
@@ -265,7 +268,7 @@ import StringSource from "textlint-util-to-string";
 import {split as splitSentence, Syntax as SplitterSyntax} from "sentence-splitter";
 // Helper for splitting text to words
 // https://github.com/timjrobinson/split-string-words
-import splitWord from 'split-string-words';
+import splitWord from "split-string-words";
 import ObjectAssign from "object-assign";
 // Default options
 const defaultOptions = {
@@ -414,7 +417,7 @@ This is not a pen.`,
         },
         // multiple hit items in a line
         {
-            text: `This is a pen.This is not a pen.`,
+            text: "This is a pen.This is not a pen.",
             options: {
                 max: 3
             },
@@ -433,7 +436,7 @@ This is not a pen.`,
         },
         // It is a single sentence
         {
-            text: `This is a pen This is not a pen.`,
+            text: "This is a pen This is not a pen.",
             options: {
                 max: 3
             },
@@ -449,6 +452,6 @@ This is not a pen.`,
 });
 ```
 
-## Finish!
+## Complete!
 
 See completed source code [textlint-rule-en-max-word-count](https://github.com/azu/textlint-rule-en-max-word-count "textlint-rule-en-max-word-count")
