@@ -487,6 +487,11 @@ export default function(context, options){
 }
 ```
 
+## Advanced example
+
+If you want to know more details, please see other example.
+
+- [Paragraph rule](./rule-advanced.md)
 
 ## Information for Publishing
 
@@ -519,7 +524,6 @@ Example rules:
 - [azu/textlint-rule-spellcheck-tech-word](https://github.com/azu/textlint-rule-spellcheck-tech-word "azu/textlint-rule-spellcheck-tech-word")
 
 ### FAQ: Publishing
-
 
 #### Q. `textlint @ 5.5.x` has new feature. My rule module want to use it.
 
