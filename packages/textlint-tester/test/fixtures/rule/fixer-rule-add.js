@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 
-var RuleHelper = require("textlint-rule-helper").RuleHelper;
+const RuleHelper = require("textlint-rule-helper").RuleHelper;
 
 function reporter(context) {
     const {Syntax, RuleError, fixer, report, getSource} = context;
