@@ -1,7 +1,5 @@
 # Creating fixable rule
 
-## Status: **experimental** :construction:
-
 textlint has `linter` and also has `fixer`.
 
 ```js
