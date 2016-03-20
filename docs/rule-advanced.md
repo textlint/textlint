@@ -76,7 +76,7 @@ This is text.
 
 is described as `Paragraph.children = ["Str"]`
 
-:information_source: 
+:information_source: Info:
 
 - Please see [txtnode.md](./txtnode.md) for Abstract Syntax Tree details.
 - Use [Markdown-to-AST demo](http://azu.github.io/markdown-to-ast/example/)
