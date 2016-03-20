@@ -2,7 +2,6 @@
 "use strict";
 const Syntax = {
     "Document": "Document",
-    // must
     "Paragraph": "Paragraph",
     "BlockQuote": "BlockQuote",
     "ListItem": "ListItem",
@@ -14,9 +13,7 @@ const Syntax = {
     "HorizontalRule": "HorizontalRule",
     // inline
     "Str": "Str",
-    // must
-    "Break": "Break",
-    // must
+    "Break": "Break", // well-known Hard Break
     "Emphasis": "Emphasis",
     "Strong": "Strong",
     "Html": "Html",

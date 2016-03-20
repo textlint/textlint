@@ -23,7 +23,7 @@
     "src",
     "typing"
   ],
-  "typings": "typing/textlint.d.ts",
+  "typings": "typings/textlint.d.ts",
   "bin": {
     "textlint": "./bin/textlint.js"
   },
