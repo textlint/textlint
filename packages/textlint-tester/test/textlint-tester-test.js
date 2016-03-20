@@ -35,6 +35,17 @@ tester.run("no-todo", noTodo, {
                     column: 1
                 }
             ]
+        },
+        {
+            text: "- [ ] TODO: this text is parsed as plain text.",
+            ext: ".txt",
+            errors: [
+                {
+                    message: "found TODO: '- [ ] TODO: this text is parsed as plain text.'",
+                    line: 1,
+                    column: 1
+                }
+            ]
         }
     ]
 });

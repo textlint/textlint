@@ -5,7 +5,8 @@ var fixerRule = require("./fixtures/rule/fixer-rule-add");
 var tester = new TextLintTester();
 tester.run("fixer-rule-add", fixerRule, {
     valid: [
-        "string."
+        "string.",
+        "- [ ] list item"
     ],
     invalid: [
         {
@@ -16,6 +17,18 @@ tester.run("fixer-rule-add", fixerRule, {
                     message: "Please add . to end of a sentence.",
                     line: 1,
                     column: 14
+                }
+            ]
+        },
+        {
+            text: "- [ ] plain text",
+            output: "- [ ] plain text.",
+            ext: ".txt",
+            errors: [
+                {
+                    message: "Please add . to end of a sentence.",
+                    line: 1,
+                    column: 17
                 }
             ]
         }
