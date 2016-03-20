@@ -15,12 +15,55 @@
 
 #### TextLintTester#run(ruleName, rule, {valid=[], invalid=[]})
 
-- `{string} ruleName` ruleName is name of thee rule
-- `{Function} rule` rule is the function of rule
-- `{string[]|object[]} valid`
-    - e.g.) `["text", { text : "text" }]`
-- `{object[]} invalid`
-    - e.g.) `[{text: "text", output:"text", errors: [ messages : "expected message" ]}`
+- `{string} ruleName` ruleName is a name of the rule.
+- `{Function} rule` rule is the exported function of the rule.
+- `{string[]|object[]} valid` valid is an array of text which should be passed.
+    - You can use `object` if you want to specify some options. `object` can have the following properties:
+        - `{string} text`: a text to be linted
+        - `{object} options`: options to be passed to the rule
+        - `{string} ext`: an extension key. Default: `.md` (Markdown)
+
+  e.g.)
+```js
+[
+    "text",
+    { text : "text" },
+    {
+        text: "text",
+        options: {
+            "key": "value",
+        },
+    },
+    {
+        text: "<p>this sentence is parsed as HTML document.</p>",
+        ext: ".html",
+    },
+]
+```
+- `{object[]} invalid` invalid is an array of object which should be failed.
+    - `object` can have the following properties:
+        - `{string} text`: a text to be linted.
+        - `{string} output`: a fixed text.
+        - `{string} ext`: an extension key.
+        - `{object[]} errors`: an array of error objects which should be raised againt the text.
+
+  e.g.)
+  ```js
+[
+    {
+        text: "text",
+        output: "text",
+        ext: ".txt",
+        errors: [
+            {
+                messages: "expected message",
+                line: 1,
+                column: 1
+            }
+        ]
+    }
+]
+```
 
 ### Example
 
@@ -65,7 +108,7 @@ tester.run("no-todo", rule, {
         },
         {
          text: "TODO: string",
-         output: "string" // <= fixed output 
+         output: "string" // <= fixed output
          errors: [
              {
                  message: "found TODO: 'TODO: string'",
