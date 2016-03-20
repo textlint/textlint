@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import assert from "assert";
-export function testInvalid(textlint, text, errors) {
+export function testInvalid(textlint, text, ext, errors) {
     assert.strictEqual(typeof text, "string", `invalid property should have text string
 e.g.)
 invalid : [
@@ -25,7 +25,7 @@ invalid : [
 ]
             `);
     let errorLength = errors.length;
-    return textlint.lintMarkdown(text).then(lintResult => {
+    return textlint.lintText(text, ext).then(lintResult => {
         assert.strictEqual(lintResult.messages.length, errorLength, `invalid: should have ${errorLength} errors but had ${lintResult.messages.length}:
 ===Text===:
 ${text}
@@ -56,9 +56,9 @@ ${JSON.stringify(lintResult, null, 4)}`);
 }
 
 
-export function testValid(textlint, text) {
+export function testValid(textlint, text, ext) {
     assert.strictEqual(typeof text, "string", "valid should has string of text.");
-    return textlint.lintMarkdown(text).then(results => {
+    return textlint.lintText(text, ext).then(results => {
 
         assert.strictEqual(results.messages.length, 0, `valid: should have no errors but had Error results:
 ===Text===:

@@ -9,6 +9,10 @@ tester.run("no-todo", noTodo, {
         "string, test desu",
         {
             text: "日本語 is Japanese."
+        },
+        {
+            text: "- [ ] This text is parsed as plain text.",
+            ext: ".txt"
         }
     ],
     invalid: [

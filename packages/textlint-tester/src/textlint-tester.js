@@ -37,6 +37,7 @@ export default class TextLintTester {
     testValidPattern(ruleName, rule, valid) {
         let text = valid.text || valid;
         let options = valid.options || {};
+        let ext = valid.ext || '.md';
         var textlint = new TextLintCore();
         textlint.setupRules({
             [ruleName]: rule
@@ -44,7 +45,7 @@ export default class TextLintTester {
             [ruleName]: options
         });
         it(text, ()=> {
-            return testValid(textlint, text);
+            return testValid(textlint, text, ext);
         });
     }
 
@@ -52,6 +53,7 @@ export default class TextLintTester {
         let text = invalid.text;
         let options = invalid.options || {};
         let errors = invalid.errors;
+        let ext = invalid.ext || '.md';
         var textlint = new TextLintCore();
         textlint.setupRules({
             [ruleName]: rule
@@ -59,13 +61,13 @@ export default class TextLintTester {
             [ruleName]: options
         });
         it(text, ()=> {
-            return testInvalid(textlint, text, errors);
+            return testInvalid(textlint, text, ext, errors);
         });
         // --fix
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${text}`, ()=> {
                 assertHasFixer(rule, ruleName);
-                return textlint.fixText(text, ".md").then(result => {
+                return textlint.fixText(text, ext).then(result => {
                     const output = invalid.output;
                     assert.strictEqual(result.output, output);
                 });
