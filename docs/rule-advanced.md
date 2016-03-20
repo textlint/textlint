@@ -138,7 +138,7 @@ We can get text from a node with **Source Map** using [textlint-util-to-string](
 
 Why does we use [textlint-util-to-string](https://www.npmjs.com/package/textlint-util-to-string)?
 
-Because, we report via `context.report` original position of the text.
+Because, we report error via `context.report` with original position of the text.
 
 ```js
 // Helper for creating new AST using map function
