@@ -454,4 +454,4 @@ This is not a pen.`,
 
 ## Complete!
 
-See completed source code [textlint-rule-en-max-word-count](https://github.com/azu/textlint-rule-en-max-word-count "textlint-rule-en-max-word-count")
+See completed source code in [textlint-rule-en-max-word-count](https://github.com/azu/textlint-rule-en-max-word-count "textlint-rule-en-max-word-count")
