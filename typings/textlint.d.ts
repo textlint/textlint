@@ -1,3 +1,4 @@
+import TxtAST from "./txtast";
 // "range" is replaced by "text"
 interface TextLintFixCommand {
     text: string;
@@ -24,8 +25,8 @@ interface TextLintMessage {
 }
 // Linting result
 interface TextLintResult {
-    filePath:string;
-    messages:TextLintMessage[];
+    filePath: string;
+    messages: TextLintMessage[];
 }
 // Fixing result
 interface TextLintFixResult {
@@ -44,12 +45,12 @@ interface TextLintFixResult {
 // Config - pass a object to config.js when initialize Config.
 interface TextLintConfig {
     // rule directories path
-    rulePaths?:string[];
+    rulePaths?: string[];
     // filter by file extensions
-    extensions?:string[];
+    extensions?: string[];
     // formatter file name
     // e.g.) stylish.js => set "stylish"
-    formatterName?:string;
+    formatterName?: string;
     // plugin package names
     plugins?: string[];
     // rules base directory that is related `rules`.
@@ -68,4 +69,139 @@ interface TextLintConfig {
     configFile?: string,
     // rules config object
     rulesConfig?: Object,
+}
+
+interface RuleErrorOptions {
+    /**
+     * padding lineNumber
+     * @type {number}
+     */
+    line: number;
+    /**
+     * padding column
+     * @type {number}
+     */
+    column: number;
+    /**
+     * padding index
+     * @type {number}
+     */
+    index: number;
+    /**
+     * fixCommand object
+     * @type {FixCommand}
+     */
+    fix: Object;
+}
+
+class RuleError {
+    constructor(message: string, options: RuleErrorOptions);
+}
+
+class TextLintRuleContext {
+    id: string;
+    config: TextLintConfig;
+    RuleError: RuleError;
+    /**
+     * report function that is called in a rule
+     * @param {TxtNode} node
+     * @param {RuleError} ruleError error is a RuleError instance or any data
+     */
+    report: {(node: TxtAST.TxtNode, ruleError: RuleError): void};
+    /**
+     * Gets the source code for the given node.
+     * @param {TxtNode=} node The AST node to get the text for.
+     * @param {int=} beforeCount The number of characters before the node to retrieve.
+     * @param {int=} afterCount The number of characters after the node to retrieve.
+     * @returns {string|null} The text representing the AST node.
+     */
+    getSource: {(node, beforeCount?: number, afterCount?: number): string};
+    getFilePath: {(): string};
+
+    fixer: RuleFixer;
+}
+interface FixCommand {
+    range: [number, number];
+    text: string;
+}
+/**
+ * Creates code fixing commands for rules.
+ * It create command for fixing texts.
+ * @constructor
+ */
+class RuleFixer {
+    /**
+     * Creates a fix command that inserts text after the given node or token.
+     * The fix is not applied until applyFixes() is called.
+     * @param {TxtAST.TxtNode} node The node or token to insert after.
+     * @param {string} text The text to insert.
+     * @returns {FixCommand} The fix command.
+     */
+    insertTextAfter(node: TxtAST.TxtNode, text: string): FixCommand;
+
+    /**
+     * Creates a fix command that inserts text after the specified range in the source text.
+     * The fix is not applied until applyFixes() is called.
+     * @param {int[]} range The range to replace, first item is start of range, second
+     *      is end of range.
+     * @param {string} text The text to insert.
+     * @returns {FixCommand} The fix command.
+     */
+    insertTextAfterRange(range: [number, number], text: string): FixCommand;
+
+    /**
+     * Creates a fix command that inserts text before the given node or token.
+     * The fix is not applied until applyFixes() is called.
+     * @param {TxtAST.TxtNode} node The node or token to insert before.
+     * @param {string} text The text to insert.
+     * @returns {FixCommand} The fix command.
+     */
+    insertTextBefore(node: TxtAST.TxtNode, text: string): FixCommand;
+
+    /**
+     * Creates a fix command that inserts text before the specified range in the source text.
+     * The fix is not applied until applyFixes() is called.
+     * @param {int[]} range The range to replace, first item is start of range, second
+     *      is end of range.
+     * @param {string} text The text to insert.
+     * @returns {FixCommand} The fix command.
+     */
+    insertTextBeforeRange(range: [number, number], text: string): FixCommand;
+
+    /**
+     * Creates a fix command that replaces text at the node or token.
+     * The fix is not applied until applyFixes() is called.
+     * @param {TxtAST.TxtNode} node The node or token to remove.
+     * @param {string} text The text to insert.
+     * @returns {FixCommand} The fix command.
+     */
+    replaceText(node: TxtAST.TxtNode, text: string): FixCommand;
+
+    /**
+     * Creates a fix command that replaces text at the specified range in the source text.
+     * The fix is not applied until applyFixes() is called.
+     * @param {int[]} range The range to replace, first item is start of range, second
+     *      is end of range.
+     * @param {string} text The text to insert.
+     * @returns {FixCommand} The fix command.
+     */
+    replaceTextRange(range: [number, number], text: string): FixCommand;
+
+    /**
+     * Creates a fix command that removes the node or token from the source.
+     * The fix is not applied until applyFixes() is called.
+     * @param {TxtAST.TxtNode} node The node or token to remove.
+     * @returns {FixCommand} The fix command.
+     */
+    remove(node: TxtAST.TxtNode): FixCommand;
+
+    /**
+     * Creates a fix command that removes the specified range of text from the source.
+     * The fix is not applied until applyFixes() is called.
+     * @param {int[]} range The range to remove, first item is start of range, second
+     *      is end of range.
+     * @returns {FixCommand} The fix command.
+     */
+    removeRange(range: [number,number]): FixCommand;
+
 }
