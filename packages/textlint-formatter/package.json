@@ -40,7 +40,6 @@
     "mocha": "^2.1.0",
     "power-assert": "^1.1.0",
     "proxyquire": "^1.7.4",
-    "sinon": "^1.17.3",
-    "textlint": "^6.0.2"
+    "sinon": "^1.17.3"
   }
 }
