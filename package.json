@@ -83,7 +83,7 @@
     "string-width": "^1.0.1",
     "structured-source": "^3.0.2",
     "text-table": "^0.2.0",
-    "textlint-formatter": "^1.7.0",
+    "textlint-formatter": "^1.7.3",
     "textlint-plugin-markdown": "^1.0.3",
     "textlint-plugin-text": "^1.0.1",
     "traverse": "^0.6.6",
