@@ -1,4 +1,5 @@
-// LICENSE : MIT
+// LICENSE : BSD
+// Author: @azer
 "use strict";
 
 module.exports = format;

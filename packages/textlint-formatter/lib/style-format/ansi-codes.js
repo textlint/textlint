@@ -1,3 +1,5 @@
+// Licence: BSD
+// https://github.com/azer/ansi-codes/blob/master/package.json
 module.exports     = {
   reset            : "\033[0m",
   bold             : "\033[1m",

@@ -1,3 +1,5 @@
+// LICENSE : WTFPL
+// Author: @azer
 module.exports = leftpad;
 
 function leftpad (str, len, ch) {

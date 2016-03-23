@@ -1,4 +1,5 @@
-// LICENSE : MIT
+// LICENCE: WTFPL
+// https://github.com/azer/style-format/blob/master/package.json
 "use strict";
 var format = require("./format-text");
 var ansi = require("./ansi-codes");
