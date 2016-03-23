@@ -3,9 +3,9 @@
 // Original code is https://github.com/azer/prettify-error
 // Author : azer
 "use strict";
-var format = require("format-text");
+var format = require("../style-format/format-text");
 var chalk = require("chalk");
-var leftpad = require("left-pad");
+var leftpad = require("../style-format/left-pad");
 var style = require("../style-format/style-format");
 var stripAnsi = require("strip-ansi");
 var pluralize = require("pluralize");
