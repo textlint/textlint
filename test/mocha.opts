@@ -1,2 +1,2 @@
 --recursive
---compilers js:espower-babel/guess
+--compilers js:babel-register

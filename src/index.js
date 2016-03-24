@@ -1,27 +1,33 @@
 // LICENSE : MIT
 "use strict";
+import cli from "./cli";
+import textlint from "./textlint";
+import TextLintEngine from "./textlint-engine";
+import TextFixEngine from "./textfix-engine";
+import TextLintCore from "./textlint-core";
+import * as _logger from "./util/throw-log";
 // Level of abstraction(descending order)
 // cli > TextLintEngine > TextLintCore(textlint)
 // See: https://github.com/textlint/textlint/blob/master/docs/use-as-modules.md
 module.exports = {
     // Command line interface
-    cli: require("./cli"),
+    cli,
     // TextLintEngine is a wrapper around `textlint` for linting **multiple** files
     // include formatter, detecting utils
     // <Recommend>: It is easy to use
     // You can see engine/textlint-engine-core.js for more detail
-    TextLintEngine: require("./textlint-engine"),
+    TextLintEngine,
     // TextFixEngine is a wrapper around `textlint` for linting **multiple** files
     // include formatter, detecting utils
     // <Recommend>: It is easy to use
     // You can see engine/textlint-engine-core.js for more detail
-    TextFixEngine: require("./textfix-engine"),
+    TextFixEngine,
     // It is a singleton object of TextLintCore
     // Recommend: use TextLintCore
-    textlint: require("./textlint"),
+    textlint,
     // Core API for linting a **single** text or file.
-    TextLintCore: require("./textlint-core"),
+    TextLintCore,
     // for debug, don't use direct
     // It is used in textlint-tester
-    _logger: require("./util/throw-log")
+    _logger
 };

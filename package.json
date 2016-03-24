@@ -48,12 +48,13 @@
     "url": "https://github.com/textlint/textlint/issues"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel-plugin-jsdoc-to-assert": "^1.3.1",
+    "babel-register": "^6.7.2",
     "clone": "^1.0.0",
     "eslint": "^2.3.0",
     "eslint-plugin-markdown": "^1.0.0-beta.1",
-    "espower-babel": "^3.3.0",
-    "glob": "^6.0.1",
+    "espower-babel": "^4.0.1",
+    "glob": "^7.0.3",
     "markdown-to-ast": "^3.2.3",
     "mocha": "^2.3.3",
     "npm-run-all": "^1.5.1",
@@ -62,14 +63,14 @@
     "textlint-plugin-html": "^0.1.2",
     "textlint-rule-alex": "^1.0.1",
     "textlint-rule-helper": "^1.1.3",
-    "textlint-rule-no-todo": "^1.0.2",
+    "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.0.0",
     "textlint-rule-rousseau": "^1.3.0",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
   },
   "dependencies": {
     "bluebird": "^3.0.5",
-    "carrack": "0.0.4",
+    "carrack": "0.0.5",
     "chalk": "^1.1.1",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.0",

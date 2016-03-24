@@ -23,7 +23,7 @@ const filterByAvailable = (rules, rulesConfig) => {
 export default class RuleCreatorSet {
     /**
      * @param {Object} rules
-     * @param {Object} rulesConfig
+     * @param {Object} [rulesConfig]
      * @constructor
      */
     constructor(rules = {}, rulesConfig = {}) {

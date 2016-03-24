@@ -2,7 +2,7 @@
 "use strict";
 const assert = require("power-assert");
 const path = require("path");
-const TextLintEngine = require("../src/").TextLintEngine;
+import {TextLintEngine} from "../src/";
 const rulesDir = path.join(__dirname, "fixtures/rules");
 describe("textlint-engine-test", function () {
     describe("Constructor", function () {

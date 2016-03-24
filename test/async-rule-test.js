@@ -1,14 +1,18 @@
 // LICENSE : MIT
 "use strict";
-import {TextLintCore, TextLintEngine} from "../src/index";
-import path from "path";
-import assert from "power-assert";
+const path = require("path");
+const assert = require("power-assert");
+import {TextLintEngine} from "../src/index";
+import TextLintCore from "../src/textlint-core";
+// fixture
+import fixtureRule from "./fixtures/rules/example-rule";
+import fixtureRuleAsync from "./fixtures/rules/async-rule";
 describe("Async", function () {
     it("should support async", function () {
         var textlint = new TextLintCore();
         textlint.setupRules({
             "rule-name": function (context) {
-                let {Syntax, report, RuleError} = context;
+                const {Syntax, report, RuleError} = context;
 
                 return {
                     [Syntax.Str](node){
@@ -34,11 +38,11 @@ describe("Async", function () {
         var textlint = new TextLintCore();
         // each rule throw 1 error.
         textlint.setupRules({
-            "example-rule": require("./fixtures/rules/example-rule"),
-            "async-rule": require("./fixtures/rules/async-rule"),
-            "example2-rule": require("./fixtures/rules/example-rule"),
-            "example3-rule": require("./fixtures/rules/example-rule"),
-            "async2-rule": require("./fixtures/rules/async-rule")
+            "example-rule": fixtureRule,
+            "async-rule": fixtureRuleAsync,
+            "example2-rule": fixtureRule,
+            "example3-rule": fixtureRule,
+            "async2-rule": fixtureRuleAsync
         });
         return textlint.lintMarkdown("string").then(result => {
             assert(result.messages.length === 5);

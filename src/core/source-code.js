@@ -1,9 +1,9 @@
 const assert = require("assert");
 const StructuredSource = require("structured-source");
-const UnionSyntax = require("../shared/union-syntax");
+import UnionSyntax from "../shared/union-syntax";
 /**
  * Validates that the given AST has the required information.
- * @param {TxtAST.TxtNode} ast The Program node of the AST to check.
+ * @param {TxtAST.TxtNode} [ast] The Program node of the AST to check.
  * @throws {Error} If the AST doesn't contain the correct information.
  * @returns {void}
  * @private
