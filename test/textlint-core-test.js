@@ -110,8 +110,8 @@ describe("textlint-core", function () {
                         severity: "xxxxxxxx"// wrong config
                     }
                 });
-                assert.throws(() => {
-                    textlint.lintText("test");
+                return textlint.lintText("test").catch(error => {
+                    assert(error instanceof Error);
                 });
             });
         });

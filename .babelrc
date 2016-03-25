@@ -8,8 +8,7 @@
   "env": {
     "development": {
       "plugins": [
-        "jsdoc-to-assert",
-        "add-module-exports"
+        "babel-plugin-espower"
       ]
     }
   }
