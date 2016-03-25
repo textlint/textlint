@@ -48,17 +48,15 @@
     "url": "https://github.com/textlint/textlint/issues"
   },
   "devDependencies": {
-    "babel-plugin-jsdoc-to-assert": "^1.3.1",
+    "babel-plugin-jsdoc-to-assert": "^1.4.1",
     "babel-register": "^6.7.2",
     "clone": "^1.0.0",
     "eslint": "^2.3.0",
     "eslint-plugin-markdown": "^1.0.0-beta.1",
-    "espower-babel": "^4.0.1",
     "glob": "^7.0.3",
     "markdown-to-ast": "^3.2.3",
     "mocha": "^2.3.3",
     "npm-run-all": "^1.5.1",
-    "power-assert": "^1.0.1",
     "shelljs": "^0.6.0",
     "textlint-plugin-html": "^0.1.2",
     "textlint-rule-alex": "^1.0.1",

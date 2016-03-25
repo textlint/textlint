@@ -11,7 +11,7 @@ const debug = require("debug")("textlint:traverse");
  * @param {string} name The file or directory path.
  * @param {string[]} extensions The file extensions that should cause the callback
  *      to be called.
- * @param {Function} exclude The function to check if file/path should be excluded.
+ * @param {Function} [exclude] The function to check if file/path should be excluded.
  * @param {Function} callback The function to call on each file.
  * @returns {void}
  * @private

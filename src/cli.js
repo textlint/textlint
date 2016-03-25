@@ -93,8 +93,8 @@ const cli = {
      * execute with cli options
      * @param {object} cliOptions
      * @param {string[]} files files are file path list
-     * @param {string} text?
-     * @param {string} stdinFilename?
+     * @param {string} [text]
+     * @param {string} [stdinFilename]
      * @returns {Promise<number>} exit status
      */
     executeWithOptions(cliOptions, files, text, stdinFilename){
