@@ -34,7 +34,7 @@ $ npm install textlint -g
 
 textlint has no default rule!!
 
-Use textlint with `--rule` or `--ruledir`, `.textlintrc` config file.
+Use textlint with `--rule` or `--rulesdir`, `.textlintrc` config file.
 
 ```sh
 # Install textlint's rule
