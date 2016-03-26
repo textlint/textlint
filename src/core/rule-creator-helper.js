@@ -3,7 +3,7 @@
 
 /**
  * detect that ruleCreator has linter function
- * @param {Function|Object} ruleCreator
+ * @param {*} ruleCreator
  * @returns {boolean}
  */
 export function hasLinter(ruleCreator) {
@@ -33,7 +33,7 @@ export function getLinter(ruleCreator) {
 
 /**
  * detect that ruleCreator has fixer function
- * @param {Function|Object} ruleCreator
+ * @param {*} ruleCreator
  * @returns {boolean}
  */
 export function hasFixer(ruleCreator) {

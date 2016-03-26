@@ -2,7 +2,7 @@
 "use strict";
 const assert = require("power-assert");
 const path = require("path");
-const TextFixEngine = require("../src/").TextFixEngine;
+import {TextFixEngine} from "../src/";
 const rulesDir = path.join(__dirname, "fixtures/fixer-rules");
 const inputTextPath = path.join(__dirname, "fixtures/fixer-rules", "input.md");
 describe("textfix-engine", function () {

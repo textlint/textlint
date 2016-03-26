@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("power-assert");
-const cli = require("../src/").cli;
+import {cli} from "../src/";
 const path = require("path");
 describe("parsing", function () {
     it("should lint all files without error", function () {
