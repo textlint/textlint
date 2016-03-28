@@ -118,74 +118,97 @@ describe("cli-test", function () {
         });
     });
 
-    context("When run with --preset", function () {
-        it("should lint the file with long name", function (done) {
+    context("When run with --plugin", function () {
+        it("should lint the file with long name", function () {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
                 assert(message.length > 0);
             };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const targetFile = path.join(__dirname, "fixtures/cli/todo.html");
             const longName = "textlint-plugin-html";
             const ruleModuleName = "no-todo";
-            cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`).then(result => {
-                assert.equal(result, 0);
-                assert(!isCalled);
-                done();
+            return cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 1);
+                assert(isCalled);
             });
         });
-        it("should lint the file with long name", function (done) {
+        it("should lint the file with long name", function () {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
                 assert(message.length > 0);
             };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const targetFile = path.join(__dirname, "fixtures/cli/todo.html");
             const shortName = "html";
             const ruleModuleName = "no-todo";
-            cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
-                assert.equal(result, 0);
+            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 1);
+                assert(isCalled);
+            });
+        });
+
+        it("should lint and correct error", function () {
+            let isCalled = false;
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                assert(message.length > 0);
+            };
+            const targetFile = path.join(__dirname, "fixtures/cli/todo.html");
+            const shortName = "html";
+            const ruleModuleName = "no-todo";
+            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
+                assert(isCalled);
+                assert.equal(result, 1);
+            });
+        });
+        it("when not error, status is 0", function () {
+            let isCalled = false;
+            Logger.log = function mockLog() {
+                isCalled = true;
+            };
+            const targetFile = path.join(__dirname, "fixtures/cli/pass.html");
+            const shortName = "html";
+            const ruleModuleName = "no-todo";
+            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
                 assert(!isCalled);
-                done();
+                assert.equal(result, 0);
             });
         });
     });
     context("When run with --fix", function () {
         context("when not set rules", function () {
-            it("show suggestion message from FAQ", function (done) {
+            it("show suggestion message from FAQ", function () {
                 let isCalled = false;
                 Logger.log = function mockLog(message) {
                     isCalled = true;
                     assert(message.length > 0);
                 };
                 const targetFile = path.join(__dirname, "fixtures/test.md");
-                cli.execute(`${targetFile} --fix`).then(result => {
+                return cli.execute(`${targetFile} --fix`).then(result => {
                     assert.equal(result, 0);
                     assert(isCalled);
-                    done();
                 });
             });
         });
         context("when has rule", function () {
-            it("should execute fixer", function (done) {
+            it("should execute fixer", function () {
                 const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
                 const targetFile = path.join(__dirname, "fixtures/test.md");
-                cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`).then(result => {
+                return cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`).then(result => {
                     assert.equal(result, 0);
-                    done();
                 });
             });
         });
     });
     context("When not set rules", function () {
-        it("show suggestion message from FAQ", function (done) {
+        it("show suggestion message from FAQ", function () {
             Logger.log = function mockLog(message) {
                 assert(message.length > 0);
             };
             var targetFile = path.join(__dirname, "fixtures/test.md");
-            cli.execute(`${targetFile}`).then(result => {
+            return cli.execute(`${targetFile}`).then(result => {
                 assert.equal(result, 0);
-                done();
             });
         });
     });

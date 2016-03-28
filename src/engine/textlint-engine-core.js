@@ -69,12 +69,7 @@ export default class TextLintEngineCore {
         });
         // load rule/plugin/processor
         this.moduleLoader.loadFromConfig(this.config);
-        // execute files that are filtered by availableExtensions.
-        // TODO: it very hackable way, should be fixed
-        this.availableExtensions = this.textlint.processors.reduce((availableExtensions, processor) => {
-            const Processor = processor.constructor;
-            return availableExtensions.concat(Processor.availableExtensions());
-        }, this.config.extensions);
+
         // set settings to textlint core
         this._setupRules();
     }
@@ -126,6 +121,14 @@ new TextLintEngine({
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
         // set Processor
         this.textlint.setupProcessors(this.processorMap.toJSON());
+        // execute files that are filtered by availableExtensions.
+        // TODO: it very hackable way, should be fixed
+        // it is depend on textlintCore's state
+        this.availableExtensions = this.textlint.processors.reduce((availableExtensions, processor) => {
+            const Processor = processor.constructor;
+            return availableExtensions.concat(Processor.availableExtensions());
+        }, this.config.extensions);
+
     }
 
     /**
