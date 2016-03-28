@@ -122,6 +122,21 @@ describe("textlint-engine-test", function () {
                 assert(engine.ruleMap.getRule("example/example-rule") === ruleObject);
             });
         });
+        context("when loading html plugin", function () {
+            it("should add .html to availableExtensions", function () {
+                const engine = new TextLintEngine({
+                    plugins: ["html"]
+                });
+                const availableExtensions = engine.availableExtensions;
+                assert(availableExtensions.indexOf(".html") !== -1);
+            });
+            it("manually loading case, should add .html to availableExtensions", function () {
+                const engine = new TextLintEngine();
+                assert(engine.availableExtensions.indexOf(".html") === -1);
+                engine.loadPlugin("html");
+                assert(engine.availableExtensions.indexOf(".html") !== -1);
+            });
+        });
     });
 
     describe("#loadPreset", function () {
