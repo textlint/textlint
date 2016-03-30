@@ -46,9 +46,6 @@ export function loadAvailableExtensions(pluginNames = [], moduleResolver) {
         }
         const Processor = plugin.Processor;
         debug(`${pluginName} has Processor`);
-        if (typeof Processor.availableExtensions === "function") {
-
-        }
         assert(typeof Processor.availableExtensions === "function", "Processor.availableExtensions() should be implemented");
         availableExtensions.push(...Processor.availableExtensions());
     });
