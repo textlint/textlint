@@ -3,7 +3,7 @@
 const rc = require("rc-loader");
 const tryResolve = require("try-resolve");
 const interopRequire = require("interop-require");
-function isConfigModule(filePath, configPackagePrefix) {
+export function isConfigModule(filePath, configPackagePrefix) {
     if (filePath == null) {
         return false;
     }
