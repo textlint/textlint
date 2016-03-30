@@ -3,7 +3,6 @@
 import assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
-import sortMessages from "../util/sort-messages";
 export default class LinterProcessor {
     /**
      * 
@@ -31,8 +30,7 @@ export default class LinterProcessor {
             sourceCode
         });
         return TaskRunner.process(task).then(messages => {
-            const sortedMessages = sortMessages(messages);
-            const result = postProcess(sortedMessages, sourceCode.filePath);
+            const result = postProcess(messages, sourceCode.filePath);
             if (result.filePath == null) {
                 result.filePath = `<Unkown${sourceCode.ext}>`;
             }

@@ -6,7 +6,6 @@ import FixerTask from "../task/fixer-task";
 import SourceCode from "../core/source-code";
 import SourceCodeFixer from "../fixer/source-code-fixer";
 import TaskRunner from "../task/task-runner";
-import sortMessages from "../util/sort-messages";
 export default class FixerProcessor {
     constructor(processor) {
         this.processor = processor;
@@ -83,7 +82,7 @@ export default class FixerProcessor {
             return {
                 filePath: resultFilePath,
                 output,
-                messages: sortMessages(originalMessages),
+                messages: originalMessages,
                 applyingMessages,
                 remainingMessages
             };
