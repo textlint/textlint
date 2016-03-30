@@ -89,6 +89,7 @@ new TextLintEngine({
      * load plugin manually
      * Note: it high cost, please use config
      * @param {string} pluginName
+     * @deprecated use Constructor(config) insteadof it
      */
     loadPlugin(pluginName) {
         this.moduleLoader.loadPlugin(pluginName);
@@ -99,6 +100,7 @@ new TextLintEngine({
      * load plugin manually
      * Note: it high cost, please use config
      * @param {string} presetName
+     * @deprecated use Constructor(config) insteadof it
      */
     loadPreset(presetName) {
         this.moduleLoader.loadPreset(presetName);
@@ -109,6 +111,7 @@ new TextLintEngine({
      * load plugin manually
      * Note: it high cost, please use config
      * @param {string} ruleName
+     * @deprecated use Constructor(config) insteadof it
      */
     loadRule(ruleName) {
         this.moduleLoader.loadRule(ruleName);

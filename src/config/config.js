@@ -5,7 +5,10 @@ const concat = require("unique-concat");
 import loadConfig from "./config-loader";
 import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
-import loadRulesConfigFromPlugins from "./plugin-loader";
+import {
+    loadRulesConfig as loadRulesConfigFromPlugins,
+    loadAvailableExtensions
+} from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
 import TextLintModuleResolver from "../engine/textlint-module-resolver";
 /**
@@ -243,10 +246,14 @@ class Config {
         const pluginRulesConfig = loadRulesConfigFromPlugins(this.plugins, moduleResolver);
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = objectAssign({}, presetRulesConfig, pluginRulesConfig, options.rulesConfig);
+
         /**
          * @type {string[]}
          */
         this.extensions = options.extensions ? options.extensions : defaultOptions.extensions;
+        // additional availableExtensions from plugin
+        const additionalExtensions = loadAvailableExtensions(this.plugins, moduleResolver);
+        this.extensions = this.extensions.concat(additionalExtensions);
         /**
          * @type {string[]}
          */
