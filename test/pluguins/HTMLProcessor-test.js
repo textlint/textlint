@@ -3,7 +3,6 @@
 import assert from "power-assert";
 import {Processor as HTMLProcessor} from "textlint-plugin-html";
 import {TextLintCore} from "../../src/index";
-import MapLike from "../../src/shared/MapLike";
 import path from "path";
 describe("HTMLPlugin", function () {
     let textlint;

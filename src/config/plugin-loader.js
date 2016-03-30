@@ -3,6 +3,7 @@
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
 const debug = require("debug")("textlint:plugin-loader");
+const assert = require("assert");
 export function mapRulesConfig(rulesConfig, pluginName) {
     const mapped = {};
     if (rulesConfig === undefined) {
@@ -20,17 +21,36 @@ export function mapRulesConfig(rulesConfig, pluginName) {
  * @param {TextLintModuleResolver} moduleResolver
  * @returns {{}}
  */
-export default function loadRulesConfigFromPlugins(pluginNames = [], moduleResolver) {
-    var pluginRulesConfig = {};
+export function loadRulesConfig(pluginNames = [], moduleResolver) {
+    const pluginRulesConfig = {};
     pluginNames.forEach(pluginName => {
         const pkgPath = moduleResolver.resolvePluginPackageName(pluginName);
         const plugin = interopRequire(pkgPath);
         if (!plugin.hasOwnProperty("rulesConfig")) {
-            debug(`${pluginName} has not rulesConfig`);
             return;
         }
+        debug(`${pluginName} has rulesConfig`);
         // set config of <rule> to "<plugin>/<rule>"
         ObjectAssign(pluginRulesConfig, mapRulesConfig(plugin.rulesConfig, pluginName));
     });
     return pluginRulesConfig;
+}
+
+export function loadAvailableExtensions(pluginNames = [], moduleResolver) {
+    const availableExtensions = [];
+    pluginNames.forEach(pluginName => {
+        const pkgPath = moduleResolver.resolvePluginPackageName(pluginName);
+        const plugin = interopRequire(pkgPath);
+        if (!plugin.hasOwnProperty("Processor")) {
+            return;
+        }
+        const Processor = plugin.Processor;
+        debug(`${pluginName} has Processor`);
+        if (typeof Processor.availableExtensions === "function") {
+
+        }
+        assert(typeof Processor.availableExtensions === "function", "Processor.availableExtensions() should be implemented");
+        availableExtensions.push(...Processor.availableExtensions());
+    });
+    return availableExtensions;
 }
