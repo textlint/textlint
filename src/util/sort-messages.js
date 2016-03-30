@@ -1,5 +1,10 @@
 // LICENSE : MIT
 "use strict";
+/**
+ * sort messages by line and column
+ * @param {Array} messages
+ * @returns {Array}
+ */
 export default function sortByLineColumn(messages) {
     // sort by line and column
     return messages.sort(function (a, b) {
