@@ -117,7 +117,9 @@ Put the config of `textlint-rule-foo` rule in `text-rule-preset-bar` rule-preset
 
 ## Plugin
 
-textlint plugin is a set of rules and rulesConfig.
+textlint plugin also has a set of rules and rulesConfig.
+
+It is similar to preset, but plugin's [main task is extension of feature](./plugin.md)
 
 To enable plugin, put the "plugin-name" into `.textlinrc`.
 
@@ -136,6 +138,27 @@ To enable plugin, put the "plugin-name" into `.textlinrc`.
 
 :information_source: See [docs/plugin.md](docs/plugin.md)
 
+## Sharable Configuration
+
+textlint support module of configuration.
+
+You can create a config module that is same with content of `.textlintrc`
+
+```js
+module.exports = {
+    "rules": {
+        "plugin-name/rule-name" : false
+    }
+};
+```
+
+Specify config module via `--config` command line option.
+
+```
+textlint --config <config-module-name>
+textlint --config textlint-config-<name>
+textlint --config @<scope>/<config-module-name>
+```
 
 ## Overview
 
