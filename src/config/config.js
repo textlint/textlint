@@ -87,7 +87,7 @@ const defaultOptions = Object.freeze({
     presets: [],
     // plugin package names
     plugins: [],
-    // rules base directory that is related `rules`.
+    // base directory for loading {rule, config, plugin} modules
     rulesBaseDirectory: undefined,
     // ".textlint" file path
     configFile: undefined,
@@ -168,11 +168,17 @@ class Config {
 
     // load config and merge options.
     static initWithAutoLoading(options = {}) {
+        // Base directory
+        const rulesBaseDirectory = options.rulesBaseDirectory
+            ? options.rulesBaseDirectory
+            : defaultOptions.rulesBaseDirectory;
+        // Create resolver
+        const moduleResolver = new TextLintModuleResolver(this, rulesBaseDirectory);
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
         const configFileRawOptions = loadConfig(options.configFile, {
-                configPackagePrefix: this.CONFIG_PACKAGE_PREFIX,
+                moduleResolver,
                 configFileName: this.CONFIG_FILE_NAME
             }) || {};
         const configRulesObject = separateAvailableOrDisable(configFileRawOptions.rules);
@@ -213,7 +219,6 @@ class Config {
      * @constructor
      */
     constructor(options = {}) {
-
         /**
          * @type {string|null} path to .textlintrc file.
          */

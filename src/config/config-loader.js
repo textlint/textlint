@@ -1,23 +1,18 @@
 // LICENSE : MIT
 "use strict";
 const rc = require("rc-loader");
-const tryResolve = require("try-resolve");
 const interopRequire = require("interop-require");
-export function isConfigModule(filePath, configPackagePrefix) {
-    if (filePath == null) {
-        return false;
+export default function load(configFilePath, {configFileName, moduleResolver}) {
+    // if specify Config module, use it 
+    if (configFilePath) {
+        try {
+            const modulePath = moduleResolver.resolveConfigPackageName(configFilePath);
+            return interopRequire(modulePath);
+        } catch (error) {
+            // not found config module
+        }
     }
-    // scoped module package || textlint-config-* module
-    return filePath.charAt(0) === "@" || filePath.indexOf(configPackagePrefix) !== -1;
-}
-export default function load(configFilePath, {configFileName, configPackagePrefix}) {
-    if (isConfigModule(configFilePath, configPackagePrefix)) {
-        // config as a module - shared config
-        // FIXME: not tested function
-        return interopRequire(tryResolve(configFilePath));
-    } else {
-        // auto or specify config file
-        const config = configFilePath ? {config: configFilePath} : null;
-        return rc(configFileName, {}, config);
-    }
+    // auto or specify config file
+    const config = configFilePath ? {config: configFilePath} : null;
+    return rc(configFileName, {}, config);
 }
