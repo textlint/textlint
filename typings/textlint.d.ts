@@ -53,7 +53,7 @@ interface TextLintConfig {
     formatterName?: string;
     // plugin package names
     plugins?: string[];
-    // rules base directory that is related `rules`.
+    // base directory for loading {rule, config, plugin} modules
     rulesBaseDirectory?: string;
     // ".textlint" file path
     configFile?: string;
@@ -63,7 +63,7 @@ interface TextLintConfig {
     // preset package names
     // e.g.) ["preset-foo"]
     presets?: string[],
-    // rules base directory that is related `rules`.
+    // base directory for loading {rule, config, plugin} modules
     rulesBaseDirectory?: string,
     // ".textlint" file path
     configFile?: string,

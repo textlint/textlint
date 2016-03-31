@@ -20,13 +20,13 @@ export function mapRulesConfig(rulesConfig, presetName) {
 /**
  *
  * @param ruleNames
- * @param {TextLintModuleResolver} resolver
+ * @param {TextLintModuleResolver} moduleResolver
  * @returns {{}}
  */
-export default function findRulesAndConfig(ruleNames = [], resolver) {
+export default function findRulesAndConfig(ruleNames = [], moduleResolver) {
     const presetRulesConfig = {};
     ruleNames.forEach(ruleName => {
-        const pkgPath = resolver.resolvePresetPackageName(ruleName);
+        const pkgPath = moduleResolver.resolvePresetPackageName(ruleName);
         const preset = interopRequire(pkgPath);
         if (!preset.hasOwnProperty("rules")) {
             throw new Error(`${ruleName} has not rules`);
