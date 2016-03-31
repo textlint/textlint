@@ -22,6 +22,7 @@ const validateConfigConstructor = (ConfigConstructor) => {
  * - textlint-rule-*
  * - textlint-preset-*
  * - textlint-plugin-*
+ * - textlint-config-*
  */
 export default class TextLintModuleResolver {
     /**
@@ -104,7 +105,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const PREFIX = this.RULE_PRESET_NAME_PREFIX;
         const fullPackageName = `${PREFIX}${packageName}`;
 
-        /* Implementation Node
+        /* Implementation Note
         
         preset name is defined in config file:
         In the case, `packageName` is "preset-gizmo"
@@ -114,7 +115,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
             "rules": {
                 "preset-gizmo": {
                     "ruleA": false
-
+                }
             }
         }
          */
@@ -129,6 +130,26 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
             tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's preset module: "${packageName}" is not found.
+See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
+`);
+        }
+        return pkgPath;
+    }
+
+
+    /**
+     * Take Config package name, and return path to module.
+     * @param {string} packageName
+     * @returns {string} return path to module
+     */
+    resolveConfigPackageName(packageName) {
+        const baseDir = this.baseDirectory;
+        const PREFIX = this.CONFIG_PACKAGE_PREFIX;
+        const fullPackageName = `${PREFIX}${packageName}`;
+        // <plugin-name> or textlint-config-<rule-name>
+        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
+        if (!pkgPath) {
+            throw new ReferenceError(`Failed to load textlint's config module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `);
         }
