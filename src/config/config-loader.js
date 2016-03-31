@@ -12,7 +12,7 @@ export default function load(configFilePath, {configFileName, moduleResolver}) {
             // not found config module
         }
     }
-    // auto or specify config file
+    // auto or specify path to config file
     const config = configFilePath ? {config: configFilePath} : null;
     return rc(configFileName, {}, config);
 }
