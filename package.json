@@ -35,7 +35,7 @@
     "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && ./bin/textlint.js -c docs/.textlintrc docs/*.md CONTRIBUTING.md -f pretty-error",
     "lint:js": "eslint src/",
     "test:example": "./test/example-test.sh",
-    "test:js": "npm run lint:js && mocha test/*.js",
+    "test:js": "npm run lint:js && mocha test/",
     "test": "npm-run-all -p lint:doc test:js test:example",
     "perf": "cd perf && npm run perf"
   },
