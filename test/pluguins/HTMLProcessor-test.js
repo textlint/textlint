@@ -13,7 +13,7 @@ describe("HTMLPlugin", function () {
                 html: HTMLProcessor
             });
             textlint.setupRules({
-                "example-rule": require("../fixtures/rules/example-rule")
+                "example-rule": require("./fixtures/example-rule")
             });
         });
         it("should have default + additional processors", function () {
@@ -29,7 +29,7 @@ describe("HTMLPlugin", function () {
             assert(textlint.processors.length === 3);
         });
         it("should report error", function () {
-            var fixturePath = path.join(__dirname, "/../fixtures/test.html");
+            var fixturePath = path.join(__dirname, "./fixtures/test.html");
             return textlint.lintFile(fixturePath).then(results => {
                 assert(results.messages.length > 0);
                 assert(results.filePath === fixturePath);
