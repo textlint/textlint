@@ -28,7 +28,9 @@ function addingAtFileNameToError(fileName, message) {
     if (!fileName) {
         return message;
     }
-    return `${message} at ${fileName}`;
+    return `${message}
+at ${fileName}`;
+
 }
 /**
  * @class {TextlintCore}
