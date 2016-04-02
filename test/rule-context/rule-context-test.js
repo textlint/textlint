@@ -91,19 +91,7 @@ describe("rule-context-test", function () {
             it("should catch error including <file path>", function () {
                 const filePath = path.join(__dirname, "fixtures/test.md");
                 return textlint.lintFile(filePath).catch(error => {
-                    // TODO: improve error message including rule and file name
                     assert(error instanceof Error);
-                    /*
-                     Before
-
-                     Error in rule
-                     
-                     After:
-                     
-                     Error in rule
-                     at /Users/azu/.ghq/github.com/textlint/textlint/test/rule-context/fixtures/test.md
-                     
-                     */
                     assert(error.message.indexOf(filePath) !== -1);
                 });
             });
