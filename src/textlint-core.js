@@ -17,6 +17,19 @@ import RuleCreatorSet from "./core/rule-creator-set";
 import FixerProcessor from "./fixer/fixer-processor";
 // parallel
 import LinterProcessor from "./linter/linter-processor";
+
+/**
+ * add fileName to trailing of error message
+ * @param {string|undefined} fileName
+ * @param {string} message
+ * @returns {string}
+ */
+function addingAtFileNameToError(fileName, message) {
+    if (!fileName) {
+        return message;
+    }
+    return `${message} at ${fileName}`;
+}
 /**
  * @class {TextlintCore}
  */
@@ -102,6 +115,9 @@ export default class TextlintCore {
             config: this.config,
             ruleCreatorSet: this.ruleCreatorSet,
             sourceCode: sourceCode
+        }).catch(error => {
+            error.message = addingAtFileNameToError(filePath, error.message);
+            return Promise.reject(error);
         });
     }
 
@@ -194,6 +210,9 @@ export default class TextlintCore {
             config: this.config,
             ruleCreatorSet: this.ruleCreatorSet,
             sourceCode: sourceCode
+        }).catch(error => {
+            error.message = addingAtFileNameToError(filePath, error.message);
+            return Promise.reject(error);
         });
     }
 }
