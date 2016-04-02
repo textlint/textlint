@@ -68,6 +68,26 @@ describe("rule-context-test", function () {
                 });
             });
         });
+        context("when throw error in a rule", function () {
+            beforeEach(function () {
+                textlint.setupRules({
+                    // rule-key : rule function(see docs/rule.md)
+                    "rule-key": function (context) {
+                        var exports = {};
+                        exports[context.Syntax.Str + ":exit"] = function (node) {
+                            throw new Error("Error in rule");
+                        };
+                        return exports;
+                    }
+                });
+            });
+            it("should catch error", function () {
+                return textlint.lintMarkdown("text").catch(error => {
+                    // TODO: improve error message including rule and file name
+                    assert(error instanceof Error);
+                });
+            });
+        });
     });
     describe("#getSource", function () {
         it("should get text from TxtNode", function () {

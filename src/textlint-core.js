@@ -1,12 +1,12 @@
 // LICENSE : MIT
 "use strict";
 /*
-    textlint-core.js is a class
-    textlint.js is a singleton object that is instance of textlint-core.js.
+ textlint-core.js is a class
+ textlint.js is a singleton object that is instance of textlint-core.js.
  */
 const path = require("path");
-const fs = require("fs");
 const assert = require("assert");
+import {readFile} from "./util/fs-promise";
 import SourceCode from "./core/source-code";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
 import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
@@ -136,9 +136,10 @@ export default class TextlintCore {
     lintFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
-        const text = fs.readFileSync(absoluteFilePath, "utf-8");
-        const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._parallelProcess(processor, text, ext, absoluteFilePath);
+        return readFile(absoluteFilePath).then(text => {
+            const processor = getProcessorMatchExtension(this.processors, ext);
+            return this._parallelProcess(processor, text, ext, absoluteFilePath);
+        });
     }
 
     /**
@@ -149,9 +150,10 @@ export default class TextlintCore {
     fixFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
-        const text = fs.readFileSync(absoluteFilePath, "utf-8");
-        const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._sequenceProcess(processor, text, ext, filePath);
+        return readFile(absoluteFilePath).then(text => {
+            const processor = getProcessorMatchExtension(this.processors, ext);
+            return this._sequenceProcess(processor, text, ext, absoluteFilePath);
+        });
     }
 
     /**
