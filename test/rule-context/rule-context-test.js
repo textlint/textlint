@@ -72,19 +72,27 @@ describe("rule-context-test", function () {
             beforeEach(function () {
                 textlint.setupRules({
                     // rule-key : rule function(see docs/rule.md)
-                    "rule-key": function (context) {
-                        var exports = {};
-                        exports[context.Syntax.Str + ":exit"] = function (node) {
-                            throw new Error("Error in rule");
-                        };
-                        return exports;
-                    }
+                    "throw-error-in-rule": require("./fixtures/rules/throw-error-in-rule")
                 });
             });
             it("should catch error", function () {
                 return textlint.lintMarkdown("text").catch(error => {
-                    // TODO: improve error message including rule and file name
                     assert(error instanceof Error);
+                });
+            });
+        });
+        context("when throw error in a rule at file", function () {
+            beforeEach(function () {
+                textlint.setupRules({
+                    // rule-key : rule function(see docs/rule.md)
+                    "throw-error-in-rule": require("./fixtures/rules/throw-error-in-rule")
+                });
+            });
+            it("should catch error including <file path>", function () {
+                const filePath = path.join(__dirname, "fixtures/test.md");
+                return textlint.lintFile(filePath).catch(error => {
+                    assert(error instanceof Error);
+                    assert(error.message.indexOf(filePath) !== -1);
                 });
             });
         });
