@@ -24,7 +24,7 @@ If you need to markdown parse, please use directory [wooorm/remark](https://gith
 
 [![screenshot](http://monosnap.com/image/0fqi1UF7yOv89nxJPaDWtvyqERaM49.png)](http://textlint.github.io/markdown-to-ast/example/)
 
-[Online Parsing Demo](http://azu.github.io/markdown-to-ast/example/) provide markdown to AST on-the-fly.
+[Online Parsing Demo](http://textlint.github.io/markdown-to-ast/example/) provide markdown to AST on-the-fly.
 
 ## Installation
 
