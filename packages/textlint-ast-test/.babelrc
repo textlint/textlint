@@ -4,5 +4,12 @@
   ],
   "plugins": [
     "add-module-exports"
-  ]
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "power-assert"
+      ]
+    }
+  }
 }
