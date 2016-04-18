@@ -63,10 +63,6 @@ interface TextLintConfig {
     // preset package names
     // e.g.) ["preset-foo"]
     presets?: string[],
-    // base directory for loading {rule, config, plugin} modules
-    rulesBaseDirectory?: string,
-    // ".textlint" file path
-    configFile?: string,
     // rules config object
     rulesConfig?: Object,
 }
