@@ -218,6 +218,32 @@ describe("rule-context-test", function () {
             });
         });
     });
+    describe("#shouldIgnore", function () {
+        context("when exist messages and ignoreMessages", function () {
+            it("should return filtered result by ignoreMessages", function () {
+                textlint.setupRules({
+                    "rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.report(node, new context.RuleError("message"));
+                            }
+                        };
+                    },
+                    "ignore": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.shouldIgnore(node);
+                            }
+                        };
+                    }
+                });
+                return textlint.lintMarkdown("test").then(result => {
+                    assert(result.messages.length === 0);
+                });
+            });
+        })
+    });
+
     describe("#getFilePath", function () {
         context("when linting text", function () {
             it("should return undefined", function () {

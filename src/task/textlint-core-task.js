@@ -36,6 +36,28 @@ export default class TextLintCoreTask extends EventEmitter {
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
+    createIgnoreReporter(sourceCode) {
+        /**
+         * @typedef {Object} ReportMessage
+         * @property {string} ruleId
+         * @property {number[]} ignoreRange
+         */
+        /**
+         * push new RuleError to results
+         * @param {ReportMessage} reportedMessage
+         */
+        const reportFunction = (reportedMessage) => {
+            const {ruleId, node} = reportedMessage;
+            // add TextLintMessage
+            const message = {
+                ruleId: ruleId,
+                ignoreRange: node.range
+            };
+            this.emit(TextLintCoreTask.events.ignoreMessage, message);
+        };
+        return reportFunction;
+    }
+
     createReporter(sourceCode) {
         const sourceLocation = new SourceLocation(sourceCode);
 
@@ -54,10 +76,12 @@ export default class TextLintCoreTask extends EventEmitter {
             const {ruleId, severity, ruleError} = reportedMessage;
             debug("%s pushReport %s", ruleId, ruleError);
             const {line, column, fix} = sourceLocation.adjust(reportedMessage);
+            const index = sourceCode.positionToIndex({line, column});
             // add TextLintMessage
             const message = {
                 ruleId: ruleId,
                 message: ruleError.message,
+                index,
                 // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
                 line: line,        // start with 1(1-based line number)
                 column: column + 1,// start with 1(1-based column number)

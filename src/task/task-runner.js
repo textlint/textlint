@@ -10,15 +10,22 @@ export default class TaskRunner {
     static process(task) {
         return new Promise((resolve, reject) => {
             const messages = [];
+            const ignoreMessages = [];
             task.on(CoreTask.events.message, message => {
                 messages.push(message);
+            });
+            task.on(CoreTask.events.ignore, ignoreMessage => {
+                ignoreMessages.push(ignoreMessage);
             });
             task.on(CoreTask.events.error, error => {
                 reject(error);
             });
             task.on(CoreTask.events.complete, () => {
                 task.removeAllListeners();
-                resolve(messages);
+                resolve({
+                    messages,
+                    ignoreMessages
+                });
             });
             task.start();
         });

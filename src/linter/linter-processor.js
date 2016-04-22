@@ -3,9 +3,10 @@
 import assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
+import filterMessages from "./filter-messages";
 export default class LinterProcessor {
     /**
-     * 
+     *
      * @param {Processor} processor
      */
     constructor(processor) {
@@ -29,8 +30,9 @@ export default class LinterProcessor {
             ruleCreatorSet,
             sourceCode
         });
-        return TaskRunner.process(task).then(messages => {
-            const result = postProcess(messages, sourceCode.filePath);
+        return TaskRunner.process(task).then(({messages, ignoreMessages}) => {
+            const filteredMessages = filterMessages(messages, ignoreMessages);
+            const result = postProcess(filteredMessages, sourceCode.filePath);
             if (result.filePath == null) {
                 result.filePath = `<Unkown${sourceCode.ext}>`;
             }

@@ -20,15 +20,23 @@ export default class TextLintCoreTask extends CoreTask {
         const textLintConfig = this.config;
         const sourceCode = this.sourceCode;
         const report = this.createReporter(sourceCode);
-        Object.keys(rules).forEach(key => {
-            const ruleCreator = rules[key];
-            const ruleConfig = rulesConfig[key];
+        const ignoreReport = this.createIgnoreReporter(sourceCode);
+        Object.keys(rules).forEach(ruleId => {
+            const ruleCreator = rules[ruleId];
+            const ruleConfig = rulesConfig[ruleId];
             try {
-                const ruleContext = new RuleContext(key, sourceCode, report, textLintConfig, ruleConfig);
+                const ruleContext = new RuleContext({
+                    ruleId,
+                    sourceCode,
+                    report,
+                    ignoreReport,
+                    textLintConfig,
+                    ruleConfig
+                });
                 const ruleObject = getLinter(ruleCreator)(ruleContext, ruleConfig);
-                this._addListenRule(key, ruleObject);
+                this._addListenRule(ruleId, ruleObject);
             } catch (ex) {
-                ex.message = `Error while loading rule '${ key }': ${ ex.message }`;
+                ex.message = `Error while loading rule '${ ruleId }': ${ ex.message }`;
                 throw ex;
             }
         });

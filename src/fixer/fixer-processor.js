@@ -48,7 +48,7 @@ export default class FixerProcessor {
                     sourceCode: newSourceCode
                 });
 
-                return TaskRunner.process(task).then(messages => {
+                return TaskRunner.process(task).then(({messages}) => {
                     const result = postProcess(messages, sourceCode.filePath);
                     if (result.filePath == null) {
                         result.filePath = `<Unkown${sourceCode.ext}>`;
