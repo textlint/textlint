@@ -13,6 +13,7 @@ var results = [
         messages: [
             // TextLintMessage object
             {
+                type: "lint",
                 ruleId: "semi",
                 line: 1,
                 column: 23,
