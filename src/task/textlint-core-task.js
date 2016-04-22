@@ -7,6 +7,7 @@ import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
+const assert = require("assert");
 import MessageType from "../shared/type/MessageType";
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
@@ -50,10 +51,13 @@ export default class TextLintCoreTask extends EventEmitter {
         const reportFunction = (reportedMessage) => {
             const {ruleId, node} = reportedMessage;
             // add TextLintMessage
+            const range = node.range;
+            assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
+                "ignoreRange should have actual range: " + range);
             const message = {
                 type: MessageType.ignore,
                 ruleId: ruleId,
-                ignoreRange: node.range
+                ignoreRange: range
             };
             this.emit(TextLintCoreTask.events.message, message);
         };
