@@ -6,6 +6,7 @@ import FixerTask from "../task/fixer-task";
 import SourceCode from "../core/source-code";
 import SourceCodeFixer from "../fixer/source-code-fixer";
 import TaskRunner from "../task/task-runner";
+import {filterMessages} from "../shared/message-typing";
 export default class FixerProcessor {
     constructor(processor) {
         this.processor = processor;
@@ -50,6 +51,7 @@ export default class FixerProcessor {
 
                 return TaskRunner.process(task).then(messages => {
                     const result = postProcess(messages, sourceCode.filePath);
+                    result.messages = filterMessages(result.messages);
                     if (result.filePath == null) {
                         result.filePath = `<Unkown${sourceCode.ext}>`;
                     }

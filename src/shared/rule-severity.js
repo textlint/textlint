@@ -8,8 +8,8 @@ export const SeverityLevel = {
     "error": 2
 };
 /**
- *
- * @param ruleConfig
+ * get severity level from ruleConfig.
+ * @param {Object|boolean|undefined} ruleConfig
  * @returns {number}
  */
 export function getSeverity(ruleConfig) {

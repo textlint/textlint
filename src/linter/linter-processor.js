@@ -3,7 +3,7 @@
 import assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
-import filterMessages from "./filter-messages";
+import {filterMessages} from "../shared/message-typing";
 export default class LinterProcessor {
     /**
      *

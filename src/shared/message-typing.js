@@ -1,16 +1,20 @@
 // LICENSE : MIT
 "use strict";
+export const MessageType = {
+    "lint": "lint",
+    "ignore": "ignore"
+};
 /**
  * filter messages by ignore messages
  * @param messages
  * @returns {*}
  */
-export default function filerMessages(messages = []) {
+export function filterMessages(messages = []) {
     const lintingMessages = messages.filter(message => {
-        return message.type === "lint" || message.type === "fix";
+        return message.type === MessageType.lint;
     });
     const ignoreMessages = messages.filter(message => {
-        return message.type === "ignore";
+        return message.type === MessageType.ignore;
     });
     return lintingMessages.filter(message => {
         return !ignoreMessages.some(ignoreMessage => {

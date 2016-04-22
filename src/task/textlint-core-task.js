@@ -7,6 +7,7 @@ import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
+import {MessageType} from "../shared/message-typing";
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
     constructor() {
@@ -50,7 +51,7 @@ export default class TextLintCoreTask extends EventEmitter {
             const {ruleId, node} = reportedMessage;
             // add TextLintMessage
             const message = {
-                type: "ignore",
+                type: MessageType.ignore,
                 ruleId: ruleId,
                 ignoreRange: node.range
             };
@@ -80,7 +81,7 @@ export default class TextLintCoreTask extends EventEmitter {
             const index = sourceCode.positionToIndex({line, column});
             // add TextLintMessage
             const message = {
-                type: "lint",
+                type: MessageType.lint,
                 ruleId: ruleId,
                 message: ruleError.message,
                 index,
