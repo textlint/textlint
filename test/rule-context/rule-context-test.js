@@ -219,17 +219,10 @@ describe("rule-context-test", function () {
         });
     });
     describe("#shouldIgnore", function () {
-        context("when exist messages and ignoreMessages", function () {
-            it("should return filtered result by ignoreMessages", function () {
+        context("when ignoreMessages only", function () {
+            it("should return empty message", function () {
                 textlint.setupRules({
-                    "rule": function (context) {
-                        return {
-                            [context.Syntax.Str](node){
-                                context.report(node, new context.RuleError("message"));
-                            }
-                        };
-                    },
-                    "ignore": function (context) {
+                    "ignore-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 context.shouldIgnore(node);
@@ -241,7 +234,80 @@ describe("rule-context-test", function () {
                     assert(result.messages.length === 0);
                 });
             });
-        })
+        });
+        context("when ignoreMessages not match message", function () {
+            it("should preserve messages", function () {
+                textlint.setupRules({
+                    "rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.report(node, new context.RuleError("message"));
+                            }
+                        };
+                    },
+                    "ignore-rule": function (context) {
+                        return {
+                            [context.Syntax.Code](node){
+                                context.shouldIgnore(node);
+                            }
+                        };
+                    }
+                });
+                return textlint.lintMarkdown("test").then(result => {
+                    assert(result.messages.length === 1);
+                    const [message] = result.messages;
+                    assert.equal(message.type, "lint");
+                });
+            });
+        });
+        context("when duplicated ignoreMessages", function () {
+            it("should messages is ignore", function () {
+                textlint.setupRules({
+                    "rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.report(node, new context.RuleError("message"));
+                            }
+                        };
+                    },
+                    "ignore-rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.shouldIgnore(node);
+                                context.shouldIgnore(node);
+                                context.shouldIgnore(node);
+                            }
+                        };
+                    }
+                });
+                return textlint.lintMarkdown("test").then(result => {
+                    assert(result.messages.length === 0);
+                });
+            });
+        });
+        context("when exist messages and ignoreMessages", function () {
+            it("should return filtered result by ignoreMessages", function () {
+                textlint.setupRules({
+                    "rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.report(node, new context.RuleError("message"));
+                            }
+                        };
+                    },
+                    "ignore-rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.shouldIgnore(node);
+                            }
+                        };
+                    }
+                });
+                return textlint.lintMarkdown("test").then(result => {
+                    assert(result.messages.length === 0);
+                });
+            });
+        });
     });
 
     describe("#getFilePath", function () {

@@ -12,9 +12,6 @@ export default function filerMessages(messages = []) {
     const ignoreMessages = messages.filter(message => {
         return message.type === "ignore";
     });
-    if (lintingMessages.length === 0 || ignoreMessages.length === 0) {
-        return messages;
-    }
     return lintingMessages.filter(message => {
         return !ignoreMessages.some(ignoreMessage => {
             const index = message.index;

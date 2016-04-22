@@ -90,7 +90,6 @@ export default class TextLintCoreTask extends EventEmitter {
                 severity: severity // it's for compatible ESLint formatter
             };
             if (fix) {
-                message.type = "fix";
                 message.fix = fix;
             }
             if (!(ruleError instanceof RuleError)) {
