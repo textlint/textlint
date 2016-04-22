@@ -21,11 +21,19 @@ export default class TextLintCoreTask extends CoreTask {
         const textLintConfig = config;
         const sourceCode = this.sourceCode;
         const report = this.createReporter(sourceCode);
+        const ignoreReport = this.createIgnoreReporter(sourceCode);
         Object.keys(rules).forEach(ruleId => {
             const ruleCreator = rules[ruleId];
-            const ruleConfig = rulesConfig[ruleId];
+            const ruleConfig = typeof rulesConfig[ruleId] !== "undefined" ? rulesConfig[ruleId] : true;
             try {
-                const ruleContext = new RuleContext({ruleId, sourceCode, report, textLintConfig, ruleConfig});
+                const ruleContext = new RuleContext({
+                    ruleId,
+                    sourceCode,
+                    report,
+                    ignoreReport,
+                    textLintConfig,
+                    ruleConfig
+                });
                 const ruleObject = getFixer(ruleCreator)(ruleContext, ruleConfig);
                 this._addListenRule(ruleId, ruleObject);
             } catch (ex) {

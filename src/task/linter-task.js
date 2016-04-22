@@ -23,7 +23,7 @@ export default class TextLintCoreTask extends CoreTask {
         const ignoreReport = this.createIgnoreReporter(sourceCode);
         Object.keys(rules).forEach(ruleId => {
             const ruleCreator = rules[ruleId];
-            const ruleConfig = rulesConfig[ruleId];
+            const ruleConfig = typeof rulesConfig[ruleId] !== "undefined" ? rulesConfig[ruleId] : true;
             try {
                 const ruleContext = new RuleContext({
                     ruleId,
