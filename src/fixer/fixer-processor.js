@@ -6,7 +6,7 @@ import FixerTask from "../task/fixer-task";
 import SourceCode from "../core/source-code";
 import SourceCodeFixer from "../fixer/source-code-fixer";
 import TaskRunner from "../task/task-runner";
-import {filterMessages} from "../shared/message-typing";
+import {filterMessages} from "../shared/message-filter";
 export default class FixerProcessor {
     constructor(processor) {
         this.processor = processor;

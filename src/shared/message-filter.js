@@ -1,9 +1,6 @@
 // LICENSE : MIT
 "use strict";
-export const MessageType = {
-    "lint": "lint",
-    "ignore": "ignore"
-};
+import MessageType from "./type/MessageType";
 /**
  * filter messages by ignore messages
  * @param messages

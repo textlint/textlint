@@ -3,8 +3,8 @@
 const assert = require("assert");
 import RuleFixer from "../fixer/rule-fixer-commaner";
 import RuleError from "./rule-error";
-import {SeverityLevel, getSeverity} from "../shared/rule-severity";
-
+import SeverityLevel from "../shared/type/SeverityLevel";
+import {getSeverity} from "../shared/rule-severity";
 /**
  * This callback is displayed as a global member.
  * @callback ReportCallback

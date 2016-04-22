@@ -1,12 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-export const SeverityLevel = {
-    "none": 0,
-    "info": 0,
-    "warning": 1,
-    "error": 2
-};
+import SeverityLevel from "./type/SeverityLevel";
 /**
  * get severity level from ruleConfig.
  * @param {Object|boolean|undefined} ruleConfig
