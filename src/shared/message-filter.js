@@ -3,8 +3,8 @@
 import MessageType from "./type/MessageType";
 /**
  * filter messages by ignore messages
- * @param messages
- * @returns {*}
+ * @param {Object[]} messages
+ * @returns {Object[]} filtered messages
  */
 export function filterMessages(messages = []) {
     const lintingMessages = messages.filter(message => {
