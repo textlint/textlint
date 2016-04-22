@@ -36,7 +36,7 @@ export default class TextLintCoreTask extends EventEmitter {
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
-    createIgnoreReporter(sourceCode) {
+    createIgnoreReporter() {
         /**
          * @typedef {Object} ReportMessage
          * @property {string} ruleId
