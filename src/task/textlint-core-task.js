@@ -50,10 +50,11 @@ export default class TextLintCoreTask extends EventEmitter {
             const {ruleId, node} = reportedMessage;
             // add TextLintMessage
             const message = {
+                type: "ignore",
                 ruleId: ruleId,
                 ignoreRange: node.range
             };
-            this.emit(TextLintCoreTask.events.ignoreMessage, message);
+            this.emit(TextLintCoreTask.events.message, message);
         };
         return reportFunction;
     }
@@ -79,6 +80,7 @@ export default class TextLintCoreTask extends EventEmitter {
             const index = sourceCode.positionToIndex({line, column});
             // add TextLintMessage
             const message = {
+                type: "lint",
                 ruleId: ruleId,
                 message: ruleError.message,
                 index,
@@ -88,6 +90,7 @@ export default class TextLintCoreTask extends EventEmitter {
                 severity: severity // it's for compatible ESLint formatter
             };
             if (fix) {
+                message.type = "fix";
                 message.fix = fix;
             }
             if (!(ruleError instanceof RuleError)) {

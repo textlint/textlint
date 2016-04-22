@@ -30,9 +30,9 @@ export default class LinterProcessor {
             ruleCreatorSet,
             sourceCode
         });
-        return TaskRunner.process(task).then(({messages, ignoreMessages}) => {
-            const filteredMessages = filterMessages(messages, ignoreMessages);
-            const result = postProcess(filteredMessages, sourceCode.filePath);
+        return TaskRunner.process(task).then(messages => {
+            const result = postProcess(messages, sourceCode.filePath);
+            result.messages = filterMessages(result.messages);
             if (result.filePath == null) {
                 result.filePath = `<Unkown${sourceCode.ext}>`;
             }
