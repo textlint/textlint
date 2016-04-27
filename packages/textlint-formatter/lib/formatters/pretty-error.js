@@ -58,7 +58,11 @@ function showColumn(codes, ch) {
     var result = '';
     var codeObject = codes[1];
     var sliced = codeObject.code.slice(0, codeObject.col);
-    var i = widthOfString(sliced) - 1;
+    var widthOfString = widthOfString(sliced);
+    if (widthOfString <= 0) {
+        return "";
+    }
+    var i = widthOfString - 1;
 
     while (i--) {
         result += ' ';
