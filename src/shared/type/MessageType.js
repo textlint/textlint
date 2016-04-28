@@ -1,4 +1,5 @@
 /**
+ * TextLintMessage type
  * @typedef {Object} MessageType
  * @type {{lint: string, ignore: string}}
  */

@@ -5,6 +5,9 @@ import textlint from "./textlint";
 import TextLintEngine from "./textlint-engine";
 import TextFixEngine from "./textfix-engine";
 import TextLintCore from "./textlint-core";
+import MessageType from "./shared/type/MessageType";
+import SeverityLevel from "./shared/type/SeverityLevel";
+import NodeType from "./shared/type/NodeType";
 import * as _logger from "./util/throw-log";
 // Level of abstraction(descending order)
 // cli > TextLintEngine > TextLintCore(textlint)
@@ -27,6 +30,10 @@ module.exports = {
     textlint,
     // Core API for linting a **single** text or file.
     TextLintCore,
+    // expose Constants Types
+    MessageType,
+    SeverityLevel,
+    NodeType,
     // for debug, don't use direct
     // It is used in textlint-tester
     _logger

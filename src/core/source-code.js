@@ -1,6 +1,6 @@
 const assert = require("assert");
 const StructuredSource = require("structured-source");
-import UnionSyntax from "../shared/union-syntax";
+import NodeType from "../shared/type/NodeType";
 /**
  * Validates that the given AST has the required information.
  * @param {TxtAST.TxtNode} [ast] The Program node of the AST to check.
@@ -38,7 +38,7 @@ export default class SourceCode {
     }
 
     getSyntax() {
-        return UnionSyntax;
+        return NodeType;
     }
 
     getFilePath() {

@@ -80,7 +80,7 @@ interface TxtParentNode extends TxtNode {
 - Types of Markdown text are defined in [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast")
     - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
 
-All Types are defined in [src/shared/union-syntax.js](../src/shared/union-syntax.js)
+All Types are defined in [src/shared/type/NodeType.js](../src/shared/type/NodeType.js)
 
 These types are be available at all times:
 
