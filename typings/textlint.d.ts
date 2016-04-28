@@ -1,3 +1,4 @@
+//noinspection TypeScriptCheckImport
 import TxtAST from "./txtast";
 // "range" is replaced by "text"
 interface TextLintFixCommand {
@@ -5,6 +6,10 @@ interface TextLintFixCommand {
     range: [number,number],
 }
 interface TextLintMessage {
+    // See src/shared/type/MessageType.js
+    // Message Type
+    type: string;
+    // Rule Id
     ruleId: string;
     message: string;
     // optional data
@@ -15,12 +20,8 @@ interface TextLintMessage {
     // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
     line: number; // start with 1
     column: number;// start with 1
-    // severity
-    /*
-     "info": 0,
-     "warning": 1,
-     "error": 2
-     */
+    // Severity Level
+    // See src/shared/type/SeverityLevel.js
     severity?: number;
 }
 // Linting result

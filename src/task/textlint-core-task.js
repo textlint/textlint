@@ -7,6 +7,8 @@ import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
+const assert = require("assert");
+import MessageType from "../shared/type/MessageType";
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
     constructor() {
@@ -36,6 +38,32 @@ export default class TextLintCoreTask extends EventEmitter {
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
+    createIgnoreReporter() {
+        /**
+         * @typedef {Object} ReportIgnoreMessage
+         * @property {string} ruleId
+         * @property {TxtNode} node
+         */
+        /**
+         * push new RuleError to results
+         * @param {ReportIgnoreMessage} reportedMessage
+         */
+        const reportFunction = (reportedMessage) => {
+            const {ruleId, node} = reportedMessage;
+            // add TextLintMessage
+            const range = node.range;
+            assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
+                "ignoreRange should have actual range: " + range);
+            const message = {
+                type: MessageType.ignore,
+                ruleId: ruleId,
+                ignoreRange: range
+            };
+            this.emit(TextLintCoreTask.events.message, message);
+        };
+        return reportFunction;
+    }
+
     createReporter(sourceCode) {
         const sourceLocation = new SourceLocation(sourceCode);
 
@@ -54,10 +82,13 @@ export default class TextLintCoreTask extends EventEmitter {
             const {ruleId, severity, ruleError} = reportedMessage;
             debug("%s pushReport %s", ruleId, ruleError);
             const {line, column, fix} = sourceLocation.adjust(reportedMessage);
+            const index = sourceCode.positionToIndex({line, column});
             // add TextLintMessage
             const message = {
+                type: MessageType.lint,
                 ruleId: ruleId,
                 message: ruleError.message,
+                index,
                 // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
                 line: line,        // start with 1(1-based line number)
                 column: column + 1,// start with 1(1-based column number)

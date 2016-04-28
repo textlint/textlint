@@ -3,8 +3,8 @@
 const assert = require("assert");
 import RuleFixer from "../fixer/rule-fixer-commaner";
 import RuleError from "./rule-error";
-import {SeverityLevel, getSeverity} from "../shared/rule-severity";
-
+import SeverityLevel from "../shared/type/SeverityLevel";
+import {getSeverity} from "../shared/rule-severity";
 /**
  * This callback is displayed as a global member.
  * @callback ReportCallback
@@ -13,18 +13,23 @@ import {SeverityLevel, getSeverity} from "../shared/rule-severity";
 
 /**
  * Rule context object is passed to each rule as `context`
- * @param ruleId
- * @param sourceCode
+ * @param {string} ruleId
+ * @param {SourceCode} sourceCode
  * @param {ReportCallback} report
+ * @param {Function} ignoreReport
  * @param {Config} textLintConfig
- * @param ruleConfig
+ * @param {Object|boolean} ruleConfig
  * @returns {*}
  * @constructor
  */
-export default function RuleContext(ruleId, sourceCode, report, textLintConfig, ruleConfig) {
+export default function RuleContext({ruleId, sourceCode, report, ignoreReport, textLintConfig, ruleConfig}) {
     Object.defineProperty(this, "id", {value: ruleId});
     Object.defineProperty(this, "config", {value: textLintConfig});
     const severity = getSeverity(ruleConfig);
+
+    this.shouldIgnore = function (node) {
+        ignoreReport({ruleId, node});
+    };
     /**
      * report function that is called in a rule
      * @param {TxtNode} node

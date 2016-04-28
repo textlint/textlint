@@ -9,7 +9,7 @@ import ProcessorMap from "./processor-map";
 import Config from "../config/config";
 import {findFiles} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
-import {SeverityLevel} from "../shared/rule-severity";
+import SeverityLevel from "../shared/type/SeverityLevel";
 /**
  * Core of TextLintEngine.
  * It is internal user.
