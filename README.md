@@ -1,4 +1,6 @@
-r[![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)](http://textlint.github.io/)
+# textlint
+
+[![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)](http://textlint.github.io/)
 
 > The pluggable linting tool for text and markdown.  
 > It is similar to [ESLint](http://eslint.org/ "ESLint"), but textlint for natural language.
