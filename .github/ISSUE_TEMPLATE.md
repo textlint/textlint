@@ -1,22 +1,5 @@
 <!--
-Before Bug Reporting, Please update textlint and try it.
-
-for updating global
-
-```
-npm uninstall -g textlint
-npm install -g textlint
-```
-
-OR
-
-for updating local
-
-```
-npm uninstall textlint
-npm install -D textlint@latest
-```
-
+**Before** Bug Reporting, Please update textlint and try it.
 Also see https://github.com/textlint/textlint/blob/master/CONTRIBUTING.md#bug-reporting
 -->
 
