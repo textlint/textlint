@@ -31,7 +31,7 @@ module.exports = {
     TextLintCore,
     // Constant Types
     TextLintMessageType: MessageType,
-    TextLintMessageSeverityLevel: SeverityLevel
+    TextLintMessageSeverityLevel: SeverityLevel,
     // for debug, don't use direct
     // It is used in textlint-tester
     _logger
