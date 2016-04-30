@@ -3,11 +3,13 @@
 const EventEmitter = require("events");
 const TraverseController = require("txt-ast-traverse").Controller;
 const PromiseEventEmitter = require("carrack");
-import RuleError from "../core/rule-error";
-import SourceLocation from "../core/source-location";
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 const assert = require("assert");
+import RuleError from "../core/rule-error";
+import SourceLocation from "../core/source-location";
+import RuleContext from "../core/rule-context";
+import timing from "./../util/timing";
 import MessageType from "../shared/type/MessageType";
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
@@ -36,7 +38,21 @@ export default class TextLintCoreTask extends EventEmitter {
         this.ruleCreatorSet = ruleCreatorSet;
         this.sourceCode = sourceCode;
         this.ruleTypeEmitter = new RuleTypeEmitter();
+        this._setupRuleCreatorListener();
     }
+
+    /* eslint-disable */
+    /**
+     * return ruleObject
+     * @param {Function} ruleCreator
+     * @param {RuleContext} ruleContext
+     * @param {Object|boolean} ruleConfig
+     * @returns {Object}
+     */
+    getRuleObject(ruleCreator, ruleContext, ruleConfig) {
+        throw new Error("Not Implement!!");
+    }
+    /* eslint-enable */
 
     createIgnoreReporter() {
         /**
@@ -141,6 +157,42 @@ export default class TextLintCoreTask extends EventEmitter {
             this.emit(TextLintCoreTask.events.complete);
         }).catch(error => {
             this.emit(TextLintCoreTask.events.error, error);
+        });
+    }
+
+    /**
+     * setup ruleTypeEmitter
+     * @private
+     */
+    _setupRuleCreatorListener() {
+        const rules = this.ruleCreatorSet.rules;
+        const rulesConfig = this.ruleCreatorSet.rulesConfig;
+        const textLintConfig = this.config;
+        const sourceCode = this.sourceCode;
+        const report = this.createReporter(sourceCode);
+        const ignoreReport = this.createIgnoreReporter(sourceCode);
+        Object.keys(rules).forEach(ruleId => {
+            const ruleCreator = rules[ruleId];
+            const ruleConfig = typeof rulesConfig[ruleId] !== "undefined" ? rulesConfig[ruleId] : true;
+            const ruleContext = new RuleContext({
+                ruleId,
+                sourceCode,
+                report,
+                ignoreReport,
+                textLintConfig,
+                ruleConfig
+            });
+            const ruleObject = this.getRuleObject(ruleCreator, ruleContext, ruleConfig);
+            this._addListenRule(ruleId, ruleObject);
+        });
+    }
+
+    // add all the node types as listeners
+    _addListenRule(key, rule) {
+        Object.keys(rule).forEach(nodeType => {
+            this.ruleTypeEmitter.on(nodeType, timing.enabled
+                ? timing.time(key, rule[nodeType])
+                : rule[nodeType]);
         });
     }
 }
