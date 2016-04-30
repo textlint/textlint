@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
 /**
+ * Severity level
+ * It is used in configuration and message
  * @typedef {Object} SeverityLevel
  */
 export default {

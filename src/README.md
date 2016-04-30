@@ -85,5 +85,5 @@ To be clear about difference of linter and fixer.
 
 These are shared between config and engine and core.
 
-- rule-severity
-- union-syntax
+- type
+- util function

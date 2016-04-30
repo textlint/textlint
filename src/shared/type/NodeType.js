@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const Syntax = {
+const NodeSyntax = {
     "Document": "Document",
     "Paragraph": "Paragraph",
     "BlockQuote": "BlockQuote",
@@ -21,4 +21,4 @@ const Syntax = {
     "Image": "Image",
     "Code": "Code"
 };
-export default Syntax;
+export default NodeSyntax;

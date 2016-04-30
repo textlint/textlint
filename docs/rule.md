@@ -91,7 +91,7 @@ RuleContext object has following property:
 
 - `Syntax.*` is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
-    - [lib/parser/union-syntax.js](../lib/parser/union-syntax.js)
+    - [src/shared/type/NodeType.js](../src/shared/type/NodeType.js)
 - `report(<node>, <ruleError>)` is a method reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
 - `getSource(<node>)`  is a method gets the source code for the given node.
