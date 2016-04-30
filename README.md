@@ -1,3 +1,5 @@
+# textlint
+
 [![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)](http://textlint.github.io/)
 
 > The pluggable linting tool for text and markdown.  
@@ -65,6 +67,7 @@ Options:
   --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
   -f, --format String        Use a specific output format.
   --fix                      Automatically fix problems
+  --debug                    Output debugging information
   --dry-run                  Enable dry-run mode for --fix. Only show result, don't change the file.
   -v, --version              Outputs the version number.
   --no-color                 Disable color in piped output.

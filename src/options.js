@@ -56,6 +56,12 @@ export default optionator({
             example: "--fix"
         },
         {
+            option: "debug",
+            type: "Boolean",
+            default: false,
+            description: "Output debugging information"
+        },
+        {
             option: "dry-run",
             type: "Boolean",
             default: false,
