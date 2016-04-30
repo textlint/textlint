@@ -1,10 +1,16 @@
 #!/usr/bin/env node
 "use strict";
 var concat = require("concat-stream");
-var cli = require("../lib/cli");
-var exitCode = 0;
 var useStdIn = (process.argv.indexOf("--stdin") > -1);
+var isDebug = (process.argv.indexOf("--debug") > -1);
+if (isDebug) {
+    require("debug").enable("textlint*");
+}
+// must do this initialization *before* other requires in order to work
+var cli = require("../lib/cli");
 var setRunningCLI = require("../lib/util/throw-log").setRunningCLI;
+var exitCode = 0;
+
 // it is for --experimental logger
 // update state
 setRunningCLI(!module.parent);
