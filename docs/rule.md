@@ -92,8 +92,11 @@ RuleContext object has following property:
 - `Syntax.*` is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
     - [src/shared/type/NodeType.js](../src/shared/type/NodeType.js)
-- `report(<node>, <ruleError>)` is a method reports a message from one of the rules.
+- `report(<node>, <ruleError>)` is a method that reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
+- `shouldIgnore(<node>)` is a method that report reports ignoring node from one of the rules.
+    - e.g.) `context.shouldIgnore(node);`
+    - Caution: One rule should one Task. It means that should not mixed `report()` and `shouldIgnore()` in a one rule.
 - `getSource(<node>)`  is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath()` return file path that is linting target.
