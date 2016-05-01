@@ -11,6 +11,7 @@ import SourceLocation from "../core/source-location";
 import RuleContext from "../core/rule-context";
 import timing from "./../util/timing";
 import MessageType from "../shared/type/MessageType";
+import {throwWithoutExperimental} from "../util/throw-log";
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
     constructor() {
@@ -52,6 +53,7 @@ export default class TextLintCoreTask extends EventEmitter {
     getRuleObject(ruleCreator, ruleContext, ruleConfig) {
         throw new Error("Not Implement!!");
     }
+
     /* eslint-enable */
 
     createIgnoreReporter() {
@@ -65,6 +67,8 @@ export default class TextLintCoreTask extends EventEmitter {
          * @param {ReportIgnoreMessage} reportedMessage
          */
         const reportFunction = (reportedMessage) => {
+            throwWithoutExperimental("shouldIgnore() is experimental feature.\n" +
+                "You can use it with `--experimental` flag. It may will be changed in the future.");
             const {ruleId, node} = reportedMessage;
             // add TextLintMessage
             const range = node.range;
