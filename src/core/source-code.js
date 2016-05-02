@@ -44,6 +44,10 @@ export default class SourceCode {
         return NodeType;
     }
 
+    /**
+     * get filePath
+     * @returns {string|undefined}
+     */
     getFilePath() {
         return this.filePath;
     }
