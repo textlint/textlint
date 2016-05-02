@@ -86,7 +86,7 @@ You can use this `TextLintNodeType` value via following way:
 
 ```js
 import {TextLintNodeType} from "textlint";
-TextLintNodeType.Str;// "Str"
+console.log(TextLintNodeType.Str); // "Str"
 ```
 
 These types are be available at all times:
