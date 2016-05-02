@@ -91,8 +91,8 @@ TextLintNodeType.Str;// "Str"
 
 These types are be available at all times:
 
-```js
-const Syntax = {
+```json
+{
     "Document": "Document",
     "Paragraph": "Paragraph",
     "BlockQuote": "BlockQuote",
@@ -103,16 +103,15 @@ const Syntax = {
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
-    // inline
     "Str": "Str",
-    "Break": "Break", // well-known Hard Break
+    "Break": "Break",
     "Emphasis": "Emphasis",
     "Strong": "Strong",
     "Html": "Html",
     "Link": "Link",
     "Image": "Image",
     "Code": "Code"
-};
+}
 ```
 
 The type is based on HTML tag.
