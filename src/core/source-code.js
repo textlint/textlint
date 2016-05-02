@@ -1,6 +1,6 @@
 const assert = require("assert");
 const StructuredSource = require("structured-source");
-import NodeType from "../shared/type/NodeType";
+import TextLintNodeType from "../shared/type/TextLintNodeType";
 /**
  * Validates that the given AST has the required information.
  * @param {TxtAST.TxtNode} [ast] The Program node of the AST to check.
@@ -38,10 +38,10 @@ export default class SourceCode {
     }
 
     /**
-     * @returns {TextLintNodeTypes}
+     * @returns {TextLintNodeType}
      */
     getSyntax() {
-        return NodeType;
+        return TextLintNodeType;
     }
 
     /**

@@ -1,9 +1,11 @@
 // LICENSE : MIT
 "use strict";
 /**
- * @typedef {{Document: string, Paragraph: string, BlockQuote: string, ListItem: string, List: string, Header: string, CodeBlock: string, HtmlBlock: string, ReferenceDef: string, HorizontalRule: string, Str: string, Break: string, Emphasis: string, Strong: string, Html: string, Link: string, Image: string, Code: string}} TextLintNodeTypes
+ * Node types list on TxtNode.
+ * @see https://github.com/textlint/textlint/blob/master/docs/txtnode.md
+ * @typedef {{Document: string, Paragraph: string, BlockQuote: string, ListItem: string, List: string, Header: string, CodeBlock: string, HtmlBlock: string, ReferenceDef: string, HorizontalRule: string, Str: string, Break: string, Emphasis: string, Strong: string, Html: string, Link: string, Image: string, Code: string}} TextLintNodeType
  */
-const NodeSyntax = {
+const TextLintNodeType = {
     "Document": "Document",
     "Paragraph": "Paragraph",
     "BlockQuote": "BlockQuote",
@@ -24,4 +26,4 @@ const NodeSyntax = {
     "Image": "Image",
     "Code": "Code"
 };
-export default NodeSyntax;
+export default TextLintNodeType;

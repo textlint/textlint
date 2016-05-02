@@ -46,7 +46,7 @@ export default function RuleContext({ruleId, sourceCode, report, ignoreReport, t
     };
     /**
      * Node's type values
-     * @type {TextLintNodeTypes}
+     * @type {TextLintNodeType}
      */
     this.Syntax = sourceCode.getSyntax();
     /**
