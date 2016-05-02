@@ -37,6 +37,9 @@ export default class SourceCode {
         this.ext = ext;
     }
 
+    /**
+     * @returns {TextLintNodeTypes}
+     */
     getSyntax() {
         return NodeType;
     }

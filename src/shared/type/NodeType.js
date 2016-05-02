@@ -1,5 +1,8 @@
 // LICENSE : MIT
 "use strict";
+/**
+ * @typedef {{Document: string, Paragraph: string, BlockQuote: string, ListItem: string, List: string, Header: string, CodeBlock: string, HtmlBlock: string, ReferenceDef: string, HorizontalRule: string, Str: string, Break: string, Emphasis: string, Strong: string, Html: string, Link: string, Image: string, Code: string}} TextLintNodeTypes
+ */
 const NodeSyntax = {
     "Document": "Document",
     "Paragraph": "Paragraph",

@@ -44,16 +44,29 @@ export default function RuleContext({ruleId, sourceCode, report, ignoreReport, t
             report({ruleId, node, severity: level, ruleError});
         }
     };
-    // Const Values
-    Object.defineProperty(this, "Syntax", {
-        get(){
-            return sourceCode.getSyntax();
-        }
-    });
+    /**
+     * Node's type values
+     * @type {TextLintNodeTypes}
+     */
+    this.Syntax = sourceCode.getSyntax();
+    /**
+     * get file path current processing.
+     * @type {Function}
+     */
     this.getFilePath = sourceCode.getFilePath.bind(sourceCode);
+    /**
+     * get source code text
+     * @type {Function}
+     */
     this.getSource = sourceCode.getSource.bind(sourceCode);
-    // CustomError object
+    /**
+     * CustomError object
+     * @type {RuleError}
+     */
     this.RuleError = RuleError;
-    // fixer
+    /**
+     * Rule fixer command object
+     * @type {RuleFixer}
+     */
     this.fixer = new RuleFixer();
 }
