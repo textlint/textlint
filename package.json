@@ -18,10 +18,10 @@
   },
   "main": "lib/index.js",
   "files": [
-    "bin",
-    "lib",
-    "src",
-    "typing"
+    "bin/",
+    "lib/",
+    "src/",
+    "typings/"
   ],
   "typings": "typings/textlint.d.ts",
   "bin": {
