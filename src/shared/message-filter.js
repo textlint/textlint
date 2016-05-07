@@ -16,7 +16,7 @@ export function filterMessages(messages = []) {
     return lintingMessages.filter(message => {
         return !ignoreMessages.some(ignoreMessage => {
             const index = message.index;
-            const [start, end] = ignoreMessage.ignoreRange;
+            const [start, end] = ignoreMessage.range;
             return start <= index && index <= end;
         });
     });

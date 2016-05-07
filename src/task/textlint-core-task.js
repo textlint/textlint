@@ -60,7 +60,7 @@ export default class TextLintCoreTask extends EventEmitter {
         /**
          * @typedef {Object} ReportIgnoreMessage
          * @property {string} ruleId
-         * @property {TxtNode} node
+         * @property {number[]} range
          */
         /**
          * push new RuleError to results
@@ -69,15 +69,13 @@ export default class TextLintCoreTask extends EventEmitter {
         const reportFunction = (reportedMessage) => {
             throwWithoutExperimental("shouldIgnore() is experimental feature.\n" +
                 "You can use it with `--experimental` flag. It may will be changed in the future.");
-            const {ruleId, node} = reportedMessage;
-            // add TextLintMessage
-            const range = node.range;
+            const {ruleId, range} = reportedMessage;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
             const message = {
                 type: MessageType.ignore,
                 ruleId: ruleId,
-                ignoreRange: range
+                range: range
             };
             this.emit(TextLintCoreTask.events.message, message);
         };

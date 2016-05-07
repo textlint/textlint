@@ -40,7 +40,7 @@ describe("message-filter", function () {
                 {
                     type: "ignore",
                     ruleId: "rule",
-                    ignoreRange: [1, 2]
+                    range: [1, 2]
                 }
             ];
             assert.equal(filterMessages(messages).length, 1);
@@ -88,7 +88,7 @@ describe("message-filter", function () {
                 {
                     type: "ignore",
                     ruleId: "rule",
-                    ignoreRange: [1, 2]
+                    range: [1, 2]
                 }
             ];
             assert.equal(filterMessages(messages).length, 2);
@@ -127,12 +127,12 @@ describe("message-filter", function () {
                 {
                     type: "ignore",
                     ruleId: "rule",
-                    ignoreRange: [1, 100]
+                    range: [1, 100]
                 },
                 {
                     type: "ignore",
                     ruleId: "rule",
-                    ignoreRange: [0, 200]
+                    range: [0, 200]
                 }
             ];
             assert.equal(filterMessages(messages).length, 0);
