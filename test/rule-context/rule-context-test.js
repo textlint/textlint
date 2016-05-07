@@ -225,7 +225,7 @@ describe("rule-context-test", function () {
                     "ignore-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
-                                context.shouldIgnore(node);
+                                context.shouldIgnore(node.range);
                             }
                         };
                     }
@@ -248,7 +248,7 @@ describe("rule-context-test", function () {
                     "ignore-rule": function (context) {
                         return {
                             [context.Syntax.Code](node){
-                                context.shouldIgnore(node);
+                                context.shouldIgnore(node.range);
                             }
                         };
                     }
@@ -273,9 +273,9 @@ describe("rule-context-test", function () {
                     "ignore-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
-                                context.shouldIgnore(node);
-                                context.shouldIgnore(node);
-                                context.shouldIgnore(node);
+                                context.shouldIgnore(node.range);
+                                context.shouldIgnore(node.range);
+                                context.shouldIgnore(node.range);
                             }
                         };
                     }
@@ -298,7 +298,7 @@ describe("rule-context-test", function () {
                     "ignore-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
-                                context.shouldIgnore(node);
+                                context.shouldIgnore(node.range);
                             }
                         };
                     }

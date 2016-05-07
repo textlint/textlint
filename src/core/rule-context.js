@@ -16,7 +16,7 @@ import {getSeverity} from "../shared/rule-severity";
  * @param {string} ruleId
  * @param {SourceCode} sourceCode
  * @param {ReportCallback} report
- * @param {Function} ignoreReport
+ * @param {function(ReportIgnoreMessage)} ignoreReport
  * @param {Config} textLintConfig
  * @param {Object|boolean} ruleConfig
  * @returns {*}
@@ -27,8 +27,14 @@ export default function RuleContext({ruleId, sourceCode, report, ignoreReport, t
     Object.defineProperty(this, "config", {value: textLintConfig});
     const severity = getSeverity(ruleConfig);
 
-    this.shouldIgnore = function (node) {
-        ignoreReport({ruleId, node});
+    /**
+     * report ignoring range
+     * @param {number[]} range
+     */
+    this.shouldIgnore = function (range) {
+        assert(Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
+            "shouldIgnore([number, number]); accept range.");
+        ignoreReport({ruleId, range});
     };
     /**
      * report function that is called in a rule
