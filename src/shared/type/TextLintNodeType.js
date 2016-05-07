@@ -16,6 +16,7 @@ const TextLintNodeType = {
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
+    "Comment": "Comment",
     // inline
     "Str": "Str",
     "Break": "Break", // well-known Hard Break
