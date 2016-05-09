@@ -103,6 +103,7 @@ These types are be available at all times:
     "HtmlBlock": "HtmlBlock",
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
+    "Comment": "Comment",
     "Str": "Str",
     "Break": "Break",
     "Emphasis": "Emphasis",
