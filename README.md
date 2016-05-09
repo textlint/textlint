@@ -172,9 +172,11 @@ To enable plugin, put the "plugin-name" into `.textlinrc`.
 
 :information_source: See [docs/plugin.md](docs/plugin.md)
 
-#### Processor Plugin
+#### Support file format
 
-Processor Plugin add new file format support.
+textlint support Markdown and plain text by default.
+
+Install **Processor Plugin** and add new file format support.
 If you want to use textlint for HTML, use [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html") as plugin.
 
     npm install textlint-plugin-html
@@ -189,10 +191,20 @@ and Add "html" to `.textlintrc`
 }
 ```
 
-Run textlint and work!
+Lint `.html` file!
 
 - Example : [examples/html-plugin](examples/html-plugin)
 - Document: [docs/plugin.md](docs/plugin.md)
+
+Optional supported file types:
+
+- HTML: [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html")
+- reStructuredText: [textlint-plugin-rst](https://github.com/jimo1001/textlint-plugin-rst "textlint-plugin-rst")
+- [AsciiDoc](http://www.methods.co.nz/asciidoc/)/[Asciidoctor](http://asciidoctor.org/):[textlint-plugin-asciidoc-loose](https://github.com/azu/textlint-plugin-asciidoc-loose "textlint-plugin-asciidoc-loose")
+- [Re:VIEW](https://github.com/kmuto/review): [textlint-plugin-review](https://github.com/orangain/textlint-plugin-review "textlint-plugin-review")
+
+See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule#processor-plugin-list "Processor Plugin List") for details.
+
 
 ### Rule list - [Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 
