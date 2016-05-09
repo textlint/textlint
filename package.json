@@ -34,9 +34,9 @@
     "pretest": "npm run --if-present build",
     "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && ./bin/textlint.js -c docs/.textlintrc docs/*.md CONTRIBUTING.md -f pretty-error",
     "lint:js": "eslint src/",
-    "test:example": "./test/example-test.sh",
+    "test:example": "nf start --procfile test/example-test.Procfile",
     "test:js": "npm run lint:js && mocha test/",
-    "test": "npm-run-all -p lint:doc test:js test:example",
+    "test": "npm-run-all lint:doc test:js test:example",
     "perf": "cd perf && npm run perf"
   },
   "directories": {
@@ -57,6 +57,7 @@
     "clone": "^1.0.0",
     "eslint": "^2.3.0",
     "eslint-plugin-markdown": "^1.0.0-beta.1",
+    "foreman": "^1.4.1",
     "glob": "^7.0.3",
     "markdown-to-ast": "^3.2.3",
     "mocha": "^2.3.3",
