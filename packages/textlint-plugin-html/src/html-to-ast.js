@@ -60,8 +60,12 @@ export function parse(html) {
                     end: {line: position.end.line, column: position.end.column + 1}
                 };
             }
+            // Unknown type
+            if (typeof node.type === "undefined") {
+                node.type = "UNKNOWN";
+            }
             // map `range`, `loc` and `raw` to node
-            if (node.position) {
+            if (typeof node.position === "object") {
                 let position = node.position;
                 // TxtNode's line start with 1
                 // TxtNode's column start with 0
