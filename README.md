@@ -177,11 +177,12 @@ To enable plugin, put the "plugin-name" into `.textlinrc`.
 textlint support Markdown and plain text by default.
 
 Install **Processor Plugin** and add new file format support.
-If you want to use textlint for HTML, use [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html") as plugin.
+
+For example, If you want to lint HTML, use [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html") as plugin.
 
     npm install textlint-plugin-html
     
-and Add "html" to `.textlintrc`
+Add `"html"` to `.textlintrc`
 
 ```
 {
@@ -191,7 +192,9 @@ and Add "html" to `.textlintrc`
 }
 ```
 
-Lint `.html` file!
+Run textlint on `.html` files:
+
+  textlint index.html
 
 - Example : [examples/html-plugin](examples/html-plugin)
 - Document: [docs/plugin.md](docs/plugin.md)
