@@ -7,11 +7,6 @@
       "presets": [
         "jsdoc-to-assert",
         "power-assert"
-      ],
-      "only":[
-        "src/*.js",
-        "test/*.js",
-        "node_modules/textlint-ast-test/lib/*.js"
       ]
     }
   }
