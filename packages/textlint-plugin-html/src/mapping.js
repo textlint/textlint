@@ -24,6 +24,7 @@ export const nodeTypes = {
     "Bullet": "Bullet", // no need?
     "heading": "Header",
     "code": "CodeBlock",
+    "comment": "Comment",
     "HtmlBlock": "Html",
     "ReferenceDef": "ReferenceDef",
     "horizontalRule": "HorizontalRule",
