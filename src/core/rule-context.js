@@ -32,7 +32,8 @@ export default function RuleContext({ruleId, sourceCode, report, ignoreReport, t
      * report ignoring range
      * @param {number[]} range
      * @param {{ ruleId: string }} [optional] ignoring option object
-     * - `ruleId` match the TextLintMessage.ruleId and filter the message. (default: all filtered)
+     * - `ruleId` match the TextLintMessage.ruleId and filter the message. (default: `ruleId` of the rule)
+     *   if `ruleId` is "*", match any TextLintMessage.ruleId.
      */
     this.shouldIgnore = function (range, optional = {}) {
         assert(Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",

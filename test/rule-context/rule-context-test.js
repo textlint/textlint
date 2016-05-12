@@ -273,15 +273,45 @@ describe("rule-context-test", function () {
                     "ignore-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
-                                context.shouldIgnore(node.range);
-                                context.shouldIgnore(node.range);
-                                context.shouldIgnore(node.range);
+                                context.shouldIgnore(node.range, {
+                                    ruleId: "*"
+                                });
+                                context.shouldIgnore(node.range, {
+                                    ruleId: "*"
+                                });
+                                context.shouldIgnore(node.range, {
+                                    ruleId: "*"
+                                });
                             }
                         };
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
                     assert(result.messages.length === 0);
+                });
+            });
+        });
+        context("when ignoreMessages that is not specified ruleId", function () {
+            it("should return filtered messages by matched ruleId", function () {
+                textlint.setupRules({
+                    "rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.report(node, new context.RuleError("message"));
+                            }
+                        };
+                    },
+                    "ignore-rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                // no specify ruleId
+                                context.shouldIgnore(node.range);
+                            }
+                        };
+                    }
+                });
+                return textlint.lintMarkdown("test").then(result => {
+                    assert(result.messages.length === 1);
                 });
             });
         });
@@ -298,7 +328,9 @@ describe("rule-context-test", function () {
                     "ignore-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
-                                context.shouldIgnore(node.range);
+                                context.shouldIgnore(node.range, {
+                                    ruleId: "*"
+                                });
                             }
                         };
                     }

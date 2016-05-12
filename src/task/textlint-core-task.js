@@ -58,12 +58,15 @@ export default class TextLintCoreTask extends EventEmitter {
 
     createIgnoreReporter() {
         /**
+         * Message of ignoring
          * @typedef {Object} ReportIgnoreMessage
          * @property {string} ruleId
          * @property {number[]} range
+         * @property {string} ignoringRuleId to ignore ruleId
+         * "*" is special case, it match all ruleId(work as wildcard).
          */
         /**
-         * push new RuleError to results
+         * create ReportIgnoreMessage and emit it.
          * @param {ReportIgnoreMessage} reportedMessage
          */
         const reportFunction = (reportedMessage) => {
@@ -72,13 +75,12 @@ export default class TextLintCoreTask extends EventEmitter {
             const {ruleId, range, optional} = reportedMessage;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
-            const filterRuleId = optional.ruleId;
             const message = {
                 type: MessageType.ignore,
                 ruleId: ruleId,
                 range: range,
-                // ignoring target ruleId
-                ignoringRuleId: filterRuleId
+                // ignoring target ruleId - default: filter messages in the rule.
+                ignoringRuleId: optional.ruleId || ruleId
             };
             this.emit(TextLintCoreTask.events.message, message);
         };

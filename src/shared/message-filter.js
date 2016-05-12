@@ -28,6 +28,10 @@ export function filterMessages(messages = []) {
         return !ignoreMessages.some(ignoreMessage => {
             const isInIgnoringRange = isContainedRange(message.index, ignoreMessage.range);
             if (isInIgnoringRange && ignoreMessage.ignoringRuleId) {
+                // "*" is wildcard that match any rule
+                if (ignoreMessage.ignoringRuleId === "*") {
+                    return true;
+                }
                 return message.ruleId === ignoreMessage.ignoringRuleId;
             }
             return isInIgnoringRange;
