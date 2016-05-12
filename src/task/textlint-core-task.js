@@ -69,13 +69,16 @@ export default class TextLintCoreTask extends EventEmitter {
         const reportFunction = (reportedMessage) => {
             throwWithoutExperimental("shouldIgnore() is experimental feature.\n" +
                 "You can use it with `--experimental` flag. It may will be changed in the future.");
-            const {ruleId, range} = reportedMessage;
+            const {ruleId, range, optional} = reportedMessage;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
+            const filterRuleId = optional.ruleId;
             const message = {
                 type: MessageType.ignore,
                 ruleId: ruleId,
-                range: range
+                range: range,
+                // ignoring target ruleId
+                ignoringRuleId: filterRuleId
             };
             this.emit(TextLintCoreTask.events.message, message);
         };
