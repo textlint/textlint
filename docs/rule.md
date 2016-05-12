@@ -96,6 +96,8 @@ RuleContext object has following property:
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
 - **Experimental**: `shouldIgnore(range, { ruleId })` is a method that report reports ignoring `range`( is array like `[start, end]`).
     - e.g.) `context.shouldIgnore(node.range);`
+    - `context.shouldIgnore(node.range, { ruleId: "rule-id" });` ignore messages of "rule-id" rule. 
+    - `context.shouldIgnore(node.range, { ruleId: "*" });` ignore all messages. It work as wildcard. Be careful to use. :warning: 
     - :warning: Caution: One rule should one Task. It means that should not mixed `report()` and `shouldIgnore()` in a one rule.
 - `getSource(<node>)`  is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
