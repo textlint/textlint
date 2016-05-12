@@ -138,4 +138,83 @@ describe("message-filter", function () {
             assert.equal(filterMessages(messages).length, 0);
         });
     });
+    context("when the message has ignoringRuleId", function () {
+        it("* match any rule", function () {
+            const messages = [
+                {
+                    type: "lint",
+                    ruleId: "rule-a",
+                    message: "message",
+                    index: 10,
+                    line: 1,
+                    column: 4,
+                    severity: 2
+                },
+                {
+                    type: "lint",
+                    ruleId: "rule-b",
+                    message: "message",
+                    index: 10,
+                    line: 1,
+                    column: 4,
+                    severity: 2
+                },
+                {
+                    type: "lint",
+                    ruleId: "rule-b",
+                    message: "message",
+                    index: 20,
+                    line: 2,
+                    column: 4,
+                    severity: 2
+                },
+                {
+                    type: "ignore",
+                    ruleId: "ignore-rule",
+                    range: [1, 100],
+                    ignoringRuleId: "*"// filter all rule
+                }
+            ];
+            assert.equal(filterMessages(messages).length, 0);
+        });
+        it("should only filter messages that are matched the ruleId", function () {
+            const messages = [
+                {
+                    type: "lint",
+                    ruleId: "rule-a",
+                    message: "message",
+                    index: 10,
+                    line: 1,
+                    column: 4,
+                    severity: 2
+                },
+                {
+                    type: "lint",
+                    ruleId: "rule-b",
+                    message: "message",
+                    index: 10,
+                    line: 1,
+                    column: 4,
+                    severity: 2
+                },
+                {
+                    type: "lint",
+                    ruleId: "rule-b",
+                    message: "message",
+                    index: 20,
+                    line: 2,
+                    column: 4,
+                    severity: 2
+                },
+                {
+                    type: "ignore",
+                    ruleId: "ignore-rule",
+                    range: [1, 100],
+                    ignoringRuleId: "rule-b"// filter only "rule-b"
+                }
+            ];
+            assert.equal(filterMessages(messages).length, 1);
+            assert.equal(filterMessages(messages)[0].ruleId, "rule-a");
+        });
+    });
 });
