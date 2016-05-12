@@ -94,7 +94,7 @@ RuleContext object has following property:
     - [src/shared/type/NodeType.js](../src/shared/type/NodeType.js)
 - `report(<node>, <ruleError>)` is a method that reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
-- **Experimental**: `shouldIgnore([start, end])` is a method that report reports ignoring node from one of the rules.
+- **Experimental**: `shouldIgnore(range, { ruleId })` is a method that report reports ignoring `range`( is array like `[start, end]`).
     - e.g.) `context.shouldIgnore(node.range);`
     - :warning: Caution: One rule should one Task. It means that should not mixed `report()` and `shouldIgnore()` in a one rule.
 - `getSource(<node>)`  is a method gets the source code for the given node.
