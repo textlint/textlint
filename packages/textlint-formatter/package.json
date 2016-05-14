@@ -23,10 +23,13 @@
     "url": "https://github.com/textlint/textlint-formatter/issues"
   },
   "dependencies": {
+    "@azu/format-text": "^1.0.1",
+    "@azu/style-format": "^1.0.0",
     "chalk": "^1.0.0",
     "js-yaml": "^3.2.4",
-    "pluralize": "^1.2.1",
+    "pluralize": "^2.0.0",
     "string-width": "^1.0.1",
+    "string.prototype.padstart": "^3.0.0",
     "strip-ansi": "^3.0.1",
     "table": "^3.7.8",
     "text-table": "^0.2.0",

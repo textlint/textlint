@@ -3,10 +3,10 @@
 // Original code is https://github.com/azer/prettify-error
 // Author : azer
 "use strict";
-var format = require("../style-format/format-text");
+var format = require("@azu/format-text");
 var chalk = require("chalk");
-var leftpad = require("../style-format/left-pad");
-var style = require("../style-format/style-format");
+var padStart = require('string.prototype.padstart');
+var style = require("@azu/style-format");
 var stripAnsi = require("strip-ansi");
 var pluralize = require("pluralize");
 // width is 2
@@ -92,15 +92,15 @@ function prettyError(code, filePath, message) {
         title: message.message,
         filename: filePath + ":" + message.line + ":" + message.column,
         previousLine: parsed[0].code ? parsed[0].code : "",
-        previousLineNo: leftpad(previousLineNo, linumlen),
+        previousLineNo: padStart(previousLineNo, linumlen),
         previousColNo: parsed[0].col,
         failingLine: parsed[1].code,
-        failingLineNo: leftpad(failingLineNo, linumlen),
+        failingLineNo: padStart(failingLineNo, linumlen),
         failingColNo: parsed[1].col,
         nextLine: parsed[2].code ? parsed[2].code : "",
-        nextLineNo: leftpad(nextLineNo, linumlen),
+        nextLineNo: padStart(nextLineNo, linumlen),
         nextColNo: parsed[2].col,
-        paddingForLineNo: leftpad('', linumlen),
+        paddingForLineNo: padStart('', linumlen),
         '^': showColumn(parsed, '^'),
         'v': showColumn(parsed, 'v')
     });
