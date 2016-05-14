@@ -18,7 +18,6 @@ var tryResolve = require('try-resolve');
 function createFormatter(options) {
     assert(typeof options === "object", "options should be object");
     var formatName = options.formatterName;
-    var noColor = options.noColor !== undefined ? options.noColor : false;
     var formatterPath;
     if (fs.existsSync(formatName)) {
         formatterPath = formatName;

@@ -8,8 +8,12 @@
     "url": "https://github.com/textlint/textlint-formatter.git"
   },
   "main": "lib/textlint-formatter.js",
+  "bin": {
+    "textlint-formatter": "bin/cmd.js"
+  },
   "files": [
-    "lib"
+    "lib/",
+    "bin/"
   ],
   "scripts": {
     "test": "mocha test/*.js"
@@ -26,7 +30,9 @@
     "@azu/format-text": "^1.0.1",
     "@azu/style-format": "^1.0.0",
     "chalk": "^1.0.0",
+    "concat-stream": "^1.5.1",
     "js-yaml": "^3.2.4",
+    "optionator": "^0.8.1",
     "pluralize": "^2.0.0",
     "string-width": "^1.0.1",
     "string.prototype.padstart": "^3.0.0",

@@ -54,6 +54,12 @@ interface options {
 }
 ```
 
+## CLI
+
+```
+$ textlint -f json README.md --rule no-todo | textlint-formatter -f pretty-error --stdin
+```
+
 ## Other formatter
 
 - [azu/textlint-formatter-codecov: textlint formatter for codecov json.](https://github.com/azu/textlint-formatter-codecov)
