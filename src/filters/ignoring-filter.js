@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import MessageType from "./type/MessageType";
+import MessageType from "../shared/type/MessageType";
 /**
  * the `index` is in the `range` and return true.
  * @param {Number} index

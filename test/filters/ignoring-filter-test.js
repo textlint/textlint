@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import {filterMessages} from "../../src/shared/message-filter";
+import {filterMessages} from "../../src/filters/ignoring-filter";
 const assert = require("power-assert");
 describe("message-filter", function () {
     context("when pass empty messages", function () {
