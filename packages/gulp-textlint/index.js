@@ -19,7 +19,7 @@ module.exports = function(options) {
         that.emit('error', new gutil.PluginError('textlint','Lint failed.'));
       }
     }).catch(function(error){
-      that.emit('error', new gutil.PluginError('textlint', 'Lint failed.'))
+      that.emit('error', new gutil.PluginError('textlint', 'textlint', 'Lint failed. \n' + error.message))
     }).then(function() {
       cb();
     });
