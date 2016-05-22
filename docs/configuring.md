@@ -142,15 +142,7 @@ To enable plugin, put the "plugin-name" into `.textlinrc`.
 
 textlint support module of configuration.
 
-You can create a config module that is same with content of `.textlintrc`
-
-```js
-module.exports = {
-    "rules": {
-        "plugin-name/rule-name" : false
-    }
-};
-```
+- [ ] Not support `config` in `.textlintrc` yet. See https://github.com/textlint/textlint/issues/210
 
 Specify config module via `--config` command line option.
 
