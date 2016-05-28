@@ -33,6 +33,22 @@ describe("textlint-module-resolver", function () {
             }, /Failed to load textlint's rule module/);
         });
     });
+    describe("#resolveFilterRulePackageName", function () {
+        it("should resolve rule file path", function () {
+            const resolver = createResolve(FIXTURE_DIR);
+            const packageName = "filter-rule";
+            const modulePath = resolver.resolveFilterRulePackageName(packageName);
+            assert.equal(typeof modulePath, "string");
+            assert.equal(modulePath, path.resolve(FIXTURE_DIR, packageName + ".js"));
+        });
+        it("Not found, throw error", function () {
+            const resolver = createResolve(FIXTURE_DIR);
+            const packageName = "NOT_FOUND_FILE";
+            assert.throws(() => {
+                resolver.resolveFilterRulePackageName(packageName);
+            }, /Failed to load textlint's filter rule module/);
+        });
+    });
     describe("#resolvePluginPackageName", function () {
         it("should resolve plugin package name", function () {
             const resolver = createResolve();

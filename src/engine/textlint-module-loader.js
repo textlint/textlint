@@ -19,6 +19,7 @@ import TextLintModuleResolver from "./textlint-module-resolver";
 export const createEntities = (pluginRules, prefixKey) => {
     const entities = [];
     Object.keys(pluginRules).forEach(ruleId => {
+        // TODO: / should be module
         const qualifiedRuleId = prefixKey + "/" + ruleId;
         const ruleCreator = pluginRules[ruleId];
         entities.push([qualifiedRuleId, ruleCreator]);
@@ -29,6 +30,7 @@ export default class TextLintModuleLoader extends EventEmitter {
     static get Event() {
         return {
             rule: "rule",
+            filterRule: "filterRule",
             processor: "preset",
             error: "error"
         };
@@ -70,6 +72,13 @@ export default class TextLintModuleLoader extends EventEmitter {
             // load in additional rules
             config.rules.forEach(ruleName => {
                 this.loadRule(ruleName);
+            });
+        }
+        // TODO: --filter
+        if (config.filterRules) {
+            // load in additional filterRules
+            config.filterRules.forEach(ruleName => {
+                this.loadFilterRule(ruleName);
             });
         }
         // --preset
@@ -176,6 +185,36 @@ export default class TextLintModuleLoader extends EventEmitter {
         const ruleCreator = interopRequire(pkgPath);
         const ruleEntry = [definedRuleName, ruleCreator];
         this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
+    }
+    /**
+     * load filter rule file with `ruleName` and define rule.
+     * if rule is not found, then throw ReferenceError.
+     * if already rule is loaded, do not anything.
+     * @param {string} ruleName
+     */
+    loadFilterRule(ruleName) {
+        /*
+           Task
+             - check already define
+             - resolve package name
+             - load package
+             - emit rule
+      */
+        // ignore already defined rule
+        // ignore rules from rulePaths because avoid ReferenceError is that try to require.
+        const RULE_NAME_PREFIX = this.config.constructor.FILTER_RULE_NAME_PREFIX;
+        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const definedRuleName = ruleName.replace(prefixMatch, "");
+        // ignore plugin's rule
+        if (isPluginRuleKey(definedRuleName)) {
+            Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
+            return;
+        }
+        const pkgPath = this.moduleResolver.resolveFilterRulePackageName(ruleName);
+        debug("Loading filter rules from %s", pkgPath);
+        const ruleCreator = interopRequire(pkgPath);
+        const ruleEntry = [definedRuleName, ruleCreator];
+        this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
     }
 }
 

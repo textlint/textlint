@@ -4,6 +4,7 @@ const assert = require("power-assert");
 const path = require("path");
 import {TextLintEngine} from "../../src/";
 const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");
+const filterRulesDir = path.join(__dirname, "fixtures/textlint-engine/filters");
 const pluginsDir = path.join(__dirname, "fixtures/textlint-engine/plugins");
 const presetsDir = path.join(__dirname, "fixtures/textlint-engine/presets");
 describe("textlint-engine-test", function () {
@@ -225,6 +226,40 @@ describe("textlint-engine-test", function () {
                 });
                 engine.loadRule("no-default-assign-rule");
                 var ruleNames = engine.ruleMap.getAllRuleNames();
+                assert(ruleNames.length === 1);
+            });
+        });
+    });
+    describe("#loadFilerRule", function () {
+        context("when the rule is **not** defined", function () {
+            it.skip("should define the rule", function () {
+                const engine = new TextLintEngine();
+                engine.loadRule("textlint-rule-no-todo");
+                var ruleNames = engine.ruleMap.getAllRuleNames();
+                assert(ruleNames.length > 0);
+                assert.equal(ruleNames[0], "no-todo");
+            });
+        });
+        context("when the rule is defined", function () {
+            it.skip("should not re-load rule", function () {
+                const engine = new TextLintEngine();
+                engine.loadRule("textlint-rule-no-todo");
+                var ruleNames = engine.ruleMap.getAllRuleNames();
+                assert(ruleNames.length === 1);
+                var ruleObject = engine.ruleMap.getRule(ruleNames[0]);
+                // loadRule should ignore
+                engine.loadRule("textlint-rule-no-todo");
+                // should equal prev loaded object
+                assert(engine.ruleMap.getRule("no-todo") === ruleObject);
+            });
+        });
+        context("when use the rule directory", function () {
+            it("should load rule from path", function () {
+                const engine = new TextLintEngine({
+                    rulesBaseDirectory: filterRulesDir
+                });
+                engine.loadFilerRule("filter-rule");
+                const ruleNames = engine.filterRuleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
         });

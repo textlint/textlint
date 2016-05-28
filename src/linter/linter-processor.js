@@ -17,10 +17,11 @@ export default class LinterProcessor {
      * Run linter process
      * @param {Config} config
      * @param {RuleCreatorSet} ruleCreatorSet
+     * @param {RuleCreatorSet} filterRuleCreatorSet
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintResult>}
      */
-    process({config, ruleCreatorSet, sourceCode}) {
+    process({config, ruleCreatorSet, filterRuleCreatorSet, sourceCode}) {
         assert(config && ruleCreatorSet && sourceCode);
         const {preProcess, postProcess} = this.processor.processor(sourceCode.ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
@@ -28,6 +29,7 @@ export default class LinterProcessor {
         const task = new LinterTask({
             config,
             ruleCreatorSet,
+            filterRuleCreatorSet,
             sourceCode
         });
         return TaskRunner.process(task).then(messages => {

@@ -27,19 +27,6 @@ export default function RuleContext({ruleId, sourceCode, report, ignoreReport, t
     Object.defineProperty(this, "config", {value: textLintConfig});
     const severity = getSeverity(ruleConfig);
 
-
-    /**
-     * report ignoring range
-     * @param {number[]} range
-     * @param {{ ruleId: string }} [optional] ignoring option object
-     * - `ruleId` match the TextLintMessage.ruleId and filter the message. (default: `ruleId` of the rule)
-     *   if `ruleId` is "*", match any TextLintMessage.ruleId.
-     */
-    this.shouldIgnore = function (range, optional = {}) {
-        assert(Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
-            "shouldIgnore([number, number]); accept range.");
-        ignoreReport({ruleId, range, optional});
-    };
     /**
      * report function that is called in a rule
      * @param {TxtNode} node

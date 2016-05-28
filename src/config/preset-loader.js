@@ -2,6 +2,12 @@
 "use strict";
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
+/**
+ * create `<plugin>/<rule>` option
+ * @param {Object} [rulesConfig]
+ * @param {string} presetName
+ * @returns {Object}
+ */
 export function mapRulesConfig(rulesConfig, presetName) {
     const mapped = {};
     if (rulesConfig === undefined) {

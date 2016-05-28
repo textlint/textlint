@@ -42,6 +42,7 @@ export default class TextlintCore {
         // this.config often is undefined.
         this.config = config;
         this.ruleCreatorSet = new RuleCreatorSet();
+        this.filterRuleCreatorSet = new RuleCreatorSet();
         // Markdown and Text are for backward compatibility.
         // FIXME: in the future, this.processors is empty by default.
         this._defaultProcessors = [
@@ -91,10 +92,21 @@ export default class TextlintCore {
     }
 
     /**
+     * Register filterRules and filterRulesConfig.
+     * if want to release rules, please call {@link resetRules}.
+     * @param {object} rules rule objects array
+     * @param {object} [rulesConfig] ruleConfig is object
+     */
+    setupFilterRules(rules = {}, rulesConfig = {}) {
+        this.filterRuleCreatorSet = new RuleCreatorSet(rules, rulesConfig);
+    }
+
+    /**
      * Remove all registered rule and clear messages.
      */
     resetRules() {
         this.ruleCreatorSet = new RuleCreatorSet();
+        this.filterRuleCreatorSet = new RuleCreatorSet();
     }
 
     /**
@@ -123,6 +135,7 @@ export default class TextlintCore {
         return linterProcessor.process({
             config: this.config,
             ruleCreatorSet: this.ruleCreatorSet,
+            filterRuleCreatorSet: this.filterRuleCreatorSet,
             sourceCode: sourceCode
         }).catch(error => {
             error.message = addingAtFileNameToError(filePath, error.message);
@@ -218,6 +231,7 @@ export default class TextlintCore {
         return fixerProcessor.process({
             config: this.config,
             ruleCreatorSet: this.ruleCreatorSet,
+            filterRuleCreatorSet: this.filterRuleCreatorSet,
             sourceCode: sourceCode
         }).catch(error => {
             error.message = addingAtFileNameToError(filePath, error.message);

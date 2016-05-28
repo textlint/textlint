@@ -13,13 +13,13 @@ import SeverityLevel from "../shared/type/SeverityLevel";
 /**
  * Core of TextLintEngine.
  * It is internal user.
- * 
+ *
  * Hackable adaptor
- * 
+ *
  * - executeOnFiles
  * - executeOnText
  * - formatResults
- * 
+ *
  * There are hackable by `executor` option.
  */
 export default class TextLintEngineCore {
@@ -57,12 +57,19 @@ export default class TextLintEngineCore {
          */
         this.ruleMap = new RuleMap();
         /**
+         * @type {RuleMap} filerRuleMap is used for filtering
+         */
+        this.filterRuleMap = new RuleMap();
+        /**
          * @type {ProcessorMap}
          */
         this.processorMap = new ProcessorMap();
         this.moduleLoader = new TextLintModuleLoader(this.config);
         this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
             this.ruleMap.defineRule(ruleName, ruleCreator);
+        });
+        this.moduleLoader.on(TextLintModuleLoader.Event.filterRule, ([ruleName, ruleCreator]) => {
+            this.filterRuleMap.defineRule(ruleName, ruleCreator);
         });
         this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
             this.processorMap.set(pluginName, Processor);
@@ -108,13 +115,24 @@ new TextLintEngine({
     }
 
     /**
-     * load plugin manually
+     * load rule manually
      * Note: it high cost, please use config
      * @param {string} ruleName
      * @deprecated use Constructor(config) insteadof it
      */
     loadRule(ruleName) {
         this.moduleLoader.loadRule(ruleName);
+        this._setupRules();
+    }
+
+    /**
+     * load filter rule manually
+     * Note: it high cost, please use config
+     * @param {string} ruleName
+     * @deprecated use Constructor(config) insteadof it
+     */
+    loadFilerRule(ruleName) {
+        this.moduleLoader.loadFilterRule(ruleName);
         this._setupRules();
     }
 
@@ -140,6 +158,7 @@ new TextLintEngine({
     resetRules() {
         this.textlint.resetRules();
         this.ruleMap.resetRules();
+        this.filerRuleMap.resetRules();
     }
 
     /**

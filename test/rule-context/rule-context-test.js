@@ -221,8 +221,8 @@ describe("rule-context-test", function () {
     describe("#shouldIgnore", function () {
         context("when ignoreMessages only", function () {
             it("should return empty message", function () {
-                textlint.setupRules({
-                    "ignore-rule": function (context) {
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 context.shouldIgnore(node.range);
@@ -244,8 +244,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Code](node){
                                 context.shouldIgnore(node.range);
@@ -269,8 +271,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 context.shouldIgnore(node.range, {
@@ -300,8 +304,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 // no specify ruleId
@@ -324,8 +330,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 context.shouldIgnore(node.range, {

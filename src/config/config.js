@@ -3,7 +3,7 @@
 const objectAssign = require("object-assign");
 const concat = require("unique-concat");
 import loadConfig from "./config-loader";
-import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
+import {isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
 import {
     loadRulesConfig as loadRulesConfigFromPlugins,
@@ -11,41 +11,7 @@ import {
 } from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
 import TextLintModuleResolver from "../engine/textlint-module-resolver";
-/**
- * Get rule keys from `.textlintrc` config object.
- * @param rulesConfig
- * @returns {{available: string[], disable: string[]}}
- */
-function separateAvailableOrDisable(rulesConfig) {
-    const ruleOf = {
-        presets: [],
-        available: [],
-        disable: []
-    };
-    if (!rulesConfig) {
-        return ruleOf;
-    }
-    Object.keys(rulesConfig).forEach(key => {
-        // `textlint-rule-preset-XXX`
-        if (isPresetRuleKey(key)) {
-            if (typeof rulesConfig[key] === "object" || rulesConfig[key] === true) {
-                ruleOf.presets.push(key);
-            }
-            return;
-        }
-        // `<plugin>/<rule-key>` should ignored
-        if (isPluginRuleKey(key)) {
-            return;
-        }
-        // ignore `false` value
-        if (typeof rulesConfig[key] === "object" || rulesConfig[key] === true) {
-            ruleOf.available.push(key);
-        } else {
-            ruleOf.disable.push(key);
-        }
-    });
-    return ruleOf;
-}
+import separateAvailableOrDisable from "./separate-by-config-option";
 /**
  * Convert config of preset to rulesConfig flat path format.
  *
@@ -82,6 +48,9 @@ const defaultOptions = Object.freeze({
     // disabled rule package names
     // always should start with empty
     disabledRules: [],
+    // filter rule package names
+    filterRules: [],
+    disabledFilterRules: [],
     // preset package names
     // e.g.) ["preset-foo"]
     presets: [],
@@ -132,6 +101,13 @@ class Config {
     }
 
     /**
+     * @return {string} filter rule package's name prefix
+     */
+    static get FILTER_RULE_NAME_PREFIX() {
+        return "textlint-filter-rule-";
+    }
+
+    /**
      * @return {string} rule preset package's name prefix
      */
     static get RULE_PRESET_NAME_PREFIX() {
@@ -155,6 +131,9 @@ class Config {
         const options = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
+        // TODO: CLI --filter <rule>?
+        options.filterRules = defaultOptions.filterRules;
+        options.disabledFilterRules = defaultOptions.disabledFilterRules;
         // TODO: CLI --disable <rule>?
         options.disabledRules = defaultOptions.disabledRules;
         options.presets = cliOptions.preset ? cliOptions.preset : defaultOptions.presets;
@@ -182,16 +161,21 @@ class Config {
                 configFileName: this.CONFIG_FILE_NAME
             }) || {};
         const configRulesObject = separateAvailableOrDisable(configFileRawOptions.rules);
+        const configFilterRulesObject = separateAvailableOrDisable(configFileRawOptions.filterRules);
         // available rules
         const configFileRules = configRulesObject.available;
+        const configFileFilterRules = configFilterRulesObject.available;
         // disable rules
         const configFileDisabledRules = configRulesObject.disable;
+        const configFileDisabledFilterRules = configFilterRulesObject.disable;
         const configPresets = configRulesObject.presets;
         const configFilePlugins = configFileRawOptions.plugins || [];
         const configFileRulesConfig = convertRulesConfigToFlatPath(configFileRawOptions.rules);
         // => Options
         const optionRules = options.rules || [];
+        const optionFilterRules = options.filterRules || [];
         const optionDisbaledRules = options.disabledRules || [];
+        const optionDisbaledFilterRules = options.disabledFilterRules || [];
         const optionRulesConfig = options.rulesConfig || {};
         const optionPlugins = options.plugins || [];
         const optionPresets = options.presets || [];
@@ -199,12 +183,16 @@ class Config {
         // Priority options > configFile
         const rules = concat(optionRules, configFileRules);
         const disabledRules = concat(optionDisbaledRules, configFileDisabledRules);
+        const filterRules = concat(optionFilterRules, configFileFilterRules);
+        const disabledFilterRules = concat(optionDisbaledFilterRules, configFileDisabledFilterRules);
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
         const presets = concat(optionPresets, configPresets);
         const mergedOptions = objectAssign({}, options, {
             rules,
             disabledRules,
+            filterRules,
+            disabledFilterRules,
             rulesConfig,
             plugins,
             presets
@@ -228,7 +216,6 @@ class Config {
             : defaultOptions.rulesBaseDirectory;
         // rule names that are defined in ,textlintrc
         const moduleResolver = new TextLintModuleResolver(this.constructor, this.rulesBaseDirectory);
-
         /**
          * @type {string[]} rule key list
          * but, plugins's rules are not contained in `rules`
@@ -240,6 +227,15 @@ class Config {
          * These rule is set `false` to options
          */
         this.disabledRules = options.disabledRules ? options.disabledRules : defaultOptions.disabledRules;
+        /**
+         * @type {string[]} filter rule key list
+         */
+        this.filterRules = options.filterRules ? options.filterRules : defaultOptions.filterRules;
+        /**
+         * @type {string[]} rule key list
+         * These rule is set `false` to options
+         */
+        this.disabledFilterRules = options.disabledFilterRules ? options.disabledFilterRules : defaultOptions.disabledFilterRules;
         /**
          * @type {string[]} preset key list
          */
