@@ -214,7 +214,7 @@ export default class TextlintCore {
             ext,
             filePath
         });
-        const fixerProcessor = new FixerProcessor(processor);
+        const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
         return fixerProcessor.process({
             config: this.config,
             ruleCreatorSet: this.ruleCreatorSet,
