@@ -13,11 +13,9 @@ const assert = require("assert");
  * @param {SourceCode} sourceCode
  * @param {function(ReportIgnoreMessage)} ignoreReport
  * @param {Config} textLintConfig
- * @param {Object|boolean} ruleConfig
- * @returns {RuleContext}
  * @constructor
  */
-export default function FilterRuleContext({ruleId, sourceCode, ignoreReport, textLintConfig, ruleConfig}) {
+export default function FilterRuleContext({ruleId, sourceCode, ignoreReport, textLintConfig}) {
     Object.defineProperty(this, "id", {value: ruleId});
     Object.defineProperty(this, "config", {value: textLintConfig});
     /**

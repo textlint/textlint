@@ -117,6 +117,20 @@ class TextLintRuleContext {
 
     fixer: RuleFixer;
 }
+class TextLintFilterRuleContext {
+    id: string;
+    config: TextLintConfig;
+    RuleError: RuleError;
+    /**
+     * Gets the source code for the given node.
+     * @param {TxtNode=} node The AST node to get the text for.
+     * @param {int=} beforeCount The number of characters before the node to retrieve.
+     * @param {int=} afterCount The number of characters after the node to retrieve.
+     * @returns {string|null} The text representing the AST node.
+     */
+    getSource: {(node, beforeCount?: number, afterCount?: number): string};
+    getFilePath: {(): string};
+}
 interface FixCommand {
     range: [number, number];
     text: string;

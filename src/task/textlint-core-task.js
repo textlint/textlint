@@ -213,8 +213,7 @@ export default class TextLintCoreTask extends EventEmitter {
                 ruleId,
                 sourceCode,
                 ignoreReport,
-                textLintConfig,
-                ruleConfig
+                textLintConfig
             });
             const ruleObject = this.getRuleObject(ruleCreator, ruleContext, ruleConfig);
             this._addListenRule(ruleId, ruleObject);

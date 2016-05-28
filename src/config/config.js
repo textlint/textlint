@@ -200,6 +200,7 @@ class Config {
         return new this(mergedOptions);
     }
 
+    /* eslint-disable complexity */
     /**
      * initialize with options.
      * @param {TextLintConfig} options the option object is defined as TextLintConfig.
@@ -268,6 +269,7 @@ class Config {
          */
         this.color = options.color !== undefined ? options.color : defaultOptions.color;
     }
+    /* eslint-enable complexity */
 
     toJSON() {
         const r = Object.create(null);
