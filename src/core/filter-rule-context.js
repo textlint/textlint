@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-import {getSeverity} from "../shared/rule-severity";
 /**
  * This callback is displayed as a global member.
  * @callback ReportCallback
@@ -18,7 +17,7 @@ import {getSeverity} from "../shared/rule-severity";
  * @returns {RuleContext}
  * @constructor
  */
-export default function RuleContext({ruleId, sourceCode, ignoreReport, textLintConfig, ruleConfig}) {
+export default function FilterRuleContext({ruleId, sourceCode, ignoreReport, textLintConfig, ruleConfig}) {
     Object.defineProperty(this, "id", {value: ruleId});
     Object.defineProperty(this, "config", {value: textLintConfig});
     /**
