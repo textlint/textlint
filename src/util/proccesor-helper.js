@@ -1,6 +1,12 @@
 // LICENSE : MIT
 "use strict";
 import assert from "assert";
+/**
+ * find processor with `ext`
+ * @param {Processor[]} processors
+ * @param {string} ext
+ * @returns {Processor}
+ */
 export function getProcessorMatchExtension(processors, ext) {
     const matchProcessors = processors.filter(processor => {
         // static availableExtensions() method

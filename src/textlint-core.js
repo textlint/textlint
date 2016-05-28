@@ -17,7 +17,9 @@ import RuleCreatorSet from "./core/rule-creator-set";
 import FixerProcessor from "./fixer/fixer-processor";
 // parallel
 import LinterProcessor from "./linter/linter-processor";
-
+// messsage process manager
+import MessageProcessManager from "./messages/MessageProcessManager";
+import filterProcess from "./messages/filter-process";
 /**
  * add fileName to trailing of error message
  * @param {string|undefined} fileName
@@ -47,6 +49,11 @@ export default class TextlintCore {
             new TextProcessor(config)
         ];
         this.processors = this._defaultProcessors.slice();
+        // Initialize Message Processor
+        // Now, It it built-in process only
+        this.messageProcessManager = new MessageProcessManager();
+        // filter `shouldIgnore()` results
+        this.messageProcessManager.add(filterProcess);
     }
 
     /**
@@ -112,7 +119,7 @@ export default class TextlintCore {
             ext,
             filePath
         });
-        const linterProcessor = new LinterProcessor(processor);
+        const linterProcessor = new LinterProcessor(processor, this.messageProcessManager);
         return linterProcessor.process({
             config: this.config,
             ruleCreatorSet: this.ruleCreatorSet,

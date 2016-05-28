@@ -16,7 +16,7 @@ const isContainedRange = (index, range) => {
  * @param {Object[]} messages
  * @returns {Object[]} filtered messages
  */
-export function filterMessages(messages = []) {
+export default function filterMessages(messages = []) {
     const lintingMessages = messages.filter(message => {
         return message.type === MessageType.lint;
     });
