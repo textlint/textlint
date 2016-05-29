@@ -146,7 +146,7 @@ class Config {
         options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
         return this.initWithAutoLoading(options);
     }
-
+    /* eslint-disable complexity */
     // load config and merge options.
     static initWithAutoLoading(options = {}) {
         // Base directory
@@ -208,7 +208,6 @@ class Config {
         return new this(mergedOptions);
     }
 
-    /* eslint-disable complexity */
     /**
      * initialize with options.
      * @param {TextLintConfig} options the option object is defined as TextLintConfig.
