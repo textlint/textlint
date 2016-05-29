@@ -4,6 +4,10 @@ const assert = require("power-assert");
 const path = require("path");
 import {TextLintCore} from "../../src/index";
 import {setRunningTest} from "../../src/util/throw-log";
+/*
+    TODO: rule-context-test has `lintText` and `fixText` test.
+    These should be moved to core test
+ */
 describe("rule-context-test", function () {
     let textlint;
     beforeEach(function () {
@@ -221,8 +225,8 @@ describe("rule-context-test", function () {
     describe("#shouldIgnore", function () {
         context("when ignoreMessages only", function () {
             it("should return empty message", function () {
-                textlint.setupRules({
-                    "ignore-rule": function (context) {
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 context.shouldIgnore(node.range);
@@ -244,8 +248,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Code](node){
                                 context.shouldIgnore(node.range);
@@ -269,8 +275,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 context.shouldIgnore(node.range, {
@@ -300,8 +308,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 // no specify ruleId
@@ -324,8 +334,10 @@ describe("rule-context-test", function () {
                                 context.report(node, new context.RuleError("message"));
                             }
                         };
-                    },
-                    "ignore-rule": function (context) {
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
                         return {
                             [context.Syntax.Str](node){
                                 context.shouldIgnore(node.range, {
@@ -339,6 +351,78 @@ describe("rule-context-test", function () {
                     assert(result.messages.length === 0);
                 });
             });
+        });
+        context("when --fix", function () {
+            it("should fixer messages", function () {
+                const reporter = (context) => {
+                    return {
+                        [context.Syntax.Str](node){
+                            context.report(node, new context.RuleError("message", {
+                                fix: context.fixer.remove(node)
+                            }));
+                        }
+                    };
+                };
+                textlint.setupRules({
+                    "rule": {
+                        linter: reporter,
+                        fixer: reporter
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.shouldIgnore(node.range, {
+                                    ruleId: "*"
+                                });
+                            }
+                        };
+                    }
+                });
+                return textlint.fixText("test").then(result => {
+                    assert(result.applyingMessages.length === 0);
+                    assert(result.remainingMessages.length === 0);
+                    assert(result.messages.length === 0);
+                });
+            });
+            context("when ignoreMessages that is not specified ruleId", function () {
+                it("should return filtered messages by matched ruleId", function () {
+                    const reporter = (context) => {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.report(node, new context.RuleError("message", {
+                                    fix: context.fixer.remove(node)
+                                }));
+                            }
+                        };
+                    };
+                    textlint.setupRules({
+                        "rule": {
+                            linter: reporter,
+                            fixer: reporter
+                        }
+                    });
+                    // not match == not ignore
+                    textlint.setupFilterRules({
+                        "filter-rule": function (context) {
+                            return {
+                                [context.Syntax.Str](node){
+                                    // no specify ruleId
+                                    context.shouldIgnore(node.range);
+                                }
+                            };
+                        }
+                    });
+                    return textlint.fixText("test").then(result => {
+                        assert(result.output === "");
+                        assert(result.applyingMessages.length === 1);
+                        assert(result.remainingMessages.length === 0);
+                        assert(result.messages.length === 1);
+                    });
+                });
+            });
+
         });
     });
 

@@ -2,19 +2,21 @@
 "use strict";
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
+import TextLintModuleMapper from "../engine/textlint-module-mapper";
+
+/**
+ * create `<plugin>/<rule>` option
+ * @param {Object} [rulesConfig]
+ * @param {string} presetName
+ * @returns {Object}
+ */
 export function mapRulesConfig(rulesConfig, presetName) {
     const mapped = {};
-    if (rulesConfig === undefined) {
+    // missing "rulesConfig"
+    if (rulesConfig === undefined || typeof rulesConfig !== "object") {
         return mapped;
     }
-    // ignore "preset-foo": false
-    if (typeof rulesConfig !== "object") {
-        return mapped;
-    }
-    Object.keys(rulesConfig).forEach(key => {
-        mapped[`${presetName}/${key}`] = rulesConfig[key];
-    });
-    return mapped;
+    return TextLintModuleMapper.createMappedObject(rulesConfig, presetName);
 }
 // load rulesConfig from plugins
 /**

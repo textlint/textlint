@@ -4,6 +4,7 @@ const assert = require("power-assert");
 const path = require("path");
 import {TextLintEngine} from "../../src/";
 const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");
+const filterRulesDir = path.join(__dirname, "fixtures/textlint-engine/filters");
 const pluginsDir = path.join(__dirname, "fixtures/textlint-engine/plugins");
 const presetsDir = path.join(__dirname, "fixtures/textlint-engine/presets");
 describe("textlint-engine-test", function () {
@@ -229,6 +230,41 @@ describe("textlint-engine-test", function () {
             });
         });
     });
+    describe("#loadFilerRule", function () {
+        context("when the rule is **not** defined", function () {
+            it("should define the rule", function () {
+                const engine = new TextLintEngine();
+                engine.loadFilerRule("textlint-filter-rule-comments");
+                const ruleNames = engine.filterRuleMap.getAllRuleNames();
+                assert(ruleNames.length > 0);
+                assert.equal(ruleNames[0], "comments");
+            });
+        });
+        context("when the rule is defined", function () {
+            it("should not re-load rule", function () {
+                const engine = new TextLintEngine();
+                engine.loadFilerRule("textlint-filter-rule-comments");
+                var ruleNames = engine.filterRuleMap.getAllRuleNames();
+                assert(ruleNames.length === 1);
+                var ruleObject = engine.filterRuleMap.getRule(ruleNames[0]);
+                // loadRule should ignore
+                // textlint-filter-rule-comments
+                engine.loadFilerRule("comments");
+                // should equal prev loaded object
+                assert(engine.filterRuleMap.getRule("comments") === ruleObject);
+            });
+        });
+        context("when use the rule directory", function () {
+            it("should load filter rule from path", function () {
+                const engine = new TextLintEngine({
+                    rulesBaseDirectory: filterRulesDir
+                });
+                engine.loadFilerRule("filter-rule");
+                const ruleNames = engine.filterRuleMap.getAllRuleNames();
+                assert(ruleNames.length === 1);
+            });
+        });
+    });
     describe("executeOnFiles", function () {
         it("should found error message", function () {
             const engine = new TextLintEngine({
@@ -288,6 +324,17 @@ describe("textlint-engine-test", function () {
             return engine.executeOnText("text").then(() => {
                 var afterRuleNames = engine.ruleMap.getAllRuleNames();
                 assert.deepEqual(beforeRuleNames, afterRuleNames);
+            });
+        });
+        context("when set rule and filter", function () {
+            it("should lint a text, result is filtered", function () {
+                const engine = new TextLintEngine();
+                engine.loadRule(path.join(rulesDir, "example-rule.js"));
+                engine.loadFilerRule(path.join(filterRulesDir, "filter-rule.js"));
+                return engine.executeOnText(`String is error,but it is filtered`).then((results) => {
+                    const [result] = results;
+                    assert.equal(result.messages.length, 0);
+                });
             });
         });
         context("when specify ext", function () {

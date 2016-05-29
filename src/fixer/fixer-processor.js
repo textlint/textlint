@@ -20,10 +20,11 @@ export default class FixerProcessor {
      * Run fixer process
      * @param {Config} config
      * @param {RuleCreatorSet} ruleCreatorSet
+     * @param {RuleCreatorSet} filterRuleCreatorSet
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintFixResult>}
      */
-    process({config, ruleCreatorSet, sourceCode}) {
+    process({config, ruleCreatorSet, filterRuleCreatorSet, sourceCode}) {
         assert(config && ruleCreatorSet && sourceCode);
         const {preProcess, postProcess} = this.processor.processor(sourceCode.ext);
         // messages
@@ -50,6 +51,7 @@ export default class FixerProcessor {
                 const task = new FixerTask({
                     config,
                     ruleCreatorSet: fixerRuleCreatorSet,
+                    filterRuleCreatorSet,
                     sourceCode: newSourceCode
                 });
 

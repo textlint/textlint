@@ -3,32 +3,17 @@
 const EventEmitter = require("events");
 const interopRequire = require("interop-require");
 const debug = require("debug")("textlint:module-loader");
+const existSync = require("exists-sync");
 import {isPluginRuleKey} from "../util/config-util";
 import {loadFromDir} from "./rule-loader";
 import Logger from "../util/logger";
 import TextLintModuleResolver from "./textlint-module-resolver";
-
-/**
- * create entities from plugin/preset
- * entities is a array which contain [key, value]
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
- * @param {Object} pluginRules
- * @param {string} prefixKey
- * @returns {Array}
- */
-export const createEntities = (pluginRules, prefixKey) => {
-    const entities = [];
-    Object.keys(pluginRules).forEach(ruleId => {
-        const qualifiedRuleId = prefixKey + "/" + ruleId;
-        const ruleCreator = pluginRules[ruleId];
-        entities.push([qualifiedRuleId, ruleCreator]);
-    });
-    return entities;
-};
+import TextLintModuleMapper from "./textlint-module-mapper";
 export default class TextLintModuleLoader extends EventEmitter {
     static get Event() {
         return {
             rule: "rule",
+            filterRule: "filterRule",
             processor: "preset",
             error: "error"
         };
@@ -72,6 +57,13 @@ export default class TextLintModuleLoader extends EventEmitter {
                 this.loadRule(ruleName);
             });
         }
+        // TODO: --filter
+        if (config.filterRules) {
+            // load in additional filterRules
+            config.filterRules.forEach(ruleName => {
+                this.loadFilterRule(ruleName);
+            });
+        }
         // --preset
         if (config.presets) {
             config.presets.forEach(presetName => {
@@ -101,7 +93,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
         // Processor plugin doesn't define rules
         if (plugin.hasOwnProperty("rules")) {
-            const entities = createEntities(plugin.rules, pluginNameWithoutPrefix);
+            const entities = TextLintModuleMapper.createEntities(plugin.rules, pluginNameWithoutPrefix);
             entities.forEach(entry => {
                 this.emit(TextLintModuleLoader.Event.rule, entry);
             });
@@ -141,7 +133,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
         debug("Loading rules from preset: %s", pkgPath);
         const preset = interopRequire(pkgPath);
-        const entities = createEntities(preset.rules, presetRuleNameWithoutPrefix);
+        const entities = TextLintModuleMapper.createEntities(preset.rules, presetRuleNameWithoutPrefix);
         entities.forEach(entry => {
             this.emit(TextLintModuleLoader.Event.rule, entry);
         });
@@ -160,7 +152,14 @@ export default class TextLintModuleLoader extends EventEmitter {
              - resolve package name
              - load package
              - emit rule
-      */
+        */
+        // ruleName is filePath
+        if (existSync(ruleName)) {
+            const ruleCreator = interopRequire(ruleName);
+            const ruleEntry = [ruleName, ruleCreator];
+            this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
+            return;
+        }
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
         const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
@@ -176,6 +175,43 @@ export default class TextLintModuleLoader extends EventEmitter {
         const ruleCreator = interopRequire(pkgPath);
         const ruleEntry = [definedRuleName, ruleCreator];
         this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
+    }
+
+    /**
+     * load filter rule file with `ruleName` and define rule.
+     * if rule is not found, then throw ReferenceError.
+     * if already rule is loaded, do not anything.
+     * @param {string} ruleName
+     */
+    loadFilterRule(ruleName) {
+        /*
+           Task
+             - check already define
+             - resolve package name
+             - load package
+             - emit rule
+        */
+        // ignore already defined rule
+        // ignore rules from rulePaths because avoid ReferenceError is that try to require.
+        if (existSync(ruleName)) {
+            const ruleCreator = interopRequire(ruleName);
+            const ruleEntry = [ruleName, ruleCreator];
+            this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
+            return;
+        }
+        const RULE_NAME_PREFIX = this.config.constructor.FILTER_RULE_NAME_PREFIX;
+        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const definedRuleName = ruleName.replace(prefixMatch, "");
+        // ignore plugin's rule
+        if (isPluginRuleKey(definedRuleName)) {
+            Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
+            return;
+        }
+        const pkgPath = this.moduleResolver.resolveFilterRulePackageName(ruleName);
+        debug("Loading filter rules from %s", pkgPath);
+        const ruleCreator = interopRequire(pkgPath);
+        const ruleEntry = [definedRuleName, ruleCreator];
+        this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
     }
 }
 

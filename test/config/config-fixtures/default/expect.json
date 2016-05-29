@@ -4,6 +4,8 @@
   "plugins": [],
   "rulePaths": [],
   "rules": [],
+  "filterRules": [],
   "rulesConfig": {},
+  "filterRulesConfig": {},
   "color": true
 }

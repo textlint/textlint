@@ -14,7 +14,7 @@ function lintFile(filePath) {
     };
     var engine = new TextLintEngine(options);
     var filePathList = [path.resolve(process.cwd(), filePath)];
-    engine.executeOnFiles(filePathList).then(function (results) {
+    return engine.executeOnFiles(filePathList).then(function (results) {
         if (engine.isErrorResults(results)) {
             var output = engine.formatResults(results);
             console.log(output);
@@ -24,4 +24,7 @@ function lintFile(filePath) {
     });
 }
 
-lintFile(__dirname + "/README.md");
+lintFile(__dirname + "/README.md").catch(function (error) {
+    console.error(error);
+    process.exit(1);
+});

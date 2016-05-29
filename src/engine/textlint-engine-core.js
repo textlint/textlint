@@ -13,13 +13,13 @@ import SeverityLevel from "../shared/type/SeverityLevel";
 /**
  * Core of TextLintEngine.
  * It is internal user.
- * 
+ *
  * Hackable adaptor
- * 
+ *
  * - executeOnFiles
  * - executeOnText
  * - formatResults
- * 
+ *
  * There are hackable by `executor` option.
  */
 export default class TextLintEngineCore {
@@ -49,7 +49,10 @@ export default class TextLintEngineCore {
         this.textlint = new TextLintCore(this.config);
 
         /**
-         * @type {{onFile: Function, onText: Function, onFormat:Function}}
+         * @type {{
+         *  onFile: function(textlint: TextlintCore):Function,
+         *  onText: function(textlint: TextlintCore):Function,
+         *  onFormat:Function}}
          */
         this.executor = executor;
         /**
@@ -57,12 +60,19 @@ export default class TextLintEngineCore {
          */
         this.ruleMap = new RuleMap();
         /**
+         * @type {RuleMap} filerRuleMap is used for filtering
+         */
+        this.filterRuleMap = new RuleMap();
+        /**
          * @type {ProcessorMap}
          */
         this.processorMap = new ProcessorMap();
         this.moduleLoader = new TextLintModuleLoader(this.config);
         this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
             this.ruleMap.defineRule(ruleName, ruleCreator);
+        });
+        this.moduleLoader.on(TextLintModuleLoader.Event.filterRule, ([ruleName, ruleCreator]) => {
+            this.filterRuleMap.defineRule(ruleName, ruleCreator);
         });
         this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
             this.processorMap.set(pluginName, Processor);
@@ -108,7 +118,7 @@ new TextLintEngine({
     }
 
     /**
-     * load plugin manually
+     * load rule manually
      * Note: it high cost, please use config
      * @param {string} ruleName
      * @deprecated use Constructor(config) insteadof it
@@ -118,10 +128,22 @@ new TextLintEngine({
         this._setupRules();
     }
 
+    /**
+     * load filter rule manually
+     * Note: it high cost, please use config
+     * @param {string} ruleName
+     * @deprecated use Constructor(config) insteadof it
+     */
+    loadFilerRule(ruleName) {
+        this.moduleLoader.loadFilterRule(ruleName);
+        this._setupRules();
+    }
+
     _setupRules() {
         // set Rules
         const textlintConfig = this.config ? this.config.toJSON() : {};
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
+        this.textlint.setupFilterRules(this.filterRuleMap.getAllRules(), textlintConfig.filterRulesConfig);
         // set Processor
         this.textlint.setupProcessors(this.processorMap.toJSON());
         // execute files that are filtered by availableExtensions.
@@ -140,12 +162,13 @@ new TextLintEngine({
     resetRules() {
         this.textlint.resetRules();
         this.ruleMap.resetRules();
+        this.filerRuleMap.resetRules();
     }
 
     /**
      * Executes the current configuration on an array of file and directory names.
      * @param {String[]}  files An array of file and directory names.
-     * @returns {TextLintResult[]} The results for all files that were linted.
+     * @returns {Promise<TextLintResult[]>} The results for all files that were linted.
      */
     executeOnFiles(files) {
         const boundLintFile = (file) => {
@@ -166,14 +189,15 @@ new TextLintEngine({
      * But, if you have a target file, use {@link executeOnFiles} instead of it.
      * @param {string} text linting text content
      * @param {string} ext ext is a type for linting. default: ".txt"
-     * @returns {TextLintResult[]}
+     * @returns {Promise<TextLintResult[]>}
      */
     executeOnText(text, ext = ".txt") {
         const boundLintText = (file, ext) => {
             return this.textlint.lintText(file, ext);
         };
+        const textlint = this.textlint;
         const execText = typeof this.executor.onText === "function"
-            ? this.executor.onText(this.textlint)
+            ? this.executor.onText(textlint)
             : boundLintText;
         // filePath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);

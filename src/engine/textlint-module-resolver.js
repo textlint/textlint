@@ -5,6 +5,7 @@ const path = require("path");
 const tryResolve = require("try-resolve");
 const validateConfigConstructor = (ConfigConstructor) => {
     assert(ConfigConstructor.CONFIG_PACKAGE_PREFIX &&
+        ConfigConstructor.FILTER_RULE_NAME_PREFIX &&
         ConfigConstructor.RULE_NAME_PREFIX &&
         ConfigConstructor.RULE_PRESET_NAME_PREFIX &&
         ConfigConstructor.PLUGIN_NAME_PREFIX);
@@ -27,7 +28,7 @@ const validateConfigConstructor = (ConfigConstructor) => {
 export default class TextLintModuleResolver {
     /**
      *
-     * @param {Config} ConfigConstructor config constructor like object
+     * @param {Config|*} ConfigConstructor config constructor like object
      * It has static property like CONFIG_PACKAGE_PREFIX etc...
      * @param {string} [baseDirectory]
      * @constructor
@@ -42,6 +43,10 @@ export default class TextLintModuleResolver {
          * @return {string} rule package's name prefix
          */
         this.RULE_NAME_PREFIX = ConfigConstructor.RULE_NAME_PREFIX;
+        /**
+         * @return {string} filter rule package's name prefix
+         */
+        this.FILTER_RULE_NAME_PREFIX = ConfigConstructor.FILTER_RULE_NAME_PREFIX;
         /**
          * @return {string} rule preset package's name prefix
          */
@@ -70,6 +75,25 @@ export default class TextLintModuleResolver {
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's rule module: "${packageName}" is not found.
+See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
+`);
+        }
+        return pkgPath;
+    }
+
+    /**
+     * Take package name, and return path to module.
+     * @param {string} packageName
+     * @returns {string} return path to module
+     */
+    resolveFilterRulePackageName(packageName) {
+        const baseDir = this.baseDirectory;
+        const PREFIX = this.FILTER_RULE_NAME_PREFIX;
+        const fullPackageName = `${PREFIX}${packageName}`;
+        // <rule-name> or textlint-filter-rule-<rule-name>
+        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
+        if (!pkgPath) {
+            throw new ReferenceError(`Failed to load textlint's filter rule module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `);
         }

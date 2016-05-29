@@ -4,15 +4,13 @@ const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
 const debug = require("debug")("textlint:plugin-loader");
 const assert = require("assert");
+import TextLintModuleMapper from "../engine/textlint-module-mapper";
 export function mapRulesConfig(rulesConfig, pluginName) {
     const mapped = {};
-    if (rulesConfig === undefined) {
+    if (rulesConfig === undefined || typeof rulesConfig !== "object") {
         return mapped;
     }
-    Object.keys(rulesConfig).forEach(key => {
-        mapped[`${pluginName}/${key}`] = rulesConfig[key];
-    });
-    return mapped;
+    return TextLintModuleMapper.createMappedObject(rulesConfig, pluginName);
 }
 // load rulesConfig from plugins
 /**

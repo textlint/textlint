@@ -87,3 +87,11 @@ These are shared between config and engine and core.
 
 - type
 - util function
+
+
+
+## Terms
+
+- Ignore: a rule request to **ignore** range
+- Filter: textlint filter requested range that is reported by rule
+    - a rule can't filter.

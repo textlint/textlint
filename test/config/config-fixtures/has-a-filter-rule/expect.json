@@ -1,0 +1,8 @@
+{
+  "filterRules": [
+    "example"
+  ],
+  "filterRulesConfig": {
+    "example": true
+  }
+}

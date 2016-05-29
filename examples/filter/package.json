@@ -1,0 +1,17 @@
+{
+  "name": "filter-comments",
+  "version": "1.0.0",
+  "description": "filter rule example",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm rm textlint && npm i --cache-min 9999999 ",
+    "test": "textlint --experimental -f pretty-error README.md"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "devDependencies": {
+    "textlint": "file:../../",
+    "textlint-filter-rule-comments": "^1.2.0",
+    "textlint-rule-no-todo": "^2.0.0"
+  }
+}

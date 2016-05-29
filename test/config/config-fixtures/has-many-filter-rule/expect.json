@@ -1,0 +1,14 @@
+{
+  "filterRules": [
+    "a"
+  ],
+  "disabledFilterRules": [
+    "b"
+  ],
+  "filterRulesConfig": {
+    "a": {
+      "key": "value"
+    },
+    "b": false
+  }
+}

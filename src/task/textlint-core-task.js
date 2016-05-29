@@ -9,9 +9,12 @@ const assert = require("assert");
 import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
 import RuleContext from "../core/rule-context";
+import FilterRuleContext from "../core/filter-rule-context";
 import timing from "./../util/timing";
 import MessageType from "../shared/type/MessageType";
 import {throwWithoutExperimental} from "../util/throw-log";
+import {getLinter} from "../core/rule-creator-helper";
+
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
     constructor() {
@@ -19,6 +22,11 @@ class RuleTypeEmitter extends PromiseEventEmitter {
         this.setMaxListeners(0);
     }
 }
+
+/**
+ * CoreTask receive AST and prepare, traverse AST, emit nodeType event!
+ * You can observe task and receive "message" event that is TextLintMessage.
+ */
 export default class TextLintCoreTask extends EventEmitter {
     static get events() {
         return {
@@ -33,10 +41,18 @@ export default class TextLintCoreTask extends EventEmitter {
         };
     }
 
-    constructor({config, ruleCreatorSet, sourceCode}) {
+    /**
+     *
+     * @param {Config} config
+     * @param {RuleCreatorSet} ruleCreatorSet rules and config set
+     * @param {RuleCreatorSet} filterRuleCreatorSet filter rules and config set
+     * @param {SourceCode} sourceCode
+     */
+    constructor({config, ruleCreatorSet, filterRuleCreatorSet, sourceCode}) {
         super();
         this.config = config;
         this.ruleCreatorSet = ruleCreatorSet;
+        this.filterRuleCreatorSet = filterRuleCreatorSet || {};
         this.sourceCode = sourceCode;
         this.ruleTypeEmitter = new RuleTypeEmitter();
         this._setupRuleCreatorListener();
@@ -172,12 +188,16 @@ export default class TextLintCoreTask extends EventEmitter {
      * @private
      */
     _setupRuleCreatorListener() {
+        // rule
         const rules = this.ruleCreatorSet.rules;
         const rulesConfig = this.ruleCreatorSet.rulesConfig;
+        const filterRules = this.filterRuleCreatorSet.rules;
+        const filterRulesConfig = this.filterRuleCreatorSet.rulesConfig;
         const textLintConfig = this.config;
         const sourceCode = this.sourceCode;
         const report = this.createReporter(sourceCode);
         const ignoreReport = this.createIgnoreReporter(sourceCode);
+        // setup "rules" field
         Object.keys(rules).forEach(ruleId => {
             const ruleCreator = rules[ruleId];
             const ruleConfig = typeof rulesConfig[ruleId] !== "undefined" ? rulesConfig[ruleId] : true;
@@ -192,6 +212,35 @@ export default class TextLintCoreTask extends EventEmitter {
             const ruleObject = this.getRuleObject(ruleCreator, ruleContext, ruleConfig);
             this._addListenRule(ruleId, ruleObject);
         });
+        // setup "filters" field
+        Object.keys(filterRules).forEach(ruleId => {
+            const ruleCreator = filterRules[ruleId];
+            const ruleConfig = typeof filterRulesConfig[ruleId] !== "undefined" ? filterRulesConfig[ruleId] : true;
+            const ruleContext = new FilterRuleContext({
+                ruleId,
+                sourceCode,
+                ignoreReport,
+                textLintConfig
+            });
+            // "filters" rule is the same with "rules"
+            const ruleObject = this._getFilterRuleObject(ruleCreator, ruleContext, ruleConfig);
+            this._addListenRule(ruleId, ruleObject);
+        });
+    }
+
+    /**
+     * @param {Function} ruleCreator
+     * @param {RuleContext} ruleContext
+     * @param {Object|boolean} ruleConfig
+     * @returns {Object}
+     */
+    _getFilterRuleObject(ruleCreator, ruleContext, ruleConfig) {
+        try {
+            return getLinter(ruleCreator)(ruleContext, ruleConfig);
+        } catch (error) {
+            error.message = `Error while loading filter rule '${ruleContext.id}': ${error.message}`;
+            throw error;
+        }
     }
 
     // add all the node types as listeners

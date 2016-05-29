@@ -121,6 +121,15 @@ describe("textlint-core", function () {
         });
     });
     describe("#resetRules", function () {
+        it("should reset filterRules", function () {
+            var textlint = new TextLintCore();
+            textlint.setupFilterRules({
+                "rule-name": exampleRule
+            });
+            assert(textlint.filterRuleCreatorSet.ruleNames.length === 1);
+            textlint.resetRules();
+            assert(textlint.filterRuleCreatorSet.ruleNames.length === 0);
+        });
         it("should reset rules", function () {
             var textlint = new TextLintCore();
             textlint.setupRules({
