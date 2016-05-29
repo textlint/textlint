@@ -518,7 +518,7 @@ e.g.) `textlint-rule-no-todo`
 
 textlint user use it following:
 
-```js
+```json
 {
     "rules": {
         "no-todo": true

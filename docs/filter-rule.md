@@ -59,7 +59,7 @@ e.g.) `textlint-filter-rule-comments`
 
 textlint user use it following:
 
-```js
+```json
 {
     "filters": {
         "comments": true
