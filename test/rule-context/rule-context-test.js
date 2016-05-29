@@ -300,7 +300,7 @@ describe("rule-context-test", function () {
             });
         });
         context("when ignoreMessages that is not specified ruleId", function () {
-            it("should return filtered messages by matched ruleId", function () {
+            it("should filter all messages *", function () {
                 textlint.setupRules({
                     "rule": function (context) {
                         return {
@@ -321,7 +321,7 @@ describe("rule-context-test", function () {
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
-                    assert(result.messages.length === 1);
+                    assert(result.messages.length === 0);
                 });
             });
         });
@@ -387,7 +387,7 @@ describe("rule-context-test", function () {
                 });
             });
             context("when ignoreMessages that is not specified ruleId", function () {
-                it("should return filtered messages by matched ruleId", function () {
+                it("should filter all messages *", function () {
                     const reporter = (context) => {
                         return {
                             [context.Syntax.Str](node){
@@ -415,10 +415,10 @@ describe("rule-context-test", function () {
                         }
                     });
                     return textlint.fixText("test").then(result => {
-                        assert(result.output === "");
-                        assert(result.applyingMessages.length === 1);
+                        assert(result.output === "test");
+                        assert(result.applyingMessages.length === 0);
                         assert(result.remainingMessages.length === 0);
-                        assert(result.messages.length === 1);
+                        assert(result.messages.length === 0);
                     });
                 });
             });

@@ -94,11 +94,6 @@ RuleContext object has following property:
     - [src/shared/type/NodeType.js](../src/shared/type/NodeType.js)
 - `report(<node>, <ruleError>)` is a method that reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
-- **Experimental**: `shouldIgnore(range, { ruleId })` is a method that report reports ignoring `range`( is array like `[start, end]`).
-    - e.g.) `context.shouldIgnore(node.range);`
-    - `context.shouldIgnore(node.range, { ruleId: "rule-id" });` ignore messages of "rule-id" rule. 
-    - `context.shouldIgnore(node.range, { ruleId: "*" });` ignore all messages. It work as wildcard. :warning: Be careful to use.
-    - :warning: Caution: One rule should one Task. It means that should not mixed `report()` and `shouldIgnore()` in a one rule.
 - `getSource(<node>)`  is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath()` return file path that is linting target.
@@ -514,9 +509,30 @@ You should add `textlint` to npm's `keywords`
 }
 ```
 
-We recommend that plugin's name should start with `textlint-rule-*`.
 
-e.g.) textlint-rule-no-todo
+## Package Naming conventions
+
+textlint's rule should use `textlint-rule-` prefix.
+
+e.g.) `textlint-rule-no-todo`
+
+textlint user use it following:
+
+```json
+{
+    "rules": {
+        "no-todo": true
+    }
+}
+```
+
+The rule naming conventions for textlint are simple:
+
+- If your rule is disallowing something, prefix it with `no-` such as `no-todo` for disallowing `TODO:` and `no-exclamation-question-mark` for disallowing `!` and `?`.
+- If your rule is enforcing the inclusion of something, use a short name without a special prefix.
+    - If the rule for english, please uf `textlint-rule-en-` prefix.
+- Keep your rule names as short as possible, use abbreviations where appropriate.
+- Use dashes(`-`) between words.
 
 npm info:
 
@@ -526,7 +542,11 @@ npm info:
 Example rules:
 
 - [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo")
-- [azu/textlint-rule-spellcheck-tech-word](https://github.com/azu/textlint-rule-spellcheck-tech-word "azu/textlint-rule-spellcheck-tech-word")
+- [Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
+
+Reference
+
+- [Working with Rules - ESLint - Pluggable JavaScript linter](http://eslint.org/docs/developer-guide/working-with-rules#rule-naming-conventions "Working with Rules - ESLint - Pluggable JavaScript linter")
 
 ### FAQ: Publishing
 
