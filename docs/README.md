@@ -5,6 +5,7 @@
 - [Configuring](./configuring.md)
 - [How to create rule](./rule.md)
     - [Advanced: Paragraph rule](./rule-advanced.md)
+- [How to create filter rule](./filter-rule.md)
 - [How to create fixable rule](./rule-fixable.md)
 - [How to create rule preset](./rule-preset.md)
 - [How to create plugin](./plugin.md)
