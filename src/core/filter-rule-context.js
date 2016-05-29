@@ -4,7 +4,7 @@ const assert = require("assert");
 /**
  * This callback is displayed as a global member.
  * @callback ReportCallback
- * @param {ReportMessage} message
+ * @param {ReportIgnoreMessage} message
  */
 
 /**

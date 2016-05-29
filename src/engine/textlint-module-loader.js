@@ -7,25 +7,7 @@ import {isPluginRuleKey} from "../util/config-util";
 import {loadFromDir} from "./rule-loader";
 import Logger from "../util/logger";
 import TextLintModuleResolver from "./textlint-module-resolver";
-
-/**
- * create entities from plugin/preset
- * entities is a array which contain [key, value]
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
- * @param {Object} pluginRules
- * @param {string} prefixKey
- * @returns {Array}
- */
-export const createEntities = (pluginRules, prefixKey) => {
-    const entities = [];
-    Object.keys(pluginRules).forEach(ruleId => {
-        // TODO: / should be module
-        const qualifiedRuleId = prefixKey + "/" + ruleId;
-        const ruleCreator = pluginRules[ruleId];
-        entities.push([qualifiedRuleId, ruleCreator]);
-    });
-    return entities;
-};
+import TextLintModuleMapper from "./textlint-module-mapper";
 export default class TextLintModuleLoader extends EventEmitter {
     static get Event() {
         return {
@@ -110,7 +92,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
         // Processor plugin doesn't define rules
         if (plugin.hasOwnProperty("rules")) {
-            const entities = createEntities(plugin.rules, pluginNameWithoutPrefix);
+            const entities = TextLintModuleMapper.createEntities(plugin.rules, pluginNameWithoutPrefix);
             entities.forEach(entry => {
                 this.emit(TextLintModuleLoader.Event.rule, entry);
             });
@@ -150,7 +132,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
         debug("Loading rules from preset: %s", pkgPath);
         const preset = interopRequire(pkgPath);
-        const entities = createEntities(preset.rules, presetRuleNameWithoutPrefix);
+        const entities = TextLintModuleMapper.createEntities(preset.rules, presetRuleNameWithoutPrefix);
         entities.forEach(entry => {
             this.emit(TextLintModuleLoader.Event.rule, entry);
         });
@@ -186,6 +168,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         const ruleEntry = [definedRuleName, ruleCreator];
         this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
     }
+
     /**
      * load filter rule file with `ruleName` and define rule.
      * if rule is not found, then throw ReferenceError.

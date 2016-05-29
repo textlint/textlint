@@ -49,7 +49,10 @@ export default class TextLintEngineCore {
         this.textlint = new TextLintCore(this.config);
 
         /**
-         * @type {{onFile: Function, onText: Function, onFormat:Function}}
+         * @type {{
+         *  onFile: function(textlint: TextlintCore):Function,
+         *  onText: function(textlint: TextlintCore):Function,
+         *  onFormat:Function}}
          */
         this.executor = executor;
         /**
@@ -164,7 +167,7 @@ new TextLintEngine({
     /**
      * Executes the current configuration on an array of file and directory names.
      * @param {String[]}  files An array of file and directory names.
-     * @returns {TextLintResult[]} The results for all files that were linted.
+     * @returns {Promise<TextLintResult[]>} The results for all files that were linted.
      */
     executeOnFiles(files) {
         const boundLintFile = (file) => {
@@ -185,14 +188,15 @@ new TextLintEngine({
      * But, if you have a target file, use {@link executeOnFiles} instead of it.
      * @param {string} text linting text content
      * @param {string} ext ext is a type for linting. default: ".txt"
-     * @returns {TextLintResult[]}
+     * @returns {Promise<TextLintResult[]>}
      */
     executeOnText(text, ext = ".txt") {
         const boundLintText = (file, ext) => {
             return this.textlint.lintText(file, ext);
         };
+        const textlint = this.textlint;
         const execText = typeof this.executor.onText === "function"
-            ? this.executor.onText(this.textlint)
+            ? this.executor.onText(textlint)
             : boundLintText;
         // filePath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);
