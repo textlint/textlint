@@ -95,8 +95,8 @@ export default class TextLintCoreTask extends EventEmitter {
                 type: MessageType.ignore,
                 ruleId: ruleId,
                 range: range,
-                // ignoring target ruleId - default: filter messages in the rule.
-                ignoringRuleId: optional.ruleId || ruleId
+                // ignoring target ruleId - default: filter all messages
+                ignoringRuleId: optional.ruleId || "*"
             };
             this.emit(TextLintCoreTask.events.message, message);
         };
