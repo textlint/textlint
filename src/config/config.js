@@ -166,12 +166,6 @@ class Config {
         const configRulesObject = separateAvailableOrDisable(configFileRawOptions.rules);
         // "filters" field is here!
         const configFilterRulesObject = separateAvailableOrDisable(configFileRawOptions.filters);
-        // available rules
-        const configFileRules = configRulesObject.available;
-        const configFileFilterRules = configFilterRulesObject.available;
-        // disable rules
-        const configFileDisabledRules = configRulesObject.disable;
-        const configFileDisabledFilterRules = configFilterRulesObject.disable;
         const configPresets = configRulesObject.presets;
         const configFilePlugins = configFileRawOptions.plugins || [];
         const configFileRulesConfig = convertRulesConfigToFlatPath(configFileRawOptions.rules);
@@ -187,10 +181,10 @@ class Config {
         const optionPresets = options.presets || [];
         // => Merge options and configFileOptions
         // Priority options > configFile
-        const rules = concat(optionRules, configFileRules);
-        const disabledRules = concat(optionDisbaledRules, configFileDisabledRules);
-        const filterRules = concat(optionFilterRules, configFileFilterRules);
-        const disabledFilterRules = concat(optionDisbaledFilterRules, configFileDisabledFilterRules);
+        const rules = concat(optionRules, configRulesObject.available);
+        const disabledRules = concat(optionDisbaledRules, configRulesObject.disable);
+        const filterRules = concat(optionFilterRules, configFilterRulesObject.available);
+        const disabledFilterRules = concat(optionDisbaledFilterRules, configFilterRulesObject.disable);
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
         const filterRulesConfig = objectAssign({}, configFileFilterRulesConfig, optionFilterRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
