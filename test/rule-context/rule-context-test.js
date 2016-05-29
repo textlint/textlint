@@ -348,6 +348,78 @@ describe("rule-context-test", function () {
                 });
             });
         });
+        context("when --fix", function () {
+            it("should fixer messages", function () {
+                const reporter = (context) => {
+                    return {
+                        [context.Syntax.Str](node){
+                            context.report(node, new context.RuleError("message", {
+                                fix: context.fixer.remove(node)
+                            }));
+                        }
+                    };
+                };
+                textlint.setupRules({
+                    "rule": {
+                        linter: reporter,
+                        fixer: reporter
+                    }
+                });
+                textlint.setupFilterRules({
+                    "filter-rule": function (context) {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.shouldIgnore(node.range, {
+                                    ruleId: "*"
+                                });
+                            }
+                        };
+                    }
+                });
+                return textlint.fixText("test").then(result => {
+                    assert(result.applyingMessages.length === 0);
+                    assert(result.remainingMessages.length === 0);
+                    assert(result.messages.length === 0);
+                });
+            });
+            context("when ignoreMessages that is not specified ruleId", function () {
+                it("should return filtered messages by matched ruleId", function () {
+                    const reporter = (context) => {
+                        return {
+                            [context.Syntax.Str](node){
+                                context.report(node, new context.RuleError("message", {
+                                    fix: context.fixer.remove(node)
+                                }));
+                            }
+                        };
+                    };
+                    textlint.setupRules({
+                        "rule": {
+                            linter: reporter,
+                            fixer: reporter
+                        }
+                    });
+                    // not match == not ignore
+                    textlint.setupFilterRules({
+                        "filter-rule": function (context) {
+                            return {
+                                [context.Syntax.Str](node){
+                                    // no specify ruleId
+                                    context.shouldIgnore(node.range);
+                                }
+                            };
+                        }
+                    });
+                    return textlint.fixText("test").then(result => {
+                        assert(result.output === "");
+                        assert(result.applyingMessages.length === 1);
+                        assert(result.remainingMessages.length === 0);
+                        assert(result.messages.length === 1);
+                    });
+                });
+            });
+
+        });
     });
 
     describe("#getFilePath", function () {

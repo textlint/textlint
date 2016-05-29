@@ -13,6 +13,8 @@ import FilterRuleContext from "../core/filter-rule-context";
 import timing from "./../util/timing";
 import MessageType from "../shared/type/MessageType";
 import {throwWithoutExperimental} from "../util/throw-log";
+import {getLinter} from "../core/rule-creator-helper";
+
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
     constructor() {
@@ -20,6 +22,11 @@ class RuleTypeEmitter extends PromiseEventEmitter {
         this.setMaxListeners(0);
     }
 }
+
+/**
+ * CoreTask receive AST and prepare, traverse AST, emit nodeType event!
+ * You can observe task and receive "message" event that is TextLintMessage.
+ */
 export default class TextLintCoreTask extends EventEmitter {
     static get events() {
         return {
@@ -215,9 +222,25 @@ export default class TextLintCoreTask extends EventEmitter {
                 ignoreReport,
                 textLintConfig
             });
-            const ruleObject = this.getRuleObject(ruleCreator, ruleContext, ruleConfig);
+            // "filters" rule is the same with "rules"
+            const ruleObject = this._getFilterRuleObject(ruleCreator, ruleContext, ruleConfig);
             this._addListenRule(ruleId, ruleObject);
         });
+    }
+
+    /**
+     * @param {Function} ruleCreator
+     * @param {RuleContext} ruleContext
+     * @param {Object|boolean} ruleConfig
+     * @returns {Object}
+     */
+    _getFilterRuleObject(ruleCreator, ruleContext, ruleConfig) {
+        try {
+            return getLinter(ruleCreator)(ruleContext, ruleConfig);
+        } catch (error) {
+            error.message = `Error while loading filter rule '${ruleContext.id}': ${error.message}`;
+            throw error;
+        }
     }
 
     // add all the node types as listeners
