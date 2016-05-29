@@ -2,70 +2,70 @@
 import TxtAST from "./txtast";
 // "range" is replaced by "text"
 interface TextLintFixCommand {
-    text: string;
-    range: [number,number],
+    text:string;
+    range:[number,number],
 }
 interface TextLintMessage {
     // See src/shared/type/MessageType.js
     // Message Type
-    type: string;
+    type:string;
     // Rule Id
-    ruleId: string;
-    message: string;
+    ruleId:string;
+    message:string;
     // optional data
-    data?: any;
+    data?:any;
     // FixCommand
-    fix?: TextLintFixCommand;
+    fix?:TextLintFixCommand;
     // location info
     // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
-    line: number; // start with 1
-    column: number;// start with 1
+    line:number; // start with 1
+    column:number;// start with 1
     // Severity Level
     // See src/shared/type/SeverityLevel.js
-    severity?: number;
+    severity?:number;
 }
 // Linting result
 interface TextLintResult {
-    filePath: string;
-    messages: TextLintMessage[];
+    filePath:string;
+    messages:TextLintMessage[];
 }
 // Fixing result
 interface TextLintFixResult {
-    filePath: string;
+    filePath:string;
     // fixed content
-    output: string;
+    output:string;
     // all messages = pre-applyingMessages + remainingMessages
     // it is same with one of `TextLintResult`
-    messages: TextLintMessage[];
+    messages:TextLintMessage[];
     // applied fixable messages
-    applyingMessages: TextLintMessage[];
+    applyingMessages:TextLintMessage[];
     // original means original for applyingMessages and remainingMessages
     // pre-applyingMessages + remainingMessages
-    remainingMessages: TextLintMessage[];
+    remainingMessages:TextLintMessage[];
 }
 // Config - pass a object to config.js when initialize Config.
 interface TextLintConfig {
     // rule directories path
-    rulePaths?: string[];
+    rulePaths?:string[];
     // filter by file extensions
-    extensions?: string[];
+    extensions?:string[];
     // formatter file name
     // e.g.) stylish.js => set "stylish"
-    formatterName?: string;
+    formatterName?:string;
     // plugin package names
-    plugins?: string[];
+    plugins?:string[];
     // base directory for loading {rule, config, plugin} modules
-    rulesBaseDirectory?: string;
+    rulesBaseDirectory?:string;
     // ".textlint" file path
-    configFile?: string;
+    configFile?:string;
     // disabled rule package names
     // always should start with empty
-    disabledRules?: string[],
+    disabledRules?:string[],
     // preset package names
     // e.g.) ["preset-foo"]
-    presets?: string[],
+    presets?:string[],
     // rules config object
-    rulesConfig?: Object,
+    rulesConfig?:Object,
 }
 
 interface RuleErrorOptions {
@@ -73,38 +73,38 @@ interface RuleErrorOptions {
      * padding lineNumber
      * @type {number}
      */
-    line: number;
+    line:number;
     /**
      * padding column
      * @type {number}
      */
-    column: number;
+    column:number;
     /**
      * padding index
      * @type {number}
      */
-    index: number;
+    index:number;
     /**
      * fixCommand object
      * @type {FixCommand}
      */
-    fix: Object;
+    fix:Object;
 }
 
 class RuleError {
-    constructor(message: string, options: RuleErrorOptions);
+    constructor(message:string, options:RuleErrorOptions);
 }
 
 class TextLintRuleContext {
-    id: string;
-    config: TextLintConfig;
-    RuleError: RuleError;
+    id:string;
+    config:TextLintConfig;
+    RuleError:RuleError;
     /**
      * report function that is called in a rule
      * @param {TxtNode} node
      * @param {RuleError} ruleError error is a RuleError instance or any data
      */
-    report: {(node: TxtAST.TxtNode, ruleError: RuleError): void};
+    report:{(node:TxtAST.TxtNode, ruleError:RuleError):void};
     /**
      * Gets the source code for the given node.
      * @param {TxtNode=} node The AST node to get the text for.
@@ -112,15 +112,15 @@ class TextLintRuleContext {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string|null} The text representing the AST node.
      */
-    getSource: {(node, beforeCount?: number, afterCount?: number): string};
-    getFilePath: {(): string};
+    getSource:{(node, beforeCount?:number, afterCount?:number):string};
+    getFilePath:{():string};
 
-    fixer: RuleFixer;
+    fixer:RuleFixer;
 }
 class TextLintFilterRuleContext {
-    id: string;
-    config: TextLintConfig;
-    RuleError: RuleError;
+    id:string;
+    config:TextLintConfig;
+    RuleError:RuleError;
     /**
      * Gets the source code for the given node.
      * @param {TxtNode=} node The AST node to get the text for.
@@ -128,12 +128,13 @@ class TextLintFilterRuleContext {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string|null} The text representing the AST node.
      */
-    getSource: {(node, beforeCount?: number, afterCount?: number): string};
-    getFilePath: {(): string};
+    getSource:{(node, beforeCount?:number, afterCount?:number):string};
+    shouldIgnore:{(range:[number, number], options:{ ruleId:string })};
+    getFilePath:{():string};
 }
 interface FixCommand {
-    range: [number, number];
-    text: string;
+    range:[number, number];
+    text:string;
 }
 /**
  * Creates code fixing commands for rules.
@@ -148,7 +149,7 @@ class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextAfter(node: TxtAST.TxtNode, text: string): FixCommand;
+    insertTextAfter(node:TxtAST.TxtNode, text:string):FixCommand;
 
     /**
      * Creates a fix command that inserts text after the specified range in the source text.
@@ -158,7 +159,7 @@ class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextAfterRange(range: [number, number], text: string): FixCommand;
+    insertTextAfterRange(range:[number, number], text:string):FixCommand;
 
     /**
      * Creates a fix command that inserts text before the given node or token.
@@ -167,7 +168,7 @@ class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextBefore(node: TxtAST.TxtNode, text: string): FixCommand;
+    insertTextBefore(node:TxtAST.TxtNode, text:string):FixCommand;
 
     /**
      * Creates a fix command that inserts text before the specified range in the source text.
@@ -177,7 +178,7 @@ class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextBeforeRange(range: [number, number], text: string): FixCommand;
+    insertTextBeforeRange(range:[number, number], text:string):FixCommand;
 
     /**
      * Creates a fix command that replaces text at the node or token.
@@ -186,7 +187,7 @@ class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    replaceText(node: TxtAST.TxtNode, text: string): FixCommand;
+    replaceText(node:TxtAST.TxtNode, text:string):FixCommand;
 
     /**
      * Creates a fix command that replaces text at the specified range in the source text.
@@ -196,7 +197,7 @@ class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    replaceTextRange(range: [number, number], text: string): FixCommand;
+    replaceTextRange(range:[number, number], text:string):FixCommand;
 
     /**
      * Creates a fix command that removes the node or token from the source.
@@ -204,7 +205,7 @@ class RuleFixer {
      * @param {TxtAST.TxtNode} node The node or token to remove.
      * @returns {FixCommand} The fix command.
      */
-    remove(node: TxtAST.TxtNode): FixCommand;
+    remove(node:TxtAST.TxtNode):FixCommand;
 
     /**
      * Creates a fix command that removes the specified range of text from the source.
@@ -213,6 +214,6 @@ class RuleFixer {
      *      is end of range.
      * @returns {FixCommand} The fix command.
      */
-    removeRange(range: [number,number]): FixCommand;
+    removeRange(range:[number,number]):FixCommand;
 
 }

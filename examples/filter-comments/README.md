@@ -21,10 +21,10 @@
 
 ## How to ignore text
 
-<!-- textlint-disable -->
+<!-- textlint-disable no-todo -->
 
 - [ ] This is TODO
 
-<!-- textlint-enable -->
+<!-- textlint-enable no-todo -->
 
 OK. No error.

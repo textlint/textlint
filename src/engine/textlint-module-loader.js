@@ -3,6 +3,7 @@
 const EventEmitter = require("events");
 const interopRequire = require("interop-require");
 const debug = require("debug")("textlint:module-loader");
+const existSync = require("exists-sync");
 import {isPluginRuleKey} from "../util/config-util";
 import {loadFromDir} from "./rule-loader";
 import Logger from "../util/logger";
@@ -151,7 +152,14 @@ export default class TextLintModuleLoader extends EventEmitter {
              - resolve package name
              - load package
              - emit rule
-      */
+        */
+        // ruleName is filePath
+        if (existSync(ruleName)) {
+            const ruleCreator = interopRequire(ruleName);
+            const ruleEntry = [ruleName, ruleCreator];
+            this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
+            return;
+        }
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
         const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
@@ -182,9 +190,15 @@ export default class TextLintModuleLoader extends EventEmitter {
              - resolve package name
              - load package
              - emit rule
-      */
+        */
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
+        if (existSync(ruleName)) {
+            const ruleCreator = interopRequire(ruleName);
+            const ruleEntry = [ruleName, ruleCreator];
+            this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
+            return;
+        }
         const RULE_NAME_PREFIX = this.config.constructor.FILTER_RULE_NAME_PREFIX;
         const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
         const definedRuleName = ruleName.replace(prefixMatch, "");

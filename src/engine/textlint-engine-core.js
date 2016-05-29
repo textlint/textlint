@@ -143,6 +143,7 @@ new TextLintEngine({
         // set Rules
         const textlintConfig = this.config ? this.config.toJSON() : {};
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
+        this.textlint.setupFilterRules(this.filterRuleMap.getAllRules(), textlintConfig.filterRulesConfig);
         // set Processor
         this.textlint.setupProcessors(this.processorMap.toJSON());
         // execute files that are filtered by availableExtensions.
