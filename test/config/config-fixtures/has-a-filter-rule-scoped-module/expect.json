@@ -1,0 +1,8 @@
+{
+  "rules": [
+    "@textlint/textlint-filter-rule-example"
+  ],
+  "rulesConfig": {
+    "@textlint/textlint-filter-rule-example": true
+  }
+}

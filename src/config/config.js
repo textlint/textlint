@@ -48,9 +48,13 @@ const defaultOptions = Object.freeze({
     // disabled rule package names
     // always should start with empty
     disabledRules: [],
+    // rules config object
+    rulesConfig: {},
     // filter rule package names
     filterRules: [],
     disabledFilterRules: [],
+    // rules config object
+    filterRulesConfig: {},
     // preset package names
     // e.g.) ["preset-foo"]
     presets: [],
@@ -60,8 +64,6 @@ const defaultOptions = Object.freeze({
     rulesBaseDirectory: undefined,
     // ".textlint" file path
     configFile: undefined,
-    // rules config object
-    rulesConfig: {},
     // rule directories
     rulePaths: [],
     // available extensions
@@ -160,8 +162,10 @@ class Config {
                 moduleResolver,
                 configFileName: this.CONFIG_FILE_NAME
             }) || {};
+        // "rules" field is here!
         const configRulesObject = separateAvailableOrDisable(configFileRawOptions.rules);
-        const configFilterRulesObject = separateAvailableOrDisable(configFileRawOptions.filterRules);
+        // "filters" field is here!
+        const configFilterRulesObject = separateAvailableOrDisable(configFileRawOptions.filters);
         // available rules
         const configFileRules = configRulesObject.available;
         const configFileFilterRules = configFilterRulesObject.available;
@@ -171,12 +175,14 @@ class Config {
         const configPresets = configRulesObject.presets;
         const configFilePlugins = configFileRawOptions.plugins || [];
         const configFileRulesConfig = convertRulesConfigToFlatPath(configFileRawOptions.rules);
+        const configFileFilterRulesConfig = convertRulesConfigToFlatPath(configFileRawOptions.filters);
         // => Options
         const optionRules = options.rules || [];
         const optionFilterRules = options.filterRules || [];
         const optionDisbaledRules = options.disabledRules || [];
         const optionDisbaledFilterRules = options.disabledFilterRules || [];
         const optionRulesConfig = options.rulesConfig || {};
+        const optionFilterRulesConfig = options.filterRulesConfig || {};
         const optionPlugins = options.plugins || [];
         const optionPresets = options.presets || [];
         // => Merge options and configFileOptions
@@ -186,14 +192,16 @@ class Config {
         const filterRules = concat(optionFilterRules, configFileFilterRules);
         const disabledFilterRules = concat(optionDisbaledFilterRules, configFileDisabledFilterRules);
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
+        const filterRulesConfig = objectAssign({}, configFileFilterRulesConfig, optionFilterRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
         const presets = concat(optionPresets, configPresets);
         const mergedOptions = objectAssign({}, options, {
             rules,
             disabledRules,
+            rulesConfig,
             filterRules,
             disabledFilterRules,
-            rulesConfig,
+            filterRulesConfig,
             plugins,
             presets
         });
@@ -245,10 +253,13 @@ class Config {
         // this.rules has not contain plugin rules
         // =====================
         this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
+        // rulesConfig
         const pluginRulesConfig = loadRulesConfigFromPlugins(this.plugins, moduleResolver);
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = objectAssign({}, presetRulesConfig, pluginRulesConfig, options.rulesConfig);
 
+        // filterRulesConfig
+        this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
         /**
          * @type {string[]}
          */

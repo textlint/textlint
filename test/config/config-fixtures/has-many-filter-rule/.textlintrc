@@ -1,0 +1,8 @@
+{
+  "filters": {
+    "a": {
+      "key": "value"
+    },
+    "b": false
+  }
+}

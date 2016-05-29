@@ -4,6 +4,10 @@ const assert = require("power-assert");
 const path = require("path");
 import {TextLintCore} from "../../src/index";
 import {setRunningTest} from "../../src/util/throw-log";
+/*
+    TODO: rule-context-test has `lintText` and `fixText` test.
+    These should be moved to core test
+ */
 describe("rule-context-test", function () {
     let textlint;
     beforeEach(function () {
