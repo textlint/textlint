@@ -5,3 +5,4 @@ rulesdir: cd $(git rev-parse --show-toplevel)/examples/rulesdir && npm test
 plugin: cd $(git rev-parse --show-toplevel)/examples/plugin && npm test
 html-plugin: cd $(git rev-parse --show-toplevel)/examples/html-plugin && npm test
 use-as-module: cd $(git rev-parse --show-toplevel)/examples/use-as-module && npm test
+filter: cd $(git rev-parse --show-toplevel)/examples/filter && npm test
