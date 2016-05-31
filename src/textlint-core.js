@@ -56,6 +56,7 @@ export default class TextlintCore {
         this.messageProcessManager = new MessageProcessManager();
         // filter `shouldIgnore()` results
         this.messageProcessManager.add(filterIgnoredProcess);
+        // filter duplicated messages 
         this.messageProcessManager.add(filterDuplicatedProcess);
     }
 

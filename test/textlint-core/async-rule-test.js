@@ -45,7 +45,8 @@ describe("Async", function () {
             "async2-rule": fixtureRuleAsync
         });
         return textlint.lintMarkdown("string").then(result => {
-            assert(result.messages.length === 5);
+            // filtered duplicated messages => 2 patterns
+            assert(result.messages.length === 2);
         });
     });
     it("should promise each messages on multiple files", function () {
