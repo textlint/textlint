@@ -19,7 +19,8 @@ import FixerProcessor from "./fixer/fixer-processor";
 import LinterProcessor from "./linter/linter-processor";
 // messsage process manager
 import MessageProcessManager from "./messages/MessageProcessManager";
-import filterProcess from "./messages/filter-process";
+import filterIgnoredProcess from "./messages/filter-process";
+import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 /**
  * add fileName to trailing of error message
  * @param {string|undefined} fileName
@@ -54,7 +55,8 @@ export default class TextlintCore {
         // Now, It it built-in process only
         this.messageProcessManager = new MessageProcessManager();
         // filter `shouldIgnore()` results
-        this.messageProcessManager.add(filterProcess);
+        this.messageProcessManager.add(filterIgnoredProcess);
+        this.messageProcessManager.add(filterDuplicatedProcess);
     }
 
     /**
