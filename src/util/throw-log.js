@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const experimental = process.argv.indexOf("--experimental") !== -1;
+let isExperimental = process.argv.indexOf("--experimental") !== -1;
 let isRunningFromCLI = false;
 let isRunningFromTester = false;
 export function setRunningCLI(status) {
@@ -9,12 +9,23 @@ export function setRunningCLI(status) {
 export function setRunningTest(status) {
     isRunningFromTester = status;
 }
+export function setExperimental(status) {
+    isExperimental = status;
+}
+/**
+ * if now is experimental, return
+ * @returns {boolean}
+ */
+export function nowExperimental() {
+    return isExperimental;
+}
+
 /**
  * if current is not experimental, throw error message.
  * @param message
  */
 export function throwWithoutExperimental(message) {
-    if (isRunningFromCLI && !experimental) {
+    if (isRunningFromCLI && !isExperimental) {
         throw Error(message);
     }
 }
