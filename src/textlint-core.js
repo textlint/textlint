@@ -20,8 +20,9 @@ import FixerProcessor from "./fixer/fixer-processor";
 import LinterProcessor from "./linter/linter-processor";
 // messsage process manager
 import MessageProcessManager from "./messages/MessageProcessManager";
-import filterIgnoredProcess from "./messages/filter-process";
+import filterIgnoredProcess from "./messages/filter-ignored-process";
 import filterDuplicatedProcess from "./messages/filter-duplicated-process";
+import sortMessageProcess from "./messages/sort-messages-process";
 /**
  * add fileName to trailing of error message
  * @param {string|undefined} fileName
@@ -60,6 +61,7 @@ export default class TextlintCore {
         // filter duplicated messages
         if (nowExperimental()) {
             this.messageProcessManager.add(filterDuplicatedProcess);
+            this.messageProcessManager.add(sortMessageProcess);
         }
     }
 
