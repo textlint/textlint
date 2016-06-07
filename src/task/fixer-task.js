@@ -1,19 +1,89 @@
 // LICENSE : MIT
 "use strict";
 import CoreTask from "./textlint-core-task";
-import {getFixer} from "../core/rule-creator-helper";
+import {getFixer, getFilter} from "../core/rule-creator-helper";
+import RuleContext from "../core/rule-context";
+import FilterRuleContext from "../core/filter-rule-context";
 export default class TextLintCoreTask extends CoreTask {
+    /**
+     * @param {Config} config
+     * @param {RuleCreatorSet} ruleCreatorSet rules and config set
+     * @param {RuleCreatorSet} filterRuleCreatorSet filter rules and config set
+     * @param {SourceCode} sourceCode
+     */
+    constructor({config, ruleCreatorSet, filterRuleCreatorSet, sourceCode}) {
+        super();
+        this.config = config;
+        this.ruleCreatorSet = ruleCreatorSet;
+        this.filterRuleCreatorSet = filterRuleCreatorSet;
+        this.sourceCode = sourceCode;
+        this._setupRules();
+    }
+
+    start() {
+        this.startTraverser(this.sourceCode);
+    }
+
+    _setupRules() {
+        // rule
+        const textLintConfig = this.config;
+        const sourceCode = this.sourceCode;
+        const report = this.createReporter(sourceCode);
+        const ignoreReport = this.createIgnoreReporter(sourceCode);
+        // setup "rules" field
+        this.ruleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
+            const ruleContext = new RuleContext({
+                ruleId,
+                sourceCode,
+                report,
+                ignoreReport,
+                textLintConfig,
+                ruleConfig
+            });
+            const ruleObject = this._getRuleObject(rule, ruleContext, ruleConfig);
+            this.addListenRule(ruleId, ruleObject);
+        });
+        // setup "filters" field
+        this.filterRuleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
+            const ruleContext = new FilterRuleContext({
+                ruleId,
+                sourceCode,
+                ignoreReport,
+                textLintConfig
+            });
+            // "filters" rule is the same with "rules"
+            const ruleObject = this._getFilterRuleObject(rule, ruleContext, ruleConfig);
+            this.addListenRule(ruleId, ruleObject);
+        });
+    }
+
     /**
      * @param {Function} ruleCreator
      * @param {RuleContext} ruleContext
      * @param {Object|boolean} ruleConfig
      * @returns {Object}
      */
-    getRuleObject(ruleCreator, ruleContext, ruleConfig) {
+    _getRuleObject(ruleCreator, ruleContext, ruleConfig) {
         try {
             return getFixer(ruleCreator)(ruleContext, ruleConfig);
         } catch (error) {
             error.message = `Error while loading rule '${ruleContext.id}': ${error.message}`;
+            throw error;
+        }
+    }
+
+    /**
+     * create RuleObject that is consist key and handler.
+     * @param {Function} ruleCreator
+     * @param {FilterRuleContext} ruleContext
+     * @param {Object|boolean} ruleConfig
+     * @returns {Object}
+     */
+    _getFilterRuleObject(ruleCreator, ruleContext, ruleConfig) {
+        try {
+            return getFilter(ruleCreator)(ruleContext, ruleConfig);
+        } catch (error) {
+            error.message = `Error while loading filter rule '${ruleContext.id}': ${error.message}`;
             throw error;
         }
     }

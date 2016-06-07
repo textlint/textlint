@@ -62,7 +62,7 @@ describe("textlint-test", function () {
                 };
                 textlint.setupRules({
                     "rule-name": rule
-                }, null);
+                });
             });
         });
     });

@@ -92,3 +92,17 @@ module.exports = function(context){
 };`);
     }
 }
+
+/**
+ * get linter function from ruleCreator
+ * if not found, throw error
+ * @param {*} ruleCreator
+ * @returns {Function} linter function
+ * @throws
+ */
+export function getFilter(ruleCreator) {
+    if (typeof ruleCreator === "function") {
+        return ruleCreator;
+    }
+    throw new Error("Not found filter function in the ruleCreator");
+}

@@ -32,9 +32,26 @@ export default class RuleCreatorSet {
         // initialize
         this.rules = filterByAvailable(this.rawRulesObject, this.rawRulesConfigObject);
         this.ruleNames = Object.keys(this.rules);
-        this.rulesConfig = this.rawRulesConfigObject;
+        this.rulesConfig = this._normalizeRulesConfig(this.ruleNames, this.rawRulesConfigObject);
     }
 
+    /**
+     * forEach method
+     * @example
+     *  ruleCreatorSet.forEach(([rule, ruleConfig]) => {
+     *      // 
+     *  });
+     * @param {function({ ruleId: string, rule: Function, ruleConfig: Object|boolean})} handler
+     */
+    forEach(handler) {
+        return this.ruleNames.forEach(ruleName => {
+            return handler({
+                ruleId: ruleName,
+                rule: this.rules[ruleName],
+                ruleConfig: this.rulesConfig[ruleName]
+            });
+        });
+    }
 
     getFixerNames() {
         return this.ruleNames.filter(ruleName => {
@@ -48,5 +65,26 @@ export default class RuleCreatorSet {
             const rulesConfig = {[ruleName]: this.rulesConfig[ruleName]};
             return mapHandler(new RuleCreatorSet(rules, rulesConfig));
         });
+    }
+
+    /**
+     * normalize `rawRulesConfigObject`.
+     * if `rawRulesConfigObject` has not the rule, create `{ ruleName: true }` by default
+     * @param {string[]} ruleNames
+     * @param {Object[]} rawRulesConfigObject
+     * @private
+     */
+    _normalizeRulesConfig(ruleNames, rawRulesConfigObject) {
+        const rulesConfig = {};
+        // default: { ruleName: true }
+        const defaultRuleConfigValue = true;
+        ruleNames.forEach(ruleName => {
+            if (rawRulesConfigObject[ruleName] === undefined) {
+                rulesConfig[ruleName] = defaultRuleConfigValue;
+            } else {
+                rulesConfig[ruleName] = rawRulesConfigObject[ruleName];
+            }
+        });
+        return rulesConfig;
     }
 }
