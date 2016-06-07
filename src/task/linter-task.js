@@ -31,7 +31,9 @@ export default class TextLintCoreTask extends CoreTask {
         const report = this.createReporter(sourceCode);
         const ignoreReport = this.createIgnoreReporter(sourceCode);
         // setup "rules" field
-        this.ruleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
+        // filter duplicated rules for improving experience
+        // see https://github.com/textlint/textlint/issues/219
+        this.ruleCreatorSet.withoutDuplicated().forEach(({ruleId, rule, ruleConfig}) => {
             const ruleContext = new RuleContext({
                 ruleId,
                 sourceCode,
