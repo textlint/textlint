@@ -40,8 +40,8 @@ export default class TextLintCoreTask extends CoreTask {
                 textLintConfig,
                 ruleConfig
             });
-            const ruleObject = this._getRuleObject(rule, ruleContext, ruleConfig);
-            this.addListenRule(ruleId, ruleObject);
+            const ruleModule = getFixer(rule);
+            this.tryToAddListenRule(ruleModule, ruleContext, ruleConfig);
         });
         // setup "filters" field
         this.filterRuleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
@@ -52,39 +52,8 @@ export default class TextLintCoreTask extends CoreTask {
                 textLintConfig
             });
             // "filters" rule is the same with "rules"
-            const ruleObject = this._getFilterRuleObject(rule, ruleContext, ruleConfig);
-            this.addListenRule(ruleId, ruleObject);
+            const ruleModule = getFilter(rule);
+            this.tryToAddListenRule(ruleModule, ruleContext, ruleConfig);
         });
-    }
-
-    /**
-     * @param {Function} ruleCreator
-     * @param {RuleContext} ruleContext
-     * @param {Object|boolean} ruleConfig
-     * @returns {Object}
-     */
-    _getRuleObject(ruleCreator, ruleContext, ruleConfig) {
-        try {
-            return getFixer(ruleCreator)(ruleContext, ruleConfig);
-        } catch (error) {
-            error.message = `Error while loading rule '${ruleContext.id}': ${error.message}`;
-            throw error;
-        }
-    }
-
-    /**
-     * create RuleObject that is consist key and handler.
-     * @param {Function} ruleCreator
-     * @param {FilterRuleContext} ruleContext
-     * @param {Object|boolean} ruleConfig
-     * @returns {Object}
-     */
-    _getFilterRuleObject(ruleCreator, ruleContext, ruleConfig) {
-        try {
-            return getFilter(ruleCreator)(ruleContext, ruleConfig);
-        } catch (error) {
-            error.message = `Error while loading filter rule '${ruleContext.id}': ${error.message}`;
-            throw error;
-        }
     }
 }

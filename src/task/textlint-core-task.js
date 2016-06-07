@@ -153,13 +153,36 @@ export default class TextLintCoreTask extends EventEmitter {
         });
     }
 
+    /**
+     * try to get rule object
+     * @param {Function} ruleCreator
+     * @param {RuleContext|FilterRuleContext} ruleContext
+     * @param {Object|boolean} ruleConfig
+     * @returns {Object}
+     * @throws
+     */
+    tryToGetRuleObject(ruleCreator, ruleContext, ruleConfig) {
+        try {
+            return ruleCreator(ruleContext, ruleConfig);
+        } catch (error) {
+            error.message = `Error while loading rule '${ruleContext.id}': ${error.message}`;
+            throw error;
+        }
+    }
 
-    // add all the node types as listeners
-    addListenRule(key, rule) {
-        Object.keys(rule).forEach(nodeType => {
+    /**
+     * add all the node types as listeners of the rule
+     * @param {Function} ruleCreator
+     * @param {RuleContext|FilterRuleContext} ruleContext
+     * @param {Object|boolean} ruleConfig
+     * @returns {Object}
+     */
+    tryToAddListenRule(ruleCreator, ruleContext, ruleConfig) {
+        const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleConfig);
+        Object.keys(ruleObject).forEach(nodeType => {
             this.ruleTypeEmitter.on(nodeType, timing.enabled
-                ? timing.time(key, rule[nodeType])
-                : rule[nodeType]);
+                ? timing.time(ruleContext.id, ruleObject[nodeType])
+                : ruleObject[nodeType]);
         });
     }
 }

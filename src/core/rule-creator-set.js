@@ -38,7 +38,7 @@ export default class RuleCreatorSet {
     /**
      * forEach method
      * @example
-     *  ruleCreatorSet.forEach(([rule, ruleConfig]) => {
+     *  ruleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
      *      // 
      *  });
      * @param {function({ ruleId: string, rule: Function, ruleConfig: Object|boolean})} handler
