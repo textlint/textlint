@@ -64,13 +64,19 @@ export default class RuleCreatorSet {
         this.ruleNames.forEach(ruleName => {
             const rule = this.rules[ruleName];
             const ruleConfig = this.rulesConfig[ruleName];
+            const savedConfigList = addedRuleMap.has(rule) ? addedRuleMap.get(rule) : [];
             // same ruleCreator and ruleConfig
-            if (addedRuleMap.has(rule) && deepEqual(addedRuleMap.get(rule), ruleConfig, {strict: true})) {
+            const hasSameConfig = savedConfigList.some(savedConfig => {
+                return deepEqual(savedConfig, ruleConfig, {strict: true});
+            });
+            if (hasSameConfig) {
                 return false;
             }
             newRawRules[ruleName] = rule;
             newRawRulesConfig[ruleName] = ruleConfig;
-            addedRuleMap.set(rule, ruleConfig);
+            // saved
+            savedConfigList.push(ruleConfig);
+            addedRuleMap.set(rule, savedConfigList);
         });
         addedRuleMap.clear();
         return new RuleCreatorSet(newRawRules, newRawRulesConfig);

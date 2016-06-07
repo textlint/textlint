@@ -45,19 +45,23 @@ describe("RuleCreatorSet", function () {
             };
             const ruleCreatorSet = new RuleCreatorSet({
                 ruleA: availableRule,
-                ruleB: availableRule
+                ruleB: availableRule,
+                ruleC: availableRule
             }, {
                 ruleA: true,
-                ruleB: {key: true}
+                ruleB: {key: true},
+                ruleC: true
             });
             assert.deepEqual(ruleCreatorSet.rules, {
                 ruleA: availableRule,
-                ruleB: availableRule
+                ruleB: availableRule,
+                ruleC: availableRule
             });
-            assert.deepEqual(ruleCreatorSet.ruleNames, ["ruleA", "ruleB"]);
+            assert.deepEqual(ruleCreatorSet.ruleNames, ["ruleA", "ruleB", "ruleC"]);
             assert.deepEqual(ruleCreatorSet.rulesConfig, {
                 ruleA: true,
-                ruleB: {key: true}
+                ruleB: {key: true},
+                ruleC: true
             });
 
             const withoutDuplicatedRuleCreatorSet = ruleCreatorSet.withoutDuplicated();
