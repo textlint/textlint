@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
 const debug = require("debug")("textlint:rule-creator-set");
+const deepEqual = require("deep-equal");
+import MapLike from "../shared/MapLike";
 import {assertRuleShape, hasFixer} from "./rule-creator-helper";
 const filterByAvailable = (rules, rulesConfig) => {
     const resultRules = Object.create(null);
@@ -29,10 +31,49 @@ export default class RuleCreatorSet {
     constructor(rules = {}, rulesConfig = {}) {
         this.rawRulesObject = rules;
         this.rawRulesConfigObject = rulesConfig;
-        // initialize
+        /**
+         * available rule object
+         * @type {Object}
+         */
         this.rules = filterByAvailable(this.rawRulesObject, this.rawRulesConfigObject);
+        /**
+         * rule key names
+         * @type {Array}
+         */
         this.ruleNames = Object.keys(this.rules);
+        /**
+         * rules Config object
+         * @type {Object}
+         */
         this.rulesConfig = this._normalizeRulesConfig(this.ruleNames, this.rawRulesConfigObject);
+    }
+
+    /**
+     * filter duplicated rules and rulesConfig and return new RuleCreatorSet.
+     * @return {RuleCreatorSet}
+     */
+    withoutDuplicated() {
+        const newRawRules = {};
+        const newRawRulesConfig = {};
+        // for index
+        const addedRuleMap = new MapLike();
+        // if already contain same ruleModule and ruleConfig value
+        // Fill following condition, remove it
+        // 1. same ruleModule
+        // 2. same ruleConfig
+        this.ruleNames.forEach(ruleName => {
+            const rule = this.rules[ruleName];
+            const ruleConfig = this.rulesConfig[ruleName];
+            // same ruleCreator and ruleConfig
+            if (addedRuleMap.has(rule) && deepEqual(addedRuleMap.get(rule), ruleConfig, {strict: true})) {
+                return false;
+            }
+            newRawRules[ruleName] = rule;
+            newRawRulesConfig[ruleName] = ruleConfig;
+            addedRuleMap.set(rule, ruleConfig);
+        });
+        addedRuleMap.clear();
+        return new RuleCreatorSet(newRawRules, newRawRulesConfig);
     }
 
     /**

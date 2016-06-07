@@ -70,7 +70,7 @@ export function isRuleModule(ruleCreator) {
 /**
  * Validate rule module.
  * if invalid throw error
- * @param {Function|Object} ruleModule
+ * @param {*} ruleModule
  * @param {string} key
  * @throws
  */
