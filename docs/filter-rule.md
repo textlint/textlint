@@ -2,6 +2,20 @@
 
 Filter rule is same writing convention with [linting/fixing rule](./rule.md), but has different context.
 
+## Usage of filter rule
+
+Add filter rule name to `filters` field.
+
+```json
+{
+  "filters": {
+    "comments": true
+  }
+}
+```
+
+See [configuring.md](./configuring.md) for details.
+
 ## FilterRuleContext
 
 `shouldIgnore()` is core API of `FilterRuleContext`.

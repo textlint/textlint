@@ -12,6 +12,18 @@ Put the config of rules into `.textlintrc`
 
 A **rule** provide linting/fixing function. 
 
+### Usage of rule
+
+Add rule name to `rules` field.
+
+```json
+{
+  "rules": {
+    "no-todo": true
+  }
+}
+```
+
 ### Enable/Disable rule
 
 ```json
@@ -23,10 +35,8 @@ A **rule** provide linting/fixing function.
 }
 ```
 
-It means that 
-
-- enable `"no-todo"` rule
-- disable `"very-nice-rule"` rule
+- `true` means that enable `"no-todo"` rule
+- `false` means that disable `"very-nice-rule"` rule
 
 ### Rule's config
 
@@ -123,6 +133,8 @@ Filter rule provide filtering error by linting rule.
 
 For example, [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments) provide filtering function by using comment like `<!-- textlint-disable -->` and `<!-- textlint-enable -->`. 
 Allow to short `textlint-filter-rule-comments` to `comments`.
+
+Add filter rule name to `filters` field.
 
 ```json
 {
