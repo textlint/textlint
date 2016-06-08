@@ -581,3 +581,14 @@ no-mix-dearu-desumasu           |    13.965 |     7.9%
 max-ten                         |    13.246 |     7.5%
 no-start-duplicated-conjunction |     5.911 |     3.4%
 ```
+
+
+## Implementation Node :memo:
+
+textlint ignore duplicated message/rules by default.
+
+- If already the rule with config is loaded, Don't load this(same rule with same config).
+    - [Proposal: don't load duplicated rule(ruleConfig) · Issue #219 · textlint/textlint](https://github.com/textlint/textlint/issues/219 "Proposal: don&#39;t load duplicated rule(ruleConfig) · Issue #219 · textlint/textlint")
+- Duplicated error message is ignored by default
+    - _Duplicated error messages_ is that have same range and same message.
+    - [Proposal: duplicated messages is ignored by default · Issue #209 · textlint/textlint](https://github.com/textlint/textlint/issues/209 "Proposal: duplicated messages is ignored by default · Issue #209 · textlint/textlint")
