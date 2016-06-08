@@ -4,6 +4,7 @@ import CoreTask from "./textlint-core-task";
 import {getLinter, getFilter} from "../core/rule-creator-helper";
 import RuleContext from "../core/rule-context";
 import FilterRuleContext from "../core/filter-rule-context";
+const debug = require("debug")("textlint:TextLintCoreTask");
 export default class TextLintCoreTask extends CoreTask {
     /**
      * @param {Config} config
@@ -33,7 +34,9 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "rules" field
         // filter duplicated rules for improving experience
         // see https://github.com/textlint/textlint/issues/219
-        this.ruleCreatorSet.withoutDuplicated().forEach(({ruleId, rule, ruleConfig}) => {
+        const ruleCreatorSet = this.ruleCreatorSet.withoutDuplicated();
+        debug("ruleCreatorSet", ruleCreatorSet);
+        ruleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
             const ruleContext = new RuleContext({
                 ruleId,
                 sourceCode,
@@ -46,6 +49,7 @@ export default class TextLintCoreTask extends CoreTask {
             this.tryToAddListenRule(ruleModule, ruleContext, ruleConfig);
         });
         // setup "filters" field
+        debug("filterRuleCreatorSet", this.filterRuleCreatorSet);
         this.filterRuleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
             const ruleContext = new FilterRuleContext({
                 ruleId,

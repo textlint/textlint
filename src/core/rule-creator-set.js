@@ -12,7 +12,6 @@ const filterByAvailable = (rules, rulesConfig) => {
         // "rule-name" : false => disable
         const ruleConfig = rulesConfig && rulesConfig[key];
         if (ruleConfig !== false) {
-            debug("use \"%s\" rule", key);
             resultRules[key] = rules[key];
         }
     });
