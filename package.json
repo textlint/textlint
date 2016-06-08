@@ -79,6 +79,7 @@
     "chalk": "^1.1.1",
     "concat-stream": "^1.4.7",
     "debug": "^2.1.0",
+    "deep-equal": "^1.0.1",
     "diff": "^2.2.2",
     "exists-sync": "0.0.3",
     "interop-require": "^1.0.0",

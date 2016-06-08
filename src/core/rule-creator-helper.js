@@ -70,7 +70,7 @@ export function isRuleModule(ruleCreator) {
 /**
  * Validate rule module.
  * if invalid throw error
- * @param {Function|Object} ruleModule
+ * @param {*} ruleModule
  * @param {string} key
  * @throws
  */
@@ -91,4 +91,18 @@ module.exports = function(context){
     // Your rule
 };`);
     }
+}
+
+/**
+ * get linter function from ruleCreator
+ * if not found, throw error
+ * @param {*} ruleCreator
+ * @returns {Function} linter function
+ * @throws
+ */
+export function getFilter(ruleCreator) {
+    if (typeof ruleCreator === "function") {
+        return ruleCreator;
+    }
+    throw new Error("Not found filter function in the ruleCreator");
 }
