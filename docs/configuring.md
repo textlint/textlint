@@ -8,7 +8,9 @@
 
 Put the config of rules into `.textlintrc`
 
-## rule
+## Rule
+
+A **rule** provide linting/fixing function. 
 
 ### Enable/Disable rule
 
@@ -56,9 +58,9 @@ export default function rule(contet, config){
 }
 ```
 
-### Special rule's config
+### Severity config of rules
 
-- `severity` : `"<warning|error>"` - default: "error"
+- `severity` : `"<warning|error>"` - Default: "error"
 
 ```json
 {
@@ -70,12 +72,12 @@ export default function rule(contet, config){
 }
 ```
 
-it mean that 
+It means that
 
 - enable "no-todo" rule
 - found thing match the rule and show warning message(exit status is `0`)
 
-**summary**
+**Summary**
 
 Can use the following format:
 
@@ -89,9 +91,9 @@ Can use the following format:
 
 :information_source: See [examples/config-file](../examples/config-file)
 
-## rule-preset
+## Rule-preset
 
-rule-preset is a collection of rules.
+Rule-preset is a collection of rules.
 
 The way of configuration is same with textlint-rule.
 
@@ -114,6 +116,40 @@ Put the config of `textlint-rule-foo` rule in `text-rule-preset-bar` rule-preset
   }
 }
 ```
+
+## Filter rule
+
+Filter rule provide filtering error by linting rule.
+
+For example, [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments) provide filtering function by using comment like `<!-- textlint-disable -->` and `<!-- textlint-enable -->`. 
+Allow to short `textlint-filter-rule-comments` to `comments`.
+
+```json
+{
+  "filters": {
+    "comments": true
+  }
+}
+```
+
+One more example, `very-nice-rule` is useful, but you want to ignore some reported error in your text.
+`very-nice-rule` also check the `BlockQuote` text, but you want to ignore the `BlockQuote` text.
+[textlint-filter-rule-node-types](https://github.com/textlint/textlint-filter-rule-node-types) rule resolve the issue.
+
+```js
+{
+  "filters": {
+    "ignore-node-types": {
+      "nodeTypes": ["BlockQuote"]
+    }
+  },
+  "rules": {
+    "very-nice-rule": true
+  }
+}
+
+
+:information_source: See [examples/filter](../examples/filter)
 
 ## Plugin
 

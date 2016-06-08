@@ -310,10 +310,12 @@ More detail on:
 
 ## Conclusion
 
-textlint has three extensible points
+textlint has four extensible points
 
 - [rule](docs/rule.md)
     - rule is a rule for linting.
+- [filter rule](docs/filter-rule.md)
+    - filter rule is a rule for filtering result of errors.
 - [rule-preset](docs/rule-preset.md)
     - rule-preset contains rules.
 - [plugin](docs/plugin.md)
@@ -330,6 +332,14 @@ Please see docs/
 - [docs/rule.md](docs/rule.md)
     - How to create rules?
     - Tutorial: creating `no-todo` rule.
+- [docs/rule-advanced.md](docs/rule-advanced.md)
+    - Advanced tutorial for creating rule.
+    
+## FAQ: How to suppress error by comments like `<!-- textlint-disable -->`?
+
+You can use filter rule like [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments "textlint-filter-rule-comments").
+
+Please see [docs/configuring.md](docs/configuring.md) for more details.
 
 ## Use with XXX
 
