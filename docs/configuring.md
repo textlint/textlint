@@ -136,7 +136,7 @@ One more example, `very-nice-rule` is useful, but you want to ignore some report
 `very-nice-rule` also check the `BlockQuote` text, but you want to ignore the `BlockQuote` text.
 [textlint-filter-rule-node-types](https://github.com/textlint/textlint-filter-rule-node-types) rule resolve the issue.
 
-```js
+```json
 {
   "filters": {
     "ignore-node-types": {
