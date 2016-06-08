@@ -147,7 +147,7 @@ One more example, `very-nice-rule` is useful, but you want to ignore some report
     "very-nice-rule": true
   }
 }
-
+```
 
 :information_source: See [examples/filter](../examples/filter)
 
