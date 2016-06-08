@@ -35,7 +35,7 @@ export default class TextLintCoreTask extends CoreTask {
         // filter duplicated rules for improving experience
         // see https://github.com/textlint/textlint/issues/219
         const ruleCreatorSet = this.ruleCreatorSet.withoutDuplicated();
-        debug("ruleCreatorSet", ruleCreatorSet)
+        debug("ruleCreatorSet", ruleCreatorSet);
         ruleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
             const ruleContext = new RuleContext({
                 ruleId,

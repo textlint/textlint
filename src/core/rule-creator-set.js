@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-const debug = require("debug")("textlint:rule-creator-set");
 const deepEqual = require("deep-equal");
 import MapLike from "../shared/MapLike";
 import {assertRuleShape, hasFixer} from "./rule-creator-helper";
