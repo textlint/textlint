@@ -151,7 +151,7 @@ One more example, `very-nice-rule` is useful, but you want to ignore some report
 ```json
 {
   "filters": {
-    "ignore-node-types": {
+    "node-types": {
       "nodeTypes": ["BlockQuote"]
     }
   },
