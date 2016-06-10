@@ -10,6 +10,7 @@ Each node of the tree has same interface, is called `TxtNode`.
 
 [![markdown-to-ast.](./resources/markdown-to-ast.png)](http://azu.github.io/markdown-to-ast/example/)
 
+
 ## [TxtAST](../typing/txtast.d.ts) interface
 
 Please see TypeScript definition file: [typings/txtast.ts](../typings/txtast.ts)
@@ -120,6 +121,10 @@ The type is based on HTML tag.
 TODO: if you want to get other type, please file issue.
 
 ### Online Parsing Demo
+
+[![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+
+[AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
 - Markdown AST
     - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")

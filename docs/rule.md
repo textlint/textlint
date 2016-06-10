@@ -77,7 +77,12 @@ export default function (context) {
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
 
-![gif visualize-txt-traverse](http://gyazo.com/155c68f0f9ff35e0a549d655a787c01e.gif)
+[![gif visualize-txt-traverse](http://gyazo.com/155c68f0f9ff35e0a549d655a787c01e.gif)](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
+
+[AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") help you better understand [TxtAST](./txtnode.md).
+
+[![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+
 
 **related information:**
 
