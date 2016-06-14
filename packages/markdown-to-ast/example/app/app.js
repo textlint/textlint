@@ -46,7 +46,8 @@ module.exports = exports;
 var traverse = require('traverse');
 var StructuredSource = require('structured-source');
 var debug = require("debug")("markdown-to-ast");
-var remark = require("remark");
+var remarkAbstract = require("remark");
+var remark = remarkAbstract();
 /**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
@@ -94,7 +95,7 @@ module.exports = {
     parse: parse,
     Syntax: require("./union-syntax")
 };
-},{"./mapping/markdown-syntax-map":2,"./union-syntax":4,"debug":23,"remark":32,"structured-source":42,"traverse":44}],4:[function(require,module,exports){
+},{"./mapping/markdown-syntax-map":2,"./union-syntax":4,"debug":21,"remark":40,"structured-source":44,"traverse":46}],4:[function(require,module,exports){
 // LICENSE : MIT
 "use strict";
 // public key interface
@@ -121,160 +122,6 @@ var exports = {
 };
 module.exports = exports;
 },{}],5:[function(require,module,exports){
-/**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module attach-ware
- * @fileoverview Middleware with configuration.
- * @example
- *   var ware = require('attach-ware')(require('ware'));
- *
- *   var middleware = ware()
- *     .use(function (context, options) {
- *         if (!options.condition) return;
- *
- *         return function (req, res, next) {
- *           res.x = 'hello';
- *           next();
- *         };
- *     }, {
- *         'condition': true
- *     })
- *     .use(function (context, options) {
- *         if (!options.condition) return;
- *
- *         return function (req, res, next) {
- *           res.y = 'world';
- *           next();
- *         };
- *     }, {
- *         'condition': false
- *     });
- *
- *   middleware.run({}, {}, function (err, req, res) {
- *     res.x; // "hello"
- *     res.y; // undefined
- *   });
- */
-
-'use strict';
-
-/* eslint-env commonjs */
-
-var slice = [].slice;
-var unherit = require('unherit');
-
-/**
- * Clone `Ware` without affecting the super-class and
- * turn it into configurable middleware.
- *
- * @param {Function} Ware - Ware-like constructor.
- * @return {Function} AttachWare - Configurable middleware.
- */
-function patch(Ware) {
-    /*
-     * Methods.
-     */
-
-    var useFn = Ware.prototype.use;
-
-    /**
-     * @constructor
-     * @class {AttachWare}
-     */
-    var AttachWare = unherit(Ware);
-
-    AttachWare.prototype.foo = true;
-
-    /**
-     * Attach configurable middleware.
-     *
-     * @memberof {AttachWare}
-     * @this {AttachWare}
-     * @param {Function} attach - Attacher.
-     * @return {AttachWare} - `this`.
-     */
-    function use(attach) {
-        var self = this;
-        var params = slice.call(arguments, 1);
-        var index;
-        var length;
-        var fn;
-
-        /*
-         * Multiple attachers.
-         */
-
-        if ('length' in attach && typeof attach !== 'function') {
-            index = -1;
-            length = attach.length;
-
-            /*
-             * So, `attach[0]` is a function, meaning its
-             * either a list of `attachers` or its a `list`.
-             */
-
-            if (typeof attach[0] === 'function') {
-                if (
-                    (attach[1] !== null && attach[1] !== undefined) &&
-                    typeof attach[1] !== 'function'
-                ) {
-                    self.use.apply(self, attach);
-                } else {
-                    while (++index < length) {
-                        self.use.apply(self, [
-                            attach[index]
-                        ].concat(params));
-                    }
-                }
-            } else {
-                while (++index < length) {
-                    self.use(attach[index]);
-                }
-            }
-
-            return self;
-        }
-
-        /*
-         * Single attacher.
-         */
-
-        fn = attach.apply(null, [self.context || self].concat(params));
-
-        /*
-         * Store the attacher to not break `new Ware(otherWare)`
-         * functionality.
-         */
-
-        if (!self.attachers) {
-            self.attachers = [];
-        }
-
-        self.attachers.push(attach);
-
-        /*
-         * Pass `fn` to the original `Ware#use()`.
-         */
-
-        if (fn) {
-            useFn.call(self, fn);
-        }
-
-        return self;
-    }
-
-    AttachWare.prototype.use = use;
-
-    return function (fn) {
-        return new AttachWare(fn);
-    };
-}
-
-module.exports = patch;
-
-},{"unherit":47}],6:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer. All rights reserved.
@@ -312,7 +159,7 @@ function bail(err) {
 
 module.exports = bail;
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict'
 
 exports.toByteArray = toByteArray
@@ -428,7 +275,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 /*
@@ -512,7 +359,7 @@ exports.lowerBound = lowerBound;
 exports.upperBound = upperBound;
 exports.binarySearch = binarySearch;
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 (function (global){
 /*!
  * The buffer module from node.js, for the browser.
@@ -1978,14 +1825,14 @@ function blitBuffer (src, dst, offset, length) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"base64-js":7,"ieee754":26,"isarray":10}],10:[function(require,module,exports){
+},{"base64-js":6,"ieee754":25,"isarray":9}],9:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer. All rights reserved.
@@ -2036,7 +1883,7 @@ function ccount(value, character) {
 
 module.exports = ccount;
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports={
   "nbsp": " ",
   "iexcl": "¡",
@@ -2292,7 +2139,7 @@ module.exports={
   "euro": "€"
 }
 
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -2311,7 +2158,7 @@ module.exports={
 
 module.exports = require('./index.json');
 
-},{"./index.json":12}],14:[function(require,module,exports){
+},{"./index.json":11}],13:[function(require,module,exports){
 module.exports={
   "AElig": "Æ",
   "AMP": "&",
@@ -2421,7 +2268,7 @@ module.exports={
   "yuml": "ÿ"
 }
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -2440,7 +2287,7 @@ module.exports={
 
 module.exports = require('./index.json');
 
-},{"./index.json":14}],16:[function(require,module,exports){
+},{"./index.json":13}],15:[function(require,module,exports){
 module.exports={
   "AElig": "Æ",
   "AMP": "&",
@@ -4569,7 +4416,7 @@ module.exports={
   "zwnj": "‌"
 }
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -4588,7 +4435,7 @@ module.exports={
 
 module.exports = require('./index.json');
 
-},{"./index.json":16}],18:[function(require,module,exports){
+},{"./index.json":15}],17:[function(require,module,exports){
 module.exports={
   "0": "�",
   "128": "€",
@@ -4620,7 +4467,7 @@ module.exports={
   "159": "Ÿ"
 }
 
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -4639,7 +4486,7 @@ module.exports={
 
 module.exports = require('./index.json');
 
-},{"./index.json":18}],20:[function(require,module,exports){
+},{"./index.json":17}],19:[function(require,module,exports){
 (function (Buffer){
 var clone = (function() {
 'use strict';
@@ -4803,303 +4650,7 @@ if (typeof module === 'object' && module.exports) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":9}],21:[function(require,module,exports){
-
-/**
- * slice() reference.
- */
-
-var slice = Array.prototype.slice;
-
-/**
- * Expose `co`.
- */
-
-module.exports = co;
-
-/**
- * Wrap the given generator `fn` and
- * return a thunk.
- *
- * @param {Function} fn
- * @return {Function}
- * @api public
- */
-
-function co(fn) {
-  var isGenFun = isGeneratorFunction(fn);
-
-  return function (done) {
-    var ctx = this;
-
-    // in toThunk() below we invoke co()
-    // with a generator, so optimize for
-    // this case
-    var gen = fn;
-
-    // we only need to parse the arguments
-    // if gen is a generator function.
-    if (isGenFun) {
-      var args = slice.call(arguments), len = args.length;
-      var hasCallback = len && 'function' == typeof args[len - 1];
-      done = hasCallback ? args.pop() : error;
-      gen = fn.apply(this, args);
-    } else {
-      done = done || error;
-    }
-
-    next();
-
-    // #92
-    // wrap the callback in a setImmediate
-    // so that any of its errors aren't caught by `co`
-    function exit(err, res) {
-      setImmediate(function(){
-        done.call(ctx, err, res);
-      });
-    }
-
-    function next(err, res) {
-      var ret;
-
-      // multiple args
-      if (arguments.length > 2) res = slice.call(arguments, 1);
-
-      // error
-      if (err) {
-        try {
-          ret = gen.throw(err);
-        } catch (e) {
-          return exit(e);
-        }
-      }
-
-      // ok
-      if (!err) {
-        try {
-          ret = gen.next(res);
-        } catch (e) {
-          return exit(e);
-        }
-      }
-
-      // done
-      if (ret.done) return exit(null, ret.value);
-
-      // normalize
-      ret.value = toThunk(ret.value, ctx);
-
-      // run
-      if ('function' == typeof ret.value) {
-        var called = false;
-        try {
-          ret.value.call(ctx, function(){
-            if (called) return;
-            called = true;
-            next.apply(ctx, arguments);
-          });
-        } catch (e) {
-          setImmediate(function(){
-            if (called) return;
-            called = true;
-            next(e);
-          });
-        }
-        return;
-      }
-
-      // invalid
-      next(new TypeError('You may only yield a function, promise, generator, array, or object, '
-        + 'but the following was passed: "' + String(ret.value) + '"'));
-    }
-  }
-}
-
-/**
- * Convert `obj` into a normalized thunk.
- *
- * @param {Mixed} obj
- * @param {Mixed} ctx
- * @return {Function}
- * @api private
- */
-
-function toThunk(obj, ctx) {
-
-  if (isGeneratorFunction(obj)) {
-    return co(obj.call(ctx));
-  }
-
-  if (isGenerator(obj)) {
-    return co(obj);
-  }
-
-  if (isPromise(obj)) {
-    return promiseToThunk(obj);
-  }
-
-  if ('function' == typeof obj) {
-    return obj;
-  }
-
-  if (isObject(obj) || Array.isArray(obj)) {
-    return objectToThunk.call(ctx, obj);
-  }
-
-  return obj;
-}
-
-/**
- * Convert an object of yieldables to a thunk.
- *
- * @param {Object} obj
- * @return {Function}
- * @api private
- */
-
-function objectToThunk(obj){
-  var ctx = this;
-  var isArray = Array.isArray(obj);
-
-  return function(done){
-    var keys = Object.keys(obj);
-    var pending = keys.length;
-    var results = isArray
-      ? new Array(pending) // predefine the array length
-      : new obj.constructor();
-    var finished;
-
-    if (!pending) {
-      setImmediate(function(){
-        done(null, results)
-      });
-      return;
-    }
-
-    // prepopulate object keys to preserve key ordering
-    if (!isArray) {
-      for (var i = 0; i < pending; i++) {
-        results[keys[i]] = undefined;
-      }
-    }
-
-    for (var i = 0; i < keys.length; i++) {
-      run(obj[keys[i]], keys[i]);
-    }
-
-    function run(fn, key) {
-      if (finished) return;
-      try {
-        fn = toThunk(fn, ctx);
-
-        if ('function' != typeof fn) {
-          results[key] = fn;
-          return --pending || done(null, results);
-        }
-
-        fn.call(ctx, function(err, res){
-          if (finished) return;
-
-          if (err) {
-            finished = true;
-            return done(err);
-          }
-
-          results[key] = res;
-          --pending || done(null, results);
-        });
-      } catch (err) {
-        finished = true;
-        done(err);
-      }
-    }
-  }
-}
-
-/**
- * Convert `promise` to a thunk.
- *
- * @param {Object} promise
- * @return {Function}
- * @api private
- */
-
-function promiseToThunk(promise) {
-  return function(fn){
-    promise.then(function(res) {
-      fn(null, res);
-    }, fn);
-  }
-}
-
-/**
- * Check if `obj` is a promise.
- *
- * @param {Object} obj
- * @return {Boolean}
- * @api private
- */
-
-function isPromise(obj) {
-  return obj && 'function' == typeof obj.then;
-}
-
-/**
- * Check if `obj` is a generator.
- *
- * @param {Mixed} obj
- * @return {Boolean}
- * @api private
- */
-
-function isGenerator(obj) {
-  return obj && 'function' == typeof obj.next && 'function' == typeof obj.throw;
-}
-
-/**
- * Check if `obj` is a generator function.
- *
- * @param {Mixed} obj
- * @return {Boolean}
- * @api private
- */
-
-function isGeneratorFunction(obj) {
-  return obj && obj.constructor && 'GeneratorFunction' == obj.constructor.name;
-}
-
-/**
- * Check for plain object.
- *
- * @param {Mixed} val
- * @return {Boolean}
- * @api private
- */
-
-function isObject(val) {
-  return val && Object == val.constructor;
-}
-
-/**
- * Throw `err` in a new stack.
- *
- * This is used when co() is invoked
- * without supplying a callback, which
- * should only be for demonstrational
- * purposes.
- *
- * @param {Error} err
- * @api private
- */
-
-function error(err) {
-  if (!err) return;
-  setImmediate(function(){
-    throw err;
-  });
-}
-
-},{}],22:[function(require,module,exports){
+},{"buffer":8}],20:[function(require,module,exports){
 'use strict';
 
 /*
@@ -5129,7 +4680,7 @@ function collapse(value) {
 
 module.exports = collapse;
 
-},{}],23:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 
 /**
  * This is the web browser implementation of `debug()`.
@@ -5299,7 +4850,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-},{"./debug":24}],24:[function(require,module,exports){
+},{"./debug":22}],22:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -5498,7 +5049,307 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":30}],25:[function(require,module,exports){
+},{"ms":29}],23:[function(require,module,exports){
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+function EventEmitter() {
+  this._events = this._events || {};
+  this._maxListeners = this._maxListeners || undefined;
+}
+module.exports = EventEmitter;
+
+// Backwards-compat with node 0.10.x
+EventEmitter.EventEmitter = EventEmitter;
+
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._maxListeners = undefined;
+
+// By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+EventEmitter.defaultMaxListeners = 10;
+
+// Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
+EventEmitter.prototype.setMaxListeners = function(n) {
+  if (!isNumber(n) || n < 0 || isNaN(n))
+    throw TypeError('n must be a positive number');
+  this._maxListeners = n;
+  return this;
+};
+
+EventEmitter.prototype.emit = function(type) {
+  var er, handler, len, args, i, listeners;
+
+  if (!this._events)
+    this._events = {};
+
+  // If there is no 'error' event listener then throw.
+  if (type === 'error') {
+    if (!this._events.error ||
+        (isObject(this._events.error) && !this._events.error.length)) {
+      er = arguments[1];
+      if (er instanceof Error) {
+        throw er; // Unhandled 'error' event
+      }
+      throw TypeError('Uncaught, unspecified "error" event.');
+    }
+  }
+
+  handler = this._events[type];
+
+  if (isUndefined(handler))
+    return false;
+
+  if (isFunction(handler)) {
+    switch (arguments.length) {
+      // fast cases
+      case 1:
+        handler.call(this);
+        break;
+      case 2:
+        handler.call(this, arguments[1]);
+        break;
+      case 3:
+        handler.call(this, arguments[1], arguments[2]);
+        break;
+      // slower
+      default:
+        args = Array.prototype.slice.call(arguments, 1);
+        handler.apply(this, args);
+    }
+  } else if (isObject(handler)) {
+    args = Array.prototype.slice.call(arguments, 1);
+    listeners = handler.slice();
+    len = listeners.length;
+    for (i = 0; i < len; i++)
+      listeners[i].apply(this, args);
+  }
+
+  return true;
+};
+
+EventEmitter.prototype.addListener = function(type, listener) {
+  var m;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events)
+    this._events = {};
+
+  // To avoid recursion in the case that type === "newListener"! Before
+  // adding it to the listeners, first emit "newListener".
+  if (this._events.newListener)
+    this.emit('newListener', type,
+              isFunction(listener.listener) ?
+              listener.listener : listener);
+
+  if (!this._events[type])
+    // Optimize the case of one listener. Don't need the extra array object.
+    this._events[type] = listener;
+  else if (isObject(this._events[type]))
+    // If we've already got an array, just append.
+    this._events[type].push(listener);
+  else
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+
+  // Check for listener leak
+  if (isObject(this._events[type]) && !this._events[type].warned) {
+    if (!isUndefined(this._maxListeners)) {
+      m = this._maxListeners;
+    } else {
+      m = EventEmitter.defaultMaxListeners;
+    }
+
+    if (m && m > 0 && this._events[type].length > m) {
+      this._events[type].warned = true;
+      console.error('(node) warning: possible EventEmitter memory ' +
+                    'leak detected. %d listeners added. ' +
+                    'Use emitter.setMaxListeners() to increase limit.',
+                    this._events[type].length);
+      if (typeof console.trace === 'function') {
+        // not supported in IE 10
+        console.trace();
+      }
+    }
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.once = function(type, listener) {
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  var fired = false;
+
+  function g() {
+    this.removeListener(type, g);
+
+    if (!fired) {
+      fired = true;
+      listener.apply(this, arguments);
+    }
+  }
+
+  g.listener = listener;
+  this.on(type, g);
+
+  return this;
+};
+
+// emits a 'removeListener' event iff the listener was removed
+EventEmitter.prototype.removeListener = function(type, listener) {
+  var list, position, length, i;
+
+  if (!isFunction(listener))
+    throw TypeError('listener must be a function');
+
+  if (!this._events || !this._events[type])
+    return this;
+
+  list = this._events[type];
+  length = list.length;
+  position = -1;
+
+  if (list === listener ||
+      (isFunction(list.listener) && list.listener === listener)) {
+    delete this._events[type];
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+
+  } else if (isObject(list)) {
+    for (i = length; i-- > 0;) {
+      if (list[i] === listener ||
+          (list[i].listener && list[i].listener === listener)) {
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0)
+      return this;
+
+    if (list.length === 1) {
+      list.length = 0;
+      delete this._events[type];
+    } else {
+      list.splice(position, 1);
+    }
+
+    if (this._events.removeListener)
+      this.emit('removeListener', type, listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.removeAllListeners = function(type) {
+  var key, listeners;
+
+  if (!this._events)
+    return this;
+
+  // not listening for removeListener, no need to emit
+  if (!this._events.removeListener) {
+    if (arguments.length === 0)
+      this._events = {};
+    else if (this._events[type])
+      delete this._events[type];
+    return this;
+  }
+
+  // emit removeListener for all listeners on all events
+  if (arguments.length === 0) {
+    for (key in this._events) {
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+    this.removeAllListeners('removeListener');
+    this._events = {};
+    return this;
+  }
+
+  listeners = this._events[type];
+
+  if (isFunction(listeners)) {
+    this.removeListener(type, listeners);
+  } else if (listeners) {
+    // LIFO order
+    while (listeners.length)
+      this.removeListener(type, listeners[listeners.length - 1]);
+  }
+  delete this._events[type];
+
+  return this;
+};
+
+EventEmitter.prototype.listeners = function(type) {
+  var ret;
+  if (!this._events || !this._events[type])
+    ret = [];
+  else if (isFunction(this._events[type]))
+    ret = [this._events[type]];
+  else
+    ret = this._events[type].slice();
+  return ret;
+};
+
+EventEmitter.prototype.listenerCount = function(type) {
+  if (this._events) {
+    var evlistener = this._events[type];
+
+    if (isFunction(evlistener))
+      return 1;
+    else if (evlistener)
+      return evlistener.length;
+  }
+  return 0;
+};
+
+EventEmitter.listenerCount = function(emitter, type) {
+  return emitter.listenerCount(type);
+};
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+
+},{}],24:[function(require,module,exports){
 'use strict';
 
 var hasOwn = Object.prototype.hasOwnProperty;
@@ -5586,7 +5437,7 @@ module.exports = function extend() {
 };
 
 
-},{}],26:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -5672,7 +5523,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],27:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -5697,7 +5548,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],28:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 /**
@@ -5750,7 +5601,7 @@ function longestStreak(value, character) {
 
 module.exports = longestStreak;
 
-},{}],29:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 /*
@@ -6036,7 +5887,7 @@ function markdownTable(table, options) {
 
 module.exports = markdownTable;
 
-},{}],30:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -6163,7 +6014,30 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],31:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
+var wrappy = require('wrappy')
+module.exports = wrappy(once)
+
+once.proto = once(function () {
+  Object.defineProperty(Function.prototype, 'once', {
+    value: function () {
+      return once(this)
+    },
+    configurable: true
+  })
+})
+
+function once (fn) {
+  var f = function () {
+    if (f.called) return f.value
+    f.called = true
+    return f.value = fn.apply(this, arguments)
+  }
+  f.called = false
+  return f
+}
+
+},{"wrappy":57}],31:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -6869,43 +6743,39 @@ function wrapper(value, options) {
 
 module.exports = wrapper;
 
-},{"character-entities":17,"character-entities-legacy":15,"character-reference-invalid":19}],32:[function(require,module,exports){
+},{"character-entities":16,"character-entities-legacy":14,"character-reference-invalid":18}],32:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015-2016 Titus Wormer
  * @license MIT
- * @module remark
- * @version 4.1.2
- * @fileoverview Markdown processor powered by plugins.
+ * @module remark:parse
+ * @fileoverview Markdown parser.
  */
 
 'use strict';
 
 /* eslint-env commonjs */
 
-/*
- * Dependencies.
+/* Dependencies. */
+var unherit = require('unherit');
+var Parser = require('./lib/parser.js');
+
+/**
+ * Attacher.
+ *
+ * @param {unified} processor - Unified processor.
  */
+function parse(processor) {
+    processor.Parser = unherit(Parser);
+}
 
-var unified = require('unified');
-var Parser = require('./lib/parse.js');
-var Compiler = require('./lib/stringify.js');
-var escape = require('./lib/escape.json');
+/* Patch `Parser`. */
+parse.Parser = Parser;
 
-/*
- * Exports.
- */
+/* Expose */
+module.exports = parse;
 
-module.exports = unified({
-    'name': 'mdast',
-    'Parser': Parser,
-    'Compiler': Compiler,
-    'data': {
-        'escape': escape
-    }
-});
-
-},{"./lib/escape.json":35,"./lib/parse.js":36,"./lib/stringify.js":37,"unified":48}],33:[function(require,module,exports){
+},{"./lib/parser.js":36,"unherit":49}],33:[function(require,module,exports){
 module.exports=[
     "article",
     "header",
@@ -6964,50 +6834,22 @@ module.exports=[
  * @author Titus Wormer
  * @copyright 2015-2016 Titus Wormer
  * @license MIT
- * @module remark:defaults
- * @version 4.1.2
- * @fileoverview Default values for parse and
- *  stringification settings.
+ * @module remark:parse:defaults
+ * @fileoverview Default options for `parse`.
  */
 
 'use strict';
 
 /* eslint-env commonjs */
 
-/*
- * Note that `stringify.entities` is a string.
- */
-
 module.exports = {
-    'parse': {
-        'position': true,
-        'gfm': true,
-        'yaml': true,
-        'commonmark': false,
-        'footnotes': false,
-        'pedantic': false,
-        'breaks': false
-    },
-    'stringify': {
-        'gfm': true,
-        'commonmark': false,
-        'pedantic': false,
-        'entities': 'false',
-        'setext': false,
-        'closeAtx': false,
-        'looseTable': false,
-        'spacedTable': true,
-        'incrementListMarker': true,
-        'fences': false,
-        'fence': '`',
-        'bullet': '-',
-        'listItemIndent': 'tab',
-        'rule': '*',
-        'ruleSpaces': true,
-        'ruleRepetition': 3,
-        'strong': '*',
-        'emphasis': '_'
-    }
+    'position': true,
+    'gfm': true,
+    'yaml': true,
+    'commonmark': false,
+    'footnotes': false,
+    'pedantic': false,
+    'breaks': false
 };
 
 },{}],35:[function(require,module,exports){
@@ -7092,10 +6934,8 @@ module.exports={
  * @author Titus Wormer
  * @copyright 2015-2016 Titus Wormer
  * @license MIT
- * @module remark:parse
- * @version 4.1.2
- * @fileoverview Parse a markdown document into an
- *   abstract syntax tree.
+ * @module remark:parser
+ * @fileoverview Markdown parser.
  */
 
 'use strict';
@@ -7113,21 +6953,15 @@ var trimTrailingLines = require('trim-trailing-lines');
 var extend = require('extend');
 var vfileLocation = require('vfile-location');
 var removePosition = require('unist-util-remove-position');
-var utilities = require('./utilities.js');
-var defaultOptions = require('./defaults.js').parse;
+var collapseWhiteSpace = require('collapse-white-space');
+var defaultOptions = require('./defaults.js');
+var escapes = require('./escapes.json');
 var blockElements = require('./block-elements.json');
 
 /*
  * Methods.
  */
 
-var raise = utilities.raise;
-var clean = utilities.clean;
-var validate = utilities.validate;
-var normalize = utilities.normalizeIdentifier;
-var stateToggler = utilities.stateToggler;
-var mergeable = utilities.mergeable;
-var MERGEABLE_NODES = utilities.MERGEABLE_NODES;
 var has = {}.hasOwnProperty;
 
 /*
@@ -7167,6 +7001,7 @@ var EXPRESSION_HTML_LINK_OPEN = /^<a /i;
 var EXPRESSION_HTML_LINK_CLOSE = /^<\/a>/i;
 var EXPRESSION_LOOSE_LIST_ITEM = /\n\n(?!\s*$)/;
 var EXPRESSION_TASK_ITEM = /^\[([\ \t]|x|X)\][\ \t]/;
+var EXPRESSION_LINE_BREAKS = /\r\n|\r/g;
 
 /*
  * Characters.
@@ -7570,6 +7405,133 @@ function isUnclosedURLCharacter(character) {
 }
 
 /**
+ * Normalize an identifier.  Collapses multiple white space
+ * characters into a single space, and removes casing.
+ *
+ * @example
+ *   normalizeIdentifier('FOO\t bar'); // 'foo bar'
+ *
+ * @param {string} value - Content to normalize.
+ * @return {string} - Normalized content.
+ */
+function normalize(value) {
+    return collapseWhiteSpace(value).toLowerCase();
+}
+
+/**
+ * Construct a state `toggler`: a function which inverses
+ * `property` in context based on its current value.
+ * The by `toggler` returned function restores that value.
+ *
+ * @example
+ *   var context = {};
+ *   var key = 'foo';
+ *   var val = true;
+ *   context[key] = val;
+ *   context.enter = toggle(key, val);
+ *   context[key]; // true
+ *   var exit = context.enter();
+ *   context[key]; // false
+ *   var nested = context.enter();
+ *   context[key]; // false
+ *   nested();
+ *   context[key]; // false
+ *   exit();
+ *   context[key]; // true
+ *
+ * @param {string} key - Property to toggle.
+ * @param {boolean} state - It's default state.
+ * @return {function(): function()} - Enter.
+ */
+function toggle(key, state) {
+    /**
+     * Construct a toggler for the bound `key`.
+     *
+     * @return {Function} - Exit state.
+     */
+    function enter() {
+        var self = this;
+        var current = self[key];
+
+        self[key] = !state;
+
+        /**
+         * State canceler, cancels the state, if allowed.
+         */
+        function exit() {
+            self[key] = current;
+        }
+
+        return exit;
+    }
+
+    return enter;
+}
+
+/*
+ * Define nodes of a type which can be merged.
+ */
+
+var MERGEABLE_NODES = {};
+
+/**
+ * Check whether a node is mergeable with adjacent nodes.
+ *
+ * @param {Object} node - Node to check.
+ * @return {boolean} - Whether `node` is mergable.
+ */
+function mergeable(node) {
+    var start;
+    var end;
+
+    if (node.type !== 'text' || !node.position) {
+        return true;
+    }
+
+    start = node.position.start;
+    end = node.position.end;
+
+    /*
+     * Only merge nodes which occupy the same size as their
+     * `value`.
+     */
+
+    return start.line !== end.line ||
+        end.column - start.column === node.value.length;
+}
+
+/**
+ * Merge two text nodes: `node` into `prev`.
+ *
+ * @param {Object} prev - Preceding sibling.
+ * @param {Object} node - Following sibling.
+ * @return {Object} - `prev`.
+ */
+MERGEABLE_NODES.text = function (prev, node) {
+    prev.value += node.value;
+
+    return prev;
+};
+
+/**
+ * Merge two blockquotes: `node` into `prev`, unless in
+ * CommonMark mode.
+ *
+ * @param {Object} prev - Preceding sibling.
+ * @param {Object} node - Following sibling.
+ * @return {Object} - `prev`, or `node` in CommonMark mode.
+ */
+MERGEABLE_NODES.blockquote = function (prev, node) {
+    if (this.options.commonmark) {
+        return node;
+    }
+
+    prev.children = prev.children.concat(node.children);
+
+    return prev;
+};
+
+/**
  * Factory to create an entity decoder.
  *
  * @param {Object} context - Context to attach to, e.g.,
@@ -7885,14 +7847,14 @@ function tokenizeNewline(eat, value, silent) {
  * Tokenise an indented code block.
  *
  * @example
- *   tokenizeCode(eat, '\tfoo');
+ *   tokenizeIndentedCode(eat, '\tfoo');
  *
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
  * @return {Node?|boolean} - `code` node.
  */
-function tokenizeCode(eat, value, silent) {
+function tokenizeIndentedCode(eat, value, silent) {
     var self = this;
     var index = -1;
     var length = value.length;
@@ -7974,14 +7936,14 @@ function tokenizeCode(eat, value, silent) {
  * Tokenise a fenced code block.
  *
  * @example
- *   tokenizeFences(eat, '```js\nfoo()\n```');
+ *   tokenizeFencedCode(eat, '```js\nfoo()\n```');
  *
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
  * @return {Node?|boolean} - `code` node.
  */
-function tokenizeFences(eat, value, silent) {
+function tokenizeFencedCode(eat, value, silent) {
     var self = this;
     var settings = self.options;
     var length = value.length + 1;
@@ -8215,14 +8177,14 @@ function tokenizeFences(eat, value, silent) {
  * Tokenise an ATX-style heading.
  *
  * @example
- *   tokenizeHeading(eat, ' # foo');
+ *   tokenizeATXHeading(eat, ' # foo');
  *
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
  * @return {Node?|boolean} - `heading` node.
  */
-function tokenizeHeading(eat, value, silent) {
+function tokenizeATXHeading(eat, value, silent) {
     var self = this;
     var settings = self.options;
     var length = value.length + 1;
@@ -8364,14 +8326,14 @@ function tokenizeHeading(eat, value, silent) {
  * Tokenise a Setext-style heading.
  *
  * @example
- *   tokenizeLineHeading(eat, 'foo\n===');
+ *   tokenizeSetextHeading(eat, 'foo\n===');
  *
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
  * @return {Node?|boolean} - `heading` node.
  */
-function tokenizeLineHeading(eat, value, silent) {
+function tokenizeSetextHeading(eat, value, silent) {
     var self = this;
     var now = eat.now();
     var length = value.length;
@@ -8432,10 +8394,7 @@ function tokenizeLineHeading(eat, value, silent) {
     character = value.charAt(++index);
     marker = value.charAt(++index);
 
-    if (
-        character !== C_NEWLINE ||
-        !SETEXT_MARKERS[marker]
-    ) {
+    if (character !== C_NEWLINE || !SETEXT_MARKERS[marker]) {
         return;
     }
 
@@ -8631,10 +8590,10 @@ function tokenizeBlockquote(eat, value, silent) {
             if (
                 commonmark &&
                 (
-                    tokenizers.code.call(self, eat, rest, true) ||
-                    tokenizers.fences.call(self, eat, rest, true) ||
-                    tokenizers.heading.call(self, eat, rest, true) ||
-                    tokenizers.lineHeading.call(self, eat, rest, true) ||
+                    tokenizers.indentedCode.call(self, eat, rest, true) ||
+                    tokenizers.fencedCode.call(self, eat, rest, true) ||
+                    tokenizers.atxHeading.call(self, eat, rest, true) ||
+                    tokenizers.setextHeading.call(self, eat, rest, true) ||
                     tokenizers.thematicBreak.call(self, eat, rest, true) ||
                     tokenizers.html.call(self, eat, rest, true) ||
                     tokenizers.list.call(self, eat, rest, true)
@@ -8647,7 +8606,7 @@ function tokenizeBlockquote(eat, value, silent) {
                 !commonmark &&
                 (
                     tokenizers.definition.call(self, eat, rest, true) ||
-                    tokenizers.footnoteDefinition.call(self, eat, rest, true)
+                    tokenizers.footnote.call(self, eat, rest, true)
                 )
             ) {
                 break;
@@ -8949,7 +8908,10 @@ function tokenizeList(eat, value, silent) {
 
             if (
                 !pedantic &&
-                tokenizers.thematicBreak.call(self, eat, line, true)
+                (
+                    tokenizers.fencedCode.call(self, eat, line, true) ||
+                    tokenizers.thematicBreak.call(self, eat, line, true)
+                )
             ) {
                 break;
             }
@@ -8957,7 +8919,7 @@ function tokenizeList(eat, value, silent) {
             if (!commonmark) {
                 if (
                     tokenizers.definition.call(self, eat, line, true) ||
-                    tokenizers.footnoteDefinition.call(self, eat, line, true)
+                    tokenizers.footnote.call(self, eat, line, true)
                 ) {
                     break;
                 }
@@ -8979,8 +8941,8 @@ function tokenizeList(eat, value, silent) {
         'children': []
     });
 
-    enterTop = self.exitTop();
-    exitBlockquote = self.enterBlockquote();
+    enterTop = self.enterList();
+    exitBlockquote = self.enterBlock();
     isLoose = false;
     index = -1;
     length = items.length;
@@ -9473,14 +9435,14 @@ function eatHTMLOpeningTag(value, isBlock) {
  * Tokenise HTML.
  *
  * @example
- *   tokenizeHTML(eat, '<span>foo</span>');
+ *   tokenizeBlockHTML(eat, '<span>foo</span>');
  *
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
  * @return {Node?|boolean} - `html` node.
  */
-function tokenizeHTML(eat, value, silent) {
+function tokenizeBlockHTML(eat, value, silent) {
     var self = this;
     var index = 0;
     var length = value.length;
@@ -9557,8 +9519,8 @@ function tokenizeHTML(eat, value, silent) {
  *   var value = '[foo]: http://example.com "Example Domain"';
  *   tokenizeDefinition(eat, value);
  *
- * @property {boolean} onlyAtTop
- * @property {boolean} notInBlockquote
+ * @property {boolean} notInList
+ * @property {boolean} notInBlock
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
@@ -9804,8 +9766,8 @@ function tokenizeDefinition(eat, value, silent) {
     }
 }
 
-tokenizeDefinition.onlyAtTop = true;
-tokenizeDefinition.notInBlockquote = true;
+tokenizeDefinition.notInList = true;
+tokenizeDefinition.notInBlock = true;
 
 /**
  * Tokenise YAML front matter.
@@ -9880,8 +9842,8 @@ tokenizeYAMLFrontMatter.onlyAtStart = true;
  * @example
  *   tokenizeFootnoteDefinition(eat, '[^foo]: Bar.');
  *
- * @property {boolean} onlyAtTop
- * @property {boolean} notInBlockquote
+ * @property {boolean} notInList
+ * @property {boolean} notInBlock
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
@@ -10042,8 +10004,8 @@ function tokenizeFootnoteDefinition(eat, value, silent) {
     );
 }
 
-tokenizeFootnoteDefinition.onlyAtTop = true;
-tokenizeFootnoteDefinition.notInBlockquote = true;
+tokenizeFootnoteDefinition.notInList = true;
+tokenizeFootnoteDefinition.notInBlock = true;
 
 /**
  * Tokenise a table.
@@ -10051,7 +10013,7 @@ tokenizeFootnoteDefinition.notInBlockquote = true;
  * @example
  *   tokenizeTable(eat, ' | foo |\n | --- |\n | bar |');
  *
- * @property {boolean} onlyAtTop
+ * @property {boolean} notInList
  * @param {function(string)} eat - Eater.
  * @param {string} value - Rest of content.
  * @param {boolean?} [silent] - Whether this is a dry run.
@@ -10325,7 +10287,7 @@ function tokenizeTable(eat, value, silent) {
     return table;
 }
 
-tokenizeTable.onlyAtTop = true;
+tokenizeTable.notInList = true;
 
 /**
  * Tokenise a paragraph node.
@@ -10409,8 +10371,8 @@ function tokenizeParagraph(eat, value, silent) {
 
         if (
             tokenizers.thematicBreak.call(self, eat, subvalue, true) ||
-            tokenizers.heading.call(self, eat, subvalue, true) ||
-            tokenizers.fences.call(self, eat, subvalue, true) ||
+            tokenizers.atxHeading.call(self, eat, subvalue, true) ||
+            tokenizers.fencedCode.call(self, eat, subvalue, true) ||
             tokenizers.blockquote.call(self, eat, subvalue, true) ||
             tokenizers.html.call(self, eat, subvalue, true)
         ) {
@@ -10424,9 +10386,9 @@ function tokenizeParagraph(eat, value, silent) {
         if (
             !commonmark &&
             (
-                tokenizers.lineHeading.call(self, eat, subvalue, true) ||
+                tokenizers.setextHeading.call(self, eat, subvalue, true) ||
                 tokenizers.definition.call(self, eat, subvalue, true) ||
-                tokenizers.footnoteDefinition.call(self, eat, subvalue, true)
+                tokenizers.footnote.call(self, eat, subvalue, true)
             )
         ) {
             break;
@@ -10492,7 +10454,7 @@ function tokenizeText(eat, value, silent) {
     while (++index < length) {
         name = methods[index];
 
-        if (name === 'inlineText' || !tokenizers[name]) {
+        if (name === 'text' || !tokenizers[name]) {
             continue;
         }
 
@@ -10709,7 +10671,7 @@ function renderListItem(value, position) {
  */
 function renderFootnoteDefinition(identifier, value, position) {
     var self = this;
-    var exitBlockquote = self.enterBlockquote();
+    var exitBlockquote = self.enterBlock();
     var node;
 
     node = {
@@ -10754,7 +10716,7 @@ function renderHeading(value, depth, position) {
  */
 function renderBlockquote(value, now) {
     var self = this;
-    var exitBlockquote = self.enterBlockquote();
+    var exitBlockquote = self.enterBlock();
     var node = {
         'type': T_BLOCKQUOTE,
         'children': self.tokenizeBlock(value, now)
@@ -10824,12 +10786,12 @@ function renderRaw(type, value) {
  * @param {boolean} isLink - Whether linking to a document
  *   or an image.
  * @param {string} url - URI reference.
- * @param {string} text - Content.
+ * @param {string} content - Content.
  * @param {string?} title - Title.
  * @param {Object} position - Location of link.
  * @return {Object} - `link` or `image` node.
  */
-function renderLink(isLink, url, text, title, position) {
+function renderLink(isLink, url, content, title, position) {
     var self = this;
     var exitLink = self.enterLink();
     var node;
@@ -10841,11 +10803,11 @@ function renderLink(isLink, url, text, title, position) {
 
     if (isLink) {
         node.url = url;
-        node.children = self.tokenizeInline(text, position);
+        node.children = self.tokenizeInline(content, position);
     } else {
         node.url = url;
-        node.alt = text ?
-            self.decode.raw(self.descape(text), position) :
+        node.alt = content ?
+            self.decode.raw(self.descape(content), position) :
             null;
     }
 
@@ -11290,7 +11252,7 @@ function locateTag(value, fromIndex) {
  * Tokenise an HTML tag.
  *
  * @example
- *   tokenizeTag(eat, '<span foo="bar">');
+ *   tokenizeInlineHTML(eat, '<span foo="bar">');
  *
  * @property {Function} locator - Tag locator.
  * @param {function(string)} eat - Eater.
@@ -11298,7 +11260,7 @@ function locateTag(value, fromIndex) {
  * @param {boolean?} [silent] - Whether this is a dry run.
  * @return {Node?|boolean} - `html` node.
  */
-function tokenizeTag(eat, value, silent) {
+function tokenizeInlineHTML(eat, value, silent) {
     var self = this;
     var subvalue = eatHTMLComment(value, self.options) ||
         eatHTMLCDATA(value) ||
@@ -11325,7 +11287,7 @@ function tokenizeTag(eat, value, silent) {
     return eat(subvalue)(self.renderRaw(T_HTML, subvalue));
 }
 
-tokenizeTag.locator = locateTag;
+tokenizeInlineHTML.locator = locateTag;
 
 /**
  * Find a possible link.
@@ -11731,7 +11693,7 @@ function tokenizeReference(eat, value, silent) {
     var intro = EMPTY;
     var type = T_LINK;
     var referenceType = REFERENCE_TYPE_SHORTCUT;
-    var text;
+    var content;
     var identifier;
     var now;
     var node;
@@ -11801,7 +11763,7 @@ function tokenizeReference(eat, value, silent) {
         index++;
     }
 
-    subvalue = text = queue;
+    subvalue = content = queue;
     character = value.charAt(index);
 
     if (character !== C_BRACKET_CLOSE) {
@@ -11826,11 +11788,11 @@ function tokenizeReference(eat, value, silent) {
     character = value.charAt(index);
 
     if (character !== C_BRACKET_OPEN) {
-        if (!text) {
+        if (!content) {
             return;
         }
 
-        identifier = text;
+        identifier = content;
     } else {
         identifier = EMPTY;
         queue += character;
@@ -11887,7 +11849,7 @@ function tokenizeReference(eat, value, silent) {
     if (type === T_FOOTNOTE && referenceType !== REFERENCE_TYPE_SHORTCUT) {
         type = T_LINK;
         intro = C_BRACKET_OPEN + C_CARET;
-        text = C_CARET + text;
+        content = C_CARET + content;
     }
 
     subvalue = intro + subvalue;
@@ -11901,14 +11863,14 @@ function tokenizeReference(eat, value, silent) {
         return true;
     }
 
-    if (type === T_FOOTNOTE && text.indexOf(C_SPACE) !== -1) {
-        return eat(subvalue)(self.renderFootnote(text, eat.now()));
+    if (type === T_FOOTNOTE && content.indexOf(C_SPACE) !== -1) {
+        return eat(subvalue)(self.renderFootnote(content, eat.now()));
     }
 
     now = eat.now();
     now.column += intro.length;
     now.offset += intro.length;
-    identifier = referenceType === REFERENCE_TYPE_FULL ? identifier : text;
+    identifier = referenceType === REFERENCE_TYPE_FULL ? identifier : content;
 
     node = {
         'type': type + 'Reference',
@@ -11921,10 +11883,10 @@ function tokenizeReference(eat, value, silent) {
 
     if (type === T_LINK) {
         exitLink = self.enterLink();
-        node.children = self.tokenizeInline(text, now);
+        node.children = self.tokenizeInline(content, now);
         exitLink();
     } else if (type === T_IMAGE) {
-        node.alt = self.decode.raw(self.descape(text), now) || null;
+        node.alt = self.decode.raw(self.descape(content), now) || null;
     }
 
     return eat(subvalue)(node);
@@ -12444,15 +12406,14 @@ tokenizeBreak.locator = locateBreak;
  * @param {Object?} [options] - Passed to
  *   `Parser#setOptions()`.
  */
-function Parser(file, options, processor) {
+function Parser(file, options) {
     var self = this;
 
     self.file = file;
     self.inLink = false;
-    self.atTop = true;
+    self.inBlock = false;
+    self.inList = false;
     self.atStart = true;
-    self.inBlockquote = false;
-    self.data = processor.data;
     self.toOffset = vfileLocation(file).toOffset;
 
     self.descape = descapeFactory(self, 'escape');
@@ -12478,7 +12439,6 @@ function Parser(file, options, processor) {
  */
 Parser.prototype.setOptions = function (options) {
     var self = this;
-    var escape = self.data.escape;
     var current = self.options;
     var key;
 
@@ -12487,21 +12447,37 @@ Parser.prototype.setOptions = function (options) {
     } else if (typeof options === 'object') {
         options = extend({}, options);
     } else {
-        raise(options, 'options');
+        throw new Error(
+            'Invalid value `' + options + '` ' +
+            'for setting `options`'
+        );
     }
 
     for (key in defaultOptions) {
-        validate.boolean(options, key, current[key]);
+        var value = options[key];
+
+        if (value === null || value === undefined) {
+            value = current[key];
+        }
+
+        if (typeof value !== 'boolean') {
+            throw new Error(
+                'Invalid value `' + value + '` ' +
+                'for setting `options.' + key + '`'
+            );
+        }
+
+        options[key] = value;
     }
 
     self.options = options;
 
     if (options.commonmark) {
-        self.escape = escape.commonmark;
+        self.escape = escapes.commonmark;
     } else if (options.gfm) {
-        self.escape = escape.gfm;
+        self.escape = escapes.gfm;
     } else {
-        self.escape = escape.default;
+        self.escape = escapes.default;
     }
 
     return self;
@@ -12576,8 +12552,23 @@ Parser.prototype.getIndent = function (start) {
  */
 Parser.prototype.parse = function () {
     var self = this;
-    var value = clean(String(self.file));
+    var value = String(self.file);
+    var column = 1;
     var node;
+
+    /*
+     * Clean non-unix newlines: `\r\n` and `\r` are all
+     * changed to `\n`.  This should not affect positional
+     * information.
+     */
+
+    value = value.replace(EXPRESSION_LINE_BREAKS, C_NEWLINE);
+
+    if (value.charCodeAt(0) === 0xFEFF) {
+        value = value.slice(1);
+        column++;
+        self.offset++;
+    }
 
     /*
      * Add an `offset` matrix, used to keep track of
@@ -12586,7 +12577,10 @@ Parser.prototype.parse = function () {
 
     self.offset = {};
 
-    node = self.renderBlock(T_ROOT, value);
+    node = self.renderBlock(T_ROOT, value, {
+        'line': 1,
+        'column': column
+    });
 
     node.position = {
         'start': {
@@ -12609,10 +12603,10 @@ Parser.prototype.parse = function () {
  * Enter and exit helpers.
  */
 
-Parser.prototype.enterLink = stateToggler('inLink', false);
-Parser.prototype.exitTop = stateToggler('atTop', true);
-Parser.prototype.exitStart = stateToggler('atStart', true);
-Parser.prototype.enterBlockquote = stateToggler('inBlockquote', false);
+Parser.prototype.exitStart = toggle('atStart', true);
+Parser.prototype.enterList = toggle('inList', false);
+Parser.prototype.enterLink = toggle('inLink', false);
+Parser.prototype.enterBlock = toggle('inBlock', false);
 
 /*
  * Expose helpers
@@ -12653,7 +12647,7 @@ function tokenizeFactory(type) {
      *   parser.tokenizeInline('_foo_');
      *
      * @param {string} value - Content.
-     * @param {Object?} [location] - Offset at which `value`
+     * @param {Object} location - Offset at which `value`
      *   starts.
      * @return {Array.<Object>} - Nodes.
      */
@@ -12663,8 +12657,8 @@ function tokenizeFactory(type) {
         var tokens = [];
         var methods = self[type + 'Methods'];
         var tokenizers = self[type + 'Tokenizers'];
-        var line = location ? location.line : 1;
-        var column = location ? location.column : 1;
+        var line = location.line;
+        var column = location.column;
         var add;
         var index;
         var length;
@@ -12931,8 +12925,7 @@ function tokenizeFactory(type) {
 
         /**
          * Remove `subvalue` from `value`.
-         * Expects `subvalue` to be at the start from
-         * `value`, and applies no validation.
+         * `subvalue` must be at the start of `value`.
          *
          * @example
          *   eat('foo')({type: 'text', value: 'foo'});
@@ -13050,8 +13043,8 @@ function tokenizeFactory(type) {
                 if (
                     method &&
                     (!method.onlyAtStart || self.atStart) &&
-                    (!method.onlyAtTop || self.atTop) &&
-                    (!method.notInBlockquote || !self.inBlockquote) &&
+                    (!method.notInList || !self.inList) &&
+                    (!method.notInBlock || !self.inBlock) &&
                     (!method.notInLink || !self.inLink)
                 ) {
                     valueLength = value.length;
@@ -13094,16 +13087,16 @@ function tokenizeFactory(type) {
 Parser.prototype.blockTokenizers = {
     'yamlFrontMatter': tokenizeYAMLFrontMatter,
     'newline': tokenizeNewline,
-    'code': tokenizeCode,
-    'fences': tokenizeFences,
-    'heading': tokenizeHeading,
-    'lineHeading': tokenizeLineHeading,
-    'thematicBreak': tokenizeThematicBreak,
+    'indentedCode': tokenizeIndentedCode,
+    'fencedCode': tokenizeFencedCode,
     'blockquote': tokenizeBlockquote,
+    'atxHeading': tokenizeATXHeading,
+    'thematicBreak': tokenizeThematicBreak,
     'list': tokenizeList,
-    'html': tokenizeHTML,
+    'setextHeading': tokenizeSetextHeading,
+    'html': tokenizeBlockHTML,
+    'footnote': tokenizeFootnoteDefinition,
     'definition': tokenizeDefinition,
-    'footnoteDefinition': tokenizeFootnoteDefinition,
     'table': tokenizeTable,
     'paragraph': tokenizeParagraph
 };
@@ -13115,17 +13108,16 @@ Parser.prototype.blockTokenizers = {
 Parser.prototype.blockMethods = [
     'yamlFrontMatter',
     'newline',
-    'code',
-    'fences',
+    'indentedCode',
+    'fencedCode',
     'blockquote',
-    'heading',
+    'atxHeading',
     'thematicBreak',
     'list',
-    'lineHeading',
+    'setextHeading',
     'html',
-    'footnoteDefinition',
+    'footnote',
     'definition',
-    'looseTable',
     'table',
     'paragraph'
 ];
@@ -13151,15 +13143,15 @@ Parser.prototype.inlineTokenizers = {
     'escape': tokenizeEscape,
     'autoLink': tokenizeAutoLink,
     'url': tokenizeURL,
-    'tag': tokenizeTag,
+    'html': tokenizeInlineHTML,
     'link': tokenizeLink,
     'reference': tokenizeReference,
     'strong': tokenizeStrong,
     'emphasis': tokenizeEmphasis,
     'deletion': tokenizeDeletion,
-    'inlineCode': tokenizeInlineCode,
+    'code': tokenizeInlineCode,
     'break': tokenizeBreak,
-    'inlineText': tokenizeText
+    'text': tokenizeText
 };
 
 /*
@@ -13170,16 +13162,15 @@ Parser.prototype.inlineMethods = [
     'escape',
     'autoLink',
     'url',
-    'tag',
+    'html',
     'link',
     'reference',
-    'shortcutReference',
     'strong',
     'emphasis',
     'deletion',
-    'inlineCode',
+    'code',
     'break',
-    'inlineText'
+    'text'
 ];
 
 /**
@@ -13203,20 +13194,50 @@ Parser.prototype.tokenizeInline = tokenizeFactory(INLINE);
 Parser.prototype.tokenizeFactory = tokenizeFactory;
 
 /*
- * Expose `parse` on `module.exports`.
+ * Expose `attacher`.
  */
 
 module.exports = Parser;
 
-},{"./block-elements.json":33,"./defaults.js":34,"./utilities.js":38,"extend":25,"parse-entities":31,"repeat-string":39,"trim":46,"trim-trailing-lines":45,"unist-util-remove-position":49,"vfile-location":51}],37:[function(require,module,exports){
+},{"./block-elements.json":33,"./defaults.js":34,"./escapes.json":35,"collapse-white-space":20,"extend":24,"parse-entities":31,"repeat-string":41,"trim":48,"trim-trailing-lines":47,"unist-util-remove-position":53,"vfile-location":55}],37:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015-2016 Titus Wormer
  * @license MIT
  * @module remark:stringify
- * @version 4.1.2
- * @fileoverview Compile an abstract syntax tree into
- *   a markdown document.
+ * @fileoverview Markdown Compiler.
+ */
+
+'use strict';
+
+/* eslint-env commonjs */
+
+/* Dependencies. */
+var unherit = require('unherit');
+var Compiler = require('./lib/compiler.js');
+
+/**
+ * Attacher.
+ *
+ * @param {unified} processor - Unified processor.
+ */
+function stringify(processor) {
+    processor.Compiler = unherit(Compiler);
+}
+
+/* Patch `Compiler`. */
+stringify.Compiler = Compiler;
+
+/* Expose. */
+module.exports = stringify;
+
+},{"./lib/compiler.js":38,"unherit":49}],38:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015-2016 Titus Wormer
+ * @license MIT
+ * @module remark:compiler
+ * @fileoverview Markdown compiler
  */
 
 'use strict';
@@ -13234,18 +13255,7 @@ var repeat = require('repeat-string');
 var extend = require('extend');
 var ccount = require('ccount');
 var longestStreak = require('longest-streak');
-var utilities = require('./utilities.js');
-var defaultOptions = require('./defaults.js').stringify;
-
-/*
- * Methods.
- */
-
-var raise = utilities.raise;
-var validate = utilities.validate;
-var stateToggler = utilities.stateToggler;
-var mergeable = utilities.mergeable;
-var MERGEABLE_NODES = utilities.MERGEABLE_NODES;
+var defaultOptions = require('./defaults.js');
 
 /*
  * Constants.
@@ -13430,6 +13440,198 @@ CHECKBOX_MAP.undefined = EMPTY;
 CHECKBOX_MAP.true = SQUARE_BRACKET_OPEN + 'x' + SQUARE_BRACKET_CLOSE + SPACE;
 CHECKBOX_MAP.false = SQUARE_BRACKET_OPEN + SPACE + SQUARE_BRACKET_CLOSE +
     SPACE;
+
+/**
+ * Throw an exception with in its `message` `value`
+ * and `name`.
+ *
+ * @param {*} value - Invalid value.
+ * @param {string} name - Setting name.
+ */
+function raise(value, name) {
+    throw new Error(
+        'Invalid value `' + value + '` ' +
+        'for setting `' + name + '`'
+    );
+}
+
+/**
+ * Validate a value to be boolean. Defaults to `def`.
+ * Raises an exception with `context[name]` when not
+ * a boolean.
+ *
+ * @example
+ *   validateBoolean({foo: null}, 'foo', true) // true
+ *   validateBoolean({foo: false}, 'foo', true) // false
+ *   validateBoolean({foo: 'bar'}, 'foo', true) // Throws
+ *
+ * @throws {Error} - When a setting is neither omitted nor
+ *   a boolean.
+ * @param {Object} context - Settings.
+ * @param {string} name - Setting name.
+ * @param {boolean} def - Default value.
+ */
+function validateBoolean(context, name, def) {
+    var value = context[name];
+
+    if (value === null || value === undefined) {
+        value = def;
+    }
+
+    if (typeof value !== 'boolean') {
+        raise(value, 'options.' + name);
+    }
+
+    context[name] = value;
+}
+
+/**
+ * Validate a value to be boolean. Defaults to `def`.
+ * Raises an exception with `context[name]` when not
+ * a boolean.
+ *
+ * @example
+ *   validateNumber({foo: null}, 'foo', 1) // 1
+ *   validateNumber({foo: 2}, 'foo', 1) // 2
+ *   validateNumber({foo: 'bar'}, 'foo', 1) // Throws
+ *
+ * @throws {Error} - When a setting is neither omitted nor
+ *   a number.
+ * @param {Object} context - Settings.
+ * @param {string} name - Setting name.
+ * @param {number} def - Default value.
+ */
+function validateNumber(context, name, def) {
+    var value = context[name];
+
+    if (value === null || value === undefined) {
+        value = def;
+    }
+
+    if (typeof value !== 'number' || value !== value) {
+        raise(value, 'options.' + name);
+    }
+
+    context[name] = value;
+}
+
+/**
+ * Validate a value to be in `map`. Defaults to `def`.
+ * Raises an exception with `context[name]` when not
+ * in `map`.
+ *
+ * @example
+ *   var map = {bar: true, baz: true};
+ *   validateString({foo: null}, 'foo', 'bar', map) // 'bar'
+ *   validateString({foo: 'baz'}, 'foo', 'bar', map) // 'baz'
+ *   validateString({foo: true}, 'foo', 'bar', map) // Throws
+ *
+ * @throws {Error} - When a setting is neither omitted nor
+ *   in `map`.
+ * @param {Object} context - Settings.
+ * @param {string} name - Setting name.
+ * @param {string} def - Default value.
+ * @param {Object} map - Enum.
+ */
+function validateString(context, name, def, map) {
+    var value = context[name];
+
+    if (value === null || value === undefined) {
+        value = def;
+    }
+
+    if (!(value in map)) {
+        raise(value, 'options.' + name);
+    }
+
+    context[name] = value;
+}
+
+/*
+ * Expose `validate`.
+ */
+
+var validate = {
+    'boolean': validateBoolean,
+    'string': validateString,
+    'number': validateNumber
+};
+
+/**
+ * Construct a state `toggler`: a function which inverses
+ * `property` in context based on its current value.
+ * The by `toggler` returned function restores that value.
+ *
+ * @example
+ *   var context = {};
+ *   var key = 'foo';
+ *   var val = true;
+ *   context[key] = val;
+ *   context.enter = toggler(key, val);
+ *   context[key]; // true
+ *   var exit = context.enter();
+ *   context[key]; // false
+ *   var nested = context.enter();
+ *   context[key]; // false
+ *   nested();
+ *   context[key]; // false
+ *   exit();
+ *   context[key]; // true
+ *
+ * @param {string} key - Property to toggle.
+ * @param {boolean} state - It's default state.
+ * @return {function(): function()} - Enter.
+ */
+function toggler(key, state) {
+    /**
+     * Construct a toggler for the bound `key`.
+     *
+     * @return {Function} - Exit state.
+     */
+    function enter() {
+        var self = this;
+        var current = self[key];
+
+        self[key] = !state;
+
+        /**
+         * State canceler, cancels the state, if allowed.
+         */
+        function exit() {
+            self[key] = current;
+        }
+
+        return exit;
+    }
+
+    return enter;
+}
+
+/**
+ * Check whether a node is mergeable with adjacent nodes.
+ *
+ * @param {Object} node - Node to check.
+ * @return {boolean} - Whether `node` is mergable.
+ */
+function mergeable(node) {
+    var start;
+    var end;
+
+    if (node.type !== 'text' || !node.position) {
+        return true;
+    }
+
+    start = node.position.start;
+    end = node.position.end;
+
+    /*
+     * Only merge nodes which occupy the same size as their
+     * `value`.
+     */
+
+    return start.line !== end.line ||
+        end.column - start.column === node.value.length;
+}
 
 /**
  * Encode noop.
@@ -14089,7 +14291,10 @@ compilerPrototype.setOptions = function (options) {
     } else if (typeof options === 'object') {
         options = extend({}, options);
     } else {
-        raise(options, 'options');
+        throw new Error(
+            'Invalid value `' + options + '` ' +
+            'for setting `options`'
+        );
     }
 
     for (key in defaultOptions) {
@@ -14116,8 +14321,8 @@ compilerPrototype.setOptions = function (options) {
  * Enter and exit helpers.
  */
 
-compilerPrototype.enterLink = stateToggler('inLink', false);
-compilerPrototype.enterTable = stateToggler('inTable', false);
+compilerPrototype.enterLink = toggler('inLink', false);
+compilerPrototype.enterTable = toggler('inTable', false);
 
 /**
  * Shortcut and collapsed link references need no escaping
@@ -14231,11 +14436,11 @@ compilerPrototype.all = function (parent) {
 
         if (
             node.type === next.type &&
-            node.type in MERGEABLE_NODES &&
+            node.type === 'text' &&
             mergeable(node) &&
             mergeable(next)
         ) {
-            node = MERGEABLE_NODES[node.type].call(self, node, next);
+            node.value += next.value;
         } else {
             values.push(self.visit(node, parent));
             node = next;
@@ -15590,10 +15795,11 @@ visitors.tableCell = function (node) {
  *   // '**Foo**'
  *
  * @this {Compiler}
+ * @param {Node} node - Syntax tree.
  * @return {string} - Markdown document.
  */
-compilerPrototype.compile = function () {
-    return this.visit(this.file.namespace('mdast').tree);
+compilerPrototype.compile = function (node) {
+    return this.visit(node);
 };
 
 /*
@@ -15602,308 +15808,62 @@ compilerPrototype.compile = function () {
 
 module.exports = Compiler;
 
-},{"./defaults.js":34,"./utilities.js":38,"ccount":11,"extend":25,"longest-streak":28,"markdown-table":29,"parse-entities":31,"repeat-string":39,"stringify-entities":40}],38:[function(require,module,exports){
+},{"./defaults.js":39,"ccount":10,"extend":24,"longest-streak":27,"markdown-table":28,"parse-entities":31,"repeat-string":41,"stringify-entities":42}],39:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015-2016 Titus Wormer
  * @license MIT
- * @module remark:utilities
- * @version 4.1.2
- * @fileoverview Collection of tiny helpers useful for
- *   both parsing and compiling markdown.
+ * @module remark:stringify:defaults
+ * @fileoverview Default options for `stringify`.
  */
 
 'use strict';
 
 /* eslint-env commonjs */
 
-/*
- * Dependencies.
- */
-
-var collapseWhiteSpace = require('collapse-white-space');
-
-/*
- * Expressions.
- */
-
-var EXPRESSION_LINE_BREAKS = /\r\n|\r/g;
-var EXPRESSION_SYMBOL_FOR_NEW_LINE = /\u2424/g;
-var EXPRESSION_BOM = /^\ufeff/;
-
-/**
- * Throw an exception with in its `message` `value`
- * and `name`.
- *
- * @param {*} value - Invalid value.
- * @param {string} name - Setting name.
- */
-function raise(value, name) {
-    throw new Error(
-        'Invalid value `' + value + '` ' +
-        'for setting `' + name + '`'
-    );
-}
-
-/**
- * Validate a value to be boolean. Defaults to `def`.
- * Raises an exception with `context[name]` when not
- * a boolean.
- *
- * @example
- *   validateBoolean({foo: null}, 'foo', true) // true
- *   validateBoolean({foo: false}, 'foo', true) // false
- *   validateBoolean({foo: 'bar'}, 'foo', true) // Throws
- *
- * @throws {Error} - When a setting is neither omitted nor
- *   a boolean.
- * @param {Object} context - Settings.
- * @param {string} name - Setting name.
- * @param {boolean} def - Default value.
- */
-function validateBoolean(context, name, def) {
-    var value = context[name];
-
-    if (value === null || value === undefined) {
-        value = def;
-    }
-
-    if (typeof value !== 'boolean') {
-        raise(value, 'options.' + name);
-    }
-
-    context[name] = value;
-}
-
-/**
- * Validate a value to be boolean. Defaults to `def`.
- * Raises an exception with `context[name]` when not
- * a boolean.
- *
- * @example
- *   validateNumber({foo: null}, 'foo', 1) // 1
- *   validateNumber({foo: 2}, 'foo', 1) // 2
- *   validateNumber({foo: 'bar'}, 'foo', 1) // Throws
- *
- * @throws {Error} - When a setting is neither omitted nor
- *   a number.
- * @param {Object} context - Settings.
- * @param {string} name - Setting name.
- * @param {number} def - Default value.
- */
-function validateNumber(context, name, def) {
-    var value = context[name];
-
-    if (value === null || value === undefined) {
-        value = def;
-    }
-
-    if (typeof value !== 'number' || value !== value) {
-        raise(value, 'options.' + name);
-    }
-
-    context[name] = value;
-}
-
-/**
- * Validate a value to be in `map`. Defaults to `def`.
- * Raises an exception with `context[name]` when not
- * not in `map`.
- *
- * @example
- *   var map = {bar: true, baz: true};
- *   validateString({foo: null}, 'foo', 'bar', map) // 'bar'
- *   validateString({foo: 'baz'}, 'foo', 'bar', map) // 'baz'
- *   validateString({foo: true}, 'foo', 'bar', map) // Throws
- *
- * @throws {Error} - When a setting is neither omitted nor
- *   in `map`.
- * @param {Object} context - Settings.
- * @param {string} name - Setting name.
- * @param {string} def - Default value.
- * @param {Object} map - Enum.
- */
-function validateString(context, name, def, map) {
-    var value = context[name];
-
-    if (value === null || value === undefined) {
-        value = def;
-    }
-
-    if (!(value in map)) {
-        raise(value, 'options.' + name);
-    }
-
-    context[name] = value;
-}
-
-/**
- * Clean a string in preperation of parsing.
- *
- * @example
- *   clean('\ufefffoo'); // 'foo'
- *   clean('foo\r\nbar'); // 'foo\nbar'
- *   clean('foo\u2424bar'); // 'foo\nbar'
- *
- * @param {string} value - Content to clean.
- * @return {string} - Cleaned content.
- */
-function clean(value) {
-    return String(value)
-        .replace(EXPRESSION_BOM, '')
-        .replace(EXPRESSION_LINE_BREAKS, '\n')
-        .replace(EXPRESSION_SYMBOL_FOR_NEW_LINE, '\n');
-}
-
-/**
- * Normalize an identifier.  Collapses multiple white space
- * characters into a single space, and removes casing.
- *
- * @example
- *   normalizeIdentifier('FOO\t bar'); // 'foo bar'
- *
- * @param {string} value - Content to normalize.
- * @return {string} - Normalized content.
- */
-function normalizeIdentifier(value) {
-    return collapseWhiteSpace(value).toLowerCase();
-}
-
-/**
- * Construct a state `toggler`: a function which inverses
- * `property` in context based on its current value.
- * The by `toggler` returned function restores that value.
- *
- * @example
- *   var context = {};
- *   var key = 'foo';
- *   var val = true;
- *   context[key] = val;
- *   context.enter = stateToggler(key, val);
- *   context[key]; // true
- *   var exit = context.enter();
- *   context[key]; // false
- *   var nested = context.enter();
- *   context[key]; // false
- *   nested();
- *   context[key]; // false
- *   exit();
- *   context[key]; // true
- *
- * @param {string} key - Property to toggle.
- * @param {boolean} state - It's default state.
- * @return {function(): function()} - Enter.
- */
-function stateToggler(key, state) {
-    /**
-     * Construct a toggler for the bound `key`.
-     *
-     * @return {Function} - Exit state.
-     */
-    function enter() {
-        var self = this;
-        var current = self[key];
-
-        self[key] = !state;
-
-        /**
-         * State canceler, cancels the state, if allowed.
-         */
-        function exit() {
-            self[key] = current;
-        }
-
-        return exit;
-    }
-
-    return enter;
-}
-
-/*
- * Define nodes of a type which can be merged.
- */
-
-var MERGEABLE_NODES = {};
-
-/**
- * Check whether a node is mergeable with adjacent nodes.
- *
- * @param {Object} node - Node to check.
- * @return {boolean} - Whether `node` is mergable.
- */
-function mergeable(node) {
-    var start;
-    var end;
-
-    if (node.type !== 'text' || !node.position) {
-        return true;
-    }
-
-    start = node.position.start;
-    end = node.position.end;
-
-    /*
-     * Only merge nodes which occupy the same size as their
-     * `value`.
-     */
-
-    return start.line !== end.line ||
-        end.column - start.column === node.value.length;
-}
-
-/**
- * Merge two text nodes: `node` into `prev`.
- *
- * @param {Object} prev - Preceding sibling.
- * @param {Object} node - Following sibling.
- * @return {Object} - `prev`.
- */
-MERGEABLE_NODES.text = function (prev, node) {
-    prev.value += node.value;
-
-    return prev;
+module.exports = {
+    'gfm': true,
+    'commonmark': false,
+    'pedantic': false,
+    'entities': 'false',
+    'setext': false,
+    'closeAtx': false,
+    'looseTable': false,
+    'spacedTable': true,
+    'incrementListMarker': true,
+    'fences': false,
+    'fence': '`',
+    'bullet': '-',
+    'listItemIndent': 'tab',
+    'rule': '*',
+    'ruleSpaces': true,
+    'ruleRepetition': 3,
+    'strong': '*',
+    'emphasis': '_'
 };
 
+},{}],40:[function(require,module,exports){
 /**
- * Merge two blockquotes: `node` into `prev`, unless in
- * CommonMark mode.
- *
- * @param {Object} prev - Preceding sibling.
- * @param {Object} node - Following sibling.
- * @return {Object} - `prev`, or `node` in CommonMark mode.
- */
-MERGEABLE_NODES.blockquote = function (prev, node) {
-    if (this.options.commonmark) {
-        return node;
-    }
-
-    prev.children = prev.children.concat(node.children);
-
-    return prev;
-};
-
-/*
- * Expose `validate`.
+ * @author Titus Wormer
+ * @copyright 2015-2016 Titus Wormer
+ * @license MIT
+ * @module remark
+ * @fileoverview Markdown processor powered by plugins.
  */
 
-exports.validate = {
-    'boolean': validateBoolean,
-    'string': validateString,
-    'number': validateNumber
-};
+'use strict';
 
-/*
- * Expose.
- */
+/* eslint-env commonjs */
 
-exports.normalizeIdentifier = normalizeIdentifier;
-exports.clean = clean;
-exports.raise = raise;
-exports.stateToggler = stateToggler;
-exports.mergeable = mergeable;
-exports.MERGEABLE_NODES = MERGEABLE_NODES;
+/* Dependencies. */
+var unified = require('unified');
+var parse = require('remark-parse');
+var stringify = require('remark-stringify');
 
-},{"collapse-white-space":22}],39:[function(require,module,exports){
+/* Expose. */
+module.exports = unified().use(parse).use(stringify).abstract();
+
+},{"remark-parse":32,"remark-stringify":37,"unified":50}],41:[function(require,module,exports){
 /*!
  * repeat-string <https://github.com/jonschlinkert/repeat-string>
  *
@@ -15973,7 +15933,7 @@ function repeat(str, num) {
 }
 
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -16130,7 +16090,7 @@ encode.escape = escape;
 
 module.exports = encode;
 
-},{"./lib/expression.js":41,"character-entities-html4":13}],41:[function(require,module,exports){
+},{"./lib/expression.js":43,"character-entities-html4":12}],43:[function(require,module,exports){
 /* This script was generated by `script/generate-expression.js` */
 
 'use strict';
@@ -16140,7 +16100,7 @@ module.exports = encode;
 
 module.exports = /[ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿƒΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψωϑϒϖ•…′″‾⁄℘ℑℜ™ℵ←↑→↓↔↵⇐⇑⇒⇓⇔∀∂∃∅∇∈∉∋∏∑−∗√∝∞∠∧∨∩∪∫∴∼≅≈≠≡≤≥⊂⊃⊄⊆⊇⊕⊗⊥⋅⌈⌉⌊⌋〈〉◊♠♣♥♦ŒœŠšŸˆ˜   ‌‍‎‏–—‘’‚“”„†‡‰‹›€]/g;
 
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 "use strict";
 
 var StructuredSource = require('./structured-source.js')["default"];
@@ -16150,7 +16110,7 @@ module.exports = StructuredSource;
 
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{"./structured-source.js":43}],43:[function(require,module,exports){
+},{"./structured-source.js":45}],45:[function(require,module,exports){
 "use strict";
 
 var _classProps = function (child, staticProps, instanceProps) {
@@ -16235,7 +16195,7 @@ var StructuredSource = (function () {
 
 exports["default"] = StructuredSource;
 
-},{"boundary":8}],44:[function(require,module,exports){
+},{"boundary":7}],46:[function(require,module,exports){
 var traverse = module.exports = function (obj) {
     return new Traverse(obj);
 };
@@ -16551,7 +16511,7 @@ var hasOwnProperty = Object.hasOwnProperty || function (obj, key) {
     return key in obj;
 };
 
-},{}],45:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 /*
@@ -16589,7 +16549,7 @@ function trimTrailingLines(value) {
 
 module.exports = trimTrailingLines;
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 
 exports = module.exports = trim;
 
@@ -16605,7 +16565,7 @@ exports.right = function(str){
   return str.replace(/\s*$/, '');
 };
 
-},{}],47:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -16692,13 +16652,213 @@ function unherit(Super) {
 
 module.exports = unherit;
 
-},{"clone":20,"inherits":27}],48:[function(require,module,exports){
+},{"clone":19,"inherits":26}],50:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
  * @license MIT
  * @module unified
- * @fileoverview Parse / Transform / Compile / Repeat.
+ * @fileoverview Pluggable text processing interface.
+ */
+
+'use strict';
+
+/* eslint-env commonjs */
+
+/*
+ * Expose.
+ */
+
+module.exports = require('./lib/unified.js');
+
+},{"./lib/unified.js":52}],51:[function(require,module,exports){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module unified
+ * @fileoverview Middleware.  Inspired by `segmentio/ware`,
+ *   but able to change the values from transformer to
+ *   transformer.
+ */
+
+'use strict';
+
+/* eslint-env commonjs */
+
+var slice = [].slice;
+
+/**
+ * Wrap `fn`.  Can be sync or async; return a promise,
+ * receive a completion handler, return new values and
+ * errors.
+ *
+ * @param {Function} fn - Thing to wrap.
+ * @param {Function} next - Completion handler.
+ * @return {Function} - Wrapped `fn`.
+ */
+function wrap(fn, next) {
+    var invoked;
+    var failed;
+
+    /**
+     * Invoke `next`, only once.
+     * Tracks if an error is passed, too.
+     *
+     * @param {Error?} err - Optional error.
+     */
+    function done(err) {
+        if (!invoked) {
+            invoked = true;
+
+            if (err) {
+                failed = true;
+            }
+
+            next.apply(null, arguments);
+        }
+    }
+
+    /**
+     * Invoke `done` with one value.
+     * Tracks if an error is passed, too.
+     *
+     * @param {*} value - Optional value.
+     */
+    function then(value) {
+        done(null, value);
+    }
+
+    return function () {
+        var params = slice.call(arguments, 0);
+        var callback = fn.length > params.length;
+        var result;
+
+        if (callback) {
+            params.push(done);
+        }
+
+        try {
+            result = fn.apply(null, params);
+        } catch (err) {
+            // Well, this is quite the pickle.  `fn` passes
+            // an error to `done`, and `done` also throws
+            // an error, which bubbles to the try-body
+            // above, and into the catch-statement here.
+            // Then, given to `done`, which is now a no-op
+            // as it’s already invoked, causing it to be
+            // silently ignored.  We can’t let that happen.
+            // Instead, throw the thing.
+            if (callback && failed) {
+                throw err;
+            }
+
+            return done(err);
+        }
+
+        if (!callback) {
+            if (result && typeof result.then === 'function') {
+                result.then(then, done);
+            } else if (result instanceof Error) {
+                done(result);
+            } else {
+                then(result);
+            }
+        }
+    }
+}
+
+/**
+ * Create new middleware.
+ *
+ * @return {Object} - Middlewre.
+ */
+function trough() {
+    var fns = [];
+    var middleware = {};
+
+    /**
+     * Run `fns`.  Last argument must be
+     * a completion handler.
+     *
+     * @param {...*} input - Parameters
+     */
+    function run() {
+        var index = -1;
+        var input = slice.call(arguments, 0, -1);
+        var done = arguments[arguments.length - 1];
+
+        /**
+         * Run the next `fn`, if any.
+         *
+         * @param {Error?} err - Failure.
+         * @param {...*} values - Other input.
+         */
+        function next(err) {
+            var fn = fns[++index];
+            var params = slice.call(arguments, 0);
+            var values = params.slice(1);
+            var length = input.length;
+            var pos = -1;
+
+            if (err) {
+                done(err);
+                return;
+            }
+
+            // Copy non-nully input into values.
+            while (++pos < length) {
+                if (values[pos] === null || values[pos] === undefined) {
+                    values[pos] = input[pos];
+                }
+            }
+
+            // bail.
+            input = values;
+
+            // next / done.
+            if (fn) {
+                wrap(fn, next).apply(null, input);
+            } else {
+                done.apply(null, [null].concat(input));
+            }
+        }
+
+        // start.
+        next.apply(null, [null].concat(input));
+    }
+
+    /**
+     * Add `fn` to the list.
+     *
+     * @param {Function} fn - Anything `wrap` accepts.
+     */
+    function use(fn) {
+        fns.push(fn);
+
+        return middleware;
+    }
+
+    /*
+     * Expose.
+     */
+
+    middleware.run = run;
+    middleware.use = use;
+
+    return middleware;
+}
+
+module.exports = trough;
+
+},{}],52:[function(require,module,exports){
+(function (global){
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module unified
+ * @fileoverview Pluggable text processing interface.
  */
 
 'use strict';
@@ -16709,279 +16869,688 @@ module.exports = unherit;
  * Dependencies.
  */
 
-var bail = require('bail');
-var ware = require('ware');
-var AttachWare = require('attach-ware')(ware);
-var VFile = require('vfile');
-var unherit = require('unherit');
+var events = require('events');
+var once = require('once');
 var extend = require('extend');
+var bail = require('bail');
+var vfile = require('vfile');
+var trough = require('./trough.js');
 
 /*
- * Processing pipeline.
+ * Methods.
  */
 
-var pipeline = ware()
-    .use(function (ctx) {
-        ctx.tree = ctx.context.parse(ctx.file, ctx.settings);
+var slice = [].slice;
+var own = {}.hasOwnProperty;
+
+/*
+ * Process pipeline.
+ */
+
+var pipeline = trough()
+    .use(function (p, ctx) {
+        ctx.tree = p.parse(ctx.file, ctx.options);
     })
-    .use(function (ctx, next) {
-        ctx.context.run(ctx.tree, ctx.file, next);
+    .use(function (p, ctx, next) {
+        p.run(ctx.tree, ctx.file, function (err, tree, file) {
+            if (err) {
+                next(err);
+            } else {
+                ctx.tree = tree;
+                ctx.file = file;
+                next();
+            }
+        });
     })
-    .use(function (ctx) {
-        ctx.result = ctx.context.stringify(ctx.tree, ctx.file, ctx.settings);
+    .use(function (p, ctx) {
+        ctx.file.contents = p.stringify(ctx.tree, ctx.file, ctx.options);
     });
 
 /**
- * Construct a new Processor class based on the
- * given options.
+ * Check if `node` is a Unist node.
  *
- * @param {Object} options - Configuration.
- * @param {string} options.name - Private storage.
- * @param {Function} options.Parser - Class to turn a
- *   virtual file into a syntax tree.
- * @param {Function} options.Compiler - Class to turn a
- *   syntax tree into a string.
- * @return {Processor} - A new constructor.
+ * @param {*} node - Value.
+ * @return {boolean} - Whether `node` is a Unist node.
  */
-function unified(options) {
-    var name = options.name;
-    var Parser = options.Parser;
-    var Compiler = options.Compiler;
-    var data = options.data;
+function isNode(node) {
+    return node && typeof node.type === 'string' && node.type.length !== 0;
+}
+
+/**
+ * Check if `file` is a VFile.
+ *
+ * @param {*} file - Value.
+ * @return {boolean} - Whether `file` is a VFile.
+ */
+function isFile(file) {
+    return file && typeof file.contents === 'string';
+}
+
+/**
+ * Check if `fn` is a function.
+ *
+ * @param {*} fn - Value.
+ * @return {boolean} - Whether `fn` is a function.
+ */
+function isFunction(fn) {
+    return typeof fn === 'function';
+}
+
+/**
+ * Check if `compiler` is a Compiler.
+ *
+ * @param {*} compiler - Value.
+ * @return {boolean} - Whether `compiler` is a Compiler.
+ */
+function isCompiler(compiler) {
+    return isFunction(compiler) &&
+        compiler.prototype &&
+        isFunction(compiler.prototype.compile)
+}
+
+/**
+ * Check if `parser` is a Parser.
+ *
+ * @param {*} parser - Value.
+ * @return {boolean} - Whether `parser` is a Parser.
+ */
+function isParser(parser) {
+    return isFunction(parser) &&
+        parser.prototype &&
+        isFunction(parser.prototype.parse)
+}
+
+/**
+ * Function to create the first processor.
+ *
+ * @return {Function} - First processor.
+ */
+function unified() {
+    var attachers = [];
+    var transformers = trough();
+    var namespace = {};
+    var chunks = [];
+    var emitter = new events.EventEmitter();
+    var ended = false;
+    var concrete = true;
+    var settings;
+    var key;
 
     /**
-     * Construct a Processor instance.
+     * Create a new processor based on the processor
+     * in the current scope.
      *
-     * @constructor
-     * @class {Processor}
+     * @return {Processor} - New concrete processor based
+     *   on the descendant processor.
      */
-    function Processor(processor) {
-        var self = this;
+    function processor() {
+        var destination = unified();
+        var length = attachers.length;
+        var index = -1;
 
-        if (!(self instanceof Processor)) {
-            return new Processor(processor);
+        while (++index < length) {
+            destination.use.apply(null, attachers[index]);
         }
 
-        self.ware = new AttachWare();
-        self.ware.context = self;
+        destination.data(extend(true, {}, namespace));
 
-        self.Parser = unherit(Parser);
-        self.Compiler = unherit(Compiler);
+        return destination;
+    }
 
-        if (self.data) {
-            self.data = extend(true, {}, self.data);
+    /*
+     * Mix in methods.
+     */
+
+    for (key in emitter) {
+        processor[key] = emitter[key];
+    }
+
+    /*
+     * Helpers.
+     */
+
+    /**
+     * Assert a parser is available.
+     *
+     * @param {string} name - Name of callee.
+     */
+    function assertParser(name) {
+        if (!isParser(processor.Parser)) {
+            throw new Error('Cannot `' + name + '` without `Parser`');
         }
     }
 
     /**
-     * Either return `context` if its an instance
-     * of `Processor` or construct a new `Processor`
-     * instance.
+     * Assert a compiler is available.
      *
-     * @private
-     * @param {Processor?} [context] - Context object.
-     * @return {Processor} - Either `context` or a new
-     *   Processor instance.
+     * @param {string} name - Name of callee.
      */
-    function instance(context) {
-        return context instanceof Processor ? context : new Processor();
+    function assertCompiler(name) {
+        if (!isCompiler(processor.Compiler)) {
+            throw new Error('Cannot `' + name + '` without `Compiler`');
+        }
     }
 
     /**
-     * Attach a plugin.
+     * Assert the processor is concrete.
      *
-     * @this {Processor?} - Either a Processor instance or
-     *   the Processor constructor.
-     * @return {Processor} - Either `context` or a new
-     *   Processor instance.
+     * @param {string} name - Name of callee.
      */
-    function use() {
-        var self = instance(this);
-
-        self.ware.use.apply(self.ware, arguments);
-
-        return self;
+    function assertConcrete(name) {
+        if (!concrete) {
+            throw new Error(
+                'Cannot ' +
+                (name ? 'invoke `' + name + '` on' : 'pipe into') +
+                ' abstract processor.\n' +
+                'To make the processor concrete, invoke it: ' +
+                'use `processor()` instead of `processor`.'
+            );
+        }
     }
 
     /**
-     * Transform.
+     * Assert `node` is a Unist node.
      *
-     * @this {Processor?} - Either a Processor instance or
-     *   the Processor constructor.
-     * @param {Node} [node] - Syntax tree.
-     * @param {VFile?} [file] - Virtual file.
+     * @param {*} node - Value to check.
+     */
+    function assertNode(node) {
+        if (!isNode(node)) {
+            throw new Error('Expected node, got `' + node + '`');
+        }
+    }
+
+    /**
+     * Assert, if no `done` is given, that `complete` is
+     * `true`.
+     *
+     * @param {string} name - Name of callee.
+     * @param {boolean} complete - Whether an async process
+     *   is complete.
+     * @param {Function?} done - Optional handler of async
+     *   results.
+     */
+    function assertDone(name, complete, done) {
+        if (!complete && !done) {
+            throw new Error(
+                'Expected `done` to be given to `' + name + '` ' +
+                'as async plug-ins are used'
+            );
+        }
+    }
+
+    /*
+     * Throw as early as possible.
+     * As events are triggered synchroneously, the stack
+     * is preserved.
+     */
+
+    processor.on('pipe', function () {
+        assertConcrete();
+    });
+
+    /**
+     * Abstract: used to signal an abstract processor which
+     * should made concrete before using.
+     *
+     * For example, take unified itself.  It’s abstract.
+     * Plug-ins should not be added to it.  Rather, it should
+     * be made concrete (by invoking it) before modifying it.
+     *
+     * In essence, always invoke this when exporting a
+     * processor.
+     *
+     * @return {Processor} - The operated on processor.
+     */
+    function abstract() {
+        concrete = false;
+
+        return processor;
+    }
+
+    /**
+     * Data management.
+     *
+     * Getter / setter for processor-specific informtion.
+     *
+     * @param {string} key - Key to get or set.
+     * @param {*} value - Value to set.
+     * @return {*} - Either the operator on processor in
+     *   setter mode; or the value stored as `key` in
+     *   getter mode.
+     */
+    function data(key, value) {
+        assertConcrete('data');
+
+        if (typeof key === 'string') {
+            // set key
+            if (arguments.length === 2) {
+                namespace[key] = value;
+
+                return processor;
+            }
+
+            // get key
+            return (own.call(namespace, key) && namespace[key]) || null;
+        }
+
+        // get space
+        if (!key) {
+            return namespace;
+        }
+
+        // set space
+        namespace = key;
+
+        return processor;
+    }
+
+    /**
+     * Plug-in management.
+     *
+     * Pass it:
+     * *   an attacher and options,
+     * *   a list of attachers and options for all of them;
+     * *   a tuple of one attacher and options.
+     * *   a matrix: list containing any of the above and
+     *     matrices.
+     *
+     * @param {...*} value - See description.
+     * @return {Processor} - The operated on processor.
+     */
+    function use(value) {
+        var args = slice.call(arguments, 0);
+        var params = args.slice(1);
+        var index;
+        var length;
+        var transformer;
+
+        assertConcrete('use');
+
+        /*
+         * Multiple attachers.
+         */
+
+        if ('length' in value && !isFunction(value)) {
+            index = -1;
+            length = value.length;
+
+            if (!isFunction(value[0])) {
+                // matrix of things.
+                while (++index < length) {
+                    use(value[index]);
+                }
+            } else if (isFunction(value[1])) {
+                // list of things.
+                while (++index < length) {
+                    use.apply(null, [value[index]].concat(params));
+                }
+            } else {
+                // arguments.
+                use.apply(null, value);
+            }
+
+            return processor;
+        }
+
+        /*
+         * Store attacher.
+         */
+
+        attachers.push(args);
+
+        /*
+         * Single attacher.
+         */
+
+        transformer = value.apply(null, [processor].concat(params));
+
+        if (isFunction(transformer)) {
+            transformers.use(transformer);
+        }
+
+        return processor;
+    }
+
+    /**
+     * Parse a file (in string or VFile representation)
+     * into a Unist node using the `Parser` on the
+     * processor.
+     *
+     * @param {(string|VFile)?} [file] - File to process.
+     * @param {Object?} [options] - Configuration.
+     * @return {Node} - Unist node.
+     */
+    function parse(file, options) {
+        assertConcrete('parse');
+        assertParser('parse');
+
+        return new processor.Parser(vfile(file), options, processor)
+            .parse();
+    }
+
+    /**
+     * Run transforms on a Unist node representation of a file
+     * (in string or VFile representation).
+     *
+     * @param {Node} node - Unist node.
+     * @param {(string|VFile)?} [file] - File representation.
      * @param {Function?} [done] - Callback.
-     * @return {Node} - `node`.
+     * @return {Node} - The given or resulting Unist node.
      */
     function run(node, file, done) {
-        var self = this;
-        var space;
+        var complete = false;
+        var result;
 
-        if (typeof file === 'function') {
+        assertConcrete('run');
+        assertNode(node);
+
+        result = node;
+
+        if (!done && file && !isFile(file)) {
             done = file;
             file = null;
         }
 
-        if (!file && node && !node.type) {
-            file = node;
-            node = null;
-        }
+        transformers.run(node, vfile(file), function (err, tree, file) {
+            complete = true;
+            result = tree || node;
 
-        file = new VFile(file);
-        space = file.namespace(name);
-
-        if (!node) {
-            node = space.tree || node;
-        } else if (!space.tree) {
-            space.tree = node;
-        }
-
-        if (!node) {
-            throw new Error('Expected node, got ' + node);
-        }
-
-        done = typeof done === 'function' ? done : bail;
-
-        /*
-         * Only run when this is an instance of Processor,
-         * and when there are transformers.
-         */
-
-        if (self.ware && self.ware.fns) {
-            self.ware.run(node, file, done);
-        } else {
-            done(null, node, file);
-        }
-
-        return node;
-    }
-
-    /**
-     * Parse a file.
-     *
-     * Patches the parsed node onto the `name`
-     * namespace on the `type` property.
-     *
-     * @this {Processor?} - Either a Processor instance or
-     *   the Processor constructor.
-     * @param {string|VFile} value - Input to parse.
-     * @param {Object?} [settings] - Configuration.
-     * @return {Node} - `node`.
-     */
-    function parse(value, settings) {
-        var file = new VFile(value);
-        var CustomParser = (this && this.Parser) || Parser;
-        var node = new CustomParser(file, settings, instance(this)).parse();
-
-        file.namespace(name).tree = node;
-
-        return node;
-    }
-
-    /**
-     * Compile a file.
-     *
-     * Used the parsed node at the `name`
-     * namespace at `'tree'` when no node was given.
-     *
-     * @this {Processor?} - Either a Processor instance or
-     *   the Processor constructor.
-     * @param {Object} [node] - Syntax tree.
-     * @param {VFile} [file] - File with syntax tree.
-     * @param {Object?} [settings] - Configuration.
-     * @return {string} - Compiled `file`.
-     */
-    function stringify(node, file, settings) {
-        var CustomCompiler = (this && this.Compiler) || Compiler;
-        var space;
-
-        if (settings === null || settings === undefined) {
-            settings = file;
-            file = null;
-        }
-
-        if (!file && node && !node.type) {
-            file = node;
-            node = null;
-        }
-
-        file = new VFile(file);
-        space = file.namespace(name);
-
-        if (!node) {
-            node = space.tree || node;
-        } else if (!space.tree) {
-            space.tree = node;
-        }
-
-        if (!node) {
-            throw new Error('Expected node, got ' + node);
-        }
-
-        return new CustomCompiler(file, settings, instance(this)).compile();
-    }
-
-    /**
-     * Parse / Transform / Compile.
-     *
-     * @this {Processor?} - Either a Processor instance or
-     *   the Processor constructor.
-     * @param {string|VFile} value - Input to process.
-     * @param {Object?} [settings] - Configuration.
-     * @param {Function?} [done] - Callback.
-     * @return {string?} - Parsed document, when
-     *   transformation was async.
-     */
-    function process(value, settings, done) {
-        var self = instance(this);
-        var file = new VFile(value);
-        var result = null;
-
-        if (typeof settings === 'function') {
-            done = settings;
-            settings = null;
-        }
-
-        pipeline.run({
-            'context': self,
-            'file': file,
-            'settings': settings || {}
-        }, function (err, res) {
-            result = res && res.result;
-
-            if (done) {
-                done(err, file, result);
-            } else if (err) {
-                bail(err);
-            }
+            (done || bail)(err, tree, file);
         });
+
+        assertDone('run', complete, done);
 
         return result;
     }
 
+    /**
+     * Stringify a Unist node representation of a file
+     * (in string or VFile representation) into a string
+     * using the `Compiler` on the processor.
+     *
+     * @param {Node} node - Unist node.
+     * @param {(string|VFile)?} [file] - File representation.
+     * @param {Object?} [options] - Configuration.
+     * @return {string} - String representation.
+     */
+    function stringify(node, file, options) {
+        assertConcrete('stringify');
+        assertCompiler('stringify');
+        assertNode(node);
+
+        if (!options && file && !isFile(file)) {
+            options = file;
+            file = null;
+        }
+
+        return new processor.Compiler(vfile(file), options, processor)
+            .compile(node);
+    }
+
+    /**
+     * Parse a file (in string or VFile representation)
+     * into a Unist node using the `Parser` on the processor,
+     * then run transforms on that node, and compile the
+     * resulting node using the `Compiler` on the processor,
+     * and store that result on the VFile.
+     *
+     * @param {(string|VFile)?} file - File representation.
+     * @param {Object?} [options] - Configuration.
+     * @param {Function?} [done] - Callback.
+     * @return {VFile} - The given or resulting VFile.
+     */
+    function process(file, options, done) {
+        var complete = false;
+        var exception;
+
+        assertConcrete('process');
+        assertParser('process');
+        assertCompiler('process');
+
+        if (!done && isFunction(options)) {
+            done = options;
+            options = null;
+        }
+
+        file = vfile(file);
+
+        pipeline.run(processor, {
+            'file': file,
+            'options': options || {}
+        }, function (err) {
+            complete = true;
+
+            if (done) {
+                done(err, file);
+            } else {
+                exception = err;
+            }
+        });
+
+        assertDone('process', complete, done);
+
+        /* Throw sync error. */
+        bail(exception);
+
+        return file;
+    }
+
     /*
-     * Methods / functions.
+     * Streams.
      */
 
-    var proto = Processor.prototype;
+    /**
+     * Write a chunk into memory.
+     *
+     * @param {(Buffer|string)?} chunk - Value to write.
+     * @param {string?} [encoding] - Encoding.
+     * @param {Function?} [callback] - Callback.
+     * @return {boolean} - Whether the write was succesful.
+     */
+    function write(chunk, encoding, callback) {
+        assertConcrete('write');
 
-    Processor.use = proto.use = use;
-    Processor.parse = proto.parse = parse;
-    Processor.run = proto.run = run;
-    Processor.stringify = proto.stringify = stringify;
-    Processor.process = proto.process = process;
-    Processor.data = proto.data = data || null;
+        if (isFunction(encoding)) {
+            callback = encoding;
+            encoding = null;
+        }
 
-    return Processor;
+        if (ended) {
+            throw new Error('Did not expect `write` after `end`');
+        }
+
+        chunks.push((chunk || '').toString(encoding || 'utf8'));
+
+        if (callback) {
+            callback();
+        }
+
+        // Signal succesful write.
+        return true;
+    }
+
+    /**
+     * End the writing.  Passes all arguments to a final
+     * `write`.  Starts the process, which will trigger
+     * `error`, with a fatal error, if any; `data`, with
+     * the generated document in `string` form, if
+     * succesful.  If messages are triggered during the
+     * process, those are triggerd as `warning`s.
+     *
+     * @return {boolean} - Whether the last write was
+     *   succesful.
+     */
+    function end() {
+        assertConcrete('end');
+        assertParser('end');
+        assertCompiler('end');
+
+        write.apply(null, arguments);
+
+        ended = true;
+
+        process(chunks.join(''), settings, function (err, file) {
+            var messages = file.messages;
+            var length = messages.length;
+            var index = -1;
+
+            chunks = settings = null;
+
+            // Trigger messages as warnings, except for fatal error.
+            while (++index < length) {
+                if (messages[index] !== err) {
+                    processor.emit('warning', messages[index]);
+                }
+            }
+
+            if (!err) {
+                processor.emit('data', file.contents);
+                processor.emit('end');
+            } else {
+                // Don’t enter an infinite error throwing loop.
+                global.setTimeout(function () {
+                    processor.emit('error', err);
+                }, 4);
+            }
+        });
+
+        return true;
+    }
+
+    /**
+     * Pipe the processor into a writable stream.
+     *
+     * Basically `Stream#pipe`, but inlined and
+     * simplified to keep the bundled size down.
+     *
+     * @see https://github.com/nodejs/node/blob/master/lib/stream.js#L26
+     *
+     * @param {Stream} dest - Writable stream.
+     * @param {Object?} [options] - Processing
+     *   configuration.
+     * @return {Stream} - The destination stream.
+     */
+    function pipe(dest, options) {
+        var onend = once(function () {
+            dest.end();
+        });
+
+        assertConcrete('pipe');
+
+        settings = options || {};
+
+        /**
+         * Handle data.
+         *
+         * @param {*} chunk - Data to pass through.
+         */
+        function ondata(chunk) {
+            if (dest.writable) {
+                dest.write(chunk);
+            }
+        }
+
+        /**
+         * Clean listeners.
+         */
+        function cleanup() {
+            processor.removeListener('data', ondata);
+            processor.removeListener('end', onend);
+            processor.removeListener('error', onerror);
+            processor.removeListener('end', cleanup);
+            processor.removeListener('close', cleanup);
+
+            dest.removeListener('error', onerror);
+            dest.removeListener('close', cleanup);
+        }
+
+        /**
+         * Close dangling pipes and handle unheard errors.
+         *
+         * @param {Error} err - Exception.
+         */
+        function onerror(err) {
+            var handlers = processor._events.error;
+
+            cleanup();
+
+            // can’t use `listenerCount` in node <= 0.12.
+            if (!handlers || !handlers.length || handlers === onerror) {
+                throw err; // Unhandled stream error in pipe.
+            }
+        }
+
+        processor.on('data', ondata);
+        processor.on('error', onerror);
+        processor.on('end', cleanup);
+        processor.on('close', cleanup);
+
+        // If the 'end' option is not supplied, dest.end() will be called when
+        // the 'end' or 'close' events are received.  Only dest.end() once.
+        if (!dest._isStdio && settings.end !== false) {
+            processor.on('end', onend);
+        }
+
+        dest.on('error', onerror);
+        dest.on('close', cleanup);
+
+        dest.emit('pipe', processor);
+
+        return dest;
+    }
+
+    /*
+     * Data management.
+     */
+
+    processor.data = data;
+
+    /*
+     * Lock.
+     */
+
+    processor.abstract = abstract;
+
+    /*
+     * Plug-ins.
+     */
+
+    processor.use = use;
+
+    /*
+     * Streaming.
+     */
+
+    processor.writable = true;
+    processor.readable = true;
+    processor.write = write;
+    processor.end = end;
+    processor.pipe = pipe;
+
+    /*
+     * API.
+     */
+
+    processor.parse = parse;
+    processor.stringify = stringify;
+    processor.run = run;
+    processor.process = process;
+
+    /*
+     * Expose.
+     */
+
+    return processor;
 }
 
 /*
- * Expose.
+ * Expose an abstract processor.
  */
 
-module.exports = unified;
+module.exports = unified().abstract();
 
-},{"attach-ware":5,"bail":6,"extend":25,"unherit":47,"vfile":52,"ware":53}],49:[function(require,module,exports){
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./trough.js":51,"bail":5,"events":23,"extend":24,"once":30,"vfile":56}],53:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2016 Titus Wormer
@@ -17020,103 +17589,79 @@ function removePosition(tree) {
 
 module.exports = removePosition;
 
-},{"unist-util-visit":50}],50:[function(require,module,exports){
+},{"unist-util-visit":54}],54:[function(require,module,exports){
 /**
  * @author Titus Wormer
- * @copyright 2015 Titus Wormer. All rights reserved.
+ * @copyright 2015 Titus Wormer
+ * @license MIT
  * @module unist:util:visit
- * @fileoverview Utility to recursively walk over unist nodes.
+ * @fileoverview Recursively walk over unist nodes.
  */
 
 'use strict';
 
-/**
- * Walk forwards.
- *
- * @param {Array.<*>} values - Things to iterate over,
- *   forwards.
- * @param {function(*, number): boolean} callback - Function
- *   to invoke.
- * @return {boolean} - False if iteration stopped.
- */
-function forwards(values, callback) {
-    var index = -1;
-    var length = values.length;
-
-    while (++index < length) {
-        if (callback(values[index], index) === false) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-/**
- * Walk backwards.
- *
- * @param {Array.<*>} values - Things to iterate over,
- *   backwards.
- * @param {function(*, number): boolean} callback - Function
- *   to invoke.
- * @return {boolean} - False if iteration stopped.
- */
-function backwards(values, callback) {
-    var index = values.length;
-    var length = -1;
-
-    while (--index > length) {
-        if (callback(values[index], index) === false) {
-            return false;
-        }
-    }
-
-    return true;
-}
+/* eslint-env commonjs */
 
 /**
  * Visit.
  *
  * @param {Node} tree - Root node
  * @param {string} [type] - Node type.
- * @param {function(node): boolean?} callback - Invoked
+ * @param {function(node): boolean?} visitor - Invoked
  *   with each found node.  Can return `false` to stop.
  * @param {boolean} [reverse] - By default, `visit` will
  *   walk forwards, when `reverse` is `true`, `visit`
  *   walks backwards.
  */
-function visit(tree, type, callback, reverse) {
-    var iterate;
-    var one;
-    var all;
-
+function visit(tree, type, visitor, reverse) {
     if (typeof type === 'function') {
-        reverse = callback;
-        callback = type;
+        reverse = visitor;
+        visitor = type;
         type = null;
     }
 
-    iterate = reverse ? backwards : forwards;
-
     /**
-     * Visit `children` in `parent`.
+     * Visit children in `parent`.
+     *
+     * @param {Array.<Node>} children - Children of `node`.
+     * @param {Node?} parent - Parent of `node`.
+     * @return {boolean?} - `false` if the visiting stopped.
      */
-    all = function (children, parent) {
-        return iterate(children, function (child, index) {
-            return child && one(child, index, parent);
-        });
-    };
+    function all(children, parent) {
+        var step = reverse ? -1 : 1;
+        var max = children.length;
+        var min = -1;
+        var index = (reverse ? max : min) + step;
+        var child;
+
+        while (index > min && index < max) {
+            child = children[index];
+
+            if (child && one(child, index, parent) === false) {
+                return false;
+            }
+
+            index += step;
+        }
+
+        return true;
+    }
 
     /**
      * Visit a single node.
+     *
+     * @param {Node} node - Node to visit.
+     * @param {number?} [index] - Position of `node` in `parent`.
+     * @param {Node?} [parent] - Parent of `node`.
+     * @return {boolean?} - A result of invoking `visitor`.
      */
-    one = function (node, index, parent) {
+    function one(node, index, parent) {
         var result;
 
         index = index || (parent ? 0 : null);
 
         if (!type || node.type === type) {
-            result = callback(node, index, parent || null);
+            result = visitor(node, index, parent || null);
         }
 
         if (node.children && result !== false) {
@@ -17124,7 +17669,7 @@ function visit(tree, type, callback, reverse) {
         }
 
         return result;
-    };
+    }
 
     one(tree);
 }
@@ -17135,7 +17680,7 @@ function visit(tree, type, callback, reverse) {
 
 module.exports = visit;
 
-},{}],51:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2016 Titus Wormer
@@ -17270,7 +17815,7 @@ function factory(file) {
 
 module.exports = factory;
 
-},{}],52:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /**
  * @author Titus Wormer
  * @copyright 2015 Titus Wormer
@@ -17310,6 +17855,8 @@ module.exports = factory;
 'use strict';
 
 /* eslint-env commonjs */
+
+var proto;
 
 var SEPARATOR = '/';
 
@@ -17355,7 +17902,7 @@ function VFileMessagePrototype() {}
 
 VFileMessagePrototype.prototype = Error.prototype;
 
-var proto = new VFileMessagePrototype();
+proto = new VFileMessagePrototype();
 
 VFileMessage.prototype = proto;
 
@@ -17679,10 +18226,11 @@ function move(options) {
  * @param {string|Error} reason - Reason for message.
  * @param {Node|Location|Position} [position] - Location
  *   of message in file.
+ * @param {string} [ruleId] - Category of warning.
  * @return {VFileMessage} - File-related message with
  *   location information.
  */
-function message(reason, position) {
+function message(reason, position, ruleId) {
     var filePath = this.filePath();
     var range;
     var err;
@@ -17727,6 +18275,7 @@ function message(reason, position) {
     err.line = position ? position.line : null;
     err.column = position ? position.column : null;
     err.location = location;
+    err.ruleId = ruleId || null;
 
     if (reason.stack) {
         err.stack = reason.stack;
@@ -17879,16 +18428,16 @@ function namespace(key) {
  * Methods.
  */
 
-var vFilePrototype = VFile.prototype;
+proto = VFile.prototype;
 
-vFilePrototype.basename = basename;
-vFilePrototype.move = move;
-vFilePrototype.toString = toString;
-vFilePrototype.message = message;
-vFilePrototype.warn = warn;
-vFilePrototype.fail = fail;
-vFilePrototype.hasFailed = hasFailed;
-vFilePrototype.namespace = namespace;
+proto.basename = basename;
+proto.move = move;
+proto.toString = toString;
+proto.message = message;
+proto.warn = warn;
+proto.fail = fail;
+proto.hasFailed = hasFailed;
+proto.namespace = namespace;
 
 /*
  * Expose.
@@ -17896,224 +18445,39 @@ vFilePrototype.namespace = namespace;
 
 module.exports = VFile;
 
-},{}],53:[function(require,module,exports){
-/**
- * Module Dependencies
- */
+},{}],57:[function(require,module,exports){
+// Returns a wrapper function that returns a wrapped callback
+// The wrapper function should do some stuff, and return a
+// presumably different callback function.
+// This makes sure that own properties are retained, so that
+// decorations and such are not lost along the way.
+module.exports = wrappy
+function wrappy (fn, cb) {
+  if (fn && cb) return wrappy(fn)(cb)
 
-var slice = [].slice;
-var wrap = require('wrap-fn');
+  if (typeof fn !== 'function')
+    throw new TypeError('need wrapper function')
 
-/**
- * Expose `Ware`.
- */
+  Object.keys(fn).forEach(function (k) {
+    wrapper[k] = fn[k]
+  })
 
-module.exports = Ware;
+  return wrapper
 
-/**
- * Throw an error.
- *
- * @param {Error} error
- */
-
-function fail (err) {
-  throw err;
-}
-
-/**
- * Initialize a new `Ware` manager, with optional `fns`.
- *
- * @param {Function or Array or Ware} fn (optional)
- */
-
-function Ware (fn) {
-  if (!(this instanceof Ware)) return new Ware(fn);
-  this.fns = [];
-  if (fn) this.use(fn);
-}
-
-/**
- * Use a middleware `fn`.
- *
- * @param {Function or Array or Ware} fn
- * @return {Ware}
- */
-
-Ware.prototype.use = function (fn) {
-  if (fn instanceof Ware) {
-    return this.use(fn.fns);
-  }
-
-  if (fn instanceof Array) {
-    for (var i = 0, f; f = fn[i++];) this.use(f);
-    return this;
-  }
-
-  this.fns.push(fn);
-  return this;
-};
-
-/**
- * Run through the middleware with the given `args` and optional `callback`.
- *
- * @param {Mixed} args...
- * @param {Function} callback (optional)
- * @return {Ware}
- */
-
-Ware.prototype.run = function () {
-  var fns = this.fns;
-  var ctx = this;
-  var i = 0;
-  var last = arguments[arguments.length - 1];
-  var done = 'function' == typeof last && last;
-  var args = done
-    ? slice.call(arguments, 0, arguments.length - 1)
-    : slice.call(arguments);
-
-  // next step
-  function next (err) {
-    if (err) return (done || fail)(err);
-    var fn = fns[i++];
-    var arr = slice.call(args);
-
-    if (!fn) {
-      return done && done.apply(null, [null].concat(args));
+  function wrapper() {
+    var args = new Array(arguments.length)
+    for (var i = 0; i < args.length; i++) {
+      args[i] = arguments[i]
     }
-
-    wrap(fn, next).apply(ctx, arr);
-  }
-
-  next();
-
-  return this;
-};
-
-},{"wrap-fn":54}],54:[function(require,module,exports){
-/**
- * Module Dependencies
- */
-
-var noop = function(){};
-var co = require('co');
-
-/**
- * Export `wrap-fn`
- */
-
-module.exports = wrap;
-
-/**
- * Wrap a function to support
- * sync, async, and gen functions.
- *
- * @param {Function} fn
- * @param {Function} done
- * @return {Function}
- * @api public
- */
-
-function wrap(fn, done) {
-  done = once(done || noop);
-
-  return function() {
-    // prevents arguments leakage
-    // see https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
-    var i = arguments.length;
-    var args = new Array(i);
-    while (i--) args[i] = arguments[i];
-
-    var ctx = this;
-
-    // done
-    if (!fn) {
-      return done.apply(ctx, [null].concat(args));
+    var ret = fn.apply(this, args)
+    var cb = args[args.length-1]
+    if (typeof ret === 'function' && ret !== cb) {
+      Object.keys(cb).forEach(function (k) {
+        ret[k] = cb[k]
+      })
     }
-
-    // async
-    if (fn.length > args.length) {
-      // NOTE: this only handles uncaught synchronous errors
-      try {
-        return fn.apply(ctx, args.concat(done));
-      } catch (e) {
-        return done(e);
-      }
-    }
-
-    // generator
-    if (generator(fn)) {
-      return co(fn).apply(ctx, args.concat(done));
-    }
-
-    // sync
-    return sync(fn, done).apply(ctx, args);
+    return ret
   }
 }
 
-/**
- * Wrap a synchronous function execution.
- *
- * @param {Function} fn
- * @param {Function} done
- * @return {Function}
- * @api private
- */
-
-function sync(fn, done) {
-  return function () {
-    var ret;
-
-    try {
-      ret = fn.apply(this, arguments);
-    } catch (err) {
-      return done(err);
-    }
-
-    if (promise(ret)) {
-      ret.then(function (value) { done(null, value); }, done);
-    } else {
-      ret instanceof Error ? done(ret) : done(null, ret);
-    }
-  }
-}
-
-/**
- * Is `value` a generator?
- *
- * @param {Mixed} value
- * @return {Boolean}
- * @api private
- */
-
-function generator(value) {
-  return value
-    && value.constructor
-    && 'GeneratorFunction' == value.constructor.name;
-}
-
-
-/**
- * Is `value` a promise?
- *
- * @param {Mixed} value
- * @return {Boolean}
- * @api private
- */
-
-function promise(value) {
-  return value && 'function' == typeof value.then;
-}
-
-/**
- * Once
- */
-
-function once(fn) {
-  return function() {
-    var ret = fn.apply(this, arguments);
-    fn = noop;
-    return ret;
-  };
-}
-
-},{"co":21}]},{},[1]);
+},{}]},{},[1]);
