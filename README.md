@@ -26,9 +26,18 @@ Read [Getting Started](./docs/getting-started.md) :squirrel:
 
 ## Installation
 
+You can install `textlint` command using npm:
+
 ```
 $ npm install textlint -g
 ```
+
+:warning: Caution: Mixed location of installation.
+
+- If you have installed `textlint` as `--global`(`-g`), must install each rule as `--global`.
+- If you have installed `textlint` as `--save-dev`(`-D`), must install each rule as `--save-dev`.
+
+Recommended way: Install `textlint` and rules as `--save-dev` per project.
 
 ## Usage
 
@@ -40,7 +49,7 @@ Use textlint with `--rule` or `--rulesdir`, `.textlintrc` config file.
 
 ```sh
 # Install textlint's rule
-npm install --save-dev textlint-rule-no-todo
+npm install -g textlint-rule-no-todo
 ```
 
 Use with `textlint-rule-no-todo` rule.
