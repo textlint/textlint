@@ -70,7 +70,7 @@
     "textlint-rule-helper": "^1.1.3",
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.0.0",
-    "textlint-rule-rousseau": "^1.3.0",
+    "textlint-rule-rousseau": "^1.4.2",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
   },
   "dependencies": {
@@ -91,7 +91,7 @@
     "structured-source": "^3.0.2",
     "text-table": "^0.2.0",
     "textlint-formatter": "^1.7.3",
-    "textlint-plugin-markdown": "^1.0.3",
+    "textlint-plugin-markdown": "^1.1.0",
     "textlint-plugin-text": "^1.0.1",
     "traverse": "^0.6.6",
     "try-resolve": "^1.0.1",
