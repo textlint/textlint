@@ -5,7 +5,8 @@
 var traverse = require('traverse');
 var StructuredSource = require('structured-source');
 var debug = require("debug")("markdown-to-ast");
-var remark = require("remark");
+var remarkAbstract = require("remark");
+var remark = remarkAbstract();
 /**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
