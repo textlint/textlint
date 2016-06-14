@@ -2,7 +2,7 @@
 
 ## Result of linting
 
-Pass following array of [TextLintResult](https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts "TextLintResult") to reporter module.
+Pass following array of [TextLintResult](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "TextLintResult") to reporter module.
 
 ```js
 // results of linting
@@ -24,7 +24,7 @@ var results = [
 ];
 ```
 
-`TextLintMessage` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts "textlint.d.ts").
+`TextLintMessage` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "textlint.d.ts").
 
 It is compatible for [ESLint formatter](http://eslint.org/docs/developer-guide/working-with-custom-formatters "Documentation - ESLint - Pluggable JavaScript linter"). 
 
@@ -79,7 +79,7 @@ var results = [
 ];
 ```
 
-`TextLintFixResult` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts "textlint.d.ts").
+`TextLintFixResult` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "textlint.d.ts").
 
 It is not compatible for ESLint.
 

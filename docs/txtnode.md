@@ -11,7 +11,7 @@ Each node of the tree has same interface, is called `TxtNode`.
 [![markdown-to-ast.](./resources/markdown-to-ast.png)](http://azu.github.io/markdown-to-ast/example/)
 
 
-## [TxtAST](../typing/txtast.d.ts) interface
+## [TxtAST](../typings/txtast.d.ts) interface
 
 Please see TypeScript definition file: [typings/txtast.ts](../typings/txtast.ts)
 

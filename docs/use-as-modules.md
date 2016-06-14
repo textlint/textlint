@@ -73,7 +73,7 @@ var path = require("path");
 function lintFile(filePath) {
     /**
      * TextLintConfig
-     * See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
+     * See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
      */
     var options = {
         // load rules from [../rules]
@@ -84,7 +84,7 @@ function lintFile(filePath) {
     var filePathList = [path.resolve(process.cwd(), filePath)];
     engine.executeOnFiles(filePathList).then(function(results){
         /* 
-        See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
+        See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
         messages are TextLintMessage` array.
         [
             "filePath": "path/to/file",
