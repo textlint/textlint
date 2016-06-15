@@ -533,7 +533,8 @@ textlint user use it following:
 
 The rule naming conventions for textlint are simple:
 
-- If your rule is disallowing something, prefix it with `no-` such as `no-todo` for disallowing `TODO:` and `no-exclamation-question-mark` for disallowing `!` and `?`.
+- If your rule is disallowing something, prefix it with `no-`.
+    - For example, `no-todo` disallowing `TODO:` and `no-exclamation-question-mark` for disallowing `!` and `?`.
 - If your rule is enforcing the inclusion of something, use a short name without a special prefix.
     - If the rule for english, please uf `textlint-rule-en-` prefix.
 - Keep your rule names as short as possible, use abbreviations where appropriate.

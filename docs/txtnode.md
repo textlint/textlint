@@ -184,7 +184,7 @@ This is for compatibility with JavaScript AST.
 
 `TxtNode` has **0-based columns**, but the result of linting named `TextLintMessage` has **1-based columns**.
 
-This means that textlint's rule handle `TxtNode`( **0-based columns** ), but [formatter](./formatter.md "Formatter") handle `TextLintMessage`( **1-based columns** ).
+In other word, textlint's rule handle `TxtNode`, but [formatter](./formatter.md "Formatter") handle `TextLintMessage`.
 
 ## Example
 

@@ -131,7 +131,16 @@ Put the config of `textlint-rule-foo` rule in `text-rule-preset-bar` rule-preset
 
 Filter rule provide filtering error by linting rule.
 
-For example, [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments) provide filtering function by using comment like `<!-- textlint-disable -->` and `<!-- textlint-enable -->`. 
+For example, [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments) provide filtering function by using comments.
+
+```
+<!-- textlint-disable -->
+
+Disables all rules between comments
+
+<!-- textlint-enable -->`
+```
+
 Allow to short `textlint-filter-rule-comments` to `comments`.
 
 Add filter rule name to `filters` field.

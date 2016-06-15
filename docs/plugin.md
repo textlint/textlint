@@ -1,8 +1,7 @@
 # Plugin
 
-Each plugin is an npm module with a name in the format of `textlint-plugin-<plugin-name>`, such as `textlint-plugin-english`.
-
-- [ ] `@<scope>/textlint-plugin-<plugin-name>` support
+Each plugin is an npm module with a name in the format of `textlint-plugin-<plugin-name>`.
+For example, `textlint-plugin-english`.
 
 ## Create a Plugin
 
@@ -33,7 +32,7 @@ See [docs/rule.md](./rule.md).
 
 ## Default Configuration for Plugins
    
-You can provide default configuration for the rules included in your plugin by modifying exported object to include `rulesConfig` property.
+You can provide default configuration for `rules` by `rulesConfig` property.
 `rulesConfig` follows the same pattern as you would use in your `.textlintrc` config rules property, but without plugin name as a prefix.
    
 ```js
