@@ -6,7 +6,6 @@
  */
 const path = require("path");
 const assert = require("assert");
-import {nowExperimental} from "./util/throw-log";
 import {readFile} from "./util/fs-promise";
 import SourceCode from "./core/source-code";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
@@ -59,10 +58,8 @@ export default class TextlintCore {
         // filter `shouldIgnore()` results
         this.messageProcessManager.add(filterIgnoredProcess);
         // filter duplicated messages
-        if (nowExperimental()) {
-            this.messageProcessManager.add(filterDuplicatedProcess);
-            this.messageProcessManager.add(sortMessageProcess);
-        }
+        this.messageProcessManager.add(filterDuplicatedProcess);
+        this.messageProcessManager.add(sortMessageProcess);
     }
 
     /**

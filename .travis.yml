@@ -2,6 +2,6 @@ sudo: false
 language: node_js
 node_js:
 - "stable"
-- "0.12"
+- "4"
 before_script:
   - npm set progress=false

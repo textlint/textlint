@@ -32,6 +32,8 @@ You can install `textlint` command using npm:
 $ npm install textlint -g
 ```
 
+**Requirement**: Node.js 4.0.0 >=
+
 :warning: Caution: Mixed location of installation.
 
 - If you have installed `textlint` as `--global`(`-g`), must install each rule as `--global`.
