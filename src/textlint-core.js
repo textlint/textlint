@@ -6,7 +6,6 @@
  */
 const path = require("path");
 const assert = require("assert");
-import {nowExperimental} from "./util/throw-log";
 import {readFile} from "./util/fs-promise";
 import SourceCode from "./core/source-code";
 import {getProcessorMatchExtension} from "./util/proccesor-helper";
