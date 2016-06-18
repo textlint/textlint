@@ -124,7 +124,7 @@ module.exports = {
         "no-mixed-requires": "error",
         "no-multi-spaces": "error",
         "no-multi-str": "error",
-        "no-multiple-empty-lines": "error",
+        "no-multiple-empty-lines": "off",
         "no-native-reassign": "error",
         "no-negated-condition": "off",
         "no-nested-ternary": "error",
