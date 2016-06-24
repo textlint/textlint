@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-var TextLintTester = require("../src/textlint-tester");
+var TextLintTester = require("../src/index");
 var noTodo = require("textlint-rule-no-todo");
 var maxNumberOfLine = require("textlint-rule-max-number-of-lines");
 var tester = new TextLintTester();
@@ -20,9 +20,9 @@ tester.run("no-todo", noTodo, {
             text: "- [ ] string",
             errors: [
                 {
-                    message: "found TODO: '- [ ] string'",
+                    message: "Found TODO: '- [ ] string'",
                     line: 1,
-                    column: 1
+                    column: 3
                 }
             ]
         },
@@ -30,7 +30,7 @@ tester.run("no-todo", noTodo, {
             text: "TODO: string",
             errors: [
                 {
-                    message: "found TODO: 'TODO: string'",
+                    message: "Found TODO: 'TODO: string'",
                     line: 1,
                     column: 1
                 }
@@ -41,9 +41,9 @@ tester.run("no-todo", noTodo, {
             ext: ".txt",
             errors: [
                 {
-                    message: "found TODO: '- [ ] TODO: this text is parsed as plain text.'",
+                    message: "Found TODO: 'TODO: this text is parsed as plain text.'",
                     line: 1,
-                    column: 1
+                    column: 7
                 }
             ]
         }

@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-var TextLintTester = require("../src/textlint-tester");
+var TextLintTester = require("../src/index");
 var tester = new TextLintTester();
 function rule(context) {
     let {Syntax, RuleError, report, getSource} = context;

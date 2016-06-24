@@ -14,7 +14,7 @@ const it = (typeof global.it === "function") ? global.it : function (text, metho
 /**
  * get fixer function from ruleCreator
  * if not found, throw error
- * @param {Function} ruleCreator
+ * @param {Function|Object} ruleCreator
  * @param {string} ruleName
  * @returns {Function} fixer function
  */
@@ -79,8 +79,8 @@ export default class TextLintTester {
      * run test for textlint rule.
      * @param {string} ruleName ruleName is name of thee rule
      * @param {Function} rule rule is the function of rule
-     * @param {string[]|object[]} valid
-     * @param {object[]} invalid
+     * @param {string[]|object[]} [valid]
+     * @param {object[]} [invalid]
      */
     run(ruleName, rule, {valid=[], invalid=[]}) {
         describe(ruleName, ()=> {

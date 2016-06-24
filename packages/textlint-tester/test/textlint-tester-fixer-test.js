@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-var TextLintTester = require("../src/textlint-tester");
+var TextLintTester = require("../src/index");
 var fixerRule = require("./fixtures/rule/fixer-rule-add");
 var tester = new TextLintTester();
 tester.run("fixer-rule-add", fixerRule, {

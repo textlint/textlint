@@ -9,7 +9,7 @@ function reporter(context) {
     return {
         [Syntax.Str](node){
             if (helper.isChildNode(node, [Syntax.ListItem])) {
-              return;
+                return;
             }
             const text = getSource(node);
             if (/\.$/.test(text)) {
@@ -26,7 +26,7 @@ function reporter(context) {
     };
 }
 
-export default {
+module.exports = {
     linter: reporter,
     fixer: reporter
 };
