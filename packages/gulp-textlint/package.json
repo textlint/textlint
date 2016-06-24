@@ -21,7 +21,7 @@
   "homepage": "https://github.com/textlint/gulp-textlint",
   "dependencies": {
     "gulp-util": "^3.0.6",
-    "textlint": "^6.0.1",
+    "textlint": "^7.0.0",
     "through2": "^2.0.0"
   }
 }
