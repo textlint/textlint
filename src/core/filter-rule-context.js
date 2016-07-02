@@ -19,8 +19,8 @@ export default function FilterRuleContext({ruleId, sourceCode, ignoreReport, tex
     Object.defineProperty(this, "id", {value: ruleId});
     Object.defineProperty(this, "config", {value: textLintConfig});
     /**
-     * report ignoring range
-     * @param {number[]} range
+     * Report range for filtering
+     * @param {number[]} range the `range` is absolute position values
      * @param {{ ruleId: string }} [optional] ignoring option object
      * - `ruleId` match the TextLintMessage.ruleId and filter the message. (default: `ruleId` of the rule)
      *   if `ruleId` is "*", match any TextLintMessage.ruleId.

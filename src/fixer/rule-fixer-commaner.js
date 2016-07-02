@@ -5,10 +5,11 @@ import assert from "assert";
  * @typedef {Object} FixCommand
  * @property {number[]} range range is an array of numbers : [start, end]
  * @property {string} text text is replace value.
+ * @property {boolean} isAbsolute if `range` is relative, should be `false`
  */
 /**
  * Creates a fix command that inserts text at the specified index in the source text.
- * @param {int} index The 0-based index at which to insert the new text.
+ * @param {number} index The 0-based index at which to insert the new text.
  * @param {string} text The text to insert.
  * @returns {FixCommand} The fix command.
  * @private
@@ -17,12 +18,30 @@ function insertTextAt(index, text) {
     assert(text, "text must be string");
     return {
         range: [index, index],
-        text
+        text,
+        isAbsolute: false
+    };
+}
+/**
+ * Creates a fix command that inserts text at the specified index in the source text.
+ * @param {number} index The 0-based index at which to insert the new text.
+ * @param {string} text The text to insert.
+ * @returns {FixCommand} The fix command.
+ * @private
+ */
+function insertTextAtAbsolute(index, text) {
+    assert(text, "text must be string");
+    return {
+        range: [index, index],
+        text,
+        isAbsolute: true
     };
 }
 /**
  * Creates code fixing commands for rules.
  * It create command for fixing texts.
+ * The `range` arguments of these command is should be **relative** value from reported node.
+ * See {@link SourceLocation} class for more detail.
  * @constructor
  */
 export default class RuleFixer {
@@ -34,14 +53,15 @@ export default class RuleFixer {
      * @returns {FixCommand} The fix command.
      */
     insertTextAfter(node, text) {
-        return this.insertTextAfterRange(node.range, text);
+        return insertTextAtAbsolute(node.range[1], text);
     }
 
     /**
      * Creates a fix command that inserts text after the specified range in the source text.
      * The fix is not applied until applyFixes() is called.
-     * @param {int[]} range The range to replace, first item is start of range, second
+     * @param {number[]} range The range to replace, first item is start of range, second
      *      is end of range.
+     *      The `range` should be **relative** value from reported node.
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
@@ -57,14 +77,15 @@ export default class RuleFixer {
      * @returns {FixCommand} The fix command.
      */
     insertTextBefore(node, text) {
-        return this.insertTextBeforeRange(node.range, text);
+        return insertTextAtAbsolute(node.range[0], text);
     }
 
     /**
      * Creates a fix command that inserts text before the specified range in the source text.
      * The fix is not applied until applyFixes() is called.
-     * @param {int[]} range The range to replace, first item is start of range, second
+     * @param {number[]} range The range to replace, first item is start of range, second
      *      is end of range.
+     *      The `range` should be **relative** value from reported node.
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
@@ -80,21 +101,27 @@ export default class RuleFixer {
      * @returns {FixCommand} The fix command.
      */
     replaceText(node, text) {
-        return this.replaceTextRange(node.range, text);
+        return {
+            range: node.range,
+            text,
+            isAbsolute: true
+        };
     }
 
     /**
      * Creates a fix command that replaces text at the specified range in the source text.
      * The fix is not applied until applyFixes() is called.
-     * @param {int[]} range The range to replace, first item is start of range, second
+     * @param {number[]} range The range to replace, first item is start of range, second
      *      is end of range.
+     *      The `range` should be **relative** value from reported node.
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
     replaceTextRange(range, text) {
         return {
             range,
-            text
+            text,
+            isAbsolute: false
         };
     }
 
@@ -105,20 +132,18 @@ export default class RuleFixer {
      * @returns {FixCommand} The fix command.
      */
     remove(node) {
-        return this.removeRange(node.range);
+        return this.replaceText(node, "");
     }
 
     /**
      * Creates a fix command that removes the specified range of text from the source.
      * The fix is not applied until applyFixes() is called.
-     * @param {int[]} range The range to remove, first item is start of range, second
+     * @param {number[]} range The range to remove, first item is start of range, second
      *      is end of range.
+     *      The `range` should be **relative** value from reported node.
      * @returns {FixCommand} The fix command.
      */
     removeRange(range) {
-        return {
-            range,
-            text: ""
-        };
+        return this.replaceTextRange(range, "");
     }
 }

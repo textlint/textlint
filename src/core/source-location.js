@@ -22,8 +22,8 @@ export default class SourceLocation {
         const errorPrefix = `[${ruleId}]` || "";
         const padding = ruleError;
         /*
-            FIXME: It is old and un-document way
-            new RuleError("message", index);
+         FIXME: It is old and un-document way
+         new RuleError("message", index);
          */
         let _backwardCompatibleIndexValue;
         if (typeof padding === "number") {
@@ -81,11 +81,11 @@ report(node, new RuleError("message", {
         const adjustedLoc = this._adjustLoc(node, padding, _backwardCompatibleIndexValue);
         const adjustedFix = this._adjustFix(node, padding);
         /*
-        {
-            line,
-            column
-            fix?
-        }
+         {
+         line,
+         column
+         fix?
+         }
          */
         return ObjectAssign({}, adjustedLoc, adjustedFix);
     }
@@ -136,9 +136,9 @@ report(node, new RuleError("message", {
         // FIXME: backward compatible @ un-document
         // Remove next version 6?
         /*
-            new RuleError({
-                column: index
-            });
+         new RuleError({
+         column: index
+         });
          */
         if (padding.column !== undefined && padding.column > 0) {
             const addedColumn = column + padding.column;
@@ -154,18 +154,38 @@ report(node, new RuleError("message", {
         };
     }
 
-    _adjustFix(node, padding) {
+    /**
+     * Adjust `fix` command range
+     * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
+     * @param {TxtAST.TxtNode} node
+     * @param {TextLintMessage} paddingMessage
+     * @returns {FixCommand|Object}
+     * @private
+     */
+    _adjustFix(node, paddingMessage) {
         const nodeRange = node.range;
         // if not found `fix`, return empty object
-        if (padding.fix === undefined) {
+        if (paddingMessage.fix === undefined) {
             return {};
         }
-        assert(typeof padding.fix === "object", "fix should be FixCommand object");
+        assert(typeof paddingMessage.fix === "object", "fix should be FixCommand object");
+        // if absolute position return self
+        if (paddingMessage.fix.isAbsolute) {
+            return {
+                // remove other property that is not related `fix`
+                // the return object will be merged by `Object.assign`
+                fix: {
+                    range: paddingMessage.fix.range,
+                    text: paddingMessage.fix.text
+                }
+            };
+        }
+        // if relative position return adjusted position
         return {
             // fix(command) is relative from node's range
             fix: {
-                range: [nodeRange[0] + padding.fix.range[0], nodeRange[0] + padding.fix.range[1]],
-                text: padding.fix.text
+                range: [nodeRange[0] + paddingMessage.fix.range[0], nodeRange[0] + paddingMessage.fix.range[1]],
+                text: paddingMessage.fix.text
             }
         };
     }
