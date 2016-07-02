@@ -3,7 +3,8 @@ import TxtAST from "./txtast";
 // "range" is replaced by "text"
 interface TextLintFixCommand {
     text: string;
-    range: [number,number],
+    range: [number,number];
+    isAbsolute: boolean;
 }
 interface TextLintMessage {
     // See src/shared/type/MessageType.js

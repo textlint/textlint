@@ -387,7 +387,7 @@ describe("rule-context-test", function () {
                 });
             });
             context("when ignoreMessages that is not specified ruleId", function () {
-                it("should filter all messages *", function () {
+                it("should filter all messages as `*`", function () {
                     const reporter = (context) => {
                         return {
                             [context.Syntax.Str](node){
@@ -408,7 +408,7 @@ describe("rule-context-test", function () {
                         "filter-rule": function (context) {
                             return {
                                 [context.Syntax.Str](node){
-                                    // no specify ruleId
+                                    // Not specify id = all filter
                                     context.shouldIgnore(node.range);
                                 }
                             };
