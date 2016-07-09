@@ -18,7 +18,7 @@ The interface are defined in [textlint/txtnode.md](https://github.com/textlint/t
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
-If you need to markdown parse, please use directory [wooorm/remark](https://github.com/wooorm/remark).
+**If you need to markdown parser, please use [wooorm/remark](https://github.com/wooorm/remark) directly.**
 
 ## DEMO
 
