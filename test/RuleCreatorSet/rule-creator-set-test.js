@@ -2,17 +2,17 @@
 "use strict";
 const assert = require("power-assert");
 import RuleCreatorSet from "../../src/core/rule-creator-set";
-describe("RuleCreatorSet", function () {
-    context("when passing undefined", function () {
-        it("should return empty result", function () {
+describe("RuleCreatorSet", function() {
+    context("when passing undefined", function() {
+        it("should return empty result", function() {
             const ruleCreatorSet = new RuleCreatorSet();
             assert.deepEqual(ruleCreatorSet.rules, {});
             assert.deepEqual(ruleCreatorSet.ruleNames, []);
             assert.deepEqual(ruleCreatorSet.rulesConfig, {});
         });
     });
-    context("when passing unavailable rule", function () {
-        it("should return empty result", function () {
+    context("when passing unavailable rule", function() {
+        it("should return empty result", function() {
             const unAvailableRule = function ruleMock() {
             };
             const ruleCreatorSet = new RuleCreatorSet({
@@ -25,8 +25,8 @@ describe("RuleCreatorSet", function () {
             assert.deepEqual(ruleCreatorSet.rulesConfig, {});
         });
     });
-    context("when passing available rule", function () {
-        it("should return has result", function () {
+    context("when passing available rule", function() {
+        it("should return has result", function() {
             const availableRule = function ruleMock() {
             };
             const ruleCreatorSet = new RuleCreatorSet({
@@ -39,8 +39,8 @@ describe("RuleCreatorSet", function () {
             assert.deepEqual(ruleCreatorSet.rulesConfig, {rule: true});
         });
     });
-    describe("#wihtouDuplicated", function () {
-        it("should not filter duplicated only rule, config is difference", function () {
+    describe("#wihtouDuplicated", function() {
+        it("should not filter duplicated only rule, config is difference", function() {
             const availableRule = function ruleMock() {
             };
             const ruleCreatorSet = new RuleCreatorSet({
@@ -75,7 +75,7 @@ describe("RuleCreatorSet", function () {
                 ruleB: {key: true}
             });
         });
-        it("should filter duplicated rule and ruleConfig", function () {
+        it("should filter duplicated rule and ruleConfig", function() {
             const availableRule = function ruleMock() {
             };
             const ruleCreatorSet = new RuleCreatorSet({
@@ -104,5 +104,14 @@ describe("RuleCreatorSet", function () {
                 ruleA: true
             });
         });
+        // https://github.com/textlint/textlint/issues/231
+        it("should not unexpected ignore testing", function() {
+            const preset = require("textlint-rule-preset-ja-spacing");
+            const ruleCreatorSet = new RuleCreatorSet(preset.rules, preset.rulesConfig);
+            const withoutDuplicatedRuleCreatorSet = ruleCreatorSet.withoutDuplicated();
+            assert.deepEqual(ruleCreatorSet.rules, withoutDuplicatedRuleCreatorSet.rules);
+            assert.deepEqual(ruleCreatorSet.rulesConfig, withoutDuplicatedRuleCreatorSet.rulesConfig);
+        });
     });
-});
+})
+;

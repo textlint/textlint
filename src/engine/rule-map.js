@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import MapLike from "../shared/MapLike";
+const MapLike = require("map-like");
 /**
  * @typedef {{key: Function}} RulesObject
  */

@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import MapLike from "../shared/MapLike";
-// Map like 
+const MapLike = require("map-like");
+// Map like
 export default class ProcessorMap extends MapLike {
 }
