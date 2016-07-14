@@ -47,4 +47,12 @@ export default class RuleMap extends MapLike {
     resetRules() {
         this.clear();
     }
+
+    toJSON() {
+        const object = {};
+        this.forEach((value, key) => {
+            object[key] = value;
+        });
+        return object;
+    }
 }
