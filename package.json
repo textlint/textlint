@@ -70,6 +70,7 @@
     "textlint-rule-alex": "^1.0.1",
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-no-todo": "^2.0.0",
+    "textlint-rule-preset-ja-spacing": "^1.0.2",
     "textlint-rule-preset-jtf-style": "^2.0.0",
     "textlint-rule-rousseau": "^1.4.4",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
@@ -84,6 +85,7 @@
     "diff": "^2.2.2",
     "exists-sync": "0.0.3",
     "interop-require": "^1.0.0",
+    "map-like": "^1.0.1",
     "mkdirp": "^0.5.0",
     "object-assign": "^4.0.1",
     "optionator": "^0.8.0",
