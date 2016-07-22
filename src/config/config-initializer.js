@@ -3,9 +3,48 @@
 const Promise = require("bluebird");
 const fs = require("fs");
 const path = require("path");
+const ObjectAssign = require("object-assign");
+const existSync = require("exists-sync");
 const Config = require("../config/config");
+const readPkg = require("read-pkg");
 const Logger = require("../util/logger");
-// Public Interface
+
+/**
+ * read package.json if found it
+ * @param {string} dir
+ * @returns {Promise.<Array.<String>>}
+ */
+const getTextlintDependencyNames = (dir) => {
+    return readPkg(dir).then(pkg => {
+        const dependencies = pkg.dependencies || {};
+        const devDependencies = pkg.devDependencies || {};
+        const mergedDependencies = ObjectAssign({}, dependencies, devDependencies);
+        const pkgNames = Object.keys(mergedDependencies);
+        return pkgNames.filter(pkgName => {
+            const ruleOrFilter = pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1 || pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
+            if (pkgName === "textlint-rule-helper") {
+                return false;
+            }
+            return ruleOrFilter;
+        });
+    }).catch(() => {
+        return [];
+    });
+};
+
+/**
+ * create object that fill with `defaultValue`
+ * @param {Array} array
+ * @param {*}defaultValue
+ * @returns {Object}
+ */
+const arrayToObject = (array, defaultValue) => {
+    const object = {};
+    array.forEach(item => {
+        object[item] = defaultValue;
+    });
+    return object;
+};
 /**
  * Initializer class for config of textlint.
  */
@@ -13,22 +52,34 @@ const init = {
     /**
      * Create .textlintrc file
      * @params {string} dir The directory of .textlintrc file
-     * @returns {int} The exit code for the operation.
+     * @returns {Promise.<number>} The exit code for the operation.
      */
     initializeConfig(dir) {
-        const rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
-        const output = JSON.stringify({"rules": {}}, null, 2);
-        const filePath = path.resolve(dir, rcFile);
-        try {
-            if (fs.existsSync(filePath)) {
-                throw new Error(`${ rcFile } is already existed.`);
+        return getTextlintDependencyNames(dir).then(pkgNames => {
+            const rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
+            const filters = pkgNames.filter(pkgName => {
+                return pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1;
+            }).map(filterName => {
+                return filterName.replace(Config.FILTER_RULE_NAME_PREFIX, "");
+            });
+            const rules = pkgNames.filter(pkgName => {
+                return pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
+            }).map(filterName => {
+                return filterName.replace(Config.RULE_NAME_PREFIX, "");
+            });
+            const defaultTextlintRc = {
+                "filters": arrayToObject(filters, true),
+                "rules": arrayToObject(rules, true)
+            };
+            const output = JSON.stringify(defaultTextlintRc, null, 2);
+            const filePath = path.resolve(dir, rcFile);
+            if (existSync(filePath)) {
+                Logger.error(`${ rcFile } is already existed.`);
+                return Promise.resolve(1);
             }
             fs.writeFileSync(filePath, output);
-        } catch (error) {
-            Logger.error(error.message);
-            return Promise.resolve(1);
-        }
-        return Promise.resolve(0);
+            return Promise.resolve(0);
+        });
     }
 };
 module.exports = init;

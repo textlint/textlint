@@ -91,6 +91,7 @@
     "object-assign": "^4.0.1",
     "optionator": "^0.8.0",
     "rc-loader": "^1.0.0",
+    "read-pkg": "^1.1.0",
     "string-width": "^1.0.1",
     "structured-source": "^3.0.2",
     "text-table": "^0.2.0",
