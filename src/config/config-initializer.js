@@ -35,7 +35,7 @@ const getTextlintDependencyNames = (dir) => {
 /**
  * create object that fill with `defaultValue`
  * @param {Array} array
- * @param {*}defaultValue
+ * @param {*} defaultValue
  * @returns {Object}
  */
 const arrayToObject = (array, defaultValue) => {
