@@ -7,6 +7,7 @@ If you found a bug, please [create a new issue](https://github.com/textlint/text
 - The version of `textlint -v`
 - Reproduce steps
 - Actual result
+    - Please put log of `textlint --debug <your-input>`
 - Expected result
 
 :information_source: Creating reproduce repository help us to resolve the issue :)
