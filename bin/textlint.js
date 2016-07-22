@@ -19,7 +19,7 @@ setRunningCLI(!module.parent);
  */
 function showError(error) {
     console.error(logSymbols.error, "Error");
-    console.error(error.message);
+    console.error(error.message + "\n");
     console.error(logSymbols.error, "Stack trace");
     console.error(error.stack);
 }
