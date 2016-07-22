@@ -10,7 +10,14 @@
 
 > Failed to load textlint's plugin module: "html" is not found.
 
-## Solution
+## Solution A
+
+Maybe, you have installed `textlint` and rules into different place.
+
+- If you have installed `textlint` as `--global`(`-g`), must install each rule as `--global`.
+- If you have installed `textlint` as `--save-dev`(`-D`), must install each rule as `--save-dev`.
+
+## Solution B
 
 1. Update `textlint` and the rule and preset, plugin.
 2. Check your `.textlintrc` option value. 

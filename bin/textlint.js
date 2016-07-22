@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 "use strict";
-var concat = require("concat-stream");
+var getStdin = require("get-stdin");
+var logSymbols = require("log-symbols");
 var useStdIn = (process.argv.indexOf("--stdin") > -1);
 var isDebug = (process.argv.indexOf("--debug") > -1);
 if (isDebug) {
@@ -9,30 +10,42 @@ if (isDebug) {
 // must do this initialization *before* other requires in order to work
 var cli = require("../lib/cli");
 var setRunningCLI = require("../lib/util/throw-log").setRunningCLI;
-var exitCode = 0;
-
 // it is for --experimental logger
 // update state
 setRunningCLI(!module.parent);
-
-if (useStdIn) {
-    process.stdin.pipe(concat({encoding: "string"}, function (text) {
-        cli.execute(process.argv, text).then(function (code) {
-            exitCode = code;
-            process.exit(exitCode);
-        });
-    }));
-} else {
-    cli.execute(process.argv).then(function (code) {
-        exitCode = code;
-        process.exit(exitCode);
-    });
-}
-
-/*
- * Wait for the stdout buffer to drain.
- * See https://github.com/eslint/eslint/issues/317
+/**
+ * show error message for user
+ * @param {Error} error
  */
-process.on("exit", function () {
-    process.exit(exitCode);
+function showError(error) {
+    console.error(logSymbols.error, "Error");
+    console.error(error.message + "\n");
+    console.error(logSymbols.error, "Stack trace");
+    console.error(error.stack);
+}
+// Always start as promise
+Promise.resolve().then(function() {
+    if (useStdIn) {
+        return getStdin().then(function(text) {
+            return cli.execute(process.argv, text);
+        });
+    }
+    return cli.execute(process.argv);
+}).then(function(exitStatus) {
+    if (typeof exitStatus === "number") {
+        process.exitCode = exitStatus;
+    }
+}).catch(function(error) {
+    showError(error);
+    process.exit(error.code || 1);
+});
+
+// Catch throw error
+process.on("uncaughtException", function(error) {
+    showError(error);
+    process.exit(1);
+});
+process.on("unhandledRejection", (error) => {
+    showError(error);
+    process.exit(1);
 });
