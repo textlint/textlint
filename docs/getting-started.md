@@ -22,7 +22,9 @@ You can find a rule in [A Collection of textlint rule](https://github.com/textli
 
 As an example, let's install [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "textlint-rule-no-todo").
 
-    $ npm install -g textlint-rule-no-todo
+```sh
+$ npm install -g textlint-rule-no-todo
+```
 
 ## Usage
 
