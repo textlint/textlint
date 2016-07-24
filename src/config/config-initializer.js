@@ -57,6 +57,11 @@ const init = {
     initializeConfig(dir) {
         return getTextlintDependencyNames(dir).then(pkgNames => {
             const rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
+            const filePath = path.resolve(dir, rcFile);
+            if (existSync(filePath)) {
+                Logger.error(`${ rcFile } is already existed.`);
+                return Promise.resolve(1);
+            }
             const filters = pkgNames.filter(pkgName => {
                 return pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1;
             }).map(filterName => {
@@ -72,11 +77,6 @@ const init = {
                 "rules": arrayToObject(rules, true)
             };
             const output = JSON.stringify(defaultTextlintRc, null, 2);
-            const filePath = path.resolve(dir, rcFile);
-            if (existSync(filePath)) {
-                Logger.error(`${ rcFile } is already existed.`);
-                return Promise.resolve(1);
-            }
             fs.writeFileSync(filePath, output);
             return Promise.resolve(0);
         });
