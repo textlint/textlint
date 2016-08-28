@@ -21,7 +21,7 @@ export default class TextLintEngine {
                 /**
                  * Executes the current configuration on an array of file and directory names.
                  * TextLintEngine#executeOnFile
-                 * @param {String[]}  files An array of file and directory names.
+                 * @param {String} file An array of file and directory names.
                  * @returns {TextLintResult[]} The results for all files that were linted.
                  */
                 return function executeOnFile(file) {
