@@ -22,7 +22,7 @@ const filterByAvailable = (rules, rulesConfig) => {
  */
 export default class RuleCreatorSet {
     /**
-     * @param {Object} rules
+     * @param {Object} [rules]
      * @param {Object} [rulesConfig]
      * @constructor
      */
@@ -116,7 +116,7 @@ export default class RuleCreatorSet {
      * normalize `rawRulesConfigObject`.
      * if `rawRulesConfigObject` has not the rule, create `{ ruleName: true }` by default
      * @param {string[]} ruleNames
-     * @param {Object[]} rawRulesConfigObject
+     * @param {Object} rawRulesConfigObject
      * @private
      */
     _normalizeRulesConfig(ruleNames, rawRulesConfigObject) {
