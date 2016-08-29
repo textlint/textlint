@@ -2,7 +2,7 @@
 "use strict";
 /**
  * sort messages by line and column
- * @param {{TextLintMessage[]}} messages
+ * @param {TextLintMessage[]} messages
  * @returns {TextLintMessage[]}
  */
 export default function sortByLineColumn(messages) {
