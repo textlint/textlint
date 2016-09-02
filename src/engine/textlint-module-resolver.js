@@ -36,23 +36,23 @@ export default class TextLintModuleResolver {
     constructor(ConfigConstructor, baseDirectory = "") {
         validateConfigConstructor(ConfigConstructor);
         /**
-         * @return {string} config package prefix
+         * @type {string} config package prefix
          */
         this.CONFIG_PACKAGE_PREFIX = ConfigConstructor.CONFIG_PACKAGE_PREFIX;
         /**
-         * @return {string} rule package's name prefix
+         * @type {string} rule package's name prefix
          */
         this.RULE_NAME_PREFIX = ConfigConstructor.RULE_NAME_PREFIX;
         /**
-         * @return {string} filter rule package's name prefix
+         * @type {string} filter rule package's name prefix
          */
         this.FILTER_RULE_NAME_PREFIX = ConfigConstructor.FILTER_RULE_NAME_PREFIX;
         /**
-         * @return {string} rule preset package's name prefix
+         * @type {string} rule preset package's name prefix
          */
         this.RULE_PRESET_NAME_PREFIX = ConfigConstructor.RULE_PRESET_NAME_PREFIX;
         /**
-         * @return {string} plugins package's name prefix
+         * @type {string} plugins package's name prefix
          */
         this.PLUGIN_NAME_PREFIX = ConfigConstructor.PLUGIN_NAME_PREFIX;
 
