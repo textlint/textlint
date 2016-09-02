@@ -3,6 +3,7 @@
 import assert from "power-assert";
 import SourceLocation from "../../src/core/source-location";
 import RuleError from "../../src/core/rule-error";
+import RuleFixer from "../../src/fixer/rule-fixer-commaner";
 import createDummySourceCode from "./../util/dummy-source-code";
 import {_logger} from "../../src";
 const sourceCode = createDummySourceCode();
@@ -298,19 +299,48 @@ describe("compute-location", function () {
                     }
                 }
             };
+            const fixer = new RuleFixer();
             const ruleError = new RuleError("message", {
                 line: 1,
                 column: 1,
-                fix: {
-                    range: [1, 5],
-                    text: "replace"
-                }
+                fix: fixer.replaceTextRange([1, 5], "replace")
             });
             const {fix} = sourceLocation.adjust({
                 node,
                 ruleError
             });
             assert.deepEqual(fix.range, [11, 15]);
+        });
+    });
+
+    context("When fix command is absolute", function () {
+        it("not adjust fix command range", function () {
+            const sourceLocation = new SourceLocation(sourceCode);
+            const node = {
+                type: "Str",
+                range: [10, 20],
+                raw: "dummy",
+                loc: {
+                    start: {
+                        line: 1,
+                        column: 10
+                    },
+                    end: {
+                        line: 1,
+                        column: 20
+                    }
+                }
+            };
+            const fixer = new RuleFixer();
+            const ruleError = new RuleError("message", {
+                fix: fixer.remove(node)
+            });
+            const {fix} = sourceLocation.adjust({
+                node,
+                ruleError
+            });
+            assert.deepEqual(fix.range, [10, 20]);
+            assert.deepEqual(fix.text, "");
         });
     });
 });
