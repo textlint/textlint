@@ -1,12 +1,11 @@
 //noinspection TypeScriptCheckImport
 import TxtAST from "./txtast";
 // "range" is replaced by "text"
-interface TextLintFixCommand {
+export class TextLintFixCommand {
     text: string;
     range: [number,number];
-    isAbsolute: boolean;
 }
-interface TextLintMessage {
+export class TextLintMessage {
     // See src/shared/type/MessageType.js
     // Message Type
     type: string;
@@ -28,12 +27,12 @@ interface TextLintMessage {
     severity?: number;
 }
 // Linting result
-interface TextLintResult {
+export interface TextLintResult {
     filePath: string;
     messages: TextLintMessage[];
 }
 // Fixing result
-interface TextLintFixResult {
+export interface TextLintFixResult {
     filePath: string;
     // fixed content
     output: string;
@@ -47,7 +46,7 @@ interface TextLintFixResult {
     remainingMessages: TextLintMessage[];
 }
 // Config - pass a object to config.js when initialize Config.
-interface TextLintConfig {
+export interface TextLintConfig {
     // rule directories path
     rulePaths?: string[];
     // filter by file extensions
@@ -71,7 +70,7 @@ interface TextLintConfig {
     rulesConfig?: Object,
 }
 
-interface RuleErrorOptions {
+export interface RuleErrorOptions {
     /**
      * padding lineNumber
      * @type {number}
@@ -89,16 +88,16 @@ interface RuleErrorOptions {
     index: number;
     /**
      * fixCommand object
-     * @type {FixCommand}
+     * @type {TextLintFixCommand}
      */
     fix: Object;
 }
 
-class RuleError {
+export class RuleError {
     constructor(message: string, options: RuleErrorOptions);
 }
 
-class TextLintRuleContext {
+export class TextLintRuleContext {
     id: string;
     config: TextLintConfig;
     RuleError: RuleError;
@@ -120,7 +119,7 @@ class TextLintRuleContext {
 
     fixer: RuleFixer;
 }
-class TextLintFilterRuleContext {
+export class TextLintFilterRuleContext {
     id: string;
     config: TextLintConfig;
     RuleError: RuleError;
@@ -135,24 +134,20 @@ class TextLintFilterRuleContext {
     shouldIgnore: {(range: [number, number], options: { ruleId: string })};
     getFilePath: {(): string};
 }
-interface FixCommand {
-    range: [number, number];
-    text: string;
-}
 /**
  * Creates code fixing commands for rules.
  * It create command for fixing texts.
  * @constructor
  */
-class RuleFixer {
+export class RuleFixer {
     /**
      * Creates a fix command that inserts text after the given node or token.
      * The fix is not applied until applyFixes() is called.
      * @param {TxtAST.TxtNode} node The node or token to insert after.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    insertTextAfter(node: TxtAST.TxtNode, text: string): FixCommand;
+    insertTextAfter(node: TxtAST.TxtNode, text: string): TextLintFixCommand;
 
     /**
      * Creates a fix command that inserts text after the specified range in the source text.
@@ -160,18 +155,18 @@ class RuleFixer {
      * @param {int[]} range The range to replace, first item is start of range, second
      *      is end of range.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    insertTextAfterRange(range: [number, number], text: string): FixCommand;
+    insertTextAfterRange(range: [number, number], text: string): TextLintFixCommand;
 
     /**
      * Creates a fix command that inserts text before the given node or token.
      * The fix is not applied until applyFixes() is called.
      * @param {TxtAST.TxtNode} node The node or token to insert before.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    insertTextBefore(node: TxtAST.TxtNode, text: string): FixCommand;
+    insertTextBefore(node: TxtAST.TxtNode, text: string): TextLintFixCommand;
 
     /**
      * Creates a fix command that inserts text before the specified range in the source text.
@@ -179,18 +174,18 @@ class RuleFixer {
      * @param {int[]} range The range to replace, first item is start of range, second
      *      is end of range.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    insertTextBeforeRange(range: [number, number], text: string): FixCommand;
+    insertTextBeforeRange(range: [number, number], text: string): TextLintFixCommand;
 
     /**
      * Creates a fix command that replaces text at the node or token.
      * The fix is not applied until applyFixes() is called.
      * @param {TxtAST.TxtNode} node The node or token to remove.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    replaceText(node: TxtAST.TxtNode, text: string): FixCommand;
+    replaceText(node: TxtAST.TxtNode, text: string): TextLintFixCommand;
 
     /**
      * Creates a fix command that replaces text at the specified range in the source text.
@@ -198,25 +193,25 @@ class RuleFixer {
      * @param {int[]} range The range to replace, first item is start of range, second
      *      is end of range.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    replaceTextRange(range: [number, number], text: string): FixCommand;
+    replaceTextRange(range: [number, number], text: string): TextLintFixCommand;
 
     /**
      * Creates a fix command that removes the node or token from the source.
      * The fix is not applied until applyFixes() is called.
      * @param {TxtAST.TxtNode} node The node or token to remove.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    remove(node: TxtAST.TxtNode): FixCommand;
+    remove(node: TxtAST.TxtNode): TextLintFixCommand;
 
     /**
      * Creates a fix command that removes the specified range of text from the source.
      * The fix is not applied until applyFixes() is called.
      * @param {int[]} range The range to remove, first item is start of range, second
      *      is end of range.
-     * @returns {FixCommand} The fix command.
+     * @returns {TextLintFixCommand} The fix command.
      */
-    removeRange(range: [number,number]): FixCommand;
+    removeRange(range: [number,number]): TextLintFixCommand;
 
 }
