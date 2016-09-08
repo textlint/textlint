@@ -4,6 +4,7 @@ import TxtAST from "./txtast";
 export class TextLintFixCommand {
     text: string;
     range: [number,number];
+    isAbsolute: boolean;
 }
 export class TextLintMessage {
     // See src/shared/type/MessageType.js
