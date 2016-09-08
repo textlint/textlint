@@ -36,7 +36,7 @@ describe("textfix-engine", function () {
         });
     });
     describe("executeOnFiles", function () {
-        it("should return FixComman result", function () {
+        it("should return FixCommand result", function () {
             const engine = new TextFixEngine({
                 rulePaths: [rulesDir]
             });

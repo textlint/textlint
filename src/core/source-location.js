@@ -157,7 +157,7 @@ report(node, new RuleError("message", {
     /**
      * Adjust `fix` command range
      * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
-     * @param {TxtAST.TxtNode} node
+     * @param {TxtNode} node
      * @param {TextLintMessage} paddingMessage
      * @returns {FixCommand|Object}
      * @private
