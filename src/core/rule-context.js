@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-import RuleFixer from "../fixer/rule-fixer-commaner";
+import RuleFixer from "../fixer/rule-fixer";
 import RuleError from "./rule-error";
 import SeverityLevel from "../shared/type/SeverityLevel";
 import {getSeverity} from "../shared/rule-severity";

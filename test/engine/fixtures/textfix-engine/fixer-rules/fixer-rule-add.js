@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const reporter = (context) => {
-    const {Syntax, RuleError, fixer, report, getSource} = context;
+    const {Syntax, fixer, report, getSource} = context;
     return {
         [Syntax.Str](node){
             const text = getSource(node);
