@@ -250,16 +250,16 @@ $ textlint --fix --dry-run --formatter diff README.md
 
 Use following formatter.
 
-- "stylish" (defaults)
-- "compact"
-- "checkstyle"
-- "jslint-xml"
-- "junit"
-- "tap"
-- "table"
-- "pretty-error"
-- "json"
-- "unix"
+- stylish (defaults)
+- compact
+- checkstyle
+- jslint-xml
+- junit
+- tap
+- table
+- pretty-error
+- json
+- unix
 
 e.g.) use pretty-error.js
 
