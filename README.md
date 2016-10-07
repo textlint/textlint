@@ -118,7 +118,7 @@ is equal to create `.textlintrc` file
 {
   "rules": {
     "no-todo": true,
-    "very-nice-rule": true,
+    "very-nice-rule": true
   }
 }
 ```
@@ -339,7 +339,7 @@ textlint has four extensible points
 Please see docs/
 
 - [docs/txtnode.md](docs/txtnode.md)
-    - What is is TxtNode?
+    - What is TxtNode?
 - [docs/rule.md](docs/rule.md)
     - How to create rules?
     - Tutorial: creating `no-todo` rule.
