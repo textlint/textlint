@@ -14,8 +14,8 @@ Visit [https://textlint.github.io/](https://textlint.github.io/) and type text!
 ## Features
 
 - No bundle rules.
-- To use rule, run simply `npm install textlint-rule-xxx`. See a [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
-- [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are support by default. Additionally, [HTML](https://github.com/textlint/textlint-plugin-html) and [other formats](https://github.com/textlint/textlint#supported-file-formats) are supported by plugins.
+- To use rule, run `npm install textlint-rule-xxx`. See a [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
+- [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are support by default. [HTML](https://github.com/textlint/textlint-plugin-html) and [other formats](https://github.com/textlint/textlint#supported-file-formats) are supported by plugins.
 - [Formatter(reporter)](https://github.com/textlint/textlint-formatter) is used both by bundled and custom formatters
 
 ## Quick Tour
@@ -215,7 +215,7 @@ Optional supported file types:
 - HTML: [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html")
 - reStructuredText: [textlint-plugin-rst](https://github.com/jimo1001/textlint-plugin-rst "textlint-plugin-rst")
 - AsciiDoc/Asciidoctor: [textlint-plugin-asciidoc-loose](https://github.com/azu/textlint-plugin-asciidoc-loose "textlint-plugin-asciidoc-loose")
-- Re:VIEW: [textlint-plugin-review](https://github.com/orangain/textlint-plugin-review "textlint-plugin-review")
+- Re:VIEW_ [textlint-plugin-review](https://github.com/orangain/textlint-plugin-review "textlint-plugin-review")
 
 See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule#processor-plugin-list "Processor Plugin List") for details.
 
@@ -248,7 +248,18 @@ $ textlint --fix --dry-run --formatter diff README.md
 
 ### Built-in formatters
 
-Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "table", "pretty-error", "json", "unix".
+Use following formatter.
+
+- "stylish" (defaults)
+- "compact"
+- "checkstyle"
+- "jslint-xml"
+- "junit"
+- "tap"
+- "table"
+- "pretty-error"
+- "json"
+- "unix"
 
 e.g.) use pretty-error.js
 
@@ -352,7 +363,7 @@ You can use filter rule like [textlint-filter-rule-comments](https://github.com/
 
 Please see [docs/configuring.md](docs/configuring.md) for more details.
 
-## Use with XXX
+## Use with Other Tools
 
 - [gulp-textlint](https://github.com/textlint/gulp-textlint "gulp-textlint")
 
@@ -411,6 +422,8 @@ Download from [textlint/media](https://github.com/textlint/media "textlint/media
 
 ## Related Work
 
+<!-- textlint-disable -->
+
 [SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint") is similar project.
 
 [SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint")'s place is equal to my `textlint`(Fortuitously, project's name is the same too!).
@@ -421,4 +434,6 @@ via [Natural Language Checking with Program Checking Tools](http://www.slideshar
 
 ## Acknowledgements
 
-Many thanks to [ESLint](http://eslint.org/ "ESLint").
+Thanks to [ESLint](http://eslint.org/ "ESLint").
+
+<!-- textlint-enable -->

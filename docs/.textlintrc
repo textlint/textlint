@@ -1,13 +1,19 @@
 {
+  "filters": {
+    "comments": true
+  },
   "rules": {
     "unexpanded-acronym": {
       "ignore_acronyms": [
+        "SCG",
+        "CLI",
         "XML",
         "YAML",
         "JSON",
         "TODO",
         "API",
         "HTML",
+        "MIT",
         "FAQ"
       ]
     },
