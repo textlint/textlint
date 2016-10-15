@@ -4,7 +4,7 @@ const Promise = require("bluebird");
 const fs = require("fs");
 const path = require("path");
 const ObjectAssign = require("object-assign");
-const existSync = require("exists-sync");
+const isFile = require("is-file");
 const Config = require("../config/config");
 const readPkg = require("read-pkg");
 const Logger = require("../util/logger");
@@ -58,7 +58,7 @@ const init = {
         return getTextlintDependencyNames(dir).then(pkgNames => {
             const rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
             const filePath = path.resolve(dir, rcFile);
-            if (existSync(filePath)) {
+            if (isFile(filePath)) {
                 Logger.error(`${ rcFile } is already existed.`);
                 return Promise.resolve(1);
             }
