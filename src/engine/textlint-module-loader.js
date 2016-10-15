@@ -3,7 +3,7 @@
 const EventEmitter = require("events");
 const interopRequire = require("interop-require");
 const debug = require("debug")("textlint:module-loader");
-const existSync = require("exists-sync");
+const isFile = require("is-file");
 import {isPluginRuleKey} from "../util/config-util";
 import {loadFromDir} from "./rule-loader";
 import Logger from "../util/logger";
@@ -154,7 +154,7 @@ export default class TextLintModuleLoader extends EventEmitter {
              - emit rule
         */
         // ruleName is filePath
-        if (existSync(ruleName)) {
+        if (isFile(ruleName)) {
             const ruleCreator = interopRequire(ruleName);
             const ruleEntry = [ruleName, ruleCreator];
             this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
@@ -193,7 +193,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         */
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
-        if (existSync(ruleName)) {
+        if (isFile(ruleName)) {
             const ruleCreator = interopRequire(ruleName);
             const ruleEntry = [ruleName, ruleCreator];
             this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);

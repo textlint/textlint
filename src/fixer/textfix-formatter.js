@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const tryResolve = require("try-resolve");
 const interopRequire = require("interop-require");
-const existSync = require("exists-sync");
+const isFile = require("is-file");
 const debug = require("debug")("textlint:textfix-formatter");
 export default function createFormatter(formatterConfig) {
     const formatterName = formatterConfig.formatterName;
@@ -17,7 +17,7 @@ export default function createFormatter(formatterConfig) {
         formatterPath = path.resolve(process.cwd(), formatterName);
     } else {
         var builtinFormatterPath = path.join(__dirname, "formatters/", formatterName) + ".js";
-        if (existSync(builtinFormatterPath)) {
+        if (isFile(builtinFormatterPath)) {
             formatterPath = builtinFormatterPath;
         } else {
             var pkgPath = tryResolve("textlint-formatter-" + formatterName) || tryResolve(formatterName);

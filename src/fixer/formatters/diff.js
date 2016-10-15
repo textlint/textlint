@@ -1,6 +1,6 @@
 "use strict";
 var fs = require("fs");
-var existsSync = require("exists-sync");
+var isFile = require("is-file");
 var jsdiff = require("diff");
 var chalk = require("chalk");
 /**
@@ -48,7 +48,7 @@ module.exports = function (results, options) {
         if (messages.length === 0) {
             return;
         }
-        if (!existsSync(filePath)) {
+        if (!isFile(filePath)) {
             return;
         }
         output += chalk.underline(result.filePath) + "\n";
