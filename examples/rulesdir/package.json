@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:ci": "rm -rf ./node_modules && yarn-install && npm test",
+    "test:ci": "rm -rf ./node_modules && yarn && npm test",
     "test": "npm run textlint",
     "textlint": "textlint --rulesdir ./rules README.md"
 
