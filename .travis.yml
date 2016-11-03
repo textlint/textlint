@@ -3,5 +3,12 @@ language: node_js
 node_js:
 - "stable"
 - "4"
-before_script:
-  - npm set progress=false
+cache:
+  directories:
+    - $HOME/.yarn-cache
+before_install:
+  - npm install --global yarn
+install:
+  - yarn install
+script:
+  - yarn run test:ci

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm rm textlint && npm --cache-min 9999999 i",
+    "test:ci": "rm -rf ./node_modules && yarn && npm test",
+    "test": "npm run textlint && npm run textlint-fix",
     "textlint": "textlint README.md",
     "textlint-fix": "textlint --fix README.md"
   },

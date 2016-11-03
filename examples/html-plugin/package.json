@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "textlint": "textlint -f pretty-error index.html",
-    "pretest": "npm rm textlint && npm --cache-min 9999999 i",
-    "test": "npm run textlint"
+    "test:ci": "rm -rf ./node_modules && yarn && npm test",
+    "test": "npm run textlint",
+    "textlint": "textlint -f pretty-error index.html"
   },
   "author": "azu",
   "license": "MIT",
