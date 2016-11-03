@@ -35,7 +35,6 @@
     "textlint": "./bin/textlint.js -c docs/.textlintrc docs/*.md README.md CONTRIBUTING.md -f pretty-error",
     "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && npm run textlint",
     "lint:js": "eslint src/",
-    "test:example": "npm-run-all -l example:*",
     "example:cli": "cd $(git rev-parse --show-toplevel)/examples/cli && npm run test:ci",
     "example:config-file": "cd $(git rev-parse --show-toplevel)/examples/config-file && npm run test:ci",
     "example:rulesdir": "cd $(git rev-parse --show-toplevel)/examples/rulesdir && npm run test:ci",
@@ -44,8 +43,9 @@
     "example:use-as-module": "cd $(git rev-parse --show-toplevel)/examples/use-as-module && npm run test:ci",
     "example:fix-dry-run": "cd $(git rev-parse --show-toplevel)/examples/fix-dry-run && npm run test:ci",
     "example:filter": "cd $(git rev-parse --show-toplevel)/examples/filter && npm run test:ci",
+    "test:ci": "npm-run-all lint:* test:js example:*",
+    "test": "npm-run-all test:js --parallel lint:* example:*",
     "test:js": "mocha test/",
-    "test": "npm-run-all lint:* test:js test:example",
     "perf": "cd perf && npm run perf"
   },
   "directories": {
@@ -81,6 +81,7 @@
     "textlint-rule-preset-jtf-style": "^2.0.0",
     "textlint-rule-rousseau": "^1.4.4",
     "textlint-rule-unexpanded-acronym": "^1.2.1",
+    "yarn": "^0.16.1",
     "yarn-install": "^0.2.1"
   },
   "dependencies": {

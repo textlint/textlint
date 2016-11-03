@@ -10,3 +10,5 @@ before_install:
   - npm install --global yarn
 install:
   - yarn install
+script:
+  - yarn run test:ci
