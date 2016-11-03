@@ -3,6 +3,9 @@ language: node_js
 node_js:
 - "stable"
 - "4"
+cache:
+  directories:
+    - $HOME/.yarn-cache
 before_install:
   - npm install --global yarn
 install:
