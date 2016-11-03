@@ -4,8 +4,9 @@
   "description": "filter rule example",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm rm textlint && npm i --cache-min 9999999 ",
-    "test": "textlint -f pretty-error README.md"
+    "test:ci": "rm -rf ./node_modules && yarn-install && npm test",
+    "test": "npm run textlint",
+    "textlint": "textlint -f pretty-error README.md"
   },
   "author": "azu",
   "license": "MIT",

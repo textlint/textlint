@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm rm textlint && npm --cache-min 9999999 i",
-    "test": "textlint --rulesdir ./rules README.md"
+    "test:ci": "rm -rf ./node_modules && yarn-install && npm test",
+    "test": "npm run textlint",
+    "textlint": "textlint --rulesdir ./rules README.md"
+
   },
   "author": "azu",
   "license": "MIT",
