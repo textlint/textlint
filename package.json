@@ -35,7 +35,7 @@
     "textlint": "./bin/textlint.js -c docs/.textlintrc docs/*.md README.md CONTRIBUTING.md -f pretty-error",
     "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && npm run textlint",
     "lint:js": "eslint src/",
-    "test:example": "npm-run-all --parallel -l example:*",
+    "test:example": "npm-run-all -l example:*",
     "example:cli": "cd $(git rev-parse --show-toplevel)/examples/cli && npm run test:ci",
     "example:config-file": "cd $(git rev-parse --show-toplevel)/examples/config-file && npm run test:ci",
     "example:rulesdir": "cd $(git rev-parse --show-toplevel)/examples/rulesdir && npm run test:ci",
