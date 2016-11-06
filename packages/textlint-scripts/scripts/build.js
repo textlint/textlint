@@ -6,7 +6,7 @@ process.env.NODE_ENV = 'production';
 var path = require("path");
 var spawn = require("cross-spawn");
 var args = process.argv.slice(2);
-var babel = path.resolve(process.cwd(), 'node_modules', '.bin', 'babel');
+var babel = require.resolve('.bin/babel');
 var configPath = path.resolve(__dirname, "..", "configs", "babelrc.js");
 // babel src --out-dir lib --watch --source-maps
 var child = spawn(babel, [
