@@ -4,7 +4,6 @@ var pkgToReadme = require("pkg-to-readme");
 var path = require("path");
 var confirmer = require('confirmer');
 var fs = require('fs');
-var babel = path.resolve(process.cwd(), 'node_modules', '.bin', 'babel');
 // Update README.md
 var templatePath = path.resolve(__dirname, "..", "configs", "README.md.template");
 Promise.resolve().then(function() {

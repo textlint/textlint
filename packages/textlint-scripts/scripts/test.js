@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'test';
 var path = require("path");
 var spawn = require("cross-spawn");
 var args = process.argv.slice(2);
-var mocha = path.resolve(process.cwd(), 'node_modules', '.bin', 'mocha');
+var mocha = require.resolve('.bin/mocha');
 // mocha
 var child = spawn(mocha, [
     "--compilers", "js:babel-register",
