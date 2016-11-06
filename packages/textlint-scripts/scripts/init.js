@@ -22,6 +22,6 @@ Promise.resolve().then(function() {
 }).then(()=> {
     console.log('Generated README.md');
 }).catch(error => {
-    console.error(error.message, error.stack);
+    console.error(error.message);
     process.exit(1);
 });
