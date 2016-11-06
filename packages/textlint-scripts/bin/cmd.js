@@ -4,8 +4,8 @@ var script = process.argv[2];
 var args = process.argv.slice(3);
 
 switch (script) {
+    case 'init':
     case 'build':
-    // case 'eject':
     case 'test':
         var result = spawn.sync(
             'node',
