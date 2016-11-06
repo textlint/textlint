@@ -7,10 +7,10 @@ var path = require("path");
 var spawn = require("cross-spawn");
 var args = process.argv.slice(2);
 var babel = require.resolve('.bin/babel');
-var configPath = path.resolve(__dirname, "..", "configs", "babelrc.js");
+var babelrc = require("../configs/babelrc");
 // babel src --out-dir lib --watch --source-maps
 var child = spawn(babel, [
-    "--config", configPath,
+    "--presets", babelrc.presets.join(","),
     "--source-maps",
     "--out-dir", "lib",
     "src"
