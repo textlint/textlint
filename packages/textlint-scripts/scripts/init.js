@@ -18,7 +18,7 @@ Promise.resolve().then(function() {
     return pkgToReadme({
         template: templatePath
     })
-}).then(()=> {
+}).then(function() {
     console.log('Generated README.md');
 }).catch(error => {
     console.error(error.message);
