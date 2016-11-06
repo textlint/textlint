@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts" : {
+    "build": "textlint-scripts build",
+    "test": "textlint-scripts test"
+  },
+  "devDependencies": {
+    "textlint-scripts": "file:../"
+  }
+}
