@@ -10,6 +10,8 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
+Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts "npm-scripts").
+
 ```json
 {
     "scripts" : {
