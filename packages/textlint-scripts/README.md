@@ -1,4 +1,4 @@
-# textlint-scripts
+# textlint-scripts [![Build Status](https://travis-ci.org/textlint/textlint-scripts.svg?branch=master)](https://travis-ci.org/textlint/textlint-scripts)
 
 textlint npm-run-scripts CLI help to create textlint rule.
 
