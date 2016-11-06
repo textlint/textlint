@@ -6,8 +6,9 @@ var spawn = require("cross-spawn");
 var args = process.argv.slice(2);
 var mocha = require.resolve('.bin/mocha');
 // mocha
+var babelRegisterPath = require.resolve("../configs/babel-register");
 var child = spawn(mocha, [
-    "--compilers", "js:babel-register",
+    "--require", babelRegisterPath,
     "--timeout", "5000",
     "--recursive",
     "test/"
