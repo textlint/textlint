@@ -16,7 +16,7 @@
     "textlint-scripts": "./bin/cmd.js"
   },
   "scripts": {
-    "test": "sh test/test-example.sh"
+    "test": "bash test/test-example.sh"
   },
   "keywords": [
     "textlint"
