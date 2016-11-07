@@ -101,7 +101,7 @@ npm test
 
 Run all testing:
 
-This test is heavy to use CPU because this includes example testing.
+This test is heavy because this includes example testing.
 
 ```sh
 # It is need to install `yarn`
