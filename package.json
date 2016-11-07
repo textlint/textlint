@@ -43,7 +43,6 @@
     "example:use-as-module": "cd $(git rev-parse --show-toplevel)/examples/use-as-module && npm run test:ci",
     "example:fix-dry-run": "cd $(git rev-parse --show-toplevel)/examples/fix-dry-run && npm run test:ci",
     "example:filter": "cd $(git rev-parse --show-toplevel)/examples/filter && npm run test:ci",
-    "test:ci": "npm-run-all lint:* test:js example:*",
     "test": "npm-run-all test:js --parallel lint:* example:*",
     "test:js": "mocha test/",
     "perf": "cd perf && npm run perf"
