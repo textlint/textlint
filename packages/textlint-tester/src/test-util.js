@@ -45,7 +45,7 @@ The result's line number should be less than ${lines.length + 1}`);
             const columnText = lines[resultMessageObject.line - 1];
             assert.ok(resultMessageObject.column >= 1,
                 `lint result's column number is ${resultMessageObject.column}, should be over than 1.`);
-            assert.ok(resultMessageObject.column <= 109,
+            assert.ok(resultMessageObject.column <= columnText.length + 1,
                 `lint result's column number is ${resultMessageObject.column}, but the length of the text @ line:${resultMessageObject.line} is ${columnText.length + 1}.
 The result's column number should be less than ${columnText.length + 1}`);
             if (ruleId !== undefined) {
