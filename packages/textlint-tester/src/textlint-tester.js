@@ -3,11 +3,11 @@
 import assert from "assert";
 import {testValid, testInvalid} from "./test-util";
 import {TextLintCore, _logger} from "textlint";
-const describe = (typeof global.describe === "function") ? global.describe : function (text, method) {
+const describe = (typeof global.describe === "function") ? global.describe : function(text, method) {
     return method.apply(this);
 };
 
-const it = (typeof global.it === "function") ? global.it : function (text, method) {
+const it = (typeof global.it === "function") ? global.it : function(text, method) {
     return method.apply(this);
 };
 
@@ -60,7 +60,7 @@ export default class TextLintTester {
         }, {
             [ruleName]: options
         });
-        it(text, ()=> {
+        it(text, () => {
             return testInvalid(textlint, text, ext, errors);
         });
         // --fix
@@ -82,7 +82,7 @@ export default class TextLintTester {
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
-    run(ruleName, rule, {valid=[], invalid=[]}) {
+    run(ruleName, rule, {valid = [], invalid = []}) {
         describe(ruleName, ()=> {
             invalid.forEach(state => {
                 this.testInvalidPattern(ruleName, rule, state);
