@@ -215,7 +215,7 @@ describe("cli-test", function () {
     // Regression testing
     // (node) warning: possible EventEmitter memory leak detected. 11 Str listeners added. Use emitter.setMaxListeners() to increase limit.
     describe("EventEmitter memory leak detected", function () {
-        it("should not show in console", function () {
+        xit("should not show in console", function () {
             // testing stderr https://github.com/nodejs/node/blob/082cc8d6d8f5c7c797e58cefeb475b783c730635/test/parallel/test-util-internal.js#L53-L59
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const bin = path.join(__dirname, "../../bin/textlint.js");
