@@ -32,7 +32,7 @@
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "pretest": "npm run --if-present build",
-    "textlint": "./bin/textlint.js -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
+    "textlint": "node ./bin/textlint.js -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
     "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && npm run textlint",
     "lint:js": "eslint src/",
     "example:cli": "cd ./examples/cli && npm run test:ci",
