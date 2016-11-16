@@ -45,7 +45,7 @@ process.on("uncaughtException", function(error) {
     showError(error);
     process.exit(1);
 });
-process.on("unhandledRejection", (error) => {
+process.on("unhandledRejection", function(error) {
     showError(error);
     process.exit(1);
 });
