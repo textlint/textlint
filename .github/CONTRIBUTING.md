@@ -104,8 +104,6 @@ Run all testing:
 This test is heavy because this includes example testing.
 
 ```sh
-# It is need to install `yarn`
-npm i -g yarn
 npm run test:all
 ```
 
