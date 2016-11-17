@@ -35,6 +35,7 @@
     "textlint": "node ./bin/textlint.js -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
     "lint:doc": "eslint -c docs/.eslintrc.js docs/ --ext md && npm run textlint",
     "lint:js": "eslint src/",
+    "example": "npm-run-all --sequential example:*",
     "example:cli": "cd ./examples/cli && npm run test:ci",
     "example:config-file": "cd ./examples/config-file && npm run test:ci",
     "example:rulesdir": "cd ./examples/rulesdir && npm run test:ci",
@@ -82,7 +83,6 @@
     "textlint-rule-preset-jtf-style": "^2.0.0",
     "textlint-rule-rousseau": "^1.4.4",
     "textlint-rule-unexpanded-acronym": "^1.2.1",
-    "yarn": "^0.16.1",
     "yarn-install": "^0.2.1"
   },
   "dependencies": {

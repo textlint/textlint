@@ -19,7 +19,8 @@ test_script:
   - npm --version
   # run tests
   - npm test
-  - npm run example:cli
+  # run by sequential
+  - npm run example
 
 # Don't actually build.
 build: off
