@@ -19,7 +19,8 @@ test_script:
   - node --version
   - npm --version
   # run tests
-  - npm run test:all
+  - npm test
+  - npm run example:cli
 
 # Don't actually build.
 build: off
