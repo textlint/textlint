@@ -4,7 +4,7 @@
   "description": "filter rule example",
   "main": "index.js",
   "scripts": {
-    "test:ci": "rm -rf ./node_modules && yarn --mutex file && npm test",
+    "test:ci": "npm rm textlint && npm i --no-progress && npm test",
     "test": "npm run textlint",
     "textlint": "textlint -f pretty-error README.md"
   },
