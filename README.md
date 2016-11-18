@@ -5,8 +5,12 @@
 > The pluggable linting tool for text and markdown.  
 > It is similar to [ESLint](http://eslint.org/ "ESLint"), but textlint for natural language.
 
+<!-- textlint-disable -->
+
 [![Travis CI Build Status](https://travis-ci.org/textlint/textlint.svg)](https://travis-ci.org/textlint/textlint)
 [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/4kwh41gxpc4h0obt/branch/master?svg=true)](https://ci.appveyor.com/project/azu/textlint/branch/master)
+
+<!-- textint-enable -->
 
 ## Online Demo
 
