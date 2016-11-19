@@ -37,7 +37,12 @@ You can install `textlint` command using npm:
 $ npm install textlint -g
 ```
 
-**Requirement**: Node.js 4.0.0 >=
+**Requirement**: 
+
+- Node.js 4.0.0 >=
+- npm 3.0.0 >=
+
+Test: Run `node -v` in your console. The version should be higher than v4.0.0.
 
 :warning: Caution: Mixed location of installation.
 
@@ -45,6 +50,12 @@ $ npm install textlint -g
 - If you have installed `textlint` as `--save-dev`(`-D`), must install each rule as `--save-dev`.
 
 Recommended way: Install `textlint` and rules as `--save-dev` per project.
+
+### For Node.js beginner
+
+If you never use Node.js and npm(package manager for Node.js), please see following:
+
+- [Installing Node.js and updating npm | npm Documentation](https://docs.npmjs.com/getting-started/installing-node "02 - Installing Node.js and updating npm | npm Documentation")
 
 ## Usage
 
