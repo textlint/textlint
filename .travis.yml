@@ -4,4 +4,5 @@ node_js:
 - "stable"
 - "4"
 script:
-  - npm run test:all
+  - npm test
+  - npm run example
