@@ -13,24 +13,27 @@
 // See: https://github.com/textlint/textlint/blob/master/docs/use-as-modules.md
 module.exports = {
     // Command line interface
-    cli: require("./cli"),
+    cli,
     // TextLintEngine is a wrapper around `textlint` for linting **multiple** files
     // include formatter, detecting utils
     // <Recommend>: It is easy to use
     // You can see engine/textlint-engine-core.js for more detail
-    TextLintEngine: require("./textlint-engine"),
+    TextLintEngine,
     // TextFixEngine is a wrapper around `textlint` for linting **multiple** files
     // include formatter, detecting utils
     // <Recommend>: It is easy to use
     // You can see engine/textlint-engine-core.js for more detail
-    TextFixEngine: require("./textfix-engine"),
+    TextFixEngine,
     // It is a singleton object of TextLintCore
     // Recommend: use TextLintCore
-    textlint: require("./textlint"),
+    textlint,
     // Core API for linting a **single** text or file.
-    TextLintCore: require("./textlint-core")
+    TextLintCore,
+    // Constant Types
+    TextLintMessageType: MessageType,
+    TextLintMessageSeverityLevel: SeverityLevel,
+    TextLintNodeType: TextLintNodeType,
 };
-
 ```
 
 Recommend to use `TextLintEngine`.
@@ -49,21 +52,23 @@ textlint has two engines `TextLintEngine` and `TextFixEngine`.
 
 Both engine
 
-- handle **multiple** files or text string.
-- return a array of `TextLintResult` or `TextLintFixResult`
+- Load configuration from `.textlintrc`.
+- Handle **multiple** files or text string.
+- Return a array of `TextLintResult` or `TextLintFixResult`
     - actually, return a Promise like `Promise<TextLintResult[]>`
 
 ### Core
 
 textlint's core 
 
-- handle a **single** file or text string.
-- return `TextLintResult` or `TextLintFixResult`
+- Accept configuration as object.
+- Handle a **single** file or text string.
+- Return `TextLintResult` or `TextLintFixResult`
     - actually, return a Promise like `Promise<TextLintResult>`
 
 ## Example
 
-Lint a file:
+Lint files using `TextLintEngine`:
 
 See [example/node-module/lint-file.js](example/node-module/lint-file.js)
 

@@ -139,6 +139,10 @@ new TextLintEngine({
         this._setupRules();
     }
 
+    /**
+     * Update rules from current config
+     * @private
+     */
     _setupRules() {
         // set Rules
         const textlintConfig = this.config ? this.config.toJSON() : {};
@@ -158,6 +162,7 @@ new TextLintEngine({
 
     /**
      * Remove all registered rule and clear messages.
+     * @private
      */
     resetRules() {
         this.textlint.resetRules();
@@ -248,6 +253,9 @@ new TextLintEngine({
         });
     }
 
+    /**
+     * @returns {boolean}
+     */
     hasRuleAtLeastOne() {
         return this.ruleMap.hasRuleAtLeastOne();
     }
