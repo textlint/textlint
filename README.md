@@ -40,7 +40,7 @@ $ npm install textlint -g
 **Requirement**: 
 
 - Node.js 4.0.0 >=
-- npm 3.0.0 >=
+- npm 2.0.0 >=
 
 Test: Run `node -v` in your console. The version should be higher than v4.0.0.
 
