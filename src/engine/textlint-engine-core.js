@@ -27,7 +27,7 @@ export default class TextLintEngineCore {
      * Process files are wanted to lint.
      * TextLintEngine is a wrapper of textlint.js.
      * Aim to be called from cli with cli options.
-     * @param {TextLintConfig} options the options is command line options or Config object.
+     * @param {Config} options the options is command line options or Config object.
      * @param {{ onFile: Function, onText: Function, onFormat:Function }} executor executor are injectable function.
      * @constructor
      */
