@@ -1,7 +1,7 @@
 # CAUTION
 
 `typings/*.ts` is not compatible with TypeScript.
-Because this files is for [docs](../docs).
+Because this files is for [documentation](../docs).
 
 But, We welcome pull request to fix this issue.
 

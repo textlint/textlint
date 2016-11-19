@@ -8,7 +8,7 @@ import createFormatter from "./fixer/textfix-formatter";
 export default class TextFixEngine {
     /**
      * TextFixEngine is a adaptor of TextLintEngineCore.
-     * @param {Config} config
+     * @param {Config|Object} config
      * @returns {TextLintEngineCore}
      */
     constructor(config) {
