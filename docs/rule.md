@@ -1,6 +1,6 @@
 # Creating Rules
 
-Textlint's AST(Abstract Syntax Tree) is defined these pages.
+textlint's AST(Abstract Syntax Tree) is defined these pages.
 
 - [txtnode.d.ts](../typings/txtast.d.ts)
 - [txtnode.md](../typings/txtast.d.ts)

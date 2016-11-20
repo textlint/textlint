@@ -80,6 +80,7 @@
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.0.0",
+    "textlint-rule-prh": "^3.1.2",
     "textlint-rule-rousseau": "^1.4.4",
     "textlint-rule-unexpanded-acronym": "^1.2.1",
     "yarn-install": "^0.2.1"

@@ -1,0 +1,6 @@
+version: 1
+rules:
+  - expected: textlint
+    options:
+      wordBoundary: true
+    prh: textlint is not TextLint.

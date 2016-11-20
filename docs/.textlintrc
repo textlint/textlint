@@ -3,6 +3,11 @@
     "comments": true
   },
   "rules": {
+    "prh": {
+      "rulePaths": [
+        "./prh.yml"
+      ]
+    },
     "unexpanded-acronym": {
       "ignore_acronyms": [
         "SCG",
