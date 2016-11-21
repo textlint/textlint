@@ -399,6 +399,10 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
 
 - [scrooloose/syntastic](https://github.com/scrooloose/syntastic "scrooloose/syntastic")
 
+> for VS Code
+
+- [taichi/vscode-textlint](https://github.com/taichi/vscode-textlint)
+
 > Syntax checking hacks for vim 
 
 See [Markdown](https://github.com/scrooloose/syntastic/wiki/Markdown "Markdown"), [Text](https://github.com/scrooloose/syntastic/wiki/Text "Text") and [HTML](https://github.com/scrooloose/syntastic/wiki/HTML "HTML") of [scrooloose/syntastic Wiki](https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers "Syntax Checkers · scrooloose/syntastic Wiki") 
