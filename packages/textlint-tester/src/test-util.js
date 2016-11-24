@@ -39,9 +39,9 @@ ${JSON.stringify(lintResult, null, 4)}`);
             // check
             assert.ok(resultMessageObject.line >= 1,
                 `lint result's line number is ${resultMessageObject.line}, should be over than 1.`);
-            assert.ok(resultMessageObject.line <= (lines.length + 1),
-                `lint result's line number is line:${resultMessageObject.line}, but total line number of the text is ${lines.length + 1}.
-The result's line number should be less than ${lines.length + 1}`);
+            assert.ok(resultMessageObject.line <= lines.length,
+                `lint result's line number is line:${resultMessageObject.line}, but total line number of the text is ${lines.length}.
+The result's line number should be less than ${lines.length}`);
             const columnText = lines[resultMessageObject.line - 1];
             assert.ok(resultMessageObject.column >= 1,
                 `lint result's column number is ${resultMessageObject.column}, should be over than 1.`);

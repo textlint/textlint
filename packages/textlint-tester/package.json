@@ -36,11 +36,13 @@
     "textlint": "^7.0.0"
   },
   "devDependencies": {
+    "analyze-desumasu-dearu": "^3.1.0",
     "babel-cli": "^6.10.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-jsdoc-to-assert": "^2.0.1",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.9.0",
+    "match-index": "^1.0.1",
     "mocha": "^2.3.3",
     "power-assert": "^1.4.1",
     "textlint-rule-helper": "^2.0.0",
