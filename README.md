@@ -262,6 +262,12 @@ $ textlint --fix --dry-run --formatter diff README.md
 # show the difference between fixed content and original content.
 ```
 
+You can copy and page to your README.
+
+```markdown
+[![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
+```
+
 ### Built-in formatters
 
 Use following formatter.
