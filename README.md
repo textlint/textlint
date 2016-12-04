@@ -387,36 +387,35 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
 
 ## Use with Other Tools
 
-- [gulp-textlint](https://github.com/textlint/gulp-textlint "gulp-textlint")
+### Task Runner
 
-> gulp plugin
+- gulp plugin
+  - [gulp-textlint](https://github.com/textlint/gulp-textlint "gulp-textlint")
+- Grunt plugin
+  - [grunt-textlint](https://github.com/textlint/grunt-textlint "grunt-textlint")
 
-- [grunt-textlint](https://github.com/textlint/grunt-textlint "grunt-textlint")
+### Editor integrations
 
-> Grunt plugin
+- Atom Editor
+  - [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
+- SublimeText
+  - [joeybaker/sublimelinter-textlint](https://github.com/joeybaker/sublimelinter-textlint)
+- Vim
+  - [vim-textlint](https://github.com/heavenshell/vim-textlint "vim-textlint")
+  - [scrooloose/syntastic](https://github.com/scrooloose/syntastic "scrooloose/syntastic")
+    - See [Markdown](https://github.com/scrooloose/syntastic/wiki/Markdown "Markdown"), [Text](https://github.com/scrooloose/syntastic/wiki/Text "Text") and [HTML](https://github.com/scrooloose/syntastic/wiki/HTML "HTML") of [scrooloose/syntastic Wiki](https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers "Syntax Checkers · scrooloose/syntastic Wiki") 
+- VS Code
+  - [taichi/vscode-textlint](https://github.com/taichi/vscode-textlint)
 
-- [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
+### Browser
 
-> for Atom Editor
+- Chrome Extension
+  - [Chrome: textlint-proofreader](https://chrome.google.com/webstore/detail/textlint-proofreader/hdongmdneapmhfblomidbafplpanpdmm)
+  - [io-monad/textlint-chrome-extension: textlint Chrome Extension](https://github.com/io-monad/textlint-chrome-extension "io-monad/textlint-chrome-extension: textlint Chrome Extension")
 
-- [joeybaker/sublimelinter-textlint](https://github.com/joeybaker/sublimelinter-textlint)
+### Other
 
-> for SublimeText
-
-- [scrooloose/syntastic](https://github.com/scrooloose/syntastic "scrooloose/syntastic")
-
-> for VS Code
-
-- [taichi/vscode-textlint](https://github.com/taichi/vscode-textlint)
-
-> Syntax checking hacks for vim 
-
-See [Markdown](https://github.com/scrooloose/syntastic/wiki/Markdown "Markdown"), [Text](https://github.com/scrooloose/syntastic/wiki/Text "Text") and [HTML](https://github.com/scrooloose/syntastic/wiki/HTML "HTML") of [scrooloose/syntastic Wiki](https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers "Syntax Checkers · scrooloose/syntastic Wiki") 
-
-> Chrome Extension
-
-- [Chrome: textlint-proofreader](https://chrome.google.com/webstore/detail/textlint-proofreader/hdongmdneapmhfblomidbafplpanpdmm)
-- [io-monad/textlint-chrome-extension: textlint Chrome Extension](https://github.com/io-monad/textlint-chrome-extension "io-monad/textlint-chrome-extension: textlint Chrome Extension")
+- [Pronto](https://github.com/mmozuras/pronto "Pronto"): [pronto-textlint](https://github.com/seikichi/pronto-textlint "pronto-textlint")
 
 ## Who's using textlint?
 
