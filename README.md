@@ -385,17 +385,16 @@ You can use filter rule like [textlint-filter-rule-comments](https://github.com/
 
 Please see [docs/configuring.md](docs/configuring.md) for more details.
 
-## Use with Other Tools
+## Integrations
 
-### Task Runner
+### Build Systems
 
 - gulp plugin
   - [gulp-textlint](https://github.com/textlint/gulp-textlint "gulp-textlint")
 - Grunt plugin
   - [grunt-textlint](https://github.com/textlint/grunt-textlint "grunt-textlint")
 
-### Editor integrations
-
+### Editors
 - Atom Editor
   - [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
 - SublimeText
