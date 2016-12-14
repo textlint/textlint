@@ -198,7 +198,7 @@ textlint prepare useful generator tool that is [create-textlint-rule](https://gi
 
 You can setup textlint rule by following steps:
 
-```
+```sh
 npm install create-textlint-rule -g
 # Install `create-textlint-rule` command
 create-textlint-rule no-todo
