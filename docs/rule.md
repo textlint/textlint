@@ -401,7 +401,7 @@ This test script use [textlint-tester](https://github.com/textlint/textlint-test
 
 -----
 
-### Manually Install
+### Manually Installation
 
 [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester") depend on [Mocha](https://mochajs.org/ "Mocha").
 
