@@ -84,7 +84,7 @@ export default function (context) {
 [![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
 
-**related information:**
+**Related information:**
 
 - [azu/visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
 - [textlint/txt-ast-traverse](https://github.com/textlint/txt-ast-traverse "textlint/txt-ast-traverse")
