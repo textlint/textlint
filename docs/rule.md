@@ -420,7 +420,7 @@ This test script use [textlint-tester](https://github.com/textlint/textlint-test
 const TextLintTester = require("textlint-tester");
 const tester = new TextLintTester();
 // rule
-const rule = require("../src/no-todo");
+import rule from "../src/no-todo";
 // ruleName, rule, { valid, invalid }
 tester.run("no-todo", rule, {
     valid: [
