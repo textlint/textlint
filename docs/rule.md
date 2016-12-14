@@ -203,6 +203,7 @@ npm install create-textlint-rule -g
 # Install `create-textlint-rule` command
 create-textlint-rule no-todo
 # Create `textlint-rule-no-todo` project and setup!
+# rm src/index.js test/index-tes.js
 ```
 
 This generated project contains [textlint-scripts](https://github.com/textlint/textlint-scripts "textlint-scripts") that provide build script and test script.
