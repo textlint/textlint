@@ -191,7 +191,7 @@ This example aim to create `no-todo` rule that throw error if the text includes 
 
 ### Setup for creating rule
 
-textlint prepare useful generator tool that is [create-textlint-rule) command.
+textlint prepare useful generator tool that is [create-textlint-rule](https://github.com/textlint/create-textlint-rule) command.
 
 - [textlint/create-textlint-rule: Create textlint rule project with no configuration.](https://github.com/textlint/create-textlint-rule)
 - [textlint/textlint-scripts: textlint npm-run-scripts CLI help to create textlint rule.](https://github.com/textlint/textlint-scripts)
