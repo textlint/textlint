@@ -201,7 +201,7 @@ You can setup textlint rule by following steps:
 ```
 npm install create-textlint-rule -g
 # Install `create-textlint-rule` command
-create-textlint-rule no-todo`
+create-textlint-rule no-todo
 # Create `textlint-rule-no-todo` project and setup!
 ```
 
