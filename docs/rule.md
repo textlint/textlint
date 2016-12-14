@@ -84,7 +84,7 @@ export default function (context) {
 [![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
 
-**related information:**
+**Related information:**
 
 - [azu/visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
 - [textlint/txt-ast-traverse](https://github.com/textlint/txt-ast-traverse "textlint/txt-ast-traverse")
@@ -187,11 +187,43 @@ export default function (context) {
 
 ## Example: creating `no-todo` rules.
 
-This example aim to found `- [ ]` and `todo:` texts.
+This example aim to create `no-todo` rule that throw error if the text includes `- [ ]` or `todo:`.
 
-Rule file name is equal to rule ID.
+### Setup for creating rule
 
-e.g.) no-todo.js for rule ID no-todo.
+textlint prepare useful generator tool that is [create-textlint-rule](https://github.com/textlint/create-textlint-rule) command.
+
+- [textlint/create-textlint-rule: Create textlint rule project with no configuration.](https://github.com/textlint/create-textlint-rule)
+- [textlint/textlint-scripts: textlint npm-run-scripts CLI help to create textlint rule.](https://github.com/textlint/textlint-scripts)
+
+You can setup textlint rule by following steps:
+
+```sh
+npm install create-textlint-rule -g
+# Install `create-textlint-rule` command
+create-textlint-rule no-todo
+# Create `textlint-rule-no-todo` project and setup!
+# rm src/index.js test/index-tes.js
+```
+
+This generated project contains [textlint-scripts](https://github.com/textlint/textlint-scripts "textlint-scripts") that provide build script and test script.
+
+#### Build
+
+Builds source codes for publish to the `lib/` folder.
+You can write ES2015+ source codes in `src/` folder.
+The source codes in `src/` built by following command.
+
+    npm run build
+
+#### Tests
+
+Run test code in `test/` folder.
+Test textlint rule by [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
+
+    npm test
+
+### Let's create `no-todo` rule
 
 File Name: `no-todo.js`
 
@@ -256,13 +288,8 @@ Todo: quick fix this.
 Run Lint!
 
 ```sh
-$ textlint README.md -f pretty-error
-```
-
-OR
-
-```sh
-$ textlint README.md --rulesdir path/to/rules/ -f pretty-error
+$ npm run build
+$ textlint --rulesdir lib/ README.md -f pretty-error
 ```
 
 ![result error](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
@@ -368,13 +395,20 @@ As as result, linting following text with modified rule, a result was no error.
 
 ### How to test the rule?
 
-Use [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester")!
+You can already run test by `npm test` command.
+(This test scripts is setup by `create-textlint-rule`)
 
-#### Installation
+This test script use [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
+
+-----
+
+### Manually Installation
 
 [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester") depend on [Mocha](https://mochajs.org/ "Mocha").
 
     npm install -D textlint-tester mocha
+
+-----
 
 #### Usage of textlint-tester 
 
@@ -459,6 +493,8 @@ tester.run("no-todo", rule, {
 
 Run the tests:
 
+    $ npm test
+    # or
     $(npm bin)/mocha test/
 
 :information_source: Please see [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo") for details.
