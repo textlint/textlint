@@ -67,15 +67,18 @@ Use textlint with `--rule` or `--rulesdir`, `.textlintrc` config file.
 
 ```sh
 # Install textlint's rule
-npm install -g textlint-rule-no-todo
+npm install --global textlint-rule-no-todo
 ```
 
 Use with `textlint-rule-no-todo` rule.
-(allow to short `textlint-rule-no-todo` to `no-todo`)
+(Allow to short `textlint-rule-no-todo` to `no-todo`)
 
 ```sh
 textlint --rule no-todo README.md
 ```
+
+:memo: We recommended to use `.textlintrc` insteadof `--rule` or `--rulesdir`.
+`.textlintrc` is suitable format for maintain rules.
 
 ## CLI
 
@@ -131,7 +134,7 @@ Example:
 - :information_source: See [examples/cli](examples/cli)
 
 
-### .textlintrc
+## .textlintrc
 
 `.textlintrc` is config file that is loaded as JSON, YAML or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
 
