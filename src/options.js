@@ -99,6 +99,20 @@ export default optionator({
             description: "Report errors only."
         },
         {
+            heading: "Caching"
+        },
+        {
+            option: "cache",
+            type: "Boolean",
+            default: "false",
+            description: "Only check changed files"
+        },
+        {
+            option: "cache-location",
+            type: "path::String",
+            description: "Path to the cache file or directory"
+        },
+        {
             heading: "Experimental"
         },
         {

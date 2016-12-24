@@ -1,7 +1,10 @@
 // LICENSE : MIT
 "use strict";
 const objectAssign = require("object-assign");
+const md5 = require("md5");
+const pkg = require("../../package.json");
 const concat = require("unique-concat");
+const path = require("path");
 import loadConfig from "./config-loader";
 import {isPresetRuleKey} from "../util/config-util";
 import {mapRulesConfig} from "./preset-loader";
@@ -75,7 +78,11 @@ const defaultOptions = Object.freeze({
     // because There is difference between TextLintEngine and TextFixEngine.
     formatterName: undefined,
     // --no-color
-    color: true
+    color: true,
+    // --cache : enable or disable
+    cache: false,
+    // --cache-location: cache file path
+    cacheLocation: path.resolve(process.cwd(), ".textlintcache")
 });
 
 // Priority: CLI > Code options > config file
@@ -144,8 +151,14 @@ class Config {
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
         options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
+        // --cache
+        options.cache = cliOptions.cache !== undefined ? cliOptions.cache : defaultOptions.cache;
+        // --cache-location="path/to/file"
+        options.cacheLocation = cliOptions.cacheLocation !== undefined ? cliOptions.cacheLocation
+            : defaultOptions.cacheLocation;
         return this.initWithAutoLoading(options);
     }
+
     /* eslint-disable complexity */
     // load config and merge options.
     static initWithAutoLoading(options = {}) {
@@ -202,6 +215,17 @@ class Config {
         return new this(mergedOptions);
     }
 
+
+    /**
+     * Return hash string of the config and textlint version
+     * @returns {string}
+     */
+    get hash() {
+        const version = pkg.version;
+        const toString = JSON.stringify(this.toJSON());
+        return md5(`${version}-${toString}`);
+    }
+
     /**
      * initialize with options.
      * @param {TextLintConfig} options the option object is defined as TextLintConfig.
@@ -237,7 +261,8 @@ class Config {
          * @type {string[]} rule key list
          * These rule is set `false` to options
          */
-        this.disabledFilterRules = options.disabledFilterRules ? options.disabledFilterRules : defaultOptions.disabledFilterRules;
+        this.disabledFilterRules = options.disabledFilterRules ? options.disabledFilterRules
+            : defaultOptions.disabledFilterRules;
         /**
          * @type {string[]} preset key list
          */
@@ -272,7 +297,16 @@ class Config {
          * @type {boolean}
          */
         this.color = options.color !== undefined ? options.color : defaultOptions.color;
+        /**
+         * @type {boolean}
+         */
+        this.cache = options.cache !== undefined ? options.cache : defaultOptions.cache;
+        /**
+         * @type {string}
+         */
+        this.cacheLocation = this.cacheLocation !== undefined ? this.cacheLocation : defaultOptions.cacheLocation;
     }
+
     /* eslint-enable complexity */
 
     toJSON() {
