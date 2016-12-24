@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-const Promise = require("bluebird");
 const createFormatter = require("textlint-formatter");
 const path = require("path");
 import TextLintCore from "./../textlint-core";
@@ -59,7 +58,7 @@ export default class TextLintEngineCore {
         this.executor = executor;
 
         /**
-         * @type {ExecuteFileMiddlewareManager}
+         * @type {ExecuteFileBackerManager}
          * @private
          */
         this.executeFileManger = new ExecuteFileBackerManager();

@@ -1,7 +1,6 @@
 // MIT © 2016 azu
 "use strict";
-// LICENSE : MIT
-"use strict";
+const Promise = require("bluebird");
 export default class ExecuteFileBackerManager {
     /**
      * create MessageProcessManager with backers
