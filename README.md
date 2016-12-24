@@ -19,9 +19,11 @@ Visit [https://textlint.github.io/](https://textlint.github.io/) and type text!
 ## Features
 
 - No bundle rules.
-- To use rule, run `npm install textlint-rule-xxx`. See a [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
+- To use rule, Install textlint rule via npm.
+    - `npm install textlint-rule-xxx`.
+    - See [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 - [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are support by default. [HTML](https://github.com/textlint/textlint-plugin-html) and [other formats](https://github.com/textlint/textlint#supported-file-formats) are supported by plugins.
-- [Formatter(reporter)](https://github.com/textlint/textlint-formatter) is used both by bundled and custom formatters
+- Allow to use bundled [formatter(reporter)](https://github.com/textlint/textlint-formatter) and custom formatters
 
 ## Quick Tour
 
