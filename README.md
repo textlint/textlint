@@ -250,9 +250,17 @@ Optional supported file types:
 See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule#processor-plugin-list "Processor Plugin List") for details.
 
 
-### Rule list - [Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
+### Rule list :green_heart:
 
-See [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki").
+textlint has not built-in rules, but there are many pluggable rule.
+
+- [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo)
+- [textlint-rule-max-number-of-lines](https://github.com/azu/textlint-rule-max-number-of-lines)
+- [textlint-rule-common-misspellings](https://github.com/io-monad/textlint-rule-common-misspellings)
+- [etc...](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule)
+
+See [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki") for more details.
+
 
 If you create new rule, and add it to the wiki :)
 
