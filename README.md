@@ -102,6 +102,10 @@ Options:
   --init                     Create the config file if not existed. - default: false
   --quiet                    Report errors only. - default: false
 
+Caching:
+  --cache                    Only check changed files - default: false
+  --cache-location path::String  Path to the cache file or directory
+
 Experimental:
   --experimental             Enable experimental flag.Some feature use on experimental.
 
