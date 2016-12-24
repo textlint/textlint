@@ -6,17 +6,17 @@ export default class MessageProcessManager {
      * @param {function(messages: Array)[]} processes
      */
     constructor(processes = []) {
-        this._processes = processes;
+        this._processors = processes;
     }
 
     add(process) {
-        this._processes.push(process);
+        this._processors.push(process);
     }
 
     remove(process) {
-        const index = this._processes.indexOf(process);
+        const index = this._processors.indexOf(process);
         if (index !== -1) {
-            this._processes.splice(index, 1);
+            this._processors.splice(index, 1);
         }
     }
 
@@ -27,10 +27,10 @@ export default class MessageProcessManager {
      */
     process(messages) {
         const originalMessages = messages;
-        if (this._processes === 0) {
+        if (this._processors === 0) {
             return originalMessages;
         }
-        return this._processes.reduce((messages, filter) => {
+        return this._processors.reduce((messages, filter) => {
             return filter(messages);
         }, originalMessages);
     }

@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-const Promise = require("bluebird");
 const createFormatter = require("textlint-formatter");
 const path = require("path");
 import TextLintCore from "./../textlint-core";
@@ -9,6 +8,8 @@ import ProcessorMap from "./processor-map";
 import Config from "../config/config";
 import {findFiles} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
+import ExecuteFileBackerManager from "./execute-file-backer-manager";
+import CacheBaker from "./execute-file-backers/cache-backer";
 import SeverityLevel from "../shared/type/SeverityLevel";
 /**
  * Core of TextLintEngine.
@@ -55,18 +56,37 @@ export default class TextLintEngineCore {
          *  onFormat:Function}}
          */
         this.executor = executor;
+
+        /**
+         * @type {ExecuteFileBackerManager}
+         * @private
+         */
+        this.executeFileBackerManger = new ExecuteFileBackerManager();
+        const cacheBaker = new CacheBaker(this.config);
+        if (this.config.cache) {
+            this.executeFileBackerManger.add(cacheBaker);
+        } else {
+            cacheBaker.destroyCache();
+        }
         /**
          * @type {RuleMap} ruleMap is used for linting/fixer
+         * @private
          */
         this.ruleMap = new RuleMap();
         /**
          * @type {RuleMap} filerRuleMap is used for filtering
+         * @private
          */
         this.filterRuleMap = new RuleMap();
         /**
          * @type {ProcessorMap}
+         * @private
          */
         this.processorMap = new ProcessorMap();
+        /**
+         * @type {TextLintModuleLoader}
+         * @private
+         */
         this.moduleLoader = new TextLintModuleLoader(this.config);
         this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
             this.ruleMap.defineRule(ruleName, ruleCreator);
@@ -79,7 +99,6 @@ export default class TextLintEngineCore {
         });
         // load rule/plugin/processor
         this.moduleLoader.loadFromConfig(this.config);
-
         // set settings to textlint core
         this._setupRules();
     }
@@ -183,10 +202,7 @@ new TextLintEngine({
             ? this.executor.onFile(this.textlint)
             : boundLintFile;
         const targetFiles = findFiles(files, this.availableExtensions);
-        const results = targetFiles.map(file => {
-            return execFile(file);
-        });
-        return Promise.all(results);
+        return this.executeFileBackerManger.process(targetFiles, execFile);
     }
 
     /**

@@ -1,7 +1,9 @@
 // LICENSE : MIT
 "use strict";
 const MapLike = require("map-like");
-// Map like
+/**
+ * Processor Map object
+ */
 export default class ProcessorMap extends MapLike {
     toJSON() {
         const object = {};
