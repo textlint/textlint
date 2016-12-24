@@ -79,28 +79,36 @@ textlint --rule no-todo README.md
 
 ## CLI
 
-See command help.
+See command help
 
 ```
 $ textlint -h
-textlint [options] file.md [file.txt] [dir]
+textlint [options] file.md [file|dir|glob*]
 
 Options:
   -h, --help                 Show help.
   -c, --config path::String  Use configuration from this file or sharable config.
-  --plugin [String]          Specify plugins
+  --init                     Create the config file if not existed. - default: false
+  --fix                      Automatically fix problems
+  --dry-run                  Enable dry-run mode for --fix. Only show result, don't change the file.
+  --debug                    Outputs debugging information
+  -v, --version              Outputs the version number.
+
+Using stdin:
+  --stdin                    Lint text provided on <STDIN>. - default: false
+  --stdin-filename String    Specify filename to process STDIN as
+
+Output:
+  -o, --output-file path::String  Enable report to be written to a file.
+  -f, --format String        Use a specific output format.
+  --no-color                 Disable color in piped output.
+  --quiet                    Report errors only. - default: false
+
+Specifying rules and plugins:
+  --plugin [String]          Set plugin package name
   --rule [path::String]      Set rule package name
   --preset [path::String]    Set preset package name and load rules from preset package.
   --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
-  -f, --format String        Use a specific output format.
-  --fix                      Automatically fix problems
-  --debug                    Output debugging information
-  --dry-run                  Enable dry-run mode for --fix. Only show result, don't change the file.
-  -v, --version              Outputs the version number.
-  --no-color                 Disable color in piped output.
-  -o, --output-file path::String  Enable report to be written to a file.
-  --init                     Create the config file if not existed. - default: false
-  --quiet                    Report errors only. - default: false
 
 Caching:
   --cache                    Only check changed files - default: false
@@ -108,21 +116,20 @@ Caching:
 
 Experimental:
   --experimental             Enable experimental flag.Some feature use on experimental.
-
-Using stdin:
-  --stdin                    Lint text provided on <STDIN>. - default: false
-  --stdin-filename String    Specify filename to process STDIN as
 ```
 
-Allow to use with multiple rules.
+Allow to use glob as a target.
+
+Please note that have to quote your parameter as follows:
 
 ```sh
-$ textlint --rule no-todo --rule very-nice-rule README.md
+$ textlint "docs/**"
 ```
 
 Example:
 
 - :information_source: See [examples/cli](examples/cli)
+
 
 ### .textlintrc
 
@@ -287,7 +294,7 @@ Use following formatter.
 - json
 - unix
 
-e.g.) use pretty-error.js
+e.g.) use `pretty-error` formatter
 
 ```
 $ textlint -f pretty-error file.md
@@ -325,7 +332,7 @@ engine.executeOnFiles(["README.md"]).then(results => {
     ]
      */
     if (engine.isErrorResults(results)) {
-        var output = engine.formatResults(results);
+        const output = engine.formatResults(results);
         console.log(output);
     }
 });
@@ -338,7 +345,7 @@ import {textlint} from "textlint";
 textlint.setupRules({
     // rule-key : rule function(see docs/rule.md)
     "rule-key": function(context){
-        var exports = {};
+        const exports = {};
         exports[context.Syntax.Str] = function (node) {
             context.report(node, new context.RuleError("error message"));
         };
