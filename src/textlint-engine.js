@@ -8,7 +8,7 @@ import TextLintEngineCore from "./engine/textlint-engine-core";
 export default class TextLintEngine {
     /**
      * TextLintEngine is a adaptor of TextLintEngineCore.
-     * @param {Config|Object} config
+     * @param {Config|Object} [config]
      * @returns {TextLintEngineCore}
      */
     constructor(config) {

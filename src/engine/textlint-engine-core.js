@@ -61,10 +61,10 @@ export default class TextLintEngineCore {
          * @type {ExecuteFileBackerManager}
          * @private
          */
-        this.executeFileManger = new ExecuteFileBackerManager();
+        this.executeFileBackerManger = new ExecuteFileBackerManager();
         const cacheBaker = new CacheBaker(this.config);
         if (this.config.cache) {
-            this.executeFileManger.add(cacheBaker);
+            this.executeFileBackerManger.add(cacheBaker);
         } else {
             cacheBaker.destroyCache();
         }
@@ -202,7 +202,7 @@ new TextLintEngine({
             ? this.executor.onFile(this.textlint)
             : boundLintFile;
         const targetFiles = findFiles(files, this.availableExtensions);
-        return this.executeFileManger.process(targetFiles, execFile);
+        return this.executeFileBackerManger.process(targetFiles, execFile);
     }
 
     /**

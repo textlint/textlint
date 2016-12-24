@@ -304,7 +304,7 @@ class Config {
         /**
          * @type {string}
          */
-        this.cacheLocation = this.cacheLocation !== undefined ? this.cacheLocation : defaultOptions.cacheLocation;
+        this.cacheLocation = options.cacheLocation !== undefined ? options.cacheLocation : defaultOptions.cacheLocation;
     }
 
     /* eslint-enable complexity */
