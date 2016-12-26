@@ -285,7 +285,7 @@ Illustration
 ```
 
 - Document is a `TxtParentNode` and type is Document
-    - have `child`, but not have `value`
+    - have `children`, but not have `value`
 - Paragraph is a `TxtParentNode` and type is Paragraph
     - have `children`, but not have `value`
 *Emphasis* is a `TxtTextNode` and type is Emphasis
