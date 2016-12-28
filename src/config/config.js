@@ -2,6 +2,8 @@
 "use strict";
 const objectAssign = require("object-assign");
 const md5 = require("md5");
+const fs = require("fs");
+const assert = require("assert");
 const pkg = require("../../package.json");
 const concat = require("unique-concat");
 const path = require("path");
@@ -154,7 +156,8 @@ class Config {
         // --cache
         options.cache = cliOptions.cache !== undefined ? cliOptions.cache : defaultOptions.cache;
         // --cache-location="path/to/file"
-        options.cacheLocation = cliOptions.cacheLocation !== undefined ? cliOptions.cacheLocation
+        options.cacheLocation = cliOptions.cacheLocation !== undefined
+            ? path.resolve(process.cwd(), cliOptions.cacheLocation)
             : defaultOptions.cacheLocation;
         return this.initWithAutoLoading(options);
     }
@@ -305,6 +308,23 @@ class Config {
          * @type {string}
          */
         this.cacheLocation = options.cacheLocation !== undefined ? options.cacheLocation : defaultOptions.cacheLocation;
+        this._assertCacheLocation(this.cacheLocation);
+    }
+
+
+    _assertCacheLocation(locationPath) {
+        let fileStats;
+        try {
+            fileStats = fs.lstatSync(locationPath);
+        } catch (ex) {
+            fileStats = null;
+        }
+        if (!fileStats) {
+            return;
+        }
+        // TODO: --cache-location not supported directory
+        // We should defined what is default name.
+        assert(!fileStats.isDirectory(), "--cache-location doesn't support directory");
     }
 
     /* eslint-enable complexity */

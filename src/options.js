@@ -133,7 +133,7 @@ export default optionator({
             option: "cache-location",
             type: "path::String",
             description: "Path to the cache file or directory",
-            example: "textlint --cache docs/ --cache-location \"/Users/user/.textlintcache/\""
+            example: "textlint --cache --cache-location \"/Users/user/.textlintcache\" docs/"
         },
         {
             heading: "Experimental"
