@@ -60,7 +60,7 @@ Usage of "textlint-rule-preset-gizmo":
 
 ## Publishing
 
-You should add `textlint` to npm's `keywords`
+You should add `textlintrule` to npm's `keywords`
 
 ```json
 {
@@ -68,7 +68,7 @@ You should add `textlint` to npm's `keywords`
   "description": "Your preset of rules description",
   "version": "1.0.1",
   "keywords": [
-    "textlint"
+    "textlintrule"
   ]
 }
 ```
