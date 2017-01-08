@@ -536,7 +536,7 @@ If you want to know more details, please see other example.
 
 ## Information for Publishing
 
-You should add `textlint` to npm's `keywords`
+You should add `textlintrule` to npm's `keywords`
 
 ```json
 {
@@ -545,7 +545,7 @@ You should add `textlint` to npm's `keywords`
   "version": "1.0.1",
   "homepage": "https://github.com/textlint/textlint-custom-rules/",
   "keywords": [
-    "textlint"
+    "textlintrule"
   ]
 }
 ```
