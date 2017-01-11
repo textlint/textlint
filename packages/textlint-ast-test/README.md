@@ -1,11 +1,12 @@
 # textlint-ast-test [![Build Status](https://travis-ci.org/textlint/textlint-ast-test.svg?branch=master)](https://travis-ci.org/textlint/textlint-ast-test)
 
-
 Compliance tests for [textlint](https://github.com/textlint/textlint "textlint")'s AST(Abstract Syntax Tree).
+
+It check compliance of AST at minimum.
 
 - [textlint/txtnode.md at master · textlint/textlint](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "textlint/txtnode.md at master · textlint/textlint")
 
-If you create [Processor](https://github.com/textlint/textlint/blob/master/docs/plugin.md "Processor") plugin for textlint, you can use it for testing the plugin.
+If you have created [Processor](https://github.com/textlint/textlint/blob/master/docs/plugin.md "Processor") plugin for textlint, you can use it for testing the plugin.
 
 ## Installation
 
