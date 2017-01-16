@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-export default {
+module.exports = {
     rules: {
         "configurable-rule": require("./rules/configurable-rule"),
         "overwrited-rule": require("./rules/configurable-rule")

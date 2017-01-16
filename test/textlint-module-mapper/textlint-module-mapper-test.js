@@ -35,9 +35,10 @@ describe("textlint-module-mapper-test", function () {
             const pluginName = "configurable-plugin";
             const rules = require("./fixtures/configurable-plugin/index").rules;
             const entities = Mapper.createEntities(rules, pluginName);
+            const configurableRule = require("./fixtures/configurable-plugin/rules/configurable-rule");
             assert.deepEqual(entities, [
-                [`${pluginName}/configurable-rule`, require("./fixtures/configurable-plugin/rules/configurable-rule")],
-                [`${pluginName}/overwrited-rule`, require("./fixtures/configurable-plugin/rules/configurable-rule")]
+                [`${pluginName}/configurable-rule`, configurableRule],
+                [`${pluginName}/overwrited-rule`, configurableRule]
             ]);
         });
     });

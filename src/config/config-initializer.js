@@ -5,9 +5,9 @@ const fs = require("fs");
 const path = require("path");
 const ObjectAssign = require("object-assign");
 const isFile = require("is-file");
-const Config = require("../config/config");
 const readPkg = require("read-pkg");
-const Logger = require("../util/logger");
+import Config from "../config/config";
+import Logger from "../util/logger";
 
 /**
  * read package.json if found it
