@@ -3,6 +3,7 @@
     "es2015"
   ],
   "plugins": [
+    "transform-inline-imports-commonjs",
     "add-module-exports"
   ],
   "env": {
