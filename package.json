@@ -16,7 +16,7 @@
     "test": "npm-run-all --parallel lint:* test:packages",
     "test:all": "npm-run-all --parallel lint:* test:packages example",
     "test:packages": "lerna run test",
-    "lint:doc": "node packages/textlint/bin/textlint.js -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
+    "lint:doc": "node packages/textlint/bin/textlint.js --cache -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
     "perf": "cd ./examples/perf && npm run test:ci"
   },
   "devDependencies": {
