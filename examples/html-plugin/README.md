@@ -10,7 +10,7 @@
 
 Add `"html"` Processor plugin
 
-```js
+```json
 {
   "plugins": [
     "html"

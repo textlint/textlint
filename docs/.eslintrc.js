@@ -1,7 +1,4 @@
 module.exports = {
-    "plugins": [
-        "markdown"
-    ],
     "rules": {
         /*
         loose for document

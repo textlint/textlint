@@ -1,10 +1,11 @@
 {
-  "name": "fix",
+  "private": true,
+  "name": "textlint-example-fix",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm rm textlint && npm i --no-progress && npm test",
+    "test:ci": "npm rm textlint && npm i --no-progress && npm t",
     "test": "npm run textlint && npm run textlint-fix",
     "textlint": "textlint README.md",
     "textlint-fix": "textlint --fix README.md"
@@ -12,7 +13,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../..",
+    "textlint": "file:../../packages/textlint",
     "textlint-rule-prh": "^2.4.0"
   }
 }
