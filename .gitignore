@@ -83,3 +83,5 @@ crashlytics.properties
 crashlytics-build.properties
 # textlint
 .textlintcache
+# lerna
+/.changelog/
