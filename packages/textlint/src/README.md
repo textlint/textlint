@@ -2,7 +2,7 @@
 
 ## Overview
 
-![overview](../docs/resources/architecture.png)
+![overview](../../docs/resources/architecture.png)
 
 ```
 title: Architecture
