@@ -2,6 +2,7 @@
   "name": "textlint",
   "private": true,
   "scripts": {
+    "publish": "lerna publish",
     "prepare": "lerna bootstrap",
     "example": "npm-run-all -l example:*",
     "example:cli": "cd ./examples/cli && npm run test:ci",
