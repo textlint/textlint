@@ -18,7 +18,7 @@ test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  - npm test:ci
+  - npm run test:ci
 
 # Don't actually build.
 build: off
