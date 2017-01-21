@@ -11,14 +11,14 @@ install:
   - ps: Install-Product node $env:nodejs_version
   # install modules
   - npm install
-  - npm run bootstrap
+  - npm run prepare
 
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
-  - npm run test:ci
+  - npm run test:all
 
 # Don't actually build.
 build: off

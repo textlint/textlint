@@ -4,5 +4,5 @@ node_js:
 - "stable"
 - "4"
 script:
-  - npm run bootstrap
-  - npm run test:ci
+  - npm run prepare
+  - npm run test:all

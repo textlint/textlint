@@ -2,7 +2,7 @@
   "name": "textlint",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "prepare": "lerna bootstrap",
     "example": "npm-run-all -l example:*",
     "example:cli": "cd ./examples/cli && npm run test:ci",
     "example:config-file": "cd ./examples/config-file && npm run test:ci",
@@ -13,7 +13,7 @@
     "example:fix-dry-run": "cd ./examples/fix-dry-run && npm run test:ci",
     "example:filter": "cd ./examples/filter && npm run test:ci",
     "test": "npm-run-all test:js --parallel lint:* test:*",
-    "test:ci": "npm-run-all --parallel lint:* test:packages example",
+    "test:all": "npm-run-all --parallel lint:* test:packages example",
     "test:packages": "lerna run test",
     "lint:doc": "node packages/textlint/bin/textlint.js -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
     "perf": "cd ./examples/perf && npm run test:ci"
