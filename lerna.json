@@ -3,5 +3,12 @@
   "packages": [
     "packages/*"
   ],
+  "changelog": {
+    "repo": "textlint/textlint",
+    "labels": {
+      "bug": "Bug fix"
+    },
+    "cacheDir": ".changelog"
+  },
   "version": "7.2.1"
 }
