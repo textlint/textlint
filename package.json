@@ -13,7 +13,7 @@
     "example:use-as-module": "cd ./examples/use-as-module && npm run test:ci",
     "example:fix-dry-run": "cd ./examples/fix-dry-run && npm run test:ci",
     "example:filter": "cd ./examples/filter && npm run test:ci",
-    "test": "npm-run-all test:js --parallel lint:* test:*",
+    "test": "npm-run-all --parallel lint:* test:packages",
     "test:all": "npm-run-all --parallel lint:* test:packages example",
     "test:packages": "lerna run test",
     "lint:doc": "node packages/textlint/bin/textlint.js -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
