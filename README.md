@@ -179,6 +179,8 @@ Pass rule's options("key": "value") to `very-nice-rule`.
 
 It mean that use the following format:
 
+<!-- textlint-disable -->
+
 ```js
 {
   // Allow to comment in JSON
@@ -187,6 +189,8 @@ It mean that use the following format:
   }
 }
 ```
+
+<!-- textlint-enable -->
 
 :information_source: for more details
 
@@ -198,6 +202,8 @@ It mean that use the following format:
 textlint plugin is a set of rules and rulesConfig or customize parser.
 
 To enable plugin, put the "plugin-name" into `.textlinrc`.
+
+<!-- textlint-disable -->
 
 ```js
 // `.textlinrc`
@@ -212,6 +218,8 @@ To enable plugin, put the "plugin-name" into `.textlinrc`.
     }
 }
 ```
+
+<!-- textlint-enable -->
 
 :information_source: See [docs/plugin.md](docs/plugin.md)
 

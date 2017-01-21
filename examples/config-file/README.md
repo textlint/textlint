@@ -11,10 +11,7 @@
 ```json
 {
   "rules": {
-    "no-todo": true,
-    "max-number-of-lines": {
-      "max": 10
-    }
+    "no-todo": true
   }
 }
 ```

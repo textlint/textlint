@@ -72,7 +72,9 @@ Welcome to fix the document!
 
 ### Fixing bugs in code
 
-If you want to fix `src/` or `test/`, `example/`.
+textlint follows a [monorepo](https://github.com/babel/babel/blob/master/doc/design/monorepo.md "monorepo") approach, so textlint use [Lerna](https://lernajs.io/ "Lerna").
+
+If you want to fix `src/` or `test/` in each packages.
 
 1. Fix the bug in code!
 2. Commit your changes
@@ -96,6 +98,8 @@ Adding :new: feature in the same way.
 Run testing:
 
 ```sh
+npm install
+npm run prepare
 npm test
 ```
 
@@ -104,6 +108,8 @@ Run all testing:
 This test is heavy because this includes example testing.
 
 ```sh
+npm install
+npm run prepare
 npm run test:all
 ```
 

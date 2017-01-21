@@ -1,14 +1,15 @@
 {
   "private": true,
+  "name": "textlint-example-use-as-module",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm rm textlint && npm i --no-progress && npm test",
+    "test:ci": "npm rm textlint && npm i --no-progress && npm t",
     "test": "node index.js"
   },
   "author": "azu",
   "license": "MIT",
   "dependencies": {
-    "textlint": "file:../..",
+    "textlint": "file:../../packages/textlint",
     "textlint-rule-no-todo": "^1.0.3"
   }
 }
