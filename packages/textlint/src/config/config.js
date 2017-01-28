@@ -173,7 +173,9 @@ export default class Config {
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
-        return loadConfig(rawOptions.configFile, {
+        return loadConfig({
+            configFilePath: rawOptions.configFile,
+            workingDirectory: process.cwd(),
             moduleResolver,
             configFileName: this.CONFIG_FILE_NAME
         }).then((configFileRawOptions) => {

@@ -43,6 +43,22 @@ describe("cli-test", function () {
             });
         });
     });
+    context("when run with --config", function () {
+        it("should the config file", function () {
+            const configFile = path.join(__dirname, "fixtures/textlintrc/todo-textlintrc");
+            // found lint error
+            return cli.execute(`--config ${configFile}` , "TODO: SHOULD BE EXIT 1").then(result => {
+                assert.equal(result, 1);
+            });
+        });
+        it("should return error", function () {
+            var ruleDir = path.join(__dirname, "fixtures/rules");
+            var targetFile = path.join(__dirname, "fixtures/test.md");
+            return cli.execute(`--rulesdir ${ruleDir} ${targetFile}`).then(result => {
+                assert.equal(result, 1);
+            });
+        });
+    });
     context("When run with --rule", function () {
         it("should lint the file with long name", function () {
             let isCalled = false;

@@ -89,12 +89,13 @@ export default class TextLintEngineCore {
      */
     load() {
         return this.config.load().then((config) => {
+            this.config = config;
             /**
              * @type {TextLintCore}
              */
             this.textlint = new TextLintCore(config);
             const cacheBaker = new CacheBaker(config);
-            if (this.config.cache) {
+            if (config.cache) {
                 this.executeFileBackerManger.add(cacheBaker);
             } else {
                 cacheBaker.destroyCache();

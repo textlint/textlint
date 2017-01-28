@@ -32,7 +32,8 @@ describe("config-initializer-test", function() {
             const configFile = path.join(configDir, ".textlintrc");
             return configInit.initializeConfig(configDir).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                return loadConfig(configFile, {
+                return loadConfig({
+                    configFilePath: configFile,
                     configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
                     configFileName: Config.CONFIG_FILE_NAME
                 }).then(result => {
@@ -55,7 +56,8 @@ describe("config-initializer-test", function() {
             const configFile = path.join(configDir, ".textlintrc");
             return configInit.initializeConfig(configDir).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                return loadConfig(configFile, {
+                return loadConfig({
+                    configFilePath: configFile,
                     configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
                     configFileName: Config.CONFIG_FILE_NAME
                 }).then(result => {
