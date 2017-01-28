@@ -10,10 +10,10 @@ describe("config-as-example", function () {
     configList.forEach(textlintrcPath => {
         const projectDir = path.dirname(textlintrcPath);
         const dirName = projectDir.split("/").pop();
-        it(`test ${dirName}`, function () {
+        it(`test ${dirName}`, async function () {
             let config;
             try {
-                config = Config.initWithAutoLoading({
+                config = await Config.loadConfig({
                     configFile: textlintrcPath,
                     // == node_modules/
                     rulesBaseDirectory: path.join(__dirname, "config-fixtures", dirName, "modules")

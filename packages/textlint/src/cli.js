@@ -98,53 +98,57 @@ const cli = {
      * @returns {Promise<number>} exit status
      */
     executeWithOptions(cliOptions, files, text, stdinFilename){
-        const config = Config.initWithCLIOptions(cliOptions);
-        const showEmptyRuleWarning = () => {
-            Logger.log(`
+        return Config.initWithCLIOptions(cliOptions).then((config) => {
+            const showEmptyRuleWarning = () => {
+                Logger.log(`
 == Not have rules, textlint do not anything ==
 => How to set rule?
 See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 `);
-        };
+            };
 
-        if (cliOptions.fix) {
-            // --fix
-            const fixEngine = new TextFixEngine(config);
-            if (!fixEngine.hasRuleAtLeastOne()) {
-                showEmptyRuleWarning();
-                return Promise.resolve(0);
-            }
-            const resultsPromise = text ? fixEngine.executeOnText(text, stdinFilename)
-                : fixEngine.executeOnFiles(files);
-            return resultsPromise.then(results => {
-                const fixer = new TextLintFixer();
-                const output = fixEngine.formatResults(results);
-                printResults(output, cliOptions);
-                // --dry-run
-                if(cliOptions.dryRun){
-                    debug("Enable dry-run mode.");
+            if (cliOptions.fix) {
+                // --fix
+                const fixEngine = new TextFixEngine(config);
+                if (!fixEngine.hasRuleAtLeastOne()) {
+                    showEmptyRuleWarning();
                     return Promise.resolve(0);
                 }
-                // modify file and return exit status
-                return fixer.write(results).then(() => {
-                    return 0;
+                const resultsPromise = text ? fixEngine.executeOnText(text, stdinFilename)
+                    : fixEngine.executeOnFiles(files);
+                return resultsPromise.then(results => {
+                    const fixer = new TextLintFixer();
+                    const output = fixEngine.formatResults(results);
+                    printResults(output, cliOptions);
+                    // --dry-run
+                    if (cliOptions.dryRun) {
+                        debug("Enable dry-run mode.");
+                        return Promise.resolve(0);
+                    }
+                    // modify file and return exit status
+                    return fixer.write(results).then(() => {
+                        return 0;
+                    });
+                });
+            }
+            // lint as default
+            const lintEngine = new TextLintEngine(config);
+            return lintEngine.load().then(() => {
+                if (!lintEngine.hasRuleAtLeastOne()) {
+                    showEmptyRuleWarning();
+                    return Promise.resolve(0);
+                }
+                const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename)
+                    : lintEngine.executeOnFiles(files);
+                return resultsPromise.then(results => {
+                    const output = lintEngine.formatResults(results);
+                    if (printResults(output, cliOptions)) {
+                        return lintEngine.isErrorResults(results) ? 1 : 0;
+                    } else {
+                        return 1;
+                    }
                 });
             });
-        }
-        // lint as default
-        const lintEngine = new TextLintEngine(config);
-        if (!lintEngine.hasRuleAtLeastOne()) {
-            showEmptyRuleWarning();
-            return Promise.resolve(0);
-        }
-        const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
-        return resultsPromise.then(results => {
-            const output = lintEngine.formatResults(results);
-            if (printResults(output, cliOptions)) {
-                return lintEngine.isErrorResults(results) ? 1 : 0;
-            } else {
-                return 1;
-            }
         });
     }
 };

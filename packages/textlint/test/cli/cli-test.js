@@ -44,7 +44,7 @@ describe("cli-test", function () {
         });
     });
     context("When run with --rule", function () {
-        it("should lint the file with long name", function (done) {
+        it("should lint the file with long name", function () {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
@@ -52,10 +52,9 @@ describe("cli-test", function () {
             };
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const ruleModuleName = "textlint-rule-no-todo";
-            cli.execute(`${targetFile} --rule ${ruleModuleName}`).then(result => {
+            return cli.execute(`${targetFile} --rule ${ruleModuleName}`).then(result => {
                 assert.equal(result, 0);
                 assert(!isCalled);
-                done();
             });
         });
         it("should lint the file with short name", function (done) {
