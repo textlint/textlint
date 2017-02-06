@@ -290,7 +290,7 @@ $ textlint --fix README.md
 Also, support [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing) "dry run") mode.
 
 ```
-$ textlint --fix --dry-run --formatter diff README.md
+$ textlint --fix --dry-run --format diff README.md
 # show the difference between fixed content and original content.
 ```
 
