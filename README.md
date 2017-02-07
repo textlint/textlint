@@ -18,11 +18,11 @@ Visit [https://textlint.github.io/](https://textlint.github.io/) and type text!
 
 ## Features
 
-- No bundle rules.
-- To use rule, Install textlint rule via npm.
+- No bundled rules.
+- To use a rule, install a textlint rule via npm.
     - `npm install textlint-rule-xxx`.
     - See [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
-- [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are support by default. [HTML](https://github.com/textlint/textlint-plugin-html) and [other formats](https://github.com/textlint/textlint#supported-file-formats) are supported by plugins.
+- [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are supported by default. [HTML](https://github.com/textlint/textlint-plugin-html) and [other formats](https://github.com/textlint/textlint#supported-file-formats) are supported by plugins.
 - Allow to use bundled [formatter(reporter)](https://github.com/textlint/textlint-formatter) and custom formatters
 
 ## Quick Tour
@@ -39,10 +39,10 @@ You can install `textlint` command using npm:
 $ npm install textlint -g
 ```
 
-**Requirement**: 
+**Requirements**: 
 
-- Node.js 4.0.0 >=
-- npm 2.0.0 >=
+- Node.js 4.0.0+
+- npm 2.0.0+
 
 Test: Run `node -v` in your console. The version should be higher than v4.0.0.
 
@@ -55,7 +55,7 @@ Recommended way: Install `textlint` and rules as `--save-dev` per project.
 
 ### For Node.js beginner
 
-If you never use Node.js and npm(package manager for Node.js), please see following:
+If you never use Node.js and npm (package manager for Node.js), please see following:
 
 - [Installing Node.js and updating npm | npm Documentation](https://docs.npmjs.com/getting-started/installing-node "02 - Installing Node.js and updating npm | npm Documentation")
 
@@ -63,7 +63,7 @@ If you never use Node.js and npm(package manager for Node.js), please see follow
 
 ![screenshot lint pretty-error](docs/resources/screenshot-lint-pretty-error.png)
 
-textlint has no default rule!!
+textlint has no default rules!!
 
 Use textlint with `--rule` or `--rulesdir`, `.textlintrc` config file.
 
@@ -79,8 +79,8 @@ Use with `textlint-rule-no-todo` rule.
 textlint --rule no-todo README.md
 ```
 
-:memo: We recommended to use `.textlintrc` insteadof `--rule` or `--rulesdir`.
-`.textlintrc` is suitable format for maintain rules.
+:memo: We recommended to use `.textlintrc` instead of `--rule` or `--rulesdir`.
+`.textlintrc` is suitable format to maintain rules.
 
 ## CLI
 
@@ -125,7 +125,7 @@ Experimental:
 
 Allow to use glob as a target.
 
-Please note that have to quote your parameter as follows:
+Please note that you have to quote your parameter as follows:
 
 ```sh
 $ textlint "docs/**"
@@ -175,7 +175,7 @@ $ textlint README.md
 }
 ```
 
-Pass rule's options("key": "value") to `very-nice-rule`.
+Pass rule's options ("key": "value") to `very-nice-rule`.
 
 It mean that use the following format:
 
@@ -225,11 +225,11 @@ To enable plugin, put the "plugin-name" into `.textlinrc`.
 
 ### Supported file formats
 
-textlint support Markdown and plain text by default.
+textlint supports Markdown and plain text by default.
 
 Install **Processor Plugin** and add new file format support.
 
-For example, If you want to lint HTML, use [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html") as plugin.
+For example, if you want to lint HTML, use [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html") as a plugin.
 
     npm install textlint-plugin-html
     
@@ -247,8 +247,8 @@ Run textlint on `.html` files:
 
   textlint index.html
 
-- Example : [examples/html-plugin](examples/html-plugin)
-- Document: [docs/plugin.md](docs/plugin.md)
+- Example: [examples/html-plugin](examples/html-plugin)
+- Documentation: [docs/plugin.md](docs/plugin.md)
 
 Optional supported file types:
 
@@ -260,9 +260,9 @@ Optional supported file types:
 See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule#processor-plugin-list "Processor Plugin List") for details.
 
 
-### Rule list :green_heart:
+### Rules list :green_heart:
 
-textlint has not built-in rules, but there are 100>= pluggable rules.
+textlint has not built-in rules, but there are 100+ pluggable rules:
 
 - [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo)
 - [textlint-rule-max-number-of-lines](https://github.com/azu/textlint-rule-max-number-of-lines)
@@ -272,7 +272,7 @@ textlint has not built-in rules, but there are 100>= pluggable rules.
 See [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki") for more details.
 
 
-If you create new rule, and add it to the wiki :)
+If you create a new rule, and add it to the wiki :)
 
 ### Fixable
 
@@ -294,7 +294,7 @@ $ textlint --fix --dry-run --format diff README.md
 # show the difference between fixed content and original content.
 ```
 
-You can copy and page to your README.
+You can copy and paste to your README.
 
 ```markdown
 [![textlint fixable rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 
@@ -302,7 +302,7 @@ You can copy and page to your README.
 
 ### Built-in formatters
 
-Use following formatter.
+Use the following formatters:
 
 - stylish (defaults)
 - compact
@@ -315,17 +315,17 @@ Use following formatter.
 - json
 - unix
 
-e.g.) use `pretty-error` formatter
+e.g. use `pretty-error` formatter:
 
 ```
 $ textlint -f pretty-error file.md
 ```
 
-More detail in [textlint/textlint-formatter](https://github.com/textlint/textlint-formatter "textlint/textlint-formatter").
+More details in [textlint/textlint-formatter](https://github.com/textlint/textlint-formatter "textlint/textlint-formatter").
 
-## Use as node modules
+## Use as node module
 
-You can use textlint as node modules.
+You can use textlint as node module.
 
 ```
 $ npm install textlint --save-dev
@@ -379,14 +379,14 @@ textlint.lintMarkdown("# title").then(results => {
 });
 ```
 
-More detail on:
+More details on:
 
 - See [docs/use-as-modules.md](docs/use-as-modules.md)
 
 
 ## Conclusion
 
-textlint has four extensible points
+textlint has four extensible points:
 
 - [rule](docs/rule.md)
     - rule is a rule for linting.
@@ -427,6 +427,7 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
   - [grunt-textlint](https://github.com/textlint/grunt-textlint "grunt-textlint")
 
 ### Editors
+
 - Atom Editor
   - [1000ch/linter-textlint](https://github.com/1000ch/linter-textlint "1000ch/linter-textlint")
 - SublimeText
