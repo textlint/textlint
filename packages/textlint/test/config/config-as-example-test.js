@@ -5,12 +5,12 @@ import glob from "glob";
 import path from "path";
 import Config from "../../src/config/config";
 /* load config from "./config/" and match expected result */
-describe("config-as-example", function () {
-    const configList = glob.sync(__dirname + "/config-fixtures/**/.textlintrc");
+describe("config-as-example", function() {
+    const configList = glob.sync(path.join(__dirname, "/config-fixtures/**/.textlintrc*"));
     configList.forEach(textlintrcPath => {
         const projectDir = path.dirname(textlintrcPath);
         const dirName = projectDir.split("/").pop();
-        it(`test ${dirName}`, function () {
+        it(`test ${dirName}`, function() {
             let config;
             try {
                 config = Config.initWithAutoLoading({

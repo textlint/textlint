@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const rc = require("rc-loader");
+const rcConfigLoader = require("rc-config-loader");
 const interopRequire = require("interop-require");
 export default function load(configFilePath, {configFileName, moduleResolver}) {
     // if specify Config module, use it 
@@ -13,6 +13,8 @@ export default function load(configFilePath, {configFileName, moduleResolver}) {
         }
     }
     // auto or specify path to config file
-    const config = configFilePath ? {config: configFilePath} : null;
-    return rc(configFileName, {}, config);
+    return rcConfigLoader(configFileName, {
+        configFileName: configFilePath,
+        defaultExtension: [".json", ".js", ".yml"]
+    });
 }
