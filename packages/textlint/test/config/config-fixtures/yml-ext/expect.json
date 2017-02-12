@@ -1,0 +1,12 @@
+{
+  "rules": [
+    "a",
+    "b",
+    "c"
+  ],
+  "rulesConfig": {
+    "a": true,
+    "b": true,
+    "c": true
+  }
+}
