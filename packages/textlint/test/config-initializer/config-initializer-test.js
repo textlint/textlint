@@ -32,19 +32,21 @@ describe("config-initializer-test", function() {
             const configFile = path.join(configDir, ".textlintrc");
             return configInit.initializeConfig(configDir).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                const result = loadConfig(configFile, {
+                return loadConfig({
+                    configFilePath: configFile,
                     configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
                     configFileName: Config.CONFIG_FILE_NAME
-                });
-                assert.equal(typeof result.filters, "object");
-                assert.equal(typeof result.rules, "object");
-                assert.deepEqual(result.filters, {
-                    "comments": true
-                });
-                assert.deepEqual(result.rules, {
-                    "eslint": true,
-                    "prh": true,
-                    "preset-ja-technical-writing": true
+                }).then(result => {
+                    assert.equal(typeof result.filters, "object");
+                    assert.equal(typeof result.rules, "object");
+                    assert.deepEqual(result.filters, {
+                        "comments": true
+                    });
+                    assert.deepEqual(result.rules, {
+                        "eslint": true,
+                        "prh": true,
+                        "preset-ja-technical-writing": true
+                    });
                 });
             });
         });
@@ -54,13 +56,15 @@ describe("config-initializer-test", function() {
             const configFile = path.join(configDir, ".textlintrc");
             return configInit.initializeConfig(configDir).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                const result = loadConfig(configFile, {
+                return loadConfig({
+                    configFilePath: configFile,
                     configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
                     configFileName: Config.CONFIG_FILE_NAME
+                }).then(result => {
+                    assert.equal(typeof result.filters, "object");
+                    assert.equal(typeof result.rules, "object");
+                    assert(Object.keys(result.rules).length === 0);
                 });
-                assert.equal(typeof result.filters, "object");
-                assert.equal(typeof result.rules, "object");
-                assert(Object.keys(result.rules).length === 0);
             });
         });
     });
@@ -80,12 +84,12 @@ describe("config-initializer-test", function() {
                 assert.equal(message, ".textlintrc is already existed.");
             };
             return configInit.initializeConfig(configDir).then((exitStatus) => {
-                assert.equal(exitStatus, 0)
+                assert.equal(exitStatus, 0);
                 // try to re-create
                 return configInit.initializeConfig(configDir);
             }).then(exitStatus => {
                 assert.equal(exitStatus, 1);
-            })
+            });
 
         });
     });

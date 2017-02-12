@@ -1,6 +1,6 @@
 {
   "presets": [
-    "es2015"
+    "latest"
   ],
   "plugins": [
     "transform-inline-imports-commonjs",
@@ -10,7 +10,12 @@
     "development": {
       "plugins": [
         "jsdoc-to-assert",
-        "babel-plugin-espower"
+        [
+          "babel-plugin-espower",
+          {
+            "embedAst": true
+          }
+        ]
       ]
     }
   }

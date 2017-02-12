@@ -6,6 +6,7 @@ import TextLintCore from "./../textlint-core";
 import RuleMap from "./rule-map";
 import ProcessorMap from "./processor-map";
 import Config from "../config/config";
+import PartialConfig from "../config/partial-config";
 import {findFiles} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
 import ExecuteFileBackerManager from "./execute-file-backer-manager";
@@ -22,6 +23,13 @@ import SeverityLevel from "../shared/type/SeverityLevel";
  * - formatResults
  *
  * There are hackable by `executor` option.
+ *
+ * ## Usage
+ *
+ * const engine = new TextLintEngineCore();
+ * engine.load().then(() => {
+ *  engine.executeOnFiles([file]);
+ * })
  */
 export default class TextLintEngineCore {
     /**
@@ -41,14 +49,10 @@ export default class TextLintEngineCore {
             // Almost internal use-case
             this.config = options;
         } else {
-            this.config = Config.initWithAutoLoading(options);
+            this.config = new PartialConfig(options);
         }
 
-        /**
-         * @type {TextLintCore}
-         */
-        this.textlint = new TextLintCore(this.config);
-
+        this.textlint = null;
         /**
          * @type {{
          *  onFile: function(textlint: TextlintCore):Function,
@@ -56,18 +60,6 @@ export default class TextLintEngineCore {
          *  onFormat:Function}}
          */
         this.executor = executor;
-
-        /**
-         * @type {ExecuteFileBackerManager}
-         * @private
-         */
-        this.executeFileBackerManger = new ExecuteFileBackerManager();
-        const cacheBaker = new CacheBaker(this.config);
-        if (this.config.cache) {
-            this.executeFileBackerManger.add(cacheBaker);
-        } else {
-            cacheBaker.destroyCache();
-        }
         /**
          * @type {RuleMap} ruleMap is used for linting/fixer
          * @private
@@ -84,6 +76,17 @@ export default class TextLintEngineCore {
          */
         this.processorMap = new ProcessorMap();
         /**
+         * @type {ExecuteFileBackerManager}
+         * @private
+         */
+        this.executeFileBackerManger = new ExecuteFileBackerManager();
+        const cacheBaker = new CacheBaker(this.config);
+        if (this.config.cache) {
+            this.executeFileBackerManger.add(cacheBaker);
+        } else {
+            cacheBaker.destroyCache();
+        }
+        /**
          * @type {TextLintModuleLoader}
          * @private
          */
@@ -97,10 +100,23 @@ export default class TextLintEngineCore {
         this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
             this.processorMap.set(pluginName, Processor);
         });
-        // load rule/plugin/processor
-        this.moduleLoader.loadFromConfig(this.config);
-        // set settings to textlint core
-        this._setupRules();
+    }
+
+
+    /**
+     * load and setup
+     * @returns {Promise.<Config>}
+     */
+    load() {
+        return this.config.load().then((config) => {
+            this.config = config;
+            /**
+             * @type {TextLintCore}
+             */
+            this.textlint = new TextLintCore(config);
+            this.moduleLoader.loadFromConfig(config);
+            this._setupRules(config);
+        });
     }
 
     /**
@@ -122,7 +138,7 @@ new TextLintEngine({
      */
     loadPlugin(pluginName) {
         this.moduleLoader.loadPlugin(pluginName);
-        this._setupRules();
+        this._setupRules(this.config);
     }
 
     /**
@@ -133,7 +149,7 @@ new TextLintEngine({
      */
     loadPreset(presetName) {
         this.moduleLoader.loadPreset(presetName);
-        this._setupRules();
+        this._setupRules(this.config);
     }
 
     /**
@@ -144,7 +160,7 @@ new TextLintEngine({
      */
     loadRule(ruleName) {
         this.moduleLoader.loadRule(ruleName);
-        this._setupRules();
+        this._setupRules(this.config);
     }
 
     /**
@@ -155,16 +171,17 @@ new TextLintEngine({
      */
     loadFilerRule(ruleName) {
         this.moduleLoader.loadFilterRule(ruleName);
-        this._setupRules();
+        this._setupRules(this.config);
     }
 
     /**
      * Update rules from current config
+     * @param {Config} config
      * @private
      */
-    _setupRules() {
+    _setupRules(config) {
         // set Rules
-        const textlintConfig = this.config ? this.config.toJSON() : {};
+        const textlintConfig = config ? config.toJSON() : {};
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
         this.textlint.setupFilterRules(this.filterRuleMap.getAllRules(), textlintConfig.filterRulesConfig);
         // set Processor
@@ -175,7 +192,7 @@ new TextLintEngine({
         this.availableExtensions = this.textlint.processors.reduce((availableExtensions, processor) => {
             const Processor = processor.constructor;
             return availableExtensions.concat(Processor.availableExtensions());
-        }, this.config.extensions);
+        }, config.extensions);
 
     }
 
@@ -184,7 +201,9 @@ new TextLintEngine({
      * @private
      */
     resetRules() {
-        this.textlint.resetRules();
+        if (this.textlint) {
+            this.textlint.resetRules();
+        }
         this.ruleMap.resetRules();
         this.filerRuleMap.resetRules();
     }
@@ -195,14 +214,16 @@ new TextLintEngine({
      * @returns {Promise<TextLintResult[]>} The results for all files that were linted.
      */
     executeOnFiles(files) {
-        const boundLintFile = (file) => {
-            return this.textlint.lintFile(file);
-        };
-        const execFile = typeof this.executor.onFile === "function"
-            ? this.executor.onFile(this.textlint)
-            : boundLintFile;
-        const targetFiles = findFiles(files, this.availableExtensions);
-        return this.executeFileBackerManger.process(targetFiles, execFile);
+        return this.load().then(() => {
+            const boundLintFile = (file) => {
+                return this.textlint.lintFile(file);
+            };
+            const execFile = typeof this.executor.onFile === "function"
+                ? this.executor.onFile(this.textlint)
+                : boundLintFile;
+            const targetFiles = findFiles(files, this.availableExtensions);
+            return this.executeFileBackerManger.process(targetFiles, execFile);
+        });
     }
 
     /**
@@ -213,20 +234,22 @@ new TextLintEngine({
      * @returns {Promise<TextLintResult[]>}
      */
     executeOnText(text, ext = ".txt") {
-        const boundLintText = (file, ext) => {
-            return this.textlint.lintText(file, ext);
-        };
-        const textlint = this.textlint;
-        const execText = typeof this.executor.onText === "function"
-            ? this.executor.onText(textlint)
-            : boundLintText;
-        // filePath or ext
-        const actualExt = ext[0] === "." ? ext : path.extname(ext);
-        if (actualExt.length === 0) {
-            throw new Error("should specify the extension.\nex) .md");
-        }
-        return execText(text, actualExt).then(result => {
-            return [result];
+        return this.load().then(() => {
+            const boundLintText = (file, ext) => {
+                return this.textlint.lintText(file, ext);
+            };
+            const textlint = this.textlint;
+            const execText = typeof this.executor.onText === "function"
+                ? this.executor.onText(textlint)
+                : boundLintText;
+            // filePath or ext
+            const actualExt = ext[0] === "." ? ext : path.extname(ext);
+            if (actualExt.length === 0) {
+                throw new Error("should specify the extension.\nex) .md");
+            }
+            return execText(text, actualExt).then(result => {
+                return [result];
+            });
         });
     }
 

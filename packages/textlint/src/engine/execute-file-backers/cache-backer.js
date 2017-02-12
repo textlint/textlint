@@ -7,7 +7,7 @@ export default class CacheBacker extends AbstractBacker {
     /**
      * @param {Config} config
      */
-    constructor(config) {
+    constructor(config = {}) {
         super();
         /**
          * @type {boolean}
