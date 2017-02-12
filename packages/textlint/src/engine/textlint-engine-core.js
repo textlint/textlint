@@ -80,12 +80,32 @@ export default class TextLintEngineCore {
          * @private
          */
         this.executeFileBackerManger = new ExecuteFileBackerManager();
+        const cacheBaker = new CacheBaker(this.config);
+        if (this.config.cache) {
+            this.executeFileBackerManger.add(cacheBaker);
+        } else {
+            cacheBaker.destroyCache();
+        }
+        /**
+         * @type {TextLintModuleLoader}
+         * @private
+         */
+        this.moduleLoader = new TextLintModuleLoader(this.config);
+        this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
+            this.ruleMap.defineRule(ruleName, ruleCreator);
+        });
+        this.moduleLoader.on(TextLintModuleLoader.Event.filterRule, ([ruleName, ruleCreator]) => {
+            this.filterRuleMap.defineRule(ruleName, ruleCreator);
+        });
+        this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
+            this.processorMap.set(pluginName, Processor);
+        });
     }
 
 
     /**
      * load and setup
-     * @returns {Promise}
+     * @returns {Promise.<Config>}
      */
     load() {
         return this.config.load().then((config) => {
@@ -94,26 +114,6 @@ export default class TextLintEngineCore {
              * @type {TextLintCore}
              */
             this.textlint = new TextLintCore(config);
-            const cacheBaker = new CacheBaker(config);
-            if (config.cache) {
-                this.executeFileBackerManger.add(cacheBaker);
-            } else {
-                cacheBaker.destroyCache();
-            }
-            /**
-             * @type {TextLintModuleLoader}
-             * @private
-             */
-            this.moduleLoader = new TextLintModuleLoader(config);
-            this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
-                this.ruleMap.defineRule(ruleName, ruleCreator);
-            });
-            this.moduleLoader.on(TextLintModuleLoader.Event.filterRule, ([ruleName, ruleCreator]) => {
-                this.filterRuleMap.defineRule(ruleName, ruleCreator);
-            });
-            this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
-                this.processorMap.set(pluginName, Processor);
-            });
             this.moduleLoader.loadFromConfig(config);
             this._setupRules(config);
         });
@@ -176,6 +176,7 @@ new TextLintEngine({
 
     /**
      * Update rules from current config
+     * @param {Config} config
      * @private
      */
     _setupRules(config) {
