@@ -1,110 +1,140 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "element",
-      "tagName": "br",
-      "properties": {},
-      "children": [],
-      "position": {
+    "type": "Document",
+    "children": [
+        {
+            "type": "break",
+            "tagName": "br",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 4
+                }
+            },
+            "range": [
+                0,
+                4
+            ],
+            "raw": "<br>"
+        },
+        {
+            "type": "Str",
+            "value": "text",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 4
+                },
+                "end": {
+                    "line": 1,
+                    "column": 8
+                }
+            },
+            "range": [
+                4,
+                8
+            ],
+            "raw": "text"
+        },
+        {
+            "type": "break",
+            "tagName": "br",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 12
+                },
+                "end": {
+                    "line": 1,
+                    "column": 13
+                }
+            },
+            "range": [
+                12,
+                13
+            ],
+            "raw": ">"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 12
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                12,
+                14
+            ],
+            "raw": ">\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 5
+                }
+            },
+            "range": [
+                14,
+                19
+            ],
+            "raw": "<img>"
+        },
+        {
+            "type": "Str",
+            "value": "text\n",
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 5
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
+            },
+            "range": [
+                19,
+                30
+            ],
+            "raw": "text</img>\n"
+        }
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 5,
-          "offset": 4
+            "line": 3,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "text",
-      "value": "text",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 5,
-          "offset": 4
-        },
-        "end": {
-          "line": 1,
-          "column": 9,
-          "offset": 8
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "br",
-      "properties": {},
-      "children": []
-    },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 14,
-          "offset": 13
-        },
-        "end": {
-          "line": 2,
-          "column": 1,
-          "offset": 14
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {},
-      "children": [],
-      "position": {
-        "start": {
-          "line": 2,
-          "column": 1,
-          "offset": 14
-        },
-        "end": {
-          "line": 2,
-          "column": 6,
-          "offset": 19
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "text\n",
-      "position": {
-        "start": {
-          "line": 2,
-          "column": 6,
-          "offset": 19
-        },
-        "end": {
-          "line": 3,
-          "column": 1,
-          "offset": 30
-        }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 3,
-      "column": 1,
-      "offset": 30
-    }
-  }
+    "range": [
+        0,
+        30
+    ],
+    "raw": "<br>text</br>\n<img>text</img>\n"
 }

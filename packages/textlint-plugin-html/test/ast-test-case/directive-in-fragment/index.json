@@ -1,36 +1,59 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
+    "type": "Document",
+    "children": [
+        {
+            "type": "UNKNOWN",
+            "name": "!doctype",
+            "value": "!doctype",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                10
+            ],
+            "raw": "<!doctype>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 10
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                10,
+                11
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 11,
-          "offset": 10
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 2,
-          "column": 1,
-          "offset": 11
+            "line": 2,
+            "column": 0
         }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
     },
-    "end": {
-      "line": 2,
-      "column": 1,
-      "offset": 11
-    }
-  }
+    "range": [
+        0,
+        11
+    ],
+    "raw": "<!doctype>\n"
 }

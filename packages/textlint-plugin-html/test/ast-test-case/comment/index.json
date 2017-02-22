@@ -1,84 +1,96 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "comment",
-      "value": "This is a comment",
-      "position": {
+    "type": "Document",
+    "children": [
+        {
+            "type": "Comment",
+            "value": "This is a comment",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 24
+                }
+            },
+            "range": [
+                0,
+                24
+            ],
+            "raw": "<!--This is a comment-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 24
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
+            },
+            "range": [
+                24,
+                26
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 7
+                }
+            },
+            "range": [
+                26,
+                33
+            ],
+            "raw": "<!---->"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 7
+                },
+                "end": {
+                    "line": 4,
+                    "column": 0
+                }
+            },
+            "range": [
+                33,
+                34
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 25,
-          "offset": 24
+            "line": 4,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 25,
-          "offset": 24
-        },
-        "end": {
-          "line": 3,
-          "column": 1,
-          "offset": 26
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "",
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 1,
-          "offset": 26
-        },
-        "end": {
-          "line": 3,
-          "column": 8,
-          "offset": 33
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 8,
-          "offset": 33
-        },
-        "end": {
-          "line": 4,
-          "column": 1,
-          "offset": 34
-        }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 4,
-      "column": 1,
-      "offset": 34
-    }
-  }
+    "range": [
+        0,
+        34
+    ],
+    "raw": "<!--This is a comment-->\n\n<!---->\n"
 }

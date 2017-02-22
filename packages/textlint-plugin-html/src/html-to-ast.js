@@ -42,7 +42,7 @@ function mapNodeType(node, parent) {
 export function parse(html) {
     const ast = hast.parse(html);
     const src = new StructuredSource(html);
-    var tr = traverse(ast);
+    const tr = traverse(ast);
     tr.forEach(function (node) {
         if (this.notLeaf) {
             // avoid conflict <input type="text" />
@@ -53,7 +53,7 @@ export function parse(html) {
             } else if (node.type === "root") {
                 // FIXME: workaround, should fix hast
                 node.type = nodeTypes[node.type];
-                let position = src.rangeToLocation([0, html.length]);
+                const position = src.rangeToLocation([0, html.length]);
                 // reverse adjust
                 node.position = {
                     start: {line: position.start.line, column: position.start.column + 1},

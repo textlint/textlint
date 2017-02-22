@@ -1,57 +1,59 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "doctype",
-      "name": "html",
-      "public": null,
-      "system": null,
-      "position": {
+    "type": "Document",
+    "children": [
+        {
+            "type": "UNKNOWN",
+            "name": "!doctype",
+            "value": "!DOCTYPE html",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 15
+                }
+            },
+            "range": [
+                0,
+                15
+            ],
+            "raw": "<!DOCTYPE html>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 15
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                15,
+                16
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 16,
-          "offset": 15
+            "line": 2,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "element",
-      "tagName": "html",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "head",
-          "properties": {},
-          "children": []
-        },
-        {
-          "type": "element",
-          "tagName": "body",
-          "properties": {},
-          "children": []
-        }
-      ]
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 2,
-      "column": 1,
-      "offset": 16
-    }
-  }
+    "range": [
+        0,
+        16
+    ],
+    "raw": "<!DOCTYPE html>\n"
 }

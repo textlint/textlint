@@ -1,131 +1,126 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {},
-      "children": [
+    "type": "Document",
+    "children": [
         {
-          "type": "element",
-          "tagName": "b",
-          "properties": {},
-          "children": [
-            {
-              "type": "element",
-              "tagName": "b",
-              "properties": {},
-              "children": [],
-              "position": {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Html",
+                    "tagName": "b",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Html",
+                            "tagName": "b",
+                            "properties": {},
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "tagName": "p",
+                                    "properties": {},
+                                    "children": [],
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        9,
+                                        16
+                                    ],
+                                    "raw": "<p></a>"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                6,
+                                16
+                            ],
+                            "raw": "<b><p></a>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        3,
+                        16
+                    ],
+                    "raw": "<b><b><p></a>"
+                }
+            ],
+            "loc": {
                 "start": {
-                  "line": 1,
-                  "column": 7,
-                  "offset": 6
+                    "line": 1,
+                    "column": 0
                 },
                 "end": {
-                  "line": 1,
-                  "column": 10,
-                  "offset": 9
+                    "line": 1,
+                    "column": 16
                 }
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 4,
-              "offset": 3
             },
-            "end": {
-              "line": 1,
-              "column": 10,
-              "offset": 9
-            }
-          }
+            "range": [
+                0,
+                16
+            ],
+            "raw": "<a><b><b><p></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 16
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                16,
+                17
+            ],
+            "raw": "\n"
         }
-      ],
-      "position": {
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 17,
-          "offset": 16
+            "line": 2,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "element",
-      "tagName": "b",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "b",
-          "properties": {},
-          "children": [
-            {
-              "type": "element",
-              "tagName": "p",
-              "properties": {},
-              "children": [
-                {
-                  "type": "element",
-                  "tagName": "a",
-                  "properties": {},
-                  "children": []
-                },
-                {
-                  "type": "text",
-                  "value": "\n",
-                  "position": {
-                    "start": {
-                      "line": 1,
-                      "column": 17,
-                      "offset": 16
-                    },
-                    "end": {
-                      "line": 2,
-                      "column": 1,
-                      "offset": 17
-                    }
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 1,
-                  "column": 10,
-                  "offset": 9
-                },
-                "end": {
-                  "line": 2,
-                  "column": 1,
-                  "offset": 17
-                }
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 2,
-      "column": 1,
-      "offset": 17
-    }
-  }
+    "range": [
+        0,
+        17
+    ],
+    "raw": "<a><b><b><p></a>\n"
 }

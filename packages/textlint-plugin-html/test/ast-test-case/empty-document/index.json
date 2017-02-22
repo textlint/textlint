@@ -1,27 +1,19 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "element",
-      "tagName": "html",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "head",
-          "properties": {},
-          "children": []
+    "type": "Document",
+    "children": [],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
         },
-        {
-          "type": "element",
-          "tagName": "body",
-          "properties": {},
-          "children": []
+        "end": {
+            "line": 1,
+            "column": 0
         }
-      ]
-    }
-  ],
-  "data": {
-    "quirksMode": true
-  }
+    },
+    "range": [
+        0,
+        0
+    ],
+    "raw": ""
 }

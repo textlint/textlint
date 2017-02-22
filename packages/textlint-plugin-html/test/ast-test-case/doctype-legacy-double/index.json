@@ -1,57 +1,59 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "doctype",
-      "name": "html",
-      "public": null,
-      "system": "about:legacy-compat",
-      "position": {
+    "type": "Document",
+    "children": [
+        {
+            "type": "UNKNOWN",
+            "name": "!doctype",
+            "value": "!DOCTYPE html SYSTEM \"about:legacy-compat\"",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 44
+                }
+            },
+            "range": [
+                0,
+                44
+            ],
+            "raw": "<!DOCTYPE html SYSTEM \"about:legacy-compat\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 44
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                44,
+                45
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 45,
-          "offset": 44
+            "line": 2,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "element",
-      "tagName": "html",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "head",
-          "properties": {},
-          "children": []
-        },
-        {
-          "type": "element",
-          "tagName": "body",
-          "properties": {},
-          "children": []
-        }
-      ]
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 2,
-      "column": 1,
-      "offset": 45
-    }
-  }
+    "range": [
+        0,
+        45
+    ],
+    "raw": "<!DOCTYPE html SYSTEM \"about:legacy-compat\">\n"
 }

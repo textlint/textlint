@@ -1,659 +1,769 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "src": "http://example.com/fav.ico",
-        "alt": "foo",
-        "title": "bar"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 61,
-          "offset": 60
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 61,
-          "offset": 60
-        },
-        "end": {
-          "line": 3,
-          "column": 1,
-          "offset": 62
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "hr",
-      "properties": {},
-      "children": [],
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 1,
-          "offset": 62
-        },
-        "end": {
-          "line": 3,
-          "column": 5,
-          "offset": 66
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 5,
-          "offset": 66
-        },
-        "end": {
-          "line": 5,
-          "column": 1,
-          "offset": 68
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "p",
-      "properties": {},
-      "children": [
+    "type": "Document",
+    "children": [
         {
-          "type": "text",
-          "value": "this",
-          "position": {
-            "start": {
-              "line": 5,
-              "column": 4,
-              "offset": 71
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "src": "http://example.com/fav.ico",
+                "alt": "foo",
+                "title": "bar",
+                "type": "UNKNOWN"
             },
-            "end": {
-              "line": 5,
-              "column": 8,
-              "offset": 75
-            }
-          }
-        },
-        {
-          "type": "element",
-          "tagName": "br",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 5,
-              "column": 8,
-              "offset": 75
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 60
+                }
             },
-            "end": {
-              "line": 5,
-              "column": 13,
-              "offset": 80
-            }
-          }
+            "range": [
+                0,
+                60
+            ],
+            "raw": "<img src=\"http://example.com/fav.ico\" alt=\"foo\" title=\"bar\">"
         },
         {
-          "type": "text",
-          "value": "and that",
-          "position": {
-            "start": {
-              "line": 5,
-              "column": 13,
-              "offset": 80
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 60
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
             },
-            "end": {
-              "line": 5,
-              "column": 21,
-              "offset": 88
-            }
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 5,
-          "column": 1,
-          "offset": 68
+            "range": [
+                60,
+                62
+            ],
+            "raw": "\n\n"
         },
-        "end": {
-          "line": 5,
-          "column": 25,
-          "offset": 92
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 5,
-          "column": 25,
-          "offset": 92
-        },
-        "end": {
-          "line": 7,
-          "column": 1,
-          "offset": 94
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "p",
-      "properties": {},
-      "children": [
         {
-          "type": "text",
-          "value": "this",
-          "position": {
-            "start": {
-              "line": 7,
-              "column": 4,
-              "offset": 97
+            "type": "horizontalRule",
+            "tagName": "hr",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 4
+                }
             },
-            "end": {
-              "line": 7,
-              "column": 8,
-              "offset": 101
-            }
-          }
+            "range": [
+                62,
+                66
+            ],
+            "raw": "<hr>"
         },
         {
-          "type": "element",
-          "tagName": "br",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 7,
-              "column": 8,
-              "offset": 101
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 4
+                },
+                "end": {
+                    "line": 5,
+                    "column": 0
+                }
             },
-            "end": {
-              "line": 7,
-              "column": 12,
-              "offset": 105
-            }
-          }
+            "range": [
+                66,
+                68
+            ],
+            "raw": "\n\n"
         },
         {
-          "type": "text",
-          "value": "and that",
-          "position": {
-            "start": {
-              "line": 7,
-              "column": 12,
-              "offset": 105
-            },
-            "end": {
-              "line": 7,
-              "column": 20,
-              "offset": 113
-            }
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 7,
-          "column": 1,
-          "offset": 94
-        },
-        "end": {
-          "line": 7,
-          "column": 24,
-          "offset": 117
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 7,
-          "column": 24,
-          "offset": 117
-        },
-        "end": {
-          "line": 9,
-          "column": 1,
-          "offset": 119
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "svg",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "path",
-          "properties": {},
-          "children": [
-            {
-              "type": "element",
-              "tagName": "circle",
-              "properties": {},
-              "children": [
+            "type": "Paragraph",
+            "tagName": "p",
+            "properties": {},
+            "children": [
                 {
-                  "type": "element",
-                  "tagName": "g",
-                  "properties": {},
-                  "children": [
-                    {
-                      "type": "element",
-                      "tagName": "rect",
-                      "properties": {},
-                      "children": [],
-                      "position": {
+                    "type": "Str",
+                    "value": "this",
+                    "loc": {
                         "start": {
-                          "line": 9,
-                          "column": 23,
-                          "offset": 141
+                            "line": 5,
+                            "column": 3
                         },
                         "end": {
-                          "line": 9,
-                          "column": 29,
-                          "offset": 147
+                            "line": 5,
+                            "column": 7
                         }
-                      }
-                    }
-                  ],
-                  "position": {
-                    "start": {
-                      "line": 9,
-                      "column": 20,
-                      "offset": 138
                     },
-                    "end": {
-                      "line": 9,
-                      "column": 29,
-                      "offset": 147
-                    }
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 9,
-                  "column": 12,
-                  "offset": 130
+                    "range": [
+                        71,
+                        75
+                    ],
+                    "raw": "this"
                 },
-                "end": {
-                  "line": 9,
-                  "column": 29,
-                  "offset": 147
-                }
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 9,
-              "column": 6,
-              "offset": 124
-            },
-            "end": {
-              "line": 9,
-              "column": 29,
-              "offset": 147
-            }
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 9,
-          "column": 1,
-          "offset": 119
-        },
-        "end": {
-          "line": 9,
-          "column": 35,
-          "offset": 153
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 9,
-          "column": 35,
-          "offset": 153
-        },
-        "end": {
-          "line": 11,
-          "column": 1,
-          "offset": 155
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "svg",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "path",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 11,
-              "column": 6,
-              "offset": 160
-            },
-            "end": {
-              "line": 11,
-              "column": 13,
-              "offset": 167
-            }
-          }
-        },
-        {
-          "type": "element",
-          "tagName": "circle",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 11,
-              "column": 13,
-              "offset": 167
-            },
-            "end": {
-              "line": 11,
-              "column": 22,
-              "offset": 176
-            }
-          }
-        },
-        {
-          "type": "element",
-          "tagName": "g",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 11,
-              "column": 22,
-              "offset": 176
-            },
-            "end": {
-              "line": 11,
-              "column": 26,
-              "offset": 180
-            }
-          }
-        },
-        {
-          "type": "element",
-          "tagName": "rect",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 11,
-              "column": 26,
-              "offset": 180
-            },
-            "end": {
-              "line": 11,
-              "column": 33,
-              "offset": 187
-            }
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 11,
-          "column": 1,
-          "offset": 155
-        },
-        "end": {
-          "line": 11,
-          "column": 39,
-          "offset": 193
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 11,
-          "column": 39,
-          "offset": 193
-        },
-        "end": {
-          "line": 13,
-          "column": 1,
-          "offset": 195
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "math",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "mglyph",
-          "properties": {},
-          "children": [
-            {
-              "type": "element",
-              "tagName": "mspace",
-              "properties": {},
-              "children": [
                 {
-                  "type": "element",
-                  "tagName": "malignmark",
-                  "properties": {},
-                  "children": [],
-                  "position": {
-                    "start": {
-                      "line": 13,
-                      "column": 23,
-                      "offset": 217
+                    "type": "break",
+                    "tagName": "br",
+                    "properties": {},
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 12
+                        }
                     },
-                    "end": {
-                      "line": 13,
-                      "column": 35,
-                      "offset": 229
-                    }
-                  }
+                    "range": [
+                        75,
+                        80
+                    ],
+                    "raw": "<br/>"
+                },
+                {
+                    "type": "Str",
+                    "value": "and that",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        80,
+                        88
+                    ],
+                    "raw": "and that"
                 }
-              ],
-              "position": {
+            ],
+            "loc": {
                 "start": {
-                  "line": 13,
-                  "column": 15,
-                  "offset": 209
+                    "line": 5,
+                    "column": 0
                 },
                 "end": {
-                  "line": 13,
-                  "column": 35,
-                  "offset": 229
+                    "line": 5,
+                    "column": 24
                 }
-              }
-            }
-          ],
-          "position": {
-            "start": {
-              "line": 13,
-              "column": 7,
-              "offset": 201
             },
-            "end": {
-              "line": 13,
-              "column": 35,
-              "offset": 229
-            }
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 13,
-          "column": 1,
-          "offset": 195
-        },
-        "end": {
-          "line": 13,
-          "column": 42,
-          "offset": 236
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 13,
-          "column": 42,
-          "offset": 236
-        },
-        "end": {
-          "line": 15,
-          "column": 1,
-          "offset": 238
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "math",
-      "properties": {},
-      "children": [
-        {
-          "type": "element",
-          "tagName": "mglyph",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 15,
-              "column": 7,
-              "offset": 244
-            },
-            "end": {
-              "line": 15,
-              "column": 16,
-              "offset": 253
-            }
-          }
+            "range": [
+                68,
+                92
+            ],
+            "raw": "<p>this<br/>and that</p>"
         },
         {
-          "type": "element",
-          "tagName": "mspace",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 15,
-              "column": 16,
-              "offset": 253
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 24
+                },
+                "end": {
+                    "line": 7,
+                    "column": 0
+                }
             },
-            "end": {
-              "line": 15,
-              "column": 25,
-              "offset": 262
-            }
-          }
+            "range": [
+                92,
+                94
+            ],
+            "raw": "\n\n"
         },
         {
-          "type": "element",
-          "tagName": "malignmark",
-          "properties": {},
-          "children": [],
-          "position": {
-            "start": {
-              "line": 15,
-              "column": 25,
-              "offset": 262
+            "type": "Paragraph",
+            "tagName": "p",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "this",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        97,
+                        101
+                    ],
+                    "raw": "this"
+                },
+                {
+                    "type": "break",
+                    "tagName": "br",
+                    "properties": {},
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        101,
+                        105
+                    ],
+                    "raw": "<br>"
+                },
+                {
+                    "type": "Str",
+                    "value": "and that",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        105,
+                        113
+                    ],
+                    "raw": "and that"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 23
+                }
             },
-            "end": {
-              "line": 15,
-              "column": 38,
-              "offset": 275
-            }
-          }
+            "range": [
+                94,
+                117
+            ],
+            "raw": "<p>this<br>and that</p>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 23
+                },
+                "end": {
+                    "line": 9,
+                    "column": 0
+                }
+            },
+            "range": [
+                117,
+                119
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "svg",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Html",
+                    "tagName": "path",
+                    "properties": {},
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        124,
+                        130
+                    ],
+                    "raw": "<path>"
+                },
+                {
+                    "type": "Html",
+                    "tagName": "circle",
+                    "properties": {},
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        130,
+                        138
+                    ],
+                    "raw": "<circle>"
+                },
+                {
+                    "type": "Html",
+                    "tagName": "g",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Html",
+                            "tagName": "rect",
+                            "properties": {},
+                            "children": [],
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 22
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 28
+                                }
+                            },
+                            "range": [
+                                141,
+                                147
+                            ],
+                            "raw": "<rect>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 19
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        138,
+                        153
+                    ],
+                    "raw": "<g><rect></svg>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 34
+                }
+            },
+            "range": [
+                119,
+                153
+            ],
+            "raw": "<svg><path><circle><g><rect></svg>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 34
+                },
+                "end": {
+                    "line": 11,
+                    "column": 0
+                }
+            },
+            "range": [
+                153,
+                155
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "svg",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Html",
+                    "tagName": "path",
+                    "properties": {},
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        160,
+                        167
+                    ],
+                    "raw": "<path/>"
+                },
+                {
+                    "type": "Html",
+                    "tagName": "circle",
+                    "properties": {},
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        167,
+                        176
+                    ],
+                    "raw": "<circle/>"
+                },
+                {
+                    "type": "Html",
+                    "tagName": "g",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Html",
+                            "tagName": "rect",
+                            "properties": {},
+                            "children": [],
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 25
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                180,
+                                187
+                            ],
+                            "raw": "<rect/>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 21
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 38
+                        }
+                    },
+                    "range": [
+                        176,
+                        193
+                    ],
+                    "raw": "<g/><rect/></svg>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 38
+                }
+            },
+            "range": [
+                155,
+                193
+            ],
+            "raw": "<svg><path/><circle/><g/><rect/></svg>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 38
+                },
+                "end": {
+                    "line": 13,
+                    "column": 0
+                }
+            },
+            "range": [
+                193,
+                195
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "math",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Html",
+                    "tagName": "mglyph",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Html",
+                            "tagName": "mspace",
+                            "properties": {},
+                            "children": [
+                                {
+                                    "type": "Html",
+                                    "tagName": "malignmark",
+                                    "properties": {},
+                                    "children": [],
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 22
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 41
+                                        }
+                                    },
+                                    "range": [
+                                        217,
+                                        236
+                                    ],
+                                    "raw": "<malignmark></math>"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 41
+                                }
+                            },
+                            "range": [
+                                209,
+                                236
+                            ],
+                            "raw": "<mspace><malignmark></math>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 41
+                        }
+                    },
+                    "range": [
+                        201,
+                        236
+                    ],
+                    "raw": "<mglyph><mspace><malignmark></math>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 41
+                }
+            },
+            "range": [
+                195,
+                236
+            ],
+            "raw": "<math><mglyph><mspace><malignmark></math>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 41
+                },
+                "end": {
+                    "line": 15,
+                    "column": 0
+                }
+            },
+            "range": [
+                236,
+                238
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "math",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Html",
+                    "tagName": "mglyph",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Html",
+                            "tagName": "mspace",
+                            "properties": {},
+                            "children": [
+                                {
+                                    "type": "Html",
+                                    "tagName": "malignmark",
+                                    "properties": {},
+                                    "children": [],
+                                    "loc": {
+                                        "start": {
+                                            "line": 15,
+                                            "column": 24
+                                        },
+                                        "end": {
+                                            "line": 15,
+                                            "column": 44
+                                        }
+                                    },
+                                    "range": [
+                                        262,
+                                        282
+                                    ],
+                                    "raw": "<malignmark/></math>"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 15,
+                                    "column": 15
+                                },
+                                "end": {
+                                    "line": 15,
+                                    "column": 44
+                                }
+                            },
+                            "range": [
+                                253,
+                                282
+                            ],
+                            "raw": "<mspace/><malignmark/></math>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 44
+                        }
+                    },
+                    "range": [
+                        244,
+                        282
+                    ],
+                    "raw": "<mglyph/><mspace/><malignmark/></math>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 44
+                }
+            },
+            "range": [
+                238,
+                282
+            ],
+            "raw": "<math><mglyph/><mspace/><malignmark/></math>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 44
+                },
+                "end": {
+                    "line": 16,
+                    "column": 0
+                }
+            },
+            "range": [
+                282,
+                283
+            ],
+            "raw": "\n"
         }
-      ],
-      "position": {
+    ],
+    "loc": {
         "start": {
-          "line": 15,
-          "column": 1,
-          "offset": 238
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 15,
-          "column": 45,
-          "offset": 282
+            "line": 16,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 15,
-          "column": 45,
-          "offset": 282
-        },
-        "end": {
-          "line": 16,
-          "column": 1,
-          "offset": 283
-        }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 16,
-      "column": 1,
-      "offset": 283
-    }
-  }
+    "range": [
+        0,
+        283
+    ],
+    "raw": "<img src=\"http://example.com/fav.ico\" alt=\"foo\" title=\"bar\">\n\n<hr>\n\n<p>this<br/>and that</p>\n\n<p>this<br>and that</p>\n\n<svg><path><circle><g><rect></svg>\n\n<svg><path/><circle/><g/><rect/></svg>\n\n<math><mglyph><mspace><malignmark></math>\n\n<math><mglyph/><mspace/><malignmark/></math>\n"
 }

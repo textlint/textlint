@@ -1,71 +1,80 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "element",
-      "tagName": "strong",
-      "properties": {},
-      "children": [
+    "type": "Document",
+    "children": [
         {
-          "type": "text",
-          "value": "Hello World.",
-          "position": {
-            "start": {
-              "line": 1,
-              "column": 9,
-              "offset": 8
+            "type": "Strong",
+            "tagName": "strong",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hello World.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        8,
+                        20
+                    ],
+                    "raw": "Hello World."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 29
+                }
             },
-            "end": {
-              "line": 1,
-              "column": 21,
-              "offset": 20
-            }
-          }
+            "range": [
+                0,
+                29
+            ],
+            "raw": "<strong>Hello World.</strong>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 29
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                29,
+                30
+            ],
+            "raw": "\n"
         }
-      ],
-      "position": {
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 30,
-          "offset": 29
+            "line": 2,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 30,
-          "offset": 29
-        },
-        "end": {
-          "line": 2,
-          "column": 1,
-          "offset": 30
-        }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 2,
-      "column": 1,
-      "offset": 30
-    }
-  }
+    "range": [
+        0,
+        30
+    ],
+    "raw": "<strong>Hello World.</strong>\n"
 }

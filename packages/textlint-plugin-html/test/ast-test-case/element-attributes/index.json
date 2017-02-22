@@ -1,1815 +1,2172 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "comment",
-      "value": "core:",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 13,
-          "offset": 12
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 13,
-          "offset": 12
-        },
-        "end": {
-          "line": 3,
-          "column": 1,
-          "offset": 14
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "href": "http://alpha.com",
-        "className": [
-          "bravo"
-        ],
-        "download": true
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 1,
-          "offset": 14
-        },
-        "end": {
-          "line": 3,
-          "column": 55,
-          "offset": 68
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 55,
-          "offset": 68
-        },
-        "end": {
-          "line": 5,
-          "column": 1,
-          "offset": 70
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "double:",
-      "position": {
-        "start": {
-          "line": 5,
-          "column": 1,
-          "offset": 70
-        },
-        "end": {
-          "line": 5,
-          "column": 15,
-          "offset": 84
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 5,
-          "column": 15,
-          "offset": 84
-        },
-        "end": {
-          "line": 7,
-          "column": 1,
-          "offset": 86
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "className": []
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 7,
-          "column": 1,
-          "offset": 86
-        },
-        "end": {
-          "line": 7,
-          "column": 24,
-          "offset": 109
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 7,
-          "column": 24,
-          "offset": 109
-        },
-        "end": {
-          "line": 9,
-          "column": 1,
-          "offset": 111
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "unknown:",
-      "position": {
-        "start": {
-          "line": 9,
-          "column": 1,
-          "offset": 111
-        },
-        "end": {
-          "line": 9,
-          "column": 16,
-          "offset": 126
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 9,
-          "column": 16,
-          "offset": 126
-        },
-        "end": {
-          "line": 11,
-          "column": 1,
-          "offset": 128
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "ngInit": ""
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 11,
-          "column": 1,
-          "offset": 128
-        },
-        "end": {
-          "line": 11,
-          "column": 16,
-          "offset": 143
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 11,
-          "column": 16,
-          "offset": 143
-        },
-        "end": {
-          "line": 13,
-          "column": 1,
-          "offset": 145
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "ngRepeat": ""
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 13,
-          "column": 1,
-          "offset": 145
-        },
-        "end": {
-          "line": 13,
-          "column": 21,
-          "offset": 165
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 13,
-          "column": 21,
-          "offset": 165
-        },
-        "end": {
-          "line": 15,
-          "column": 1,
-          "offset": 167
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "ngClick": "ctrl.onintentclick($scope)"
-      },
-      "children": [
+    "type": "Document",
+    "children": [
         {
-          "type": "text",
-          "value": "ng-whatevs",
-          "position": {
-            "start": {
-              "line": 15,
-              "column": 42,
-              "offset": 208
+            "type": "Comment",
+            "value": "core:",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 12
+                }
             },
-            "end": {
-              "line": 15,
-              "column": 52,
-              "offset": 218
-            }
-          }
-        }
-      ],
-      "position": {
-        "start": {
-          "line": 15,
-          "column": 1,
-          "offset": 167
-        },
-        "end": {
-          "line": 15,
-          "column": 56,
-          "offset": 222
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": ".\n\n",
-      "position": {
-        "start": {
-          "line": 15,
-          "column": 56,
-          "offset": 222
-        },
-        "end": {
-          "line": 17,
-          "column": 1,
-          "offset": 225
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "empty:",
-      "position": {
-        "start": {
-          "line": 17,
-          "column": 1,
-          "offset": 225
-        },
-        "end": {
-          "line": 17,
-          "column": 14,
-          "offset": 238
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 17,
-          "column": 14,
-          "offset": 238
-        },
-        "end": {
-          "line": 19,
-          "column": 1,
-          "offset": 240
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "abbr",
-      "properties": {
-        "title": ""
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 19,
-          "column": 1,
-          "offset": 240
-        },
-        "end": {
-          "line": 19,
-          "column": 20,
-          "offset": 259
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 19,
-          "column": 20,
-          "offset": 259
-        },
-        "end": {
-          "line": 21,
-          "column": 1,
-          "offset": 261
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "space separated:",
-      "position": {
-        "start": {
-          "line": 21,
-          "column": 1,
-          "offset": 261
-        },
-        "end": {
-          "line": 21,
-          "column": 24,
-          "offset": 284
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 21,
-          "column": 24,
-          "offset": 284
-        },
-        "end": {
-          "line": 23,
-          "column": 1,
-          "offset": 286
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "code",
-      "properties": {
-        "className": [
-          "language-foo",
-          "bar"
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 23,
-          "column": 1,
-          "offset": 286
-        },
-        "end": {
-          "line": 23,
-          "column": 39,
-          "offset": 324
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 23,
-          "column": 39,
-          "offset": 324
-        },
-        "end": {
-          "line": 25,
-          "column": 1,
-          "offset": 326
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "code",
-      "properties": {
-        "className": []
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 25,
-          "column": 1,
-          "offset": 326
-        },
-        "end": {
-          "line": 25,
-          "column": 23,
-          "offset": 348
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 25,
-          "column": 23,
-          "offset": 348
-        },
-        "end": {
-          "line": 27,
-          "column": 1,
-          "offset": 350
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "code",
-      "properties": {
-        "className": []
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 27,
-          "column": 1,
-          "offset": 350
-        },
-        "end": {
-          "line": 27,
-          "column": 20,
-          "offset": 369
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 27,
-          "column": 20,
-          "offset": 369
-        },
-        "end": {
-          "line": 29,
-          "column": 1,
-          "offset": 371
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "code",
-      "properties": {
-        "className": []
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 29,
-          "column": 1,
-          "offset": 371
-        },
-        "end": {
-          "line": 29,
-          "column": 24,
-          "offset": 394
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 29,
-          "column": 24,
-          "offset": 394
-        },
-        "end": {
-          "line": 31,
-          "column": 1,
-          "offset": 396
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "comma separated:",
-      "position": {
-        "start": {
-          "line": 31,
-          "column": 1,
-          "offset": 396
-        },
-        "end": {
-          "line": 31,
-          "column": 24,
-          "offset": 419
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 31,
-          "column": 24,
-          "offset": 419
-        },
-        "end": {
-          "line": 33,
-          "column": 1,
-          "offset": 421
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": [
-          "medium.jpg 1000w",
-          "large.jpg 2000w"
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 33,
-          "column": 1,
-          "offset": 421
-        },
-        "end": {
-          "line": 33,
-          "column": 49,
-          "offset": 469
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 33,
-          "column": 49,
-          "offset": 469
-        },
-        "end": {
-          "line": 35,
-          "column": 1,
-          "offset": 471
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": [
-          "medium.jpg 1000w"
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 35,
-          "column": 1,
-          "offset": 471
-        },
-        "end": {
-          "line": 35,
-          "column": 32,
-          "offset": 502
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 35,
-          "column": 32,
-          "offset": 502
-        },
-        "end": {
-          "line": 37,
-          "column": 1,
-          "offset": 504
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": []
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 37,
-          "column": 1,
-          "offset": 504
-        },
-        "end": {
-          "line": 37,
-          "column": 16,
-          "offset": 519
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 37,
-          "column": 16,
-          "offset": 519
-        },
-        "end": {
-          "line": 39,
-          "column": 1,
-          "offset": 521
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": []
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 39,
-          "column": 1,
-          "offset": 521
-        },
-        "end": {
-          "line": 39,
-          "column": 17,
-          "offset": 537
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 39,
-          "column": 17,
-          "offset": 537
-        },
-        "end": {
-          "line": 41,
-          "column": 1,
-          "offset": 539
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": [
-          ""
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 41,
-          "column": 1,
-          "offset": 539
-        },
-        "end": {
-          "line": 41,
-          "column": 17,
-          "offset": 555
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 41,
-          "column": 17,
-          "offset": 555
-        },
-        "end": {
-          "line": 43,
-          "column": 1,
-          "offset": 557
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": [
-          ""
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 43,
-          "column": 1,
-          "offset": 557
-        },
-        "end": {
-          "line": 43,
-          "column": 19,
-          "offset": 575
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 43,
-          "column": 19,
-          "offset": 575
-        },
-        "end": {
-          "line": 45,
-          "column": 1,
-          "offset": 577
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": [
-          "",
-          "foo"
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 45,
-          "column": 1,
-          "offset": 577
-        },
-        "end": {
-          "line": 45,
-          "column": 20,
-          "offset": 596
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 45,
-          "column": 20,
-          "offset": 596
-        },
-        "end": {
-          "line": 47,
-          "column": 1,
-          "offset": 598
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": [
-          "bar"
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 47,
-          "column": 1,
-          "offset": 598
-        },
-        "end": {
-          "line": 47,
-          "column": 20,
-          "offset": 617
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 47,
-          "column": 20,
-          "offset": 617
-        },
-        "end": {
-          "line": 49,
-          "column": 1,
-          "offset": 619
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "srcSet": [
-          "",
-          "baz"
-        ]
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 49,
-          "column": 1,
-          "offset": 619
-        },
-        "end": {
-          "line": 49,
-          "column": 21,
-          "offset": 639
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 49,
-          "column": 21,
-          "offset": 639
-        },
-        "end": {
-          "line": 51,
-          "column": 1,
-          "offset": 641
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "style:",
-      "position": {
-        "start": {
-          "line": 51,
-          "column": 1,
-          "offset": 641
-        },
-        "end": {
-          "line": 51,
-          "column": 14,
-          "offset": 654
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 51,
-          "column": 14,
-          "offset": 654
-        },
-        "end": {
-          "line": 53,
-          "column": 1,
-          "offset": 656
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {},
-      "children": [],
-      "position": {
-        "start": {
-          "line": 53,
-          "column": 1,
-          "offset": 656
-        },
-        "end": {
-          "line": 53,
-          "column": 12,
-          "offset": 667
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 53,
-          "column": 12,
-          "offset": 667
-        },
-        "end": {
-          "line": 55,
-          "column": 1,
-          "offset": 669
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": ""
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 55,
-          "column": 1,
-          "offset": 669
-        },
-        "end": {
-          "line": 55,
-          "column": 21,
-          "offset": 689
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 55,
-          "column": 21,
-          "offset": 689
-        },
-        "end": {
-          "line": 57,
-          "column": 1,
-          "offset": 691
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 57,
-          "column": 1,
-          "offset": 691
-        },
-        "end": {
-          "line": 57,
-          "column": 26,
-          "offset": 716
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 57,
-          "column": 26,
-          "offset": 716
-        },
-        "end": {
-          "line": 59,
-          "column": 1,
-          "offset": 718
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color:"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 59,
-          "column": 1,
-          "offset": 718
-        },
-        "end": {
-          "line": 59,
-          "column": 27,
-          "offset": 744
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 59,
-          "column": 27,
-          "offset": 744
-        },
-        "end": {
-          "line": 61,
-          "column": 1,
-          "offset": 746
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color:red"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 61,
-          "column": 1,
-          "offset": 746
-        },
-        "end": {
-          "line": 61,
-          "column": 30,
-          "offset": 775
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 61,
-          "column": 30,
-          "offset": 775
-        },
-        "end": {
-          "line": 63,
-          "column": 1,
-          "offset": 777
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color:;"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 63,
-          "column": 1,
-          "offset": 777
-        },
-        "end": {
-          "line": 63,
-          "column": 28,
-          "offset": 804
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 63,
-          "column": 28,
-          "offset": 804
-        },
-        "end": {
-          "line": 65,
-          "column": 1,
-          "offset": 806
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color:red;"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 65,
-          "column": 1,
-          "offset": 806
-        },
-        "end": {
-          "line": 65,
-          "column": 31,
-          "offset": 836
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 65,
-          "column": 31,
-          "offset": 836
-        },
-        "end": {
-          "line": 67,
-          "column": 1,
-          "offset": 838
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color:red;background-color"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 67,
-          "column": 1,
-          "offset": 838
-        },
-        "end": {
-          "line": 67,
-          "column": 47,
-          "offset": 884
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 67,
-          "column": 47,
-          "offset": 884
-        },
-        "end": {
-          "line": 69,
-          "column": 1,
-          "offset": 886
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color:red;background-color: blue"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 69,
-          "column": 1,
-          "offset": 886
-        },
-        "end": {
-          "line": 69,
-          "column": 53,
-          "offset": 938
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 69,
-          "column": 53,
-          "offset": 938
-        },
-        "end": {
-          "line": 71,
-          "column": 1,
-          "offset": 940
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "div",
-      "properties": {
-        "style": "color:red;background-color: blue;"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 71,
-          "column": 1,
-          "offset": 940
-        },
-        "end": {
-          "line": 71,
-          "column": 54,
-          "offset": 993
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 71,
-          "column": 54,
-          "offset": 993
-        },
-        "end": {
-          "line": 73,
-          "column": 1,
-          "offset": 995
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "boolean:",
-      "position": {
-        "start": {
-          "line": 73,
-          "column": 1,
-          "offset": 995
-        },
-        "end": {
-          "line": 73,
-          "column": 16,
-          "offset": 1010
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 73,
-          "column": 16,
-          "offset": 1010
-        },
-        "end": {
-          "line": 75,
-          "column": 1,
-          "offset": 1012
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "script",
-      "properties": {
-        "async": true
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 75,
-          "column": 1,
-          "offset": 1012
-        },
-        "end": {
-          "line": 75,
-          "column": 24,
-          "offset": 1035
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 75,
-          "column": 24,
-          "offset": 1035
-        },
-        "end": {
-          "line": 76,
-          "column": 1,
-          "offset": 1036
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "script",
-      "properties": {
-        "async": true
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 76,
-          "column": 1,
-          "offset": 1036
-        },
-        "end": {
-          "line": 76,
-          "column": 27,
-          "offset": 1062
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 76,
-          "column": 27,
-          "offset": 1062
-        },
-        "end": {
-          "line": 77,
-          "column": 1,
-          "offset": 1063
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "script",
-      "properties": {
-        "async": true
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 77,
-          "column": 1,
-          "offset": 1063
-        },
-        "end": {
-          "line": 77,
-          "column": 32,
-          "offset": 1094
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 77,
-          "column": 32,
-          "offset": 1094
-        },
-        "end": {
-          "line": 79,
-          "column": 1,
-          "offset": 1096
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "overloaded boolean (as boolean):",
-      "position": {
-        "start": {
-          "line": 79,
-          "column": 1,
-          "offset": 1096
-        },
-        "end": {
-          "line": 79,
-          "column": 40,
-          "offset": 1135
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 79,
-          "column": 40,
-          "offset": 1135
-        },
-        "end": {
-          "line": 81,
-          "column": 1,
-          "offset": 1137
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "download": true
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 81,
-          "column": 1,
-          "offset": 1137
-        },
-        "end": {
-          "line": 81,
-          "column": 17,
-          "offset": 1153
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 81,
-          "column": 17,
-          "offset": 1153
-        },
-        "end": {
-          "line": 82,
-          "column": 1,
-          "offset": 1154
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "download": true
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 82,
-          "column": 1,
-          "offset": 1154
-        },
-        "end": {
-          "line": 82,
-          "column": 20,
-          "offset": 1173
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 82,
-          "column": 20,
-          "offset": 1173
-        },
-        "end": {
-          "line": 83,
-          "column": 1,
-          "offset": 1174
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "download": true
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 83,
-          "column": 1,
-          "offset": 1174
-        },
-        "end": {
-          "line": 83,
-          "column": 28,
-          "offset": 1201
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 83,
-          "column": 28,
-          "offset": 1201
-        },
-        "end": {
-          "line": 85,
-          "column": 1,
-          "offset": 1203
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "overloaded boolean (as overloaded):",
-      "position": {
-        "start": {
-          "line": 85,
-          "column": 1,
-          "offset": 1203
-        },
-        "end": {
-          "line": 85,
-          "column": 43,
-          "offset": 1245
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 85,
-          "column": 43,
-          "offset": 1245
-        },
-        "end": {
-          "line": 87,
-          "column": 1,
-          "offset": 1247
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "a",
-      "properties": {
-        "download": "example.mp3"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 87,
-          "column": 1,
-          "offset": 1247
-        },
-        "end": {
-          "line": 87,
-          "column": 31,
-          "offset": 1277
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 87,
-          "column": 31,
-          "offset": 1277
-        },
-        "end": {
-          "line": 89,
-          "column": 1,
-          "offset": 1279
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "positive numeric:",
-      "position": {
-        "start": {
-          "line": 89,
-          "column": 1,
-          "offset": 1279
-        },
-        "end": {
-          "line": 89,
-          "column": 25,
-          "offset": 1303
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 89,
-          "column": 25,
-          "offset": 1303
-        },
-        "end": {
-          "line": 91,
-          "column": 1,
-          "offset": 1305
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "img",
-      "properties": {
-        "height": 100
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 91,
-          "column": 1,
-          "offset": 1305
-        },
-        "end": {
-          "line": 91,
-          "column": 19,
-          "offset": 1323
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 91,
-          "column": 19,
-          "offset": 1323
-        },
-        "end": {
-          "line": 93,
-          "column": 1,
-          "offset": 1325
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "numeric:",
-      "position": {
-        "start": {
-          "line": 93,
-          "column": 1,
-          "offset": 1325
-        },
-        "end": {
-          "line": 93,
-          "column": 16,
-          "offset": 1340
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 93,
-          "column": 16,
-          "offset": 1340
-        },
-        "end": {
-          "line": 95,
-          "column": 1,
-          "offset": 1342
-        }
-      }
-    },
-    {
-      "type": "element",
-      "tagName": "meter",
-      "properties": {
-        "min": "0",
-        "low": 40,
-        "high": 90,
-        "max": "100",
-        "value": "95"
-      },
-      "children": [],
-      "position": {
-        "start": {
-          "line": 95,
-          "column": 1,
-          "offset": 1342
-        },
-        "end": {
-          "line": 95,
-          "column": 64,
-          "offset": 1405
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n",
-      "position": {
-        "start": {
-          "line": 95,
-          "column": 64,
-          "offset": 1405
-        },
-        "end": {
-          "line": 96,
-          "column": 1,
-          "offset": 1406
-        }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 96,
-      "column": 1,
-      "offset": 1406
-    }
-  }
+            "range": [
+                0,
+                12
+            ],
+            "raw": "<!--core:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 12
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
+            },
+            "range": [
+                12,
+                14
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "href": "http://alpha.com",
+                "className": [
+                    "bravo"
+                ],
+                "download": true,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 54
+                }
+            },
+            "range": [
+                14,
+                68
+            ],
+            "raw": "<a href=\"http://alpha.com\" class=\"bravo\" download></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 54
+                },
+                "end": {
+                    "line": 5,
+                    "column": 0
+                }
+            },
+            "range": [
+                68,
+                70
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "double:",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 14
+                }
+            },
+            "range": [
+                70,
+                84
+            ],
+            "raw": "<!--double:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 14
+                },
+                "end": {
+                    "line": 7,
+                    "column": 0
+                }
+            },
+            "range": [
+                84,
+                86
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "className": [],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 23
+                }
+            },
+            "range": [
+                86,
+                109
+            ],
+            "raw": "<div class class></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 23
+                },
+                "end": {
+                    "line": 9,
+                    "column": 0
+                }
+            },
+            "range": [
+                109,
+                111
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "unknown:",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 15
+                }
+            },
+            "range": [
+                111,
+                126
+            ],
+            "raw": "<!--unknown:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 15
+                },
+                "end": {
+                    "line": 11,
+                    "column": 0
+                }
+            },
+            "range": [
+                126,
+                128
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "ngInit": "",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 15
+                }
+            },
+            "range": [
+                128,
+                143
+            ],
+            "raw": "<a ng-init></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 15
+                },
+                "end": {
+                    "line": 13,
+                    "column": 0
+                }
+            },
+            "range": [
+                143,
+                145
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "ngRepeat": "",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 20
+                }
+            },
+            "range": [
+                145,
+                165
+            ],
+            "raw": "<a ng-repeat=\"\"></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 20
+                },
+                "end": {
+                    "line": 15,
+                    "column": 0
+                }
+            },
+            "range": [
+                165,
+                167
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "ngClick": "ctrl.onintentclick($scope)",
+                "type": "UNKNOWN"
+            },
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "ng-whatevs",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 41
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 51
+                        }
+                    },
+                    "range": [
+                        208,
+                        218
+                    ],
+                    "raw": "ng-whatevs"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 55
+                }
+            },
+            "range": [
+                167,
+                222
+            ],
+            "raw": "<a ng-click=\"ctrl.onintentclick($scope)\">ng-whatevs</a>"
+        },
+        {
+            "type": "Str",
+            "value": ".\n\n",
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 55
+                },
+                "end": {
+                    "line": 17,
+                    "column": 0
+                }
+            },
+            "range": [
+                222,
+                225
+            ],
+            "raw": ".\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "empty:",
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 13
+                }
+            },
+            "range": [
+                225,
+                238
+            ],
+            "raw": "<!--empty:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 13
+                },
+                "end": {
+                    "line": 19,
+                    "column": 0
+                }
+            },
+            "range": [
+                238,
+                240
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "abbr",
+            "properties": {
+                "title": "",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 19
+                }
+            },
+            "range": [
+                240,
+                259
+            ],
+            "raw": "<abbr title></abbr>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 19
+                },
+                "end": {
+                    "line": 21,
+                    "column": 0
+                }
+            },
+            "range": [
+                259,
+                261
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "space separated:",
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 23
+                }
+            },
+            "range": [
+                261,
+                284
+            ],
+            "raw": "<!--space separated:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 23
+                },
+                "end": {
+                    "line": 23,
+                    "column": 0
+                }
+            },
+            "range": [
+                284,
+                286
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "CodeBlock",
+            "tagName": "code",
+            "properties": {
+                "className": [
+                    "language-foo",
+                    "bar"
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 38
+                }
+            },
+            "range": [
+                286,
+                324
+            ],
+            "raw": "<code class=\"language-foo bar\"></code>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 38
+                },
+                "end": {
+                    "line": 25,
+                    "column": 0
+                }
+            },
+            "range": [
+                324,
+                326
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "CodeBlock",
+            "tagName": "code",
+            "properties": {
+                "className": [],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 25,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 22
+                }
+            },
+            "range": [
+                326,
+                348
+            ],
+            "raw": "<code class=\"\"></code>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 25,
+                    "column": 22
+                },
+                "end": {
+                    "line": 27,
+                    "column": 0
+                }
+            },
+            "range": [
+                348,
+                350
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "CodeBlock",
+            "tagName": "code",
+            "properties": {
+                "className": [],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 19
+                }
+            },
+            "range": [
+                350,
+                369
+            ],
+            "raw": "<code class></code>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 19
+                },
+                "end": {
+                    "line": 29,
+                    "column": 0
+                }
+            },
+            "range": [
+                369,
+                371
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "CodeBlock",
+            "tagName": "code",
+            "properties": {
+                "className": [],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 23
+                }
+            },
+            "range": [
+                371,
+                394
+            ],
+            "raw": "<code class=\" \"></code>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 23
+                },
+                "end": {
+                    "line": 31,
+                    "column": 0
+                }
+            },
+            "range": [
+                394,
+                396
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "comma separated:",
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 31,
+                    "column": 23
+                }
+            },
+            "range": [
+                396,
+                419
+            ],
+            "raw": "<!--comma separated:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 23
+                },
+                "end": {
+                    "line": 33,
+                    "column": 0
+                }
+            },
+            "range": [
+                419,
+                421
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [
+                    "medium.jpg 1000w",
+                    "large.jpg 2000w"
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 33,
+                    "column": 0
+                },
+                "end": {
+                    "line": 33,
+                    "column": 48
+                }
+            },
+            "range": [
+                421,
+                469
+            ],
+            "raw": "<img srcset=\"medium.jpg 1000w, large.jpg 2000w\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 33,
+                    "column": 48
+                },
+                "end": {
+                    "line": 35,
+                    "column": 0
+                }
+            },
+            "range": [
+                469,
+                471
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [
+                    "medium.jpg 1000w"
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 0
+                },
+                "end": {
+                    "line": 35,
+                    "column": 31
+                }
+            },
+            "range": [
+                471,
+                502
+            ],
+            "raw": "<img srcset=\"medium.jpg 1000w\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 31
+                },
+                "end": {
+                    "line": 37,
+                    "column": 0
+                }
+            },
+            "range": [
+                502,
+                504
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 0
+                },
+                "end": {
+                    "line": 37,
+                    "column": 15
+                }
+            },
+            "range": [
+                504,
+                519
+            ],
+            "raw": "<img srcset=\"\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 15
+                },
+                "end": {
+                    "line": 39,
+                    "column": 0
+                }
+            },
+            "range": [
+                519,
+                521
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 39,
+                    "column": 0
+                },
+                "end": {
+                    "line": 39,
+                    "column": 16
+                }
+            },
+            "range": [
+                521,
+                537
+            ],
+            "raw": "<img srcset=\" \">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 39,
+                    "column": 16
+                },
+                "end": {
+                    "line": 41,
+                    "column": 0
+                }
+            },
+            "range": [
+                537,
+                539
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [
+                    ""
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 41,
+                    "column": 0
+                },
+                "end": {
+                    "line": 41,
+                    "column": 16
+                }
+            },
+            "range": [
+                539,
+                555
+            ],
+            "raw": "<img srcset=\",\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 41,
+                    "column": 16
+                },
+                "end": {
+                    "line": 43,
+                    "column": 0
+                }
+            },
+            "range": [
+                555,
+                557
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [
+                    ""
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 43,
+                    "column": 0
+                },
+                "end": {
+                    "line": 43,
+                    "column": 18
+                }
+            },
+            "range": [
+                557,
+                575
+            ],
+            "raw": "<img srcset=\" , \">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 43,
+                    "column": 18
+                },
+                "end": {
+                    "line": 45,
+                    "column": 0
+                }
+            },
+            "range": [
+                575,
+                577
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [
+                    "",
+                    "foo"
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 45,
+                    "column": 0
+                },
+                "end": {
+                    "line": 45,
+                    "column": 19
+                }
+            },
+            "range": [
+                577,
+                596
+            ],
+            "raw": "<img srcset=\",foo\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 45,
+                    "column": 19
+                },
+                "end": {
+                    "line": 47,
+                    "column": 0
+                }
+            },
+            "range": [
+                596,
+                598
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [
+                    "bar"
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 47,
+                    "column": 0
+                },
+                "end": {
+                    "line": 47,
+                    "column": 19
+                }
+            },
+            "range": [
+                598,
+                617
+            ],
+            "raw": "<img srcset=\"bar,\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 47,
+                    "column": 19
+                },
+                "end": {
+                    "line": 49,
+                    "column": 0
+                }
+            },
+            "range": [
+                617,
+                619
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "srcSet": [
+                    "",
+                    "baz"
+                ],
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 49,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 20
+                }
+            },
+            "range": [
+                619,
+                639
+            ],
+            "raw": "<img srcset=\",baz,\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 49,
+                    "column": 20
+                },
+                "end": {
+                    "line": 51,
+                    "column": 0
+                }
+            },
+            "range": [
+                639,
+                641
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "style:",
+            "loc": {
+                "start": {
+                    "line": 51,
+                    "column": 0
+                },
+                "end": {
+                    "line": 51,
+                    "column": 13
+                }
+            },
+            "range": [
+                641,
+                654
+            ],
+            "raw": "<!--style:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 51,
+                    "column": 13
+                },
+                "end": {
+                    "line": 53,
+                    "column": 0
+                }
+            },
+            "range": [
+                654,
+                656
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 53,
+                    "column": 0
+                },
+                "end": {
+                    "line": 53,
+                    "column": 11
+                }
+            },
+            "range": [
+                656,
+                667
+            ],
+            "raw": "<div></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 53,
+                    "column": 11
+                },
+                "end": {
+                    "line": 55,
+                    "column": 0
+                }
+            },
+            "range": [
+                667,
+                669
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {},
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 55,
+                    "column": 0
+                },
+                "end": {
+                    "line": 55,
+                    "column": 20
+                }
+            },
+            "range": [
+                669,
+                689
+            ],
+            "raw": "<div style=\"\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 55,
+                    "column": 20
+                },
+                "end": {
+                    "line": 57,
+                    "column": 0
+                }
+            },
+            "range": [
+                689,
+                691
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {},
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 57,
+                    "column": 0
+                },
+                "end": {
+                    "line": 57,
+                    "column": 25
+                }
+            },
+            "range": [
+                691,
+                716
+            ],
+            "raw": "<div style=\"color\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 57,
+                    "column": 25
+                },
+                "end": {
+                    "line": 59,
+                    "column": 0
+                }
+            },
+            "range": [
+                716,
+                718
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {},
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 59,
+                    "column": 0
+                },
+                "end": {
+                    "line": 59,
+                    "column": 26
+                }
+            },
+            "range": [
+                718,
+                744
+            ],
+            "raw": "<div style=\"color:\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 59,
+                    "column": 26
+                },
+                "end": {
+                    "line": 61,
+                    "column": 0
+                }
+            },
+            "range": [
+                744,
+                746
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {
+                    "color": "red",
+                    "type": "UNKNOWN"
+                },
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 61,
+                    "column": 0
+                },
+                "end": {
+                    "line": 61,
+                    "column": 29
+                }
+            },
+            "range": [
+                746,
+                775
+            ],
+            "raw": "<div style=\"color:red\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 61,
+                    "column": 29
+                },
+                "end": {
+                    "line": 63,
+                    "column": 0
+                }
+            },
+            "range": [
+                775,
+                777
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {},
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 63,
+                    "column": 0
+                },
+                "end": {
+                    "line": 63,
+                    "column": 27
+                }
+            },
+            "range": [
+                777,
+                804
+            ],
+            "raw": "<div style=\"color:;\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 63,
+                    "column": 27
+                },
+                "end": {
+                    "line": 65,
+                    "column": 0
+                }
+            },
+            "range": [
+                804,
+                806
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {
+                    "color": "red",
+                    "type": "UNKNOWN"
+                },
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 65,
+                    "column": 0
+                },
+                "end": {
+                    "line": 65,
+                    "column": 30
+                }
+            },
+            "range": [
+                806,
+                836
+            ],
+            "raw": "<div style=\"color:red;\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 65,
+                    "column": 30
+                },
+                "end": {
+                    "line": 67,
+                    "column": 0
+                }
+            },
+            "range": [
+                836,
+                838
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {
+                    "color": "red",
+                    "type": "UNKNOWN"
+                },
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 67,
+                    "column": 0
+                },
+                "end": {
+                    "line": 67,
+                    "column": 46
+                }
+            },
+            "range": [
+                838,
+                884
+            ],
+            "raw": "<div style=\"color:red;background-color\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 67,
+                    "column": 46
+                },
+                "end": {
+                    "line": 69,
+                    "column": 0
+                }
+            },
+            "range": [
+                884,
+                886
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {
+                    "color": "red",
+                    "background-color": "blue",
+                    "type": "UNKNOWN"
+                },
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 69,
+                    "column": 0
+                },
+                "end": {
+                    "line": 69,
+                    "column": 52
+                }
+            },
+            "range": [
+                886,
+                938
+            ],
+            "raw": "<div style=\"color:red;background-color: blue\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 69,
+                    "column": 52
+                },
+                "end": {
+                    "line": 71,
+                    "column": 0
+                }
+            },
+            "range": [
+                938,
+                940
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {
+                "style": {
+                    "color": "red",
+                    "background-color": "blue",
+                    "type": "UNKNOWN"
+                },
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 71,
+                    "column": 0
+                },
+                "end": {
+                    "line": 71,
+                    "column": 53
+                }
+            },
+            "range": [
+                940,
+                993
+            ],
+            "raw": "<div style=\"color:red;background-color: blue;\"></div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 71,
+                    "column": 53
+                },
+                "end": {
+                    "line": 73,
+                    "column": 0
+                }
+            },
+            "range": [
+                993,
+                995
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "boolean:",
+            "loc": {
+                "start": {
+                    "line": 73,
+                    "column": 0
+                },
+                "end": {
+                    "line": 73,
+                    "column": 15
+                }
+            },
+            "range": [
+                995,
+                1010
+            ],
+            "raw": "<!--boolean:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 73,
+                    "column": 15
+                },
+                "end": {
+                    "line": 75,
+                    "column": 0
+                }
+            },
+            "range": [
+                1010,
+                1012
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "script",
+            "properties": {
+                "async": true,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 75,
+                    "column": 0
+                },
+                "end": {
+                    "line": 75,
+                    "column": 23
+                }
+            },
+            "range": [
+                1012,
+                1035
+            ],
+            "raw": "<script async></script>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 75,
+                    "column": 23
+                },
+                "end": {
+                    "line": 76,
+                    "column": 0
+                }
+            },
+            "range": [
+                1035,
+                1036
+            ],
+            "raw": "\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "script",
+            "properties": {
+                "async": true,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 76,
+                    "column": 0
+                },
+                "end": {
+                    "line": 76,
+                    "column": 26
+                }
+            },
+            "range": [
+                1036,
+                1062
+            ],
+            "raw": "<script async=\"\"></script>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 76,
+                    "column": 26
+                },
+                "end": {
+                    "line": 77,
+                    "column": 0
+                }
+            },
+            "range": [
+                1062,
+                1063
+            ],
+            "raw": "\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "script",
+            "properties": {
+                "async": true,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 77,
+                    "column": 0
+                },
+                "end": {
+                    "line": 77,
+                    "column": 31
+                }
+            },
+            "range": [
+                1063,
+                1094
+            ],
+            "raw": "<script async=\"async\"></script>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 77,
+                    "column": 31
+                },
+                "end": {
+                    "line": 79,
+                    "column": 0
+                }
+            },
+            "range": [
+                1094,
+                1096
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "overloaded boolean (as boolean):",
+            "loc": {
+                "start": {
+                    "line": 79,
+                    "column": 0
+                },
+                "end": {
+                    "line": 79,
+                    "column": 39
+                }
+            },
+            "range": [
+                1096,
+                1135
+            ],
+            "raw": "<!--overloaded boolean (as boolean):-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 79,
+                    "column": 39
+                },
+                "end": {
+                    "line": 81,
+                    "column": 0
+                }
+            },
+            "range": [
+                1135,
+                1137
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "download": true,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 81,
+                    "column": 0
+                },
+                "end": {
+                    "line": 81,
+                    "column": 16
+                }
+            },
+            "range": [
+                1137,
+                1153
+            ],
+            "raw": "<a download></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 81,
+                    "column": 16
+                },
+                "end": {
+                    "line": 82,
+                    "column": 0
+                }
+            },
+            "range": [
+                1153,
+                1154
+            ],
+            "raw": "\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "download": true,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 82,
+                    "column": 0
+                },
+                "end": {
+                    "line": 82,
+                    "column": 19
+                }
+            },
+            "range": [
+                1154,
+                1173
+            ],
+            "raw": "<a download=\"\"></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 82,
+                    "column": 19
+                },
+                "end": {
+                    "line": 83,
+                    "column": 0
+                }
+            },
+            "range": [
+                1173,
+                1174
+            ],
+            "raw": "\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "download": true,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 83,
+                    "column": 0
+                },
+                "end": {
+                    "line": 83,
+                    "column": 27
+                }
+            },
+            "range": [
+                1174,
+                1201
+            ],
+            "raw": "<a download=\"download\"></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 83,
+                    "column": 27
+                },
+                "end": {
+                    "line": 85,
+                    "column": 0
+                }
+            },
+            "range": [
+                1201,
+                1203
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "overloaded boolean (as overloaded):",
+            "loc": {
+                "start": {
+                    "line": 85,
+                    "column": 0
+                },
+                "end": {
+                    "line": 85,
+                    "column": 42
+                }
+            },
+            "range": [
+                1203,
+                1245
+            ],
+            "raw": "<!--overloaded boolean (as overloaded):-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 85,
+                    "column": 42
+                },
+                "end": {
+                    "line": 87,
+                    "column": 0
+                }
+            },
+            "range": [
+                1245,
+                1247
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "download": "example.mp3",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 87,
+                    "column": 0
+                },
+                "end": {
+                    "line": 87,
+                    "column": 30
+                }
+            },
+            "range": [
+                1247,
+                1277
+            ],
+            "raw": "<a download=\"example.mp3\"></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 87,
+                    "column": 30
+                },
+                "end": {
+                    "line": 89,
+                    "column": 0
+                }
+            },
+            "range": [
+                1277,
+                1279
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "positive numeric:",
+            "loc": {
+                "start": {
+                    "line": 89,
+                    "column": 0
+                },
+                "end": {
+                    "line": 89,
+                    "column": 24
+                }
+            },
+            "range": [
+                1279,
+                1303
+            ],
+            "raw": "<!--positive numeric:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 89,
+                    "column": 24
+                },
+                "end": {
+                    "line": 91,
+                    "column": 0
+                }
+            },
+            "range": [
+                1303,
+                1305
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Image",
+            "tagName": "img",
+            "properties": {
+                "height": 100,
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 91,
+                    "column": 0
+                },
+                "end": {
+                    "line": 91,
+                    "column": 18
+                }
+            },
+            "range": [
+                1305,
+                1323
+            ],
+            "raw": "<img height=\"100\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 91,
+                    "column": 18
+                },
+                "end": {
+                    "line": 93,
+                    "column": 0
+                }
+            },
+            "range": [
+                1323,
+                1325
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "numeric:",
+            "loc": {
+                "start": {
+                    "line": 93,
+                    "column": 0
+                },
+                "end": {
+                    "line": 93,
+                    "column": 15
+                }
+            },
+            "range": [
+                1325,
+                1340
+            ],
+            "raw": "<!--numeric:-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 93,
+                    "column": 15
+                },
+                "end": {
+                    "line": 95,
+                    "column": 0
+                }
+            },
+            "range": [
+                1340,
+                1342
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "meter",
+            "properties": {
+                "min": "0",
+                "low": 40,
+                "high": 90,
+                "max": "100",
+                "value": "95",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 95,
+                    "column": 0
+                },
+                "end": {
+                    "line": 95,
+                    "column": 63
+                }
+            },
+            "range": [
+                1342,
+                1405
+            ],
+            "raw": "<meter min=\"0\" low=\"40\" high=\"90\" max=\"100\" value=\"95\"></meter>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 95,
+                    "column": 63
+                },
+                "end": {
+                    "line": 96,
+                    "column": 0
+                }
+            },
+            "range": [
+                1405,
+                1406
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 96,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        1406
+    ],
+    "raw": "<!--core:-->\n\n<a href=\"http://alpha.com\" class=\"bravo\" download></a>\n\n<!--double:-->\n\n<div class class></div>\n\n<!--unknown:-->\n\n<a ng-init></a>\n\n<a ng-repeat=\"\"></a>\n\n<a ng-click=\"ctrl.onintentclick($scope)\">ng-whatevs</a>.\n\n<!--empty:-->\n\n<abbr title></abbr>\n\n<!--space separated:-->\n\n<code class=\"language-foo bar\"></code>\n\n<code class=\"\"></code>\n\n<code class></code>\n\n<code class=\" \"></code>\n\n<!--comma separated:-->\n\n<img srcset=\"medium.jpg 1000w, large.jpg 2000w\">\n\n<img srcset=\"medium.jpg 1000w\">\n\n<img srcset=\"\">\n\n<img srcset=\" \">\n\n<img srcset=\",\">\n\n<img srcset=\" , \">\n\n<img srcset=\",foo\">\n\n<img srcset=\"bar,\">\n\n<img srcset=\",baz,\">\n\n<!--style:-->\n\n<div></div>\n\n<div style=\"\"></div>\n\n<div style=\"color\"></div>\n\n<div style=\"color:\"></div>\n\n<div style=\"color:red\"></div>\n\n<div style=\"color:;\"></div>\n\n<div style=\"color:red;\"></div>\n\n<div style=\"color:red;background-color\"></div>\n\n<div style=\"color:red;background-color: blue\"></div>\n\n<div style=\"color:red;background-color: blue;\"></div>\n\n<!--boolean:-->\n\n<script async></script>\n<script async=\"\"></script>\n<script async=\"async\"></script>\n\n<!--overloaded boolean (as boolean):-->\n\n<a download></a>\n<a download=\"\"></a>\n<a download=\"download\"></a>\n\n<!--overloaded boolean (as overloaded):-->\n\n<a download=\"example.mp3\"></a>\n\n<!--positive numeric:-->\n\n<img height=\"100\">\n\n<!--numeric:-->\n\n<meter min=\"0\" low=\"40\" high=\"90\" max=\"100\" value=\"95\"></meter>\n"
 }

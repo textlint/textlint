@@ -1,173 +1,222 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "element",
-      "tagName": "html",
-      "properties": {},
-      "children": [
+    "type": "Document",
+    "children": [
         {
-          "type": "element",
-          "tagName": "head",
-          "properties": {},
-          "children": [
-            {
-              "type": "element",
-              "tagName": "title",
-              "properties": {},
-              "children": [
+            "type": "Html",
+            "tagName": "html",
+            "properties": {},
+            "children": [
                 {
-                  "type": "text",
-                  "value": "Quirksmode",
-                  "position": {
-                    "start": {
-                      "line": 2,
-                      "column": 8,
-                      "offset": 14
+                    "type": "Str",
+                    "value": "\n",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 0
+                        }
                     },
-                    "end": {
-                      "line": 2,
-                      "column": 18,
-                      "offset": 24
-                    }
-                  }
+                    "range": [
+                        6,
+                        7
+                    ],
+                    "raw": "\n"
+                },
+                {
+                    "type": "Html",
+                    "tagName": "title",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Quirksmode",
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                14,
+                                24
+                            ],
+                            "raw": "Quirksmode"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        7,
+                        32
+                    ],
+                    "raw": "<title>Quirksmode</title>"
+                },
+                {
+                    "type": "Str",
+                    "value": "\n",
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        32,
+                        33
+                    ],
+                    "raw": "\n"
+                },
+                {
+                    "type": "Paragraph",
+                    "tagName": "p",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "In quirksmode, the following table is in this paragraph:\n",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 0
+                                }
+                            },
+                            "range": [
+                                36,
+                                93
+                            ],
+                            "raw": "In quirksmode, the following table is in this paragraph:\n"
+                        },
+                        {
+                            "type": "Html",
+                            "tagName": "table",
+                            "properties": {},
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "!",
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        100,
+                                        101
+                                    ],
+                                    "raw": "!"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                93,
+                                109
+                            ],
+                            "raw": "<table>!</table>"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "\n",
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 16
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 0
+                                }
+                            },
+                            "range": [
+                                109,
+                                110
+                            ],
+                            "raw": "\n"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 1
+                        }
+                    },
+                    "range": [
+                        33,
+                        111
+                    ],
+                    "raw": "<p>In quirksmode, the following table is in this paragraph:\n<table>!</table>\n"
                 }
-              ],
-              "position": {
+            ],
+            "loc": {
                 "start": {
-                  "line": 2,
-                  "column": 1,
-                  "offset": 7
+                    "line": 1,
+                    "column": 0
                 },
                 "end": {
-                  "line": 2,
-                  "column": 26,
-                  "offset": 32
+                    "line": 5,
+                    "column": 1
                 }
-              }
             },
-            {
-              "type": "text",
-              "value": "\n",
-              "position": {
-                "start": {
-                  "line": 2,
-                  "column": 26,
-                  "offset": 32
-                },
-                "end": {
-                  "line": 3,
-                  "column": 1,
-                  "offset": 33
-                }
-              }
-            }
-          ]
-        },
-        {
-          "type": "element",
-          "tagName": "body",
-          "properties": {},
-          "children": [
-            {
-              "type": "element",
-              "tagName": "p",
-              "properties": {},
-              "children": [
-                {
-                  "type": "text",
-                  "value": "In quirksmode, the following table is in this paragraph:\n!",
-                  "position": {
-                    "start": {
-                      "line": 3,
-                      "column": 4,
-                      "offset": 36
-                    },
-                    "end": {
-                      "line": 4,
-                      "column": 9,
-                      "offset": 101
-                    }
-                  }
-                },
-                {
-                  "type": "element",
-                  "tagName": "table",
-                  "properties": {},
-                  "children": [],
-                  "position": {
-                    "start": {
-                      "line": 4,
-                      "column": 1,
-                      "offset": 93
-                    },
-                    "end": {
-                      "line": 4,
-                      "column": 17,
-                      "offset": 109
-                    }
-                  }
-                },
-                {
-                  "type": "text",
-                  "value": "\n",
-                  "position": {
-                    "start": {
-                      "line": 4,
-                      "column": 17,
-                      "offset": 109
-                    },
-                    "end": {
-                      "line": 5,
-                      "column": 1,
-                      "offset": 110
-                    }
-                  }
-                }
-              ],
-              "position": {
-                "start": {
-                  "line": 3,
-                  "column": 1,
-                  "offset": 33
-                },
-                "end": {
-                  "line": 5,
-                  "column": 1,
-                  "offset": 110
-                }
-              }
-            }
-          ]
+            "range": [
+                0,
+                111
+            ],
+            "raw": "<html>\n<title>Quirksmode</title>\n<p>In quirksmode, the following table is in this paragraph:\n<table>!</table>\n"
         }
-      ],
-      "position": {
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 7,
-          "offset": 6
+            "line": 5,
+            "column": 0
         }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": true
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
     },
-    "end": {
-      "line": 5,
-      "column": 1,
-      "offset": 110
-    }
-  }
+    "range": [
+        0,
+        110
+    ],
+    "raw": "<html>\n<title>Quirksmode</title>\n<p>In quirksmode, the following table is in this paragraph:\n<table>!</table>\n"
 }

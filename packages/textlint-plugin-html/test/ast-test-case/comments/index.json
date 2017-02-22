@@ -1,324 +1,343 @@
 {
-  "type": "root",
-  "children": [
-    {
-      "type": "comment",
-      "value": "Alpha",
-      "position": {
+    "type": "Document",
+    "children": [
+        {
+            "type": "Comment",
+            "value": "Alpha",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 12
+                }
+            },
+            "range": [
+                0,
+                12
+            ],
+            "raw": "<!--Alpha-->"
+        },
+        {
+            "type": "Str",
+            "value": " ",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 12
+                },
+                "end": {
+                    "line": 1,
+                    "column": 13
+                }
+            },
+            "range": [
+                12,
+                13
+            ],
+            "raw": " "
+        },
+        {
+            "type": "Comment",
+            "value": "bravo",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 13
+                },
+                "end": {
+                    "line": 1,
+                    "column": 25
+                }
+            },
+            "range": [
+                13,
+                25
+            ],
+            "raw": "<!--bravo-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 25
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
+            },
+            "range": [
+                25,
+                27
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "charlie",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 14
+                }
+            },
+            "range": [
+                27,
+                41
+            ],
+            "raw": "<!--charlie-->"
+        },
+        {
+            "type": "Comment",
+            "value": "delta",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 14
+                },
+                "end": {
+                    "line": 3,
+                    "column": 26
+                }
+            },
+            "range": [
+                41,
+                53
+            ],
+            "raw": "<!--delta-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 26
+                },
+                "end": {
+                    "line": 5,
+                    "column": 0
+                }
+            },
+            "range": [
+                53,
+                55
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Comment",
+            "value": "echo -- foxtrot",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 22
+                }
+            },
+            "range": [
+                55,
+                77
+            ],
+            "raw": "<!--echo -- foxtrot-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\nValid: ",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 22
+                },
+                "end": {
+                    "line": 7,
+                    "column": 7
+                }
+            },
+            "range": [
+                77,
+                86
+            ],
+            "raw": "\n\nValid: "
+        },
+        {
+            "type": "Comment",
+            "value": "My favourite operators are > and <!",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 7
+                },
+                "end": {
+                    "line": 7,
+                    "column": 49
+                }
+            },
+            "range": [
+                86,
+                128
+            ],
+            "raw": "<!--My favourite operators are > and <!-->"
+        },
+        {
+            "type": "Str",
+            "value": "\n\nInvalid: ",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 49
+                },
+                "end": {
+                    "line": 9,
+                    "column": 9
+                }
+            },
+            "range": [
+                128,
+                139
+            ],
+            "raw": "\n\nInvalid: "
+        },
+        {
+            "type": "Comment",
+            "value": ">.\nInvalid: <!-",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 9
+                },
+                "end": {
+                    "line": 10,
+                    "column": 15
+                }
+            },
+            "range": [
+                139,
+                161
+            ],
+            "raw": "<!-->.\nInvalid: <!--->"
+        },
+        {
+            "type": "Str",
+            "value": ".\nInvalid: ",
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 15
+                },
+                "end": {
+                    "line": 11,
+                    "column": 9
+                }
+            },
+            "range": [
+                161,
+                172
+            ],
+            "raw": ".\nInvalid: "
+        },
+        {
+            "type": "Comment",
+            "value": "alpha<!--bravo",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 9
+                },
+                "end": {
+                    "line": 11,
+                    "column": 30
+                }
+            },
+            "range": [
+                172,
+                193
+            ],
+            "raw": "<!--alpha<!--bravo-->"
+        },
+        {
+            "type": "Str",
+            "value": ".\nInvalid: ",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 30
+                },
+                "end": {
+                    "line": 12,
+                    "column": 9
+                }
+            },
+            "range": [
+                193,
+                204
+            ],
+            "raw": ".\nInvalid: "
+        },
+        {
+            "type": "Comment",
+            "value": "charlie<!-",
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 9
+                },
+                "end": {
+                    "line": 12,
+                    "column": 26
+                }
+            },
+            "range": [
+                204,
+                221
+            ],
+            "raw": "<!--charlie<!--->"
+        },
+        {
+            "type": "Str",
+            "value": ".\n",
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 26
+                },
+                "end": {
+                    "line": 13,
+                    "column": 0
+                }
+            },
+            "range": [
+                221,
+                223
+            ],
+            "raw": ".\n"
+        }
+    ],
+    "loc": {
         "start": {
-          "line": 1,
-          "column": 1,
-          "offset": 0
+            "line": 1,
+            "column": 0
         },
         "end": {
-          "line": 1,
-          "column": 13,
-          "offset": 12
+            "line": 13,
+            "column": 0
         }
-      }
     },
-    {
-      "type": "text",
-      "value": " ",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 13,
-          "offset": 12
-        },
-        "end": {
-          "line": 1,
-          "column": 14,
-          "offset": 13
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "bravo",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 14,
-          "offset": 13
-        },
-        "end": {
-          "line": 1,
-          "column": 26,
-          "offset": 25
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 1,
-          "column": 26,
-          "offset": 25
-        },
-        "end": {
-          "line": 3,
-          "column": 1,
-          "offset": 27
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "charlie",
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 1,
-          "offset": 27
-        },
-        "end": {
-          "line": 3,
-          "column": 15,
-          "offset": 41
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "delta",
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 15,
-          "offset": 41
-        },
-        "end": {
-          "line": 3,
-          "column": 27,
-          "offset": 53
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\n",
-      "position": {
-        "start": {
-          "line": 3,
-          "column": 27,
-          "offset": 53
-        },
-        "end": {
-          "line": 5,
-          "column": 1,
-          "offset": 55
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "echo -- foxtrot",
-      "position": {
-        "start": {
-          "line": 5,
-          "column": 1,
-          "offset": 55
-        },
-        "end": {
-          "line": 5,
-          "column": 23,
-          "offset": 77
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\nValid: ",
-      "position": {
-        "start": {
-          "line": 5,
-          "column": 23,
-          "offset": 77
-        },
-        "end": {
-          "line": 7,
-          "column": 8,
-          "offset": 86
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "My favourite operators are > and <!",
-      "position": {
-        "start": {
-          "line": 7,
-          "column": 8,
-          "offset": 86
-        },
-        "end": {
-          "line": 7,
-          "column": 50,
-          "offset": 128
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": "\n\nInvalid: ",
-      "position": {
-        "start": {
-          "line": 7,
-          "column": 50,
-          "offset": 128
-        },
-        "end": {
-          "line": 9,
-          "column": 10,
-          "offset": 139
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "",
-      "position": {
-        "start": {
-          "line": 9,
-          "column": 10,
-          "offset": 139
-        },
-        "end": {
-          "line": 9,
-          "column": 15,
-          "offset": 144
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": ".\nInvalid: ",
-      "position": {
-        "start": {
-          "line": 9,
-          "column": 15,
-          "offset": 144
-        },
-        "end": {
-          "line": 10,
-          "column": 10,
-          "offset": 155
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "",
-      "position": {
-        "start": {
-          "line": 10,
-          "column": 10,
-          "offset": 155
-        },
-        "end": {
-          "line": 10,
-          "column": 16,
-          "offset": 161
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": ".\nInvalid: ",
-      "position": {
-        "start": {
-          "line": 10,
-          "column": 16,
-          "offset": 161
-        },
-        "end": {
-          "line": 11,
-          "column": 10,
-          "offset": 172
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "alpha<!--bravo",
-      "position": {
-        "start": {
-          "line": 11,
-          "column": 10,
-          "offset": 172
-        },
-        "end": {
-          "line": 11,
-          "column": 31,
-          "offset": 193
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": ".\nInvalid: ",
-      "position": {
-        "start": {
-          "line": 11,
-          "column": 31,
-          "offset": 193
-        },
-        "end": {
-          "line": 12,
-          "column": 10,
-          "offset": 204
-        }
-      }
-    },
-    {
-      "type": "comment",
-      "value": "charlie<!-",
-      "position": {
-        "start": {
-          "line": 12,
-          "column": 10,
-          "offset": 204
-        },
-        "end": {
-          "line": 12,
-          "column": 27,
-          "offset": 221
-        }
-      }
-    },
-    {
-      "type": "text",
-      "value": ".\n",
-      "position": {
-        "start": {
-          "line": 12,
-          "column": 27,
-          "offset": 221
-        },
-        "end": {
-          "line": 13,
-          "column": 1,
-          "offset": 223
-        }
-      }
-    }
-  ],
-  "data": {
-    "quirksMode": false
-  },
-  "position": {
-    "start": {
-      "line": 1,
-      "column": 1,
-      "offset": 0
-    },
-    "end": {
-      "line": 13,
-      "column": 1,
-      "offset": 223
-    }
-  }
+    "range": [
+        0,
+        223
+    ],
+    "raw": "<!--Alpha--> <!--bravo-->\n\n<!--charlie--><!--delta-->\n\n<!--echo -- foxtrot-->\n\nValid: <!--My favourite operators are > and <!-->\n\nInvalid: <!-->.\nInvalid: <!--->.\nInvalid: <!--alpha<!--bravo-->.\nInvalid: <!--charlie<!--->.\n"
 }
