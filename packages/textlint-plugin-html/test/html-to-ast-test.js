@@ -30,6 +30,7 @@ describe("html-to-ast-test", function () {
                 const content = fs.readFileSync(path.join(directory, "index.html"), "utf-8");
                 const expected = JSON.parse(fs.readFileSync(path.join(directory, "index.json"), "utf-8"));
                 const AST = parse(content);
+                test(AST);
                 assert.deepEqual(JSON.parse(JSON.stringify(AST)), expected);
             });
         });
