@@ -77,9 +77,9 @@ interface TxtParentNode extends TxtNode {
 `type` is TxtNode type.
 
 - Types of plain-text are defined in [textlint/txt-to-ast](https://github.com/textlint/txt-to-ast "textlint/txt-to-ast")
-    - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
-- Types of Markdown text are defined in [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast")
     - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
+- Types of Markdown text are defined in [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast")
+    - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
 
 All Types are defined in [src/shared/type/TextLintNodeType.js](../src/shared/type/TextLintNodeType.js)
 
