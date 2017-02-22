@@ -1,0 +1,173 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "element",
+      "tagName": "html",
+      "properties": {},
+      "children": [
+        {
+          "type": "element",
+          "tagName": "head",
+          "properties": {},
+          "children": [
+            {
+              "type": "element",
+              "tagName": "title",
+              "properties": {},
+              "children": [
+                {
+                  "type": "text",
+                  "value": "Quirksmode",
+                  "position": {
+                    "start": {
+                      "line": 2,
+                      "column": 8,
+                      "offset": 14
+                    },
+                    "end": {
+                      "line": 2,
+                      "column": 18,
+                      "offset": 24
+                    }
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 1,
+                  "offset": 7
+                },
+                "end": {
+                  "line": 2,
+                  "column": 26,
+                  "offset": 32
+                }
+              }
+            },
+            {
+              "type": "text",
+              "value": "\n",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 26,
+                  "offset": 32
+                },
+                "end": {
+                  "line": 3,
+                  "column": 1,
+                  "offset": 33
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "tagName": "body",
+          "properties": {},
+          "children": [
+            {
+              "type": "element",
+              "tagName": "p",
+              "properties": {},
+              "children": [
+                {
+                  "type": "text",
+                  "value": "In quirksmode, the following table is in this paragraph:\n!",
+                  "position": {
+                    "start": {
+                      "line": 3,
+                      "column": 4,
+                      "offset": 36
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 9,
+                      "offset": 101
+                    }
+                  }
+                },
+                {
+                  "type": "element",
+                  "tagName": "table",
+                  "properties": {},
+                  "children": [],
+                  "position": {
+                    "start": {
+                      "line": 4,
+                      "column": 1,
+                      "offset": 93
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 17,
+                      "offset": 109
+                    }
+                  }
+                },
+                {
+                  "type": "text",
+                  "value": "\n",
+                  "position": {
+                    "start": {
+                      "line": 4,
+                      "column": 17,
+                      "offset": 109
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 1,
+                      "offset": 110
+                    }
+                  }
+                }
+              ],
+              "position": {
+                "start": {
+                  "line": 3,
+                  "column": 1,
+                  "offset": 33
+                },
+                "end": {
+                  "line": 5,
+                  "column": 1,
+                  "offset": 110
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 7,
+          "offset": 6
+        }
+      }
+    }
+  ],
+  "data": {
+    "quirksMode": true
+  },
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 5,
+      "column": 1,
+      "offset": 110
+    }
+  }
+}

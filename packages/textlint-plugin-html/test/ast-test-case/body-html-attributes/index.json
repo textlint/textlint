@@ -1,0 +1,91 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "element",
+      "tagName": "html",
+      "properties": {
+        "className": [
+          "d"
+        ],
+        "onclick": "e"
+      },
+      "children": [
+        {
+          "type": "element",
+          "tagName": "head",
+          "properties": {},
+          "children": []
+        },
+        {
+          "type": "element",
+          "tagName": "body",
+          "properties": {
+            "id": "a",
+            "title": "b",
+            "className": [
+              "c"
+            ]
+          },
+          "children": [
+            {
+              "type": "text",
+              "value": "\n\n",
+              "position": {
+                "start": {
+                  "line": 2,
+                  "column": 34,
+                  "offset": 40
+                },
+                "end": {
+                  "line": 4,
+                  "column": 1,
+                  "offset": 70
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 2,
+              "column": 1,
+              "offset": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 1,
+              "offset": 70
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 1,
+          "offset": 70
+        }
+      }
+    }
+  ],
+  "data": {
+    "quirksMode": true
+  },
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 4,
+      "column": 1,
+      "offset": 70
+    }
+  }
+}

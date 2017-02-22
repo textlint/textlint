@@ -1,0 +1,54 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "element",
+      "tagName": "span",
+      "properties": {},
+      "children": [],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 14,
+          "offset": 13
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n",
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 14,
+          "offset": 13
+        },
+        "end": {
+          "line": 2,
+          "column": 1,
+          "offset": 14
+        }
+      }
+    }
+  ],
+  "data": {
+    "quirksMode": false
+  },
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 2,
+      "column": 1,
+      "offset": 14
+    }
+  }
+}

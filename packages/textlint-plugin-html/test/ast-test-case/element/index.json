@@ -1,0 +1,71 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "element",
+      "tagName": "strong",
+      "properties": {},
+      "children": [
+        {
+          "type": "text",
+          "value": "Hello World.",
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 9,
+              "offset": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 21,
+              "offset": 20
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 30,
+          "offset": 29
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n",
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 30,
+          "offset": 29
+        },
+        "end": {
+          "line": 2,
+          "column": 1,
+          "offset": 30
+        }
+      }
+    }
+  ],
+  "data": {
+    "quirksMode": false
+  },
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 2,
+      "column": 1,
+      "offset": 30
+    }
+  }
+}

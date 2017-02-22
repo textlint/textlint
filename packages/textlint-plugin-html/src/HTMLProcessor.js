@@ -8,6 +8,7 @@ export default class HTMLProcessor {
 
     static availableExtensions() {
         return [
+            ".htm",
             ".html"
         ];
     }

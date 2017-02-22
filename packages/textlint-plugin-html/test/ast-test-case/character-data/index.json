@@ -1,0 +1,489 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "comment",
+      "value": "\nCDATA in HTML is no longer allowed.\nIt will be parsed like a declaration (`<!content>`, just like\nthe doctype), which means `>`s will break out of them.\nThen, it’ll result in a comment.\n\nCDATA in foreign contet is allowed, but is also “garbled”.\n",
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 4,
+          "offset": 254
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n\n",
+      "position": {
+        "start": {
+          "line": 8,
+          "column": 4,
+          "offset": 254
+        },
+        "end": {
+          "line": 10,
+          "column": 1,
+          "offset": 256
+        }
+      }
+    },
+    {
+      "type": "comment",
+      "value": "[CDATA[<delta",
+      "position": {
+        "start": {
+          "line": 10,
+          "column": 1,
+          "offset": 256
+        },
+        "end": {
+          "line": 10,
+          "column": 17,
+          "offset": 272
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "Echo]]>\n\n",
+      "position": {
+        "start": {
+          "line": 10,
+          "column": 17,
+          "offset": 272
+        },
+        "end": {
+          "line": 12,
+          "column": 1,
+          "offset": 289
+        }
+      }
+    },
+    {
+      "type": "comment",
+      "value": "[CDATA[]]",
+      "position": {
+        "start": {
+          "line": 12,
+          "column": 1,
+          "offset": 289
+        },
+        "end": {
+          "line": 12,
+          "column": 13,
+          "offset": 301
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n\n",
+      "position": {
+        "start": {
+          "line": 12,
+          "column": 13,
+          "offset": 301
+        },
+        "end": {
+          "line": 14,
+          "column": 1,
+          "offset": 303
+        }
+      }
+    },
+    {
+      "type": "element",
+      "tagName": "p",
+      "properties": {},
+      "children": [
+        {
+          "type": "text",
+          "value": "You can add a string to a number, but this stringifies the number:",
+          "position": {
+            "start": {
+              "line": 14,
+              "column": 4,
+              "offset": 306
+            },
+            "end": {
+              "line": 14,
+              "column": 70,
+              "offset": 372
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 14,
+          "column": 1,
+          "offset": 303
+        },
+        "end": {
+          "line": 14,
+          "column": 74,
+          "offset": 376
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n",
+      "position": {
+        "start": {
+          "line": 14,
+          "column": 74,
+          "offset": 376
+        },
+        "end": {
+          "line": 15,
+          "column": 1,
+          "offset": 377
+        }
+      }
+    },
+    {
+      "type": "element",
+      "tagName": "math",
+      "properties": {},
+      "children": [
+        {
+          "type": "text",
+          "value": "\n ",
+          "position": {
+            "start": {
+              "line": 15,
+              "column": 7,
+              "offset": 383
+            },
+            "end": {
+              "line": 16,
+              "column": 2,
+              "offset": 385
+            }
+          }
+        },
+        {
+          "type": "element",
+          "tagName": "ms",
+          "properties": {},
+          "children": [
+            {
+              "type": "comment",
+              "value": "[CDATA[x<y]]",
+              "position": {
+                "start": {
+                  "line": 16,
+                  "column": 6,
+                  "offset": 389
+                },
+                "end": {
+                  "line": 16,
+                  "column": 21,
+                  "offset": 404
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 16,
+              "column": 2,
+              "offset": 385
+            },
+            "end": {
+              "line": 16,
+              "column": 26,
+              "offset": 409
+            }
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n ",
+          "position": {
+            "start": {
+              "line": 16,
+              "column": 26,
+              "offset": 409
+            },
+            "end": {
+              "line": 17,
+              "column": 2,
+              "offset": 411
+            }
+          }
+        },
+        {
+          "type": "element",
+          "tagName": "mo",
+          "properties": {},
+          "children": [
+            {
+              "type": "text",
+              "value": "+",
+              "position": {
+                "start": {
+                  "line": 17,
+                  "column": 6,
+                  "offset": 415
+                },
+                "end": {
+                  "line": 17,
+                  "column": 7,
+                  "offset": 416
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 17,
+              "column": 2,
+              "offset": 411
+            },
+            "end": {
+              "line": 17,
+              "column": 12,
+              "offset": 421
+            }
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n ",
+          "position": {
+            "start": {
+              "line": 17,
+              "column": 12,
+              "offset": 421
+            },
+            "end": {
+              "line": 18,
+              "column": 2,
+              "offset": 423
+            }
+          }
+        },
+        {
+          "type": "element",
+          "tagName": "mn",
+          "properties": {},
+          "children": [
+            {
+              "type": "text",
+              "value": "3",
+              "position": {
+                "start": {
+                  "line": 18,
+                  "column": 6,
+                  "offset": 427
+                },
+                "end": {
+                  "line": 18,
+                  "column": 7,
+                  "offset": 428
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 18,
+              "column": 2,
+              "offset": 423
+            },
+            "end": {
+              "line": 18,
+              "column": 12,
+              "offset": 433
+            }
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n ",
+          "position": {
+            "start": {
+              "line": 18,
+              "column": 12,
+              "offset": 433
+            },
+            "end": {
+              "line": 19,
+              "column": 2,
+              "offset": 435
+            }
+          }
+        },
+        {
+          "type": "element",
+          "tagName": "mo",
+          "properties": {},
+          "children": [
+            {
+              "type": "text",
+              "value": "=",
+              "position": {
+                "start": {
+                  "line": 19,
+                  "column": 6,
+                  "offset": 439
+                },
+                "end": {
+                  "line": 19,
+                  "column": 7,
+                  "offset": 440
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 19,
+              "column": 2,
+              "offset": 435
+            },
+            "end": {
+              "line": 19,
+              "column": 12,
+              "offset": 445
+            }
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n ",
+          "position": {
+            "start": {
+              "line": 19,
+              "column": 12,
+              "offset": 445
+            },
+            "end": {
+              "line": 20,
+              "column": 2,
+              "offset": 447
+            }
+          }
+        },
+        {
+          "type": "element",
+          "tagName": "ms",
+          "properties": {},
+          "children": [
+            {
+              "type": "comment",
+              "value": "[CDATA[x",
+              "position": {
+                "start": {
+                  "line": 20,
+                  "column": 6,
+                  "offset": 451
+                },
+                "end": {
+                  "line": 20,
+                  "column": 17,
+                  "offset": 462
+                }
+              }
+            },
+            {
+              "type": "text",
+              "value": "y3]]>",
+              "position": {
+                "start": {
+                  "line": 20,
+                  "column": 17,
+                  "offset": 462
+                },
+                "end": {
+                  "line": 20,
+                  "column": 22,
+                  "offset": 467
+                }
+              }
+            }
+          ],
+          "position": {
+            "start": {
+              "line": 20,
+              "column": 2,
+              "offset": 447
+            },
+            "end": {
+              "line": 20,
+              "column": 27,
+              "offset": 472
+            }
+          }
+        },
+        {
+          "type": "text",
+          "value": "\n",
+          "position": {
+            "start": {
+              "line": 20,
+              "column": 27,
+              "offset": 472
+            },
+            "end": {
+              "line": 21,
+              "column": 1,
+              "offset": 473
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 15,
+          "column": 1,
+          "offset": 377
+        },
+        "end": {
+          "line": 21,
+          "column": 8,
+          "offset": 480
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n",
+      "position": {
+        "start": {
+          "line": 21,
+          "column": 8,
+          "offset": 480
+        },
+        "end": {
+          "line": 22,
+          "column": 1,
+          "offset": 481
+        }
+      }
+    }
+  ],
+  "data": {
+    "quirksMode": false
+  },
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 22,
+      "column": 1,
+      "offset": 481
+    }
+  }
+}

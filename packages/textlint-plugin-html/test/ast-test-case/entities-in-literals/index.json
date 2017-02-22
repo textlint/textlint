@@ -1,0 +1,173 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "element",
+      "tagName": "script",
+      "properties": {},
+      "children": [
+        {
+          "type": "text",
+          "value": "\nif (12 > 13) {\n    console.log('foo');\n}\n",
+          "position": {
+            "start": {
+              "line": 1,
+              "column": 9,
+              "offset": 8
+            },
+            "end": {
+              "line": 5,
+              "column": 1,
+              "offset": 50
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 10,
+          "offset": 59
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n\n",
+      "position": {
+        "start": {
+          "line": 5,
+          "column": 10,
+          "offset": 59
+        },
+        "end": {
+          "line": 7,
+          "column": 1,
+          "offset": 61
+        }
+      }
+    },
+    {
+      "type": "element",
+      "tagName": "script",
+      "properties": {},
+      "children": [
+        {
+          "type": "text",
+          "value": "\n  for (var index = -1, length = 2; index < length; index++) {\n    console.log(index);\n  }\n",
+          "position": {
+            "start": {
+              "line": 7,
+              "column": 9,
+              "offset": 69
+            },
+            "end": {
+              "line": 11,
+              "column": 1,
+              "offset": 160
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 7,
+          "column": 1,
+          "offset": 61
+        },
+        "end": {
+          "line": 11,
+          "column": 10,
+          "offset": 169
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n\n",
+      "position": {
+        "start": {
+          "line": 11,
+          "column": 10,
+          "offset": 169
+        },
+        "end": {
+          "line": 13,
+          "column": 1,
+          "offset": 171
+        }
+      }
+    },
+    {
+      "type": "element",
+      "tagName": "style",
+      "properties": {},
+      "children": [
+        {
+          "type": "text",
+          "value": "\nhtml > body {\n  color: red;\n}\n",
+          "position": {
+            "start": {
+              "line": 13,
+              "column": 8,
+              "offset": 178
+            },
+            "end": {
+              "line": 17,
+              "column": 1,
+              "offset": 209
+            }
+          }
+        }
+      ],
+      "position": {
+        "start": {
+          "line": 13,
+          "column": 1,
+          "offset": 171
+        },
+        "end": {
+          "line": 17,
+          "column": 9,
+          "offset": 217
+        }
+      }
+    },
+    {
+      "type": "text",
+      "value": "\n",
+      "position": {
+        "start": {
+          "line": 17,
+          "column": 9,
+          "offset": 217
+        },
+        "end": {
+          "line": 18,
+          "column": 1,
+          "offset": 218
+        }
+      }
+    }
+  ],
+  "data": {
+    "quirksMode": false
+  },
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 18,
+      "column": 1,
+      "offset": 218
+    }
+  }
+}

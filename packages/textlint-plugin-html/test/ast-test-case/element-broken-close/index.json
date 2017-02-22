@@ -1,0 +1,36 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "text",
+      "value": "foo",
+      "position": {
+        "start": {
+          "line": 1,
+          "column": 1,
+          "offset": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 1,
+          "offset": 8
+        }
+      }
+    }
+  ],
+  "data": {
+    "quirksMode": false
+  },
+  "position": {
+    "start": {
+      "line": 1,
+      "column": 1,
+      "offset": 0
+    },
+    "end": {
+      "line": 2,
+      "column": 1,
+      "offset": 8
+    }
+  }
+}

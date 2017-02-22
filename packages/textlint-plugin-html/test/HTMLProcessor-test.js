@@ -68,5 +68,29 @@ describe("HTMLProcessor-test", function () {
                 });
             });
         });
+        context("support file extensions", function () {
+            beforeEach(function () {
+                textlint = new TextLintCore();
+                textlint.setupProcessors({
+                    HTMLProcessor: HTMLProcessor
+                });
+                textlint.setupRules({
+                    "no-todo": require("textlint-rule-no-todo")
+                });
+            });
+            it("support {.html, .htm}", function () {
+                const fixturePathList = [
+                    path.join(__dirname, "/fixtures/test.html"),
+                    path.join(__dirname, "/fixtures/test.htm")
+                ];
+                const promises = fixturePathList.map((filePath) => {
+                    return textlint.lintFile(filePath).then(results => {
+                        assert(results.messages.length > 0);
+                        assert(results.filePath === filePath);
+                    });
+                });
+                return Promise.all(promises);
+            });
+        });
     });
 });
