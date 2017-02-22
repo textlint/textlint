@@ -9,6 +9,11 @@ What is textlint plugin? Please see https://github.com/textlint/textlint/blob/ma
 
     npm install textlint-plugin-html
 
+## Supported extensions
+
+- `.html`
+- `.htm`
+
 ## Usage
 
 Manually add text plugin to do following:
