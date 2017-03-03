@@ -7,7 +7,7 @@
   "scripts": {
     "test:ci": "npm rm textlint && npm i --no-progress && npm t",
     "test": "npm run textlint",
-    "textlint": "textlint --rule no-todo '*.md"
+    "textlint": "textlint --rule no-todo '*.md'"
   },
   "author": "azu",
   "license": "MIT",

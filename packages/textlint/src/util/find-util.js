@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-const debug = require("debug")("textlint:find-util");
 const pathToGlob = require("path-to-glob-pattern");
 const glob = require("glob");
 const path = require("path");
@@ -40,7 +39,6 @@ export function findFiles(patterns, options = {}) {
             glob.sync(pattern).forEach(addFile);
         }
     });
-    debug("Process files", files);
     return files;
 }
 
