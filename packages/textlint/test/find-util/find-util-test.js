@@ -9,6 +9,16 @@ const fs = require("fs");
 let fixtureDir;
 
 /**
+ * Replace Windows with posix style paths
+ *
+ * @param {string} filePath   Path to convert
+ * @returns {string}          Converted filepath
+ */
+function convertPathToPosix(filePath) {
+    const normalizedFilePath = path.normalize(filePath);
+    return normalizedFilePath.replace(/\\/g, "/");
+}
+/**
  * Returns the path inside of the fixture directory.
  * @returns {string} The path inside the fixture directory.
  * @private
@@ -22,7 +32,7 @@ function getFixturePath() {
 
 describe("find-util", () => {
     before(() => {
-        fixtureDir = `${os.tmpdir()}/eslint/tests/fixtures/`;
+        fixtureDir = `${os.tmpdir()}/textlint/tests/fixtures/`;
         sh.mkdir("-p", fixtureDir);
         sh.cp("-r", path.join(__dirname, "/fixtures/*"), fixtureDir);
     });
@@ -147,7 +157,9 @@ describe("find-util", () => {
             const file1 = getFixturePath("find-util", "one-js-file", "baz.js");
 
             assert(Array.isArray(result));
-            assert.deepEqual(result, [file1]);
+            assert.deepEqual(result, [
+                convertPathToPosix(file1)
+            ]);
         });
 
         it("should return all files matching a glob pattern", () => {
@@ -161,8 +173,8 @@ describe("find-util", () => {
 
             assert.equal(result.length, 2);
             assert.deepEqual(result, [
-                file1,
-                file2
+                convertPathToPosix(file1),
+                convertPathToPosix(file2)
             ]);
         });
 
@@ -181,9 +193,9 @@ describe("find-util", () => {
 
             assert.equal(result.length, 3);
             assert.deepEqual(result, [
-                file1,
-                file2,
-                file3,
+                convertPathToPosix(file1),
+                convertPathToPosix(file2),
+                convertPathToPosix(file3),
             ]);
         });
 
