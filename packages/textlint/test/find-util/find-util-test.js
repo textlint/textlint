@@ -218,7 +218,7 @@ describe("find-util", () => {
 
             assert.equal(result.length, 1);
             assert.deepEqual(result, [
-                file1
+                convertPathToPosix(file1)
             ]);
         });
 
@@ -282,7 +282,7 @@ describe("find-util", () => {
 
             assert(Array.isArray(result));
             assert.deepEqual(result, [
-                file1
+                convertPathToPosix(file1)
             ]);
         });
 
