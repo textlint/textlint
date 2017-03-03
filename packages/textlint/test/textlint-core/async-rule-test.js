@@ -59,8 +59,9 @@ describe("Async", function () {
             rulesBaseDirectory: path.join(__dirname, "fixtures", "rules"),
             rules: rules
         });
-        var targetFile = path.join(__dirname, "fixtures", "test.md");
-        const files = [targetFile, targetFile, targetFile];
+        var targetFile1 = path.join(__dirname, "fixtures", "test.md");
+        var targetFile2 = path.join(__dirname, "fixtures", "test2.md");
+        const files = [targetFile1, targetFile2];
         return engine.executeOnFiles(files).then(results => {
             assert.equal(results.length, files.length);
             results.forEach(result => {

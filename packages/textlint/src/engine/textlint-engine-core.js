@@ -4,9 +4,10 @@ const createFormatter = require("textlint-formatter");
 const path = require("path");
 import TextLintCore from "./../textlint-core";
 import RuleMap from "./rule-map";
+import logger from "../util/logger";
 import ProcessorMap from "./processor-map";
 import Config from "../config/config";
-import {findFiles} from "../util/find-util";
+import {pathsToGlobPatterns, findFiles, separateByAvailability} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
 import ExecuteFileBackerManager from "./execute-file-backer-manager";
 import CacheBaker from "./execute-file-backers/cache-backer";
@@ -201,8 +202,21 @@ new TextLintEngine({
         const execFile = typeof this.executor.onFile === "function"
             ? this.executor.onFile(this.textlint)
             : boundLintFile;
-        const targetFiles = findFiles(files, this.availableExtensions);
-        return this.executeFileBackerManger.process(targetFiles, execFile);
+        const patterns = pathsToGlobPatterns(files, {
+            extensions: this.availableExtensions
+        });
+        const targetFiles = findFiles(patterns);
+        const {
+            availableFiles,
+            unAvailableFiles
+        } = separateByAvailability(targetFiles, {
+            extensions: this.availableExtensions
+        });
+        // Logging Warning
+        unAvailableFiles.forEach(unAvailableFilePath => {
+            logger.warn(`Ignore: ${unAvailableFilePath}. This file's extension is not supported.`);
+        });
+        return this.executeFileBackerManger.process(availableFiles, execFile);
     }
 
     /**
