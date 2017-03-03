@@ -41,7 +41,7 @@ describe("find-util", () => {
         sh.rm("-r", fixtureDir);
     });
 
-    describe("resolveFileGlobPatterns()", () => {
+    describe("pathsToGlobPatterns()", () => {
         it("should not convert a glob pattern", () => {
             const patterns = ["*"];
             const opts = {
@@ -146,7 +146,7 @@ describe("find-util", () => {
         });
     });
 
-    describe("listFilesToProcess()", () => {
+    describe("findFiles()", () => {
 
         it("should return an array with a resolved (absolute) filename", () => {
             const patterns = [getFixturePath("find-util", "one-js-file", "**/*.js")];
@@ -275,7 +275,7 @@ describe("find-util", () => {
                 getFixturePath("find-util", "one-js-file", "baz.js")
             ];
             const result = findFiles(patterns, {
-                cwd: path.join(fixtureDir, "..")
+                cwd: getFixturePath()
             });
 
             const file1 = getFixturePath("find-util", "one-js-file", "baz.js");
