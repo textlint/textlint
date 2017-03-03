@@ -2,11 +2,12 @@
 "use strict";
 const createFormatter = require("textlint-formatter");
 const path = require("path");
+const debug = require("debug")("textlint:engine-core");
 import TextLintCore from "./../textlint-core";
 import RuleMap from "./rule-map";
 import ProcessorMap from "./processor-map";
 import Config from "../config/config";
-import {findFiles} from "../util/find-util";
+import {pathsToGlobPatterns, findFiles, separateByAvailability} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
 import ExecuteFileBackerManager from "./execute-file-backer-manager";
 import CacheBaker from "./execute-file-backers/cache-backer";
@@ -201,8 +202,23 @@ new TextLintEngine({
         const execFile = typeof this.executor.onFile === "function"
             ? this.executor.onFile(this.textlint)
             : boundLintFile;
-        const targetFiles = findFiles(files, this.availableExtensions);
-        return this.executeFileBackerManger.process(targetFiles, execFile);
+        const patterns = pathsToGlobPatterns(files, {
+            extensions: this.availableExtensions
+        });
+        const targetFiles = findFiles(patterns);
+        // Maybe, unAvailableFilePath should be warning.
+        // But, The user can use glob pattern like `src/**/*` as arguments.
+        // pathsToGlobPatterns not modified that pattern.
+        // So, unAvailableFilePath should be ignored silently.
+        const {
+            availableFiles,
+            unAvailableFiles
+        } = separateByAvailability(targetFiles, {
+            extensions: this.availableExtensions
+        });
+        debug("Process files", availableFiles);
+        debug("Not Process files", unAvailableFiles);
+        return this.executeFileBackerManger.process(availableFiles, execFile);
     }
 
     /**

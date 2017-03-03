@@ -53,7 +53,7 @@ describe("textfix-engine", function () {
         context("when process file that has un-available ext ", function () {
             it("should return empty results ", function () {
                 const engine = new TextFixEngine();
-                var filePath = path.join(__dirname, "fixtures/test.unknown");
+                const filePath = path.join(__dirname, "fixtures/test.unknown");
                 return engine.executeOnFiles([filePath]).then(results => {
                     assert(Array.isArray(results));
                     assert(results.length === 0);
