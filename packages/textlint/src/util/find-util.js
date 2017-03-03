@@ -18,10 +18,10 @@ export function pathsToGlobPatterns(patterns, options = {}) {
     return patterns.map(processPatterns);
 }
 /**
- *
- * @param patterns
- * @param options
- * @returns {Array}
+ * found files by glob pattern
+ * @param {string[]} patterns
+ * @param {{cwd?: string }} options
+ * @returns {string[]} file path list
  */
 export function findFiles(patterns, options = {}) {
     const cwd = options.cwd || process.cwd();
