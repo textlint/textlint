@@ -36,7 +36,11 @@ export function findFiles(patterns, options = {}) {
         if (shell.test("-f", file)) {
             addFile(fs.realpathSync(file));
         } else {
-            glob.sync(pattern).forEach(addFile);
+            glob.sync(pattern, {
+                nodir: true
+            }).forEach(filePath => {
+                addFile(fs.realpathSync(filePath));
+            });
         }
     });
     return files;
