@@ -39,7 +39,9 @@ export function findFiles(patterns, options = {}) {
             glob.sync(pattern, {
                 nodir: true
             }).forEach(filePath => {
-                addFile(fs.realpathSync(filePath));
+                // workaround for windows
+                // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
+                addFile(path.resolve(filePath));
             });
         }
     });
