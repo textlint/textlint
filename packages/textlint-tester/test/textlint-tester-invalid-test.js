@@ -6,9 +6,9 @@ const fs = require("fs");
 const TextLintCore = require("textlint").TextLintCore;
 import {testInvalid} from "../src/test-util";
 describe("Broken Rule", function() {
-    const fixturesDir = path.join(__dirname, 'fixtures', "broken-rules");
+    const fixturesDir = path.join(__dirname, "fixtures", "broken-rules");
     fs.readdirSync(fixturesDir).map((caseName) => {
-        it(`should ${caseName.split('-').join(' ')} throw assertion Error`, () => {
+        it(`should ${caseName.split("-").join(" ")} throw assertion Error`, () => {
             const fixtureRule = path.join(fixturesDir, caseName);
             const textlint = new TextLintCore();
             textlint.setupRules({

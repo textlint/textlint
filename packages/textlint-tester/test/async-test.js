@@ -13,7 +13,7 @@ function rule(context) {
                 }, 100);
             });
         }
-    }
+    };
 }
 tester.run("async-rule", rule, {
     invalid: [

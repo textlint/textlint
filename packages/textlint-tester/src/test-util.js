@@ -25,7 +25,7 @@ invalid : [
     }
 ]
             `);
-    let errorLength = errors.length;
+    const errorLength = errors.length;
     return textlint.lintText(text, ext).then(lintResult => {
         assert.strictEqual(lintResult.messages.length, errorLength, `invalid: should have ${errorLength} errors but had ${lintResult.messages.length}:
 ===Text===:
@@ -34,8 +34,8 @@ ${text}
 ==Result==:
 ${JSON.stringify(lintResult, null, 4)}`);
         errors.forEach((error, index) => {
-            let {ruleId, message, line, column} = error;
-            let resultMessageObject = lintResult.messages[index];
+            const {ruleId, message, line, column} = error;
+            const resultMessageObject = lintResult.messages[index];
             // check
             assert.ok(resultMessageObject.line >= 1,
                 `lint result's line number is ${resultMessageObject.line}, should be over than 1.`);
@@ -49,19 +49,19 @@ The result's line number should be less than ${lines.length}`);
                 `lint result's column number is ${resultMessageObject.column}, but the length of the text @ line:${resultMessageObject.line} is ${columnText.length + 1}.
 The result's column number should be less than ${columnText.length + 1}`);
             if (ruleId !== undefined) {
-                let resultRuleId = resultMessageObject.ruleId;
+                const resultRuleId = resultMessageObject.ruleId;
                 assert.strictEqual(resultRuleId, ruleId, `"ruleId should be "${ruleId}"`);
             }
             if (message !== undefined) {
-                let resultMessage = resultMessageObject.message;
+                const resultMessage = resultMessageObject.message;
                 assert.strictEqual(resultMessage, message, `"message should be "${message}"`);
             }
             if (line !== undefined) {
-                let resultLine = resultMessageObject.line;
+                const resultLine = resultMessageObject.line;
                 assert.strictEqual(resultLine, line, `line should be ${line}`);
             }
             if (column !== undefined) {
-                let resultColumn = resultMessageObject.column;
+                const resultColumn = resultMessageObject.column;
                 assert.strictEqual(resultColumn, column, `"column should be ${column}`);
             }
         });

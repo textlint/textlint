@@ -7,7 +7,7 @@ function reporter(context) {
             report(node, {
                 message: "This Report Is Invalid line",
                 line: 1,
-                column: 0,
+                column: 0
             });
         }
     };

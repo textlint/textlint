@@ -35,26 +35,26 @@ export default class TextLintTester {
     }
 
     testValidPattern(ruleName, rule, valid) {
-        let text = valid.text || valid;
-        let options = valid.options || {};
-        let ext = valid.ext || '.md';
-        var textlint = new TextLintCore();
+        const text = valid.text || valid;
+        const options = valid.options || {};
+        const ext = valid.ext || ".md";
+        const textlint = new TextLintCore();
         textlint.setupRules({
             [ruleName]: rule
         }, {
             [ruleName]: options
         });
-        it(text, ()=> {
+        it(text, () => {
             return testValid(textlint, text, ext);
         });
     }
 
     testInvalidPattern(ruleName, rule, invalid) {
-        let text = invalid.text;
-        let options = invalid.options || {};
-        let errors = invalid.errors;
-        let ext = invalid.ext || '.md';
-        var textlint = new TextLintCore();
+        const text = invalid.text;
+        const options = invalid.options || {};
+        const errors = invalid.errors;
+        const ext = invalid.ext || ".md";
+        const textlint = new TextLintCore();
         textlint.setupRules({
             [ruleName]: rule
         }, {
@@ -65,7 +65,7 @@ export default class TextLintTester {
         });
         // --fix
         if (invalid.hasOwnProperty("output")) {
-            it(`Fixer: ${text}`, ()=> {
+            it(`Fixer: ${text}`, () => {
                 assertHasFixer(rule, ruleName);
                 return textlint.fixText(text, ext).then(result => {
                     const output = invalid.output;
@@ -83,7 +83,7 @@ export default class TextLintTester {
      * @param {object[]} [invalid]
      */
     run(ruleName, rule, {valid = [], invalid = []}) {
-        describe(ruleName, ()=> {
+        describe(ruleName, () => {
             invalid.forEach(state => {
                 this.testInvalidPattern(ruleName, rule, state);
             });

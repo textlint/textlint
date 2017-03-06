@@ -23,7 +23,8 @@
         - `{object} options`: options to be passed to the rule
         - `{string} ext`: an extension key. Default: `.md` (Markdown)
 
-  e.g.)
+`valid` object example:
+
 ```js
 [
     "text",
@@ -40,6 +41,7 @@
     },
 ]
 ```
+
 - `{object[]} invalid` invalid is an array of object which should be failed.
     - `object` can have the following properties:
         - `{string} text`: a text to be linted.
@@ -47,8 +49,9 @@
         - `{string} ext`: an extension key.
         - `{object[]} errors`: an array of error objects which should be raised againt the text.
 
-  e.g.)
-  ```js
+`invalid` object example:
+
+```js
 [
     {
         text: "text",
@@ -108,7 +111,7 @@ tester.run("no-todo", rule, {
         },
         {
          text: "TODO: string",
-         output: "string" // <= fixed output
+         output: "string", // <= fixed output
          errors: [
              {
                  message: "found TODO: 'TODO: string'",
