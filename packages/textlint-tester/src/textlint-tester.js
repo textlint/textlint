@@ -3,13 +3,17 @@
 import assert from "assert";
 import {testValid, testInvalid} from "./test-util";
 import {TextLintCore, _logger} from "textlint";
-const describe = (typeof global.describe === "function") ? global.describe : function(text, method) {
-    return method.apply(this);
-};
+const describe = (typeof global.describe === "function")
+    ? global.describe
+    : function(text, method) {
+        return method.apply(this);
+    };
 
-const it = (typeof global.it === "function") ? global.it : function(text, method) {
-    return method.apply(this);
-};
+const it = (typeof global.it === "function")
+    ? global.it
+    : function(text, method) {
+        return method.apply(this);
+    };
 
 /**
  * get fixer function from ruleCreator
@@ -35,9 +39,9 @@ export default class TextLintTester {
     }
 
     testValidPattern(ruleName, rule, valid) {
-        const text = valid.text || valid;
+        const text = valid.text !== undefined ? valid.text : valid;
         const options = valid.options || {};
-        const ext = valid.ext || ".md";
+        const ext = valid.ext !== undefined ? valid.ext : ".md";
         const textlint = new TextLintCore();
         textlint.setupRules({
             [ruleName]: rule
@@ -50,10 +54,10 @@ export default class TextLintTester {
     }
 
     testInvalidPattern(ruleName, rule, invalid) {
+        const errors = invalid.errors;
         const text = invalid.text;
         const options = invalid.options || {};
-        const errors = invalid.errors;
-        const ext = invalid.ext || ".md";
+        const ext = invalid.ext !== undefined ? invalid.ext : ".md";
         const textlint = new TextLintCore();
         textlint.setupRules({
             [ruleName]: rule
