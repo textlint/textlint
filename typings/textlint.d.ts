@@ -1,4 +1,5 @@
-//noinspection TypeScriptCheckImport
+// FIXME: This definition is not available as typings/.
+// https://github.com/textlint/textlint/issues/248
 import TxtAST from "./txtast";
 // "range" is replaced by "text"
 export class TextLintFixCommand {
