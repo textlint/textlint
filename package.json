@@ -20,7 +20,7 @@
     "perf": "cd ./examples/perf && npm run test:ci"
   },
   "devDependencies": {
-    "lerna": "2.0.0-beta.34",
+    "lerna": "^2.0.0-rc.1",
     "npm-run-all": "^4.0.1",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-alex": "^1.2.0",
