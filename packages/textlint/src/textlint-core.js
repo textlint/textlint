@@ -21,6 +21,7 @@ import LinterProcessor from "./linter/linter-processor";
 import MessageProcessManager from "./messages/MessageProcessManager";
 import filterIgnoredProcess from "./messages/filter-ignored-process";
 import filterDuplicatedProcess from "./messages/filter-duplicated-process";
+import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
 /**
  * add fileName to trailing of error message
@@ -59,6 +60,8 @@ export default class TextlintCore {
         this.messageProcessManager.add(filterIgnoredProcess);
         // filter duplicated messages
         this.messageProcessManager.add(filterDuplicatedProcess);
+        // filter by severity
+        this.messageProcessManager.add(filterSeverityProcess(this.config));
         this.messageProcessManager.add(sortMessageProcess);
     }
 
