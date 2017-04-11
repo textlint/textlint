@@ -201,6 +201,20 @@ describe("cli-test", function () {
             });
         });
     });
+    context("When run with --quiet", function () {
+        it("shows only errors, not warnings", function () {
+            let isCalled = false;
+            Logger.log = function mockLog() {
+                isCalled = true;
+            };
+            const targetFile = path.join(__dirname, "fixtures/todo.html");
+            const configFile = path.join(__dirname, "fixtures/.textlintrc.quiet");
+            return cli.execute(`${targetFile} -c ${configFile} --quiet ${targetFile}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+            });
+        });
+    });
     context("When not set rules", function () {
         it("show suggestion message from FAQ", function () {
             Logger.log = function mockLog(message) {

@@ -79,6 +79,8 @@ const defaultOptions = Object.freeze({
     // NOTE: default formatter is defined in Engine,
     // because There is difference between TextLintEngine and TextFixEngine.
     formatterName: undefined,
+    // --quiet
+    quiet: false,
     // --no-color
     color: true,
     // --cache : enable or disable
@@ -152,6 +154,7 @@ class Config {
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
+        options.quiet = cliOptions.quiet !== undefined ? cliOptions.quiet : defaultOptions.quiet;
         options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
         // --cache
         options.cache = cliOptions.cache !== undefined ? cliOptions.cache : defaultOptions.cache;
@@ -296,6 +299,10 @@ class Config {
          * @type {string}
          */
         this.formatterName = options.formatterName ? options.formatterName : defaultOptions.formatterName;
+        /**
+         * @type {boolean}
+         */
+        this.quiet = options.quiet !== undefined ? options.quiet : defaultOptions.quiet;
         /**
          * @type {boolean}
          */
