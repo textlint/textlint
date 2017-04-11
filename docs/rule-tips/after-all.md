@@ -2,7 +2,7 @@
 
 > Is there any way to execute this after all checks are done?
 
-Currently, textlint doesn't provide `after-all` hook.
+textlint doesn't provide `after-all` hook.
 But you can write following:
 
 ```js
