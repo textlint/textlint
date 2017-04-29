@@ -13,7 +13,7 @@ function pluralize(word, count) {
     return (count === 1 ? word : word + "s");
 }
 
-module.exports = function (results, options) {
+module.exports = function(results, options) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
     var output = "\n";
@@ -22,7 +22,10 @@ module.exports = function (results, options) {
     var summaryColor = "yellow";
     var greenColor = "green";
 
-    results.forEach(function (result) {
+    results.forEach(function(result) {
+        if (!result.applyingMessages || !result.remainingMessages) {
+            return;
+        }
         var messages = result.applyingMessages;
         // still error count
         var remainingMessages = result.remainingMessages;
@@ -30,11 +33,10 @@ module.exports = function (results, options) {
         if (messages.length === 0) {
             return;
         }
-
         output += chalk.underline(result.filePath) + "\n";
 
         output += table(
-                messages.map(function (message) {
+                messages.map(function(message) {
                     // fixable
                     totalFixed++;
                     var messageType = chalk[greenColor].bold("\u2714 ");
@@ -50,15 +52,15 @@ module.exports = function (results, options) {
                 }),
                 {
                     align: ["", "r", "l"],
-                    stringLength: function (str) {
+                    stringLength: function(str) {
                         var lines = chalk.stripColor(str).split("\n");
-                        return Math.max.apply(null, lines.map(function (line) {
+                        return Math.max.apply(null, lines.map(function(line) {
                             return widthOfString(line);
                         }));
                     }
                 }
-            ).split("\n").map(function (el) {
-                return el.replace(/(\d+)\s+(\d+)/, function (m, p1, p2) {
+            ).split("\n").map(function(el) {
+                return el.replace(/(\d+)\s+(\d+)/, function(m, p1, p2) {
                     return chalk.gray(p1 + ":" + p2);
                 });
             }).join("\n") + "\n\n";
