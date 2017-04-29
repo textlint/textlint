@@ -17,7 +17,7 @@ import RuleCreatorSet from "./core/rule-creator-set";
 import FixerProcessor from "./fixer/fixer-processor";
 // parallel
 import LinterProcessor from "./linter/linter-processor";
-// messsage process manager
+// message process manager
 import MessageProcessManager from "./messages/MessageProcessManager";
 import filterIgnoredProcess from "./messages/filter-ignored-process";
 import filterDuplicatedProcess from "./messages/filter-duplicated-process";
