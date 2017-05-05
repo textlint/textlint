@@ -2,6 +2,9 @@
 
 The definition for textlint AST Node types.
 
+This module for parse plugin.
+
+
 Please see for more details:
 
 - <https://github.com/textlint/textlint/blob/master/docs/txtnode.md>
