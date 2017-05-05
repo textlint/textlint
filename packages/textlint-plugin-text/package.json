@@ -39,6 +39,7 @@
     "cross-env": "^4.0.0",
     "mocha": "^3.3.0",
     "power-assert": "^1.4.2",
-    "textlint": "^7.4.0"
+    "textlint": "^7.4.0",
+    "textlint-rule-no-todo": "^2.0.0"
   }
 }

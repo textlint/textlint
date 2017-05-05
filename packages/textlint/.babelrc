@@ -12,5 +12,9 @@
         "babel-plugin-espower"
       ]
     }
-  }
+  },
+  "ignore":[
+    "lib",
+    "node_modules"
+  ]
 }
