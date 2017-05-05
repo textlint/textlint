@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
-export default {
-    Processor: require("./MarkdownProcessor")
+import { MarkdownProcessor } from "./MarkdownProcessor";
+module.exports = {
+    Processor: MarkdownProcessor
 };

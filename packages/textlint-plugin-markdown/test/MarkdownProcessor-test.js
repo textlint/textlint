@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import assert from "power-assert";
-import MarkdownProcessor from "../src/MarkdownProcessor";
+import { MarkdownProcessor } from "../src/MarkdownProcessor";
 import { TextLintCore } from "textlint";
 import path from "path";
 describe("MarkdownPlugin", function() {

@@ -2,7 +2,7 @@
 // LICENSE : MIT
 "use strict";
 import {parse} from "markdown-to-ast";
-export default class MarkdownProcessor {
+export class MarkdownProcessor {
     constructor(config) {
         this.config = config;
     }
