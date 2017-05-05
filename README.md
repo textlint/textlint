@@ -450,11 +450,43 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
 - [Pronto](https://github.com/mmozuras/pronto "Pronto"): [pronto-textlint](https://github.com/seikichi/pronto-textlint "pronto-textlint")
 - [reviewdog](https://github.com/haya14busa/reviewdog "reviewdog"): [azu/textlint-reviewdog-example](https://github.com/azu/textlint-reviewdog-example "azu/textlint-reviewdog-example: textlint + reviewdog example project")
 
+## Packages
+
+This repository is a monorepo that we manage using [Lerna](https://github.com/lerna/lerna). That means that we actually publish [several packages](/packages) to npm from the same codebase, including:
+
+### Core
+
+These modules are parts of textlint.
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| [`textlint`](/packages/textlint) | [![npm](https://img.shields.io/npm/v/textlint.svg?style=flat-square)](https://www.npmjs.com/package/textlint) | textlint tool itself |
+| [`textlint-plugin-markdown`](/packages/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-markdown) | markdown support for textlint |
+| [`textlint-plugin-text`](/packages/textlint-plugin-text) | [![npm](https://img.shields.io/npm/v/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-text) | plain text support for textlint |
+| [`markdown-to-ast`](/packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
+| [`txt-to-ast`](/packages/txt-to-ast) | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser |
+
+### Shared
+
+These modules are useful for plugin author.
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| [`@textlint/ast-node-types`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree))](./docs/txtnode.md) type definition |
+
+### Internal
+
+These modules are internal usage in the monorepo.
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| [`@textlint/monorepo-scripts`](/packages/textlint-monorepo-scripts) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/monorepo-scripts) | textlint monorepo build scripts |
+
 ## Who's using textlint?
 
 - [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
-
-> The vuejs.org for japanese.
+- [survivejs/webpack-book](https://github.com/survivejs/webpack-book "survivejs/webpack-book: From apprentice to master (CC BY-NC-ND)")
+- [asciidwango/js-primer](https://github.com/asciidwango/js-primer "asciidwango/js-primer: JavaScriptの入門書")
 
 ## Contributing
 
