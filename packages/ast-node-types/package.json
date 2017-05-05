@@ -4,6 +4,10 @@
   "description": "textlint AST node type difinition.",
   "main": "./lib/TextLintASTNodeTypes.js",
   "types": "./lib/TextLintASTNodeTypes.d.ts",
+  "files":[
+    "lib/",
+    "src/"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"

@@ -10,6 +10,6 @@
     },
     "cacheDir": ".changelog"
   },
-  "version": "7.4.0",
+  "version": "independent",
   "npmClient": "yarn"
 }
