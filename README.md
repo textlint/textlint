@@ -472,7 +472,7 @@ These modules are useful for plugin author.
 
 | Package | Version | Description |
 |---------|---------|-------------|
-| [`@textlint/ast-node-types`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree))](./docs/txtnode.md) type definition |
+| [`@textlint/ast-node-types`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
 
 ### Internal
 
