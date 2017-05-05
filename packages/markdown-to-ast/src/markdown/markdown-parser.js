@@ -1,29 +1,25 @@
 // LICENSE : MIT
 "use strict";
-
-var traverse = require("traverse");
-
-var _require = require("@textlint/ast-node-types"),
-    ASTNodeTypes = _require.ASTNodeTypes;
-
-var StructuredSource = require("structured-source");
-var debug = require("debug")("markdown-to-ast");
-var remarkAbstract = require("remark");
-var remark = remarkAbstract();
+const traverse = require("traverse");
+const { ASTNodeTypes } = require("@textlint/ast-node-types");
+const StructuredSource = require("structured-source");
+const debug = require("debug")("markdown-to-ast");
+const SyntaxMap = require("./mapping/markdown-syntax-map");
+const remarkAbstract = require("remark");
+const remark = remarkAbstract();
 /**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
  * @returns {TxtNode}
  */
 function parse(text) {
-    var ast = remark.parse(text);
-    var SyntaxMap = require("./mapping/markdown-syntax-map");
-    var src = new StructuredSource(text);
-    traverse(ast).forEach(function (node) {
+    const ast = remark.parse(text);
+    const src = new StructuredSource(text);
+    traverse(ast).forEach(function(node) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
             if (node.type) {
-                var replacedType = SyntaxMap[node.type];
+                const replacedType = SyntaxMap[node.type];
                 if (!replacedType) {
                     debug("replacedType : " + replacedType + " , node.type: " + node.type);
                 } else {
@@ -32,12 +28,12 @@ function parse(text) {
             }
             // map `range`, `loc` and `raw` to node
             if (node.position) {
-                var position = node.position;
-                var positionCompensated = {
+                const position = node.position;
+                const positionCompensated = {
                     start: { line: position.start.line, column: position.start.column - 1 },
                     end: { line: position.end.line, column: position.end.column - 1 }
                 };
-                var range = src.locationToRange(positionCompensated);
+                const range = src.locationToRange(positionCompensated);
                 node.loc = positionCompensated;
                 node.range = range;
                 node.raw = text.slice(range[0], range[1]);
@@ -48,6 +44,7 @@ function parse(text) {
                     writable: false,
                     value: position
                 });
+
             }
         }
     });
@@ -57,4 +54,3 @@ module.exports = {
     parse: parse,
     Syntax: ASTNodeTypes
 };
-//# sourceMappingURL=markdown-parser.js.map

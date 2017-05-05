@@ -60,7 +60,7 @@ describe("textlint-core", function () {
 
                     assert(result.filePath === "<markdown>");
                     assert(result.messages.length > 0);
-                    let message = result.messages[0];
+                    const message = result.messages[0];
                     assert(message.severity === 1);
 
                 });
@@ -79,7 +79,7 @@ describe("textlint-core", function () {
                 return textlint.lintMarkdown("# Test").then(result => {
                     assert(result.filePath === "<markdown>");
                     assert(result.messages.length > 0);
-                    let message = result.messages[0];
+                    const message = result.messages[0];
                     assert(message.severity === 2);
                 });
             });
@@ -95,7 +95,7 @@ describe("textlint-core", function () {
                 return textlint.lintMarkdown("# Test").then(result => {
                     assert(result.filePath === "<markdown>");
                     assert(result.messages.length > 0);
-                    let message = result.messages[0];
+                    const message = result.messages[0];
                     assert(message.severity === 2);
                 });
             });

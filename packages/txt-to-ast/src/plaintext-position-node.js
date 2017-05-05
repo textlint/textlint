@@ -5,10 +5,10 @@ module.exports = function computeLocationOfNode(node) {
     if (!(node.start_line && node.start_column && node.raw)) {
         return node;
     }
-    var LINEBREAKE_MARK = "\n";
-    var lines = node.raw.split(LINEBREAKE_MARK);
-    var addingColumn = lines.length - 1;
-    var lastLine = lines[addingColumn];
+    const LINEBREAKE_MARK = "\n";
+    const lines = node.raw.split(LINEBREAKE_MARK);
+    const addingColumn = lines.length - 1;
+    const lastLine = lines[addingColumn];
     return {
         loc: {
             start: {

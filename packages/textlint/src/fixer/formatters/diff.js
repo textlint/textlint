@@ -1,8 +1,8 @@
 "use strict";
-var fs = require("fs");
-var isFile = require("is-file");
-var jsdiff = require("diff");
-var chalk = require("chalk");
+const fs = require("fs");
+const isFile = require("is-file");
+const jsdiff = require("diff");
+const chalk = require("chalk");
 /**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.
@@ -32,17 +32,17 @@ function addMarkEachLine(mark, text) {
 module.exports = function (results, options) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
-    var output = "\n";
-    var totalFixed = 0;
-    var errors = 0;
-    var summaryColor = "yellow";
-    var greenColor = "green";
+    let output = "\n";
+    let totalFixed = 0;
+    let errors = 0;
+    const summaryColor = "yellow";
+    const greenColor = "green";
 
     results.forEach(function (result) {
-        var filePath = result.filePath;
-        var messages = result.applyingMessages;
+        const filePath = result.filePath;
+        const messages = result.applyingMessages;
         // still error count
-        var remainingMessages = result.remainingMessages;
+        const remainingMessages = result.remainingMessages;
         errors += remainingMessages.length;
         totalFixed += messages.length;
         if (messages.length === 0) {
@@ -53,12 +53,12 @@ module.exports = function (results, options) {
         }
         output += chalk.underline(result.filePath) + "\n";
 
-        var originalContent = fs.readFileSync(filePath, "utf-8");
-        var diff = jsdiff.diffLines(originalContent, result.output);
+        const originalContent = fs.readFileSync(filePath, "utf-8");
+        const diff = jsdiff.diffLines(originalContent, result.output);
 
         diff.forEach(function (part, index) {
-            var prevLine = diff[index - 1];
-            var nextLine = diff[index + 1];
+            const prevLine = diff[index - 1];
+            const nextLine = diff[index + 1];
             if (!isModified(part) && part.count > 1) {
                 const greyColor = "grey";
                 /*

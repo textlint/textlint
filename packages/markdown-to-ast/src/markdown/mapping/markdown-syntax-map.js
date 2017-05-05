@@ -1,10 +1,7 @@
 // LICENSE : MIT
 "use strict";
-
-var _require = require("@textlint/ast-node-types"),
-    ASTNodeTypes = _require.ASTNodeTypes;
-
-var _exports = {
+const { ASTNodeTypes } = require("@textlint/ast-node-types");
+const exports = {
     "root": ASTNodeTypes.Document,
     "paragraph": ASTNodeTypes.Paragraph,
     "blockquote": ASTNodeTypes.BlockQuote,
@@ -27,7 +24,7 @@ var _exports = {
     "inlineCode": ASTNodeTypes.Code,
     "delete": ASTNodeTypes.Delete,
     // remark(markdown) extension
-    // Following type is not in @textlin/ast-node-types
+    // Following type is not in @textlint/ast-node-types
     "yaml": "Yaml",
     "table": "Table",
     "tableRow": "TableRow",
@@ -36,5 +33,4 @@ var _exports = {
     "imageReference": "imageReference",
     "definition": "Definition"
 };
-module.exports = _exports;
-//# sourceMappingURL=markdown-syntax-map.js.map
+module.exports = exports;

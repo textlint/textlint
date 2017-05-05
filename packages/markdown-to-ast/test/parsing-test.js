@@ -2,11 +2,11 @@
 "use strict";
 // parse all fixture and should has
 var assert = require("power-assert");
-var parse = require("../").parse;
-var TraverseController = require('txt-ast-traverse').Controller;
+var parse = require("../src/markdown/markdown-parser").parse;
+var TraverseController = require("txt-ast-traverse").Controller;
 var traverseController = new TraverseController();
-var fs = require('fs');
-var path = require('path');
+var fs = require("fs");
+var path = require("path");
 // String -> [String]
 function fileList(dir) {
     return fs.readdirSync(dir).reduce(function (list, file) {
@@ -29,6 +29,6 @@ describe("parsing", function () {
                     }
                 });
             });
-        })
+        });
     });
 });

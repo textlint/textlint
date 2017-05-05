@@ -1,7 +1,7 @@
 "use strict";
-var chalk = require("chalk");
-var table = require("text-table");
-var widthOfString = require("string-width");
+const chalk = require("chalk");
+const table = require("text-table");
+const widthOfString = require("string-width");
 
 /**
  * Given a word and a count, append an s if count is not one.
@@ -16,19 +16,19 @@ function pluralize(word, count) {
 module.exports = function(results, options) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
-    var output = "\n";
-    var totalFixed = 0;
-    var errors = 0;
-    var summaryColor = "yellow";
-    var greenColor = "green";
+    let output = "\n";
+    let totalFixed = 0;
+    let errors = 0;
+    const summaryColor = "yellow";
+    const greenColor = "green";
 
     results.forEach(function(result) {
         if (!result.applyingMessages || !result.remainingMessages) {
             return;
         }
-        var messages = result.applyingMessages;
+        const messages = result.applyingMessages;
         // still error count
-        var remainingMessages = result.remainingMessages;
+        const remainingMessages = result.remainingMessages;
         errors += remainingMessages.length;
         if (messages.length === 0) {
             return;
@@ -39,7 +39,7 @@ module.exports = function(results, options) {
                 messages.map(function(message) {
                     // fixable
                     totalFixed++;
-                    var messageType = chalk[greenColor].bold("\u2714 ");
+                    const messageType = chalk[greenColor].bold("\u2714 ");
 
                     return [
                         "",
@@ -53,7 +53,7 @@ module.exports = function(results, options) {
                 {
                     align: ["", "r", "l"],
                     stringLength: function(str) {
-                        var lines = chalk.stripColor(str).split("\n");
+                        const lines = chalk.stripColor(str).split("\n");
                         return Math.max.apply(null, lines.map(function(line) {
                             return widthOfString(line);
                         }));

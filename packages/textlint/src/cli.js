@@ -66,7 +66,7 @@ const cli = {
      * @returns {Promise<number>} The exit code for the operation.
      */
     execute(args, text) {
-        var currentOptions;
+        let currentOptions;
         try {
             currentOptions = options.parse(args);
         } catch (error) {

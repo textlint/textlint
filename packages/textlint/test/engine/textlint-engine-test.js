@@ -331,7 +331,7 @@ describe("textlint-engine-test", function () {
                 const engine = new TextLintEngine();
                 engine.loadRule(path.join(rulesDir, "example-rule.js"));
                 engine.loadFilerRule(path.join(filterRulesDir, "filter-rule.js"));
-                return engine.executeOnText(`String is error,but it is filtered`).then((results) => {
+                return engine.executeOnText("String is error,but it is filtered").then((results) => {
                     const [result] = results;
                     assert.equal(result.messages.length, 0);
                 });
@@ -385,7 +385,7 @@ describe("textlint-engine-test", function () {
                 });
                 return engine.executeOnText("text").then(results => {
                     var output = engine.formatResults(results);
-                    assert(!/<text>/.test(output));
+                    assert(!(/<text>/).test(output));
                     assert(/example-formatter/.test(output));
                 });
             });

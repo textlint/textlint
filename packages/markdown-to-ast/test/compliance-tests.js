@@ -1,10 +1,10 @@
 // LICENSE : MIT
 "use strict";
+const assert = require("assert");
 const test = require("textlint-ast-test").test;
-const parse = require("../lib/markdown/markdown-parser").parse;
-var assert = require("power-assert");
-var fs = require('fs');
-var path = require('path');
+const parse = require("../src/markdown/markdown-parser").parse;
+const fs = require("fs");
+const path = require("path");
 // String -> [String]
 function fileList(dir) {
     return fs.readdirSync(dir).reduce(function (list, file) {
