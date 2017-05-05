@@ -1,4 +1,4 @@
-# textlint-plugin-markdown [![Build Status](https://travis-ci.org/textlint/textlint-plugin-markdown.svg?branch=master)](https://travis-ci.org/textlint/textlint-plugin-markdown)
+# textlint-plugin-markdown
 
 Markdown support for [textlint](https://github.com/textlint/textlint "textlint").
 
@@ -10,6 +10,8 @@ Markdown support for [textlint](https://github.com/textlint/textlint "textlint")
 
 Built-in support on textlint.
 No need configuration.
+
+------
 
 Manually add Markdown plugin to do following:
 
