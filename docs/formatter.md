@@ -6,7 +6,7 @@ Pass following array of [TextLintResult](https://github.com/textlint/textlint/bl
 
 ```js
 // results of linting
-var results = [
+const results = [
     // TextLintResult object
     {
         filePath: "./myfile.md",
@@ -59,7 +59,7 @@ Fixable result is a bit difference for things of linting.
 
 ```js
 // results of fixing
-var results = [
+const results = [
   // TextLintFixResult
   {
     "filePath": "./myfile.md",

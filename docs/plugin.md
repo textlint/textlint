@@ -125,9 +125,9 @@ Your Processor plugins's `preProcess` method should return `TxtAST` object.
 You can test the rules of your plugin the same way as bundled textlint rules using [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
 
 ```js
-var TextLintTester = require("textlint-tester");
-var tester = new TextLintTester();
-var noTodo = require("textlint-rule-no-todo");
+const TextLintTester = require("textlint-tester");
+const tester = new TextLintTester();
+const noTodo = require("textlint-rule-no-todo");
 // ruleName, rule, expected[]
 tester.run("no-todo", noTodo, {
     valid: [

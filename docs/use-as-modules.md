@@ -73,20 +73,20 @@ Lint files using `TextLintEngine`:
 See [example/node-module/lint-file.js](example/node-module/lint-file.js)
 
 ```js
-var TextLintEngine = require("textlint").TextLintEngine;
-var path = require("path");
+const TextLintEngine = require("textlint").TextLintEngine;
+const path = require("path");
 function lintFile(filePath) {
     /**
      * TextLintConfig
      * See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
      */
-    var options = {
+    const options = {
         // load rules from [../rules]
         rulePaths: [path.join(__dirname, "..", "rules/")],
         formatterName: "pretty-error"
     };
-    var engine = new TextLintEngine(options);
-    var filePathList = [path.resolve(process.cwd(), filePath)];
+    const engine = new TextLintEngine(options);
+    const filePathList = [path.resolve(process.cwd(), filePath)];
     engine.executeOnFiles(filePathList).then(function(results){
         /* 
         See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
@@ -104,7 +104,7 @@ function lintFile(filePath) {
         ]
          */
         if (engine.isErrorResults(results)) {
-            var output = engine.formatResults(results);
+            const output = engine.formatResults(results);
             console.log(output);
         }
     }).catch(function(error){

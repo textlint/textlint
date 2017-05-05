@@ -22,7 +22,10 @@
     "test:packages": "lerna run test",
     "eslint": "eslint --cache 'packages/**/src/**/*.js'",
     "eslint:fix": "eslint --fix --cache 'packages/**/src/**/*.js'",
+    "lint": "npm-run-all --parallel textlint eslint",
+    "lint:fix": "npm-run-all --parallel textlint:fix eslint:fix",
     "textlint": "node packages/textlint/bin/textlint.js --cache -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
+    "textlint:fix": "node packages/textlint/bin/textlint.js --fix --cache -c docs/.textlintrc docs/ .github/ README.md",
     "perf": "cd ./examples/perf && npm run test:ci"
   },
   "devDependencies": {

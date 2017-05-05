@@ -25,7 +25,7 @@ export default function (context) {
         },
         
         [context.Syntax.Str](node) {
-            var text = context.getSource(node);
+            const text = context.getSource(node);
             if(/found wrong use-case/.test(text)){
                 // report error
                 context.report(node, new context.RuleError("Found wrong"));
@@ -51,7 +51,7 @@ export default function (context) {
 }
 // or ES5
 module.exports = function (context) {
-    var exports = {};
+    const exports = {};
     exports[context.Syntax.Str] = function (node) {
         // this method is called
     };
@@ -119,13 +119,13 @@ Use it with `report` function.
 
 ```js
 // No padding information
-var error = new RuleError("message");
+const error = new RuleError("message");
 // 
 // OR
 // add location-based padding
-var paddingLine = 1;
-var paddingColumn = 1;
-var errorWithPadding = new RuleError("message", {
+const paddingLine = 1;
+const paddingColumn = 1;
+const errorWithPadding = new RuleError("message", {
     line: paddingLine, // padding line number from node.loc.start.line. default: 0
     column: paddingColumn // padding column number from node.loc.start.column. default: 0
 });
@@ -133,8 +133,8 @@ var errorWithPadding = new RuleError("message", {
 //
 // OR
 // add index-based padding
-var paddingIndex = 1;
-var errorWithPaddingIndex = new RuleError("message", {
+const paddingIndex = 1;
+const errorWithPaddingIndex = new RuleError("message", {
     index: paddingIndex // padding index value from `node.range[0]`. default: 0
 });
 // context.report(node, errorWithPaddingIndex);
@@ -157,7 +157,7 @@ export default function (context) {
     return {
         [context.Syntax.Str](node) {
             // get source code of this `node`
-            var text = context.getSource(node);
+            const text = context.getSource(node);
             if(/found wrong use-case/.test(text)){
                 // report error
                 context.report(node, new context.RuleError("Found wrong"));
@@ -259,8 +259,8 @@ export default function (context) {
               Hit!
         */
         [Syntax.ListItem](node) {
-            var text = context.getSource(node);
-            var match = text.match(/\[\s+\]\s/i);
+            const text = context.getSource(node);
+            const match = text.match(/\[\s+\]\s/i);
             if (match) {
                 report(node, new context.RuleError(`Found TODO: '${text}'`, {
                     index: match.index
@@ -314,9 +314,9 @@ You want to ignore this case, and write the following:
  * @returns {Array}
  */
 function getParents(node) {
-    var result = [];
+    const result = [];
     // child node has `parent` property.
-    var parent = node.parent;
+    let parent = node.parent;
     while (parent != null) {
         result.push(parent);
         parent = parent.parent;
@@ -330,8 +330,8 @@ function getParents(node) {
  * @returns {boolean|*}
  */
 function isNodeWrapped(node, types) {
-    var parents = getParents(node);
-    var parentsTypes = parents.map(function (parent) {
+    const parents = getParents(node);
+    const parentsTypes = parents.map(function (parent) {
         return parent.type;
     });
     return types.some(function (type) {
