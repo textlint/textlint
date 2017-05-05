@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "main": "lib/markdown/markdown-parser.js",
+  "main": "lib/markdown-parser.js",
   "files": [
     "lib/",
     "src/"

@@ -2,7 +2,7 @@
 "use strict";
 // parse all fixture and should has
 var assert = require("power-assert");
-var parse = require("../src/markdown/markdown-parser").parse;
+var parse = require("../src/markdown-parser").parse;
 var TraverseController = require("txt-ast-traverse").Controller;
 var traverseController = new TraverseController();
 var fs = require("fs");

@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 var assert = require("power-assert");
-var parse = require("../src/markdown/markdown-parser").parse;
-var Syntax = require("../src/markdown/markdown-parser").Syntax;
+var parse = require("../src/markdown-parser").parse;
+var Syntax = require("../src/markdown-parser").Syntax;
 var inspect = (obj) => JSON.stringify(obj, null, 4);
 var traverse = require("traverse");
 function findFirstTypedNode(node, type, value) {

@@ -2,7 +2,7 @@
 "use strict";
 const assert = require("assert");
 const test = require("textlint-ast-test").test;
-const parse = require("../src/markdown/markdown-parser").parse;
+const parse = require("../src/markdown-parser").parse;
 const fs = require("fs");
 const path = require("path");
 // String -> [String]
