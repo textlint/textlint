@@ -13,7 +13,7 @@
     "example:use-as-module": "cd ./examples/use-as-module && npm run test:ci",
     "example:fix-dry-run": "cd ./examples/fix-dry-run && npm run test:ci",
     "example:filter": "cd ./examples/filter && npm run test:ci",
-    "test": "npm-run-all --parallel lint:* test:packages",
+    "test": "npm-run-all --parallel textlint eslint test:packages",
     "test:all": "npm-run-all --parallel textlint eslint test:packages example",
     "test:packages": "lerna run test --stream",
     "eslint": "eslint --cache 'packages/**/src/**/*.js'",

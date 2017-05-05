@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
-export default {
-    Processor: require("./TextProcessor")
+import { TextProcessor } from "./TextProcessor";
+module.exports = {
+    Processor: TextProcessor
 };

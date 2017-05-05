@@ -1,46 +1,44 @@
 {
-  "name": "textlint-plugin-text",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textlint/textlint-plugin-text.git"
-  },
-  "author": "azu",
-  "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/textlint/textlint-plugin-text",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint-plugin-text/issues"
-  },
-  "version": "1.0.1",
-  "description": "text support for textlint",
-  "main": "lib/index.js",
-  "files": [
-    "lib",
-    "src"
-  ],
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "build": "babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
-    "prepublish": "npm run build",
-    "test": "mocha"
-  },
-  "keywords": [
-    "textlint",
-    "plugin",
-    "text"
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
   ],
+  "name": "textlint-plugin-text",
+  "description": "plain text plugin for textlint",
+  "version": "1.0.1",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test/",
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-plugin-text/",
   "dependencies": {
-    "txt-to-ast": "^1.0.2"
+    "txt-to-ast": "^1.1.0"
   },
   "devDependencies": {
-    "textlint-rule-no-todo": "^1.0.3",
-    "babel": "^5.0.0",
-    "espower-babel": "^3.3.0",
-    "mocha": "^2.3.3",
-    "power-assert": "^1.1.0",
-    "textlint": "^4.2.2"
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-jsdoc-to-assert": "^4.0.0",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.24.1",
+    "cross-env": "^4.0.0",
+    "mocha": "^3.3.0",
+    "power-assert": "^1.4.2",
+    "textlint": "^7.4.0"
   }
 }

@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 // LICENSE : MIT
 "use strict";
-import {parse} from "txt-to-ast";
-export default class TextProcessor {
+import { parse } from "txt-to-ast";
+export class TextProcessor {
     constructor(config) {
         this.config = config;
     }
