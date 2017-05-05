@@ -24,5 +24,6 @@ export const ASTNodeTypes = {
     "Html": "Html",
     "Link": "Link",
     "Image": "Image",
-    "Code": "Code"
+    "Code": "Code",
+    "Delete": "Delete"
 };
