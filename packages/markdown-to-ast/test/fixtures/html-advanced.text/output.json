@@ -1,0 +1,136 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Simple block on one line:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        0,
+                        25
+                    ],
+                    "raw": "Simple block on one line:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 25
+                }
+            },
+            "range": [
+                0,
+                25
+            ],
+            "raw": "Simple block on one line:"
+        },
+        {
+            "type": "Html",
+            "value": "<div>foo</div>",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 14
+                }
+            },
+            "range": [
+                27,
+                41
+            ],
+            "raw": "<div>foo</div>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And nested without indentation:",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        43,
+                        74
+                    ],
+                    "raw": "And nested without indentation:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 31
+                }
+            },
+            "range": [
+                43,
+                74
+            ],
+            "raw": "And nested without indentation:"
+        },
+        {
+            "type": "Html",
+            "value": "<div>\n<div>\n<div>\nfoo\n</div>\n<div style=\">\"/>\n</div>\n<div>bar</div>\n</div>",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 6
+                }
+            },
+            "range": [
+                76,
+                150
+            ],
+            "raw": "<div>\n<div>\n<div>\nfoo\n</div>\n<div style=\">\"/>\n</div>\n<div>bar</div>\n</div>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 16,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        151
+    ],
+    "raw": "Simple block on one line:\n\n<div>foo</div>\n\nAnd nested without indentation:\n\n<div>\n<div>\n<div>\nfoo\n</div>\n<div style=\">\"/>\n</div>\n<div>bar</div>\n</div>\n"
+}

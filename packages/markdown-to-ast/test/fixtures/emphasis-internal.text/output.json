@@ -1,0 +1,59 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "These words should_not_be_emphasized.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        0,
+                        37
+                    ],
+                    "raw": "These words should_not_be_emphasized."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 37
+                }
+            },
+            "range": [
+                0,
+                37
+            ],
+            "raw": "These words should_not_be_emphasized."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        38
+    ],
+    "raw": "These words should_not_be_emphasized.\n"
+}

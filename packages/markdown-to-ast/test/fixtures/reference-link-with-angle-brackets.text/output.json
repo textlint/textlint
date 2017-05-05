@@ -1,0 +1,102 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "foo",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                1,
+                                4
+                            ],
+                            "raw": "foo"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        0,
+                        5
+                    ],
+                    "raw": "[foo]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 5
+                }
+            },
+            "range": [
+                0,
+                5
+            ],
+            "raw": "[foo]"
+        },
+        {
+            "type": "Definition",
+            "identifier": "foo",
+            "title": null,
+            "url": "./url with spaces",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 26
+                }
+            },
+            "range": [
+                7,
+                33
+            ],
+            "raw": "[foo]: <./url with spaces>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        34
+    ],
+    "raw": "[foo]\n\n[foo]: <./url with spaces>\n"
+}

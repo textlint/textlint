@@ -1,0 +1,905 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world\n    how are you\n    how are you",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        0,
+                        43
+                    ],
+                    "raw": "hello world\n    how are you\n    how are you"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 15
+                }
+            },
+            "range": [
+                0,
+                43
+            ],
+            "raw": "hello world\n    how are you\n    how are you"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        45,
+                        56
+                    ],
+                    "raw": "hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 11
+                }
+            },
+            "range": [
+                45,
+                56
+            ],
+            "raw": "hello world"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "how are you",
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 3
+                }
+            },
+            "range": [
+                57,
+                76
+            ],
+            "raw": "```\nhow are you\n```"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        78,
+                        89
+                    ],
+                    "raw": "hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 11
+                }
+            },
+            "range": [
+                78,
+                89
+            ],
+            "raw": "hello world"
+        },
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 5
+                }
+            },
+            "range": [
+                90,
+                95
+            ],
+            "raw": "* * *"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        97,
+                        108
+                    ],
+                    "raw": "hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 11
+                }
+            },
+            "range": [
+                97,
+                108
+            ],
+            "raw": "hello world"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "how are you",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        111,
+                        122
+                    ],
+                    "raw": "how are you"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 13
+                }
+            },
+            "range": [
+                109,
+                122
+            ],
+            "raw": "# how are you"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world",
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        124,
+                        135
+                    ],
+                    "raw": "hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 16,
+                    "column": 0
+                },
+                "end": {
+                    "line": 16,
+                    "column": 11
+                }
+            },
+            "range": [
+                124,
+                135
+            ],
+            "raw": "hello world"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "how are you",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        136,
+                        147
+                    ],
+                    "raw": "how are you"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 18,
+                    "column": 11
+                }
+            },
+            "range": [
+                136,
+                159
+            ],
+            "raw": "how are you\n==========="
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world",
+                    "loc": {
+                        "start": {
+                            "line": 20,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 20,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        161,
+                        172
+                    ],
+                    "raw": "hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 20,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 11
+                }
+            },
+            "range": [
+                161,
+                172
+            ],
+            "raw": "hello world"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "how are you",
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                175,
+                                186
+                            ],
+                            "raw": "how are you"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        175,
+                        186
+                    ],
+                    "raw": "how are you"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 13
+                }
+            },
+            "range": [
+                173,
+                186
+            ],
+            "raw": "> how are you"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        188,
+                        199
+                    ],
+                    "raw": "hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 11
+                }
+            },
+            "range": [
+                188,
+                199
+            ],
+            "raw": "hello world"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "how are you",
+                                    "loc": {
+                                        "start": {
+                                            "line": 24,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 24,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        202,
+                                        213
+                                    ],
+                                    "raw": "how are you"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 24,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 24,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                202,
+                                213
+                            ],
+                            "raw": "how are you"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 24,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 24,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        200,
+                        213
+                    ],
+                    "raw": "* how are you"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 24,
+                    "column": 0
+                },
+                "end": {
+                    "line": 24,
+                    "column": 13
+                }
+            },
+            "range": [
+                200,
+                213
+            ],
+            "raw": "* how are you"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world",
+                    "loc": {
+                        "start": {
+                            "line": 26,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 26,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        215,
+                        226
+                    ],
+                    "raw": "hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 26,
+                    "column": 0
+                },
+                "end": {
+                    "line": 26,
+                    "column": 11
+                }
+            },
+            "range": [
+                215,
+                226
+            ],
+            "raw": "hello world"
+        },
+        {
+            "type": "Html",
+            "value": "<div>how are you</div>",
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 22
+                }
+            },
+            "range": [
+                227,
+                249
+            ],
+            "raw": "<div>how are you</div>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello world\n",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 30,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        251,
+                        263
+                    ],
+                    "raw": "hello world\n"
+                },
+                {
+                    "type": "Html",
+                    "value": "<span>",
+                    "loc": {
+                        "start": {
+                            "line": 30,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 30,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        263,
+                        269
+                    ],
+                    "raw": "<span>"
+                },
+                {
+                    "type": "Str",
+                    "value": "how are you",
+                    "loc": {
+                        "start": {
+                            "line": 30,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 30,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        269,
+                        280
+                    ],
+                    "raw": "how are you"
+                },
+                {
+                    "type": "Html",
+                    "value": "</span>",
+                    "loc": {
+                        "start": {
+                            "line": 30,
+                            "column": 17
+                        },
+                        "end": {
+                            "line": 30,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        280,
+                        287
+                    ],
+                    "raw": "</span>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 30,
+                    "column": 24
+                }
+            },
+            "range": [
+                251,
+                287
+            ],
+            "raw": "hello world\n<span>how are you</span>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello ",
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 32,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        289,
+                        295
+                    ],
+                    "raw": "hello "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "how",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "world",
+                            "loc": {
+                                "start": {
+                                    "line": 32,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 32,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                296,
+                                301
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 32,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        295,
+                        307
+                    ],
+                    "raw": "[world][how]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 32,
+                    "column": 0
+                },
+                "end": {
+                    "line": 32,
+                    "column": 18
+                }
+            },
+            "range": [
+                289,
+                307
+            ],
+            "raw": "hello [world][how]"
+        },
+        {
+            "type": "Definition",
+            "identifier": "how",
+            "title": null,
+            "url": "/are/you",
+            "loc": {
+                "start": {
+                    "line": 33,
+                    "column": 0
+                },
+                "end": {
+                    "line": 33,
+                    "column": 15
+                }
+            },
+            "range": [
+                308,
+                323
+            ],
+            "raw": "[how]: /are/you"
+        },
+        {
+            "type": "Html",
+            "value": "<div>hello</div>",
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 0
+                },
+                "end": {
+                    "line": 35,
+                    "column": 16
+                }
+            },
+            "range": [
+                325,
+                341
+            ],
+            "raw": "<div>hello</div>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Html",
+                    "value": "<span>",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        343,
+                        349
+                    ],
+                    "raw": "<span>"
+                },
+                {
+                    "type": "Str",
+                    "value": "hello",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        349,
+                        354
+                    ],
+                    "raw": "hello"
+                },
+                {
+                    "type": "Html",
+                    "value": "</span>",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        354,
+                        361
+                    ],
+                    "raw": "</span>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 0
+                },
+                "end": {
+                    "line": 37,
+                    "column": 18
+                }
+            },
+            "range": [
+                343,
+                361
+            ],
+            "raw": "<span>hello</span>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 38,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        362
+    ],
+    "raw": "hello world\n    how are you\n    how are you\n\nhello world\n```\nhow are you\n```\n\nhello world\n* * *\n\nhello world\n# how are you\n\nhello world\nhow are you\n===========\n\nhello world\n> how are you\n\nhello world\n* how are you\n\nhello world\n<div>how are you</div>\n\nhello world\n<span>how are you</span>\n\nhello [world][how]\n[how]: /are/you\n\n<div>hello</div>\n\n<span>hello</span>\n"
+}

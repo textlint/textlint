@@ -1,0 +1,102 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "hi",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "hi",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 3
+                                }
+                            },
+                            "range": [
+                                1,
+                                3
+                            ],
+                            "raw": "hi"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        0,
+                        4
+                    ],
+                    "raw": "[hi]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 4
+                }
+            },
+            "range": [
+                0,
+                4
+            ],
+            "raw": "[hi]"
+        },
+        {
+            "type": "Definition",
+            "identifier": "hi",
+            "title": null,
+            "url": "/url",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 10
+                }
+            },
+            "range": [
+                6,
+                16
+            ],
+            "raw": "[HI]: /url"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        17
+    ],
+    "raw": "[hi]\n\n[HI]: /url\n"
+}

@@ -1,0 +1,182 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "In Markdown 1.0.0 and earlier. Version\n8. This line turns into a list item.\nBecause a hard-wrapped line in the\nmiddle of a paragraph looked like a\nlist item.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        0,
+                        157
+                    ],
+                    "raw": "In Markdown 1.0.0 and earlier. Version\n8. This line turns into a list item.\nBecause a hard-wrapped line in the\nmiddle of a paragraph looked like a\nlist item."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                157
+            ],
+            "raw": "In Markdown 1.0.0 and earlier. Version\n8. This line turns into a list item.\nBecause a hard-wrapped line in the\nmiddle of a paragraph looked like a\nlist item."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here's one with a bullet.",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        159,
+                        184
+                    ],
+                    "raw": "Here's one with a bullet."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 25
+                }
+            },
+            "range": [
+                159,
+                184
+            ],
+            "raw": "Here's one with a bullet."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "criminey.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 8,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 8,
+                                            "column": 11
+                                        }
+                                    },
+                                    "range": [
+                                        187,
+                                        196
+                                    ],
+                                    "raw": "criminey."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 8,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                187,
+                                196
+                            ],
+                            "raw": "criminey."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 8,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 8,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        185,
+                        196
+                    ],
+                    "raw": "* criminey."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 8,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 11
+                }
+            },
+            "range": [
+                185,
+                196
+            ],
+            "raw": "* criminey."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 9,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        197
+    ],
+    "raw": "In Markdown 1.0.0 and earlier. Version\n8. This line turns into a list item.\nBecause a hard-wrapped line in the\nmiddle of a paragraph looked like a\nlist item.\n\nHere's one with a bullet.\n* criminey.\n"
+}

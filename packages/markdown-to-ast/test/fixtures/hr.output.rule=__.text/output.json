@@ -1,0 +1,38 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 5
+                }
+            },
+            "range": [
+                0,
+                5
+            ],
+            "raw": "* * *"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        6
+    ],
+    "raw": "* * *\n"
+}

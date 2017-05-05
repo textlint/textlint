@@ -1,0 +1,39 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Yaml",
+            "value": "title: post",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                19
+            ],
+            "raw": "---\ntitle: post\n---"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        20
+    ],
+    "raw": "---\ntitle: post\n---\n"
+}

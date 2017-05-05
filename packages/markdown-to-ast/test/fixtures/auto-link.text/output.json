@@ -1,0 +1,803 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link: ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "raw": "Link: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com/",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 26
+                                }
+                            },
+                            "range": [
+                                7,
+                                26
+                            ],
+                            "raw": "http://example.com/"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        6,
+                        27
+                    ],
+                    "raw": "<http://example.com/>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 27
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        27,
+                        28
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 28
+                }
+            },
+            "range": [
+                0,
+                28
+            ],
+            "raw": "Link: <http://example.com/>."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link to an email: ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        30,
+                        48
+                    ],
+                    "raw": "Link to an email: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "mailto:somename@example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "somename@example.com",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 19
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 39
+                                }
+                            },
+                            "range": [
+                                49,
+                                69
+                            ],
+                            "raw": "somename@example.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 40
+                        }
+                    },
+                    "range": [
+                        48,
+                        70
+                    ],
+                    "raw": "<somename@example.com>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 40
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 41
+                        }
+                    },
+                    "range": [
+                        70,
+                        71
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 41
+                }
+            },
+            "range": [
+                30,
+                71
+            ],
+            "raw": "Link to an email: <somename@example.com>."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link to an email: ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        73,
+                        91
+                    ],
+                    "raw": "Link to an email: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "mailto:somename@example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "somename@example.com",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 26
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 46
+                                }
+                            },
+                            "range": [
+                                99,
+                                119
+                            ],
+                            "raw": "somename@example.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        91,
+                        120
+                    ],
+                    "raw": "<mailto:somename@example.com>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 47
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 48
+                        }
+                    },
+                    "range": [
+                        120,
+                        121
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 48
+                }
+            },
+            "range": [
+                73,
+                121
+            ],
+            "raw": "Link to an email: <mailto:somename@example.com>."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "With an ampersand: ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        123,
+                        142
+                    ],
+                    "raw": "With an ampersand: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com/?foo=1&bar=2",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com/?foo=1&bar=2",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 20
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 51
+                                }
+                            },
+                            "range": [
+                                143,
+                                174
+                            ],
+                            "raw": "http://example.com/?foo=1&bar=2"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 19
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 52
+                        }
+                    },
+                    "range": [
+                        142,
+                        175
+                    ],
+                    "raw": "<http://example.com/?foo=1&bar=2>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 52
+                }
+            },
+            "range": [
+                123,
+                175
+            ],
+            "raw": "With an ampersand: <http://example.com/?foo=1&bar=2>"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "In a list?",
+                                    "loc": {
+                                        "start": {
+                                            "line": 9,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        179,
+                                        189
+                                    ],
+                                    "raw": "In a list?"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                179,
+                                189
+                            ],
+                            "raw": "In a list?"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        177,
+                        189
+                    ],
+                    "raw": "* In a list?"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Link",
+                                    "title": null,
+                                    "url": "http://example.com/",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "http://example.com/",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 10,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 10,
+                                                    "column": 22
+                                                }
+                                            },
+                                            "range": [
+                                                193,
+                                                212
+                                            ],
+                                            "raw": "http://example.com/"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 10,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 10,
+                                            "column": 23
+                                        }
+                                    },
+                                    "range": [
+                                        192,
+                                        213
+                                    ],
+                                    "raw": "<http://example.com/>"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 23
+                                }
+                            },
+                            "range": [
+                                192,
+                                213
+                            ],
+                            "raw": "<http://example.com/>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        190,
+                        213
+                    ],
+                    "raw": "* <http://example.com/>"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "It should.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 11,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 11,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        216,
+                                        226
+                                    ],
+                                    "raw": "It should."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                216,
+                                226
+                            ],
+                            "raw": "It should."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        214,
+                        226
+                    ],
+                    "raw": "* It should."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 12
+                }
+            },
+            "range": [
+                177,
+                226
+            ],
+            "raw": "* In a list?\n* <http://example.com/>\n* It should."
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Blockquoted: ",
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                230,
+                                243
+                            ],
+                            "raw": "Blockquoted: "
+                        },
+                        {
+                            "type": "Link",
+                            "title": null,
+                            "url": "http://example.com/",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "http://example.com/",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 16
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 35
+                                        }
+                                    },
+                                    "range": [
+                                        244,
+                                        263
+                                    ],
+                                    "raw": "http://example.com/"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 15
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 36
+                                }
+                            },
+                            "range": [
+                                243,
+                                264
+                            ],
+                            "raw": "<http://example.com/>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        230,
+                        264
+                    ],
+                    "raw": "Blockquoted: <http://example.com/>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 36
+                }
+            },
+            "range": [
+                228,
+                264
+            ],
+            "raw": "> Blockquoted: <http://example.com/>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Auto-links should not occur here: ",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        266,
+                        300
+                    ],
+                    "raw": "Auto-links should not occur here: "
+                },
+                {
+                    "type": "Code",
+                    "value": "<http://example.com/>",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 57
+                        }
+                    },
+                    "range": [
+                        300,
+                        323
+                    ],
+                    "raw": "`<http://example.com/>`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 57
+                }
+            },
+            "range": [
+                266,
+                323
+            ],
+            "raw": "Auto-links should not occur here: `<http://example.com/>`"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "or here: <http://example.com/>",
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 31
+                }
+            },
+            "range": [
+                325,
+                356
+            ],
+            "raw": "\tor here: <http://example.com/>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 18,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        357
+    ],
+    "raw": "Link: <http://example.com/>.\n\nLink to an email: <somename@example.com>.\n\nLink to an email: <mailto:somename@example.com>.\n\nWith an ampersand: <http://example.com/?foo=1&bar=2>\n\n* In a list?\n* <http://example.com/>\n* It should.\n\n> Blockquoted: <http://example.com/>\n\nAuto-links should not occur here: `<http://example.com/>`\n\n\tor here: <http://example.com/>\n"
+}

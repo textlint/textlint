@@ -1,0 +1,752 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Code",
+                    "value": "<test a=\"",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        0,
+                        11
+                    ],
+                    "raw": "`<test a=\"`"
+                },
+                {
+                    "type": "Str",
+                    "value": " content of attribute ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        11,
+                        33
+                    ],
+                    "raw": " content of attribute "
+                },
+                {
+                    "type": "Code",
+                    "value": "\">",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 33
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        33,
+                        37
+                    ],
+                    "raw": "`\">`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 37
+                }
+            },
+            "range": [
+                0,
+                37
+            ],
+            "raw": "`<test a=\"` content of attribute `\">`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Fix for backticks within HTML tag: ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        39,
+                        74
+                    ],
+                    "raw": "Fix for backticks within HTML tag: "
+                },
+                {
+                    "type": "Html",
+                    "value": "<span attr='`ticks`'>",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 35
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 56
+                        }
+                    },
+                    "range": [
+                        74,
+                        95
+                    ],
+                    "raw": "<span attr='`ticks`'>"
+                },
+                {
+                    "type": "Str",
+                    "value": "like this",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 56
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 65
+                        }
+                    },
+                    "range": [
+                        95,
+                        104
+                    ],
+                    "raw": "like this"
+                },
+                {
+                    "type": "Html",
+                    "value": "</span>",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 65
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 72
+                        }
+                    },
+                    "range": [
+                        104,
+                        111
+                    ],
+                    "raw": "</span>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 72
+                }
+            },
+            "range": [
+                39,
+                111
+            ],
+            "raw": "Fix for backticks within HTML tag: <span attr='`ticks`'>like this</span>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here's how you put ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        113,
+                        132
+                    ],
+                    "raw": "Here's how you put "
+                },
+                {
+                    "type": "Code",
+                    "value": "`backticks`",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 19
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        132,
+                        149
+                    ],
+                    "raw": "`` `backticks` ``"
+                },
+                {
+                    "type": "Str",
+                    "value": " in a code span.",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 52
+                        }
+                    },
+                    "range": [
+                        149,
+                        165
+                    ],
+                    "raw": " in a code span."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 52
+                }
+            },
+            "range": [
+                113,
+                165
+            ],
+            "raw": "Here's how you put `` `backticks` `` in a code span."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Additionally, empty code spans are also supported: ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 51
+                        }
+                    },
+                    "range": [
+                        167,
+                        218
+                    ],
+                    "raw": "Additionally, empty code spans are also supported: "
+                },
+                {
+                    "type": "Code",
+                    "value": "",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 51
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 53
+                        }
+                    },
+                    "range": [
+                        218,
+                        220
+                    ],
+                    "raw": "``"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 53
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 54
+                        }
+                    },
+                    "range": [
+                        220,
+                        221
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 54
+                }
+            },
+            "range": [
+                167,
+                221
+            ],
+            "raw": "Additionally, empty code spans are also supported: ``."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here’s an example, ",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        223,
+                        242
+                    ],
+                    "raw": "Here’s an example, "
+                },
+                {
+                    "type": "Code",
+                    "value": "foo ` bar",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 19
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        242,
+                        258
+                    ],
+                    "raw": "`` foo ` bar  ``"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 35
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        258,
+                        259
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 36
+                }
+            },
+            "range": [
+                223,
+                259
+            ],
+            "raw": "Here’s an example, `` foo ` bar  ``."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And here, ",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        261,
+                        271
+                    ],
+                    "raw": "And here, "
+                },
+                {
+                    "type": "Code",
+                    "value": "``",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        271,
+                        277
+                    ],
+                    "raw": "` `` `"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        277,
+                        278
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 17
+                }
+            },
+            "range": [
+                261,
+                278
+            ],
+            "raw": "And here, ` `` `."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Code",
+                    "value": "// this is also inline code",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        280,
+                        313
+                    ],
+                    "raw": "``\n// this is also inline code\n``"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 2
+                }
+            },
+            "range": [
+                280,
+                313
+            ],
+            "raw": "``\n// this is also inline code\n``"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "So is this ",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        315,
+                        326
+                    ],
+                    "raw": "So is this "
+                },
+                {
+                    "type": "Code",
+                    "value": "foo   bar\n  baz",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 18,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        326,
+                        343
+                    ],
+                    "raw": "`foo   bar\n  baz`"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 18,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 18,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        343,
+                        344
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 18,
+                    "column": 7
+                }
+            },
+            "range": [
+                315,
+                344
+            ],
+            "raw": "So is this `foo   bar\n  baz`."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And this ",
+                    "loc": {
+                        "start": {
+                            "line": 20,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 20,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        346,
+                        355
+                    ],
+                    "raw": "And this "
+                },
+                {
+                    "type": "Code",
+                    "value": "foo `` bar",
+                    "loc": {
+                        "start": {
+                            "line": 20,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 20,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        355,
+                        367
+                    ],
+                    "raw": "`foo `` bar`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 20,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 21
+                }
+            },
+            "range": [
+                346,
+                367
+            ],
+            "raw": "And this `foo `` bar`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And ",
+                    "loc": {
+                        "start": {
+                            "line": 22,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 22,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        369,
+                        373
+                    ],
+                    "raw": "And "
+                },
+                {
+                    "type": "Code",
+                    "value": "this\\",
+                    "loc": {
+                        "start": {
+                            "line": 22,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 22,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        373,
+                        380
+                    ],
+                    "raw": "`this\\`"
+                },
+                {
+                    "type": "Str",
+                    "value": "but this is text`.",
+                    "loc": {
+                        "start": {
+                            "line": 22,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 22,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        380,
+                        398
+                    ],
+                    "raw": "but this is text`."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 22,
+                    "column": 0
+                },
+                "end": {
+                    "line": 22,
+                    "column": 29
+                }
+            },
+            "range": [
+                369,
+                398
+            ],
+            "raw": "And `this\\`but this is text`."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 23,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        399
+    ],
+    "raw": "`<test a=\"` content of attribute `\">`\n\nFix for backticks within HTML tag: <span attr='`ticks`'>like this</span>\n\nHere's how you put `` `backticks` `` in a code span.\n\nAdditionally, empty code spans are also supported: ``.\n\nHere’s an example, `` foo ` bar  ``.\n\nAnd here, ` `` `.\n\n``\n// this is also inline code\n``\n\nSo is this `foo   bar\n  baz`.\n\nAnd this `foo `` bar`\n\nAnd `this\\`but this is text`.\n"
+}

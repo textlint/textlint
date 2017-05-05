@@ -1,0 +1,4671 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "These should all get escaped:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        0,
+                        29
+                    ],
+                    "raw": "These should all get escaped:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 29
+                }
+            },
+            "range": [
+                0,
+                29
+            ],
+            "raw": "These should all get escaped:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Backslash: ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        31,
+                        42
+                    ],
+                    "raw": "Backslash: "
+                },
+                {
+                    "type": "Str",
+                    "value": "\\",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        42,
+                        44
+                    ],
+                    "raw": "\\\\"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 13
+                }
+            },
+            "range": [
+                31,
+                44
+            ],
+            "raw": "Backslash: \\\\"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Backtick: ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        46,
+                        56
+                    ],
+                    "raw": "Backtick: "
+                },
+                {
+                    "type": "Str",
+                    "value": "`",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        56,
+                        58
+                    ],
+                    "raw": "\\`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 12
+                }
+            },
+            "range": [
+                46,
+                58
+            ],
+            "raw": "Backtick: \\`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Asterisk: ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        60,
+                        70
+                    ],
+                    "raw": "Asterisk: "
+                },
+                {
+                    "type": "Str",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        70,
+                        72
+                    ],
+                    "raw": "\\*"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 12
+                }
+            },
+            "range": [
+                60,
+                72
+            ],
+            "raw": "Asterisk: \\*"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Underscore: ",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        74,
+                        86
+                    ],
+                    "raw": "Underscore: "
+                },
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        86,
+                        88
+                    ],
+                    "raw": "\\_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 14
+                }
+            },
+            "range": [
+                74,
+                88
+            ],
+            "raw": "Underscore: \\_"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Left brace: ",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        90,
+                        102
+                    ],
+                    "raw": "Left brace: "
+                },
+                {
+                    "type": "Str",
+                    "value": "{",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        102,
+                        104
+                    ],
+                    "raw": "\\{"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 14
+                }
+            },
+            "range": [
+                90,
+                104
+            ],
+            "raw": "Left brace: \\{"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Right brace: ",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        106,
+                        119
+                    ],
+                    "raw": "Right brace: "
+                },
+                {
+                    "type": "Str",
+                    "value": "}",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        119,
+                        121
+                    ],
+                    "raw": "\\}"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 15
+                }
+            },
+            "range": [
+                106,
+                121
+            ],
+            "raw": "Right brace: \\}"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Left bracket: ",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        123,
+                        137
+                    ],
+                    "raw": "Left bracket: "
+                },
+                {
+                    "type": "Str",
+                    "value": "[",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        137,
+                        139
+                    ],
+                    "raw": "\\["
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 16
+                }
+            },
+            "range": [
+                123,
+                139
+            ],
+            "raw": "Left bracket: \\["
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Right bracket: ",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        141,
+                        156
+                    ],
+                    "raw": "Right bracket: "
+                },
+                {
+                    "type": "Str",
+                    "value": "]",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 15
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        156,
+                        158
+                    ],
+                    "raw": "\\]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 17
+                }
+            },
+            "range": [
+                141,
+                158
+            ],
+            "raw": "Right bracket: \\]"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Left paren: ",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        160,
+                        172
+                    ],
+                    "raw": "Left paren: "
+                },
+                {
+                    "type": "Str",
+                    "value": "(",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        172,
+                        174
+                    ],
+                    "raw": "\\("
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 14
+                }
+            },
+            "range": [
+                160,
+                174
+            ],
+            "raw": "Left paren: \\("
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Right paren: ",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        176,
+                        189
+                    ],
+                    "raw": "Right paren: "
+                },
+                {
+                    "type": "Str",
+                    "value": ")",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        189,
+                        191
+                    ],
+                    "raw": "\\)"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 15
+                }
+            },
+            "range": [
+                176,
+                191
+            ],
+            "raw": "Right paren: \\)"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Greater-than: ",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        193,
+                        207
+                    ],
+                    "raw": "Greater-than: "
+                },
+                {
+                    "type": "Str",
+                    "value": ">",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        207,
+                        209
+                    ],
+                    "raw": "\\>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 16
+                }
+            },
+            "range": [
+                193,
+                209
+            ],
+            "raw": "Greater-than: \\>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hash: ",
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        211,
+                        217
+                    ],
+                    "raw": "Hash: "
+                },
+                {
+                    "type": "Str",
+                    "value": "#",
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        217,
+                        219
+                    ],
+                    "raw": "\\#"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 25,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 8
+                }
+            },
+            "range": [
+                211,
+                219
+            ],
+            "raw": "Hash: \\#"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Period: ",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        221,
+                        229
+                    ],
+                    "raw": "Period: "
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        229,
+                        231
+                    ],
+                    "raw": "\\."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 10
+                }
+            },
+            "range": [
+                221,
+                231
+            ],
+            "raw": "Period: \\."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Bang: ",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        233,
+                        239
+                    ],
+                    "raw": "Bang: "
+                },
+                {
+                    "type": "Str",
+                    "value": "!",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        239,
+                        241
+                    ],
+                    "raw": "\\!"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 8
+                }
+            },
+            "range": [
+                233,
+                241
+            ],
+            "raw": "Bang: \\!"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Plus: ",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        243,
+                        249
+                    ],
+                    "raw": "Plus: "
+                },
+                {
+                    "type": "Str",
+                    "value": "+",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        249,
+                        251
+                    ],
+                    "raw": "\\+"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 31,
+                    "column": 8
+                }
+            },
+            "range": [
+                243,
+                251
+            ],
+            "raw": "Plus: \\+"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Minus: ",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        253,
+                        260
+                    ],
+                    "raw": "Minus: "
+                },
+                {
+                    "type": "Str",
+                    "value": "-",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        260,
+                        262
+                    ],
+                    "raw": "\\-"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 33,
+                    "column": 0
+                },
+                "end": {
+                    "line": 33,
+                    "column": 9
+                }
+            },
+            "range": [
+                253,
+                262
+            ],
+            "raw": "Minus: \\-"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "GFM:",
+                            "loc": {
+                                "start": {
+                                    "line": 35,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 35,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                266,
+                                270
+                            ],
+                            "raw": "GFM:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        264,
+                        272
+                    ],
+                    "raw": "**GFM:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 0
+                },
+                "end": {
+                    "line": 35,
+                    "column": 8
+                }
+            },
+            "range": [
+                264,
+                272
+            ],
+            "raw": "**GFM:**"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Pipe: ",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        274,
+                        280
+                    ],
+                    "raw": "Pipe: "
+                },
+                {
+                    "type": "Str",
+                    "value": "|",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        280,
+                        282
+                    ],
+                    "raw": "\\|"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 0
+                },
+                "end": {
+                    "line": 37,
+                    "column": 8
+                }
+            },
+            "range": [
+                274,
+                282
+            ],
+            "raw": "Pipe: \\|"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Tilde: ",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        284,
+                        291
+                    ],
+                    "raw": "Tilde: "
+                },
+                {
+                    "type": "Str",
+                    "value": "~",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        291,
+                        293
+                    ],
+                    "raw": "\\~"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 39,
+                    "column": 0
+                },
+                "end": {
+                    "line": 39,
+                    "column": 9
+                }
+            },
+            "range": [
+                284,
+                293
+            ],
+            "raw": "Tilde: \\~"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Commonmark:",
+                            "loc": {
+                                "start": {
+                                    "line": 41,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 41,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                297,
+                                308
+                            ],
+                            "raw": "Commonmark:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 41,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 41,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        295,
+                        310
+                    ],
+                    "raw": "**Commonmark:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 41,
+                    "column": 0
+                },
+                "end": {
+                    "line": 41,
+                    "column": 15
+                }
+            },
+            "range": [
+                295,
+                310
+            ],
+            "raw": "**Commonmark:**"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Quote: \\\"",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        312,
+                        321
+                    ],
+                    "raw": "Quote: \\\""
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 43,
+                    "column": 0
+                },
+                "end": {
+                    "line": 43,
+                    "column": 9
+                }
+            },
+            "range": [
+                312,
+                321
+            ],
+            "raw": "Quote: \\\""
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Dollar: \\$",
+                    "loc": {
+                        "start": {
+                            "line": 45,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 45,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        323,
+                        333
+                    ],
+                    "raw": "Dollar: \\$"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 45,
+                    "column": 0
+                },
+                "end": {
+                    "line": 45,
+                    "column": 10
+                }
+            },
+            "range": [
+                323,
+                333
+            ],
+            "raw": "Dollar: \\$"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Percentage: \\%",
+                    "loc": {
+                        "start": {
+                            "line": 47,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 47,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        335,
+                        349
+                    ],
+                    "raw": "Percentage: \\%"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 47,
+                    "column": 0
+                },
+                "end": {
+                    "line": 47,
+                    "column": 14
+                }
+            },
+            "range": [
+                335,
+                349
+            ],
+            "raw": "Percentage: \\%"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Ampersand: \\&",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        351,
+                        364
+                    ],
+                    "raw": "Ampersand: \\&"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 49,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 13
+                }
+            },
+            "range": [
+                351,
+                364
+            ],
+            "raw": "Ampersand: \\&"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Single quote: \\'",
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        366,
+                        382
+                    ],
+                    "raw": "Single quote: \\'"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 51,
+                    "column": 0
+                },
+                "end": {
+                    "line": 51,
+                    "column": 16
+                }
+            },
+            "range": [
+                366,
+                382
+            ],
+            "raw": "Single quote: \\'"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Comma: \\,",
+                    "loc": {
+                        "start": {
+                            "line": 53,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 53,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        384,
+                        393
+                    ],
+                    "raw": "Comma: \\,"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 53,
+                    "column": 0
+                },
+                "end": {
+                    "line": 53,
+                    "column": 9
+                }
+            },
+            "range": [
+                384,
+                393
+            ],
+            "raw": "Comma: \\,"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Forward slash: \\/",
+                    "loc": {
+                        "start": {
+                            "line": 55,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 55,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        395,
+                        412
+                    ],
+                    "raw": "Forward slash: \\/"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 55,
+                    "column": 0
+                },
+                "end": {
+                    "line": 55,
+                    "column": 17
+                }
+            },
+            "range": [
+                395,
+                412
+            ],
+            "raw": "Forward slash: \\/"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Colon: \\:",
+                    "loc": {
+                        "start": {
+                            "line": 57,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 57,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        414,
+                        423
+                    ],
+                    "raw": "Colon: \\:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 57,
+                    "column": 0
+                },
+                "end": {
+                    "line": 57,
+                    "column": 9
+                }
+            },
+            "range": [
+                414,
+                423
+            ],
+            "raw": "Colon: \\:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Semicolon: \\;",
+                    "loc": {
+                        "start": {
+                            "line": 59,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 59,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        425,
+                        438
+                    ],
+                    "raw": "Semicolon: \\;"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 59,
+                    "column": 0
+                },
+                "end": {
+                    "line": 59,
+                    "column": 13
+                }
+            },
+            "range": [
+                425,
+                438
+            ],
+            "raw": "Semicolon: \\;"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Less-than: \\<",
+                    "loc": {
+                        "start": {
+                            "line": 61,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 61,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        440,
+                        453
+                    ],
+                    "raw": "Less-than: \\<"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 61,
+                    "column": 0
+                },
+                "end": {
+                    "line": 61,
+                    "column": 13
+                }
+            },
+            "range": [
+                440,
+                453
+            ],
+            "raw": "Less-than: \\<"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Equals: \\=",
+                    "loc": {
+                        "start": {
+                            "line": 63,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 63,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        455,
+                        465
+                    ],
+                    "raw": "Equals: \\="
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 63,
+                    "column": 0
+                },
+                "end": {
+                    "line": 63,
+                    "column": 10
+                }
+            },
+            "range": [
+                455,
+                465
+            ],
+            "raw": "Equals: \\="
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Question mark: \\?",
+                    "loc": {
+                        "start": {
+                            "line": 65,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 65,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        467,
+                        484
+                    ],
+                    "raw": "Question mark: \\?"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 65,
+                    "column": 0
+                },
+                "end": {
+                    "line": 65,
+                    "column": 17
+                }
+            },
+            "range": [
+                467,
+                484
+            ],
+            "raw": "Question mark: \\?"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "At-sign: \\@",
+                    "loc": {
+                        "start": {
+                            "line": 67,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 67,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        486,
+                        497
+                    ],
+                    "raw": "At-sign: \\@"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 67,
+                    "column": 0
+                },
+                "end": {
+                    "line": 67,
+                    "column": 11
+                }
+            },
+            "range": [
+                486,
+                497
+            ],
+            "raw": "At-sign: \\@"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Caret: \\^",
+                    "loc": {
+                        "start": {
+                            "line": 69,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 69,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        499,
+                        508
+                    ],
+                    "raw": "Caret: \\^"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 69,
+                    "column": 0
+                },
+                "end": {
+                    "line": 69,
+                    "column": 9
+                }
+            },
+            "range": [
+                499,
+                508
+            ],
+            "raw": "Caret: \\^"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "New line: \\\nonly works in paragraphs.",
+                    "loc": {
+                        "start": {
+                            "line": 71,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 72,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        510,
+                        547
+                    ],
+                    "raw": "New line: \\\nonly works in paragraphs."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 71,
+                    "column": 0
+                },
+                "end": {
+                    "line": 72,
+                    "column": 25
+                }
+            },
+            "range": [
+                510,
+                547
+            ],
+            "raw": "New line: \\\nonly works in paragraphs."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "These should not, because they occur within a code block:",
+                    "loc": {
+                        "start": {
+                            "line": 74,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 74,
+                            "column": 57
+                        }
+                    },
+                    "range": [
+                        549,
+                        606
+                    ],
+                    "raw": "These should not, because they occur within a code block:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 74,
+                    "column": 0
+                },
+                "end": {
+                    "line": 74,
+                    "column": 57
+                }
+            },
+            "range": [
+                549,
+                606
+            ],
+            "raw": "These should not, because they occur within a code block:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "Backslash: \\\\\n\nBacktick: \\`\n\nAsterisk: \\*\n\nUnderscore: \\_\n\nLeft brace: \\{\n\nRight brace: \\}\n\nLeft bracket: \\[\n\nRight bracket: \\]\n\nLeft paren: \\(\n\nRight paren: \\)\n\nGreater-than: \\>\n\nHash: \\#\n\nPeriod: \\.\n\nBang: \\!\n\nPlus: \\+\n\nMinus: \\-",
+            "loc": {
+                "start": {
+                    "line": 76,
+                    "column": 0
+                },
+                "end": {
+                    "line": 106,
+                    "column": 10
+                }
+            },
+            "range": [
+                608,
+                855
+            ],
+            "raw": "\tBackslash: \\\\\n\n\tBacktick: \\`\n\n\tAsterisk: \\*\n\n\tUnderscore: \\_\n\n\tLeft brace: \\{\n\n\tRight brace: \\}\n\n\tLeft bracket: \\[\n\n\tRight bracket: \\]\n\n\tLeft paren: \\(\n\n\tRight paren: \\)\n\n\tGreater-than: \\>\n\n\tHash: \\#\n\n\tPeriod: \\.\n\n\tBang: \\!\n\n\tPlus: \\+\n\n\tMinus: \\-"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "GFM:",
+                            "loc": {
+                                "start": {
+                                    "line": 108,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 108,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                859,
+                                863
+                            ],
+                            "raw": "GFM:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 108,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 108,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        857,
+                        865
+                    ],
+                    "raw": "**GFM:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 108,
+                    "column": 0
+                },
+                "end": {
+                    "line": 108,
+                    "column": 8
+                }
+            },
+            "range": [
+                857,
+                865
+            ],
+            "raw": "**GFM:**"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "Pipe: \\|\n\nTilde: \\~",
+            "loc": {
+                "start": {
+                    "line": 110,
+                    "column": 0
+                },
+                "end": {
+                    "line": 112,
+                    "column": 10
+                }
+            },
+            "range": [
+                867,
+                888
+            ],
+            "raw": "\tPipe: \\|\n\n\tTilde: \\~"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Commonmark:",
+                            "loc": {
+                                "start": {
+                                    "line": 114,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 114,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                892,
+                                903
+                            ],
+                            "raw": "Commonmark:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 114,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 114,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        890,
+                        905
+                    ],
+                    "raw": "**Commonmark:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 114,
+                    "column": 0
+                },
+                "end": {
+                    "line": 114,
+                    "column": 15
+                }
+            },
+            "range": [
+                890,
+                905
+            ],
+            "raw": "**Commonmark:**"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "Quote: \\\"\n\nDollar: \\$\n\nPercentage: \\%\n\nAmpersand: \\&\n\nSingle quote: \\'\n\nComma: \\,\n\nForward slash: \\/\n\nColon: \\:\n\nSemicolon: \\;\n\nLess-than: \\<\n\nEquals: \\=\n\nQuestion mark: \\?\n\nAt-sign: \\@\n\nCaret: \\^\n\nNew line: \\\nonly works in paragraphs.",
+            "loc": {
+                "start": {
+                    "line": 116,
+                    "column": 0
+                },
+                "end": {
+                    "line": 145,
+                    "column": 26
+                }
+            },
+            "range": [
+                907,
+                1158
+            ],
+            "raw": "\tQuote: \\\"\n\n\tDollar: \\$\n\n\tPercentage: \\%\n\n\tAmpersand: \\&\n\n\tSingle quote: \\'\n\n\tComma: \\,\n\n\tForward slash: \\/\n\n\tColon: \\:\n\n\tSemicolon: \\;\n\n\tLess-than: \\<\n\n\tEquals: \\=\n\n\tQuestion mark: \\?\n\n\tAt-sign: \\@\n\n\tCaret: \\^\n\n\tNew line: \\\n\tonly works in paragraphs."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Nor should these, which occur in code spans:",
+                    "loc": {
+                        "start": {
+                            "line": 148,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 148,
+                            "column": 44
+                        }
+                    },
+                    "range": [
+                        1161,
+                        1205
+                    ],
+                    "raw": "Nor should these, which occur in code spans:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 148,
+                    "column": 0
+                },
+                "end": {
+                    "line": 148,
+                    "column": 44
+                }
+            },
+            "range": [
+                1161,
+                1205
+            ],
+            "raw": "Nor should these, which occur in code spans:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Backslash: ",
+                    "loc": {
+                        "start": {
+                            "line": 150,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 150,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1207,
+                        1218
+                    ],
+                    "raw": "Backslash: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\\\",
+                    "loc": {
+                        "start": {
+                            "line": 150,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 150,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1218,
+                        1222
+                    ],
+                    "raw": "`\\\\`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 150,
+                    "column": 0
+                },
+                "end": {
+                    "line": 150,
+                    "column": 15
+                }
+            },
+            "range": [
+                1207,
+                1222
+            ],
+            "raw": "Backslash: `\\\\`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Backtick: ",
+                    "loc": {
+                        "start": {
+                            "line": 152,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 152,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        1224,
+                        1234
+                    ],
+                    "raw": "Backtick: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\`",
+                    "loc": {
+                        "start": {
+                            "line": 152,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 152,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        1234,
+                        1242
+                    ],
+                    "raw": "`` \\` ``"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 152,
+                    "column": 0
+                },
+                "end": {
+                    "line": 152,
+                    "column": 18
+                }
+            },
+            "range": [
+                1224,
+                1242
+            ],
+            "raw": "Backtick: `` \\` ``"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Asterisk: ",
+                    "loc": {
+                        "start": {
+                            "line": 154,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 154,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        1244,
+                        1254
+                    ],
+                    "raw": "Asterisk: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\*",
+                    "loc": {
+                        "start": {
+                            "line": 154,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 154,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        1254,
+                        1258
+                    ],
+                    "raw": "`\\*`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 154,
+                    "column": 0
+                },
+                "end": {
+                    "line": 154,
+                    "column": 14
+                }
+            },
+            "range": [
+                1244,
+                1258
+            ],
+            "raw": "Asterisk: `\\*`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Underscore: ",
+                    "loc": {
+                        "start": {
+                            "line": 156,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 156,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        1260,
+                        1272
+                    ],
+                    "raw": "Underscore: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\_",
+                    "loc": {
+                        "start": {
+                            "line": 156,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 156,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        1272,
+                        1276
+                    ],
+                    "raw": "`\\_`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 156,
+                    "column": 0
+                },
+                "end": {
+                    "line": 156,
+                    "column": 16
+                }
+            },
+            "range": [
+                1260,
+                1276
+            ],
+            "raw": "Underscore: `\\_`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Left brace: ",
+                    "loc": {
+                        "start": {
+                            "line": 158,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 158,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        1278,
+                        1290
+                    ],
+                    "raw": "Left brace: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\{",
+                    "loc": {
+                        "start": {
+                            "line": 158,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 158,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        1290,
+                        1294
+                    ],
+                    "raw": "`\\{`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 158,
+                    "column": 0
+                },
+                "end": {
+                    "line": 158,
+                    "column": 16
+                }
+            },
+            "range": [
+                1278,
+                1294
+            ],
+            "raw": "Left brace: `\\{`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Right brace: ",
+                    "loc": {
+                        "start": {
+                            "line": 160,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 160,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        1296,
+                        1309
+                    ],
+                    "raw": "Right brace: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\}",
+                    "loc": {
+                        "start": {
+                            "line": 160,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 160,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        1309,
+                        1313
+                    ],
+                    "raw": "`\\}`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 160,
+                    "column": 0
+                },
+                "end": {
+                    "line": 160,
+                    "column": 17
+                }
+            },
+            "range": [
+                1296,
+                1313
+            ],
+            "raw": "Right brace: `\\}`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Left bracket: ",
+                    "loc": {
+                        "start": {
+                            "line": 162,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 162,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        1315,
+                        1329
+                    ],
+                    "raw": "Left bracket: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\[",
+                    "loc": {
+                        "start": {
+                            "line": 162,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 162,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        1329,
+                        1333
+                    ],
+                    "raw": "`\\[`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 162,
+                    "column": 0
+                },
+                "end": {
+                    "line": 162,
+                    "column": 18
+                }
+            },
+            "range": [
+                1315,
+                1333
+            ],
+            "raw": "Left bracket: `\\[`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Right bracket: ",
+                    "loc": {
+                        "start": {
+                            "line": 164,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 164,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1335,
+                        1350
+                    ],
+                    "raw": "Right bracket: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\]",
+                    "loc": {
+                        "start": {
+                            "line": 164,
+                            "column": 15
+                        },
+                        "end": {
+                            "line": 164,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        1350,
+                        1354
+                    ],
+                    "raw": "`\\]`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 164,
+                    "column": 0
+                },
+                "end": {
+                    "line": 164,
+                    "column": 19
+                }
+            },
+            "range": [
+                1335,
+                1354
+            ],
+            "raw": "Right bracket: `\\]`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Left paren: ",
+                    "loc": {
+                        "start": {
+                            "line": 166,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 166,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        1356,
+                        1368
+                    ],
+                    "raw": "Left paren: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\(",
+                    "loc": {
+                        "start": {
+                            "line": 166,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 166,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        1368,
+                        1372
+                    ],
+                    "raw": "`\\(`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 166,
+                    "column": 0
+                },
+                "end": {
+                    "line": 166,
+                    "column": 16
+                }
+            },
+            "range": [
+                1356,
+                1372
+            ],
+            "raw": "Left paren: `\\(`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Right paren: ",
+                    "loc": {
+                        "start": {
+                            "line": 168,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 168,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        1374,
+                        1387
+                    ],
+                    "raw": "Right paren: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\)",
+                    "loc": {
+                        "start": {
+                            "line": 168,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 168,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        1387,
+                        1391
+                    ],
+                    "raw": "`\\)`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 168,
+                    "column": 0
+                },
+                "end": {
+                    "line": 168,
+                    "column": 17
+                }
+            },
+            "range": [
+                1374,
+                1391
+            ],
+            "raw": "Right paren: `\\)`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Greater-than: ",
+                    "loc": {
+                        "start": {
+                            "line": 170,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 170,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        1393,
+                        1407
+                    ],
+                    "raw": "Greater-than: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\>",
+                    "loc": {
+                        "start": {
+                            "line": 170,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 170,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        1407,
+                        1411
+                    ],
+                    "raw": "`\\>`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 170,
+                    "column": 0
+                },
+                "end": {
+                    "line": 170,
+                    "column": 18
+                }
+            },
+            "range": [
+                1393,
+                1411
+            ],
+            "raw": "Greater-than: `\\>`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hash: ",
+                    "loc": {
+                        "start": {
+                            "line": 172,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 172,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        1413,
+                        1419
+                    ],
+                    "raw": "Hash: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\#",
+                    "loc": {
+                        "start": {
+                            "line": 172,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 172,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        1419,
+                        1423
+                    ],
+                    "raw": "`\\#`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 172,
+                    "column": 0
+                },
+                "end": {
+                    "line": 172,
+                    "column": 10
+                }
+            },
+            "range": [
+                1413,
+                1423
+            ],
+            "raw": "Hash: `\\#`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Period: ",
+                    "loc": {
+                        "start": {
+                            "line": 174,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 174,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        1425,
+                        1433
+                    ],
+                    "raw": "Period: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\.",
+                    "loc": {
+                        "start": {
+                            "line": 174,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 174,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        1433,
+                        1437
+                    ],
+                    "raw": "`\\.`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 174,
+                    "column": 0
+                },
+                "end": {
+                    "line": 174,
+                    "column": 12
+                }
+            },
+            "range": [
+                1425,
+                1437
+            ],
+            "raw": "Period: `\\.`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Bang: ",
+                    "loc": {
+                        "start": {
+                            "line": 176,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 176,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        1439,
+                        1445
+                    ],
+                    "raw": "Bang: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\!",
+                    "loc": {
+                        "start": {
+                            "line": 176,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 176,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        1445,
+                        1449
+                    ],
+                    "raw": "`\\!`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 176,
+                    "column": 0
+                },
+                "end": {
+                    "line": 176,
+                    "column": 10
+                }
+            },
+            "range": [
+                1439,
+                1449
+            ],
+            "raw": "Bang: `\\!`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Plus: ",
+                    "loc": {
+                        "start": {
+                            "line": 178,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 178,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        1451,
+                        1457
+                    ],
+                    "raw": "Plus: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\+",
+                    "loc": {
+                        "start": {
+                            "line": 178,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 178,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        1457,
+                        1461
+                    ],
+                    "raw": "`\\+`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 178,
+                    "column": 0
+                },
+                "end": {
+                    "line": 178,
+                    "column": 10
+                }
+            },
+            "range": [
+                1451,
+                1461
+            ],
+            "raw": "Plus: `\\+`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Minus: ",
+                    "loc": {
+                        "start": {
+                            "line": 180,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 180,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        1463,
+                        1470
+                    ],
+                    "raw": "Minus: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\-",
+                    "loc": {
+                        "start": {
+                            "line": 180,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 180,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1470,
+                        1474
+                    ],
+                    "raw": "`\\-`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 180,
+                    "column": 0
+                },
+                "end": {
+                    "line": 180,
+                    "column": 11
+                }
+            },
+            "range": [
+                1463,
+                1474
+            ],
+            "raw": "Minus: `\\-`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "GFM:",
+                            "loc": {
+                                "start": {
+                                    "line": 182,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 182,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                1478,
+                                1482
+                            ],
+                            "raw": "GFM:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 182,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 182,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        1476,
+                        1484
+                    ],
+                    "raw": "**GFM:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 182,
+                    "column": 0
+                },
+                "end": {
+                    "line": 182,
+                    "column": 8
+                }
+            },
+            "range": [
+                1476,
+                1484
+            ],
+            "raw": "**GFM:**"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Pipe: ",
+                    "loc": {
+                        "start": {
+                            "line": 184,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 184,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        1486,
+                        1492
+                    ],
+                    "raw": "Pipe: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\|",
+                    "loc": {
+                        "start": {
+                            "line": 184,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 184,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        1492,
+                        1496
+                    ],
+                    "raw": "`\\|`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 184,
+                    "column": 0
+                },
+                "end": {
+                    "line": 184,
+                    "column": 10
+                }
+            },
+            "range": [
+                1486,
+                1496
+            ],
+            "raw": "Pipe: `\\|`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Tilde: ",
+                    "loc": {
+                        "start": {
+                            "line": 186,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 186,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        1498,
+                        1505
+                    ],
+                    "raw": "Tilde: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\~",
+                    "loc": {
+                        "start": {
+                            "line": 186,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 186,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1505,
+                        1509
+                    ],
+                    "raw": "`\\~`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 186,
+                    "column": 0
+                },
+                "end": {
+                    "line": 186,
+                    "column": 11
+                }
+            },
+            "range": [
+                1498,
+                1509
+            ],
+            "raw": "Tilde: `\\~`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Commonmark:",
+                            "loc": {
+                                "start": {
+                                    "line": 188,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 188,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                1513,
+                                1524
+                            ],
+                            "raw": "Commonmark:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 188,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 188,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1511,
+                        1526
+                    ],
+                    "raw": "**Commonmark:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 188,
+                    "column": 0
+                },
+                "end": {
+                    "line": 188,
+                    "column": 15
+                }
+            },
+            "range": [
+                1511,
+                1526
+            ],
+            "raw": "**Commonmark:**"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Quote: ",
+                    "loc": {
+                        "start": {
+                            "line": 190,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 190,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        1528,
+                        1535
+                    ],
+                    "raw": "Quote: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\\"",
+                    "loc": {
+                        "start": {
+                            "line": 190,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 190,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1535,
+                        1539
+                    ],
+                    "raw": "`\\\"`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 190,
+                    "column": 0
+                },
+                "end": {
+                    "line": 190,
+                    "column": 11
+                }
+            },
+            "range": [
+                1528,
+                1539
+            ],
+            "raw": "Quote: `\\\"`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Dollar: ",
+                    "loc": {
+                        "start": {
+                            "line": 192,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 192,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        1541,
+                        1549
+                    ],
+                    "raw": "Dollar: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\$",
+                    "loc": {
+                        "start": {
+                            "line": 192,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 192,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        1549,
+                        1553
+                    ],
+                    "raw": "`\\$`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 192,
+                    "column": 0
+                },
+                "end": {
+                    "line": 192,
+                    "column": 12
+                }
+            },
+            "range": [
+                1541,
+                1553
+            ],
+            "raw": "Dollar: `\\$`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Percentage: ",
+                    "loc": {
+                        "start": {
+                            "line": 194,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 194,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        1555,
+                        1567
+                    ],
+                    "raw": "Percentage: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\%",
+                    "loc": {
+                        "start": {
+                            "line": 194,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 194,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        1567,
+                        1571
+                    ],
+                    "raw": "`\\%`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 194,
+                    "column": 0
+                },
+                "end": {
+                    "line": 194,
+                    "column": 16
+                }
+            },
+            "range": [
+                1555,
+                1571
+            ],
+            "raw": "Percentage: `\\%`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Ampersand: ",
+                    "loc": {
+                        "start": {
+                            "line": 196,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 196,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1573,
+                        1584
+                    ],
+                    "raw": "Ampersand: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\&",
+                    "loc": {
+                        "start": {
+                            "line": 196,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 196,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1584,
+                        1588
+                    ],
+                    "raw": "`\\&`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 196,
+                    "column": 0
+                },
+                "end": {
+                    "line": 196,
+                    "column": 15
+                }
+            },
+            "range": [
+                1573,
+                1588
+            ],
+            "raw": "Ampersand: `\\&`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Single quote: ",
+                    "loc": {
+                        "start": {
+                            "line": 198,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 198,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        1590,
+                        1604
+                    ],
+                    "raw": "Single quote: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\'",
+                    "loc": {
+                        "start": {
+                            "line": 198,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 198,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        1604,
+                        1608
+                    ],
+                    "raw": "`\\'`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 198,
+                    "column": 0
+                },
+                "end": {
+                    "line": 198,
+                    "column": 18
+                }
+            },
+            "range": [
+                1590,
+                1608
+            ],
+            "raw": "Single quote: `\\'`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Comma: ",
+                    "loc": {
+                        "start": {
+                            "line": 200,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 200,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        1610,
+                        1617
+                    ],
+                    "raw": "Comma: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\,",
+                    "loc": {
+                        "start": {
+                            "line": 200,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 200,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1617,
+                        1621
+                    ],
+                    "raw": "`\\,`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 200,
+                    "column": 0
+                },
+                "end": {
+                    "line": 200,
+                    "column": 11
+                }
+            },
+            "range": [
+                1610,
+                1621
+            ],
+            "raw": "Comma: `\\,`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Forward slash: ",
+                    "loc": {
+                        "start": {
+                            "line": 202,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 202,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1623,
+                        1638
+                    ],
+                    "raw": "Forward slash: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\/",
+                    "loc": {
+                        "start": {
+                            "line": 202,
+                            "column": 15
+                        },
+                        "end": {
+                            "line": 202,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        1638,
+                        1642
+                    ],
+                    "raw": "`\\/`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 202,
+                    "column": 0
+                },
+                "end": {
+                    "line": 202,
+                    "column": 19
+                }
+            },
+            "range": [
+                1623,
+                1642
+            ],
+            "raw": "Forward slash: `\\/`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Colon: ",
+                    "loc": {
+                        "start": {
+                            "line": 204,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 204,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        1644,
+                        1651
+                    ],
+                    "raw": "Colon: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\:",
+                    "loc": {
+                        "start": {
+                            "line": 204,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 204,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1651,
+                        1655
+                    ],
+                    "raw": "`\\:`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 204,
+                    "column": 0
+                },
+                "end": {
+                    "line": 204,
+                    "column": 11
+                }
+            },
+            "range": [
+                1644,
+                1655
+            ],
+            "raw": "Colon: `\\:`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Semicolon: ",
+                    "loc": {
+                        "start": {
+                            "line": 206,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 206,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1657,
+                        1668
+                    ],
+                    "raw": "Semicolon: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\;",
+                    "loc": {
+                        "start": {
+                            "line": 206,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 206,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1668,
+                        1672
+                    ],
+                    "raw": "`\\;`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 206,
+                    "column": 0
+                },
+                "end": {
+                    "line": 206,
+                    "column": 15
+                }
+            },
+            "range": [
+                1657,
+                1672
+            ],
+            "raw": "Semicolon: `\\;`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Less-than: ",
+                    "loc": {
+                        "start": {
+                            "line": 208,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 208,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1674,
+                        1685
+                    ],
+                    "raw": "Less-than: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\<",
+                    "loc": {
+                        "start": {
+                            "line": 208,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 208,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1685,
+                        1689
+                    ],
+                    "raw": "`\\<`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 208,
+                    "column": 0
+                },
+                "end": {
+                    "line": 208,
+                    "column": 15
+                }
+            },
+            "range": [
+                1674,
+                1689
+            ],
+            "raw": "Less-than: `\\<`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Equals: ",
+                    "loc": {
+                        "start": {
+                            "line": 210,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 210,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        1691,
+                        1699
+                    ],
+                    "raw": "Equals: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\=",
+                    "loc": {
+                        "start": {
+                            "line": 210,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 210,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        1699,
+                        1703
+                    ],
+                    "raw": "`\\=`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 210,
+                    "column": 0
+                },
+                "end": {
+                    "line": 210,
+                    "column": 12
+                }
+            },
+            "range": [
+                1691,
+                1703
+            ],
+            "raw": "Equals: `\\=`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Question mark: ",
+                    "loc": {
+                        "start": {
+                            "line": 212,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 212,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1705,
+                        1720
+                    ],
+                    "raw": "Question mark: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\?",
+                    "loc": {
+                        "start": {
+                            "line": 212,
+                            "column": 15
+                        },
+                        "end": {
+                            "line": 212,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        1720,
+                        1724
+                    ],
+                    "raw": "`\\?`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 212,
+                    "column": 0
+                },
+                "end": {
+                    "line": 212,
+                    "column": 19
+                }
+            },
+            "range": [
+                1705,
+                1724
+            ],
+            "raw": "Question mark: `\\?`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "At-sign: ",
+                    "loc": {
+                        "start": {
+                            "line": 214,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 214,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        1726,
+                        1735
+                    ],
+                    "raw": "At-sign: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\@",
+                    "loc": {
+                        "start": {
+                            "line": 214,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 214,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        1735,
+                        1739
+                    ],
+                    "raw": "`\\@`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 214,
+                    "column": 0
+                },
+                "end": {
+                    "line": 214,
+                    "column": 13
+                }
+            },
+            "range": [
+                1726,
+                1739
+            ],
+            "raw": "At-sign: `\\@`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Caret: ",
+                    "loc": {
+                        "start": {
+                            "line": 216,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 216,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        1741,
+                        1748
+                    ],
+                    "raw": "Caret: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\^",
+                    "loc": {
+                        "start": {
+                            "line": 216,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 216,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1748,
+                        1752
+                    ],
+                    "raw": "`\\^`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 216,
+                    "column": 0
+                },
+                "end": {
+                    "line": 216,
+                    "column": 11
+                }
+            },
+            "range": [
+                1741,
+                1752
+            ],
+            "raw": "Caret: `\\^`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "New line: ",
+                    "loc": {
+                        "start": {
+                            "line": 218,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 218,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        1754,
+                        1764
+                    ],
+                    "raw": "New line: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\",
+                    "loc": {
+                        "start": {
+                            "line": 218,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 219,
+                            "column": 1
+                        }
+                    },
+                    "range": [
+                        1764,
+                        1768
+                    ],
+                    "raw": "`\\\n`"
+                },
+                {
+                    "type": "Str",
+                    "value": " only works in paragraphs.",
+                    "loc": {
+                        "start": {
+                            "line": 219,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 219,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        1768,
+                        1794
+                    ],
+                    "raw": " only works in paragraphs."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 218,
+                    "column": 0
+                },
+                "end": {
+                    "line": 219,
+                    "column": 27
+                }
+            },
+            "range": [
+                1754,
+                1794
+            ],
+            "raw": "New line: `\\\n` only works in paragraphs."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "These should get escaped, even though they're matching pairs for\nother Markdown constructs:",
+                    "loc": {
+                        "start": {
+                            "line": 221,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 222,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        1796,
+                        1887
+                    ],
+                    "raw": "These should get escaped, even though they're matching pairs for\nother Markdown constructs:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 221,
+                    "column": 0
+                },
+                "end": {
+                    "line": 222,
+                    "column": 26
+                }
+            },
+            "range": [
+                1796,
+                1887
+            ],
+            "raw": "These should get escaped, even though they're matching pairs for\nother Markdown constructs:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 224,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 224,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        1889,
+                        1891
+                    ],
+                    "raw": "\\*"
+                },
+                {
+                    "type": "Str",
+                    "value": "asterisks",
+                    "loc": {
+                        "start": {
+                            "line": 224,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 224,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1891,
+                        1900
+                    ],
+                    "raw": "asterisks"
+                },
+                {
+                    "type": "Str",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 224,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 224,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        1900,
+                        1902
+                    ],
+                    "raw": "\\*"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 224,
+                    "column": 0
+                },
+                "end": {
+                    "line": 224,
+                    "column": 13
+                }
+            },
+            "range": [
+                1889,
+                1902
+            ],
+            "raw": "\\*asterisks\\*"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 226,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 226,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        1904,
+                        1906
+                    ],
+                    "raw": "\\_"
+                },
+                {
+                    "type": "Str",
+                    "value": "underscores",
+                    "loc": {
+                        "start": {
+                            "line": 226,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 226,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        1906,
+                        1917
+                    ],
+                    "raw": "underscores"
+                },
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 226,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 226,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1917,
+                        1919
+                    ],
+                    "raw": "\\_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 226,
+                    "column": 0
+                },
+                "end": {
+                    "line": 226,
+                    "column": 15
+                }
+            },
+            "range": [
+                1904,
+                1919
+            ],
+            "raw": "\\_underscores\\_"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "`",
+                    "loc": {
+                        "start": {
+                            "line": 228,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 228,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        1921,
+                        1923
+                    ],
+                    "raw": "\\`"
+                },
+                {
+                    "type": "Str",
+                    "value": "backticks",
+                    "loc": {
+                        "start": {
+                            "line": 228,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 228,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1923,
+                        1932
+                    ],
+                    "raw": "backticks"
+                },
+                {
+                    "type": "Str",
+                    "value": "`",
+                    "loc": {
+                        "start": {
+                            "line": 228,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 228,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        1932,
+                        1934
+                    ],
+                    "raw": "\\`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 228,
+                    "column": 0
+                },
+                "end": {
+                    "line": 228,
+                    "column": 13
+                }
+            },
+            "range": [
+                1921,
+                1934
+            ],
+            "raw": "\\`backticks\\`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a code span with a literal backslash-backtick sequence: ",
+                    "loc": {
+                        "start": {
+                            "line": 230,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 230,
+                            "column": 64
+                        }
+                    },
+                    "range": [
+                        1936,
+                        2000
+                    ],
+                    "raw": "This is a code span with a literal backslash-backtick sequence: "
+                },
+                {
+                    "type": "Code",
+                    "value": "\\`",
+                    "loc": {
+                        "start": {
+                            "line": 230,
+                            "column": 64
+                        },
+                        "end": {
+                            "line": 230,
+                            "column": 72
+                        }
+                    },
+                    "range": [
+                        2000,
+                        2008
+                    ],
+                    "raw": "`` \\` ``"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 230,
+                    "column": 0
+                },
+                "end": {
+                    "line": 230,
+                    "column": 72
+                }
+            },
+            "range": [
+                1936,
+                2008
+            ],
+            "raw": "This is a code span with a literal backslash-backtick sequence: `` \\` ``"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a tag with unescaped backticks ",
+                    "loc": {
+                        "start": {
+                            "line": 232,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 232,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        2010,
+                        2049
+                    ],
+                    "raw": "This is a tag with unescaped backticks "
+                },
+                {
+                    "type": "Html",
+                    "value": "<span attr='`ticks`'>",
+                    "loc": {
+                        "start": {
+                            "line": 232,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 232,
+                            "column": 60
+                        }
+                    },
+                    "range": [
+                        2049,
+                        2070
+                    ],
+                    "raw": "<span attr='`ticks`'>"
+                },
+                {
+                    "type": "Str",
+                    "value": "bar",
+                    "loc": {
+                        "start": {
+                            "line": 232,
+                            "column": 60
+                        },
+                        "end": {
+                            "line": 232,
+                            "column": 63
+                        }
+                    },
+                    "range": [
+                        2070,
+                        2073
+                    ],
+                    "raw": "bar"
+                },
+                {
+                    "type": "Html",
+                    "value": "</span>",
+                    "loc": {
+                        "start": {
+                            "line": 232,
+                            "column": 63
+                        },
+                        "end": {
+                            "line": 232,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        2073,
+                        2080
+                    ],
+                    "raw": "</span>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 232,
+                            "column": 70
+                        },
+                        "end": {
+                            "line": 232,
+                            "column": 71
+                        }
+                    },
+                    "range": [
+                        2080,
+                        2081
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 232,
+                    "column": 0
+                },
+                "end": {
+                    "line": 232,
+                    "column": 71
+                }
+            },
+            "range": [
+                2010,
+                2081
+            ],
+            "raw": "This is a tag with unescaped backticks <span attr='`ticks`'>bar</span>."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a tag with backslashes ",
+                    "loc": {
+                        "start": {
+                            "line": 234,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 234,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        2083,
+                        2114
+                    ],
+                    "raw": "This is a tag with backslashes "
+                },
+                {
+                    "type": "Html",
+                    "value": "<span attr='\\\\backslashes\\\\'>",
+                    "loc": {
+                        "start": {
+                            "line": 234,
+                            "column": 31
+                        },
+                        "end": {
+                            "line": 234,
+                            "column": 60
+                        }
+                    },
+                    "range": [
+                        2114,
+                        2143
+                    ],
+                    "raw": "<span attr='\\\\backslashes\\\\'>"
+                },
+                {
+                    "type": "Str",
+                    "value": "bar",
+                    "loc": {
+                        "start": {
+                            "line": 234,
+                            "column": 60
+                        },
+                        "end": {
+                            "line": 234,
+                            "column": 63
+                        }
+                    },
+                    "range": [
+                        2143,
+                        2146
+                    ],
+                    "raw": "bar"
+                },
+                {
+                    "type": "Html",
+                    "value": "</span>",
+                    "loc": {
+                        "start": {
+                            "line": 234,
+                            "column": 63
+                        },
+                        "end": {
+                            "line": 234,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        2146,
+                        2153
+                    ],
+                    "raw": "</span>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 234,
+                            "column": 70
+                        },
+                        "end": {
+                            "line": 234,
+                            "column": 71
+                        }
+                    },
+                    "range": [
+                        2153,
+                        2154
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 234,
+                    "column": 0
+                },
+                "end": {
+                    "line": 234,
+                    "column": 71
+                }
+            },
+            "range": [
+                2083,
+                2154
+            ],
+            "raw": "This is a tag with backslashes <span attr='\\\\backslashes\\\\'>bar</span>."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 235,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        2155
+    ],
+    "raw": "These should all get escaped:\n\nBackslash: \\\\\n\nBacktick: \\`\n\nAsterisk: \\*\n\nUnderscore: \\_\n\nLeft brace: \\{\n\nRight brace: \\}\n\nLeft bracket: \\[\n\nRight bracket: \\]\n\nLeft paren: \\(\n\nRight paren: \\)\n\nGreater-than: \\>\n\nHash: \\#\n\nPeriod: \\.\n\nBang: \\!\n\nPlus: \\+\n\nMinus: \\-\n\n**GFM:**\n\nPipe: \\|\n\nTilde: \\~\n\n**Commonmark:**\n\nQuote: \\\"\n\nDollar: \\$\n\nPercentage: \\%\n\nAmpersand: \\&\n\nSingle quote: \\'\n\nComma: \\,\n\nForward slash: \\/\n\nColon: \\:\n\nSemicolon: \\;\n\nLess-than: \\<\n\nEquals: \\=\n\nQuestion mark: \\?\n\nAt-sign: \\@\n\nCaret: \\^\n\nNew line: \\\nonly works in paragraphs.\n\nThese should not, because they occur within a code block:\n\n\tBackslash: \\\\\n\n\tBacktick: \\`\n\n\tAsterisk: \\*\n\n\tUnderscore: \\_\n\n\tLeft brace: \\{\n\n\tRight brace: \\}\n\n\tLeft bracket: \\[\n\n\tRight bracket: \\]\n\n\tLeft paren: \\(\n\n\tRight paren: \\)\n\n\tGreater-than: \\>\n\n\tHash: \\#\n\n\tPeriod: \\.\n\n\tBang: \\!\n\n\tPlus: \\+\n\n\tMinus: \\-\n\n**GFM:**\n\n\tPipe: \\|\n\n\tTilde: \\~\n\n**Commonmark:**\n\n\tQuote: \\\"\n\n\tDollar: \\$\n\n\tPercentage: \\%\n\n\tAmpersand: \\&\n\n\tSingle quote: \\'\n\n\tComma: \\,\n\n\tForward slash: \\/\n\n\tColon: \\:\n\n\tSemicolon: \\;\n\n\tLess-than: \\<\n\n\tEquals: \\=\n\n\tQuestion mark: \\?\n\n\tAt-sign: \\@\n\n\tCaret: \\^\n\n\tNew line: \\\n\tonly works in paragraphs.\n\n\nNor should these, which occur in code spans:\n\nBackslash: `\\\\`\n\nBacktick: `` \\` ``\n\nAsterisk: `\\*`\n\nUnderscore: `\\_`\n\nLeft brace: `\\{`\n\nRight brace: `\\}`\n\nLeft bracket: `\\[`\n\nRight bracket: `\\]`\n\nLeft paren: `\\(`\n\nRight paren: `\\)`\n\nGreater-than: `\\>`\n\nHash: `\\#`\n\nPeriod: `\\.`\n\nBang: `\\!`\n\nPlus: `\\+`\n\nMinus: `\\-`\n\n**GFM:**\n\nPipe: `\\|`\n\nTilde: `\\~`\n\n**Commonmark:**\n\nQuote: `\\\"`\n\nDollar: `\\$`\n\nPercentage: `\\%`\n\nAmpersand: `\\&`\n\nSingle quote: `\\'`\n\nComma: `\\,`\n\nForward slash: `\\/`\n\nColon: `\\:`\n\nSemicolon: `\\;`\n\nLess-than: `\\<`\n\nEquals: `\\=`\n\nQuestion mark: `\\?`\n\nAt-sign: `\\@`\n\nCaret: `\\^`\n\nNew line: `\\\n` only works in paragraphs.\n\nThese should get escaped, even though they're matching pairs for\nother Markdown constructs:\n\n\\*asterisks\\*\n\n\\_underscores\\_\n\n\\`backticks\\`\n\nThis is a code span with a literal backslash-backtick sequence: `` \\` ``\n\nThis is a tag with unescaped backticks <span attr='`ticks`'>bar</span>.\n\nThis is a tag with backslashes <span attr='\\\\backslashes\\\\'>bar</span>.\n"
+}

@@ -1,0 +1,139 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 1",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        2,
+                        11
+                    ],
+                    "raw": "Heading 1"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 9
+                }
+            },
+            "range": [
+                0,
+                21
+            ],
+            "raw": "  Heading 1\n========="
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 2",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        26,
+                        35
+                    ],
+                    "raw": "Heading 2"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 9
+                }
+            },
+            "range": [
+                23,
+                45
+            ],
+            "raw": "   Heading 2\n---------"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Both these headings caused positional problems in on commit daa344c and before.",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 79
+                        }
+                    },
+                    "range": [
+                        47,
+                        126
+                    ],
+                    "raw": "Both these headings caused positional problems in on commit daa344c and before."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 79
+                }
+            },
+            "range": [
+                47,
+                126
+            ],
+            "raw": "Both these headings caused positional problems in on commit daa344c and before."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        127
+    ],
+    "raw": "  Heading 1\n=========\n\n   Heading 2\n---------\n\nBoth these headings caused positional problems in on commit daa344c and before.\n"
+}

@@ -1,0 +1,176 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "emphasis",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                1,
+                                9
+                            ],
+                            "raw": "emphasis"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        0,
+                        10
+                    ],
+                    "raw": "_emphasis_"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        10,
+                        11
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 11
+                }
+            },
+            "range": [
+                0,
+                11
+            ],
+            "raw": "_emphasis_."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "strong",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                15,
+                                21
+                            ],
+                            "raw": "strong"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        13,
+                        23
+                    ],
+                    "raw": "**strong**"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        23,
+                        24
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 11
+                }
+            },
+            "range": [
+                13,
+                24
+            ],
+            "raw": "**strong**."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        25
+    ],
+    "raw": "_emphasis_.\n\n**strong**.\n"
+}

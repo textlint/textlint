@@ -1,0 +1,707 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Different lists should receive two newline characters\nbetween them.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 2,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        4,
+                                        75
+                                    ],
+                                    "raw": "Different lists should receive two newline characters\n    between them."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                4,
+                                75
+                            ],
+                            "raw": "Different lists should receive two newline characters\n    between them."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        0,
+                        75
+                    ],
+                    "raw": "*   Different lists should receive two newline characters\n    between them."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 17
+                }
+            },
+            "range": [
+                0,
+                75
+            ],
+            "raw": "*   Different lists should receive two newline characters\n    between them."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "This is another list.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 25
+                                        }
+                                    },
+                                    "range": [
+                                        82,
+                                        103
+                                    ],
+                                    "raw": "This is another list."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 25
+                                }
+                            },
+                            "range": [
+                                82,
+                                103
+                            ],
+                            "raw": "This is another list."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        78,
+                        103
+                    ],
+                    "raw": "*   This is another list."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 25
+                }
+            },
+            "range": [
+                78,
+                103
+            ],
+            "raw": "*   This is another list."
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "List",
+                    "ordered": false,
+                    "start": null,
+                    "loose": false,
+                    "children": [
+                        {
+                            "type": "ListItem",
+                            "loose": false,
+                            "checked": null,
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "The same goes for lists in block quotes.",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 7,
+                                                    "column": 7
+                                                },
+                                                "end": {
+                                                    "line": 7,
+                                                    "column": 47
+                                                }
+                                            },
+                                            "range": [
+                                                112,
+                                                152
+                                            ],
+                                            "raw": "The same goes for lists in block quotes."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 47
+                                        }
+                                    },
+                                    "range": [
+                                        112,
+                                        152
+                                    ],
+                                    "raw": "The same goes for lists in block quotes."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 47
+                                }
+                            },
+                            "range": [
+                                107,
+                                152
+                            ],
+                            "raw": " *   The same goes for lists in block quotes."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        107,
+                        152
+                    ],
+                    "raw": " *   The same goes for lists in block quotes."
+                },
+                {
+                    "type": "List",
+                    "ordered": false,
+                    "start": null,
+                    "loose": false,
+                    "children": [
+                        {
+                            "type": "ListItem",
+                            "loose": false,
+                            "checked": null,
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "This is another list.",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 10,
+                                                    "column": 7
+                                                },
+                                                "end": {
+                                                    "line": 10,
+                                                    "column": 28
+                                                }
+                                            },
+                                            "range": [
+                                                164,
+                                                185
+                                            ],
+                                            "raw": "This is another list."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 10,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 10,
+                                            "column": 28
+                                        }
+                                    },
+                                    "range": [
+                                        164,
+                                        185
+                                    ],
+                                    "raw": "This is another list."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 28
+                                }
+                            },
+                            "range": [
+                                159,
+                                185
+                            ],
+                            "raw": " *   This is another list."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        159,
+                        185
+                    ],
+                    "raw": " *   This is another list."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 28
+                }
+            },
+            "range": [
+                105,
+                185
+            ],
+            "raw": ">  *   The same goes for lists in block quotes.\n>\n>\n>  *   This is another list."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "And for lists in lists:",
+                                    "loc": {
+                                        "start": {
+                                            "line": 12,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 12,
+                                            "column": 27
+                                        }
+                                    },
+                                    "range": [
+                                        191,
+                                        214
+                                    ],
+                                    "raw": "And for lists in lists:"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 12,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 12,
+                                    "column": 27
+                                }
+                            },
+                            "range": [
+                                191,
+                                214
+                            ],
+                            "raw": "And for lists in lists:"
+                        },
+                        {
+                            "type": "List",
+                            "ordered": true,
+                            "start": 1,
+                            "loose": false,
+                            "children": [
+                                {
+                                    "type": "ListItem",
+                                    "loose": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "First sublist.",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 14,
+                                                            "column": 9
+                                                        },
+                                                        "end": {
+                                                            "line": 14,
+                                                            "column": 23
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        225,
+                                                        239
+                                                    ],
+                                                    "raw": "First sublist."
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 14,
+                                                    "column": 9
+                                                },
+                                                "end": {
+                                                    "line": 14,
+                                                    "column": 23
+                                                }
+                                            },
+                                            "range": [
+                                                225,
+                                                239
+                                            ],
+                                            "raw": "First sublist."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 14,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 14,
+                                            "column": 23
+                                        }
+                                    },
+                                    "range": [
+                                        220,
+                                        239
+                                    ],
+                                    "raw": "1.   First sublist."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 14,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 14,
+                                    "column": 23
+                                }
+                            },
+                            "range": [
+                                220,
+                                239
+                            ],
+                            "raw": "1.   First sublist."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        187,
+                        239
+                    ],
+                    "raw": "*   And for lists in lists:\n\n    1.   First sublist."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 23
+                }
+            },
+            "range": [
+                187,
+                239
+            ],
+            "raw": "*   And for lists in lists:\n\n    1.   First sublist."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "1.   Second sublist.",
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 24
+                }
+            },
+            "range": [
+                242,
+                266
+            ],
+            "raw": "    1.   Second sublist."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And for lists followed by indented code blocks:",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        268,
+                        315
+                    ],
+                    "raw": "And for lists followed by indented code blocks:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 47
+                }
+            },
+            "range": [
+                268,
+                315
+            ],
+            "raw": "And for lists followed by indented code blocks:"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "This is a paragraph in a list",
+                                    "loc": {
+                                        "start": {
+                                            "line": 21,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 21,
+                                            "column": 33
+                                        }
+                                    },
+                                    "range": [
+                                        321,
+                                        350
+                                    ],
+                                    "raw": "This is a paragraph in a list"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 33
+                                }
+                            },
+                            "range": [
+                                321,
+                                350
+                            ],
+                            "raw": "This is a paragraph in a list"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        317,
+                        350
+                    ],
+                    "raw": "*   This is a paragraph in a list"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 33
+                }
+            },
+            "range": [
+                317,
+                350
+            ],
+            "raw": "*   This is a paragraph in a list"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "And this is code();",
+            "loc": {
+                "start": {
+                    "line": 24,
+                    "column": 0
+                },
+                "end": {
+                    "line": 24,
+                    "column": 23
+                }
+            },
+            "range": [
+                353,
+                376
+            ],
+            "raw": "    And this is code();"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 25,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        377
+    ],
+    "raw": "*   Different lists should receive two newline characters\n    between them.\n\n\n*   This is another list.\n\n>  *   The same goes for lists in block quotes.\n>\n>\n>  *   This is another list.\n\n*   And for lists in lists:\n\n    1.   First sublist.\n\n\n    1.   Second sublist.\n\nAnd for lists followed by indented code blocks:\n\n*   This is a paragraph in a list\n\n\n    And this is code();\n"
+}

@@ -1,0 +1,756 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here's a simple block:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        0,
+                        22
+                    ],
+                    "raw": "Here's a simple block:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 22
+                }
+            },
+            "range": [
+                0,
+                22
+            ],
+            "raw": "Here's a simple block:"
+        },
+        {
+            "type": "Html",
+            "value": "<div>\n\tfoo\n</div>",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 6
+                }
+            },
+            "range": [
+                24,
+                41
+            ],
+            "raw": "<div>\n\tfoo\n</div>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This should be a code block, though:",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        43,
+                        79
+                    ],
+                    "raw": "This should be a code block, though:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 36
+                }
+            },
+            "range": [
+                43,
+                79
+            ],
+            "raw": "This should be a code block, though:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<div>\n\tfoo\n</div>",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 7
+                }
+            },
+            "range": [
+                81,
+                101
+            ],
+            "raw": "\t<div>\n\t\tfoo\n\t</div>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "As should this:",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        103,
+                        118
+                    ],
+                    "raw": "As should this:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 15
+                }
+            },
+            "range": [
+                103,
+                118
+            ],
+            "raw": "As should this:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<div>foo</div>",
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 15
+                }
+            },
+            "range": [
+                120,
+                135
+            ],
+            "raw": "\t<div>foo</div>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Now, nested:",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        137,
+                        149
+                    ],
+                    "raw": "Now, nested:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 12
+                }
+            },
+            "range": [
+                137,
+                149
+            ],
+            "raw": "Now, nested:"
+        },
+        {
+            "type": "Html",
+            "value": "<div>\n\t<div>\n\t\t<div>\n\t\t\tfoo\n\t\t</div>\n\t</div>\n</div>",
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 6
+                }
+            },
+            "range": [
+                151,
+                202
+            ],
+            "raw": "<div>\n\t<div>\n\t\t<div>\n\t\t\tfoo\n\t\t</div>\n\t</div>\n</div>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This should just be an HTML comment:",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        204,
+                        240
+                    ],
+                    "raw": "This should just be an HTML comment:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 36
+                }
+            },
+            "range": [
+                204,
+                240
+            ],
+            "raw": "This should just be an HTML comment:"
+        },
+        {
+            "type": "Html",
+            "value": "<!-- Comment -->",
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 16
+                }
+            },
+            "range": [
+                242,
+                258
+            ],
+            "raw": "<!-- Comment -->"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Multiline:",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        260,
+                        270
+                    ],
+                    "raw": "Multiline:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 31,
+                    "column": 10
+                }
+            },
+            "range": [
+                260,
+                270
+            ],
+            "raw": "Multiline:"
+        },
+        {
+            "type": "Html",
+            "value": "<!--\nBlah\nBlah\n-->",
+            "loc": {
+                "start": {
+                    "line": 33,
+                    "column": 0
+                },
+                "end": {
+                    "line": 36,
+                    "column": 3
+                }
+            },
+            "range": [
+                272,
+                290
+            ],
+            "raw": "<!--\nBlah\nBlah\n-->"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Code block:",
+                    "loc": {
+                        "start": {
+                            "line": 38,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 38,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        292,
+                        303
+                    ],
+                    "raw": "Code block:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 38,
+                    "column": 0
+                },
+                "end": {
+                    "line": 38,
+                    "column": 11
+                }
+            },
+            "range": [
+                292,
+                303
+            ],
+            "raw": "Code block:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<!-- Comment -->",
+            "loc": {
+                "start": {
+                    "line": 40,
+                    "column": 0
+                },
+                "end": {
+                    "line": 40,
+                    "column": 17
+                }
+            },
+            "range": [
+                305,
+                322
+            ],
+            "raw": "\t<!-- Comment -->"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Just plain comment, with trailing spaces on the line:",
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 53
+                        }
+                    },
+                    "range": [
+                        324,
+                        377
+                    ],
+                    "raw": "Just plain comment, with trailing spaces on the line:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 42,
+                    "column": 0
+                },
+                "end": {
+                    "line": 42,
+                    "column": 53
+                }
+            },
+            "range": [
+                324,
+                377
+            ],
+            "raw": "Just plain comment, with trailing spaces on the line:"
+        },
+        {
+            "type": "Html",
+            "value": "<!-- foo -->   ",
+            "loc": {
+                "start": {
+                    "line": 44,
+                    "column": 0
+                },
+                "end": {
+                    "line": 44,
+                    "column": 15
+                }
+            },
+            "range": [
+                379,
+                394
+            ],
+            "raw": "<!-- foo -->   "
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Code:",
+                    "loc": {
+                        "start": {
+                            "line": 46,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 46,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        396,
+                        401
+                    ],
+                    "raw": "Code:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 46,
+                    "column": 0
+                },
+                "end": {
+                    "line": 46,
+                    "column": 5
+                }
+            },
+            "range": [
+                396,
+                401
+            ],
+            "raw": "Code:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<hr>",
+            "loc": {
+                "start": {
+                    "line": 48,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 1
+                }
+            },
+            "range": [
+                403,
+                410
+            ],
+            "raw": "\t<hr>\n\t"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hr's:",
+                    "loc": {
+                        "start": {
+                            "line": 50,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 50,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        411,
+                        416
+                    ],
+                    "raw": "Hr's:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 50,
+                    "column": 0
+                },
+                "end": {
+                    "line": 50,
+                    "column": 5
+                }
+            },
+            "range": [
+                411,
+                416
+            ],
+            "raw": "Hr's:"
+        },
+        {
+            "type": "Html",
+            "value": "<hr>",
+            "loc": {
+                "start": {
+                    "line": 52,
+                    "column": 0
+                },
+                "end": {
+                    "line": 52,
+                    "column": 4
+                }
+            },
+            "range": [
+                418,
+                422
+            ],
+            "raw": "<hr>"
+        },
+        {
+            "type": "Html",
+            "value": "<hr>",
+            "loc": {
+                "start": {
+                    "line": 54,
+                    "column": 0
+                },
+                "end": {
+                    "line": 54,
+                    "column": 4
+                }
+            },
+            "range": [
+                424,
+                428
+            ],
+            "raw": "<hr>"
+        },
+        {
+            "type": "Html",
+            "value": "<hr>",
+            "loc": {
+                "start": {
+                    "line": 56,
+                    "column": 0
+                },
+                "end": {
+                    "line": 56,
+                    "column": 4
+                }
+            },
+            "range": [
+                430,
+                434
+            ],
+            "raw": "<hr>"
+        },
+        {
+            "type": "Html",
+            "value": "<hr>   ",
+            "loc": {
+                "start": {
+                    "line": 58,
+                    "column": 0
+                },
+                "end": {
+                    "line": 58,
+                    "column": 7
+                }
+            },
+            "range": [
+                436,
+                443
+            ],
+            "raw": "<hr>   "
+        },
+        {
+            "type": "Html",
+            "value": "<hr>  ",
+            "loc": {
+                "start": {
+                    "line": 60,
+                    "column": 0
+                },
+                "end": {
+                    "line": 60,
+                    "column": 6
+                }
+            },
+            "range": [
+                445,
+                451
+            ],
+            "raw": "<hr>  "
+        },
+        {
+            "type": "Html",
+            "value": "<hr> ",
+            "loc": {
+                "start": {
+                    "line": 62,
+                    "column": 0
+                },
+                "end": {
+                    "line": 62,
+                    "column": 5
+                }
+            },
+            "range": [
+                453,
+                458
+            ],
+            "raw": "<hr> "
+        },
+        {
+            "type": "Html",
+            "value": "<hr class=\"foo\" id=\"bar\" />",
+            "loc": {
+                "start": {
+                    "line": 64,
+                    "column": 0
+                },
+                "end": {
+                    "line": 64,
+                    "column": 27
+                }
+            },
+            "range": [
+                460,
+                487
+            ],
+            "raw": "<hr class=\"foo\" id=\"bar\" />"
+        },
+        {
+            "type": "Html",
+            "value": "<hr class=\"foo\" id=\"bar\"/>",
+            "loc": {
+                "start": {
+                    "line": 66,
+                    "column": 0
+                },
+                "end": {
+                    "line": 66,
+                    "column": 26
+                }
+            },
+            "range": [
+                489,
+                515
+            ],
+            "raw": "<hr class=\"foo\" id=\"bar\"/>"
+        },
+        {
+            "type": "Html",
+            "value": "<hr class=\"foo\" id=\"bar\" >",
+            "loc": {
+                "start": {
+                    "line": 68,
+                    "column": 0
+                },
+                "end": {
+                    "line": 68,
+                    "column": 26
+                }
+            },
+            "range": [
+                517,
+                543
+            ],
+            "raw": "<hr class=\"foo\" id=\"bar\" >"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 69,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        544
+    ],
+    "raw": "Here's a simple block:\n\n<div>\n\tfoo\n</div>\n\nThis should be a code block, though:\n\n\t<div>\n\t\tfoo\n\t</div>\n\nAs should this:\n\n\t<div>foo</div>\n\nNow, nested:\n\n<div>\n\t<div>\n\t\t<div>\n\t\t\tfoo\n\t\t</div>\n\t</div>\n</div>\n\nThis should just be an HTML comment:\n\n<!-- Comment -->\n\nMultiline:\n\n<!--\nBlah\nBlah\n-->\n\nCode block:\n\n\t<!-- Comment -->\n\nJust plain comment, with trailing spaces on the line:\n\n<!-- foo -->   \n\nCode:\n\n\t<hr>\n\t\nHr's:\n\n<hr>\n\n<hr>\n\n<hr>\n\n<hr>   \n\n<hr>  \n\n<hr> \n\n<hr class=\"foo\" id=\"bar\" />\n\n<hr class=\"foo\" id=\"bar\"/>\n\n<hr class=\"foo\" id=\"bar\" >\n"
+}

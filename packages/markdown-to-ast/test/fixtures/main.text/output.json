@@ -1,0 +1,1434 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Definition",
+            "identifier": "test",
+            "title": "Google",
+            "url": "http://google.com/",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 35
+                }
+            },
+            "range": [
+                0,
+                35
+            ],
+            "raw": "[test]: http://google.com/ \"Google\""
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "A heading",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        39,
+                        48
+                    ],
+                    "raw": "A heading"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 11
+                }
+            },
+            "range": [
+                37,
+                48
+            ],
+            "raw": "# A heading"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Just a note, I've found that I can't test my markdown parser vs others.\nFor example, both markdown.js and showdown code blocks in lists wrong. They're\nalso completely ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        50,
+                        217
+                    ],
+                    "raw": "Just a note, I've found that I can't test my markdown parser vs others.\nFor example, both markdown.js and showdown code blocks in lists wrong. They're\nalso completely "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "test",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "inconsistent",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 17
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 29
+                                }
+                            },
+                            "range": [
+                                218,
+                                230
+                            ],
+                            "raw": "inconsistent"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        217,
+                        237
+                    ],
+                    "raw": "[inconsistent][test]"
+                },
+                {
+                    "type": "Str",
+                    "value": " with regards to paragraphs in list items.",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 78
+                        }
+                    },
+                    "range": [
+                        237,
+                        279
+                    ],
+                    "raw": " with regards to paragraphs in list items."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 78
+                }
+            },
+            "range": [
+                50,
+                279
+            ],
+            "raw": "Just a note, I've found that I can't test my markdown parser vs others.\nFor example, both markdown.js and showdown code blocks in lists wrong. They're\nalso completely [inconsistent][test] with regards to paragraphs in list items."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "A link. Not anymore.",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        281,
+                        301
+                    ],
+                    "raw": "A link. Not anymore."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 20
+                }
+            },
+            "range": [
+                281,
+                301
+            ],
+            "raw": "A link. Not anymore."
+        },
+        {
+            "type": "Html",
+            "value": "<aside>This will make me fail the test because\nmarkdown.js doesnt acknowledge arbitrary html blocks =/</aside>",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 63
+                }
+            },
+            "range": [
+                303,
+                413
+            ],
+            "raw": "<aside>This will make me fail the test because\nmarkdown.js doesnt acknowledge arbitrary html blocks =/</aside>"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "List Item 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 14,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 14,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        417,
+                                        428
+                                    ],
+                                    "raw": "List Item 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 14,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 14,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                417,
+                                428
+                            ],
+                            "raw": "List Item 1"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        415,
+                        429
+                    ],
+                    "raw": "* List Item 1\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "List Item 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 16,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 16,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        432,
+                                        443
+                                    ],
+                                    "raw": "List Item 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                432,
+                                443
+                            ],
+                            "raw": "List Item 2"
+                        },
+                        {
+                            "type": "List",
+                            "ordered": false,
+                            "start": null,
+                            "loose": false,
+                            "children": [
+                                {
+                                    "type": "ListItem",
+                                    "loose": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "New List Item 1\nHi, this is a list item.",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 17,
+                                                            "column": 4
+                                                        },
+                                                        "end": {
+                                                            "line": 18,
+                                                            "column": 28
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        448,
+                                                        492
+                                                    ],
+                                                    "raw": "New List Item 1\n    Hi, this is a list item."
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 17,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 18,
+                                                    "column": 28
+                                                }
+                                            },
+                                            "range": [
+                                                448,
+                                                492
+                                            ],
+                                            "raw": "New List Item 1\n    Hi, this is a list item."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 17,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 18,
+                                            "column": 28
+                                        }
+                                    },
+                                    "range": [
+                                        446,
+                                        492
+                                    ],
+                                    "raw": "* New List Item 1\n    Hi, this is a list item."
+                                },
+                                {
+                                    "type": "ListItem",
+                                    "loose": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "New List Item 2\nAnother item\n    Code goes here.\n    Lots of it...",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 19,
+                                                            "column": 4
+                                                        },
+                                                        "end": {
+                                                            "line": 22,
+                                                            "column": 21
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        497,
+                                                        575
+                                                    ],
+                                                    "raw": "New List Item 2\n    Another item\n        Code goes here.\n        Lots of it..."
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 19,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 22,
+                                                    "column": 21
+                                                }
+                                            },
+                                            "range": [
+                                                497,
+                                                575
+                                            ],
+                                            "raw": "New List Item 2\n    Another item\n        Code goes here.\n        Lots of it..."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 19,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 22,
+                                            "column": 21
+                                        }
+                                    },
+                                    "range": [
+                                        495,
+                                        575
+                                    ],
+                                    "raw": "* New List Item 2\n    Another item\n        Code goes here.\n        Lots of it..."
+                                },
+                                {
+                                    "type": "ListItem",
+                                    "loose": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "New List Item 3\nThe last item",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 23,
+                                                            "column": 4
+                                                        },
+                                                        "end": {
+                                                            "line": 24,
+                                                            "column": 17
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        580,
+                                                        613
+                                                    ],
+                                                    "raw": "New List Item 3\n    The last item"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 23,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 24,
+                                                    "column": 17
+                                                }
+                                            },
+                                            "range": [
+                                                580,
+                                                613
+                                            ],
+                                            "raw": "New List Item 3\n    The last item"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 23,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 24,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        578,
+                                        613
+                                    ],
+                                    "raw": "* New List Item 3\n    The last item"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 17,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 24,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                446,
+                                613
+                            ],
+                            "raw": "* New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        430,
+                        614
+                    ],
+                    "raw": "* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "List Item 3\nThe final item.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 26,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 27,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        617,
+                                        644
+                                    ],
+                                    "raw": "List Item 3\nThe final item."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 26,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 27,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                617,
+                                644
+                            ],
+                            "raw": "List Item 3\nThe final item."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 26,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        615,
+                        645
+                    ],
+                    "raw": "* List Item 3\nThe final item.\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "List Item 4\nThe real final item.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 29,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 30,
+                                            "column": 20
+                                        }
+                                    },
+                                    "range": [
+                                        648,
+                                        680
+                                    ],
+                                    "raw": "List Item 4\nThe real final item."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 29,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 30,
+                                    "column": 20
+                                }
+                            },
+                            "range": [
+                                648,
+                                680
+                            ],
+                            "raw": "List Item 4\nThe real final item."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 30,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        646,
+                        680
+                    ],
+                    "raw": "* List Item 4\nThe real final item."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 30,
+                    "column": 20
+                }
+            },
+            "range": [
+                415,
+                680
+            ],
+            "raw": "* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3\nThe final item.\n\n* List Item 4\nThe real final item."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Paragraph.",
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 32,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        682,
+                        692
+                    ],
+                    "raw": "Paragraph."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 32,
+                    "column": 0
+                },
+                "end": {
+                    "line": 32,
+                    "column": 10
+                }
+            },
+            "range": [
+                682,
+                692
+            ],
+            "raw": "Paragraph."
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "List",
+                    "ordered": false,
+                    "start": null,
+                    "loose": false,
+                    "children": [
+                        {
+                            "type": "ListItem",
+                            "loose": false,
+                            "checked": null,
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "bq Item 1",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 34,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 34,
+                                                    "column": 13
+                                                }
+                                            },
+                                            "range": [
+                                                698,
+                                                707
+                                            ],
+                                            "raw": "bq Item 1"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 34,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 34,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        698,
+                                        707
+                                    ],
+                                    "raw": "bq Item 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 34,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 34,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                696,
+                                707
+                            ],
+                            "raw": "* bq Item 1"
+                        },
+                        {
+                            "type": "ListItem",
+                            "loose": false,
+                            "checked": null,
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "bq Item 2",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 35,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 35,
+                                                    "column": 13
+                                                }
+                                            },
+                                            "range": [
+                                                712,
+                                                721
+                                            ],
+                                            "raw": "bq Item 2"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 35,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 35,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        712,
+                                        721
+                                    ],
+                                    "raw": "bq Item 2"
+                                },
+                                {
+                                    "type": "List",
+                                    "ordered": false,
+                                    "start": null,
+                                    "loose": false,
+                                    "children": [
+                                        {
+                                            "type": "ListItem",
+                                            "loose": false,
+                                            "checked": null,
+                                            "children": [
+                                                {
+                                                    "type": "Paragraph",
+                                                    "children": [
+                                                        {
+                                                            "type": "Str",
+                                                            "value": "New bq Item 1",
+                                                            "loc": {
+                                                                "start": {
+                                                                    "line": 36,
+                                                                    "column": 6
+                                                                },
+                                                                "end": {
+                                                                    "line": 36,
+                                                                    "column": 19
+                                                                }
+                                                            },
+                                                            "range": [
+                                                                728,
+                                                                741
+                                                            ],
+                                                            "raw": "New bq Item 1"
+                                                        }
+                                                    ],
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 36,
+                                                            "column": 6
+                                                        },
+                                                        "end": {
+                                                            "line": 36,
+                                                            "column": 19
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        728,
+                                                        741
+                                                    ],
+                                                    "raw": "New bq Item 1"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 36,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 36,
+                                                    "column": 19
+                                                }
+                                            },
+                                            "range": [
+                                                726,
+                                                741
+                                            ],
+                                            "raw": "* New bq Item 1"
+                                        },
+                                        {
+                                            "type": "ListItem",
+                                            "loose": false,
+                                            "checked": null,
+                                            "children": [
+                                                {
+                                                    "type": "Paragraph",
+                                                    "children": [
+                                                        {
+                                                            "type": "Str",
+                                                            "value": "New bq Item 2\nText here",
+                                                            "loc": {
+                                                                "start": {
+                                                                    "line": 37,
+                                                                    "column": 6
+                                                                },
+                                                                "end": {
+                                                                    "line": 38,
+                                                                    "column": 13
+                                                                }
+                                                            },
+                                                            "range": [
+                                                                748,
+                                                                775
+                                                            ],
+                                                            "raw": "New bq Item 2\n>   Text here"
+                                                        }
+                                                    ],
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 37,
+                                                            "column": 6
+                                                        },
+                                                        "end": {
+                                                            "line": 38,
+                                                            "column": 13
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        748,
+                                                        775
+                                                    ],
+                                                    "raw": "New bq Item 2\n>   Text here"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 37,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 38,
+                                                    "column": 13
+                                                }
+                                            },
+                                            "range": [
+                                                746,
+                                                775
+                                            ],
+                                            "raw": "* New bq Item 2\n>   Text here"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 36,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 38,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        726,
+                                        775
+                                    ],
+                                    "raw": "* New bq Item 1\n>   * New bq Item 2\n>   Text here"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 35,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 38,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                710,
+                                775
+                            ],
+                            "raw": "* bq Item 2\n>   * New bq Item 1\n>   * New bq Item 2\n>   Text here"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 34,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 38,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        696,
+                        775
+                    ],
+                    "raw": "* bq Item 1\n> * bq Item 2\n>   * New bq Item 1\n>   * New bq Item 2\n>   Text here"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 34,
+                    "column": 0
+                },
+                "end": {
+                    "line": 38,
+                    "column": 13
+                }
+            },
+            "range": [
+                694,
+                775
+            ],
+            "raw": "> * bq Item 1\n> * bq Item 2\n>   * New bq Item 1\n>   * New bq Item 2\n>   Text here"
+        },
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 40,
+                    "column": 0
+                },
+                "end": {
+                    "line": 40,
+                    "column": 5
+                }
+            },
+            "range": [
+                777,
+                782
+            ],
+            "raw": "* * *"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Another blockquote!\nI really need to get\nmore creative with\nmockup text..\nmarkdown.js breaks here again",
+                            "loc": {
+                                "start": {
+                                    "line": 42,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 46,
+                                    "column": 31
+                                }
+                            },
+                            "range": [
+                                786,
+                                897
+                            ],
+                            "raw": "Another blockquote!\n> I really need to get\n> more creative with\n> mockup text..\n> markdown.js breaks here again"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 46,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        786,
+                        897
+                    ],
+                    "raw": "Another blockquote!\n> I really need to get\n> more creative with\n> mockup text..\n> markdown.js breaks here again"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 42,
+                    "column": 0
+                },
+                "end": {
+                    "line": 46,
+                    "column": 31
+                }
+            },
+            "range": [
+                784,
+                897
+            ],
+            "raw": "> Another blockquote!\n> I really need to get\n> more creative with\n> mockup text..\n> markdown.js breaks here again"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Another Heading",
+                    "loc": {
+                        "start": {
+                            "line": 48,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 48,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        899,
+                        914
+                    ],
+                    "raw": "Another Heading"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 48,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 13
+                }
+            },
+            "range": [
+                899,
+                928
+            ],
+            "raw": "Another Heading\n-------------"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hello ",
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        930,
+                        936
+                    ],
+                    "raw": "Hello "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "world",
+                            "loc": {
+                                "start": {
+                                    "line": 51,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 51,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                937,
+                                942
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        936,
+                        943
+                    ],
+                    "raw": "*world*"
+                },
+                {
+                    "type": "Str",
+                    "value": ". Here is a ",
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        943,
+                        955
+                    ],
+                    "raw": ". Here is a "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "//hello",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "link",
+                            "loc": {
+                                "start": {
+                                    "line": 51,
+                                    "column": 26
+                                },
+                                "end": {
+                                    "line": 51,
+                                    "column": 30
+                                }
+                            },
+                            "range": [
+                                956,
+                                960
+                            ],
+                            "raw": "link"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 40
+                        }
+                    },
+                    "range": [
+                        955,
+                        970
+                    ],
+                    "raw": "[link](//hello)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".\nAnd an image ",
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 40
+                        },
+                        "end": {
+                            "line": 52,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        970,
+                        985
+                    ],
+                    "raw": ".\nAnd an image "
+                },
+                {
+                    "type": "Image",
+                    "title": "a title",
+                    "url": "src",
+                    "alt": "alt",
+                    "loc": {
+                        "start": {
+                            "line": 52,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 52,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        985,
+                        1006
+                    ],
+                    "raw": "![alt](src \"a title\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ".\nAnd an image with an empty alt attribute ",
+                    "loc": {
+                        "start": {
+                            "line": 52,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 53,
+                            "column": 41
+                        }
+                    },
+                    "range": [
+                        1006,
+                        1049
+                    ],
+                    "raw": ".\nAnd an image with an empty alt attribute "
+                },
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "src",
+                    "alt": null,
+                    "loc": {
+                        "start": {
+                            "line": 53,
+                            "column": 41
+                        },
+                        "end": {
+                            "line": 53,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        1049,
+                        1057
+                    ],
+                    "raw": "![](src)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 53,
+                            "column": 49
+                        },
+                        "end": {
+                            "line": 53,
+                            "column": 50
+                        }
+                    },
+                    "range": [
+                        1057,
+                        1058
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 51,
+                    "column": 0
+                },
+                "end": {
+                    "line": 53,
+                    "column": 50
+                }
+            },
+            "range": [
+                930,
+                1058
+            ],
+            "raw": "Hello *world*. Here is a [link](//hello).\nAnd an image ![alt](src \"a title\").\nAnd an image with an empty alt attribute ![](src)."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "Code goes here.\nLots of it...",
+            "loc": {
+                "start": {
+                    "line": 55,
+                    "column": 0
+                },
+                "end": {
+                    "line": 56,
+                    "column": 17
+                }
+            },
+            "range": [
+                1060,
+                1097
+            ],
+            "raw": "    Code goes here.\n    Lots of it..."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 57,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        1098
+    ],
+    "raw": "[test]: http://google.com/ \"Google\"\n\n# A heading\n\nJust a note, I've found that I can't test my markdown parser vs others.\nFor example, both markdown.js and showdown code blocks in lists wrong. They're\nalso completely [inconsistent][test] with regards to paragraphs in list items.\n\nA link. Not anymore.\n\n<aside>This will make me fail the test because\nmarkdown.js doesnt acknowledge arbitrary html blocks =/</aside>\n\n* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3\nThe final item.\n\n* List Item 4\nThe real final item.\n\nParagraph.\n\n> * bq Item 1\n> * bq Item 2\n>   * New bq Item 1\n>   * New bq Item 2\n>   Text here\n\n* * *\n\n> Another blockquote!\n> I really need to get\n> more creative with\n> mockup text..\n> markdown.js breaks here again\n\nAnother Heading\n-------------\n\nHello *world*. Here is a [link](//hello).\nAnd an image ![alt](src \"a title\").\nAnd an image with an empty alt attribute ![](src).\n\n    Code goes here.\n    Lots of it...\n"
+}

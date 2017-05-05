@@ -1,0 +1,222 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Foo",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        2,
+                        5
+                    ],
+                    "raw": "Foo"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 5
+                }
+            },
+            "range": [
+                0,
+                5
+            ],
+            "raw": "# Foo"
+        },
+        {
+            "type": "Table",
+            "align": [
+                null,
+                null,
+                null
+            ],
+            "children": [
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Name",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        9,
+                                        13
+                                    ],
+                                    "raw": "Name"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                9,
+                                13
+                            ],
+                            "raw": "Name"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "GitHub",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        16,
+                                        22
+                                    ],
+                                    "raw": "GitHub"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                16,
+                                22
+                            ],
+                            "raw": "GitHub"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Twitter",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 18
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 25
+                                        }
+                                    },
+                                    "range": [
+                                        25,
+                                        32
+                                    ],
+                                    "raw": "Twitter"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 18
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 25
+                                }
+                            },
+                            "range": [
+                                25,
+                                32
+                            ],
+                            "raw": "Twitter"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        7,
+                        34
+                    ],
+                    "raw": "| Name | GitHub | Twitter |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 27
+                }
+            },
+            "range": [
+                7,
+                62
+            ],
+            "raw": "| Name | GitHub | Twitter |\n| ---- | ------ | ------- |"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 5,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        63
+    ],
+    "raw": "# Foo\n\n| Name | GitHub | Twitter |\n| ---- | ------ | ------- |\n"
+}

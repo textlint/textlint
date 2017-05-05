@@ -1,0 +1,704 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Ordered",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        3,
+                        10
+                    ],
+                    "raw": "Ordered"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                10
+            ],
+            "raw": "## Ordered"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Tight:",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        12,
+                        18
+                    ],
+                    "raw": "Tight:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 6
+                }
+            },
+            "range": [
+                12,
+                18
+            ],
+            "raw": "Tight:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "1)\tFirst\n2)\tSecond\n3)\tThird",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        20,
+                        47
+                    ],
+                    "raw": "1)\tFirst\n2)\tSecond\n3)\tThird"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 8
+                }
+            },
+            "range": [
+                20,
+                47
+            ],
+            "raw": "1)\tFirst\n2)\tSecond\n3)\tThird"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "and:",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        49,
+                        53
+                    ],
+                    "raw": "and:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 4
+                }
+            },
+            "range": [
+                49,
+                53
+            ],
+            "raw": "and:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "1) One\n2) Two\n3) Three",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        55,
+                        77
+                    ],
+                    "raw": "1) One\n2) Two\n3) Three"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 8
+                }
+            },
+            "range": [
+                55,
+                77
+            ],
+            "raw": "1) One\n2) Two\n3) Three"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Loose using tabs:",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        79,
+                        96
+                    ],
+                    "raw": "Loose using tabs:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 17
+                }
+            },
+            "range": [
+                79,
+                96
+            ],
+            "raw": "Loose using tabs:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "1)\tFirst",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        98,
+                        106
+                    ],
+                    "raw": "1)\tFirst"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 8
+                }
+            },
+            "range": [
+                98,
+                106
+            ],
+            "raw": "1)\tFirst"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "2)\tSecond",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        108,
+                        117
+                    ],
+                    "raw": "2)\tSecond"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 9
+                }
+            },
+            "range": [
+                108,
+                117
+            ],
+            "raw": "2)\tSecond"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "3)\tThird",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        119,
+                        127
+                    ],
+                    "raw": "3)\tThird"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 8
+                }
+            },
+            "range": [
+                119,
+                127
+            ],
+            "raw": "3)\tThird"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "and using spaces:",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        129,
+                        146
+                    ],
+                    "raw": "and using spaces:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 17
+                }
+            },
+            "range": [
+                129,
+                146
+            ],
+            "raw": "and using spaces:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "1) One",
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        148,
+                        154
+                    ],
+                    "raw": "1) One"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 25,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 6
+                }
+            },
+            "range": [
+                148,
+                154
+            ],
+            "raw": "1) One"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "2) Two",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        156,
+                        162
+                    ],
+                    "raw": "2) Two"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 6
+                }
+            },
+            "range": [
+                156,
+                162
+            ],
+            "raw": "2) Two"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "3) Three",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        164,
+                        172
+                    ],
+                    "raw": "3) Three"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 8
+                }
+            },
+            "range": [
+                164,
+                172
+            ],
+            "raw": "3) Three"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Multiple paragraphs:",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        174,
+                        194
+                    ],
+                    "raw": "Multiple paragraphs:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 31,
+                    "column": 20
+                }
+            },
+            "range": [
+                174,
+                194
+            ],
+            "raw": "Multiple paragraphs:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "1)\tItem 1, graf one.",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        196,
+                        216
+                    ],
+                    "raw": "1)\tItem 1, graf one."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 33,
+                    "column": 0
+                },
+                "end": {
+                    "line": 33,
+                    "column": 20
+                }
+            },
+            "range": [
+                196,
+                216
+            ],
+            "raw": "1)\tItem 1, graf one."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "Item 2. graf two. The quick brown fox jumped over the lazy dog's\nback.",
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 0
+                },
+                "end": {
+                    "line": 37,
+                    "column": 1
+                }
+            },
+            "range": [
+                218,
+                292
+            ],
+            "raw": "\tItem 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback.\n\t"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "2)\tItem 2.",
+                    "loc": {
+                        "start": {
+                            "line": 38,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 38,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        293,
+                        303
+                    ],
+                    "raw": "2)\tItem 2."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 38,
+                    "column": 0
+                },
+                "end": {
+                    "line": 38,
+                    "column": 10
+                }
+            },
+            "range": [
+                293,
+                303
+            ],
+            "raw": "2)\tItem 2."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "3)\tItem 3.",
+                    "loc": {
+                        "start": {
+                            "line": 40,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 40,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        305,
+                        315
+                    ],
+                    "raw": "3)\tItem 3."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 40,
+                    "column": 0
+                },
+                "end": {
+                    "line": 40,
+                    "column": 10
+                }
+            },
+            "range": [
+                305,
+                315
+            ],
+            "raw": "3)\tItem 3."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 41,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        316
+    ],
+    "raw": "## Ordered\n\nTight:\n\n1)\tFirst\n2)\tSecond\n3)\tThird\n\nand:\n\n1) One\n2) Two\n3) Three\n\nLoose using tabs:\n\n1)\tFirst\n\n2)\tSecond\n\n3)\tThird\n\nand using spaces:\n\n1) One\n\n2) Two\n\n3) Three\n\nMultiple paragraphs:\n\n1)\tItem 1, graf one.\n\n\tItem 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback.\n\t\n2)\tItem 2.\n\n3)\tItem 3.\n"
+}

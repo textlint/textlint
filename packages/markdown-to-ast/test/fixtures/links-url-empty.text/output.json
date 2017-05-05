@@ -1,0 +1,300 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                1,
+                                6
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        0,
+                        9
+                    ],
+                    "raw": "[Hello]()"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        9,
+                        10
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                10
+            ],
+            "raw": "[Hello]()."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "World",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                13,
+                                18
+                            ],
+                            "raw": "World"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        12,
+                        23
+                    ],
+                    "raw": "[World](<>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        23,
+                        24
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 12
+                }
+            },
+            "range": [
+                12,
+                24
+            ],
+            "raw": "[World](<>)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        26,
+                        36
+                    ],
+                    "raw": "![Hello]()"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        36,
+                        37
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 11
+                }
+            },
+            "range": [
+                26,
+                37
+            ],
+            "raw": "![Hello]()."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "",
+                    "alt": "World",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        39,
+                        51
+                    ],
+                    "raw": "![World](<>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        51,
+                        52
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 13
+                }
+            },
+            "range": [
+                39,
+                52
+            ],
+            "raw": "![World](<>)."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        53
+    ],
+    "raw": "[Hello]().\n\n[World](<>).\n\n![Hello]().\n\n![World](<>).\n"
+}

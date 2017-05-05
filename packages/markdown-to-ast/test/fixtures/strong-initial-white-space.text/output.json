@@ -1,0 +1,176 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": " bar ",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                2,
+                                7
+                            ],
+                            "raw": " bar "
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        0,
+                        9
+                    ],
+                    "raw": "** bar **"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        9,
+                        10
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                10
+            ],
+            "raw": "** bar **."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": " bar ",
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                15,
+                                20
+                            ],
+                            "raw": " bar "
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        13,
+                        22
+                    ],
+                    "raw": "__ bar __"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        22,
+                        23
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 10
+                }
+            },
+            "range": [
+                13,
+                23
+            ],
+            "raw": "__ bar __."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 10
+        }
+    },
+    "range": [
+        0,
+        23
+    ],
+    "raw": "** bar **.\n\n\n__ bar __."
+}

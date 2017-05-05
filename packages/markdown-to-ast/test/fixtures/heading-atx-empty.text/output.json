@@ -1,0 +1,140 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                3
+            ],
+            "raw": "# #"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 2
+                }
+            },
+            "range": [
+                5,
+                7
+            ],
+            "raw": "##"
+        },
+        {
+            "type": "Header",
+            "depth": 3,
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 7
+                }
+            },
+            "range": [
+                9,
+                16
+            ],
+            "raw": "### ###"
+        },
+        {
+            "type": "Header",
+            "depth": 4,
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 4
+                }
+            },
+            "range": [
+                18,
+                22
+            ],
+            "raw": "####"
+        },
+        {
+            "type": "Header",
+            "depth": 5,
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 11
+                }
+            },
+            "range": [
+                24,
+                35
+            ],
+            "raw": "##### #####"
+        },
+        {
+            "type": "Header",
+            "depth": 6,
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 6
+                }
+            },
+            "range": [
+                37,
+                43
+            ],
+            "raw": "######"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 12,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        44
+    ],
+    "raw": "# #\n\n##\n\n### ###\n\n####\n\n##### #####\n\n######\n"
+}

@@ -1,0 +1,176 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hello ** ** world.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        0,
+                        18
+                    ],
+                    "raw": "Hello ** ** world."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 18
+                }
+            },
+            "range": [
+                0,
+                18
+            ],
+            "raw": "Hello ** ** world."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hello __\t__ world.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        20,
+                        38
+                    ],
+                    "raw": "Hello __\t__ world."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 18
+                }
+            },
+            "range": [
+                20,
+                38
+            ],
+            "raw": "Hello __\t__ world."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hello *\t* world.",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        40,
+                        56
+                    ],
+                    "raw": "Hello *\t* world."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 16
+                }
+            },
+            "range": [
+                40,
+                56
+            ],
+            "raw": "Hello *\t* world."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hello _\t_ world.",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        58,
+                        74
+                    ],
+                    "raw": "Hello _\t_ world."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 16
+                }
+            },
+            "range": [
+                58,
+                74
+            ],
+            "raw": "Hello _\t_ world."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        75
+    ],
+    "raw": "Hello ** ** world.\n\nHello __\t__ world.\n\nHello *\t* world.\n\nHello _\t_ world.\n"
+}

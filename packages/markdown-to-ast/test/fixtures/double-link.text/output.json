@@ -1,0 +1,273 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "value": "<p>Already linked: <a href=\"http://example.com/\">http://example.com/</a>.</p>",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 77
+                }
+            },
+            "range": [
+                0,
+                77
+            ],
+            "raw": "<p>Already linked: <a href=\"http://example.com/\">http://example.com/</a>.</p>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Already linked: ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        79,
+                        95
+                    ],
+                    "raw": "Already linked: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com/",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 17
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 36
+                                }
+                            },
+                            "range": [
+                                96,
+                                115
+                            ],
+                            "raw": "http://example.com/"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 58
+                        }
+                    },
+                    "range": [
+                        95,
+                        137
+                    ],
+                    "raw": "[http://example.com/](http://example.com/)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 58
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        137,
+                        138
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 59
+                }
+            },
+            "range": [
+                79,
+                138
+            ],
+            "raw": "Already linked: [http://example.com/](http://example.com/)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Already linked: ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        140,
+                        156
+                    ],
+                    "raw": "Already linked: "
+                },
+                {
+                    "type": "Html",
+                    "value": "<a href=\"http://example.com/\">",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 46
+                        }
+                    },
+                    "range": [
+                        156,
+                        186
+                    ],
+                    "raw": "<a href=\"http://example.com/\">"
+                },
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com/",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 48
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 67
+                                }
+                            },
+                            "range": [
+                                188,
+                                207
+                            ],
+                            "raw": "http://example.com/"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 46
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 69
+                        }
+                    },
+                    "range": [
+                        186,
+                        209
+                    ],
+                    "raw": "**http://example.com/**"
+                },
+                {
+                    "type": "Html",
+                    "value": "</a>",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 69
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 73
+                        }
+                    },
+                    "range": [
+                        209,
+                        213
+                    ],
+                    "raw": "</a>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 73
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 74
+                        }
+                    },
+                    "range": [
+                        213,
+                        214
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 74
+                }
+            },
+            "range": [
+                140,
+                214
+            ],
+            "raw": "Already linked: <a href=\"http://example.com/\">**http://example.com/**</a>."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        215
+    ],
+    "raw": "<p>Already linked: <a href=\"http://example.com/\">http://example.com/</a>.</p>\n\nAlready linked: [http://example.com/](http://example.com/).\n\nAlready linked: <a href=\"http://example.com/\">**http://example.com/**</a>.\n"
+}

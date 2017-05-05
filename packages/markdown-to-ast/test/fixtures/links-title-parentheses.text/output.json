@@ -1,0 +1,300 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./world.html (Hello World!)",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                1,
+                                6
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        0,
+                        36
+                    ],
+                    "raw": "[Hello](./world.html (Hello World!))"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        36,
+                        37
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 37
+                }
+            },
+            "range": [
+                0,
+                37
+            ],
+            "raw": "[Hello](./world.html (Hello World!))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                40,
+                                45
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        39,
+                        46
+                    ],
+                    "raw": "[Hello]"
+                },
+                {
+                    "type": "Str",
+                    "value": "(<./world.html> (Hello World!)).",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        46,
+                        78
+                    ],
+                    "raw": "(<./world.html> (Hello World!))."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 39
+                }
+            },
+            "range": [
+                39,
+                78
+            ],
+            "raw": "[Hello](<./world.html> (Hello World!))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./world.html (Hello World!)",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        80,
+                        117
+                    ],
+                    "raw": "![Hello](./world.html (Hello World!))"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 37
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 38
+                        }
+                    },
+                    "range": [
+                        117,
+                        118
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 38
+                }
+            },
+            "range": [
+                80,
+                118
+            ],
+            "raw": "![Hello](./world.html (Hello World!))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "imageReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        120,
+                        128
+                    ],
+                    "raw": "![Hello]"
+                },
+                {
+                    "type": "Str",
+                    "value": "(<./world.html> (Hello World!)).",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 40
+                        }
+                    },
+                    "range": [
+                        128,
+                        160
+                    ],
+                    "raw": "(<./world.html> (Hello World!))."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 40
+                }
+            },
+            "range": [
+                120,
+                160
+            ],
+            "raw": "![Hello](<./world.html> (Hello World!))."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        161
+    ],
+    "raw": "[Hello](./world.html (Hello World!)).\n\n[Hello](<./world.html> (Hello World!)).\n\n![Hello](./world.html (Hello World!)).\n\n![Hello](<./world.html> (Hello World!)).\n"
+}

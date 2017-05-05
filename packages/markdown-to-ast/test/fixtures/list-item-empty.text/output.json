@@ -1,0 +1,329 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        4,
+                                        7
+                                    ],
+                                    "raw": "foo"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                4,
+                                7
+                            ],
+                            "raw": "foo"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        0,
+                        7
+                    ],
+                    "raw": "-   foo"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 1
+                        }
+                    },
+                    "range": [
+                        8,
+                        9
+                    ],
+                    "raw": "-"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "bar",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        14,
+                                        17
+                                    ],
+                                    "raw": "bar"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                14,
+                                17
+                            ],
+                            "raw": "bar"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        10,
+                        18
+                    ],
+                    "raw": "-   bar\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo",
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        25,
+                                        28
+                                    ],
+                                    "raw": "foo"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                25,
+                                28
+                            ],
+                            "raw": "foo"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        19,
+                        28
+                    ],
+                    "raw": "  -   foo"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        29,
+                        32
+                    ],
+                    "raw": "  -"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "bar",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        39,
+                                        42
+                                    ],
+                                    "raw": "bar"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                39,
+                                42
+                            ],
+                            "raw": "bar"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        33,
+                        42
+                    ],
+                    "raw": "  -   bar"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 9
+                }
+            },
+            "range": [
+                0,
+                42
+            ],
+            "raw": "-   foo\n-\n-   bar\n\n  -   foo\n  -\n  -   bar"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        43
+    ],
+    "raw": "-   foo\n-\n-   bar\n\n  -   foo\n  -\n  -   bar\n"
+}

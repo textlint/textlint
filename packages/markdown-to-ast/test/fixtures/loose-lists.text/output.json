@@ -1,0 +1,1641 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello\nworld",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 2,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        2,
+                                        15
+                                    ],
+                                    "raw": "hello\n  world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                2,
+                                15
+                            ],
+                            "raw": "hello\n  world"
+                        },
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "how\nare",
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        19,
+                                        28
+                                    ],
+                                    "raw": "how\n  are"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                19,
+                                28
+                            ],
+                            "raw": "how\n  are"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        0,
+                        28
+                    ],
+                    "raw": "* hello\n  world\n\n  how\n  are"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "you",
+                                    "loc": {
+                                        "start": {
+                                            "line": 6,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 6,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        31,
+                                        34
+                                    ],
+                                    "raw": "you"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                31,
+                                34
+                            ],
+                            "raw": "you"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        29,
+                        34
+                    ],
+                    "raw": "* you"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 6,
+                    "column": 5
+                }
+            },
+            "range": [
+                0,
+                34
+            ],
+            "raw": "* hello\n  world\n\n  how\n  are\n* you"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "better behavior:",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        38,
+                        54
+                    ],
+                    "raw": "better behavior:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 16
+                }
+            },
+            "range": [
+                38,
+                54
+            ],
+            "raw": "better behavior:"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello",
+                                    "loc": {
+                                        "start": {
+                                            "line": 12,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 12,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        58,
+                                        63
+                                    ],
+                                    "raw": "hello"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 12,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 12,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                58,
+                                63
+                            ],
+                            "raw": "hello"
+                        },
+                        {
+                            "type": "List",
+                            "ordered": false,
+                            "start": null,
+                            "loose": true,
+                            "children": [
+                                {
+                                    "type": "ListItem",
+                                    "loose": true,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "world\nhow",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 13,
+                                                            "column": 4
+                                                        },
+                                                        "end": {
+                                                            "line": 14,
+                                                            "column": 7
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        68,
+                                                        81
+                                                    ],
+                                                    "raw": "world\n    how"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 13,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 14,
+                                                    "column": 7
+                                                }
+                                            },
+                                            "range": [
+                                                68,
+                                                81
+                                            ],
+                                            "raw": "world\n    how"
+                                        },
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "are\nyou",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 16,
+                                                            "column": 4
+                                                        },
+                                                        "end": {
+                                                            "line": 17,
+                                                            "column": 7
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        87,
+                                                        98
+                                                    ],
+                                                    "raw": "are\n    you"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 16,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 17,
+                                                    "column": 7
+                                                }
+                                            },
+                                            "range": [
+                                                87,
+                                                98
+                                            ],
+                                            "raw": "are\n    you"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 18,
+                                            "column": 0
+                                        }
+                                    },
+                                    "range": [
+                                        66,
+                                        99
+                                    ],
+                                    "raw": "* world\n    how\n\n    are\n    you\n"
+                                },
+                                {
+                                    "type": "ListItem",
+                                    "loose": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "today",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 19,
+                                                            "column": 4
+                                                        },
+                                                        "end": {
+                                                            "line": 19,
+                                                            "column": 9
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        104,
+                                                        109
+                                                    ],
+                                                    "raw": "today"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 19,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 19,
+                                                    "column": 9
+                                                }
+                                            },
+                                            "range": [
+                                                104,
+                                                109
+                                            ],
+                                            "raw": "today"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 19,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 19,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        102,
+                                        109
+                                    ],
+                                    "raw": "* today"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                66,
+                                109
+                            ],
+                            "raw": "* world\n    how\n\n    are\n    you\n\n  * today"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        56,
+                        109
+                    ],
+                    "raw": "* hello\n  * world\n    how\n\n    are\n    you\n\n  * today"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hi",
+                                    "loc": {
+                                        "start": {
+                                            "line": 20,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 20,
+                                            "column": 4
+                                        }
+                                    },
+                                    "range": [
+                                        112,
+                                        114
+                                    ],
+                                    "raw": "hi"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 20,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 20,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                112,
+                                114
+                            ],
+                            "raw": "hi"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 20,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 20,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        110,
+                        114
+                    ],
+                    "raw": "* hi"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 4
+                }
+            },
+            "range": [
+                56,
+                114
+            ],
+            "raw": "* hello\n  * world\n    how\n\n    are\n    you\n\n  * today\n* hi"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello",
+                                    "loc": {
+                                        "start": {
+                                            "line": 24,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 24,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        120,
+                                        125
+                                    ],
+                                    "raw": "hello"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 24,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 24,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                120,
+                                125
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 24,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        118,
+                        126
+                    ],
+                    "raw": "* hello\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 26,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 26,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        129,
+                                        134
+                                    ],
+                                    "raw": "world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 26,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 26,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                129,
+                                134
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 26,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 26,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        127,
+                        134
+                    ],
+                    "raw": "* world"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hi",
+                                    "loc": {
+                                        "start": {
+                                            "line": 27,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 27,
+                                            "column": 4
+                                        }
+                                    },
+                                    "range": [
+                                        137,
+                                        139
+                                    ],
+                                    "raw": "hi"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 27,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 27,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                137,
+                                139
+                            ],
+                            "raw": "hi"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        135,
+                        139
+                    ],
+                    "raw": "* hi"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 24,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 4
+                }
+            },
+            "range": [
+                118,
+                139
+            ],
+            "raw": "* hello\n\n* world\n* hi"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello",
+                                    "loc": {
+                                        "start": {
+                                            "line": 31,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 31,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        145,
+                                        150
+                                    ],
+                                    "raw": "hello"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 31,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 31,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                145,
+                                150
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        143,
+                        150
+                    ],
+                    "raw": "* hello"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 32,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 32,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        153,
+                                        158
+                                    ],
+                                    "raw": "world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 32,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 32,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                153,
+                                158
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        151,
+                        159
+                    ],
+                    "raw": "* world\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hi",
+                                    "loc": {
+                                        "start": {
+                                            "line": 34,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 34,
+                                            "column": 4
+                                        }
+                                    },
+                                    "range": [
+                                        162,
+                                        164
+                                    ],
+                                    "raw": "hi"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 34,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 34,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                162,
+                                164
+                            ],
+                            "raw": "hi"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 34,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 34,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        160,
+                        164
+                    ],
+                    "raw": "* hi"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 34,
+                    "column": 4
+                }
+            },
+            "range": [
+                143,
+                164
+            ],
+            "raw": "* hello\n* world\n\n* hi"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello",
+                                    "loc": {
+                                        "start": {
+                                            "line": 38,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 38,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        170,
+                                        175
+                                    ],
+                                    "raw": "hello"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 38,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 38,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                170,
+                                175
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 38,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 38,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        168,
+                        175
+                    ],
+                    "raw": "* hello"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 39,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 39,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        178,
+                                        183
+                                    ],
+                                    "raw": "world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 39,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 39,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                178,
+                                183
+                            ],
+                            "raw": "world"
+                        },
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "how",
+                                    "loc": {
+                                        "start": {
+                                            "line": 41,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 41,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        187,
+                                        190
+                                    ],
+                                    "raw": "how"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 41,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 41,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                187,
+                                190
+                            ],
+                            "raw": "how"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 41,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        176,
+                        190
+                    ],
+                    "raw": "* world\n\n  how"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hi",
+                                    "loc": {
+                                        "start": {
+                                            "line": 42,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 42,
+                                            "column": 4
+                                        }
+                                    },
+                                    "range": [
+                                        193,
+                                        195
+                                    ],
+                                    "raw": "hi"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 42,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 42,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                193,
+                                195
+                            ],
+                            "raw": "hi"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        191,
+                        195
+                    ],
+                    "raw": "* hi"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 38,
+                    "column": 0
+                },
+                "end": {
+                    "line": 42,
+                    "column": 4
+                }
+            },
+            "range": [
+                168,
+                195
+            ],
+            "raw": "* hello\n* world\n\n  how\n* hi"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello",
+                                    "loc": {
+                                        "start": {
+                                            "line": 46,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 46,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        201,
+                                        206
+                                    ],
+                                    "raw": "hello"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 46,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 46,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                201,
+                                206
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 46,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 46,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        199,
+                        206
+                    ],
+                    "raw": "* hello"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 47,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 47,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        209,
+                                        214
+                                    ],
+                                    "raw": "world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 47,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 47,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                209,
+                                214
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 47,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 47,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        207,
+                        214
+                    ],
+                    "raw": "* world"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "how\nare",
+                                    "loc": {
+                                        "start": {
+                                            "line": 48,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 49,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        217,
+                                        226
+                                    ],
+                                    "raw": "how\n  are"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 48,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                217,
+                                226
+                            ],
+                            "raw": "how\n  are"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 48,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        215,
+                        226
+                    ],
+                    "raw": "* how\n  are"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 46,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 5
+                }
+            },
+            "range": [
+                199,
+                226
+            ],
+            "raw": "* hello\n* world\n* how\n  are"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello",
+                                    "loc": {
+                                        "start": {
+                                            "line": 53,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 53,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        232,
+                                        237
+                                    ],
+                                    "raw": "hello"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 53,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 53,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                232,
+                                237
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 53,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 53,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        230,
+                        237
+                    ],
+                    "raw": "* hello"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 54,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 54,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        240,
+                                        245
+                                    ],
+                                    "raw": "world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 54,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 54,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                240,
+                                245
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 54,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 55,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        238,
+                        246
+                    ],
+                    "raw": "* world\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "how\nare",
+                                    "loc": {
+                                        "start": {
+                                            "line": 56,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 57,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        249,
+                                        258
+                                    ],
+                                    "raw": "how\n  are"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 56,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 57,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                249,
+                                258
+                            ],
+                            "raw": "how\n  are"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 56,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 57,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        247,
+                        258
+                    ],
+                    "raw": "* how\n  are"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 53,
+                    "column": 0
+                },
+                "end": {
+                    "line": 57,
+                    "column": 5
+                }
+            },
+            "range": [
+                230,
+                258
+            ],
+            "raw": "* hello\n* world\n\n* how\n  are"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 58,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        259
+    ],
+    "raw": "* hello\n  world\n\n  how\n  are\n* you\n\n\n\nbetter behavior:\n\n* hello\n  * world\n    how\n\n    are\n    you\n\n  * today\n* hi\n\n\n\n* hello\n\n* world\n* hi\n\n\n\n* hello\n* world\n\n* hi\n\n\n\n* hello\n* world\n\n  how\n* hi\n\n\n\n* hello\n* world\n* how\n  are\n\n\n\n* hello\n* world\n\n* how\n  are\n"
+}

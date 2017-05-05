@@ -1,0 +1,118 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Note there is no space on the following line.",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 47
+                                }
+                            },
+                            "range": [
+                                2,
+                                47
+                            ],
+                            "raw": "Note there is no space on the following line."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        2,
+                        47
+                    ],
+                    "raw": "Note there is no space on the following line."
+                },
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Note there is no space on the preceding line.",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 47
+                                }
+                            },
+                            "range": [
+                                52,
+                                97
+                            ],
+                            "raw": "Note there is no space on the preceding line."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        52,
+                        97
+                    ],
+                    "raw": "Note there is no space on the preceding line."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 47
+                }
+            },
+            "range": [
+                0,
+                97
+            ],
+            "raw": "> Note there is no space on the following line.\n>\n> Note there is no space on the preceding line."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        98
+    ],
+    "raw": "> Note there is no space on the following line.\n>\n> Note there is no space on the preceding line.\n"
+}

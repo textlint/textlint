@@ -1,0 +1,226 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 2,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        4,
+                                        8
+                                    ],
+                                    "raw": "foo;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                4,
+                                8
+                            ],
+                            "raw": "foo;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        0,
+                        8
+                    ],
+                    "raw": "2.  foo;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "bar;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 2,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 2,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        13,
+                                        17
+                                    ],
+                                    "raw": "bar;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                13,
+                                17
+                            ],
+                            "raw": "bar;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        9,
+                        17
+                    ],
+                    "raw": "3.  bar;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        22,
+                                        26
+                                    ],
+                                    "raw": "baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                22,
+                                26
+                            ],
+                            "raw": "baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        18,
+                        26
+                    ],
+                    "raw": "4.  baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 8
+                }
+            },
+            "range": [
+                0,
+                26
+            ],
+            "raw": "2.  foo;\n3.  bar;\n4.  baz."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        27
+    ],
+    "raw": "2.  foo;\n3.  bar;\n4.  baz.\n"
+}

@@ -1,0 +1,210 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://shields.io",
+                    "children": [
+                        {
+                            "type": "Image",
+                            "title": null,
+                            "url": "https://img.shields.io/badge/unicorn-approved-ff69b4.svg",
+                            "alt": "Unicorn approved",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 80
+                                }
+                            },
+                            "range": [
+                                3,
+                                80
+                            ],
+                            "raw": "![Unicorn approved](https://img.shields.io/badge/unicorn-approved-ff69b4.svg)"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 100
+                        }
+                    },
+                    "range": [
+                        2,
+                        100
+                    ],
+                    "raw": "[![Unicorn approved](https://img.shields.io/badge/unicorn-approved-ff69b4.svg)](http://shields.io)"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 100
+                }
+            },
+            "range": [
+                0,
+                100
+            ],
+            "raw": "# [![Unicorn approved](https://img.shields.io/badge/unicorn-approved-ff69b4.svg)](http://shields.io)"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "https://travis-ci.org/wooorm/mdast",
+                    "children": [
+                        {
+                            "type": "Image",
+                            "title": null,
+                            "url": "https://img.shields.io/travis/wooorm/mdast.svg?style=flat",
+                            "alt": "Build Status",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 75
+                                }
+                            },
+                            "range": [
+                                103,
+                                177
+                            ],
+                            "raw": "![Build Status](https://img.shields.io/travis/wooorm/mdast.svg?style=flat)"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 112
+                        }
+                    },
+                    "range": [
+                        102,
+                        214
+                    ],
+                    "raw": "[![Build Status](https://img.shields.io/travis/wooorm/mdast.svg?style=flat)](https://travis-ci.org/wooorm/mdast)"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 112
+                }
+            },
+            "range": [
+                102,
+                214
+            ],
+            "raw": "[![Build Status](https://img.shields.io/travis/wooorm/mdast.svg?style=flat)](https://travis-ci.org/wooorm/mdast)"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "An example",
+                    "url": "http://example.com",
+                    "children": [
+                        {
+                            "type": "Image",
+                            "title": null,
+                            "url": "https://img.shields.io/badge/style-flat--squared-green.svg?style=flat-square",
+                            "alt": "Be Square",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 91
+                                }
+                            },
+                            "range": [
+                                217,
+                                307
+                            ],
+                            "raw": "![Be Square](https://img.shields.io/badge/style-flat--squared-green.svg?style=flat-square)"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 125
+                        }
+                    },
+                    "range": [
+                        216,
+                        341
+                    ],
+                    "raw": "[![Be Square](https://img.shields.io/badge/style-flat--squared-green.svg?style=flat-square)](http://example.com \"An example\")"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 125
+                }
+            },
+            "range": [
+                216,
+                341
+            ],
+            "raw": "[![Be Square](https://img.shields.io/badge/style-flat--squared-green.svg?style=flat-square)](http://example.com \"An example\")"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        342
+    ],
+    "raw": "# [![Unicorn approved](https://img.shields.io/badge/unicorn-approved-ff69b4.svg)](http://shields.io)\n\n[![Build Status](https://img.shields.io/travis/wooorm/mdast.svg?style=flat)](https://travis-ci.org/wooorm/mdast)\n\n[![Be Square](https://img.shields.io/badge/style-flat--squared-green.svg?style=flat-square)](http://example.com \"An example\")\n"
+}

@@ -1,0 +1,60 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "CodeBlock",
+            "lang": "js",
+            "value": "foo();",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                18
+            ],
+            "raw": "``` js \nfoo();\n```"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "bash",
+            "value": "echo \"hello, ${WORLD}\"",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 5
+                }
+            },
+            "range": [
+                20,
+                60
+            ],
+            "raw": "~~~~~ bash\t\necho \"hello, ${WORLD}\"\n~~~~~"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        61
+    ],
+    "raw": "``` js \nfoo();\n```\n\n~~~~~ bash\t\necho \"hello, ${WORLD}\"\n~~~~~\n"
+}

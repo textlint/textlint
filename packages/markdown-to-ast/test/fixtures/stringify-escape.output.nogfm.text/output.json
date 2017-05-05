@@ -1,0 +1,3353 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Characters that should be escaped in general:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        0,
+                        45
+                    ],
+                    "raw": "Characters that should be escaped in general:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 45
+                }
+            },
+            "range": [
+                0,
+                45
+            ],
+            "raw": "Characters that should be escaped in general:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "\\",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        47,
+                        49
+                    ],
+                    "raw": "\\\\"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        49,
+                        50
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "Str",
+                    "value": "`",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        50,
+                        52
+                    ],
+                    "raw": "\\`"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        52,
+                        53
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "Str",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        53,
+                        55
+                    ],
+                    "raw": "\\*"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        55,
+                        56
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "Str",
+                    "value": "[",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        56,
+                        58
+                    ],
+                    "raw": "\\["
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 11
+                }
+            },
+            "range": [
+                47,
+                58
+            ],
+            "raw": "\\\\ \\` \\* \\["
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Characters that shouldn't:",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        60,
+                        86
+                    ],
+                    "raw": "Characters that shouldn't:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 26
+                }
+            },
+            "range": [
+                60,
+                86
+            ],
+            "raw": "Characters that shouldn't:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "{}]()#+-.!>\"$%',/:;=?@^~",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        88,
+                        112
+                    ],
+                    "raw": "{}]()#+-.!>\"$%',/:;=?@^~"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 24
+                }
+            },
+            "range": [
+                88,
+                112
+            ],
+            "raw": "{}]()#+-.!>\"$%',/:;=?@^~"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Underscores are ",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        114,
+                        130
+                    ],
+                    "raw": "Underscores are "
+                },
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        130,
+                        132
+                    ],
+                    "raw": "\\_"
+                },
+                {
+                    "type": "Str",
+                    "value": "escaped",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        132,
+                        139
+                    ],
+                    "raw": "escaped"
+                },
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        139,
+                        141
+                    ],
+                    "raw": "\\_"
+                },
+                {
+                    "type": "Str",
+                    "value": " unless they appear in_the_middle_of_a_word.",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 27
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 71
+                        }
+                    },
+                    "range": [
+                        141,
+                        185
+                    ],
+                    "raw": " unless they appear in_the_middle_of_a_word."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 71
+                }
+            },
+            "range": [
+                114,
+                185
+            ],
+            "raw": "Underscores are \\_escaped\\_ unless they appear in_the_middle_of_a_word."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Ampersands are escaped only when they would otherwise start an entity:",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        187,
+                        257
+                    ],
+                    "raw": "Ampersands are escaped only when they would otherwise start an entity:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 70
+                }
+            },
+            "range": [
+                187,
+                257
+            ],
+            "raw": "Ampersands are escaped only when they would otherwise start an entity:"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "&",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        263,
+                                        268
+                                    ],
+                                    "raw": "&amp;"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "copycat ",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        268,
+                                        276
+                                    ],
+                                    "raw": "copycat "
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "&",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 17
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 22
+                                        }
+                                    },
+                                    "range": [
+                                        276,
+                                        281
+                                    ],
+                                    "raw": "&amp;"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "amp; ",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 22
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 27
+                                        }
+                                    },
+                                    "range": [
+                                        281,
+                                        286
+                                    ],
+                                    "raw": "amp; "
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "&",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 27
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 32
+                                        }
+                                    },
+                                    "range": [
+                                        286,
+                                        291
+                                    ],
+                                    "raw": "&amp;"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "#x26",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 32
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 36
+                                        }
+                                    },
+                                    "range": [
+                                        291,
+                                        295
+                                    ],
+                                    "raw": "#x26"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 36
+                                }
+                            },
+                            "range": [
+                                263,
+                                295
+                            ],
+                            "raw": "&amp;copycat &amp;amp; &amp;#x26"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        259,
+                        295
+                    ],
+                    "raw": "-   &amp;copycat &amp;amp; &amp;#x26"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "But: ©cat; ",
+                                    "loc": {
+                                        "start": {
+                                            "line": 14,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 14,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        300,
+                                        311
+                                    ],
+                                    "raw": "But: ©cat; "
+                                },
+                                {
+                                    "type": "Code",
+                                    "value": "&between;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 14,
+                                            "column": 15
+                                        },
+                                        "end": {
+                                            "line": 14,
+                                            "column": 26
+                                        }
+                                    },
+                                    "range": [
+                                        311,
+                                        322
+                                    ],
+                                    "raw": "`&between;`"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": " &foo; & AT&T &c",
+                                    "loc": {
+                                        "start": {
+                                            "line": 14,
+                                            "column": 26
+                                        },
+                                        "end": {
+                                            "line": 14,
+                                            "column": 42
+                                        }
+                                    },
+                                    "range": [
+                                        322,
+                                        338
+                                    ],
+                                    "raw": " &foo; & AT&T &c"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 14,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 14,
+                                    "column": 42
+                                }
+                            },
+                            "range": [
+                                300,
+                                338
+                            ],
+                            "raw": "But: ©cat; `&between;` &foo; & AT&T &c"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 42
+                        }
+                    },
+                    "range": [
+                        296,
+                        338
+                    ],
+                    "raw": "-   But: ©cat; `&between;` &foo; & AT&T &c"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 42
+                }
+            },
+            "range": [
+                259,
+                338
+            ],
+            "raw": "-   &amp;copycat &amp;amp; &amp;#x26\n-   But: ©cat; `&between;` &foo; & AT&T &c"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Open parenthesis should be escaped after a shortcut reference:",
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 62
+                        }
+                    },
+                    "range": [
+                        340,
+                        402
+                    ],
+                    "raw": "Open parenthesis should be escaped after a shortcut reference:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 16,
+                    "column": 0
+                },
+                "end": {
+                    "line": 16,
+                    "column": 62
+                }
+            },
+            "range": [
+                340,
+                402
+            ],
+            "raw": "Open parenthesis should be escaped after a shortcut reference:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "ref",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "ref",
+                            "loc": {
+                                "start": {
+                                    "line": 18,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 18,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                405,
+                                408
+                            ],
+                            "raw": "ref"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 18,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 18,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        404,
+                        409
+                    ],
+                    "raw": "[ref]"
+                },
+                {
+                    "type": "Str",
+                    "value": "(",
+                    "loc": {
+                        "start": {
+                            "line": 18,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 18,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        409,
+                        411
+                    ],
+                    "raw": "\\("
+                },
+                {
+                    "type": "Str",
+                    "value": "text)",
+                    "loc": {
+                        "start": {
+                            "line": 18,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 18,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        411,
+                        416
+                    ],
+                    "raw": "text)"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 18,
+                    "column": 0
+                },
+                "end": {
+                    "line": 18,
+                    "column": 12
+                }
+            },
+            "range": [
+                404,
+                416
+            ],
+            "raw": "[ref]\\(text)"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hyphen should be escaped at the beginning of a line:",
+                    "loc": {
+                        "start": {
+                            "line": 20,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 20,
+                            "column": 52
+                        }
+                    },
+                    "range": [
+                        418,
+                        470
+                    ],
+                    "raw": "Hyphen should be escaped at the beginning of a line:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 20,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 52
+                }
+            },
+            "range": [
+                418,
+                470
+            ],
+            "raw": "Hyphen should be escaped at the beginning of a line:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "-",
+                    "loc": {
+                        "start": {
+                            "line": 22,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 22,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        472,
+                        474
+                    ],
+                    "raw": "\\-"
+                },
+                {
+                    "type": "Str",
+                    "value": " not a list item\n",
+                    "loc": {
+                        "start": {
+                            "line": 22,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        474,
+                        491
+                    ],
+                    "raw": " not a list item\n"
+                },
+                {
+                    "type": "Str",
+                    "value": "-",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        491,
+                        493
+                    ],
+                    "raw": "\\-"
+                },
+                {
+                    "type": "Str",
+                    "value": " not a list item\n  ",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 24,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        493,
+                        512
+                    ],
+                    "raw": " not a list item\n  "
+                },
+                {
+                    "type": "Str",
+                    "value": "+",
+                    "loc": {
+                        "start": {
+                            "line": 24,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 24,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        512,
+                        514
+                    ],
+                    "raw": "\\+"
+                },
+                {
+                    "type": "Str",
+                    "value": " not a list item",
+                    "loc": {
+                        "start": {
+                            "line": 24,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 24,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        514,
+                        530
+                    ],
+                    "raw": " not a list item"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 22,
+                    "column": 0
+                },
+                "end": {
+                    "line": 24,
+                    "column": 20
+                }
+            },
+            "range": [
+                472,
+                530
+            ],
+            "raw": "\\- not a list item\n\\- not a list item\n  \\+ not a list item"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Same for angle brackets:",
+                    "loc": {
+                        "start": {
+                            "line": 26,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 26,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        532,
+                        556
+                    ],
+                    "raw": "Same for angle brackets:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 26,
+                    "column": 0
+                },
+                "end": {
+                    "line": 26,
+                    "column": 24
+                }
+            },
+            "range": [
+                532,
+                556
+            ],
+            "raw": "Same for angle brackets:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": ">",
+                    "loc": {
+                        "start": {
+                            "line": 28,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        558,
+                        560
+                    ],
+                    "raw": "\\>"
+                },
+                {
+                    "type": "Str",
+                    "value": " not a block quote",
+                    "loc": {
+                        "start": {
+                            "line": 28,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        560,
+                        578
+                    ],
+                    "raw": " not a block quote"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 28,
+                    "column": 0
+                },
+                "end": {
+                    "line": 28,
+                    "column": 20
+                }
+            },
+            "range": [
+                558,
+                578
+            ],
+            "raw": "\\> not a block quote"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And hash signs:",
+                    "loc": {
+                        "start": {
+                            "line": 30,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 30,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        580,
+                        595
+                    ],
+                    "raw": "And hash signs:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 30,
+                    "column": 0
+                },
+                "end": {
+                    "line": 30,
+                    "column": 15
+                }
+            },
+            "range": [
+                580,
+                595
+            ],
+            "raw": "And hash signs:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "#",
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 32,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        597,
+                        599
+                    ],
+                    "raw": "\\#"
+                },
+                {
+                    "type": "Str",
+                    "value": " not a heading\n  ",
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        599,
+                        616
+                    ],
+                    "raw": " not a heading\n  "
+                },
+                {
+                    "type": "Str",
+                    "value": "#",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        616,
+                        618
+                    ],
+                    "raw": "\\#"
+                },
+                {
+                    "type": "Str",
+                    "value": "# not a subheading",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        618,
+                        636
+                    ],
+                    "raw": "# not a subheading"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 32,
+                    "column": 0
+                },
+                "end": {
+                    "line": 33,
+                    "column": 22
+                }
+            },
+            "range": [
+                597,
+                636
+            ],
+            "raw": "\\# not a heading\n  \\## not a subheading"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Text under a shortcut reference should be preserved verbatim:",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 61
+                        }
+                    },
+                    "range": [
+                        638,
+                        699
+                    ],
+                    "raw": "Text under a shortcut reference should be preserved verbatim:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 0
+                },
+                "end": {
+                    "line": 35,
+                    "column": 61
+                }
+            },
+            "range": [
+                638,
+                699
+            ],
+            "raw": "Text under a shortcut reference should be preserved verbatim:"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "two*three",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "two*three",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 37,
+                                                    "column": 5
+                                                },
+                                                "end": {
+                                                    "line": 37,
+                                                    "column": 14
+                                                }
+                                            },
+                                            "range": [
+                                                706,
+                                                715
+                                            ],
+                                            "raw": "two*three"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 37,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 37,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        705,
+                                        716
+                                    ],
+                                    "raw": "[two*three]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 37,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 37,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                705,
+                                716
+                            ],
+                            "raw": "[two*three]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        701,
+                        716
+                    ],
+                    "raw": "-   [two*three]"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "two\\*three",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "two",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 38,
+                                                    "column": 5
+                                                },
+                                                "end": {
+                                                    "line": 38,
+                                                    "column": 8
+                                                }
+                                            },
+                                            "range": [
+                                                722,
+                                                725
+                                            ],
+                                            "raw": "two"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "*",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 38,
+                                                    "column": 8
+                                                },
+                                                "end": {
+                                                    "line": 38,
+                                                    "column": 10
+                                                }
+                                            },
+                                            "range": [
+                                                725,
+                                                727
+                                            ],
+                                            "raw": "\\*"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "three",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 38,
+                                                    "column": 10
+                                                },
+                                                "end": {
+                                                    "line": 38,
+                                                    "column": 15
+                                                }
+                                            },
+                                            "range": [
+                                                727,
+                                                732
+                                            ],
+                                            "raw": "three"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 38,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 38,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        721,
+                                        733
+                                    ],
+                                    "raw": "[two\\*three]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 38,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 38,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                721,
+                                733
+                            ],
+                            "raw": "[two\\*three]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 38,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 38,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        717,
+                        733
+                    ],
+                    "raw": "-   [two\\*three]"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "a\\a",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "a\\a",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 39,
+                                                    "column": 5
+                                                },
+                                                "end": {
+                                                    "line": 39,
+                                                    "column": 8
+                                                }
+                                            },
+                                            "range": [
+                                                739,
+                                                742
+                                            ],
+                                            "raw": "a\\a"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 39,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 39,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        738,
+                                        743
+                                    ],
+                                    "raw": "[a\\a]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 39,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 39,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                738,
+                                743
+                            ],
+                            "raw": "[a\\a]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        734,
+                        743
+                    ],
+                    "raw": "-   [a\\a]"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "a\\\\a",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "a",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 40,
+                                                    "column": 5
+                                                },
+                                                "end": {
+                                                    "line": 40,
+                                                    "column": 6
+                                                }
+                                            },
+                                            "range": [
+                                                749,
+                                                750
+                                            ],
+                                            "raw": "a"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "\\",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 40,
+                                                    "column": 6
+                                                },
+                                                "end": {
+                                                    "line": 40,
+                                                    "column": 8
+                                                }
+                                            },
+                                            "range": [
+                                                750,
+                                                752
+                                            ],
+                                            "raw": "\\\\"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "a",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 40,
+                                                    "column": 8
+                                                },
+                                                "end": {
+                                                    "line": 40,
+                                                    "column": 9
+                                                }
+                                            },
+                                            "range": [
+                                                752,
+                                                753
+                                            ],
+                                            "raw": "a"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 40,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 40,
+                                            "column": 10
+                                        }
+                                    },
+                                    "range": [
+                                        748,
+                                        754
+                                    ],
+                                    "raw": "[a\\\\a]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 40,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 40,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                748,
+                                754
+                            ],
+                            "raw": "[a\\\\a]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 40,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 40,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        744,
+                        754
+                    ],
+                    "raw": "-   [a\\\\a]"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "a\\\\\\a",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "a",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 41,
+                                                    "column": 5
+                                                },
+                                                "end": {
+                                                    "line": 41,
+                                                    "column": 6
+                                                }
+                                            },
+                                            "range": [
+                                                760,
+                                                761
+                                            ],
+                                            "raw": "a"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "\\",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 41,
+                                                    "column": 6
+                                                },
+                                                "end": {
+                                                    "line": 41,
+                                                    "column": 8
+                                                }
+                                            },
+                                            "range": [
+                                                761,
+                                                763
+                                            ],
+                                            "raw": "\\\\"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "\\a",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 41,
+                                                    "column": 8
+                                                },
+                                                "end": {
+                                                    "line": 41,
+                                                    "column": 10
+                                                }
+                                            },
+                                            "range": [
+                                                763,
+                                                765
+                                            ],
+                                            "raw": "\\a"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 41,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 41,
+                                            "column": 11
+                                        }
+                                    },
+                                    "range": [
+                                        759,
+                                        766
+                                    ],
+                                    "raw": "[a\\\\\\a]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 41,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 41,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                759,
+                                766
+                            ],
+                            "raw": "[a\\\\\\a]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 41,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 41,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        755,
+                        766
+                    ],
+                    "raw": "-   [a\\\\\\a]"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "a_a\\_a",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "a_a",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 42,
+                                                    "column": 5
+                                                },
+                                                "end": {
+                                                    "line": 42,
+                                                    "column": 8
+                                                }
+                                            },
+                                            "range": [
+                                                772,
+                                                775
+                                            ],
+                                            "raw": "a_a"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "_",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 42,
+                                                    "column": 8
+                                                },
+                                                "end": {
+                                                    "line": 42,
+                                                    "column": 10
+                                                }
+                                            },
+                                            "range": [
+                                                775,
+                                                777
+                                            ],
+                                            "raw": "\\_"
+                                        },
+                                        {
+                                            "type": "Str",
+                                            "value": "a",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 42,
+                                                    "column": 10
+                                                },
+                                                "end": {
+                                                    "line": 42,
+                                                    "column": 11
+                                                }
+                                            },
+                                            "range": [
+                                                777,
+                                                778
+                                            ],
+                                            "raw": "a"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 42,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 42,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        771,
+                                        779
+                                    ],
+                                    "raw": "[a_a\\_a]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 42,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 42,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                771,
+                                779
+                            ],
+                            "raw": "[a_a\\_a]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        767,
+                        779
+                    ],
+                    "raw": "-   [a_a\\_a]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 0
+                },
+                "end": {
+                    "line": 42,
+                    "column": 12
+                }
+            },
+            "range": [
+                701,
+                779
+            ],
+            "raw": "-   [two*three]\n-   [two\\*three]\n-   [a\\a]\n-   [a\\\\a]\n-   [a\\\\\\a]\n-   [a_a\\_a]"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "GFM:",
+                            "loc": {
+                                "start": {
+                                    "line": 44,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 44,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                783,
+                                787
+                            ],
+                            "raw": "GFM:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 44,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 44,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        781,
+                        789
+                    ],
+                    "raw": "**GFM:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 44,
+                    "column": 0
+                },
+                "end": {
+                    "line": 44,
+                    "column": 8
+                }
+            },
+            "range": [
+                781,
+                789
+            ],
+            "raw": "**GFM:**"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Colon should not be escaped in URLs:",
+                    "loc": {
+                        "start": {
+                            "line": 46,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 46,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        791,
+                        827
+                    ],
+                    "raw": "Colon should not be escaped in URLs:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 46,
+                    "column": 0
+                },
+                "end": {
+                    "line": 46,
+                    "column": 36
+                }
+            },
+            "range": [
+                791,
+                827
+            ],
+            "raw": "Colon should not be escaped in URLs:"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Link",
+                                    "title": null,
+                                    "url": "http://user:password@host:port/path?key=value#fragment",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "http://user:password@host:port/path?key=value#fragment",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 48,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 48,
+                                                    "column": 58
+                                                }
+                                            },
+                                            "range": [
+                                                833,
+                                                887
+                                            ],
+                                            "raw": "http://user:password@host:port/path?key=value#fragment"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 48,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 48,
+                                            "column": 58
+                                        }
+                                    },
+                                    "range": [
+                                        833,
+                                        887
+                                    ],
+                                    "raw": "http://user:password@host:port/path?key=value#fragment"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 48,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 48,
+                                    "column": 58
+                                }
+                            },
+                            "range": [
+                                833,
+                                887
+                            ],
+                            "raw": "http://user:password@host:port/path?key=value#fragment"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 48,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 48,
+                            "column": 58
+                        }
+                    },
+                    "range": [
+                        829,
+                        887
+                    ],
+                    "raw": "-   http://user:password@host:port/path?key=value#fragment"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Link",
+                                    "title": null,
+                                    "url": "https://user:password@host:port/path?key=value#fragment",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "https://user:password@host:port/path?key=value#fragment",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 49,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 49,
+                                                    "column": 59
+                                                }
+                                            },
+                                            "range": [
+                                                892,
+                                                947
+                                            ],
+                                            "raw": "https://user:password@host:port/path?key=value#fragment"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 49,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 49,
+                                            "column": 59
+                                        }
+                                    },
+                                    "range": [
+                                        892,
+                                        947
+                                    ],
+                                    "raw": "https://user:password@host:port/path?key=value#fragment"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 59
+                                }
+                            },
+                            "range": [
+                                892,
+                                947
+                            ],
+                            "raw": "https://user:password@host:port/path?key=value#fragment"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        888,
+                        947
+                    ],
+                    "raw": "-   https://user:password@host:port/path?key=value#fragment"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 48,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 59
+                }
+            },
+            "range": [
+                829,
+                947
+            ],
+            "raw": "-   http://user:password@host:port/path?key=value#fragment\n-   https://user:password@host:port/path?key=value#fragment"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Double tildes should not be ",
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        949,
+                        977
+                    ],
+                    "raw": "Double tildes should not be "
+                },
+                {
+                    "type": "Delete",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "escaped",
+                            "loc": {
+                                "start": {
+                                    "line": 51,
+                                    "column": 30
+                                },
+                                "end": {
+                                    "line": 51,
+                                    "column": 37
+                                }
+                            },
+                            "range": [
+                                979,
+                                986
+                            ],
+                            "raw": "escaped"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 28
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        977,
+                        988
+                    ],
+                    "raw": "~~escaped~~"
+                },
+                {
+                    "type": "Str",
+                    "value": ".\nNor here: foo~~.",
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 52,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        988,
+                        1006
+                    ],
+                    "raw": ".\nNor here: foo~~."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 51,
+                    "column": 0
+                },
+                "end": {
+                    "line": 52,
+                    "column": 16
+                }
+            },
+            "range": [
+                949,
+                1006
+            ],
+            "raw": "Double tildes should not be ~~escaped~~.\nNor here: foo~~."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Pipes should not be escaped here: |",
+                    "loc": {
+                        "start": {
+                            "line": 54,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 54,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        1008,
+                        1043
+                    ],
+                    "raw": "Pipes should not be escaped here: |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 54,
+                    "column": 0
+                },
+                "end": {
+                    "line": 54,
+                    "column": 35
+                }
+            },
+            "range": [
+                1008,
+                1043
+            ],
+            "raw": "Pipes should not be escaped here: |"
+        },
+        {
+            "type": "Table",
+            "align": [
+                null,
+                null
+            ],
+            "children": [
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "here",
+                                    "loc": {
+                                        "start": {
+                                            "line": 56,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 56,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        1047,
+                                        1051
+                                    ],
+                                    "raw": "here"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 56,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 56,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                1047,
+                                1053
+                            ],
+                            "raw": "here  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "they",
+                                    "loc": {
+                                        "start": {
+                                            "line": 56,
+                                            "column": 11
+                                        },
+                                        "end": {
+                                            "line": 56,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        1056,
+                                        1060
+                                    ],
+                                    "raw": "they"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 56,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 56,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                1056,
+                                1064
+                            ],
+                            "raw": "they    "
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 56,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 56,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        1045,
+                        1066
+                    ],
+                    "raw": "| here   | they     |"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "should",
+                                    "loc": {
+                                        "start": {
+                                            "line": 58,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 58,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        1091,
+                                        1097
+                                    ],
+                                    "raw": "should"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 58,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 58,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                1091,
+                                1097
+                            ],
+                            "raw": "should"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "nei",
+                                    "loc": {
+                                        "start": {
+                                            "line": 58,
+                                            "column": 11
+                                        },
+                                        "end": {
+                                            "line": 58,
+                                            "column": 14
+                                        }
+                                    },
+                                    "range": [
+                                        1100,
+                                        1103
+                                    ],
+                                    "raw": "nei"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 58,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 58,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                1100,
+                                1103
+                            ],
+                            "raw": "nei"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "ther",
+                                    "loc": {
+                                        "start": {
+                                            "line": 58,
+                                            "column": 15
+                                        },
+                                        "end": {
+                                            "line": 58,
+                                            "column": 19
+                                        }
+                                    },
+                                    "range": [
+                                        1104,
+                                        1108
+                                    ],
+                                    "raw": "ther"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 58,
+                                    "column": 15
+                                },
+                                "end": {
+                                    "line": 58,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                1104,
+                                1108
+                            ],
+                            "raw": "ther"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 58,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 58,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        1089,
+                        1110
+                    ],
+                    "raw": "| should | nei|ther |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 56,
+                    "column": 0
+                },
+                "end": {
+                    "line": 58,
+                    "column": 21
+                }
+            },
+            "range": [
+                1045,
+                1110
+            ],
+            "raw": "| here   | they     |\n| ------ | -------- |\n| should | nei|ther |"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Nor here:",
+                    "loc": {
+                        "start": {
+                            "line": 60,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 60,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        1112,
+                        1121
+                    ],
+                    "raw": "Nor here:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 60,
+                    "column": 0
+                },
+                "end": {
+                    "line": 60,
+                    "column": 9
+                }
+            },
+            "range": [
+                1112,
+                1121
+            ],
+            "raw": "Nor here:"
+        },
+        {
+            "type": "Table",
+            "align": [
+                null,
+                null
+            ],
+            "children": [
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "here",
+                                    "loc": {
+                                        "start": {
+                                            "line": 62,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 62,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        1125,
+                                        1129
+                                    ],
+                                    "raw": "here"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 62,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 62,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                1125,
+                                1131
+                            ],
+                            "raw": "here  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "they",
+                                    "loc": {
+                                        "start": {
+                                            "line": 62,
+                                            "column": 11
+                                        },
+                                        "end": {
+                                            "line": 62,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        1134,
+                                        1138
+                                    ],
+                                    "raw": "they"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 62,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 62,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                1134,
+                                1140
+                            ],
+                            "raw": "they  "
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 62,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 62,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        1123,
+                        1142
+                    ],
+                    "raw": "| here   | they   |"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "should",
+                                    "loc": {
+                                        "start": {
+                                            "line": 64,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 64,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        1165,
+                                        1171
+                                    ],
+                                    "raw": "should"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 64,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 64,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                1165,
+                                1171
+                            ],
+                            "raw": "should"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "though",
+                                    "loc": {
+                                        "start": {
+                                            "line": 64,
+                                            "column": 11
+                                        },
+                                        "end": {
+                                            "line": 64,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        1174,
+                                        1180
+                                    ],
+                                    "raw": "though"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 64,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 64,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                1174,
+                                1180
+                            ],
+                            "raw": "though"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 64,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 64,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        1163,
+                        1182
+                    ],
+                    "raw": "| should | though |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 62,
+                    "column": 0
+                },
+                "end": {
+                    "line": 64,
+                    "column": 19
+                }
+            },
+            "range": [
+                1123,
+                1182
+            ],
+            "raw": "| here   | they   |\n| ------ | ------ |\n| should | though |"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Nor here:",
+                    "loc": {
+                        "start": {
+                            "line": 66,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 66,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        1184,
+                        1193
+                    ],
+                    "raw": "Nor here:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 66,
+                    "column": 0
+                },
+                "end": {
+                    "line": 66,
+                    "column": 9
+                }
+            },
+            "range": [
+                1184,
+                1193
+            ],
+            "raw": "Nor here:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "here   | they\n",
+                    "loc": {
+                        "start": {
+                            "line": 68,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 69,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        1195,
+                        1209
+                    ],
+                    "raw": "here   | they\n"
+                },
+                {
+                    "type": "Str",
+                    "value": "-",
+                    "loc": {
+                        "start": {
+                            "line": 69,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 69,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        1209,
+                        1211
+                    ],
+                    "raw": "\\-"
+                },
+                {
+                    "type": "Str",
+                    "value": "---- | ------\nshould | though",
+                    "loc": {
+                        "start": {
+                            "line": 69,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 70,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1211,
+                        1240
+                    ],
+                    "raw": "---- | ------\nshould | though"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 68,
+                    "column": 0
+                },
+                "end": {
+                    "line": 70,
+                    "column": 15
+                }
+            },
+            "range": [
+                1195,
+                1240
+            ],
+            "raw": "here   | they\n\\----- | ------\nshould | though"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Commonmark:",
+                            "loc": {
+                                "start": {
+                                    "line": 72,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 72,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                1244,
+                                1255
+                            ],
+                            "raw": "Commonmark:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 72,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 72,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1242,
+                        1257
+                    ],
+                    "raw": "**Commonmark:**"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 72,
+                    "column": 0
+                },
+                "end": {
+                    "line": 72,
+                    "column": 15
+                }
+            },
+            "range": [
+                1242,
+                1257
+            ],
+            "raw": "**Commonmark:**"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Open angle bracket should be escaped:",
+                    "loc": {
+                        "start": {
+                            "line": 74,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 74,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        1259,
+                        1296
+                    ],
+                    "raw": "Open angle bracket should be escaped:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 74,
+                    "column": 0
+                },
+                "end": {
+                    "line": 74,
+                    "column": 37
+                }
+            },
+            "range": [
+                1259,
+                1296
+            ],
+            "raw": "Open angle bracket should be escaped:"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "<",
+                                    "loc": {
+                                        "start": {
+                                            "line": 76,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 76,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        1302,
+                                        1306
+                                    ],
+                                    "raw": "&lt;"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "div>",
+                                    "loc": {
+                                        "start": {
+                                            "line": 76,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 76,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        1306,
+                                        1310
+                                    ],
+                                    "raw": "div>"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "<",
+                                    "loc": {
+                                        "start": {
+                                            "line": 76,
+                                            "column": 12
+                                        },
+                                        "end": {
+                                            "line": 76,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        1310,
+                                        1314
+                                    ],
+                                    "raw": "&lt;"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "/div>",
+                                    "loc": {
+                                        "start": {
+                                            "line": 76,
+                                            "column": 16
+                                        },
+                                        "end": {
+                                            "line": 76,
+                                            "column": 21
+                                        }
+                                    },
+                                    "range": [
+                                        1314,
+                                        1319
+                                    ],
+                                    "raw": "/div>"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 76,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 76,
+                                    "column": 21
+                                }
+                            },
+                            "range": [
+                                1302,
+                                1319
+                            ],
+                            "raw": "&lt;div>&lt;/div>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 76,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 76,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        1298,
+                        1319
+                    ],
+                    "raw": "-   &lt;div>&lt;/div>"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "<",
+                                    "loc": {
+                                        "start": {
+                                            "line": 77,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 77,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        1324,
+                                        1328
+                                    ],
+                                    "raw": "&lt;"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "http:google.com>",
+                                    "loc": {
+                                        "start": {
+                                            "line": 77,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 77,
+                                            "column": 24
+                                        }
+                                    },
+                                    "range": [
+                                        1328,
+                                        1344
+                                    ],
+                                    "raw": "http:google.com>"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 77,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 77,
+                                    "column": 24
+                                }
+                            },
+                            "range": [
+                                1324,
+                                1344
+                            ],
+                            "raw": "&lt;http:google.com>"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 77,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 77,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        1320,
+                        1344
+                    ],
+                    "raw": "-   &lt;http:google.com>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 76,
+                    "column": 0
+                },
+                "end": {
+                    "line": 77,
+                    "column": 24
+                }
+            },
+            "range": [
+                1298,
+                1344
+            ],
+            "raw": "-   &lt;div>&lt;/div>\n-   &lt;http:google.com>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 78,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        1345
+    ],
+    "raw": "Characters that should be escaped in general:\n\n\\\\ \\` \\* \\[\n\nCharacters that shouldn't:\n\n{}]()#+-.!>\"$%',/:;=?@^~\n\nUnderscores are \\_escaped\\_ unless they appear in_the_middle_of_a_word.\n\nAmpersands are escaped only when they would otherwise start an entity:\n\n-   &amp;copycat &amp;amp; &amp;#x26\n-   But: ©cat; `&between;` &foo; & AT&T &c\n\nOpen parenthesis should be escaped after a shortcut reference:\n\n[ref]\\(text)\n\nHyphen should be escaped at the beginning of a line:\n\n\\- not a list item\n\\- not a list item\n  \\+ not a list item\n\nSame for angle brackets:\n\n\\> not a block quote\n\nAnd hash signs:\n\n\\# not a heading\n  \\## not a subheading\n\nText under a shortcut reference should be preserved verbatim:\n\n-   [two*three]\n-   [two\\*three]\n-   [a\\a]\n-   [a\\\\a]\n-   [a\\\\\\a]\n-   [a_a\\_a]\n\n**GFM:**\n\nColon should not be escaped in URLs:\n\n-   http://user:password@host:port/path?key=value#fragment\n-   https://user:password@host:port/path?key=value#fragment\n\nDouble tildes should not be ~~escaped~~.\nNor here: foo~~.\n\nPipes should not be escaped here: |\n\n| here   | they     |\n| ------ | -------- |\n| should | nei|ther |\n\nNor here:\n\n| here   | they   |\n| ------ | ------ |\n| should | though |\n\nNor here:\n\nhere   | they\n\\----- | ------\nshould | though\n\n**Commonmark:**\n\nOpen angle bracket should be escaped:\n\n-   &lt;div>&lt;/div>\n-   &lt;http:google.com>\n"
+}

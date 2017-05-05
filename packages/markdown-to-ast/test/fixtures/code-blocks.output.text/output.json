@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "A code block NOT using fences:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        0,
+                        30
+                    ],
+                    "raw": "A code block NOT using fences:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 30
+                }
+            },
+            "range": [
+                0,
+                30
+            ],
+            "raw": "A code block NOT using fences:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "alert('Hello World!');",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 26
+                }
+            },
+            "range": [
+                32,
+                58
+            ],
+            "raw": "    alert('Hello World!');"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        59
+    ],
+    "raw": "A code block NOT using fences:\n\n    alert('Hello World!');\n"
+}

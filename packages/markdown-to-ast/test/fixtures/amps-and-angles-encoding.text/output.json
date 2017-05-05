@@ -1,0 +1,691 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "AT&T has an ampersand in their name.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        0,
+                        36
+                    ],
+                    "raw": "AT&T has an ampersand in their name."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 36
+                }
+            },
+            "range": [
+                0,
+                36
+            ],
+            "raw": "AT&T has an ampersand in their name."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "AT",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        38,
+                        40
+                    ],
+                    "raw": "AT"
+                },
+                {
+                    "type": "Str",
+                    "value": "&",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        40,
+                        45
+                    ],
+                    "raw": "&amp;"
+                },
+                {
+                    "type": "Str",
+                    "value": "T is another way to write it.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        45,
+                        74
+                    ],
+                    "raw": "T is another way to write it."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 36
+                }
+            },
+            "range": [
+                38,
+                74
+            ],
+            "raw": "AT&amp;T is another way to write it."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This & that.",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        76,
+                        88
+                    ],
+                    "raw": "This & that."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 12
+                }
+            },
+            "range": [
+                76,
+                88
+            ],
+            "raw": "This & that."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "4 < 5.",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        90,
+                        96
+                    ],
+                    "raw": "4 < 5."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 6
+                }
+            },
+            "range": [
+                90,
+                96
+            ],
+            "raw": "4 < 5."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "6 > 5.",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        98,
+                        104
+                    ],
+                    "raw": "6 > 5."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 6
+                }
+            },
+            "range": [
+                98,
+                104
+            ],
+            "raw": "6 > 5."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here's a ",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        106,
+                        115
+                    ],
+                    "raw": "Here's a "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "1",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "link",
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 10
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                116,
+                                120
+                            ],
+                            "raw": "link"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        115,
+                        125
+                    ],
+                    "raw": "[link] [1]"
+                },
+                {
+                    "type": "Str",
+                    "value": " with an ampersand in the URL.",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 19
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        125,
+                        155
+                    ],
+                    "raw": " with an ampersand in the URL."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 49
+                }
+            },
+            "range": [
+                106,
+                155
+            ],
+            "raw": "Here's a [link] [1] with an ampersand in the URL."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here's a link with an amersand in the link text: ",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        157,
+                        206
+                    ],
+                    "raw": "Here's a link with an amersand in the link text: "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "2",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "AT&T",
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 50
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 54
+                                }
+                            },
+                            "range": [
+                                207,
+                                211
+                            ],
+                            "raw": "AT&T"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 49
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        206,
+                        216
+                    ],
+                    "raw": "[AT&T] [2]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 59
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 60
+                        }
+                    },
+                    "range": [
+                        216,
+                        217
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 60
+                }
+            },
+            "range": [
+                157,
+                217
+            ],
+            "raw": "Here's a link with an amersand in the link text: [AT&T] [2]."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here's an inline ",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        219,
+                        236
+                    ],
+                    "raw": "Here's an inline "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "/script?foo=1&bar=2",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "link",
+                            "loc": {
+                                "start": {
+                                    "line": 15,
+                                    "column": 18
+                                },
+                                "end": {
+                                    "line": 15,
+                                    "column": 22
+                                }
+                            },
+                            "range": [
+                                237,
+                                241
+                            ],
+                            "raw": "link"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 17
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 44
+                        }
+                    },
+                    "range": [
+                        236,
+                        263
+                    ],
+                    "raw": "[link](/script?foo=1&bar=2)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 44
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        263,
+                        264
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 45
+                }
+            },
+            "range": [
+                219,
+                264
+            ],
+            "raw": "Here's an inline [link](/script?foo=1&bar=2)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Here's an inline ",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        266,
+                        283
+                    ],
+                    "raw": "Here's an inline "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "/script?foo=1&bar=2",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "link",
+                            "loc": {
+                                "start": {
+                                    "line": 17,
+                                    "column": 18
+                                },
+                                "end": {
+                                    "line": 17,
+                                    "column": 22
+                                }
+                            },
+                            "range": [
+                                284,
+                                288
+                            ],
+                            "raw": "link"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 17
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 46
+                        }
+                    },
+                    "range": [
+                        283,
+                        312
+                    ],
+                    "raw": "[link](</script?foo=1&bar=2>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 46
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        312,
+                        313
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 47
+                }
+            },
+            "range": [
+                266,
+                313
+            ],
+            "raw": "Here's an inline [link](</script?foo=1&bar=2>)."
+        },
+        {
+            "type": "Definition",
+            "identifier": "1",
+            "title": null,
+            "url": "http://example.com/?foo=1&bar=2",
+            "loc": {
+                "start": {
+                    "line": 20,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 36
+                }
+            },
+            "range": [
+                316,
+                352
+            ],
+            "raw": "[1]: http://example.com/?foo=1&bar=2"
+        },
+        {
+            "type": "Definition",
+            "identifier": "2",
+            "title": "AT&T",
+            "url": "http://att.com/",
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 28
+                }
+            },
+            "range": [
+                353,
+                381
+            ],
+            "raw": "[2]: http://att.com/  \"AT&T\""
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 22,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        382
+    ],
+    "raw": "AT&T has an ampersand in their name.\n\nAT&amp;T is another way to write it.\n\nThis & that.\n\n4 < 5.\n\n6 > 5.\n\nHere's a [link] [1] with an ampersand in the URL.\n\nHere's a link with an amersand in the link text: [AT&T] [2].\n\nHere's an inline [link](/script?foo=1&bar=2).\n\nHere's an inline [link](</script?foo=1&bar=2>).\n\n\n[1]: http://example.com/?foo=1&bar=2\n[2]: http://att.com/  \"AT&T\"\n"
+}

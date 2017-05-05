@@ -1,0 +1,370 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Paragraph one.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        0,
+                        14
+                    ],
+                    "raw": "Paragraph one."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 14
+                }
+            },
+            "range": [
+                0,
+                14
+            ],
+            "raw": "Paragraph one."
+        },
+        {
+            "type": "Html",
+            "value": "<!-- This is a simple comment -->",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 33
+                }
+            },
+            "range": [
+                16,
+                49
+            ],
+            "raw": "<!-- This is a simple comment -->"
+        },
+        {
+            "type": "Html",
+            "value": "<!--\n\tThis is another comment.\n-->",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 3
+                }
+            },
+            "range": [
+                51,
+                85
+            ],
+            "raw": "<!--\n\tThis is another comment.\n-->"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "What follows is not an HTML comment because it contains\ntwo consecutive dashes:\n",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        87,
+                        167
+                    ],
+                    "raw": "What follows is not an HTML comment because it contains\ntwo consecutive dashes:\n"
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "https://html.spec.whatwg.org/multipage/syntax.html#comments",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "https://html.spec.whatwg.org/multipage/syntax.html#comments",
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 60
+                                }
+                            },
+                            "range": [
+                                168,
+                                227
+                            ],
+                            "raw": "https://html.spec.whatwg.org/multipage/syntax.html#comments"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 61
+                        }
+                    },
+                    "range": [
+                        167,
+                        228
+                    ],
+                    "raw": "<https://html.spec.whatwg.org/multipage/syntax.html#comments>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 61
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 62
+                        }
+                    },
+                    "range": [
+                        228,
+                        229
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 62
+                }
+            },
+            "range": [
+                87,
+                229
+            ],
+            "raw": "What follows is not an HTML comment because it contains\ntwo consecutive dashes:\n<https://html.spec.whatwg.org/multipage/syntax.html#comments>."
+        },
+        {
+            "type": "Html",
+            "value": "<!-- one comment block -- -- with two comments -->",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 50
+                }
+            },
+            "range": [
+                231,
+                281
+            ],
+            "raw": "<!-- one comment block -- -- with two comments -->"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "But this is fine (in commonmark):",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        283,
+                        316
+                    ],
+                    "raw": "But this is fine (in commonmark):"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 33
+                }
+            },
+            "range": [
+                283,
+                316
+            ],
+            "raw": "But this is fine (in commonmark):"
+        },
+        {
+            "type": "Html",
+            "value": "<!-- one comment block - with a dash -->",
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 40
+                }
+            },
+            "range": [
+                318,
+                358
+            ],
+            "raw": "<!-- one comment block - with a dash -->"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And, this is wrong (in commonmark):",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        360,
+                        395
+                    ],
+                    "raw": "And, this is wrong (in commonmark):"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 35
+                }
+            },
+            "range": [
+                360,
+                395
+            ],
+            "raw": "And, this is wrong (in commonmark):"
+        },
+        {
+            "type": "Html",
+            "value": "<!-->-->",
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 8
+                }
+            },
+            "range": [
+                397,
+                405
+            ],
+            "raw": "<!-->-->"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "The end.",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        407,
+                        415
+                    ],
+                    "raw": "The end."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 8
+                }
+            },
+            "range": [
+                407,
+                415
+            ],
+            "raw": "The end."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 24,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        416
+    ],
+    "raw": "Paragraph one.\n\n<!-- This is a simple comment -->\n\n<!--\n\tThis is another comment.\n-->\n\nWhat follows is not an HTML comment because it contains\ntwo consecutive dashes:\n<https://html.spec.whatwg.org/multipage/syntax.html#comments>.\n\n<!-- one comment block -- -- with two comments -->\n\nBut this is fine (in commonmark):\n\n<!-- one comment block - with a dash -->\n\nAnd, this is wrong (in commonmark):\n\n<!-->-->\n\nThe end.\n"
+}

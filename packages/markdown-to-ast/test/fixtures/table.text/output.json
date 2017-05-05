@@ -1,0 +1,1843 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Table",
+            "align": [
+                null,
+                null
+            ],
+            "children": [
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Heading 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 11
+                                        }
+                                    },
+                                    "range": [
+                                        2,
+                                        11
+                                    ],
+                                    "raw": "Heading 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                2,
+                                11
+                            ],
+                            "raw": "Heading 1"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Strong",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "H",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 1,
+                                                    "column": 16
+                                                },
+                                                "end": {
+                                                    "line": 1,
+                                                    "column": 17
+                                                }
+                                            },
+                                            "range": [
+                                                16,
+                                                17
+                                            ],
+                                            "raw": "H"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 14
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 19
+                                        }
+                                    },
+                                    "range": [
+                                        14,
+                                        19
+                                    ],
+                                    "raw": "**H**"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "eading 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 19
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 27
+                                        }
+                                    },
+                                    "range": [
+                                        19,
+                                        27
+                                    ],
+                                    "raw": "eading 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 27
+                                }
+                            },
+                            "range": [
+                                14,
+                                27
+                            ],
+                            "raw": "**H**eading 2"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        0,
+                        27
+                    ],
+                    "raw": "| Heading 1 | **H**eading 2"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        54,
+                                        60
+                                    ],
+                                    "raw": "Cell 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                54,
+                                63
+                            ],
+                            "raw": "Cell 1   "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 14
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 20
+                                        }
+                                    },
+                                    "range": [
+                                        66,
+                                        72
+                                    ],
+                                    "raw": "Cell 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 20
+                                }
+                            },
+                            "range": [
+                                66,
+                                72
+                            ],
+                            "raw": "Cell 2"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        52,
+                        72
+                    ],
+                    "raw": "| Cell 1    | Cell 2"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 3",
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        75,
+                                        81
+                                    ],
+                                    "raw": "Cell 3"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                75,
+                                84
+                            ],
+                            "raw": "Cell 3   "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 4",
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 14
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 20
+                                        }
+                                    },
+                                    "range": [
+                                        87,
+                                        93
+                                    ],
+                                    "raw": "Cell 4"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 20
+                                }
+                            },
+                            "range": [
+                                87,
+                                93
+                            ],
+                            "raw": "Cell 4"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        73,
+                        93
+                    ],
+                    "raw": "| Cell 3    | Cell 4"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 20
+                }
+            },
+            "range": [
+                0,
+                93
+            ],
+            "raw": "| Heading 1 | **H**eading 2\n| --------- | ---------\n| Cell 1    | Cell 2\n| Cell 3    | Cell 4"
+        },
+        {
+            "type": "Table",
+            "align": [
+                "center",
+                "right",
+                "left",
+                null
+            ],
+            "children": [
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 6,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 6,
+                                            "column": 10
+                                        }
+                                    },
+                                    "range": [
+                                        97,
+                                        105
+                                    ],
+                                    "raw": "Header 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                97,
+                                105
+                            ],
+                            "raw": "Header 1"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 6,
+                                            "column": 13
+                                        },
+                                        "end": {
+                                            "line": 6,
+                                            "column": 21
+                                        }
+                                    },
+                                    "range": [
+                                        108,
+                                        116
+                                    ],
+                                    "raw": "Header 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 21
+                                }
+                            },
+                            "range": [
+                                108,
+                                116
+                            ],
+                            "raw": "Header 2"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 3",
+                                    "loc": {
+                                        "start": {
+                                            "line": 6,
+                                            "column": 24
+                                        },
+                                        "end": {
+                                            "line": 6,
+                                            "column": 32
+                                        }
+                                    },
+                                    "range": [
+                                        119,
+                                        127
+                                    ],
+                                    "raw": "Header 3"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 24
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                119,
+                                127
+                            ],
+                            "raw": "Header 3"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 4",
+                                    "loc": {
+                                        "start": {
+                                            "line": 6,
+                                            "column": 35
+                                        },
+                                        "end": {
+                                            "line": 6,
+                                            "column": 43
+                                        }
+                                    },
+                                    "range": [
+                                        130,
+                                        138
+                                    ],
+                                    "raw": "Header 4"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 35
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 43
+                                }
+                            },
+                            "range": [
+                                130,
+                                138
+                            ],
+                            "raw": "Header 4"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        95,
+                        140
+                    ],
+                    "raw": "| Header 1 | Header 2 | Header 3 | Header 4 |"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 8,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 8,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        189,
+                                        195
+                                    ],
+                                    "raw": "Cell 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 8,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                189,
+                                197
+                            ],
+                            "raw": "Cell 1  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 8,
+                                            "column": 13
+                                        },
+                                        "end": {
+                                            "line": 8,
+                                            "column": 19
+                                        }
+                                    },
+                                    "range": [
+                                        200,
+                                        206
+                                    ],
+                                    "raw": "Cell 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 8,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 21
+                                }
+                            },
+                            "range": [
+                                200,
+                                208
+                            ],
+                            "raw": "Cell 2  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 3",
+                                    "loc": {
+                                        "start": {
+                                            "line": 8,
+                                            "column": 24
+                                        },
+                                        "end": {
+                                            "line": 8,
+                                            "column": 30
+                                        }
+                                    },
+                                    "range": [
+                                        211,
+                                        217
+                                    ],
+                                    "raw": "Cell 3"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 8,
+                                    "column": 24
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                211,
+                                219
+                            ],
+                            "raw": "Cell 3  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 4",
+                                    "loc": {
+                                        "start": {
+                                            "line": 8,
+                                            "column": 35
+                                        },
+                                        "end": {
+                                            "line": 8,
+                                            "column": 41
+                                        }
+                                    },
+                                    "range": [
+                                        222,
+                                        228
+                                    ],
+                                    "raw": "Cell 4"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 8,
+                                    "column": 35
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 43
+                                }
+                            },
+                            "range": [
+                                222,
+                                230
+                            ],
+                            "raw": "Cell 4  "
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 8,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 8,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        187,
+                        232
+                    ],
+                    "raw": "| Cell 1   | Cell 2   | Cell 3   | Cell 4   |"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 5",
+                                    "loc": {
+                                        "start": {
+                                            "line": 9,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        235,
+                                        241
+                                    ],
+                                    "raw": "Cell 5"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                235,
+                                243
+                            ],
+                            "raw": "Cell 5  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 6",
+                                    "loc": {
+                                        "start": {
+                                            "line": 9,
+                                            "column": 13
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 19
+                                        }
+                                    },
+                                    "range": [
+                                        246,
+                                        252
+                                    ],
+                                    "raw": "Cell 6"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 21
+                                }
+                            },
+                            "range": [
+                                246,
+                                254
+                            ],
+                            "raw": "Cell 6  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 7",
+                                    "loc": {
+                                        "start": {
+                                            "line": 9,
+                                            "column": 24
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 30
+                                        }
+                                    },
+                                    "range": [
+                                        257,
+                                        263
+                                    ],
+                                    "raw": "Cell 7"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 24
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                257,
+                                265
+                            ],
+                            "raw": "Cell 7  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 8",
+                                    "loc": {
+                                        "start": {
+                                            "line": 9,
+                                            "column": 35
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 41
+                                        }
+                                    },
+                                    "range": [
+                                        268,
+                                        274
+                                    ],
+                                    "raw": "Cell 8"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 35
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 43
+                                }
+                            },
+                            "range": [
+                                268,
+                                276
+                            ],
+                            "raw": "Cell 8  "
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        233,
+                        278
+                    ],
+                    "raw": "| Cell 5   | Cell 6   | Cell 7   | Cell 8   |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 45
+                }
+            },
+            "range": [
+                95,
+                278
+            ],
+            "raw": "| Header 1 | Header 2 | Header 3 | Header 4 |\n| :------: | -------: | :------- | -------- |\n| Cell 1   | Cell 2   | Cell 3   | Cell 4   |\n| Cell 5   | Cell 6   | Cell 7   | Cell 8   |"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "Test code",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 13
+                }
+            },
+            "range": [
+                280,
+                293
+            ],
+            "raw": "    Test code"
+        },
+        {
+            "type": "Table",
+            "align": [
+                null,
+                null
+            ],
+            "children": [
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 0
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        295,
+                                        303
+                                    ],
+                                    "raw": "Header 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                295,
+                                303
+                            ],
+                            "raw": "Header 1"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 11
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 19
+                                        }
+                                    },
+                                    "range": [
+                                        306,
+                                        314
+                                    ],
+                                    "raw": "Header 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                306,
+                                314
+                            ],
+                            "raw": "Header 2"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        295,
+                        314
+                    ],
+                    "raw": "Header 1 | Header 2"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 15,
+                                            "column": 0
+                                        },
+                                        "end": {
+                                            "line": 15,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        335,
+                                        341
+                                    ],
+                                    "raw": "Cell 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 15,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 15,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                335,
+                                343
+                            ],
+                            "raw": "Cell 1  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 15,
+                                            "column": 11
+                                        },
+                                        "end": {
+                                            "line": 15,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        346,
+                                        352
+                                    ],
+                                    "raw": "Cell 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 15,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 15,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                346,
+                                352
+                            ],
+                            "raw": "Cell 2"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        335,
+                        352
+                    ],
+                    "raw": "Cell 1   | Cell 2"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 3",
+                                    "loc": {
+                                        "start": {
+                                            "line": 16,
+                                            "column": 0
+                                        },
+                                        "end": {
+                                            "line": 16,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        353,
+                                        359
+                                    ],
+                                    "raw": "Cell 3"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                353,
+                                361
+                            ],
+                            "raw": "Cell 3  "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 4",
+                                    "loc": {
+                                        "start": {
+                                            "line": 16,
+                                            "column": 11
+                                        },
+                                        "end": {
+                                            "line": 16,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        364,
+                                        370
+                                    ],
+                                    "raw": "Cell 4"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                364,
+                                370
+                            ],
+                            "raw": "Cell 4"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        353,
+                        370
+                    ],
+                    "raw": "Cell 3   | Cell 4"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 16,
+                    "column": 17
+                }
+            },
+            "range": [
+                295,
+                370
+            ],
+            "raw": "Header 1 | Header 2\n-------- | --------\nCell 1   | Cell 2\nCell 3   | Cell 4"
+        },
+        {
+            "type": "Table",
+            "align": [
+                "left",
+                "center",
+                "right",
+                null
+            ],
+            "children": [
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 18,
+                                            "column": 0
+                                        },
+                                        "end": {
+                                            "line": 18,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        372,
+                                        380
+                                    ],
+                                    "raw": "Header 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 18,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 18,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                372,
+                                380
+                            ],
+                            "raw": "Header 1"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 18,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 18,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        381,
+                                        389
+                                    ],
+                                    "raw": "Header 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 18,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 18,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                381,
+                                389
+                            ],
+                            "raw": "Header 2"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 3",
+                                    "loc": {
+                                        "start": {
+                                            "line": 18,
+                                            "column": 18
+                                        },
+                                        "end": {
+                                            "line": 18,
+                                            "column": 26
+                                        }
+                                    },
+                                    "range": [
+                                        390,
+                                        398
+                                    ],
+                                    "raw": "Header 3"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 18,
+                                    "column": 18
+                                },
+                                "end": {
+                                    "line": 18,
+                                    "column": 26
+                                }
+                            },
+                            "range": [
+                                390,
+                                398
+                            ],
+                            "raw": "Header 3"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Header 4",
+                                    "loc": {
+                                        "start": {
+                                            "line": 18,
+                                            "column": 27
+                                        },
+                                        "end": {
+                                            "line": 18,
+                                            "column": 35
+                                        }
+                                    },
+                                    "range": [
+                                        399,
+                                        407
+                                    ],
+                                    "raw": "Header 4"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 18,
+                                    "column": 27
+                                },
+                                "end": {
+                                    "line": 18,
+                                    "column": 35
+                                }
+                            },
+                            "range": [
+                                399,
+                                407
+                            ],
+                            "raw": "Header 4"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 18,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 18,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        372,
+                        407
+                    ],
+                    "raw": "Header 1|Header 2|Header 3|Header 4"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 1",
+                                    "loc": {
+                                        "start": {
+                                            "line": 20,
+                                            "column": 0
+                                        },
+                                        "end": {
+                                            "line": 20,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        444,
+                                        450
+                                    ],
+                                    "raw": "Cell 1"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 20,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 20,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                444,
+                                451
+                            ],
+                            "raw": "Cell 1 "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 2",
+                                    "loc": {
+                                        "start": {
+                                            "line": 20,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 20,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        453,
+                                        459
+                                    ],
+                                    "raw": "Cell 2"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 20,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 20,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                453,
+                                460
+                            ],
+                            "raw": "Cell 2 "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 3",
+                                    "loc": {
+                                        "start": {
+                                            "line": 20,
+                                            "column": 18
+                                        },
+                                        "end": {
+                                            "line": 20,
+                                            "column": 24
+                                        }
+                                    },
+                                    "range": [
+                                        462,
+                                        468
+                                    ],
+                                    "raw": "Cell 3"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 20,
+                                    "column": 18
+                                },
+                                "end": {
+                                    "line": 20,
+                                    "column": 25
+                                }
+                            },
+                            "range": [
+                                462,
+                                469
+                            ],
+                            "raw": "Cell 3 "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 4",
+                                    "loc": {
+                                        "start": {
+                                            "line": 20,
+                                            "column": 27
+                                        },
+                                        "end": {
+                                            "line": 20,
+                                            "column": 33
+                                        }
+                                    },
+                                    "range": [
+                                        471,
+                                        477
+                                    ],
+                                    "raw": "Cell 4"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 20,
+                                    "column": 27
+                                },
+                                "end": {
+                                    "line": 20,
+                                    "column": 33
+                                }
+                            },
+                            "range": [
+                                471,
+                                477
+                            ],
+                            "raw": "Cell 4"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 20,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 20,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        444,
+                        477
+                    ],
+                    "raw": "Cell 1  |Cell 2  |Cell 3  |Cell 4"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Emphasis",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "Cell 5",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 21,
+                                                    "column": 1
+                                                },
+                                                "end": {
+                                                    "line": 21,
+                                                    "column": 7
+                                                }
+                                            },
+                                            "range": [
+                                                479,
+                                                485
+                                            ],
+                                            "raw": "Cell 5"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 21,
+                                            "column": 0
+                                        },
+                                        "end": {
+                                            "line": 21,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        478,
+                                        486
+                                    ],
+                                    "raw": "*Cell 5*"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                478,
+                                486
+                            ],
+                            "raw": "*Cell 5*"
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 6",
+                                    "loc": {
+                                        "start": {
+                                            "line": 21,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 21,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        487,
+                                        493
+                                    ],
+                                    "raw": "Cell 6"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                487,
+                                494
+                            ],
+                            "raw": "Cell 6 "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 7",
+                                    "loc": {
+                                        "start": {
+                                            "line": 21,
+                                            "column": 18
+                                        },
+                                        "end": {
+                                            "line": 21,
+                                            "column": 24
+                                        }
+                                    },
+                                    "range": [
+                                        496,
+                                        502
+                                    ],
+                                    "raw": "Cell 7"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 18
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 25
+                                }
+                            },
+                            "range": [
+                                496,
+                                503
+                            ],
+                            "raw": "Cell 7 "
+                        },
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Cell 8",
+                                    "loc": {
+                                        "start": {
+                                            "line": 21,
+                                            "column": 27
+                                        },
+                                        "end": {
+                                            "line": 21,
+                                            "column": 33
+                                        }
+                                    },
+                                    "range": [
+                                        505,
+                                        511
+                                    ],
+                                    "raw": "Cell 8"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 27
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 33
+                                }
+                            },
+                            "range": [
+                                505,
+                                511
+                            ],
+                            "raw": "Cell 8"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        478,
+                        511
+                    ],
+                    "raw": "*Cell 5*|Cell 6  |Cell 7  |Cell 8"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 18,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 33
+                }
+            },
+            "range": [
+                372,
+                511
+            ],
+            "raw": "Header 1|Header 2|Header 3|Header 4\n:-------|:------:|-------:|--------\nCell 1  |Cell 2  |Cell 3  |Cell 4\n*Cell 5*|Cell 6  |Cell 7  |Cell 8"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 22,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        512
+    ],
+    "raw": "| Heading 1 | **H**eading 2\n| --------- | ---------\n| Cell 1    | Cell 2\n| Cell 3    | Cell 4\n\n| Header 1 | Header 2 | Header 3 | Header 4 |\n| :------: | -------: | :------- | -------- |\n| Cell 1   | Cell 2   | Cell 3   | Cell 4   |\n| Cell 5   | Cell 6   | Cell 7   | Cell 8   |\n\n    Test code\n\nHeader 1 | Header 2\n-------- | --------\nCell 1   | Cell 2\nCell 3   | Cell 4\n\nHeader 1|Header 2|Header 3|Header 4\n:-------|:------:|-------:|--------\nCell 1  |Cell 2  |Cell 3  |Cell 4\n*Cell 5*|Cell 6  |Cell 7  |Cell 8\n"
+}

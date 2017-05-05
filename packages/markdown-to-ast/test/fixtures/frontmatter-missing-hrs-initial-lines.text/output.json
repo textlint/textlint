@@ -1,0 +1,157 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        5,
+                        13
+                    ],
+                    "raw": "Markdown"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 10
+                }
+            },
+            "range": [
+                3,
+                13
+            ],
+            "raw": "# Markdown"
+        },
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 6,
+                    "column": 3
+                }
+            },
+            "range": [
+                15,
+                18
+            ],
+            "raw": "---"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "An horizontal rule",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        19,
+                        37
+                    ],
+                    "raw": "An horizontal rule"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 3
+                }
+            },
+            "range": [
+                19,
+                41
+            ],
+            "raw": "An horizontal rule\n---"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "and another.",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        42,
+                        54
+                    ],
+                    "raw": "and another."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 12
+                }
+            },
+            "range": [
+                42,
+                54
+            ],
+            "raw": "and another."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 10,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        55
+    ],
+    "raw": "\n\n\n# Markdown\n\n---\nAn horizontal rule\n---\nand another.\n"
+}

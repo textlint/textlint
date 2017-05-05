@@ -1,0 +1,97 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a document with ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        0,
+                        24
+                    ],
+                    "raw": "This is a document with "
+                },
+                {
+                    "type": "Code",
+                    "value": "footnotes: true",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 41
+                        }
+                    },
+                    "range": [
+                        24,
+                        41
+                    ],
+                    "raw": "`footnotes: true`"
+                },
+                {
+                    "type": "Str",
+                    "value": ", but not actual footnote definition.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 41
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 78
+                        }
+                    },
+                    "range": [
+                        41,
+                        78
+                    ],
+                    "raw": ", but not actual footnote definition."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 78
+                }
+            },
+            "range": [
+                0,
+                78
+            ],
+            "raw": "This is a document with `footnotes: true`, but not actual footnote definition."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        79
+    ],
+    "raw": "This is a document with `footnotes: true`, but not actual footnote definition.\n"
+}

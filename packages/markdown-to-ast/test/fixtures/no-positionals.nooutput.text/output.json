@@ -1,0 +1,656 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This document tests for the working of ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        0,
+                        39
+                    ],
+                    "raw": "This document tests for the working of "
+                },
+                {
+                    "type": "Code",
+                    "value": "position: false",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 56
+                        }
+                    },
+                    "range": [
+                        39,
+                        56
+                    ],
+                    "raw": "`position: false`"
+                },
+                {
+                    "type": "Str",
+                    "value": " as a parse\noption.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 56
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        56,
+                        75
+                    ],
+                    "raw": " as a parse\noption."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 7
+                }
+            },
+            "range": [
+                0,
+                75
+            ],
+            "raw": "This document tests for the working of `position: false` as a parse\noption."
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "  Block-quotes",
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                79,
+                                93
+                            ],
+                            "raw": "  Block-quotes"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        79,
+                        93
+                    ],
+                    "raw": "  Block-quotes"
+                },
+                {
+                    "type": "List",
+                    "ordered": false,
+                    "start": null,
+                    "loose": false,
+                    "children": [
+                        {
+                            "type": "ListItem",
+                            "loose": false,
+                            "checked": null,
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "With list items.",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 6,
+                                                    "column": 8
+                                                },
+                                                "end": {
+                                                    "line": 6,
+                                                    "column": 24
+                                                }
+                                            },
+                                            "range": [
+                                                104,
+                                                120
+                                            ],
+                                            "raw": "With list items."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 6,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 6,
+                                            "column": 24
+                                        }
+                                    },
+                                    "range": [
+                                        104,
+                                        120
+                                    ],
+                                    "raw": "With list items."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 24
+                                }
+                            },
+                            "range": [
+                                98,
+                                120
+                            ],
+                            "raw": "  *   With list items."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        98,
+                        120
+                    ],
+                    "raw": "  *   With list items."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 6,
+                    "column": 24
+                }
+            },
+            "range": [
+                77,
+                120
+            ],
+            "raw": ">   Block-quotes\n>\n>   *   With list items."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Another block-quote:",
+                    "loc": {
+                        "start": {
+                            "line": 8,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 8,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        122,
+                        142
+                    ],
+                    "raw": "Another block-quote:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 8,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 20
+                }
+            },
+            "range": [
+                122,
+                142
+            ],
+            "raw": "Another block-quote:"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "List",
+                    "ordered": true,
+                    "start": 1,
+                    "loose": false,
+                    "children": [
+                        {
+                            "type": "ListItem",
+                            "loose": false,
+                            "checked": null,
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "And another list.",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 10,
+                                                    "column": 8
+                                                },
+                                                "end": {
+                                                    "line": 10,
+                                                    "column": 25
+                                                }
+                                            },
+                                            "range": [
+                                                152,
+                                                169
+                                            ],
+                                            "raw": "And another list."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 10,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 10,
+                                            "column": 25
+                                        }
+                                    },
+                                    "range": [
+                                        152,
+                                        169
+                                    ],
+                                    "raw": "And another list."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 25
+                                }
+                            },
+                            "range": [
+                                146,
+                                169
+                            ],
+                            "raw": "  1.  And another list."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        146,
+                        169
+                    ],
+                    "raw": "  1.  And another list."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 25
+                }
+            },
+            "range": [
+                144,
+                169
+            ],
+            "raw": ">   1.  And another list."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Some ",
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 12,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        171,
+                        176
+                    ],
+                    "raw": "Some "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "deeply ",
+                            "loc": {
+                                "start": {
+                                    "line": 12,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 12,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                177,
+                                184
+                            ],
+                            "raw": "deeply "
+                        },
+                        {
+                            "type": "Strong",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "nested ",
+                                    "loc": {
+                                        "start": {
+                                            "line": 12,
+                                            "column": 15
+                                        },
+                                        "end": {
+                                            "line": 12,
+                                            "column": 22
+                                        }
+                                    },
+                                    "range": [
+                                        186,
+                                        193
+                                    ],
+                                    "raw": "nested "
+                                },
+                                {
+                                    "type": "Emphasis",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "elements",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 12,
+                                                    "column": 23
+                                                },
+                                                "end": {
+                                                    "line": 12,
+                                                    "column": 31
+                                                }
+                                            },
+                                            "range": [
+                                                194,
+                                                202
+                                            ],
+                                            "raw": "elements"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 12,
+                                            "column": 22
+                                        },
+                                        "end": {
+                                            "line": 12,
+                                            "column": 32
+                                        }
+                                    },
+                                    "range": [
+                                        193,
+                                        203
+                                    ],
+                                    "raw": "_elements_"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 12,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 12,
+                                    "column": 34
+                                }
+                            },
+                            "range": [
+                                184,
+                                205
+                            ],
+                            "raw": "**nested _elements_**"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 12,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        176,
+                        226
+                    ],
+                    "raw": "[deeply **nested _elements_**](http://example.com)"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 55
+                }
+            },
+            "range": [
+                171,
+                226
+            ],
+            "raw": "Some [deeply **nested _elements_**](http://example.com)"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "An entity: ",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        228,
+                        239
+                    ],
+                    "raw": "An entity: "
+                },
+                {
+                    "type": "Str",
+                    "value": "©",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        239,
+                        245
+                    ],
+                    "raw": "&copy;"
+                },
+                {
+                    "type": "Str",
+                    "value": ", and an warning entity: ",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 17
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 42
+                        }
+                    },
+                    "range": [
+                        245,
+                        270
+                    ],
+                    "raw": ", and an warning entity: "
+                },
+                {
+                    "type": "Str",
+                    "value": "©",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 42
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        270,
+                        275
+                    ],
+                    "raw": "&copy"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 47
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 48
+                        }
+                    },
+                    "range": [
+                        275,
+                        276
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 48
+                }
+            },
+            "range": [
+                228,
+                276
+            ],
+            "raw": "An entity: &copy;, and an warning entity: &copy."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 15,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        277
+    ],
+    "raw": "This document tests for the working of `position: false` as a parse\noption.\n\n>   Block-quotes\n>\n>   *   With list items.\n\nAnother block-quote:\n\n>   1.  And another list.\n\nSome [deeply **nested _elements_**](http://example.com)\n\nAn entity: &copy;, and an warning entity: &copy.\n"
+}

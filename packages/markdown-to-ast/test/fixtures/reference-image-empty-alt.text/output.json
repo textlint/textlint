@@ -1,0 +1,82 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "imageReference",
+                    "identifier": "1",
+                    "referenceType": "full",
+                    "alt": null,
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "raw": "![][1]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 6
+                }
+            },
+            "range": [
+                0,
+                6
+            ],
+            "raw": "![][1]"
+        },
+        {
+            "type": "Definition",
+            "identifier": "1",
+            "title": null,
+            "url": "/xyz.png",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 13
+                }
+            },
+            "range": [
+                8,
+                21
+            ],
+            "raw": "[1]: /xyz.png"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        22
+    ],
+    "raw": "![][1]\n\n[1]: /xyz.png\n"
+}

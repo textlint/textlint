@@ -1,0 +1,100 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Foo",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        2,
+                        5
+                    ],
+                    "raw": "Foo"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 8
+                }
+            },
+            "range": [
+                0,
+                8
+            ],
+            "raw": "# Foo # "
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Bar",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        13,
+                        16
+                    ],
+                    "raw": "Bar"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 10
+                }
+            },
+            "range": [
+                10,
+                20
+            ],
+            "raw": "## Bar ##\t"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        21
+    ],
+    "raw": "# Foo # \n\n## Bar ##\t\n"
+}

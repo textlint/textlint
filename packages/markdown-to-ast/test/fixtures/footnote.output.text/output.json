@@ -1,0 +1,712 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Lorem ipsum dolor sit amet",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        0,
+                        26
+                    ],
+                    "raw": "Lorem ipsum dolor sit amet"
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^1",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^1",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 27
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 29
+                                }
+                            },
+                            "range": [
+                                27,
+                                29
+                            ],
+                            "raw": "^1"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 26
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        26,
+                        30
+                    ],
+                    "raw": "[^1]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 30
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        30,
+                        31
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 31
+                }
+            },
+            "range": [
+                0,
+                31
+            ],
+            "raw": "Lorem ipsum dolor sit amet[^1]."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Nulla finibus",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        33,
+                        46
+                    ],
+                    "raw": "Nulla finibus"
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^2",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^2",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                47,
+                                49
+                            ],
+                            "raw": "^2"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        46,
+                        50
+                    ],
+                    "raw": "[^2]"
+                },
+                {
+                    "type": "Str",
+                    "value": " neque et diam rhoncus convallis.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 17
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 50
+                        }
+                    },
+                    "range": [
+                        50,
+                        83
+                    ],
+                    "raw": " neque et diam rhoncus convallis."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 50
+                }
+            },
+            "range": [
+                33,
+                83
+            ],
+            "raw": "Nulla finibus[^2] neque et diam rhoncus convallis."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "^1",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^1",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 3
+                                }
+                            },
+                            "range": [
+                                86,
+                                88
+                            ],
+                            "raw": "^1"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        85,
+                        89
+                    ],
+                    "raw": "[^1]"
+                },
+                {
+                    "type": "Str",
+                    "value": ": Consectetur ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        89,
+                        103
+                    ],
+                    "raw": ": Consectetur "
+                },
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "adipiscing",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 20
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 30
+                                }
+                            },
+                            "range": [
+                                105,
+                                115
+                            ],
+                            "raw": "adipiscing"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 32
+                        }
+                    },
+                    "range": [
+                        103,
+                        117
+                    ],
+                    "raw": "**adipiscing**"
+                },
+                {
+                    "type": "Str",
+                    "value": " elit. Praesent dictum purus ullamcorper ligula semper pellentesque",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 32
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 99
+                        }
+                    },
+                    "range": [
+                        117,
+                        184
+                    ],
+                    "raw": " elit. Praesent dictum purus ullamcorper ligula semper pellentesque"
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^3",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^3",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 100
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 102
+                                }
+                            },
+                            "range": [
+                                185,
+                                187
+                            ],
+                            "raw": "^3"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 99
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 103
+                        }
+                    },
+                    "range": [
+                        184,
+                        188
+                    ],
+                    "raw": "[^3]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 103
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 104
+                        }
+                    },
+                    "range": [
+                        188,
+                        189
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 104
+                }
+            },
+            "range": [
+                85,
+                189
+            ],
+            "raw": "[^1]: Consectetur **adipiscing** elit. Praesent dictum purus ullamcorper ligula semper pellentesque[^3]."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "-   Containing a list.",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 26
+                }
+            },
+            "range": [
+                191,
+                217
+            ],
+            "raw": "    -   Containing a list."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "^2",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^2",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 3
+                                }
+                            },
+                            "range": [
+                                220,
+                                222
+                            ],
+                            "raw": "^2"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        219,
+                        223
+                    ],
+                    "raw": "[^2]"
+                },
+                {
+                    "type": "Str",
+                    "value": ": Nam dictum sapien nec sem ultrices fermentum. Nulla ",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 58
+                        }
+                    },
+                    "range": [
+                        223,
+                        277
+                    ],
+                    "raw": ": Nam dictum sapien nec sem ultrices fermentum. Nulla "
+                },
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "facilisi",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 60
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 68
+                                }
+                            },
+                            "range": [
+                                279,
+                                287
+                            ],
+                            "raw": "facilisi"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 58
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        277,
+                        289
+                    ],
+                    "raw": "**facilisi**"
+                },
+                {
+                    "type": "Str",
+                    "value": ". In et feugiat massa.",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 70
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 92
+                        }
+                    },
+                    "range": [
+                        289,
+                        311
+                    ],
+                    "raw": ". In et feugiat massa."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 92
+                }
+            },
+            "range": [
+                219,
+                311
+            ],
+            "raw": "[^2]: Nam dictum sapien nec sem ultrices fermentum. Nulla **facilisi**. In et feugiat massa."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "^3",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^3",
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 3
+                                }
+                            },
+                            "range": [
+                                314,
+                                316
+                            ],
+                            "raw": "^3"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        313,
+                        317
+                    ],
+                    "raw": "[^3]"
+                },
+                {
+                    "type": "Str",
+                    "value": ": Nunc dapibus ipsum ut mi ",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        317,
+                        344
+                    ],
+                    "raw": ": Nunc dapibus ipsum ut mi "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "ultrices",
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 32
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 40
+                                }
+                            },
+                            "range": [
+                                345,
+                                353
+                            ],
+                            "raw": "ultrices"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 31
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 41
+                        }
+                    },
+                    "range": [
+                        344,
+                        354
+                    ],
+                    "raw": "_ultrices_"
+                },
+                {
+                    "type": "Str",
+                    "value": ", non euismod velit pretium.",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 41
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 69
+                        }
+                    },
+                    "range": [
+                        354,
+                        382
+                    ],
+                    "raw": ", non euismod velit pretium."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 69
+                }
+            },
+            "range": [
+                313,
+                382
+            ],
+            "raw": "[^3]: Nunc dapibus ipsum ut mi _ultrices_, non euismod velit pretium."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 12,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        383
+    ],
+    "raw": "Lorem ipsum dolor sit amet[^1].\n\nNulla finibus[^2] neque et diam rhoncus convallis.\n\n[^1]: Consectetur **adipiscing** elit. Praesent dictum purus ullamcorper ligula semper pellentesque[^3].\n\n    -   Containing a list.\n\n[^2]: Nam dictum sapien nec sem ultrices fermentum. Nulla **facilisi**. In et feugiat massa.\n\n[^3]: Nunc dapibus ipsum ut mi _ultrices_, non euismod velit pretium.\n"
+}

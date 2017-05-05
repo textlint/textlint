@@ -1,0 +1,97 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "value": "<![CDATA[\nfooBarBaz()\n]]>",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                25
+            ],
+            "raw": "<![CDATA[\nfooBarBaz()\n]]>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "foo ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        27,
+                        31
+                    ],
+                    "raw": "foo "
+                },
+                {
+                    "type": "Html",
+                    "value": "<![CDATA[bar]]>",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        31,
+                        46
+                    ],
+                    "raw": "<![CDATA[bar]]>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 19
+                }
+            },
+            "range": [
+                27,
+                46
+            ],
+            "raw": "foo <![CDATA[bar]]>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        47
+    ],
+    "raw": "<![CDATA[\nfooBarBaz()\n]]>\n\nfoo <![CDATA[bar]]>\n"
+}

@@ -1,0 +1,444 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This nested image should work:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        0,
+                        30
+                    ],
+                    "raw": "This nested image should work:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 30
+                }
+            },
+            "range": [
+                0,
+                30
+            ],
+            "raw": "This nested image should work:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "baz",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "imageReference",
+                            "identifier": "bar",
+                            "referenceType": "full",
+                            "alt": "Foo",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                33,
+                                44
+                            ],
+                            "raw": "![Foo][bar]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        32,
+                        50
+                    ],
+                    "raw": "[![Foo][bar]][baz]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 18
+                }
+            },
+            "range": [
+                32,
+                50
+            ],
+            "raw": "[![Foo][bar]][baz]"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This nested link should not work:",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        52,
+                        85
+                    ],
+                    "raw": "This nested link should not work:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 33
+                }
+            },
+            "range": [
+                52,
+                85
+            ],
+            "raw": "This nested link should not work:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "baz",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "[Foo][bar]",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                88,
+                                98
+                            ],
+                            "raw": "[Foo][bar]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        87,
+                        104
+                    ],
+                    "raw": "[[Foo][bar]][baz]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 17
+                }
+            },
+            "range": [
+                87,
+                104
+            ],
+            "raw": "[[Foo][bar]][baz]"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This nested footnote not work:",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        106,
+                        136
+                    ],
+                    "raw": "This nested footnote not work:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 30
+                }
+            },
+            "range": [
+                106,
+                136
+            ],
+            "raw": "This nested footnote not work:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "baz",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "[^foo]",
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                139,
+                                145
+                            ],
+                            "raw": "[^foo]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        138,
+                        151
+                    ],
+                    "raw": "[[^foo]][baz]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 13
+                }
+            },
+            "range": [
+                138,
+                151
+            ],
+            "raw": "[[^foo]][baz]"
+        },
+        {
+            "type": "Definition",
+            "identifier": "bar",
+            "title": "bar",
+            "url": "https://bar.com",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 28
+                }
+            },
+            "range": [
+                153,
+                181
+            ],
+            "raw": "[bar]: https://bar.com \"bar\""
+        },
+        {
+            "type": "Definition",
+            "identifier": "baz",
+            "title": "baz",
+            "url": "https://baz.com",
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 28
+                }
+            },
+            "range": [
+                182,
+                210
+            ],
+            "raw": "[baz]: https://baz.com \"baz\""
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "^foo",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^foo",
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                213,
+                                217
+                            ],
+                            "raw": "^foo"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        212,
+                        218
+                    ],
+                    "raw": "[^foo]"
+                },
+                {
+                    "type": "Str",
+                    "value": ": A footnote.",
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        218,
+                        231
+                    ],
+                    "raw": ": A footnote."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 16,
+                    "column": 0
+                },
+                "end": {
+                    "line": 16,
+                    "column": 19
+                }
+            },
+            "range": [
+                212,
+                231
+            ],
+            "raw": "[^foo]: A footnote."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 17,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        232
+    ],
+    "raw": "This nested image should work:\n\n[![Foo][bar]][baz]\n\nThis nested link should not work:\n\n[[Foo][bar]][baz]\n\nThis nested footnote not work:\n\n[[^foo]][baz]\n\n[bar]: https://bar.com \"bar\"\n[baz]: https://baz.com \"baz\"\n\n[^foo]: A footnote.\n"
+}

@@ -1,0 +1,408 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "perform_complicated_task",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        0,
+                        24
+                    ],
+                    "raw": "perform_complicated_task"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 24
+                }
+            },
+            "range": [
+                0,
+                24
+            ],
+            "raw": "perform_complicated_task"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "do_this_and_do_that_and_another_thing",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        26,
+                        63
+                    ],
+                    "raw": "do_this_and_do_that_and_another_thing"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 37
+                }
+            },
+            "range": [
+                26,
+                63
+            ],
+            "raw": "do_this_and_do_that_and_another_thing"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "perform",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        65,
+                        72
+                    ],
+                    "raw": "perform"
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "complicated",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                73,
+                                84
+                            ],
+                            "raw": "complicated"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        72,
+                        85
+                    ],
+                    "raw": "*complicated*"
+                },
+                {
+                    "type": "Str",
+                    "value": "task",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 20
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        85,
+                        89
+                    ],
+                    "raw": "task"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 24
+                }
+            },
+            "range": [
+                65,
+                89
+            ],
+            "raw": "perform*complicated*task"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "do",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        91,
+                        93
+                    ],
+                    "raw": "do"
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "this",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                94,
+                                98
+                            ],
+                            "raw": "this"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        93,
+                        99
+                    ],
+                    "raw": "*this*"
+                },
+                {
+                    "type": "Str",
+                    "value": "and",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        99,
+                        102
+                    ],
+                    "raw": "and"
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "do",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 12
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                103,
+                                105
+                            ],
+                            "raw": "do"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        102,
+                        106
+                    ],
+                    "raw": "*do*"
+                },
+                {
+                    "type": "Str",
+                    "value": "that",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 15
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        106,
+                        110
+                    ],
+                    "raw": "that"
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "and",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 20
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 23
+                                }
+                            },
+                            "range": [
+                                111,
+                                114
+                            ],
+                            "raw": "and"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 19
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        110,
+                        115
+                    ],
+                    "raw": "*and*"
+                },
+                {
+                    "type": "Str",
+                    "value": "another*thing",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        115,
+                        128
+                    ],
+                    "raw": "another*thing"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 37
+                }
+            },
+            "range": [
+                91,
+                128
+            ],
+            "raw": "do*this*and*do*that*and*another*thing"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        129
+    ],
+    "raw": "perform_complicated_task\n\ndo_this_and_do_that_and_another_thing\n\nperform*complicated*task\n\ndo*this*and*do*that*and*another*thing\n"
+}

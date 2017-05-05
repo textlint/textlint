@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Yaml",
+            "value": "title: post\nobject:\n  key: value ---",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                44
+            ],
+            "raw": "---\ntitle: post\nobject:\n  key: value ---\n---"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        48,
+                        56
+                    ],
+                    "raw": "Markdown"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 10
+                }
+            },
+            "range": [
+                46,
+                56
+            ],
+            "raw": "# Markdown"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        57
+    ],
+    "raw": "---\ntitle: post\nobject:\n  key: value ---\n---\n\n# Markdown\n"
+}

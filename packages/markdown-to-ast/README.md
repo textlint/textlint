@@ -148,6 +148,10 @@ If you want to know real use-case, please see [textlint/textlint](https://github
 npm test
 ```
 
+### Create fixtures
+
+See [tools/](tools/) directory.
+
 ## Contributing
 
 1. Fork it!

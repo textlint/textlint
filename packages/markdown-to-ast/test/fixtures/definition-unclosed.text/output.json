@@ -1,0 +1,201 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "foo",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                1,
+                                4
+                            ],
+                            "raw": "foo"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        0,
+                        5
+                    ],
+                    "raw": "[foo]"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        5,
+                        6
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 6
+                }
+            },
+            "range": [
+                0,
+                6
+            ],
+            "raw": "[foo]:"
+        },
+        {
+            "type": "Definition",
+            "identifier": "bar",
+            "title": null,
+            "url": "</url",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 12
+                }
+            },
+            "range": [
+                8,
+                20
+            ],
+            "raw": "[bar]: </url"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "foo",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 4
+                                }
+                            },
+                            "range": [
+                                23,
+                                26
+                            ],
+                            "raw": "foo"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        22,
+                        27
+                    ],
+                    "raw": "[foo]"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        27,
+                        28
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 6
+                }
+            },
+            "range": [
+                22,
+                28
+            ],
+            "raw": "[foo]:"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 5,
+            "column": 6
+        }
+    },
+    "range": [
+        0,
+        28
+    ],
+    "raw": "[foo]:\n\n[bar]: </url\n\n[foo]:"
+}

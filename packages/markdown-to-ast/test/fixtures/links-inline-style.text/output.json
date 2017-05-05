@@ -1,0 +1,679 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Just a ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        0,
+                        7
+                    ],
+                    "raw": "Just a "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "/url/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "URL",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                8,
+                                11
+                            ],
+                            "raw": "URL"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        7,
+                        19
+                    ],
+                    "raw": "[URL](/url/)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 19
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        19,
+                        20
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 20
+                }
+            },
+            "range": [
+                0,
+                20
+            ],
+            "raw": "Just a [URL](/url/)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "title",
+                    "url": "/url/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "URL and title",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                23,
+                                36
+                            ],
+                            "raw": "URL and title"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        22,
+                        52
+                    ],
+                    "raw": "[URL and title](/url/ \"title\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 30
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        52,
+                        53
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 31
+                }
+            },
+            "range": [
+                22,
+                53
+            ],
+            "raw": "[URL and title](/url/ \"title\")."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "title preceded by two spaces",
+                    "url": "/url/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "URL and title",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                56,
+                                69
+                            ],
+                            "raw": "URL and title"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 54
+                        }
+                    },
+                    "range": [
+                        55,
+                        109
+                    ],
+                    "raw": "[URL and title](/url/  \"title preceded by two spaces\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 54
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        109,
+                        110
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 55
+                }
+            },
+            "range": [
+                55,
+                110
+            ],
+            "raw": "[URL and title](/url/  \"title preceded by two spaces\")."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "title preceded by a tab",
+                    "url": "/url/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "URL and title",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                113,
+                                126
+                            ],
+                            "raw": "URL and title"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 48
+                        }
+                    },
+                    "range": [
+                        112,
+                        160
+                    ],
+                    "raw": "[URL and title](/url/\t\"title preceded by a tab\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 48
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        160,
+                        161
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 49
+                }
+            },
+            "range": [
+                112,
+                161
+            ],
+            "raw": "[URL and title](/url/\t\"title preceded by a tab\")."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "title has spaces afterward",
+                    "url": "/url/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "URL and title",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                164,
+                                177
+                            ],
+                            "raw": "URL and title"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 53
+                        }
+                    },
+                    "range": [
+                        163,
+                        216
+                    ],
+                    "raw": "[URL and title](/url/ \"title has spaces afterward\"  )"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 53
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 54
+                        }
+                    },
+                    "range": [
+                        216,
+                        217
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 54
+                }
+            },
+            "range": [
+                163,
+                217
+            ],
+            "raw": "[URL and title](/url/ \"title has spaces afterward\"  )."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "/url/has space",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "URL and title",
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                220,
+                                233
+                            ],
+                            "raw": "URL and title"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        219,
+                        252
+                    ],
+                    "raw": "[URL and title]( /url/has space )"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 33
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        252,
+                        253
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 34
+                }
+            },
+            "range": [
+                219,
+                253
+            ],
+            "raw": "[URL and title]( /url/has space )."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "url has space and title",
+                    "url": "/url/has space/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "URL and title",
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                256,
+                                269
+                            ],
+                            "raw": "URL and title"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        255,
+                        314
+                    ],
+                    "raw": "[URL and title]( /url/has space/ \"url has space and title\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 59
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 60
+                        }
+                    },
+                    "range": [
+                        314,
+                        315
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 60
+                }
+            },
+            "range": [
+                255,
+                315
+            ],
+            "raw": "[URL and title]( /url/has space/ \"url has space and title\")."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Empty",
+                            "loc": {
+                                "start": {
+                                    "line": 15,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 15,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                318,
+                                323
+                            ],
+                            "raw": "Empty"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        317,
+                        326
+                    ],
+                    "raw": "[Empty]()"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        326,
+                        327
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 10
+                }
+            },
+            "range": [
+                317,
+                327
+            ],
+            "raw": "[Empty]()."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 16,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        328
+    ],
+    "raw": "Just a [URL](/url/).\n\n[URL and title](/url/ \"title\").\n\n[URL and title](/url/  \"title preceded by two spaces\").\n\n[URL and title](/url/\t\"title preceded by a tab\").\n\n[URL and title](/url/ \"title has spaces afterward\"  ).\n\n[URL and title]( /url/has space ).\n\n[URL and title]( /url/has space/ \"url has space and title\").\n\n[Empty]().\n"
+}

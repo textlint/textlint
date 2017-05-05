@@ -1,0 +1,280 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "foo",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        0,
+                        3
+                    ],
+                    "raw": "foo"
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^abc",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^abc",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                4,
+                                8
+                            ],
+                            "raw": "^abc"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        3,
+                        9
+                    ],
+                    "raw": "[^abc]"
+                },
+                {
+                    "type": "Str",
+                    "value": " bar. foo",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        9,
+                        18
+                    ],
+                    "raw": " bar. foo"
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^xyz",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^xyz",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 19
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 23
+                                }
+                            },
+                            "range": [
+                                19,
+                                23
+                            ],
+                            "raw": "^xyz"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        18,
+                        24
+                    ],
+                    "raw": "[^xyz]"
+                },
+                {
+                    "type": "Str",
+                    "value": " bar",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        24,
+                        28
+                    ],
+                    "raw": " bar"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 28
+                }
+            },
+            "range": [
+                0,
+                28
+            ],
+            "raw": "foo[^abc] bar. foo[^xyz] bar"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "^abc",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^abc",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                31,
+                                35
+                            ],
+                            "raw": "^abc"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        30,
+                        36
+                    ],
+                    "raw": "[^abc]"
+                },
+                {
+                    "type": "Str",
+                    "value": ": Baz baz",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        36,
+                        45
+                    ],
+                    "raw": ": Baz baz"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 15
+                }
+            },
+            "range": [
+                30,
+                45
+            ],
+            "raw": "[^abc]: Baz baz"
+        },
+        {
+            "type": "Definition",
+            "identifier": "^xyz",
+            "title": null,
+            "url": "Baz",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 11
+                }
+            },
+            "range": [
+                47,
+                58
+            ],
+            "raw": "[^xyz]: Baz"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        59
+    ],
+    "raw": "foo[^abc] bar. foo[^xyz] bar\n\n[^abc]: Baz baz\n\n[^xyz]: Baz\n"
+}

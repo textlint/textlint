@@ -1,0 +1,317 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This should be a link: ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        0,
+                        23
+                    ],
+                    "raw": "This should be a link: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com/hello-world",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com/hello-world",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 23
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 53
+                                }
+                            },
+                            "range": [
+                                23,
+                                53
+                            ],
+                            "raw": "http://example.com/hello-world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 23
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 53
+                        }
+                    },
+                    "range": [
+                        23,
+                        53
+                    ],
+                    "raw": "http://example.com/hello-world"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 53
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 54
+                        }
+                    },
+                    "range": [
+                        53,
+                        54
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 54
+                }
+            },
+            "range": [
+                0,
+                54
+            ],
+            "raw": "This should be a link: http://example.com/hello-world."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Also, subdomain should be a part of the link (",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 46
+                        }
+                    },
+                    "range": [
+                        56,
+                        102
+                    ],
+                    "raw": "Also, subdomain should be a part of the link ("
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://foo.example.com/(hello[world])",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://foo.example.com/(hello[world])",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 46
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 83
+                                }
+                            },
+                            "range": [
+                                102,
+                                139
+                            ],
+                            "raw": "http://foo.example.com/(hello[world])"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 46
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 83
+                        }
+                    },
+                    "range": [
+                        102,
+                        139
+                    ],
+                    "raw": "http://foo.example.com/(hello[world])"
+                },
+                {
+                    "type": "Str",
+                    "value": ").",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 83
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 85
+                        }
+                    },
+                    "range": [
+                        139,
+                        141
+                    ],
+                    "raw": ")."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 85
+                }
+            },
+            "range": [
+                56,
+                141
+            ],
+            "raw": "Also, subdomain should be a part of the link (http://foo.example.com/(hello[world]))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "So should this: ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        143,
+                        159
+                    ],
+                    "raw": "So should this: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "mailto:foo@bar.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo@bar.com",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 16
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 27
+                                }
+                            },
+                            "range": [
+                                159,
+                                170
+                            ],
+                            "raw": "mailto:foo@"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        159,
+                        177
+                    ],
+                    "raw": "mailto:foo@bar.com"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        177,
+                        178
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 35
+                }
+            },
+            "range": [
+                143,
+                178
+            ],
+            "raw": "So should this: mailto:foo@bar.com."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        179
+    ],
+    "raw": "This should be a link: http://example.com/hello-world.\n\nAlso, subdomain should be a part of the link (http://foo.example.com/(hello[world])).\n\nSo should this: mailto:foo@bar.com.\n"
+}

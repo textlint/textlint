@@ -1,0 +1,218 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "The NATO phonetic alphabet",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        0,
+                        26
+                    ],
+                    "raw": "The NATO phonetic alphabet"
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^wiki",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^wiki",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 27
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                27,
+                                32
+                            ],
+                            "raw": "^wiki"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 26
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        26,
+                        33
+                    ],
+                    "raw": "[^wiki]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 33
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        33,
+                        34
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 34
+                }
+            },
+            "range": [
+                0,
+                34
+            ],
+            "raw": "The NATO phonetic alphabet[^wiki]."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "  ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        36,
+                        38
+                    ],
+                    "raw": "  "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^wiki",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^wiki",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                39,
+                                44
+                            ],
+                            "raw": "^wiki"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        38,
+                        45
+                    ],
+                    "raw": "[^wiki]"
+                },
+                {
+                    "type": "Str",
+                    "value": ": Read more about it somewhere else.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        45,
+                        81
+                    ],
+                    "raw": ": Read more about it somewhere else."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 45
+                }
+            },
+            "range": [
+                36,
+                81
+            ],
+            "raw": "  [^wiki]: Read more about it somewhere else."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        82
+    ],
+    "raw": "The NATO phonetic alphabet[^wiki].\n\n  [^wiki]: Read more about it somewhere else.\n"
+}

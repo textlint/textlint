@@ -1,0 +1,197 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Fenced code blocks are normally not exdented, however,\nwhen the initial fence is indented by spaces, the value of\nthe code is exdented by up to that amount of spaces.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 52
+                        }
+                    },
+                    "range": [
+                        0,
+                        166
+                    ],
+                    "raw": "Fenced code blocks are normally not exdented, however,\nwhen the initial fence is indented by spaces, the value of\nthe code is exdented by up to that amount of spaces."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 52
+                }
+            },
+            "range": [
+                0,
+                166
+            ],
+            "raw": "Fenced code blocks are normally not exdented, however,\nwhen the initial fence is indented by spaces, the value of\nthe code is exdented by up to that amount of spaces."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "    This is a code block...\n        \n    ...which is not exdented.",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 3
+                }
+            },
+            "range": [
+                168,
+                242
+            ],
+            "raw": "```\n    This is a code block...\n        \n    ...which is not exdented.\n```"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "But...",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        244,
+                        250
+                    ],
+                    "raw": "But..."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 6
+                }
+            },
+            "range": [
+                244,
+                250
+            ],
+            "raw": "But..."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "  This one...\n      \n  ...is.",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 5
+                }
+            },
+            "range": [
+                252,
+                299
+            ],
+            "raw": "  ```\n    This one...\n        \n    ...is.\n  ```"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And...",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        301,
+                        307
+                    ],
+                    "raw": "And..."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 6
+                }
+            },
+            "range": [
+                301,
+                307
+            ],
+            "raw": "And..."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "So is this...\n      \n  ...one.",
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 4
+                }
+            },
+            "range": [
+                309,
+                351
+            ],
+            "raw": " ```\nSo is this...\n       \n   ...one.\n ```"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 26,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        352
+    ],
+    "raw": "Fenced code blocks are normally not exdented, however,\nwhen the initial fence is indented by spaces, the value of\nthe code is exdented by up to that amount of spaces.\n\n```\n    This is a code block...\n        \n    ...which is not exdented.\n```\n\nBut...\n\n  ```\n    This one...\n        \n    ...is.\n  ```\n\nAnd...\n\n ```\nSo is this...\n       \n   ...one.\n ```\n"
+}

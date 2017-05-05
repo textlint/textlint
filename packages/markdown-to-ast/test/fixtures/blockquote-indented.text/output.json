@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "bar\nbaz",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 5
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                5,
+                                15
+                            ],
+                            "raw": "bar\n > baz"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        5,
+                        15
+                    ],
+                    "raw": "bar\n > baz"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 6
+                }
+            },
+            "range": [
+                0,
+                15
+            ],
+            "raw": "   > bar\n > baz"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 3,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        16
+    ],
+    "raw": "   > bar\n > baz\n"
+}

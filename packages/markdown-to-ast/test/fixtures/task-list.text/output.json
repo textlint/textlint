@@ -1,0 +1,3343 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Empty items",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        0,
+                        11
+                    ],
+                    "raw": "Empty items"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 11
+                }
+            },
+            "range": [
+                0,
+                23
+            ],
+            "raw": "Empty items\n==========="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": " ",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 4,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 4,
+                                                    "column": 4
+                                                }
+                                            },
+                                            "range": [
+                                                28,
+                                                29
+                                            ],
+                                            "raw": " "
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        27,
+                                        30
+                                    ],
+                                    "raw": "[ ]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                27,
+                                30
+                            ],
+                            "raw": "[ ]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        25,
+                        30
+                    ],
+                    "raw": "* [ ]"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "\t",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 5,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 5,
+                                                    "column": 4
+                                                }
+                                            },
+                                            "range": [
+                                                34,
+                                                35
+                                            ],
+                                            "raw": "\t"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        33,
+                                        36
+                                    ],
+                                    "raw": "[\t]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                33,
+                                36
+                            ],
+                            "raw": "[\t]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        31,
+                        37
+                    ],
+                    "raw": "* [\t]\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "x",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "x",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 7,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 7,
+                                                    "column": 5
+                                                }
+                                            },
+                                            "range": [
+                                                42,
+                                                43
+                                            ],
+                                            "raw": "x"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        41,
+                                        44
+                                    ],
+                                    "raw": "[x]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                41,
+                                44
+                            ],
+                            "raw": "[x]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        38,
+                        44
+                    ],
+                    "raw": "1. [x]"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "x",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "X",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 8,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 8,
+                                                    "column": 5
+                                                }
+                                            },
+                                            "range": [
+                                                49,
+                                                50
+                                            ],
+                                            "raw": "X"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 8,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 8,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        48,
+                                        51
+                                    ],
+                                    "raw": "[X]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 8,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                48,
+                                51
+                            ],
+                            "raw": "[X]"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 8,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 8,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        45,
+                        51
+                    ],
+                    "raw": "2. [X]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 6
+                }
+            },
+            "range": [
+                25,
+                51
+            ],
+            "raw": "* [ ]\n* [\t]\n\n1. [x]\n2. [X]"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Single space",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        53,
+                        65
+                    ],
+                    "raw": "Single space"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 12
+                }
+            },
+            "range": [
+                53,
+                78
+            ],
+            "raw": "Single space\n============"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": false,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        80,
+                        86
+                    ],
+                    "raw": "* [ ] "
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        87,
+                        94
+                    ],
+                    "raw": "* [\t] \n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        95,
+                        102
+                    ],
+                    "raw": "1. [x] "
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        103,
+                        110
+                    ],
+                    "raw": "2. [X] "
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 7
+                }
+            },
+            "range": [
+                80,
+                110
+            ],
+            "raw": "* [ ] \n* [\t] \n\n1. [x] \n2. [X] "
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Tab",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        112,
+                        115
+                    ],
+                    "raw": "Tab"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 3
+                }
+            },
+            "range": [
+                112,
+                119
+            ],
+            "raw": "Tab\n==="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": false,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 22,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 22,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        121,
+                        127
+                    ],
+                    "raw": "* [ ]\t"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 24,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        128,
+                        135
+                    ],
+                    "raw": "* [\t]\t\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        136,
+                        143
+                    ],
+                    "raw": "1. [x]\t"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 26,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 26,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        144,
+                        151
+                    ],
+                    "raw": "2. [X]\t"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 22,
+                    "column": 0
+                },
+                "end": {
+                    "line": 26,
+                    "column": 7
+                }
+            },
+            "range": [
+                121,
+                151
+            ],
+            "raw": "* [ ]\t\n* [\t]\t\n\n1. [x]\t\n2. [X]\t"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "No white space with content",
+                    "loc": {
+                        "start": {
+                            "line": 28,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        153,
+                        180
+                    ],
+                    "raw": "No white space with content"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 28,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 27
+                }
+            },
+            "range": [
+                153,
+                208
+            ],
+            "raw": "No white space with content\n==========================="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": " ",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 31,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 31,
+                                                    "column": 4
+                                                }
+                                            },
+                                            "range": [
+                                                213,
+                                                214
+                                            ],
+                                            "raw": " "
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 31,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 31,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        212,
+                                        215
+                                    ],
+                                    "raw": "[ ]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 31,
+                                            "column": 5
+                                        },
+                                        "end": {
+                                            "line": 31,
+                                            "column": 11
+                                        }
+                                    },
+                                    "range": [
+                                        215,
+                                        221
+                                    ],
+                                    "raw": "Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 31,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 31,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                212,
+                                221
+                            ],
+                            "raw": "[ ]Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        210,
+                        221
+                    ],
+                    "raw": "* [ ]Hello;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "\t",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 32,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 32,
+                                                    "column": 4
+                                                }
+                                            },
+                                            "range": [
+                                                225,
+                                                226
+                                            ],
+                                            "raw": "\t"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 32,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 32,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        224,
+                                        227
+                                    ],
+                                    "raw": "[\t]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "World;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 32,
+                                            "column": 5
+                                        },
+                                        "end": {
+                                            "line": 32,
+                                            "column": 11
+                                        }
+                                    },
+                                    "range": [
+                                        227,
+                                        233
+                                    ],
+                                    "raw": "World;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 32,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 32,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                224,
+                                233
+                            ],
+                            "raw": "[\t]World;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        222,
+                        234
+                    ],
+                    "raw": "* [\t]World;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "x",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "x",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 34,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 34,
+                                                    "column": 5
+                                                }
+                                            },
+                                            "range": [
+                                                239,
+                                                240
+                                            ],
+                                            "raw": "x"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 34,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 34,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        238,
+                                        241
+                                    ],
+                                    "raw": "[x]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "Foo.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 34,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 34,
+                                            "column": 10
+                                        }
+                                    },
+                                    "range": [
+                                        241,
+                                        245
+                                    ],
+                                    "raw": "Foo."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 34,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 34,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                238,
+                                245
+                            ],
+                            "raw": "[x]Foo."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 34,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 34,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        235,
+                        245
+                    ],
+                    "raw": "1. [x]Foo."
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": "x",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "X",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 35,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 35,
+                                                    "column": 5
+                                                }
+                                            },
+                                            "range": [
+                                                250,
+                                                251
+                                            ],
+                                            "raw": "X"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 35,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 35,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        249,
+                                        252
+                                    ],
+                                    "raw": "[X]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": "Bar",
+                                    "loc": {
+                                        "start": {
+                                            "line": 35,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 35,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        252,
+                                        255
+                                    ],
+                                    "raw": "Bar"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 35,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 35,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                249,
+                                255
+                            ],
+                            "raw": "[X]Bar"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        246,
+                        255
+                    ],
+                    "raw": "2. [X]Bar"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 35,
+                    "column": 9
+                }
+            },
+            "range": [
+                210,
+                255
+            ],
+            "raw": "* [ ]Hello;\n* [\t]World;\n\n1. [x]Foo.\n2. [X]Bar"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Single space with content",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        257,
+                        282
+                    ],
+                    "raw": "Single space with content"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 0
+                },
+                "end": {
+                    "line": 38,
+                    "column": 25
+                }
+            },
+            "range": [
+                257,
+                308
+            ],
+            "raw": "Single space with content\n========================="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 40,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 40,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        316,
+                                        322
+                                    ],
+                                    "raw": "Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 40,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 40,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                316,
+                                322
+                            ],
+                            "raw": "Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 40,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 40,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        310,
+                        322
+                    ],
+                    "raw": "* [ ] Hello;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "World;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 41,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 41,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        329,
+                                        335
+                                    ],
+                                    "raw": "World;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 41,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 41,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                329,
+                                335
+                            ],
+                            "raw": "World;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 41,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        323,
+                        336
+                    ],
+                    "raw": "* [\t] World;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Foo.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 43,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 43,
+                                            "column": 11
+                                        }
+                                    },
+                                    "range": [
+                                        344,
+                                        348
+                                    ],
+                                    "raw": "Foo."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 43,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 43,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                344,
+                                348
+                            ],
+                            "raw": "Foo."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        337,
+                        348
+                    ],
+                    "raw": "1. [x] Foo."
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "World :D",
+                                    "loc": {
+                                        "start": {
+                                            "line": 44,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 44,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        356,
+                                        364
+                                    ],
+                                    "raw": "World :D"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 44,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 44,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                356,
+                                364
+                            ],
+                            "raw": "World :D"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 44,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 44,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        349,
+                        364
+                    ],
+                    "raw": "2. [X] World :D"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 40,
+                    "column": 0
+                },
+                "end": {
+                    "line": 44,
+                    "column": 15
+                }
+            },
+            "range": [
+                310,
+                364
+            ],
+            "raw": "* [ ] Hello;\n* [\t] World;\n\n1. [x] Foo.\n2. [X] World :D"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Single tab with content",
+                    "loc": {
+                        "start": {
+                            "line": 46,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 46,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        366,
+                        389
+                    ],
+                    "raw": "Single tab with content"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 46,
+                    "column": 0
+                },
+                "end": {
+                    "line": 47,
+                    "column": 23
+                }
+            },
+            "range": [
+                366,
+                413
+            ],
+            "raw": "Single tab with content\n======================="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 49,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 49,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        421,
+                                        427
+                                    ],
+                                    "raw": "Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                421,
+                                427
+                            ],
+                            "raw": "Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        415,
+                        427
+                    ],
+                    "raw": "* [ ]\tHello;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "World;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 50,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 50,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        434,
+                                        440
+                                    ],
+                                    "raw": "World;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 50,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 50,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                434,
+                                440
+                            ],
+                            "raw": "World;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 50,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        428,
+                        441
+                    ],
+                    "raw": "* [\t]\tWorld;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Foo.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 52,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 52,
+                                            "column": 11
+                                        }
+                                    },
+                                    "range": [
+                                        449,
+                                        453
+                                    ],
+                                    "raw": "Foo."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 52,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 52,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                449,
+                                453
+                            ],
+                            "raw": "Foo."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 52,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 52,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        442,
+                        453
+                    ],
+                    "raw": "1. [x]\tFoo."
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Hello.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 53,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 53,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        461,
+                                        467
+                                    ],
+                                    "raw": "Hello."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 53,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 53,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                461,
+                                467
+                            ],
+                            "raw": "Hello."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 53,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 53,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        454,
+                        467
+                    ],
+                    "raw": "2. [X]\tHello."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 49,
+                    "column": 0
+                },
+                "end": {
+                    "line": 53,
+                    "column": 13
+                }
+            },
+            "range": [
+                415,
+                467
+            ],
+            "raw": "* [ ]\tHello;\n* [\t]\tWorld;\n\n1. [x]\tFoo.\n2. [X]\tHello."
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Multiple spaces with content",
+                    "loc": {
+                        "start": {
+                            "line": 55,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 55,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        469,
+                        497
+                    ],
+                    "raw": "Multiple spaces with content"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 55,
+                    "column": 0
+                },
+                "end": {
+                    "line": 56,
+                    "column": 28
+                }
+            },
+            "range": [
+                469,
+                526
+            ],
+            "raw": "Multiple spaces with content\n============================"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "Hello;",
+                            "loc": {
+                                "start": {
+                                    "line": 58,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 58,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                534,
+                                544
+                            ],
+                            "raw": "    Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 58,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 58,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        528,
+                        544
+                    ],
+                    "raw": "* [ ]     Hello;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "World;",
+                            "loc": {
+                                "start": {
+                                    "line": 59,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 59,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                551,
+                                561
+                            ],
+                            "raw": "    World;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 59,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 60,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        545,
+                        562
+                    ],
+                    "raw": "* [\t]     World;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "   Foo.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 61,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 61,
+                                            "column": 14
+                                        }
+                                    },
+                                    "range": [
+                                        570,
+                                        577
+                                    ],
+                                    "raw": "   Foo."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 61,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 61,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                570,
+                                577
+                            ],
+                            "raw": "   Foo."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 61,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 61,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        563,
+                        577
+                    ],
+                    "raw": "1. [x]    Foo."
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "   Bar.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 62,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 62,
+                                            "column": 14
+                                        }
+                                    },
+                                    "range": [
+                                        585,
+                                        592
+                                    ],
+                                    "raw": "   Bar."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 62,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 62,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                585,
+                                592
+                            ],
+                            "raw": "   Bar."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 62,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 62,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        578,
+                        592
+                    ],
+                    "raw": "3. [X]    Bar."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 58,
+                    "column": 0
+                },
+                "end": {
+                    "line": 62,
+                    "column": 14
+                }
+            },
+            "range": [
+                528,
+                592
+            ],
+            "raw": "* [ ]     Hello;\n* [\t]     World;\n\n1. [x]    Foo.\n3. [X]    Bar."
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Multiple tabs with content",
+                    "loc": {
+                        "start": {
+                            "line": 64,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 64,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        594,
+                        620
+                    ],
+                    "raw": "Multiple tabs with content"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 64,
+                    "column": 0
+                },
+                "end": {
+                    "line": 65,
+                    "column": 26
+                }
+            },
+            "range": [
+                594,
+                647
+            ],
+            "raw": "Multiple tabs with content\n=========================="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "Hello;",
+                            "loc": {
+                                "start": {
+                                    "line": 67,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 67,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                655,
+                                662
+                            ],
+                            "raw": "\tHello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 67,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 67,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        649,
+                        662
+                    ],
+                    "raw": "* [ ]\t\tHello;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "World;",
+                            "loc": {
+                                "start": {
+                                    "line": 68,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 68,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                669,
+                                676
+                            ],
+                            "raw": "\tWorld;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 68,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 69,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        663,
+                        677
+                    ],
+                    "raw": "* [\t]\t\tWorld;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "Foo.",
+                            "loc": {
+                                "start": {
+                                    "line": 70,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 70,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                685,
+                                690
+                            ],
+                            "raw": "\tFoo."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 70,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 70,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        678,
+                        690
+                    ],
+                    "raw": "1. [x]\t\tFoo."
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "Bar.",
+                            "loc": {
+                                "start": {
+                                    "line": 71,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 71,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                698,
+                                703
+                            ],
+                            "raw": "\tBar."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 71,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 71,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        691,
+                        703
+                    ],
+                    "raw": "2. [X]\t\tBar."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 67,
+                    "column": 0
+                },
+                "end": {
+                    "line": 71,
+                    "column": 12
+                }
+            },
+            "range": [
+                649,
+                703
+            ],
+            "raw": "* [ ]\t\tHello;\n* [\t]\t\tWorld;\n\n1. [x]\t\tFoo.\n2. [X]\t\tBar."
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Mixed tabs and spaces",
+                    "loc": {
+                        "start": {
+                            "line": 73,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 73,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        705,
+                        726
+                    ],
+                    "raw": "Mixed tabs and spaces"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 73,
+                    "column": 0
+                },
+                "end": {
+                    "line": 74,
+                    "column": 21
+                }
+            },
+            "range": [
+                705,
+                748
+            ],
+            "raw": "Mixed tabs and spaces\n====================="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "    Hello;",
+                            "loc": {
+                                "start": {
+                                    "line": 76,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 76,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                756,
+                                767
+                            ],
+                            "raw": "\t    Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 76,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 77,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        750,
+                        768
+                    ],
+                    "raw": "* [ ] \t    Hello;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "World;",
+                            "loc": {
+                                "start": {
+                                    "line": 78,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 78,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                776,
+                                786
+                            ],
+                            "raw": "    World;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 78,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 79,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        769,
+                        787
+                    ],
+                    "raw": "1. [x]\t    World;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "value": "\tHello;",
+                            "loc": {
+                                "start": {
+                                    "line": 80,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 80,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                794,
+                                805
+                            ],
+                            "raw": "    \tHello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 80,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 80,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        788,
+                        805
+                    ],
+                    "raw": "* [\t]     \tHello;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": false,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "   \tWorld.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 81,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 81,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        812,
+                                        822
+                                    ],
+                                    "raw": "   \tWorld."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 81,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 81,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                812,
+                                822
+                            ],
+                            "raw": "   \tWorld."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 81,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 82,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        806,
+                        823
+                    ],
+                    "raw": "* [ ]\t   \tWorld.\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": true,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": " \tBar.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 83,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 83,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        831,
+                                        837
+                                    ],
+                                    "raw": " \tBar."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 83,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 83,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                831,
+                                837
+                            ],
+                            "raw": " \tBar."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 83,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 83,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        824,
+                        837
+                    ],
+                    "raw": "2. [X]\t \tBar."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 76,
+                    "column": 0
+                },
+                "end": {
+                    "line": 83,
+                    "column": 13
+                }
+            },
+            "range": [
+                750,
+                837
+            ],
+            "raw": "* [ ] \t    Hello;\n\n1. [x]\t    World;\n\n* [\t]     \tHello;\n* [ ]\t   \tWorld.\n\n2. [X]\t \tBar."
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Line breaks",
+                    "loc": {
+                        "start": {
+                            "line": 85,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 85,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        839,
+                        850
+                    ],
+                    "raw": "Line breaks"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 85,
+                    "column": 0
+                },
+                "end": {
+                    "line": 86,
+                    "column": 11
+                }
+            },
+            "range": [
+                839,
+                862
+            ],
+            "raw": "Line breaks\n==========="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "\n",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 88,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 89,
+                                                    "column": 0
+                                                }
+                                            },
+                                            "range": [
+                                                867,
+                                                868
+                                            ],
+                                            "raw": "\n"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 88,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 89,
+                                            "column": 1
+                                        }
+                                    },
+                                    "range": [
+                                        866,
+                                        869
+                                    ],
+                                    "raw": "[\n]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": " Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 89,
+                                            "column": 1
+                                        },
+                                        "end": {
+                                            "line": 89,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        869,
+                                        876
+                                    ],
+                                    "raw": " Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 88,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 89,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                866,
+                                876
+                            ],
+                            "raw": "[\n] Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 88,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 90,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        864,
+                        877
+                    ],
+                    "raw": "* [\n] Hello;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "\n",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 91,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 92,
+                                                    "column": 0
+                                                }
+                                            },
+                                            "range": [
+                                                882,
+                                                883
+                                            ],
+                                            "raw": "\n"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 91,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 92,
+                                            "column": 1
+                                        }
+                                    },
+                                    "range": [
+                                        881,
+                                        884
+                                    ],
+                                    "raw": "[\n]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": " Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 92,
+                                            "column": 1
+                                        },
+                                        "end": {
+                                            "line": 92,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        884,
+                                        891
+                                    ],
+                                    "raw": " Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 91,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 92,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                881,
+                                891
+                            ],
+                            "raw": "[\n] Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 91,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 92,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        878,
+                        891
+                    ],
+                    "raw": "1. [\n] Hello;"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 88,
+                    "column": 0
+                },
+                "end": {
+                    "line": 92,
+                    "column": 8
+                }
+            },
+            "range": [
+                864,
+                891
+            ],
+            "raw": "* [\n] Hello;\n\n1. [\n] Hello;"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Multiple unfinished characters",
+                    "loc": {
+                        "start": {
+                            "line": 94,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 94,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        893,
+                        923
+                    ],
+                    "raw": "Multiple unfinished characters"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 94,
+                    "column": 0
+                },
+                "end": {
+                    "line": 95,
+                    "column": 30
+                }
+            },
+            "range": [
+                893,
+                954
+            ],
+            "raw": "Multiple unfinished characters\n=============================="
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "  ",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 97,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 97,
+                                                    "column": 5
+                                                }
+                                            },
+                                            "range": [
+                                                959,
+                                                961
+                                            ],
+                                            "raw": "  "
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 97,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 97,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        958,
+                                        962
+                                    ],
+                                    "raw": "[  ]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": " Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 97,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 97,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        962,
+                                        969
+                                    ],
+                                    "raw": " Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 97,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 97,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                958,
+                                969
+                            ],
+                            "raw": "[  ] Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 97,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 98,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        956,
+                        970
+                    ],
+                    "raw": "* [  ] Hello;\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": " \n",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 99,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 100,
+                                                    "column": 1
+                                                }
+                                            },
+                                            "range": [
+                                                975,
+                                                978
+                                            ],
+                                            "raw": " \n "
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 99,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 100,
+                                            "column": 2
+                                        }
+                                    },
+                                    "range": [
+                                        974,
+                                        979
+                                    ],
+                                    "raw": "[ \n ]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": " World;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 100,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 100,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        979,
+                                        986
+                                    ],
+                                    "raw": " World;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 99,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 100,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                974,
+                                986
+                            ],
+                            "raw": "[ \n ] World;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 99,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 100,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        971,
+                        986
+                    ],
+                    "raw": "1. [ \n ] World;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "\t\t",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 101,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 101,
+                                                    "column": 6
+                                                }
+                                            },
+                                            "range": [
+                                                991,
+                                                993
+                                            ],
+                                            "raw": "\t\t"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 101,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 101,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        990,
+                                        994
+                                    ],
+                                    "raw": "[\t\t]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": " Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 101,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 101,
+                                            "column": 14
+                                        }
+                                    },
+                                    "range": [
+                                        994,
+                                        1001
+                                    ],
+                                    "raw": " Hello;"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 101,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 101,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                990,
+                                1001
+                            ],
+                            "raw": "[\t\t] Hello;"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 101,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 101,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        987,
+                        1001
+                    ],
+                    "raw": "2. [\t\t] Hello;"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "LinkReference",
+                                    "identifier": " ",
+                                    "referenceType": "shortcut",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": " \t ",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 102,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 102,
+                                                    "column": 7
+                                                }
+                                            },
+                                            "range": [
+                                                1006,
+                                                1009
+                                            ],
+                                            "raw": " \t "
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 102,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 102,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        1005,
+                                        1010
+                                    ],
+                                    "raw": "[ \t ]"
+                                },
+                                {
+                                    "type": "Str",
+                                    "value": " World.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 102,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 102,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        1010,
+                                        1017
+                                    ],
+                                    "raw": " World."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 102,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 102,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                1005,
+                                1017
+                            ],
+                            "raw": "[ \t ] World."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 102,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 102,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        1002,
+                        1017
+                    ],
+                    "raw": "3. [ \t ] World."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 97,
+                    "column": 0
+                },
+                "end": {
+                    "line": 102,
+                    "column": 15
+                }
+            },
+            "range": [
+                956,
+                1017
+            ],
+            "raw": "* [  ] Hello;\n\n1. [ \n ] World;\n2. [\t\t] Hello;\n3. [ \t ] World."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 103,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        1018
+    ],
+    "raw": "Empty items\n===========\n\n* [ ]\n* [\t]\n\n1. [x]\n2. [X]\n\nSingle space\n============\n\n* [ ] \n* [\t] \n\n1. [x] \n2. [X] \n\nTab\n===\n\n* [ ]\t\n* [\t]\t\n\n1. [x]\t\n2. [X]\t\n\nNo white space with content\n===========================\n\n* [ ]Hello;\n* [\t]World;\n\n1. [x]Foo.\n2. [X]Bar\n\nSingle space with content\n=========================\n\n* [ ] Hello;\n* [\t] World;\n\n1. [x] Foo.\n2. [X] World :D\n\nSingle tab with content\n=======================\n\n* [ ]\tHello;\n* [\t]\tWorld;\n\n1. [x]\tFoo.\n2. [X]\tHello.\n\nMultiple spaces with content\n============================\n\n* [ ]     Hello;\n* [\t]     World;\n\n1. [x]    Foo.\n3. [X]    Bar.\n\nMultiple tabs with content\n==========================\n\n* [ ]\t\tHello;\n* [\t]\t\tWorld;\n\n1. [x]\t\tFoo.\n2. [X]\t\tBar.\n\nMixed tabs and spaces\n=====================\n\n* [ ] \t    Hello;\n\n1. [x]\t    World;\n\n* [\t]     \tHello;\n* [ ]\t   \tWorld.\n\n2. [X]\t \tBar.\n\nLine breaks\n===========\n\n* [\n] Hello;\n\n1. [\n] Hello;\n\nMultiple unfinished characters\n==============================\n\n* [  ] Hello;\n\n1. [ \n ] World;\n2. [\t\t] Hello;\n3. [ \t ] World.\n"
+}

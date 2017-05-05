@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Yaml",
+            "value": "",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                7
+            ],
+            "raw": "---\n---"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        11,
+                        19
+                    ],
+                    "raw": "Markdown"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 10
+                }
+            },
+            "range": [
+                9,
+                19
+            ],
+            "raw": "# Markdown"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 5,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        20
+    ],
+    "raw": "---\n---\n\n# Markdown\n"
+}

@@ -1,0 +1,2582 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Entities",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        2,
+                        10
+                    ],
+                    "raw": "Entities"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                10
+            ],
+            "raw": "# Entities"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Plain",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        12,
+                        17
+                    ],
+                    "raw": "Plain"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        17,
+                        23
+                    ],
+                    "raw": "&nbsp;"
+                },
+                {
+                    "type": "Str",
+                    "value": "text:",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        23,
+                        28
+                    ],
+                    "raw": "text:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 16
+                }
+            },
+            "range": [
+                12,
+                28
+            ],
+            "raw": "Plain&nbsp;text:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "AT",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        30,
+                        32
+                    ],
+                    "raw": "AT"
+                },
+                {
+                    "type": "Str",
+                    "value": "&",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        32,
+                        37
+                    ],
+                    "raw": "&amp;"
+                },
+                {
+                    "type": "Str",
+                    "value": "T with entity, AT",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        37,
+                        54
+                    ],
+                    "raw": "T with entity, AT"
+                },
+                {
+                    "type": "Str",
+                    "value": "&",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        54,
+                        59
+                    ],
+                    "raw": "&amp;"
+                },
+                {
+                    "type": "Str",
+                    "value": "T with numeric entity, AT",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 29
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 54
+                        }
+                    },
+                    "range": [
+                        59,
+                        84
+                    ],
+                    "raw": "T with numeric entity, AT"
+                },
+                {
+                    "type": "Str",
+                    "value": "&",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 54
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        84,
+                        89
+                    ],
+                    "raw": "&amp;"
+                },
+                {
+                    "type": "Str",
+                    "value": "T without entity.",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 59
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 76
+                        }
+                    },
+                    "range": [
+                        89,
+                        106
+                    ],
+                    "raw": "T without entity."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 76
+                }
+            },
+            "range": [
+                30,
+                106
+            ],
+            "raw": "AT&amp;T with entity, AT&amp;T with numeric entity, AT&amp;T without entity."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Fenced code language flags:",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        108,
+                        135
+                    ],
+                    "raw": "Fenced code language flags:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 27
+                }
+            },
+            "range": [
+                108,
+                135
+            ],
+            "raw": "Fenced code language flags:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "AT&T",
+            "value": "Something in the AT&amp;T language",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 3
+                }
+            },
+            "range": [
+                137,
+                187
+            ],
+            "raw": "```AT&amp;T\nSomething in the AT&amp;T language\n```"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "AT&T",
+            "value": "Something in the AT&#x26;T language",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 3
+                }
+            },
+            "range": [
+                189,
+                240
+            ],
+            "raw": "```AT&amp;T\nSomething in the AT&#x26;T language\n```"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Automatic links:",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        242,
+                        258
+                    ],
+                    "raw": "Automatic links:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 16
+                }
+            },
+            "range": [
+                242,
+                258
+            ],
+            "raw": "Automatic links:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://at&t.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://at",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                261,
+                                270
+                            ],
+                            "raw": "http://at"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "&",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 10
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                270,
+                                275
+                            ],
+                            "raw": "&amp;"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "t.com",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 15
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 20
+                                }
+                            },
+                            "range": [
+                                275,
+                                280
+                            ],
+                            "raw": "t.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        260,
+                        281
+                    ],
+                    "raw": "<http://at&amp;t.com>"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 21
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        281,
+                        283
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://at&t.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://at",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 24
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 33
+                                }
+                            },
+                            "range": [
+                                284,
+                                293
+                            ],
+                            "raw": "http://at"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "&",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 33
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 38
+                                }
+                            },
+                            "range": [
+                                293,
+                                298
+                            ],
+                            "raw": "&amp;"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "t.com",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 38
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 43
+                                }
+                            },
+                            "range": [
+                                298,
+                                303
+                            ],
+                            "raw": "t.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 23
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 44
+                        }
+                    },
+                    "range": [
+                        283,
+                        304
+                    ],
+                    "raw": "<http://at&amp;t.com>"
+                },
+                {
+                    "type": "Str",
+                    "value": ", and ",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 44
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 50
+                        }
+                    },
+                    "range": [
+                        304,
+                        310
+                    ],
+                    "raw": ", and "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://at&t.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://at",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 51
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 60
+                                }
+                            },
+                            "range": [
+                                311,
+                                320
+                            ],
+                            "raw": "http://at"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "&",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 60
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 65
+                                }
+                            },
+                            "range": [
+                                320,
+                                325
+                            ],
+                            "raw": "&amp;"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "t.com",
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 65
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 70
+                                }
+                            },
+                            "range": [
+                                325,
+                                330
+                            ],
+                            "raw": "t.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 50
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 71
+                        }
+                    },
+                    "range": [
+                        310,
+                        331
+                    ],
+                    "raw": "<http://at&amp;t.com>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 71
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 72
+                        }
+                    },
+                    "range": [
+                        331,
+                        332
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 72
+                }
+            },
+            "range": [
+                260,
+                332
+            ],
+            "raw": "<http://at&amp;t.com>, <http://at&amp;t.com>, and <http://at&amp;t.com>."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link ",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        334,
+                        339
+                    ],
+                    "raw": "Link "
+                },
+                {
+                    "type": "Code",
+                    "value": "href",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        339,
+                        345
+                    ],
+                    "raw": "`href`"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        345,
+                        346
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 12
+                }
+            },
+            "range": [
+                334,
+                346
+            ],
+            "raw": "Link `href`:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://at&t.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "With entity",
+                            "loc": {
+                                "start": {
+                                    "line": 23,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 23,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                349,
+                                360
+                            ],
+                            "raw": "With entity"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        348,
+                        382
+                    ],
+                    "raw": "[With entity](http://at&amp;t.com)"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        382,
+                        384
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://at&t.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "numeric entity",
+                            "loc": {
+                                "start": {
+                                    "line": 23,
+                                    "column": 37
+                                },
+                                "end": {
+                                    "line": 23,
+                                    "column": 51
+                                }
+                            },
+                            "range": [
+                                385,
+                                399
+                            ],
+                            "raw": "numeric entity"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 73
+                        }
+                    },
+                    "range": [
+                        384,
+                        421
+                    ],
+                    "raw": "[numeric entity](http://at&amp;t.com)"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 73
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 75
+                        }
+                    },
+                    "range": [
+                        421,
+                        423
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://at&t.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "without entity",
+                            "loc": {
+                                "start": {
+                                    "line": 23,
+                                    "column": 76
+                                },
+                                "end": {
+                                    "line": 23,
+                                    "column": 90
+                                }
+                            },
+                            "range": [
+                                424,
+                                438
+                            ],
+                            "raw": "without entity"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 75
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 112
+                        }
+                    },
+                    "range": [
+                        423,
+                        460
+                    ],
+                    "raw": "[without entity](http://at&amp;t.com)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 112
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 113
+                        }
+                    },
+                    "range": [
+                        460,
+                        461
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 113
+                }
+            },
+            "range": [
+                348,
+                461
+            ],
+            "raw": "[With entity](http://at&amp;t.com), [numeric entity](http://at&amp;t.com), [without entity](http://at&amp;t.com)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link ",
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        463,
+                        468
+                    ],
+                    "raw": "Link "
+                },
+                {
+                    "type": "Code",
+                    "value": "title",
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        468,
+                        475
+                    ],
+                    "raw": "`title`"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        475,
+                        476
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 25,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 13
+                }
+            },
+            "range": [
+                463,
+                476
+            ],
+            "raw": "Link `title`:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "AT&T",
+                    "url": "http://att.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "With entity",
+                            "loc": {
+                                "start": {
+                                    "line": 27,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 27,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                479,
+                                490
+                            ],
+                            "raw": "With entity"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 40
+                        }
+                    },
+                    "range": [
+                        478,
+                        518
+                    ],
+                    "raw": "[With entity](http://att.com \"AT&amp;T\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 40
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 42
+                        }
+                    },
+                    "range": [
+                        518,
+                        520
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Link",
+                    "title": "AT&T",
+                    "url": "http://att.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "numeric entity",
+                            "loc": {
+                                "start": {
+                                    "line": 27,
+                                    "column": 43
+                                },
+                                "end": {
+                                    "line": 27,
+                                    "column": 57
+                                }
+                            },
+                            "range": [
+                                521,
+                                535
+                            ],
+                            "raw": "numeric entity"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 42
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 85
+                        }
+                    },
+                    "range": [
+                        520,
+                        563
+                    ],
+                    "raw": "[numeric entity](http://att.com \"AT&amp;T\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 85
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 87
+                        }
+                    },
+                    "range": [
+                        563,
+                        565
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Link",
+                    "title": "AT&T",
+                    "url": "http://example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "without entity",
+                            "loc": {
+                                "start": {
+                                    "line": 27,
+                                    "column": 88
+                                },
+                                "end": {
+                                    "line": 27,
+                                    "column": 102
+                                }
+                            },
+                            "range": [
+                                566,
+                                580
+                            ],
+                            "raw": "without entity"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 87
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 134
+                        }
+                    },
+                    "range": [
+                        565,
+                        612
+                    ],
+                    "raw": "[without entity](http://example.com \"AT&amp;T\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 134
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 135
+                        }
+                    },
+                    "range": [
+                        612,
+                        613
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 135
+                }
+            },
+            "range": [
+                478,
+                613
+            ],
+            "raw": "[With entity](http://att.com \"AT&amp;T\"), [numeric entity](http://att.com \"AT&amp;T\"), [without entity](http://example.com \"AT&amp;T\")."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Image ",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        615,
+                        621
+                    ],
+                    "raw": "Image "
+                },
+                {
+                    "type": "Code",
+                    "value": "src",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        621,
+                        626
+                    ],
+                    "raw": "`src`"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        626,
+                        627
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 12
+                }
+            },
+            "range": [
+                615,
+                627
+            ],
+            "raw": "Image `src`:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "http://at&t.com/fav.ico",
+                    "alt": "With entity",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 43
+                        }
+                    },
+                    "range": [
+                        629,
+                        672
+                    ],
+                    "raw": "![With entity](http://at&amp;t.com/fav.ico)"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 43
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        672,
+                        674
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "http://at&t.com/fav.ico",
+                    "alt": "numeric entity",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 45
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 91
+                        }
+                    },
+                    "range": [
+                        674,
+                        720
+                    ],
+                    "raw": "![numeric entity](http://at&amp;t.com/fav.ico)"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 91
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 93
+                        }
+                    },
+                    "range": [
+                        720,
+                        722
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "http://at&t.com/fav.ico",
+                    "alt": "without entity",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 93
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 139
+                        }
+                    },
+                    "range": [
+                        722,
+                        768
+                    ],
+                    "raw": "![without entity](http://at&amp;t.com/fav.ico)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 31,
+                            "column": 139
+                        },
+                        "end": {
+                            "line": 31,
+                            "column": 140
+                        }
+                    },
+                    "range": [
+                        768,
+                        769
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 31,
+                    "column": 140
+                }
+            },
+            "range": [
+                629,
+                769
+            ],
+            "raw": "![With entity](http://at&amp;t.com/fav.ico), ![numeric entity](http://at&amp;t.com/fav.ico), ![without entity](http://at&amp;t.com/fav.ico)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Image ",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        771,
+                        777
+                    ],
+                    "raw": "Image "
+                },
+                {
+                    "type": "Code",
+                    "value": "alt",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        777,
+                        782
+                    ],
+                    "raw": "`alt`"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 33,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        782,
+                        783
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 33,
+                    "column": 0
+                },
+                "end": {
+                    "line": 33,
+                    "column": 12
+                }
+            },
+            "range": [
+                771,
+                783
+            ],
+            "raw": "Image `alt`:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "http://att.com/fav.ico",
+                    "alt": "AT&T with entity",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        785,
+                        832
+                    ],
+                    "raw": "![AT&amp;T with entity](http://att.com/fav.ico)"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 47
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        832,
+                        834
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "http://att.com/fav.ico",
+                    "alt": "AT&T with numeric entity",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 49
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 104
+                        }
+                    },
+                    "range": [
+                        834,
+                        889
+                    ],
+                    "raw": "![AT&amp;T with numeric entity](http://att.com/fav.ico)"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 104
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 106
+                        }
+                    },
+                    "range": [
+                        889,
+                        891
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "http://att.com/fav.ico",
+                    "alt": "AT&T without entity",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 106
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 156
+                        }
+                    },
+                    "range": [
+                        891,
+                        941
+                    ],
+                    "raw": "![AT&amp;T without entity](http://att.com/fav.ico)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 156
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 157
+                        }
+                    },
+                    "range": [
+                        941,
+                        942
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 0
+                },
+                "end": {
+                    "line": 35,
+                    "column": 157
+                }
+            },
+            "range": [
+                785,
+                942
+            ],
+            "raw": "![AT&amp;T with entity](http://att.com/fav.ico), ![AT&amp;T with numeric entity](http://att.com/fav.ico), ![AT&amp;T without entity](http://att.com/fav.ico)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Image ",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        944,
+                        950
+                    ],
+                    "raw": "Image "
+                },
+                {
+                    "type": "Code",
+                    "value": "title",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        950,
+                        957
+                    ],
+                    "raw": "`title`"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 37,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        957,
+                        958
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 0
+                },
+                "end": {
+                    "line": 37,
+                    "column": 14
+                }
+            },
+            "range": [
+                944,
+                958
+            ],
+            "raw": "Image `title`:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": "AT&T",
+                    "url": "http://att.com/fav.ico",
+                    "alt": "With entity",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        960,
+                        1009
+                    ],
+                    "raw": "![With entity](http://att.com/fav.ico \"AT&amp;T\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 49
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 51
+                        }
+                    },
+                    "range": [
+                        1009,
+                        1011
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Image",
+                    "title": "AT&T",
+                    "url": "http://att.com/fav.ico",
+                    "alt": "numeric entity",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 51
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 103
+                        }
+                    },
+                    "range": [
+                        1011,
+                        1063
+                    ],
+                    "raw": "![numeric entity](http://att.com/fav.ico \"AT&amp;T\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 103
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 105
+                        }
+                    },
+                    "range": [
+                        1063,
+                        1065
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Image",
+                    "title": "AT&T",
+                    "url": "http://att.com/fav.ico",
+                    "alt": "without entity",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 105
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 157
+                        }
+                    },
+                    "range": [
+                        1065,
+                        1117
+                    ],
+                    "raw": "![without entity](http://att.com/fav.ico \"AT&amp;T\")"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 39,
+                            "column": 157
+                        },
+                        "end": {
+                            "line": 39,
+                            "column": 158
+                        }
+                    },
+                    "range": [
+                        1117,
+                        1118
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 39,
+                    "column": 0
+                },
+                "end": {
+                    "line": 39,
+                    "column": 158
+                }
+            },
+            "range": [
+                960,
+                1118
+            ],
+            "raw": "![With entity](http://att.com/fav.ico \"AT&amp;T\"), ![numeric entity](http://att.com/fav.ico \"AT&amp;T\"), ![without entity](http://att.com/fav.ico \"AT&amp;T\")."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Image Reference ",
+                    "loc": {
+                        "start": {
+                            "line": 41,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 41,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        1120,
+                        1136
+                    ],
+                    "raw": "Image Reference "
+                },
+                {
+                    "type": "Code",
+                    "value": "alt",
+                    "loc": {
+                        "start": {
+                            "line": 41,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 41,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        1136,
+                        1141
+                    ],
+                    "raw": "`alt`"
+                },
+                {
+                    "type": "Str",
+                    "value": ":",
+                    "loc": {
+                        "start": {
+                            "line": 41,
+                            "column": 21
+                        },
+                        "end": {
+                            "line": 41,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        1141,
+                        1142
+                    ],
+                    "raw": ":"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 41,
+                    "column": 0
+                },
+                "end": {
+                    "line": 41,
+                    "column": 22
+                }
+            },
+            "range": [
+                1120,
+                1142
+            ],
+            "raw": "Image Reference `alt`:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "imageReference",
+                    "identifier": "favicon",
+                    "referenceType": "full",
+                    "alt": "AT&T with entity",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 32
+                        }
+                    },
+                    "range": [
+                        1144,
+                        1176
+                    ],
+                    "raw": "![AT&amp;T with entity][favicon]"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 32
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        1176,
+                        1178
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "imageReference",
+                    "identifier": "favicon",
+                    "referenceType": "full",
+                    "alt": "AT&T with numeric entity",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 74
+                        }
+                    },
+                    "range": [
+                        1178,
+                        1218
+                    ],
+                    "raw": "![AT&amp;T with numeric entity][favicon]"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 74
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 76
+                        }
+                    },
+                    "range": [
+                        1218,
+                        1220
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "imageReference",
+                    "identifier": "favicon",
+                    "referenceType": "full",
+                    "alt": "AT&T without entity",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 76
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 111
+                        }
+                    },
+                    "range": [
+                        1220,
+                        1255
+                    ],
+                    "raw": "![AT&amp;T without entity][favicon]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 111
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 112
+                        }
+                    },
+                    "range": [
+                        1255,
+                        1256
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 43,
+                    "column": 0
+                },
+                "end": {
+                    "line": 43,
+                    "column": 112
+                }
+            },
+            "range": [
+                1144,
+                1256
+            ],
+            "raw": "![AT&amp;T with entity][favicon], ![AT&amp;T with numeric entity][favicon], ![AT&amp;T without entity][favicon]."
+        },
+        {
+            "type": "Definition",
+            "identifier": "favicon",
+            "title": "ATT favicon",
+            "url": "http://att.com/fav.ico",
+            "loc": {
+                "start": {
+                    "line": 45,
+                    "column": 0
+                },
+                "end": {
+                    "line": 45,
+                    "column": 47
+                }
+            },
+            "range": [
+                1258,
+                1305
+            ],
+            "raw": "[favicon]: http://att.com/fav.ico \"ATT favicon\""
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Shortcut and collapsed references:",
+                    "loc": {
+                        "start": {
+                            "line": 47,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 47,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        1307,
+                        1341
+                    ],
+                    "raw": "Shortcut and collapsed references:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 47,
+                    "column": 0
+                },
+                "end": {
+                    "line": 47,
+                    "column": 34
+                }
+            },
+            "range": [
+                1307,
+                1341
+            ],
+            "raw": "Shortcut and collapsed references:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "foo&bar",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo&bar",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                1344,
+                                1351
+                            ],
+                            "raw": "foo&bar"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        1343,
+                        1352
+                    ],
+                    "raw": "[foo&bar]"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        1352,
+                        1354
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "foo&bar",
+                    "referenceType": "collapsed",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo&bar",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 12
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                1355,
+                                1362
+                            ],
+                            "raw": "foo&bar"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        1354,
+                        1365
+                    ],
+                    "raw": "[foo&bar][]"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 22
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        1365,
+                        1367
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "foo&amp;bar",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 25
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 28
+                                }
+                            },
+                            "range": [
+                                1368,
+                                1371
+                            ],
+                            "raw": "foo"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "&",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 28
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 33
+                                }
+                            },
+                            "range": [
+                                1371,
+                                1376
+                            ],
+                            "raw": "&amp;"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "bar",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 33
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 36
+                                }
+                            },
+                            "range": [
+                                1376,
+                                1379
+                            ],
+                            "raw": "bar"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        1367,
+                        1380
+                    ],
+                    "raw": "[foo&amp;bar]"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 37
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        1380,
+                        1382
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "foo&amp;bar",
+                    "referenceType": "collapsed",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "foo",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 40
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 43
+                                }
+                            },
+                            "range": [
+                                1383,
+                                1386
+                            ],
+                            "raw": "foo"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "&",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 43
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 48
+                                }
+                            },
+                            "range": [
+                                1386,
+                                1391
+                            ],
+                            "raw": "&amp;"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "bar",
+                            "loc": {
+                                "start": {
+                                    "line": 49,
+                                    "column": 48
+                                },
+                                "end": {
+                                    "line": 49,
+                                    "column": 51
+                                }
+                            },
+                            "range": [
+                                1391,
+                                1394
+                            ],
+                            "raw": "bar"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 54
+                        }
+                    },
+                    "range": [
+                        1382,
+                        1397
+                    ],
+                    "raw": "[foo&amp;bar][]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 54
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        1397,
+                        1398
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 49,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 55
+                }
+            },
+            "range": [
+                1343,
+                1398
+            ],
+            "raw": "[foo&bar], [foo&bar][], [foo&amp;bar], [foo&amp;bar][]."
+        },
+        {
+            "type": "Definition",
+            "identifier": "foo&bar",
+            "title": null,
+            "url": "http://example.com",
+            "loc": {
+                "start": {
+                    "line": 51,
+                    "column": 0
+                },
+                "end": {
+                    "line": 51,
+                    "column": 29
+                }
+            },
+            "range": [
+                1400,
+                1429
+            ],
+            "raw": "[foo&bar]: http://example.com"
+        },
+        {
+            "type": "Definition",
+            "identifier": "foo&amp;bar",
+            "title": null,
+            "url": "http://example.com",
+            "loc": {
+                "start": {
+                    "line": 53,
+                    "column": 0
+                },
+                "end": {
+                    "line": 53,
+                    "column": 33
+                }
+            },
+            "range": [
+                1431,
+                1464
+            ],
+            "raw": "[foo&amp;bar]: http://example.com"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 54,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        1465
+    ],
+    "raw": "# Entities\n\nPlain&nbsp;text:\n\nAT&amp;T with entity, AT&amp;T with numeric entity, AT&amp;T without entity.\n\nFenced code language flags:\n\n```AT&amp;T\nSomething in the AT&amp;T language\n```\n\n```AT&amp;T\nSomething in the AT&#x26;T language\n```\n\nAutomatic links:\n\n<http://at&amp;t.com>, <http://at&amp;t.com>, and <http://at&amp;t.com>.\n\nLink `href`:\n\n[With entity](http://at&amp;t.com), [numeric entity](http://at&amp;t.com), [without entity](http://at&amp;t.com).\n\nLink `title`:\n\n[With entity](http://att.com \"AT&amp;T\"), [numeric entity](http://att.com \"AT&amp;T\"), [without entity](http://example.com \"AT&amp;T\").\n\nImage `src`:\n\n![With entity](http://at&amp;t.com/fav.ico), ![numeric entity](http://at&amp;t.com/fav.ico), ![without entity](http://at&amp;t.com/fav.ico).\n\nImage `alt`:\n\n![AT&amp;T with entity](http://att.com/fav.ico), ![AT&amp;T with numeric entity](http://att.com/fav.ico), ![AT&amp;T without entity](http://att.com/fav.ico).\n\nImage `title`:\n\n![With entity](http://att.com/fav.ico \"AT&amp;T\"), ![numeric entity](http://att.com/fav.ico \"AT&amp;T\"), ![without entity](http://att.com/fav.ico \"AT&amp;T\").\n\nImage Reference `alt`:\n\n![AT&amp;T with entity][favicon], ![AT&amp;T with numeric entity][favicon], ![AT&amp;T without entity][favicon].\n\n[favicon]: http://att.com/fav.ico \"ATT favicon\"\n\nShortcut and collapsed references:\n\n[foo&bar], [foo&bar][], [foo&amp;bar], [foo&amp;bar][].\n\n[foo&bar]: http://example.com\n\n[foo&amp;bar]: http://example.com\n"
+}

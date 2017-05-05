@@ -1,0 +1,556 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "In ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        0,
+                        3
+                    ],
+                    "raw": "In "
+                },
+                {
+                    "type": "Code",
+                    "value": "breaks: true",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        3,
+                        17
+                    ],
+                    "raw": "`breaks: true`"
+                },
+                {
+                    "type": "Str",
+                    "value": " mode, the following newline characters are exposed as ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 17
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 72
+                        }
+                    },
+                    "range": [
+                        17,
+                        72
+                    ],
+                    "raw": " mode, the following newline characters are exposed as "
+                },
+                {
+                    "type": "Code",
+                    "value": "break",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 72
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 79
+                        }
+                    },
+                    "range": [
+                        72,
+                        79
+                    ],
+                    "raw": "`break`"
+                },
+                {
+                    "type": "Str",
+                    "value": " nodes:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 79
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 86
+                        }
+                    },
+                    "range": [
+                        79,
+                        86
+                    ],
+                    "raw": " nodes:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 86
+                }
+            },
+            "range": [
+                0,
+                86
+            ],
+            "raw": "In `breaks: true` mode, the following newline characters are exposed as `break` nodes:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Look at the\npretty line\nbreaks.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        88,
+                        119
+                    ],
+                    "raw": "Look at the\npretty line\nbreaks."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 7
+                }
+            },
+            "range": [
+                88,
+                119
+            ],
+            "raw": "Look at the\npretty line\nbreaks."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "In ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        121,
+                        124
+                    ],
+                    "raw": "In "
+                },
+                {
+                    "type": "Code",
+                    "value": "breaks: false",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        124,
+                        139
+                    ],
+                    "raw": "`breaks: false`"
+                },
+                {
+                    "type": "Str",
+                    "value": " mode, double spaces before a newline character are needed to expose ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 87
+                        }
+                    },
+                    "range": [
+                        139,
+                        208
+                    ],
+                    "raw": " mode, double spaces before a newline character are needed to expose "
+                },
+                {
+                    "type": "Code",
+                    "value": "break",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 87
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 94
+                        }
+                    },
+                    "range": [
+                        208,
+                        215
+                    ],
+                    "raw": "`break`"
+                },
+                {
+                    "type": "Str",
+                    "value": " nodes:",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 94
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 101
+                        }
+                    },
+                    "range": [
+                        215,
+                        222
+                    ],
+                    "raw": " nodes:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 101
+                }
+            },
+            "range": [
+                121,
+                222
+            ],
+            "raw": "In `breaks: false` mode, double spaces before a newline character are needed to expose `break` nodes:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Look at the",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        224,
+                        235
+                    ],
+                    "raw": "Look at the"
+                },
+                {
+                    "type": "Break",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        235,
+                        238
+                    ],
+                    "raw": "  \n"
+                },
+                {
+                    "type": "Str",
+                    "value": "pretty line",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        238,
+                        249
+                    ],
+                    "raw": "pretty line"
+                },
+                {
+                    "type": "Break",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        249,
+                        252
+                    ],
+                    "raw": "  \n"
+                },
+                {
+                    "type": "Str",
+                    "value": "breaks.",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        252,
+                        259
+                    ],
+                    "raw": "breaks."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 7
+                }
+            },
+            "range": [
+                224,
+                259
+            ],
+            "raw": "Look at the  \npretty line  \nbreaks."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "In ",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        261,
+                        264
+                    ],
+                    "raw": "In "
+                },
+                {
+                    "type": "Code",
+                    "value": "commonmark: true",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        264,
+                        282
+                    ],
+                    "raw": "`commonmark: true`"
+                },
+                {
+                    "type": "Str",
+                    "value": " mode, an escaped newline character is exposed as a ",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 21
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 73
+                        }
+                    },
+                    "range": [
+                        282,
+                        334
+                    ],
+                    "raw": " mode, an escaped newline character is exposed as a "
+                },
+                {
+                    "type": "Code",
+                    "value": "break",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 73
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 80
+                        }
+                    },
+                    "range": [
+                        334,
+                        341
+                    ],
+                    "raw": "`break`"
+                },
+                {
+                    "type": "Str",
+                    "value": " node:",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 80
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 86
+                        }
+                    },
+                    "range": [
+                        341,
+                        347
+                    ],
+                    "raw": " node:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 86
+                }
+            },
+            "range": [
+                261,
+                347
+            ],
+            "raw": "In `commonmark: true` mode, an escaped newline character is exposed as a `break` node:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Look at the\\\npretty line\\\nbreaks.",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        349,
+                        382
+                    ],
+                    "raw": "Look at the\\\npretty line\\\nbreaks."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 7
+                }
+            },
+            "range": [
+                349,
+                382
+            ],
+            "raw": "Look at the\\\npretty line\\\nbreaks."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 18,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        383
+    ],
+    "raw": "In `breaks: true` mode, the following newline characters are exposed as `break` nodes:\n\nLook at the\npretty line\nbreaks.\n\nIn `breaks: false` mode, double spaces before a newline character are needed to expose `break` nodes:\n\nLook at the  \npretty line  \nbreaks.\n\nIn `commonmark: true` mode, an escaped newline character is exposed as a `break` node:\n\nLook at the\\\npretty line\\\nbreaks.\n"
+}

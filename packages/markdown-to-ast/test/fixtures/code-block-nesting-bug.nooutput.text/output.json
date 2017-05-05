@@ -1,0 +1,256 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "GitHub, thus RedCarpet, has a bug where “nested” fenced code blocks,\neven with shorter fences, can exit their actual “parent” block.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 63
+                        }
+                    },
+                    "range": [
+                        0,
+                        132
+                    ],
+                    "raw": "GitHub, thus RedCarpet, has a bug where “nested” fenced code blocks,\neven with shorter fences, can exit their actual “parent” block."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 63
+                }
+            },
+            "range": [
+                0,
+                132
+            ],
+            "raw": "GitHub, thus RedCarpet, has a bug where “nested” fenced code blocks,\neven with shorter fences, can exit their actual “parent” block."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Note that this bug does not occur on indented code-blocks.",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 58
+                        }
+                    },
+                    "range": [
+                        134,
+                        192
+                    ],
+                    "raw": "Note that this bug does not occur on indented code-blocks."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 58
+                }
+            },
+            "range": [
+                134,
+                192
+            ],
+            "raw": "Note that this bug does not occur on indented code-blocks."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "foo",
+            "value": "```bar\nbaz\n```",
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 4
+                }
+            },
+            "range": [
+                194,
+                221
+            ],
+            "raw": "````foo\n```bar\nbaz\n```\n````"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Even with a different fence marker:",
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 12,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        223,
+                        258
+                    ],
+                    "raw": "Even with a different fence marker:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 35
+                }
+            },
+            "range": [
+                223,
+                258
+            ],
+            "raw": "Even with a different fence marker:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "foo",
+            "value": "~~~bar\nbaz\n~~~",
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 18,
+                    "column": 4
+                }
+            },
+            "range": [
+                260,
+                287
+            ],
+            "raw": "````foo\n~~~bar\nbaz\n~~~\n````"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And reversed:",
+                    "loc": {
+                        "start": {
+                            "line": 20,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 20,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        289,
+                        302
+                    ],
+                    "raw": "And reversed:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 20,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 13
+                }
+            },
+            "range": [
+                289,
+                302
+            ],
+            "raw": "And reversed:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "foo",
+            "value": "~~~bar\nbaz\n~~~",
+            "loc": {
+                "start": {
+                    "line": 22,
+                    "column": 0
+                },
+                "end": {
+                    "line": 26,
+                    "column": 4
+                }
+            },
+            "range": [
+                304,
+                331
+            ],
+            "raw": "~~~~foo\n~~~bar\nbaz\n~~~\n~~~~"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "foo",
+            "value": "```bar\nbaz\n```",
+            "loc": {
+                "start": {
+                    "line": 28,
+                    "column": 0
+                },
+                "end": {
+                    "line": 32,
+                    "column": 4
+                }
+            },
+            "range": [
+                333,
+                360
+            ],
+            "raw": "~~~~foo\n```bar\nbaz\n```\n~~~~"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 33,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        361
+    ],
+    "raw": "GitHub, thus RedCarpet, has a bug where “nested” fenced code blocks,\neven with shorter fences, can exit their actual “parent” block.\n\nNote that this bug does not occur on indented code-blocks.\n\n````foo\n```bar\nbaz\n```\n````\n\nEven with a different fence marker:\n\n````foo\n~~~bar\nbaz\n~~~\n````\n\nAnd reversed:\n\n~~~~foo\n~~~bar\nbaz\n~~~\n~~~~\n\n~~~~foo\n```bar\nbaz\n```\n~~~~\n"
+}

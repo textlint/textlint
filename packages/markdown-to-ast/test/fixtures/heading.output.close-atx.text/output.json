@@ -1,0 +1,260 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 1",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        2,
+                        11
+                    ],
+                    "raw": "Heading 1"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 13
+                }
+            },
+            "range": [
+                0,
+                13
+            ],
+            "raw": "# Heading 1 #"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 2",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        18,
+                        27
+                    ],
+                    "raw": "Heading 2"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 15
+                }
+            },
+            "range": [
+                15,
+                30
+            ],
+            "raw": "## Heading 2 ##"
+        },
+        {
+            "type": "Header",
+            "depth": 3,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 4",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        36,
+                        45
+                    ],
+                    "raw": "Heading 4"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 17
+                }
+            },
+            "range": [
+                32,
+                49
+            ],
+            "raw": "### Heading 4 ###"
+        },
+        {
+            "type": "Header",
+            "depth": 4,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 4",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        56,
+                        65
+                    ],
+                    "raw": "Heading 4"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 19
+                }
+            },
+            "range": [
+                51,
+                70
+            ],
+            "raw": "#### Heading 4 ####"
+        },
+        {
+            "type": "Header",
+            "depth": 5,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 5",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        78,
+                        87
+                    ],
+                    "raw": "Heading 5"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 21
+                }
+            },
+            "range": [
+                72,
+                93
+            ],
+            "raw": "##### Heading 5 #####"
+        },
+        {
+            "type": "Header",
+            "depth": 6,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Heading 6",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        102,
+                        111
+                    ],
+                    "raw": "Heading 6"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 23
+                }
+            },
+            "range": [
+                95,
+                118
+            ],
+            "raw": "###### Heading 6 ######"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 12,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        119
+    ],
+    "raw": "# Heading 1 #\n\n## Heading 2 ##\n\n### Heading 4 ###\n\n#### Heading 4 ####\n\n##### Heading 5 #####\n\n###### Heading 6 ######\n"
+}

@@ -1,0 +1,139 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "#This is not a heading, per CommonMark: ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 40
+                        }
+                    },
+                    "range": [
+                        0,
+                        40
+                    ],
+                    "raw": "#This is not a heading, per CommonMark: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://spec.commonmark.org/0.17/#example-25",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://spec.commonmark.org/0.17/#example-25",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 41
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 84
+                                }
+                            },
+                            "range": [
+                                41,
+                                84
+                            ],
+                            "raw": "http://spec.commonmark.org/0.17/#example-25"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 40
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 85
+                        }
+                    },
+                    "range": [
+                        40,
+                        85
+                    ],
+                    "raw": "<http://spec.commonmark.org/0.17/#example-25>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 85
+                }
+            },
+            "range": [
+                0,
+                85
+            ],
+            "raw": "#This is not a heading, per CommonMark: <http://spec.commonmark.org/0.17/#example-25>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Kramdown (GitHub) neither supports unspaced ATX-headings.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 57
+                        }
+                    },
+                    "range": [
+                        87,
+                        144
+                    ],
+                    "raw": "Kramdown (GitHub) neither supports unspaced ATX-headings."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 57
+                }
+            },
+            "range": [
+                87,
+                144
+            ],
+            "raw": "Kramdown (GitHub) neither supports unspaced ATX-headings."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        145
+    ],
+    "raw": "#This is not a heading, per CommonMark: <http://spec.commonmark.org/0.17/#example-25>\n\nKramdown (GitHub) neither supports unspaced ATX-headings.\n"
+}

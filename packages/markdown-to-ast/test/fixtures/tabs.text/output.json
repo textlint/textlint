@@ -1,0 +1,342 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": true,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "this is a list item\nindented with tabs",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 2,
+                                            "column": 19
+                                        }
+                                    },
+                                    "range": [
+                                        2,
+                                        41
+                                    ],
+                                    "raw": "this is a list item\n\tindented with tabs"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                2,
+                                41
+                            ],
+                            "raw": "this is a list item\n\tindented with tabs"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        0,
+                        42
+                    ],
+                    "raw": "+\tthis is a list item\n\tindented with tabs\n"
+                },
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "this is a list item\nindented with spaces",
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 24
+                                        }
+                                    },
+                                    "range": [
+                                        47,
+                                        91
+                                    ],
+                                    "raw": "this is a list item\n    indented with spaces"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 24
+                                }
+                            },
+                            "range": [
+                                47,
+                                91
+                            ],
+                            "raw": "this is a list item\n    indented with spaces"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        43,
+                        91
+                    ],
+                    "raw": "+   this is a list item\n    indented with spaces"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 24
+                }
+            },
+            "range": [
+                0,
+                91
+            ],
+            "raw": "+\tthis is a list item\n\tindented with tabs\n\n+   this is a list item\n    indented with spaces"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Code:",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        93,
+                        98
+                    ],
+                    "raw": "Code:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 5
+                }
+            },
+            "range": [
+                93,
+                98
+            ],
+            "raw": "Code:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "this code block is indented by one tab",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 39
+                }
+            },
+            "range": [
+                100,
+                139
+            ],
+            "raw": "\tthis code block is indented by one tab"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And:",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        141,
+                        145
+                    ],
+                    "raw": "And:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 4
+                }
+            },
+            "range": [
+                141,
+                145
+            ],
+            "raw": "And:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "\tthis code block is indented by two tabs",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 41
+                }
+            },
+            "range": [
+                147,
+                188
+            ],
+            "raw": "\t\tthis code block is indented by two tabs"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "And:",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        190,
+                        194
+                    ],
+                    "raw": "And:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 4
+                }
+            },
+            "range": [
+                190,
+                194
+            ],
+            "raw": "And:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "+\tthis is an example list item\n\tindented with tabs\n\n+   this is an example list item\n    indented with spaces",
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 25
+                }
+            },
+            "range": [
+                196,
+                310
+            ],
+            "raw": "\t+\tthis is an example list item\n\t\tindented with tabs\n\t\n\t+   this is an example list item\n\t    indented with spaces"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 22,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        311
+    ],
+    "raw": "+\tthis is a list item\n\tindented with tabs\n\n+   this is a list item\n    indented with spaces\n\nCode:\n\n\tthis code block is indented by one tab\n\nAnd:\n\n\t\tthis code block is indented by two tabs\n\nAnd:\n\n\t+\tthis is an example list item\n\t\tindented with tabs\n\t\n\t+   this is an example list item\n\t    indented with spaces\n"
+}

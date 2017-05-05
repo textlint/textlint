@@ -1,0 +1,99 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Hello from a BOM",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        3,
+                        19
+                    ],
+                    "raw": "Hello from a BOM"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 1
+                },
+                "end": {
+                    "line": 1,
+                    "column": 19
+                }
+            },
+            "range": [
+                1,
+                19
+            ],
+            "raw": "# Hello from a BOM"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Be careful when editing this file!",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        21,
+                        55
+                    ],
+                    "raw": "Be careful when editing this file!"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 34
+                }
+            },
+            "range": [
+                21,
+                55
+            ],
+            "raw": "Be careful when editing this file!"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        56
+    ],
+    "raw": "﻿# Hello from a BOM\n\nBe careful when editing this file!\n"
+}

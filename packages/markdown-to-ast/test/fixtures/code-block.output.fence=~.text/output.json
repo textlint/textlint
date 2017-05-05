@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Tildes:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        0,
+                        7
+                    ],
+                    "raw": "Tildes:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 7
+                }
+            },
+            "range": [
+                0,
+                7
+            ],
+            "raw": "Tildes:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "javascript",
+            "value": "alert('Hello World!');",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 3
+                }
+            },
+            "range": [
+                9,
+                49
+            ],
+            "raw": "~~~javascript\nalert('Hello World!');\n~~~"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        50
+    ],
+    "raw": "Tildes:\n\n~~~javascript\nalert('Hello World!');\n~~~\n"
+}

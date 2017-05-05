@@ -1,0 +1,40 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "CodeBlock",
+            "lang": "js",
+            "value": "foo();\n```bash",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                24
+            ],
+            "raw": "```js\nfoo();\n```bash\n```"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 5,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        25
+    ],
+    "raw": "```js\nfoo();\n```bash\n```\n"
+}

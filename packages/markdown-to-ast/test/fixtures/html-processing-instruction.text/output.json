@@ -1,0 +1,39 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "value": "<?php\n  echo '>';\n?>",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 2
+                }
+            },
+            "range": [
+                0,
+                20
+            ],
+            "raw": "<?php\n  echo '>';\n?>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        21
+    ],
+    "raw": "<?php\n  echo '>';\n?>\n"
+}

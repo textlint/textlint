@@ -1,0 +1,311 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Missing alignment characters:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        0,
+                        29
+                    ],
+                    "raw": "Missing alignment characters:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 29
+                }
+            },
+            "range": [
+                0,
+                29
+            ],
+            "raw": "Missing alignment characters:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "| a | b | c |\n|   |---|---|\n| d | e | f |",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        31,
+                        72
+                    ],
+                    "raw": "| a | b | c |\n|   |---|---|\n| d | e | f |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 13
+                }
+            },
+            "range": [
+                31,
+                72
+            ],
+            "raw": "| a | b | c |\n|   |---|---|\n| d | e | f |"
+        },
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 5
+                }
+            },
+            "range": [
+                74,
+                79
+            ],
+            "raw": "* * *"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "| a | b | c |\n|---|---|   |\n| d | e | f |",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        81,
+                        122
+                    ],
+                    "raw": "| a | b | c |\n|---|---|   |\n| d | e | f |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 13
+                }
+            },
+            "range": [
+                81,
+                122
+            ],
+            "raw": "| a | b | c |\n|---|---|   |\n| d | e | f |"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Invalid characters:",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        124,
+                        143
+                    ],
+                    "raw": "Invalid characters:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 19
+                }
+            },
+            "range": [
+                124,
+                143
+            ],
+            "raw": "Invalid characters:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "| a | b | c |\n|---|-*-|---|\n| d | e | f |",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        145,
+                        186
+                    ],
+                    "raw": "| a | b | c |\n|---|-*-|---|\n| d | e | f |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 13
+                }
+            },
+            "range": [
+                145,
+                186
+            ],
+            "raw": "| a | b | c |\n|---|-*-|---|\n| d | e | f |"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Too few columns:",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        188,
+                        204
+                    ],
+                    "raw": "Too few columns:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 16
+                }
+            },
+            "range": [
+                188,
+                204
+            ],
+            "raw": "Too few columns:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "| a |\n|---|\n| d |",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        206,
+                        223
+                    ],
+                    "raw": "| a |\n|---|\n| d |"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 5
+                }
+            },
+            "range": [
+                206,
+                223
+            ],
+            "raw": "| a |\n|---|\n| d |"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 24,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        224
+    ],
+    "raw": "Missing alignment characters:\n\n| a | b | c |\n|   |---|---|\n| d | e | f |\n\n* * *\n\n| a | b | c |\n|---|---|   |\n| d | e | f |\n\nInvalid characters:\n\n| a | b | c |\n|---|-*-|---|\n| d | e | f |\n\nToo few columns:\n\n| a |\n|---|\n| d |\n"
+}

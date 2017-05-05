@@ -1,0 +1,300 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./wo rld.html",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                1,
+                                6
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        0,
+                        22
+                    ],
+                    "raw": "[Hello](./wo rld.html)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 22
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        22,
+                        23
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 23
+                }
+            },
+            "range": [
+                0,
+                23
+            ],
+            "raw": "[Hello](./wo rld.html)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./wo rld.html",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                26,
+                                31
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        25,
+                        49
+                    ],
+                    "raw": "[Hello](<./wo rld.html>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        49,
+                        50
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 25
+                }
+            },
+            "range": [
+                25,
+                50
+            ],
+            "raw": "[Hello](<./wo rld.html>)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./wo rld.png",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        52,
+                        74
+                    ],
+                    "raw": "![Hello](./wo rld.png)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 22
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        74,
+                        75
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 23
+                }
+            },
+            "range": [
+                52,
+                75
+            ],
+            "raw": "![Hello](./wo rld.png)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./wo rld.png",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        77,
+                        101
+                    ],
+                    "raw": "![Hello](<./wo rld.png>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        101,
+                        102
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 25
+                }
+            },
+            "range": [
+                77,
+                102
+            ],
+            "raw": "![Hello](<./wo rld.png>)."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        103
+    ],
+    "raw": "[Hello](./wo rld.html).\n\n[Hello](<./wo rld.html>).\n\n![Hello](./wo rld.png).\n\n![Hello](<./wo rld.png>).\n"
+}

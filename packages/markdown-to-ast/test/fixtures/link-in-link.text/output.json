@@ -1,0 +1,204 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://shields.io",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "mailto:test@example.com",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 26
+                                }
+                            },
+                            "range": [
+                                3,
+                                26
+                            ],
+                            "raw": "mailto:test@example.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 46
+                        }
+                    },
+                    "range": [
+                        2,
+                        46
+                    ],
+                    "raw": "[mailto:test@example.com](http://shields.io)"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 46
+                }
+            },
+            "range": [
+                0,
+                46
+            ],
+            "raw": "# [mailto:test@example.com](http://shields.io)"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "mdast",
+                    "url": "https://travis-ci.org/wooorm/mdast",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "https://travis-ci.org/wooorm/mdast",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 35
+                                }
+                            },
+                            "range": [
+                                49,
+                                83
+                            ],
+                            "raw": "https://travis-ci.org/wooorm/mdast"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 80
+                        }
+                    },
+                    "range": [
+                        48,
+                        128
+                    ],
+                    "raw": "[https://travis-ci.org/wooorm/mdast](https://travis-ci.org/wooorm/mdast \"mdast\")"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 80
+                }
+            },
+            "range": [
+                48,
+                128
+            ],
+            "raw": "[https://travis-ci.org/wooorm/mdast](https://travis-ci.org/wooorm/mdast \"mdast\")"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": "An example",
+                    "url": "http://example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "[](http://example.com \"An example\")",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 36
+                                }
+                            },
+                            "range": [
+                                131,
+                                166
+                            ],
+                            "raw": "[](http://example.com \"An example\")"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        130,
+                        200
+                    ],
+                    "raw": "[[](http://example.com \"An example\")](http://example.com \"An example\")"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 70
+                }
+            },
+            "range": [
+                130,
+                200
+            ],
+            "raw": "[[](http://example.com \"An example\")](http://example.com \"An example\")"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        201
+    ],
+    "raw": "# [mailto:test@example.com](http://shields.io)\n\n[https://travis-ci.org/wooorm/mdast](https://travis-ci.org/wooorm/mdast \"mdast\")\n\n[[](http://example.com \"An example\")](http://example.com \"An example\")\n"
+}

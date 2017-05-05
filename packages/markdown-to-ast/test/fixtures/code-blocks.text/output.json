@@ -1,0 +1,217 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "code block on the first line",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 1
+                }
+            },
+            "range": [
+                0,
+                31
+            ],
+            "raw": "\tcode block on the first line\n\t"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Regular text.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        32,
+                        45
+                    ],
+                    "raw": "Regular text."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 13
+                }
+            },
+            "range": [
+                32,
+                45
+            ],
+            "raw": "Regular text."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "code block indented by spaces",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 33
+                }
+            },
+            "range": [
+                47,
+                80
+            ],
+            "raw": "    code block indented by spaces"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Regular text.",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        82,
+                        95
+                    ],
+                    "raw": "Regular text."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 13
+                }
+            },
+            "range": [
+                82,
+                95
+            ],
+            "raw": "Regular text."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "the lines in this block  \nall contain trailing spaces  ",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 30
+                }
+            },
+            "range": [
+                97,
+                154
+            ],
+            "raw": "\tthe lines in this block  \n\tall contain trailing spaces  "
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Regular Text.",
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 12,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        156,
+                        169
+                    ],
+                    "raw": "Regular Text."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 13
+                }
+            },
+            "range": [
+                156,
+                169
+            ],
+            "raw": "Regular Text."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "code block on the last line",
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 28
+                }
+            },
+            "range": [
+                171,
+                199
+            ],
+            "raw": "\tcode block on the last line"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 15,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        200
+    ],
+    "raw": "\tcode block on the first line\n\t\nRegular text.\n\n    code block indented by spaces\n\nRegular text.\n\n\tthe lines in this block  \n\tall contain trailing spaces  \n\nRegular Text.\n\n\tcode block on the last line\n"
+}

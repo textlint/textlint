@@ -1,0 +1,118 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "This is a blockquote.",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 23
+                                }
+                            },
+                            "range": [
+                                2,
+                                23
+                            ],
+                            "raw": "This is a blockquote."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        2,
+                        23
+                    ],
+                    "raw": "This is a blockquote."
+                },
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "This is, in commonmark mode, another blockquote.",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 50
+                                }
+                            },
+                            "range": [
+                                27,
+                                75
+                            ],
+                            "raw": "This is, in commonmark mode, another blockquote."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 50
+                        }
+                    },
+                    "range": [
+                        27,
+                        75
+                    ],
+                    "raw": "This is, in commonmark mode, another blockquote."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 50
+                }
+            },
+            "range": [
+                0,
+                75
+            ],
+            "raw": "> This is a blockquote.\n\n> This is, in commonmark mode, another blockquote."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        76
+    ],
+    "raw": "> This is a blockquote.\n\n> This is, in commonmark mode, another blockquote.\n"
+}

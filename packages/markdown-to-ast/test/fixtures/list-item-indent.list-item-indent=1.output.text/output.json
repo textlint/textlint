@@ -1,0 +1,825 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        3,
+                                        15
+                                    ],
+                                    "raw": "foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                3,
+                                15
+                            ],
+                            "raw": "foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        0,
+                        15
+                    ],
+                    "raw": "1. foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 15
+                }
+            },
+            "range": [
+                0,
+                15
+            ],
+            "raw": "1. foo bar baz."
+        },
+        {
+            "type": "Html",
+            "value": "<!--  -->",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 9
+                }
+            },
+            "range": [
+                17,
+                26
+            ],
+            "raw": "<!--  -->"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 99,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        32,
+                                        44
+                                    ],
+                                    "raw": "foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                32,
+                                44
+                            ],
+                            "raw": "foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        28,
+                        44
+                    ],
+                    "raw": "99. foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 16
+                }
+            },
+            "range": [
+                28,
+                44
+            ],
+            "raw": "99. foo bar baz."
+        },
+        {
+            "type": "Html",
+            "value": "<!--  -->",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 9
+                }
+            },
+            "range": [
+                46,
+                55
+            ],
+            "raw": "<!--  -->"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 999,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 9,
+                                            "column": 5
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        62,
+                                        74
+                                    ],
+                                    "raw": "foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 5
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                62,
+                                74
+                            ],
+                            "raw": "foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        57,
+                        74
+                    ],
+                    "raw": "999. foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 17
+                }
+            },
+            "range": [
+                57,
+                74
+            ],
+            "raw": "999. foo bar baz."
+        },
+        {
+            "type": "Html",
+            "value": "<!--  -->",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 9
+                }
+            },
+            "range": [
+                76,
+                85
+            ],
+            "raw": "<!--  -->"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.\nfoo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 14,
+                                            "column": 15
+                                        }
+                                    },
+                                    "range": [
+                                        90,
+                                        118
+                                    ],
+                                    "raw": "foo bar baz.\n   foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 14,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                90,
+                                118
+                            ],
+                            "raw": "foo bar baz.\n   foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        87,
+                        118
+                    ],
+                    "raw": "1. foo bar baz.\n   foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 15
+                }
+            },
+            "range": [
+                87,
+                118
+            ],
+            "raw": "1. foo bar baz.\n   foo bar baz."
+        },
+        {
+            "type": "Html",
+            "value": "<!--  -->",
+            "loc": {
+                "start": {
+                    "line": 16,
+                    "column": 0
+                },
+                "end": {
+                    "line": 16,
+                    "column": 9
+                }
+            },
+            "range": [
+                120,
+                129
+            ],
+            "raw": "<!--  -->"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 99,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.\nfoo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 18,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 19,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        135,
+                                        164
+                                    ],
+                                    "raw": "foo bar baz.\n    foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 18,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                135,
+                                164
+                            ],
+                            "raw": "foo bar baz.\n    foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 18,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        131,
+                        164
+                    ],
+                    "raw": "99. foo bar baz.\n    foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 18,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 16
+                }
+            },
+            "range": [
+                131,
+                164
+            ],
+            "raw": "99. foo bar baz.\n    foo bar baz."
+        },
+        {
+            "type": "Html",
+            "value": "<!--  -->",
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 9
+                }
+            },
+            "range": [
+                166,
+                175
+            ],
+            "raw": "<!--  -->"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 999,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.\nfoo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 23,
+                                            "column": 5
+                                        },
+                                        "end": {
+                                            "line": 24,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        182,
+                                        212
+                                    ],
+                                    "raw": "foo bar baz.\n     foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 23,
+                                    "column": 5
+                                },
+                                "end": {
+                                    "line": 24,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                182,
+                                212
+                            ],
+                            "raw": "foo bar baz.\n     foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 24,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        177,
+                        212
+                    ],
+                    "raw": "999. foo bar baz.\n     foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 24,
+                    "column": 17
+                }
+            },
+            "range": [
+                177,
+                212
+            ],
+            "raw": "999. foo bar baz.\n     foo bar baz."
+        },
+        {
+            "type": "Html",
+            "value": "<!--  -->",
+            "loc": {
+                "start": {
+                    "line": 26,
+                    "column": 0
+                },
+                "end": {
+                    "line": 26,
+                    "column": 9
+                }
+            },
+            "range": [
+                214,
+                223
+            ],
+            "raw": "<!--  -->"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 28,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 28,
+                                            "column": 14
+                                        }
+                                    },
+                                    "range": [
+                                        227,
+                                        239
+                                    ],
+                                    "raw": "foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 28,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 28,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                227,
+                                239
+                            ],
+                            "raw": "foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 28,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        225,
+                        239
+                    ],
+                    "raw": "- foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 28,
+                    "column": 0
+                },
+                "end": {
+                    "line": 28,
+                    "column": 14
+                }
+            },
+            "range": [
+                225,
+                239
+            ],
+            "raw": "- foo bar baz."
+        },
+        {
+            "type": "Html",
+            "value": "<!--  -->",
+            "loc": {
+                "start": {
+                    "line": 30,
+                    "column": 0
+                },
+                "end": {
+                    "line": 30,
+                    "column": 9
+                }
+            },
+            "range": [
+                241,
+                250
+            ],
+            "raw": "<!--  -->"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "foo bar baz.\nfoo bar baz.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 32,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 33,
+                                            "column": 14
+                                        }
+                                    },
+                                    "range": [
+                                        254,
+                                        281
+                                    ],
+                                    "raw": "foo bar baz.\n  foo bar baz."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 32,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 33,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                254,
+                                281
+                            ],
+                            "raw": "foo bar baz.\n  foo bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 32,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 33,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        252,
+                        281
+                    ],
+                    "raw": "- foo bar baz.\n  foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 32,
+                    "column": 0
+                },
+                "end": {
+                    "line": 33,
+                    "column": 14
+                }
+            },
+            "range": [
+                252,
+                281
+            ],
+            "raw": "- foo bar baz.\n  foo bar baz."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 34,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        282
+    ],
+    "raw": "1. foo bar baz.\n\n<!--  -->\n\n99. foo bar baz.\n\n<!--  -->\n\n999. foo bar baz.\n\n<!--  -->\n\n1. foo bar baz.\n   foo bar baz.\n\n<!--  -->\n\n99. foo bar baz.\n    foo bar baz.\n\n<!--  -->\n\n999. foo bar baz.\n     foo bar baz.\n\n<!--  -->\n\n- foo bar baz.\n\n<!--  -->\n\n- foo bar baz.\n  foo bar baz.\n"
+}

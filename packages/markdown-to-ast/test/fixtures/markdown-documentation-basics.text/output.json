@@ -1,0 +1,3522 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown: Basics",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        0,
+                        16
+                    ],
+                    "raw": "Markdown: Basics"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 16
+                }
+            },
+            "range": [
+                0,
+                33
+            ],
+            "raw": "Markdown: Basics\n================"
+        },
+        {
+            "type": "Html",
+            "value": "<ul id=\"ProjectSubmenu\">\n    <li><a href=\"/projects/markdown/\" title=\"Markdown Project Page\">Main</a></li>\n    <li><a class=\"selected\" title=\"Markdown Basics\">Basics</a></li>\n    <li><a href=\"/projects/markdown/syntax\" title=\"Markdown Syntax Documentation\">Syntax</a></li>\n    <li><a href=\"/projects/markdown/license\" title=\"Pricing and License Information\">License</a></li>\n    <li><a href=\"/projects/markdown/dingus\" title=\"Online Markdown Web Form\">Dingus</a></li>\n</ul>",
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 5
+                }
+            },
+            "range": [
+                35,
+                508
+            ],
+            "raw": "<ul id=\"ProjectSubmenu\">\n    <li><a href=\"/projects/markdown/\" title=\"Markdown Project Page\">Main</a></li>\n    <li><a class=\"selected\" title=\"Markdown Basics\">Basics</a></li>\n    <li><a href=\"/projects/markdown/syntax\" title=\"Markdown Syntax Documentation\">Syntax</a></li>\n    <li><a href=\"/projects/markdown/license\" title=\"Pricing and License Information\">License</a></li>\n    <li><a href=\"/projects/markdown/dingus\" title=\"Online Markdown Web Form\">Dingus</a></li>\n</ul>"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Getting the Gist of Markdown's Formatting Syntax",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 48
+                        }
+                    },
+                    "range": [
+                        511,
+                        559
+                    ],
+                    "raw": "Getting the Gist of Markdown's Formatting Syntax"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 48
+                }
+            },
+            "range": [
+                511,
+                608
+            ],
+            "raw": "Getting the Gist of Markdown's Formatting Syntax\n------------------------------------------------"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This page offers a brief overview of what it's like to use Markdown.\nThe ",
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        610,
+                        683
+                    ],
+                    "raw": "This page offers a brief overview of what it's like to use Markdown.\nThe "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "s",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "syntax page",
+                            "loc": {
+                                "start": {
+                                    "line": 17,
+                                    "column": 5
+                                },
+                                "end": {
+                                    "line": 17,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                684,
+                                695
+                            ],
+                            "raw": "syntax page"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        683,
+                        700
+                    ],
+                    "raw": "[syntax page] [s]"
+                },
+                {
+                    "type": "Str",
+                    "value": " provides complete, detailed documentation for\nevery feature, but Markdown should be very easy to pick up simply by\nlooking at a few examples of it in action. The examples on this page\nare written in a before/after style, showing example syntax and the\nHTML output produced by Markdown.",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 21
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        700,
+                        986
+                    ],
+                    "raw": " provides complete, detailed documentation for\nevery feature, but Markdown should be very easy to pick up simply by\nlooking at a few examples of it in action. The examples on this page\nare written in a before/after style, showing example syntax and the\nHTML output produced by Markdown."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 16,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 33
+                }
+            },
+            "range": [
+                610,
+                986
+            ],
+            "raw": "This page offers a brief overview of what it's like to use Markdown.\nThe [syntax page] [s] provides complete, detailed documentation for\nevery feature, but Markdown should be very easy to pick up simply by\nlooking at a few examples of it in action. The examples on this page\nare written in a before/after style, showing example syntax and the\nHTML output produced by Markdown."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "It's also helpful to simply try Markdown out; the ",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 50
+                        }
+                    },
+                    "range": [
+                        988,
+                        1038
+                    ],
+                    "raw": "It's also helpful to simply try Markdown out; the "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "d",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Dingus",
+                            "loc": {
+                                "start": {
+                                    "line": 23,
+                                    "column": 51
+                                },
+                                "end": {
+                                    "line": 23,
+                                    "column": 57
+                                }
+                            },
+                            "range": [
+                                1039,
+                                1045
+                            ],
+                            "raw": "Dingus"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 50
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 62
+                        }
+                    },
+                    "range": [
+                        1038,
+                        1050
+                    ],
+                    "raw": "[Dingus] [d]"
+                },
+                {
+                    "type": "Str",
+                    "value": " is a\nweb application that allows you type your own Markdown-formatted text\nand translate it to XHTML.",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 62
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        1050,
+                        1152
+                    ],
+                    "raw": " is a\nweb application that allows you type your own Markdown-formatted text\nand translate it to XHTML."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 26
+                }
+            },
+            "range": [
+                988,
+                1152
+            ],
+            "raw": "It's also helpful to simply try Markdown out; the [Dingus] [d] is a\nweb application that allows you type your own Markdown-formatted text\nand translate it to XHTML."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Note:",
+                            "loc": {
+                                "start": {
+                                    "line": 27,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 27,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                1156,
+                                1161
+                            ],
+                            "raw": "Note:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        1154,
+                        1163
+                    ],
+                    "raw": "**Note:**"
+                },
+                {
+                    "type": "Str",
+                    "value": " This document is itself written using Markdown; you\ncan ",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        1163,
+                        1220
+                    ],
+                    "raw": " This document is itself written using Markdown; you\ncan "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "src",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "see the source for it by adding '.text' to the URL",
+                            "loc": {
+                                "start": {
+                                    "line": 28,
+                                    "column": 5
+                                },
+                                "end": {
+                                    "line": 28,
+                                    "column": 55
+                                }
+                            },
+                            "range": [
+                                1221,
+                                1271
+                            ],
+                            "raw": "see the source for it by adding '.text' to the URL"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 28,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 62
+                        }
+                    },
+                    "range": [
+                        1220,
+                        1278
+                    ],
+                    "raw": "[see the source for it by adding '.text' to the URL] [src]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 28,
+                            "column": 62
+                        },
+                        "end": {
+                            "line": 28,
+                            "column": 63
+                        }
+                    },
+                    "range": [
+                        1278,
+                        1279
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 28,
+                    "column": 63
+                }
+            },
+            "range": [
+                1154,
+                1279
+            ],
+            "raw": "**Note:** This document is itself written using Markdown; you\ncan [see the source for it by adding '.text' to the URL] [src]."
+        },
+        {
+            "type": "Definition",
+            "identifier": "s",
+            "title": "Markdown Syntax",
+            "url": "/projects/markdown/syntax",
+            "loc": {
+                "start": {
+                    "line": 30,
+                    "column": 0
+                },
+                "end": {
+                    "line": 30,
+                    "column": 51
+                }
+            },
+            "range": [
+                1281,
+                1332
+            ],
+            "raw": "  [s]: /projects/markdown/syntax  \"Markdown Syntax\""
+        },
+        {
+            "type": "Definition",
+            "identifier": "d",
+            "title": "Markdown Dingus",
+            "url": "/projects/markdown/dingus",
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 31,
+                    "column": 51
+                }
+            },
+            "range": [
+                1333,
+                1384
+            ],
+            "raw": "  [d]: /projects/markdown/dingus  \"Markdown Dingus\""
+        },
+        {
+            "type": "Definition",
+            "identifier": "src",
+            "title": null,
+            "url": "/projects/markdown/basics.text",
+            "loc": {
+                "start": {
+                    "line": 32,
+                    "column": 0
+                },
+                "end": {
+                    "line": 32,
+                    "column": 39
+                }
+            },
+            "range": [
+                1385,
+                1424
+            ],
+            "raw": "  [src]: /projects/markdown/basics.text"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Paragraphs, Headers, Blockquotes",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        1430,
+                        1462
+                    ],
+                    "raw": "Paragraphs, Headers, Blockquotes"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 35,
+                    "column": 0
+                },
+                "end": {
+                    "line": 35,
+                    "column": 38
+                }
+            },
+            "range": [
+                1427,
+                1465
+            ],
+            "raw": "## Paragraphs, Headers, Blockquotes ##"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "A paragraph is simply one or more consecutive lines of text, separated\nby one or more blank lines. (A blank line is any line that looks like a\nblank line -- a line containing nothing spaces or tabs is considered\nblank.) Normal paragraphs should not be intended with spaces or tabs.",
+                    "loc": {
+                        "start": {
+                            "line": 37,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 40,
+                            "column": 69
+                        }
+                    },
+                    "range": [
+                        1467,
+                        1748
+                    ],
+                    "raw": "A paragraph is simply one or more consecutive lines of text, separated\nby one or more blank lines. (A blank line is any line that looks like a\nblank line -- a line containing nothing spaces or tabs is considered\nblank.) Normal paragraphs should not be intended with spaces or tabs."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 37,
+                    "column": 0
+                },
+                "end": {
+                    "line": 40,
+                    "column": 69
+                }
+            },
+            "range": [
+                1467,
+                1748
+            ],
+            "raw": "A paragraph is simply one or more consecutive lines of text, separated\nby one or more blank lines. (A blank line is any line that looks like a\nblank line -- a line containing nothing spaces or tabs is considered\nblank.) Normal paragraphs should not be intended with spaces or tabs."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown offers two styles of headers: ",
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        1750,
+                        1789
+                    ],
+                    "raw": "Markdown offers two styles of headers: "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Setext",
+                            "loc": {
+                                "start": {
+                                    "line": 42,
+                                    "column": 40
+                                },
+                                "end": {
+                                    "line": 42,
+                                    "column": 46
+                                }
+                            },
+                            "range": [
+                                1790,
+                                1796
+                            ],
+                            "raw": "Setext"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        1789,
+                        1797
+                    ],
+                    "raw": "*Setext*"
+                },
+                {
+                    "type": "Str",
+                    "value": " and ",
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 47
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 52
+                        }
+                    },
+                    "range": [
+                        1797,
+                        1802
+                    ],
+                    "raw": " and "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "atx",
+                            "loc": {
+                                "start": {
+                                    "line": 42,
+                                    "column": 53
+                                },
+                                "end": {
+                                    "line": 42,
+                                    "column": 56
+                                }
+                            },
+                            "range": [
+                                1803,
+                                1806
+                            ],
+                            "raw": "atx"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 52
+                        },
+                        "end": {
+                            "line": 42,
+                            "column": 57
+                        }
+                    },
+                    "range": [
+                        1802,
+                        1807
+                    ],
+                    "raw": "*atx*"
+                },
+                {
+                    "type": "Str",
+                    "value": ".\nSetext-style headers for ",
+                    "loc": {
+                        "start": {
+                            "line": 42,
+                            "column": 57
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        1807,
+                        1834
+                    ],
+                    "raw": ".\nSetext-style headers for "
+                },
+                {
+                    "type": "Code",
+                    "value": "<h1>",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        1834,
+                        1840
+                    ],
+                    "raw": "`<h1>`"
+                },
+                {
+                    "type": "Str",
+                    "value": " and ",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 31
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        1840,
+                        1845
+                    ],
+                    "raw": " and "
+                },
+                {
+                    "type": "Code",
+                    "value": "<h2>",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 43,
+                            "column": 42
+                        }
+                    },
+                    "range": [
+                        1845,
+                        1851
+                    ],
+                    "raw": "`<h2>`"
+                },
+                {
+                    "type": "Str",
+                    "value": " are created by\n\"underlining\" with equal signs (",
+                    "loc": {
+                        "start": {
+                            "line": 43,
+                            "column": 42
+                        },
+                        "end": {
+                            "line": 44,
+                            "column": 32
+                        }
+                    },
+                    "range": [
+                        1851,
+                        1899
+                    ],
+                    "raw": " are created by\n\"underlining\" with equal signs ("
+                },
+                {
+                    "type": "Code",
+                    "value": "=",
+                    "loc": {
+                        "start": {
+                            "line": 44,
+                            "column": 32
+                        },
+                        "end": {
+                            "line": 44,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        1899,
+                        1902
+                    ],
+                    "raw": "`=`"
+                },
+                {
+                    "type": "Str",
+                    "value": ") and hyphens (",
+                    "loc": {
+                        "start": {
+                            "line": 44,
+                            "column": 35
+                        },
+                        "end": {
+                            "line": 44,
+                            "column": 50
+                        }
+                    },
+                    "range": [
+                        1902,
+                        1917
+                    ],
+                    "raw": ") and hyphens ("
+                },
+                {
+                    "type": "Code",
+                    "value": "-",
+                    "loc": {
+                        "start": {
+                            "line": 44,
+                            "column": 50
+                        },
+                        "end": {
+                            "line": 44,
+                            "column": 53
+                        }
+                    },
+                    "range": [
+                        1917,
+                        1920
+                    ],
+                    "raw": "`-`"
+                },
+                {
+                    "type": "Str",
+                    "value": "), respectively.\nTo create an atx-style header, you put 1-6 hash marks (",
+                    "loc": {
+                        "start": {
+                            "line": 44,
+                            "column": 53
+                        },
+                        "end": {
+                            "line": 45,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        1920,
+                        1992
+                    ],
+                    "raw": "), respectively.\nTo create an atx-style header, you put 1-6 hash marks ("
+                },
+                {
+                    "type": "Code",
+                    "value": "#",
+                    "loc": {
+                        "start": {
+                            "line": 45,
+                            "column": 55
+                        },
+                        "end": {
+                            "line": 45,
+                            "column": 58
+                        }
+                    },
+                    "range": [
+                        1992,
+                        1995
+                    ],
+                    "raw": "`#`"
+                },
+                {
+                    "type": "Str",
+                    "value": ") at the\nbeginning of the line -- the number of hashes equals the resulting\nHTML header level.",
+                    "loc": {
+                        "start": {
+                            "line": 45,
+                            "column": 58
+                        },
+                        "end": {
+                            "line": 47,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        1995,
+                        2089
+                    ],
+                    "raw": ") at the\nbeginning of the line -- the number of hashes equals the resulting\nHTML header level."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 42,
+                    "column": 0
+                },
+                "end": {
+                    "line": 47,
+                    "column": 18
+                }
+            },
+            "range": [
+                1750,
+                2089
+            ],
+            "raw": "Markdown offers two styles of headers: *Setext* and *atx*.\nSetext-style headers for `<h1>` and `<h2>` are created by\n\"underlining\" with equal signs (`=`) and hyphens (`-`), respectively.\nTo create an atx-style header, you put 1-6 hash marks (`#`) at the\nbeginning of the line -- the number of hashes equals the resulting\nHTML header level."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Blockquotes are indicated using email-style '",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 45
+                        }
+                    },
+                    "range": [
+                        2091,
+                        2136
+                    ],
+                    "raw": "Blockquotes are indicated using email-style '"
+                },
+                {
+                    "type": "Code",
+                    "value": ">",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 45
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 48
+                        }
+                    },
+                    "range": [
+                        2136,
+                        2139
+                    ],
+                    "raw": "`>`"
+                },
+                {
+                    "type": "Str",
+                    "value": "' angle brackets.",
+                    "loc": {
+                        "start": {
+                            "line": 49,
+                            "column": 48
+                        },
+                        "end": {
+                            "line": 49,
+                            "column": 65
+                        }
+                    },
+                    "range": [
+                        2139,
+                        2156
+                    ],
+                    "raw": "' angle brackets."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 49,
+                    "column": 0
+                },
+                "end": {
+                    "line": 49,
+                    "column": 65
+                }
+            },
+            "range": [
+                2091,
+                2156
+            ],
+            "raw": "Blockquotes are indicated using email-style '`>`' angle brackets."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown:",
+                    "loc": {
+                        "start": {
+                            "line": 51,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 51,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        2158,
+                        2167
+                    ],
+                    "raw": "Markdown:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 51,
+                    "column": 0
+                },
+                "end": {
+                    "line": 51,
+                    "column": 9
+                }
+            },
+            "range": [
+                2158,
+                2167
+            ],
+            "raw": "Markdown:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "A First Level Header\n====================\n\nA Second Level Header\n---------------------\n\nNow is the time for all good men to come to\nthe aid of their country. This is just a\nregular paragraph.\n\nThe quick brown fox jumped over the lazy\ndog's back.\n\n### Header 3\n\n> This is a blockquote.\n> \n> This is the second paragraph in the blockquote.\n>\n> ## This is an H2 in a blockquote",
+            "loc": {
+                "start": {
+                    "line": 53,
+                    "column": 0
+                },
+                "end": {
+                    "line": 72,
+                    "column": 38
+                }
+            },
+            "range": [
+                2169,
+                2611
+            ],
+            "raw": "    A First Level Header\n    ====================\n    \n    A Second Level Header\n    ---------------------\n\n    Now is the time for all good men to come to\n    the aid of their country. This is just a\n    regular paragraph.\n\n    The quick brown fox jumped over the lazy\n    dog's back.\n    \n    ### Header 3\n\n    > This is a blockquote.\n    > \n    > This is the second paragraph in the blockquote.\n    >\n    > ## This is an H2 in a blockquote"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 75,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 75,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        2614,
+                        2621
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 75,
+                    "column": 0
+                },
+                "end": {
+                    "line": 75,
+                    "column": 7
+                }
+            },
+            "range": [
+                2614,
+                2621
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<h1>A First Level Header</h1>\n\n<h2>A Second Level Header</h2>\n\n<p>Now is the time for all good men to come to\nthe aid of their country. This is just a\nregular paragraph.</p>\n\n<p>The quick brown fox jumped over the lazy\ndog's back.</p>\n\n<h3>Header 3</h3>\n\n<blockquote>\n    <p>This is a blockquote.</p>\n    \n    <p>This is the second paragraph in the blockquote.</p>\n    \n    <h2>This is an H2 in a blockquote</h2>\n</blockquote>",
+            "loc": {
+                "start": {
+                    "line": 77,
+                    "column": 0
+                },
+                "end": {
+                    "line": 96,
+                    "column": 17
+                }
+            },
+            "range": [
+                2623,
+                3129
+            ],
+            "raw": "    <h1>A First Level Header</h1>\n    \n    <h2>A Second Level Header</h2>\n    \n    <p>Now is the time for all good men to come to\n    the aid of their country. This is just a\n    regular paragraph.</p>\n    \n    <p>The quick brown fox jumped over the lazy\n    dog's back.</p>\n    \n    <h3>Header 3</h3>\n    \n    <blockquote>\n        <p>This is a blockquote.</p>\n        \n        <p>This is the second paragraph in the blockquote.</p>\n        \n        <h2>This is an H2 in a blockquote</h2>\n    </blockquote>"
+        },
+        {
+            "type": "Header",
+            "depth": 3,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Phrase Emphasis",
+                    "loc": {
+                        "start": {
+                            "line": 100,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 100,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        3137,
+                        3152
+                    ],
+                    "raw": "Phrase Emphasis"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 100,
+                    "column": 0
+                },
+                "end": {
+                    "line": 100,
+                    "column": 23
+                }
+            },
+            "range": [
+                3133,
+                3156
+            ],
+            "raw": "### Phrase Emphasis ###"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown uses asterisks and underscores to indicate spans of emphasis.",
+                    "loc": {
+                        "start": {
+                            "line": 102,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 102,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        3158,
+                        3228
+                    ],
+                    "raw": "Markdown uses asterisks and underscores to indicate spans of emphasis."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 102,
+                    "column": 0
+                },
+                "end": {
+                    "line": 102,
+                    "column": 70
+                }
+            },
+            "range": [
+                3158,
+                3228
+            ],
+            "raw": "Markdown uses asterisks and underscores to indicate spans of emphasis."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown:",
+                    "loc": {
+                        "start": {
+                            "line": 104,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 104,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        3230,
+                        3239
+                    ],
+                    "raw": "Markdown:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 104,
+                    "column": 0
+                },
+                "end": {
+                    "line": 104,
+                    "column": 9
+                }
+            },
+            "range": [
+                3230,
+                3239
+            ],
+            "raw": "Markdown:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "Some of these words *are emphasized*.\nSome of these words _are emphasized also_.\n\nUse two asterisks for **strong emphasis**.\nOr, if you prefer, __use two underscores instead__.",
+            "loc": {
+                "start": {
+                    "line": 106,
+                    "column": 0
+                },
+                "end": {
+                    "line": 110,
+                    "column": 55
+                }
+            },
+            "range": [
+                3241,
+                3437
+            ],
+            "raw": "    Some of these words *are emphasized*.\n    Some of these words _are emphasized also_.\n    \n    Use two asterisks for **strong emphasis**.\n    Or, if you prefer, __use two underscores instead__."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 112,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 112,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        3439,
+                        3446
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 112,
+                    "column": 0
+                },
+                "end": {
+                    "line": 112,
+                    "column": 7
+                }
+            },
+            "range": [
+                3439,
+                3446
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<p>Some of these words <em>are emphasized</em>.\nSome of these words <em>are emphasized also</em>.</p>\n\n<p>Use two asterisks for <strong>strong emphasis</strong>.\nOr, if you prefer, <strong>use two underscores instead</strong>.</p>",
+            "loc": {
+                "start": {
+                    "line": 114,
+                    "column": 0
+                },
+                "end": {
+                    "line": 118,
+                    "column": 72
+                }
+            },
+            "range": [
+                3448,
+                3698
+            ],
+            "raw": "    <p>Some of these words <em>are emphasized</em>.\n    Some of these words <em>are emphasized also</em>.</p>\n    \n    <p>Use two asterisks for <strong>strong emphasis</strong>.\n    Or, if you prefer, <strong>use two underscores instead</strong>.</p>"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Lists",
+                    "loc": {
+                        "start": {
+                            "line": 122,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 122,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        3708,
+                        3713
+                    ],
+                    "raw": "Lists"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 122,
+                    "column": 0
+                },
+                "end": {
+                    "line": 122,
+                    "column": 11
+                }
+            },
+            "range": [
+                3705,
+                3716
+            ],
+            "raw": "## Lists ##"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Unordered (bulleted) lists use asterisks, pluses, and hyphens (",
+                    "loc": {
+                        "start": {
+                            "line": 124,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 124,
+                            "column": 63
+                        }
+                    },
+                    "range": [
+                        3718,
+                        3781
+                    ],
+                    "raw": "Unordered (bulleted) lists use asterisks, pluses, and hyphens ("
+                },
+                {
+                    "type": "Code",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 124,
+                            "column": 63
+                        },
+                        "end": {
+                            "line": 124,
+                            "column": 66
+                        }
+                    },
+                    "range": [
+                        3781,
+                        3784
+                    ],
+                    "raw": "`*`"
+                },
+                {
+                    "type": "Str",
+                    "value": ",\n",
+                    "loc": {
+                        "start": {
+                            "line": 124,
+                            "column": 66
+                        },
+                        "end": {
+                            "line": 125,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        3784,
+                        3786
+                    ],
+                    "raw": ",\n"
+                },
+                {
+                    "type": "Code",
+                    "value": "+",
+                    "loc": {
+                        "start": {
+                            "line": 125,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 125,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        3786,
+                        3789
+                    ],
+                    "raw": "`+`"
+                },
+                {
+                    "type": "Str",
+                    "value": ", and ",
+                    "loc": {
+                        "start": {
+                            "line": 125,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 125,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        3789,
+                        3795
+                    ],
+                    "raw": ", and "
+                },
+                {
+                    "type": "Code",
+                    "value": "-",
+                    "loc": {
+                        "start": {
+                            "line": 125,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 125,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        3795,
+                        3798
+                    ],
+                    "raw": "`-`"
+                },
+                {
+                    "type": "Str",
+                    "value": ") as list markers. These three markers are\ninterchangable; this:",
+                    "loc": {
+                        "start": {
+                            "line": 125,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 126,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        3798,
+                        3862
+                    ],
+                    "raw": ") as list markers. These three markers are\ninterchangable; this:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 124,
+                    "column": 0
+                },
+                "end": {
+                    "line": 126,
+                    "column": 21
+                }
+            },
+            "range": [
+                3718,
+                3862
+            ],
+            "raw": "Unordered (bulleted) lists use asterisks, pluses, and hyphens (`*`,\n`+`, and `-`) as list markers. These three markers are\ninterchangable; this:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "*   Candy.\n*   Gum.\n*   Booze.",
+            "loc": {
+                "start": {
+                    "line": 128,
+                    "column": 0
+                },
+                "end": {
+                    "line": 130,
+                    "column": 14
+                }
+            },
+            "range": [
+                3864,
+                3906
+            ],
+            "raw": "    *   Candy.\n    *   Gum.\n    *   Booze."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "this:",
+                    "loc": {
+                        "start": {
+                            "line": 132,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 132,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        3908,
+                        3913
+                    ],
+                    "raw": "this:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 132,
+                    "column": 0
+                },
+                "end": {
+                    "line": 132,
+                    "column": 5
+                }
+            },
+            "range": [
+                3908,
+                3913
+            ],
+            "raw": "this:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "+   Candy.\n+   Gum.\n+   Booze.",
+            "loc": {
+                "start": {
+                    "line": 134,
+                    "column": 0
+                },
+                "end": {
+                    "line": 136,
+                    "column": 14
+                }
+            },
+            "range": [
+                3915,
+                3957
+            ],
+            "raw": "    +   Candy.\n    +   Gum.\n    +   Booze."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "and this:",
+                    "loc": {
+                        "start": {
+                            "line": 138,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 138,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        3959,
+                        3968
+                    ],
+                    "raw": "and this:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 138,
+                    "column": 0
+                },
+                "end": {
+                    "line": 138,
+                    "column": 9
+                }
+            },
+            "range": [
+                3959,
+                3968
+            ],
+            "raw": "and this:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "-   Candy.\n-   Gum.\n-   Booze.",
+            "loc": {
+                "start": {
+                    "line": 140,
+                    "column": 0
+                },
+                "end": {
+                    "line": 142,
+                    "column": 14
+                }
+            },
+            "range": [
+                3970,
+                4012
+            ],
+            "raw": "    -   Candy.\n    -   Gum.\n    -   Booze."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "all produce the same output:",
+                    "loc": {
+                        "start": {
+                            "line": 144,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 144,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        4014,
+                        4042
+                    ],
+                    "raw": "all produce the same output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 144,
+                    "column": 0
+                },
+                "end": {
+                    "line": 144,
+                    "column": 28
+                }
+            },
+            "range": [
+                4014,
+                4042
+            ],
+            "raw": "all produce the same output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<ul>\n<li>Candy.</li>\n<li>Gum.</li>\n<li>Booze.</li>\n</ul>",
+            "loc": {
+                "start": {
+                    "line": 146,
+                    "column": 0
+                },
+                "end": {
+                    "line": 150,
+                    "column": 9
+                }
+            },
+            "range": [
+                4044,
+                4120
+            ],
+            "raw": "    <ul>\n    <li>Candy.</li>\n    <li>Gum.</li>\n    <li>Booze.</li>\n    </ul>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Ordered (numbered) lists use regular numbers, followed by periods, as\nlist markers:",
+                    "loc": {
+                        "start": {
+                            "line": 152,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 153,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        4122,
+                        4205
+                    ],
+                    "raw": "Ordered (numbered) lists use regular numbers, followed by periods, as\nlist markers:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 152,
+                    "column": 0
+                },
+                "end": {
+                    "line": 153,
+                    "column": 13
+                }
+            },
+            "range": [
+                4122,
+                4205
+            ],
+            "raw": "Ordered (numbered) lists use regular numbers, followed by periods, as\nlist markers:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "1.  Red\n2.  Green\n3.  Blue",
+            "loc": {
+                "start": {
+                    "line": 155,
+                    "column": 0
+                },
+                "end": {
+                    "line": 157,
+                    "column": 12
+                }
+            },
+            "range": [
+                4207,
+                4245
+            ],
+            "raw": "    1.  Red\n    2.  Green\n    3.  Blue"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 159,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 159,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        4247,
+                        4254
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 159,
+                    "column": 0
+                },
+                "end": {
+                    "line": 159,
+                    "column": 7
+                }
+            },
+            "range": [
+                4247,
+                4254
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<ol>\n<li>Red</li>\n<li>Green</li>\n<li>Blue</li>\n</ol>",
+            "loc": {
+                "start": {
+                    "line": 161,
+                    "column": 0
+                },
+                "end": {
+                    "line": 165,
+                    "column": 9
+                }
+            },
+            "range": [
+                4256,
+                4328
+            ],
+            "raw": "    <ol>\n    <li>Red</li>\n    <li>Green</li>\n    <li>Blue</li>\n    </ol>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "If you put blank lines between items, you'll get ",
+                    "loc": {
+                        "start": {
+                            "line": 167,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 167,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        4330,
+                        4379
+                    ],
+                    "raw": "If you put blank lines between items, you'll get "
+                },
+                {
+                    "type": "Code",
+                    "value": "<p>",
+                    "loc": {
+                        "start": {
+                            "line": 167,
+                            "column": 49
+                        },
+                        "end": {
+                            "line": 167,
+                            "column": 54
+                        }
+                    },
+                    "range": [
+                        4379,
+                        4384
+                    ],
+                    "raw": "`<p>`"
+                },
+                {
+                    "type": "Str",
+                    "value": " tags for the\nlist item text. You can create multi-paragraph list items by indenting\nthe paragraphs by 4 spaces or 1 tab:",
+                    "loc": {
+                        "start": {
+                            "line": 167,
+                            "column": 54
+                        },
+                        "end": {
+                            "line": 169,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        4384,
+                        4505
+                    ],
+                    "raw": " tags for the\nlist item text. You can create multi-paragraph list items by indenting\nthe paragraphs by 4 spaces or 1 tab:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 167,
+                    "column": 0
+                },
+                "end": {
+                    "line": 169,
+                    "column": 36
+                }
+            },
+            "range": [
+                4330,
+                4505
+            ],
+            "raw": "If you put blank lines between items, you'll get `<p>` tags for the\nlist item text. You can create multi-paragraph list items by indenting\nthe paragraphs by 4 spaces or 1 tab:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "*   A list item.\n\n    With multiple paragraphs.\n\n*   Another item in the list.",
+            "loc": {
+                "start": {
+                    "line": 171,
+                    "column": 0
+                },
+                "end": {
+                    "line": 175,
+                    "column": 33
+                }
+            },
+            "range": [
+                4507,
+                4601
+            ],
+            "raw": "    *   A list item.\n    \n        With multiple paragraphs.\n\n    *   Another item in the list."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 177,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 177,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        4603,
+                        4610
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 177,
+                    "column": 0
+                },
+                "end": {
+                    "line": 177,
+                    "column": 7
+                }
+            },
+            "range": [
+                4603,
+                4610
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<ul>\n<li><p>A list item.</p>\n<p>With multiple paragraphs.</p></li>\n<li><p>Another item in the list.</p></li>\n</ul>",
+            "loc": {
+                "start": {
+                    "line": 179,
+                    "column": 0
+                },
+                "end": {
+                    "line": 184,
+                    "column": 4
+                }
+            },
+            "range": [
+                4612,
+                4751
+            ],
+            "raw": "    <ul>\n    <li><p>A list item.</p>\n    <p>With multiple paragraphs.</p></li>\n    <li><p>Another item in the list.</p></li>\n    </ul>\n    "
+        },
+        {
+            "type": "Header",
+            "depth": 3,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Links",
+                    "loc": {
+                        "start": {
+                            "line": 187,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 187,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        4758,
+                        4763
+                    ],
+                    "raw": "Links"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 187,
+                    "column": 0
+                },
+                "end": {
+                    "line": 187,
+                    "column": 13
+                }
+            },
+            "range": [
+                4754,
+                4767
+            ],
+            "raw": "### Links ###"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown supports two styles for creating links: ",
+                    "loc": {
+                        "start": {
+                            "line": 189,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 189,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        4769,
+                        4818
+                    ],
+                    "raw": "Markdown supports two styles for creating links: "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "inline",
+                            "loc": {
+                                "start": {
+                                    "line": 189,
+                                    "column": 50
+                                },
+                                "end": {
+                                    "line": 189,
+                                    "column": 56
+                                }
+                            },
+                            "range": [
+                                4819,
+                                4825
+                            ],
+                            "raw": "inline"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 189,
+                            "column": 49
+                        },
+                        "end": {
+                            "line": 189,
+                            "column": 57
+                        }
+                    },
+                    "range": [
+                        4818,
+                        4826
+                    ],
+                    "raw": "*inline*"
+                },
+                {
+                    "type": "Str",
+                    "value": " and\n",
+                    "loc": {
+                        "start": {
+                            "line": 189,
+                            "column": 57
+                        },
+                        "end": {
+                            "line": 190,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        4826,
+                        4831
+                    ],
+                    "raw": " and\n"
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "reference",
+                            "loc": {
+                                "start": {
+                                    "line": 190,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 190,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                4832,
+                                4841
+                            ],
+                            "raw": "reference"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 190,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 190,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        4831,
+                        4842
+                    ],
+                    "raw": "*reference*"
+                },
+                {
+                    "type": "Str",
+                    "value": ". With both styles, you use square brackets to delimit the\ntext you want to turn into a link.",
+                    "loc": {
+                        "start": {
+                            "line": 190,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 191,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        4842,
+                        4935
+                    ],
+                    "raw": ". With both styles, you use square brackets to delimit the\ntext you want to turn into a link."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 189,
+                    "column": 0
+                },
+                "end": {
+                    "line": 191,
+                    "column": 34
+                }
+            },
+            "range": [
+                4769,
+                4935
+            ],
+            "raw": "Markdown supports two styles for creating links: *inline* and\n*reference*. With both styles, you use square brackets to delimit the\ntext you want to turn into a link."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Inline-style links use parentheses immediately after the link text.\nFor example:",
+                    "loc": {
+                        "start": {
+                            "line": 193,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 194,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        4937,
+                        5017
+                    ],
+                    "raw": "Inline-style links use parentheses immediately after the link text.\nFor example:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 193,
+                    "column": 0
+                },
+                "end": {
+                    "line": 194,
+                    "column": 12
+                }
+            },
+            "range": [
+                4937,
+                5017
+            ],
+            "raw": "Inline-style links use parentheses immediately after the link text.\nFor example:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "This is an [example link](http://example.com/).",
+            "loc": {
+                "start": {
+                    "line": 196,
+                    "column": 0
+                },
+                "end": {
+                    "line": 196,
+                    "column": 51
+                }
+            },
+            "range": [
+                5019,
+                5070
+            ],
+            "raw": "    This is an [example link](http://example.com/)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 198,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 198,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        5072,
+                        5079
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 198,
+                    "column": 0
+                },
+                "end": {
+                    "line": 198,
+                    "column": 7
+                }
+            },
+            "range": [
+                5072,
+                5079
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<p>This is an <a href=\"http://example.com/\">\nexample link</a>.</p>",
+            "loc": {
+                "start": {
+                    "line": 200,
+                    "column": 0
+                },
+                "end": {
+                    "line": 201,
+                    "column": 25
+                }
+            },
+            "range": [
+                5081,
+                5155
+            ],
+            "raw": "    <p>This is an <a href=\"http://example.com/\">\n    example link</a>.</p>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Optionally, you may include a title attribute in the parentheses:",
+                    "loc": {
+                        "start": {
+                            "line": 203,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 203,
+                            "column": 65
+                        }
+                    },
+                    "range": [
+                        5157,
+                        5222
+                    ],
+                    "raw": "Optionally, you may include a title attribute in the parentheses:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 203,
+                    "column": 0
+                },
+                "end": {
+                    "line": 203,
+                    "column": 65
+                }
+            },
+            "range": [
+                5157,
+                5222
+            ],
+            "raw": "Optionally, you may include a title attribute in the parentheses:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "This is an [example link](http://example.com/ \"With a Title\").",
+            "loc": {
+                "start": {
+                    "line": 205,
+                    "column": 0
+                },
+                "end": {
+                    "line": 205,
+                    "column": 66
+                }
+            },
+            "range": [
+                5224,
+                5290
+            ],
+            "raw": "    This is an [example link](http://example.com/ \"With a Title\")."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 207,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 207,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        5292,
+                        5299
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 207,
+                    "column": 0
+                },
+                "end": {
+                    "line": 207,
+                    "column": 7
+                }
+            },
+            "range": [
+                5292,
+                5299
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<p>This is an <a href=\"http://example.com/\" title=\"With a Title\">\nexample link</a>.</p>",
+            "loc": {
+                "start": {
+                    "line": 209,
+                    "column": 0
+                },
+                "end": {
+                    "line": 210,
+                    "column": 25
+                }
+            },
+            "range": [
+                5301,
+                5396
+            ],
+            "raw": "    <p>This is an <a href=\"http://example.com/\" title=\"With a Title\">\n    example link</a>.</p>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Reference-style links allow you to refer to your links by names, which\nyou define elsewhere in your document:",
+                    "loc": {
+                        "start": {
+                            "line": 212,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 213,
+                            "column": 38
+                        }
+                    },
+                    "range": [
+                        5398,
+                        5507
+                    ],
+                    "raw": "Reference-style links allow you to refer to your links by names, which\nyou define elsewhere in your document:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 212,
+                    "column": 0
+                },
+                "end": {
+                    "line": 213,
+                    "column": 38
+                }
+            },
+            "range": [
+                5398,
+                5507
+            ],
+            "raw": "Reference-style links allow you to refer to your links by names, which\nyou define elsewhere in your document:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "I get 10 times more traffic from [Google][1] than from\n[Yahoo][2] or [MSN][3].\n\n[1]: http://google.com/        \"Google\"\n[2]: http://search.yahoo.com/  \"Yahoo Search\"\n[3]: http://search.msn.com/    \"MSN Search\"",
+            "loc": {
+                "start": {
+                    "line": 215,
+                    "column": 0
+                },
+                "end": {
+                    "line": 220,
+                    "column": 47
+                }
+            },
+            "range": [
+                5509,
+                5738
+            ],
+            "raw": "    I get 10 times more traffic from [Google][1] than from\n    [Yahoo][2] or [MSN][3].\n\n    [1]: http://google.com/        \"Google\"\n    [2]: http://search.yahoo.com/  \"Yahoo Search\"\n    [3]: http://search.msn.com/    \"MSN Search\""
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 222,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 222,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        5740,
+                        5747
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 222,
+                    "column": 0
+                },
+                "end": {
+                    "line": 222,
+                    "column": 7
+                }
+            },
+            "range": [
+                5740,
+                5747
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<p>I get 10 times more traffic from <a href=\"http://google.com/\"\ntitle=\"Google\">Google</a> than from <a href=\"http://search.yahoo.com/\"\ntitle=\"Yahoo Search\">Yahoo</a> or <a href=\"http://search.msn.com/\"\ntitle=\"MSN Search\">MSN</a>.</p>",
+            "loc": {
+                "start": {
+                    "line": 224,
+                    "column": 0
+                },
+                "end": {
+                    "line": 227,
+                    "column": 35
+                }
+            },
+            "range": [
+                5749,
+                5999
+            ],
+            "raw": "    <p>I get 10 times more traffic from <a href=\"http://google.com/\"\n    title=\"Google\">Google</a> than from <a href=\"http://search.yahoo.com/\"\n    title=\"Yahoo Search\">Yahoo</a> or <a href=\"http://search.msn.com/\"\n    title=\"MSN Search\">MSN</a>.</p>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "The title attribute is optional. Link names may contain letters,\nnumbers and spaces, but are ",
+                    "loc": {
+                        "start": {
+                            "line": 229,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 230,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        6001,
+                        6094
+                    ],
+                    "raw": "The title attribute is optional. Link names may contain letters,\nnumbers and spaces, but are "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "not",
+                            "loc": {
+                                "start": {
+                                    "line": 230,
+                                    "column": 29
+                                },
+                                "end": {
+                                    "line": 230,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                6095,
+                                6098
+                            ],
+                            "raw": "not"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 230,
+                            "column": 28
+                        },
+                        "end": {
+                            "line": 230,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        6094,
+                        6099
+                    ],
+                    "raw": "*not*"
+                },
+                {
+                    "type": "Str",
+                    "value": " case sensitive:",
+                    "loc": {
+                        "start": {
+                            "line": 230,
+                            "column": 33
+                        },
+                        "end": {
+                            "line": 230,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        6099,
+                        6115
+                    ],
+                    "raw": " case sensitive:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 229,
+                    "column": 0
+                },
+                "end": {
+                    "line": 230,
+                    "column": 49
+                }
+            },
+            "range": [
+                6001,
+                6115
+            ],
+            "raw": "The title attribute is optional. Link names may contain letters,\nnumbers and spaces, but are *not* case sensitive:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "I start my morning with a cup of coffee and\n[The New York Times][NY Times].\n\n[ny times]: http://www.nytimes.com/",
+            "loc": {
+                "start": {
+                    "line": 232,
+                    "column": 0
+                },
+                "end": {
+                    "line": 235,
+                    "column": 39
+                }
+            },
+            "range": [
+                6117,
+                6241
+            ],
+            "raw": "    I start my morning with a cup of coffee and\n    [The New York Times][NY Times].\n\n    [ny times]: http://www.nytimes.com/"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 237,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 237,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        6243,
+                        6250
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 237,
+                    "column": 0
+                },
+                "end": {
+                    "line": 237,
+                    "column": 7
+                }
+            },
+            "range": [
+                6243,
+                6250
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<p>I start my morning with a cup of coffee and\n<a href=\"http://www.nytimes.com/\">The New York Times</a>.</p>",
+            "loc": {
+                "start": {
+                    "line": 239,
+                    "column": 0
+                },
+                "end": {
+                    "line": 240,
+                    "column": 65
+                }
+            },
+            "range": [
+                6252,
+                6368
+            ],
+            "raw": "    <p>I start my morning with a cup of coffee and\n    <a href=\"http://www.nytimes.com/\">The New York Times</a>.</p>"
+        },
+        {
+            "type": "Header",
+            "depth": 3,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Images",
+                    "loc": {
+                        "start": {
+                            "line": 243,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 243,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        6375,
+                        6381
+                    ],
+                    "raw": "Images"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 243,
+                    "column": 0
+                },
+                "end": {
+                    "line": 243,
+                    "column": 14
+                }
+            },
+            "range": [
+                6371,
+                6385
+            ],
+            "raw": "### Images ###"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Image syntax is very much like link syntax.",
+                    "loc": {
+                        "start": {
+                            "line": 245,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 245,
+                            "column": 43
+                        }
+                    },
+                    "range": [
+                        6387,
+                        6430
+                    ],
+                    "raw": "Image syntax is very much like link syntax."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 245,
+                    "column": 0
+                },
+                "end": {
+                    "line": 245,
+                    "column": 43
+                }
+            },
+            "range": [
+                6387,
+                6430
+            ],
+            "raw": "Image syntax is very much like link syntax."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Inline (titles are optional):",
+                    "loc": {
+                        "start": {
+                            "line": 247,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 247,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        6432,
+                        6461
+                    ],
+                    "raw": "Inline (titles are optional):"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 247,
+                    "column": 0
+                },
+                "end": {
+                    "line": 247,
+                    "column": 29
+                }
+            },
+            "range": [
+                6432,
+                6461
+            ],
+            "raw": "Inline (titles are optional):"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "![alt text](/path/to/img.jpg \"Title\")",
+            "loc": {
+                "start": {
+                    "line": 249,
+                    "column": 0
+                },
+                "end": {
+                    "line": 249,
+                    "column": 41
+                }
+            },
+            "range": [
+                6463,
+                6504
+            ],
+            "raw": "    ![alt text](/path/to/img.jpg \"Title\")"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Reference-style:",
+                    "loc": {
+                        "start": {
+                            "line": 251,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 251,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        6506,
+                        6522
+                    ],
+                    "raw": "Reference-style:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 251,
+                    "column": 0
+                },
+                "end": {
+                    "line": 251,
+                    "column": 16
+                }
+            },
+            "range": [
+                6506,
+                6522
+            ],
+            "raw": "Reference-style:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "![alt text][id]\n\n[id]: /path/to/img.jpg \"Title\"",
+            "loc": {
+                "start": {
+                    "line": 253,
+                    "column": 0
+                },
+                "end": {
+                    "line": 255,
+                    "column": 34
+                }
+            },
+            "range": [
+                6524,
+                6579
+            ],
+            "raw": "    ![alt text][id]\n\n    [id]: /path/to/img.jpg \"Title\""
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Both of the above examples produce the same output:",
+                    "loc": {
+                        "start": {
+                            "line": 257,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 257,
+                            "column": 51
+                        }
+                    },
+                    "range": [
+                        6581,
+                        6632
+                    ],
+                    "raw": "Both of the above examples produce the same output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 257,
+                    "column": 0
+                },
+                "end": {
+                    "line": 257,
+                    "column": 51
+                }
+            },
+            "range": [
+                6581,
+                6632
+            ],
+            "raw": "Both of the above examples produce the same output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<img src=\"/path/to/img.jpg\" alt=\"alt text\" title=\"Title\" />",
+            "loc": {
+                "start": {
+                    "line": 259,
+                    "column": 0
+                },
+                "end": {
+                    "line": 259,
+                    "column": 63
+                }
+            },
+            "range": [
+                6634,
+                6697
+            ],
+            "raw": "    <img src=\"/path/to/img.jpg\" alt=\"alt text\" title=\"Title\" />"
+        },
+        {
+            "type": "Header",
+            "depth": 3,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Code",
+                    "loc": {
+                        "start": {
+                            "line": 263,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 263,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        6705,
+                        6709
+                    ],
+                    "raw": "Code"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 263,
+                    "column": 0
+                },
+                "end": {
+                    "line": 263,
+                    "column": 12
+                }
+            },
+            "range": [
+                6701,
+                6713
+            ],
+            "raw": "### Code ###"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "In a regular paragraph, you can create code span by wrapping text in\nbacktick quotes. Any ampersands (",
+                    "loc": {
+                        "start": {
+                            "line": 265,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 266,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        6715,
+                        6817
+                    ],
+                    "raw": "In a regular paragraph, you can create code span by wrapping text in\nbacktick quotes. Any ampersands ("
+                },
+                {
+                    "type": "Code",
+                    "value": "&",
+                    "loc": {
+                        "start": {
+                            "line": 266,
+                            "column": 33
+                        },
+                        "end": {
+                            "line": 266,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        6817,
+                        6820
+                    ],
+                    "raw": "`&`"
+                },
+                {
+                    "type": "Str",
+                    "value": ") and angle brackets (",
+                    "loc": {
+                        "start": {
+                            "line": 266,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 266,
+                            "column": 58
+                        }
+                    },
+                    "range": [
+                        6820,
+                        6842
+                    ],
+                    "raw": ") and angle brackets ("
+                },
+                {
+                    "type": "Code",
+                    "value": "<",
+                    "loc": {
+                        "start": {
+                            "line": 266,
+                            "column": 58
+                        },
+                        "end": {
+                            "line": 266,
+                            "column": 61
+                        }
+                    },
+                    "range": [
+                        6842,
+                        6845
+                    ],
+                    "raw": "`<`"
+                },
+                {
+                    "type": "Str",
+                    "value": " or\n",
+                    "loc": {
+                        "start": {
+                            "line": 266,
+                            "column": 61
+                        },
+                        "end": {
+                            "line": 267,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        6845,
+                        6849
+                    ],
+                    "raw": " or\n"
+                },
+                {
+                    "type": "Code",
+                    "value": ">",
+                    "loc": {
+                        "start": {
+                            "line": 267,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 267,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        6849,
+                        6852
+                    ],
+                    "raw": "`>`"
+                },
+                {
+                    "type": "Str",
+                    "value": ") will automatically be translated into HTML entities. This makes\nit easy to use Markdown to write about HTML example code:",
+                    "loc": {
+                        "start": {
+                            "line": 267,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 268,
+                            "column": 57
+                        }
+                    },
+                    "range": [
+                        6852,
+                        6975
+                    ],
+                    "raw": ") will automatically be translated into HTML entities. This makes\nit easy to use Markdown to write about HTML example code:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 265,
+                    "column": 0
+                },
+                "end": {
+                    "line": 268,
+                    "column": 57
+                }
+            },
+            "range": [
+                6715,
+                6975
+            ],
+            "raw": "In a regular paragraph, you can create code span by wrapping text in\nbacktick quotes. Any ampersands (`&`) and angle brackets (`<` or\n`>`) will automatically be translated into HTML entities. This makes\nit easy to use Markdown to write about HTML example code:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "I strongly recommend against using any `<blink>` tags.\n\nI wish SmartyPants used named entities like `&mdash;`\ninstead of decimal-encoded entites like `&#8212;`.",
+            "loc": {
+                "start": {
+                    "line": 270,
+                    "column": 0
+                },
+                "end": {
+                    "line": 273,
+                    "column": 54
+                }
+            },
+            "range": [
+                6977,
+                7149
+            ],
+            "raw": "    I strongly recommend against using any `<blink>` tags.\n\n    I wish SmartyPants used named entities like `&mdash;`\n    instead of decimal-encoded entites like `&#8212;`."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 275,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 275,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        7151,
+                        7158
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 275,
+                    "column": 0
+                },
+                "end": {
+                    "line": 275,
+                    "column": 7
+                }
+            },
+            "range": [
+                7151,
+                7158
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<p>I strongly recommend against using any\n<code>&lt;blink&gt;</code> tags.</p>\n\n<p>I wish SmartyPants used named entities like\n<code>&amp;mdash;</code> instead of decimal-encoded\nentites like <code>&amp;#8212;</code>.</p>",
+            "loc": {
+                "start": {
+                    "line": 277,
+                    "column": 0
+                },
+                "end": {
+                    "line": 282,
+                    "column": 46
+                }
+            },
+            "range": [
+                7160,
+                7405
+            ],
+            "raw": "    <p>I strongly recommend against using any\n    <code>&lt;blink&gt;</code> tags.</p>\n    \n    <p>I wish SmartyPants used named entities like\n    <code>&amp;mdash;</code> instead of decimal-encoded\n    entites like <code>&amp;#8212;</code>.</p>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "To specify an entire block of pre-formatted code, indent every line of\nthe block by 4 spaces or 1 tab. Just like with code spans, ",
+                    "loc": {
+                        "start": {
+                            "line": 285,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 286,
+                            "column": 59
+                        }
+                    },
+                    "range": [
+                        7408,
+                        7538
+                    ],
+                    "raw": "To specify an entire block of pre-formatted code, indent every line of\nthe block by 4 spaces or 1 tab. Just like with code spans, "
+                },
+                {
+                    "type": "Code",
+                    "value": "&",
+                    "loc": {
+                        "start": {
+                            "line": 286,
+                            "column": 59
+                        },
+                        "end": {
+                            "line": 286,
+                            "column": 62
+                        }
+                    },
+                    "range": [
+                        7538,
+                        7541
+                    ],
+                    "raw": "`&`"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 286,
+                            "column": 62
+                        },
+                        "end": {
+                            "line": 286,
+                            "column": 64
+                        }
+                    },
+                    "range": [
+                        7541,
+                        7543
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Code",
+                    "value": "<",
+                    "loc": {
+                        "start": {
+                            "line": 286,
+                            "column": 64
+                        },
+                        "end": {
+                            "line": 286,
+                            "column": 67
+                        }
+                    },
+                    "range": [
+                        7543,
+                        7546
+                    ],
+                    "raw": "`<`"
+                },
+                {
+                    "type": "Str",
+                    "value": ",\nand ",
+                    "loc": {
+                        "start": {
+                            "line": 286,
+                            "column": 67
+                        },
+                        "end": {
+                            "line": 287,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        7546,
+                        7552
+                    ],
+                    "raw": ",\nand "
+                },
+                {
+                    "type": "Code",
+                    "value": ">",
+                    "loc": {
+                        "start": {
+                            "line": 287,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 287,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        7552,
+                        7555
+                    ],
+                    "raw": "`>`"
+                },
+                {
+                    "type": "Str",
+                    "value": " characters will be escaped automatically.",
+                    "loc": {
+                        "start": {
+                            "line": 287,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 287,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        7555,
+                        7597
+                    ],
+                    "raw": " characters will be escaped automatically."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 285,
+                    "column": 0
+                },
+                "end": {
+                    "line": 287,
+                    "column": 49
+                }
+            },
+            "range": [
+                7408,
+                7597
+            ],
+            "raw": "To specify an entire block of pre-formatted code, indent every line of\nthe block by 4 spaces or 1 tab. Just like with code spans, `&`, `<`,\nand `>` characters will be escaped automatically."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Markdown:",
+                    "loc": {
+                        "start": {
+                            "line": 289,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 289,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        7599,
+                        7608
+                    ],
+                    "raw": "Markdown:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 289,
+                    "column": 0
+                },
+                "end": {
+                    "line": 289,
+                    "column": 9
+                }
+            },
+            "range": [
+                7599,
+                7608
+            ],
+            "raw": "Markdown:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "If you want your page to validate under XHTML 1.0 Strict,\nyou've got to put paragraph tags in your blockquotes:\n\n    <blockquote>\n        <p>For example.</p>\n    </blockquote>",
+            "loc": {
+                "start": {
+                    "line": 291,
+                    "column": 0
+                },
+                "end": {
+                    "line": 296,
+                    "column": 21
+                }
+            },
+            "range": [
+                7610,
+                7805
+            ],
+            "raw": "    If you want your page to validate under XHTML 1.0 Strict,\n    you've got to put paragraph tags in your blockquotes:\n\n        <blockquote>\n            <p>For example.</p>\n        </blockquote>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Output:",
+                    "loc": {
+                        "start": {
+                            "line": 298,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 298,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        7807,
+                        7814
+                    ],
+                    "raw": "Output:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 298,
+                    "column": 0
+                },
+                "end": {
+                    "line": 298,
+                    "column": 7
+                }
+            },
+            "range": [
+                7807,
+                7814
+            ],
+            "raw": "Output:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "<p>If you want your page to validate under XHTML 1.0 Strict,\nyou've got to put paragraph tags in your blockquotes:</p>\n\n<pre><code>&lt;blockquote&gt;\n    &lt;p&gt;For example.&lt;/p&gt;\n&lt;/blockquote&gt;\n</code></pre>",
+            "loc": {
+                "start": {
+                    "line": 300,
+                    "column": 0
+                },
+                "end": {
+                    "line": 306,
+                    "column": 17
+                }
+            },
+            "range": [
+                7816,
+                8063
+            ],
+            "raw": "    <p>If you want your page to validate under XHTML 1.0 Strict,\n    you've got to put paragraph tags in your blockquotes:</p>\n    \n    <pre><code>&lt;blockquote&gt;\n        &lt;p&gt;For example.&lt;/p&gt;\n    &lt;/blockquote&gt;\n    </code></pre>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 307,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        8064
+    ],
+    "raw": "Markdown: Basics\n================\n\n<ul id=\"ProjectSubmenu\">\n    <li><a href=\"/projects/markdown/\" title=\"Markdown Project Page\">Main</a></li>\n    <li><a class=\"selected\" title=\"Markdown Basics\">Basics</a></li>\n    <li><a href=\"/projects/markdown/syntax\" title=\"Markdown Syntax Documentation\">Syntax</a></li>\n    <li><a href=\"/projects/markdown/license\" title=\"Pricing and License Information\">License</a></li>\n    <li><a href=\"/projects/markdown/dingus\" title=\"Online Markdown Web Form\">Dingus</a></li>\n</ul>\n\n\nGetting the Gist of Markdown's Formatting Syntax\n------------------------------------------------\n\nThis page offers a brief overview of what it's like to use Markdown.\nThe [syntax page] [s] provides complete, detailed documentation for\nevery feature, but Markdown should be very easy to pick up simply by\nlooking at a few examples of it in action. The examples on this page\nare written in a before/after style, showing example syntax and the\nHTML output produced by Markdown.\n\nIt's also helpful to simply try Markdown out; the [Dingus] [d] is a\nweb application that allows you type your own Markdown-formatted text\nand translate it to XHTML.\n\n**Note:** This document is itself written using Markdown; you\ncan [see the source for it by adding '.text' to the URL] [src].\n\n  [s]: /projects/markdown/syntax  \"Markdown Syntax\"\n  [d]: /projects/markdown/dingus  \"Markdown Dingus\"\n  [src]: /projects/markdown/basics.text\n\n\n## Paragraphs, Headers, Blockquotes ##\n\nA paragraph is simply one or more consecutive lines of text, separated\nby one or more blank lines. (A blank line is any line that looks like a\nblank line -- a line containing nothing spaces or tabs is considered\nblank.) Normal paragraphs should not be intended with spaces or tabs.\n\nMarkdown offers two styles of headers: *Setext* and *atx*.\nSetext-style headers for `<h1>` and `<h2>` are created by\n\"underlining\" with equal signs (`=`) and hyphens (`-`), respectively.\nTo create an atx-style header, you put 1-6 hash marks (`#`) at the\nbeginning of the line -- the number of hashes equals the resulting\nHTML header level.\n\nBlockquotes are indicated using email-style '`>`' angle brackets.\n\nMarkdown:\n\n    A First Level Header\n    ====================\n    \n    A Second Level Header\n    ---------------------\n\n    Now is the time for all good men to come to\n    the aid of their country. This is just a\n    regular paragraph.\n\n    The quick brown fox jumped over the lazy\n    dog's back.\n    \n    ### Header 3\n\n    > This is a blockquote.\n    > \n    > This is the second paragraph in the blockquote.\n    >\n    > ## This is an H2 in a blockquote\n\n\nOutput:\n\n    <h1>A First Level Header</h1>\n    \n    <h2>A Second Level Header</h2>\n    \n    <p>Now is the time for all good men to come to\n    the aid of their country. This is just a\n    regular paragraph.</p>\n    \n    <p>The quick brown fox jumped over the lazy\n    dog's back.</p>\n    \n    <h3>Header 3</h3>\n    \n    <blockquote>\n        <p>This is a blockquote.</p>\n        \n        <p>This is the second paragraph in the blockquote.</p>\n        \n        <h2>This is an H2 in a blockquote</h2>\n    </blockquote>\n\n\n\n### Phrase Emphasis ###\n\nMarkdown uses asterisks and underscores to indicate spans of emphasis.\n\nMarkdown:\n\n    Some of these words *are emphasized*.\n    Some of these words _are emphasized also_.\n    \n    Use two asterisks for **strong emphasis**.\n    Or, if you prefer, __use two underscores instead__.\n\nOutput:\n\n    <p>Some of these words <em>are emphasized</em>.\n    Some of these words <em>are emphasized also</em>.</p>\n    \n    <p>Use two asterisks for <strong>strong emphasis</strong>.\n    Or, if you prefer, <strong>use two underscores instead</strong>.</p>\n   \n\n\n## Lists ##\n\nUnordered (bulleted) lists use asterisks, pluses, and hyphens (`*`,\n`+`, and `-`) as list markers. These three markers are\ninterchangable; this:\n\n    *   Candy.\n    *   Gum.\n    *   Booze.\n\nthis:\n\n    +   Candy.\n    +   Gum.\n    +   Booze.\n\nand this:\n\n    -   Candy.\n    -   Gum.\n    -   Booze.\n\nall produce the same output:\n\n    <ul>\n    <li>Candy.</li>\n    <li>Gum.</li>\n    <li>Booze.</li>\n    </ul>\n\nOrdered (numbered) lists use regular numbers, followed by periods, as\nlist markers:\n\n    1.  Red\n    2.  Green\n    3.  Blue\n\nOutput:\n\n    <ol>\n    <li>Red</li>\n    <li>Green</li>\n    <li>Blue</li>\n    </ol>\n\nIf you put blank lines between items, you'll get `<p>` tags for the\nlist item text. You can create multi-paragraph list items by indenting\nthe paragraphs by 4 spaces or 1 tab:\n\n    *   A list item.\n    \n        With multiple paragraphs.\n\n    *   Another item in the list.\n\nOutput:\n\n    <ul>\n    <li><p>A list item.</p>\n    <p>With multiple paragraphs.</p></li>\n    <li><p>Another item in the list.</p></li>\n    </ul>\n    \n\n\n### Links ###\n\nMarkdown supports two styles for creating links: *inline* and\n*reference*. With both styles, you use square brackets to delimit the\ntext you want to turn into a link.\n\nInline-style links use parentheses immediately after the link text.\nFor example:\n\n    This is an [example link](http://example.com/).\n\nOutput:\n\n    <p>This is an <a href=\"http://example.com/\">\n    example link</a>.</p>\n\nOptionally, you may include a title attribute in the parentheses:\n\n    This is an [example link](http://example.com/ \"With a Title\").\n\nOutput:\n\n    <p>This is an <a href=\"http://example.com/\" title=\"With a Title\">\n    example link</a>.</p>\n\nReference-style links allow you to refer to your links by names, which\nyou define elsewhere in your document:\n\n    I get 10 times more traffic from [Google][1] than from\n    [Yahoo][2] or [MSN][3].\n\n    [1]: http://google.com/        \"Google\"\n    [2]: http://search.yahoo.com/  \"Yahoo Search\"\n    [3]: http://search.msn.com/    \"MSN Search\"\n\nOutput:\n\n    <p>I get 10 times more traffic from <a href=\"http://google.com/\"\n    title=\"Google\">Google</a> than from <a href=\"http://search.yahoo.com/\"\n    title=\"Yahoo Search\">Yahoo</a> or <a href=\"http://search.msn.com/\"\n    title=\"MSN Search\">MSN</a>.</p>\n\nThe title attribute is optional. Link names may contain letters,\nnumbers and spaces, but are *not* case sensitive:\n\n    I start my morning with a cup of coffee and\n    [The New York Times][NY Times].\n\n    [ny times]: http://www.nytimes.com/\n\nOutput:\n\n    <p>I start my morning with a cup of coffee and\n    <a href=\"http://www.nytimes.com/\">The New York Times</a>.</p>\n\n\n### Images ###\n\nImage syntax is very much like link syntax.\n\nInline (titles are optional):\n\n    ![alt text](/path/to/img.jpg \"Title\")\n\nReference-style:\n\n    ![alt text][id]\n\n    [id]: /path/to/img.jpg \"Title\"\n\nBoth of the above examples produce the same output:\n\n    <img src=\"/path/to/img.jpg\" alt=\"alt text\" title=\"Title\" />\n\n\n\n### Code ###\n\nIn a regular paragraph, you can create code span by wrapping text in\nbacktick quotes. Any ampersands (`&`) and angle brackets (`<` or\n`>`) will automatically be translated into HTML entities. This makes\nit easy to use Markdown to write about HTML example code:\n\n    I strongly recommend against using any `<blink>` tags.\n\n    I wish SmartyPants used named entities like `&mdash;`\n    instead of decimal-encoded entites like `&#8212;`.\n\nOutput:\n\n    <p>I strongly recommend against using any\n    <code>&lt;blink&gt;</code> tags.</p>\n    \n    <p>I wish SmartyPants used named entities like\n    <code>&amp;mdash;</code> instead of decimal-encoded\n    entites like <code>&amp;#8212;</code>.</p>\n\n\nTo specify an entire block of pre-formatted code, indent every line of\nthe block by 4 spaces or 1 tab. Just like with code spans, `&`, `<`,\nand `>` characters will be escaped automatically.\n\nMarkdown:\n\n    If you want your page to validate under XHTML 1.0 Strict,\n    you've got to put paragraph tags in your blockquotes:\n\n        <blockquote>\n            <p>For example.</p>\n        </blockquote>\n\nOutput:\n\n    <p>If you want your page to validate under XHTML 1.0 Strict,\n    you've got to put paragraph tags in your blockquotes:</p>\n    \n    <pre><code>&lt;blockquote&gt;\n        &lt;p&gt;For example.&lt;/p&gt;\n    &lt;/blockquote&gt;\n    </code></pre>\n"
+}

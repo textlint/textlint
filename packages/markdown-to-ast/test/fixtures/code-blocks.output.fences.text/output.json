@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "A code block using fences:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        0,
+                        26
+                    ],
+                    "raw": "A code block using fences:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 26
+                }
+            },
+            "range": [
+                0,
+                26
+            ],
+            "raw": "A code block using fences:"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "alert('Hello World!');",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 3
+                }
+            },
+            "range": [
+                28,
+                58
+            ],
+            "raw": "```\nalert('Hello World!');\n```"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 6,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        59
+    ],
+    "raw": "A code block using fences:\n\n```\nalert('Hello World!');\n```\n"
+}

@@ -1,0 +1,100 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "CodeBlock",
+            "lang": "js",
+            "value": "var a = 'hello';\nconsole.log(a + ' world');",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                54
+            ],
+            "raw": "``` js\nvar a = 'hello';\nconsole.log(a + ' world');\n```"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "bash",
+            "value": "echo \"hello, ${WORLD}\"",
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 3
+                }
+            },
+            "range": [
+                56,
+                90
+            ],
+            "raw": "~~~bash\necho \"hello, ${WORLD}\"\n~~~"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "longfence",
+            "value": "Q: What do you call a tall person who sells stolen goods?",
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 7
+                }
+            },
+            "range": [
+                92,
+                174
+            ],
+            "raw": "```````longfence\nQ: What do you call a tall person who sells stolen goods?\n```````"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": "ManyTildes",
+            "value": "A longfence!",
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 16,
+                    "column": 10
+                }
+            },
+            "range": [
+                176,
+                222
+            ],
+            "raw": "~~~~~~~~~~  ManyTildes\nA longfence!\n~~~~~~~~~~"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 17,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        223
+    ],
+    "raw": "``` js\nvar a = 'hello';\nconsole.log(a + ' world');\n```\n\n~~~bash\necho \"hello, ${WORLD}\"\n~~~\n\n```````longfence\nQ: What do you call a tall person who sells stolen goods?\n```````\n\n~~~~~~~~~~  ManyTildes\nA longfence!\n~~~~~~~~~~\n"
+}

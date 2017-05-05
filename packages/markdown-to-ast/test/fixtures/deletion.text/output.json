@@ -1,0 +1,117 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "hello ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "raw": "hello "
+                },
+                {
+                    "type": "Delete",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "hi",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                8,
+                                10
+                            ],
+                            "raw": "hi"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        6,
+                        12
+                    ],
+                    "raw": "~~hi~~"
+                },
+                {
+                    "type": "Str",
+                    "value": " world",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        12,
+                        18
+                    ],
+                    "raw": " world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 18
+                }
+            },
+            "range": [
+                0,
+                18
+            ],
+            "raw": "hello ~~hi~~ world"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        19
+    ],
+    "raw": "hello ~~hi~~ world\n"
+}

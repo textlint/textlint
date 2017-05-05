@@ -1,0 +1,824 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "hello",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                2,
+                                7
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        0,
+                        9
+                    ],
+                    "raw": "**hello**"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        9,
+                        10
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "world",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                11,
+                                16
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        10,
+                        17
+                    ],
+                    "raw": "_world_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 17
+                }
+            },
+            "range": [
+                0,
+                17
+            ],
+            "raw": "**hello** _world_"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        21,
+                                        32
+                                    ],
+                                    "raw": "hello world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                21,
+                                32
+                            ],
+                            "raw": "hello world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        19,
+                        32
+                    ],
+                    "raw": "* hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 13
+                }
+            },
+            "range": [
+                19,
+                32
+            ],
+            "raw": "* hello world"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "hello",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                36,
+                                41
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        34,
+                        43
+                    ],
+                    "raw": "**hello**"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        43,
+                        44
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "world",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                45,
+                                50
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        44,
+                        51
+                    ],
+                    "raw": "_world_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 17
+                }
+            },
+            "range": [
+                34,
+                51
+            ],
+            "raw": "**hello** _world_"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        55,
+                                        66
+                                    ],
+                                    "raw": "hello world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                55,
+                                66
+                            ],
+                            "raw": "hello world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        53,
+                        66
+                    ],
+                    "raw": "* hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 13
+                }
+            },
+            "range": [
+                53,
+                66
+            ],
+            "raw": "* hello world"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "hello",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                70,
+                                75
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        68,
+                        77
+                    ],
+                    "raw": "**hello**"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        77,
+                        78
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "world",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                79,
+                                84
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        78,
+                        85
+                    ],
+                    "raw": "_world_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 17
+                }
+            },
+            "range": [
+                68,
+                85
+            ],
+            "raw": "**hello** _world_"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Hello world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 11,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 11,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        89,
+                                        100
+                                    ],
+                                    "raw": "Hello world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                89,
+                                100
+                            ],
+                            "raw": "Hello world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        87,
+                        100
+                    ],
+                    "raw": "* Hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 13
+                }
+            },
+            "range": [
+                87,
+                100
+            ],
+            "raw": "* Hello world"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "hello",
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                104,
+                                109
+                            ],
+                            "raw": "hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        102,
+                        111
+                    ],
+                    "raw": "**hello**"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        111,
+                        112
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "world",
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                113,
+                                118
+                            ],
+                            "raw": "world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        112,
+                        119
+                    ],
+                    "raw": "_world_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 17
+                }
+            },
+            "range": [
+                102,
+                119
+            ],
+            "raw": "**hello** _world_"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello world",
+                                    "loc": {
+                                        "start": {
+                                            "line": 15,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 15,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        123,
+                                        134
+                                    ],
+                                    "raw": "hello world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 15,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 15,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                123,
+                                134
+                            ],
+                            "raw": "hello world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        121,
+                        134
+                    ],
+                    "raw": "* hello world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 13
+                }
+            },
+            "range": [
+                121,
+                134
+            ],
+            "raw": "* hello world"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 16,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        135
+    ],
+    "raw": "**hello** _world_\n\n* hello world\n\n**hello** _world_\n\n* hello world\n\n**hello** _world_\n\n* Hello world\n\n**hello** _world_\n\n* hello world\n"
+}

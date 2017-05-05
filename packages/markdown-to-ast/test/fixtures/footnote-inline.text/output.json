@@ -1,0 +1,158 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is an example of an inline footnote.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 41
+                        }
+                    },
+                    "range": [
+                        0,
+                        41
+                    ],
+                    "raw": "This is an example of an inline footnote."
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "^this is the _actual_ footnote.",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "^This is the ",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 42
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 55
+                                }
+                            },
+                            "range": [
+                                42,
+                                55
+                            ],
+                            "raw": "^This is the "
+                        },
+                        {
+                            "type": "Emphasis",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "actual",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 56
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 62
+                                        }
+                                    },
+                                    "range": [
+                                        56,
+                                        62
+                                    ],
+                                    "raw": "actual"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 55
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 63
+                                }
+                            },
+                            "range": [
+                                55,
+                                63
+                            ],
+                            "raw": "_actual_"
+                        },
+                        {
+                            "type": "Str",
+                            "value": " footnote.",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 63
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 73
+                                }
+                            },
+                            "range": [
+                                63,
+                                73
+                            ],
+                            "raw": " footnote."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 41
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 74
+                        }
+                    },
+                    "range": [
+                        41,
+                        74
+                    ],
+                    "raw": "[^This is the _actual_ footnote.]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 74
+                }
+            },
+            "range": [
+                0,
+                74
+            ],
+            "raw": "This is an example of an inline footnote.[^This is the _actual_ footnote.]"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        75
+    ],
+    "raw": "This is an example of an inline footnote.[^This is the _actual_ footnote.]\n"
+}

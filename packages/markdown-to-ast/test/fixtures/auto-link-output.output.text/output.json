@@ -1,0 +1,317 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link: ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "raw": "Link: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com/",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 7
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 26
+                                }
+                            },
+                            "range": [
+                                7,
+                                26
+                            ],
+                            "raw": "http://example.com/"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        6,
+                        27
+                    ],
+                    "raw": "<http://example.com/>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 27
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        27,
+                        28
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 28
+                }
+            },
+            "range": [
+                0,
+                28
+            ],
+            "raw": "Link: <http://example.com/>."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link to an email: ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        30,
+                        48
+                    ],
+                    "raw": "Link to an email: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "mailto:somename@example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "somename@example.com",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 26
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 46
+                                }
+                            },
+                            "range": [
+                                56,
+                                76
+                            ],
+                            "raw": "somename@example.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        48,
+                        77
+                    ],
+                    "raw": "<mailto:somename@example.com>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 47
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 48
+                        }
+                    },
+                    "range": [
+                        77,
+                        78
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 48
+                }
+            },
+            "range": [
+                30,
+                78
+            ],
+            "raw": "Link to an email: <mailto:somename@example.com>."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link without protocol, which should not render as an auto-link\nbecause they are easily mistaken for HTML: ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 43
+                        }
+                    },
+                    "range": [
+                        80,
+                        186
+                    ],
+                    "raw": "Link without protocol, which should not render as an auto-link\nbecause they are easily mistaken for HTML: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "google.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "google.com",
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 44
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 54
+                                }
+                            },
+                            "range": [
+                                187,
+                                197
+                            ],
+                            "raw": "google.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 43
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 67
+                        }
+                    },
+                    "range": [
+                        186,
+                        210
+                    ],
+                    "raw": "[google.com](google.com)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 67
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 68
+                        }
+                    },
+                    "range": [
+                        210,
+                        211
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 6,
+                    "column": 68
+                }
+            },
+            "range": [
+                80,
+                211
+            ],
+            "raw": "Link without protocol, which should not render as an auto-link\nbecause they are easily mistaken for HTML: [google.com](google.com)."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 7,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        212
+    ],
+    "raw": "Link: <http://example.com/>.\n\nLink to an email: <mailto:somename@example.com>.\n\nLink without protocol, which should not render as an auto-link\nbecause they are easily mistaken for HTML: [google.com](google.com).\n"
+}

@@ -1,0 +1,543 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is the ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        0,
+                        12
+                    ],
+                    "raw": "This is the "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "simple case",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "simple case",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 24
+                                }
+                            },
+                            "range": [
+                                13,
+                                24
+                            ],
+                            "raw": "simple case"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        12,
+                        25
+                    ],
+                    "raw": "[simple case]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        25,
+                        26
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 26
+                }
+            },
+            "range": [
+                0,
+                26
+            ],
+            "raw": "This is the [simple case]."
+        },
+        {
+            "type": "Definition",
+            "identifier": "simple case",
+            "title": null,
+            "url": "/simple",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 22
+                }
+            },
+            "range": [
+                28,
+                50
+            ],
+            "raw": "[simple case]: /simple"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This one has a ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        54,
+                        69
+                    ],
+                    "raw": "This one has a "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "line break",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "line\nbreak",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 16
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                70,
+                                80
+                            ],
+                            "raw": "line\nbreak"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 15
+                        },
+                        "end": {
+                            "line": 8,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        69,
+                        81
+                    ],
+                    "raw": "[line\nbreak]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 8,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 8,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        81,
+                        82
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 7
+                }
+            },
+            "range": [
+                54,
+                82
+            ],
+            "raw": "This one has a [line\nbreak]."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This one has a ",
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        84,
+                        99
+                    ],
+                    "raw": "This one has a "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "line break",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "line \nbreak",
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 16
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                100,
+                                111
+                            ],
+                            "raw": "line \nbreak"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 15
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        99,
+                        112
+                    ],
+                    "raw": "[line \nbreak]"
+                },
+                {
+                    "type": "Str",
+                    "value": " with a line-ending space.",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 32
+                        }
+                    },
+                    "range": [
+                        112,
+                        138
+                    ],
+                    "raw": " with a line-ending space."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 32
+                }
+            },
+            "range": [
+                84,
+                138
+            ],
+            "raw": "This one has a [line \nbreak] with a line-ending space."
+        },
+        {
+            "type": "Definition",
+            "identifier": "line break",
+            "title": null,
+            "url": "/foo",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 18
+                }
+            },
+            "range": [
+                140,
+                158
+            ],
+            "raw": "[line break]: /foo"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "that",
+                    "referenceType": "full",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "this",
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                162,
+                                166
+                            ],
+                            "raw": "this"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        161,
+                        174
+                    ],
+                    "raw": "[this] [that]"
+                },
+                {
+                    "type": "Str",
+                    "value": " and the ",
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        174,
+                        183
+                    ],
+                    "raw": " and the "
+                },
+                {
+                    "type": "LinkReference",
+                    "identifier": "other",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "other",
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 23
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 28
+                                }
+                            },
+                            "range": [
+                                184,
+                                189
+                            ],
+                            "raw": "other"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 22
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        183,
+                        190
+                    ],
+                    "raw": "[other]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 16,
+                    "column": 0
+                },
+                "end": {
+                    "line": 16,
+                    "column": 29
+                }
+            },
+            "range": [
+                161,
+                190
+            ],
+            "raw": "[this] [that] and the [other]"
+        },
+        {
+            "type": "Definition",
+            "identifier": "this",
+            "title": null,
+            "url": "/this",
+            "loc": {
+                "start": {
+                    "line": 18,
+                    "column": 0
+                },
+                "end": {
+                    "line": 18,
+                    "column": 13
+                }
+            },
+            "range": [
+                192,
+                205
+            ],
+            "raw": "[this]: /this"
+        },
+        {
+            "type": "Definition",
+            "identifier": "that",
+            "title": null,
+            "url": "/that",
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 13
+                }
+            },
+            "range": [
+                206,
+                219
+            ],
+            "raw": "[that]: /that"
+        },
+        {
+            "type": "Definition",
+            "identifier": "other",
+            "title": null,
+            "url": "/other",
+            "loc": {
+                "start": {
+                    "line": 20,
+                    "column": 0
+                },
+                "end": {
+                    "line": 20,
+                    "column": 15
+                }
+            },
+            "range": [
+                220,
+                235
+            ],
+            "raw": "[other]: /other"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 21,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        236
+    ],
+    "raw": "This is the [simple case].\n\n[simple case]: /simple\n\n\n\nThis one has a [line\nbreak].\n\nThis one has a [line \nbreak] with a line-ending space.\n\n[line break]: /foo\n\n\n[this] [that] and the [other]\n\n[this]: /this\n[that]: /that\n[other]: /other\n"
+}

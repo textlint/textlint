@@ -1,0 +1,547 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Without lines.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        2,
+                        16
+                    ],
+                    "raw": "Without lines."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 16
+                }
+            },
+            "range": [
+                0,
+                16
+            ],
+            "raw": "# Without lines."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph\n    and this is further text",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        18,
+                        66
+                    ],
+                    "raw": "This is a paragraph\n    and this is further text"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 28
+                }
+            },
+            "range": [
+                18,
+                66
+            ],
+            "raw": "This is a paragraph\n    and this is further text"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph\n   and this is further text",
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        68,
+                        115
+                    ],
+                    "raw": "This is a paragraph\n   and this is further text"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 27
+                }
+            },
+            "range": [
+                68,
+                115
+            ],
+            "raw": "This is a paragraph\n   and this is further text"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph with some asterisks",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        117,
+                        156
+                    ],
+                    "raw": "This is a paragraph with some asterisks"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 39
+                }
+            },
+            "range": [
+                117,
+                156
+            ],
+            "raw": "This is a paragraph with some asterisks"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "***",
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 7
+                }
+            },
+            "range": [
+                157,
+                164
+            ],
+            "raw": "    ***"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph followed by a horizontal rule",
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 12,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        166,
+                        215
+                    ],
+                    "raw": "This is a paragraph followed by a horizontal rule"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 49
+                }
+            },
+            "range": [
+                166,
+                215
+            ],
+            "raw": "This is a paragraph followed by a horizontal rule"
+        },
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 6
+                }
+            },
+            "range": [
+                216,
+                222
+            ],
+            "raw": "   ***"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "With lines.",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        226,
+                        237
+                    ],
+                    "raw": "With lines."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 13
+                }
+            },
+            "range": [
+                224,
+                237
+            ],
+            "raw": "# With lines."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        239,
+                        258
+                    ],
+                    "raw": "This is a paragraph"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 19
+                }
+            },
+            "range": [
+                239,
+                258
+            ],
+            "raw": "This is a paragraph"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "and this is code",
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 20
+                }
+            },
+            "range": [
+                260,
+                280
+            ],
+            "raw": "    and this is code"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph",
+                    "loc": {
+                        "start": {
+                            "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        282,
+                        301
+                    ],
+                    "raw": "This is a paragraph"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
+                },
+                "end": {
+                    "line": 21,
+                    "column": 19
+                }
+            },
+            "range": [
+                282,
+                301
+            ],
+            "raw": "This is a paragraph"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "   and this is a new paragraph",
+                    "loc": {
+                        "start": {
+                            "line": 23,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 23,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        303,
+                        333
+                    ],
+                    "raw": "   and this is a new paragraph"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 23,
+                    "column": 0
+                },
+                "end": {
+                    "line": 23,
+                    "column": 30
+                }
+            },
+            "range": [
+                303,
+                333
+            ],
+            "raw": "   and this is a new paragraph"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph with some asterisks in a code block",
+                    "loc": {
+                        "start": {
+                            "line": 25,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 25,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        335,
+                        390
+                    ],
+                    "raw": "This is a paragraph with some asterisks in a code block"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 25,
+                    "column": 0
+                },
+                "end": {
+                    "line": 25,
+                    "column": 55
+                }
+            },
+            "range": [
+                335,
+                390
+            ],
+            "raw": "This is a paragraph with some asterisks in a code block"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "***",
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 7
+                }
+            },
+            "range": [
+                392,
+                399
+            ],
+            "raw": "    ***"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This is a paragraph followed by a horizontal rule",
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 49
+                        }
+                    },
+                    "range": [
+                        401,
+                        450
+                    ],
+                    "raw": "This is a paragraph followed by a horizontal rule"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 49
+                }
+            },
+            "range": [
+                401,
+                450
+            ],
+            "raw": "This is a paragraph followed by a horizontal rule"
+        },
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 31,
+                    "column": 0
+                },
+                "end": {
+                    "line": 31,
+                    "column": 6
+                }
+            },
+            "range": [
+                452,
+                458
+            ],
+            "raw": "   ***"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 33,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        460
+    ],
+    "raw": "# Without lines.\n\nThis is a paragraph\n    and this is further text\n\nThis is a paragraph\n   and this is further text\n\nThis is a paragraph with some asterisks\n    ***\n\nThis is a paragraph followed by a horizontal rule\n   ***\n\n# With lines.\n\nThis is a paragraph\n\n    and this is code\n\nThis is a paragraph\n\n   and this is a new paragraph\n\nThis is a paragraph with some asterisks in a code block\n\n    ***\n\nThis is a paragraph followed by a horizontal rule\n\n   ***\n\n"
+}

@@ -1,0 +1,99 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "aaa",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        4,
+                        7
+                    ],
+                    "raw": "aaa"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 3
+                }
+            },
+            "range": [
+                4,
+                7
+            ],
+            "raw": "aaa"
+        },
+        {
+            "type": "Header",
+            "depth": 1,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "aaa",
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        14,
+                        17
+                    ],
+                    "raw": "aaa"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 6,
+                    "column": 5
+                }
+            },
+            "range": [
+                12,
+                17
+            ],
+            "raw": "# aaa"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 9,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        22
+    ],
+    "raw": "  \n\naaa\n  \n\n# aaa\n\n  \n"
+}

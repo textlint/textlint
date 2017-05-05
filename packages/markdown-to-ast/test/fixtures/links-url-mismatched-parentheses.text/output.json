@@ -1,0 +1,580 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "LinkReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                1,
+                                6
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        0,
+                        7
+                    ],
+                    "raw": "[Hello]"
+                },
+                {
+                    "type": "Str",
+                    "value": "(./world(and-hello(world)).",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        7,
+                        34
+                    ],
+                    "raw": "(./world(and-hello(world))."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 34
+                }
+            },
+            "range": [
+                0,
+                34
+            ],
+            "raw": "[Hello](./world(and-hello(world))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./world(and-hello(world)",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                37,
+                                42
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        36,
+                        71
+                    ],
+                    "raw": "[Hello](<./world(and-hello(world)>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 35
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        71,
+                        72
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 36
+                }
+            },
+            "range": [
+                36,
+                72
+            ],
+            "raw": "[Hello](<./world(and-hello(world)>)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./world(and)helloworld",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                75,
+                                80
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 31
+                        }
+                    },
+                    "range": [
+                        74,
+                        105
+                    ],
+                    "raw": "[Hello](./world(and)helloworld)"
+                },
+                {
+                    "type": "Str",
+                    "value": ").",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 31
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        105,
+                        107
+                    ],
+                    "raw": ")."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 33
+                }
+            },
+            "range": [
+                74,
+                107
+            ],
+            "raw": "[Hello](./world(and)helloworld))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./world(and)helloworld)",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Hello",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                110,
+                                115
+                            ],
+                            "raw": "Hello"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        109,
+                        143
+                    ],
+                    "raw": "[Hello](<./world(and)helloworld)>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        143,
+                        144
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 35
+                }
+            },
+            "range": [
+                109,
+                144
+            ],
+            "raw": "[Hello](<./world(and)helloworld)>)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "imageReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        146,
+                        154
+                    ],
+                    "raw": "![Hello]"
+                },
+                {
+                    "type": "Str",
+                    "value": "(./world(and-hello(world)).",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        154,
+                        181
+                    ],
+                    "raw": "(./world(and-hello(world))."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 35
+                }
+            },
+            "range": [
+                146,
+                181
+            ],
+            "raw": "![Hello](./world(and-hello(world))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./world(and-hello(world)",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        183,
+                        219
+                    ],
+                    "raw": "![Hello](<./world(and-hello(world)>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 37
+                        }
+                    },
+                    "range": [
+                        219,
+                        220
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 37
+                }
+            },
+            "range": [
+                183,
+                220
+            ],
+            "raw": "![Hello](<./world(and-hello(world)>)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./world(and)helloworld",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 32
+                        }
+                    },
+                    "range": [
+                        222,
+                        254
+                    ],
+                    "raw": "![Hello](./world(and)helloworld)"
+                },
+                {
+                    "type": "Str",
+                    "value": ").",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 32
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        254,
+                        256
+                    ],
+                    "raw": ")."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 34
+                }
+            },
+            "range": [
+                222,
+                256
+            ],
+            "raw": "![Hello](./world(and)helloworld))."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./world(and)helloworld)",
+                    "alt": "Hello",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        258,
+                        293
+                    ],
+                    "raw": "![Hello](<./world(and)helloworld)>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 35
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        293,
+                        294
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 36
+                }
+            },
+            "range": [
+                258,
+                294
+            ],
+            "raw": "![Hello](<./world(and)helloworld)>)."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 16,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        295
+    ],
+    "raw": "[Hello](./world(and-hello(world)).\n\n[Hello](<./world(and-hello(world)>).\n\n[Hello](./world(and)helloworld)).\n\n[Hello](<./world(and)helloworld)>).\n\n![Hello](./world(and-hello(world)).\n\n![Hello](<./world(and-hello(world)>).\n\n![Hello](./world(and)helloworld)).\n\n![Hello](<./world(and)helloworld)>).\n"
+}

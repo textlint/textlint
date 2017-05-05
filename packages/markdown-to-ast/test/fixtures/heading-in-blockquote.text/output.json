@@ -1,0 +1,218 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "A blockquote\nwith some more text.",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 20
+                                }
+                            },
+                            "range": [
+                                2,
+                                35
+                            ],
+                            "raw": "A blockquote\nwith some more text."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        2,
+                        35
+                    ],
+                    "raw": "A blockquote\nwith some more text."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 20
+                }
+            },
+            "range": [
+                0,
+                35
+            ],
+            "raw": "> A blockquote\nwith some more text."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "A normal paragraph.",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 19
+                        }
+                    },
+                    "range": [
+                        37,
+                        56
+                    ],
+                    "raw": "A normal paragraph."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 19
+                }
+            },
+            "range": [
+                37,
+                56
+            ],
+            "raw": "A normal paragraph."
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Header",
+                    "depth": 2,
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "A blockquote followed by a horizontal rule (in CommonMark).",
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 61
+                                }
+                            },
+                            "range": [
+                                60,
+                                119
+                            ],
+                            "raw": "A blockquote followed by a horizontal rule (in CommonMark)."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        60,
+                        123
+                    ],
+                    "raw": "A blockquote followed by a horizontal rule (in CommonMark).\n---"
+                },
+                {
+                    "type": "Header",
+                    "depth": 2,
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "A heading in a blockquote",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 27
+                                }
+                            },
+                            "range": [
+                                127,
+                                152
+                            ],
+                            "raw": "A heading in a blockquote"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        127,
+                        158
+                    ],
+                    "raw": "A heading in a blockquote\n> ---"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 5
+                }
+            },
+            "range": [
+                58,
+                158
+            ],
+            "raw": "> A blockquote followed by a horizontal rule (in CommonMark).\n---\n\n> A heading in a blockquote\n> ---"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 11,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        159
+    ],
+    "raw": "> A blockquote\nwith some more text.\n\nA normal paragraph.\n\n> A blockquote followed by a horizontal rule (in CommonMark).\n---\n\n> A heading in a blockquote\n> ---\n"
+}

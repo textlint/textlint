@@ -1,0 +1,290 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "*bar",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        0,
+                        4
+                    ],
+                    "raw": "*bar"
+                },
+                {
+                    "type": "Str",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        4,
+                        6
+                    ],
+                    "raw": "\\*"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 6
+                }
+            },
+            "range": [
+                0,
+                6
+            ],
+            "raw": "*bar\\*"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "**bar",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        8,
+                        13
+                    ],
+                    "raw": "**bar"
+                },
+                {
+                    "type": "Str",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        13,
+                        15
+                    ],
+                    "raw": "\\*"
+                },
+                {
+                    "type": "Str",
+                    "value": "*",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        15,
+                        16
+                    ],
+                    "raw": "*"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 8
+                }
+            },
+            "range": [
+                8,
+                16
+            ],
+            "raw": "**bar\\**"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "_bar",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        18,
+                        22
+                    ],
+                    "raw": "_bar"
+                },
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        22,
+                        24
+                    ],
+                    "raw": "\\_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 6
+                }
+            },
+            "range": [
+                18,
+                24
+            ],
+            "raw": "_bar\\_"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "__bar",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        26,
+                        31
+                    ],
+                    "raw": "__bar"
+                },
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        31,
+                        33
+                    ],
+                    "raw": "\\_"
+                },
+                {
+                    "type": "Str",
+                    "value": "_",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        33,
+                        34
+                    ],
+                    "raw": "_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 8
+                }
+            },
+            "range": [
+                26,
+                34
+            ],
+            "raw": "__bar\\__"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        35
+    ],
+    "raw": "*bar\\*\n\n**bar\\**\n\n_bar\\_\n\n__bar\\__\n"
+}

@@ -1,0 +1,410 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "http://<example",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        0,
+                        15
+                    ],
+                    "raw": "http://<example"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 15
+                }
+            },
+            "range": [
+                0,
+                15
+            ],
+            "raw": "http://<example"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "https:// foo bar baz.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        17,
+                        38
+                    ],
+                    "raw": "https:// foo bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 21
+                }
+            },
+            "range": [
+                17,
+                38
+            ],
+            "raw": "https:// foo bar baz."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "mailto:.",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        40,
+                        48
+                    ],
+                    "raw": "mailto:."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 8
+                }
+            },
+            "range": [
+                40,
+                48
+            ],
+            "raw": "mailto:."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "http://,",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        50,
+                        58
+                    ],
+                    "raw": "http://,"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 8
+                }
+            },
+            "range": [
+                50,
+                58
+            ],
+            "raw": "http://,"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "https://:",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        60,
+                        69
+                    ],
+                    "raw": "https://:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 9
+                }
+            },
+            "range": [
+                60,
+                69
+            ],
+            "raw": "https://:"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "mailto:;",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        71,
+                        79
+                    ],
+                    "raw": "mailto:;"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 8
+                }
+            },
+            "range": [
+                71,
+                79
+            ],
+            "raw": "mailto:;"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "http://\"",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        81,
+                        89
+                    ],
+                    "raw": "http://\""
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 13,
+                    "column": 8
+                }
+            },
+            "range": [
+                81,
+                89
+            ],
+            "raw": "http://\""
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "https://'",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        91,
+                        100
+                    ],
+                    "raw": "https://'"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
+                    "line": 15,
+                    "column": 9
+                }
+            },
+            "range": [
+                91,
+                100
+            ],
+            "raw": "https://'"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "mailto:)",
+                    "loc": {
+                        "start": {
+                            "line": 17,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        102,
+                        110
+                    ],
+                    "raw": "mailto:)"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 8
+                }
+            },
+            "range": [
+                102,
+                110
+            ],
+            "raw": "mailto:)"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "http://]",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        112,
+                        120
+                    ],
+                    "raw": "http://]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
+                    "line": 19,
+                    "column": 8
+                }
+            },
+            "range": [
+                112,
+                120
+            ],
+            "raw": "http://]"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 20,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        121
+    ],
+    "raw": "http://<example\n\nhttps:// foo bar baz.\n\nmailto:.\n\nhttp://,\n\nhttps://:\n\nmailto:;\n\nhttp://\"\n\nhttps://'\n\nmailto:)\n\nhttp://]\n"
+}

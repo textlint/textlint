@@ -1,0 +1,260 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./hello-world.html",
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        0,
+                        22
+                    ],
+                    "raw": "[](./hello-world.html)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 22
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        22,
+                        23
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 23
+                }
+            },
+            "range": [
+                0,
+                23
+            ],
+            "raw": "[](./hello-world.html)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "./hello-world.html",
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        25,
+                        49
+                    ],
+                    "raw": "[](<./hello-world.html>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 24
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        49,
+                        50
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 25
+                }
+            },
+            "range": [
+                25,
+                50
+            ],
+            "raw": "[](<./hello-world.html>)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./hello-world.html",
+                    "alt": null,
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 23
+                        }
+                    },
+                    "range": [
+                        52,
+                        75
+                    ],
+                    "raw": "![](./hello-world.html)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 23
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 24
+                        }
+                    },
+                    "range": [
+                        75,
+                        76
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 24
+                }
+            },
+            "range": [
+                52,
+                76
+            ],
+            "raw": "![](./hello-world.html)."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Image",
+                    "title": null,
+                    "url": "./hello-world.html",
+                    "alt": null,
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        78,
+                        103
+                    ],
+                    "raw": "![](<./hello-world.html>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 26
+                        }
+                    },
+                    "range": [
+                        103,
+                        104
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 26
+                }
+            },
+            "range": [
+                78,
+                104
+            ],
+            "raw": "![](<./hello-world.html>)."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        105
+    ],
+    "raw": "[](./hello-world.html).\n\n[](<./hello-world.html>).\n\n![](./hello-world.html).\n\n![](<./hello-world.html>).\n"
+}

@@ -1,0 +1,40 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "value": "``` aaa",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                15
+            ],
+            "raw": "```\n``` aaa\n```"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        16
+    ],
+    "raw": "```\n``` aaa\n```\n"
+}

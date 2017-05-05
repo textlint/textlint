@@ -1,0 +1,193 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "value": "<!DOCTYPE html>",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 15
+                }
+            },
+            "range": [
+                0,
+                15
+            ],
+            "raw": "<!DOCTYPE html>"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "foo ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 4
+                        }
+                    },
+                    "range": [
+                        17,
+                        21
+                    ],
+                    "raw": "foo "
+                },
+                {
+                    "type": "Html",
+                    "value": "<!BAR br BAZ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        21,
+                        33
+                    ],
+                    "raw": "<!BAR br BAZ"
+                },
+                {
+                    "type": "Str",
+                    "value": ">",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        33,
+                        34
+                    ],
+                    "raw": ">"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 17
+                }
+            },
+            "range": [
+                17,
+                34
+            ],
+            "raw": "foo <!BAR br BAZ>"
+        },
+        {
+            "type": "Html",
+            "value": "<!doctype html>",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 15
+                }
+            },
+            "range": [
+                36,
+                51
+            ],
+            "raw": "<!doctype html>"
+        },
+        {
+            "type": "Html",
+            "value": "<!valid >",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 9
+                }
+            },
+            "range": [
+                53,
+                62
+            ],
+            "raw": "<!valid >"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "<!invalid>",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        64,
+                        74
+                    ],
+                    "raw": "<!invalid>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 10
+                }
+            },
+            "range": [
+                64,
+                74
+            ],
+            "raw": "<!invalid>"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 10,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        75
+    ],
+    "raw": "<!DOCTYPE html>\n\nfoo <!BAR br BAZ>\n\n<!doctype html>\n\n<!valid >\n\n<!invalid>\n"
+}

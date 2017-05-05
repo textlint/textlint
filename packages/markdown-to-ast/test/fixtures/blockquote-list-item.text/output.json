@@ -1,0 +1,202 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "This fails in markdown.pl and upskirt:",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 38
+                        }
+                    },
+                    "range": [
+                        0,
+                        38
+                    ],
+                    "raw": "This fails in markdown.pl and upskirt:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 38
+                }
+            },
+            "range": [
+                0,
+                38
+            ],
+            "raw": "This fails in markdown.pl and upskirt:"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "hello",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 7
+                                        }
+                                    },
+                                    "range": [
+                                        42,
+                                        47
+                                    ],
+                                    "raw": "hello"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                42,
+                                47
+                            ],
+                            "raw": "hello"
+                        },
+                        {
+                            "type": "BlockQuote",
+                            "children": [
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "world",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 4,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 4,
+                                                    "column": 9
+                                                }
+                                            },
+                                            "range": [
+                                                52,
+                                                57
+                                            ],
+                                            "raw": "world"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        52,
+                                        57
+                                    ],
+                                    "raw": "world"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                50,
+                                57
+                            ],
+                            "raw": "> world"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        40,
+                        57
+                    ],
+                    "raw": "* hello\n  > world"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 9
+                }
+            },
+            "range": [
+                40,
+                57
+            ],
+            "raw": "* hello\n  > world"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 5,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        58
+    ],
+    "raw": "This fails in markdown.pl and upskirt:\n\n* hello\n  > world\n"
+}

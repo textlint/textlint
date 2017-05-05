@@ -1,0 +1,158 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Example:",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                2,
+                                10
+                            ],
+                            "raw": "Example:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        2,
+                        10
+                    ],
+                    "raw": "Example:"
+                },
+                {
+                    "type": "CodeBlock",
+                    "lang": null,
+                    "value": "sub status {\n    print \"working\";\n}",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        16,
+                        67
+                    ],
+                    "raw": "    sub status {\n>         print \"working\";\n>     }"
+                },
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Or:",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                73,
+                                76
+                            ],
+                            "raw": "Or:"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        73,
+                        76
+                    ],
+                    "raw": "Or:"
+                },
+                {
+                    "type": "CodeBlock",
+                    "lang": null,
+                    "value": "sub status {\n    return \"working\";\n}",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        82,
+                        134
+                    ],
+                    "raw": "    sub status {\n>         return \"working\";\n>     }"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 7
+                }
+            },
+            "range": [
+                0,
+                134
+            ],
+            "raw": "> Example:\n> \n>     sub status {\n>         print \"working\";\n>     }\n> \n> Or:\n> \n>     sub status {\n>         return \"working\";\n>     }"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 12,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        135
+    ],
+    "raw": "> Example:\n> \n>     sub status {\n>         print \"working\";\n>     }\n> \n> Or:\n> \n>     sub status {\n>         return \"working\";\n>     }\n"
+}

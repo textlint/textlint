@@ -1,0 +1,254 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "test ",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                1,
+                                6
+                            ],
+                            "raw": "test "
+                        },
+                        {
+                            "type": "Strong",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "test",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        8,
+                                        12
+                                    ],
+                                    "raw": "test"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                6,
+                                14
+                            ],
+                            "raw": "**test**"
+                        },
+                        {
+                            "type": "Str",
+                            "value": " test",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                14,
+                                19
+                            ],
+                            "raw": " test"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        0,
+                        20
+                    ],
+                    "raw": "*test **test** test*"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 20
+                }
+            },
+            "range": [
+                0,
+                20
+            ],
+            "raw": "*test **test** test*"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "test ",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                23,
+                                28
+                            ],
+                            "raw": "test "
+                        },
+                        {
+                            "type": "Strong",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "test",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        30,
+                                        34
+                                    ],
+                                    "raw": "test"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                28,
+                                36
+                            ],
+                            "raw": "__test__"
+                        },
+                        {
+                            "type": "Str",
+                            "value": " test",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 14
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                36,
+                                41
+                            ],
+                            "raw": " test"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        22,
+                        42
+                    ],
+                    "raw": "_test __test__ test_"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 20
+                }
+            },
+            "range": [
+                22,
+                42
+            ],
+            "raw": "_test __test__ test_"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        43
+    ],
+    "raw": "*test **test** test*\n\n_test __test__ test_\n"
+}

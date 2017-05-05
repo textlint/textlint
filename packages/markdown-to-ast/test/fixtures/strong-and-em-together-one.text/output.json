@@ -1,0 +1,412 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Emphasis",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "This is strong and em.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 1,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 1,
+                                            "column": 25
+                                        }
+                                    },
+                                    "range": [
+                                        3,
+                                        25
+                                    ],
+                                    "raw": "This is strong and em."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 26
+                                }
+                            },
+                            "range": [
+                                2,
+                                26
+                            ],
+                            "raw": "*This is strong and em.*"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        0,
+                        28
+                    ],
+                    "raw": "***This is strong and em.***"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 28
+                }
+            },
+            "range": [
+                0,
+                28
+            ],
+            "raw": "***This is strong and em.***"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "So is ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        30,
+                        36
+                    ],
+                    "raw": "So is "
+                },
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Emphasis",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "this",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        39,
+                                        43
+                                    ],
+                                    "raw": "this"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                38,
+                                44
+                            ],
+                            "raw": "*this*"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        36,
+                        46
+                    ],
+                    "raw": "***this***"
+                },
+                {
+                    "type": "Str",
+                    "value": " word.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        46,
+                        52
+                    ],
+                    "raw": " word."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 22
+                }
+            },
+            "range": [
+                30,
+                52
+            ],
+            "raw": "So is ***this*** word."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Emphasis",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "This is strong and em.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 25
+                                        }
+                                    },
+                                    "range": [
+                                        57,
+                                        79
+                                    ],
+                                    "raw": "This is strong and em."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 26
+                                }
+                            },
+                            "range": [
+                                56,
+                                80
+                            ],
+                            "raw": "_This is strong and em._"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        54,
+                        82
+                    ],
+                    "raw": "___This is strong and em.___"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 28
+                }
+            },
+            "range": [
+                54,
+                82
+            ],
+            "raw": "___This is strong and em.___"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "So is ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        84,
+                        90
+                    ],
+                    "raw": "So is "
+                },
+                {
+                    "type": "Strong",
+                    "children": [
+                        {
+                            "type": "Emphasis",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "this",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 9
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        93,
+                                        97
+                                    ],
+                                    "raw": "this"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                92,
+                                98
+                            ],
+                            "raw": "_this_"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        90,
+                        100
+                    ],
+                    "raw": "___this___"
+                },
+                {
+                    "type": "Str",
+                    "value": " word.",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        100,
+                        106
+                    ],
+                    "raw": " word."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 22
+                }
+            },
+            "range": [
+                84,
+                106
+            ],
+            "raw": "So is ___this___ word."
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        107
+    ],
+    "raw": "***This is strong and em.***\n\nSo is ***this*** word.\n\n___This is strong and em.___\n\nSo is ___this___ word.\n"
+}

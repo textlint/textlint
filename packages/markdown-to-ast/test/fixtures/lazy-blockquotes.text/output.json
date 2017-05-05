@@ -1,0 +1,79 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "hi there\nbud",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 3
+                                }
+                            },
+                            "range": [
+                                2,
+                                14
+                            ],
+                            "raw": "hi there\nbud"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        2,
+                        14
+                    ],
+                    "raw": "hi there\nbud"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 3
+                }
+            },
+            "range": [
+                0,
+                14
+            ],
+            "raw": "> hi there\nbud"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 3,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        15
+    ],
+    "raw": "> hi there\nbud\n"
+}
