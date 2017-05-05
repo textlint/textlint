@@ -498,9 +498,9 @@ These modules are internal usage in the monorepo.
 
 ## License
 
-MIT and
+MIT © azu
 
-`lib/load-rules.js`, `util/traverse.js`, `cli.js` and `timing.js` are:
+Copy some code from ESLint.
 
     ESLint
     Copyright (c) 2013 Nicholas C. Zakas. All rights reserved.
