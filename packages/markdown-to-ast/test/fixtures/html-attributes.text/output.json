@@ -175,28 +175,8 @@
             "raw": "<article foo.bar_09-   />"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "<div baz\nqux",
-                    "loc": {
-                        "start": {
-                            "line": 24,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 25,
-                            "column": 3
-                        }
-                    },
-                    "range": [
-                        213,
-                        225
-                    ],
-                    "raw": "<div baz\nqux"
-                }
-            ],
+            "type": "Html",
+            "value": "<div baz\nqux",
             "loc": {
                 "start": {
                     "line": 24,
@@ -254,28 +234,8 @@
             "raw": "# Inline"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span foo=\"bar 'baz' qux\" foo='bar \"baz\" qux' foo=baz>",
-                    "loc": {
-                        "start": {
-                            "line": 29,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 29,
-                            "column": 54
-                        }
-                    },
-                    "range": [
-                        237,
-                        291
-                    ],
-                    "raw": "<span foo=\"bar 'baz' qux\" foo='bar \"baz\" qux' foo=baz>"
-                }
-            ],
+            "type": "Html",
+            "value": "<span foo=\"bar 'baz' qux\" foo='bar \"baz\" qux' foo=baz>",
             "loc": {
                 "start": {
                     "line": 29,
@@ -293,28 +253,8 @@
             "raw": "<span foo=\"bar 'baz' qux\" foo='bar \"baz\" qux' foo=baz>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span foo>",
-                    "loc": {
-                        "start": {
-                            "line": 32,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 32,
-                            "column": 10
-                        }
-                    },
-                    "range": [
-                        294,
-                        304
-                    ],
-                    "raw": "<span foo>"
-                }
-            ],
+            "type": "Html",
+            "value": "<span foo>",
             "loc": {
                 "start": {
                     "line": 32,
@@ -332,28 +272,8 @@
             "raw": "<span foo>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span>",
-                    "loc": {
-                        "start": {
-                            "line": 35,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 35,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        307,
-                        313
-                    ],
-                    "raw": "<span>"
-                }
-            ],
+            "type": "Html",
+            "value": "<span>",
             "loc": {
                 "start": {
                     "line": 35,
@@ -371,28 +291,8 @@
             "raw": "<span>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span :foo:bar:09:=\"baz\">",
-                    "loc": {
-                        "start": {
-                            "line": 38,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 38,
-                            "column": 25
-                        }
-                    },
-                    "range": [
-                        316,
-                        341
-                    ],
-                    "raw": "<span :foo:bar:09:=\"baz\">"
-                }
-            ],
+            "type": "Html",
+            "value": "<span :foo:bar:09:=\"baz\">",
             "loc": {
                 "start": {
                     "line": 38,
@@ -410,28 +310,8 @@
             "raw": "<span :foo:bar:09:=\"baz\">"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span foo.bar_09->",
-                    "loc": {
-                        "start": {
-                            "line": 41,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 41,
-                            "column": 18
-                        }
-                    },
-                    "range": [
-                        344,
-                        362
-                    ],
-                    "raw": "<span foo.bar_09->"
-                }
-            ],
+            "type": "Html",
+            "value": "<span foo.bar_09->",
             "loc": {
                 "start": {
                     "line": 41,
@@ -449,28 +329,8 @@
             "raw": "<span foo.bar_09->"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span foo.bar_09-   >",
-                    "loc": {
-                        "start": {
-                            "line": 44,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 44,
-                            "column": 21
-                        }
-                    },
-                    "range": [
-                        365,
-                        386
-                    ],
-                    "raw": "<span foo.bar_09-   >"
-                }
-            ],
+            "type": "Html",
+            "value": "<span foo.bar_09-   >",
             "loc": {
                 "start": {
                     "line": 44,
@@ -488,28 +348,8 @@
             "raw": "<span foo.bar_09-   >"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span foo.bar_09-   />",
-                    "loc": {
-                        "start": {
-                            "line": 47,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 47,
-                            "column": 22
-                        }
-                    },
-                    "range": [
-                        389,
-                        411
-                    ],
-                    "raw": "<span foo.bar_09-   />"
-                }
-            ],
+            "type": "Html",
+            "value": "<span foo.bar_09-   />",
             "loc": {
                 "start": {
                     "line": 47,

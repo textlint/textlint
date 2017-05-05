@@ -45,11 +45,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "loose": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "loose": false,
                     "checked": null,
                     "children": [
                         {
@@ -98,19 +98,42 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 5,
-                            "column": 0
+                            "line": 4,
+                            "column": 11
                         }
                     },
                     "range": [
                         25,
-                        49
+                        48
                     ],
-                    "raw": "- Very long\n\t\tparagraph\n"
+                    "raw": "- Very long\n\t\tparagraph"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
                 },
+                "end": {
+                    "line": 4,
+                    "column": 11
+                }
+            },
+            "range": [
+                25,
+                48
+            ],
+            "raw": "- Very long\n\t\tparagraph"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "loose": false,
+            "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "loose": false,
                     "checked": null,
                     "children": [
                         {
@@ -159,19 +182,42 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 8,
-                            "column": 0
+                            "line": 7,
+                            "column": 11
                         }
                     },
                     "range": [
                         50,
-                        75
+                        74
                     ],
-                    "raw": "1. Very long\n\t\tparagraph\n"
+                    "raw": "1. Very long\n\t\tparagraph"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
                 },
+                "end": {
+                    "line": 7,
+                    "column": 11
+                }
+            },
+            "range": [
+                50,
+                74
+            ],
+            "raw": "1. Very long\n\t\tparagraph"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "loose": false,
+            "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "loose": false,
                     "checked": null,
                     "children": [
                         {
@@ -220,16 +266,39 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 11,
-                            "column": 0
+                            "line": 10,
+                            "column": 11
                         }
                     },
                     "range": [
                         76,
-                        100
+                        99
                     ],
-                    "raw": "-\tVery long\n\t\tparagraph\n"
+                    "raw": "-\tVery long\n\t\tparagraph"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
                 },
+                "end": {
+                    "line": 10,
+                    "column": 11
+                }
+            },
+            "range": [
+                76,
+                99
+            ],
+            "raw": "-\tVery long\n\t\tparagraph"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "loose": false,
+            "children": [
                 {
                     "type": "ListItem",
                     "loose": false,
@@ -294,7 +363,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 3,
+                    "line": 12,
                     "column": 0
                 },
                 "end": {
@@ -303,10 +372,10 @@
                 }
             },
             "range": [
-                25,
+                101,
                 125
             ],
-            "raw": "- Very long\n\t\tparagraph\n\n1. Very long\n\t\tparagraph\n\n-\tVery long\n\t\tparagraph\n\n1.\tVery long\n\t\tparagraph"
+            "raw": "1.\tVery long\n\t\tparagraph"
         }
     ],
     "loc": {

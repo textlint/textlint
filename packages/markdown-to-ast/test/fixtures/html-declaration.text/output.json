@@ -44,7 +44,7 @@
                 },
                 {
                     "type": "Html",
-                    "value": "<!BAR br BAZ",
+                    "value": "<!BAR br BAZ>",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -52,33 +52,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 16
-                        }
-                    },
-                    "range": [
-                        21,
-                        33
-                    ],
-                    "raw": "<!BAR br BAZ"
-                },
-                {
-                    "type": "Str",
-                    "value": ">",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 16
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 17
                         }
                     },
                     "range": [
-                        33,
+                        21,
                         34
                     ],
-                    "raw": ">"
+                    "raw": "<!BAR br BAZ>"
                 }
             ],
             "loc": {
@@ -136,28 +117,8 @@
             "raw": "<!valid >"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "<!invalid>",
-                    "loc": {
-                        "start": {
-                            "line": 9,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 9,
-                            "column": 10
-                        }
-                    },
-                    "range": [
-                        64,
-                        74
-                    ],
-                    "raw": "<!invalid>"
-                }
-            ],
+            "type": "Html",
+            "value": "<!invalid>",
             "loc": {
                 "start": {
                     "line": 9,
