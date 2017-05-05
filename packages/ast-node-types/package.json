@@ -1,6 +1,6 @@
 {
   "name": "@textlint/ast-node-types",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "textlint AST node type difinition.",
   "main": "./lib/TextLintASTNodeTypes.js",
   "types": "./lib/TextLintASTNodeTypes.d.ts",
