@@ -138,28 +138,8 @@
             "raw": "<-article>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "<article foo=",
-                    "loc": {
-                        "start": {
-                            "line": 15,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 15,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        58,
-                        71
-                    ],
-                    "raw": "<article foo="
-                }
-            ],
+            "type": "Html",
+            "value": "<article foo=",
             "loc": {
                 "start": {
                     "line": 15,
@@ -177,28 +157,8 @@
             "raw": "<article foo="
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "<article foo=\"bar",
-                    "loc": {
-                        "start": {
-                            "line": 18,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 18,
-                            "column": 17
-                        }
-                    },
-                    "range": [
-                        74,
-                        91
-                    ],
-                    "raw": "<article foo=\"bar"
-                }
-            ],
+            "type": "Html",
+            "value": "<article foo=\"bar",
             "loc": {
                 "start": {
                     "line": 18,
@@ -216,28 +176,8 @@
             "raw": "<article foo=\"bar"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "<article foo='bar",
-                    "loc": {
-                        "start": {
-                            "line": 21,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 21,
-                            "column": 17
-                        }
-                    },
-                    "range": [
-                        94,
-                        111
-                    ],
-                    "raw": "<article foo='bar"
-                }
-            ],
+            "type": "Html",
+            "value": "<article foo='bar",
             "loc": {
                 "start": {
                     "line": 21,
@@ -255,28 +195,8 @@
             "raw": "<article foo='bar"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "<article foo=bar ",
-                    "loc": {
-                        "start": {
-                            "line": 24,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 24,
-                            "column": 17
-                        }
-                    },
-                    "range": [
-                        114,
-                        131
-                    ],
-                    "raw": "<article foo=bar "
-                }
-            ],
+            "type": "Html",
+            "value": "<article foo=bar ",
             "loc": {
                 "start": {
                     "line": 24,
@@ -486,28 +406,8 @@
             "raw": "</-article  >"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "</article",
-                    "loc": {
-                        "start": {
-                            "line": 51,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 51,
-                            "column": 9
-                        }
-                    },
-                    "range": [
-                        252,
-                        261
-                    ],
-                    "raw": "</article"
-                }
-            ],
+            "type": "Html",
+            "value": "</article",
             "loc": {
                 "start": {
                     "line": 51,
@@ -525,28 +425,8 @@
             "raw": "</article"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "</article  ",
-                    "loc": {
-                        "start": {
-                            "line": 54,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 54,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        264,
-                        275
-                    ],
-                    "raw": "</article  "
-                }
-            ],
+            "type": "Html",
+            "value": "</article  ",
             "loc": {
                 "start": {
                     "line": 54,
@@ -604,28 +484,8 @@
             "raw": "# Inline"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span>",
-                    "loc": {
-                        "start": {
-                            "line": 59,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 59,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        288,
-                        294
-                    ],
-                    "raw": "<span>"
-                }
-            ],
+            "type": "Html",
+            "value": "<span>",
             "loc": {
                 "start": {
                     "line": 59,
@@ -643,28 +503,8 @@
             "raw": "<span>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<SPAN>",
-                    "loc": {
-                        "start": {
-                            "line": 62,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 62,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        297,
-                        303
-                    ],
-                    "raw": "<SPAN>"
-                }
-            ],
+            "type": "Html",
+            "value": "<SPAN>",
             "loc": {
                 "start": {
                     "line": 62,
@@ -682,28 +522,8 @@
             "raw": "<SPAN>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<SpAn>",
-                    "loc": {
-                        "start": {
-                            "line": 65,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 65,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        306,
-                        312
-                    ],
-                    "raw": "<SpAn>"
-                }
-            ],
+            "type": "Html",
+            "value": "<SpAn>",
             "loc": {
                 "start": {
                     "line": 65,
@@ -760,28 +580,8 @@
             "raw": "<-span>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span/>",
-                    "loc": {
-                        "start": {
-                            "line": 71,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 71,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        325,
-                        332
-                    ],
-                    "raw": "<span/>"
-                }
-            ],
+            "type": "Html",
+            "value": "<span/>",
             "loc": {
                 "start": {
                     "line": 71,
@@ -838,28 +638,8 @@
             "raw": "<-span/>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "</span>",
-                    "loc": {
-                        "start": {
-                            "line": 77,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 77,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        346,
-                        353
-                    ],
-                    "raw": "</span>"
-                }
-            ],
+            "type": "Html",
+            "value": "</span>",
             "loc": {
                 "start": {
                     "line": 77,
@@ -877,28 +657,8 @@
             "raw": "</span>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "</SPAN>",
-                    "loc": {
-                        "start": {
-                            "line": 80,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 80,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        356,
-                        363
-                    ],
-                    "raw": "</SPAN>"
-                }
-            ],
+            "type": "Html",
+            "value": "</SPAN>",
             "loc": {
                 "start": {
                     "line": 80,
@@ -916,28 +676,8 @@
             "raw": "</SPAN>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "</SpAn>",
-                    "loc": {
-                        "start": {
-                            "line": 83,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 83,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        366,
-                        373
-                    ],
-                    "raw": "</SpAn>"
-                }
-            ],
+            "type": "Html",
+            "value": "</SpAn>",
             "loc": {
                 "start": {
                     "line": 83,
@@ -955,28 +695,8 @@
             "raw": "</SpAn>"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "</span  >",
-                    "loc": {
-                        "start": {
-                            "line": 86,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 86,
-                            "column": 9
-                        }
-                    },
-                    "range": [
-                        376,
-                        385
-                    ],
-                    "raw": "</span  >"
-                }
-            ],
+            "type": "Html",
+            "value": "</span  >",
             "loc": {
                 "start": {
                     "line": 86,
@@ -1267,28 +987,8 @@
             "raw": "<span foo=bar "
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Html",
-                    "value": "<span foo=bar >",
-                    "loc": {
-                        "start": {
-                            "line": 110,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 110,
-                            "column": 15
-                        }
-                    },
-                    "range": [
-                        483,
-                        498
-                    ],
-                    "raw": "<span foo=bar >"
-                }
-            ],
+            "type": "Html",
+            "value": "<span foo=bar >",
             "loc": {
                 "start": {
                     "line": 110,

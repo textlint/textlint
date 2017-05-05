@@ -254,14 +254,116 @@
             "raw": "Too few columns:"
         },
         {
-            "type": "Paragraph",
+            "type": "Table",
+            "align": [
+                null
+            ],
             "children": [
                 {
-                    "type": "Str",
-                    "value": "| a |\n|---|\n| d |",
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "a",
+                                    "loc": {
+                                        "start": {
+                                            "line": 21,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 21,
+                                            "column": 3
+                                        }
+                                    },
+                                    "range": [
+                                        208,
+                                        209
+                                    ],
+                                    "raw": "a"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 3
+                                }
+                            },
+                            "range": [
+                                208,
+                                209
+                            ],
+                            "raw": "a"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 21,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 21,
+                            "column": 5
+                        }
+                    },
+                    "range": [
+                        206,
+                        211
+                    ],
+                    "raw": "| a |"
+                },
+                {
+                    "type": "TableRow",
+                    "children": [
+                        {
+                            "type": "TableCell",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "d",
+                                    "loc": {
+                                        "start": {
+                                            "line": 23,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 23,
+                                            "column": 3
+                                        }
+                                    },
+                                    "range": [
+                                        220,
+                                        221
+                                    ],
+                                    "raw": "d"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 23,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 23,
+                                    "column": 3
+                                }
+                            },
+                            "range": [
+                                220,
+                                221
+                            ],
+                            "raw": "d"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 23,
                             "column": 0
                         },
                         "end": {
@@ -270,10 +372,10 @@
                         }
                     },
                     "range": [
-                        206,
+                        218,
                         223
                     ],
-                    "raw": "| a |\n|---|\n| d |"
+                    "raw": "| d |"
                 }
             ],
             "loc": {
