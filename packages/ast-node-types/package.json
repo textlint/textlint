@@ -1,0 +1,25 @@
+{
+  "name": "@textlint/ast-node-types",
+  "version": "1.0.0",
+  "description": "textlint AST node type difinition.",
+  "main": "./lib/TextLintASTNodeTypes.js",
+  "types": "./lib/TextLintASTNodeTypes.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "scripts": {
+    "build": "textlint-monorepo-scripts build-ts",
+    "test": "textlint-monorepo-scripts test",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "textlint"
+  ],
+  "author": "azu",
+  "license": "MIT",
+  "devDependencies": {
+    "@textlint/monorepo-scripts": "^1.0.0",
+    "mocha": "^3.3.0"
+  }
+}

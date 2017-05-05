@@ -1,0 +1,50 @@
+{
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "name": "txt-to-ast",
+  "description": "Parse plain text to AST with location info.",
+  "version": "1.1.0",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test/",
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build"
+  },
+  "keywords": [
+    "textlint",
+    "txt",
+    "ast"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/txt-to-ast/",
+  "dependencies": {
+    "@textlint/ast-node-types": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-jsdoc-to-assert": "^4.0.0",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.24.1",
+    "cross-env": "^4.0.0",
+    "mocha": "^3.3.0",
+    "power-assert": "^1.4.2",
+    "textlint-ast-test": "^1.1.3"
+  }
+}

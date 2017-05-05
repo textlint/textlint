@@ -1,6 +1,5 @@
-## Private
-.npmrc
-### https://raw.github.com/github/gitignore/408c616ae0ad8f4b8101d8e876b9b67ac6b14059/Node.gitignore
+/lib
+### https://raw.github.com/github/gitignore/608690d6b9a78c2a003affc792e49a84905b3118/Node.gitignore
 
 # Logs
 logs
@@ -27,12 +26,14 @@ coverage
 build/Release
 
 # Dependency directory
-# Commenting this out is preferred by some people, see
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
 
+# Debug log from npm
+npm-debug.log
 
-### https://raw.github.com/github/gitignore/408c616ae0ad8f4b8101d8e876b9b67ac6b14059/Global/JetBrains.gitignore
+
+### https://raw.github.com/github/gitignore/608690d6b9a78c2a003affc792e49a84905b3118/Global/JetBrains.gitignore
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
@@ -80,9 +81,5 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
-# textlint
-.textlintcache
-# lerna
-packages/*/lib/
-/.changelog/
-/.eslintcache
+
+
