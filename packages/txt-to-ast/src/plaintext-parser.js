@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-
 var Syntax = require("./plaintext-syntax");
 var LINEBREAKE_MARK = /\r?\n/g;
 function parseLine(lineText, lineNumber, startIndex) {
@@ -93,6 +92,7 @@ function createParagraph(nodes) {
     };
 }
 
+
 /**
  * parse text and return ast mapped location info.
  * @param {string} text
@@ -152,4 +152,3 @@ function parse(text) {
     };
 }
 module.exports = parse;
-//# sourceMappingURL=plaintext-parser.js.map

@@ -81,7 +81,7 @@ interface TxtParentNode extends TxtNode {
 - Types of Markdown text are defined in [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast")
     - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
 
-All Types are defined in `@textlint/ast-node-types`
+All Types are defined in `@textlint/ast-node-types`.
 You can use this `ASTNodeTypes` value via following way:
 
 ```js

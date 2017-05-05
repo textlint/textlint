@@ -10,7 +10,7 @@ const babel = require.resolve(".bin/babel");
 const babelrc = require("../configs/babelrc");
 // babel src --out-dir lib --watch --source-maps
 const child = spawn(babel, [
-    "--presets", babelrc.presets.join(","),
+    "--config", babelrc.presets.join(","),
     "--source-maps",
     "--out-dir", "lib",
     "src"

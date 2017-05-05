@@ -1,7 +1,5 @@
 // MIT © 2017 azu
 "use strict";
-// LICENSE : MIT
-"use strict";
 /**
  * AST Node types list on TxtNode.
  * @see https://github.com/textlint/textlint/blob/master/docs/txtnode.md

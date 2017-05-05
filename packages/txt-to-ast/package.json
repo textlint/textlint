@@ -7,11 +7,11 @@
     "type": "git",
     "url": "https://github.com/textlint/txt-to-ast.git"
   },
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "browserify example/js/index.js -o example/app/app.js",
-    "watch": "watchify example/js/index.js -o example/app/app.js",
-    "test": "mocha test/*.js"
+    "build": "textlint-monorepo-scripts build-js",
+    "test": "textlint-monorepo-scripts test",
+    "prepublish": "npm run build"
   },
   "directories": {
     "test": "test/"
@@ -21,13 +21,11 @@
   "bugs": {
     "url": "https://github.com/textlint/txt-to-ast/issues"
   },
+  "dependencies": {
+    "@textlint/ast-node-types": "^1.0.0"
+  },
   "devDependencies": {
-    "browserify": "^12.0.1",
-    "espower-loader": "^1.0.0",
-    "intelli-espower-loader": "^1.0.0",
-    "mocha": "^2.1.0",
-    "power-assert": "^1.1.0",
     "textlint-ast-test": "^1.1.1",
-    "watchify": "^3.5.0"
+    "@textlint/monorepo-scripts": "^1.0.0"
   }
 }

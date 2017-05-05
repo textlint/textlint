@@ -1,2 +1,6 @@
 "use strict";
-require("babel-register")(require("./babelrc"));
+require("babel-register")({
+    "presets": [
+        require("babel-preset-env")
+    ]
+});

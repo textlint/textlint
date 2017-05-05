@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-var parse = require("../").parse;
-var Syntax = require("../").Syntax;
-var assert = require("power-assert");
+var parse = require("../src").parse;
+var Syntax = require("../src").Syntax;
+var assert = require("assert");
 describe("plaintext-parser-test", function () {
     context("Document", function () {
         it("should return AST", function () {

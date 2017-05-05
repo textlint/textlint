@@ -1,6 +1,5 @@
 // LICENSE : MIT
 "use strict";
-
 const { ASTNodeTypes } = require("@textlint/ast-node-types");
 const exports = {
     "Document": ASTNodeTypes.Document, // must
@@ -10,4 +9,3 @@ const exports = {
     "Break": ASTNodeTypes.Break // must
 };
 module.exports = exports;
-//# sourceMappingURL=plaintext-syntax.js.map
