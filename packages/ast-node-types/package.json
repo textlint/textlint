@@ -9,8 +9,9 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "buid": "textlint-monorepo-scripts build-ts",
-    "test": "textlint-monorepo-scripts test"
+    "build": "textlint-monorepo-scripts build-ts",
+    "test": "textlint-monorepo-scripts test",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "textlint"

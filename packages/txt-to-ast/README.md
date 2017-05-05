@@ -1,5 +1,4 @@
-# txt-to-ast [![Build Status](https://travis-ci.org/textlint/txt-to-ast.svg?branch=master)](https://travis-ci.org/textlint/txt-to-ast)
-
+# txt-to-ast 
 Parse plain text to AST with location info.
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").

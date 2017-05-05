@@ -103,10 +103,10 @@ function parse(text) {
     // it should be alternately Str and Break
     var startIndex = 0;
     var lastLineIndex = textLineByLine.length - 1;
-    var isLasEmptytLine = function (line, index) {
+    var isLasEmptytLine = function isLasEmptytLine(line, index) {
         return index === lastLineIndex && line === "";
     };
-    var isEmptyLine = function (line, index) {
+    var isEmptyLine = function isEmptyLine(line, index) {
         return index !== lastLineIndex && line === "";
     };
     var children = textLineByLine.reduce(function (result, currentLine, index) {
