@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-var Syntax = require("./plaintext-syntax");
-var LINEBREAKE_MARK = /\r?\n/g;
+const Syntax = require("./plaintext-syntax");
+const LINEBREAKE_MARK = /\r?\n/g;
 function parseLine(lineText, lineNumber, startIndex) {
     // Inline Node have `value`. It it not part of TxtNode.
     // TODO: https://github.com/textlint/textlint/issues/141
@@ -70,8 +70,8 @@ function createBRNode(lineNumber, startIndex) {
  * @returns {TxtNode} Paragraph node
  */
 function createParagraph(nodes) {
-    var firstNode = nodes[0];
-    var lastNode = nodes[nodes.length - 1];
+    const firstNode = nodes[0];
+    const lastNode = nodes[nodes.length - 1];
     return {
         type: Syntax.Paragraph,
         raw: nodes.map(function (node) {
@@ -99,36 +99,36 @@ function createParagraph(nodes) {
  * @returns {TxtNode}
  */
 function parse(text) {
-    var textLineByLine = text.split(LINEBREAKE_MARK);
+    const textLineByLine = text.split(LINEBREAKE_MARK);
     // it should be alternately Str and Break
-    var startIndex = 0;
-    var lastLineIndex = textLineByLine.length - 1;
-    var isLasEmptytLine = (line, index) => {
+    let startIndex = 0;
+    const lastLineIndex = textLineByLine.length - 1;
+    const isLasEmptytLine = (line, index) => {
         return index === lastLineIndex && line === "";
     };
-    var isEmptyLine = (line, index) => {
+    const isEmptyLine = (line, index) => {
         return index !== lastLineIndex && line === "";
     };
-    var children = textLineByLine.reduce(function (result, currentLine, index) {
-        var lineNumber = index + 1;
+    const children = textLineByLine.reduce(function (result, currentLine, index) {
+        const lineNumber = index + 1;
         if (isLasEmptytLine(currentLine, index)) {
             return result;
         }
         // \n
         if (isEmptyLine(currentLine, index)) {
-            var emptyBreakNode = createBRNode(lineNumber, startIndex);
+            const emptyBreakNode = createBRNode(lineNumber, startIndex);
             startIndex += emptyBreakNode.raw.length;
             result.push(emptyBreakNode);
             return result;
         }
 
         // (Paragraph > Str) -> Br?
-        var strNode = parseLine(currentLine, lineNumber, startIndex);
-        var paragraph = createParagraph([strNode]);
+        const strNode = parseLine(currentLine, lineNumber, startIndex);
+        const paragraph = createParagraph([strNode]);
         startIndex += paragraph.raw.length;
         result.push(paragraph);
         if (index !== lastLineIndex) {
-            var breakNode = createEndedBRNode(paragraph);
+            const breakNode = createEndedBRNode(paragraph);
             startIndex += breakNode.raw.length;
             result.push(breakNode);
         }

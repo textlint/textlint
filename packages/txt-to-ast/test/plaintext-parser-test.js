@@ -90,7 +90,7 @@ describe("plaintext-parser-test", function () {
                     }
                 ]
             };
-            assert.deepEqual(ast, expected)
+            assert.deepEqual(ast, expected);
         });
     });
     context("Paragraph ended with break line", function () {
@@ -176,7 +176,7 @@ describe("plaintext-parser-test", function () {
                     }
                 ]
             };
-            assert.deepEqual(ast, expected)
+            assert.deepEqual(ast, expected);
         });
     });
     context("Paragraph + BR + Paragraph", function () {
@@ -301,7 +301,7 @@ describe("plaintext-parser-test", function () {
                     }
                 ]
             };
-            assert.deepEqual(ast, expected)
+            assert.deepEqual(ast, expected);
         });
     });
     context("Paragraph + BR + BR + Paragraph", function () {
@@ -447,7 +447,7 @@ describe("plaintext-parser-test", function () {
                     }
                 ]
             };
-            assert.deepEqual(ast, expected)
+            assert.deepEqual(ast, expected);
         });
-    })
+    });
 });

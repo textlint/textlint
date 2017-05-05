@@ -16,11 +16,11 @@ export default function createFormatter(formatterConfig) {
     } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
         formatterPath = path.resolve(process.cwd(), formatterName);
     } else {
-        var builtinFormatterPath = path.join(__dirname, "formatters/", formatterName) + ".js";
+        const builtinFormatterPath = path.join(__dirname, "formatters/", formatterName) + ".js";
         if (isFile(builtinFormatterPath)) {
             formatterPath = builtinFormatterPath;
         } else {
-            var pkgPath = tryResolve("textlint-formatter-" + formatterName) || tryResolve(formatterName);
+            const pkgPath = tryResolve("textlint-formatter-" + formatterName) || tryResolve(formatterName);
             if (pkgPath) {
                 formatterPath = pkgPath;
             }

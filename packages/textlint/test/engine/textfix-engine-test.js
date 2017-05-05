@@ -128,7 +128,7 @@ describe("textfix-engine", function () {
                 });
                 return engine.executeOnText("text").then(results => {
                     const output = engine.formatResults(results);
-                    assert(!/<text>/.test(output));
+                    assert(!(/<text>/).test(output));
                     assert(/example-fixer-formatter/.test(output));
                 });
             });

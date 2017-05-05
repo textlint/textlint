@@ -23,8 +23,8 @@ describe("config-loader", function () {
                 moduleResolver,
                 configFileName: Config.CONFIG_FILE_NAME
             });
-            assert.equal(typeof result.rules["config"], "object");
-            assert(result.rules["config"]["key"] === true);
+            assert.equal(typeof result.rules.config, "object");
+            assert(result.rules.config.key === true);
         });
     });
     context("when specify Config module, but not found", function () {

@@ -80,12 +80,12 @@ describe("config-initializer-test", function() {
                 assert.equal(message, ".textlintrc is already existed.");
             };
             return configInit.initializeConfig(configDir).then((exitStatus) => {
-                assert.equal(exitStatus, 0)
+                assert.equal(exitStatus, 0);
                 // try to re-create
                 return configInit.initializeConfig(configDir);
             }).then(exitStatus => {
                 assert.equal(exitStatus, 1);
-            })
+            });
 
         });
     });

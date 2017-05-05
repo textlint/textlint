@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "env"
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "jsdoc-to-assert",
+        "power-assert"
+      ]
+    }
+  },
+  "ignore":[
+    "lib",
+    "node_modules"
+  ]
+}

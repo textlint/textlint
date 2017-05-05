@@ -32,10 +32,10 @@ function alignRight(str, len, ch) {
     return new Array(len - str.length + 1).join(ch || " ") + str;
 }
 
-var enabled = Boolean(process.env.TIMING);
+const enabled = Boolean(process.env.TIMING);
 
-var HEADERS = ["Rule", "Time (ms)", "Relative"];
-var ALIGN = [alignLeft, alignRight, alignRight];
+const HEADERS = ["Rule", "Time (ms)", "Relative"];
+const ALIGN = [alignLeft, alignRight, alignRight];
 
 /* istanbul ignore next */
 /**
@@ -45,10 +45,10 @@ var ALIGN = [alignLeft, alignRight, alignRight];
  * @private
  */
 function display(data) {
-    var total = 0;
-    var rows = Object.keys(data)
+    let total = 0;
+    const rows = Object.keys(data)
         .map(function (key) {
-            var time = data[key];
+            const time = data[key];
             total += time;
             return [key, time];
         })
@@ -64,17 +64,17 @@ function display(data) {
 
     rows.unshift(HEADERS);
 
-    var widths = [];
+    const widths = [];
     rows.forEach(function (row) {
-        for (var i = 0; i < row.length; i++) {
-            var n = row[i].length;
+        for (let i = 0; i < row.length; i++) {
+            const n = row[i].length;
             if (!widths[i] || n > widths[i]) {
                 widths[i] = n;
             }
         }
     });
 
-    var table = rows.map(function (row) {
+    const table = rows.map(function (row) {
         return row.map(function (cell, index) {
             return ALIGN[index](cell, widths[index]);
         }).join(" | ");
@@ -93,7 +93,7 @@ function display(data) {
 /* istanbul ignore next */
 module.exports = (function () {
 
-    var data = Object.create(null);
+    const data = Object.create(null);
 
     /**
      * Time the run
@@ -108,7 +108,7 @@ module.exports = (function () {
         }
 
         return function () {
-            var t = process.hrtime();
+            let t = process.hrtime();
             fn.apply(null, Array.prototype.slice.call(arguments));
             t = process.hrtime(t);
             data[key] += t[0] * 1e3 + t[1] / 1e6;

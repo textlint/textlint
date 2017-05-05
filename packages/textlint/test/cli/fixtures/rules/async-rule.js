@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 export default function (context) {
-    let { Syntax, report, RuleError } = context;
+    const { Syntax, report, RuleError } = context;
     return {
         [Syntax.Str](node){
             return new Promise((resolve) => {

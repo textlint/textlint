@@ -11,5 +11,5 @@ describe("Compliance tests", function () {
             "test");
         test(AST);
         assert(isTxtAST(AST));
-    })
+    });
 });
