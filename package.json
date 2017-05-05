@@ -15,7 +15,7 @@
     "example:filter": "cd ./examples/filter && npm run test:ci",
     "test": "npm-run-all --parallel textlint eslint test:packages",
     "test:all": "npm-run-all --parallel textlint eslint test:packages example",
-    "test:packages": "lerna run test --stream",
+    "test:packages": "lerna run test",
     "eslint": "eslint --cache 'packages/**/src/**/*.js'",
     "eslint:fix": "eslint --fix --cache 'packages/**/src/**/*.js'",
     "textlint": "node packages/textlint/bin/textlint.js --cache -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",

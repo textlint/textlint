@@ -3,7 +3,7 @@
 export default class MessageProcessManager {
     /**
      * create MessageProcessManager with processes
-     * @param {function(messages: Array)[]} processes
+     * @param {function(messages: Array)[]} [processes]
      */
     constructor(processes = []) {
         this._processors = processes;
