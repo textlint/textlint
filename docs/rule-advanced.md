@@ -356,7 +356,7 @@ const originalIndex = source.originalIndexFromPosition(sentence.loc.start);
 
 ## Testing
 
-Test the rule with [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
+Test the rule with [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester").
 
 ```js
 const TextLintTester = require("textlint-tester");

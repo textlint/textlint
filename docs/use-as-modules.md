@@ -115,9 +115,11 @@ function lintFile(filePath) {
 
 ## Testing
 
-You can use [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester") for testing your custom rule.
+You can use [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester") for testing your custom rule.
 
-- [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester")
 - [rule.md](./rule.md)
+- [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester")
 
-Consult link: [spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule](https://github.com/azu/spellcheck-tech-word-textlint-rule/blob/master/test/test.js "spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule")
+Consult link: 
+
+- [spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule](https://github.com/azu/spellcheck-tech-word-textlint-rule/blob/master/test/test.js "spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule")
