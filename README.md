@@ -473,7 +473,7 @@ These modules are useful for textlint rule/plugin author.
 | Package | Version | Description |
 |---------|---------|-------------|
 | [`@textlint/ast-node-types`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/ast-node-types.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
-| [`textlint-tester`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/textlint-teste.svg?style=flat-square)](https://www.npmjs.com/package/textlint-tester) | textlint rule testing tools |
+| [`textlint-tester`](/packages/textlint-tester) | [![npm](https://img.shields.io/npm/v/textlint-tester.svg?style=flat-square)](https://www.npmjs.com/package/textlint-tester) | textlint rule testing tools |
 
 
 ### Internal
