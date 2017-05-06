@@ -122,7 +122,7 @@ Your Processor plugins's `preProcess` method should return `TxtAST` object.
 
 ## Testing
 
-You can test the rules of your plugin the same way as bundled textlint rules using [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
+You can test the rules of your plugin the same way as bundled textlint rules using [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester").
 
 ```js
 const TextLintTester = require("textlint-tester");

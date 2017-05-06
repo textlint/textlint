@@ -1,10 +1,10 @@
-# textlint-tester [![Build Status](https://travis-ci.org/textlint/textlint-tester.svg?branch=master)](https://travis-ci.org/textlint/textlint-tester)
+# textlint-tester
 
 [Mocha](http://mochajs.org/ "Mocha") test helper library for [textlint](https://github.com/textlint/textlint "textlint") rule.
 
 ## Installation
 
-    npm install -D textlint-tester mocha
+    npm install --save-dev textlint-tester mocha
 
 ## Usage
 
@@ -73,10 +73,10 @@
 `test/example-test.js`:
 
 ```js
-var TextLintTester = require("textlint-tester");
-var tester = new TextLintTester();
+const TextLintTester = require("textlint-tester");
+const tester = new TextLintTester();
 // rule
-var rule = require("textlint-rule-no-todo");
+const rule = require("textlint-rule-no-todo");
 // ruleName, rule, { valid, invalid }
 tester.run("no-todo", rule, {
     valid: [
@@ -129,11 +129,6 @@ Run the tests:
 ```sh
 $(npm bin)/mocha test/
 ```
-
-## Tests
-
-    $(npm bin)/mocha test/
-    # npm test
 
 ## Contributing
 

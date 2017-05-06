@@ -219,7 +219,7 @@ The source codes in `src/` built by following command.
 #### Tests
 
 Run test code in `test/` folder.
-Test textlint rule by [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
+Test textlint rule by [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester").
 
     npm test
 
@@ -398,13 +398,13 @@ As as result, linting following text with modified rule, a result was no error.
 You can already run test by `npm test` command.
 (This test scripts is setup by `create-textlint-rule`)
 
-This test script use [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
+This test script use [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester").
 
 -----
 
 ### Manually Installation
 
-[textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester") depend on [Mocha](https://mochajs.org/ "Mocha").
+[textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester") depend on [Mocha](https://mochajs.org/ "Mocha").
 
     npm install -D textlint-tester mocha
 

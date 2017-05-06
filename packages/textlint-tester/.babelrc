@@ -1,6 +1,6 @@
 {
   "presets": [
-    "es2015"
+    "env"
   ],
   "env": {
     "development": {
@@ -9,5 +9,9 @@
         "power-assert"
       ]
     }
-  }
+  },
+  "ignore":[
+    "lib",
+    "node_modules"
+  ]
 }

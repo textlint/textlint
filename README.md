@@ -466,13 +466,15 @@ These modules are parts of textlint.
 | [`markdown-to-ast`](/packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
 | [`txt-to-ast`](/packages/txt-to-ast) | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser |
 
-### Shared
+### Rule/Plugin helper
 
-These modules are useful for plugin author.
+These modules are useful for textlint rule/plugin author.
 
 | Package | Version | Description |
 |---------|---------|-------------|
-| [`@textlint/ast-node-types`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
+| [`@textlint/ast-node-types`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/ast-node-types.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
+| [`textlint-tester`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/textlint-teste.svg?style=flat-square)](https://www.npmjs.com/package/textlint-tester) | textlint rule testing tools |
+
 
 ### Internal
 

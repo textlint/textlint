@@ -3,6 +3,7 @@
 import assert from "assert";
 import {testValid, testInvalid} from "./test-util";
 import {TextLintCore, _logger} from "textlint";
+/* eslint-disable no-invalid-this */
 const describe = (typeof global.describe === "function")
     ? global.describe
     : function(text, method) {
@@ -14,13 +15,12 @@ const it = (typeof global.it === "function")
     : function(text, method) {
         return method.apply(this);
     };
-
+/* eslint-enable no-invalid-this */
 /**
  * get fixer function from ruleCreator
  * if not found, throw error
  * @param {Function|Object} ruleCreator
  * @param {string} ruleName
- * @returns {Function} fixer function
  */
 function assertHasFixer(ruleCreator, ruleName) {
     if (typeof ruleCreator.fixer === "function") {
@@ -82,7 +82,7 @@ export default class TextLintTester {
     /**
      * run test for textlint rule.
      * @param {string} ruleName ruleName is name of thee rule
-     * @param {Function} rule rule is the function of rule
+     * @param {Function|Object} rule rule is the function of rule
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
