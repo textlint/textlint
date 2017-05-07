@@ -1,10 +1,10 @@
+/* eslint-disable */
 "use strict";
-import assert from "assert";
 module.exports = function(context, options = {}) {
     const {Syntax, RuleError, report, getSource} = context;
     return {
         [Syntax.Str](node){ // "Str" node
-            const text = getSource(text);
+            const text = getSource(node);
             if (/bugs/.test(text)) {
                 const indexOfBugs = text.search(/bugs/);
                 const ruleError = new RuleError("Found bugs.", {
@@ -13,5 +13,5 @@ module.exports = function(context, options = {}) {
                 report(node, ruleError);
             }
         }
-    }
+    };
 };
