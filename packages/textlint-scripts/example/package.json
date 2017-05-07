@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts" : {
+    "build": "textlint-scripts build",
+    "test": "textlint-scripts test",
+    "ci": "npm rm textlint-scripts && npm i && npm run build && npm test"
+  },
+  "devDependencies": {
+    "textlint-scripts": "file:../"
+  }
+}
