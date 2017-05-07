@@ -1,7 +1,7 @@
 {
   "name": "textlint",
   "description": "The pluggable linting tool for text and markdown.",
-  "version": "7.4.0",
+  "version": "8.0.0",
   "homepage": "https://github.com/textlint/textlint/",
   "keywords": [
     "plugable",
@@ -91,8 +91,8 @@
     "structured-source": "^3.0.2",
     "text-table": "^0.2.0",
     "textlint-formatter": "^1.7.3",
-    "textlint-plugin-markdown": "^2.0.0",
-    "textlint-plugin-text": "^1.0.1",
+    "textlint-plugin-markdown": "^2.0.1",
+    "textlint-plugin-text": "^1.1.0",
     "traverse": "^0.6.6",
     "try-resolve": "^1.0.1",
     "txt-ast-traverse": "^1.2.0",
