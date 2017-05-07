@@ -37,7 +37,7 @@ One more bugs`,
                 {
                     message: "Found bugs.",
                     line: 3,
-                    column: 13
+                    column: 10
                 }
             ]
         },
