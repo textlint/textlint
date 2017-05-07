@@ -2,6 +2,7 @@
   "name": "textlint",
   "private": true,
   "scripts": {
+    "changelog": "lerna-changelog",
     "publish": "lerna publish --conventional-commits",
     "publish:beta": "lerna publish --conventional-commits --npm-tag=next",
     "prepare": "yarn run bootstrap",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "lerna": "^2.0.0-rc.4",
+    "lerna-changelog": "^0.4.0",
     "npm-run-all": "^4.0.1",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-alex": "^1.2.0",
