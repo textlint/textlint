@@ -8,8 +8,9 @@ TxtAST define AST(Abstract Syntax Tree) for processing in textlint.
 
 Each node of the tree has same interface, is called `TxtNode`.
 
-[![markdown-to-ast.](./resources/markdown-to-ast.png)](http://azu.github.io/markdown-to-ast/example/)
+[![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
+[AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
 ## [TxtAST](../typings/txtast.d.ts) interface
 
