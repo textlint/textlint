@@ -16,7 +16,7 @@
     "textlint-scripts": "./bin/cmd.js"
   },
   "scripts": {
-    "test": "cd example && npm i && npm test"
+    "test": "cd example && npm i && npm run ci"
   },
   "keywords": [
     "textlint"
