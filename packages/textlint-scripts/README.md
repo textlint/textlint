@@ -1,6 +1,10 @@
-# textlint-scripts [![Build Status](https://travis-ci.org/textlint/textlint-scripts.svg?branch=master)](https://travis-ci.org/textlint/textlint-scripts)
+# textlint-scripts
 
-textlint npm-run-scripts CLI help to create textlint rule.
+textlint npm run-scripts CLI help to create textlint rule.
+
+See also [textlint/create-textlint-rule: Create textlint rule project with no configuration.](https://github.com/textlint/create-textlint-rule "textlint/create-textlint-rule: Create textlint rule project with no configuration.")
+
+[create-textlint-rule](https://github.com/textlint/create-textlint-rule "create-textlint-rule") setup textlint rule that include `textlint-scripts`.
 
 ## Install
 
@@ -26,7 +30,7 @@ Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts "npm
 
 Build source codes in `src/` and output to `lib/`.
 
-It is built by [Babel](https://babeljs.io/ "Babel") with [Latest preset](https://babeljs.io/docs/plugins/preset-latest/ "Latest preset").
+It is built by [Babel](https://babeljs.io/ "Babel") with [babel-preset-env](https://github.com/babel/babel-preset-env "babel-preset-env")..
 
 ### `textlint-scripts test`
 

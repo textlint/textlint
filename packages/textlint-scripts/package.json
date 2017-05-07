@@ -11,24 +11,24 @@
   ],
   "name": "textlint-scripts",
   "version": "1.2.4",
-  "description": "textlint npm-run-scripts CLI help to create textlint rule.",
+  "description": "textlint npm run-scripts CLI help to create textlint rule.",
   "bin": {
     "textlint-scripts": "./bin/cmd.js"
   },
   "scripts": {
-    "test": "bash test/test-example.sh"
+    "test": "cd example && npm i && npm test"
   },
   "keywords": [
     "textlint"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/textlint/textlint-scripts.git"
+    "url": "https://github.com/textlint/textlint.git"
   },
   "bugs": {
-    "url": "https://github.com/textlint/textlint-scripts/issues"
+    "url": "https://github.com/textlint/textlint/issues"
   },
-  "homepage": "https://github.com/textlint/textlint-scripts",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts/",
   "devDependencies": {},
   "dependencies": {
     "babel-cli": "^6.18.0",
