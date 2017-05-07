@@ -3,6 +3,13 @@
   "packages": [
     "packages/*"
   ],
+  "commands": {
+    "publish": {
+      "ignore": [
+        "**/yarn.lock"
+      ]
+    }
+  },
   "changelog": {
     "repo": "textlint/textlint",
     "labels": {

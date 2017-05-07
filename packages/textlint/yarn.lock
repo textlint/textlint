@@ -3106,17 +3106,17 @@ textlint-plugin-html@^0.1.2:
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
-textlint-plugin-markdown@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.0.tgz#a6880aa59c3448d0081a3980f0e7f60c4bcbbff5"
+textlint-plugin-markdown@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.1.tgz#25731b8d04680a126fc7c205a8cc6f75a33f612f"
   dependencies:
     markdown-to-ast "^4.0.0"
 
-textlint-plugin-text@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.0.1.tgz#ee4642986e8fe3267849abe0f82cbabb2072b99f"
+textlint-plugin-text@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.0.tgz#6d1ee2151cb10492ee858a8ebd9007b4cc945341"
   dependencies:
-    txt-to-ast "^1.0.2"
+    txt-to-ast "^1.1.0"
 
 textlint-rule-helper@^1.1.3:
   version "1.2.0"
@@ -3276,7 +3276,7 @@ txt-ast-traverse@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/txt-ast-traverse/-/txt-ast-traverse-1.2.1.tgz#58e3fe43ddb5db5ca8b51142943b0d1b970def41"
 
-txt-to-ast@^1.0.2:
+txt-to-ast@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/txt-to-ast/-/txt-to-ast-1.1.0.tgz#eb91a7484ff4a5e136f6d24ce5a47a86ccc11008"
 

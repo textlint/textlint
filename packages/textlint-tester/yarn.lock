@@ -12,6 +12,10 @@
   dependencies:
     "@azu/format-text" "^1.0.1"
 
+"@textlint/ast-node-types@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-1.1.2.tgz#58bc95a6826b84eb1f1671be5921aa243409fb31"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -92,6 +96,12 @@ array-filter@^1.0.0:
 array-find@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/array-find/-/array-find-1.0.0.tgz#6c8e286d11ed768327f8e62ecee87353ca3e78b8"
+
+array-iterate@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/array-iterate/-/array-iterate-1.1.0.tgz#4f13148ffffa5f2756b50460e5eac8eed31a14e6"
+  dependencies:
+    has "^1.0.1"
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -837,7 +847,7 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-collapse-white-space@^1.0.0:
+collapse-white-space@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/collapse-white-space/-/collapse-white-space-1.0.2.tgz#9c463fb9c6d190d2dcae21a356a01bcae9eeef6d"
 
@@ -912,17 +922,11 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-debug@2.6.0, debug@^2.1.1, debug@^2.1.3, debug@^2.2.0:
+debug@2.6.0, debug@^2.1.0, debug@^2.1.1, debug@^2.1.3, debug@^2.2.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.0.tgz#bc596bcabe7617f11d9fa15361eded5608b8499b"
   dependencies:
     ms "0.7.2"
-
-debug@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
-  dependencies:
-    ms "0.7.1"
 
 deep-equal@^1.0.0, deep-equal@^1.0.1:
   version "1.0.1"
@@ -1370,6 +1374,10 @@ is-alphabetical@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-alphabetical/-/is-alphabetical-1.0.0.tgz#e2544c13058255f2144cb757066cd3342a1c8c46"
 
+is-alphanumeric@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-alphanumeric/-/is-alphanumeric-1.0.0.tgz#4a9cef71daf4c001c1d81d63d140cf53fd6889f4"
+
 is-alphanumerical@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-alphanumerical/-/is-alphanumerical-1.0.0.tgz#e06492e719c1bf15dec239e4f1af5f67b4d6e7bf"
@@ -1387,7 +1395,7 @@ is-binary-path@^1.0.0:
   dependencies:
     binary-extensions "^1.0.0"
 
-is-buffer@^1.1.5, is-buffer@~1.1.1:
+is-buffer@^1.1.4, is-buffer@^1.1.5, is-buffer@~1.1.1:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
 
@@ -1479,6 +1487,10 @@ is-path-inside@^1.0.0:
   dependencies:
     path-is-inside "^1.0.1"
 
+is-plain-obj@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
+
 is-posix-bracket@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/is-posix-bracket/-/is-posix-bracket-0.1.1.tgz#3334dc79774368e92f016e6fbc0a88f5cd6e6bc4"
@@ -1509,9 +1521,17 @@ is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
 
+is-whitespace-character@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-whitespace-character/-/is-whitespace-character-1.0.0.tgz#bbf4a83764ead0d451bec2a55218e91961adc275"
+
 is-windows@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.1.tgz#310db70f742d259a16a369202b51af84233310d9"
+
+is-word-character@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-word-character/-/is-word-character-1.0.0.tgz#a3a9e5ddad70c5c2ee36f4a9cfc9a53f44535247"
 
 isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
@@ -1696,9 +1716,9 @@ log-symbols@^1.0.2:
   dependencies:
     chalk "^1.0.0"
 
-longest-streak@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/longest-streak/-/longest-streak-1.0.0.tgz#d06597c4d4c31b52ccb1f5d8f8fe7148eafd6965"
+longest-streak@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/longest-streak/-/longest-streak-2.0.1.tgz#42d291b5411e40365c00e63193497e2247316e35"
 
 loose-envify@^1.0.0:
   version "1.3.1"
@@ -1717,16 +1737,21 @@ map-like@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/map-like/-/map-like-1.1.2.tgz#f42a301ebd9290372b9e4ddc49e5df9804a507b9"
 
-markdown-table@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-0.4.0.tgz#890c2c1b3bfe83fb00e4129b8e4cfe645270f9d1"
+markdown-escapes@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.0.tgz#c8ca19f1d94d682459e0a93c86db27a7ef716b23"
 
-markdown-to-ast@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/markdown-to-ast/-/markdown-to-ast-3.4.0.tgz#0e2cba81390b0549a9153ec3b0d915b61c164be7"
+markdown-table@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.0.tgz#1f5ae61659ced8808d882554c32e8b3f38dd1143"
+
+markdown-to-ast@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-to-ast/-/markdown-to-ast-4.0.0.tgz#37d4b0d9d84b19c8dd713e56eaf69dcc7ce2e6c3"
   dependencies:
+    "@textlint/ast-node-types" "^1.1.2"
     debug "^2.1.3"
-    remark "^5.0.1"
+    remark "^7.0.1"
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
@@ -1743,6 +1768,13 @@ md5@^2.2.1:
     charenc "~0.0.1"
     crypt "~0.0.1"
     is-buffer "~1.1.1"
+
+mdast-util-compact@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-compact/-/mdast-util-compact-1.0.0.tgz#4c94dedfe35932d5457f29b650b330fdc73e994a"
+  dependencies:
+    unist-util-modify-children "^1.0.0"
+    unist-util-visit "^1.1.0"
 
 micromatch@^2.1.5:
   version "2.3.11"
@@ -1807,10 +1839,6 @@ mocha@^3.3.0:
     lodash.create "3.1.1"
     mkdirp "0.5.1"
     supports-color "3.1.2"
-
-ms@0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
 
 ms@0.7.2:
   version "0.7.2"
@@ -2243,40 +2271,53 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-remark-parse@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-1.1.0.tgz#c3ca10f9a8da04615c28f09aa4e304510526ec21"
+remark-parse@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/remark-parse/-/remark-parse-3.0.1.tgz#1b9f841a44d8f4fbf2246850265459a4eb354c80"
   dependencies:
-    collapse-white-space "^1.0.0"
-    extend "^3.0.0"
+    collapse-white-space "^1.0.2"
+    has "^1.0.1"
+    is-alphabetical "^1.0.0"
+    is-decimal "^1.0.0"
+    is-whitespace-character "^1.0.0"
+    is-word-character "^1.0.0"
+    markdown-escapes "^1.0.0"
     parse-entities "^1.0.2"
     repeat-string "^1.5.4"
+    state-toggle "^1.0.0"
     trim "0.0.1"
     trim-trailing-lines "^1.0.0"
     unherit "^1.0.4"
     unist-util-remove-position "^1.0.0"
     vfile-location "^2.0.0"
+    xtend "^4.0.1"
 
-remark-stringify@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/remark-stringify/-/remark-stringify-1.1.0.tgz#a7105e25b9ee2bf9a49b75d2c423f11b06ae2092"
+remark-stringify@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/remark-stringify/-/remark-stringify-3.0.1.tgz#79242bebe0a752081b5809516fa0c06edec069cf"
   dependencies:
     ccount "^1.0.0"
-    extend "^3.0.0"
-    longest-streak "^1.0.0"
-    markdown-table "^0.4.0"
+    is-alphanumeric "^1.0.0"
+    is-decimal "^1.0.0"
+    is-whitespace-character "^1.0.0"
+    longest-streak "^2.0.1"
+    markdown-escapes "^1.0.0"
+    markdown-table "^1.1.0"
+    mdast-util-compact "^1.0.0"
     parse-entities "^1.0.2"
     repeat-string "^1.5.4"
+    state-toggle "^1.0.0"
     stringify-entities "^1.0.1"
     unherit "^1.0.4"
+    xtend "^4.0.1"
 
-remark@^5.0.1:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/remark/-/remark-5.1.0.tgz#cb463bd3dbcb4b99794935eee1cf71d7a8e3068c"
+remark@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/remark/-/remark-7.0.1.tgz#a5de4dacfabf0f60a49826ef24c479807f904bfb"
   dependencies:
-    remark-parse "^1.1.0"
-    remark-stringify "^1.1.0"
-    unified "^4.1.1"
+    remark-parse "^3.0.0"
+    remark-stringify "^3.0.0"
+    unified "^6.0.0"
 
 remove-trailing-separator@^1.0.1:
   version "1.0.1"
@@ -2295,6 +2336,10 @@ repeating@^2.0.0:
   resolved "https://registry.yarnpkg.com/repeating/-/repeating-2.0.1.tgz#5214c53a926d3552707527fbab415dbc08d06dda"
   dependencies:
     is-finite "^1.0.0"
+
+replace-ext@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
 
 request@^2.81.0:
   version "2.81.0"
@@ -2441,6 +2486,10 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
+state-toggle@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/state-toggle/-/state-toggle-1.0.0.tgz#d20f9a616bb4f0c3b98b91922d25b640aa2bc425"
+
 string-width@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-1.0.2.tgz#118bdf5b8cdc51a2a7e70d211e07e2b0b9b107d3"
@@ -2579,17 +2628,17 @@ textlint-formatter@^1.7.3:
     try-resolve "^1.0.1"
     xml-escape "^1.0.0"
 
-textlint-plugin-markdown@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-1.1.0.tgz#36490eb2704f4969b4b2f00c624197111e5d1568"
+textlint-plugin-markdown@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.1.tgz#25731b8d04680a126fc7c205a8cc6f75a33f612f"
   dependencies:
-    markdown-to-ast "^3.4.0"
+    markdown-to-ast "^4.0.0"
 
-textlint-plugin-text@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.0.1.tgz#ee4642986e8fe3267849abe0f82cbabb2072b99f"
+textlint-plugin-text@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.0.tgz#6d1ee2151cb10492ee858a8ebd9007b4cc945341"
   dependencies:
-    txt-to-ast "^1.0.2"
+    txt-to-ast "^1.1.0"
 
 textlint-rule-helper@^1.1.3:
   version "1.2.0"
@@ -2615,9 +2664,9 @@ textlint-rule-no-todo@^2.0.0:
   dependencies:
     textlint-rule-helper "^1.1.3"
 
-textlint@^7.0.0:
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/textlint/-/textlint-7.4.0.tgz#854e6f5c98281943e6d7e5f50a8a23b4d42f930c"
+textlint@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/textlint/-/textlint-8.0.0.tgz#137f5d04e954b877eb5a3c0b23537b4c29b8d9c6"
   dependencies:
     bluebird "^3.0.5"
     carrack "0.0.5"
@@ -2644,8 +2693,8 @@ textlint@^7.0.0:
     structured-source "^3.0.2"
     text-table "^0.2.0"
     textlint-formatter "^1.7.3"
-    textlint-plugin-markdown "^1.1.0"
-    textlint-plugin-text "^1.0.1"
+    textlint-plugin-markdown "^2.0.1"
+    textlint-plugin-text "^1.1.0"
     traverse "^0.6.6"
     try-resolve "^1.0.1"
     txt-ast-traverse "^1.2.0"
@@ -2699,7 +2748,7 @@ txt-ast-traverse@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/txt-ast-traverse/-/txt-ast-traverse-1.2.1.tgz#58e3fe43ddb5db5ca8b51142943b0d1b970def41"
 
-txt-to-ast@^1.0.2:
+txt-to-ast@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/txt-to-ast/-/txt-to-ast-1.1.0.tgz#eb91a7484ff4a5e136f6d24ce5a47a86ccc11008"
 
@@ -2728,26 +2777,40 @@ unherit@^1.0.4:
     inherits "^2.0.1"
     xtend "^4.0.1"
 
-unified@^4.1.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/unified/-/unified-4.2.1.tgz#76ff43aa8da430f6e7e4a55c84ebac2ad2cfcd2e"
+unified@^6.0.0:
+  version "6.1.3"
+  resolved "https://registry.yarnpkg.com/unified/-/unified-6.1.3.tgz#c26a9df2c56f3def938309253928f37150c70c6e"
   dependencies:
     bail "^1.0.0"
     extend "^3.0.0"
     has "^1.0.1"
-    once "^1.3.3"
+    is-plain-obj "^1.1.0"
     trough "^1.0.0"
-    vfile "^1.0.0"
+    vfile "^2.0.0"
+    x-is-function "^1.0.4"
+    x-is-string "^0.1.0"
 
 unique-concat@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/unique-concat/-/unique-concat-0.2.2.tgz#9210f9bdcaacc5e1e3929490d7c019df96f18712"
+
+unist-util-modify-children@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/unist-util-modify-children/-/unist-util-modify-children-1.1.0.tgz#559203ae85d7a76283277be1abfbaf595a177ead"
+  dependencies:
+    array-iterate "^1.0.0"
 
 unist-util-remove-position@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/unist-util-remove-position/-/unist-util-remove-position-1.1.0.tgz#2444fedc344bc5f540dab6353e013b6d78101dc2"
   dependencies:
     unist-util-visit "^1.1.0"
+
+unist-util-stringify-position@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/unist-util-stringify-position/-/unist-util-stringify-position-1.1.0.tgz#e8ba9d6b6af891b5f8336b3a31c63a9dc85c2af0"
+  dependencies:
+    has "^1.0.1"
 
 unist-util-visit@^1.1.0:
   version "1.1.1"
@@ -2796,9 +2859,15 @@ vfile-location@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-2.0.1.tgz#0bf8816f732b0f8bd902a56fda4c62c8e935dc52"
 
-vfile@^1.0.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/vfile/-/vfile-1.4.0.tgz#c0fd6fa484f8debdb771f68c31ed75d88da97fe7"
+vfile@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vfile/-/vfile-2.0.1.tgz#bd48e68e8a2322dff0d162a37f45e70d9bb30466"
+  dependencies:
+    has "^1.0.1"
+    is-buffer "^1.1.4"
+    replace-ext "1.0.0"
+    unist-util-stringify-position "^1.0.0"
+    x-is-string "^0.1.0"
 
 which@^1.2.9:
   version "1.2.14"
@@ -2825,6 +2894,14 @@ write@^0.2.1:
   resolved "https://registry.yarnpkg.com/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
   dependencies:
     mkdirp "^0.5.1"
+
+x-is-function@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/x-is-function/-/x-is-function-1.0.4.tgz#5d294dc3d268cbdd062580e0c5df77a391d1fa1e"
+
+x-is-string@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/x-is-string/-/x-is-string-0.1.0.tgz#474b50865af3a49a9c4657f05acd145458f77d82"
 
 xml-escape@^1.0.0:
   version "1.1.0"
