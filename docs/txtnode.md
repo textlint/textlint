@@ -76,11 +76,6 @@ interface TxtParentNode extends TxtNode {
 
 `type` is TxtNode type.
 
-- Types of plain-text are defined in [textlint/txt-to-ast](https://github.com/textlint/txt-to-ast "textlint/txt-to-ast")
-    - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
-- Types of Markdown text are defined in [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast")
-    - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
-
 All Types are defined in `@textlint/ast-node-types`.
 You can use this `ASTNodeTypes` value via following way:
 
@@ -119,6 +114,13 @@ These types are be available at all times:
 
 The type is based on HTML tag.
 
+Following parsers are built-in.
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| [`markdown-to-ast`](../packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
+| [`txt-to-ast`](../packages/txt-to-ast) | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser |
+
 If you want to get other type, please file issue.
 
 - [packages/ast-node-types](../packages/ast-node-types)
@@ -128,11 +130,6 @@ If you want to get other type, please file issue.
 [![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
 [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
-
-- Markdown AST
-    - [markdown-to-ast: online parsing demo](http://azu.github.io/markdown-to-ast/example/ "markdown-to-ast: online parsing demo")
-- Plain text AST (compatible Markdown AST)
-    - [txt-to-ast: online parsing demo](http://azu.github.io/txt-to-ast/example/ "txt-to-ast: online parsing demo")
 
 Minimum(recommended) rules is following code:
 
@@ -149,8 +146,6 @@ export default function (context) {
         [Syntax.Paragraph](node) {
         },
         [Syntax.Str](node) {
-        },
-        [Syntax.Break](node) {
         }
     };
 }
