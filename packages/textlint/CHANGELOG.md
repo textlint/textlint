@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.0.1"></a>
+## [8.0.1](https://github.com/textlint/textlint/compare/textlint@8.0.0...textlint@8.0.1) (2017-05-11)
+
+
+### Bug Fixes
+
+* **textlint:** remove shelljs dependencies (#287) ([0e88942](https://github.com/textlint/textlint/commit/0e88942))
+
+
+
+
 <a name="8.0.0"></a>
 # 8.0.0 (2017-05-07)
 
