@@ -64,8 +64,7 @@
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
-    "textlint-rule-preset-jtf-style": "^2.0.0",
-    "webpack": "^2.5.1"
+    "textlint-rule-preset-jtf-style": "^2.0.0"
   },
   "dependencies": {
     "bluebird": "^3.0.5",
