@@ -4,7 +4,13 @@ const pathToGlob = require("path-to-glob-pattern");
 const glob = require("glob");
 const path = require("path");
 const fs = require("fs");
-const shell = require("shelljs");
+const isFile = (filePath) => {
+    try {
+        return fs.statSync(filePath).isFile();
+    } catch (error) {
+        return false;
+    }
+};
 /**
  * filter files by config
  * @param {string[]} patterns glob patterns
@@ -33,7 +39,7 @@ export function findFiles(patterns, options = {}) {
     };
     patterns.forEach(pattern => {
         const file = path.resolve(cwd, pattern);
-        if (shell.test("-f", file)) {
+        if (isFile(file)) {
             addFile(fs.realpathSync(file));
         } else {
             glob.sync(pattern, {
