@@ -77,10 +77,10 @@ export default class TextlintCore {
      * @returns {Promise.<TextLintResult>}
      */
     lintText(text, ext = ".txt") {
-        this._preLinting();
-        return this.kernel.lintText(text, {
+        const options = this._mergeSetupOptions({
             ext
         });
+        return this.kernel.lintText(text, options);
     }
 
     /**
@@ -90,11 +90,11 @@ export default class TextlintCore {
      * @returns {Promise.<TextLintResult>}
      */
     lintMarkdown(text) {
-        this._preLinting();
         const ext = ".md";
-        return this.kernel.lintText(text, {
+        const options = this._mergeSetupOptions({
             ext
         });
+        return this.kernel.lintText(text, options);
     }
 
     /**
@@ -105,12 +105,12 @@ export default class TextlintCore {
     lintFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
-        this._preLinting();
+        const options = this._mergeSetupOptions({
+            ext,
+            filePath: absoluteFilePath
+        });
         return readFile(absoluteFilePath).then(text => {
-            return this.kernel.lintText(text, {
-                ext,
-                filePath: absoluteFilePath
-            });
+            return this.kernel.lintText(text, options);
         });
     }
 
@@ -122,12 +122,12 @@ export default class TextlintCore {
     fixFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
-        this._preLinting();
+        const options = this._mergeSetupOptions({
+            ext,
+            filePath: absoluteFilePath
+        });
         return readFile(absoluteFilePath).then(text => {
-            return this.kernel.fixText(text, {
-                ext,
-                filePath: absoluteFilePath
-            });
+            return this.kernel.fixText(text, options);
         });
     }
 
@@ -138,18 +138,20 @@ export default class TextlintCore {
      * @returns {Promise.<TextLintFixResult>}
      */
     fixText(text, ext = ".txt") {
-        this._preLinting();
-        return this.kernel.fixText(text, {
+        const options = this._mergeSetupOptions({
             ext
         });
+        return this.kernel.fixText(text, options);
     }
 
     /**
      * @private
      */
-    _preLinting() {
-        this.kernel.setupPlugins(this.pluginCreatorSet.pluginConstructors);
-        this.kernel.setupRules(this.ruleCreatorSet.toKernelRulesFormat());
-        this.kernel.setupFilterRules(this.filterRuleCreatorSet.toKernelRulesFormat());
+    _mergeSetupOptions(options) {
+        return Object.assign({}, options, {
+            plugins: this.pluginCreatorSet.pluginConstructors,
+            rules: this.ruleCreatorSet.toKernelRulesFormat(),
+            filterRules: this.filterRuleCreatorSet.toKernelRulesFormat(),
+        });
     }
 }

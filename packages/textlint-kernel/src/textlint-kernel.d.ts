@@ -2,7 +2,7 @@ export interface TextlintKernelPlugin {
     // plugin name as key
     pluginId: string;
     // plugin processor instance
-    rule: Function | Object;
+    plugin: Function;
     // plugin options
     // TODO: It is not implemented
     // options: Object | boolean;
@@ -34,12 +34,12 @@ export interface TextlintKernelOptions {
     ext: string;
     // file path
     filePath?: string;
+    // plugins
+    plugins?: TextlintKernelPlugin[];
     // rules
     rules?: TextlintKernelRule[];
     // filterRules
     filterRules?: TextlintKernelFilterRule[];
-    // plugins
-    plugins?: TextlintKernelPlugin[];
 }
 
 // "range" is replaced by "text"
@@ -96,7 +96,7 @@ export interface TextLintFixResult {
 export class TextlintKernel {
     constructor(config: Object);
 
-    lintText(text: string, options: TextlintKernelOptions): Promise<any>;
+    lintText(text: string, options: TextlintKernelOptions): Promise<TextLintResult>;
 
-    fixText(text: string, options: TextlintKernelOptions): Promise<any>;
+    fixText(text: string, options: TextlintKernelOptions): Promise<TextLintResult>;
 }
