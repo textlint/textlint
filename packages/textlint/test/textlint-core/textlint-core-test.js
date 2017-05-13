@@ -121,7 +121,7 @@ describe("textlint-core", function () {
         });
     });
     describe("#resetRules", function () {
-        it("should reset filterRules", function () {
+        xit("should reset filterRules", function () {
             var textlint = new TextLintCore();
             textlint.setupFilterRules({
                 "rule-name": exampleRule

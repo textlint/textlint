@@ -1,6 +1,7 @@
 const assert = require("assert");
 const StructuredSource = require("structured-source");
-import TextLintNodeType from "../shared/type/TextLintNodeType";
+import { ASTNodeTypes } from "@textlint/ast-node-types";
+
 /**
  * Validates that the given AST has the required information.
  * @param {TxtAST.TxtNode} [ast] The Program node of the AST to check.
@@ -22,7 +23,13 @@ function validate(ast) {
  * This class represent of source code.
  */
 export default class SourceCode {
-    constructor({text = "", ast, ext, filePath}) {
+    /**
+     * @param {string} text
+     * @param {Object} ast
+     * @param {string} ext
+     * @param {string} [filePath]
+     */
+    constructor({ text = "", ast, ext, filePath }) {
         validate(ast);
         assert(ext || filePath, "should be set either of fileExt or filePath.");
         this.hasBOM = text.charCodeAt(0) === 0xFEFF;
@@ -33,15 +40,18 @@ export default class SourceCode {
         this._structuredSource = new StructuredSource(this.text);
         this.ast = ast;
         this.filePath = filePath;
-        // fileType .md .txt ...
+        /**
+         * fileType .md .txt ...
+         * @type {string}
+         */
         this.ext = ext;
     }
 
     /**
-     * @returns {TextLintNodeType}
+     * @returns {ASTNodeTypes}
      */
     getSyntax() {
-        return TextLintNodeType;
+        return ASTNodeTypes;
     }
 
     /**

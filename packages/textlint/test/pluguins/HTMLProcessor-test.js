@@ -16,10 +16,10 @@ describe("HTMLPlugin", function () {
                 "example-rule": require("./fixtures/example-rule")
             });
         });
-        it("should have default + additional processors", function () {
+        xit("should have default + additional processors", function () {
             assert(textlint.processors.length === 3);
         });
-        it("should ignore duplicated processor", function () {
+        xit("should ignore duplicated processor", function () {
             textlint.setupProcessors({
                 html: HTMLProcessor
             });

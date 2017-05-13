@@ -47,6 +47,7 @@ export default class TextLintEngineCore {
 
         /**
          * @type {TextLintCore}
+         * @private
          */
         this.textlint = new TextLintCore(this.config);
 
@@ -173,10 +174,7 @@ new TextLintEngine({
         // execute files that are filtered by availableExtensions.
         // TODO: it very hackable way, should be fixed
         // it is depend on textlintCore's state
-        this.availableExtensions = this.textlint.processors.reduce((availableExtensions, processor) => {
-            const Processor = processor.constructor;
-            return availableExtensions.concat(Processor.availableExtensions());
-        }, this.config.extensions);
+        this.availableExtensions = this.textlint.pluginCreatorSet.availableExtensions.concat(this.config.extensions);
 
     }
 

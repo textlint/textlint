@@ -2,7 +2,7 @@
 "use strict";
 const EventEmitter = require("events");
 const TraverseController = require("txt-ast-traverse").Controller;
-const PromiseEventEmitter = require("carrack");
+const { PromiseEventEmitter } = require("./promise-event-emitter");
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 const assert = require("assert");
@@ -56,7 +56,7 @@ export default class TextLintCoreTask extends EventEmitter {
          * @param {ReportIgnoreMessage} reportedMessage
          */
         const reportFunction = (reportedMessage) => {
-            const {ruleId, range, optional} = reportedMessage;
+            const { ruleId, range, optional } = reportedMessage;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
             const message = {
@@ -86,10 +86,10 @@ export default class TextLintCoreTask extends EventEmitter {
          * @param {ReportMessage} reportedMessage
          */
         const reportFunction = (reportedMessage) => {
-            const {ruleId, severity, ruleError} = reportedMessage;
+            const { ruleId, severity, ruleError } = reportedMessage;
             debug("%s pushReport %s", ruleId, ruleError);
-            const {line, column, fix} = sourceLocation.adjust(reportedMessage);
-            const index = sourceCode.positionToIndex({line, column});
+            const { line, column, fix } = sourceLocation.adjust(reportedMessage);
+            const index = sourceCode.positionToIndex({ line, column });
             // add TextLintMessage
             const message = {
                 type: MessageType.lint,
@@ -129,7 +129,7 @@ export default class TextLintCoreTask extends EventEmitter {
         traverseController.traverse(sourceCode.ast, {
             enter(node, parent) {
                 const type = node.type;
-                Object.defineProperty(node, "parent", {value: parent});
+                Object.defineProperty(node, "parent", { value: parent });
                 if (listenerCount(type) > 0) {
                     const promise = ruleTypeEmitter.emit(type, node);
                     promiseQueue.push(promise);

@@ -6,6 +6,8 @@ import FixerTask from "../task/fixer-task";
 import SourceCode from "../core/source-code";
 import SourceCodeFixer from "../fixer/source-code-fixer";
 import TaskRunner from "../task/task-runner";
+import { hasFixer } from "../core/rule-creator-helper";
+
 export default class FixerProcessor {
     /**
      * @param {Processor} processor
@@ -19,14 +21,14 @@ export default class FixerProcessor {
     /**
      * Run fixer process
      * @param {Config} config
-     * @param {RuleCreatorSet} ruleCreatorSet
-     * @param {RuleCreatorSet} filterRuleCreatorSet
+     * @param {TextlintKernelRule[]} rules
+     * @param {TextlintKernelFilterRule[]} filterRules
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintFixResult>}
      */
-    process({config, ruleCreatorSet, filterRuleCreatorSet, sourceCode}) {
-        assert(config && ruleCreatorSet && sourceCode);
-        const {preProcess, postProcess} = this.processor.processor(sourceCode.ext);
+    process({ config, rules, filterRules, sourceCode }) {
+        assert(config && rules && sourceCode);
+        const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
         let resultFilePath = sourceCode.filePath;
         // applied fixing messages
@@ -38,7 +40,9 @@ export default class FixerProcessor {
         // original means original for applyingMessages and remainingMessages
         // pre-applyingMessages + remainingMessages
         const originalMessages = [];
-        const fixerProcessList = ruleCreatorSet.mapFixer(fixerRuleCreatorSet => {
+        const fixerProcessList = rules.filter((rule) => {
+            return hasFixer(rule.rule);
+        }).map((fixerRule) => {
             return (sourceText) => {
                 // create new SourceCode object
                 const newSourceCode = new SourceCode({
@@ -50,8 +54,8 @@ export default class FixerProcessor {
                 // create new Task
                 const task = new FixerTask({
                     config,
-                    ruleCreatorSet: fixerRuleCreatorSet,
-                    filterRuleCreatorSet,
+                    fixerRule,
+                    filterRules,
                     sourceCode: newSourceCode
                 });
 

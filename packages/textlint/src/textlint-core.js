@@ -5,38 +5,13 @@
  textlint.js is a singleton object that is instance of textlint-core.js.
  */
 const path = require("path");
-const assert = require("assert");
-import {readFile} from "./util/fs-promise";
-import SourceCode from "./core/source-code";
-import {getProcessorMatchExtension} from "./util/proccesor-helper";
-import {Processor as MarkdownProcessor} from "textlint-plugin-markdown";
-import {Processor as TextProcessor} from "textlint-plugin-text";
+import { TextlintKernel } from "../../textlint-kernel/src/textlint-kernel";
+import { readFile } from "./util/fs-promise";
+import { Processor as MarkdownProcessor } from "textlint-plugin-markdown";
+import { Processor as TextProcessor } from "textlint-plugin-text";
 import RuleCreatorSet from "./core/rule-creator-set";
-// = Processors
-// sequence
-import FixerProcessor from "./fixer/fixer-processor";
-// parallel
-import LinterProcessor from "./linter/linter-processor";
-// message process manager
-import MessageProcessManager from "./messages/MessageProcessManager";
-import filterIgnoredProcess from "./messages/filter-ignored-process";
-import filterDuplicatedProcess from "./messages/filter-duplicated-process";
-import filterSeverityProcess from "./messages/filter-severity-process";
-import sortMessageProcess from "./messages/sort-messages-process";
-/**
- * add fileName to trailing of error message
- * @param {string|undefined} fileName
- * @param {string} message
- * @returns {string}
- */
-function addingAtFileNameToError(fileName, message) {
-    if (!fileName) {
-        return message;
-    }
-    return `${message}
-at ${fileName}`;
+import PluginCreatorSet from "./core/plugin-creator-set";
 
-}
 /**
  * @class {TextlintCore}
  */
@@ -44,35 +19,16 @@ export default class TextlintCore {
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;
+        // Markdown and Text is enabled by default
+        // Markdown and Text are for backward compatibility.
+        this.defaultPlugins = {
+            markdown: MarkdownProcessor,
+            text: TextProcessor
+        };
+        this.kernel = new TextlintKernel(config);
+        this.pluginCreatorSet = new PluginCreatorSet(this.defaultPlugins);
         this.ruleCreatorSet = new RuleCreatorSet();
         this.filterRuleCreatorSet = new RuleCreatorSet();
-        // Markdown and Text are for backward compatibility.
-        // FIXME: in the future, this.processors is empty by default.
-        this._defaultProcessors = [
-            new MarkdownProcessor(config),
-            new TextProcessor(config)
-        ];
-        this.processors = this._defaultProcessors.slice();
-        // Initialize Message Processor
-        // Now, It it built-in process only
-        this.messageProcessManager = new MessageProcessManager();
-        // filter `shouldIgnore()` results
-        this.messageProcessManager.add(filterIgnoredProcess);
-        // filter duplicated messages
-        this.messageProcessManager.add(filterDuplicatedProcess);
-        // filter by severity
-        this.messageProcessManager.add(filterSeverityProcess(this.config));
-        this.messageProcessManager.add(sortMessageProcess);
-    }
-
-    /**
-     * unstable API
-     * @param Processor
-     * @private
-     */
-    addProcessor(Processor) {
-        // add first
-        this.processors.unshift(new Processor(this.config));
     }
 
     /**
@@ -80,12 +36,7 @@ export default class TextlintCore {
      * @param {Object} processors
      */
     setupProcessors(processors = {}) {
-        this.processors.length = 0;
-        Object.keys(processors).forEach(key => {
-            const Processor = processors[key];
-            this.addProcessor(Processor);
-        });
-        this.processors = this.processors.concat(this._defaultProcessors);
+        this.pluginCreatorSet = new PluginCreatorSet(Object.assign({}, this.defaultPlugins, processors));
     }
 
 
@@ -113,42 +64,9 @@ export default class TextlintCore {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
+        this.pluginCreatorSet = new PluginCreatorSet(this.defaultPlugins);
         this.ruleCreatorSet = new RuleCreatorSet();
         this.filterRuleCreatorSet = new RuleCreatorSet();
-    }
-
-    /**
-     * process text in parallel for Rules and return {Promise.<TextLintResult>}
-     * In other word, parallel flow process.
-     * @param processor
-     * @param text
-     * @param ext
-     * @param filePath
-     * @returns {Promise.<TextLintResult>}
-     * @private
-     */
-    _parallelProcess(processor, text, ext, filePath) {
-        assert(processor, `processor is not found for ${ext}`);
-        const {preProcess, postProcess} = processor.processor(ext);
-        assert(typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implement {preProcess, postProcess}");
-        const ast = preProcess(text, filePath);
-        const sourceCode = new SourceCode({
-            text,
-            ast,
-            ext,
-            filePath
-        });
-        const linterProcessor = new LinterProcessor(processor, this.messageProcessManager);
-        return linterProcessor.process({
-            config: this.config,
-            ruleCreatorSet: this.ruleCreatorSet,
-            filterRuleCreatorSet: this.filterRuleCreatorSet,
-            sourceCode: sourceCode
-        }).catch(error => {
-            error.message = addingAtFileNameToError(filePath, error.message);
-            return Promise.reject(error);
-        });
     }
 
     /**
@@ -159,8 +77,10 @@ export default class TextlintCore {
      * @returns {Promise.<TextLintResult>}
      */
     lintText(text, ext = ".txt") {
-        const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._parallelProcess(processor, text, ext);
+        this._preLinting();
+        return this.kernel.lintText(text, {
+            ext
+        });
     }
 
     /**
@@ -170,8 +90,11 @@ export default class TextlintCore {
      * @returns {Promise.<TextLintResult>}
      */
     lintMarkdown(text) {
+        this._preLinting();
         const ext = ".md";
-        return this.lintText(text, ext);
+        return this.kernel.lintText(text, {
+            ext
+        });
     }
 
     /**
@@ -182,9 +105,12 @@ export default class TextlintCore {
     lintFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
+        this._preLinting();
         return readFile(absoluteFilePath).then(text => {
-            const processor = getProcessorMatchExtension(this.processors, ext);
-            return this._parallelProcess(processor, text, ext, absoluteFilePath);
+            return this.kernel.lintText(text, {
+                ext,
+                filePath: absoluteFilePath
+            });
         });
     }
 
@@ -196,9 +122,12 @@ export default class TextlintCore {
     fixFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
+        this._preLinting();
         return readFile(absoluteFilePath).then(text => {
-            const processor = getProcessorMatchExtension(this.processors, ext);
-            return this._sequenceProcess(processor, text, ext, absoluteFilePath);
+            return this.kernel.fixText(text, {
+                ext,
+                filePath: absoluteFilePath
+            });
         });
     }
 
@@ -209,41 +138,18 @@ export default class TextlintCore {
      * @returns {Promise.<TextLintFixResult>}
      */
     fixText(text, ext = ".txt") {
-        const processor = getProcessorMatchExtension(this.processors, ext);
-        return this._sequenceProcess(processor, text, ext);
+        this._preLinting();
+        return this.kernel.fixText(text, {
+            ext
+        });
     }
 
     /**
-     * process text in series for Rules and return {Promise.<TextLintFixResult>}
-     * In other word, sequence flow process.
-     * @param processor
-     * @param text
-     * @param ext
-     * @param filePath
-     * @returns {Promise.<TextLintFixResult>}
      * @private
      */
-    _sequenceProcess(processor, text, ext, filePath) {
-        assert(processor, `processor is not found for ${ext}`);
-        const {preProcess, postProcess} = processor.processor(ext);
-        assert(typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implement {preProcess, postProcess}");
-        const ast = preProcess(text, filePath);
-        const sourceCode = new SourceCode({
-            text,
-            ast,
-            ext,
-            filePath
-        });
-        const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
-        return fixerProcessor.process({
-            config: this.config,
-            ruleCreatorSet: this.ruleCreatorSet,
-            filterRuleCreatorSet: this.filterRuleCreatorSet,
-            sourceCode: sourceCode
-        }).catch(error => {
-            error.message = addingAtFileNameToError(filePath, error.message);
-            return Promise.reject(error);
-        });
+    _preLinting() {
+        this.kernel.setupPlugins(this.pluginCreatorSet.pluginConstructors);
+        this.kernel.setupRules(this.ruleCreatorSet.toKernelRulesFormat());
+        this.kernel.setupFilterRules(this.filterRuleCreatorSet.toKernelRulesFormat());
     }
 }

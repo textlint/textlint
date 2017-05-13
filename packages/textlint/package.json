@@ -69,6 +69,7 @@
   "dependencies": {
     "@textlint/ast-node-types": "^1.1.2",
     "@textlint/feature-flag": "1.0.0",
+    "@textlint/kernel": "^1.0.0",
     "bluebird": "^3.0.5",
     "carrack": "0.0.5",
     "chalk": "^1.1.1",
