@@ -7,7 +7,7 @@ import TextFixEngine from "./textfix-engine";
 import TextLintCore from "./textlint-core";
 import MessageType from "./shared/type/MessageType";
 import SeverityLevel from "./shared/type/SeverityLevel";
-import TextLintNodeType from "./shared/type/TextLintNodeType";
+import { ASTNodeTypes } from "@textlint/ast-node-types";
 // Level of abstraction(descending order)
 // cli > TextLintEngine > TextLintCore(textlint)
 // See: https://github.com/textlint/textlint/blob/master/docs/use-as-modules.md
@@ -32,5 +32,5 @@ module.exports = {
     // Constant Types
     TextLintMessageType: MessageType,
     TextLintMessageSeverityLevel: SeverityLevel,
-    TextLintNodeType: TextLintNodeType
+    TextLintNodeType: ASTNodeTypes
 };
