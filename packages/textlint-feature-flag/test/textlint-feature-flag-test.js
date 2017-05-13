@@ -1,6 +1,10 @@
 "use strict";
 const assert = require("assert");
-import { coreFlags, isFeatureEnabled, resetFlags, setFeature } from "../src/textlint-feature-flag";
+import {
+    coreFlags, isFeatureEnabled, resetFlags, setFeature,
+    throwIfTesting,
+    throwWithoutExperimental
+} from "../src/textlint-feature-flag";
 
 describe("textlint-feature-flag", () => {
     beforeEach(() => {
@@ -42,6 +46,33 @@ describe("textlint-feature-flag", () => {
                     loose: true
                 }), false);
             });
+        });
+    });
+    describe("#throwWithoutExperimental", () => {
+        it("should not throw if is experiment", () => {
+            coreFlags.experimental = true;
+            throwWithoutExperimental("this is not experimental");
+            assert.ok(true);
+        });
+        it("should throw if is not experiment and running CLI", () => {
+            coreFlags.runningCLI = true;
+            coreFlags.experimental = false;
+            assert.throws(() => {
+                throwWithoutExperimental(new Error("this is not experimental"));
+            }, Error);
+        });
+    });
+    describe("#throwIfTesting", () => {
+        it("should not throw if is not testing", () => {
+            coreFlags.runningTester = false;
+            throwIfTesting("this is not testing");
+            assert.ok(true);
+        });
+        it("should throw if is testing", () => {
+            coreFlags.runningTester = true;
+            assert.throws(() => {
+                throwIfTesting("this is testing");
+            }, Error);
         });
     });
 });
