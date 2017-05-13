@@ -5,11 +5,14 @@ import SourceLocation from "../../src/core/source-location";
 import RuleError from "../../src/core/rule-error";
 import RuleFixer from "../../src/fixer/rule-fixer";
 import createDummySourceCode from "./../util/dummy-source-code";
-import {_logger} from "../../src";
+import {coreFlags,resetFlags} from "@textlint/feature-flag";
 const sourceCode = createDummySourceCode();
 describe("compute-location", function () {
     beforeEach(function () {
-        _logger.setRunningTest(true);
+        coreFlags.runningTester = true;
+    });
+    afterEach(function () {
+        resetFlags();
     });
     context("message only", function () {
         it("should return node's start location", function () {

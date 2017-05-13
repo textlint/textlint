@@ -2,7 +2,7 @@
 "use strict";
 const assert = require("assert");
 const ObjectAssign = require("object-assign");
-import {throwIfTesting} from "../util/throw-log";
+import {throwIfTesting} from "@textlint/feature-flag";
 export default class SourceLocation {
     /**
      *

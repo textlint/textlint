@@ -2,21 +2,24 @@
 "use strict";
 const path = require("path");
 const assert = require("power-assert");
-import {TextLintEngine} from "../../src/index";
+import { TextLintEngine } from "../../src/index";
 import TextLintCore from "../../src/textlint-core";
-import {setExperimental} from "../../src/util/throw-log";
+import { coreFlags, resetFlags } from "@textlint/feature-flag";
 // fixture
 import fixtureRule from "./fixtures/rules/example-rule";
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
-describe("Async", function () {
-    beforeEach(function () {
-        setExperimental(true);
+describe("Async", function() {
+    beforeEach(() => {
+        coreFlags.experimental = true;
     });
-    it("should support async", function () {
-        var textlint = new TextLintCore();
+    afterEach(() => {
+        resetFlags();
+    });
+    it("should support async", function() {
+        const textlint = new TextLintCore();
         textlint.setupRules({
-            "rule-name": function (context) {
-                const {Syntax, report, RuleError} = context;
+            "rule-name": function(context) {
+                const { Syntax, report, RuleError } = context;
 
                 return {
                     [Syntax.Str](node){
@@ -38,8 +41,8 @@ describe("Async", function () {
             assert(result.messages.length === 2);
         });
     });
-    it("should promise each messages", function () {
-        var textlint = new TextLintCore();
+    it("should promise each messages", function() {
+        const textlint = new TextLintCore();
         // each rule throw 1 error.
         textlint.setupRules({
             "example-rule": fixtureRule,
@@ -53,14 +56,14 @@ describe("Async", function () {
             assert(result.messages.length === 2);
         });
     });
-    it("should promise each messages on multiple files", function () {
+    it("should promise each messages on multiple files", function() {
         const rules = ["async-rule", "example-rule"];
-        var engine = new TextLintEngine({
+        const engine = new TextLintEngine({
             rulesBaseDirectory: path.join(__dirname, "fixtures", "rules"),
             rules: rules
         });
-        var targetFile1 = path.join(__dirname, "fixtures", "test.md");
-        var targetFile2 = path.join(__dirname, "fixtures", "test2.md");
+        const targetFile1 = path.join(__dirname, "fixtures", "test.md");
+        const targetFile2 = path.join(__dirname, "fixtures", "test2.md");
         const files = [targetFile1, targetFile2];
         return engine.executeOnFiles(files).then(results => {
             assert.equal(results.length, files.length);
