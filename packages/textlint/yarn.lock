@@ -16,6 +16,12 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-1.1.2.tgz#58bc95a6826b84eb1f1671be5921aa243409fb31"
 
+"@textlint/feature-flag@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@textlint/feature-flag/-/feature-flag-1.0.0.tgz#3ef45f08d3c97244f2bcb1ab01ffbfb131a0e33c"
+  dependencies:
+    map-like "^1.1.2"
+
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"
@@ -2037,7 +2043,7 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.1"
     yallist "^2.0.0"
 
-map-like@^1.0.1:
+map-like@^1.0.1, map-like@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/map-like/-/map-like-1.1.2.tgz#f42a301ebd9290372b9e4ddc49e5df9804a507b9"
 
@@ -3104,15 +3110,15 @@ textlint-plugin-html@^0.1.2:
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
-textlint-plugin-markdown@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.1.tgz#25731b8d04680a126fc7c205a8cc6f75a33f612f"
+textlint-plugin-markdown@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.2.tgz#5b172bc59feb8e230068991e2fc085257983ac40"
   dependencies:
     markdown-to-ast "^4.0.0"
 
-textlint-plugin-text@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.0.tgz#6d1ee2151cb10492ee858a8ebd9007b4cc945341"
+textlint-plugin-text@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.1.tgz#d046d6335c3ffeea7ae58246f3e58d453d8eb0c9"
   dependencies:
     txt-to-ast "^1.1.0"
 
