@@ -96,6 +96,7 @@
     "traverse": "^0.6.6",
     "try-resolve": "^1.0.1",
     "txt-ast-traverse": "^1.2.0",
-    "unique-concat": "^0.2.2"
+    "unique-concat": "^0.2.2",
+    "@textlint/feature-flag": "1.0.0"
   }
 }

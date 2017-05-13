@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import assert from "assert";
-import {testValid, testInvalid} from "./test-util";
-import {TextLintCore, _logger} from "textlint";
+import { testValid, testInvalid } from "./test-util";
+import { TextLintCore } from "textlint";
+import { coreFlags } from "@textlint/feature-flag";
 /* eslint-disable no-invalid-this */
 const describe = (typeof global.describe === "function")
     ? global.describe
@@ -33,8 +34,8 @@ function assertHasFixer(ruleCreator, ruleName) {
 }
 export default class TextLintTester {
     constructor() {
-        if (_logger !== undefined) {
-            _logger.setRunningTest(true);
+        if (typeof coreFlags === "object") {
+            coreFlags.runningTester = true;
         }
     }
 
@@ -86,7 +87,7 @@ export default class TextLintTester {
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
-    run(ruleName, rule, {valid = [], invalid = []}) {
+    run(ruleName, rule, { valid = [], invalid = [] }) {
         describe(ruleName, () => {
             invalid.forEach(state => {
                 this.testInvalidPattern(ruleName, rule, state);

@@ -9,10 +9,10 @@ if (isDebug) {
 }
 // must do this initialization *before* other requires in order to work
 var cli = require("../lib/cli");
-var setRunningCLI = require("../lib/util/throw-log").setRunningCLI;
+var coreFlags = require("@textlint/feature-flag");
 // it is for --experimental logger
 // update state
-setRunningCLI(!module.parent);
+coreFlags.runningCLI = !module.parent;
 /**
  * show error message for user
  * @param {Error} error
