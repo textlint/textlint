@@ -57,7 +57,7 @@ export default class RuleCreatorSet {
                 ruleId: ruleName,
                 rule: this.rules[ruleName],
                 options: this.rulesConfig[ruleName]
-            }
+            };
         });
     }
 
