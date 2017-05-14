@@ -33,13 +33,23 @@ export default class TextlintCore {
     }
 
     /**
-     * @param Processor
+     * Use setupPlugins insteadof it.
+     *
+     * ````
+     * textlint.setupPlugins({
+     *   yourPluginName: yourPlugin
+     * });
+     * ````
+     *
+     * @param {*} Processor
      * @deprecated
      */
     addProcessor(Processor) {
-        this.pluginCreatorSet.plugins.unshift({
-            Processor
-        });
+        this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, {
+            [`${Processor.name}@deprecated`]: {
+                Processor
+            }
+        }));
     }
 
     /**
