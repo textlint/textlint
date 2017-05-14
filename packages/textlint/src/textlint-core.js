@@ -8,8 +8,8 @@ const path = require("path");
 const ObjectAssign = require("object-assign");
 import { TextlintKernel } from "@textlint/kernel";
 import { readFile } from "./util/fs-promise";
-import { Processor as MarkdownProcessor } from "textlint-plugin-markdown";
-import { Processor as TextProcessor } from "textlint-plugin-text";
+import markdownPlugin from "textlint-plugin-markdown";
+import textPlugin from "textlint-plugin-text";
 import RuleCreatorSet from "./core/rule-creator-set";
 import PluginCreatorSet from "./core/plugin-creator-set";
 
@@ -23,8 +23,8 @@ export default class TextlintCore {
         // Markdown and Text is enabled by default
         // Markdown and Text are for backward compatibility.
         this.defaultPlugins = {
-            markdown: MarkdownProcessor,
-            text: TextProcessor
+            markdown: markdownPlugin,
+            text: textPlugin
         };
         this.kernel = new TextlintKernel(config);
         this.pluginCreatorSet = new PluginCreatorSet(this.defaultPlugins);
@@ -34,10 +34,10 @@ export default class TextlintCore {
 
     /**
      * register Processors
-     * @param {Object} processors
+     * @param {Object} plugins
      */
-    setupProcessors(processors = {}) {
-        this.pluginCreatorSet = new PluginCreatorSet(Object.assign({}, this.defaultPlugins, processors));
+    setupPlugins(plugins = {}) {
+        this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, plugins));
     }
 
 
@@ -150,7 +150,7 @@ export default class TextlintCore {
      */
     _mergeSetupOptions(options) {
         return ObjectAssign({}, options, {
-            plugins: this.pluginCreatorSet.pluginConstructors,
+            plugins: this.pluginCreatorSet.toKernelPluginsFormat(),
             rules: this.ruleCreatorSet.toKernelRulesFormat(),
             filterRules: this.filterRuleCreatorSet.toKernelRulesFormat(),
         });

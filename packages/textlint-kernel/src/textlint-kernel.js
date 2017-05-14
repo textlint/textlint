@@ -19,17 +19,18 @@ import sortMessageProcess from "./messages/sort-messages-process";
  * @returns {TextlintKernelPlugin|undefined} PluginConstructor
  */
 function findPluginWithExt(plugins = [], ext) {
-    const matchProcessors = plugins.filter(pluginConstructor => {
+    const matchPlugins = plugins.filter((kernelPlugin) => {
+        const plugin = kernelPlugin.plugin;
         // static availableExtensions() method
-        assert.ok(typeof pluginConstructor.availableExtensions === "function",
-            `Processor(${pluginConstructor.name} should have availableExtensions()`);
-        const extList = pluginConstructor.availableExtensions();
+        assert.ok(typeof plugin.Processor.availableExtensions === "function",
+            `Processor(${plugin.Processor.name} should have availableExtensions()`);
+        const extList = plugin.Processor.availableExtensions();
         return extList.some(targetExt => targetExt === ext || ("." + targetExt) === ext);
     });
-    if (matchProcessors.length === 0) {
+    if (matchPlugins.length === 0) {
         return;
     }
-    return matchProcessors[0];
+    return matchPlugins[0];
 }
 /**
  * add fileName to trailing of error message
@@ -81,7 +82,11 @@ export class TextlintKernel {
      * @returns {Promise.<TextLintResult>}
      */
     lintText(text, options) {
-        const Processor = findPluginWithExt(options.plugins, options.ext);
+        const ext = options.ext;
+        const plugin = findPluginWithExt(options.plugins, ext);
+        assert(plugin !== undefined && plugin.plugin !== undefined, `Not found available plugin for ${ ext }`);
+        const Processor = plugin.plugin.Processor;
+        assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
         const processor = new Processor(this.config);
         return this._parallelProcess({
             processor, text, options
@@ -95,7 +100,11 @@ export class TextlintKernel {
      * @returns {Promise.<TextLintFixResult>}
      */
     fixText(text, options) {
-        const Processor = findPluginWithExt(options.plugins, options.ext);
+        const ext = options.ext;
+        const plugin = findPluginWithExt(options.plugins, ext);
+        assert(plugin !== undefined, `Not found available plugin for ${ ext }`);
+        const Processor = plugin.plugin.Processor;
+        assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
         const processor = new Processor(this.config);
         return this._sequenceProcess({
             processor,

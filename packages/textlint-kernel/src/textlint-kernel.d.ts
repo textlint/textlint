@@ -2,7 +2,9 @@ export interface TextlintKernelPlugin {
     // plugin name as key
     pluginId: string;
     // plugin processor instance
-    plugin: Function;
+    plugin: Object | {
+        Processor: Object
+    };
     // plugin options
     // TODO: It is not implemented
     // options: Object | boolean;

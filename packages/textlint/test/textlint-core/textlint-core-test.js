@@ -5,14 +5,14 @@ describe("textlint-core", function () {
     // Test: https://github.com/textlint/textlint/issues/30
     context("when new textlint-core", function () {
         it("should be clean rule-manager", function () {
-            var textlint = new TextLintCore();
+            const textlint = new TextLintCore();
             textlint.setupRules({
                 "example-rule": exampleRule
             });
             return textlint.lintMarkdown("test").then(result => {
                 assert(result.messages.length === 1);
             }).then(() => {
-                var newTextLint = new TextLintCore();
+                const newTextLint = new TextLintCore();
                 // no rule
                 return newTextLint.lintMarkdown("test");
             }).then((result) => {
@@ -48,7 +48,7 @@ describe("textlint-core", function () {
     describe("ruleConfig", function () {
         context("when set ruleConfig.severity", function () {
             it("message.severity should used the config", function () {
-                var textlint = new TextLintCore();
+                const textlint = new TextLintCore();
                 textlint.setupRules({
                     "rule-name": exampleRule
                 }, {
@@ -68,7 +68,7 @@ describe("textlint-core", function () {
         });
         context("when not set ruleConfig.severity", function () {
             it("message.severity should be error", function () {
-                var textlint = new TextLintCore();
+                const textlint = new TextLintCore();
                 textlint.setupRules({
                     "rule-name": exampleRule
                 }, {
@@ -84,7 +84,7 @@ describe("textlint-core", function () {
                 });
             });
             it("message.severity should be error", function () {
-                var textlint = new TextLintCore();
+                const textlint = new TextLintCore();
                 textlint.setupRules({
                     "rule-name": exampleRule
                 }, {
@@ -102,7 +102,7 @@ describe("textlint-core", function () {
         });
         context("when set wrong ruleConfig.severity", function () {
             it("should throw error", function () {
-                var textlint = new TextLintCore();
+                const textlint = new TextLintCore();
                 textlint.setupRules({
                     "rule-name": exampleRule
                 }, {
@@ -121,8 +121,8 @@ describe("textlint-core", function () {
         });
     });
     describe("#resetRules", function () {
-        xit("should reset filterRules", function () {
-            var textlint = new TextLintCore();
+        it("should reset filterRules", function () {
+            const textlint = new TextLintCore();
             textlint.setupFilterRules({
                 "rule-name": exampleRule
             });
@@ -131,7 +131,7 @@ describe("textlint-core", function () {
             assert(textlint.filterRuleCreatorSet.ruleNames.length === 0);
         });
         it("should reset rules", function () {
-            var textlint = new TextLintCore();
+            const textlint = new TextLintCore();
             textlint.setupRules({
                 "rule-name": exampleRule
             });

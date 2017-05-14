@@ -9,5 +9,9 @@
         "power-assert"
       ]
     }
-  }
+  },
+  "ignore":[
+    "lib",
+    "node_modules"
+  ]
 }

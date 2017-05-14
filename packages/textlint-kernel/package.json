@@ -13,6 +13,7 @@
   "version": "1.0.0",
   "description": "textlint kernel is core logic by pure JavaScript.",
   "main": "lib/textlint-kernel.js",
+  "typings": "lib/textlint-kernel.d.ts",
   "scripts": {
     "test": "mocha test/",
     "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps --copy-files",

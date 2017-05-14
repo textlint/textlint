@@ -20,41 +20,35 @@ export default class PluginCreatorSet {
          * available rule object
          * @type {Object}
          */
-        this.pluginConstructors = getPlugins(this.rawPlugins);
+        this.plugins = getPlugins(this.rawPlugins);
         /**
          * rule key names
          * @type {Array}
          */
-        this.pluginNames = Object.keys(this.pluginConstructors);
+        this.pluginNames = Object.keys(this.rawPlugins);
     }
 
     get availableExtensions() {
-        return this.pluginConstructors.reduce((extensions, processor) => {
+        return this.plugins.reduce((extensions, plugin) => {
             // static availableExtensions() method
-            assert.ok(typeof processor.availableExtensions === "function",
-                `Processor(${processor.name} should have availableExtensions()`);
-            const extList = processor.availableExtensions();
+            assert.ok(typeof plugin.Processor.availableExtensions === "function",
+                `Processor(${plugin.Processor.name} should have availableExtensions()`);
+            const extList = plugin.Processor.availableExtensions();
             return extensions.concat(extList);
         }, []);
     }
 
     /**
-     *
-     * @param {string} ext
-     * @returns {*|undefined}
+     * Convert this to TextlintKernel rules format
+     * @returns {Array}
      */
-    findPluginWithExt(ext) {
-        const matchProcessors = this.pluginConstructors.filter(processor => {
-            // static availableExtensions() method
-            assert.ok(typeof processor.constructor.availableExtensions === "function",
-                `Processor(${processor.constructor.name} should have availableExtensions()`);
-            const extList = processor.constructor.availableExtensions();
-            return extList.some(targetExt => targetExt === ext || ("." + targetExt) === ext);
+    toKernelPluginsFormat() {
+        return this.pluginNames.map(pluginName => {
+            return {
+                pluginId: pluginName,
+                plugin: this.rawPlugins[pluginName]
+            };
         });
-        if (matchProcessors.length === 0) {
-            return;
-        }
-        return matchProcessors[0];
     }
 
 }
