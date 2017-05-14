@@ -5,6 +5,7 @@
  textlint.js is a singleton object that is instance of textlint-core.js.
  */
 const path = require("path");
+const ObjectAssign = require("object-assign");
 import { TextlintKernel } from "../../textlint-kernel/src/textlint-kernel";
 import { readFile } from "./util/fs-promise";
 import { Processor as MarkdownProcessor } from "textlint-plugin-markdown";
@@ -148,7 +149,7 @@ export default class TextlintCore {
      * @private
      */
     _mergeSetupOptions(options) {
-        return Object.assign({}, options, {
+        return ObjectAssign({}, options, {
             plugins: this.pluginCreatorSet.pluginConstructors,
             rules: this.ruleCreatorSet.toKernelRulesFormat(),
             filterRules: this.filterRuleCreatorSet.toKernelRulesFormat(),

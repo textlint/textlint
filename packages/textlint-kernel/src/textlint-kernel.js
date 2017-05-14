@@ -2,8 +2,6 @@
 "use strict";
 const assert = require("assert");
 import SourceCode from "./core/source-code";
-import PluginCreatorSet from "./core/plugin-creator-set";
-import RuleCreatorSet from "./core/rule-creator-set";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
 // parallel
@@ -18,7 +16,7 @@ import sortMessageProcess from "./messages/sort-messages-process";
 /**
  * @param {TextlintKernelPlugin[]} plugins
  * @param {string} ext
- * @returns {Function|undefined} PluginConstructor
+ * @returns {TextlintKernelPlugin|undefined} PluginConstructor
  */
 function findPluginWithExt(plugins = [], ext) {
     const matchProcessors = plugins.filter(pluginConstructor => {
@@ -63,9 +61,6 @@ export class TextlintKernel {
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;
-        this.pluginCreatorSet = new PluginCreatorSet();
-        this.ruleCreatorSet = new RuleCreatorSet();
-        this.filterRuleCreatorSet = new RuleCreatorSet();
         // Initialize Message Processor
         // Now, It it built-in process only
         this.messageProcessManager = new MessageProcessManager();
@@ -77,39 +72,6 @@ export class TextlintKernel {
         this.messageProcessManager.add(filterSeverityProcess(this.config));
         this.messageProcessManager.add(sortMessageProcess);
     }
-
-    /**
-     * Register Processors plugins
-     */
-    setupPlugins(pluginConstructors = []) {
-        this.plugins = pluginConstructors.map(PluginConstructor => {
-            return new PluginConstructor(this.config);
-        });
-    }
-
-    /**
-     * Register rules and rulesConfig.
-     * if want to release rules, please call {@link resetRules}.
-     * @param {TextlintKernelRule[]} [rules] rule objects array
-     */
-    setupRules(rules = []) {
-        this.rules = rules;
-    }
-
-    /**
-     * @param {TextlintKernelFilterRule[]} [filterRules] rule objects array
-     */
-    setupFilterRules(filterRules = []) {
-        this.filterRules = filterRules;
-    }
-
-    /**
-     * Remove all registered rule and clear messages.
-     */
-    reset() {
-        // FIXME: remove
-    }
-
 
     /**
      * lint text by registered rules.

@@ -48,6 +48,7 @@
     "debug": "^2.6.6",
     "deep-equal": "^1.0.1",
     "map-like": "^1.1.2",
+    "object-assign": "^4.1.1",
     "structured-source": "^3.0.2",
     "txt-ast-traverse": "^1.2.1"
   }
