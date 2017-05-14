@@ -6,7 +6,7 @@
  */
 const path = require("path");
 const ObjectAssign = require("object-assign");
-import { TextlintKernel } from "../../textlint-kernel/src/textlint-kernel";
+import { TextlintKernel } from "@textlint/kernel";
 import { readFile } from "./util/fs-promise";
 import { Processor as MarkdownProcessor } from "textlint-plugin-markdown";
 import { Processor as TextProcessor } from "textlint-plugin-text";

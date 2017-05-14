@@ -8,15 +8,16 @@
 title: Architecture
 CLI->Engine: file*s*
 Engine->Core: file
-Core->Task: AST
-Task->Task: Lint
-Task-->Core: Message
+Core->Kernel: text
+Kernel->Kernel: Linting text
+Kernel-->Core: Message
 Core-->Engine: Results
 Engine-->CLI: output
 ```
 
 - CLI know Engine
 - Engine know Core
+- Core know [kernel](https://github.com/textlint/textlint/tree/master/packages/textlint-kernel/)
 
 textlint apply [Separation of Concern](http://weblogs.asp.net/arturtrosin/separation-of-concern-vs-single-responsibility-principle-soc-vs-srp "Separation of Concern").
 
@@ -80,15 +81,6 @@ To be clear about difference of linter and fixer.
 - Do linting to the AST
 - Create fixable messages from the result
 - Could handle a single files
-
-## Shared
-
-These are shared between config and engine and core.
-
-- type
-- util function
-
-
 
 ## Terms
 
