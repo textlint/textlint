@@ -10,7 +10,7 @@
     "src/"
   ],
   "name": "@textlint/kernel",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "textlint kernel is core logic by pure JavaScript.",
   "main": "lib/textlint-kernel.js",
   "typings": "lib/textlint-kernel.d.ts",
