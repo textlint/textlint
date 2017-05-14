@@ -1,0 +1,12 @@
+[submodule "JavaScript-Plugin-Architecture"]
+	path = test/integration-test/JavaScript-Plugin-Architecture
+	url = https://github.com/azu/JavaScript-Plugin-Architecture.git
+[submodule "gitbook-starter-kit"]
+	path = test/integration-test/gitbook-starter-kit
+	url = https://github.com/azu/gitbook-starter-kit.git
+[submodule "scala_text"]
+	path = test/integration-test/scala_text
+	url = https://github.com/dwango/scala_text.git
+[submodule "magi-hacker"]
+	path = test/integration-test/magi-hacker
+	url = https://github.com/io-monad/magi-hacker.git

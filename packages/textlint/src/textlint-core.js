@@ -33,6 +33,16 @@ export default class TextlintCore {
     }
 
     /**
+     * @param Processor
+     * @deprecated
+     */
+    addProcessor(Processor) {
+        this.pluginCreatorSet.plugins.unshift({
+            Processor
+        });
+    }
+
+    /**
      * register Processors
      * @param {Object} plugins
      */
