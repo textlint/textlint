@@ -5,6 +5,7 @@ import textlint from "./textlint";
 import TextLintEngine from "./textlint-engine";
 import TextFixEngine from "./textfix-engine";
 import TextLintCore from "./textlint-core";
+// FIXME: will be removed
 import MessageType from "./shared/type/MessageType";
 import SeverityLevel from "./shared/type/SeverityLevel";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
