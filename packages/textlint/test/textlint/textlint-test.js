@@ -4,9 +4,9 @@ const assert = require("power-assert");
 const path = require("path");
 const deepClone = require("clone");
 import {textlint} from "../../src/";
+import { assertRuleContext } from "./assert-rule-context";
 import {loadFromDir} from "../../src/engine/rule-loader";
 import Config from "../../src/config/config";
-import RuleContext from "../../src/core/rule-context";
 const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
 describe("textlint-test", function () {
     beforeEach(function () {
@@ -20,7 +20,7 @@ describe("textlint-test", function () {
         context("when pass only rules object", function () {
             it("should pass RuleContext instance to Rule function", function () {
                 const rule = function (context, config) {
-                    assert(context instanceof RuleContext);
+                    assertRuleContext(context);
                     assert.strictEqual(context.id, "rule-name");
                     assert.strictEqual(config, undefined);
                     return {};
@@ -36,7 +36,7 @@ describe("textlint-test", function () {
                     "key": "value"
                 };
                 const rule = function (context, config) {
-                    assert(context instanceof RuleContext);
+                    assertRuleContext(context);
                     assert.equal(context.id, "rule-name");
                     assert.deepEqual(config, ruleConfig);
                     return {};
@@ -55,7 +55,7 @@ describe("textlint-test", function () {
                     configFile: configFile
                 });
                 const rule = (context, config) => {
-                    assert(context instanceof RuleContext);
+                    assertRuleContext(context);
                     assert(context.config instanceof Config);
                     assert.equal(context.config.configFile, configFile);
                     return {};

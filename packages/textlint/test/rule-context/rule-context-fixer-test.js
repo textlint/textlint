@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import {TextLintCore} from "../../src/index";
-import RuleContext from "../../src/core/rule-context";
 import assert from "power-assert";
+import { assertRuleContext } from "./assert-rule-context";
 describe("Fixer Rule", function () {
     // FIXME: context instanceof
     xit("should context and receive options", function () {
@@ -13,7 +13,7 @@ describe("Fixer Rule", function () {
             on: true
         };
         const assertReporter = (context, options) => {
-            assert(context instanceof RuleContext);
+            assertRuleContext(context);
             assert.deepEqual(options, expectedOptions);
             return {};
         };
