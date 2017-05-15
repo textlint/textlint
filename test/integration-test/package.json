@@ -31,12 +31,12 @@
     "test": "test"
   },
   "devDependencies": {
-    "shelljs": "^0.7.7",
     "json5": "^0.5.1",
+    "shelljs": "^0.7.7",
     "textlint": "^8.0.0",
     "textlintrc-to-pacakge-list": "^1.2.0"
   },
   "dependencies": {
-
+    "semver": "^5.3.0"
   }
 }
