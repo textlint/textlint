@@ -4,5 +4,5 @@ node_js:
 - "stable"
 - "4"
 script:
-  - npm run prepare
-  - npm run test:all
+  - yarn run prepare
+  - yarn run test:all

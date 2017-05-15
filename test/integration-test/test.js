@@ -1,15 +1,15 @@
 const runLint = require("./run_lint");
 const testList = [
     {
-        name: "webpack-book",
-        path: "manuscript/"
-    },
-    {
         name: "JavaScript-Plugin-Architecture",
         path: "ja/"
     }, {
         name: "gitbook-starter-kit",
         path: "ja/"
+    },
+    {
+        name: "webpack-book",
+        path: "manuscript/"
     },
     {
         name: "scala_text",
