@@ -13,10 +13,10 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     const projectDirPath = path.resolve(currentDir, projectDirName);
     const textlintBin = path.join(__dirname, "node_modules", ".bin", "textlint");
 
-    function echo(...args) {
+    function echo(log) {
         const blue = "\u001b[34m";
         const reset = "\u001b[0m";
-        console.log(blue, ...args, reset);
+        console.log(blue, log, reset);
     }
 
     function mapRuleWithVersion(pkg, packageList) {
