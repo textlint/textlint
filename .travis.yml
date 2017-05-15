@@ -2,13 +2,13 @@ sudo: false
 language: node_js
 matrix:
   include:
-  - TEST_TYPE="unit"
+  - env: TEST_TYPE="unit"
     node_js: "4"
-  - TEST_TYPE="unit"
+  - env: TEST_TYPE="unit"
     node_js: "stable"
-  - TEST_TYPE="e2e"
+  - env: TEST_TYPE="e2e"
     node_js: "4"
-  - TEST_TYPE="e2e"
+  - env: TEST_TYPE="e2e"
     node_js: "stable"
 
 script:
