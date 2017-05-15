@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "textlint-integration-test",
+  "name": "integration-test",
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"

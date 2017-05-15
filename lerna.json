@@ -7,16 +7,10 @@
   "commands": {
     "publish": {
       "ignore": [
+        "integration-test",
         "**/yarn.lock"
       ]
     }
-  },
-  "changelog": {
-    "repo": "textlint/textlint",
-    "labels": {
-      "bug": "Bug fix"
-    },
-    "cacheDir": ".changelog"
   },
   "version": "independent",
   "npmClient": "yarn"
