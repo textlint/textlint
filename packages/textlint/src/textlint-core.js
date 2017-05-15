@@ -43,6 +43,8 @@ export default class TextlintCore {
      *
      * @param {*} Processor
      * @deprecated
+     *
+     * It will be removed
      */
     addProcessor(Processor) {
         this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, {

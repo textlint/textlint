@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "name": "textlint-integration-test",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/textlint/textlint",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/textlint/testbot/issues"
+  },
+  "files": [
+    "src/",
+    "lib/",
+    "run_lint.js",
+    "test.js"
+  ],
+  "version": "1.0.0",
+  "description": "textlint testbot sandbox.",
+  "main": "./run_test.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "textlint"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "shelljs": "^0.7.7",
+    "json5": "^0.5.1",
+    "textlint": "^8.0.0",
+    "textlintrc-to-pacakge-list": "^1.2.0"
+  },
+  "dependencies": {
+
+  }
+}
