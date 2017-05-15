@@ -19,7 +19,8 @@ const testList = [
     },
     {
         name: "magi-hacker",
-        path: "chapter-01/ chapter-02/ chapter-03/ chapter-04/ chapter-05/"
+        path: "chapter-01/ chapter-02/ chapter-03/ chapter-04/ chapter-05/",
+        version: "6.0.0"
     }
 ].filter(testTarget => {
     const version = process.version;
