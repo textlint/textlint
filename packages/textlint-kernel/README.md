@@ -2,6 +2,10 @@
 
 textlint kernel is core logic by pure JavaScript.
 
+This module is low layer of textlint.
+
+No plugin, No rule, No filter rule by default.
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
@@ -10,7 +14,30 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+```js
+import TextlintKernel from "@textlint/kernel";
+const kernel = new TextlintKernel();
+const options = {
+    filePath: "/path/to/file.md",
+    ext: ".md",
+    plugins: [
+        {
+            pluginId: "markdown",
+            plugin: require("textlint-plugin-markdown")
+        }
+    ],
+    rules: [
+        {
+            ruleId: "no-todo",
+            rule: require("textlint-rule-no-todo")
+        }
+    ]
+};
+kernel.lintText("TODO: text", options).then(result => {
+    assert.ok(typeof result.filePath === "string");
+    assert.ok(result.messages.length === 1);
+});
+```
 
 ## Changelog
 

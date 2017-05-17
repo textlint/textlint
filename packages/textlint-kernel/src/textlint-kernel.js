@@ -1,6 +1,9 @@
 // MIT © 2017 azu
 "use strict";
 const assert = require("assert");
+const Ajv = require("ajv");
+const ajv = new Ajv();
+const TextlintKernelOptionsSchema = require("./TextlintKernelOptions.json");
 import SourceCode from "./core/source-code";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
@@ -59,6 +62,10 @@ at ${fileName}`;
  *
  */
 export class TextlintKernel {
+    /**
+     * TODO: THIS
+     * @param config
+     */
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;
@@ -78,10 +85,17 @@ export class TextlintKernel {
      * lint text by registered rules.
      * The result contains target filePath and error messages.
      * @param {string} text
-     * @param {TextlintKernelOptions} options linting options
+     * @param {Object} options linting options
      * @returns {Promise.<TextLintResult>}
      */
     lintText(text, options) {
+        const valid = ajv.validate(TextlintKernelOptionsSchema, options);
+        if (!valid) {
+            return Promise.reject(new Error(`options is invalid. Please check document.
+Errors: ${JSON.stringify(ajv.errors, null, 4)}
+Actual: ${JSON.stringify(options, null, 4)}
+`));
+        }
         const ext = options.ext;
         const plugin = findPluginWithExt(options.plugins, ext);
         assert(plugin !== undefined && plugin.plugin !== undefined, `Not found available plugin for ${ ext }`);
@@ -96,10 +110,17 @@ export class TextlintKernel {
     /**
      * fix texts and return fix result object
      * @param {string} text
-     * @param {TextlintKernelOptions} options lint options
+     * @param {Object} options lint options
      * @returns {Promise.<TextLintFixResult>}
      */
     fixText(text, options) {
+        const valid = ajv.validate(TextlintKernelOptionsSchema, options);
+        if (!valid) {
+            return Promise.reject(new Error(`options is invalid. Please check document.
+Errors: ${JSON.stringify(ajv.errors, null, 4)}
+Actual: ${JSON.stringify(options, null, 4)}
+`));
+        }
         const ext = options.ext;
         const plugin = findPluginWithExt(options.plugins, ext);
         assert(plugin !== undefined, `Not found available plugin for ${ ext }`);
@@ -119,7 +140,7 @@ export class TextlintKernel {
      * In other word, parallel flow process.
      * @param {*} processor
      * @param {string} text
-     * @param {TextlintKernelOptions} options
+     * @param {Object} options
      * @returns {Promise.<TextLintResult>}
      * @private
      */

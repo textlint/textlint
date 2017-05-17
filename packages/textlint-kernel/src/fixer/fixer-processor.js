@@ -21,13 +21,13 @@ export default class FixerProcessor {
     /**
      * Run fixer process
      * @param {Config} config
-     * @param {TextlintKernelRule[]} rules
-     * @param {TextlintKernelFilterRule[]} filterRules
+     * @param {TextlintKernelRule[]} [rules]
+     * @param {TextlintKernelFilterRule[]} [filterRules]
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintFixResult>}
      */
-    process({ config, rules, filterRules, sourceCode }) {
-        assert(config && rules && sourceCode);
+    process({ config, rules = [], filterRules = [], sourceCode }) {
+        assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
         let resultFilePath = sourceCode.filePath;

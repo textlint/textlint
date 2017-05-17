@@ -2,9 +2,7 @@ export interface TextlintKernelPlugin {
     // plugin name as key
     pluginId: string;
     // plugin processor instance
-    plugin: Object | {
-        Processor: Object
-    };
+    plugin: any;
     // plugin options
     // TODO: It is not implemented
     // options: Object | boolean;
@@ -14,20 +12,20 @@ export interface TextlintKernelRule {
     // rule name as key
     ruleId: string;
     // rule module instance
-    rule: Function | Object;
+    rule: any;
     // rule options
     // Often rule option is written in .textlintrc
-    options?: Object | boolean;
+    options?: any | boolean;
 }
 
 export interface TextlintKernelFilterRule {
     // filter rule name as key
     ruleId: string;
     // filter rule module instance
-    rule: Function | Object;
+    rule: any;
     // filter rule options
     // Often rule option is written in .textlintrc
-    options?: Object | boolean;
+    options?: any | boolean;
 }
 
 export interface TextlintKernelOptions {
@@ -96,7 +94,7 @@ export interface TextLintFixResult {
 
 // entry
 export class TextlintKernel {
-    constructor(config: Object);
+    constructor(config?: Object);
 
     lintText(text: string, options: TextlintKernelOptions): Promise<TextLintResult>;
 
