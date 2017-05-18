@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/textlint/textlint/compare/textlint-plugin-markdown@2.0.2...textlint-plugin-markdown@2.0.3) (2017-05-18)
+
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/textlint/textlint/compare/textlint-plugin-markdown@2.0.1...textlint-plugin-markdown@2.0.2) (2017-05-11)
 
