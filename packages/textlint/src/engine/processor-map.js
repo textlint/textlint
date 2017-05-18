@@ -4,7 +4,7 @@ const MapLike = require("map-like");
 /**
  * Processor Map object
  */
-export default class ProcessorMap extends MapLike {
+export default class PluginMap extends MapLike {
     toJSON() {
         const object = {};
         this.forEach((value, key) => {

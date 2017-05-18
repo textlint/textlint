@@ -1,8 +1,19 @@
 sudo: false
 language: node_js
-node_js:
-- "stable"
-- "4"
+cache: yarn
+matrix:
+  include:
+  - env: TEST_TYPE="unit"
+    node_js: "4"
+  - env: TEST_TYPE="unit"
+    node_js: "stable"
+  - env: TEST_TYPE="e2e"
+    node_js: "4"
+  - env: TEST_TYPE="e2e"
+    node_js: "stable"
+
 script:
-  - npm run prepare
-  - npm run test:all
+  - yarn run prepare
+  - if [[ "$TEST_TYPE" == "unit" ]]; then yarn test; fi
+  - if [[ "$TEST_TYPE" == "unit" ]]; then yarn run example; fi
+  - if [[ "$TEST_TYPE" == "e2e" ]]; then yarn run test:integration; fi

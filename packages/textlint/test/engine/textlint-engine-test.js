@@ -85,7 +85,7 @@ describe("textlint-engine-test", function () {
                 const engine = new TextLintEngine({
                     plugins: ["html"]
                 });
-                const processorList = engine.processorMap;
+                const processorList = engine.pluginMap;
                 assert(processorList.keys().length > 0);
                 assert(processorList.values().length > 0);
             });

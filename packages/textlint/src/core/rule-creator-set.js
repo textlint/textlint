@@ -2,7 +2,8 @@
 "use strict";
 const deepEqual = require("deep-equal");
 const MapLike = require("map-like");
-import {assertRuleShape, hasFixer} from "./rule-creator-helper";
+import { assertRuleShape, hasFixer } from "./rule-creator-helper";
+
 const filterByAvailable = (rules, rulesConfig) => {
     const resultRules = Object.create(null);
     Object.keys(rules).forEach(key => {
@@ -47,6 +48,20 @@ export default class RuleCreatorSet {
     }
 
     /**
+     * Convert this to TextlintKernel rules format
+     * @returns {Array}
+     */
+    toKernelRulesFormat() {
+        return this.withoutDuplicated().ruleNames.map(ruleName => {
+            return {
+                ruleId: ruleName,
+                rule: this.rules[ruleName],
+                options: this.rulesConfig[ruleName]
+            };
+        });
+    }
+
+    /**
      * filter duplicated rules and rulesConfig and return new RuleCreatorSet.
      * @return {RuleCreatorSet}
      */
@@ -65,7 +80,7 @@ export default class RuleCreatorSet {
             const savedConfigList = addedRuleMap.has(rule) ? addedRuleMap.get(rule) : [];
             // same ruleCreator and ruleConfig
             const hasSameConfig = savedConfigList.some(savedConfig => {
-                return deepEqual(savedConfig, ruleConfig, {strict: true});
+                return deepEqual(savedConfig, ruleConfig, { strict: true });
             });
             if (hasSameConfig) {
                 return false;
@@ -106,8 +121,8 @@ export default class RuleCreatorSet {
 
     mapFixer(mapHandler) {
         return this.getFixerNames().map(ruleName => {
-            const rules = {[ruleName]: this.rules[ruleName]};
-            const rulesConfig = {[ruleName]: this.rulesConfig[ruleName]};
+            const rules = { [ruleName]: this.rules[ruleName] };
+            const rulesConfig = { [ruleName]: this.rulesConfig[ruleName] };
             return mapHandler(new RuleCreatorSet(rules, rulesConfig));
         });
     }

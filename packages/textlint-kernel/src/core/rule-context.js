@@ -17,13 +17,13 @@ import {getSeverity} from "../shared/rule-severity";
  * @param {SourceCode} sourceCode
  * @param {ReportCallback} report
  * @param {Config} textLintConfig
- * @param {Object|boolean} ruleConfig
+ * @param {Object|boolean} ruleOptions
  * @constructor
  */
-export default function RuleContext({ruleId, sourceCode, report, textLintConfig, ruleConfig}) {
+export default function RuleContext({ruleId, sourceCode, report, textLintConfig, ruleOptions}) {
     Object.defineProperty(this, "id", {value: ruleId});
     Object.defineProperty(this, "config", {value: textLintConfig});
-    const severity = getSeverity(ruleConfig);
+    const severity = getSeverity(ruleOptions);
 
     /**
      * report function that is called in a rule

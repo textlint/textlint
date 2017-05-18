@@ -1,5 +1,10 @@
 # test architecture
 
+## TODO
+
+- This tests contains `textlint` and `textlint-kernel` test
+- We should separate theses as possible.
+
 ## Purpose
 
 ### Each Test is separated by directory

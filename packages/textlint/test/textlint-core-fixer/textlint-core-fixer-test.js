@@ -2,6 +2,7 @@
 "use strict";
 const assert = require("power-assert");
 const path = require("path");
+import fs from "fs";
 import TextLintCore from "../../src/textlint-core";
 import ruleAdd from "./fixtures/fixer-rules/fixer-rule-add";
 import ruleReplace from "./fixtures/fixer-rules/fixer-rule-replace";
@@ -9,10 +10,6 @@ import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";
 const inputFilePath = path.join(__dirname, "/fixtures/fixer-rules/input.md");
 const outputFilePath = path.join(__dirname, "/fixtures/fixer-rules/output.md");
 
-import fs from "fs";
-import {parse} from "markdown-to-ast";
-import SourceCodeFixer from "../../src/fixer/source-code-fixer";
-import SourceCode from "../../src/core/source-code";
 describe("textlint-fixer", function () {
     context("#fixText", function () {
         it("should return text added and replaced", function () {
@@ -48,28 +45,6 @@ describe("textlint-fixer", function () {
                 assert.equal(result.applyingMessages.length, Object.keys(rules).length);
                 assert.equal(result.remainingMessages.length, 0);
                 assert.equal(result.output, expectedOutput);
-            });
-        });
-    });
-    context("reproduce from applyingMessages", function () {
-        it("should return text added and replaced", function () {
-            const textlint = new TextLintCore();
-            textlint.setupRules({
-                "fixer-rule-add": ruleAdd,
-                "fixer-rule-replace": ruleReplace,
-                "fixer-rule-remove": ruleRemove
-            });
-            const text = fs.readFileSync(inputFilePath, "utf-8");
-            const sourceCode = new SourceCode({
-                text,
-                ast: parse(text),
-                ext: ".md",
-                filePath: inputFilePath
-            });
-            return textlint.fixFile(inputFilePath).then(result => {
-                const reResult = SourceCodeFixer.sequentiallyApplyFixes(sourceCode, result.messages);
-                assert(reResult.fixed);
-                assert.equal(reResult, result.output);
             });
         });
     });

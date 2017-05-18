@@ -1,0 +1,67 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {
+        "TextlintKernelFilterRule": {
+            "properties": {
+                "options": {
+                },
+                "rule": {
+                },
+                "ruleId": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TextlintKernelPlugin": {
+            "properties": {
+                "plugin": {
+                },
+                "pluginId": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TextlintKernelRule": {
+            "properties": {
+                "options": {
+                },
+                "rule": {
+                },
+                "ruleId": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "ext": {
+            "type": "string"
+        },
+        "filePath": {
+            "type": "string"
+        },
+        "filterRules": {
+            "items": {
+                "$ref": "#/definitions/TextlintKernelFilterRule"
+            },
+            "type": "array"
+        },
+        "plugins": {
+            "items": {
+                "$ref": "#/definitions/TextlintKernelPlugin"
+            },
+            "type": "array"
+        },
+        "rules": {
+            "items": {
+                "$ref": "#/definitions/TextlintKernelRule"
+            },
+            "type": "array"
+        }
+    },
+    "type": "object"
+}
+

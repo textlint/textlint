@@ -1,21 +1,16 @@
 {
   "lerna": "2.0.0-rc.4",
   "packages": [
-    "packages/*"
+    "packages/*",
+    "test/integration-test"
   ],
   "commands": {
     "publish": {
       "ignore": [
+        "integration-test",
         "**/yarn.lock"
       ]
     }
-  },
-  "changelog": {
-    "repo": "textlint/textlint",
-    "labels": {
-      "bug": "Bug fix"
-    },
-    "cacheDir": ".changelog"
   },
   "version": "independent",
   "npmClient": "yarn"

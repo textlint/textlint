@@ -5,7 +5,7 @@ const path = require("path");
 const debug = require("debug")("textlint:engine-core");
 import TextLintCore from "./../textlint-core";
 import RuleMap from "./rule-map";
-import ProcessorMap from "./processor-map";
+import PluginMap from "./processor-map";
 import Config from "../config/config";
 import {pathsToGlobPatterns, findFiles, separateByAvailability} from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
@@ -47,6 +47,7 @@ export default class TextLintEngineCore {
 
         /**
          * @type {TextLintCore}
+         * @private
          */
         this.textlint = new TextLintCore(this.config);
 
@@ -80,10 +81,10 @@ export default class TextLintEngineCore {
          */
         this.filterRuleMap = new RuleMap();
         /**
-         * @type {ProcessorMap}
+         * @type {PluginMap}
          * @private
          */
-        this.processorMap = new ProcessorMap();
+        this.pluginMap = new PluginMap();
         /**
          * @type {TextLintModuleLoader}
          * @private
@@ -95,8 +96,8 @@ export default class TextLintEngineCore {
         this.moduleLoader.on(TextLintModuleLoader.Event.filterRule, ([ruleName, ruleCreator]) => {
             this.filterRuleMap.defineRule(ruleName, ruleCreator);
         });
-        this.moduleLoader.on(TextLintModuleLoader.Event.processor, ([pluginName, Processor]) => {
-            this.processorMap.set(pluginName, Processor);
+        this.moduleLoader.on(TextLintModuleLoader.Event.plugin, ([pluginName, plugin]) => {
+            this.pluginMap.set(pluginName, plugin);
         });
         // load rule/plugin/processor
         this.moduleLoader.loadFromConfig(this.config);
@@ -169,14 +170,11 @@ new TextLintEngine({
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
         this.textlint.setupFilterRules(this.filterRuleMap.getAllRules(), textlintConfig.filterRulesConfig);
         // set Processor
-        this.textlint.setupProcessors(this.processorMap.toJSON());
+        this.textlint.setupPlugins(this.pluginMap.toJSON());
         // execute files that are filtered by availableExtensions.
         // TODO: it very hackable way, should be fixed
         // it is depend on textlintCore's state
-        this.availableExtensions = this.textlint.processors.reduce((availableExtensions, processor) => {
-            const Processor = processor.constructor;
-            return availableExtensions.concat(Processor.availableExtensions());
-        }, this.config.extensions);
+        this.availableExtensions = this.textlint.pluginCreatorSet.availableExtensions.concat(this.config.extensions);
 
     }
 

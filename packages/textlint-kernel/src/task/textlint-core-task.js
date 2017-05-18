@@ -2,10 +2,10 @@
 "use strict";
 const EventEmitter = require("events");
 const TraverseController = require("txt-ast-traverse").Controller;
-const PromiseEventEmitter = require("carrack");
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 const assert = require("assert");
+import { PromiseEventEmitter } from "./promise-event-emitter";
 import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
 import timing from "./../util/timing";
@@ -56,7 +56,7 @@ export default class TextLintCoreTask extends EventEmitter {
          * @param {ReportIgnoreMessage} reportedMessage
          */
         const reportFunction = (reportedMessage) => {
-            const {ruleId, range, optional} = reportedMessage;
+            const { ruleId, range, optional } = reportedMessage;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
             const message = {
@@ -86,10 +86,10 @@ export default class TextLintCoreTask extends EventEmitter {
          * @param {ReportMessage} reportedMessage
          */
         const reportFunction = (reportedMessage) => {
-            const {ruleId, severity, ruleError} = reportedMessage;
+            const { ruleId, severity, ruleError } = reportedMessage;
             debug("%s pushReport %s", ruleId, ruleError);
-            const {line, column, fix} = sourceLocation.adjust(reportedMessage);
-            const index = sourceCode.positionToIndex({line, column});
+            const { line, column, fix } = sourceLocation.adjust(reportedMessage);
+            const index = sourceCode.positionToIndex({ line, column });
             // add TextLintMessage
             const message = {
                 type: MessageType.lint,
@@ -129,7 +129,7 @@ export default class TextLintCoreTask extends EventEmitter {
         traverseController.traverse(sourceCode.ast, {
             enter(node, parent) {
                 const type = node.type;
-                Object.defineProperty(node, "parent", {value: parent});
+                Object.defineProperty(node, "parent", { value: parent });
                 if (listenerCount(type) > 0) {
                     const promise = ruleTypeEmitter.emit(type, node);
                     promiseQueue.push(promise);
@@ -154,13 +154,13 @@ export default class TextLintCoreTask extends EventEmitter {
      * try to get rule object
      * @param {Function} ruleCreator
      * @param {RuleContext|FilterRuleContext} ruleContext
-     * @param {Object|boolean} ruleConfig
+     * @param {Object|boolean} ruleOptions
      * @returns {Object}
      * @throws
      */
-    tryToGetRuleObject(ruleCreator, ruleContext, ruleConfig) {
+    tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions) {
         try {
-            return ruleCreator(ruleContext, ruleConfig);
+            return ruleCreator(ruleContext, ruleOptions);
         } catch (error) {
             error.message = `Error while loading rule '${ruleContext.id}': ${error.message}`;
             throw error;
@@ -171,11 +171,11 @@ export default class TextLintCoreTask extends EventEmitter {
      * add all the node types as listeners of the rule
      * @param {Function} ruleCreator
      * @param {RuleContext|FilterRuleContext} ruleContext
-     * @param {Object|boolean} ruleConfig
+     * @param {Object|boolean} ruleOptions
      * @returns {Object}
      */
-    tryToAddListenRule(ruleCreator, ruleContext, ruleConfig) {
-        const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleConfig);
+    tryToAddListenRule(ruleCreator, ruleContext, ruleOptions) {
+        const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions);
         Object.keys(ruleObject).forEach(nodeType => {
             this.ruleTypeEmitter.on(nodeType, timing.enabled
                 ? timing.time(ruleContext.id, ruleObject[nodeType])

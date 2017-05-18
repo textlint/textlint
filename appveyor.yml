@@ -9,15 +9,16 @@ install:
   # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node $env:nodejs_version
   # install modules
-  - npm install
-  - npm run prepare
+  - npm i -g yarn
+  - yarn
+  - yarn run prepare
 
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
   - node --version
-  - npm --version
-  - npm run test:all
+  - yarn test
+  - yarn run example
 
 # Don't actually build.
 build: off

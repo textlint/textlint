@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 import RuleFixer from "../../src/fixer/rule-fixer";
 // Original: https://github.com/eslint/eslint/blob/master/tests/lib/util/rule-fixer.js
 describe("RuleFixer", function() {

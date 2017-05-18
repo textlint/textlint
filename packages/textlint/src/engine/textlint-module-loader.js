@@ -14,7 +14,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         return {
             rule: "rule",
             filterRule: "filterRule",
-            processor: "preset",
+            plugin: "plugin",
             error: "error"
         };
     }
@@ -99,9 +99,11 @@ export default class TextLintModuleLoader extends EventEmitter {
             });
         }
         // register plugin.Processor
+        // TODO: https://github.com/textlint/textlint/issues/291
+        // Should assert it
         if (plugin.hasOwnProperty("Processor")) {
-            const processorEntry = [pluginNameWithoutPrefix, plugin.Processor];
-            this.emit(TextLintModuleLoader.Event.processor, processorEntry);
+            const pluginEntry = [pluginNameWithoutPrefix, plugin];
+            this.emit(TextLintModuleLoader.Event.plugin, pluginEntry);
         }
     }
 

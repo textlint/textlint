@@ -3,6 +3,7 @@
 import assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
+
 export default class LinterProcessor {
     /**
      * @param {Processor} processor
@@ -16,20 +17,20 @@ export default class LinterProcessor {
     /**
      * Run linter process
      * @param {Config} config
-     * @param {RuleCreatorSet} ruleCreatorSet
-     * @param {RuleCreatorSet} filterRuleCreatorSet
+     * @param {TextlintKernelRule[]} [rules]
+     * @param {TextlintKernelFilterRule[]} [filterRules]
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintResult>}
      */
-    process({config, ruleCreatorSet, filterRuleCreatorSet, sourceCode}) {
-        assert(config && ruleCreatorSet && sourceCode);
-        const {preProcess, postProcess} = this.processor.processor(sourceCode.ext);
+    process({ config, rules = [], filterRules = [], sourceCode }) {
+        assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
+        const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             "processor should implement {preProcess, postProcess}");
         const task = new LinterTask({
             config,
-            ruleCreatorSet,
-            filterRuleCreatorSet,
+            rules,
+            filterRules,
             sourceCode
         });
         return TaskRunner.process(task).then(messages => {
