@@ -40,6 +40,9 @@ export interface TextlintKernelOptions {
     rules?: TextlintKernelRule[];
     // filterRules
     filterRules?: TextlintKernelFilterRule[];
+    // config base directory
+    // It is a value of context.getConfigBaseDir.
+    configBaseDir?: string;
 }
 
 // "range" is replaced by "text"
