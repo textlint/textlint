@@ -149,7 +149,7 @@ Actual: ${JSON.stringify(options, null, 4)}
                          text,
                          options
                      }) {
-        const { ext, filePath, rules, filterRules } = options;
+        const { ext, filePath, rules, filterRules, configBaseDir } = options;
         const { preProcess, postProcess } = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
             "processor should implement {preProcess, postProcess}");
@@ -165,7 +165,8 @@ Actual: ${JSON.stringify(options, null, 4)}
             config: this.config,
             rules,
             filterRules,
-            sourceCode
+            sourceCode,
+            configBaseDir
         }).catch(error => {
             error.message = addingAtFileNameToError(filePath, error.message);
             return Promise.reject(error);
@@ -182,7 +183,7 @@ Actual: ${JSON.stringify(options, null, 4)}
      * @private
      */
     _sequenceProcess({ processor, text, options }) {
-        const { ext, filePath, rules, filterRules } = options;
+        const { ext, filePath, rules, filterRules, configBaseDir } = options;
         assert(processor, `processor is not found for ${ext}`);
         const { preProcess, postProcess } = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
@@ -199,7 +200,8 @@ Actual: ${JSON.stringify(options, null, 4)}
             config: this.config,
             rules,
             filterRules,
-            sourceCode
+            sourceCode,
+            configBaseDir
         }).catch(error => {
             error.message = addingAtFileNameToError(filePath, error.message);
             return Promise.reject(error);

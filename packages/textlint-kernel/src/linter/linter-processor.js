@@ -17,12 +17,13 @@ export default class LinterProcessor {
     /**
      * Run linter process
      * @param {Config} config
+     * @param {string} [configBaseDir
      * @param {TextlintKernelRule[]} [rules]
      * @param {TextlintKernelFilterRule[]} [filterRules]
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintResult>}
      */
-    process({ config, rules = [], filterRules = [], sourceCode }) {
+    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }) {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
@@ -31,7 +32,8 @@ export default class LinterProcessor {
             config,
             rules,
             filterRules,
-            sourceCode
+            sourceCode,
+            configBaseDir
         });
         return TaskRunner.process(task).then(messages => {
             const result = postProcess(messages, sourceCode.filePath);

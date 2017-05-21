@@ -37,6 +37,9 @@
         }
     },
     "properties": {
+        "configBaseDir": {
+            "type": "string"
+        },
         "ext": {
             "type": "string"
         },

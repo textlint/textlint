@@ -26,6 +26,8 @@ export default class TextlintCore {
             markdown: markdownPlugin,
             text: textPlugin
         };
+        // TODO: remove `config`
+        // https://github.com/textlint/textlint/issues/296
         this.kernel = new TextlintKernel(config);
         this.pluginCreatorSet = new PluginCreatorSet(this.defaultPlugins);
         this.ruleCreatorSet = new RuleCreatorSet();
@@ -171,7 +173,11 @@ export default class TextlintCore {
      * @private
      */
     _mergeSetupOptions(options) {
+        const configFileBaseDir = typeof this.config.configFile === "string"
+            ? path.dirname(this.config.configFile)
+            : undefined;
         return ObjectAssign({}, options, {
+            configBaseDir: configFileBaseDir,
             plugins: this.pluginCreatorSet.toKernelPluginsFormat(),
             rules: this.ruleCreatorSet.toKernelRulesFormat(),
             filterRules: this.filterRuleCreatorSet.toKernelRulesFormat(),

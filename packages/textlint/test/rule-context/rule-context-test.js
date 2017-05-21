@@ -462,4 +462,41 @@ describe("rule-context-test", function() {
             });
         });
     });
+    describe("#getConfigBaseDir", function() {
+        context("when linting text", function() {
+            it("should return undefined", function() {
+                textlint.setupRules({
+                    "rule-key": function(context) {
+                        return {
+                            [context.Syntax.Document](){
+                                const baseDir = context.getConfigBaseDir();
+                                assert(baseDir === undefined);
+                            }
+                        };
+                    }
+                });
+                return textlint.lintMarkdown("test");
+            });
+        });
+        context("when pass config", function() {
+            it("should return undefined", function() {
+                const configBasedir = path.join(__dirname, "fixtures");
+                // TODO: it will be moved to kernel
+                const textlint = new TextLintCore({
+                    configFile: path.join(configBasedir, ".textlintrc")
+                });
+                textlint.setupRules({
+                    "rule-key": function(context) {
+                        return {
+                            [context.Syntax.Document](){
+                                const baseDir = context.getConfigBaseDir();
+                                assert(baseDir === configBasedir);
+                            }
+                        };
+                    }
+                });
+                return textlint.lintMarkdown("test");
+            });
+        });
+    });
 });

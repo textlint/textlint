@@ -9,13 +9,15 @@ const debug = require("debug")("textlint:TextLintCoreTask");
 export default class TextLintCoreTask extends CoreTask {
     /**
      * @param {Config} config
+     * @param {string} [configBaseDir]
      * @param {TextlintKernelRule[]} rules rules and config set
      * @param {TextlintKernelFilterRule[]} filterRules rules filter rules and config set
      * @param {SourceCode} sourceCode
      */
-    constructor({ config, rules, filterRules, sourceCode }) {
+    constructor({ config, configBaseDir, rules, filterRules, sourceCode }) {
         super();
         this.config = config;
+        this.configBaseDir = configBaseDir;
         this.rules = rules;
         this.filterRules = filterRules;
         this.sourceCode = sourceCode;
@@ -43,7 +45,8 @@ export default class TextLintCoreTask extends CoreTask {
                 sourceCode,
                 report,
                 ignoreReport,
-                textLintConfig
+                textLintConfig,
+                configBaseDir: this.configBaseDir
             });
             const ruleModule = getLinter(rule);
             this.tryToAddListenRule(ruleModule, ruleContext, options);
