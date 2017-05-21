@@ -104,7 +104,7 @@ RuleContext object has following property:
 - `getFilePath()` return file path that is linting target.
     - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
 - `getConfigBaseDir()` return config base directory path that is the place of `.textlintrc`
-    - e.g.) /path/to/dir/.textlintrc
+    - e.g.) `/path/to/dir/.textlintrc`
     - `getConfigBaseDir()` return `"/path/to/dir/"`.
 - `fixer` is creator of fix command.
     - See [How to create Fixable Rule?](./rule-fixer.md) for details
