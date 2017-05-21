@@ -180,9 +180,9 @@ class Config {
         // configFile is optional
         // => load .textlintrc
         const loadedResult = loadConfig(options.configFile, {
-                moduleResolver,
-                configFileName: this.CONFIG_FILE_NAME
-            }) || {};
+            moduleResolver,
+            configFileName: this.CONFIG_FILE_NAME
+        });
         const configFileRawOptions = loadedResult.config;
         const configFilePath = loadedResult.filePath;
         // "rules" field is here!
@@ -251,7 +251,9 @@ class Config {
          * - If not using config file, return undefined
          */
         this.configFile = options.configFile;
-        assert(this.configFile && path.isAbsolute(this.configFile), "configFile should be absolute path");
+        if (this.configFile) {
+            assert(path.isAbsolute(this.configFile), `configFile should be absolute path: ${this.configFile}`);
+        }
         this.rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
