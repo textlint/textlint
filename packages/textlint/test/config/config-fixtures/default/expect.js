@@ -9,6 +9,6 @@ module.exports = {
     "rulesConfig": {},
     "filterRulesConfig": {},
     "color": true,
-    "absolutePath": path.join(__dirname, ".textlintrc")
+    "configFile": path.join(__dirname, ".textlintrc")
 };
 

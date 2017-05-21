@@ -32,16 +32,16 @@ describe("config-initializer-test", function() {
             const configFile = path.join(configDir, ".textlintrc");
             return configInit.initializeConfig(configDir).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                const result = loadConfig(configFile, {
+                const { config } = loadConfig(configFile, {
                     configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
                     configFileName: Config.CONFIG_FILE_NAME
                 });
-                assert.equal(typeof result.filters, "object");
-                assert.equal(typeof result.rules, "object");
-                assert.deepEqual(result.filters, {
+                assert.equal(typeof config.filters, "object");
+                assert.equal(typeof config.rules, "object");
+                assert.deepEqual(config.filters, {
                     "comments": true
                 });
-                assert.deepEqual(result.rules, {
+                assert.deepEqual(config.rules, {
                     "eslint": true,
                     "prh": true,
                     "preset-ja-technical-writing": true
@@ -54,13 +54,13 @@ describe("config-initializer-test", function() {
             const configFile = path.join(configDir, ".textlintrc");
             return configInit.initializeConfig(configDir).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                const result = loadConfig(configFile, {
+                const { config } = loadConfig(configFile, {
                     configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
                     configFileName: Config.CONFIG_FILE_NAME
                 });
-                assert.equal(typeof result.filters, "object");
-                assert.equal(typeof result.rules, "object");
-                assert(Object.keys(result.rules).length === 0);
+                assert.equal(typeof config.filters, "object");
+                assert.equal(typeof config.rules, "object");
+                assert(Object.keys(config.rules).length === 0);
             });
         });
     });

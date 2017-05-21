@@ -179,10 +179,12 @@ class Config {
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
-        const configFileRawOptions = loadConfig(options.configFile, {
+        const loadedResult = loadConfig(options.configFile, {
                 moduleResolver,
                 configFileName: this.CONFIG_FILE_NAME
             }) || {};
+        const configFileRawOptions = loadedResult.config;
+        const configFilePath = loadedResult.filePath;
         // "rules" field is here!
         const configRulesObject = separateAvailableOrDisable(configFileRawOptions.rules);
         // "filters" field is here!
@@ -218,7 +220,8 @@ class Config {
             disabledFilterRules,
             filterRulesConfig,
             plugins,
-            presets
+            presets,
+            configFile: configFilePath
         });
         return new this(mergedOptions);
     }
@@ -242,7 +245,7 @@ class Config {
      * - If not using config file, return undefined
      */
     get absolutePath() {
-        return undefined;
+        return this.configFile;
     }
 
     /**

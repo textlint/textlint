@@ -7,5 +7,5 @@ module.exports = {
     "rulesConfig": {
         "@textlint/textlint-rule-preset-foo/a": true
     },
-    "absolutePath": path.join(__dirname, ".textlintrc")
+    "configFile": path.join(__dirname, ".textlintrc")
 };
