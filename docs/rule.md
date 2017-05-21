@@ -90,7 +90,7 @@ export default function (context) {
 - [textlint/txt-ast-traverse](https://github.com/textlint/txt-ast-traverse "textlint/txt-ast-traverse")
 - [estools/estraverse](https://github.com/estools/estraverse "estools/estraverse")
 
-## RuleContext
+## RuleContext API
 
 RuleContext object has following property:
 
@@ -103,6 +103,9 @@ RuleContext object has following property:
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath()` return file path that is linting target.
     - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
+- `getConfigBaseDir()` return config base directory path that is the place of `.textlintrc`
+    - e.g.) /path/to/dir/.textlintrc
+    - `getConfigBaseDir()` return `"/path/to/dir/"`.
 - `fixer` is creator of fix command.
     - See [How to create Fixable Rule?](./rule-fixer.md) for details
 
