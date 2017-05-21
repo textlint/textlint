@@ -57,7 +57,7 @@ describe("textlint-test", function () {
                 const rule = (context, config) => {
                     assertRuleContext(context);
                     assert(context.config instanceof Config);
-                    assert.equal(context.config.configFile, configFile);
+                    assert.equal(context.config.absolutePath, configFile);
                     return {};
                 };
                 textlint.setupRules({

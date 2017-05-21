@@ -8,8 +8,8 @@ const pkg = require("../../package.json");
 const concat = require("unique-concat");
 const path = require("path");
 import loadConfig from "./config-loader";
-import {isPresetRuleKey} from "../util/config-util";
-import {mapRulesConfig} from "./preset-loader";
+import { isPresetRuleKey } from "../util/config-util";
+import { mapRulesConfig } from "./preset-loader";
 import {
     loadRulesConfig as loadRulesConfigFromPlugins,
     loadAvailableExtensions
@@ -17,6 +17,7 @@ import {
 import loadRulesConfigFromPresets from "./preset-loader";
 import TextLintModuleResolver from "../engine/textlint-module-resolver";
 import separateAvailableOrDisable from "./separate-by-config-option";
+
 /**
  * Convert config of preset to rulesConfig flat path format.
  *
@@ -166,6 +167,7 @@ class Config {
     }
 
     /* eslint-disable complexity */
+
     // load config and merge options.
     static initWithAutoLoading(options = {}) {
         // Base directory
@@ -230,6 +232,17 @@ class Config {
         const version = pkg.version;
         const toString = JSON.stringify(this.toJSON());
         return md5(`${version}-${toString}`);
+    }
+
+    /**
+     * Return absolute path for config file.
+     *
+     * - If using .textlintrc, return path to .textlintrc
+     * - If using npm config module, return path to main file of the module
+     * - If not using config file, return undefined
+     */
+    get absolutePath() {
+        return undefined;
     }
 
     /**
@@ -351,4 +364,5 @@ class Config {
         return r;
     }
 }
+
 module.exports = Config;
