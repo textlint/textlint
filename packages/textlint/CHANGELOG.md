@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.2.1"></a>
+## [8.2.1](https://github.com/textlint/textlint/compare/textlint@8.2.0...textlint@8.2.1) (2017-05-21)
+
+
+### Bug Fixes
+
+* **textlint:** fix `config.configFile` is undefined at sometimes (#297) ([cd64560](https://github.com/textlint/textlint/commit/cd64560)), closes [#297](https://github.com/textlint/textlint/issues/297)
+
+
+
+
 <a name="8.2.0"></a>
 # [8.2.0](https://github.com/textlint/textlint/compare/textlint@8.1.0...textlint@8.2.0) (2017-05-21)
 
