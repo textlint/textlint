@@ -73,7 +73,7 @@ export default function RuleContext({ ruleId, sourceCode, report, textLintConfig
      * If not found the value, return undefined.
      *
      * You can use it for resolving relative path from config dir.
-     * @returns {string|null}
+     * @returns {string|undefined}
      */
     this.getConfigBaseDir = () => {
         return configBaseDir;

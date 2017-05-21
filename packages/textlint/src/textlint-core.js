@@ -26,6 +26,7 @@ export default class TextlintCore {
             markdown: markdownPlugin,
             text: textPlugin
         };
+        // TODO: remove `config`
         this.kernel = new TextlintKernel(config);
         this.pluginCreatorSet = new PluginCreatorSet(this.defaultPlugins);
         this.ruleCreatorSet = new RuleCreatorSet();
@@ -171,7 +172,9 @@ export default class TextlintCore {
      * @private
      */
     _mergeSetupOptions(options) {
+        const configFileBaseDir = this.config.configFile ? path.dirname(this.config.configFile) : undefined;
         return ObjectAssign({}, options, {
+            configBaseDir: configFileBaseDir,
             plugins: this.pluginCreatorSet.toKernelPluginsFormat(),
             rules: this.ruleCreatorSet.toKernelRulesFormat(),
             filterRules: this.filterRuleCreatorSet.toKernelRulesFormat(),

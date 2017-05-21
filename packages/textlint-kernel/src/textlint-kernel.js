@@ -4,7 +4,6 @@ const assert = require("assert");
 const Ajv = require("ajv");
 const ajv = new Ajv();
 const TextlintKernelOptionsSchema = require("./TextlintKernelOptions.json");
-var path = require("path");
 import SourceCode from "./core/source-code";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
@@ -161,15 +160,13 @@ Actual: ${JSON.stringify(options, null, 4)}
             ext,
             filePath
         });
-        const configFileBaseDir = this.config.configFile ? path.dirname(this.config.configFile) : null;
-        const absoluteConfigBaseDir = configBaseDir || configFileBaseDir;
         const linterProcessor = new LinterProcessor(processor, this.messageProcessManager);
         return linterProcessor.process({
             config: this.config,
             rules,
             filterRules,
             sourceCode,
-            configBaseDir: absoluteConfigBaseDir
+            configBaseDir
         }).catch(error => {
             error.message = addingAtFileNameToError(filePath, error.message);
             return Promise.reject(error);
@@ -198,15 +195,13 @@ Actual: ${JSON.stringify(options, null, 4)}
             ext,
             filePath
         });
-        const configFileBaseDir = this.config.configFile ? path.dirname(this.config.configFile) : null;
-        const absoluteConfigBaseDir = configBaseDir || configFileBaseDir;
         const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
         return fixerProcessor.process({
             config: this.config,
             rules,
             filterRules,
             sourceCode,
-            configBaseDir: absoluteConfigBaseDir
+            configBaseDir
         }).catch(error => {
             error.message = addingAtFileNameToError(filePath, error.message);
             return Promise.reject(error);

@@ -464,13 +464,13 @@ describe("rule-context-test", function() {
     });
     describe("#getConfigBaseDir", function() {
         context("when linting text", function() {
-            it("should return null", function() {
+            it("should return undefined", function() {
                 textlint.setupRules({
                     "rule-key": function(context) {
                         return {
                             [context.Syntax.Document](){
                                 const baseDir = context.getConfigBaseDir();
-                                assert(baseDir === null);
+                                assert(baseDir === undefined);
                             }
                         };
                     }
