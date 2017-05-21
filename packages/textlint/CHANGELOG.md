@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="8.2.0"></a>
+# [8.2.0](https://github.com/textlint/textlint/compare/textlint@8.1.0...textlint@8.2.0) (2017-05-21)
+
+
+### Features
+
+* **textlint-kernel:** add `configBaseDir` option (#295) ([85dad8a](https://github.com/textlint/textlint/commit/85dad8a))
+
+
+
+
 <a name="8.1.0"></a>
 # [8.1.0](https://github.com/textlint/textlint/compare/textlint@8.0.1...textlint@8.1.0) (2017-05-18)
 
