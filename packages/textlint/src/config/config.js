@@ -238,17 +238,6 @@ class Config {
     }
 
     /**
-     * Return absolute path for config file.
-     *
-     * - If using .textlintrc, return path to .textlintrc
-     * - If using npm config module, return path to main file of the module
-     * - If not using config file, return undefined
-     */
-    get absolutePath() {
-        return this.configFile;
-    }
-
-    /**
      * initialize with options.
      * @param {TextLintConfig} options the option object is defined as TextLintConfig.
      * @returns {Config}
@@ -256,9 +245,13 @@ class Config {
      */
     constructor(options = {}) {
         /**
-         * @type {string|null} path to .textlintrc file.
+         * @type {string|undefined} absolute path to .textlintrc file.
+         * - If using .textlintrc, return path to .textlintrc
+         * - If using npm config module, return path to main file of the module
+         * - If not using config file, return undefined
          */
         this.configFile = options.configFile;
+        assert(this.configFile && path.isAbsolute(this.configFile), "configFile should be absolute path");
         this.rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;

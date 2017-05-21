@@ -31,13 +31,13 @@ describe("config", function() {
                 const config = Config.initWithCLIOptions({
                     config: configFilePath
                 });
-                assert.equal(config.absolutePath, configFilePath);
+                assert.equal(config.configFile, configFilePath);
             });
         });
         context("when has not configFile", function() {
             it("should return undefined", function() {
                 const config = new Config();
-                assert(config.absolutePath === undefined);
+                assert(config.configFile === undefined);
             });
         });
         context("when pass config module", function() {
@@ -47,7 +47,7 @@ describe("config", function() {
                     configFile: "@textlint/textlint-config-example",
                     rulesBaseDirectory: baseDir
                 });
-                assert(config.absolutePath === path.join(baseDir, "@textlint/textlint-config-example", "index.js"));
+                assert(config.configFile === path.join(baseDir, "@textlint/textlint-config-example", "index.js"));
             });
         });
     });
