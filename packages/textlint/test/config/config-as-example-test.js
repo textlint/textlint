@@ -2,6 +2,7 @@
 "use strict";
 import assert from "power-assert";
 import glob from "glob";
+import fs from "fs";
 import path from "path";
 import Config from "../../src/config/config";
 /* load config from "./config/" and match expected result */
@@ -22,7 +23,9 @@ describe("config-as-example", function() {
                 console.error(`Fail: ${dirName}`);
                 throw error;
             }
-            const expect = require(path.join(projectDir, "expect.json"));
+            const expect = fs.existsSync(path.join(projectDir, "expect.json"))
+                ? require(path.join(projectDir, "expect.json"))
+                : require(path.join(projectDir, "expect.js"));
             const actual = config.toJSON();
             Object.keys(expect).forEach(key => {
                 assert.deepEqual(actual[key], expect[key]);

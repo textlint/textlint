@@ -8,8 +8,8 @@ const pkg = require("../../package.json");
 const concat = require("unique-concat");
 const path = require("path");
 import loadConfig from "./config-loader";
-import {isPresetRuleKey} from "../util/config-util";
-import {mapRulesConfig} from "./preset-loader";
+import { isPresetRuleKey } from "../util/config-util";
+import { mapRulesConfig } from "./preset-loader";
 import {
     loadRulesConfig as loadRulesConfigFromPlugins,
     loadAvailableExtensions
@@ -17,6 +17,7 @@ import {
 import loadRulesConfigFromPresets from "./preset-loader";
 import TextLintModuleResolver from "../engine/textlint-module-resolver";
 import separateAvailableOrDisable from "./separate-by-config-option";
+
 /**
  * Convert config of preset to rulesConfig flat path format.
  *
@@ -166,6 +167,7 @@ class Config {
     }
 
     /* eslint-disable complexity */
+
     // load config and merge options.
     static initWithAutoLoading(options = {}) {
         // Base directory
@@ -177,10 +179,12 @@ class Config {
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
-        const configFileRawOptions = loadConfig(options.configFile, {
-                moduleResolver,
-                configFileName: this.CONFIG_FILE_NAME
-            }) || {};
+        const loadedResult = loadConfig(options.configFile, {
+            moduleResolver,
+            configFileName: this.CONFIG_FILE_NAME
+        });
+        const configFileRawOptions = loadedResult.config;
+        const configFilePath = loadedResult.filePath;
         // "rules" field is here!
         const configRulesObject = separateAvailableOrDisable(configFileRawOptions.rules);
         // "filters" field is here!
@@ -216,7 +220,8 @@ class Config {
             disabledFilterRules,
             filterRulesConfig,
             plugins,
-            presets
+            presets,
+            configFile: configFilePath
         });
         return new this(mergedOptions);
     }
@@ -240,9 +245,15 @@ class Config {
      */
     constructor(options = {}) {
         /**
-         * @type {string|null} path to .textlintrc file.
+         * @type {string|undefined} absolute path to .textlintrc file.
+         * - If using .textlintrc, return path to .textlintrc
+         * - If using npm config module, return path to main file of the module
+         * - If not using config file, return undefined
          */
         this.configFile = options.configFile;
+        if (this.configFile) {
+            assert(path.isAbsolute(this.configFile), `configFile should be absolute path: ${this.configFile}`);
+        }
         this.rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
@@ -351,4 +362,5 @@ class Config {
         return r;
     }
 }
+
 module.exports = Config;

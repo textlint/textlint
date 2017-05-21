@@ -16,22 +16,24 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-1.1.2.tgz#58bc95a6826b84eb1f1671be5921aa243409fb31"
 
-"@textlint/feature-flag@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@textlint/feature-flag/-/feature-flag-1.0.0.tgz#3ef45f08d3c97244f2bcb1ab01ffbfb131a0e33c"
+"@textlint/feature-flag@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@textlint/feature-flag/-/feature-flag-1.0.1.tgz#fe1e6699293b44305e90ab1eba79404d9edd581a"
   dependencies:
     map-like "^1.1.2"
 
-"@textlint/kernel@^0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@textlint/kernel/-/kernel-0.0.0.tgz#8f69afa3eec0d20586488fb59122f7fbdb416d84"
+"@textlint/kernel@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@textlint/kernel/-/kernel-0.2.0.tgz#1ec1010e21ef8ff49c7a5f2ad5c805f11e00d66c"
   dependencies:
     "@textlint/ast-node-types" "^1.1.2"
-    "@textlint/feature-flag" "1.0.0"
+    "@textlint/feature-flag" "^1.0.1"
+    ajv "^4"
     bluebird "^3.5.0"
     carrack "^0.5.0"
     debug "^2.6.6"
     deep-equal "^1.0.1"
+    is-my-json-valid "^2.16.0"
     map-like "^1.1.2"
     object-assign "^4.1.1"
     structured-source "^3.0.2"
@@ -67,7 +69,7 @@ ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
-ajv@^4.7.0, ajv@^4.9.1:
+ajv@^4, ajv@^4.7.0, ajv@^4.9.1:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
   dependencies:
@@ -1761,7 +1763,7 @@ is-hexadecimal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-hexadecimal/-/is-hexadecimal-1.0.0.tgz#5c459771d2af9a2e3952781fd54fcb1bcfe4113c"
 
-is-my-json-valid@^2.10.0:
+is-my-json-valid@^2.10.0, is-my-json-valid@^2.16.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.16.0.tgz#f079dd9bfdae65ee2038aae8acbc86ab109e3693"
   dependencies:
@@ -2569,9 +2571,9 @@ randomatic@^1.1.3:
     is-number "^2.0.2"
     kind-of "^3.0.2"
 
-rc-config-loader@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-1.0.2.tgz#c5e903ab36c22204f3cca9d9ddfd7e68fe3758eb"
+rc-config-loader@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-2.0.0.tgz#20b56f87463f6b5cd97fc2da1f8e96c55321862d"
   dependencies:
     debug "^2.2.0"
     js-yaml "^3.6.1"
@@ -3126,15 +3128,15 @@ textlint-plugin-html@^0.1.2:
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
-textlint-plugin-markdown@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.2.tgz#5b172bc59feb8e230068991e2fc085257983ac40"
+textlint-plugin-markdown@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.4.tgz#f3f7772700a1101f2aaac20ae37897289d5c3d8a"
   dependencies:
     markdown-to-ast "^4.0.0"
 
-textlint-plugin-text@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.1.tgz#d046d6335c3ffeea7ae58246f3e58d453d8eb0c9"
+textlint-plugin-text@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.3.tgz#3b973616e18bcb38bf138ce493e1c727799adfa1"
   dependencies:
     txt-to-ast "^1.1.0"
 
