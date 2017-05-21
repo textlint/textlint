@@ -9,7 +9,7 @@ const debug = require("debug")("textlint:TextLintCoreTask");
 export default class TextLintCoreTask extends CoreTask {
     /**
      * @param {Config} config
-     * @param {string} [configBaseDir
+     * @param {string} [configBaseDir]
      * @param {TextlintKernelRule} fixerRule rules has fixer
      * @param {TextlintKernelFilterRule[]} filterRules filter rules and config set
      * @param {SourceCode} sourceCode
