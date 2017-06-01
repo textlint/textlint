@@ -1,5 +1,7 @@
 # textlint
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/textlint/textlint.svg)](https://greenkeeper.io/)
+
 [![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)](http://textlint.github.io/)
 
 > The pluggable linting tool for text and markdown.  
