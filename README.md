@@ -438,6 +438,8 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
     - See [Markdown](https://github.com/scrooloose/syntastic/wiki/Markdown "Markdown"), [Text](https://github.com/scrooloose/syntastic/wiki/Text "Text") and [HTML](https://github.com/scrooloose/syntastic/wiki/HTML "HTML") of [scrooloose/syntastic Wiki](https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers "Syntax Checkers · scrooloose/syntastic Wiki") 
 - VS Code
   - [taichi/vscode-textlint](https://github.com/taichi/vscode-textlint)
+- [micro](https://github.com/zyedidia/micro "micro")
+  - [hidaruma/micro-textlint-plugin](https://github.com/hidaruma/micro-textlint-plugin "hidaruma/micro-textlint-plugin: textlint plugin for micro-editor")
 
 ### Browser
 
