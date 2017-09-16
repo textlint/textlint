@@ -1,10 +1,12 @@
 // LICENSE : MIT
 "use strict";
+import { TextLintMessage } from "../textlint-kernel-interface";
+
 /**
  * @param {TextLintMessage} aMessage
  * @param {TextLintMessage} bMessage
  */
-const isEqualMessage = (aMessage, bMessage) => {
+const isEqualMessage = (aMessage: TextLintMessage, bMessage: TextLintMessage) => {
     return aMessage.index === bMessage.index &&
         aMessage.severity === bMessage.severity &&
         aMessage.message === bMessage.message;

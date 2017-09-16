@@ -3,12 +3,24 @@
 const assert = require("assert");
 import RuleFixer from "../fixer/rule-fixer";
 import RuleError from "./rule-error";
-import SeverityLevel from "../shared/type/SeverityLevel";
+import SeverityLevel, { SeverityLevelTypes } from "../shared/type/SeverityLevel";
 import { getSeverity } from "../shared/rule-severity";
 import SourceCode from "./source-code";
 import { TextLintConfig, TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import MessageType from "../shared/type/MessageType";
 // instance for rule context
 const ruleFixer = new RuleFixer();
+
+export interface LintResultMessage {
+    type: typeof MessageType.lint,
+    ruleId: string,
+    message: string,
+    index: number,
+    // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
+    line: number,        // start with 1(1-based line number)
+    column: number,// start with 1(1-based column number)
+    severity: SeverityLevelTypes  // it's for compatible ESLint formatter
+}
 
 /**
  * This callback is displayed as a global member.

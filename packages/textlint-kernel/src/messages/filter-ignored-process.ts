@@ -1,13 +1,16 @@
 // LICENSE : MIT
 "use strict";
 import MessageType from "../shared/type/MessageType";
+import { IgnoreReportedMessage } from "../core/filter-rule-context";
+import { LintResultMessage } from "../core/rule-context";
+
 /**
  * the `index` is in the `range` and return true.
  * @param {Number} index
  * @param {Number[]} range
  * @returns {boolean}
  */
-const isContainedRange = (index, range) => {
+const isContainedRange = (index: number, range: [number, number]) => {
     const [start, end] = range;
     return start <= index && index <= end;
 };
@@ -16,13 +19,13 @@ const isContainedRange = (index, range) => {
  * @param {Object[]} messages
  * @returns {Object[]} filtered messages
  */
-export default function filterMessages(messages = []) {
+export default function filterMessages(messages: ReadonlyArray<LintResultMessage | IgnoreReportedMessage> = []) {
     const lintingMessages = messages.filter(message => {
         return message.type === MessageType.lint;
-    });
+    }) as LintResultMessage[];
     const ignoreMessages = messages.filter(message => {
         return message.type === MessageType.ignore;
-    });
+    }) as IgnoreReportedMessage[];
     // if match, reject the message
     return lintingMessages.filter(message => {
         return !ignoreMessages.some(ignoreMessage => {

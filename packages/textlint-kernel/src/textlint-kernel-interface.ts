@@ -25,12 +25,16 @@ export interface TextLintConfig {
     configFile?: string;
     // disabled rule package names
     // always should start with empty
-    disabledRules?: string[],
+    disabledRules?: string[];
     // preset package names
     // e.g.) ["preset-foo"]
-    presets?: string[],
+    presets?: string[];
     // rules config object
-    rulesConfig?: Object,
+    rulesConfig?: Object;
+    /**
+     * quite options
+     */
+    quiet: boolean;
 }
 
 // TextLint AST Node

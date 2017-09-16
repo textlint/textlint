@@ -3,6 +3,7 @@
 import SourceCode from "./source-code";
 import { TextLintConfig, TxtNode } from "../textlint-kernel-interface";
 import RuleError from "./rule-error";
+import MessageType from "../shared/type/MessageType";
 
 const assert = require("assert");
 
@@ -14,7 +15,7 @@ const assert = require("assert");
  * @property {string} ignoringRuleId to ignore ruleId
  * "*" is special case, it match all ruleId(work as wildcard).
  */
-export interface ReportIgnoreMessage {
+export interface shouldIgnoreArgs {
     ruleId: string;
     range: [number, number];
     optional: {
@@ -22,10 +23,17 @@ export interface ReportIgnoreMessage {
     };
 }
 
+export interface IgnoreReportedMessage {
+    ruleId: string;
+    type: typeof MessageType.ignore
+    range: [number, number];
+    ignoringRuleId: string;
+}
+
 /**
  * Ignoring Report function
  */
-export type IgnoreReport = (message: ReportIgnoreMessage) => void;
+export type IgnoreReport = (message: shouldIgnoreArgs) => void;
 
 
 /**
@@ -56,7 +64,7 @@ export interface FilterRuleContextArgs {
  * Rule context object is passed to each rule as `context`
  * @param {string} ruleId
  * @param {SourceCode} sourceCode
- * @param {function(ReportIgnoreMessage)} ignoreReport
+ * @param {function(shouldIgnoreArgs)} ignoreReport
  * @param {Config} textLintConfig
  * @constructor
  */
