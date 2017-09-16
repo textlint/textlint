@@ -21,7 +21,7 @@ function validate(ast: TxtNode) {
     }
 }
 
-export interface SourcePosition {
+export interface SourceCodePosition {
     line: number,
     column: number
 }
@@ -30,12 +30,12 @@ export interface SourcePosition {
  * Line number starts with 1.
  * Column number starts with 0.
  */
-export interface SourceLocation {
-    start: SourcePosition,
-    end: SourcePosition
+export interface SourceCodeLocation {
+    start: SourceCodePosition,
+    end: SourceCodePosition
 }
 
-export type SourceRange = [number, number];
+export type SourceCodeRange = [number, number];
 /**
  * This class represent of source code.
  */
@@ -109,18 +109,18 @@ export default class SourceCode {
 
     // StructuredSource wrapper
     /**
-     * @param {SourceLocation} loc - location indicator.
+     * @param {SourceCodeLocation} loc - location indicator.
      * @return {[ number, number ]} range.
      */
-    locationToRange(loc: SourceLocation): SourceRange {
+    locationToRange(loc: SourceCodeLocation): SourceCodeRange {
         return this._structuredSource.locationToRange(loc);
     }
 
     /**
      * @param {[ number, number ]} range - pair of indice.
-     * @return {SourceLocation} location.
+     * @return {SourceCodeLocation} location.
      */
-    rangeToLocation(range: SourceRange): SourceLocation {
+    rangeToLocation(range: SourceCodeRange): SourceCodeLocation {
         return this._structuredSource.rangeToLocation(range);
     }
 
@@ -128,7 +128,7 @@ export default class SourceCode {
      * @param {Position} pos - position indicator.
      * @return {number} index.
      */
-    positionToIndex(pos: SourcePosition): number {
+    positionToIndex(pos: SourceCodePosition): number {
         return this._structuredSource.positionToIndex(pos);
     }
 
@@ -136,7 +136,7 @@ export default class SourceCode {
      * @param {number} index - index to the source code.
      * @return {Position} position.
      */
-    indexToPosition(index: number): SourcePosition {
+    indexToPosition(index: number): SourceCodePosition {
         return this._structuredSource.indexToPosition(index);
     }
 }
