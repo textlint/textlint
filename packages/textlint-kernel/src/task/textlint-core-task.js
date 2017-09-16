@@ -13,10 +13,6 @@ import MessageType from "../shared/type/MessageType";
 
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
-    constructor() {
-        super();
-        this.setMaxListeners(0);
-    }
 }
 
 /**
@@ -120,24 +116,21 @@ export default class TextLintCoreTask extends EventEmitter {
      * @param {SourceCode} sourceCode
      */
     startTraverser(sourceCode) {
-        const promiseQueue = [];
-        const listenerCount = (typeof this.ruleTypeEmitter.listenerCount !== "undefined")
-            ? this.ruleTypeEmitter.listenerCount.bind(this.ruleTypeEmitter) // Node 4.x >=
-            : EventEmitter.listenerCount.bind(EventEmitter, this.ruleTypeEmitter);// Node 0.12
         this.emit(TextLintCoreTask.events.start);
+        const promiseQueue = [];
         const ruleTypeEmitter = this.ruleTypeEmitter;
         traverseController.traverse(sourceCode.ast, {
             enter(node, parent) {
                 const type = node.type;
                 Object.defineProperty(node, "parent", { value: parent });
-                if (listenerCount(type) > 0) {
+                if (ruleTypeEmitter.listenerCount(type) > 0) {
                     const promise = ruleTypeEmitter.emit(type, node);
                     promiseQueue.push(promise);
                 }
             },
             leave(node) {
                 const type = `${node.type}:exit`;
-                if (listenerCount(type) > 0) {
+                if (ruleTypeEmitter.listenerCount(type) > 0) {
                     const promise = ruleTypeEmitter.emit(type, node);
                     promiseQueue.push(promise);
                 }
