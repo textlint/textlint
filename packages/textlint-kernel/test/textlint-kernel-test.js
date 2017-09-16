@@ -1,7 +1,7 @@
 // MIT © 2017 azu
 "use strict";
 const assert = require("assert");
-import { TextlintKernel } from "../src/textlint-kernel";
+import { TextlintKernel } from "../lib/textlint-kernel";
 
 const report = (context, options = {}) => {
     const errors = options.errors || [];

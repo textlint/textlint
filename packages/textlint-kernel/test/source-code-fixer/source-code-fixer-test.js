@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import assert from "power-assert";
-import SourceCodeFixer from "../../src/fixer/source-code-fixer";
-import SourceCode from "../../src/core/source-code";
+import SourceCodeFixer from "../../lib/fixer/source-code-fixer";
+import SourceCode from "../../lib/core/source-code";
 import {parse} from "markdown-to-ast";
 const TEST_CODE = "var answer = 6 * 7;";
 const TEST_AST = parse(TEST_CODE);
