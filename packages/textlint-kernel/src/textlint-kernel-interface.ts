@@ -1,3 +1,38 @@
+// rule config
+
+import { SeverityLevelTypes } from "./shared/type/SeverityLevel";
+
+export interface TextLintRuleOptions {
+    [index: string]: any;
+
+    severity: SeverityLevelTypes
+}
+
+// config
+export interface TextLintConfig {
+    // rule directories path
+    rulePaths?: string[];
+    // filter by file extensions
+    extensions?: string[];
+    // formatter file name
+    // e.g.) stylish.js => set "stylish"
+    formatterName?: string;
+    // plugin package names
+    plugins?: string[];
+    // base directory for loading {rule, config, plugin} modules
+    rulesBaseDirectory?: string;
+    // ".textlint" file path
+    configFile?: string;
+    // disabled rule package names
+    // always should start with empty
+    disabledRules?: string[],
+    // preset package names
+    // e.g.) ["preset-foo"]
+    presets?: string[],
+    // rules config object
+    rulesConfig?: Object,
+}
+
 // TextLint AST Node
 export interface TxtNode {
     type: string;
