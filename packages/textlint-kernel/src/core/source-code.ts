@@ -42,10 +42,11 @@ export type SourceCodeRange = [number, number];
 export default class SourceCode {
     hasBOM: boolean;
     text: string;
+    ast: TxtNode;
+    filePath: string | undefined;
+    ext: string;
+
     private _structuredSource: any;
-    private ast: TxtNode;
-    private filePath: string | undefined;
-    private ext: string;
 
     /**
      * @param {string} text

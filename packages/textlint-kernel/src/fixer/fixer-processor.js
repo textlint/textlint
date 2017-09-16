@@ -4,7 +4,7 @@ const debug = require("debug")("textlint:fixer-processor");
 import assert from "assert";
 import FixerTask from "../task/fixer-task";
 import SourceCode from "../core/source-code";
-import SourceCodeFixer from "../fixer/source-code-fixer";
+import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
 import { hasFixer } from "../core/rule-creator-helper";
 
