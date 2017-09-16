@@ -1,14 +1,32 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-import RuleFixer from "../fixer/rule-fixer";
-import RuleError from "./rule-error";
-import SeverityLevel from "../shared/type/SeverityLevel";
-import { getSeverity } from "../shared/rule-severity";
 import SourceCode from "./source-code";
-import { TextLintConfig, TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
-// instance for rule context
-const ruleFixer = new RuleFixer();
+import { TextLintConfig, TxtNode } from "../textlint-kernel-interface";
+import RuleError from "./rule-error";
+
+const assert = require("assert");
+
+/**
+ * Message of ignoring
+ * @typedef {Object} ReportIgnoreMessage
+ * @property {string} ruleId
+ * @property {number[]} range
+ * @property {string} ignoringRuleId to ignore ruleId
+ * "*" is special case, it match all ruleId(work as wildcard).
+ */
+export interface ReportIgnoreMessage {
+    ruleId: string;
+    range: [number, number];
+    optional: {
+        ruleId?: string
+    };
+}
+
+/**
+ * Ignoring Report function
+ */
+export type IgnoreReport = (message: ReportIgnoreMessage) => void;
+
 
 /**
  * This callback is displayed as a global member.
@@ -25,38 +43,36 @@ const ruleFixer = new RuleFixer();
  * @param {string} [configBaseDir]
  * @constructor
  */
-export interface RuleContextArgs {
+export interface FilterRuleContextArgs {
     ruleId: string;
+    ignoreReport: IgnoreReport;
     sourceCode: SourceCode;
-    report: Function;
     textLintConfig: TextLintConfig
-    ruleOptions: TextLintRuleOptions,
+    // FIXME: support this
     configBaseDir?: string;
 }
 
-export interface RuleReportObject {
-    [index: string]: any;
-
-    severity?: number;
-}
-
-export default class RuleContext {
+/**
+ * Rule context object is passed to each rule as `context`
+ * @param {string} ruleId
+ * @param {SourceCode} sourceCode
+ * @param {function(ReportIgnoreMessage)} ignoreReport
+ * @param {Config} textLintConfig
+ * @constructor
+ */
+export default class FilterRuleContext {
     private _ruleId: string;
+    private _ignoreReport: IgnoreReport;
     private _sourceCode: SourceCode;
-    private _report: Function;
     private _textLintConfig: TextLintConfig;
-    private _ruleOptions: TextLintRuleOptions;
     private _configBaseDir?: string;
-    private _severity: number;
 
-    constructor(args: RuleContextArgs) {
+    constructor(args: FilterRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
-        this._report = args.report;
+        this._ignoreReport = args.ignoreReport;
         this._textLintConfig = args.textLintConfig;
-        this._ruleOptions = args.ruleOptions;
         this._configBaseDir = args.configBaseDir;
-        this._severity = getSeverity(this._ruleOptions)
     }
 
     /**
@@ -76,10 +92,6 @@ export default class RuleContext {
         return this._textLintConfig;
     }
 
-    get severity() {
-        return this._severity;
-    }
-
     /**
      * Node's type values
      * @type {TextLintNodeType}
@@ -96,29 +108,11 @@ export default class RuleContext {
         return RuleError;
     };
 
-    /**
-     * Rule fixer command object
-     * @type {RuleFixer}
-     */
-    get fixer() {
-        return ruleFixer
+    shouldIgnore = (range: [number, number], optional = {}) => {
+        assert(Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
+            "shouldIgnore([number, number]); accept range.");
+        this._ignoreReport({ ruleId: this._ruleId, range, optional });
     };
-
-    /**
-     * report function that is called in a rule
-     * @param {TxtNode} node
-     * @param {RuleError|any} ruleError error is a RuleError instance or any data
-     */
-    report = (node: TxtNode, ruleError: RuleError | RuleReportObject) => {
-        assert(!(node instanceof RuleError), "should be `report(node, ruleError);`");
-        if (ruleError instanceof RuleError) {
-            this._report({ ruleId: this._ruleId, node, severity: this._severity, ruleError });
-        } else {
-            const level = ruleError.severity || SeverityLevel.error;
-            this._report({ ruleId: this._ruleId, node, severity: level, ruleError });
-        }
-    };
-
 
     /**
      * get file path current processing.
