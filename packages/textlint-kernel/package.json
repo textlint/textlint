@@ -18,7 +18,6 @@
     "test": "npm-run-all build test:unit",
     "test:unit": "mocha test/",
     "clean": "rimraf lib/ es_modules/",
-    "prebuild": "npm run clean",
     "build": "npm-run-all build:src build:lib:temp-js-copy build:lib",
     "build:src": "cross-env NODE_ENV=production tsc -p .",
     "build:lib": "cross-env NODE_ENV=production babel es_modules --out-dir lib --source-maps --copy-files",
