@@ -8,7 +8,7 @@ const assert = require("assert");
 import { PromiseEventEmitter } from "./promise-event-emitter";
 import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
-import timing from "./../util/timing";
+import timing from "../util/timing";
 import MessageType from "../shared/type/MessageType";
 
 // Promised EventEmitter
