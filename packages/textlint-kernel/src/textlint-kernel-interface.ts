@@ -1,8 +1,25 @@
+export interface TextlintKernelProcessorConstructor extends Function {
+    availableExtensions(): Array<string>;
+}
+
+export declare class TextlintKernelProcessor {
+    private config: any;
+
+    constructor(config: any);
+
+    static availableExtensions(): Array<string>;
+
+    processor(): {
+        preProcess(text: string): string,
+        postProcess(messages: Array<any>): { message: Array<any>, filePath: string }
+    };
+}
+
 export interface TextlintKernelPlugin {
     // plugin name as key
     pluginId: string;
     // plugin processor instance
-    plugin: any;
+    plugin: TextlintKernelProcessor;
     // plugin options
     // TODO: It is not implemented
     // options: Object | boolean;
@@ -96,7 +113,7 @@ export interface TextLintFixResult {
 }
 
 // entry
-export class TextlintKernel {
+export declare class TextlintKernel {
     constructor(config?: Object);
 
     lintText(text: string, options: TextlintKernelOptions): Promise<TextLintResult>;
