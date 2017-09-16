@@ -1,3 +1,5 @@
+import { TxtNode } from "../textlint-kernel-interface";
+
 const assert = require("assert");
 const StructuredSource = require("structured-source");
 import { ASTNodeTypes } from "@textlint/ast-node-types";
@@ -9,7 +11,7 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
  * @returns {void}
  * @private
  */
-function validate(ast) {
+function validate(ast: TxtNode) {
     if (!ast.loc) {
         throw new Error("AST is missing location information.");
     }
@@ -19,17 +21,39 @@ function validate(ast) {
     }
 }
 
+export interface SourcePosition {
+    line: number,
+    column: number
+}
+
+/**
+ * Line number starts with 1.
+ * Column number starts with 0.
+ */
+export interface SourceLocation {
+    start: SourcePosition,
+    end: SourcePosition
+}
+
+export type SourceRange = [number, number];
 /**
  * This class represent of source code.
  */
 export default class SourceCode {
+    hasBOM: boolean;
+    text: string;
+    private _structuredSource: any;
+    private ast: TxtNode;
+    private filePath: string | undefined;
+    private ext: string;
+
     /**
      * @param {string} text
      * @param {Object} ast
      * @param {string} ext
      * @param {string} [filePath]
      */
-    constructor({ text = "", ast, ext, filePath }) {
+    constructor({ text = "", ast, ext, filePath }: { text: string, ast: TxtNode, ext: string, filePath?: string }) {
         validate(ast);
         assert(ext || filePath, "should be set either of fileExt or filePath.");
         this.hasBOM = text.charCodeAt(0) === 0xFEFF;
@@ -69,7 +93,7 @@ export default class SourceCode {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string|null} The text representing the AST node.
      */
-    getSource(node, beforeCount, afterCount) {
+    getSource(node: TxtNode, beforeCount?: number, afterCount?: number) {
         const currentText = this.text;
         if (currentText == null) {
             return null;
@@ -88,7 +112,7 @@ export default class SourceCode {
      * @param {SourceLocation} loc - location indicator.
      * @return {[ number, number ]} range.
      */
-    locationToRange(loc) {
+    locationToRange(loc: SourceLocation): SourceRange {
         return this._structuredSource.locationToRange(loc);
     }
 
@@ -96,7 +120,7 @@ export default class SourceCode {
      * @param {[ number, number ]} range - pair of indice.
      * @return {SourceLocation} location.
      */
-    rangeToLocation(range) {
+    rangeToLocation(range: SourceRange): SourceLocation {
         return this._structuredSource.rangeToLocation(range);
     }
 
@@ -104,7 +128,7 @@ export default class SourceCode {
      * @param {Position} pos - position indicator.
      * @return {number} index.
      */
-    positionToIndex(pos) {
+    positionToIndex(pos: SourcePosition): number {
         return this._structuredSource.positionToIndex(pos);
     }
 
@@ -112,7 +136,7 @@ export default class SourceCode {
      * @param {number} index - index to the source code.
      * @return {Position} position.
      */
-    indexToPosition(index) {
+    indexToPosition(index: number): SourcePosition {
         return this._structuredSource.indexToPosition(index);
     }
 }

@@ -11,6 +11,7 @@ import SourceLocation from "../core/source-location";
 import timing from "../util/timing";
 import MessageType from "../shared/type/MessageType";
 
+
 // Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
 }
@@ -69,14 +70,6 @@ export default class TextLintCoreTask extends EventEmitter {
 
     createReporter(sourceCode) {
         const sourceLocation = new SourceLocation(sourceCode);
-
-        /**
-         * @typedef {Object} ReportMessage
-         * @property {string} ruleId
-         * @property {TxtNode} node
-         * @property {number} severity
-         * @property {RuleError} ruleError error is a RuleError instance or any data
-         */
         /**
          * push new RuleError to results
          * @param {ReportMessage} reportedMessage
