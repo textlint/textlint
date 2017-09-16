@@ -9,15 +9,15 @@
  * Main purpose for helping linting.
  */
 export default class Logger {
-    static log(...message) {
+    static log(...message: Array<any>) {
         console.log(...message);
     }
 
-    static warn(...message) {
+    static warn(...message: Array<any>) {
         console.warn(...message);
     }
 
-    static error(...message) {
+    static error(...message: Array<any>) {
         console.error(...message);
     }
 }
