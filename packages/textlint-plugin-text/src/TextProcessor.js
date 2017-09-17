@@ -8,10 +8,7 @@ export class TextProcessor {
     }
 
     static availableExtensions() {
-        return [
-            ".txt",
-            ".text"
-        ];
+        return [".txt", ".text"];
     }
 
     processor(ext) {

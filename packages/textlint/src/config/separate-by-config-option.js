@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import {isPluginRuleKey, isPresetRuleKey} from "../util/config-util";
+import { isPluginRuleKey, isPresetRuleKey } from "../util/config-util";
 /**
  * Get rule keys from `.textlintrc` config object.
  * @param {Object} [rulesConfig]

@@ -46,4 +46,3 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     echo("💚 Pass textlint");
     echo("--------------------");
 };
-

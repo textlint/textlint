@@ -6,7 +6,7 @@ export default class AbstractBacker {
      * @param {string} filePath
      * @returns {boolean}
      */
-    shouldExecute({filePath}) {
+    shouldExecute({ filePath }) {
         return true;
     }
 
@@ -14,14 +14,12 @@ export default class AbstractBacker {
      * @param {TextLintResult} result
      * @returns {boolean}
      */
-    didExecute({result}) {
+    didExecute({ result }) {
         return true;
     }
 
     /**
      * call when after all execution is completed
      */
-    afterAll(){
-
-    }
+    afterAll() {}
 }

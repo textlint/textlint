@@ -2,9 +2,9 @@
 "use strict";
 module.exports = {
     rules: {
-        "a": require("./rules/textlint-rule-a")
+        a: require("./rules/textlint-rule-a")
     },
     rulesConfig: {
-        "a": true
+        a: true
     }
 };

@@ -35,26 +35,29 @@ export default class ExecuteFileBackerManager {
      */
     process(files, executeFile) {
         const unExecutedResults = [];
-        const resultPromises = files.filter((filePath) => {
-            const shouldExecute = this._backers.every((backer) => {
-                return backer.shouldExecute({filePath});
-            });
-            // add fake unExecutedResults for un-executed file.
-            if (!shouldExecute) {
-                unExecutedResults.push(this._createFakeResult(filePath));
-            }
-            return shouldExecute;
-        }).map((filePath) => {
-            return executeFile(filePath).then(result => {
-                this._backers.forEach((backer) => {
-                    backer.didExecute({result});
+        const resultPromises = files
+            .filter(filePath => {
+                const shouldExecute = this._backers.every(backer => {
+                    return backer.shouldExecute({ filePath });
                 });
-                return result;
-            });
-        }).concat(unExecutedResults);
+                // add fake unExecutedResults for un-executed file.
+                if (!shouldExecute) {
+                    unExecutedResults.push(this._createFakeResult(filePath));
+                }
+                return shouldExecute;
+            })
+            .map(filePath => {
+                return executeFile(filePath).then(result => {
+                    this._backers.forEach(backer => {
+                        backer.didExecute({ result });
+                    });
+                    return result;
+                });
+            })
+            .concat(unExecutedResults);
         // wait all resolved, and call afterAll
         return Promise.all(resultPromises).then(results => {
-            this._backers.forEach((backer) => {
+            this._backers.forEach(backer => {
                 backer.afterAll();
             });
             return results;

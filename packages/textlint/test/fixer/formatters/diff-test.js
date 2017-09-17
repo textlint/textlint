@@ -4,16 +4,18 @@ var assert = require("power-assert");
 var path = require("path");
 var fs = require("fs");
 var diff = require("../../../src/fixer/formatters/diff");
-const formatter = (code) => {
-    return diff(code, {color: false});
+const formatter = code => {
+    return diff(code, { color: false });
 };
-describe("formatter:diff", function () {
-    context("when single modified", function () {
-        it("should return output", function () {
+describe("formatter:diff", function() {
+    context("when single modified", function() {
+        it("should return output", function() {
             const input = path.join(__dirname, "../fixtures", "single.md");
             const code = require("../fixtures/single");
             const output = formatter(code);
-            assert.equal(output, `
+            assert.equal(
+                output,
+                `
 ${input}
 ...
 - 5th line foo
@@ -22,15 +24,18 @@ ${input}
 ...
 
 ✔ Fixed 1 problem
-`);
+`
+            );
         });
     });
-    context("when double modified", function () {
-        it("should return output", function () {
+    context("when double modified", function() {
+        it("should return output", function() {
             const input = path.join(__dirname, "../fixtures", "double.md");
             const code = require("../fixtures/double");
             const output = formatter(code);
-            assert.equal(output, `
+            assert.equal(
+                output,
+                `
 ${input}
 ...
 - foo
@@ -41,16 +46,19 @@ ${input}
 
 
 ✔ Fixed 2 problems
-`);
+`
+            );
         });
     });
-    context("when multiple files results", function () {
-        it("should return output", function () {
+    context("when multiple files results", function() {
+        it("should return output", function() {
             const singleFile = path.join(__dirname, "../fixtures", "single.md");
             const multiple = path.join(__dirname, "../fixtures", "multiple.md");
             const code = require("../fixtures/multiple");
             const output = formatter(code);
-            assert.equal(output, `
+            assert.equal(
+                output,
+                `
 ${singleFile}
 ...
 - 5th line foo
@@ -72,16 +80,19 @@ ${multiple}
 
 
 ✔ Fixed 7 problems
-`);
+`
+            );
         });
     });
 
-    context("when remaining messages", function () {
-        it("should return output", function () {
+    context("when remaining messages", function() {
+        it("should return output", function() {
             const input = path.join(__dirname, "../fixtures", "remaining.md");
             const code = require("../fixtures/remaining");
             const output = formatter(code);
-            assert.equal(output, `
+            assert.equal(
+                output,
+                `
 ${input}
 ...
 - 5th line foo
@@ -91,7 +102,8 @@ ${input}
 
 ✔ Fixed 1 problem
 ✖ Remaining 1 problem
-`);
+`
+            );
         });
     });
 });

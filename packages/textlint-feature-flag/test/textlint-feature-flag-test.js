@@ -1,7 +1,10 @@
 "use strict";
 const assert = require("assert");
 import {
-    coreFlags, isFeatureEnabled, resetFlags, setFeature,
+    coreFlags,
+    isFeatureEnabled,
+    resetFlags,
+    setFeature,
     throwIfTesting,
     throwWithoutExperimental
 } from "../src/textlint-feature-flag";
@@ -42,9 +45,12 @@ describe("textlint-feature-flag", () => {
         });
         context("when loose-mode", () => {
             it("should return false if the feature is not defined", () => {
-                assert.strictEqual(isFeatureEnabled("test", {
-                    loose: true
-                }), false);
+                assert.strictEqual(
+                    isFeatureEnabled("test", {
+                        loose: true
+                    }),
+                    false
+                );
             });
         });
     });

@@ -6,7 +6,7 @@ export interface RuleErrorPadding {
     line: number;
     column: number;
     index: number;
-    fix: TextLintFixCommand
+    fix: TextLintFixCommand;
 }
 
 export default class RuleError {

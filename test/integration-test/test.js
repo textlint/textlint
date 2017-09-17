@@ -4,7 +4,8 @@ const testList = [
     {
         name: "JavaScript-Plugin-Architecture",
         path: "ja/"
-    }, {
+    },
+    {
         name: "gitbook-starter-kit",
         path: "ja/"
     },
@@ -24,14 +25,12 @@ const testList = [
     }
 ].filter(testTarget => {
     const version = process.version;
-    if(testTarget.version === undefined) {
+    if (testTarget.version === undefined) {
         return true;
     }
     return semver.gte(version, testTarget.version);
 });
 
-
-
-testList.forEach((test) => {
+testList.forEach(test => {
     runLint(test.name, test.path);
 });

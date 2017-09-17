@@ -74,9 +74,11 @@ function createParagraph(nodes) {
     const lastNode = nodes[nodes.length - 1];
     return {
         type: Syntax.Paragraph,
-        raw: nodes.map(function (node) {
-            return node.raw;
-        }).join(""),
+        raw: nodes
+            .map(function(node) {
+                return node.raw;
+            })
+            .join(""),
         range: [firstNode.range[0], lastNode.range[1]],
         loc: {
             start: {
@@ -91,7 +93,6 @@ function createParagraph(nodes) {
         children: nodes
     };
 }
-
 
 /**
  * parse text and return ast mapped location info.
@@ -109,7 +110,7 @@ function parse(text) {
     const isEmptyLine = (line, index) => {
         return index !== lastLineIndex && line === "";
     };
-    const children = textLineByLine.reduce(function (result, currentLine, index) {
+    const children = textLineByLine.reduce(function(result, currentLine, index) {
         const lineNumber = index + 1;
         if (isLasEmptytLine(currentLine, index)) {
             return result;
@@ -148,7 +149,7 @@ function parse(text) {
                 column: textLineByLine[textLineByLine.length - 1].length
             }
         },
-        children: children
+        children
     };
 }
 module.exports = parse;

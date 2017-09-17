@@ -6,9 +6,7 @@ class Processor {
     }
 
     static availableExtensions() {
-        return [
-            ".x"
-        ];
+        return [".x"];
     }
 
     processor() {

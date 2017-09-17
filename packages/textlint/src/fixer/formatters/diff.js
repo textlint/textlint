@@ -10,7 +10,7 @@ const chalk = require("chalk");
  * @returns {string} The original word with an s on the end if count is not one.
  */
 function pluralize(word, count) {
-    return count === 1 ? word : word + "s";
+    return count === 1 ? word : `${word}s`;
 }
 
 function isModified(part) {
@@ -27,9 +27,9 @@ function addMarkEachLine(mark, text) {
     const markedLines = lines.filter(line => line.length > 0).map(line => {
         return mark + line;
     });
-    return markedLines.join("\n") + "\n";
+    return `${markedLines.join("\n")}\n`;
 }
-module.exports = function (results, options) {
+module.exports = function(results, options) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -38,7 +38,7 @@ module.exports = function (results, options) {
     const summaryColor = "yellow";
     const greenColor = "green";
 
-    results.forEach(function (result) {
+    results.forEach(function(result) {
         const filePath = result.filePath;
         const messages = result.applyingMessages;
         // still error count
@@ -51,12 +51,12 @@ module.exports = function (results, options) {
         if (!isFile(filePath)) {
             return;
         }
-        output += chalk.underline(result.filePath) + "\n";
+        output += `${chalk.underline(result.filePath)}\n`;
 
         const originalContent = fs.readFileSync(filePath, "utf-8");
         const diff = jsdiff.diffLines(originalContent, result.output);
 
-        diff.forEach(function (part, index) {
+        diff.forEach(function(part, index) {
             const prevLine = diff[index - 1];
             const nextLine = diff[index + 1];
             if (!isModified(part) && part.count > 1) {
@@ -68,12 +68,12 @@ module.exports = function (results, options) {
                  */
                 if (isModified(prevLine)) {
                     const lines = part.value.split("\n");
-                    output += chalk[greyColor](lines[0]) + "\n";
+                    output += `${chalk[greyColor](lines[0])}\n`;
                 }
                 output += chalk[greyColor]("...");
                 if (isModified(nextLine)) {
                     const lines = part.value.split("\n");
-                    output += chalk[greyColor](lines[lines.length - 1]) + "\n";
+                    output += `${chalk[greyColor](lines[lines.length - 1])}\n`;
                 }
                 /*
                     ...
@@ -102,17 +102,27 @@ module.exports = function (results, options) {
     });
 
     if (totalFixed > 0) {
-        output += chalk[greenColor].bold([
-            // http://www.fileformat.info/info/unicode/char/2714/index.htm
-            "✔ Fixed ", totalFixed, pluralize(" problem", totalFixed), "\n"
-        ].join(""));
+        output += chalk[greenColor].bold(
+            [
+                // http://www.fileformat.info/info/unicode/char/2714/index.htm
+                "✔ Fixed ",
+                totalFixed,
+                pluralize(" problem", totalFixed),
+                "\n"
+            ].join("")
+        );
     }
 
     if (errors > 0) {
-        output += chalk[summaryColor].bold([
-            // http://www.fileformat.info/info/unicode/char/2716/index.htm
-            "✖ Remaining ", errors, pluralize(" problem", errors), "\n"
-        ].join(""));
+        output += chalk[summaryColor].bold(
+            [
+                // http://www.fileformat.info/info/unicode/char/2716/index.htm
+                "✖ Remaining ",
+                errors,
+                pluralize(" problem", errors),
+                "\n"
+            ].join("")
+        );
     }
 
     return totalFixed > 0 ? output : "";

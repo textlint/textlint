@@ -13,7 +13,9 @@ function rewriteSetupRuleWithOption() {
     rule: {{rule}},
     options: {{ruleOption}}
 };`;
-    shell.exec(`grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`);
+    shell.exec(
+        `grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`
+    );
 }
 // textlint.setupRules({}) => const options
 function rewriteSetupRule() {
@@ -22,7 +24,9 @@ function rewriteSetupRule() {
     ruleId: {{ruleId}}, 
     rule: {{rule}}
 };`;
-    shell.exec(`grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`);
+    shell.exec(
+        `grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`
+    );
 }
 
 // textlint.setupFilterRules({}, {}) => const options
@@ -33,7 +37,9 @@ function rewriteSetupFilterRuleWithOption() {
     rule: {{rule}},
     options: {{ruleOption}}
 };`;
-    shell.exec(`grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`);
+    shell.exec(
+        `grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`
+    );
 }
 // textlint.setupRules({}) => const options
 function rewriteSetupFilterRule() {
@@ -42,13 +48,17 @@ function rewriteSetupFilterRule() {
     ruleId: {{ruleId}}, 
     rule: {{rule}}
 };`;
-    shell.exec(`grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`);
+    shell.exec(
+        `grasp --in-place -r -e '${ruleAndRuleOptionPattern}' --replace '${ruleAndRuleOptionPatternExpected}' ${testRootDirectory}`
+    );
 }
 // textlint.lintMarkdown("text") => textlint.lintText(text, options);
 function rewriteLintMarkdown() {
     const lintMarkdownPattern = `textlint.lintMarkdown( $text )`;
     const lintMarkdownPatternExpected = `textlint.lintText({{text}}, Object.assign({}, options, { ext: ".md" })`;
-    shell.exec(`grasp --in-place -r -e '${lintMarkdownPattern}' --replace '${lintMarkdownPatternExpected}' ${testRootDirectory}`);
+    shell.exec(
+        `grasp --in-place -r -e '${lintMarkdownPattern}' --replace '${lintMarkdownPatternExpected}' ${testRootDirectory}`
+    );
 }
 // textlint.lintFile(filePath) => textlint.lintFile(text, options);
 function rewriteLintFile() {

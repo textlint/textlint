@@ -2,8 +2,8 @@
 "use strict";
 var getStdin = require("get-stdin");
 var logSymbols = require("log-symbols");
-var useStdIn = (process.argv.indexOf("--stdin") > -1);
-var isDebug = (process.argv.indexOf("--debug") > -1);
+var useStdIn = process.argv.indexOf("--stdin") > -1;
+var isDebug = process.argv.indexOf("--debug") > -1;
 if (isDebug) {
     require("debug").enable("textlint*");
 }
@@ -24,21 +24,24 @@ function showError(error) {
     console.error(error.stack);
 }
 // Always start as promise
-Promise.resolve().then(function() {
-    if (useStdIn) {
-        return getStdin().then(function(text) {
-            return cli.execute(process.argv, text);
-        });
-    }
-    return cli.execute(process.argv);
-}).then(function(exitStatus) {
-    if (typeof exitStatus === "number") {
-        process.exitCode = exitStatus;
-    }
-}).catch(function(error) {
-    showError(error);
-    process.exit(error.code || 1);
-});
+Promise.resolve()
+    .then(function() {
+        if (useStdIn) {
+            return getStdin().then(function(text) {
+                return cli.execute(process.argv, text);
+            });
+        }
+        return cli.execute(process.argv);
+    })
+    .then(function(exitStatus) {
+        if (typeof exitStatus === "number") {
+            process.exitCode = exitStatus;
+        }
+    })
+    .catch(function(error) {
+        showError(error);
+        process.exit(error.code || 1);
+    });
 
 // Catch throw error
 process.on("uncaughtException", function(error) {

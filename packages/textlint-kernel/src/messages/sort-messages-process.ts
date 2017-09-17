@@ -9,7 +9,7 @@ import { TextLintMessage } from "../textlint-kernel-interface";
  */
 export default function sortByLineColumn(messages: TextLintMessage[]) {
     // sort by line and column
-    return messages.sort(function (a, b) {
+    return messages.sort(function(a, b) {
         const lineDiff = a.line - b.line;
         if (lineDiff === 0) {
             return a.column - b.column;

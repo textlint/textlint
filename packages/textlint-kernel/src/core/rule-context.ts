@@ -30,8 +30,8 @@ export interface RuleContextArgs {
     ruleId: string;
     sourceCode: SourceCode;
     report: ReportFunction;
-    textLintConfig: TextLintConfig
-    ruleOptions?: TextLintRuleOptions | boolean,
+    textLintConfig: TextLintConfig;
+    ruleOptions?: TextLintRuleOptions | boolean;
     configBaseDir?: string;
 }
 
@@ -58,7 +58,7 @@ export default class RuleContext {
         this._textLintConfig = args.textLintConfig;
         this._ruleOptions = args.ruleOptions;
         this._configBaseDir = args.configBaseDir;
-        this._severity = getSeverity(this._ruleOptions)
+        this._severity = getSeverity(this._ruleOptions);
     }
 
     /**
@@ -96,15 +96,15 @@ export default class RuleContext {
      */
     get RuleError() {
         return RuleError;
-    };
+    }
 
     /**
      * Rule fixer command object
      * @type {RuleFixer}
      */
     get fixer() {
-        return ruleFixer
-    };
+        return ruleFixer;
+    }
 
     /**
      * report function that is called in a rule
@@ -121,7 +121,6 @@ export default class RuleContext {
             this._report({ ruleId: this._ruleId, node, severity: level, ruleError });
         }
     };
-
 
     /**
      * get file path current processing.

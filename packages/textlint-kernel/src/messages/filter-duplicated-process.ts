@@ -7,9 +7,11 @@ import { TextLintMessage } from "../textlint-kernel-interface";
  * @param {TextLintMessage} bMessage
  */
 const isEqualMessage = (aMessage: TextLintMessage, bMessage: TextLintMessage) => {
-    return aMessage.index === bMessage.index &&
+    return (
+        aMessage.index === bMessage.index &&
         aMessage.severity === bMessage.severity &&
-        aMessage.message === bMessage.message;
+        aMessage.message === bMessage.message
+    );
 };
 /**
  * filter duplicated messages

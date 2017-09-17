@@ -7,7 +7,7 @@ import TextLintCore from "./../textlint-core";
 import RuleMap from "./rule-map";
 import PluginMap from "./processor-map";
 import Config from "../config/config";
-import {pathsToGlobPatterns, findFiles, separateByAvailability} from "../util/find-util";
+import { pathsToGlobPatterns, findFiles, separateByAvailability } from "../util/find-util";
 import TextLintModuleLoader from "./textlint-module-loader";
 import ExecuteFileBackerManager from "./execute-file-backer-manager";
 import CacheBaker from "./execute-file-backers/cache-backer";
@@ -175,7 +175,6 @@ new TextLintEngine({
         // TODO: it very hackable way, should be fixed
         // it is depend on textlintCore's state
         this.availableExtensions = this.textlint.pluginCreatorSet.availableExtensions.concat(this.config.extensions);
-
     }
 
     /**
@@ -194,12 +193,11 @@ new TextLintEngine({
      * @returns {Promise<TextLintResult[]>} The results for all files that were linted.
      */
     executeOnFiles(files) {
-        const boundLintFile = (file) => {
+        const boundLintFile = file => {
             return this.textlint.lintFile(file);
         };
-        const execFile = typeof this.executor.onFile === "function"
-            ? this.executor.onFile(this.textlint)
-            : boundLintFile;
+        const execFile =
+            typeof this.executor.onFile === "function" ? this.executor.onFile(this.textlint) : boundLintFile;
         const patterns = pathsToGlobPatterns(files, {
             extensions: this.availableExtensions
         });
@@ -208,10 +206,7 @@ new TextLintEngine({
         // But, The user can use glob pattern like `src/**/*` as arguments.
         // pathsToGlobPatterns not modified that pattern.
         // So, unAvailableFilePath should be ignored silently.
-        const {
-            availableFiles,
-            unAvailableFiles
-        } = separateByAvailability(targetFiles, {
+        const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
             extensions: this.availableExtensions
         });
         debug("Process files", availableFiles);
@@ -231,9 +226,7 @@ new TextLintEngine({
             return this.textlint.lintText(file, ext);
         };
         const textlint = this.textlint;
-        const execText = typeof this.executor.onText === "function"
-            ? this.executor.onText(textlint)
-            : boundLintText;
+        const execText = typeof this.executor.onText === "function" ? this.executor.onText(textlint) : boundLintText;
         // filePath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);
         if (actualExt.length === 0) {
@@ -256,9 +249,10 @@ new TextLintEngine({
             formatterName: this.config.formatterName,
             color: this.config.color
         };
-        const formatter = typeof this.executor.onFormat === "function"
-            ? this.executor.onFormat(formatterConfig)
-            : createFormatter(formatterConfig);
+        const formatter =
+            typeof this.executor.onFormat === "function"
+                ? this.executor.onFormat(formatterConfig)
+                : createFormatter(formatterConfig);
         return formatter(results);
     }
 

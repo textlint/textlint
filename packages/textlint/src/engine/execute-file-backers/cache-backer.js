@@ -24,7 +24,7 @@ export default class CacheBacker extends AbstractBacker {
      * @param {string} filePath
      * @returns {boolean}
      */
-    shouldExecute({filePath}) {
+    shouldExecute({ filePath }) {
         if (!this.isEnabled) {
             return true;
         }
@@ -39,7 +39,7 @@ export default class CacheBacker extends AbstractBacker {
     /**
      * @param {TextLintResult} result
      */
-    didExecute({result}) {
+    didExecute({ result }) {
         if (!this.isEnabled) {
             return;
         }

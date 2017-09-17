@@ -49,11 +49,13 @@ export default class TextlintCore {
      * It will be removed
      */
     addProcessor(Processor) {
-        this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, {
-            [`${Processor.name}@deprecated`]: {
-                Processor
-            }
-        }));
+        this.pluginCreatorSet = new PluginCreatorSet(
+            ObjectAssign({}, this.defaultPlugins, {
+                [`${Processor.name}@deprecated`]: {
+                    Processor
+                }
+            })
+        );
     }
 
     /**
@@ -63,7 +65,6 @@ export default class TextlintCore {
     setupPlugins(plugins = {}) {
         this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, plugins));
     }
-
 
     /**
      * Register rules and rulesConfig.
@@ -173,14 +174,13 @@ export default class TextlintCore {
      * @private
      */
     _mergeSetupOptions(options) {
-        const configFileBaseDir = typeof this.config.configFile === "string"
-            ? path.dirname(this.config.configFile)
-            : undefined;
+        const configFileBaseDir =
+            typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
         return ObjectAssign({}, options, {
             configBaseDir: configFileBaseDir,
             plugins: this.pluginCreatorSet.toKernelPluginsFormat(),
             rules: this.ruleCreatorSet.toKernelRulesFormat(),
-            filterRules: this.filterRuleCreatorSet.toKernelRulesFormat(),
+            filterRules: this.filterRuleCreatorSet.toKernelRulesFormat()
         });
     }
 }

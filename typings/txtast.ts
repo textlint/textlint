@@ -1,4 +1,4 @@
-declare module TxtAST {
+declare namespace TxtAST {
     // Node
     interface TxtNode {
         type: string;
@@ -11,7 +11,7 @@ declare module TxtAST {
     }
     // Inline Node
     interface TxtTextNode extends TxtNode {
-        value: string
+        value: string;
     }
     // Parent Node
     interface TxtParentNode extends TxtNode {
@@ -23,7 +23,7 @@ declare module TxtAST {
     }
     interface Position {
         line: number; // start with 1
-        column: number;// start with 0
+        column: number; // start with 0
         // This is for compatibility with JavaScript AST.
         // https://gist.github.com/azu/8866b2cb9b7a933e01fe
     }

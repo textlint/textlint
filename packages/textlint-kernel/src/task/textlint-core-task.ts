@@ -17,9 +17,7 @@ import { default as RuleContext, RuleReportedObject } from "../core/rule-context
 import { RuleCreatorReporter } from "../core/rule-creator-helper";
 import FilterRuleContext from "../core/filter-rule-context";
 
-class RuleTypeEmitter extends PromiseEventEmitter {
-}
-
+class RuleTypeEmitter extends PromiseEventEmitter {}
 
 /**
  * Ignoring Report function
@@ -36,13 +34,13 @@ export interface ShouldIgnoreArgs {
     ruleId: string;
     range: [number, number];
     optional: {
-        ruleId?: string
+        ruleId?: string;
     };
 }
 
 export interface IgnoreReportedMessage {
     ruleId: string;
-    type: typeof MessageType.ignore
+    type: typeof MessageType.ignore;
     // location info
     // TODO: compatible with TextLintMessage
     // line: number; // start with 1
@@ -69,15 +67,15 @@ export interface ReportArgs {
 export type ReportFunction = (args: ReportArgs) => void;
 
 export interface LintReportedMessage {
-    type: typeof MessageType.lint,
-    ruleId: string,
-    message: string,
-    index: number,
+    type: typeof MessageType.lint;
+    ruleId: string;
+    message: string;
+    index: number;
     // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-    line: number,        // start with 1(1-based line number)
-    column: number,// start with 1(1-based column number)
-    severity: number,  // it's for compatible ESLint formatter
-    fix?: TextLintFixCommand
+    line: number; // start with 1(1-based line number)
+    column: number; // start with 1(1-based column number)
+    severity: number; // it's for compatible ESLint formatter
+    fix?: TextLintFixCommand;
 }
 
 /**
@@ -105,14 +103,15 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
-
     abstract start(): void;
 
     createShouldIgnore(): ShouldIgnoreFunction {
         const shouldIgnore = (args: ShouldIgnoreArgs) => {
             const { ruleId, range, optional } = args;
-            assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
-                "ignoreRange should have actual range: " + range);
+            assert(
+                typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
+                "ignoreRange should have actual range: " + range
+            );
             // FIXME: should have index, loc
             // should be compatible with LintReportedMessage?
             const message: IgnoreReportedMessage = {
@@ -145,8 +144,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 message: ruleError.message,
                 index,
                 // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-                line: line,        // start with 1(1-based line number)
-                column: column + 1,// start with 1(1-based column number)
+                line: line, // start with 1(1-based line number)
+                column: column + 1, // start with 1(1-based column number)
                 severity: severity, // it's for compatible ESLint formatter
                 fix: fix !== undefined ? fix : undefined
             };
@@ -187,11 +186,13 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 }
             }
         });
-        Bluebird.all(promiseQueue).then(() => {
-            this.emit(TextLintCoreTask.events.complete);
-        }).catch(error => {
-            this.emit(TextLintCoreTask.events.error, error);
-        });
+        Bluebird.all(promiseQueue)
+            .then(() => {
+                this.emit(TextLintCoreTask.events.complete);
+            })
+            .catch(error => {
+                this.emit(TextLintCoreTask.events.error, error);
+            });
     }
 
     /**
@@ -202,7 +203,11 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * @returns {Object}
      * @throws
      */
-    tryToGetRuleObject(ruleCreator: RuleCreatorReporter, ruleContext: RuleContext | FilterRuleContext, ruleOptions?: TextLintRuleOptions | boolean) {
+    tryToGetRuleObject(
+        ruleCreator: RuleCreatorReporter,
+        ruleContext: RuleContext | FilterRuleContext,
+        ruleOptions?: TextLintRuleOptions | boolean
+    ) {
         try {
             return ruleCreator(ruleContext, ruleOptions);
         } catch (error) {
@@ -218,12 +223,17 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * @param {Object|boolean} ruleOptions
      * @returns {Object}
      */
-    tryToAddListenRule(ruleCreator: RuleCreatorReporter, ruleContext: RuleContext | FilterRuleContext, ruleOptions?: TextLintRuleOptions | boolean): void {
+    tryToAddListenRule(
+        ruleCreator: RuleCreatorReporter,
+        ruleContext: RuleContext | FilterRuleContext,
+        ruleOptions?: TextLintRuleOptions | boolean
+    ): void {
         const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions);
         Object.keys(ruleObject).forEach((nodeType: keyof typeof ruleObject) => {
-            this.ruleTypeEmitter.on(nodeType, timing.enabled
-                ? timing.time(ruleContext.id, ruleObject[nodeType])
-                : ruleObject[nodeType]);
+            this.ruleTypeEmitter.on(
+                nodeType,
+                timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType]) : ruleObject[nodeType]
+            );
         });
     }
 }

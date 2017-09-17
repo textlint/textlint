@@ -26,17 +26,35 @@
     "eslint:fix": "eslint --fix --cache 'packages/**/src/**/*.js'",
     "textlint": "node packages/textlint/bin/textlint.js --cache -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
     "textlint:fix": "node packages/textlint/bin/textlint.js --fix --cache -c docs/.textlintrc docs/ .github/ README.md",
-    "perf": "cd ./examples/perf && npm run test:ci"
+    "perf": "cd ./examples/perf && npm run test:ci",
+    "precommit": "lint-staged",
+    "postcommit": "git reset",
+    "prettier": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,css}'"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
+    "eslint-config-prettier": "^2.5.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
     "lerna": "^2.0.0-rc.4",
+    "lint-staged": "^4.2.1",
     "npm-run-all": "^4.0.1",
+    "prettier": "^1.7.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-alex": "^1.2.0",
     "textlint-rule-eslint": "^1.2.0",
     "textlint-rule-prh": "^3.1.3",
     "textlint-rule-rousseau": "^1.4.5",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

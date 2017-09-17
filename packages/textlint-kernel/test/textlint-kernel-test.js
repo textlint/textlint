@@ -8,8 +8,7 @@ const report = (context, options = {}) => {
     const { Syntax, RuleError, report, fixer } = context;
     return {
         [Syntax.Document](node) {
-
-            errors.forEach((error) => {
+            errors.forEach(error => {
                 if (error.range && error.output) {
                     report(node, new RuleError(error.message), {
                         index: error.index,
@@ -65,16 +64,18 @@ describe("textlint-kernel", () => {
         context("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.lintText("text", {
-                    ext: "test",
-                    plugins: [
-                        {
-                            pluginId: 1
-                        }
-                    ]
-                }).catch(error => {
-                    assert.ok(error instanceof Error);
-                });
+                return kernel
+                    .lintText("text", {
+                        ext: "test",
+                        plugins: [
+                            {
+                                pluginId: 1
+                            }
+                        ]
+                    })
+                    .catch(error => {
+                        assert.ok(error instanceof Error);
+                    });
             });
         });
     });
@@ -113,16 +114,18 @@ describe("textlint-kernel", () => {
         context("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.fixText("text", {
-                    ext: "test",
-                    plugins: [
-                        {
-                            pluginId: 1
-                        }
-                    ]
-                }).catch(error => {
-                    assert.ok(error instanceof Error);
-                });
+                return kernel
+                    .fixText("text", {
+                        ext: "test",
+                        plugins: [
+                            {
+                                pluginId: 1
+                            }
+                        ]
+                    })
+                    .catch(error => {
+                        assert.ok(error instanceof Error);
+                    });
             });
         });
     });

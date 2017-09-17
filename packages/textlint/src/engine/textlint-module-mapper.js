@@ -4,7 +4,7 @@
  * This class is a helper to create mapping of rules and rulesConfig
  * Main purpose hide the RuleSeparator "/".
  */
-// The separator of `<plugin>/<rule>` 
+// The separator of `<plugin>/<rule>`
 const RuleSeparator = "/";
 export default class TextLintModuleMapper {
     /**

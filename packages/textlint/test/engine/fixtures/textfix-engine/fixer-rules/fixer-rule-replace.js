@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const reporter = (context) => {
-    const {Syntax, RuleError, fixer, report, getSource} = context;
+const reporter = context => {
+    const { Syntax, RuleError, fixer, report, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             const text = getSource(node);
             const matchRegexp = /\bfix\b/;
             if (!matchRegexp.test(text)) {

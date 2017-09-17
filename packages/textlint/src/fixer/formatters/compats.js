@@ -13,7 +13,6 @@ export default function format(results) {
     let total = 0;
 
     results.forEach(result => {
-
         const messages = result.applyingMessages;
         total += messages.length;
 
@@ -26,9 +25,7 @@ export default function format(results) {
             output += ` - ${message.message}`;
             output += message.ruleId ? ` (${message.ruleId})` : "";
             output += "\n";
-
         });
-
     });
 
     if (total > 0) {

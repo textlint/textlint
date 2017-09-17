@@ -26,7 +26,7 @@ export interface FilterRuleContextArgs {
     ruleId: string;
     ignoreReport: ShouldIgnoreFunction;
     sourceCode: SourceCode;
-    textLintConfig: TextLintConfig
+    textLintConfig: TextLintConfig;
     configBaseDir?: string;
 }
 
@@ -84,11 +84,13 @@ export default class FilterRuleContext {
      */
     get RuleError() {
         return RuleError;
-    };
+    }
 
     shouldIgnore = (range: [number, number], optional = {}) => {
-        assert(Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
-            "shouldIgnore([number, number]); accept range.");
+        assert(
+            Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
+            "shouldIgnore([number, number]); accept range."
+        );
         this._ignoreReport({ ruleId: this._ruleId, range, optional });
     };
 

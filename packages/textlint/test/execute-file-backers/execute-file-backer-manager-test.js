@@ -7,11 +7,11 @@ describe("execute-file-backer-manager", function() {
     context("when no backer", function() {
         it("should process all files", function() {
             const manager = new ExecuteFileBackerManager();
-            const executeFile = (filePath) => {
-                return Promise.resolve({filePath, messages: []});
+            const executeFile = filePath => {
+                return Promise.resolve({ filePath, messages: [] });
             };
             const files = ["/file1.md", "/file2.md"];
-            return manager.process(files, executeFile).then((results) => {
+            return manager.process(files, executeFile).then(results => {
                 assert.equal(results.length, files.length);
             });
         });
@@ -21,12 +21,12 @@ describe("execute-file-backer-manager", function() {
             const manager = new ExecuteFileBackerManager();
             const callStack = [];
             class ExampleBacker extends AbstractBacker {
-                shouldExecute({filePath}) {
+                shouldExecute({ filePath }) {
                     callStack.push(`shouldExecute:${filePath}`);
                     return true;
                 }
 
-                didExecute({result}) {
+                didExecute({ result }) {
                     callStack.push(`didExecute:${result.filePath}`);
                 }
 
@@ -35,8 +35,8 @@ describe("execute-file-backer-manager", function() {
                 }
             }
             manager.add(new ExampleBacker());
-            const executeFile = (filePath) => {
-                return Promise.resolve({filePath, messages: []});
+            const executeFile = filePath => {
+                return Promise.resolve({ filePath, messages: [] });
             };
             const files = ["/file1.md", "/file2.md"];
             return manager.process(files, executeFile).then(() => {
@@ -63,7 +63,7 @@ describe("execute-file-backer-manager", function() {
                 throw new Error("not called");
             };
             const files = ["/file1.md", "/file2.md"];
-            return manager.process(files, executeFile).then((results) => {
+            return manager.process(files, executeFile).then(results => {
                 assert.equal(results.length, files.length);
                 const [res1, res2] = results;
                 assert(res1.filePath === files[0]);

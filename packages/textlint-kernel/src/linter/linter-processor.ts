@@ -4,19 +4,20 @@ import * as assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
 import {
-    TextLintConfig, TextlintKernelFilterRule, TextlintKernelProcessor,
+    TextLintConfig,
+    TextlintKernelFilterRule,
+    TextlintKernelProcessor,
     TextlintKernelRule
 } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
 import SourceCode from "../core/source-code";
 
 export interface LinterProcessorArgs {
-    config: TextLintConfig,
-    configBaseDir?: string,
+    config: TextLintConfig;
+    configBaseDir?: string;
     rules?: TextlintKernelRule[];
     filterRules?: TextlintKernelFilterRule[];
     sourceCode: SourceCode;
-
 }
 
 export default class LinterProcessor {
@@ -44,8 +45,10 @@ export default class LinterProcessor {
     process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: LinterProcessorArgs) {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
-        assert(typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implement {preProcess, postProcess}");
+        assert(
+            typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implement {preProcess, postProcess}"
+        );
         const task = new LinterTask({
             config,
             rules,

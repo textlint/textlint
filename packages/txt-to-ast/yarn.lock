@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@textlint/ast-node-types@^1.0.0":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-1.1.2.tgz#58bc95a6826b84eb1f1671be5921aa243409fb31"
-
 abbrev@1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"

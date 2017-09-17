@@ -26,7 +26,6 @@ function clone(object: any) {
     return JSON.parse(JSON.stringify(object));
 }
 
-
 export interface TextLintMessageFixable extends TextLintMessage {
     fix: TextLintFixCommand;
 }
@@ -53,7 +52,7 @@ export default class SourceCodeFixer {
         const cloneMessages = messages.slice();
         const fixes: TextLintMessageFixable[] = [];
         let lastFixPos = text.length + 1;
-        let prefix = (sourceCode.hasBOM ? BOM : "");
+        let prefix = sourceCode.hasBOM ? BOM : "";
         cloneMessages.forEach(problem => {
             if (problem && problem.fix !== undefined) {
                 fixes.push(problem as TextLintMessageFixable);
@@ -112,9 +111,9 @@ export default class SourceCodeFixer {
 
             return {
                 fixed: true,
-                messages: cloneMessages,// have order
-                applyingMessages: applyingMessages.reverse(),// have order
-                remainingMessages: remainingMessages.sort(compareMessagesByLocation),// have not order
+                messages: cloneMessages, // have order
+                applyingMessages: applyingMessages.reverse(), // have order
+                remainingMessages: remainingMessages.sort(compareMessagesByLocation), // have not order
                 output: prefix + chars.join("")
             };
         } else {

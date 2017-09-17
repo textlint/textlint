@@ -39,11 +39,11 @@ describe("config-initializer-test", function() {
                 assert.equal(typeof config.filters, "object");
                 assert.equal(typeof config.rules, "object");
                 assert.deepEqual(config.filters, {
-                    "comments": true
+                    comments: true
                 });
                 assert.deepEqual(config.rules, {
-                    "eslint": true,
-                    "prh": true,
+                    eslint: true,
+                    prh: true,
                     "preset-ja-technical-writing": true
                 });
             });
@@ -67,8 +67,7 @@ describe("config-initializer-test", function() {
     context("when .textlintrc is existed", function() {
         beforeEach(function() {
             // mock console API
-            Logger.error = function mockErrorLog() {
-            };
+            Logger.error = function mockErrorLog() {};
         });
 
         afterEach(function() {
@@ -79,14 +78,16 @@ describe("config-initializer-test", function() {
             Logger.error = function mockErrorLog(message) {
                 assert.equal(message, ".textlintrc is already existed.");
             };
-            return configInit.initializeConfig(configDir).then((exitStatus) => {
-                assert.equal(exitStatus, 0);
-                // try to re-create
-                return configInit.initializeConfig(configDir);
-            }).then(exitStatus => {
-                assert.equal(exitStatus, 1);
-            });
-
+            return configInit
+                .initializeConfig(configDir)
+                .then(exitStatus => {
+                    assert.equal(exitStatus, 0);
+                    // try to re-create
+                    return configInit.initializeConfig(configDir);
+                })
+                .then(exitStatus => {
+                    assert.equal(exitStatus, 1);
+                });
         });
     });
 });

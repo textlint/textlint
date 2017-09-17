@@ -21,9 +21,9 @@ var PERF_MULTIPLIER = 7.5e6;
  */
 function time(cmd, runs, runNumber, results, cb) {
     var start = process.hrtime();
-    exec(cmd, {silent: true}, function () {
+    exec(cmd, { silent: true }, function() {
         var diff = process.hrtime(start),
-            actual = (diff[0] * 1e3 + diff[1] / 1e6); // ms
+            actual = diff[0] * 1e3 + diff[1] / 1e6; // ms
 
         results.push(actual);
         echo("Performance Run #" + runNumber + ":  %dms", actual);
@@ -41,8 +41,8 @@ function run() {
     var TEXTLINT = "node " + __dirname + "/node_modules/.bin/textlint";
     var target = __dirname + "/md/";
     var cmd = TEXTLINT + " " + target;
-    time(cmd, 5, 1, [], function (results) {
-        results.sort(function (a, b) {
+    time(cmd, 5, 1, [], function(results) {
+        results.sort(function(a, b) {
             return a - b;
         });
 

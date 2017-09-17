@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const reporter = (context) => {
-    const {Syntax, fixer, report, getSource} = context;
+const reporter = context => {
+    const { Syntax, fixer, report, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             const text = getSource(node);
             if (/\.$/.test(text)) {
                 return;

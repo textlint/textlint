@@ -4,7 +4,7 @@ const pathToGlob = require("path-to-glob-pattern");
 const glob = require("glob");
 const path = require("path");
 const fs = require("fs");
-const isFile = (filePath) => {
+const isFile = filePath => {
     try {
         return fs.statSync(filePath).isFile();
     } catch (error) {
@@ -32,7 +32,7 @@ export function pathsToGlobPatterns(patterns, options = {}) {
 export function findFiles(patterns, options = {}) {
     const cwd = options.cwd || process.cwd();
     const files = [];
-    const addFile = (filePath) => {
+    const addFile = filePath => {
         if (files.indexOf(filePath) === -1) {
             files.push(filePath);
         }
@@ -42,13 +42,15 @@ export function findFiles(patterns, options = {}) {
         if (isFile(file)) {
             addFile(fs.realpathSync(file));
         } else {
-            glob.sync(pattern, {
-                nodir: true
-            }).forEach(filePath => {
-                // workaround for windows
-                // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
-                addFile(path.resolve(filePath));
-            });
+            glob
+                .sync(pattern, {
+                    nodir: true
+                })
+                .forEach(filePath => {
+                    // workaround for windows
+                    // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
+                    addFile(path.resolve(filePath));
+                });
         }
     });
     return files;

@@ -1,6 +1,4 @@
 "use strict";
 require("babel-register")({
-    "presets": [
-        require("babel-preset-env")
-    ]
+    presets: [require("babel-preset-env")]
 });

@@ -34,7 +34,7 @@ describe("CacheBacker", function() {
             });
             cacheBacker.afterAll();
             // next
-            const shouldExecute = cacheBacker.shouldExecute({filePath: prevResult.filePath});
+            const shouldExecute = cacheBacker.shouldExecute({ filePath: prevResult.filePath });
             assert(shouldExecute === false);
         });
     });
@@ -56,7 +56,7 @@ describe("CacheBacker", function() {
             });
             cacheBacker.afterAll();
             // next
-            const shouldExecute = cacheBacker.shouldExecute({filePath: prevResult.filePath});
+            const shouldExecute = cacheBacker.shouldExecute({ filePath: prevResult.filePath });
             assert(shouldExecute);
         });
     });

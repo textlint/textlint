@@ -13,8 +13,11 @@ import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
 import {
-    TextLintConfig, TextLintFixResult, TextlintKernelOptions,
-    TextlintKernelPlugin, TextlintKernelProcessor,
+    TextLintConfig,
+    TextLintFixResult,
+    TextlintKernelOptions,
+    TextlintKernelPlugin,
+    TextlintKernelProcessor,
     TextlintKernelProcessorConstructor
 } from "./textlint-kernel-interface";
 
@@ -24,16 +27,20 @@ import {
  * @returns {TextlintKernelPlugin|undefined} PluginConstructor
  */
 function findPluginWithExt(plugins: TextlintKernelPlugin[] = [], ext: string) {
-    const matchPlugins = plugins.filter((kernelPlugin) => {
+    const matchPlugins = plugins.filter(kernelPlugin => {
         const plugin = kernelPlugin.plugin;
-        assert.ok(plugin !== undefined,
-            `Processor(${kernelPlugin.pluginId} should have { "pluginId": string, "plugin": plugin }.`);
+        assert.ok(
+            plugin !== undefined,
+            `Processor(${kernelPlugin.pluginId} should have { "pluginId": string, "plugin": plugin }.`
+        );
         // static availableExtensions() method
         const textlintKernelProcessor: TextlintKernelProcessorConstructor = plugin.Processor;
-        assert.ok(typeof textlintKernelProcessor.availableExtensions === "function",
-            `Processor(${textlintKernelProcessor.name} should have availableExtensions()`);
+        assert.ok(
+            typeof textlintKernelProcessor.availableExtensions === "function",
+            `Processor(${textlintKernelProcessor.name} should have availableExtensions()`
+        );
         const extList = textlintKernelProcessor.availableExtensions();
-        return extList.some(targetExt => targetExt === ext || ("." + targetExt) === ext);
+        return extList.some(targetExt => targetExt === ext || "." + targetExt === ext);
     });
     if (matchPlugins.length === 0) {
         return;
@@ -53,7 +60,6 @@ function addingAtFileNameToError(fileName: string | undefined, message: string) 
     }
     return `${message}
 at ${fileName}`;
-
 }
 
 /**
@@ -100,13 +106,15 @@ export class TextlintKernel {
             const ext = options.ext;
             const plugin = findPluginWithExt(options.plugins, ext);
             if (plugin === undefined) {
-                throw new Error(`Not found available plugin for ${ ext }`);
+                throw new Error(`Not found available plugin for ${ext}`);
             }
             const Processor = plugin.plugin.Processor;
             assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
             const processor = new Processor(this.config);
             return this._parallelProcess({
-                processor, text, options
+                processor,
+                text,
+                options
             });
         });
     }
@@ -122,7 +130,7 @@ export class TextlintKernel {
             const ext = options.ext;
             const plugin = findPluginWithExt(options.plugins, ext);
             if (plugin === undefined) {
-                throw new Error(`Not found available plugin for ${ ext }`);
+                throw new Error(`Not found available plugin for ${ext}`);
             }
             const Processor = plugin.plugin.Processor;
             assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
@@ -135,7 +143,6 @@ export class TextlintKernel {
         });
     }
 
-
     /**
      * process text in parallel for Rules and return {Promise.<TextLintResult>}
      * In other word, parallel flow process.
@@ -146,18 +153,20 @@ export class TextlintKernel {
      * @private
      */
     _parallelProcess({
-                         processor,
-                         text,
-                         options
-                     }: {
-        processor: TextlintKernelProcessor,
-        text: string,
-        options: TextlintKernelOptions
+        processor,
+        text,
+        options
+    }: {
+        processor: TextlintKernelProcessor;
+        text: string;
+        options: TextlintKernelOptions;
     }) {
         const { ext, filePath, rules, filterRules, configBaseDir } = options;
         const { preProcess, postProcess } = processor.processor(ext);
-        assert(typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implement {preProcess, postProcess}");
+        assert(
+            typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implement {preProcess, postProcess}"
+        );
         const ast = preProcess(text, filePath);
         const sourceCode = new SourceCode({
             text,
@@ -166,16 +175,18 @@ export class TextlintKernel {
             filePath
         });
         const linterProcessor = new LinterProcessor(processor, this.messageProcessManager);
-        return linterProcessor.process({
-            config: this.config,
-            rules,
-            filterRules,
-            sourceCode,
-            configBaseDir
-        }).catch(error => {
-            error.message = addingAtFileNameToError(filePath, error.message);
-            return Promise.reject(error);
-        });
+        return linterProcessor
+            .process({
+                config: this.config,
+                rules,
+                filterRules,
+                sourceCode,
+                configBaseDir
+            })
+            .catch(error => {
+                error.message = addingAtFileNameToError(filePath, error.message);
+                return Promise.reject(error);
+            });
     }
 
     /**
@@ -187,16 +198,22 @@ export class TextlintKernel {
      * @returns {Promise.<TextLintFixResult>}
      * @private
      */
-    _sequenceProcess({ processor, text, options }: {
-        processor: TextlintKernelProcessor,
-        text: string,
-        options: TextlintKernelOptions
+    _sequenceProcess({
+        processor,
+        text,
+        options
+    }: {
+        processor: TextlintKernelProcessor;
+        text: string;
+        options: TextlintKernelOptions;
     }): Promise<TextLintFixResult> {
         const { ext, filePath, rules, filterRules, configBaseDir } = options;
         assert(processor, `processor is not found for ${ext}`);
         const { preProcess, postProcess } = processor.processor(ext);
-        assert(typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implement {preProcess, postProcess}");
+        assert(
+            typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implement {preProcess, postProcess}"
+        );
         const ast = preProcess(text, filePath);
         const sourceCode = new SourceCode({
             text,
@@ -205,15 +222,17 @@ export class TextlintKernel {
             filePath
         });
         const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
-        return fixerProcessor.process({
-            config: this.config,
-            rules,
-            filterRules,
-            sourceCode,
-            configBaseDir
-        }).catch(error => {
-            error.message = addingAtFileNameToError(filePath, error.message);
-            return Promise.reject(error);
-        });
+        return fixerProcessor
+            .process({
+                config: this.config,
+                rules,
+                filterRules,
+                sourceCode,
+                configBaseDir
+            })
+            .catch(error => {
+                error.message = addingAtFileNameToError(filePath, error.message);
+                return Promise.reject(error);
+            });
     }
 }

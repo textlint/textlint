@@ -21,17 +21,17 @@ function walk(name, extensions, exclude, callback) {
 
     function traverse(dir, stack) {
         stack.push(dir);
-        fs.readdirSync(path.join.apply(path, stack)).forEach(file => {
+        fs.readdirSync(path.join(...stack)).forEach(file => {
             // skip all hidden things (dirs, files, links)
             if (file[0] === ".") {
                 return;
             }
-            const filePath = path.join.apply(path, stack.concat([file]));
+            const filePath = path.join(...stack.concat([file]));
             const fileStat = fs.statSync(filePath);
             // if this file or directory is excluded from linting, skip over it.
             if (exclude && exclude(filePath)) {
                 // console.log("Ignoring " + filePath);
-                debug(`Ignoring ${ filePath }`);
+                debug(`Ignoring ${filePath}`);
                 return;
             }
             // only call callback for files with correct extensions
@@ -46,8 +46,8 @@ function walk(name, extensions, exclude, callback) {
 
     const basename = path.basename(name);
     // don't ignore cases like 'textlint ./'
-    if (basename !== "." && basename !== ".." && basename[0] === "." || exclude && exclude(name)) {
-        debug(`Ignoring ${ name }`);
+    if ((basename !== "." && basename !== ".." && basename[0] === ".") || (exclude && exclude(name))) {
+        debug(`Ignoring ${name}`);
         return;
     }
     // always call callback for any files that are passed on the command line

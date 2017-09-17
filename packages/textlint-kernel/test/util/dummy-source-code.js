@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import {parse} from "markdown-to-ast";
+import { parse } from "markdown-to-ast";
 import * as path from "path";
 import * as fs from "fs";
 import SourceCode from "../../lib/core/source-code";

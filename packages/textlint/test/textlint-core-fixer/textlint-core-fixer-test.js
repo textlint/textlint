@@ -10,9 +10,9 @@ import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";
 const inputFilePath = path.join(__dirname, "/fixtures/fixer-rules/input.md");
 const outputFilePath = path.join(__dirname, "/fixtures/fixer-rules/output.md");
 
-describe("textlint-fixer", function () {
-    context("#fixText", function () {
-        it("should return text added and replaced", function () {
+describe("textlint-fixer", function() {
+    context("#fixText", function() {
+        it("should return text added and replaced", function() {
             var textlint = new TextLintCore();
             textlint.setupRules({
                 "fixer-rule-add": ruleAdd,
@@ -28,8 +28,8 @@ describe("textlint-fixer", function () {
             });
         });
     });
-    context("#fixFile", function () {
-        it("should return text added and replaced", function () {
+    context("#fixFile", function() {
+        it("should return text added and replaced", function() {
             const textlint = new TextLintCore();
             const rules = {
                 "fixer-rule-remove": ruleRemove,

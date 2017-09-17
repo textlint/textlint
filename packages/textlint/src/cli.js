@@ -76,15 +76,15 @@ const cli = {
         const files = currentOptions._;
         if (currentOptions.version) {
             // version from package.json
-            Logger.log(`v${ require("../package.json").version }`);
+            Logger.log(`v${require("../package.json").version}`);
         } else if (currentOptions.init) {
             return configInit.initializeConfig(process.cwd());
-        } else if (currentOptions.help || !files.length && !text) {
+        } else if (currentOptions.help || (!files.length && !text)) {
             Logger.log(options.generateHelp());
         } else {
             // specify file name of stdin content
             const stdinFilename = currentOptions.stdinFilename;
-            debug(`Running on ${ text ? "text" : "files" }, stdin-filename: ${stdinFilename}`);
+            debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
             return this.executeWithOptions(currentOptions, files, text, stdinFilename);
         }
         return Promise.resolve(0);
@@ -97,7 +97,7 @@ const cli = {
      * @param {string} [stdinFilename]
      * @returns {Promise<number>} exit status
      */
-    executeWithOptions(cliOptions, files, text, stdinFilename){
+    executeWithOptions(cliOptions, files, text, stdinFilename) {
         const config = Config.initWithCLIOptions(cliOptions);
         const showEmptyRuleWarning = () => {
             Logger.log(`
@@ -114,14 +114,15 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                 showEmptyRuleWarning();
                 return Promise.resolve(0);
             }
-            const resultsPromise = text ? fixEngine.executeOnText(text, stdinFilename)
+            const resultsPromise = text
+                ? fixEngine.executeOnText(text, stdinFilename)
                 : fixEngine.executeOnFiles(files);
             return resultsPromise.then(results => {
                 const fixer = new TextLintFixer();
                 const output = fixEngine.formatResults(results);
                 printResults(output, cliOptions);
                 // --dry-run
-                if(cliOptions.dryRun){
+                if (cliOptions.dryRun) {
                     debug("Enable dry-run mode.");
                     return Promise.resolve(0);
                 }
