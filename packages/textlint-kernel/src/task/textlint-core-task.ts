@@ -106,6 +106,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             const { ruleId, range, optional } = args;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
+            // FIXME: should have index, loc
+            // should be compatible with LintReportedMessage?
             const message: IgnoreReportedMessage = {
                 type: MessageType.ignore,
                 ruleId: ruleId,

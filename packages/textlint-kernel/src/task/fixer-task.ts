@@ -4,9 +4,26 @@ import CoreTask from "./textlint-core-task";
 import { getFixer, getFilter } from "../core/rule-creator-helper";
 import RuleContext from "../core/rule-context";
 import FilterRuleContext from "../core/filter-rule-context";
+import { TextLintConfig, TextlintKernelFilterRule, TextlintKernelRule } from "../textlint-kernel-interface";
+import SourceCode from "../core/source-code";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
+
+export interface TextLintCoreTaskArgs {
+    config: TextLintConfig,
+    fixerRule: TextlintKernelRule,
+    filterRules: TextlintKernelFilterRule[],
+    sourceCode: SourceCode
+    configBaseDir?: string,
+}
+
 export default class TextLintCoreTask extends CoreTask {
+    config: TextLintConfig;
+    fixerRule: TextlintKernelRule;
+    filterRules: TextlintKernelFilterRule[];
+    sourceCode: SourceCode;
+    configBaseDir?: string;
+
     /**
      * @param {Config} config
      * @param {string} [configBaseDir]
@@ -14,7 +31,7 @@ export default class TextLintCoreTask extends CoreTask {
      * @param {TextlintKernelFilterRule[]} filterRules filter rules and config set
      * @param {SourceCode} sourceCode
      */
-    constructor({ config, configBaseDir, fixerRule, filterRules, sourceCode }) {
+    constructor({ config, configBaseDir, fixerRule, filterRules, sourceCode }: TextLintCoreTaskArgs) {
         super();
         this.config = config;
         this.configBaseDir = configBaseDir;
@@ -33,7 +50,7 @@ export default class TextLintCoreTask extends CoreTask {
         const textLintConfig = this.config;
         const sourceCode = this.sourceCode;
         const report = this.createReporter(sourceCode);
-        const ignoreReport = this.createShouldIgnore(sourceCode);
+        const ignoreReport = this.createShouldIgnore();
         // setup "rules" field by using a single fixerRule
         debug("fixerRule", this.fixerRule);
         const ruleContext = new RuleContext({
@@ -41,7 +58,6 @@ export default class TextLintCoreTask extends CoreTask {
             ruleOptions: this.fixerRule.options,
             sourceCode,
             report,
-            ignoreReport,
             textLintConfig,
             configBaseDir: this.configBaseDir
         });
