@@ -195,12 +195,3 @@ export interface TextLintFixResult {
     // pre-applyingMessages + remainingMessages
     remainingMessages: TextLintMessage[];
 }
-
-// entry
-export declare class TextlintKernel {
-    constructor(config?: Object);
-
-    lintText(text: string, options: TextlintKernelOptions): Promise<TextLintResult>;
-
-    fixText(text: string, options: TextlintKernelOptions): Promise<TextLintResult>;
-}

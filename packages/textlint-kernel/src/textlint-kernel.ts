@@ -1,9 +1,6 @@
 // MIT © 2017 azu
 "use strict";
 const assert = require("assert");
-const Ajv = require("ajv");
-const ajv = new Ajv();
-const TextlintKernelOptionsSchema = require("./TextlintKernelOptions.json");
 import SourceCode from "./core/source-code";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
@@ -29,6 +26,8 @@ import {
 function findPluginWithExt(plugins: TextlintKernelPlugin[] = [], ext: string) {
     const matchPlugins = plugins.filter((kernelPlugin) => {
         const plugin = kernelPlugin.plugin;
+        assert.ok(plugin !== undefined,
+            `Processor(${kernelPlugin.pluginId} should have { "pluginId": string, "plugin": plugin }.`);
         // static availableExtensions() method
         const textlintKernelProcessor: TextlintKernelProcessorConstructor = plugin.Processor;
         assert.ok(typeof textlintKernelProcessor.availableExtensions === "function",
@@ -97,23 +96,18 @@ export class TextlintKernel {
      * @returns {Promise.<TextLintResult>}
      */
     lintText(text: string, options: TextlintKernelOptions) {
-        const valid = ajv.validate(TextlintKernelOptionsSchema, options);
-        if (!valid) {
-            return Promise.reject(new Error(`options is invalid. Please check document.
-Errors: ${JSON.stringify(ajv.errors, null, 4)}
-Actual: ${JSON.stringify(options, null, 4)}
-`));
-        }
-        const ext = options.ext;
-        const plugin = findPluginWithExt(options.plugins, ext);
-        if (plugin === undefined) {
-            throw new Error(`Not found available plugin for ${ ext }`)
-        }
-        const Processor = plugin.plugin.Processor;
-        assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-        const processor = new Processor(this.config);
-        return this._parallelProcess({
-            processor, text, options
+        return Promise.resolve().then(() => {
+            const ext = options.ext;
+            const plugin = findPluginWithExt(options.plugins, ext);
+            if (plugin === undefined) {
+                throw new Error(`Not found available plugin for ${ ext }`);
+            }
+            const Processor = plugin.plugin.Processor;
+            assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
+            const processor = new Processor(this.config);
+            return this._parallelProcess({
+                processor, text, options
+            });
         });
     }
 
@@ -124,25 +118,20 @@ Actual: ${JSON.stringify(options, null, 4)}
      * @returns {Promise.<TextLintFixResult>}
      */
     fixText(text: string, options: TextlintKernelOptions) {
-        const valid = ajv.validate(TextlintKernelOptionsSchema, options);
-        if (!valid) {
-            return Promise.reject(new Error(`options is invalid. Please check document.
-Errors: ${JSON.stringify(ajv.errors, null, 4)}
-Actual: ${JSON.stringify(options, null, 4)}
-`));
-        }
-        const ext = options.ext;
-        const plugin = findPluginWithExt(options.plugins, ext);
-        if (plugin === undefined) {
-            throw new Error(`Not found available plugin for ${ ext }`);
-        }
-        const Processor = plugin.plugin.Processor;
-        assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-        const processor = new Processor(this.config);
-        return this._sequenceProcess({
-            processor,
-            text,
-            options
+        return Promise.resolve().then(() => {
+            const ext = options.ext;
+            const plugin = findPluginWithExt(options.plugins, ext);
+            if (plugin === undefined) {
+                throw new Error(`Not found available plugin for ${ ext }`);
+            }
+            const Processor = plugin.plugin.Processor;
+            assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
+            const processor = new Processor(this.config);
+            return this._sequenceProcess({
+                processor,
+                text,
+                options
+            });
         });
     }
 

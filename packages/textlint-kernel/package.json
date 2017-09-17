@@ -60,7 +60,6 @@
     "@textlint/ast-node-types": "^1.1.2",
     "@textlint/feature-flag": "^1.0.1",
     "@types/bluebird": "^3.5.11",
-    "ajv": "^4",
     "bluebird": "^3.5.0",
     "carrack": "^0.5.0",
     "debug": "^2.6.6",
