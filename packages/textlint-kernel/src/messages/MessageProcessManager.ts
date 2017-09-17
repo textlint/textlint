@@ -1,18 +1,21 @@
 // LICENSE : MIT
 "use strict";
+import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-core-task";
 import { TextLintMessage } from "../textlint-kernel-interface";
 
+export type PreMessageProcessor = (messages: Array<LintReportedMessage | IgnoreReportedMessage>) => Array<LintReportedMessage | IgnoreReportedMessage>;
 export type MessageProcessor = (messages: TextLintMessage[]) => TextLintMessage[];
 
 export default class MessageProcessManager {
+    private _preProcessors: PreMessageProcessor[];
     private _processors: MessageProcessor[];
 
     /**
-     * create MessageProcessManager with processes
-     * @param {function(messages: Array)[]} [processes]
+     * Preprossor
      */
-    constructor(processes: MessageProcessor[] = []) {
-        this._processors = processes;
+    constructor(preProcessors: PreMessageProcessor[]) {
+        this._preProcessors = preProcessors || [];
+        this._processors = [];
     }
 
     add(messageProcessor: MessageProcessor) {
@@ -31,13 +34,19 @@ export default class MessageProcessManager {
      * @param {TextLintMessage[]} messages
      * @returns {TextLintMessage[]}
      */
-    process(messages: TextLintMessage[]): TextLintMessage[] {
+    process(messages: Array<LintReportedMessage | IgnoreReportedMessage>): TextLintMessage[] {
         const originalMessages = messages;
+        if (this._preProcessors.length === 0) {
+            throw new Error("pre process should be > 0");
+        }
+        const preProcessedMesssages = this._preProcessors.reduce((messages, filter) => {
+            return filter(messages);
+        }, originalMessages) as TextLintMessage[];
         if (this._processors.length === 0) {
-            return originalMessages;
+            return preProcessedMesssages;
         }
         return this._processors.reduce((messages, filter) => {
             return filter(messages);
-        }, originalMessages);
+        }, preProcessedMesssages);
     }
 }

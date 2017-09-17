@@ -8,7 +8,7 @@ import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
 import { hasFixer } from "../core/rule-creator-helper";
 import {
-    TextLintConfig, TextlintKernelFilterRule, TextlintKernelProcessor,
+    TextLintConfig, TextLintFixResult, TextlintKernelFilterRule, TextlintKernelProcessor,
     TextlintKernelRule, TextLintMessage
 } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
@@ -44,7 +44,7 @@ export default class FixerProcessor {
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintFixResult>}
      */
-    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: FixerProcessorProcessArgs) {
+    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: FixerProcessorProcessArgs): Promise<TextLintFixResult> {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
@@ -84,6 +84,7 @@ export default class FixerProcessor {
                         messages: this.messageProcessManager.process(result.messages),
                         filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
                     };
+                    // TODO: should be removed resultFilePath
                     resultFilePath = filteredResult.filePath;
                     const applied = SourceCodeFixer.applyFixes(newSourceCode, filteredResult.messages);
                     // add messages
@@ -111,7 +112,7 @@ export default class FixerProcessor {
             debug(`applyingMessages: ${applyingMessages.length}`);
             debug(`remainingMessages: ${remainingMessages.length}`);
             return {
-                filePath: resultFilePath,
+                filePath: resultFilePath ? resultFilePath : `<Unkown${sourceCode.ext}>`,
                 output,
                 messages: originalMessages,
                 applyingMessages,

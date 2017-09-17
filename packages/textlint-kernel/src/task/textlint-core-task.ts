@@ -43,7 +43,14 @@ export interface ShouldIgnoreArgs {
 export interface IgnoreReportedMessage {
     ruleId: string;
     type: typeof MessageType.ignore
+    // location info
+    // TODO: compatible with TextLintMessage
+    // line: number; // start with 1
+    // column: number;// start with 1
+    // // indexed-location
+    // index: number;// start with 0
     range: [number, number];
+
     ignoringRuleId: string;
 }
 

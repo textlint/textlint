@@ -34,7 +34,7 @@ export interface TextLintConfig {
     /**
      * quite options
      */
-    quiet: boolean;
+    quiet?: boolean;
 }
 
 // TextLint AST Node
@@ -77,6 +77,10 @@ export interface Position {
 
 // Plugin
 export interface TextlintKernelProcessorConstructor extends Function {
+    // TODO: support plugin config
+    // https://github.com/textlint/textlint/issues/296
+    new(config: any): TextlintKernelProcessor;
+
     availableExtensions(): Array<string>;
 }
 
@@ -88,7 +92,7 @@ export declare class TextlintKernelProcessor {
     static availableExtensions(): Array<string>;
 
     processor(extension: string): {
-        preProcess(text: string): TxtNode,
+        preProcess(text: string, filePath?: string): TxtNode,
         postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>, filePath: string }
     };
 }
@@ -97,7 +101,9 @@ export interface TextlintKernelPlugin {
     // plugin name as key
     pluginId: string;
     // plugin processor instance
-    plugin: TextlintKernelProcessor;
+    plugin: {
+        Processor: TextlintKernelProcessorConstructor
+    };
     // plugin options
     // TODO: It is not implemented
     // options: Object | boolean;
