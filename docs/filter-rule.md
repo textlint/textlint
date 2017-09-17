@@ -49,8 +49,6 @@ module.exports = function(context) {
     };
     return exports;
 };
-
-
 ```
 
 Filter messages which is reported by `no-todo` rule.
@@ -65,8 +63,6 @@ module.exports = function(context) {
     };
     return exports;
 };
-
-
 ```
 
 ## Package name convention

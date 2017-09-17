@@ -83,8 +83,6 @@ You can use this `ASTNodeTypes` value via following way:
 ```js
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 console.log(ASTNodeTypes.Str); // "Str"
-
-
 ```
 
 See [packages/ast-node-types](../packages/ast-node-types) for more details.
@@ -149,8 +147,6 @@ export default function(context) {
         [Syntax.Str](node) {}
     };
 }
-
-
 ```
 
 
@@ -316,8 +312,6 @@ const AST = yourParse("This is text");
 test(AST); // if the AST is invalid, then throw Error
 
 isTextlintAST(AST); // true or false
-
-
 ```
 ## Warning
 

@@ -357,8 +357,6 @@ engine.executeOnFiles(["README.md"]).then(results => {
         console.log(output);
     }
 });
-
-
 ```
 
 Low level usage:
@@ -379,8 +377,6 @@ textlint.lintMarkdown("# title").then(results => {
     console.log(results[0].filePath); // => "README.md"
     console.log(results[0].messages); // => [{message:"lint message"}]
 });
-
-
 ```
 
 More details on:

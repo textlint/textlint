@@ -22,8 +22,6 @@ const results = [
         ]
     }
 ];
-
-
 ```
 
 `TextLintMessage` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "textlint.d.ts").
@@ -79,8 +77,6 @@ const results = [
         messages: []
     }
 ];
-
-
 ```
 
 `TextLintFixResult` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "textlint.d.ts").

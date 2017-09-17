@@ -64,8 +64,6 @@ export default function(context, options = {}) {
         }
     };
 }
-
-
 ```
 
 ### 2. Ignore `Code` node
@@ -134,8 +132,6 @@ export default function(context, options = {}) {
         }
     };
 }
-
-
 ```
 
 ### 3. Get text of a Paragraph
@@ -187,8 +183,6 @@ export default function(context, options = {}) {
         }
     };
 }
-
-
 ```
 
 ### 4. Create Sentences from Paragraph
@@ -256,8 +250,6 @@ export default function(context, options = {}) {
         }
     };
 }
-
-
 ```
 
 
@@ -340,8 +332,6 @@ export default function(context, options = {}) {
         }
     };
 }
-
-
 ```
 
 If the count of word is over max, report this as RuleError.
@@ -356,16 +346,12 @@ if (words.length > maxWordCount) {
     });
     report(node, ruleError);
 }
-
-
 ```
 
 You can get original index from position of **Sentence** node.
 
 ```js
 const originalIndex = source.originalIndexFromPosition(sentence.loc.start);
-
-
 ```
 
 ## Testing
@@ -466,8 +452,6 @@ This is not a pen.`,
         }
     ]
 });
-
-
 ```
 
 ## Complete!

@@ -4,8 +4,6 @@ textlint has `linter` and also has `fixer`.
 
 ```js
 export default function reporter(context) {}
-
-
 ```
 
 is shorthand function syntax of  
@@ -15,8 +13,6 @@ function reporter(context) {}
 export default {
     linter: reporter
 };
-
-
 ```
 
 :information_source: You should know [Creating Rules](./rule.md) in advance.
@@ -31,8 +27,6 @@ export default {
     linter: reporter,
     fixer: reporter
 };
-
-
 ```
 
 **fixer** does lint and found error
@@ -80,8 +74,6 @@ export default {
     // This rule has fixer.
     fixer: reporter
 };
-
-
 ```
 
 The `context.fixer.` object has the following methods:

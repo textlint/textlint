@@ -36,8 +36,6 @@ export default function(context) {
         }
     };
 }
-
-
 ```
 
 Input: 
@@ -84,8 +82,6 @@ report(
         column: paddingLocation.column
     })
 );
-
-
 ```
 
 OR use "index" property
@@ -126,6 +122,4 @@ export default function(context) {
         }
     };
 }
-
-
 ```

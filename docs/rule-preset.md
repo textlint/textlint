@@ -13,8 +13,6 @@ module.exports = {
         "no-todo": true
     }
 };
-
-
 ```
 
 - `"rules"` is rule creator object.
@@ -42,8 +40,6 @@ module.exports = {
         ruleB: true
     }
 };
-
-
 ```
 
 Usage of "textlint-rule-preset-gizmo":

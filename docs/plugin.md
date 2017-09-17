@@ -22,8 +22,6 @@ export default {
         "no-todo": true
     }
 };
-
-
 ```
 
 ## How to create rule?
@@ -50,8 +48,6 @@ export default {
         }
     }
 };
-
-
 ```
 
 ## Processor(optional) 
@@ -63,8 +59,6 @@ Plugin has a `Processor` that is optional.
 export default {
     Processor: require("./SomeProcessor")
 };
-
-
 ```
 
 `Processor` class defined pre/post process of the file and available file types.
@@ -107,8 +101,6 @@ export default class TextProcessor {
         };
     }
 }
-
-
 ```
 
 You can use Processor plugin in the same way a plugin.
@@ -153,8 +145,6 @@ tester.run("no-todo", noTodo, {
         }
     ]
 });
-
-
 ```
 
 ### Example

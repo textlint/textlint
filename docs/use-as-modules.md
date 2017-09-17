@@ -34,8 +34,6 @@ module.exports = {
     TextLintMessageSeverityLevel: SeverityLevel,
     TextLintNodeType
 };
-
-
 ```
 
 Recommend to use `TextLintEngine`.
@@ -116,8 +114,6 @@ function lintFile(filePath) {
             console.error(error);
         });
 }
-
-
 ```
 
 ## Testing

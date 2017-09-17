@@ -32,7 +32,7 @@
     "prettier": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,css}'"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.7.0",
     "eslint-config-prettier": "^2.5.0",
     "eslint-plugin-prettier": "^2.2.0",
     "husky": "^0.14.3",
@@ -42,8 +42,8 @@
     "prettier": "^1.7.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-alex": "^1.2.0",
-    "textlint-rule-eslint": "^1.2.0",
-    "textlint-rule-prh": "^3.1.3",
+    "textlint-rule-eslint": "^2.0.0",
+    "textlint-rule-prh": "^4.0.1",
     "textlint-rule-rousseau": "^1.4.5",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
   },

@@ -36,8 +36,6 @@ module.exports = context => {
         }
     };
 };
-
-
 ```
 
 ## Related Issues

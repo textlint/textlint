@@ -33,8 +33,6 @@ export default function(context) {
         [context.Syntax.Break](node) {}
     };
 }
-
-
 ```
 
 If your rule wants to know when an `Str` node is found in the AST, then add a method called `context.Syntax.Str`, such as:
@@ -56,8 +54,6 @@ module.exports = function(context) {
     };
     return exports;
 };
-
-
 ```
 
 By default, the method matching a node name is called during the traversal when the node is first encountered(This is called **Enter**), on the way down the AST.
@@ -74,8 +70,6 @@ export default function(context) {
         }
     };
 }
-
-
 ```
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
@@ -144,8 +138,6 @@ const errorWithPaddingIndex = new RuleError("message", {
     index: paddingIndex // padding index value from `node.range[0]`. default: 0
 });
 // context.report(node, errorWithPaddingIndex);
-
-
 ```
 
 ### :warning: Caution :warning:
@@ -173,8 +165,6 @@ export default function(context) {
         }
     };
 }
-
-
 ```
 
 ### How to write async task in the rule
@@ -193,8 +183,6 @@ export default function(context) {
         }
     };
 }
-
-
 ```
 
 ## Example: creating `no-todo` rules.
@@ -287,9 +275,6 @@ export default function(context) {
         }
     };
 }
-
-
-
 ```
 
 Example text:
@@ -408,8 +393,6 @@ export default function(context) {
         }
     };
 }
-
-
 ```
 
 As as result, linting following text with modified rule, a result was no error.
@@ -516,8 +499,6 @@ tester.run("no-todo", rule, {
         }
     ]
 });
-
-
 ```
 
 Run the tests:
@@ -555,8 +536,6 @@ export default function(context, options) {
         }
     */
 }
-
-
 ```
 
 ## Advanced example
