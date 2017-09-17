@@ -21,7 +21,7 @@ function parse(text) {
             if (node.type) {
                 const replacedType = SyntaxMap[node.type];
                 if (!replacedType) {
-                    debug("replacedType : " + replacedType + " , node.type: " + node.type);
+                    debug(`replacedType : ${replacedType} , node.type: ${node.type}`);
                 } else {
                     node.type = replacedType;
                 }
@@ -44,13 +44,12 @@ function parse(text) {
                     writable: false,
                     value: position
                 });
-
             }
         }
     });
     return ast;
 }
 module.exports = {
-    parse: parse,
+    parse,
     Syntax: ASTNodeTypes
 };

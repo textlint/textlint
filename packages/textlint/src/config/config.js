@@ -10,10 +10,7 @@ const path = require("path");
 import loadConfig from "./config-loader";
 import { isPresetRuleKey } from "../util/config-util";
 import { mapRulesConfig } from "./preset-loader";
-import {
-    loadRulesConfig as loadRulesConfigFromPlugins,
-    loadAvailableExtensions
-} from "./plugin-loader";
+import { loadRulesConfig as loadRulesConfigFromPlugins, loadAvailableExtensions } from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
 import TextLintModuleResolver from "../engine/textlint-module-resolver";
 import separateAvailableOrDisable from "./separate-by-config-option";
@@ -160,9 +157,10 @@ class Config {
         // --cache
         options.cache = cliOptions.cache !== undefined ? cliOptions.cache : defaultOptions.cache;
         // --cache-location="path/to/file"
-        options.cacheLocation = cliOptions.cacheLocation !== undefined
-            ? path.resolve(process.cwd(), cliOptions.cacheLocation)
-            : defaultOptions.cacheLocation;
+        options.cacheLocation =
+            cliOptions.cacheLocation !== undefined
+                ? path.resolve(process.cwd(), cliOptions.cacheLocation)
+                : defaultOptions.cacheLocation;
         return this.initWithAutoLoading(options);
     }
 
@@ -226,7 +224,6 @@ class Config {
         return new this(mergedOptions);
     }
 
-
     /**
      * Return hash string of the config and textlint version
      * @returns {string}
@@ -278,7 +275,8 @@ class Config {
          * @type {string[]} rule key list
          * These rule is set `false` to options
          */
-        this.disabledFilterRules = options.disabledFilterRules ? options.disabledFilterRules
+        this.disabledFilterRules = options.disabledFilterRules
+            ? options.disabledFilterRules
             : defaultOptions.disabledFilterRules;
         /**
          * @type {string[]} preset key list
@@ -328,7 +326,6 @@ class Config {
         this.cacheLocation = options.cacheLocation !== undefined ? options.cacheLocation : defaultOptions.cacheLocation;
         this._assertCacheLocation(this.cacheLocation);
     }
-
 
     _assertCacheLocation(locationPath) {
         let fileStats;

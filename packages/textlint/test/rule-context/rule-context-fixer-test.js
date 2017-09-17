@@ -1,10 +1,10 @@
 // LICENSE : MIT
 "use strict";
-import {TextLintCore} from "../../src/index";
+import { TextLintCore } from "../../src/index";
 import assert from "power-assert";
 import { assertRuleContext } from "./assert-rule-context";
-describe("Fixer Rule", function () {
-    it("should context and receive options", function () {
+describe("Fixer Rule", function() {
+    it("should context and receive options", function() {
         const textlint = new TextLintCore();
         const expectedOptions = {
             key: "value",

@@ -38,7 +38,6 @@ export function getLinter(ruleCreator) {
  */
 export function hasFixer(ruleCreator) {
     return typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
-
 }
 /**
  * get fixer function from ruleCreator
@@ -76,7 +75,7 @@ export function isRuleModule(ruleCreator) {
  */
 export function assertRuleShape(ruleModule, key = "") {
     if (ruleModule === undefined) {
-        throw new Error(`Definition of rule '${ key }' was not found.`);
+        throw new Error(`Definition of rule '${key}' was not found.`);
     }
     /*
     Check old rule function
@@ -85,7 +84,7 @@ export function assertRuleShape(ruleModule, key = "") {
     }
     */
     if (!isRuleModule(ruleModule)) {
-        throw new Error(`Definition of rule '${ key }' was not rule module.
+        throw new Error(`Definition of rule '${key}' was not rule module.
 Rule should export function:
 module.exports = function(context){
     // Your rule

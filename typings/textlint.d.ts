@@ -4,7 +4,7 @@ import TxtAST from "./txtast";
 // "range" is replaced by "text"
 export class TextLintFixCommand {
     text: string;
-    range: [number,number];
+    range: [number, number];
     isAbsolute: boolean;
 }
 export class TextLintMessage {
@@ -21,9 +21,9 @@ export class TextLintMessage {
     // location info
     // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
     line: number; // start with 1
-    column: number;// start with 1
+    column: number; // start with 1
     // indexed-location
-    index: number;// start with 0
+    index: number; // start with 0
     // Severity Level
     // See src/shared/type/SeverityLevel.js
     severity?: number;
@@ -64,12 +64,12 @@ export interface TextLintConfig {
     configFile?: string;
     // disabled rule package names
     // always should start with empty
-    disabledRules?: string[],
+    disabledRules?: string[];
     // preset package names
     // e.g.) ["preset-foo"]
-    presets?: string[],
+    presets?: string[];
     // rules config object
-    rulesConfig?: Object,
+    rulesConfig?: Object;
 }
 
 export interface RuleErrorOptions {
@@ -108,7 +108,7 @@ export class TextLintRuleContext {
      * @param {TxtNode} node
      * @param {RuleError} ruleError error is a RuleError instance or any data
      */
-    report: {(node: TxtAST.TxtNode, ruleError: RuleError): void};
+    report: { (node: TxtAST.TxtNode, ruleError: RuleError): void };
     /**
      * Gets the source code for the given node.
      * @param {TxtNode=} node The AST node to get the text for.
@@ -116,8 +116,8 @@ export class TextLintRuleContext {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string|null} The text representing the AST node.
      */
-    getSource: {(node, beforeCount?: number, afterCount?: number): string};
-    getFilePath: {(): string};
+    getSource: { (node, beforeCount?: number, afterCount?: number): string };
+    getFilePath: { (): string };
 
     fixer: RuleFixer;
 }
@@ -132,9 +132,9 @@ export class TextLintFilterRuleContext {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string|null} The text representing the AST node.
      */
-    getSource: {(node, beforeCount?: number, afterCount?: number): string};
-    shouldIgnore: {(range: [number, number], options: { ruleId: string })};
-    getFilePath: {(): string};
+    getSource: { (node, beforeCount?: number, afterCount?: number): string };
+    shouldIgnore: { (range: [number, number], options: { ruleId: string }) };
+    getFilePath: { (): string };
 }
 /**
  * Creates code fixing commands for rules.
@@ -214,6 +214,5 @@ export class RuleFixer {
      *      is end of range.
      * @returns {TextLintFixCommand} The fix command.
      */
-    removeRange(range: [number,number]): TextLintFixCommand;
-
+    removeRange(range: [number, number]): TextLintFixCommand;
 }

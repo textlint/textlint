@@ -9,7 +9,7 @@ const interopRequire = require("interop-require");
  * @returns {{ config: Object, filePath:string}}
  */
 export default function load(configFilePath, { configFileName, moduleResolver }) {
-    // if specify Config module, use it 
+    // if specify Config module, use it
     if (configFilePath) {
         try {
             const modulePath = moduleResolver.resolveConfigPackageName(configFilePath);

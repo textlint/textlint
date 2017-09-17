@@ -17,7 +17,7 @@ export default class TextLintEngine {
              * @param {TextLintCore} textlintCore
              * @returns {function()}
              */
-            onFile: (textlintCore) => {
+            onFile: textlintCore => {
                 /**
                  * Executes the current configuration on an array of file and directory names.
                  * TextLintEngine#executeOnFile
@@ -32,7 +32,7 @@ export default class TextLintEngine {
              * @param {TextLintCore} textlintCore
              * @returns {function()}
              */
-            onText: (textlintCore) => {
+            onText: textlintCore => {
                 /**
                  * lint text, and return TextLintResult[]
                  * TextLintEngine#executeOnText
@@ -47,7 +47,7 @@ export default class TextLintEngine {
             /**
              * @param {TextLintFormatterOption} formatterConfig
              */
-            onFormat: (formatterConfig) => {
+            onFormat: formatterConfig => {
                 // default formatter name: stylish
                 if (!formatterConfig.formatterName) {
                     formatterConfig.formatterName = "stylish";

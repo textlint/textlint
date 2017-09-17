@@ -34,7 +34,7 @@ export const isFeatureEnabled = (flagName, { loose = false } = {}) => {
     }
     const status = flagMap.get(flagName);
     if (process.env.NODE_ENV !== "production") {
-        assert(typeof status, "flag should be boolean, but it is :" + status);
+        assert(typeof status, `flag should be boolean, but it is :${status}`);
     }
     return status;
 };

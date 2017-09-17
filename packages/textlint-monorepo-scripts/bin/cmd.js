@@ -7,11 +7,7 @@ switch (script) {
     case "build-js":
     case "build-ts":
     case "test":
-        const result = spawn.sync(
-            "node",
-            [require.resolve("../scripts/" + script)].concat(args),
-            { stdio: "inherit" }
-        );
+        const result = spawn.sync("node", [require.resolve("../scripts/" + script)].concat(args), { stdio: "inherit" });
         process.exit(result.status);
         break;
     default:

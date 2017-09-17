@@ -13,10 +13,12 @@ export function getProcessorMatchExtension(processors: TextlintKernelProcessor[]
     const matchProcessors = processors.filter(processor => {
         // static availableExtensions() method
         const processorConstructor: TextlintKernelProcessorConstructor = processor.constructor as any;
-        assert(typeof processorConstructor.availableExtensions === "function",
-            `Processor(${processorConstructor.name} should have availableExtensions()`);
+        assert(
+            typeof processorConstructor.availableExtensions === "function",
+            `Processor(${processorConstructor.name} should have availableExtensions()`
+        );
         const extList = processorConstructor.availableExtensions();
-        return extList.some(targetExt => targetExt === ext || ("." + targetExt) === ext);
+        return extList.some(targetExt => targetExt === ext || "." + targetExt === ext);
     });
     if (matchProcessors.length) {
         return matchProcessors[0];

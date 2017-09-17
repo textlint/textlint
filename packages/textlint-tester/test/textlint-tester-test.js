@@ -71,6 +71,5 @@ tester.run("max-number-of-lines", maxNumberOfLine, {
                 }
             ]
         }
-
     ]
 });

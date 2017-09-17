@@ -3,7 +3,7 @@
 var assert = require("power-assert");
 var parse = require("../src/markdown-parser").parse;
 var Syntax = require("../src/markdown-parser").Syntax;
-var inspect = (obj) => JSON.stringify(obj, null, 4);
+var inspect = obj => JSON.stringify(obj, null, 4);
 var traverse = require("traverse");
 function findFirstTypedNode(node, type, value) {
     var result = null;
@@ -102,9 +102,7 @@ describe("markdown-parser", function() {
             assert.deepEqual(RootDocument.range, [0, text.length]);
         });
         it("should has range and loc on whole text", function() {
-            var text = "# Header\n" +
-                "\n" +
-                "text";
+            var text = "# Header\n" + "\n" + "text";
             var lines = text.split("\n");
             var RootDocument = parse(text);
             assert.equal(RootDocument.type, Syntax.Document);
@@ -144,7 +142,6 @@ describe("markdown-parser", function() {
                 shouldHaveImplementTxtNode(node, rawValue);
             });
         });
-
     });
     /*
         H1  > Str
@@ -236,8 +233,7 @@ describe("markdown-parser", function() {
         });
         it("should have marker_offser of each items", function() {
             var node, AST;
-            AST = parse("- item\n" +
-                "   - item2");// second line should has offset
+            AST = parse("- item\n" + "   - item2"); // second line should has offset
             node = findFirstTypedNode(AST, Syntax.ListItem, " - item2");
             assert(node);
             assert.equal(node.raw, " - item2");
@@ -284,9 +280,7 @@ describe("markdown-parser", function() {
             var AST, rawValue, code;
             beforeEach(function() {
                 code = "var code;";
-                rawValue = "    \n" +
-                    "    " + code +
-                    "\n\n";
+                rawValue = "    \n" + "    " + code + "\n\n";
                 AST = parse(rawValue);
             });
             it("should has implemented TxtNode", function() {
@@ -300,9 +294,7 @@ describe("markdown-parser", function() {
             var AST, rawValue, code;
             beforeEach(function() {
                 code = "var code;";
-                rawValue = "```\n" +
-                    code +
-                    "\n```";
+                rawValue = "```\n" + code + "\n```";
                 AST = parse(rawValue);
             });
             it("should has implemented TxtNode", function() {
@@ -313,7 +305,6 @@ describe("markdown-parser", function() {
                 assert.equal(slicedCode, codeBlockRaw);
             });
         });
-
     });
     /*
         `code`

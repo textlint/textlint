@@ -14,7 +14,7 @@ The rule ID does not have to follow any naming convention (so it can just be `no
 ```js
 export default {
     rules: {
-        "no-todo": function (context, options) {
+        "no-todo"(context, options) {
             // rule implementation ...
         }
     },
@@ -38,13 +38,13 @@ You can provide default configuration for `rules` by `rulesConfig` property.
 ```js
 export default {
     rules: {
-        "myFirstRule": require("./lib/rules/my-first-rule"),
-        "mySecondRule": require("./lib/rules/my-second-rule")
+        myFirstRule: require("./lib/rules/my-first-rule"),
+        mySecondRule: require("./lib/rules/my-second-rule")
     },
     rulesConfig: {
-        "myFirstRule": true,
-        "mySecondRule": {
-            "key": "value"
+        myFirstRule: true,
+        mySecondRule: {
+            key: "value"
         }
     }
 };
@@ -73,17 +73,14 @@ textlint already support `.txt` and `.md`. These are implemented by `Processor`
 
 ```js
 // TextProcessor.js
-import {parse} from "txt-to-ast";
+import { parse } from "txt-to-ast";
 export default class TextProcessor {
     constructor(config) {
         this.config = config;
     }
     // available ".ext" list
     static availableExtensions() {
-        return [
-            ".txt",
-            ".text"
-        ];
+        return [".txt", ".text"];
     }
     // define pre/post process
     // in other words, parse and generate process
@@ -140,15 +137,11 @@ tester.run("no-todo", noTodo, {
         // text, expected errors
         {
             text: "- [ ] string",
-            errors: [
-                {message: "found TODO: '- [ ] string'"}
-            ]
+            errors: [{ message: "found TODO: '- [ ] string'" }]
         },
         {
             text: "TODO: string",
-            errors: [
-                {message: "found TODO: 'TODO: string'"}
-            ]
+            errors: [{ message: "found TODO: 'TODO: string'" }]
         }
     ]
 });

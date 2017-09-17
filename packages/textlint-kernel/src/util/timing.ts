@@ -47,17 +47,17 @@ const ALIGN = [alignLeft, alignRight, alignRight];
 function display(data: any) {
     let total = 0;
     const rows = Object.keys(data)
-        .map(function (key) {
+        .map(function(key) {
             const time = data[key];
             total += time;
             return [key, time];
         })
-        .sort(function (a: [string, number], b: [string, number]) {
+        .sort(function(a: [string, number], b: [string, number]) {
             return b[1] - a[1];
         })
         .slice(0, 10);
 
-    rows.forEach(function (row) {
+    rows.forEach(function(row) {
         row.push((row[1] * 100 / total).toFixed(1) + "%");
         row[1] = row[1].toFixed(3);
     });
@@ -65,7 +65,7 @@ function display(data: any) {
     rows.unshift(HEADERS);
 
     const widths: Array<number> = [];
-    rows.forEach(function (row) {
+    rows.forEach(function(row) {
         for (let i = 0; i < row.length; i++) {
             const n = row[i].length;
             if (!widths[i] || n > widths[i]) {
@@ -74,25 +74,32 @@ function display(data: any) {
         }
     });
 
-    const table = rows.map(function (row) {
-        return row.map(function (cell, index) {
-            return ALIGN[index](cell, widths[index]);
-        }).join(" | ");
+    const table = rows.map(function(row) {
+        return row
+            .map(function(cell, index) {
+                return ALIGN[index](cell, widths[index]);
+            })
+            .join(" | ");
     });
-    table.splice(1, 0, widths.map(function (w, index) {
-        if (index !== 0 && index !== widths.length - 1) {
-            w++;
-        }
+    table.splice(
+        1,
+        0,
+        widths
+            .map(function(w, index) {
+                if (index !== 0 && index !== widths.length - 1) {
+                    w++;
+                }
 
-        return ALIGN[index](":", w + 1, "-");
-    }).join("|"));
+                return ALIGN[index](":", w + 1, "-");
+            })
+            .join("|")
+    );
 
     Logger.log(table.join("\n"));
 }
 
 /* istanbul ignore next */
-export default  (function () {
-
+export default (function() {
     const data = Object.create(null);
 
     /**
@@ -107,7 +114,7 @@ export default  (function () {
             data[key] = 0;
         }
 
-        return function () {
+        return function() {
             let t = process.hrtime();
             fn.apply(null, Array.prototype.slice.call(arguments));
             t = process.hrtime(t);
@@ -116,7 +123,7 @@ export default  (function () {
     }
 
     if (enabled) {
-        process.on("exit", function () {
+        process.on("exit", function() {
             display(data);
         });
     }
@@ -125,6 +132,4 @@ export default  (function () {
         time: time,
         enabled: enabled
     };
-
-}());
-
+})();

@@ -5,7 +5,7 @@
  */
 export default {
     // Linting(also include Fix) Message Type
-    "lint": "lint",
+    lint: "lint",
     // Ignoring Message Type
-    "ignore": "ignore"
+    ignore: "ignore"
 };

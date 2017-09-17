@@ -22,15 +22,15 @@ describe("Async", function() {
                 const { Syntax, report, RuleError } = context;
 
                 return {
-                    [Syntax.Str](node){
-                        return new Promise((resolve) => {
+                    [Syntax.Str](node) {
+                        return new Promise(resolve => {
                             setTimeout(() => {
                                 report(node, new RuleError("before"));
                                 resolve();
                             }, 100);
                         });
                     },
-                    [Syntax.Str + ":exit"](node){
+                    [Syntax.Str + ":exit"](node) {
                         report(node, new RuleError("after"));
                     }
                 };

@@ -14,9 +14,7 @@ if (!fs.existsSync(tsconfig)) {
     throw new Error("Should put tsconfig.json in " + process.cwd());
 }
 // babel src --out-dir lib --watch --source-maps
-const child = spawn(tsc, [
-    "-p", "."
-].concat(args));
+const child = spawn(tsc, ["-p", "."].concat(args));
 child.stderr.on("data", function(data) {
     process.stderr.write(data);
 });

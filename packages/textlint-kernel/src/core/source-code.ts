@@ -22,8 +22,8 @@ function validate(ast: TxtNode) {
 }
 
 export interface SourceCodePosition {
-    line: number,
-    column: number
+    line: number;
+    column: number;
 }
 
 /**
@@ -31,8 +31,8 @@ export interface SourceCodePosition {
  * Column number starts with 0.
  */
 export interface SourceCodeLocation {
-    start: SourceCodePosition,
-    end: SourceCodePosition
+    start: SourceCodePosition;
+    end: SourceCodePosition;
 }
 
 export type SourceCodeRange = [number, number];
@@ -54,11 +54,11 @@ export default class SourceCode {
      * @param {string} ext
      * @param {string} [filePath]
      */
-    constructor({ text = "", ast, ext, filePath }: { text: string, ast: TxtNode, ext: string, filePath?: string }) {
+    constructor({ text = "", ast, ext, filePath }: { text: string; ast: TxtNode; ext: string; filePath?: string }) {
         validate(ast);
         assert(ext || filePath, "should be set either of fileExt or filePath.");
-        this.hasBOM = text.charCodeAt(0) === 0xFEFF;
-        this.text = (this.hasBOM ? text.slice(1) : text);
+        this.hasBOM = text.charCodeAt(0) === 0xfeff;
+        this.text = this.hasBOM ? text.slice(1) : text;
         /**
          * @type StructuredSource
          */

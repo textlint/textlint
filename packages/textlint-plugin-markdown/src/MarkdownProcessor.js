@@ -1,23 +1,14 @@
 /* eslint-disable no-unused-vars */
 // LICENSE : MIT
 "use strict";
-import {parse} from "markdown-to-ast";
+import { parse } from "markdown-to-ast";
 export class MarkdownProcessor {
     constructor(config) {
         this.config = config;
     }
 
     static availableExtensions() {
-        return [
-            ".md",
-            ".markdown",
-            ".mdown",
-            ".mkdn",
-            ".mkd",
-            ".mdwn",
-            ".mkdown",
-            ".ron"
-        ];
+        return [".md", ".markdown", ".mdown", ".mkdn", ".mkd", ".mdwn", ".mkdown", ".ron"];
     }
 
     processor(ext) {

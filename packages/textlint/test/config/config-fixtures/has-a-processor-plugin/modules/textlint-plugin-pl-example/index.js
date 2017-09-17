@@ -2,10 +2,7 @@
 "use strict";
 class TestProcessor {
     static availableExtensions() {
-        return [
-            ".test1",
-            ".test2"
-        ];
+        return [".test1", ".test2"];
     }
 
     processor(ext) {

@@ -2,8 +2,8 @@
 "use strict";
 export default {
     rules: {
-        "config": {
-            "key": true
+        config: {
+            key: true
         }
     }
 };

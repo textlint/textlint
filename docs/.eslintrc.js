@@ -1,5 +1,5 @@
 module.exports = {
-    "rules": {
+    rules: {
         /*
         loose for document
          */
@@ -8,12 +8,12 @@ module.exports = {
         "no-undef": 0,
         "no-empty-function": 0
     },
-    "parserOptions": {
-        "sourceType": "module"
+    parserOptions: {
+        sourceType: "module"
     },
-    "env": {
-        "es6": true,
-        "node": true
+    env: {
+        es6: true,
+        node: true
     },
-    "extends": "../.eslintrc.js"
+    extends: "../.eslintrc.js"
 };

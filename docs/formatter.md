@@ -60,22 +60,22 @@ Fixable result is a bit difference for things of linting.
 ```js
 // results of fixing
 const results = [
-  // TextLintFixResult
-  {
-    "filePath": "./myfile.md",
-    // fixed content string
-    "output": "fixed content",
-    // applied fixable messages
-    // messages is a array of `TextLintMessage`
-    "applyingMessages": [],
-    // not fixable messages
-    // messages is a array of `TextLintMessage`
-    "remainingMessages": [],
-    // messages is the same one of `TextLintResult`
-    // pre-applyingMessages + remainingMessages
-    // messages is a array of `TextLintMessage`
-    "messages": []
-  }
+    // TextLintFixResult
+    {
+        filePath: "./myfile.md",
+        // fixed content string
+        output: "fixed content",
+        // applied fixable messages
+        // messages is a array of `TextLintMessage`
+        applyingMessages: [],
+        // not fixable messages
+        // messages is a array of `TextLintMessage`
+        remainingMessages: [],
+        // messages is the same one of `TextLintResult`
+        // pre-applyingMessages + remainingMessages
+        // messages is a array of `TextLintMessage`
+        messages: []
+    }
 ];
 ```
 

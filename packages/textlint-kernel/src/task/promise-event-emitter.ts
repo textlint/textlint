@@ -10,7 +10,7 @@ export class PromiseEventEmitter {
 
     constructor() {
         this.events = new EventEmitter();
-        this.events.setMaxListeners(0)
+        this.events.setMaxListeners(0);
     }
 
     listenerCount(type: string | symbol): number {
@@ -20,7 +20,6 @@ export class PromiseEventEmitter {
     on(event: string, listener: (...args: any[]) => void) {
         return this.events.on(event, listener);
     }
-
 
     emit(event: string, ...args: Array<any>): Bluebird<Array<void>> {
         const promises: Array<Bluebird<void>> = [];

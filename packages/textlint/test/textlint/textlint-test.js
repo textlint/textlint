@@ -3,23 +3,23 @@
 const assert = require("power-assert");
 const path = require("path");
 const deepClone = require("clone");
-import {textlint} from "../../src/";
+import { textlint } from "../../src/";
 import { assertRuleContext } from "./assert-rule-context";
-import {loadFromDir} from "../../src/engine/rule-loader";
+import { loadFromDir } from "../../src/engine/rule-loader";
 import Config from "../../src/config/config";
 const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
-describe("textlint-test", function () {
-    beforeEach(function () {
+describe("textlint-test", function() {
+    beforeEach(function() {
         // This rule found `Str` Node then occur error
         textlint.setupRules(rules);
     });
-    afterEach(function () {
+    afterEach(function() {
         textlint.resetRules();
     });
-    describe("#setupRules", function () {
-        context("when pass only rules object", function () {
-            it("should pass RuleContext instance to Rule function", function () {
-                const rule = function (context, config) {
+    describe("#setupRules", function() {
+        context("when pass only rules object", function() {
+            it("should pass RuleContext instance to Rule function", function() {
+                const rule = function(context, config) {
                     assertRuleContext(context);
                     assert.strictEqual(context.id, "rule-name");
                     assert.strictEqual(config, undefined);
@@ -30,26 +30,29 @@ describe("textlint-test", function () {
                 });
             });
         });
-        context("when pass rules object and rules config", function () {
-            it("should pass RuleContext instance and RuleConfig to Rule function", function () {
+        context("when pass rules object and rules config", function() {
+            it("should pass RuleContext instance and RuleConfig to Rule function", function() {
                 var ruleConfig = {
-                    "key": "value"
+                    key: "value"
                 };
-                const rule = function (context, config) {
+                const rule = function(context, config) {
                     assertRuleContext(context);
                     assert.equal(context.id, "rule-name");
                     assert.deepEqual(config, ruleConfig);
                     return {};
                 };
-                textlint.setupRules({
-                    "rule-name": rule
-                }, {
-                    "rule-name": ruleConfig
-                });
+                textlint.setupRules(
+                    {
+                        "rule-name": rule
+                    },
+                    {
+                        "rule-name": ruleConfig
+                    }
+                );
             });
         });
-        context("when pass textlintConfig to setupRules", function () {
-            it("should RuleContext has `config` object", function () {
+        context("when pass textlintConfig to setupRules", function() {
+            it("should RuleContext has `config` object", function() {
                 var configFile = path.join(__dirname, "fixtures", ".textlintrc");
                 textlint.config = new Config({
                     configFile: configFile
@@ -66,9 +69,10 @@ describe("textlint-test", function () {
             });
         });
     });
-    describe("lintMarkdown", function () {
-        it("should found error message", function () {
-            var text = "# TEST" +
+    describe("lintMarkdown", function() {
+        it("should found error message", function() {
+            var text =
+                "# TEST" +
                 "\n" +
                 "`potet` + **testongst**" +
                 "\n" +
@@ -82,7 +86,7 @@ describe("textlint-test", function () {
                 assert(result.messages.length > 0);
             });
         });
-        it("should has referential transparency", function () {
+        it("should has referential transparency", function() {
             var p1 = textlint.lintMarkdown("text");
             var p2 = textlint.lintMarkdown("text");
             return Promise.all([p1, p2]).then(([r1, r2]) => {
@@ -92,19 +96,17 @@ describe("textlint-test", function () {
             });
         });
     });
-    describe("lintText", function () {
-        it("should found error message", function () {
-            var text = "It it plain text\n" +
-                "\n" +
-                "Third line.";
+    describe("lintText", function() {
+        it("should found error message", function() {
+            var text = "It it plain text\n" + "\n" + "Third line.";
             return textlint.lintText(text).then(result => {
                 assert(result.filePath === "<text>");
                 assert(result.messages.length > 0);
             });
         });
     });
-    describe("lintFile", function () {
-        it("filePath is loaded file path", function () {
+    describe("lintFile", function() {
+        it("filePath is loaded file path", function() {
             var filePath = path.join(__dirname, "fixtures/test.md");
             return textlint.lintFile(filePath).then(result => {
                 assert(result.filePath === filePath);

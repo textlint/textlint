@@ -7,12 +7,12 @@ But you can write following:
 
 ```js
 // Async Task return a promise.
-const callAsync = (text) => {
+const callAsync = text => {
     // do something by async
     return Promise.resolve(text);
 };
 
-module.exports = (context) => {
+module.exports = context => {
     const { Syntax, getSource } = context;
     const promiseQueue = [];
     return {
@@ -24,13 +24,15 @@ module.exports = (context) => {
         // call this method at the end
         // Syntax.Document <-> Syntax.Document:exit
         // https://github.com/textlint/textlint/blob/master/docs/rule.md
-        [`${Syntax.Document}:exit`](){
+        [`${Syntax.Document}:exit`]() {
             // Note: textlint wait for `Promise.all` is resolved.
-            return Promise.all(promiseQueue).then((...responses) => {
-                // do something
-            }).then(() => {
-                // after-all !
-            });
+            return Promise.all(promiseQueue)
+                .then((...responses) => {
+                    // do something
+                })
+                .then(() => {
+                    // after-all !
+                });
         }
     };
 };

@@ -3,12 +3,14 @@
 const assert = require("assert");
 const path = require("path");
 const tryResolve = require("try-resolve");
-const validateConfigConstructor = (ConfigConstructor) => {
-    assert(ConfigConstructor.CONFIG_PACKAGE_PREFIX &&
-        ConfigConstructor.FILTER_RULE_NAME_PREFIX &&
-        ConfigConstructor.RULE_NAME_PREFIX &&
-        ConfigConstructor.RULE_PRESET_NAME_PREFIX &&
-        ConfigConstructor.PLUGIN_NAME_PREFIX);
+const validateConfigConstructor = ConfigConstructor => {
+    assert(
+        ConfigConstructor.CONFIG_PACKAGE_PREFIX &&
+            ConfigConstructor.FILTER_RULE_NAME_PREFIX &&
+            ConfigConstructor.RULE_NAME_PREFIX &&
+            ConfigConstructor.RULE_PRESET_NAME_PREFIX &&
+            ConfigConstructor.PLUGIN_NAME_PREFIX
+    );
 };
 /**
  * This class aim to resolve textlint's package name and get the module path.
@@ -144,10 +146,11 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         }
          */
         // <preset-name> or textlint-rule-preset-<rule-name>
-        const packageNameWithoutPreset = packageName.replace(/^preset\-/, "");
+        const packageNameWithoutPreset = packageName.replace(/^preset-/, "");
         const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
         // preset-<preset-name> or textlint-rule-preset-<preset-name>
-        const pkgPath = tryResolve(path.join(baseDir, fullFullPackageName)) ||
+        const pkgPath =
+            tryResolve(path.join(baseDir, fullFullPackageName)) ||
             tryResolve(path.join(baseDir, packageNameWithoutPreset)) ||
             // <preset-name> or textlint-rule-preset-<rule-name>
             tryResolve(path.join(baseDir, fullPackageName)) ||
@@ -159,7 +162,6 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         }
         return pkgPath;
     }
-
 
     /**
      * Take Config package name, and return path to module.
@@ -180,4 +182,3 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         return pkgPath;
     }
 }
-

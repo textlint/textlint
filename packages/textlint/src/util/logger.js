@@ -22,5 +22,4 @@ export default class Logger {
     }
 }
 
-
 /* eslint-enable no-console */

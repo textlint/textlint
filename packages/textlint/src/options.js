@@ -6,7 +6,7 @@ export default optionator({
     concatRepeatedArrays: true,
     mergeRepeatedObjects: true,
     options: [
-        {heading: "Options"},
+        { heading: "Options" },
         {
             option: "help",
             alias: "h",
@@ -133,7 +133,7 @@ export default optionator({
             option: "cache-location",
             type: "path::String",
             description: "Path to the cache file or directory",
-            example: "textlint --cache --cache-location \"/Users/user/.textlintcache\" docs/"
+            example: 'textlint --cache --cache-location "/Users/user/.textlintcache" docs/'
         },
         {
             heading: "Experimental"

@@ -17,14 +17,14 @@ export default class TextFixEngine {
              * @param {TextLintCore} textlintCore
              * @returns {function()}
              */
-            onFile: (textlintCore) => {
+            onFile: textlintCore => {
                 /**
                  * Fixes the current configuration on an array of file and directory names.
                  * TextFixEngine#executeOnFiles
                  * @param {String[]}  files An array of file and directory names.
                  * @returns {TextLintFixResult[]} The results for all files that were linted.
                  */
-                return (file) => {
+                return file => {
                     return textlintCore.fixFile(file);
                 };
             },
@@ -32,7 +32,7 @@ export default class TextFixEngine {
              * @param {TextLintCore} textlintCore
              * @returns {function()}
              */
-            onText: (textlintCore) => {
+            onText: textlintCore => {
                 /**
                  * Fix texts with ext option.
                  * TextFixEngine#executeOnText
@@ -47,7 +47,7 @@ export default class TextFixEngine {
             /**
              * @param {TextLintFormatterOption} formatterConfig
              */
-            onFormat: (formatterConfig) => {
+            onFormat: formatterConfig => {
                 // default formatter name: stylish
                 if (!formatterConfig.formatterName) {
                     formatterConfig.formatterName = "stylish";

@@ -32,7 +32,6 @@ export default class RuleMap extends MapLike {
         return this.has(ruleKey);
     }
 
-
     /**
      * @param {string} ruleKey
      * @param ruleHandler

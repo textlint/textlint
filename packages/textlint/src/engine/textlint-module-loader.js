@@ -4,8 +4,8 @@ const EventEmitter = require("events");
 const interopRequire = require("interop-require");
 const debug = require("debug")("textlint:module-loader");
 const isFile = require("is-file");
-import {isPluginRuleKey} from "../util/config-util";
-import {loadFromDir} from "./rule-loader";
+import { isPluginRuleKey } from "../util/config-util";
+import { loadFromDir } from "./rule-loader";
 import Logger from "../util/logger";
 import TextLintModuleResolver from "./textlint-module-resolver";
 import TextLintModuleMapper from "./textlint-module-mapper";
@@ -89,7 +89,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         debug("Loading rules from plugin: %s", pkgPath);
         const plugin = interopRequire(pkgPath);
         const PLUGIN_NAME_PREFIX = this.config.constructor.PLUGIN_NAME_PREFIX;
-        const prefixMatch = new RegExp("^" + PLUGIN_NAME_PREFIX);
+        const prefixMatch = new RegExp(`^${PLUGIN_NAME_PREFIX}`);
         const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
         // Processor plugin doesn't define rules
         if (plugin.hasOwnProperty("rules")) {
@@ -124,7 +124,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
         // Strip **rule** prefix
         // textlint-rule-preset-gizmo -> preset-gizmo
-        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const prefixMatch = new RegExp(`^${RULE_NAME_PREFIX}`);
         const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, "");
         // ignore plugin's rule
         if (isPluginRuleKey(presetRuleNameWithoutPrefix)) {
@@ -165,7 +165,7 @@ export default class TextLintModuleLoader extends EventEmitter {
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
         const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
-        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const prefixMatch = new RegExp(`^${RULE_NAME_PREFIX}`);
         const definedRuleName = ruleName.replace(prefixMatch, "");
         // ignore plugin's rule
         if (isPluginRuleKey(definedRuleName)) {
@@ -202,7 +202,7 @@ export default class TextLintModuleLoader extends EventEmitter {
             return;
         }
         const RULE_NAME_PREFIX = this.config.constructor.FILTER_RULE_NAME_PREFIX;
-        const prefixMatch = new RegExp("^" + RULE_NAME_PREFIX);
+        const prefixMatch = new RegExp(`^${RULE_NAME_PREFIX}`);
         const definedRuleName = ruleName.replace(prefixMatch, "");
         // ignore plugin's rule
         if (isPluginRuleKey(definedRuleName)) {
@@ -216,4 +216,3 @@ export default class TextLintModuleLoader extends EventEmitter {
         this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
     }
 }
-

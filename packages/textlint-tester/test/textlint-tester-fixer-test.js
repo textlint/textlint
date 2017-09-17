@@ -4,10 +4,7 @@ const TextLintTester = require("../src/index");
 const fixerRule = require("./fixtures/rule/fixer-rule-add");
 const tester = new TextLintTester();
 tester.run("fixer-rule-add", fixerRule, {
-    valid: [
-        "string.",
-        "- [ ] list item"
-    ],
+    valid: ["string.", "- [ ] list item"],
     invalid: [
         {
             text: "This is fixed",

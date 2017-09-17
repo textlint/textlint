@@ -9,25 +9,28 @@
 There is wrong that `column` doesn't consider line break.
 
 ```js
-//  surrogate pair 
+//  surrogate pair
 function stringToArray(value) {
     return value.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\uD800-\uDFFF]/g) || [];
 }
 
-export default function (context) {
-    const {Syntax, RuleError, report, getSource} = context;
+export default function(context) {
+    const { Syntax, RuleError, report, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             const text = getSource(node);
             const strArray = stringToArray(text);
             for (let index = 0; index < strArray.length; index++) {
                 const item = strArray[index];
                 // ❌
                 if (/\u274c/.test(item)) {
-                    report(node, new RuleError("Use X insteadof \u274c", {
-                        // This is wrong
-                        column: index
-                    }));
+                    report(
+                        node,
+                        new RuleError("Use X insteadof \u274c", {
+                            // This is wrong
+                            column: index
+                        })
+                    );
                 }
             }
         }
@@ -72,10 +75,13 @@ const paddingLocation = {
     line: 1,
     column: 2
 };
-report(node, new RuleError("message", {
-    line: paddingLocation.line,
-    column: paddingLocation.column
-}));
+report(
+    node,
+    new RuleError("message", {
+        line: paddingLocation.line,
+        column: paddingLocation.column
+    })
+);
 ```
 
 OR use "index" property
@@ -90,24 +96,27 @@ report(node, new RuleError("message", {
 Fixed version:
 
 ```js
-//  surrogate pair 
+//  surrogate pair
 function stringToArray(value) {
     return value.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]|[^\uD800-\uDFFF]/g) || [];
 }
 
-export default function (context) {
-    const {Syntax, RuleError, report, getSource} = context;
+export default function(context) {
+    const { Syntax, RuleError, report, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             const text = getSource(node);
             const strArray = stringToArray(text);
             for (let index = 0; index < strArray.length; index++) {
                 const item = strArray[index];
                 // ❌
                 if (/\u274c/.test(item)) {
-                    report(node, new RuleError("Use X insteadof \u274c", {
-                        index: index
-                    }));
+                    report(
+                        node,
+                        new RuleError("Use X insteadof \u274c", {
+                            index
+                        })
+                    );
                 }
             }
         }

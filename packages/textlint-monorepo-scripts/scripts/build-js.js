@@ -9,12 +9,10 @@ const args = process.argv.slice(2);
 const babel = require.resolve(".bin/babel");
 const babelrc = require("../configs/babelrc");
 // babel src --out-dir lib --watch --source-maps
-const child = spawn(babel, [
-    "--config", babelrc.presets.join(","),
-    "--source-maps",
-    "--out-dir", "lib",
-    "src"
-].concat(args));
+const child = spawn(
+    babel,
+    ["--config", babelrc.presets.join(","), "--source-maps", "--out-dir", "lib", "src"].concat(args)
+);
 child.stderr.on("data", function(data) {
     process.stderr.write(data);
 });

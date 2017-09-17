@@ -3,5 +3,7 @@
 const shell = require("shelljs");
 const path = require("path");
 shell.pushd(path.join(__dirname, ".."));
-shell.exec(`./node_modules/.bin/typescript-json-schema ./tsconfig.json TextlintKernelOptions --out src/TextlintKernelOptions.json`);
+shell.exec(
+    `./node_modules/.bin/typescript-json-schema ./tsconfig.json TextlintKernelOptions --out src/TextlintKernelOptions.json`
+);
 shell.popd();

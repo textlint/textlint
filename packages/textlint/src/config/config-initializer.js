@@ -14,22 +14,26 @@ import Logger from "../util/logger";
  * @param {string} dir
  * @returns {Promise.<Array.<String>>}
  */
-const getTextlintDependencyNames = (dir) => {
-    return readPkg(dir).then(pkg => {
-        const dependencies = pkg.dependencies || {};
-        const devDependencies = pkg.devDependencies || {};
-        const mergedDependencies = ObjectAssign({}, dependencies, devDependencies);
-        const pkgNames = Object.keys(mergedDependencies);
-        return pkgNames.filter(pkgName => {
-            const ruleOrFilter = pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1 || pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
-            if (pkgName === "textlint-rule-helper") {
-                return false;
-            }
-            return ruleOrFilter;
+const getTextlintDependencyNames = dir => {
+    return readPkg(dir)
+        .then(pkg => {
+            const dependencies = pkg.dependencies || {};
+            const devDependencies = pkg.devDependencies || {};
+            const mergedDependencies = ObjectAssign({}, dependencies, devDependencies);
+            const pkgNames = Object.keys(mergedDependencies);
+            return pkgNames.filter(pkgName => {
+                const ruleOrFilter =
+                    pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1 ||
+                    pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
+                if (pkgName === "textlint-rule-helper") {
+                    return false;
+                }
+                return ruleOrFilter;
+            });
+        })
+        .catch(() => {
+            return [];
         });
-    }).catch(() => {
-        return [];
-    });
 };
 
 /**
@@ -56,25 +60,29 @@ const init = {
      */
     initializeConfig(dir) {
         return getTextlintDependencyNames(dir).then(pkgNames => {
-            const rcFile = "." + Config.CONFIG_FILE_NAME + "rc";
+            const rcFile = `.${Config.CONFIG_FILE_NAME}rc`;
             const filePath = path.resolve(dir, rcFile);
             if (isFile(filePath)) {
-                Logger.error(`${ rcFile } is already existed.`);
+                Logger.error(`${rcFile} is already existed.`);
                 return Promise.resolve(1);
             }
-            const filters = pkgNames.filter(pkgName => {
-                return pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1;
-            }).map(filterName => {
-                return filterName.replace(Config.FILTER_RULE_NAME_PREFIX, "");
-            });
-            const rules = pkgNames.filter(pkgName => {
-                return pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
-            }).map(filterName => {
-                return filterName.replace(Config.RULE_NAME_PREFIX, "");
-            });
+            const filters = pkgNames
+                .filter(pkgName => {
+                    return pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1;
+                })
+                .map(filterName => {
+                    return filterName.replace(Config.FILTER_RULE_NAME_PREFIX, "");
+                });
+            const rules = pkgNames
+                .filter(pkgName => {
+                    return pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
+                })
+                .map(filterName => {
+                    return filterName.replace(Config.RULE_NAME_PREFIX, "");
+                });
             const defaultTextlintRc = {
-                "filters": arrayToObject(filters, true),
-                "rules": arrayToObject(rules, true)
+                filters: arrayToObject(filters, true),
+                rules: arrayToObject(rules, true)
             };
             const output = JSON.stringify(defaultTextlintRc, null, 2);
             fs.writeFileSync(filePath, output);

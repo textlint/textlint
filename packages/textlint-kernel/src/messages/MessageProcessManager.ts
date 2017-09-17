@@ -3,7 +3,9 @@
 import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-core-task";
 import { TextLintMessage } from "../textlint-kernel-interface";
 
-export type PreMessageProcessor = (messages: Array<LintReportedMessage | IgnoreReportedMessage>) => Array<LintReportedMessage | IgnoreReportedMessage>;
+export type PreMessageProcessor = (
+    messages: Array<LintReportedMessage | IgnoreReportedMessage>
+) => Array<LintReportedMessage | IgnoreReportedMessage>;
 export type MessageProcessor = (messages: TextLintMessage[]) => TextLintMessage[];
 
 export default class MessageProcessManager {

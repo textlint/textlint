@@ -10,11 +10,11 @@ import SourceCode from "../core/source-code";
 const debug = require("debug")("textlint:TextLintCoreTask");
 
 export interface TextLintCoreTaskArgs {
-    config: TextLintConfig,
-    fixerRule: TextlintKernelRule,
-    filterRules: TextlintKernelFilterRule[],
-    sourceCode: SourceCode
-    configBaseDir?: string,
+    config: TextLintConfig;
+    fixerRule: TextlintKernelRule;
+    filterRules: TextlintKernelFilterRule[];
+    sourceCode: SourceCode;
+    configBaseDir?: string;
 }
 
 export default class TextLintCoreTask extends CoreTask {

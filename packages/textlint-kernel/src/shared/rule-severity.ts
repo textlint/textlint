@@ -18,10 +18,13 @@ export function getSeverity(ruleConfig?: TextLintRuleOptions | boolean) {
         return ruleConfig ? SeverityLevel.error : SeverityLevel.none;
     }
     if (ruleConfig.severity) {
-        assert(SeverityLevel[ruleConfig.severity] !== undefined, `please set
+        assert(
+            SeverityLevel[ruleConfig.severity] !== undefined,
+            `please set
 "rule-key": {
     "severity": "<warning|error>"
-}`);
+}`
+        );
         return SeverityLevel[ruleConfig.severity];
     }
     return SeverityLevel.error;

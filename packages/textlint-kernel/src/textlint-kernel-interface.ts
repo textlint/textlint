@@ -1,11 +1,11 @@
 // rule config
-import { ASTNodeTypes } from "@textlint/ast-node-types"
+import { ASTNodeTypes } from "@textlint/ast-node-types";
 import { SeverityLevelTypes } from "./shared/type/SeverityLevel";
 
 export interface TextLintRuleOptions {
     [index: string]: any;
 
-    severity: SeverityLevelTypes
+    severity: SeverityLevelTypes;
 }
 
 // config
@@ -50,7 +50,7 @@ export interface TxtNode {
 
 // Inline Node
 export interface TxtTextNode extends TxtNode {
-    value: string
+    value: string;
 }
 
 // Parent Node
@@ -70,7 +70,7 @@ export interface LineLocation {
 
 export interface Position {
     line: number; // start with 1
-    column: number;// start with 0
+    column: number; // start with 0
     // This is for compatibility with JavaScript AST.
     // https://gist.github.com/azu/8866b2cb9b7a933e01fe
 }
@@ -79,7 +79,7 @@ export interface Position {
 export interface TextlintKernelProcessorConstructor extends Function {
     // TODO: support plugin config
     // https://github.com/textlint/textlint/issues/296
-    new(config: any): TextlintKernelProcessor;
+    new (config: any): TextlintKernelProcessor;
 
     availableExtensions(): Array<string>;
 }
@@ -91,9 +91,11 @@ export declare class TextlintKernelProcessor {
 
     static availableExtensions(): Array<string>;
 
-    processor(extension: string): {
-        preProcess(text: string, filePath?: string): TxtNode,
-        postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>, filePath: string }
+    processor(
+        extension: string
+    ): {
+        preProcess(text: string, filePath?: string): TxtNode;
+        postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string };
     };
 }
 
@@ -102,7 +104,7 @@ export interface TextlintKernelPlugin {
     pluginId: string;
     // plugin processor instance
     plugin: {
-        Processor: TextlintKernelProcessorConstructor
+        Processor: TextlintKernelProcessorConstructor;
     };
     // plugin options
     // TODO: It is not implemented
@@ -167,9 +169,9 @@ export class TextLintMessage {
     // location info
     // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
     line: number; // start with 1
-    column: number;// start with 1
+    column: number; // start with 1
     // indexed-location
-    index: number;// start with 0
+    index: number; // start with 0
     // Severity Level
     // See src/shared/type/SeverityLevel.js
     severity?: number;

@@ -1,7 +1,7 @@
 "use strict";
 // LICENSE : MIT
 const assert = require("assert");
-const getPlugins = (rawPluginObject) => {
+const getPlugins = rawPluginObject => {
     return Object.keys(rawPluginObject).map(key => {
         return rawPluginObject[key];
     });
@@ -31,8 +31,10 @@ export default class PluginCreatorSet {
     get availableExtensions() {
         return this.plugins.reduce((extensions, plugin) => {
             // static availableExtensions() method
-            assert.ok(typeof plugin.Processor.availableExtensions === "function",
-                `Processor(${plugin.Processor.name} should have availableExtensions()`);
+            assert.ok(
+                typeof plugin.Processor.availableExtensions === "function",
+                `Processor(${plugin.Processor.name} should have availableExtensions()`
+            );
             const extList = plugin.Processor.availableExtensions();
             return extensions.concat(extList);
         }, []);
@@ -50,5 +52,4 @@ export default class PluginCreatorSet {
             };
         });
     }
-
 }

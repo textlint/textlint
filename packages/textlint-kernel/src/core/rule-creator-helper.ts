@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { ASTNodeTypes } from "@textlint/ast-node-types"
+import { ASTNodeTypes } from "@textlint/ast-node-types";
 import RuleContext from "./rule-context";
 import { TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
 import FilterRuleContext from "./filter-rule-context";
@@ -9,10 +9,11 @@ import FilterRuleContext from "./filter-rule-context";
  *
  * FIXME: Separate RuleCreatorReporter to FilterRuleCreatorReporter
  */
-export type RuleCreatorReporter = (context: RuleContext | FilterRuleContext, options?: TextLintRuleOptions | boolean) => {
-    [P in keyof typeof ASTNodeTypes]: (node: TxtNode) => void | Promise<any>
-    };
-export type RuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter; }
+export type RuleCreatorReporter = (
+    context: RuleContext | FilterRuleContext,
+    options?: TextLintRuleOptions | boolean
+) => { [P in keyof typeof ASTNodeTypes]: (node: TxtNode) => void | Promise<any> };
+export type RuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter };
 export type RuleCreator = RuleCreatorReporter | RuleFixableCreator;
 
 /**
@@ -25,7 +26,6 @@ export function hasLinter(ruleCreator: RuleCreator): boolean {
         return true;
     }
     return typeof ruleCreator === "function";
-
 }
 
 /**
@@ -52,7 +52,6 @@ export function getLinter(ruleCreator: RuleCreator): RuleCreatorReporter {
  */
 export function hasFixer(ruleCreator: RuleCreator): ruleCreator is RuleFixableCreator {
     return typeof ruleCreator === "object" && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
-
 }
 
 /**
@@ -91,7 +90,7 @@ export function isRuleModule(ruleCreator: RuleCreator): boolean {
  */
 export function assertRuleShape(ruleModule: any, key = "") {
     if (ruleModule === undefined) {
-        throw new Error(`Definition of rule '${ key }' was not found.`);
+        throw new Error(`Definition of rule '${key}' was not found.`);
     }
     /*
     Check old rule function
@@ -100,7 +99,7 @@ export function assertRuleShape(ruleModule: any, key = "") {
     }
     */
     if (!isRuleModule(ruleModule)) {
-        throw new Error(`Definition of rule '${ key }' was not rule module.
+        throw new Error(`Definition of rule '${key}' was not rule module.
 Rule should export function:
 module.exports = function(context){
     // Your rule
