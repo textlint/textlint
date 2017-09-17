@@ -3,7 +3,7 @@ language: node_js
 cache: yarn
 before_install:
 # npm 5.3.0 issue https://github.com/npm/npm/issues/17882
-- npm install -g npm@5.2.0
+- npm install -g npm@latest
 matrix:
   include:
   - env: TEST_TYPE="unit"
