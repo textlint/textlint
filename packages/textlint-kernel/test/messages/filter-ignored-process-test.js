@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import filterMessages from "../../src/messages/filter-ignored-process";
+import filterMessages from "../../lib/messages/filter-ignored-process";
 const assert = require("power-assert");
 describe("message-filter", function () {
     context("when pass empty messages", function () {

@@ -1,19 +1,36 @@
 // LICENSE : MIT
 "use strict";
 const debug = require("debug")("textlint:fixer-processor");
-import assert from "assert";
+import * as assert from "assert";
 import FixerTask from "../task/fixer-task";
 import SourceCode from "../core/source-code";
-import SourceCodeFixer from "../fixer/source-code-fixer";
+import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
 import { hasFixer } from "../core/rule-creator-helper";
+import {
+    TextLintConfig, TextLintFixResult, TextlintKernelFilterRule, TextlintKernelProcessor,
+    TextlintKernelRule, TextLintMessage
+} from "../textlint-kernel-interface";
+import MessageProcessManager from "../messages/MessageProcessManager";
+
+export interface FixerProcessorProcessArgs {
+    config: TextLintConfig,
+    configBaseDir?: string,
+    rules?: TextlintKernelRule[];
+    filterRules?: TextlintKernelFilterRule[];
+    sourceCode: SourceCode;
+
+}
 
 export default class FixerProcessor {
+    private processor: TextlintKernelProcessor;
+    private messageProcessManager: MessageProcessManager;
+
     /**
      * @param {Processor} processor
      * @param {MessageProcessManager} messageProcessManager
      */
-    constructor(processor, messageProcessManager) {
+    constructor(processor: TextlintKernelProcessor, messageProcessManager: MessageProcessManager) {
         this.processor = processor;
         this.messageProcessManager = messageProcessManager;
     }
@@ -27,7 +44,7 @@ export default class FixerProcessor {
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintFixResult>}
      */
-    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }) {
+    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: FixerProcessorProcessArgs): Promise<TextLintFixResult> {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
@@ -35,16 +52,16 @@ export default class FixerProcessor {
         // applied fixing messages
         // Revert = Sequentially apply applied message to applied output
         // SourceCodeFixer.sequentiallyApplyFixes(fixedOutput, result.applyingMessages);
-        const applyingMessages = [];
+        const applyingMessages: TextLintMessage[] = [];
         // not applied fixing messages
-        const remainingMessages = [];
+        const remainingMessages: TextLintMessage[] = [];
         // original means original for applyingMessages and remainingMessages
         // pre-applyingMessages + remainingMessages
-        const originalMessages = [];
+        const originalMessages: TextLintMessage[] = [];
         const fixerProcessList = rules.filter((rule) => {
             return hasFixer(rule.rule);
         }).map((fixerRule) => {
-            return (sourceText) => {
+            return (sourceText: string): Promise<string> => {
                 // create new SourceCode object
                 const newSourceCode = new SourceCode({
                     text: sourceText,
@@ -63,12 +80,13 @@ export default class FixerProcessor {
 
                 return TaskRunner.process(task).then(messages => {
                     const result = postProcess(messages, sourceCode.filePath);
-                    result.messages = this.messageProcessManager.process(result.messages);
-                    if (result.filePath == null) {
-                        result.filePath = `<Unkown${sourceCode.ext}>`;
-                    }
-                    resultFilePath = result.filePath;
-                    const applied = SourceCodeFixer.applyFixes(newSourceCode, result.messages);
+                    const filteredResult = {
+                        messages: this.messageProcessManager.process(result.messages),
+                        filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
+                    };
+                    // TODO: should be removed resultFilePath
+                    resultFilePath = filteredResult.filePath;
+                    const applied = SourceCodeFixer.applyFixes(newSourceCode, filteredResult.messages);
                     // add messages
                     Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
                     Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
@@ -94,7 +112,7 @@ export default class FixerProcessor {
             debug(`applyingMessages: ${applyingMessages.length}`);
             debug(`remainingMessages: ${remainingMessages.length}`);
             return {
-                filePath: resultFilePath,
+                filePath: resultFilePath ? resultFilePath : `<Unkown${sourceCode.ext}>`,
                 output,
                 messages: originalMessages,
                 applyingMessages,

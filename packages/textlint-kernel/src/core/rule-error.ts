@@ -1,12 +1,21 @@
 // LICENSE : MIT
 "use strict";
-/**
- * @typedef {Object} RuleError~Padding
- * @property {number} line
- * @property {number} column
- * @property {Object} fix
- */
-class RuleError {
+import { TextLintFixCommand } from "../textlint-kernel-interface";
+
+export interface RuleErrorPadding {
+    line: number;
+    column: number;
+    index: number;
+    fix: TextLintFixCommand
+}
+
+export default class RuleError {
+    public message: string;
+    private line: number;
+    private column: number;
+    private index: number;
+    private fix: TextLintFixCommand;
+
     /**
      * RuleError is like Error object.
      * It's used for adding to TextLintResult.
@@ -14,7 +23,7 @@ class RuleError {
      * @param {RuleError~Padding|number} [paddingLocation] - the object has padding {line, column} for actual error reason
      * @constructor
      */
-    constructor(message, paddingLocation) {
+    constructor(message: string, paddingLocation?: number | RuleErrorPadding) {
         this.message = message;
         if (typeof paddingLocation === "object") {
             /**
@@ -53,4 +62,3 @@ class RuleError {
         });
     }
 }
-module.exports = RuleError;

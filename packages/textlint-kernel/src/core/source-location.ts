@@ -1,14 +1,35 @@
 // LICENSE : MIT
 "use strict";
+import SourceCode from "./source-code";
+import RuleError, { RuleErrorPadding } from "./rule-error";
+import { TextLintMessage, TxtNode } from "../textlint-kernel-interface";
+
 const assert = require("assert");
 const ObjectAssign = require("object-assign");
-import {throwIfTesting} from "@textlint/feature-flag";
+const throwIfTesting = require("@textlint/feature-flag").throwIfTesting;
+
+/**
+ * @typedef {Object} ReportMessage
+ * @property {string} ruleId
+ * @property {TxtNode} node
+ * @property {number} severity
+ * @property {RuleError} ruleError error is a RuleError instance or any data
+ */
+export interface ReportMessage {
+    ruleId: string;
+    node: any;
+    severity: number;
+    ruleError: RuleError;
+}
+
 export default class SourceLocation {
+    private source: SourceCode;
+
     /**
      *
      * @param {SourceCode} source
      */
-    constructor(source) {
+    constructor(source: SourceCode) {
         this.source = source;
     }
 
@@ -17,8 +38,8 @@ export default class SourceLocation {
      * @param {ReportMessage} reportedMessage
      * @returns {{line: number, column: number, fix?: FixCommand}}
      */
-    adjust(reportedMessage) {
-        const {node, ruleError, ruleId} = reportedMessage;
+    adjust(reportedMessage: any) {
+        const { node, ruleError, ruleId } = reportedMessage;
         const errorPrefix = `[${ruleId}]` || "";
         const padding = ruleError;
         /*
@@ -90,7 +111,7 @@ report(node, new RuleError("message", {
         return ObjectAssign({}, adjustedLoc, adjustedFix);
     }
 
-    _adjustLoc(node, padding, _paddingIndex) {
+    _adjustLoc(node: any, padding: RuleErrorPadding, _paddingIndex?: number) {
         const nodeRange = node.range;
         const line = node.loc.start.line;
         const column = node.loc.start.column;
@@ -162,7 +183,7 @@ report(node, new RuleError("message", {
      * @returns {FixCommand|Object}
      * @private
      */
-    _adjustFix(node, paddingMessage) {
+    _adjustFix(node: TxtNode, paddingMessage: TextLintMessage) {
         const nodeRange = node.range;
         // if not found `fix`, return empty object
         if (paddingMessage.fix === undefined) {

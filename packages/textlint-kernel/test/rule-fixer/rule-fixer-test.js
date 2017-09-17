@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-import RuleFixer from "../../src/fixer/rule-fixer";
+import RuleFixer from "../../lib/fixer/rule-fixer";
 // Original: https://github.com/eslint/eslint/blob/master/tests/lib/util/rule-fixer.js
 describe("RuleFixer", function() {
     let fixer;

@@ -1,14 +1,16 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
+import * as assert from "assert";
 import SeverityLevel from "./type/SeverityLevel";
+import { TextLintRuleOptions } from "../textlint-kernel-interface";
+
 /**
  * get severity level from ruleConfig.
  * @param {Object|boolean|undefined} ruleConfig
  * @returns {number}
  */
-export function getSeverity(ruleConfig) {
-    if (ruleConfig == null) {
+export function getSeverity(ruleConfig?: TextLintRuleOptions | boolean) {
+    if (ruleConfig === undefined) {
         return SeverityLevel.error;
     }
     // rule:<true|false>

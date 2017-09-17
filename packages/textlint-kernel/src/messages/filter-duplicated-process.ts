@@ -1,10 +1,12 @@
 // LICENSE : MIT
 "use strict";
+import { TextLintMessage } from "../textlint-kernel-interface";
+
 /**
  * @param {TextLintMessage} aMessage
  * @param {TextLintMessage} bMessage
  */
-const isEqualMessage = (aMessage, bMessage) => {
+const isEqualMessage = (aMessage: TextLintMessage, bMessage: TextLintMessage) => {
     return aMessage.index === bMessage.index &&
         aMessage.severity === bMessage.severity &&
         aMessage.message === bMessage.message;
@@ -14,7 +16,7 @@ const isEqualMessage = (aMessage, bMessage) => {
  * @param {TextLintMessage[]} messages
  * @returns {TextLintMessage[]} filtered messages
  */
-export default function filterDuplicatedMessages(messages = []) {
+export default function filterDuplicatedMessages(messages: TextLintMessage[] = []) {
     return messages.filter((message, index) => {
         const restMessages = messages.slice(index + 1);
         return !restMessages.some(restMessage => {

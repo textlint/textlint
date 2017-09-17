@@ -11,11 +11,11 @@ import Logger from "./logger";
  * Align the string to left
  * @param {string} str string to evaluate
  * @param {int} len length of the string
- * @param {string} ch delimiter character
+ * @param {string} [ch] delimiter character
  * @returns {string} modified string
  * @private
  */
-function alignLeft(str, len, ch) {
+function alignLeft(str: string, len: number, ch?: string) {
     return str + new Array(len - str.length + 1).join(ch || " ");
 }
 
@@ -24,11 +24,11 @@ function alignLeft(str, len, ch) {
  * Align the string to right
  * @param {string} str string to evaluate
  * @param {int} len length of the string
- * @param {string} ch delimiter character
+ * @param {string} [ch] delimiter character
  * @returns {string} modified string
  * @private
  */
-function alignRight(str, len, ch) {
+function alignRight(str: string, len: number, ch?: string) {
     return new Array(len - str.length + 1).join(ch || " ") + str;
 }
 
@@ -44,7 +44,7 @@ const ALIGN = [alignLeft, alignRight, alignRight];
  * @returns {string} modified string
  * @private
  */
-function display(data) {
+function display(data: any) {
     let total = 0;
     const rows = Object.keys(data)
         .map(function (key) {
@@ -52,7 +52,7 @@ function display(data) {
             total += time;
             return [key, time];
         })
-        .sort(function (a, b) {
+        .sort(function (a: [string, number], b: [string, number]) {
             return b[1] - a[1];
         })
         .slice(0, 10);
@@ -64,7 +64,7 @@ function display(data) {
 
     rows.unshift(HEADERS);
 
-    const widths = [];
+    const widths: Array<number> = [];
     rows.forEach(function (row) {
         for (let i = 0; i < row.length; i++) {
             const n = row[i].length;
@@ -91,7 +91,7 @@ function display(data) {
 }
 
 /* istanbul ignore next */
-module.exports = (function () {
+export default  (function () {
 
     const data = Object.create(null);
 
@@ -102,7 +102,7 @@ module.exports = (function () {
      * @returns {Function} function to be executed
      * @private
      */
-    function time(key, fn) {
+    function time(key: string, fn: Function) {
         if (typeof data[key] === "undefined") {
             data[key] = 0;
         }

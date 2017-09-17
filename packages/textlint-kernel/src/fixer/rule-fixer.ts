@@ -1,4 +1,6 @@
-import assert from "assert";
+import * as assert from "assert";
+import { TxtNode } from "../textlint-kernel-interface";
+import { SourceCodeRange } from "../core/source-code";
 
 /**
  * Fix Command object has `range` and `text`.
@@ -14,7 +16,7 @@ import assert from "assert";
  * @returns {FixCommand} The fix command.
  * @private
  */
-function insertTextAt(index, text) {
+function insertTextAt(index: number, text: string) {
     assert(text, "text must be string");
     return {
         range: [index, index],
@@ -22,6 +24,7 @@ function insertTextAt(index, text) {
         isAbsolute: false
     };
 }
+
 /**
  * Creates a fix command that inserts text at the specified index in the source text.
  * @param {number} index The 0-based index at which to insert the new text.
@@ -29,7 +32,7 @@ function insertTextAt(index, text) {
  * @returns {FixCommand} The fix command.
  * @private
  */
-function insertTextAtAbsolute(index, text) {
+function insertTextAtAbsolute(index: number, text: string) {
     assert(text, "text must be string");
     return {
         range: [index, index],
@@ -37,6 +40,7 @@ function insertTextAtAbsolute(index, text) {
         isAbsolute: true
     };
 }
+
 /**
  * Creates code fixing commands for rules.
  * It create command for fixing texts.
@@ -52,7 +56,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextAfter(node, text) {
+    insertTextAfter(node: TxtNode, text: string) {
         return insertTextAtAbsolute(node.range[1], text);
     }
 
@@ -65,7 +69,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextAfterRange(range, text) {
+    insertTextAfterRange(range: SourceCodeRange, text: string) {
         return insertTextAt(range[1], text);
     }
 
@@ -76,7 +80,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextBefore(node, text) {
+    insertTextBefore(node: TxtNode, text: string) {
         return insertTextAtAbsolute(node.range[0], text);
     }
 
@@ -89,7 +93,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    insertTextBeforeRange(range, text) {
+    insertTextBeforeRange(range: SourceCodeRange, text: string) {
         return insertTextAt(range[0], text);
     }
 
@@ -100,7 +104,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    replaceText(node, text) {
+    replaceText(node: TxtNode, text: string) {
         return {
             range: node.range,
             text,
@@ -117,7 +121,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {FixCommand} The fix command.
      */
-    replaceTextRange(range, text) {
+    replaceTextRange(range: SourceCodeRange, text: string) {
         return {
             range,
             text,
@@ -131,7 +135,7 @@ export default class RuleFixer {
      * @param {TxtNode} node The node or token to remove.
      * @returns {FixCommand} The fix command.
      */
-    remove(node) {
+    remove(node: TxtNode) {
         return this.replaceText(node, "");
     }
 
@@ -143,7 +147,7 @@ export default class RuleFixer {
      *      The `range` should be **relative** value from reported node.
      * @returns {FixCommand} The fix command.
      */
-    removeRange(range) {
+    removeRange(range: SourceCodeRange) {
         return this.replaceTextRange(range, "");
     }
 }

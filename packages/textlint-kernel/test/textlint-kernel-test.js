@@ -1,13 +1,13 @@
 // MIT © 2017 azu
 "use strict";
 const assert = require("assert");
-import { TextlintKernel } from "../src/textlint-kernel";
+import { TextlintKernel } from "../lib/textlint-kernel";
 
 const report = (context, options = {}) => {
     const errors = options.errors || [];
     const { Syntax, RuleError, report, fixer } = context;
     return {
-        [Syntax.Document](node){
+        [Syntax.Document](node) {
 
             errors.forEach((error) => {
                 if (error.range && error.output) {
@@ -73,7 +73,7 @@ describe("textlint-kernel", () => {
                         }
                     ]
                 }).catch(error => {
-                    assert.ok(/options is invalid. Please check document./.test(error.message));
+                    assert.ok(error instanceof Error);
                 });
             });
         });
@@ -121,7 +121,7 @@ describe("textlint-kernel", () => {
                         }
                     ]
                 }).catch(error => {
-                    assert.ok(/options is invalid. Please check document./.test(error.message));
+                    assert.ok(error instanceof Error);
                 });
             });
         });

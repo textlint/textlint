@@ -1,11 +1,13 @@
 // LICENSE : MIT
 "use strict";
+import { TextLintMessage } from "../textlint-kernel-interface";
+
 /**
  * sort messages by line and column
  * @param {TextLintMessage[]} messages
  * @returns {TextLintMessage[]}
  */
-export default function sortByLineColumn(messages) {
+export default function sortByLineColumn(messages: TextLintMessage[]) {
     // sort by line and column
     return messages.sort(function (a, b) {
         const lineDiff = a.line - b.line;

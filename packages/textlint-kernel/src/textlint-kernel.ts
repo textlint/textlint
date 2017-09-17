@@ -1,9 +1,6 @@
 // MIT © 2017 azu
 "use strict";
 const assert = require("assert");
-const Ajv = require("ajv");
-const ajv = new Ajv();
-const TextlintKernelOptionsSchema = require("./TextlintKernelOptions.json");
 import SourceCode from "./core/source-code";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
@@ -15,19 +12,27 @@ import filterIgnoredProcess from "./messages/filter-ignored-process";
 import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
+import {
+    TextLintConfig, TextLintFixResult, TextlintKernelOptions,
+    TextlintKernelPlugin, TextlintKernelProcessor,
+    TextlintKernelProcessorConstructor
+} from "./textlint-kernel-interface";
 
 /**
  * @param {TextlintKernelPlugin[]} plugins
  * @param {string} ext
  * @returns {TextlintKernelPlugin|undefined} PluginConstructor
  */
-function findPluginWithExt(plugins = [], ext) {
+function findPluginWithExt(plugins: TextlintKernelPlugin[] = [], ext: string) {
     const matchPlugins = plugins.filter((kernelPlugin) => {
         const plugin = kernelPlugin.plugin;
+        assert.ok(plugin !== undefined,
+            `Processor(${kernelPlugin.pluginId} should have { "pluginId": string, "plugin": plugin }.`);
         // static availableExtensions() method
-        assert.ok(typeof plugin.Processor.availableExtensions === "function",
-            `Processor(${plugin.Processor.name} should have availableExtensions()`);
-        const extList = plugin.Processor.availableExtensions();
+        const textlintKernelProcessor: TextlintKernelProcessorConstructor = plugin.Processor;
+        assert.ok(typeof textlintKernelProcessor.availableExtensions === "function",
+            `Processor(${textlintKernelProcessor.name} should have availableExtensions()`);
+        const extList = textlintKernelProcessor.availableExtensions();
         return extList.some(targetExt => targetExt === ext || ("." + targetExt) === ext);
     });
     if (matchPlugins.length === 0) {
@@ -35,13 +40,14 @@ function findPluginWithExt(plugins = [], ext) {
     }
     return matchPlugins[0];
 }
+
 /**
  * add fileName to trailing of error message
  * @param {string|undefined} fileName
  * @param {string} message
  * @returns {string}
  */
-function addingAtFileNameToError(fileName, message) {
+function addingAtFileNameToError(fileName: string | undefined, message: string) {
     if (!fileName) {
         return message;
     }
@@ -62,18 +68,19 @@ at ${fileName}`;
  *
  */
 export class TextlintKernel {
+    config: TextLintConfig;
+    private messageProcessManager: MessageProcessManager;
+
     /**
-     * TODO: THIS
      * @param config
      */
-    constructor(config = {}) {
+    constructor(config: TextLintConfig = {}) {
         // this.config often is undefined.
         this.config = config;
         // Initialize Message Processor
         // Now, It it built-in process only
-        this.messageProcessManager = new MessageProcessManager();
         // filter `shouldIgnore()` results
-        this.messageProcessManager.add(filterIgnoredProcess);
+        this.messageProcessManager = new MessageProcessManager([filterIgnoredProcess]);
         // filter duplicated messages
         this.messageProcessManager.add(filterDuplicatedProcess);
         // filter by severity
@@ -88,22 +95,19 @@ export class TextlintKernel {
      * @param {Object} options linting options
      * @returns {Promise.<TextLintResult>}
      */
-    lintText(text, options) {
-        const valid = ajv.validate(TextlintKernelOptionsSchema, options);
-        if (!valid) {
-            return Promise.reject(new Error(`options is invalid. Please check document.
-Errors: ${JSON.stringify(ajv.errors, null, 4)}
-Actual: ${JSON.stringify(options, null, 4)}
-`));
-        }
-        const ext = options.ext;
-        const plugin = findPluginWithExt(options.plugins, ext);
-        assert(plugin !== undefined && plugin.plugin !== undefined, `Not found available plugin for ${ ext }`);
-        const Processor = plugin.plugin.Processor;
-        assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-        const processor = new Processor(this.config);
-        return this._parallelProcess({
-            processor, text, options
+    lintText(text: string, options: TextlintKernelOptions) {
+        return Promise.resolve().then(() => {
+            const ext = options.ext;
+            const plugin = findPluginWithExt(options.plugins, ext);
+            if (plugin === undefined) {
+                throw new Error(`Not found available plugin for ${ ext }`);
+            }
+            const Processor = plugin.plugin.Processor;
+            assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
+            const processor = new Processor(this.config);
+            return this._parallelProcess({
+                processor, text, options
+            });
         });
     }
 
@@ -113,24 +117,21 @@ Actual: ${JSON.stringify(options, null, 4)}
      * @param {Object} options lint options
      * @returns {Promise.<TextLintFixResult>}
      */
-    fixText(text, options) {
-        const valid = ajv.validate(TextlintKernelOptionsSchema, options);
-        if (!valid) {
-            return Promise.reject(new Error(`options is invalid. Please check document.
-Errors: ${JSON.stringify(ajv.errors, null, 4)}
-Actual: ${JSON.stringify(options, null, 4)}
-`));
-        }
-        const ext = options.ext;
-        const plugin = findPluginWithExt(options.plugins, ext);
-        assert(plugin !== undefined, `Not found available plugin for ${ ext }`);
-        const Processor = plugin.plugin.Processor;
-        assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-        const processor = new Processor(this.config);
-        return this._sequenceProcess({
-            processor,
-            text,
-            options
+    fixText(text: string, options: TextlintKernelOptions) {
+        return Promise.resolve().then(() => {
+            const ext = options.ext;
+            const plugin = findPluginWithExt(options.plugins, ext);
+            if (plugin === undefined) {
+                throw new Error(`Not found available plugin for ${ ext }`);
+            }
+            const Processor = plugin.plugin.Processor;
+            assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
+            const processor = new Processor(this.config);
+            return this._sequenceProcess({
+                processor,
+                text,
+                options
+            });
         });
     }
 
@@ -148,7 +149,11 @@ Actual: ${JSON.stringify(options, null, 4)}
                          processor,
                          text,
                          options
-                     }) {
+                     }: {
+        processor: TextlintKernelProcessor,
+        text: string,
+        options: TextlintKernelOptions
+    }) {
         const { ext, filePath, rules, filterRules, configBaseDir } = options;
         const { preProcess, postProcess } = processor.processor(ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
@@ -182,7 +187,11 @@ Actual: ${JSON.stringify(options, null, 4)}
      * @returns {Promise.<TextLintFixResult>}
      * @private
      */
-    _sequenceProcess({ processor, text, options }) {
+    _sequenceProcess({ processor, text, options }: {
+        processor: TextlintKernelProcessor,
+        text: string,
+        options: TextlintKernelOptions
+    }): Promise<TextLintFixResult> {
         const { ext, filePath, rules, filterRules, configBaseDir } = options;
         assert(processor, `processor is not found for ${ext}`);
         const { preProcess, postProcess } = processor.processor(ext);

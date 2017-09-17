@@ -1,19 +1,33 @@
 // LICENSE : MIT
 "use strict";
+import { ASTNodeTypes } from "@textlint/ast-node-types"
+import RuleContext from "./rule-context";
+import { TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import FilterRuleContext from "./filter-rule-context";
+/**
+ * Reporter function
+ *
+ * FIXME: Separate RuleCreatorReporter to FilterRuleCreatorReporter
+ */
+export type RuleCreatorReporter = (context: RuleContext | FilterRuleContext, options?: TextLintRuleOptions | boolean) => {
+    [P in keyof typeof ASTNodeTypes]: (node: TxtNode) => void | Promise<any>
+    };
+export type RuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter; }
+export type RuleCreator = RuleCreatorReporter | RuleFixableCreator;
 
 /**
  * detect that ruleCreator has linter function
  * @param {*} ruleCreator
  * @returns {boolean}
  */
-export function hasLinter(ruleCreator) {
-    if (typeof ruleCreator.linter === "function") {
+export function hasLinter(ruleCreator: RuleCreator): boolean {
+    if (typeof ruleCreator === "object" && typeof ruleCreator.linter === "function") {
         return true;
     }
-    if (typeof ruleCreator === "function") {
-        return true;
-    }
+    return typeof ruleCreator === "function";
+
 }
+
 /**
  * get linter function from ruleCreator
  * if not found, throw error
@@ -21,8 +35,8 @@ export function hasLinter(ruleCreator) {
  * @returns {Function} linter function
  * @throws
  */
-export function getLinter(ruleCreator) {
-    if (typeof ruleCreator.linter === "function") {
+export function getLinter(ruleCreator: RuleCreator): RuleCreatorReporter {
+    if (typeof ruleCreator === "object" && typeof ruleCreator.linter === "function") {
         return ruleCreator.linter;
     }
     if (typeof ruleCreator === "function") {
@@ -36,10 +50,11 @@ export function getLinter(ruleCreator) {
  * @param {*} ruleCreator
  * @returns {boolean}
  */
-export function hasFixer(ruleCreator) {
-    return typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
+export function hasFixer(ruleCreator: RuleCreator): ruleCreator is RuleFixableCreator {
+    return typeof ruleCreator === "object" && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
 
 }
+
 /**
  * get fixer function from ruleCreator
  * if not found, throw error
@@ -47,7 +62,7 @@ export function hasFixer(ruleCreator) {
  * @returns {Function} fixer function
  * @throws
  */
-export function getFixer(ruleCreator) {
+export function getFixer(ruleCreator: RuleCreator) {
     if (!hasLinter(ruleCreator)) {
         throw new Error("fixer module should have also linter function.");
     }
@@ -63,7 +78,7 @@ export function getFixer(ruleCreator) {
  * @param ruleCreator
  * @returns {boolean}
  **/
-export function isRuleModule(ruleCreator) {
+export function isRuleModule(ruleCreator: RuleCreator): boolean {
     return hasLinter(ruleCreator) || hasFixer(ruleCreator);
 }
 
@@ -74,7 +89,7 @@ export function isRuleModule(ruleCreator) {
  * @param {string} key
  * @throws
  */
-export function assertRuleShape(ruleModule, key = "") {
+export function assertRuleShape(ruleModule: any, key = "") {
     if (ruleModule === undefined) {
         throw new Error(`Definition of rule '${ key }' was not found.`);
     }
@@ -100,7 +115,7 @@ module.exports = function(context){
  * @returns {Function} linter function
  * @throws
  */
-export function getFilter(ruleCreator) {
+export function getFilter(ruleCreator: RuleCreator) {
     if (typeof ruleCreator === "function") {
         return ruleCreator;
     }

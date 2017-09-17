@@ -1,5 +1,8 @@
+import { TextLintFixCommand, TextLintMessage } from "../textlint-kernel-interface";
+
 const debug = require("debug")("textlint:source-code-fixer");
 import SourceCode from "../core/source-code";
+
 const BOM = "\uFEFF";
 
 /**
@@ -9,7 +12,7 @@ const BOM = "\uFEFF";
  * @returns {int} -1 if a comes before b, 1 if a comes after b, 0 if equal.
  * @private
  */
-function compareMessagesByLocation(a, b) {
+function compareMessagesByLocation(a: TextLintMessage, b: TextLintMessage) {
     const lineDiff = a.line - b.line;
 
     if (lineDiff === 0) {
@@ -19,9 +22,15 @@ function compareMessagesByLocation(a, b) {
     }
 }
 
-function clone(object) {
+function clone(object: any) {
     return JSON.parse(JSON.stringify(object));
 }
+
+
+export interface TextLintMessageFixable extends TextLintMessage {
+    fix: TextLintFixCommand;
+}
+
 /**
  * Utility for apply fixes to source code.
  * @constructor
@@ -35,19 +44,19 @@ export default class SourceCodeFixer {
      * @param {TextLintMessage[]} messages The array of messages reported by ESLint.
      * @returns {Object} An object containing the fixed text and any unfixed messages.
      */
-    static applyFixes(sourceCode, messages) {
+    static applyFixes(sourceCode: SourceCode, messages: TextLintMessage[]) {
         debug("Applying fixes");
         const text = sourceCode.text;
         // As as result, show diff
-        const remainingMessages = [];
-        const applyingMessages = [];
+        const remainingMessages: TextLintMessage[] = [];
+        const applyingMessages: TextLintMessage[] = [];
         const cloneMessages = messages.slice();
-        const fixes = [];
+        const fixes: TextLintMessageFixable[] = [];
         let lastFixPos = text.length + 1;
         let prefix = (sourceCode.hasBOM ? BOM : "");
         cloneMessages.forEach(problem => {
-            if (problem && problem.hasOwnProperty("fix")) {
-                fixes.push(problem);
+            if (problem && problem.fix !== undefined) {
+                fixes.push(problem as TextLintMessageFixable);
             } else {
                 remainingMessages.push(problem);
             }
@@ -57,7 +66,8 @@ export default class SourceCodeFixer {
             debug("Found fixes to apply");
 
             // sort in reverse order of occurrence
-            fixes.sort((a, b) => {
+            // FIXME: always has `fix`
+            fixes.sort((a: TextLintMessageFixable, b: TextLintMessageFixable) => {
                 if (a.fix.range[1] <= b.fix.range[0]) {
                     return 1;
                 } else {
@@ -125,7 +135,7 @@ export default class SourceCodeFixer {
      * @param {TextLintMessage[]} applyingMessages The array of TextLintMessage reported by SourceCodeFixer#applyFixes
      * @returns {string} An object containing the fixed text and any unfixed messages.
      */
-    static sequentiallyApplyFixes(sourceCode, applyingMessages) {
+    static sequentiallyApplyFixes(sourceCode: SourceCode, applyingMessages: TextLintMessage[]) {
         debug("Restore applied fixes");
         let text = sourceCode.text;
         applyingMessages.forEach(message => {
