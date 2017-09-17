@@ -1,5 +1,5 @@
 // rule config
-
+import { ASTNodeTypes } from "@textlint/ast-node-types"
 import { SeverityLevelTypes } from "./shared/type/SeverityLevel";
 
 export interface TextLintRuleOptions {
@@ -39,7 +39,7 @@ export interface TextLintConfig {
 
 // TextLint AST Node
 export interface TxtNode {
-    type: string;
+    type: keyof typeof ASTNodeTypes | string;
     raw: string;
     range: [number, number];
     loc: LineLocation;
@@ -56,6 +56,11 @@ export interface TxtTextNode extends TxtNode {
 // Parent Node
 export interface TxtParentNode extends TxtNode {
     children: TxtNode[] | TxtTextNode[];
+}
+
+export interface TxtRootNode extends TxtNode {
+    type: "Document";
+    children: TxtNode[];
 }
 
 export interface LineLocation {
@@ -82,9 +87,9 @@ export declare class TextlintKernelProcessor {
 
     static availableExtensions(): Array<string>;
 
-    processor(): {
-        preProcess(text: string): string,
-        postProcess(messages: Array<any>): { message: Array<any>, filePath: string }
+    processor(extension: string): {
+        preProcess(text: string): TxtNode,
+        postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>, filePath: string }
     };
 }
 
