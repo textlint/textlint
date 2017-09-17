@@ -14,7 +14,7 @@ The rule ID does not have to follow any naming convention (so it can just be `no
 ```js
 export default {
     rules: {
-        "no-todo": function(context, options) {
+        "no-todo"(context, options) {
             // rule implementation ...
         }
     },
@@ -22,6 +22,7 @@ export default {
         "no-todo": true
     }
 };
+
 
 ```
 
@@ -50,6 +51,7 @@ export default {
     }
 };
 
+
 ```
 
 ## Processor(optional) 
@@ -61,6 +63,7 @@ Plugin has a `Processor` that is optional.
 export default {
     Processor: require("./SomeProcessor")
 };
+
 
 ```
 
@@ -104,6 +107,7 @@ export default class TextProcessor {
         };
     }
 }
+
 
 ```
 
@@ -149,6 +153,7 @@ tester.run("no-todo", noTodo, {
         }
     ]
 });
+
 
 ```
 

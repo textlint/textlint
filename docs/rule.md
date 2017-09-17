@@ -34,6 +34,7 @@ export default function(context) {
     };
 }
 
+
 ```
 
 If your rule wants to know when an `Str` node is found in the AST, then add a method called `context.Syntax.Str`, such as:
@@ -56,6 +57,7 @@ module.exports = function(context) {
     return exports;
 };
 
+
 ```
 
 By default, the method matching a node name is called during the traversal when the node is first encountered(This is called **Enter**), on the way down the AST.
@@ -72,6 +74,7 @@ export default function(context) {
         }
     };
 }
+
 
 ```
 
@@ -142,6 +145,7 @@ const errorWithPaddingIndex = new RuleError("message", {
 });
 // context.report(node, errorWithPaddingIndex);
 
+
 ```
 
 ### :warning: Caution :warning:
@@ -170,6 +174,7 @@ export default function(context) {
     };
 }
 
+
 ```
 
 ### How to write async task in the rule
@@ -188,6 +193,7 @@ export default function(context) {
         }
     };
 }
+
 
 ```
 
@@ -281,6 +287,7 @@ export default function(context) {
         }
     };
 }
+
 
 
 ```
@@ -402,6 +409,7 @@ export default function(context) {
     };
 }
 
+
 ```
 
 As as result, linting following text with modified rule, a result was no error.
@@ -509,6 +517,7 @@ tester.run("no-todo", rule, {
     ]
 });
 
+
 ```
 
 Run the tests:
@@ -546,6 +555,7 @@ export default function(context, options) {
         }
     */
 }
+
 
 ```
 

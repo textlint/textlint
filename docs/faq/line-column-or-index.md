@@ -37,6 +37,7 @@ export default function(context) {
     };
 }
 
+
 ```
 
 Input: 
@@ -84,6 +85,7 @@ report(
     })
 );
 
+
 ```
 
 OR use "index" property
@@ -116,7 +118,7 @@ export default function(context) {
                     report(
                         node,
                         new RuleError("Use X insteadof \u274c", {
-                        index
+                            index
                         })
                     );
                 }
@@ -124,5 +126,6 @@ export default function(context) {
         }
     };
 }
+
 
 ```

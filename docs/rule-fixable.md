@@ -5,6 +5,7 @@ textlint has `linter` and also has `fixer`.
 ```js
 export default function reporter(context) {}
 
+
 ```
 
 is shorthand function syntax of  
@@ -14,6 +15,7 @@ function reporter(context) {}
 export default {
     linter: reporter
 };
+
 
 ```
 
@@ -29,6 +31,7 @@ export default {
     linter: reporter,
     fixer: reporter
 };
+
 
 ```
 
@@ -62,7 +65,7 @@ const reporter = context => {
                 new RuleError("Replaced", {
                     // "You fix this"
                     //      ^ index
-                    index: index,
+                    index,
                     // "You fix this"
                     //      ^^^
                     //     fixed
@@ -77,6 +80,7 @@ export default {
     // This rule has fixer.
     fixer: reporter
 };
+
 
 ```
 

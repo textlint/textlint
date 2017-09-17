@@ -14,6 +14,7 @@ module.exports = {
     }
 };
 
+
 ```
 
 - `"rules"` is rule creator object.
@@ -41,6 +42,7 @@ module.exports = {
         ruleB: true
     }
 };
+
 
 ```
 

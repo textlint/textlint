@@ -32,8 +32,9 @@ module.exports = {
     // Constant Types
     TextLintMessageType: MessageType,
     TextLintMessageSeverityLevel: SeverityLevel,
-    TextLintNodeType: TextLintNodeType
+    TextLintNodeType
 };
+
 
 ```
 
@@ -115,6 +116,7 @@ function lintFile(filePath) {
             console.error(error);
         });
 }
+
 
 ```
 
