@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import MessageType from "../shared/type/MessageType";
-import { IgnoreReportedMessage, LintResultMessage } from "../task/textlint-core-task";
+import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-core-task";
 
 /**
  * the `index` is in the `range` and return true.
@@ -18,10 +18,10 @@ const isContainedRange = (index: number, range: [number, number]) => {
  * @param {Object[]} messages
  * @returns {Object[]} filtered messages
  */
-export default function filterMessages(messages: ReadonlyArray<LintResultMessage | IgnoreReportedMessage> = []) {
+export default function filterMessages(messages: ReadonlyArray<LintReportedMessage | IgnoreReportedMessage> = []) {
     const lintingMessages = messages.filter(message => {
         return message.type === MessageType.lint;
-    }) as LintResultMessage[];
+    }) as LintReportedMessage[];
     const ignoreMessages = messages.filter(message => {
         return message.type === MessageType.ignore;
     }) as IgnoreReportedMessage[];

@@ -60,7 +60,7 @@ export interface ReportArgs {
 
 export type ReportFunction = (args: ReportArgs) => void;
 
-export interface LintResultMessage {
+export interface LintReportedMessage {
     type: typeof MessageType.lint,
     ruleId: string,
     message: string,
@@ -76,7 +76,7 @@ export interface LintResultMessage {
  * CoreTask receive AST and prepare, traverse AST, emit nodeType event!
  * You can observe task and receive "message" event that is TextLintMessage.
  */
-export default class TextLintCoreTask extends EventEmitter {
+export default abstract class TextLintCoreTask extends EventEmitter {
     private ruleTypeEmitter: RuleTypeEmitter;
 
     static get events() {
@@ -97,12 +97,15 @@ export default class TextLintCoreTask extends EventEmitter {
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
+
+    abstract start(): void;
+
     createShouldIgnore(): ShouldIgnoreFunction {
         const shouldIgnore = (args: ShouldIgnoreArgs) => {
             const { ruleId, range, optional } = args;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
-            const message = {
+            const message: IgnoreReportedMessage = {
                 type: MessageType.ignore,
                 ruleId: ruleId,
                 range: range,
@@ -126,7 +129,7 @@ export default class TextLintCoreTask extends EventEmitter {
             const { line, column, fix } = sourceLocation.adjust(reportedMessage);
             const index = sourceCode.positionToIndex({ line, column });
             // add TextLintMessage
-            const message: LintResultMessage = {
+            const message: LintReportedMessage = {
                 type: MessageType.lint,
                 ruleId: ruleId,
                 message: ruleError.message,
