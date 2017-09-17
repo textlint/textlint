@@ -32,8 +32,9 @@ module.exports = {
     // Constant Types
     TextLintMessageType: MessageType,
     TextLintMessageSeverityLevel: SeverityLevel,
-    TextLintNodeType: TextLintNodeType,
+    TextLintNodeType: TextLintNodeType
 };
+
 ```
 
 Recommend to use `TextLintEngine`.
@@ -87,8 +88,10 @@ function lintFile(filePath) {
     };
     const engine = new TextLintEngine(options);
     const filePathList = [path.resolve(process.cwd(), filePath)];
-    engine.executeOnFiles(filePathList).then(function(results){
-        /* 
+    engine
+        .executeOnFiles(filePathList)
+        .then(function(results) {
+            /* 
         See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
         messages are TextLintMessage` array.
         [
@@ -103,14 +106,16 @@ function lintFile(filePath) {
             ]
         ]
          */
-        if (engine.isErrorResults(results)) {
-            const output = engine.formatResults(results);
-            console.log(output);
-        }
-    }).catch(function(error){
-        console.error(error);
-    });
+            if (engine.isErrorResults(results)) {
+                const output = engine.formatResults(results);
+                console.log(output);
+            }
+        })
+        .catch(function(error) {
+            console.error(error);
+        });
 }
+
 ```
 
 ## Testing

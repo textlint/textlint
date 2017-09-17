@@ -3,20 +3,18 @@
 textlint has `linter` and also has `fixer`.
 
 ```js
-export default function reporter(context){
+export default function reporter(context) {}
 
-}
 ```
 
 is shorthand function syntax of  
 
 ```js
-function reporter(context){
-    
-}
+function reporter(context) {}
 export default {
     linter: reporter
 };
+
 ```
 
 :information_source: You should know [Creating Rules](./rule.md) in advance.
@@ -24,13 +22,14 @@ export default {
 Now, you can implement `fixer` like that:
 
 ```js
-function reporter(context){
+function reporter(context) {
     // report error and fix command
 }
 export default {
     linter: reporter,
     fixer: reporter
 };
+
 ```
 
 **fixer** does lint and found error
@@ -42,11 +41,11 @@ The fixer object has the following methods:
 
 ```js
 // TODO: more reasonable example
-const reporter = (context) => {
+const reporter = context => {
     // `context.fixer`
-    const {Syntax, RuleError, fixer, report, getSource} = context;
+    const { Syntax, RuleError, fixer, report, getSource } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             const text = getSource(node);
             // "You fix this"
             //      ^^^
@@ -58,15 +57,18 @@ const reporter = (context) => {
             const index = text.search(matchRegexp);
             const length = "fix".length;
             const replace = fixer.replaceTextRange([index, index + length], "fixed");
-            report(node, new RuleError("Replaced", {
-                // "You fix this"
-                //      ^ index
-                index: index, 
-                // "You fix this"
-                //      ^^^
-                //     fixed 
-                fix: replace
-            }));
+            report(
+                node,
+                new RuleError("Replaced", {
+                    // "You fix this"
+                    //      ^ index
+                    index: index,
+                    // "You fix this"
+                    //      ^^^
+                    //     fixed
+                    fix: replace
+                })
+            );
         }
     };
 };
@@ -75,6 +77,7 @@ export default {
     // This rule has fixer.
     fixer: reporter
 };
+
 ```
 
 The `context.fixer.` object has the following methods:

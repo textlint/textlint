@@ -81,8 +81,9 @@ All Types are defined in `@textlint/ast-node-types`.
 You can use this `ASTNodeTypes` value via following way:
 
 ```js
-import {ASTNodeTypes} from "@textlint/ast-node-types";
+import { ASTNodeTypes } from "@textlint/ast-node-types";
 console.log(ASTNodeTypes.Str); // "Str"
+
 ```
 
 See [packages/ast-node-types](../packages/ast-node-types) for more details.
@@ -138,18 +139,16 @@ Minimum(recommended) rules is following code:
 /**
  * @param {RuleContext} context
  */
-export default function (context) {
-    const {Syntax} = context;
+export default function(context) {
+    const { Syntax } = context;
     // root object
     return {
-        [Syntax.Document](node) {
-        },
-        [Syntax.Paragraph](node) {
-        },
-        [Syntax.Str](node) {
-        }
+        [Syntax.Document](node) {},
+        [Syntax.Paragraph](node) {},
+        [Syntax.Str](node) {}
     };
 }
+
 ```
 
 
@@ -305,16 +304,17 @@ You can use [textlint-ast-test](https://github.com/textlint/textlint-ast-test "t
 - [textlint/textlint-ast-test: Compliance tests for textlint's AST](https://github.com/textlint/textlint-ast-test "textlint/textlint-ast-test: Compliance tests for textlint&#39;s AST")
 
 ```js
-import {test, isTextlintAST} from "textlint-ast-test";
+import { test, isTextlintAST } from "textlint-ast-test";
 // your implement
 import yourParse from "your-parser";
 // recommenced: test much pattern test
 const AST = yourParse("This is text");
 
-// Validate AST  
-test(AST);// if the AST is invalid, then throw Error
+// Validate AST
+test(AST); // if the AST is invalid, then throw Error
 
-isTextlintAST(AST);// true or false
+isTextlintAST(AST); // true or false
+
 ```
 ## Warning
 

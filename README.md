@@ -334,12 +334,12 @@ $ npm install textlint --save-dev
 Minimal usage:
 
 ```js
-import {TextLintEngine} from "textlint";
+import { TextLintEngine } from "textlint";
 const engine = new TextLintEngine({
     rulePaths: ["path/to/rule-dir"]
 });
 engine.executeOnFiles(["README.md"]).then(results => {
-    console.log(results[0].filePath);// => "README.md"
+    console.log(results[0].filePath); // => "README.md"
     // messages are `TextLintMessage` array.
     console.log(results[0].messages);
     /* 
@@ -357,15 +357,16 @@ engine.executeOnFiles(["README.md"]).then(results => {
         console.log(output);
     }
 });
+
 ```
 
 Low level usage:
 
 ```js
-import {textlint} from "textlint";
+import { textlint } from "textlint";
 textlint.setupRules({
     // rule-key : rule function(see docs/rule.md)
-    "rule-key": function(context){
+    "rule-key"(context){
         const exports = {};
         exports[context.Syntax.Str] = function (node) {
             context.report(node, new context.RuleError("error message"));
@@ -374,9 +375,10 @@ textlint.setupRules({
     }
 });
 textlint.lintMarkdown("# title").then(results => {
-    console.log(results[0].filePath);// => "README.md"
-    console.log(results[0].messages);// => [{message:"lint message"}]
+    console.log(results[0].filePath); // => "README.md"
+    console.log(results[0].messages); // => [{message:"lint message"}]
 });
+
 ```
 
 More details on:

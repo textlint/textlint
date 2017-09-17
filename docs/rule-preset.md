@@ -6,13 +6,14 @@ The basic source code format for a preset is:
 
 ```js
 module.exports = {
-    "rules": {
+    rules: {
         "no-todo": require("textlint-rule-no-todo")
     },
-    "rulesConfig": {
+    rulesConfig: {
         "no-todo": true
     }
 };
+
 ```
 
 - `"rules"` is rule creator object.
@@ -31,15 +32,16 @@ textlint-rule-preset-gizmo includes the following rules:
 
 ```js
 module.exports = {
-    "rules": {
-        "ruleA": require("textlint-rule-A"),
-        "ruleB": require("textlint-rule-B")
+    rules: {
+        ruleA: require("textlint-rule-A"),
+        ruleB: require("textlint-rule-B")
     },
-    "rulesConfig": {
-        "ruleA": true,
-        "ruleB": true
+    rulesConfig: {
+        ruleA: true,
+        ruleB: true
     }
 };
+
 ```
 
 Usage of "textlint-rule-preset-gizmo":

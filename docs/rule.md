@@ -15,34 +15,32 @@ The basic source code format for a rule is:
 /**
  * @param {RuleContext} context
  */
-export default function (context) {
+export default function(context) {
     // rule object
     return {
-        [context.Syntax.Document](node) {
-        },
-        
-        [context.Syntax.Paragraph](node) {
-        },
-        
+        [context.Syntax.Document](node) {},
+
+        [context.Syntax.Paragraph](node) {},
+
         [context.Syntax.Str](node) {
             const text = context.getSource(node);
-            if(/found wrong use-case/.test(text)){
+            if (/found wrong use-case/.test(text)) {
                 // report error
                 context.report(node, new context.RuleError("Found wrong"));
             }
         },
-        
-        [context.Syntax.Break](node) {
-        }
+
+        [context.Syntax.Break](node) {}
     };
 }
+
 ```
 
 If your rule wants to know when an `Str` node is found in the AST, then add a method called `context.Syntax.Str`, such as:
 
 ```js
 // ES6
-export default function (context) {
+export default function(context) {
     return {
         [context.Syntax.Str](node) {
             // this method is called
@@ -50,13 +48,14 @@ export default function (context) {
     };
 }
 // or ES5
-module.exports = function (context) {
+module.exports = function(context) {
     const exports = {};
-    exports[context.Syntax.Str] = function (node) {
+    exports[context.Syntax.Str] = function(node) {
         // this method is called
     };
     return exports;
 };
+
 ```
 
 By default, the method matching a node name is called during the traversal when the node is first encountered(This is called **Enter**), on the way down the AST.
@@ -65,7 +64,7 @@ You can also specify to visit the node on the other side of the traversal, as it
 
 
 ```js
-export default function (context) {
+export default function(context) {
     return {
         // Str:exit
         [`${context.Syntax.Str}:exit`](node) {
@@ -73,6 +72,7 @@ export default function (context) {
         }
     };
 }
+
 ```
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
@@ -123,7 +123,7 @@ Use it with `report` function.
 ```js
 // No padding information
 const error = new RuleError("message");
-// 
+//
 // OR
 // add location-based padding
 const paddingLine = 1;
@@ -141,6 +141,7 @@ const errorWithPaddingIndex = new RuleError("message", {
     index: paddingIndex // padding index value from `node.range[0]`. default: 0
 });
 // context.report(node, errorWithPaddingIndex);
+
 ```
 
 ### :warning: Caution :warning:
@@ -156,18 +157,19 @@ You will use mainly method is `context.report()`, which publishes a error (defin
 For example:
 
 ```js
-export default function (context) {
+export default function(context) {
     return {
         [context.Syntax.Str](node) {
             // get source code of this `node`
             const text = context.getSource(node);
-            if(/found wrong use-case/.test(text)){
+            if (/found wrong use-case/.test(text)) {
                 // report error
                 context.report(node, new context.RuleError("Found wrong"));
             }
         }
     };
 }
+
 ```
 
 ### How to write async task in the rule
@@ -175,10 +177,10 @@ export default function (context) {
 Return Promise object in the node function and the rule work asynchronously.
 
 ```js
-export default function (context) {
-    const {Syntax} = context;
+export default function(context) {
+    const { Syntax } = context;
     return {
-        [Syntax.Str](node){
+        [Syntax.Str](node) {
             // textlint wait for resolved the promise.
             return new Promise((resolve, reject) => {
                 // async task
@@ -186,6 +188,7 @@ export default function (context) {
         }
     };
 }
+
 ```
 
 ## Example: creating `no-todo` rules.
@@ -234,9 +237,9 @@ File Name: `no-todo.js`
 /**
  * @param {RuleContext} context
  */
-export default function (context) {
+export default function(context) {
     const helper = new RuleHelper(context);
-    const {Syntax, getSource, RuleError, report} = context;
+    const { Syntax, getSource, RuleError, report } = context;
     return {
         /*
             # Header
@@ -250,9 +253,12 @@ export default function (context) {
             // does text contain "todo:"?
             const match = text.match(/todo:/i);
             if (match) {
-                report(node, new RuleError(`Found TODO: '${text}'`, {
-                    index: match.index
-                }));
+                report(
+                    node,
+                    new RuleError(`Found TODO: '${text}'`, {
+                        index: match.index
+                    })
+                );
             }
         },
         /*
@@ -265,13 +271,17 @@ export default function (context) {
             const text = context.getSource(node);
             const match = text.match(/\[\s+\]\s/i);
             if (match) {
-                report(node, new context.RuleError(`Found TODO: '${text}'`, {
-                    index: match.index
-                }));
+                report(
+                    node,
+                    new context.RuleError(`Found TODO: '${text}'`, {
+                        index: match.index
+                    })
+                );
             }
         }
     };
 }
+
 
 ```
 
@@ -334,11 +344,11 @@ function getParents(node) {
  */
 function isNodeWrapped(node, types) {
     const parents = getParents(node);
-    const parentsTypes = parents.map(function (parent) {
+    const parentsTypes = parents.map(function(parent) {
         return parent.type;
     });
-    return types.some(function (type) {
-        return parentsTypes.some(function (parentType) {
+    return types.some(function(type) {
+        return parentsTypes.some(function(parentType) {
             return parentType === type;
         });
     });
@@ -346,8 +356,8 @@ function isNodeWrapped(node, types) {
 /**
  * @param {RuleContext} context
  */
-export default function (context) {
-    const {Syntax, getSource, RuleError, report} = context;
+export default function(context) {
+    const { Syntax, getSource, RuleError, report } = context;
     return {
         /*
             # Header
@@ -364,10 +374,13 @@ export default function (context) {
             const match = text.match(/todo:/i);
             if (match) {
                 const todoText = text.substring(match.index);
-                report(node, new RuleError(`Found TODO: '${todoText}'`, {
-                    // correct position
-                    index: match.index
-                }));
+                report(
+                    node,
+                    new RuleError(`Found TODO: '${todoText}'`, {
+                        // correct position
+                        index: match.index
+                    })
+                );
             }
         },
         /*
@@ -378,13 +391,17 @@ export default function (context) {
             const text = context.getSource(node);
             const match = text.match(/\[\s+\]\s/i);
             if (match) {
-                report(node, new context.RuleError(`Found TODO: '${text}'`, {
-                    index: match.index
-                }));
+                report(
+                    node,
+                    new context.RuleError(`Found TODO: '${text}'`, {
+                        index: match.index
+                    })
+                );
             }
         }
     };
 }
+
 ```
 
 As as result, linting following text with modified rule, a result was no error.
@@ -436,7 +453,6 @@ tester.run("no-todo", rule, {
         "[TODO: this is todo](http://example.com)",
         "![TODO: this is todo](http://example.com/img)",
         "> TODO: this is todo"
-
     ],
     invalid: [
         // single match
@@ -492,6 +508,7 @@ tester.run("no-todo", rule, {
         }
     ]
 });
+
 ```
 
 Run the tests:
@@ -521,7 +538,7 @@ For example, there are a config file:
 `very-nice-rule.js` rule get the options defined by the config file.
 
 ```js
-export default function(context, options){
+export default function(context, options) {
     console.log(options);
     /*
         {
@@ -529,6 +546,7 @@ export default function(context, options){
         }
     */
 }
+
 ```
 
 ## Advanced example
