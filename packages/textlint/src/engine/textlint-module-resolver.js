@@ -146,7 +146,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         }
          */
         // <preset-name> or textlint-rule-preset-<rule-name>
-        const packageNameWithoutPreset = packageName.replace(/^preset\-/, "");
+        const packageNameWithoutPreset = packageName.replace(/^preset-/, "");
         const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
         // preset-<preset-name> or textlint-rule-preset-<preset-name>
         const pkgPath =
