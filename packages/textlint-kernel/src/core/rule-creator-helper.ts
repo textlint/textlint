@@ -3,10 +3,13 @@
 import { ASTNodeTypes } from "@textlint/ast-node-types"
 import RuleContext from "./rule-context";
 import { TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import FilterRuleContext from "./filter-rule-context";
 /**
  * Reporter function
+ *
+ * FIXME: Separate RuleCreatorReporter to FilterRuleCreatorReporter
  */
-export type RuleCreatorReporter = (context: RuleContext, options?: TextLintRuleOptions) => {
+export type RuleCreatorReporter = (context: RuleContext | FilterRuleContext, options?: TextLintRuleOptions | boolean) => {
     [P in keyof typeof ASTNodeTypes]: (node: TxtNode) => void | Promise<any>
     };
 export type RuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter; }
@@ -32,7 +35,7 @@ export function hasLinter(ruleCreator: RuleCreator): boolean {
  * @returns {Function} linter function
  * @throws
  */
-export function getLinter(ruleCreator: RuleCreator): RuleCreator {
+export function getLinter(ruleCreator: RuleCreator): RuleCreatorReporter {
     if (typeof ruleCreator === "object" && typeof ruleCreator.linter === "function") {
         return ruleCreator.linter;
     }

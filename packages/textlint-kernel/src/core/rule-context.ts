@@ -31,7 +31,7 @@ export interface RuleContextArgs {
     sourceCode: SourceCode;
     report: ReportFunction;
     textLintConfig: TextLintConfig
-    ruleOptions: TextLintRuleOptions,
+    ruleOptions?: TextLintRuleOptions | boolean,
     configBaseDir?: string;
 }
 
@@ -47,7 +47,7 @@ export default class RuleContext {
     private _sourceCode: SourceCode;
     private _report: ReportFunction;
     private _textLintConfig: TextLintConfig;
-    private _ruleOptions: TextLintRuleOptions;
+    private _ruleOptions?: TextLintRuleOptions | boolean;
     private _configBaseDir?: string;
     private _severity: number;
 

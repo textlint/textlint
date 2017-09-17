@@ -27,7 +27,6 @@ export interface FilterRuleContextArgs {
     ignoreReport: ShouldIgnoreFunction;
     sourceCode: SourceCode;
     textLintConfig: TextLintConfig
-    // FIXME: support this
     configBaseDir?: string;
 }
 

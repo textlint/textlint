@@ -105,7 +105,7 @@ export interface TextlintKernelRule {
     rule: any;
     // rule options
     // Often rule option is written in .textlintrc
-    options?: any | boolean;
+    options?: TextLintRuleOptions | boolean;
 }
 
 export interface TextlintKernelFilterRule {
@@ -115,7 +115,7 @@ export interface TextlintKernelFilterRule {
     rule: any;
     // filter rule options
     // Often rule option is written in .textlintrc
-    options?: any | boolean;
+    options?: TextLintRuleOptions | boolean;
 }
 
 export interface TextlintKernelOptions {
