@@ -1,19 +1,75 @@
 // LICENSE : MIT
 "use strict";
-const EventEmitter = require("events");
 const TraverseController = require("txt-ast-traverse").Controller;
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
-const assert = require("assert");
 import { PromiseEventEmitter } from "./promise-event-emitter";
+import Bluebird = require("bluebird");
 import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
 import timing from "../util/timing";
 import MessageType from "../shared/type/MessageType";
+import { EventEmitter } from "events";
+import * as assert from "assert";
+import SourceCode from "../core/source-code";
+import { TextLintFixCommand, TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { default as RuleContext, RuleReportedObject } from "../core/rule-context";
+import { RuleCreatorReporter } from "../core/rule-creator-helper";
 
-
-// Promised EventEmitter
 class RuleTypeEmitter extends PromiseEventEmitter {
+}
+
+
+/**
+ * Ignoring Report function
+ */
+/**
+ * Message of ignoring
+ * @typedef {Object} ReportIgnoreMessage
+ * @property {string} ruleId
+ * @property {number[]} range
+ * @property {string} ignoringRuleId to ignore ruleId
+ * "*" is special case, it match all ruleId(work as wildcard).
+ */
+export interface ShouldIgnoreArgs {
+    ruleId: string;
+    range: [number, number];
+    optional: {
+        ruleId?: string
+    };
+}
+
+export interface IgnoreReportedMessage {
+    ruleId: string;
+    type: typeof MessageType.ignore
+    range: [number, number];
+    ignoringRuleId: string;
+}
+
+export type ShouldIgnoreFunction = (args: ShouldIgnoreArgs) => void;
+
+/**
+ * context.report function
+ */
+export interface ReportArgs {
+    ruleId: string;
+    node: TxtNode;
+    severity: number;
+    ruleError: RuleError | RuleReportedObject;
+}
+
+export type ReportFunction = (args: ReportArgs) => void;
+
+export interface LintResultMessage {
+    type: typeof MessageType.lint,
+    ruleId: string,
+    message: string,
+    index: number,
+    // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
+    line: number,        // start with 1(1-based line number)
+    column: number,// start with 1(1-based column number)
+    severity: number,  // it's for compatible ESLint formatter
+    fix?: TextLintFixCommand
 }
 
 /**
@@ -21,6 +77,8 @@ class RuleTypeEmitter extends PromiseEventEmitter {
  * You can observe task and receive "message" event that is TextLintMessage.
  */
 export default class TextLintCoreTask extends EventEmitter {
+    private ruleTypeEmitter: RuleTypeEmitter;
+
     static get events() {
         return {
             // receive start event
@@ -39,21 +97,9 @@ export default class TextLintCoreTask extends EventEmitter {
         this.ruleTypeEmitter = new RuleTypeEmitter();
     }
 
-    createIgnoreReporter() {
-        /**
-         * Message of ignoring
-         * @typedef {Object} ReportIgnoreMessage
-         * @property {string} ruleId
-         * @property {number[]} range
-         * @property {string} ignoringRuleId to ignore ruleId
-         * "*" is special case, it match all ruleId(work as wildcard).
-         */
-        /**
-         * create ReportIgnoreMessage and emit it.
-         * @param {ReportIgnoreMessage} reportedMessage
-         */
-        const reportFunction = (reportedMessage) => {
-            const { ruleId, range, optional } = reportedMessage;
+    createShouldIgnore(): ShouldIgnoreFunction {
+        const shouldIgnore = (args: ShouldIgnoreArgs) => {
+            const { ruleId, range, optional } = args;
             assert(typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range);
             const message = {
@@ -65,22 +111,22 @@ export default class TextLintCoreTask extends EventEmitter {
             };
             this.emit(TextLintCoreTask.events.message, message);
         };
-        return reportFunction;
+        return shouldIgnore;
     }
 
-    createReporter(sourceCode) {
+    createReporter(sourceCode: SourceCode): ReportFunction {
         const sourceLocation = new SourceLocation(sourceCode);
         /**
          * push new RuleError to results
          * @param {ReportMessage} reportedMessage
          */
-        const reportFunction = (reportedMessage) => {
+        const reportFunction = (reportedMessage: ReportArgs) => {
             const { ruleId, severity, ruleError } = reportedMessage;
             debug("%s pushReport %s", ruleId, ruleError);
             const { line, column, fix } = sourceLocation.adjust(reportedMessage);
             const index = sourceCode.positionToIndex({ line, column });
             // add TextLintMessage
-            const message = {
+            const message: LintResultMessage = {
                 type: MessageType.lint,
                 ruleId: ruleId,
                 message: ruleError.message,
@@ -88,15 +134,14 @@ export default class TextLintCoreTask extends EventEmitter {
                 // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
                 line: line,        // start with 1(1-based line number)
                 column: column + 1,// start with 1(1-based column number)
-                severity: severity // it's for compatible ESLint formatter
+                severity: severity, // it's for compatible ESLint formatter
+                fix: fix !== undefined ? fix : undefined
             };
-            if (fix) {
-                message.fix = fix;
-            }
             if (!(ruleError instanceof RuleError)) {
+                // FIXME: RuleReportedObject should be removed
                 // `error` is a any data.
                 const data = ruleError;
-                message.data = data;
+                (message as any).data = data;
             }
             this.emit(TextLintCoreTask.events.message, message);
         };
@@ -108,12 +153,12 @@ export default class TextLintCoreTask extends EventEmitter {
      * You can listen message by `task.on("message", message => {})`
      * @param {SourceCode} sourceCode
      */
-    startTraverser(sourceCode) {
+    startTraverser(sourceCode: SourceCode) {
         this.emit(TextLintCoreTask.events.start);
-        const promiseQueue = [];
+        const promiseQueue: Array<Bluebird<Array<void>>> = [];
         const ruleTypeEmitter = this.ruleTypeEmitter;
         traverseController.traverse(sourceCode.ast, {
-            enter(node, parent) {
+            enter(node: TxtNode, parent?: TxtNode) {
                 const type = node.type;
                 Object.defineProperty(node, "parent", { value: parent });
                 if (ruleTypeEmitter.listenerCount(type) > 0) {
@@ -121,7 +166,7 @@ export default class TextLintCoreTask extends EventEmitter {
                     promiseQueue.push(promise);
                 }
             },
-            leave(node) {
+            leave(node: TxtNode) {
                 const type = `${node.type}:exit`;
                 if (ruleTypeEmitter.listenerCount(type) > 0) {
                     const promise = ruleTypeEmitter.emit(type, node);
@@ -129,7 +174,7 @@ export default class TextLintCoreTask extends EventEmitter {
                 }
             }
         });
-        Promise.all(promiseQueue).then(() => {
+        Bluebird.all(promiseQueue).then(() => {
             this.emit(TextLintCoreTask.events.complete);
         }).catch(error => {
             this.emit(TextLintCoreTask.events.error, error);
@@ -144,7 +189,7 @@ export default class TextLintCoreTask extends EventEmitter {
      * @returns {Object}
      * @throws
      */
-    tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions) {
+    tryToGetRuleObject(ruleCreator: RuleCreatorReporter, ruleContext: RuleContext, ruleOptions: TextLintRuleOptions) {
         try {
             return ruleCreator(ruleContext, ruleOptions);
         } catch (error) {
@@ -160,9 +205,9 @@ export default class TextLintCoreTask extends EventEmitter {
      * @param {Object|boolean} ruleOptions
      * @returns {Object}
      */
-    tryToAddListenRule(ruleCreator, ruleContext, ruleOptions) {
+    tryToAddListenRule(ruleCreator: RuleCreatorReporter, ruleContext: RuleContext, ruleOptions: TextLintRuleOptions): void {
         const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions);
-        Object.keys(ruleObject).forEach(nodeType => {
+        Object.keys(ruleObject).forEach((nodeType: keyof typeof ruleObject) => {
             this.ruleTypeEmitter.on(nodeType, timing.enabled
                 ? timing.time(ruleContext.id, ruleObject[nodeType])
                 : ruleObject[nodeType]);

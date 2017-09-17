@@ -55,7 +55,7 @@ export default class SourceCodeFixer {
         let lastFixPos = text.length + 1;
         let prefix = (sourceCode.hasBOM ? BOM : "");
         cloneMessages.forEach(problem => {
-            if (problem && problem.hasOwnProperty("fix")) {
+            if (problem && problem.fix !== undefined) {
                 fixes.push(problem as TextLintMessageFixable);
             } else {
                 remainingMessages.push(problem);
@@ -67,7 +67,7 @@ export default class SourceCodeFixer {
 
             // sort in reverse order of occurrence
             // FIXME: always has `fix`
-            fixes.sort((a: any, b: any) => {
+            fixes.sort((a: TextLintMessageFixable, b: TextLintMessageFixable) => {
                 if (a.fix.range[1] <= b.fix.range[0]) {
                     return 1;
                 } else {

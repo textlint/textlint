@@ -1,8 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import MessageType from "../shared/type/MessageType";
-import { IgnoreReportedMessage } from "../core/filter-rule-context";
-import { LintResultMessage } from "../core/rule-context";
+import { IgnoreReportedMessage, LintResultMessage } from "../task/textlint-core-task";
 
 /**
  * the `index` is in the `range` and return true.

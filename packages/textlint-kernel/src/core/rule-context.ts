@@ -3,24 +3,13 @@
 const assert = require("assert");
 import RuleFixer from "../fixer/rule-fixer";
 import RuleError from "./rule-error";
-import SeverityLevel, { SeverityLevelTypes } from "../shared/type/SeverityLevel";
+import SeverityLevel from "../shared/type/SeverityLevel";
 import { getSeverity } from "../shared/rule-severity";
 import SourceCode from "./source-code";
 import { TextLintConfig, TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
-import MessageType from "../shared/type/MessageType";
+import { ReportFunction } from "../task/textlint-core-task";
 // instance for rule context
 const ruleFixer = new RuleFixer();
-
-export interface LintResultMessage {
-    type: typeof MessageType.lint,
-    ruleId: string,
-    message: string,
-    index: number,
-    // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-    line: number,        // start with 1(1-based line number)
-    column: number,// start with 1(1-based column number)
-    severity: SeverityLevelTypes  // it's for compatible ESLint formatter
-}
 
 /**
  * This callback is displayed as a global member.
@@ -40,22 +29,23 @@ export interface LintResultMessage {
 export interface RuleContextArgs {
     ruleId: string;
     sourceCode: SourceCode;
-    report: Function;
+    report: ReportFunction;
     textLintConfig: TextLintConfig
     ruleOptions: TextLintRuleOptions,
     configBaseDir?: string;
 }
 
-export interface RuleReportObject {
+export interface RuleReportedObject {
     [index: string]: any;
 
+    message: string;
     severity?: number;
 }
 
 export default class RuleContext {
     private _ruleId: string;
     private _sourceCode: SourceCode;
-    private _report: Function;
+    private _report: ReportFunction;
     private _textLintConfig: TextLintConfig;
     private _ruleOptions: TextLintRuleOptions;
     private _configBaseDir?: string;
@@ -121,9 +111,10 @@ export default class RuleContext {
      * @param {TxtNode} node
      * @param {RuleError|any} ruleError error is a RuleError instance or any data
      */
-    report = (node: TxtNode, ruleError: RuleError | RuleReportObject) => {
+    report = (node: TxtNode, ruleError: RuleError | RuleReportedObject) => {
         assert(!(node instanceof RuleError), "should be `report(node, ruleError);`");
         if (ruleError instanceof RuleError) {
+            // FIXME: severity is internal API
             this._report({ ruleId: this._ruleId, node, severity: this._severity, ruleError });
         } else {
             const level = ruleError.severity || SeverityLevel.error;

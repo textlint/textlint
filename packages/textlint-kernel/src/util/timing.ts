@@ -91,7 +91,7 @@ function display(data: any) {
 }
 
 /* istanbul ignore next */
-module.exports = (function () {
+export default  (function () {
 
     const data = Object.create(null);
 

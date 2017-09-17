@@ -33,7 +33,7 @@ export default class TextLintCoreTask extends CoreTask {
         const textLintConfig = this.config;
         const sourceCode = this.sourceCode;
         const report = this.createReporter(sourceCode);
-        const ignoreReport = this.createIgnoreReporter(sourceCode);
+        const ignoreReport = this.createShouldIgnore(sourceCode);
         // setup "rules" field by using a single fixerRule
         debug("fixerRule", this.fixerRule);
         const ruleContext = new RuleContext({

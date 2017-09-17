@@ -3,38 +3,9 @@
 import SourceCode from "./source-code";
 import { TextLintConfig, TxtNode } from "../textlint-kernel-interface";
 import RuleError from "./rule-error";
-import MessageType from "../shared/type/MessageType";
+import { ShouldIgnoreFunction } from "../task/textlint-core-task";
 
 const assert = require("assert");
-
-/**
- * Message of ignoring
- * @typedef {Object} ReportIgnoreMessage
- * @property {string} ruleId
- * @property {number[]} range
- * @property {string} ignoringRuleId to ignore ruleId
- * "*" is special case, it match all ruleId(work as wildcard).
- */
-export interface shouldIgnoreArgs {
-    ruleId: string;
-    range: [number, number];
-    optional: {
-        ruleId?: string
-    };
-}
-
-export interface IgnoreReportedMessage {
-    ruleId: string;
-    type: typeof MessageType.ignore
-    range: [number, number];
-    ignoringRuleId: string;
-}
-
-/**
- * Ignoring Report function
- */
-export type IgnoreReport = (message: shouldIgnoreArgs) => void;
-
 
 /**
  * This callback is displayed as a global member.
@@ -53,7 +24,7 @@ export type IgnoreReport = (message: shouldIgnoreArgs) => void;
  */
 export interface FilterRuleContextArgs {
     ruleId: string;
-    ignoreReport: IgnoreReport;
+    ignoreReport: ShouldIgnoreFunction;
     sourceCode: SourceCode;
     textLintConfig: TextLintConfig
     // FIXME: support this
@@ -64,13 +35,13 @@ export interface FilterRuleContextArgs {
  * Rule context object is passed to each rule as `context`
  * @param {string} ruleId
  * @param {SourceCode} sourceCode
- * @param {function(shouldIgnoreArgs)} ignoreReport
+ * @param {function(ShouldIgnoreArgs)} ignoreReport
  * @param {Config} textLintConfig
  * @constructor
  */
 export default class FilterRuleContext {
     private _ruleId: string;
-    private _ignoreReport: IgnoreReport;
+    private _ignoreReport: ShouldIgnoreFunction;
     private _sourceCode: SourceCode;
     private _textLintConfig: TextLintConfig;
     private _configBaseDir?: string;
