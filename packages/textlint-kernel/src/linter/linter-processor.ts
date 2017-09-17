@@ -1,15 +1,33 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
+import * as assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
+import {
+    TextLintConfig, TextlintKernelFilterRule, TextlintKernelProcessor,
+    TextlintKernelRule
+} from "../textlint-kernel-interface";
+import MessageProcessManager from "../messages/MessageProcessManager";
+import SourceCode from "../core/source-code";
+
+export interface LinterProcessorArgs {
+    config: TextLintConfig,
+    configBaseDir?: string,
+    rules?: TextlintKernelRule[];
+    filterRules?: TextlintKernelFilterRule[];
+    sourceCode: SourceCode;
+
+}
 
 export default class LinterProcessor {
+    private processor: TextlintKernelProcessor;
+    private messageProcessManager: MessageProcessManager;
+
     /**
      * @param {Processor} processor
      * @param {MessageProcessManager} messageProcessManager
      */
-    constructor(processor, messageProcessManager) {
+    constructor(processor: TextlintKernelProcessor, messageProcessManager: MessageProcessManager) {
         this.processor = processor;
         this.messageProcessManager = messageProcessManager;
     }
@@ -23,7 +41,7 @@ export default class LinterProcessor {
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintResult>}
      */
-    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }) {
+    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: LinterProcessorArgs) {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         assert(typeof preProcess === "function" && typeof postProcess === "function",
