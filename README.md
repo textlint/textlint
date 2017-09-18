@@ -8,7 +8,7 @@
 <!-- textlint-disable -->
 
 [![Travis CI Build Status](https://travis-ci.org/textlint/textlint.svg)](https://travis-ci.org/textlint/textlint)
-[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/4kwh41gxpc4h0obt/branch/master?svg=true)](https://ci.appveyor.com/project/azu/textlint/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/4kwh41gxpc4h0obt?svg=true)](https://ci.appveyor.com/project/azu/textlint)
 
 <!-- textlint-enable -->
 
