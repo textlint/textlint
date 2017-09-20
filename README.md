@@ -419,6 +419,11 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
 
 ## Integrations
 
+### App
+
+- [textlint-app](https://github.com/textlint/textlint-app "textlint-app")
+  - Standalone cross platform app. No need Node.js environment.
+
 ### Build Systems
 
 - gulp plugin
