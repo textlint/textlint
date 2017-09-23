@@ -1,0 +1,7 @@
+{
+  "plugins": {
+    "textlint-plugin-pl-example": {
+      "flag": true
+    }
+  }
+}
