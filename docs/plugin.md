@@ -5,6 +5,10 @@ For example, `textlint-plugin-english`.
 
 ## Create a Plugin
 
+**Deprecated**: Use [preset](./rule-preset.md) insteadof plugin.
+
+- [Drop "rules" and "rulesConfig" in plugin · Issue #291 · textlint/textlint](https://github.com/textlint/textlint/issues/291 "Drop &#34;rules&#34; and &#34;rulesConfig&#34; in plugin · Issue #291 · textlint/textlint")
+
 Plugin is a set of `rules` and `rulesConfig`.
 
 If your plugin has rules, then it must export an object with a rules property.
@@ -50,7 +54,7 @@ export default {
 };
 ```
 
-## Processor(optional) 
+## Processor
 
 Plugin has a `Processor` that is optional.
 
@@ -75,8 +79,8 @@ textlint already support `.txt` and `.md`. These are implemented by `Processor`
 // TextProcessor.js
 import { parse } from "txt-to-ast";
 export default class TextProcessor {
-    constructor(config) {
-        this.config = config;
+    constructor(options) {
+        this.options = options;
     }
     // available ".ext" list
     static availableExtensions() {
@@ -116,6 +120,29 @@ You can use Processor plugin in the same way a plugin.
 Your Processor plugins's `preProcess` method should return `TxtAST` object.
 
 :information_source: Please see document about `TxtAST` before implementing Processor/Parser.
+
+## Processor options
+
+You can pass a options to your plugin from `.textlintrc`.
+
+```
+{
+    "plugins": {
+        pluginName: processorOption
+    }
+}
+```
+
+You can receive the `processorOption` via constructor arguments.
+
+```js
+export default class YourProcessor {
+    constructor(options) {
+        this.options = options; // <= processorOption!
+    }
+    // ...
+}
+```
 
 ## Testing
 
