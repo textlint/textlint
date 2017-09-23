@@ -3,12 +3,16 @@ import { TextlintKernelProcessor, TextLintPluginCreator } from "../../src/textli
 
 const parse = require("markdown-to-ast").parse;
 
-export class Processor implements TextlintKernelProcessor {
+export interface ExampleProcessorOptions {
+    testOption: string;
+}
+
+export class ExampleProcessor implements TextlintKernelProcessor {
     static availableExtensions() {
         return [".md"];
     }
 
-    constructor(_option = {}) {}
+    constructor(public options: ExampleProcessorOptions) {}
 
     processor(_extension: string) {
         return {
@@ -26,5 +30,24 @@ export class Processor implements TextlintKernelProcessor {
 }
 
 export const plugin: TextLintPluginCreator = {
-    Processor: Processor
+    Processor: ExampleProcessor
+};
+
+export const createPluginStub = () => {
+    let assignedOptions: undefined | ExampleProcessorOptions;
+    return {
+        getOptions() {
+            return assignedOptions;
+        },
+        getPlugin(): TextLintPluginCreator {
+            return {
+                Processor: class MockProcessor extends ExampleProcessor {
+                    constructor(options: ExampleProcessorOptions) {
+                        super(options);
+                        assignedOptions = options;
+                    }
+                }
+            };
+        }
+    };
 };
