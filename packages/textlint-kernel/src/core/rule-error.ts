@@ -3,18 +3,18 @@
 import { TextLintFixCommand } from "../textlint-kernel-interface";
 
 export interface RuleErrorPadding {
-    line: number;
-    column: number;
-    index: number;
-    fix: TextLintFixCommand;
+    line?: number;
+    column?: number;
+    index?: number;
+    fix?: TextLintFixCommand;
 }
 
 export default class RuleError {
     public message: string;
-    private line: number;
-    private column: number;
-    private index: number;
-    private fix: TextLintFixCommand;
+    private line?: number;
+    private column?: number;
+    private index?: number;
+    private fix?: TextLintFixCommand;
 
     /**
      * RuleError is like Error object.

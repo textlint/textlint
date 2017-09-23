@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import assert from "power-assert";
-import SourceLocation from "../../lib/core/source-location";
-import RuleError from "../../lib/core/rule-error";
-import RuleFixer from "../../lib/fixer/rule-fixer";
+import SourceLocation from "../../src/core/source-location";
+import RuleError from "../../src/core/rule-error";
+import RuleFixer from "../../src/fixer/rule-fixer";
 import createDummySourceCode from "./../util/dummy-source-code";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 const sourceCode = createDummySourceCode();

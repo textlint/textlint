@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("power-assert");
-import sortMessages from "../../lib/messages/sort-messages-process";
+import sortMessages from "../../src/messages/sort-messages-process";
 describe("sort-message-test", function() {
     context("when empty array", function() {
         it("should return empty array", function() {

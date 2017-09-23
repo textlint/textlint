@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import filterMessages from "../../lib/messages/filter-duplicated-process";
+import filterMessages from "../../src/messages/filter-duplicated-process";
 const assert = require("power-assert");
 describe("message-filter", function() {
     context("when pass empty messages", function() {
