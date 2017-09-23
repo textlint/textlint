@@ -1,11 +1,16 @@
 // rule config
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 import { SeverityLevelTypes } from "./shared/type/SeverityLevel";
+import { TextLintRuleCreator } from "./core/rule-creator-helper";
 
 export interface TextLintRuleOptions {
     [index: string]: any;
 
-    severity: SeverityLevelTypes;
+    severity?: SeverityLevelTypes;
+}
+
+export interface TextLintPluginOptions {
+    [index: string]: any;
 }
 
 // config
@@ -79,15 +84,13 @@ export interface Position {
 export interface TextlintKernelProcessorConstructor extends Function {
     // TODO: support plugin config
     // https://github.com/textlint/textlint/issues/296
-    new (config: any): TextlintKernelProcessor;
+    new (options?: TextLintPluginOptions | boolean): TextlintKernelProcessor;
 
     availableExtensions(): Array<string>;
 }
 
 export declare class TextlintKernelProcessor {
-    private config: any;
-
-    constructor(config: any);
+    constructor(options?: TextLintPluginOptions | boolean);
 
     static availableExtensions(): Array<string>;
 
@@ -99,23 +102,27 @@ export declare class TextlintKernelProcessor {
     };
 }
 
+// textlint plugin module should export this interface
+export interface TextLintPluginCreator {
+    Processor: TextlintKernelProcessorConstructor;
+}
+
 export interface TextlintKernelPlugin {
     // plugin name as key
     pluginId: string;
-    // plugin processor instance
-    plugin: {
-        Processor: TextlintKernelProcessorConstructor;
-    };
+    // plugin module
+    // For example, `plugin: require("textlint-plugin-markdown")`
+    plugin: TextLintPluginCreator;
     // plugin options
-    // TODO: It is not implemented
-    // options: Object | boolean;
+    options?: TextLintPluginOptions | boolean;
 }
 
 export interface TextlintKernelRule {
     // rule name as key
     ruleId: string;
-    // rule module instance
-    rule: any;
+    // rule module
+    // For example, `rule: require("textlint-rule-example")`
+    rule: TextLintRuleCreator;
     // rule options
     // Often rule option is written in .textlintrc
     options?: TextLintRuleOptions | boolean;

@@ -1,33 +1,8 @@
 // MIT © 2017 azu
 "use strict";
 const assert = require("assert");
-import { TextlintKernel } from "../lib/textlint-kernel";
-
-const report = (context, options = {}) => {
-    const errors = options.errors || [];
-    const { Syntax, RuleError, report, fixer } = context;
-    return {
-        [Syntax.Document](node) {
-            errors.forEach(error => {
-                if (error.range && error.output) {
-                    report(node, new RuleError(error.message), {
-                        index: error.index,
-                        fix: fixer.replaceTextRange(error.range, error.output)
-                    });
-                } else {
-                    report(node, new RuleError(error.message), {
-                        index: error.index
-                    });
-                }
-            });
-        }
-    };
-};
-const errorRule = {
-    linter: report,
-    fixer: report
-};
-
+import { TextlintKernel } from "../src/textlint-kernel";
+import { errorRule } from "./helper/ErrorRule";
 describe("textlint-kernel", () => {
     describe("#lintText", () => {
         it("should return messages", () => {
@@ -72,7 +47,7 @@ describe("textlint-kernel", () => {
                                 pluginId: 1
                             }
                         ]
-                    })
+                    } as any)
                     .catch(error => {
                         assert.ok(error instanceof Error);
                     });
@@ -122,7 +97,7 @@ describe("textlint-kernel", () => {
                                 pluginId: 1
                             }
                         ]
-                    })
+                    } as any)
                     .catch(error => {
                         assert.ok(error instanceof Error);
                     });
