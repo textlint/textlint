@@ -5,7 +5,7 @@ For example, `textlint-plugin-english`.
 
 ## Create a Plugin
 
-**Deprecated**: Use [preset](./rule-preset.md) insteadof plugin.
+**Deprecated**: Plugin should have `Processor`. Use [preset](./rule-preset.md) insteadof plugin for collecting rules.
 
 - [Drop "rules" and "rulesConfig" in plugin · Issue #291 · textlint/textlint](https://github.com/textlint/textlint/issues/291 "Drop &#34;rules&#34; and &#34;rulesConfig&#34; in plugin · Issue #291 · textlint/textlint")
 
