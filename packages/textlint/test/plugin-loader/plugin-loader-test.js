@@ -3,10 +3,41 @@
 const assert = require("power-assert");
 const path = require("path");
 import Config from "../../src/config/config";
-import { loadRulesConfig, loadAvailableExtensions } from "../../src/config/plugin-loader";
+import { loadRulesConfig, loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
 import TextLintModuleResolver from "../../src/engine/textlint-module-resolver";
+
 const moduleResolver = new TextLintModuleResolver(Config, path.join(__dirname, "fixtures"));
 describe("plugin-loader", function() {
+    describe("#getPluginConfig", () => {
+        it("should return {} when plugins is empty", () => {
+            const pluginsConfig = getPluginConfig({});
+            assert.deepStrictEqual(pluginsConfig, {});
+        });
+
+        it("should return { name: config } map when plugins is array", () => {
+            const pluginsConfig = getPluginConfig({
+                plugins: ["a", "b"]
+            });
+            assert.deepStrictEqual(pluginsConfig, {
+                a: true,
+                b: true
+            });
+        });
+        it("should return { name: config } map when plugins is object", () => {
+            const setPluginsConfig = {
+                a: {
+                    bFlag: "a"
+                },
+                b: {
+                    bFlag: "b"
+                }
+            };
+            const pluginsConfig = getPluginConfig({
+                plugins: setPluginsConfig
+            });
+            assert.deepStrictEqual(pluginsConfig, setPluginsConfig);
+        });
+    });
     describe("#loadRulesConfig", function() {
         context("when the plugin has not {rulesConfig}", function() {
             it("should return empty object", function() {

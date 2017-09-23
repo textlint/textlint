@@ -5,7 +5,9 @@
     "textlint-plugin-pl-example"
   ],
   "pluginsConfig": {
-    "textlint-plugin-pl-example": true
+    "textlint-plugin-pl-example": {
+      "flag": true
+    }
   },
   "extensions": [
     ".test1",

@@ -12,9 +12,10 @@ const getPlugins = rawPluginObject => {
 export default class PluginCreatorSet {
     /**
      * @param {Object} [pluginObject]
+     * @param {Object} [pluginOptionObject]
      * @constructor
      */
-    constructor(pluginObject = {}) {
+    constructor(pluginObject = {}, pluginOptionObject = {}) {
         this.rawPlugins = pluginObject;
         /**
          * available rule object
@@ -26,6 +27,11 @@ export default class PluginCreatorSet {
          * @type {Array}
          */
         this.pluginNames = Object.keys(this.rawPlugins);
+
+        /**
+         * @type {Object}
+         */
+        this.pluginsOption = pluginOptionObject;
     }
 
     get availableExtensions() {
@@ -48,7 +54,8 @@ export default class PluginCreatorSet {
         return this.pluginNames.map(pluginName => {
             return {
                 pluginId: pluginName,
-                plugin: this.rawPlugins[pluginName]
+                plugin: this.rawPlugins[pluginName],
+                options: this.pluginsOption[pluginName]
             };
         });
     }

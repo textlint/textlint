@@ -22,7 +22,7 @@ const ruleFixer = new RuleFixer();
  * @param {SourceCode} sourceCode
  * @param {ReportCallback} report
  * @param {Config} textLintConfig
- * @param {Object|boolean} ruleOptions
+ * @param {Object|boolean|undefined} ruleOptions
  * @param {string} [configBaseDir]
  * @constructor
  */

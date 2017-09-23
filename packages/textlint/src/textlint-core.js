@@ -61,9 +61,10 @@ export default class TextlintCore {
     /**
      * register Processors
      * @param {Object} plugins
+     * @param {Object} [pluginsConfig]
      */
-    setupPlugins(plugins = {}) {
-        this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, plugins));
+    setupPlugins(plugins = {}, pluginsConfig = {}) {
+        this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, plugins), pluginsConfig);
     }
 
     /**

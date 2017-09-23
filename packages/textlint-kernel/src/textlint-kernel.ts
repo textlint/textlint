@@ -27,12 +27,17 @@ import {
  * @returns {TextlintKernelPlugin|undefined} PluginConstructor
  */
 function findPluginWithExt(plugins: TextlintKernelPlugin[] = [], ext: string) {
-    const matchPlugins = plugins.filter(kernelPlugin => {
+    const availablePlugins = plugins.filter(kernelPlugin => {
         const plugin = kernelPlugin.plugin;
         assert.ok(
             plugin !== undefined,
             `Processor(${kernelPlugin.pluginId} should have { "pluginId": string, "plugin": plugin }.`
         );
+        const options = kernelPlugin.options;
+        return options !== false;
+    });
+    const matchPlugins = availablePlugins.filter(kernelPlugin => {
+        const plugin = kernelPlugin.plugin;
         // static availableExtensions() method
         const textlintKernelProcessor: TextlintKernelProcessorConstructor = plugin.Processor;
         assert.ok(
@@ -109,8 +114,9 @@ export class TextlintKernel {
                 throw new Error(`Not found available plugin for ${ext}`);
             }
             const Processor = plugin.plugin.Processor;
+            const pluginOptions = plugin.options;
             assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-            const processor = new Processor(this.config);
+            const processor = new Processor(pluginOptions);
             return this._parallelProcess({
                 processor,
                 text,
@@ -133,8 +139,9 @@ export class TextlintKernel {
                 throw new Error(`Not found available plugin for ${ext}`);
             }
             const Processor = plugin.plugin.Processor;
+            const pluginOptions = plugin.options;
             assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-            const processor = new Processor(this.config);
+            const processor = new Processor(pluginOptions);
             return this._sequenceProcess({
                 processor,
                 text,

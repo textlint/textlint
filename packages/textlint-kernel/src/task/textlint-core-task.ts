@@ -199,7 +199,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * try to get rule object
      * @param {Function} ruleCreator
      * @param {RuleContext|FilterRuleContext} ruleContext
-     * @param {Object|boolean} ruleOptions
+     * @param {Object|boolean|undefined} ruleOptions
      * @returns {Object}
      * @throws
      */
@@ -220,7 +220,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * add all the node types as listeners of the rule
      * @param {Function} ruleCreator
      * @param {RuleContext|FilterRuleContext} ruleContext
-     * @param {Object|boolean} ruleOptions
+     * @param {Object|boolean|undefined} ruleOptions
      * @returns {Object}
      */
     tryToAddListenRule(

@@ -5,6 +5,7 @@ const ObjectAssign = require("object-assign");
 const debug = require("debug")("textlint:plugin-loader");
 const assert = require("assert");
 import TextLintModuleMapper from "../engine/textlint-module-mapper";
+
 export function mapRulesConfig(rulesConfig, pluginName) {
     const mapped = {};
     if (rulesConfig === undefined || typeof rulesConfig !== "object") {
@@ -12,6 +13,78 @@ export function mapRulesConfig(rulesConfig, pluginName) {
     }
     return TextLintModuleMapper.createMappedObject(rulesConfig, pluginName);
 }
+
+/**
+ * get plugin names from `configFileRaw` object
+ * @param configFileRaw
+ * @returns {Array}
+ */
+export function getPluginNames(configFileRaw) {
+    const plugins = configFileRaw.plugins;
+    if (!plugins) {
+        return [];
+    }
+    if (Array.isArray(plugins)) {
+        return plugins;
+    }
+    return Object.keys(plugins);
+}
+
+/**
+ * get pluginConfig object from `configFileRaw` that is loaded .textlintrc
+ * @param {Object} configFileRaw
+ * @returns {Object}
+ * @example
+ * ```js
+ * "plugins": {
+ *   "pluginA": {},
+ *   "pluginB": {}
+ * }
+ * ```
+ *
+ * to
+ *
+ * ```js
+ * {
+ *   "pluginA": {},
+ *   "pluginB": {}
+ * }
+ * ```
+ *
+ *
+ *
+ * ```js
+ * "plugins": ["pluginA", "pluginB"]
+ * ```
+ *
+ * to
+ *
+ * ```
+ * // `true` means turn on
+ * {
+ *   "pluginA": true,
+ *   "pluginB": true
+ * }
+ * ```
+ */
+export function getPluginConfig(configFileRaw) {
+    const plugins = configFileRaw.plugins;
+    if (!plugins) {
+        return {};
+    }
+    if (Array.isArray(plugins)) {
+        if (plugins.length === 0) {
+            return {};
+        }
+        // { "pluginA": true, "pluginB": true }
+        return plugins.reduce((results, pluginName) => {
+            results[pluginName] = true;
+            return results;
+        }, {});
+    }
+    return plugins;
+}
+
 // load rulesConfig from plugins
 /**
  *

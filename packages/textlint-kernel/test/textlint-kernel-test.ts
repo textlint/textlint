@@ -3,6 +3,8 @@
 const assert = require("assert");
 import { TextlintKernel } from "../src/textlint-kernel";
 import { errorRule } from "./helper/ErrorRule";
+import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin";
+
 describe("textlint-kernel", () => {
     describe("#lintText", () => {
         it("should return messages", () => {
@@ -34,6 +36,34 @@ describe("textlint-kernel", () => {
             return kernel.lintText("text", options).then(result => {
                 assert.ok(typeof result.filePath === "string");
                 assert.ok(result.messages.length === 1);
+            });
+        });
+        it("should pass pluginOptions to plugin", () => {
+            const kernel = new TextlintKernel();
+            const { getOptions, getPlugin } = createPluginStub();
+            const expectedPluginOptions: ExampleProcessorOptions = {
+                testOption: "test"
+            };
+            const options = {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [
+                    {
+                        pluginId: "example",
+                        plugin: getPlugin(),
+                        options: expectedPluginOptions
+                    }
+                ],
+                rules: [
+                    {
+                        ruleId: "error",
+                        rule: errorRule
+                    }
+                ]
+            };
+            return kernel.lintText("text", options).then(_result => {
+                const actualPluginOptions = getOptions();
+                assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
         });
         context("when pass invalid options", () => {
@@ -84,6 +114,34 @@ describe("textlint-kernel", () => {
             return kernel.fixText("text", options).then(result => {
                 assert.ok(typeof result.filePath === "string");
                 assert.ok(result.messages.length === 1);
+            });
+        });
+        it("should pass pluginOptions to plugin", () => {
+            const kernel = new TextlintKernel();
+            const { getOptions, getPlugin } = createPluginStub();
+            const expectedPluginOptions: ExampleProcessorOptions = {
+                testOption: "test"
+            };
+            const options = {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [
+                    {
+                        pluginId: "example",
+                        plugin: getPlugin(),
+                        options: expectedPluginOptions
+                    }
+                ],
+                rules: [
+                    {
+                        ruleId: "error",
+                        rule: errorRule
+                    }
+                ]
+            };
+            return kernel.lintText("text", options).then(_result => {
+                const actualPluginOptions = getOptions();
+                assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
         });
         context("when pass invalid options", () => {

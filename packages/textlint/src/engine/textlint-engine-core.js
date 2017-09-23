@@ -170,7 +170,7 @@ new TextLintEngine({
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
         this.textlint.setupFilterRules(this.filterRuleMap.getAllRules(), textlintConfig.filterRulesConfig);
         // set Processor
-        this.textlint.setupPlugins(this.pluginMap.toJSON());
+        this.textlint.setupPlugins(this.pluginMap.toJSON(), textlintConfig.pluginsConfig);
         // execute files that are filtered by availableExtensions.
         // TODO: it very hackable way, should be fixed
         // it is depend on textlintCore's state
