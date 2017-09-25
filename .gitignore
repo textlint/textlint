@@ -86,3 +86,7 @@ crashlytics-build.properties
 packages/*/lib/
 /.changelog/
 /.eslintcache
+
+# ignore lock for lerna
+packages/*/yarn.lock
+test/*/yarn.lock
