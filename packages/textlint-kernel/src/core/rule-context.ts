@@ -6,7 +6,7 @@ import RuleError from "./rule-error";
 import SeverityLevel from "../shared/type/SeverityLevel";
 import { getSeverity } from "../shared/rule-severity";
 import SourceCode from "./source-code";
-import { TextLintConfig, TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
 import { ReportFunction } from "../task/textlint-core-task";
 // instance for rule context
 const ruleFixer = new RuleFixer();
@@ -21,7 +21,6 @@ const ruleFixer = new RuleFixer();
  * @param {string} ruleId
  * @param {SourceCode} sourceCode
  * @param {ReportCallback} report
- * @param {Config} textLintConfig
  * @param {Object|boolean|undefined} ruleOptions
  * @param {string} [configBaseDir]
  * @constructor
@@ -30,7 +29,6 @@ export interface RuleContextArgs {
     ruleId: string;
     sourceCode: SourceCode;
     report: ReportFunction;
-    textLintConfig: TextLintConfig;
     ruleOptions?: TextLintRuleOptions | boolean;
     configBaseDir?: string;
 }
@@ -46,7 +44,6 @@ export default class RuleContext {
     private _ruleId: string;
     private _sourceCode: SourceCode;
     private _report: ReportFunction;
-    private _textLintConfig: TextLintConfig;
     private _ruleOptions?: TextLintRuleOptions | boolean;
     private _configBaseDir?: string;
     private _severity: number;
@@ -55,7 +52,6 @@ export default class RuleContext {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._report = args.report;
-        this._textLintConfig = args.textLintConfig;
         this._ruleOptions = args.ruleOptions;
         this._configBaseDir = args.configBaseDir;
         this._severity = getSeverity(this._ruleOptions);
@@ -67,15 +63,6 @@ export default class RuleContext {
      */
     get id() {
         return this._ruleId;
-    }
-
-    /**
-     * Please use `getConfigBaseDir` insteadof it.
-     * @see https://github.com/textlint/textlint/issues/294
-     * @deprecated
-     */
-    get config() {
-        return this._textLintConfig;
     }
 
     get severity() {
