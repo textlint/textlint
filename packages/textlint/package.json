@@ -63,7 +63,7 @@
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
-    "textlint-rule-preset-jtf-style": "^2.2.6"
+    "textlint-rule-preset-jtf-style": "^2.2.7"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^1.1.2",
