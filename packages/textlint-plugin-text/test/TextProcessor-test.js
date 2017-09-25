@@ -8,7 +8,9 @@ describe("TextProcessor", function() {
     let textlint;
     beforeEach(function() {
         textlint = new TextLintCore();
-        textlint.addProcessor(TextProcessor);
+        textlint.setupPlugins({
+            text: TextProcessor
+        });
         textlint.setupRules({
             "no-todo": require("textlint-rule-no-todo")
         });

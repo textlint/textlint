@@ -10,7 +10,9 @@ describe("HTMLPlugin", function() {
     context("deprecated API", () => {
         it("addProcessor can add processor", () => {
             textlintCore = new TextLintCore();
-            textlintCore.addProcessor(htmlPlugin.Processor);
+            textlintCore.setupPlugins({
+                html: htmlPlugin.Processor
+            });
             textlintCore.setupRules({
                 "example-rule": require("./fixtures/example-rule")
             });

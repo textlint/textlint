@@ -12,6 +12,7 @@ import markdownPlugin from "textlint-plugin-markdown";
 import textPlugin from "textlint-plugin-text";
 import RuleCreatorSet from "./core/rule-creator-set";
 import PluginCreatorSet from "./core/plugin-creator-set";
+import { throwIfTesting } from "@textlint/feature-flag";
 
 /**
  * @class {TextlintCore}
@@ -46,9 +47,13 @@ export default class TextlintCore {
      * @param {*} Processor
      * @deprecated
      *
-     * It will be removed
+     * It will be removed until textlint@10
      */
     addProcessor(Processor) {
+        throwIfTesting(
+            "Use setupPlugins insteadof addProcessor method.`addProcessor` will be removed in the future." +
+                "For more details, See https://github.com/textlint/textlint/issues/293"
+        );
         this.pluginCreatorSet = new PluginCreatorSet(
             ObjectAssign({}, this.defaultPlugins, {
                 [`${Processor.name}@deprecated`]: {
