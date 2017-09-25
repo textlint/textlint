@@ -47,7 +47,6 @@ export default class TextLintCoreTask extends CoreTask {
 
     _setupRules() {
         // rule
-        const textLintConfig = this.config;
         const sourceCode = this.sourceCode;
         const report = this.createReporter(sourceCode);
         const ignoreReport = this.createShouldIgnore();
@@ -58,7 +57,6 @@ export default class TextLintCoreTask extends CoreTask {
             ruleOptions: this.fixerRule.options,
             sourceCode,
             report,
-            textLintConfig,
             configBaseDir: this.configBaseDir
         });
         const ruleModule = getFixer(this.fixerRule.rule);
@@ -69,8 +67,7 @@ export default class TextLintCoreTask extends CoreTask {
             const ruleContext = new FilterRuleContext({
                 ruleId,
                 sourceCode,
-                ignoreReport,
-                textLintConfig
+                ignoreReport
             });
             // "filters" rule is the same with "rules"
             const ruleModule = getFilter(rule);

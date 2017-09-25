@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import SourceCode from "./source-code";
-import { TextLintConfig, TxtNode } from "../textlint-kernel-interface";
+import { TxtNode } from "../textlint-kernel-interface";
 import RuleError from "./rule-error";
 import { ShouldIgnoreFunction } from "../task/textlint-core-task";
 
@@ -17,7 +17,6 @@ const assert = require("assert");
  * @param {string} ruleId
  * @param {SourceCode} sourceCode
  * @param {ReportCallback} report
- * @param {Config} textLintConfig
  * @param {Object|boolean|undefined} ruleOptions
  * @param {string} [configBaseDir]
  * @constructor
@@ -26,7 +25,6 @@ export interface FilterRuleContextArgs {
     ruleId: string;
     ignoreReport: ShouldIgnoreFunction;
     sourceCode: SourceCode;
-    textLintConfig: TextLintConfig;
     configBaseDir?: string;
 }
 
@@ -35,21 +33,18 @@ export interface FilterRuleContextArgs {
  * @param {string} ruleId
  * @param {SourceCode} sourceCode
  * @param {function(ShouldIgnoreArgs)} ignoreReport
- * @param {Config} textLintConfig
  * @constructor
  */
 export default class FilterRuleContext {
     private _ruleId: string;
     private _ignoreReport: ShouldIgnoreFunction;
     private _sourceCode: SourceCode;
-    private _textLintConfig: TextLintConfig;
     private _configBaseDir?: string;
 
     constructor(args: FilterRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._ignoreReport = args.ignoreReport;
-        this._textLintConfig = args.textLintConfig;
         this._configBaseDir = args.configBaseDir;
     }
 
@@ -59,15 +54,6 @@ export default class FilterRuleContext {
      */
     get id() {
         return this._ruleId;
-    }
-
-    /**
-     * Please use `getConfigBaseDir` insteadof it.
-     * @see https://github.com/textlint/textlint/issues/294
-     * @deprecated
-     */
-    get config() {
-        return this._textLintConfig;
     }
 
     /**
