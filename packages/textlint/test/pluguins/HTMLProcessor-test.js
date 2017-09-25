@@ -8,7 +8,7 @@ import path from "path";
 describe("HTMLPlugin", function() {
     let textlintCore;
     context("deprecated API", () => {
-        it("addProcessor can add processor", () => {
+        it("setupRules can add processor", () => {
             textlintCore = new TextLintCore();
             textlintCore.setupPlugins({
                 html: htmlPlugin.Processor
