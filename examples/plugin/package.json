@@ -12,9 +12,8 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../../packages/textlint"
-  },
-  "dependencies": {
+    "textlint": "file:../../packages/textlint",
     "textlint-rule-preset-jtf-style": "^2.2.7"
-  }
+  },
+  "dependencies": {}
 }
