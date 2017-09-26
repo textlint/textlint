@@ -445,6 +445,8 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
   - [taichi/vscode-textlint](https://github.com/taichi/vscode-textlint)
 - [micro](https://github.com/zyedidia/micro "micro")
   - [hidaruma/micro-textlint-plugin](https://github.com/hidaruma/micro-textlint-plugin "hidaruma/micro-textlint-plugin: textlint plugin for micro-editor")
+- NetBeans
+  - [netbeans-textlint-plugin](https://github.com/junichi11/netbeans-textlint-plugin "netbeans-textlint-plugin")
 
 ### Browser
 
