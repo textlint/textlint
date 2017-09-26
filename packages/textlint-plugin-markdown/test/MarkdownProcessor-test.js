@@ -4,11 +4,14 @@ import assert from "power-assert";
 import { MarkdownProcessor } from "../src/MarkdownProcessor";
 import { TextLintCore } from "textlint";
 import path from "path";
+
 describe("MarkdownPlugin", function() {
     let textlint;
     beforeEach(function() {
         textlint = new TextLintCore();
-        textlint.addProcessor(MarkdownProcessor);
+        textlint.setupPlugins({
+            html: MarkdownProcessor
+        });
         textlint.setupRules({
             "no-todo": require("textlint-rule-no-todo")
         });
