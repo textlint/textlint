@@ -4,6 +4,7 @@
     "packages/*",
     "test/integration-test"
   ],
+  "concurrency": 1,
   "commands": {
     "publish": {
       "ignore": [
