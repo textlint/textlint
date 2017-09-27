@@ -7,7 +7,7 @@
   "scripts": {
     "test:ci": "npm i && npm t",
     "test": "npm run textlint",
-    "textlint": "DEBUG=textlint* textlint -f pretty-error README.md"
+    "textlint": "textlint -f pretty-error README.md"
   },
   "author": "azu",
   "license": "MIT",
