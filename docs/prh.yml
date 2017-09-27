@@ -1,6 +1,5 @@
 version: 1
 rules:
   - expected: textlint
-    options:
-      wordBoundary: true
+  	pattern: /textlint/i
     prh: textlint is not TextLint.
