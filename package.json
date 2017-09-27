@@ -39,11 +39,11 @@
     "lerna": "^2.2.0",
     "lint-staged": "^4.2.3",
     "npm-run-all": "^4.0.1",
-    "prettier": "^1.7.0",
+    "prettier": "^1.7.1",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-alex": "^1.2.0",
     "textlint-rule-eslint": "^2.0.1",
-    "textlint-rule-prh": "^5.0.0",
+    "textlint-rule-prh": "^5.0.1",
     "textlint-rule-rousseau": "^1.4.5",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
   },

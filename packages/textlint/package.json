@@ -88,6 +88,7 @@
     "path-to-glob-pattern": "^1.0.2",
     "rc-config-loader": "^2.0.0",
     "read-pkg": "^1.1.0",
+    "resolve": "^1.4.0",
     "string-width": "^1.0.1",
     "structured-source": "^3.0.2",
     "text-table": "^0.2.0",
