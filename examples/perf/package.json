@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test:ci": "npm rm textlint && npm i --no-progress && npm t",
+    "test:ci": "npm i && npm t",
     "perf": "node perf.js",
     "test": "npm run perf"
   },

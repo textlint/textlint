@@ -5,7 +5,7 @@
   "description": "filter rule example",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm rm textlint && npm i --no-progress && npm t",
+    "test:ci": "npm i && npm t",
     "test": "npm run textlint",
     "textlint": "textlint -f pretty-error README.md"
   },
