@@ -2268,7 +2268,7 @@
                     "raw": "Double tildes should not be "
                 },
                 {
-                    "type": "Delete",
+                    "type": "delete",
                     "children": [
                         {
                             "type": "Str",

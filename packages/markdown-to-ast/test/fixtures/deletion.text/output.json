@@ -24,7 +24,7 @@
                     "raw": "hello "
                 },
                 {
-                    "type": "Delete",
+                    "type": "delete",
                     "children": [
                         {
                             "type": "Str",
