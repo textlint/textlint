@@ -10,7 +10,7 @@
     "example:cli": "cd ./examples/cli && npm run test:ci",
     "example:config-file": "cd ./examples/config-file && npm run test:ci",
     "example:rulesdir": "cd ./examples/rulesdir && npm run test:ci",
-    "example:plugin": "cd ./examples/plugin && npm run test:ci",
+    "example:preset": "cd ./examples/preset && npm run test:ci",
     "example:html-plugin": "cd ./examples/html-plugin && npm run test:ci",
     "example:use-as-module": "cd ./examples/use-as-module && npm run test:ci",
     "example:fix-dry-run": "cd ./examples/fix-dry-run && npm run test:ci",
