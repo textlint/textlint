@@ -63,7 +63,7 @@
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
-    "textlint-rule-preset-jtf-style": "^2.0.0"
+    "textlint-rule-preset-jtf-style": "^2.3.0"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^1.1.2",
@@ -88,6 +88,7 @@
     "path-to-glob-pattern": "^1.0.2",
     "rc-config-loader": "^2.0.0",
     "read-pkg": "^1.1.0",
+    "resolve": "^1.4.0",
     "string-width": "^1.0.1",
     "structured-source": "^3.0.2",
     "text-table": "^0.2.0",

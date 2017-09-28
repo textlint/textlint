@@ -1,14 +1,17 @@
 // LICENSE : MIT
 "use strict";
 import assert from "assert";
-import { TextProcessor } from "../src/TextProcessor";
+import TextPlugin from "../src/index";
 import { TextLintCore } from "textlint";
 import path from "path";
+
 describe("TextProcessor", function() {
     let textlint;
     beforeEach(function() {
         textlint = new TextLintCore();
-        textlint.addProcessor(TextProcessor);
+        textlint.setupPlugins({
+            text: TextPlugin
+        });
         textlint.setupRules({
             "no-todo": require("textlint-rule-no-todo")
         });

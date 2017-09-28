@@ -1,14 +1,17 @@
 // LICENSE : MIT
 "use strict";
 import assert from "power-assert";
-import { MarkdownProcessor } from "../src/MarkdownProcessor";
+import MarkdownPlugin from "../src/index";
 import { TextLintCore } from "textlint";
 import path from "path";
+
 describe("MarkdownPlugin", function() {
     let textlint;
     beforeEach(function() {
         textlint = new TextLintCore();
-        textlint.addProcessor(MarkdownProcessor);
+        textlint.setupPlugins({
+            html: MarkdownPlugin
+        });
         textlint.setupRules({
             "no-todo": require("textlint-rule-no-todo")
         });

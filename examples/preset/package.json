@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm rm textlint && npm i --no-progress && npm t",
+    "test:ci": "npm i && npm t",
     "test": "npm run textlint",
     "textlint": "textlint -f pretty-error README.md"
   },
@@ -13,6 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "textlint": "file:../../packages/textlint",
-    "textlint-rule-preset-jtf-style": "^2.2.3"
-  }
+    "textlint-rule-preset-jtf-style": "^2.3.0"
+  },
+  "dependencies": {}
 }
