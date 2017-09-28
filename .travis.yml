@@ -1,5 +1,6 @@
 sudo: false
 language: node_js
+cache: yarn
 before_install:
 # try-resolve won't work on examples
 # we will fix example symlink by npm@5
