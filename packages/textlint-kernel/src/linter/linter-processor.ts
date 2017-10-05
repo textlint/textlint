@@ -42,7 +42,13 @@ export default class LinterProcessor {
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextLintResult>}
      */
-    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: LinterProcessorArgs) {
+    process({
+        config,
+        configBaseDir,
+        rules = [],
+        filterRules = [],
+        sourceCode
+    }: LinterProcessorArgs) {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         assert(
@@ -62,7 +68,10 @@ export default class LinterProcessor {
             if (result.filePath == null) {
                 result.filePath = `<Unkown${sourceCode.ext}>`;
             }
-            assert(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+            assert(
+                result.filePath && result.messages.length >= 0,
+                "postProcess should return { messages, filePath } "
+            );
             return result;
         });
     }

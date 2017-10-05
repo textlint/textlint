@@ -5,9 +5,7 @@ import noTodo from "./fixtures/no-todo";
 import { textlint } from "../../src/index";
 describe("no-todo-rule-test", function() {
     beforeEach(function() {
-        textlint.setupRules({
-            "no-todo": noTodo
-        });
+        textlint.setupRules({ "no-todo": noTodo });
     });
     afterEach(function() {
         textlint.resetRules();

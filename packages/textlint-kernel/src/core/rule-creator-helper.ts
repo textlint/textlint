@@ -51,7 +51,11 @@ export function getLinter(ruleCreator: TextLintRuleCreator): RuleCreatorReporter
  * @returns {boolean}
  */
 export function hasFixer(ruleCreator: TextLintRuleCreator): ruleCreator is RuleFixableCreator {
-    return typeof ruleCreator === "object" && typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
+    return (
+        typeof ruleCreator === "object" &&
+        typeof ruleCreator.fixer === "function" &&
+        hasLinter(ruleCreator)
+    );
 }
 
 /**

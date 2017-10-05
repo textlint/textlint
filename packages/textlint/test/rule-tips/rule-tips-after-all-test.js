@@ -9,9 +9,7 @@ describe("rule-tips-after-all-test", function() {
         const textlint = new TextLintCore();
         const calls = [];
         const afterAllRule = createAfterAllRule(calls);
-        textlint.setupRules({
-            "after-all": afterAllRule
-        });
+        textlint.setupRules({ "after-all": afterAllRule });
         const text = "test test";
         return textlint.lintMarkdown(text).then(() => {
             const [first, afterAll] = calls;

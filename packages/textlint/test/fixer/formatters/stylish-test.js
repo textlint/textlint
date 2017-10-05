@@ -6,13 +6,7 @@ const formatter = code => {
 };
 describe("formatter:stylish", function() {
     describe("when passed no messages", function() {
-        var code = [
-            {
-                filePath: "foo.js",
-                applyingMessages: [],
-                remainingMessages: []
-            }
-        ];
+        var code = [{ filePath: "foo.js", applyingMessages: [], remainingMessages: [] }];
         it("should not return message", function() {
             var result = formatter(code);
             assert.equal(result, "");
@@ -24,13 +18,7 @@ describe("formatter:stylish", function() {
             {
                 filePath: "foo.js",
                 applyingMessages: [
-                    {
-                        message: "Unexpected foo.",
-                        severity: 2,
-                        line: 5,
-                        column: 10,
-                        ruleId: "foo"
-                    }
+                    { message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }
                 ],
                 remainingMessages: []
             }
@@ -55,20 +43,8 @@ foo.js
             {
                 filePath: "foo.js",
                 applyingMessages: [
-                    {
-                        message: "Unexpected foo.",
-                        severity: 2,
-                        line: 5,
-                        column: 10,
-                        ruleId: "foo"
-                    },
-                    {
-                        message: "Unexpected bar.",
-                        severity: 1,
-                        line: 6,
-                        column: 11,
-                        ruleId: "bar"
-                    }
+                    { message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" },
+                    { message: "Unexpected bar.", severity: 1, line: 6, column: 11, ruleId: "bar" }
                 ],
                 remainingMessages: []
             }
@@ -94,26 +70,14 @@ foo.js
             {
                 filePath: "foo.js",
                 applyingMessages: [
-                    {
-                        message: "Unexpected foo.",
-                        severity: 2,
-                        line: 5,
-                        column: 10,
-                        ruleId: "foo"
-                    }
+                    { message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }
                 ],
                 remainingMessages: []
             },
             {
                 filePath: "bar.js",
                 applyingMessages: [
-                    {
-                        message: "Unexpected bar.",
-                        severity: 1,
-                        line: 6,
-                        column: 11,
-                        ruleId: "bar"
-                    }
+                    { message: "Unexpected bar.", severity: 1, line: 6, column: 11, ruleId: "bar" }
                 ],
                 remainingMessages: []
             }
@@ -141,30 +105,12 @@ bar.js
             {
                 filePath: "foo.js",
                 applyingMessages: [
-                    {
-                        message: "Unexpected foo.",
-                        severity: 2,
-                        line: 5,
-                        column: 10,
-                        ruleId: "foo"
-                    },
-                    {
-                        message: "Unexpected bar.",
-                        severity: 1,
-                        line: 6,
-                        column: 11,
-                        ruleId: "bar"
-                    }
+                    { message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" },
+                    { message: "Unexpected bar.", severity: 1, line: 6, column: 11, ruleId: "bar" }
                 ],
                 remainingMessages: [
-                    {
-                        fatal: true,
-                        message: "Couldn't find foo.js."
-                    },
-                    {
-                        fatal: true,
-                        message: "Couldn't find foo.js."
-                    }
+                    { fatal: true, message: "Couldn't find foo.js." },
+                    { fatal: true, message: "Couldn't find foo.js." }
                 ]
             }
         ];
@@ -189,27 +135,10 @@ foo.js
             {
                 filePath: "foo.js",
                 applyingMessages: [
-                    {
-                        message: "Unexpected foo.",
-                        severity: 2,
-                        line: 5,
-                        column: 10,
-                        ruleId: "foo"
-                    },
-                    {
-                        message: "Unexpected bar.",
-                        severity: 1,
-                        line: 6,
-                        column: 11,
-                        ruleId: "bar"
-                    }
+                    { message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" },
+                    { message: "Unexpected bar.", severity: 1, line: 6, column: 11, ruleId: "bar" }
                 ],
-                remainingMessages: [
-                    {
-                        fatal: true,
-                        message: "Couldn't find foo.js."
-                    }
-                ]
+                remainingMessages: [{ fatal: true, message: "Couldn't find foo.js." }]
             }
         ];
 

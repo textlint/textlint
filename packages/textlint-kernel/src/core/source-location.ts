@@ -79,7 +79,10 @@ report(node, new RuleError("message", {
         }
 
         // Not use {column, line} with {index}
-        if ((padding.line !== undefined || padding.column !== undefined) && padding.index !== undefined) {
+        if (
+            (padding.line !== undefined || padding.column !== undefined) &&
+            padding.index !== undefined
+        ) {
             // Introduced textlint 5.6
             // https://github.com/textlint/textlint/releases/tag/5.6.0
             // Always throw Error
@@ -205,7 +208,10 @@ report(node, new RuleError("message", {
         return {
             // fix(command) is relative from node's range
             fix: {
-                range: [nodeRange[0] + paddingMessage.fix.range[0], nodeRange[0] + paddingMessage.fix.range[1]],
+                range: [
+                    nodeRange[0] + paddingMessage.fix.range[0],
+                    nodeRange[0] + paddingMessage.fix.range[1]
+                ],
                 text: paddingMessage.fix.text
             }
         };

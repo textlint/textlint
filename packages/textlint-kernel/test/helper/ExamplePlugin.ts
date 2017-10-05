@@ -1,5 +1,8 @@
 // MIT © 2017 azu
-import { TextlintKernelProcessor, TextLintPluginCreator } from "../../src/textlint-kernel-interface";
+import {
+    TextlintKernelProcessor,
+    TextLintPluginCreator
+} from "../../src/textlint-kernel-interface";
 
 const parse = require("markdown-to-ast").parse;
 

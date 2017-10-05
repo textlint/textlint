@@ -54,7 +54,17 @@ export default class SourceCode {
      * @param {string} ext
      * @param {string} [filePath]
      */
-    constructor({ text = "", ast, ext, filePath }: { text: string; ast: TxtNode; ext: string; filePath?: string }) {
+    constructor({
+        text = "",
+        ast,
+        ext,
+        filePath
+    }: {
+        text: string;
+        ast: TxtNode;
+        ext: string;
+        filePath?: string;
+    }) {
         validate(ast);
         assert(ext || filePath, "should be set either of fileExt or filePath.");
         this.hasBOM = text.charCodeAt(0) === 0xfeff;

@@ -18,7 +18,9 @@ const isContainedRange = (index: number, range: [number, number]) => {
  * @param {Object[]} messages
  * @returns {Object[]} filtered messages
  */
-export default function filterMessages(messages: ReadonlyArray<LintReportedMessage | IgnoreReportedMessage> = []) {
+export default function filterMessages(
+    messages: ReadonlyArray<LintReportedMessage | IgnoreReportedMessage> = []
+) {
     const lintingMessages = messages.filter(message => {
         return message.type === MessageType.lint;
     }) as LintReportedMessage[];

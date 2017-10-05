@@ -25,47 +25,32 @@ describe("textlint-test", function() {
                     assert.strictEqual(config, undefined);
                     return {};
                 };
-                textlint.setupRules({
-                    "rule-name": rule
-                });
+                textlint.setupRules({ "rule-name": rule });
             });
         });
         context("when pass rules object and rules config", function() {
             it("should pass RuleContext instance and RuleConfig to Rule function", function() {
-                var ruleConfig = {
-                    key: "value"
-                };
+                var ruleConfig = { key: "value" };
                 const rule = function(context, config) {
                     assertRuleContext(context);
                     assert.equal(context.id, "rule-name");
                     assert.deepEqual(config, ruleConfig);
                     return {};
                 };
-                textlint.setupRules(
-                    {
-                        "rule-name": rule
-                    },
-                    {
-                        "rule-name": ruleConfig
-                    }
-                );
+                textlint.setupRules({ "rule-name": rule }, { "rule-name": ruleConfig });
             });
         });
         context("when pass textlintConfig to setupRules", function() {
             it("should RuleContext has `config` object", function() {
                 var configFile = path.join(__dirname, "fixtures", ".textlintrc");
-                textlint.config = new Config({
-                    configFile: configFile
-                });
+                textlint.config = new Config({ configFile: configFile });
                 const rule = (context, config) => {
                     assertRuleContext(context);
                     assert(context.config instanceof Config);
                     assert.equal(context.config.configFile, configFile);
                     return {};
                 };
-                textlint.setupRules({
-                    "rule-name": rule
-                });
+                textlint.setupRules({ "rule-name": rule });
             });
         });
     });

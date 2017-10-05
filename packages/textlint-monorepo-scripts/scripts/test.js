@@ -6,7 +6,10 @@ const args = process.argv.slice(2);
 const mocha = require.resolve(".bin/mocha");
 // mocha
 const babelRegisterPath = require.resolve("../configs/babel-register");
-const child = spawn(mocha, ["--require", babelRegisterPath, "--timeout", "5000", "--recursive", "test/"].concat(args));
+const child = spawn(
+    mocha,
+    ["--require", babelRegisterPath, "--timeout", "5000", "--recursive", "test/"].concat(args)
+);
 
 child.stderr.on("data", function(data) {
     process.stderr.write(data);

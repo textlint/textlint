@@ -17,7 +17,8 @@ module.exports = function computeLocationOfNode(node) {
             },
             end: {
                 line: node.start_line + addingColumn,
-                column: addingColumn.length > 0 ? lastLine.length : node.start_line + lastLine.length
+                column:
+                    addingColumn.length > 0 ? lastLine.length : node.start_line + lastLine.length
             }
         }
     };

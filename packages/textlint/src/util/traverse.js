@@ -46,7 +46,10 @@ function walk(name, extensions, exclude, callback) {
 
     const basename = path.basename(name);
     // don't ignore cases like 'textlint ./'
-    if ((basename !== "." && basename !== ".." && basename[0] === ".") || (exclude && exclude(name))) {
+    if (
+        (basename !== "." && basename !== ".." && basename[0] === ".") ||
+        (exclude && exclude(name))
+    ) {
         debug(`Ignoring ${name}`);
         return;
     }

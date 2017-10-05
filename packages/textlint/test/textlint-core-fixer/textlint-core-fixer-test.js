@@ -14,14 +14,14 @@ describe("textlint-fixer", function() {
     context("#fixText", function() {
         it("should return text added and replaced", function() {
             var textlint = new TextLintCore();
-            textlint.setupRules({
-                "fixer-rule-add": ruleAdd,
-                "fixer-rule-replace": ruleReplace
-            });
+            textlint.setupRules({ "fixer-rule-add": ruleAdd, "fixer-rule-replace": ruleReplace });
             return textlint.fixText("This is fix", ".md").then(result => {
                 assert(typeof result.output === "string");
                 assert(result.filePath === "<markdown>");
-                assert.equal(result.messages.length, result.applyingMessages.length + result.remainingMessages.length);
+                assert.equal(
+                    result.messages.length,
+                    result.applyingMessages.length + result.remainingMessages.length
+                );
                 assert.equal(result.applyingMessages.length, 2);
                 assert.equal(result.remainingMessages.length, 0);
                 assert.equal(result.output, "This is fixed.");
@@ -41,7 +41,10 @@ describe("textlint-fixer", function() {
             return textlint.fixFile(inputFilePath).then(result => {
                 assert(typeof result.output === "string");
                 assert(result.filePath === inputFilePath);
-                assert.equal(result.messages.length, result.applyingMessages.length + result.remainingMessages.length);
+                assert.equal(
+                    result.messages.length,
+                    result.applyingMessages.length + result.remainingMessages.length
+                );
                 assert.equal(result.applyingMessages.length, Object.keys(rules).length);
                 assert.equal(result.remainingMessages.length, 0);
                 assert.equal(result.output, expectedOutput);

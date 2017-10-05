@@ -45,12 +45,7 @@ describe("textlint-feature-flag", () => {
         });
         context("when loose-mode", () => {
             it("should return false if the feature is not defined", () => {
-                assert.strictEqual(
-                    isFeatureEnabled("test", {
-                        loose: true
-                    }),
-                    false
-                );
+                assert.strictEqual(isFeatureEnabled("test", { loose: true }), false);
             });
         });
     });

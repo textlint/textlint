@@ -9,12 +9,8 @@ describe("TextProcessor", function() {
     let textlint;
     beforeEach(function() {
         textlint = new TextLintCore();
-        textlint.setupPlugins({
-            text: TextPlugin
-        });
-        textlint.setupRules({
-            "no-todo": require("textlint-rule-no-todo")
-        });
+        textlint.setupPlugins({ text: TextPlugin });
+        textlint.setupRules({ "no-todo": require("textlint-rule-no-todo") });
     });
     context("when target file is a Text", function() {
         it("should report error", function() {

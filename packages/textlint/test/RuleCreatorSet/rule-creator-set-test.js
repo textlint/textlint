@@ -14,14 +14,7 @@ describe("RuleCreatorSet", function() {
     context("when passing unavailable rule", function() {
         it("should return empty result", function() {
             const unAvailableRule = function ruleMock() {};
-            const ruleCreatorSet = new RuleCreatorSet(
-                {
-                    rule: unAvailableRule
-                },
-                {
-                    rule: false
-                }
-            );
+            const ruleCreatorSet = new RuleCreatorSet({ rule: unAvailableRule }, { rule: false });
             assert.deepEqual(ruleCreatorSet.rules, {});
             assert.deepEqual(ruleCreatorSet.ruleNames, []);
             assert.deepEqual(ruleCreatorSet.rulesConfig, {});
@@ -30,14 +23,7 @@ describe("RuleCreatorSet", function() {
     context("when passing available rule", function() {
         it("should return has result", function() {
             const availableRule = function ruleMock() {};
-            const ruleCreatorSet = new RuleCreatorSet(
-                {
-                    rule: availableRule
-                },
-                {
-                    rule: true
-                }
-            );
+            const ruleCreatorSet = new RuleCreatorSet({ rule: availableRule }, { rule: true });
             assert.deepEqual(ruleCreatorSet.rules, { rule: availableRule });
             assert.deepEqual(ruleCreatorSet.ruleNames, ["rule"]);
             assert.deepEqual(ruleCreatorSet.rulesConfig, { rule: true });
@@ -47,16 +33,8 @@ describe("RuleCreatorSet", function() {
         it("should not filter duplicated only rule, config is difference", function() {
             const availableRule = function ruleMock() {};
             const ruleCreatorSet = new RuleCreatorSet(
-                {
-                    ruleA: availableRule,
-                    ruleB: availableRule,
-                    ruleC: availableRule
-                },
-                {
-                    ruleA: true,
-                    ruleB: { key: true },
-                    ruleC: true
-                }
+                { ruleA: availableRule, ruleB: availableRule, ruleC: availableRule },
+                { ruleA: true, ruleB: { key: true }, ruleC: true }
             );
             assert.deepEqual(ruleCreatorSet.rules, {
                 ruleA: availableRule,
@@ -84,33 +62,17 @@ describe("RuleCreatorSet", function() {
         it("should filter duplicated rule and ruleConfig", function() {
             const availableRule = function ruleMock() {};
             const ruleCreatorSet = new RuleCreatorSet(
-                {
-                    ruleA: availableRule,
-                    ruleB: availableRule
-                },
-                {
-                    ruleA: true,
-                    ruleB: true
-                }
+                { ruleA: availableRule, ruleB: availableRule },
+                { ruleA: true, ruleB: true }
             );
-            assert.deepEqual(ruleCreatorSet.rules, {
-                ruleA: availableRule,
-                ruleB: availableRule
-            });
+            assert.deepEqual(ruleCreatorSet.rules, { ruleA: availableRule, ruleB: availableRule });
             assert.deepEqual(ruleCreatorSet.ruleNames, ["ruleA", "ruleB"]);
-            assert.deepEqual(ruleCreatorSet.rulesConfig, {
-                ruleA: true,
-                ruleB: true
-            });
+            assert.deepEqual(ruleCreatorSet.rulesConfig, { ruleA: true, ruleB: true });
 
             const withoutDuplicatedRuleCreatorSet = ruleCreatorSet.withoutDuplicated();
-            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rules, {
-                ruleA: availableRule
-            });
+            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rules, { ruleA: availableRule });
             assert.deepEqual(withoutDuplicatedRuleCreatorSet.ruleNames, ["ruleA"]);
-            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rulesConfig, {
-                ruleA: true
-            });
+            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rulesConfig, { ruleA: true });
         });
         // https://github.com/textlint/textlint/issues/231
         it("should not unexpected ignore testing", function() {
@@ -118,7 +80,10 @@ describe("RuleCreatorSet", function() {
             const ruleCreatorSet = new RuleCreatorSet(preset.rules, preset.rulesConfig);
             const withoutDuplicatedRuleCreatorSet = ruleCreatorSet.withoutDuplicated();
             assert.deepEqual(ruleCreatorSet.rules, withoutDuplicatedRuleCreatorSet.rules);
-            assert.deepEqual(ruleCreatorSet.rulesConfig, withoutDuplicatedRuleCreatorSet.rulesConfig);
+            assert.deepEqual(
+                ruleCreatorSet.rulesConfig,
+                withoutDuplicatedRuleCreatorSet.rulesConfig
+            );
         });
     });
 });

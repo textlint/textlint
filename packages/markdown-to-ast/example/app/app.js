@@ -103,7 +103,12 @@
                             if (node.type) {
                                 var replacedType = SyntaxMap[node.type];
                                 if (!replacedType) {
-                                    debug("replacedType : " + replacedType + " , node.type: " + node.type);
+                                    debug(
+                                        "replacedType : " +
+                                            replacedType +
+                                            " , node.type: " +
+                                            node.type
+                                    );
                                 } else {
                                     node.type = replacedType;
                                 }
@@ -112,8 +117,14 @@
                             if (node.position) {
                                 var position = node.position;
                                 var positionCompensated = {
-                                    start: { line: position.start.line, column: position.start.column - 1 },
-                                    end: { line: position.end.line, column: position.end.column - 1 }
+                                    start: {
+                                        line: position.start.line,
+                                        column: position.start.column - 1
+                                    },
+                                    end: {
+                                        line: position.end.line,
+                                        column: position.end.column - 1
+                                    }
                                 };
                                 var range = src.locationToRange(positionCompensated);
                                 node.loc = positionCompensated;
@@ -280,7 +291,9 @@
                     }
 
                     if (placeHolders === 2) {
-                        tmp = (revLookup[b64.charCodeAt(i)] << 2) | (revLookup[b64.charCodeAt(i + 1)] >> 4);
+                        tmp =
+                            (revLookup[b64.charCodeAt(i)] << 2) |
+                            (revLookup[b64.charCodeAt(i + 1)] >> 4);
                         arr[L++] = tmp & 0xff;
                     } else if (placeHolders === 1) {
                         tmp =
@@ -323,7 +336,13 @@
 
                     // go through the array every three bytes, we'll deal with trailing stuff later
                     for (var i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
-                        parts.push(encodeChunk(uint8, i, i + maxChunkLength > len2 ? len2 : i + maxChunkLength));
+                        parts.push(
+                            encodeChunk(
+                                uint8,
+                                i,
+                                i + maxChunkLength > len2 ? len2 : i + maxChunkLength
+                            )
+                        );
                     }
 
                     // pad the end with zeros, but make sure to not forget the extra bytes
@@ -483,7 +502,9 @@
  * get the Object implementation, which is slower but behaves correctly.
  */
                     Buffer.TYPED_ARRAY_SUPPORT =
-                        global.TYPED_ARRAY_SUPPORT !== undefined ? global.TYPED_ARRAY_SUPPORT : typedArraySupport();
+                        global.TYPED_ARRAY_SUPPORT !== undefined
+                            ? global.TYPED_ARRAY_SUPPORT
+                            : typedArraySupport();
 
                     function typedArraySupport() {
                         try {
@@ -533,7 +554,11 @@
 
                         // Slightly less common case.
                         if (typeof arg === "string") {
-                            return fromString(this, arg, arguments.length > 1 ? arguments[1] : "utf8");
+                            return fromString(
+                                this,
+                                arg,
+                                arguments.length > 1 ? arguments[1] : "utf8"
+                            );
                         }
 
                         // Unusual.
@@ -663,7 +688,11 @@
                     if (Buffer.TYPED_ARRAY_SUPPORT) {
                         Buffer.prototype.__proto__ = Uint8Array.prototype;
                         Buffer.__proto__ = Uint8Array;
-                        if (typeof Symbol !== "undefined" && Symbol.species && Buffer[Symbol.species] === Buffer) {
+                        if (
+                            typeof Symbol !== "undefined" &&
+                            Symbol.species &&
+                            Buffer[Symbol.species] === Buffer
+                        ) {
                             // Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
                             Object.defineProperty(Buffer, Symbol.species, {
                                 value: null,
@@ -766,7 +795,8 @@
                     };
 
                     Buffer.concat = function concat(list, length) {
-                        if (!isArray(list)) throw new TypeError("list argument must be an Array of Buffers.");
+                        if (!isArray(list))
+                            throw new TypeError("list argument must be an Array of Buffers.");
 
                         if (list.length === 0) {
                             return new Buffer(0);
@@ -863,7 +893,8 @@
                                     return utf16leSlice(this, start, end);
 
                                 default:
-                                    if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
+                                    if (loweredCase)
+                                        throw new TypeError("Unknown encoding: " + encoding);
                                     encoding = (encoding + "").toLowerCase();
                                     loweredCase = true;
                             }
@@ -924,7 +955,10 @@
                             return arrayIndexOf(this, val, byteOffset);
                         }
                         if (typeof val === "number") {
-                            if (Buffer.TYPED_ARRAY_SUPPORT && Uint8Array.prototype.indexOf === "function") {
+                            if (
+                                Buffer.TYPED_ARRAY_SUPPORT &&
+                                Uint8Array.prototype.indexOf === "function"
+                            ) {
                                 return Uint8Array.prototype.indexOf.call(this, val, byteOffset);
                             }
                             return arrayIndexOf(this, [val], byteOffset);
@@ -933,9 +967,13 @@
                         function arrayIndexOf(arr, val, byteOffset) {
                             var foundIndex = -1;
                             for (var i = 0; byteOffset + i < arr.length; i++) {
-                                if (arr[byteOffset + i] === val[foundIndex === -1 ? 0 : i - foundIndex]) {
+                                if (
+                                    arr[byteOffset + i] ===
+                                    val[foundIndex === -1 ? 0 : i - foundIndex]
+                                ) {
                                     if (foundIndex === -1) foundIndex = i;
-                                    if (i - foundIndex + 1 === val.length) return byteOffset + foundIndex;
+                                    if (i - foundIndex + 1 === val.length)
+                                        return byteOffset + foundIndex;
                                 } else {
                                     foundIndex = -1;
                                 }
@@ -974,7 +1012,12 @@
                     }
 
                     function utf8Write(buf, string, offset, length) {
-                        return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length);
+                        return blitBuffer(
+                            utf8ToBytes(string, buf.length - offset),
+                            buf,
+                            offset,
+                            length
+                        );
                     }
 
                     function asciiWrite(buf, string, offset, length) {
@@ -990,7 +1033,12 @@
                     }
 
                     function ucs2Write(buf, string, offset, length) {
-                        return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length);
+                        return blitBuffer(
+                            utf16leToBytes(string, buf.length - offset),
+                            buf,
+                            offset,
+                            length
+                        );
                     }
 
                     Buffer.prototype.write = function write(string, offset, length, encoding) {
@@ -1025,7 +1073,10 @@
                         var remaining = this.length - offset;
                         if (length === undefined || length > remaining) length = remaining;
 
-                        if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+                        if (
+                            (string.length > 0 && (length < 0 || offset < 0)) ||
+                            offset > this.length
+                        ) {
                             throw new RangeError("attempt to write outside buffer bounds");
                         }
 
@@ -1058,7 +1109,8 @@
                                     return ucs2Write(this, string, offset, length);
 
                                 default:
-                                    if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
+                                    if (loweredCase)
+                                        throw new TypeError("Unknown encoding: " + encoding);
                                     encoding = ("" + encoding).toLowerCase();
                                     loweredCase = true;
                             }
@@ -1089,7 +1141,9 @@
                             var firstByte = buf[i];
                             var codePoint = null;
                             var bytesPerSequence =
-                                firstByte > 0xef ? 4 : firstByte > 0xdf ? 3 : firstByte > 0xbf ? 2 : 1;
+                                firstByte > 0xef
+                                    ? 4
+                                    : firstByte > 0xdf ? 3 : firstByte > 0xbf ? 2 : 1;
 
                             if (i + bytesPerSequence <= end) {
                                 var secondByte, thirdByte, fourthByte, tempCodePoint;
@@ -1103,7 +1157,8 @@
                                     case 2:
                                         secondByte = buf[i + 1];
                                         if ((secondByte & 0xc0) === 0x80) {
-                                            tempCodePoint = ((firstByte & 0x1f) << 0x6) | (secondByte & 0x3f);
+                                            tempCodePoint =
+                                                ((firstByte & 0x1f) << 0x6) | (secondByte & 0x3f);
                                             if (tempCodePoint > 0x7f) {
                                                 codePoint = tempCodePoint;
                                             }
@@ -1112,7 +1167,10 @@
                                     case 3:
                                         secondByte = buf[i + 1];
                                         thirdByte = buf[i + 2];
-                                        if ((secondByte & 0xc0) === 0x80 && (thirdByte & 0xc0) === 0x80) {
+                                        if (
+                                            (secondByte & 0xc0) === 0x80 &&
+                                            (thirdByte & 0xc0) === 0x80
+                                        ) {
                                             tempCodePoint =
                                                 ((firstByte & 0xf) << 0xc) |
                                                 ((secondByte & 0x3f) << 0x6) |
@@ -1139,7 +1197,10 @@
                                                 ((secondByte & 0x3f) << 0xc) |
                                                 ((thirdByte & 0x3f) << 0x6) |
                                                 (fourthByte & 0x3f);
-                                            if (tempCodePoint > 0xffff && tempCodePoint < 0x110000) {
+                                            if (
+                                                tempCodePoint > 0xffff &&
+                                                tempCodePoint < 0x110000
+                                            ) {
                                                 codePoint = tempCodePoint;
                                             }
                                         }
@@ -1180,7 +1241,10 @@
                         var res = "";
                         var i = 0;
                         while (i < len) {
-                            res += String.fromCharCode.apply(String, codePoints.slice(i, (i += MAX_ARGUMENTS_LENGTH)));
+                            res += String.fromCharCode.apply(
+                                String,
+                                codePoints.slice(i, (i += MAX_ARGUMENTS_LENGTH))
+                            );
                         }
                         return res;
                     }
@@ -1269,11 +1333,17 @@
  * Need to make sure that buffer isn't trying to write out of bounds.
  */
                     function checkOffset(offset, ext, length) {
-                        if (offset % 1 !== 0 || offset < 0) throw new RangeError("offset is not uint");
-                        if (offset + ext > length) throw new RangeError("Trying to access beyond buffer length");
+                        if (offset % 1 !== 0 || offset < 0)
+                            throw new RangeError("offset is not uint");
+                        if (offset + ext > length)
+                            throw new RangeError("Trying to access beyond buffer length");
                     }
 
-                    Buffer.prototype.readUIntLE = function readUIntLE(offset, byteLength, noAssert) {
+                    Buffer.prototype.readUIntLE = function readUIntLE(
+                        offset,
+                        byteLength,
+                        noAssert
+                    ) {
                         offset = offset | 0;
                         byteLength = byteLength | 0;
                         if (!noAssert) checkOffset(offset, byteLength, this.length);
@@ -1288,7 +1358,11 @@
                         return val;
                     };
 
-                    Buffer.prototype.readUIntBE = function readUIntBE(offset, byteLength, noAssert) {
+                    Buffer.prototype.readUIntBE = function readUIntBE(
+                        offset,
+                        byteLength,
+                        noAssert
+                    ) {
                         offset = offset | 0;
                         byteLength = byteLength | 0;
                         if (!noAssert) {
@@ -1395,7 +1469,10 @@
                         if (!noAssert) checkOffset(offset, 4, this.length);
 
                         return (
-                            this[offset] | (this[offset + 1] << 8) | (this[offset + 2] << 16) | (this[offset + 3] << 24)
+                            this[offset] |
+                            (this[offset + 1] << 8) |
+                            (this[offset + 2] << 16) |
+                            (this[offset + 3] << 24)
                         );
                     };
 
@@ -1403,7 +1480,10 @@
                         if (!noAssert) checkOffset(offset, 4, this.length);
 
                         return (
-                            (this[offset] << 24) | (this[offset + 1] << 16) | (this[offset + 2] << 8) | this[offset + 3]
+                            (this[offset] << 24) |
+                            (this[offset + 1] << 16) |
+                            (this[offset + 2] << 8) |
+                            this[offset + 3]
                         );
                     };
 
@@ -1428,16 +1508,31 @@
                     };
 
                     function checkInt(buf, value, offset, ext, max, min) {
-                        if (!Buffer.isBuffer(buf)) throw new TypeError("buffer must be a Buffer instance");
-                        if (value > max || value < min) throw new RangeError("value is out of bounds");
+                        if (!Buffer.isBuffer(buf))
+                            throw new TypeError("buffer must be a Buffer instance");
+                        if (value > max || value < min)
+                            throw new RangeError("value is out of bounds");
                         if (offset + ext > buf.length) throw new RangeError("index out of range");
                     }
 
-                    Buffer.prototype.writeUIntLE = function writeUIntLE(value, offset, byteLength, noAssert) {
+                    Buffer.prototype.writeUIntLE = function writeUIntLE(
+                        value,
+                        offset,
+                        byteLength,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         byteLength = byteLength | 0;
-                        if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0);
+                        if (!noAssert)
+                            checkInt(
+                                this,
+                                value,
+                                offset,
+                                byteLength,
+                                Math.pow(2, 8 * byteLength),
+                                0
+                            );
 
                         var mul = 1;
                         var i = 0;
@@ -1449,11 +1544,24 @@
                         return offset + byteLength;
                     };
 
-                    Buffer.prototype.writeUIntBE = function writeUIntBE(value, offset, byteLength, noAssert) {
+                    Buffer.prototype.writeUIntBE = function writeUIntBE(
+                        value,
+                        offset,
+                        byteLength,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         byteLength = byteLength | 0;
-                        if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0);
+                        if (!noAssert)
+                            checkInt(
+                                this,
+                                value,
+                                offset,
+                                byteLength,
+                                Math.pow(2, 8 * byteLength),
+                                0
+                            );
 
                         var i = byteLength - 1;
                         var mul = 1;
@@ -1483,7 +1591,11 @@
                         }
                     }
 
-                    Buffer.prototype.writeUInt16LE = function writeUInt16LE(value, offset, noAssert) {
+                    Buffer.prototype.writeUInt16LE = function writeUInt16LE(
+                        value,
+                        offset,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0);
@@ -1496,7 +1608,11 @@
                         return offset + 2;
                     };
 
-                    Buffer.prototype.writeUInt16BE = function writeUInt16BE(value, offset, noAssert) {
+                    Buffer.prototype.writeUInt16BE = function writeUInt16BE(
+                        value,
+                        offset,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0);
@@ -1516,7 +1632,11 @@
                         }
                     }
 
-                    Buffer.prototype.writeUInt32LE = function writeUInt32LE(value, offset, noAssert) {
+                    Buffer.prototype.writeUInt32LE = function writeUInt32LE(
+                        value,
+                        offset,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0);
@@ -1531,7 +1651,11 @@
                         return offset + 4;
                     };
 
-                    Buffer.prototype.writeUInt32BE = function writeUInt32BE(value, offset, noAssert) {
+                    Buffer.prototype.writeUInt32BE = function writeUInt32BE(
+                        value,
+                        offset,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0);
@@ -1546,7 +1670,12 @@
                         return offset + 4;
                     };
 
-                    Buffer.prototype.writeIntLE = function writeIntLE(value, offset, byteLength, noAssert) {
+                    Buffer.prototype.writeIntLE = function writeIntLE(
+                        value,
+                        offset,
+                        byteLength,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         if (!noAssert) {
@@ -1566,7 +1695,12 @@
                         return offset + byteLength;
                     };
 
-                    Buffer.prototype.writeIntBE = function writeIntBE(value, offset, byteLength, noAssert) {
+                    Buffer.prototype.writeIntBE = function writeIntBE(
+                        value,
+                        offset,
+                        byteLength,
+                        noAssert
+                    ) {
                         value = +value;
                         offset = offset | 0;
                         if (!noAssert) {
@@ -1660,7 +1794,14 @@
 
                     function writeFloat(buf, value, offset, littleEndian, noAssert) {
                         if (!noAssert) {
-                            checkIEEE754(buf, value, offset, 4, 3.4028234663852886e38, -3.4028234663852886e38);
+                            checkIEEE754(
+                                buf,
+                                value,
+                                offset,
+                                4,
+                                3.4028234663852886e38,
+                                -3.4028234663852886e38
+                            );
                         }
                         ieee754.write(buf, value, offset, littleEndian, 23, 4);
                         return offset + 4;
@@ -1676,17 +1817,32 @@
 
                     function writeDouble(buf, value, offset, littleEndian, noAssert) {
                         if (!noAssert) {
-                            checkIEEE754(buf, value, offset, 8, 1.7976931348623157e308, -1.7976931348623157e308);
+                            checkIEEE754(
+                                buf,
+                                value,
+                                offset,
+                                8,
+                                1.7976931348623157e308,
+                                -1.7976931348623157e308
+                            );
                         }
                         ieee754.write(buf, value, offset, littleEndian, 52, 8);
                         return offset + 8;
                     }
 
-                    Buffer.prototype.writeDoubleLE = function writeDoubleLE(value, offset, noAssert) {
+                    Buffer.prototype.writeDoubleLE = function writeDoubleLE(
+                        value,
+                        offset,
+                        noAssert
+                    ) {
                         return writeDouble(this, value, offset, true, noAssert);
                     };
 
-                    Buffer.prototype.writeDoubleBE = function writeDoubleBE(value, offset, noAssert) {
+                    Buffer.prototype.writeDoubleBE = function writeDoubleBE(
+                        value,
+                        offset,
+                        noAssert
+                    ) {
                         return writeDouble(this, value, offset, false, noAssert);
                     };
 
@@ -1706,7 +1862,8 @@
                         if (targetStart < 0) {
                             throw new RangeError("targetStart out of bounds");
                         }
-                        if (start < 0 || start >= this.length) throw new RangeError("sourceStart out of bounds");
+                        if (start < 0 || start >= this.length)
+                            throw new RangeError("sourceStart out of bounds");
                         if (end < 0) throw new RangeError("sourceEnd out of bounds");
 
                         // Are we oob?
@@ -1729,7 +1886,11 @@
                                 target[i + targetStart] = this[i + start];
                             }
                         } else {
-                            Uint8Array.prototype.set.call(target, this.subarray(start, start + len), targetStart);
+                            Uint8Array.prototype.set.call(
+                                target,
+                                this.subarray(start, start + len),
+                                targetStart
+                            );
                         }
 
                         return len;
@@ -1747,7 +1908,8 @@
                         if (end === start) return;
                         if (this.length === 0) return;
 
-                        if (start < 0 || start >= this.length) throw new RangeError("start out of bounds");
+                        if (start < 0 || start >= this.length)
+                            throw new RangeError("start out of bounds");
                         if (end < 0 || end > this.length) throw new RangeError("end out of bounds");
 
                         var i;
@@ -1832,7 +1994,9 @@
                                 }
 
                                 // valid surrogate pair
-                                codePoint = (((leadSurrogate - 0xd800) << 10) | (codePoint - 0xdc00)) + 0x10000;
+                                codePoint =
+                                    (((leadSurrogate - 0xd800) << 10) | (codePoint - 0xdc00)) +
+                                    0x10000;
                             } else if (leadSurrogate) {
                                 // valid bmp char, but last char was a lead
                                 if ((units -= 3) > -1) bytes.push(0xef, 0xbf, 0xbd);
@@ -1910,7 +2074,9 @@
                     this,
                     typeof global !== "undefined"
                         ? global
-                        : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}
+                        : typeof self !== "undefined"
+                          ? self
+                          : typeof window !== "undefined" ? window : {}
                 ));
             },
             { "base64-js": 6, ieee754: 25, isarray: 9 }
@@ -4825,7 +4991,14 @@
  * Colors.
  */
 
-                exports.colors = ["lightseagreen", "forestgreen", "goldenrod", "dodgerblue", "darkorchid", "crimson"];
+                exports.colors = [
+                    "lightseagreen",
+                    "forestgreen",
+                    "goldenrod",
+                    "dodgerblue",
+                    "darkorchid",
+                    "crimson"
+                ];
 
                 /**
  * Currently only WebKit-based Web Inspectors, Firefox >= v31,
@@ -4840,10 +5013,12 @@
                     return (
                         "WebkitAppearance" in document.documentElement.style ||
                         // is firebug? http://stackoverflow.com/a/398120/376773
-                        (window.console && (console.firebug || (console.exception && console.table))) ||
+                        (window.console &&
+                            (console.firebug || (console.exception && console.table))) ||
                         // is firefox >= v31?
                         // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-                        (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31)
+                        (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) &&
+                            parseInt(RegExp.$1, 10) >= 31)
                     );
                 }
 
@@ -4877,7 +5052,9 @@
                     if (!useColors) return args;
 
                     var c = "color: " + this.color;
-                    args = [args[0], c, "color: inherit"].concat(Array.prototype.slice.call(args, 1));
+                    args = [args[0], c, "color: inherit"].concat(
+                        Array.prototype.slice.call(args, 1)
+                    );
 
                     // the final "%c" is somewhat tricky, because there could be other
                     // arguments passed either before or after the %c, so we need to
@@ -5212,7 +5389,8 @@
                 // Obviously not all Emitters should be limited to 10. This function allows
                 // that to be increased. Set to zero for unlimited.
                 EventEmitter.prototype.setMaxListeners = function(n) {
-                    if (!isNumber(n) || n < 0 || isNaN(n)) throw TypeError("n must be a positive number");
+                    if (!isNumber(n) || n < 0 || isNaN(n))
+                        throw TypeError("n must be a positive number");
                     this._maxListeners = n;
                     return this;
                 };
@@ -5224,7 +5402,10 @@
 
                     // If there is no 'error' event listener then throw.
                     if (type === "error") {
-                        if (!this._events.error || (isObject(this._events.error) && !this._events.error.length)) {
+                        if (
+                            !this._events.error ||
+                            (isObject(this._events.error) && !this._events.error.length)
+                        ) {
                             er = arguments[1];
                             if (er instanceof Error) {
                                 throw er; // Unhandled 'error' event
@@ -5274,7 +5455,11 @@
                     // To avoid recursion in the case that type === "newListener"! Before
                     // adding it to the listeners, first emit "newListener".
                     if (this._events.newListener)
-                        this.emit("newListener", type, isFunction(listener.listener) ? listener.listener : listener);
+                        this.emit(
+                            "newListener",
+                            type,
+                            isFunction(listener.listener) ? listener.listener : listener
+                        );
 
                     if (!this._events[type])
                         // Optimize the case of one listener. Don't need the extra array object.
@@ -5346,12 +5531,19 @@
                     length = list.length;
                     position = -1;
 
-                    if (list === listener || (isFunction(list.listener) && list.listener === listener)) {
+                    if (
+                        list === listener ||
+                        (isFunction(list.listener) && list.listener === listener)
+                    ) {
                         delete this._events[type];
-                        if (this._events.removeListener) this.emit("removeListener", type, listener);
+                        if (this._events.removeListener)
+                            this.emit("removeListener", type, listener);
                     } else if (isObject(list)) {
                         for (i = length; i-- > 0; ) {
-                            if (list[i] === listener || (list[i].listener && list[i].listener === listener)) {
+                            if (
+                                list[i] === listener ||
+                                (list[i].listener && list[i].listener === listener)
+                            ) {
                                 position = i;
                                 break;
                             }
@@ -5366,7 +5558,8 @@
                             list.splice(position, 1);
                         }
 
-                        if (this._events.removeListener) this.emit("removeListener", type, listener);
+                        if (this._events.removeListener)
+                            this.emit("removeListener", type, listener);
                     }
 
                     return this;
@@ -5401,7 +5594,8 @@
                         this.removeListener(type, listeners);
                     } else if (listeners) {
                         // LIFO order
-                        while (listeners.length) this.removeListener(type, listeners[listeners.length - 1]);
+                        while (listeners.length)
+                            this.removeListener(type, listeners[listeners.length - 1]);
                     }
                     delete this._events[type];
 
@@ -5506,7 +5700,10 @@
                         target = arguments[1] || {};
                         // skip the boolean and the target
                         i = 2;
-                    } else if ((typeof target !== "object" && typeof target !== "function") || target == null) {
+                    } else if (
+                        (typeof target !== "object" && typeof target !== "function") ||
+                        target == null
+                    ) {
                         target = {};
                     }
 
@@ -5522,7 +5719,11 @@
                                 // Prevent never-ending loop
                                 if (target !== copy) {
                                     // Recurse if we're merging plain objects or arrays
-                                    if (deep && copy && (isPlainObject(copy) || (copyIsArray = isArray(copy)))) {
+                                    if (
+                                        deep &&
+                                        copy &&
+                                        (isPlainObject(copy) || (copyIsArray = isArray(copy)))
+                                    ) {
                                         if (copyIsArray) {
                                             copyIsArray = false;
                                             clone = src && isArray(src) ? src : [];
@@ -6330,7 +6531,10 @@
  *   outside the permissible unicode range.
  */
                 function isProhibited(characterCode) {
-                    return (characterCode >= 0xd800 && characterCode <= 0xdfff) || characterCode > 0x10ffff;
+                    return (
+                        (characterCode >= 0xd800 && characterCode <= 0xdfff) ||
+                        characterCode > 0x10ffff
+                    );
                 }
 
                 /**
@@ -6691,7 +6895,9 @@
                      */
 
                                     if (!terminated) {
-                                        reason = entityCharacters ? NAMED_NOT_TERMINATED : NAMED_EMPTY;
+                                        reason = entityCharacters
+                                            ? NAMED_NOT_TERMINATED
+                                            : NAMED_EMPTY;
 
                                         if (!settings.attribute) {
                                             warning(reason, diff);
@@ -6770,7 +6976,9 @@
 
                                     if (reference > 0xffff) {
                                         reference -= 0x10000;
-                                        output += fromCharCode(((reference >>> 10) & 0x3ff) | 0xd800);
+                                        output += fromCharCode(
+                                            ((reference >>> 10) & 0x3ff) | 0xd800
+                                        );
 
                                         reference = 0xdc00 | (reference & 0x3ff);
                                     }
@@ -6876,7 +7084,11 @@
 
                 module.exports = wrapper;
             },
-            { "character-entities": 16, "character-entities-legacy": 14, "character-reference-invalid": 18 }
+            {
+                "character-entities": 16,
+                "character-entities-legacy": 14,
+                "character-reference-invalid": 18
+            }
         ],
         32: [
             function(require, module, exports) {
@@ -6999,8 +7211,44 @@
         35: [
             function(require, module, exports) {
                 module.exports = {
-                    default: ["\\", "`", "*", "{", "}", "[", "]", "(", ")", "#", "+", "-", ".", "!", "_", ">"],
-                    gfm: ["\\", "`", "*", "{", "}", "[", "]", "(", ")", "#", "+", "-", ".", "!", "_", ">", "~", "|"],
+                    default: [
+                        "\\",
+                        "`",
+                        "*",
+                        "{",
+                        "}",
+                        "[",
+                        "]",
+                        "(",
+                        ")",
+                        "#",
+                        "+",
+                        "-",
+                        ".",
+                        "!",
+                        "_",
+                        ">"
+                    ],
+                    gfm: [
+                        "\\",
+                        "`",
+                        "*",
+                        "{",
+                        "}",
+                        "[",
+                        "]",
+                        "(",
+                        ")",
+                        "#",
+                        "+",
+                        "-",
+                        ".",
+                        "!",
+                        "_",
+                        ">",
+                        "~",
+                        "|"
+                    ],
                     commonmark: [
                         "\\",
                         "`",
@@ -7099,7 +7347,8 @@
                 var ERR_INFINITE_LOOP = "Infinite loop";
                 var ERR_MISSING_LOCATOR = "Missing locator: ";
                 var ERR_INCORRECTLY_EATEN =
-                    "Incorrectly eaten value: please report this " + "warning on http://git.io/vg5Ft";
+                    "Incorrectly eaten value: please report this " +
+                    "warning on http://git.io/vg5Ft";
 
                 /*
  * Expressions.
@@ -7371,7 +7620,10 @@
                 function isAlphabetic(character) {
                     var code = character.charCodeAt(0);
 
-                    return (code >= CC_A_LOWER && code <= CC_Z_LOWER) || (code >= CC_A_UPPER && code <= CC_Z_UPPER);
+                    return (
+                        (code >= CC_A_LOWER && code <= CC_Z_LOWER) ||
+                        (code >= CC_A_UPPER && code <= CC_Z_UPPER)
+                    );
                 }
 
                 /**
@@ -7394,7 +7646,11 @@
  *   character.
  */
                 function isWordCharacter(character) {
-                    return character === C_UNDERSCORE || isAlphabetic(character) || isNumeric(character);
+                    return (
+                        character === C_UNDERSCORE ||
+                        isAlphabetic(character) ||
+                        isNumeric(character)
+                    );
                 }
 
                 /**
@@ -7492,7 +7748,11 @@
  *   an enclosed URI.
  */
                 function isEnclosedURLCharacter(character) {
-                    return character !== C_GT && character !== C_BRACKET_OPEN && character !== C_BRACKET_CLOSE;
+                    return (
+                        character !== C_GT &&
+                        character !== C_BRACKET_OPEN &&
+                        character !== C_BRACKET_CLOSE
+                    );
                 }
 
                 isEnclosedURLCharacter.delimiter = C_GT;
@@ -7506,7 +7766,11 @@
  *   an unclosed URI.
  */
                 function isUnclosedURLCharacter(character) {
-                    return character !== C_BRACKET_OPEN && character !== C_BRACKET_CLOSE && !isWhiteSpace(character);
+                    return (
+                        character !== C_BRACKET_OPEN &&
+                        character !== C_BRACKET_CLOSE &&
+                        !isWhiteSpace(character)
+                    );
                 }
 
                 /**
@@ -7601,7 +7865,9 @@
      * `value`.
      */
 
-                    return start.line !== end.line || end.column - start.column === node.value.length;
+                    return (
+                        start.line !== end.line || end.column - start.column === node.value.length
+                    );
                 }
 
                 /**
@@ -7874,13 +8140,19 @@
                                 index--;
                             }
 
-                            if (trim(values[position]).length !== 0 && minIndent && index !== minIndent) {
+                            if (
+                                trim(values[position]).length !== 0 &&
+                                minIndent &&
+                                index !== minIndent
+                            ) {
                                 padding = C_TAB;
                             } else {
                                 padding = EMPTY;
                             }
 
-                            values[position] = padding + values[position].slice(index in stops ? stops[index] + 1 : 0);
+                            values[position] =
+                                padding +
+                                values[position].slice(index in stops ? stops[index] + 1 : 0);
                         }
                     }
 
@@ -8135,7 +8407,11 @@
                     while (index < length) {
                         character = value.charAt(index);
 
-                        if (character === C_NEWLINE || character === C_TILDE || character === C_TICK) {
+                        if (
+                            character === C_NEWLINE ||
+                            character === C_TILDE ||
+                            character === C_TICK
+                        ) {
                             break;
                         }
 
@@ -8351,7 +8627,12 @@
      * Exit when not in pedantic mode without spacing.
      */
 
-                    if (!settings.pedantic && !queue.length && character && character !== C_NEWLINE) {
+                    if (
+                        !settings.pedantic &&
+                        !queue.length &&
+                        character &&
+                        character !== C_NEWLINE
+                    ) {
                         return;
                     }
 
@@ -9156,7 +9437,10 @@
                     var subqueue = EMPTY;
                     var character;
 
-                    if (value.charAt(index) === C_LT && value.charAt(++index) === C_EXCLAMATION_MARK) {
+                    if (
+                        value.charAt(index) === C_LT &&
+                        value.charAt(++index) === C_EXCLAMATION_MARK
+                    ) {
                         queue = C_LT + C_EXCLAMATION_MARK;
                         index++;
 
@@ -9350,7 +9634,11 @@
                             subqueue = EMPTY;
                             character = value.charAt(index);
 
-                            if (isAlphabetic(character) || character === C_UNDERSCORE || character === C_COLON) {
+                            if (
+                                isAlphabetic(character) ||
+                                character === C_UNDERSCORE ||
+                                character === C_COLON
+                            ) {
                                 subqueue = character;
                                 index++;
 
@@ -9622,7 +9910,11 @@
                         index++;
                     }
 
-                    if (!queue || value.charAt(index) !== C_BRACKET_CLOSE || value.charAt(index + 1) !== C_COLON) {
+                    if (
+                        !queue ||
+                        value.charAt(index) !== C_BRACKET_CLOSE ||
+                        value.charAt(index + 1) !== C_COLON
+                    ) {
                         return;
                     }
 
@@ -9634,7 +9926,11 @@
                     while (index < length) {
                         character = value.charAt(index);
 
-                        if (character !== C_TAB && character !== C_SPACE && character !== C_NEWLINE) {
+                        if (
+                            character !== C_TAB &&
+                            character !== C_SPACE &&
+                            character !== C_NEWLINE
+                        ) {
                             break;
                         }
 
@@ -9700,7 +9996,11 @@
                     while (index < length) {
                         character = value.charAt(index);
 
-                        if (character !== C_TAB && character !== C_SPACE && character !== C_NEWLINE) {
+                        if (
+                            character !== C_TAB &&
+                            character !== C_SPACE &&
+                            character !== C_NEWLINE
+                        ) {
                             break;
                         }
 
@@ -9916,7 +10216,10 @@
                         index++;
                     }
 
-                    if (value.charAt(index) !== C_BRACKET_OPEN || value.charAt(index + 1) !== C_CARET) {
+                    if (
+                        value.charAt(index) !== C_BRACKET_OPEN ||
+                        value.charAt(index + 1) !== C_CARET
+                    ) {
                         return;
                     }
 
@@ -9939,7 +10242,11 @@
                         index++;
                     }
 
-                    if (!queue || value.charAt(index) !== C_BRACKET_CLOSE || value.charAt(index + 1) !== C_COLON) {
+                    if (
+                        !queue ||
+                        value.charAt(index) !== C_BRACKET_CLOSE ||
+                        value.charAt(index + 1) !== C_COLON
+                    ) {
                         return;
                     }
 
@@ -10249,7 +10556,10 @@
 
                                         now = eat.now();
 
-                                        eat(subvalue)(self.renderInline(T_TABLE_CELL, cell, now), row);
+                                        eat(subvalue)(
+                                            self.renderInline(T_TABLE_CELL, cell, now),
+                                            row
+                                        );
                                     }
 
                                     eat(queue + character);
@@ -10660,7 +10970,9 @@
 
                     node = {
                         type: T_LIST_ITEM,
-                        loose: EXPRESSION_LOOSE_LIST_ITEM.test(value) || value.charAt(value.length - 1) === C_NEWLINE,
+                        loose:
+                            EXPRESSION_LOOSE_LIST_ITEM.test(value) ||
+                            value.charAt(value.length - 1) === C_NEWLINE,
                         checked: checked
                     };
 
@@ -10817,7 +11129,9 @@
                         node.children = self.tokenizeInline(content, position);
                     } else {
                         node.url = url;
-                        node.alt = content ? self.decode.raw(self.descape(content), position) : null;
+                        node.alt = content
+                            ? self.decode.raw(self.descape(content), position)
+                            : null;
                     }
 
                     exitLink();
@@ -10909,7 +11223,9 @@
                             }
 
                             return eat(C_BACKSLASH + character)(
-                                character === C_NEWLINE ? self.renderVoid(T_BREAK) : self.renderRaw(T_TEXT, character)
+                                character === C_NEWLINE
+                                    ? self.renderVoid(T_BREAK)
+                                    : self.renderRaw(T_TEXT, character)
                             );
                         }
                     }
@@ -11041,7 +11357,9 @@
                     now.offset++;
 
                     if (hasAtCharacter) {
-                        if (link.substr(0, MAILTO_PROTOCOL.length).toLowerCase() !== MAILTO_PROTOCOL) {
+                        if (
+                            link.substr(0, MAILTO_PROTOCOL.length).toLowerCase() !== MAILTO_PROTOCOL
+                        ) {
                             link = MAILTO_PROTOCOL + link;
                         } else {
                             content = content.substr(MAILTO_PROTOCOL.length);
@@ -11057,7 +11375,9 @@
                     tokenize = self.inlineTokenizers.escape;
                     self.inlineTokenizers.escape = null;
 
-                    node = eat(subvalue)(self.renderLink(true, decode(link), content, null, now, eat));
+                    node = eat(subvalue)(
+                        self.renderLink(true, decode(link), content, null, now, eat)
+                    );
 
                     self.inlineTokenizers.escape = tokenize;
 
@@ -11216,7 +11536,9 @@
 
                     now = eat.now();
 
-                    return eat(subvalue)(self.renderLink(true, decode(subvalue), content, null, now, eat));
+                    return eat(subvalue)(
+                        self.renderLink(true, decode(subvalue), content, null, now, eat)
+                    );
                 }
 
                 tokenizeURL.notInLink = true;
@@ -11415,7 +11737,10 @@
      * Eat the content closing.
      */
 
-                    if (value.charAt(index) !== C_BRACKET_CLOSE || value.charAt(++index) !== C_PAREN_OPEN) {
+                    if (
+                        value.charAt(index) !== C_BRACKET_CLOSE ||
+                        value.charAt(++index) !== C_PAREN_OPEN
+                    ) {
                         return;
                     }
 
@@ -11708,7 +12033,11 @@
      * Check whether we’re eating a footnote.
      */
 
-                    if (self.options.footnotes && type === T_LINK && value.charAt(index) === C_CARET) {
+                    if (
+                        self.options.footnotes &&
+                        type === T_LINK &&
+                        value.charAt(index) === C_CARET
+                    ) {
                         intro += C_CARET;
                         index++;
                         type = T_FOOTNOTE;
@@ -11800,7 +12129,9 @@
                             queue += identifier + character;
                             index++;
 
-                            referenceType = identifier ? REFERENCE_TYPE_FULL : REFERENCE_TYPE_COLLAPSED;
+                            referenceType = identifier
+                                ? REFERENCE_TYPE_FULL
+                                : REFERENCE_TYPE_COLLAPSED;
                         } else {
                             identifier = EMPTY;
                         }
@@ -11919,7 +12250,10 @@
                     var length;
                     var prev;
 
-                    if (EMPHASIS_MARKERS[character] !== true || value.charAt(++index) !== character) {
+                    if (
+                        EMPHASIS_MARKERS[character] !== true ||
+                        value.charAt(++index) !== character
+                    ) {
                         return;
                     }
 
@@ -11959,7 +12293,9 @@
                                 now.column += 2;
                                 now.offset += 2;
 
-                                return eat(subvalue + queue + subvalue)(self.renderInline(T_STRONG, queue, now));
+                                return eat(subvalue + queue + subvalue)(
+                                    self.renderInline(T_STRONG, queue, now)
+                                );
                             }
                         }
 
@@ -12051,7 +12387,11 @@
                                     return;
                                 }
 
-                                if (pedantic || marker !== C_UNDERSCORE || !isWordCharacter(character)) {
+                                if (
+                                    pedantic ||
+                                    marker !== C_UNDERSCORE ||
+                                    !isWordCharacter(character)
+                                ) {
                                     /* istanbul ignore if - never used (yet) */
                                     if (silent) {
                                         return true;
@@ -12061,7 +12401,9 @@
                                     now.column++;
                                     now.offset++;
 
-                                    return eat(subvalue + queue + marker)(self.renderInline(T_EMPHASIS, queue, now));
+                                    return eat(subvalue + queue + marker)(
+                                        self.renderInline(T_EMPHASIS, queue, now)
+                                    );
                                 }
                             }
 
@@ -12134,7 +12476,11 @@
                     while (++index < length) {
                         character = value.charAt(index);
 
-                        if (character === C_TILDE && previous === C_TILDE && (!preceding || !isWhiteSpace(preceding))) {
+                        if (
+                            character === C_TILDE &&
+                            previous === C_TILDE &&
+                            (!preceding || !isWhiteSpace(preceding))
+                        ) {
                             /* istanbul ignore if - never used (yet) */
                             if (silent) {
                                 return true;
@@ -12404,7 +12750,9 @@
                     } else if (typeof options === "object") {
                         options = extend({}, options);
                     } else {
-                        throw new Error("Invalid value `" + options + "` " + "for setting `options`");
+                        throw new Error(
+                            "Invalid value `" + options + "` " + "for setting `options`"
+                        );
                     }
 
                     for (key in defaultOptions) {
@@ -12415,7 +12763,14 @@
                         }
 
                         if (typeof value !== "boolean") {
-                            throw new Error("Invalid value `" + value + "` " + "for setting `options." + key + "`");
+                            throw new Error(
+                                "Invalid value `" +
+                                    value +
+                                    "` " +
+                                    "for setting `options." +
+                                    key +
+                                    "`"
+                            );
                         }
 
                         options[key] = value;
@@ -13233,7 +13588,8 @@
                 var YAML_FENCE_LENGTH = 3;
                 var MINIMUM_RULE_LENGTH = 3;
                 var MAILTO = "mailto:";
-                var ERROR_LIST_ITEM_INDENT = "Cannot indent code properly. See " + "http://git.io/vgFvT";
+                var ERROR_LIST_ITEM_INDENT =
+                    "Cannot indent code properly. See " + "http://git.io/vgFvT";
 
                 /*
  * Expressions.
@@ -13414,7 +13770,9 @@
  * @param {string} name - Setting name.
  */
                 function raise(value, name) {
-                    throw new Error("Invalid value `" + value + "` " + "for setting `" + name + "`");
+                    throw new Error(
+                        "Invalid value `" + value + "` " + "for setting `" + name + "`"
+                    );
                 }
 
                 /**
@@ -13591,7 +13949,9 @@
      * `value`.
      */
 
-                    return start.line !== end.line || end.column - start.column === node.value.length;
+                    return (
+                        start.line !== end.line || end.column - start.column === node.value.length
+                    );
                 }
 
                 /**
@@ -13716,7 +14076,12 @@
  *   alignment row character.
  */
                 function isAlignmentRowCharacter(character) {
-                    return character === COLON || character === DASH || character === SPACE || character === PIPE;
+                    return (
+                        character === COLON ||
+                        character === DASH ||
+                        character === SPACE ||
+                        character === PIPE
+                    );
                 }
 
                 /**
@@ -13829,7 +14194,9 @@
                                         !isAlphanumeric(value.charAt(position - 1)) ||
                                         !isAlphanumeric(value.charAt(position + 1)))) ||
                                 (self.inLink && character === SQUARE_BRACKET_CLOSE) ||
-                                (gfm && character === PIPE && (self.inTable || isInAlignmentRow(value, position)))
+                                (gfm &&
+                                    character === PIPE &&
+                                    (self.inTable || isInAlignmentRow(value, position)))
                             ) {
                                 afterNewLine = false;
                                 queue.push(BACKSLASH);
@@ -13861,7 +14228,10 @@
                                 /* istanbul ignore if - Impossible to test with
              * the current set-up.  We need tests which try
              * to force markdown content into the tree. */
-                            } else if (character === AMPERSAND && startsWithEntity(value.slice(position))) {
+                            } else if (
+                                character === AMPERSAND &&
+                                startsWithEntity(value.slice(position))
+                            ) {
                                 afterNewLine = false;
 
                                 if (commonmark) {
@@ -13870,7 +14240,11 @@
                                     queue.push(ENTITY_AMPERSAND);
                                     continue;
                                 }
-                            } else if (gfm && character === TILDE && value.charAt(position + 1) === TILDE) {
+                            } else if (
+                                gfm &&
+                                character === TILDE &&
+                                value.charAt(position + 1) === TILDE
+                            ) {
                                 queue.push(BACKSLASH, TILDE);
                                 afterNewLine = false;
                                 position += 1;
@@ -13942,10 +14316,20 @@
              * nodes too.
              */
 
-                            if (gfm && !self.inLink && prev && prev.type === "text" && value.charAt(0) === COLON) {
+                            if (
+                                gfm &&
+                                !self.inLink &&
+                                prev &&
+                                prev.type === "text" &&
+                                value.charAt(0) === COLON
+                            ) {
                                 queue = prev.value.slice(-6);
 
-                                if (queue === "mailto" || queue.slice(-5) === "https" || queue.slice(-4) === "http") {
+                                if (
+                                    queue === "mailto" ||
+                                    queue.slice(-5) === "https" ||
+                                    queue.slice(-4) === "http"
+                                ) {
                                     if (commonmark) {
                                         escaped.unshift(BACKSLASH);
                                     } else {
@@ -13991,12 +14375,21 @@
              * in pedantic mode).
              */
 
-                            wordCharBefore = prev && prev.type === "text" && isAlphanumeric(prev.value.slice(-1));
+                            wordCharBefore =
+                                prev &&
+                                prev.type === "text" &&
+                                isAlphanumeric(prev.value.slice(-1));
 
-                            wordCharAfter = next && next.type === "text" && isAlphanumeric(next.value.charAt(0));
+                            wordCharAfter =
+                                next &&
+                                next.type === "text" &&
+                                isAlphanumeric(next.value.charAt(0));
 
                             if (length <= 1) {
-                                if (value === UNDERSCORE && (pedantic || !wordCharBefore || !wordCharAfter)) {
+                                if (
+                                    value === UNDERSCORE &&
+                                    (pedantic || !wordCharBefore || !wordCharAfter)
+                                ) {
                                     escaped.unshift(BACKSLASH);
                                 }
                             } else {
@@ -14197,7 +14590,9 @@
                     } else if (typeof options === "object") {
                         options = extend({}, options);
                     } else {
-                        throw new Error("Invalid value `" + options + "` " + "for setting `options`");
+                        throw new Error(
+                            "Invalid value `" + options + "` " + "for setting `options`"
+                        );
                     }
 
                     for (key in defaultOptions) {
@@ -14283,7 +14678,10 @@
      */
 
                     if (typeof self.visitors[node.type] !== "function") {
-                        self.file.fail("Missing compiler for node of type `" + node.type + "`: `" + node + "`", node);
+                        self.file.fail(
+                            "Missing compiler for node of type `" + node.type + "`: `" + node + "`",
+                            node
+                        );
                     }
 
                     return self.visitors[node.type].call(self, node, parent);
@@ -14328,7 +14726,12 @@
                     while (++index < length) {
                         next = children[index];
 
-                        if (node.type === next.type && node.type === "text" && mergeable(node) && mergeable(next)) {
+                        if (
+                            node.type === next.type &&
+                            node.type === "text" &&
+                            mergeable(node) &&
+                            mergeable(next)
+                        ) {
                             node.value += next.value;
                         } else {
                             values.push(self.visit(node, parent));
@@ -14496,7 +14899,11 @@
 
                             if (child.type === prev.type && prev.type === "list") {
                                 values.push(prev.ordered === child.ordered ? GAP : BREAK);
-                            } else if (prev.type === "list" && child.type === "code" && !child.lang) {
+                            } else if (
+                                prev.type === "list" &&
+                                child.type === "code" &&
+                                !child.lang
+                            ) {
                                 values.push(GAP);
                             } else {
                                 values.push(BREAK);
@@ -14779,7 +15186,10 @@
 
                     value = CHECKBOX_MAP[node.checked] + values.join(loose ? BREAK : LINE);
 
-                    if (style === LIST_ITEM_ONE || (style === LIST_ITEM_MIXED && value.indexOf(LINE) === -1)) {
+                    if (
+                        style === LIST_ITEM_ONE ||
+                        (style === LIST_ITEM_MIXED && value.indexOf(LINE) === -1)
+                    ) {
                         indent = bullet.length + 1;
                         spacing = SPACE;
                     } else {
@@ -15177,7 +15587,8 @@
                     url = encloseURI(url);
 
                     if (node.title) {
-                        url += SPACE + encloseTitle(self.encode(self.escape(node.title, node), node));
+                        url +=
+                            SPACE + encloseTitle(self.encode(self.escape(node.title, node), node));
                     }
 
                     value = SQUARE_BRACKET_OPEN + value + SQUARE_BRACKET_CLOSE;
@@ -15370,7 +15781,13 @@
                 visitors.imageReference = function(node) {
                     var alt = this.encode(node.alt, node) || EMPTY;
 
-                    return EXCLAMATION_MARK + SQUARE_BRACKET_OPEN + alt + SQUARE_BRACKET_CLOSE + label(node);
+                    return (
+                        EXCLAMATION_MARK +
+                        SQUARE_BRACKET_OPEN +
+                        alt +
+                        SQUARE_BRACKET_CLOSE +
+                        label(node)
+                    );
                 };
 
                 /**
@@ -15488,7 +15905,12 @@
  * @return {string} - Markdown footnote.
  */
                 visitors.footnote = function(node) {
-                    return SQUARE_BRACKET_OPEN + CARET + this.all(node).join(EMPTY) + SQUARE_BRACKET_CLOSE;
+                    return (
+                        SQUARE_BRACKET_OPEN +
+                        CARET +
+                        this.all(node).join(EMPTY) +
+                        SQUARE_BRACKET_CLOSE
+                    );
                 };
 
                 /**
@@ -15959,7 +16381,10 @@
                     return value
                         .replace(EXPRESSION_SURROGATE_PAIR, function(pair) {
                             return characterCodeToHexadecimalReference(
-                                (pair.charCodeAt(0) - 0xd800) * 0x400 + pair.charCodeAt(1) - 0xdc00 + 0x10000
+                                (pair.charCodeAt(0) - 0xd800) * 0x400 +
+                                    pair.charCodeAt(1) -
+                                    0xdc00 +
+                                    0x10000
                             );
                         })
                         .replace(EXPRESSION_BMP, characterToHexadecimalReference);
@@ -16074,7 +16499,10 @@
                     };
 
                     StructuredSource.prototype.rangeToLocation = function(range) {
-                        return new SourceLocation(this.indexToPosition(range[0]), this.indexToPosition(range[1]));
+                        return new SourceLocation(
+                            this.indexToPosition(range[0]),
+                            this.indexToPosition(range[1])
+                        );
                     };
 
                     StructuredSource.prototype.positionToIndex = function(pos) {
@@ -16312,7 +16740,11 @@
 
                         if (!keepGoing) return state;
 
-                        if (typeof state.node == "object" && state.node !== null && !state.circular) {
+                        if (
+                            typeof state.node == "object" &&
+                            state.node !== null &&
+                            !state.circular
+                        ) {
                             parents.push(state);
 
                             updateState();
@@ -16366,7 +16798,10 @@
                         } else if (src.constructor === Object) {
                             dst = {};
                         } else {
-                            var proto = (src.constructor && src.constructor.prototype) || src.__proto__ || {};
+                            var proto =
+                                (src.constructor && src.constructor.prototype) ||
+                                src.__proto__ ||
+                                {};
                             var T = function() {};
                             T.prototype = proto;
                             dst = new T();
@@ -16888,7 +17323,11 @@
  * @return {boolean} - Whether `compiler` is a Compiler.
  */
                     function isCompiler(compiler) {
-                        return isFunction(compiler) && compiler.prototype && isFunction(compiler.prototype.compile);
+                        return (
+                            isFunction(compiler) &&
+                            compiler.prototype &&
+                            isFunction(compiler.prototype.compile)
+                        );
                     }
 
                     /**
@@ -16898,7 +17337,11 @@
  * @return {boolean} - Whether `parser` is a Parser.
  */
                     function isParser(parser) {
-                        return isFunction(parser) && parser.prototype && isFunction(parser.prototype.parse);
+                        return (
+                            isFunction(parser) &&
+                            parser.prototype &&
+                            isFunction(parser.prototype.parse)
+                        );
                     }
 
                     /**
@@ -17013,7 +17456,10 @@
                         function assertDone(name, complete, done) {
                             if (!complete && !done) {
                                 throw new Error(
-                                    "Expected `done` to be given to `" + name + "` " + "as async plug-ins are used"
+                                    "Expected `done` to be given to `" +
+                                        name +
+                                        "` " +
+                                        "as async plug-ins are used"
                                 );
                             }
                         }
@@ -17222,7 +17668,9 @@
                                 file = null;
                             }
 
-                            return new processor.Compiler(vfile(file), options, processor).compile(node);
+                            return new processor.Compiler(vfile(file), options, processor).compile(
+                                node
+                            );
                         }
 
                         /**
@@ -17494,7 +17942,9 @@
                     this,
                     typeof global !== "undefined"
                         ? global
-                        : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}
+                        : typeof self !== "undefined"
+                          ? self
+                          : typeof window !== "undefined" ? window : {}
                 ));
             },
             { "./trough.js": 51, bail: 5, events: 23, extend: 24, once: 30, vfile: 56 }
@@ -18070,7 +18520,11 @@
      * Given file.
      */
 
-                    if (options && typeof options.message === "function" && typeof options.hasFailed === "function") {
+                    if (
+                        options &&
+                        typeof options.message === "function" &&
+                        typeof options.hasFailed === "function"
+                    ) {
                         return options;
                     }
 

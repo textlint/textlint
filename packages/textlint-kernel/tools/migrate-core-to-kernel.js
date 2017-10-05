@@ -7,7 +7,8 @@ if (!shell.which("grasp")) {
 }
 // textlint.setupRules({}, {}) => const options
 function rewriteSetupRuleWithOption() {
-    const ruleAndRuleOptionPattern = "textlint.setupRules({ $ruleId: $rule }, { $ruleId: $ruleOption });";
+    const ruleAndRuleOptionPattern =
+        "textlint.setupRules({ $ruleId: $rule }, { $ruleId: $ruleOption });";
     const ruleAndRuleOptionPatternExpected = `const rule = { 
     ruleId: {{ruleId}}, 
     rule: {{rule}},
@@ -31,7 +32,8 @@ function rewriteSetupRule() {
 
 // textlint.setupFilterRules({}, {}) => const options
 function rewriteSetupFilterRuleWithOption() {
-    const ruleAndRuleOptionPattern = "textlint.setupFilterRules({ $ruleId: $rule }, { $ruleId: $ruleOption });";
+    const ruleAndRuleOptionPattern =
+        "textlint.setupFilterRules({ $ruleId: $rule }, { $ruleId: $ruleOption });";
     const ruleAndRuleOptionPatternExpected = `const filterRule = { 
     ruleId: {{ruleId}}, 
     rule: {{rule}},

@@ -72,14 +72,8 @@ describe("markdown-parser", function() {
             assert.equal(RootDocument.type, Syntax.Document);
             assert.equal(RootDocument.raw, "");
             assert.deepEqual(RootDocument.loc, {
-                start: {
-                    line: 1,
-                    column: 0
-                },
-                end: {
-                    line: 1,
-                    column: 0
-                }
+                start: { line: 1, column: 0 },
+                end: { line: 1, column: 0 }
             });
             assert.deepEqual(RootDocument.range, [0, 0]);
         });

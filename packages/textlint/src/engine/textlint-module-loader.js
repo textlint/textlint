@@ -28,7 +28,10 @@ export default class TextLintModuleLoader extends EventEmitter {
         /**
          * @type {TextLintModuleResolver}
          */
-        this.moduleResolver = new TextLintModuleResolver(this.config.constructor, this.config.rulesBaseDirectory);
+        this.moduleResolver = new TextLintModuleResolver(
+            this.config.constructor,
+            this.config.rulesBaseDirectory
+        );
     }
 
     /**
@@ -93,7 +96,10 @@ export default class TextLintModuleLoader extends EventEmitter {
         const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
         // Processor plugin doesn't define rules
         if (plugin.hasOwnProperty("rules")) {
-            const entities = TextLintModuleMapper.createEntities(plugin.rules, pluginNameWithoutPrefix);
+            const entities = TextLintModuleMapper.createEntities(
+                plugin.rules,
+                pluginNameWithoutPrefix
+            );
             entities.forEach(entry => {
                 this.emit(TextLintModuleLoader.Event.rule, entry);
             });
@@ -128,14 +134,19 @@ export default class TextLintModuleLoader extends EventEmitter {
         const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, "");
         // ignore plugin's rule
         if (isPluginRuleKey(presetRuleNameWithoutPrefix)) {
-            Logger.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
+            Logger.warn(
+                `${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`
+            );
             return;
         }
 
         const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
         debug("Loading rules from preset: %s", pkgPath);
         const preset = interopRequire(pkgPath);
-        const entities = TextLintModuleMapper.createEntities(preset.rules, presetRuleNameWithoutPrefix);
+        const entities = TextLintModuleMapper.createEntities(
+            preset.rules,
+            presetRuleNameWithoutPrefix
+        );
         entities.forEach(entry => {
             this.emit(TextLintModuleLoader.Event.rule, entry);
         });
@@ -169,7 +180,9 @@ export default class TextLintModuleLoader extends EventEmitter {
         const definedRuleName = ruleName.replace(prefixMatch, "");
         // ignore plugin's rule
         if (isPluginRuleKey(definedRuleName)) {
-            Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
+            Logger.warn(
+                `${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`
+            );
             return;
         }
         const pkgPath = this.moduleResolver.resolveRulePackageName(ruleName);
@@ -206,7 +219,9 @@ export default class TextLintModuleLoader extends EventEmitter {
         const definedRuleName = ruleName.replace(prefixMatch, "");
         // ignore plugin's rule
         if (isPluginRuleKey(definedRuleName)) {
-            Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
+            Logger.warn(
+                `${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`
+            );
             return;
         }
         const pkgPath = this.moduleResolver.resolveFilterRulePackageName(ruleName);

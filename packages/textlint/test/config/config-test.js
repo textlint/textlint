@@ -28,9 +28,7 @@ describe("config", function() {
         context("when init configFile", function() {
             it("should return path to .textlintrc", function() {
                 const configFilePath = path.join(__dirname, "fixtures", ".textlintrc");
-                const config = Config.initWithCLIOptions({
-                    config: configFilePath
-                });
+                const config = Config.initWithCLIOptions({ config: configFilePath });
                 assert.equal(config.configFile, configFilePath);
             });
         });
@@ -47,7 +45,10 @@ describe("config", function() {
                     configFile: "@textlint/textlint-config-example",
                     rulesBaseDirectory: baseDir
                 });
-                assert(config.configFile === path.join(baseDir, "@textlint/textlint-config-example", "index.js"));
+                assert(
+                    config.configFile ===
+                        path.join(baseDir, "@textlint/textlint-config-example", "index.js")
+                );
             });
         });
     });

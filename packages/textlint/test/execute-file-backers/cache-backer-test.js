@@ -24,14 +24,9 @@ describe("CacheBacker", function() {
                 cacheLocation: path.resolve(configDir, ".cache")
             });
             const cacheBacker = new CacheBacker(config);
-            const prevResult = {
-                filePath: path.join(__dirname, "fixtures/test.md"),
-                messages: []
-            };
+            const prevResult = { filePath: path.join(__dirname, "fixtures/test.md"), messages: [] };
             // prev
-            cacheBacker.didExecute({
-                result: prevResult
-            });
+            cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();
             // next
             const shouldExecute = cacheBacker.shouldExecute({ filePath: prevResult.filePath });
@@ -51,9 +46,7 @@ describe("CacheBacker", function() {
                 messages: [{}, {}]
             };
             // prev
-            cacheBacker.didExecute({
-                result: prevResult
-            });
+            cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();
             // next
             const shouldExecute = cacheBacker.shouldExecute({ filePath: prevResult.filePath });
@@ -63,20 +56,12 @@ describe("CacheBacker", function() {
     context("when specify `cacheLocation` options", function() {
         it("should save the specific path", () => {
             const cacheFilePath = path.resolve(configDir, ".cache");
-            const config = new Config({
-                cache: true,
-                cacheLocation: cacheFilePath
-            });
+            const config = new Config({ cache: true, cacheLocation: cacheFilePath });
             const cacheBacker = new CacheBacker(config);
             const filePath = path.join(__dirname, "fixtures/test.md");
-            const prevResult = {
-                filePath: filePath,
-                messages: [{}, {}] // has errors
-            };
+            const prevResult = { filePath: filePath, messages: [{}, {}] }; // has errors
             // prev
-            cacheBacker.didExecute({
-                result: prevResult
-            });
+            cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();
             assert(fs.existsSync(cacheFilePath));
         });

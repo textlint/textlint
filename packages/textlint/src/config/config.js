@@ -159,7 +159,9 @@ class Config {
         options.plugins = cliOptions.plugin ? cliOptions.plugin : defaultOptions.plugins;
         options.configFile = cliOptions.config ? cliOptions.config : defaultOptions.configFile;
         options.rulePaths = cliOptions.rulesdir ? cliOptions.rulesdir : defaultOptions.rulePaths;
-        options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
+        options.formatterName = cliOptions.format
+            ? cliOptions.format
+            : defaultOptions.formatterName;
         options.quiet = cliOptions.quiet !== undefined ? cliOptions.quiet : defaultOptions.quiet;
         options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
         // --cache
@@ -214,9 +216,16 @@ class Config {
         const rules = concat(optionRules, configRulesObject.available);
         const disabledRules = concat(optionDisabledRules, configRulesObject.disable);
         const filterRules = concat(optionFilterRules, configFilterRulesObject.available);
-        const disabledFilterRules = concat(optionDisabledFilterRules, configFilterRulesObject.disable);
+        const disabledFilterRules = concat(
+            optionDisabledFilterRules,
+            configFilterRulesObject.disable
+        );
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
-        const filterRulesConfig = objectAssign({}, configFileFilterRulesConfig, optionFilterRulesConfig);
+        const filterRulesConfig = objectAssign(
+            {},
+            configFileFilterRulesConfig,
+            optionFilterRulesConfig
+        );
         const plugins = concat(optionPlugins, configFilePlugins);
         const pluginsConfig = objectAssign({}, configFilePluginConfig, optionPluginsConfig);
         const presets = concat(optionPresets, configPresets);
@@ -260,13 +269,19 @@ class Config {
          */
         this.configFile = options.configFile;
         if (this.configFile) {
-            assert(path.isAbsolute(this.configFile), `configFile should be absolute path: ${this.configFile}`);
+            assert(
+                path.isAbsolute(this.configFile),
+                `configFile should be absolute path: ${this.configFile}`
+            );
         }
         this.rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // rule names that are defined in ,textlintrc
-        const moduleResolver = new TextLintModuleResolver(this.constructor, this.rulesBaseDirectory);
+        const moduleResolver = new TextLintModuleResolver(
+            this.constructor,
+            this.rulesBaseDirectory
+        );
         /**
          * @type {string[]} rule key list
          * but, plugins's rules are not contained in `rules`
@@ -277,7 +292,9 @@ class Config {
          * @type {string[]} rule key list
          * These rule is set `false` to options
          */
-        this.disabledRules = options.disabledRules ? options.disabledRules : defaultOptions.disabledRules;
+        this.disabledRules = options.disabledRules
+            ? options.disabledRules
+            : defaultOptions.disabledRules;
         /**
          * @type {string[]} filter rule key list
          */
@@ -297,11 +314,18 @@ class Config {
         // this.rules has not contain plugin rules
         // =====================
         this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
-        this.pluginsConfig = options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig;
+        this.pluginsConfig = options.pluginsConfig
+            ? options.pluginsConfig
+            : defaultOptions.pluginsConfig;
         // rulesConfig
         const pluginRulesConfig = loadRulesConfigFromPlugins(this.plugins, moduleResolver);
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
-        this.rulesConfig = objectAssign({}, presetRulesConfig, pluginRulesConfig, options.rulesConfig);
+        this.rulesConfig = objectAssign(
+            {},
+            presetRulesConfig,
+            pluginRulesConfig,
+            options.rulesConfig
+        );
 
         // filterRulesConfig
         this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
@@ -319,7 +343,9 @@ class Config {
         /**
          * @type {string}
          */
-        this.formatterName = options.formatterName ? options.formatterName : defaultOptions.formatterName;
+        this.formatterName = options.formatterName
+            ? options.formatterName
+            : defaultOptions.formatterName;
         /**
          * @type {boolean}
          */
@@ -335,7 +361,10 @@ class Config {
         /**
          * @type {string}
          */
-        this.cacheLocation = options.cacheLocation !== undefined ? options.cacheLocation : defaultOptions.cacheLocation;
+        this.cacheLocation =
+            options.cacheLocation !== undefined
+                ? options.cacheLocation
+                : defaultOptions.cacheLocation;
         this._assertCacheLocation(this.cacheLocation);
     }
 

@@ -12,24 +12,12 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [
-                    {
-                        pluginId: "markdown",
-                        plugin: require("textlint-plugin-markdown")
-                    }
-                ],
+                plugins: [{ pluginId: "markdown", plugin: require("textlint-plugin-markdown") }],
                 rules: [
                     {
                         ruleId: "error",
                         rule: errorRule,
-                        options: {
-                            errors: [
-                                {
-                                    message: "error message",
-                                    index: 0
-                                }
-                            ]
-                        }
+                        options: { errors: [{ message: "error message", index: 0 }] }
                     }
                 ]
             };
@@ -41,25 +29,14 @@ describe("textlint-kernel", () => {
         it("should pass pluginOptions to plugin", () => {
             const kernel = new TextlintKernel();
             const { getOptions, getPlugin } = createPluginStub();
-            const expectedPluginOptions: ExampleProcessorOptions = {
-                testOption: "test"
-            };
+            const expectedPluginOptions: ExampleProcessorOptions = { testOption: "test" };
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
                 plugins: [
-                    {
-                        pluginId: "example",
-                        plugin: getPlugin(),
-                        options: expectedPluginOptions
-                    }
+                    { pluginId: "example", plugin: getPlugin(), options: expectedPluginOptions }
                 ],
-                rules: [
-                    {
-                        ruleId: "error",
-                        rule: errorRule
-                    }
-                ]
+                rules: [{ ruleId: "error", rule: errorRule }]
             };
             return kernel.lintText("text", options).then(_result => {
                 const actualPluginOptions = getOptions();
@@ -70,14 +47,7 @@ describe("textlint-kernel", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
                 return kernel
-                    .lintText("text", {
-                        ext: "test",
-                        plugins: [
-                            {
-                                pluginId: 1
-                            }
-                        ]
-                    } as any)
+                    .lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any)
                     .catch(error => {
                         assert.ok(error instanceof Error);
                     });
@@ -90,24 +60,12 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [
-                    {
-                        pluginId: "markdown",
-                        plugin: require("textlint-plugin-markdown")
-                    }
-                ],
+                plugins: [{ pluginId: "markdown", plugin: require("textlint-plugin-markdown") }],
                 rules: [
                     {
                         ruleId: "error",
                         rule: errorRule,
-                        options: {
-                            errors: [
-                                {
-                                    message: "error message",
-                                    index: 0
-                                }
-                            ]
-                        }
+                        options: { errors: [{ message: "error message", index: 0 }] }
                     }
                 ]
             };
@@ -119,25 +77,14 @@ describe("textlint-kernel", () => {
         it("should pass pluginOptions to plugin", () => {
             const kernel = new TextlintKernel();
             const { getOptions, getPlugin } = createPluginStub();
-            const expectedPluginOptions: ExampleProcessorOptions = {
-                testOption: "test"
-            };
+            const expectedPluginOptions: ExampleProcessorOptions = { testOption: "test" };
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
                 plugins: [
-                    {
-                        pluginId: "example",
-                        plugin: getPlugin(),
-                        options: expectedPluginOptions
-                    }
+                    { pluginId: "example", plugin: getPlugin(), options: expectedPluginOptions }
                 ],
-                rules: [
-                    {
-                        ruleId: "error",
-                        rule: errorRule
-                    }
-                ]
+                rules: [{ ruleId: "error", rule: errorRule }]
             };
             return kernel.lintText("text", options).then(_result => {
                 const actualPluginOptions = getOptions();
@@ -148,14 +95,7 @@ describe("textlint-kernel", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
                 return kernel
-                    .fixText("text", {
-                        ext: "test",
-                        plugins: [
-                            {
-                                pluginId: 1
-                            }
-                        ]
-                    } as any)
+                    .fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any)
                     .catch(error => {
                         assert.ok(error instanceof Error);
                     });

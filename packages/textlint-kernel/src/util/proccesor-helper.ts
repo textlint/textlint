@@ -1,7 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { TextlintKernelProcessor, TextlintKernelProcessorConstructor } from "../textlint-kernel-interface";
+import {
+    TextlintKernelProcessor,
+    TextlintKernelProcessorConstructor
+} from "../textlint-kernel-interface";
 
 /**
  * find processor with `ext`

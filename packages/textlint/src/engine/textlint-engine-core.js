@@ -168,13 +168,18 @@ new TextLintEngine({
         // set Rules
         const textlintConfig = this.config ? this.config.toJSON() : {};
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
-        this.textlint.setupFilterRules(this.filterRuleMap.getAllRules(), textlintConfig.filterRulesConfig);
+        this.textlint.setupFilterRules(
+            this.filterRuleMap.getAllRules(),
+            textlintConfig.filterRulesConfig
+        );
         // set Processor
         this.textlint.setupPlugins(this.pluginMap.toJSON(), textlintConfig.pluginsConfig);
         // execute files that are filtered by availableExtensions.
         // TODO: it very hackable way, should be fixed
         // it is depend on textlintCore's state
-        this.availableExtensions = this.textlint.pluginCreatorSet.availableExtensions.concat(this.config.extensions);
+        this.availableExtensions = this.textlint.pluginCreatorSet.availableExtensions.concat(
+            this.config.extensions
+        );
     }
 
     /**
@@ -197,7 +202,9 @@ new TextLintEngine({
             return this.textlint.lintFile(file);
         };
         const execFile =
-            typeof this.executor.onFile === "function" ? this.executor.onFile(this.textlint) : boundLintFile;
+            typeof this.executor.onFile === "function"
+                ? this.executor.onFile(this.textlint)
+                : boundLintFile;
         const patterns = pathsToGlobPatterns(files, {
             extensions: this.availableExtensions
         });
@@ -226,7 +233,10 @@ new TextLintEngine({
             return this.textlint.lintText(file, ext);
         };
         const textlint = this.textlint;
-        const execText = typeof this.executor.onText === "function" ? this.executor.onText(textlint) : boundLintText;
+        const execText =
+            typeof this.executor.onText === "function"
+                ? this.executor.onText(textlint)
+                : boundLintText;
         // filePath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);
         if (actualExt.length === 0) {

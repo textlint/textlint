@@ -15,8 +15,7 @@ describe("config-as-example", function() {
             let config;
             try {
                 config = Config.initWithAutoLoading({
-                    configFile: textlintrcPath,
-                    // == node_modules/
+                    configFile: textlintrcPath, // == node_modules/
                     rulesBaseDirectory: path.join(__dirname, "config-fixtures", dirName, "modules")
                 });
             } catch (error) {

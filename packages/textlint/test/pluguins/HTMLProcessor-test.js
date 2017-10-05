@@ -10,24 +10,16 @@ describe("HTMLPlugin", function() {
     context("when target file is a HTML", function() {
         beforeEach(function() {
             textlintCore = new TextLintCore();
-            textlintCore.setupPlugins({
-                html: htmlPlugin
-            });
-            textlintCore.setupRules({
-                "example-rule": require("./fixtures/example-rule")
-            });
+            textlintCore.setupPlugins({ html: htmlPlugin });
+            textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
         });
         it("should have default + additional processors", function() {
             const availableExtensions = textlintCore.pluginCreatorSet.plugins;
             assert(availableExtensions.length === 3);
         });
         it("should ignore duplicated processor", function() {
-            textlintCore.setupPlugins({
-                html: htmlPlugin
-            });
-            textlintCore.setupPlugins({
-                html: htmlPlugin
-            });
+            textlintCore.setupPlugins({ html: htmlPlugin });
+            textlintCore.setupPlugins({ html: htmlPlugin });
             const availableExtensions = textlintCore.pluginCreatorSet.plugins;
             assert(availableExtensions.length === 3);
         });

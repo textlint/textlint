@@ -5,7 +5,10 @@ const path = require("path");
 import { TextFixEngine } from "../../src/";
 const rulesDir = path.join(__dirname, "fixtures/textfix-engine/fixer-rules");
 const inputTextPath = path.join(__dirname, "fixtures/textfix-engine/fixer-rules", "input.md");
-const formatterPath = path.join(__dirname, "fixtures/textfix-engine/formatter/example-fixer-formatter.js");
+const formatterPath = path.join(
+    __dirname,
+    "fixtures/textfix-engine/formatter/example-fixer-formatter.js"
+);
 
 describe("textfix-engine", function() {
     describe("Constructor", function() {
@@ -17,9 +20,7 @@ describe("textfix-engine", function() {
         });
         context("when args is object", function() {
             it("should convert the object and set config", function() {
-                const engine = new TextFixEngine({
-                    rulePaths: [rulesDir]
-                });
+                const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 assert.deepEqual(engine.config.rulePaths, [rulesDir]);
             });
         });
@@ -27,9 +28,7 @@ describe("textfix-engine", function() {
             it("should set directory to config", function() {
                 // Issue : when use Config as argus, have to export `../src/config/config`
                 var Config = require("../../src/config/config");
-                var config = new Config({
-                    rulePaths: [rulesDir]
-                });
+                var config = new Config({ rulePaths: [rulesDir] });
                 const engine = new TextFixEngine(config);
                 assert.deepEqual(engine.config.rulePaths, [rulesDir]);
             });
@@ -37,9 +36,7 @@ describe("textfix-engine", function() {
     });
     describe("executeOnFiles", function() {
         it("should return FixCommand result", function() {
-            const engine = new TextFixEngine({
-                rulePaths: [rulesDir]
-            });
+            const engine = new TextFixEngine({ rulePaths: [rulesDir] });
             var filePath = inputTextPath;
             return engine.executeOnFiles([filePath]).then(results => {
                 assert(Array.isArray(results));
@@ -63,9 +60,7 @@ describe("textfix-engine", function() {
     });
     describe("executeOnText", function() {
         it("should lint a text and return results", function() {
-            const engine = new TextFixEngine({
-                rulePaths: [rulesDir]
-            });
+            const engine = new TextFixEngine({ rulePaths: [rulesDir] });
             return engine.executeOnText("text").then(results => {
                 assert(Array.isArray(results));
                 var lintResult = results[0];
@@ -78,9 +73,7 @@ describe("textfix-engine", function() {
         });
         context("when specify ext", function() {
             it("should lint text as ext", function() {
-                const engine = new TextFixEngine({
-                    rulePaths: [rulesDir]
-                });
+                const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text", ".md").then(results => {
                     assert(Array.isArray(results));
                     const lintResult = results[0];
@@ -92,9 +85,7 @@ describe("textfix-engine", function() {
                 });
             });
             it("should lint text as ext( of path )", function() {
-                const engine = new TextFixEngine({
-                    rulePaths: [rulesDir]
-                });
+                const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text", "index.md").then(results => {
                     assert(Array.isArray(results));
                     const lintResult = results[0];
@@ -110,9 +101,7 @@ describe("textfix-engine", function() {
     describe("formatResults", function() {
         context("when use default formatter is compat", function() {
             it("should format results and return formatted text", function() {
-                const engine = new TextFixEngine({
-                    rulePaths: [rulesDir]
-                });
+                const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text").then(results => {
                     var output = engine.formatResults(results);
                     assert(/<text>/.test(output));

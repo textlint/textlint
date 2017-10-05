@@ -20,7 +20,8 @@ export default function createFormatter(formatterConfig) {
         if (isFile(builtinFormatterPath)) {
             formatterPath = builtinFormatterPath;
         } else {
-            const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
+            const pkgPath =
+                tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
             if (pkgPath) {
                 formatterPath = pkgPath;
             }

@@ -98,7 +98,10 @@ export declare class TextlintKernelProcessor {
         extension: string
     ): {
         preProcess(text: string, filePath?: string): TxtNode;
-        postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string };
+        postProcess(
+            messages: Array<any>,
+            filePath?: string
+        ): { messages: Array<any>; filePath: string };
     };
 }
 

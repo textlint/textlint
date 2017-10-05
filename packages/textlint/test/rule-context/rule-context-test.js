@@ -197,9 +197,9 @@ describe("rule-context-test", function() {
                         return {
                             [context.Syntax.Code](node) {
                                 const ruleError = new context.RuleError("error", {
-                                    line: 5, // if line >=1
-                                    column: 5 // then start with 0 + column
-                                });
+                                    line: 5,
+                                    column: 5
+                                }); // if line >=1 // then start with 0 + column
                                 context.report(node, ruleError);
                             }
                         };
@@ -292,15 +292,9 @@ describe("rule-context-test", function() {
                     "filter-rule": function(context) {
                         return {
                             [context.Syntax.Str](node) {
-                                context.shouldIgnore(node.range, {
-                                    ruleId: "*"
-                                });
-                                context.shouldIgnore(node.range, {
-                                    ruleId: "*"
-                                });
-                                context.shouldIgnore(node.range, {
-                                    ruleId: "*"
-                                });
+                                context.shouldIgnore(node.range, { ruleId: "*" });
+                                context.shouldIgnore(node.range, { ruleId: "*" });
+                                context.shouldIgnore(node.range, { ruleId: "*" });
                             }
                         };
                     }
@@ -351,9 +345,7 @@ describe("rule-context-test", function() {
                     "filter-rule": function(context) {
                         return {
                             [context.Syntax.Str](node) {
-                                context.shouldIgnore(node.range, {
-                                    ruleId: "*"
-                                });
+                                context.shouldIgnore(node.range, { ruleId: "*" });
                             }
                         };
                     }
@@ -377,19 +369,12 @@ describe("rule-context-test", function() {
                         }
                     };
                 };
-                textlint.setupRules({
-                    rule: {
-                        linter: reporter,
-                        fixer: reporter
-                    }
-                });
+                textlint.setupRules({ rule: { linter: reporter, fixer: reporter } });
                 textlint.setupFilterRules({
                     "filter-rule": function(context) {
                         return {
                             [context.Syntax.Str](node) {
-                                context.shouldIgnore(node.range, {
-                                    ruleId: "*"
-                                });
+                                context.shouldIgnore(node.range, { ruleId: "*" });
                             }
                         };
                     }
@@ -414,12 +399,7 @@ describe("rule-context-test", function() {
                             }
                         };
                     };
-                    textlint.setupRules({
-                        rule: {
-                            linter: reporter,
-                            fixer: reporter
-                        }
-                    });
+                    textlint.setupRules({ rule: { linter: reporter, fixer: reporter } });
                     // not match == not ignore
                     textlint.setupFilterRules({
                         "filter-rule": function(context) {

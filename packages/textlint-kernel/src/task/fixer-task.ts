@@ -4,7 +4,11 @@ import CoreTask from "./textlint-core-task";
 import { getFixer, getFilter } from "../core/rule-creator-helper";
 import RuleContext from "../core/rule-context";
 import FilterRuleContext from "../core/filter-rule-context";
-import { TextLintConfig, TextlintKernelFilterRule, TextlintKernelRule } from "../textlint-kernel-interface";
+import {
+    TextLintConfig,
+    TextlintKernelFilterRule,
+    TextlintKernelRule
+} from "../textlint-kernel-interface";
 import SourceCode from "../core/source-code";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
@@ -31,7 +35,13 @@ export default class TextLintCoreTask extends CoreTask {
      * @param {TextlintKernelFilterRule[]} filterRules filter rules and config set
      * @param {SourceCode} sourceCode
      */
-    constructor({ config, configBaseDir, fixerRule, filterRules, sourceCode }: TextLintCoreTaskArgs) {
+    constructor({
+        config,
+        configBaseDir,
+        fixerRule,
+        filterRules,
+        sourceCode
+    }: TextLintCoreTaskArgs) {
         super();
         this.config = config;
         this.configBaseDir = configBaseDir;

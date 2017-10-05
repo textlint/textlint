@@ -4,7 +4,11 @@ import CoreTask from "./textlint-core-task";
 import { getLinter, getFilter } from "../core/rule-creator-helper";
 import RuleContext from "../core/rule-context";
 import FilterRuleContext from "../core/filter-rule-context";
-import { TextLintConfig, TextlintKernelFilterRule, TextlintKernelRule } from "../textlint-kernel-interface";
+import {
+    TextLintConfig,
+    TextlintKernelFilterRule,
+    TextlintKernelRule
+} from "../textlint-kernel-interface";
 import SourceCode from "../core/source-code";
 
 const debug = require("debug")("textlint:TextLintCoreTask");

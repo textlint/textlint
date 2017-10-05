@@ -37,11 +37,7 @@ describe("message-filter", function() {
                     column: 2,
                     severity: 2
                 },
-                {
-                    type: "ignore",
-                    ruleId: "rule",
-                    range: [1, 2]
-                }
+                { type: "ignore", ruleId: "rule", range: [1, 2] }
             ];
             assert.equal(filterMessages(messages).length, 1);
         });
@@ -64,8 +60,7 @@ describe("message-filter", function() {
                     line: 1,
                     column: 2,
                     severity: 2
-                },
-                // ignore
+                }, // ignore
                 {
                     type: "lint",
                     ruleId: "rule",
@@ -74,8 +69,7 @@ describe("message-filter", function() {
                     line: 1,
                     column: 3,
                     severity: 2
-                },
-                // ignore
+                }, // ignore
                 {
                     type: "lint",
                     ruleId: "rule",
@@ -85,11 +79,7 @@ describe("message-filter", function() {
                     column: 4,
                     severity: 2
                 },
-                {
-                    type: "ignore",
-                    ruleId: "rule",
-                    range: [1, 2]
-                }
+                { type: "ignore", ruleId: "rule", range: [1, 2] }
             ];
             assert.equal(filterMessages(messages).length, 2);
             assert.deepEqual(filterMessages(messages), [
@@ -124,16 +114,8 @@ describe("message-filter", function() {
                     column: 4,
                     severity: 2
                 },
-                {
-                    type: "ignore",
-                    ruleId: "rule",
-                    range: [1, 100]
-                },
-                {
-                    type: "ignore",
-                    ruleId: "rule",
-                    range: [0, 200]
-                }
+                { type: "ignore", ruleId: "rule", range: [1, 100] },
+                { type: "ignore", ruleId: "rule", range: [0, 200] }
             ];
             assert.equal(filterMessages(messages).length, 0);
         });
@@ -168,13 +150,8 @@ describe("message-filter", function() {
                     column: 4,
                     severity: 2
                 },
-                {
-                    type: "ignore",
-                    ruleId: "ignore-rule",
-                    range: [1, 100],
-                    ignoringRuleId: "*" // filter all rule
-                }
-            ];
+                { type: "ignore", ruleId: "ignore-rule", range: [1, 100], ignoringRuleId: "*" }
+            ]; // filter all rule
             assert.equal(filterMessages(messages).length, 0);
         });
         it("should only filter messages that are matched the ruleId", function() {
@@ -206,13 +183,8 @@ describe("message-filter", function() {
                     column: 4,
                     severity: 2
                 },
-                {
-                    type: "ignore",
-                    ruleId: "ignore-rule",
-                    range: [1, 100],
-                    ignoringRuleId: "rule-b" // filter only "rule-b"
-                }
-            ];
+                { type: "ignore", ruleId: "ignore-rule", range: [1, 100], ignoringRuleId: "rule-b" }
+            ]; // filter only "rule-b"
             assert.equal(filterMessages(messages).length, 1);
             assert.equal(filterMessages(messages)[0].ruleId, "rule-a");
         });

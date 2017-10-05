@@ -12,15 +12,9 @@ describe("Broken Rule", function() {
         it(`should ${caseName.split("-").join(" ")} throw assertion Error`, () => {
             const fixtureRule = path.join(fixturesDir, caseName);
             const textlint = new TextLintCore();
-            textlint.setupRules({
-                "broken-rule": require(fixtureRule)
-            });
+            textlint.setupRules({ "broken-rule": require(fixtureRule) });
             return testInvalid(textlint, "text", ".md", [
-                {
-                    message: "Found TODO: '- [ ] string'",
-                    line: 1,
-                    column: 3
-                }
+                { message: "Found TODO: '- [ ] string'", line: 1, column: 3 }
             ])
                 .then(() => {
                     throw new Error("WRONG");
