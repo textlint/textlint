@@ -126,14 +126,9 @@ describe("textlint-module-resolver", function() {
         });
         it("should resolve scoped config package name", function() {
             const resolver = createResolve(FIXTURE_DIR);
-            const modulePath = resolver.resolveConfigPackageName(
-                "@textlint/textlint-config-example"
-            );
+            const modulePath = resolver.resolveConfigPackageName("@textlint/textlint-config-example");
             assert.equal(typeof modulePath, "string");
-            assert.equal(
-                modulePath,
-                path.resolve(FIXTURE_DIR, "@textlint/textlint-config-example/index.js")
-            );
+            assert.equal(modulePath, path.resolve(FIXTURE_DIR, "@textlint/textlint-config-example/index.js"));
         });
         it("should resolve config file path", function() {
             const resolver = createResolve(FIXTURE_DIR);

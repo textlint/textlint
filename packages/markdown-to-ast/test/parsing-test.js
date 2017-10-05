@@ -14,9 +14,7 @@ describe("parsing", function() {
             const input = fs.readFileSync(path.join(fixtureDir, filePath, "input.md"), "utf-8");
             const AST = parse(input);
             assert(isTxtAST(AST), "AST Should be valid AST");
-            const output = JSON.parse(
-                fs.readFileSync(path.join(fixtureDir, filePath, "output.json"), "utf-8")
-            );
+            const output = JSON.parse(fs.readFileSync(path.join(fixtureDir, filePath, "output.json"), "utf-8"));
             assert.deepEqual(AST, output);
         });
     });

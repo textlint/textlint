@@ -48,7 +48,7 @@
     "textlint-rule-unexpanded-acronym": "^1.2.1"
   },
   "prettier": {
-    "printWidth": 100,
+    "printWidth": 120,
     "tabWidth": 4
   },
   "lint-staged": {

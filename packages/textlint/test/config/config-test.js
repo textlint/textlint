@@ -45,10 +45,7 @@ describe("config", function() {
                     configFile: "@textlint/textlint-config-example",
                     rulesBaseDirectory: baseDir
                 });
-                assert(
-                    config.configFile ===
-                        path.join(baseDir, "@textlint/textlint-config-example", "index.js")
-                );
+                assert(config.configFile === path.join(baseDir, "@textlint/textlint-config-example", "index.js"));
             });
         });
     });

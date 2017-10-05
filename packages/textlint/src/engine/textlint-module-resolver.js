@@ -74,9 +74,7 @@ export default class TextLintModuleResolver {
         const PREFIX = this.RULE_NAME_PREFIX;
         const fullPackageName = `${PREFIX}${packageName}`;
         // <rule-name> or textlint-rule-<rule-name>
-        const pkgPath =
-            tryResolve(path.join(baseDir, fullPackageName)) ||
-            tryResolve(path.join(baseDir, packageName));
+        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's rule module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
@@ -95,9 +93,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const PREFIX = this.FILTER_RULE_NAME_PREFIX;
         const fullPackageName = `${PREFIX}${packageName}`;
         // <rule-name> or textlint-filter-rule-<rule-name>
-        const pkgPath =
-            tryResolve(path.join(baseDir, fullPackageName)) ||
-            tryResolve(path.join(baseDir, packageName));
+        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's filter rule module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
@@ -116,9 +112,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const PREFIX = this.PLUGIN_NAME_PREFIX;
         const fullPackageName = `${PREFIX}${packageName}`;
         // <plugin-name> or textlint-plugin-<rule-name>
-        const pkgPath =
-            tryResolve(path.join(baseDir, fullPackageName)) ||
-            tryResolve(path.join(baseDir, packageName));
+        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's plugin module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
@@ -179,9 +173,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const PREFIX = this.CONFIG_PACKAGE_PREFIX;
         const fullPackageName = `${PREFIX}${packageName}`;
         // <plugin-name> or textlint-config-<rule-name>
-        const pkgPath =
-            tryResolve(path.join(baseDir, fullPackageName)) ||
-            tryResolve(path.join(baseDir, packageName));
+        const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's config module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md

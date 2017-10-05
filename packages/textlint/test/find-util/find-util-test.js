@@ -52,9 +52,7 @@ describe("find-util", () => {
             const patterns = [getFixturePath("find-util", "one-js-file")];
             const opts = { cwd: getFixturePath("find-util") };
             const result = pathsToGlobPatterns(patterns, opts);
-            const expected = [
-                `${getFixturePath("find-util", "one-js-file").replace(/\\/g, "/")}/**/*`
-            ];
+            const expected = [`${getFixturePath("find-util", "one-js-file").replace(/\\/g, "/")}/**/*`];
 
             assert.deepEqual(result, expected);
         });
@@ -118,12 +116,9 @@ describe("find-util", () => {
 
     describe("findFiles()", () => {
         it("should return an array with a resolved (absolute) filename", () => {
-            const patterns = pathsToGlobPatterns(
-                [getFixturePath("find-util", "one-js-file", "**/*.js")],
-                {
-                    cwd: getFixturePath()
-                }
-            );
+            const patterns = pathsToGlobPatterns([getFixturePath("find-util", "one-js-file", "**/*.js")], {
+                cwd: getFixturePath()
+            });
             const result = findFiles(patterns, { cwd: getFixturePath() });
 
             const file1 = getFixturePath("find-util", "one-js-file", "baz.js");
@@ -133,12 +128,9 @@ describe("find-util", () => {
         });
 
         it("should return all files matching a glob pattern", () => {
-            const patterns = pathsToGlobPatterns(
-                [getFixturePath("find-util", "two-js-files", "**/*.js")],
-                {
-                    cwd: getFixturePath()
-                }
-            );
+            const patterns = pathsToGlobPatterns([getFixturePath("find-util", "two-js-files", "**/*.js")], {
+                cwd: getFixturePath()
+            });
             const result = findFiles(patterns, { cwd: getFixturePath() });
 
             const file1 = getFixturePath("find-util", "two-js-files", "bar.js");
@@ -169,24 +161,18 @@ describe("find-util", () => {
         });
 
         it("should not return hidden files for standard glob patterns", () => {
-            const patterns = pathsToGlobPatterns(
-                [getFixturePath("find-util", "hidden", "**/*.js")],
-                {
-                    cwd: getFixturePath()
-                }
-            );
+            const patterns = pathsToGlobPatterns([getFixturePath("find-util", "hidden", "**/*.js")], {
+                cwd: getFixturePath()
+            });
             const result = findFiles(patterns, { cwd: getFixturePath() });
 
             assert.equal(result.length, 0);
         });
 
         it("should return hidden files if included in glob pattern", () => {
-            const patterns = pathsToGlobPatterns(
-                [getFixturePath("find-util", "hidden", "**/.*.js")],
-                {
-                    cwd: getFixturePath()
-                }
-            );
+            const patterns = pathsToGlobPatterns([getFixturePath("find-util", "hidden", "**/.*.js")], {
+                cwd: getFixturePath()
+            });
             const result = findFiles(patterns, { cwd: getFixturePath() });
 
             const file1 = getFixturePath("find-util", "hidden", ".foo.js");
@@ -228,9 +214,7 @@ describe("find-util", () => {
 
         it("should return an ignored file, if ignore option is turned off", () => {
             const options = { ignore: false };
-            const patterns = pathsToGlobPatterns([
-                getFixturePath("find-util", "ignored", "**/*.js")
-            ]);
+            const patterns = pathsToGlobPatterns([getFixturePath("find-util", "ignored", "**/*.js")]);
             const result = findFiles(patterns, options);
 
             assert.equal(result.length, 1);

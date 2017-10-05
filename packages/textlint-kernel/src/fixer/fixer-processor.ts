@@ -93,16 +93,11 @@ export default class FixerProcessor {
                         const result = postProcess(messages, sourceCode.filePath);
                         const filteredResult = {
                             messages: this.messageProcessManager.process(result.messages),
-                            filePath: result.filePath
-                                ? result.filePath
-                                : `<Unkown${sourceCode.ext}>`
+                            filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
                         };
                         // TODO: should be removed resultFilePath
                         resultFilePath = filteredResult.filePath;
-                        const applied = SourceCodeFixer.applyFixes(
-                            newSourceCode,
-                            filteredResult.messages
-                        );
+                        const applied = SourceCodeFixer.applyFixes(newSourceCode, filteredResult.messages);
                         // add messages
                         Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
                         Array.prototype.push.apply(remainingMessages, applied.remainingMessages);

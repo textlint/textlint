@@ -69,10 +69,7 @@ export default class TextlintCore {
      * @param {Object} [pluginsConfig]
      */
     setupPlugins(plugins = {}, pluginsConfig = {}) {
-        this.pluginCreatorSet = new PluginCreatorSet(
-            ObjectAssign({}, this.defaultPlugins, plugins),
-            pluginsConfig
-        );
+        this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, plugins), pluginsConfig);
     }
 
     /**
@@ -184,9 +181,7 @@ export default class TextlintCore {
      */
     _mergeSetupOptions(options) {
         const configFileBaseDir =
-            typeof this.config.configFile === "string"
-                ? path.dirname(this.config.configFile)
-                : undefined;
+            typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
         return ObjectAssign({}, options, {
             configBaseDir: configFileBaseDir,
             plugins: this.pluginCreatorSet.toKernelPluginsFormat(),

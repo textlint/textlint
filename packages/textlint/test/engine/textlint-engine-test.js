@@ -343,10 +343,7 @@ describe("textlint-engine-test", function() {
             it("should return custom formatted text", function() {
                 const engine = new TextLintEngine({
                     rulePaths: [rulesDir],
-                    formatterName: path.join(
-                        __dirname,
-                        "fixtures/textlint-engine/formatter/example-formatter.js"
-                    )
+                    formatterName: path.join(__dirname, "fixtures/textlint-engine/formatter/example-formatter.js")
                 });
                 return engine.executeOnText("text").then(results => {
                     var output = engine.formatResults(results);

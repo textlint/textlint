@@ -138,9 +138,7 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
             showEmptyRuleWarning();
             return Promise.resolve(0);
         }
-        const resultsPromise = text
-            ? lintEngine.executeOnText(text, stdinFilename)
-            : lintEngine.executeOnFiles(files);
+        const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
         return resultsPromise.then(results => {
             const output = lintEngine.formatResults(results);
             if (printResults(output, cliOptions)) {

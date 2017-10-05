@@ -135,19 +135,12 @@ describe("SourceCodeFixer", function() {
 
             it("should insert text in the middle of the code", function() {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE]);
-                assert.equal(
-                    result.output,
-                    TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *")
-                );
+                assert.equal(result.output, TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *"));
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning, middle, and end of the code", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    INSERT_IN_MIDDLE,
-                    INSERT_AT_START,
-                    INSERT_AT_END
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE, INSERT_AT_START, INSERT_AT_END]);
                 assert.equal(
                     result.output,
                     INSERT_AT_START.fix.text +
@@ -181,11 +174,7 @@ describe("SourceCodeFixer", function() {
             });
 
             it("should replace text at the beginning and end of the code", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    REPLACE_ID,
-                    REPLACE_VAR,
-                    REPLACE_NUM
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [REPLACE_ID, REPLACE_VAR, REPLACE_NUM]);
                 assert.equal(result.remainingMessages.length, 0);
                 assert.equal(result.output, "let foo = 5 * 7;");
                 assert.ok(result.fixed);
@@ -215,11 +204,7 @@ describe("SourceCodeFixer", function() {
             });
 
             it("should remove text at the beginning, middle, and end of the code", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    REMOVE_END,
-                    REMOVE_START,
-                    REMOVE_MIDDLE
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_END, REMOVE_START, REMOVE_MIDDLE]);
                 assert.equal(result.remainingMessages.length, 0);
                 assert.equal(result.output, "a = 6;");
                 assert.ok(result.fixed);
@@ -228,11 +213,7 @@ describe("SourceCodeFixer", function() {
 
         describe("Combination", function() {
             it("should replace text at the beginning, remove text in the middle, and insert text at the end", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    INSERT_AT_END,
-                    REMOVE_END,
-                    REPLACE_VAR
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_AT_END, REMOVE_END, REPLACE_VAR]);
                 assert.equal(result.output, "let answer = 6;// end");
                 assert.ok(result.fixed);
                 assert.equal(result.remainingMessages.length, 0);
@@ -255,11 +236,7 @@ describe("SourceCodeFixer", function() {
             });
 
             it("should only apply one fix when ranges overlap and one message has no fix", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    REMOVE_MIDDLE,
-                    REPLACE_ID,
-                    NO_FIX
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_MIDDLE, REPLACE_ID, NO_FIX]);
                 assert.equal(result.output, TEST_CODE.replace("answer", "a"));
                 assert.equal(result.remainingMessages.length, 2);
                 assert.equal(result.remainingMessages[0].message, "nofix");
@@ -342,19 +319,12 @@ describe("SourceCodeFixer", function() {
 
             it("should insert text in the middle of the code", function() {
                 var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE]);
-                assert.equal(
-                    result.output,
-                    "\uFEFF" + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *")
-                );
+                assert.equal(result.output, "\uFEFF" + TEST_CODE.replace("6 *", INSERT_IN_MIDDLE.fix.text + "6 *"));
                 assert.equal(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning, middle, and end of the code", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    INSERT_IN_MIDDLE,
-                    INSERT_AT_START,
-                    INSERT_AT_END
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_IN_MIDDLE, INSERT_AT_START, INSERT_AT_END]);
                 assert.equal(
                     result.output,
                     "\uFEFF" +
@@ -389,11 +359,7 @@ describe("SourceCodeFixer", function() {
             });
 
             it("should replace text at the beginning and end of the code", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    REPLACE_ID,
-                    REPLACE_VAR,
-                    REPLACE_NUM
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [REPLACE_ID, REPLACE_VAR, REPLACE_NUM]);
                 assert.equal(result.remainingMessages.length, 0);
                 assert.equal(result.output, "\uFEFFlet foo = 5 * 7;");
                 assert.ok(result.fixed);
@@ -423,11 +389,7 @@ describe("SourceCodeFixer", function() {
             });
 
             it("should remove text at the beginning, middle, and end of the code", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    REMOVE_END,
-                    REMOVE_START,
-                    REMOVE_MIDDLE
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_END, REMOVE_START, REMOVE_MIDDLE]);
                 assert.equal(result.remainingMessages.length, 0);
                 assert.equal(result.output, "\uFEFFa = 6;");
                 assert.ok(result.fixed);
@@ -436,11 +398,7 @@ describe("SourceCodeFixer", function() {
 
         describe("Combination", function() {
             it("should replace text at the beginning, remove text in the middle, and insert text at the end", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    INSERT_AT_END,
-                    REMOVE_END,
-                    REPLACE_VAR
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [INSERT_AT_END, REMOVE_END, REPLACE_VAR]);
                 assert.equal(result.output, "\uFEFFlet answer = 6;// end");
                 assert.ok(result.fixed);
                 assert.equal(result.remainingMessages.length, 0);
@@ -463,11 +421,7 @@ describe("SourceCodeFixer", function() {
             });
 
             it("should only apply one fix when ranges overlap and one message has no fix", function() {
-                var result = SourceCodeFixer.applyFixes(sourceCode, [
-                    REMOVE_MIDDLE,
-                    REPLACE_ID,
-                    NO_FIX
-                ]);
+                var result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_MIDDLE, REPLACE_ID, NO_FIX]);
                 assert.equal(result.output, "\uFEFF" + TEST_CODE.replace("answer", "a"));
                 assert.equal(result.remainingMessages.length, 2);
                 assert.equal(result.remainingMessages[0].message, "nofix");
@@ -524,11 +478,7 @@ describe("SourceCodeFixer", function() {
             sourceCode = new SourceCode({ text: TEST_CODE, ast: TEST_AST, ext: ".md" });
         });
         it("should replace text at the beginning and end of the code", function() {
-            var result = SourceCodeFixer.applyFixes(sourceCode, [
-                REPLACE_ID,
-                REPLACE_VAR,
-                REPLACE_NUM
-            ]);
+            var result = SourceCodeFixer.applyFixes(sourceCode, [REPLACE_ID, REPLACE_VAR, REPLACE_NUM]);
             assert.equal(result.remainingMessages.length, 0);
             assert.equal(result.output, "let foo = 5 * 7;");
             assert.ok(result.fixed);
@@ -539,25 +489,15 @@ describe("SourceCodeFixer", function() {
                 ext: ".md"
             });
             // Sequentially apply applied message to applied output = revert
-            const revertText = SourceCodeFixer.sequentiallyApplyFixes(
-                newSource,
-                result.applyingMessages
-            );
+            const revertText = SourceCodeFixer.sequentiallyApplyFixes(newSource, result.applyingMessages);
             assert.equal(revertText, sourceCode.text);
         });
         it("should only apply one fix when ranges overlap and one message has no fix", function() {
-            const result = SourceCodeFixer.applyFixes(sourceCode, [
-                REMOVE_MIDDLE,
-                REPLACE_ID,
-                NO_FIX
-            ]);
+            const result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_MIDDLE, REPLACE_ID, NO_FIX]);
             // revert
             const text = result.output;
             const newSource = new SourceCode({ text: text, ast: parse(text), ext: ".md" });
-            const revertText = SourceCodeFixer.sequentiallyApplyFixes(
-                newSource,
-                result.applyingMessages
-            );
+            const revertText = SourceCodeFixer.sequentiallyApplyFixes(newSource, result.applyingMessages);
             assert.equal(revertText, sourceCode.text);
         });
     });

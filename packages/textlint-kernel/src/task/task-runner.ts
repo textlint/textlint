@@ -12,9 +12,7 @@ export default class TaskRunner {
      * @param {TextLintCoreTask} task
      * @returns {Promise}
      */
-    static process(
-        task: TextLintCoreTask
-    ): Promise<Array<LintReportedMessage | IgnoreReportedMessage>> {
+    static process(task: TextLintCoreTask): Promise<Array<LintReportedMessage | IgnoreReportedMessage>> {
         return new Promise((resolve, reject) => {
             const messages: Array<LintReportedMessage | IgnoreReportedMessage> = [];
             task.on(CoreTask.events.message, message => {

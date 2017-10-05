@@ -80,10 +80,7 @@ describe("RuleCreatorSet", function() {
             const ruleCreatorSet = new RuleCreatorSet(preset.rules, preset.rulesConfig);
             const withoutDuplicatedRuleCreatorSet = ruleCreatorSet.withoutDuplicated();
             assert.deepEqual(ruleCreatorSet.rules, withoutDuplicatedRuleCreatorSet.rules);
-            assert.deepEqual(
-                ruleCreatorSet.rulesConfig,
-                withoutDuplicatedRuleCreatorSet.rulesConfig
-            );
+            assert.deepEqual(ruleCreatorSet.rulesConfig, withoutDuplicatedRuleCreatorSet.rulesConfig);
         });
     });
 });

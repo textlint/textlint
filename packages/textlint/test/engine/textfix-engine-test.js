@@ -5,10 +5,7 @@ const path = require("path");
 import { TextFixEngine } from "../../src/";
 const rulesDir = path.join(__dirname, "fixtures/textfix-engine/fixer-rules");
 const inputTextPath = path.join(__dirname, "fixtures/textfix-engine/fixer-rules", "input.md");
-const formatterPath = path.join(
-    __dirname,
-    "fixtures/textfix-engine/formatter/example-fixer-formatter.js"
-);
+const formatterPath = path.join(__dirname, "fixtures/textfix-engine/formatter/example-fixer-formatter.js");
 
 describe("textfix-engine", function() {
     describe("Constructor", function() {

@@ -24,16 +24,8 @@ describe("sort-message-test", function() {
     });
     context("when reverse both", function() {
         it("should sort by line and column", function() {
-            const message = [
-                { line: 3, column: 3 },
-                { line: 1, column: 1 },
-                { line: 2, column: 2 }
-            ];
-            const expected = [
-                { line: 1, column: 1 },
-                { line: 2, column: 2 },
-                { line: 3, column: 3 }
-            ];
+            const message = [{ line: 3, column: 3 }, { line: 1, column: 1 }, { line: 2, column: 2 }];
+            const expected = [{ line: 1, column: 1 }, { line: 2, column: 2 }, { line: 3, column: 3 }];
             assert.deepEqual(sortMessages(message), expected);
         });
     });

@@ -48,10 +48,7 @@ describe("textlint-core", function() {
         context("when set ruleConfig.severity", function() {
             it("message.severity should used the config", function() {
                 const textlint = new TextLintCore();
-                textlint.setupRules(
-                    { "rule-name": exampleRule },
-                    { "rule-name": { severity: "warning" } }
-                );
+                textlint.setupRules({ "rule-name": exampleRule }, { "rule-name": { severity: "warning" } });
                 return textlint.lintMarkdown("# Test").then(result => {
                     assert(result.filePath === "<markdown>");
                     assert(result.messages.length > 0);
@@ -73,10 +70,7 @@ describe("textlint-core", function() {
             });
             it("message.severity should be error", function() {
                 const textlint = new TextLintCore();
-                textlint.setupRules(
-                    { "rule-name": exampleRule },
-                    { "rule-name": { severity: "error" } }
-                );
+                textlint.setupRules({ "rule-name": exampleRule }, { "rule-name": { severity: "error" } });
                 return textlint.lintMarkdown("# Test").then(result => {
                     assert(result.filePath === "<markdown>");
                     assert(result.messages.length > 0);
@@ -88,10 +82,7 @@ describe("textlint-core", function() {
         context("when set wrong ruleConfig.severity", function() {
             it("should throw error", function() {
                 const textlint = new TextLintCore();
-                textlint.setupRules(
-                    { "rule-name": exampleRule },
-                    { "rule-name": { severity: "xxxxxxxx" } }
-                ); // wrong config
+                textlint.setupRules({ "rule-name": exampleRule }, { "rule-name": { severity: "xxxxxxxx" } }); // wrong config
                 try {
                     textlint.lintText("test").catch(error => {
                         assert(error instanceof Error);

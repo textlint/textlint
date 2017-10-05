@@ -109,10 +109,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         const shouldIgnore = (args: ShouldIgnoreArgs) => {
             const { ruleId, range, optional } = args;
             assert(
-                typeof range[0] !== "undefined" &&
-                    typeof range[1] !== "undefined" &&
-                    range[0] >= 0 &&
-                    range[1] >= 0,
+                typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range
             );
             // FIXME: should have index, loc
@@ -235,9 +232,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         Object.keys(ruleObject).forEach((nodeType: keyof typeof ruleObject) => {
             this.ruleTypeEmitter.on(
                 nodeType,
-                timing.enabled
-                    ? timing.time(ruleContext.id, ruleObject[nodeType] as Function)
-                    : ruleObject[nodeType]!
+                timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType] as Function) : ruleObject[nodeType]!
             );
         });
     }

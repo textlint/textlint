@@ -17,9 +17,7 @@ describe("formatter:stylish", function() {
         var code = [
             {
                 filePath: "foo.js",
-                applyingMessages: [
-                    { message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }
-                ],
+                applyingMessages: [{ message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }],
                 remainingMessages: []
             }
         ];
@@ -69,16 +67,12 @@ foo.js
         var code = [
             {
                 filePath: "foo.js",
-                applyingMessages: [
-                    { message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }
-                ],
+                applyingMessages: [{ message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }],
                 remainingMessages: []
             },
             {
                 filePath: "bar.js",
-                applyingMessages: [
-                    { message: "Unexpected bar.", severity: 1, line: 6, column: 11, ruleId: "bar" }
-                ],
+                applyingMessages: [{ message: "Unexpected bar.", severity: 1, line: 6, column: 11, ruleId: "bar" }],
                 remainingMessages: []
             }
         ];

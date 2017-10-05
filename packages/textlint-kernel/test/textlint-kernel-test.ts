@@ -33,9 +33,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [
-                    { pluginId: "example", plugin: getPlugin(), options: expectedPluginOptions }
-                ],
+                plugins: [{ pluginId: "example", plugin: getPlugin(), options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             return kernel.lintText("text", options).then(_result => {
@@ -46,11 +44,9 @@ describe("textlint-kernel", () => {
         context("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel
-                    .lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any)
-                    .catch(error => {
-                        assert.ok(error instanceof Error);
-                    });
+                return kernel.lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch(error => {
+                    assert.ok(error instanceof Error);
+                });
             });
         });
     });
@@ -81,9 +77,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [
-                    { pluginId: "example", plugin: getPlugin(), options: expectedPluginOptions }
-                ],
+                plugins: [{ pluginId: "example", plugin: getPlugin(), options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             return kernel.lintText("text", options).then(_result => {
@@ -94,11 +88,9 @@ describe("textlint-kernel", () => {
         context("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel
-                    .fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any)
-                    .catch(error => {
-                        assert.ok(error instanceof Error);
-                    });
+                return kernel.fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch(error => {
+                    assert.ok(error instanceof Error);
+                });
             });
         });
     });

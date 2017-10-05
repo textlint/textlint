@@ -128,12 +128,10 @@ describe("cli-test", function() {
             const targetFile = path.join(__dirname, "fixtures/todo.html");
             const longName = "textlint-plugin-html";
             const ruleModuleName = "no-todo";
-            return cli
-                .execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`)
-                .then(result => {
-                    assert.equal(result, 1);
-                    assert(isCalled);
-                });
+            return cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 1);
+                assert(isCalled);
+            });
         });
         it("should lint the file with long name", function() {
             let isCalled = false;
@@ -144,12 +142,10 @@ describe("cli-test", function() {
             const targetFile = path.join(__dirname, "fixtures/todo.html");
             const shortName = "html";
             const ruleModuleName = "no-todo";
-            return cli
-                .execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`)
-                .then(result => {
-                    assert.equal(result, 1);
-                    assert(isCalled);
-                });
+            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
+                assert.equal(result, 1);
+                assert(isCalled);
+            });
         });
 
         it("should lint and correct error", function() {
@@ -161,12 +157,10 @@ describe("cli-test", function() {
             const targetFile = path.join(__dirname, "fixtures/todo.html");
             const shortName = "html";
             const ruleModuleName = "no-todo";
-            return cli
-                .execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`)
-                .then(result => {
-                    assert(isCalled);
-                    assert.equal(result, 1);
-                });
+            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
+                assert(isCalled);
+                assert.equal(result, 1);
+            });
         });
         it("when not error, status is 0", function() {
             let isCalled = false;
@@ -176,12 +170,10 @@ describe("cli-test", function() {
             const targetFile = path.join(__dirname, "fixtures/pass.html");
             const shortName = "html";
             const ruleModuleName = "no-todo";
-            return cli
-                .execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`)
-                .then(result => {
-                    assert(!isCalled);
-                    assert.equal(result, 0);
-                });
+            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
+                assert(!isCalled);
+                assert.equal(result, 0);
+            });
         });
     });
     context("When run with --fix", function() {
@@ -217,12 +209,10 @@ describe("cli-test", function() {
             };
             const targetFile = path.join(__dirname, "fixtures/todo.html");
             const configFile = path.join(__dirname, "fixtures/.textlintrc.quiet");
-            return cli
-                .execute(`${targetFile} -c ${configFile} --quiet ${targetFile}`)
-                .then(result => {
-                    assert.equal(result, 0);
-                    assert(!isCalled);
-                });
+            return cli.execute(`${targetFile} -c ${configFile} --quiet ${targetFile}`).then(result => {
+                assert.equal(result, 0);
+                assert(!isCalled);
+            });
         });
     });
     context("When not set rules", function() {
