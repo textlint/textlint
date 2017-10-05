@@ -71,10 +71,7 @@ describe("markdown-parser", function() {
             var RootDocument = parse("");
             assert.equal(RootDocument.type, Syntax.Document);
             assert.equal(RootDocument.raw, "");
-            assert.deepEqual(RootDocument.loc, {
-                start: { line: 1, column: 0 },
-                end: { line: 1, column: 0 }
-            });
+            assert.deepEqual(RootDocument.loc, { start: { line: 1, column: 0 }, end: { line: 1, column: 0 } });
             assert.deepEqual(RootDocument.range, [0, 0]);
         });
         it("should has range and loc on whole text", function() {

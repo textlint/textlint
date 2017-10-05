@@ -130,12 +130,7 @@ describe("compute-location", function() {
                 range: [10, 20],
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
-            const ruleError = {
-                message: "message",
-                line: 0,
-                column: 5,
-                fix: { range: [1, 5], text: "replace" }
-            };
+            const ruleError = { message: "message", line: 0, column: 5, fix: { range: [1, 5], text: "replace" } };
             const { line, column, fix } = sourceLocation.adjust({ node, ruleError });
             assert.equal(line, 1);
             assert.equal(column, 15);

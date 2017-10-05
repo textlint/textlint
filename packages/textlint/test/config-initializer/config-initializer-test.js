@@ -39,11 +39,7 @@ describe("config-initializer-test", function() {
                 assert.equal(typeof config.filters, "object");
                 assert.equal(typeof config.rules, "object");
                 assert.deepEqual(config.filters, { comments: true });
-                assert.deepEqual(config.rules, {
-                    eslint: true,
-                    prh: true,
-                    "preset-ja-technical-writing": true
-                });
+                assert.deepEqual(config.rules, { eslint: true, prh: true, "preset-ja-technical-writing": true });
             });
         });
     });

@@ -196,10 +196,7 @@ describe("rule-context-test", function() {
                     "rule-key": function(context) {
                         return {
                             [context.Syntax.Code](node) {
-                                const ruleError = new context.RuleError("error", {
-                                    line: 5,
-                                    column: 5
-                                }); // if line >=1 // then start with 0 + column
+                                const ruleError = new context.RuleError("error", { line: 5, column: 5 }); // if line >=1 // then start with 0 + column
                                 context.report(node, ruleError);
                             }
                         };
@@ -360,12 +357,7 @@ describe("rule-context-test", function() {
                 const reporter = context => {
                     return {
                         [context.Syntax.Str](node) {
-                            context.report(
-                                node,
-                                new context.RuleError("message", {
-                                    fix: context.fixer.remove(node)
-                                })
-                            );
+                            context.report(node, new context.RuleError("message", { fix: context.fixer.remove(node) }));
                         }
                     };
                 };
@@ -475,9 +467,7 @@ describe("rule-context-test", function() {
             it("should return undefined", function() {
                 const configBasedir = path.join(__dirname, "fixtures");
                 // TODO: it will be moved to kernel
-                const textlint = new TextLintCore({
-                    configFile: path.join(configBasedir, ".textlintrc")
-                });
+                const textlint = new TextLintCore({ configFile: path.join(configBasedir, ".textlintrc") });
                 textlint.setupRules({
                     "rule-key": function(context) {
                         return {

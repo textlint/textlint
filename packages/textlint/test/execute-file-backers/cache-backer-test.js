@@ -19,10 +19,7 @@ describe("CacheBacker", function() {
     });
     context("when previously have success result", function() {
         it("shouldExecute return false", () => {
-            const config = new Config({
-                cache: true,
-                cacheLocation: path.resolve(configDir, ".cache")
-            });
+            const config = new Config({ cache: true, cacheLocation: path.resolve(configDir, ".cache") });
             const cacheBacker = new CacheBacker(config);
             const prevResult = { filePath: path.join(__dirname, "fixtures/test.md"), messages: [] };
             // prev
@@ -36,15 +33,9 @@ describe("CacheBacker", function() {
 
     context("when previously have failure result", function() {
         it("shouldExecute return true", () => {
-            const config = new Config({
-                cache: true,
-                cacheLocation: path.resolve(configDir, ".cache")
-            });
+            const config = new Config({ cache: true, cacheLocation: path.resolve(configDir, ".cache") });
             const cacheBacker = new CacheBacker(config);
-            const prevResult = {
-                filePath: path.join(__dirname, "fixtures/test.md"),
-                messages: [{}, {}]
-            };
+            const prevResult = { filePath: path.join(__dirname, "fixtures/test.md"), messages: [{}, {}] };
             // prev
             cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();

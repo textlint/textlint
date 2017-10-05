@@ -1,0 +1,5 @@
+{
+  "name": "textlint-rule-example",
+  "main": "index.js",
+  "private": true
+}

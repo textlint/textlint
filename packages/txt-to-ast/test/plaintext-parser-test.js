@@ -12,10 +12,7 @@ describe("plaintext-parser-test", function() {
             // top type is always Document
             assert.equal(ast.type, Syntax.Document);
             assert.equal(ast.raw, text);
-            assert.deepEqual(ast.loc, {
-                start: { line: 1, column: 0 },
-                end: { line: 1, column: text.length }
-            });
+            assert.deepEqual(ast.loc, { start: { line: 1, column: 0 }, end: { line: 1, column: text.length } });
             assert.deepEqual(ast.range, [0, text.length]);
             // should has children
             assert(ast.children.length > 0);

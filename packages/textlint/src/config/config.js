@@ -10,12 +10,7 @@ const path = require("path");
 import loadConfig from "./config-loader";
 import { isPresetRuleKey } from "../util/config-util";
 import { mapRulesConfig } from "./preset-loader";
-import {
-    loadRulesConfig as loadRulesConfigFromPlugins,
-    loadAvailableExtensions,
-    getPluginConfig,
-    getPluginNames
-} from "./plugin-loader";
+import { loadAvailableExtensions, getPluginConfig, getPluginNames } from "./plugin-loader";
 import loadRulesConfigFromPresets from "./preset-loader";
 import TextLintModuleResolver from "../engine/textlint-module-resolver";
 import separateAvailableOrDisable from "./separate-by-config-option";
@@ -299,9 +294,8 @@ class Config {
         this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
         this.pluginsConfig = options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig;
         // rulesConfig
-        const pluginRulesConfig = loadRulesConfigFromPlugins(this.plugins, moduleResolver);
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
-        this.rulesConfig = objectAssign({}, presetRulesConfig, pluginRulesConfig, options.rulesConfig);
+        this.rulesConfig = objectAssign({}, presetRulesConfig, options.rulesConfig);
 
         // filterRulesConfig
         this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;

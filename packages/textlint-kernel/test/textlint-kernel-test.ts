@@ -14,11 +14,7 @@ describe("textlint-kernel", () => {
                 ext: ".md",
                 plugins: [{ pluginId: "markdown", plugin: require("textlint-plugin-markdown") }],
                 rules: [
-                    {
-                        ruleId: "error",
-                        rule: errorRule,
-                        options: { errors: [{ message: "error message", index: 0 }] }
-                    }
+                    { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
                 ]
             };
             return kernel.lintText("text", options).then(result => {
@@ -58,11 +54,7 @@ describe("textlint-kernel", () => {
                 ext: ".md",
                 plugins: [{ pluginId: "markdown", plugin: require("textlint-plugin-markdown") }],
                 rules: [
-                    {
-                        ruleId: "error",
-                        rule: errorRule,
-                        options: { errors: [{ message: "error message", index: 0 }] }
-                    }
+                    { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
                 ]
             };
             return kernel.fixText("text", options).then(result => {

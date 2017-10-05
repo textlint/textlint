@@ -108,10 +108,7 @@ describe("textfix-engine", function() {
         });
         context("when loaded custom formatter", function() {
             it("should return custom formatted text", function() {
-                const engine = new TextFixEngine({
-                    rulePaths: [rulesDir],
-                    formatterName: formatterPath
-                });
+                const engine = new TextFixEngine({ rulePaths: [rulesDir], formatterName: formatterPath });
                 return engine.executeOnText("text").then(results => {
                     const output = engine.formatResults(results);
                     assert(!/<text>/.test(output));

@@ -17,9 +17,7 @@ describe("config", function() {
         });
         context("when specify --config", function() {
             it("should use the config file", function() {
-                const config = Config.initWithCLIOptions({
-                    config: path.join(__dirname, "fixtures", ".textlintrc")
-                });
+                const config = Config.initWithCLIOptions({ config: path.join(__dirname, "fixtures", ".textlintrc") });
                 assert(config.rules.length > 0);
             });
         });
