@@ -21,7 +21,7 @@ export function loadFromDir(rulesDir, extname = ".js") {
         if (path.extname(file) !== extname) {
             return;
         }
-        const withoutExt = file.slice(0, -3);
+        const withoutExt = path.basename(file, extname);
         rules[withoutExt] = interopRequire(path.join(rulesDirAbsolutePath, file));
     });
     return rules;
