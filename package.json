@@ -6,7 +6,7 @@
     "publish:beta": "lerna publish --conventional-commits --npm-tag=next",
     "prepare": "yarn run bootstrap",
     "bootstrap": "lerna bootstrap",
-    "example": "npm-run-all -l example:*",
+    "example": "npm-run-all --parallel --aggregate-output example:*",
     "example:cli": "cd ./examples/cli && npm run test:ci",
     "example:config-file": "cd ./examples/config-file && npm run test:ci",
     "example:rulesdir": "cd ./examples/rulesdir && npm run test:ci",
