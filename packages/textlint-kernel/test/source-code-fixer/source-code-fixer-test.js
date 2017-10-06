@@ -483,11 +483,7 @@ describe("SourceCodeFixer", function() {
             assert.equal(result.output, "let foo = 5 * 7;");
             assert.ok(result.fixed);
             // revert
-            var newSource = new SourceCode({
-                text: result.output,
-                ast: parse(result.output),
-                ext: ".md"
-            });
+            var newSource = new SourceCode({ text: result.output, ast: parse(result.output), ext: ".md" });
             // Sequentially apply applied message to applied output = revert
             const revertText = SourceCodeFixer.sequentiallyApplyFixes(newSource, result.applyingMessages);
             assert.equal(revertText, sourceCode.text);

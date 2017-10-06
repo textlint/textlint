@@ -9,6 +9,7 @@ import { loadFromDir } from "./rule-loader";
 import Logger from "../util/logger";
 import TextLintModuleResolver from "./textlint-module-resolver";
 import TextLintModuleMapper from "./textlint-module-mapper";
+
 export default class TextLintModuleLoader extends EventEmitter {
     static get Event() {
         return {
@@ -91,20 +92,20 @@ export default class TextLintModuleLoader extends EventEmitter {
         const PLUGIN_NAME_PREFIX = this.config.constructor.PLUGIN_NAME_PREFIX;
         const prefixMatch = new RegExp(`^${PLUGIN_NAME_PREFIX}`);
         const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
-        // Processor plugin doesn't define rules
+        // Notes: plugins not support "rules" and "rulesConfig"
+        // https://github.com/textlint/textlint/issues/291
         if (plugin.hasOwnProperty("rules")) {
-            const entities = TextLintModuleMapper.createEntities(plugin.rules, pluginNameWithoutPrefix);
-            entities.forEach(entry => {
-                this.emit(TextLintModuleLoader.Event.rule, entry);
-            });
+            throw new Error(`textlint plugins not support "rules" and "rulesConfig".
+But ${pluginName} has these filed.
+For more details, See https://github.com/textlint/textlint/issues/291`);
         }
         // register plugin.Processor
-        // TODO: https://github.com/textlint/textlint/issues/291
-        // Should assert it
-        if (plugin.hasOwnProperty("Processor")) {
-            const pluginEntry = [pluginNameWithoutPrefix, plugin];
-            this.emit(TextLintModuleLoader.Event.plugin, pluginEntry);
+        if (!plugin.hasOwnProperty("Processor")) {
+            throw new Error(`textlint plugin should have "Processor".
+For more details. See https://github.com/textlint/textlint/blob/master/docs/plugin.md`);
         }
+        const pluginEntry = [pluginNameWithoutPrefix, plugin];
+        this.emit(TextLintModuleLoader.Event.plugin, pluginEntry);
     }
 
     loadPreset(presetName) {

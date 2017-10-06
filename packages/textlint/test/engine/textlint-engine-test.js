@@ -3,6 +3,7 @@
 const assert = require("power-assert");
 const path = require("path");
 import { TextLintEngine } from "../../src/";
+
 const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");
 const filterRulesDir = path.join(__dirname, "fixtures/textlint-engine/filters");
 const pluginsDir = path.join(__dirname, "fixtures/textlint-engine/plugins");
@@ -24,8 +25,8 @@ describe("textlint-engine-test", function() {
         context("when args is Config object", function() {
             it("should set directory to config", function() {
                 // Issue : when use Config as argus, have to export `../src/config/config`
-                var Config = require("../../src/config/config");
-                var config = new Config({ rulePaths: [rulesDir] });
+                const Config = require("../../src/config/config");
+                const config = new Config({ rulePaths: [rulesDir] });
                 const engine = new TextLintEngine(config);
                 assert.deepEqual(engine.config.rulePaths, [rulesDir]);
             });
@@ -38,7 +39,7 @@ describe("textlint-engine-test", function() {
                     rules: ["@textlint/textlint-rule-example"],
                     rulesBaseDirectory: rulesDir
                 });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
                 const ruleName = ruleNames[0];
                 assert(ruleName === "@textlint/textlint-rule-example");
@@ -48,7 +49,7 @@ describe("textlint-engine-test", function() {
         context("when (textlint-rule-)no-todo is specified", function() {
             it("should set `no-todo` as key to rule dict", function() {
                 const engine = new TextLintEngine({ rules: ["no-todo"] });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -56,18 +57,18 @@ describe("textlint-engine-test", function() {
         context("when textlint-rule-no-todo is specified", function() {
             it("should set `no-todo` as key to rule dict", function() {
                 const engine = new TextLintEngine({ rules: ["textlint-rule-no-todo"] });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
         });
     });
     describe("#loadPlugin", function() {
-        context("when Plugin has not rules", function() {
-            it("should not throw Error", function() {
-                const engine = new TextLintEngine({ plugins: ["markdown"] });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
-                assert(ruleNames.length === 0);
+        context("when Plugin has rules", function() {
+            it("should throw Error", function() {
+                assert.throws(() => {
+                    new TextLintEngine({ rulesBaseDirectory: pluginsDir, plugins: ["invalid"] });
+                }, Error);
             });
         });
         context("when Processor Plugin is a scoped module", function() {
@@ -81,30 +82,21 @@ describe("textlint-engine-test", function() {
         context("when Plugin has not rules", function() {
             it("should not throw Error", function() {
                 const engine = new TextLintEngine({ plugins: ["markdown"] });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 0);
-            });
-        });
-        context("when the rule is **not** defined", function() {
-            it("should define rules of plugin", function() {
-                const engine = new TextLintEngine({ rulesBaseDirectory: pluginsDir });
-                engine.loadPlugin("example");
-                var ruleNames = engine.ruleMap.getAllRuleNames();
-                assert(ruleNames.length > 0);
-                assert.equal(ruleNames[0], "example/example-rule");
             });
         });
         context("when the rule is defined", function() {
             it("should not re-load rule", function() {
-                const engine = new TextLintEngine({ rulesBaseDirectory: pluginsDir });
-                engine.loadPlugin("example");
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
+                engine.loadRule("example");
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
-                var ruleObject = engine.ruleMap.getRule(ruleNames[0]);
+                const ruleObject = engine.ruleMap.getRule(ruleNames[0]);
                 // loadRule should ignore
-                engine.loadPlugin("example");
+                engine.loadRule("example");
                 // should equal prev loaded object
-                assert(engine.ruleMap.getRule("example/example-rule") === ruleObject);
+                assert(engine.ruleMap.getRule("example") === ruleObject);
             });
         });
         context("when loading html plugin", function() {
@@ -129,7 +121,7 @@ describe("textlint-engine-test", function() {
                     presets: ["@textlint/textlint-rule-preset-example"],
                     rulesBaseDirectory: presetsDir
                 });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
                 const ruleName = ruleNames[0];
                 assert(ruleName === "@textlint/textlint-rule-preset-example/example-rule");
@@ -138,11 +130,8 @@ describe("textlint-engine-test", function() {
         });
         context("when the rule is **not** defined", function() {
             it("should define rules of preset", function() {
-                const engine = new TextLintEngine({
-                    presets: ["preset-example"],
-                    rulesBaseDirectory: presetsDir
-                });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const engine = new TextLintEngine({ presets: ["preset-example"], rulesBaseDirectory: presetsDir });
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 2);
                 assert.equal(ruleNames[0], "preset-example/a");
                 assert.equal(ruleNames[1], "preset-example/b");
@@ -150,13 +139,10 @@ describe("textlint-engine-test", function() {
         });
         context("when the rule is defined", function() {
             it("should not load rule", function() {
-                const engine = new TextLintEngine({
-                    presets: ["preset-example"],
-                    rulesBaseDirectory: presetsDir
-                });
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const engine = new TextLintEngine({ presets: ["preset-example"], rulesBaseDirectory: presetsDir });
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 2);
-                var ruleObject = engine.ruleMap.getRule("preset-example/a");
+                const ruleObject = engine.ruleMap.getRule("preset-example/a");
                 // loadRule should ignore
                 engine.loadPreset("preset-example");
                 assert(ruleNames.length === 2);
@@ -171,7 +157,7 @@ describe("textlint-engine-test", function() {
             it("should define the rule", function() {
                 const engine = new TextLintEngine();
                 engine.loadRule("textlint-rule-no-todo");
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -180,9 +166,9 @@ describe("textlint-engine-test", function() {
             it("should not re-load rule", function() {
                 const engine = new TextLintEngine();
                 engine.loadRule("textlint-rule-no-todo");
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
-                var ruleObject = engine.ruleMap.getRule(ruleNames[0]);
+                const ruleObject = engine.ruleMap.getRule(ruleNames[0]);
                 // loadRule should ignore
                 engine.loadRule("textlint-rule-no-todo");
                 // should equal prev loaded object
@@ -193,7 +179,7 @@ describe("textlint-engine-test", function() {
             it("should load rule from path", function() {
                 const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
                 engine.loadRule("example-rule");
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
         });
@@ -203,7 +189,7 @@ describe("textlint-engine-test", function() {
                     rulesBaseDirectory: path.join(__dirname, "/fixtures/textlint-engine/issue81")
                 });
                 engine.loadRule("no-default-assign-rule");
-                var ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
             });
         });
@@ -222,9 +208,9 @@ describe("textlint-engine-test", function() {
             it("should not re-load rule", function() {
                 const engine = new TextLintEngine();
                 engine.loadFilerRule("textlint-filter-rule-comments");
-                var ruleNames = engine.filterRuleMap.getAllRuleNames();
+                const ruleNames = engine.filterRuleMap.getAllRuleNames();
                 assert(ruleNames.length === 1);
-                var ruleObject = engine.filterRuleMap.getRule(ruleNames[0]);
+                const ruleObject = engine.filterRuleMap.getRule(ruleNames[0]);
                 // loadRule should ignore
                 // textlint-filter-rule-comments
                 engine.loadFilerRule("comments");
@@ -244,10 +230,10 @@ describe("textlint-engine-test", function() {
     describe("executeOnFiles", function() {
         it("should found error message", function() {
             const engine = new TextLintEngine({ rulePaths: [rulesDir] });
-            var filePath = path.join(__dirname, "fixtures/test.md");
+            const filePath = path.join(__dirname, "fixtures/test.md");
             return engine.executeOnFiles([filePath]).then(results => {
                 assert(Array.isArray(results));
-                var fileResult = results[0];
+                const fileResult = results[0];
                 assert(fileResult.filePath === filePath);
                 assert(Array.isArray(fileResult.messages));
                 assert(fileResult.messages.length > 0);
@@ -255,18 +241,18 @@ describe("textlint-engine-test", function() {
         });
         it("should lint a file with same rules", function() {
             const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
-            var filePath = path.join(__dirname, "fixtures/test.md");
+            const filePath = path.join(__dirname, "fixtures/test.md");
             engine.loadRule("example-rule");
-            var beforeRuleNames = engine.ruleMap.getAllRuleNames();
+            const beforeRuleNames = engine.ruleMap.getAllRuleNames();
             return engine.executeOnFiles([filePath]).then(() => {
-                var afterRuleNames = engine.ruleMap.getAllRuleNames();
+                const afterRuleNames = engine.ruleMap.getAllRuleNames();
                 assert.deepEqual(beforeRuleNames, afterRuleNames);
             });
         });
         context("when process file that has un-available ext ", function() {
             it("should return empty results ", function() {
                 const engine = new TextLintEngine();
-                var filePath = path.join(__dirname, "fixtures/test.unknown");
+                const filePath = path.join(__dirname, "fixtures/test.unknown");
                 return engine.executeOnFiles([filePath]).then(results => {
                     assert(Array.isArray(results));
                     assert(results.length === 0);
@@ -279,7 +265,7 @@ describe("textlint-engine-test", function() {
             const engine = new TextLintEngine({ rulePaths: [rulesDir] });
             return engine.executeOnText("text").then(results => {
                 assert(Array.isArray(results));
-                var lintResult = results[0];
+                const lintResult = results[0];
                 assert(lintResult.filePath === "<text>");
                 assert(Array.isArray(lintResult.messages));
                 assert(lintResult.messages.length > 0);
@@ -288,9 +274,9 @@ describe("textlint-engine-test", function() {
         it("should lint a text with same rules", function() {
             const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
             engine.loadRule("example-rule");
-            var beforeRuleNames = engine.ruleMap.getAllRuleNames();
+            const beforeRuleNames = engine.ruleMap.getAllRuleNames();
             return engine.executeOnText("text").then(() => {
-                var afterRuleNames = engine.ruleMap.getAllRuleNames();
+                const afterRuleNames = engine.ruleMap.getAllRuleNames();
                 assert.deepEqual(beforeRuleNames, afterRuleNames);
             });
         });
@@ -310,7 +296,7 @@ describe("textlint-engine-test", function() {
                 const engine = new TextLintEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text", ".md").then(results => {
                     assert(Array.isArray(results));
-                    var lintResult = results[0];
+                    const lintResult = results[0];
                     assert(lintResult.filePath === "<markdown>");
                     assert(Array.isArray(lintResult.messages));
                     assert(lintResult.messages.length > 0);
@@ -320,7 +306,7 @@ describe("textlint-engine-test", function() {
                 const engine = new TextLintEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text", "index.md").then(results => {
                     assert(Array.isArray(results));
-                    var lintResult = results[0];
+                    const lintResult = results[0];
                     assert(lintResult.filePath === "<markdown>");
                     assert(Array.isArray(lintResult.messages));
                     assert(lintResult.messages.length > 0);
@@ -333,7 +319,7 @@ describe("textlint-engine-test", function() {
             it("should format results and return formatted text", function() {
                 const engine = new TextLintEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text").then(results => {
-                    var output = engine.formatResults(results);
+                    const output = engine.formatResults(results);
                     assert(/<text>/.test(output));
                     assert(/problem/.test(output));
                 });
@@ -346,7 +332,7 @@ describe("textlint-engine-test", function() {
                     formatterName: path.join(__dirname, "fixtures/textlint-engine/formatter/example-formatter.js")
                 });
                 return engine.executeOnText("text").then(results => {
-                    var output = engine.formatResults(results);
+                    const output = engine.formatResults(results);
                     assert(!/<text>/.test(output));
                     assert(/example-formatter/.test(output));
                 });

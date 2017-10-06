@@ -42,22 +42,12 @@ describe("RuleCreatorSet", function() {
                 ruleC: availableRule
             });
             assert.deepEqual(ruleCreatorSet.ruleNames, ["ruleA", "ruleB", "ruleC"]);
-            assert.deepEqual(ruleCreatorSet.rulesConfig, {
-                ruleA: true,
-                ruleB: { key: true },
-                ruleC: true
-            });
+            assert.deepEqual(ruleCreatorSet.rulesConfig, { ruleA: true, ruleB: { key: true }, ruleC: true });
 
             const withoutDuplicatedRuleCreatorSet = ruleCreatorSet.withoutDuplicated();
-            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rules, {
-                ruleA: availableRule,
-                ruleB: availableRule
-            });
+            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rules, { ruleA: availableRule, ruleB: availableRule });
             assert.deepEqual(withoutDuplicatedRuleCreatorSet.ruleNames, ["ruleA", "ruleB"]);
-            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rulesConfig, {
-                ruleA: true,
-                ruleB: { key: true }
-            });
+            assert.deepEqual(withoutDuplicatedRuleCreatorSet.rulesConfig, { ruleA: true, ruleB: { key: true } });
         });
         it("should filter duplicated rule and ruleConfig", function() {
             const availableRule = function ruleMock() {};

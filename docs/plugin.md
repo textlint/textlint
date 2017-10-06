@@ -1,76 +1,25 @@
 # Plugin
 
 Each plugin is an npm module with a name in the format of `textlint-plugin-<plugin-name>`.
-For example, `textlint-plugin-english`.
-
-## Create a Plugin
-
-**Deprecated**: Plugin should have `Processor`. Use [preset](./rule-preset.md) insteadof plugin for collecting rules.
-
-- [Drop "rules" and "rulesConfig" in plugin · Issue #291 · textlint/textlint](https://github.com/textlint/textlint/issues/291 "Drop &#34;rules&#34; and &#34;rulesConfig&#34; in plugin · Issue #291 · textlint/textlint")
-
-Plugin is a set of `rules` and `rulesConfig`.
-
-If your plugin has rules, then it must export an object with a rules property.
-This rules property should be an object containing a key-value mapping of rule ID to rule.
-The rule ID does not have to follow any naming convention (so it can just be `no-todo`, for instance).
-
-```js
-export default {
-    rules: {
-        "no-todo"(context, options) {
-            // rule implementation ...
-        }
-    },
-    rulesConfig: {
-        "no-todo": true
-    }
-};
-```
-
-## How to create rule?
-
-This is the same way of textlint rule.
- 
-See [docs/rule.md](./rule.md).
-
-## Default Configuration for Plugins
-   
-You can provide default configuration for `rules` by `rulesConfig` property.
-`rulesConfig` follows the same pattern as you would use in your `.textlintrc` config rules property, but without plugin name as a prefix.
-   
-```js
-export default {
-    rules: {
-        myFirstRule: require("./lib/rules/my-first-rule"),
-        mySecondRule: require("./lib/rules/my-second-rule")
-    },
-    rulesConfig: {
-        myFirstRule: true,
-        mySecondRule: {
-            key: "value"
-        }
-    }
-};
-```
+For example, `textlint-plugin-markdown` is a textlint plugin.
 
 ## Processor
 
-Plugin has a `Processor` that is optional.
+Plugin has a `Processor` that is required.
 
 ```js
 // index.js
 export default {
-    Processor: require("./SomeProcessor")
+    Processor: require("./YourProcessor")
 };
 ```
 
 `Processor` class defined pre/post process of the file and available file types.
 
-textlint already support `.txt` and `.md`. These are implemented by `Processor`
+textlint support `.txt` and `.md` by default. These are implemented as `Processor` plugin.
 
-- [textlint/textlint-plugin-markdown](https://github.com/textlint/textlint-plugin-markdown)
-- [textlint/textlint-plugin-text](https://github.com/textlint/textlint-plugin-text)
+- [textlint/textlint-plugin-markdown](/packages/textlint-plugin-markdown)
+- [textlint/textlint-plugin-text](/packages/textlint-plugin-text)
 - [textlint/textlint-plugin-html](https://github.com/textlint/textlint-plugin-html)
 
 `Processor` class example code:
@@ -107,6 +56,15 @@ export default class TextProcessor {
 }
 ```
 
+### `preProcess`
+
+`preProcess` method should return `TxtAST` object.
+`TxtAST` object is a Abstract Syntax Tree(AST) of the text.
+
+:information_source: For more details about `TxtAST`, see [TxtAST interface documents](txtnode.md).
+
+## Plugin configuration
+
 You can use Processor plugin in the same way a plugin.
 
 ```
@@ -117,11 +75,7 @@ You can use Processor plugin in the same way a plugin.
 }
 ```
 
-Your Processor plugins's `preProcess` method should return `TxtAST` object.
-
-:information_source: Please see document about `TxtAST` before implementing Processor/Parser.
-
-## Processor options
+### options 
 
 You can pass a options to your plugin from `.textlintrc`.
 
@@ -143,46 +97,17 @@ export default class YourProcessor {
     // ...
 }
 ```
-
-## Testing
-
-You can test the rules of your plugin the same way as bundled textlint rules using [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester").
-
-```js
-const TextLintTester = require("textlint-tester");
-const tester = new TextLintTester();
-const noTodo = require("textlint-rule-no-todo");
-// ruleName, rule, expected[]
-tester.run("no-todo", noTodo, {
-    valid: [
-        "string, test desu",
-        {
-            text: "日本語 is Japanese."
-        }
-    ],
-    invalid: [
-        // text, expected errors
-        {
-            text: "- [ ] string",
-            errors: [{ message: "found TODO: '- [ ] string'" }]
-        },
-        {
-            text: "TODO: string",
-            errors: [{ message: "found TODO: 'TODO: string'" }]
-        }
-    ]
-});
-```
-
 ### Example
 
 (limited) XML plugin
 
 - [azu/textlint-plugin-xml-example](https://github.com/azu/textlint-plugin-xml-example "azu/textlint-plugin-xml-example")
 
-----
+For more plugins, See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule#processor-plugin-list "Processor Plugin List").
 
+### Built-in plugin
 
-The plugin system is a inspired/fork of ESLint.
+textlint has built-in plugins
 
-- [Documentation - ESLint - Pluggable JavaScript linter](http://eslint.org/docs/developer-guide/working-with-plugins "Documentation - ESLint - Pluggable JavaScript linter")
+- [`textlint-plugin-text`](/packages/textlint-plugin-text)
+- [`textlint-plugin-markdown`](/packages/textlint-plugin-markdown)

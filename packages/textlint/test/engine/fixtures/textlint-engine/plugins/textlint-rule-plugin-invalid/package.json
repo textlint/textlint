@@ -1,0 +1,5 @@
+{
+  "name": "textlint-rule-plugin-invalid",
+  "main": "index.js",
+  "private": true
+}

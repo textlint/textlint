@@ -14,9 +14,9 @@ describe("Fixer Rule", function() {
         };
         textlint.setupRules(
             // ruleCreator
-            { "rule-name": { linter: assertReporter, fixer: assertReporter } }, // config
+            { "rule-name": { linter: assertReporter, fixer: assertReporter } },
             { "rule-name": expectedOptions }
-        );
+        ); // config
         return textlint.lintMarkdown("string").then(result => {
             assert(result.filePath === "<markdown>");
             assert(result.messages.length === 0);

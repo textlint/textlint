@@ -43,10 +43,7 @@ describe("config-loader", function() {
         it("should not load config", function() {
             const baseDir = path.join(__dirname, "fixtures");
             const moduleResolver = new ModuleResolver(Config, baseDir);
-            const result = loadConfig("UNKNOWN", {
-                moduleResolver,
-                configFileName: Config.CONFIG_FILE_NAME
-            });
+            const result = loadConfig("UNKNOWN", { moduleResolver, configFileName: Config.CONFIG_FILE_NAME });
             assert(!result.rules);
         });
     });

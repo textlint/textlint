@@ -3,7 +3,7 @@
 const assert = require("power-assert");
 const path = require("path");
 import Config from "../../src/config/config";
-import { loadRulesConfig, loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
+import { loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
 import TextLintModuleResolver from "../../src/engine/textlint-module-resolver";
 
 const moduleResolver = new TextLintModuleResolver(Config, path.join(__dirname, "fixtures"));
@@ -22,26 +22,6 @@ describe("plugin-loader", function() {
             const setPluginsConfig = { a: { bFlag: "a" }, b: { bFlag: "b" } };
             const pluginsConfig = getPluginConfig({ plugins: setPluginsConfig });
             assert.deepStrictEqual(pluginsConfig, setPluginsConfig);
-        });
-    });
-    describe("#loadRulesConfig", function() {
-        context("when the plugin has not {rulesConfig}", function() {
-            it("should return empty object", function() {
-                const rulesConfig = loadRulesConfig(["has-not-rulesconfig"], moduleResolver);
-                assert.equal(Object.keys(rulesConfig).length, 0);
-            });
-        });
-        context("when the plugin has {rulesConfig}", function() {
-            it("should return {rulesConfig}", function() {
-                const rulesConfig = loadRulesConfig(["has-rulesconfig"], moduleResolver);
-                assert.equal(Object.keys(rulesConfig).length, 1);
-            });
-        });
-        context("when both plugin exist", function() {
-            it("should return {rulesConfig}", function() {
-                const rulesConfig = loadRulesConfig(["has-not-rulesconfig", "has-rulesconfig"], moduleResolver);
-                assert.equal(Object.keys(rulesConfig).length, 1);
-            });
         });
     });
     describe("#loadAvailableExtensions", function() {
