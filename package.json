@@ -1,6 +1,6 @@
 {
-  "name": "textlint",
   "private": true,
+  "name": "textlint",
   "scripts": {
     "publish": "lerna publish --conventional-commits",
     "publish:beta": "lerna publish --conventional-commits --npm-tag=next",
