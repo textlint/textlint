@@ -1,6 +1,7 @@
 {
   "lerna": "2.2.0",
   "packages": [
+    "examples/*",
     "packages/*",
     "test/integration-test"
   ],

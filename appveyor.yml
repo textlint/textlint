@@ -18,7 +18,6 @@ test_script:
   # Output useful info for debugging.
   - node --version
   - yarn test
-  - yarn run example
 
 # Don't actually build.
 build: off

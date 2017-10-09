@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "textlint-example-plugin",
+  "name": "textlint-example-preset",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
