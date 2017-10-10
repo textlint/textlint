@@ -9,7 +9,7 @@
     "build": "lerna run build",
     "pretest": "npm run build",
     "test": "npm-run-all lint test:packages test:example",
-    "test:example": "lerna run test --scope textlint-example-*",
+    "test:example": "lerna run test --concurrency 1 --scope textlint-example-*",
     "test:packages": "lerna run test --ignore integration-test --ignore textlint-example-*",
     "test:integration": "lerna run test --scope integration-test",
     "lint": "npm-run-all --parallel textlint eslint",
