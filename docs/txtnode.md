@@ -316,3 +316,5 @@ isTextlintAST(AST); // true or false
 ## Warning
 
 Other properties is not assured.
+
+For example, markdown's `Header` node has `level` property, but other format has not it.
