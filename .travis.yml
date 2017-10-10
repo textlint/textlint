@@ -20,5 +20,4 @@ matrix:
 script:
   - yarn run prepare
   - if [[ "$TEST_TYPE" == "unit" ]]; then yarn test; fi
-  - if [[ "$TEST_TYPE" == "unit" ]]; then yarn run example; fi
   - if [[ "$TEST_TYPE" == "e2e" ]]; then yarn run test:integration; fi

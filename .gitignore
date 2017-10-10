@@ -89,4 +89,5 @@ packages/*/lib/
 
 # ignore lock for lerna
 packages/*/yarn.lock
+examples/*/yarn.lock
 test/*/yarn.lock

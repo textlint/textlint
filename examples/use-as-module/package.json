@@ -9,7 +9,7 @@
   "author": "azu",
   "license": "MIT",
   "dependencies": {
-    "textlint": "file:../../packages/textlint",
+    "textlint": "^8.2.1",
     "textlint-rule-no-todo": "^1.0.3"
   }
 }

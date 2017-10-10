@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "textlint-example-plugin",
+  "name": "textlint-example-preset",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../../packages/textlint",
+    "textlint": "^8.2.1",
     "textlint-rule-preset-jtf-style": "^2.3.0"
   },
   "dependencies": {}
