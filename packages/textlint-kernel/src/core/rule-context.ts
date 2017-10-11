@@ -96,7 +96,7 @@ export default class RuleContext {
     /**
      * report function that is called in a rule
      */
-    report = (node: TxtNode, ruleError: RuleError | RuleReportedObject, _shouldNotUsed: any) => {
+    report = (node: TxtNode, ruleError: RuleError | RuleReportedObject, _shouldNotUsed?: any) => {
         assert(!(node instanceof RuleError), "1st argument should be node. Usage: `report(node, ruleError);`");
         assert(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
         if (ruleError instanceof RuleError) {

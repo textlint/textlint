@@ -229,6 +229,25 @@ describe("rule-context-test", function() {
                 assert.deepEqual(message.data, expectedData);
             });
         });
+        // deprecated
+        it("report 3rd arguments should throw error", function() {
+            const expectedData = { message: "message", key: "value" };
+            textlint.setupRules({
+                // rule-key : rule function(see docs/rule.md)
+                "rule-key": function(context) {
+                    return {
+                        [context.Syntax.Str](node) {
+                            context.report(node, "message", {
+                                index: 1
+                            });
+                        }
+                    };
+                }
+            });
+            return textlint.lintMarkdown("test").catch(error => {
+                assert.ok(error instanceof Error);
+            });
+        });
     });
     describe("#shouldIgnore", function() {
         context("when ignoreMessages only", function() {
