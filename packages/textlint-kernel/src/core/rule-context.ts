@@ -95,11 +95,10 @@ export default class RuleContext {
 
     /**
      * report function that is called in a rule
-     * @param {TxtNode} node
-     * @param {RuleError|any} ruleError error is a RuleError instance or any data
      */
-    report = (node: TxtNode, ruleError: RuleError | RuleReportedObject) => {
-        assert(!(node instanceof RuleError), "should be `report(node, ruleError);`");
+    report = (node: TxtNode, ruleError: RuleError | RuleReportedObject, _shouldNotUsed?: any) => {
+        assert(!(node instanceof RuleError), "1st argument should be node. Usage: `report(node, ruleError);`");
+        assert(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
         if (ruleError instanceof RuleError) {
             // FIXME: severity is internal API
             this._report({ ruleId: this._ruleId, node, severity: this._severity, ruleError });
