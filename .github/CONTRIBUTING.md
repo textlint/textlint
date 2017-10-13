@@ -1,5 +1,10 @@
 # Contributing Guide
 
+## Monorepo
+
+This repository is monorepo.
+This repository includes multiple packages.
+
 ## Bug Reporting
 
 If you found a bug, please [create a new issue](https://github.com/textlint/textlint/issues/new) on GitHub. Be sure to include the following information:
@@ -7,7 +12,7 @@ If you found a bug, please [create a new issue](https://github.com/textlint/text
 - The version of `textlint -v`
 - Reproduce steps
 - Actual result
-    - Please put log of `textlint --debug <your-input>`
+    - Attach the log of `textlint --debug <options>`
 - Expected result
 
 :information_source: Creating reproduce repository help us to resolve the issue :)
@@ -39,8 +44,8 @@ Please see [Commit Message Format](https://github.com/stevemao/conventional-chan
 
 - `commit type`: feat | fix | docs | style | perf | test | chore
     - `chore` is useful type
-- `component`: always file name without ext or directory name
-    - e.g.) `rule-error`, `core`, `engine`
+- `component`: package name or file name
+    - e.g.) `textlint`, `kernel`, `ast-node-types`
     
     
 Example commit messages
@@ -65,7 +70,7 @@ If you want to fix `docs/`
 2. Commit your changes
   - `git commit -am 'docs(<file-name>): Short description'`
 3. Run the tests
-  - `npm run lint:doc`
+  - `npm run lint`
 4. Submit a pull request :D
 
 Welcome to fix the document!
@@ -93,24 +98,29 @@ Adding :new: feature in the same way.
   - `npm test`
 5. Submit a pull request :D
 
-#### Testing
+### Testing
 
-Run testing:
+#### Test each pacakge
 
 ```sh
-npm install
-npm run prepare
+cd pacakges/<pacakge>
 npm test
 ```
 
-Run all testing:
+#### Test All packages
+
+Run unit test packages:
+
+```sh
+npm run test:packages
+```
+
+Run unit test + E2E test:
 
 This test is heavy because this includes example testing.
 
 ```sh
-npm install
-npm run prepare
-npm run test:all
+npm run test
 ```
 
 #### Coding Style
@@ -120,11 +130,11 @@ The repository use [ESLint](http://eslint.org/ "ESLint").
 You can run lint:
 
 ```sh
-npm run lint:js
+npm run eslint
 ```
 
 It's possible that fix some wrong style using [--fix](http://eslint.org/docs/user-guide/command-line-interface#fix "--fix") feature of ESLint:
 
 ```
-$(npm bin)/eslint --fix src/
+npm run eslint:fix
 ```
