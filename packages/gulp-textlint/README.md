@@ -1,9 +1,9 @@
-# gulp-textlint [![Build Status](https://travis-ci.org/textlint/gulp-textlint.svg?branch=master)](https://travis-ci.org/textlint/gulp-textlint)
+# gulp-textlint
 
-gulp plugin for [textlint](https://github.com/azu/textlint).
+gulp plugin for [textlint](https://github.com/textlint/textlint).
 
-* Require [.textlintrc](https://github.com/azu/textlint#textlintrc)
-* Require [rules](https://github.com/azu/textlint#rule-list---collection-of-textlint-rule)
+* Require [.textlintrc](https://github.com/textlint/textlint#textlintrc)
+* Require [rules](https://github.com/textlint/textlint#rule-list---collection-of-textlint-rule)
   * As you can use [vvakame/prh](https://github.com/vvakame/prh)'s format dictionary.
 
 ## Usage
