@@ -1,0 +1,32 @@
+{
+  "name": "gulp-textlint",
+  "description": "gulp plugin for textlint",
+  "version": "3.0.0",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "author": "nakajmg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
+  "dependencies": {
+    "gulp-util": "^3.0.6",
+    "textlint": "^8.0.0",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "mocha": "^3.3.0",
+    "textlint-rule-prh": "^3.1.3"
+  }
+}

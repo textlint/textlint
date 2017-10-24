@@ -1,0 +1,8 @@
+{
+    "rules": {
+        "no-todo": true,
+        "prh": {
+            "rulePaths" :["./prh.yml"]
+        }
+    }
+}

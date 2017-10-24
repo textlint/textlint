@@ -1,0 +1,20 @@
+version: 1
+rules:
+  - expected: Cookie
+  - expected: jQuery
+    specs:
+      - from: jquery
+        to:   jQuery
+      - from: ＪＱＵＥＲＹ
+        to:   jQuery
+  - expected: js
+    options:
+      wordBoundary: true
+    specs:
+      - from: foo JS bar
+        to:   foo js bar
+      - from: foo altJS bar
+        to:   foo altJS bar
+      # 日本語+単語境界の仕様は自分で調べてね…！
+      - from: 今日もJS祭り
+        to:   今日もjs祭り
