@@ -395,7 +395,7 @@ textlint has four extensible points:
 - [rule-preset](docs/rule-preset.md)
     - rule-preset contains rules.
 - [plugin](docs/plugin.md)
-    - plugin contains rules and a processor.
+    - plugin contains a processor.
 
 ![rule-preset-plugin](docs/resources/rule-preset-plugin.png)
 
