@@ -506,9 +506,10 @@ These modules are internal usage in the monorepo.
 
 ## Who's using textlint?
 
-- [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
 - [survivejs/webpack-book](https://github.com/survivejs/webpack-book "survivejs/webpack-book: From apprentice to master (CC BY-NC-ND)")
+- [hoodiehq/hoodie](https://github.com/hoodiehq/hoodie "hoodiehq/hoodie")
 - [asciidwango/js-primer](https://github.com/asciidwango/js-primer "asciidwango/js-primer: JavaScriptの入門書")
+- [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
 
 ## Contributing
 
