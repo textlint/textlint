@@ -40,7 +40,7 @@ Promise.resolve()
     })
     .catch(function(error) {
         showError(error);
-        process.exit(error.code || 1);
+        process.exit(1);
     });
 
 // Catch throw error
