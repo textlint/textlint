@@ -11,13 +11,13 @@
     "typescript": "^2.3.2"
   },
   "name": "@textlint/monorepo-scripts",
-  "version": "1.0.0",
+  "version": "2.0.0-beta.0",
   "description": "textlint monorepo npm scripts",
   "main": "./bin/cmd.js",
   "bin": {
     "textlint-monorepo-scripts": "./bin/cmd.js"
   },
-  "files":[
+  "files": [
     "bin",
     "configs",
     "scripts"
