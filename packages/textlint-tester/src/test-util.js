@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
+
 export function testInvalid(textlint, text, ext, errors) {
     const lines = text.split(/\n/);
     assert.strictEqual(
@@ -44,9 +45,10 @@ ${text}
 ==Result==:
 ${JSON.stringify(lintResult, null, 4)}`
         );
-        errors.forEach((error, index) => {
-            const { ruleId, message, line, column } = error;
-            const resultMessageObject = lintResult.messages[index];
+        errors.forEach((error, errorIndex) => {
+            const { ruleId, message, line, column, index } = error;
+            const resultMessageObject = lintResult.messages[errorIndex];
+            console.log(resultMessageObject);
             // check
             assert.ok(
                 resultMessageObject.line >= 1,
@@ -64,8 +66,8 @@ The result's line number should be less than ${lines.length}`
             );
             assert.ok(
                 resultMessageObject.column <= columnText.length + 1,
-                `lint result's column number is ${resultMessageObject.column}, but the length of the text @ line:${resultMessageObject.line} is ${columnText.length +
-                    1}.
+                `lint result's column number is ${resultMessageObject.column},` +
+                    `but the length of the text @ line:${resultMessageObject.line} is ${columnText.length + 1}.
 The result's column number should be less than ${columnText.length + 1}`
             );
             if (ruleId !== undefined) {
@@ -83,6 +85,10 @@ The result's column number should be less than ${columnText.length + 1}`
             if (column !== undefined) {
                 const resultColumn = resultMessageObject.column;
                 assert.strictEqual(resultColumn, column, `"column should be ${column}`);
+            }
+            if (index !== undefined) {
+                const resultIndex = resultMessageObject.index;
+                assert.strictEqual(resultIndex, index, `"index should be ${index}`);
             }
         });
     });

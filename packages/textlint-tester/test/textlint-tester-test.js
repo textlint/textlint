@@ -16,6 +16,7 @@ tester.run("no-todo", noTodo, {
         }
     ],
     invalid: [
+        // line, column
         {
             text: "- [ ] string",
             errors: [
@@ -23,6 +24,16 @@ tester.run("no-todo", noTodo, {
                     message: "Found TODO: '- [ ] string'",
                     line: 1,
                     column: 3
+                }
+            ]
+        },
+        // index
+        {
+            text: "- [ ] string",
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] string'",
+                    index: 2
                 }
             ]
         },
