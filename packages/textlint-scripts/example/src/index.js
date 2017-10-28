@@ -1,9 +1,10 @@
 "use strict";
 import assert from "assert";
 module.exports = function(context, options = {}) {
-    const {Syntax, RuleError, report, getSource} = context;
+    const { Syntax, RuleError, report, getSource } = context;
     return {
-        [Syntax.Str](node){ // "Str" node
+        [Syntax.Str](node) {
+            // "Str" node
             const text = getSource(text);
             if (/bugs/.test(text)) {
                 const indexOfBugs = text.search(/bugs/);
@@ -13,5 +14,5 @@ module.exports = function(context, options = {}) {
                 report(node, ruleError);
             }
         }
-    }
+    };
 };

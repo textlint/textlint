@@ -6,7 +6,6 @@ declare parentDir=$(dirname "${currentDir}")
 declare exampleDir="${parentDir}/example"
 # init
 cd "${exampleDir}"
-npm uninstall textlint-scripts
 npm install
 npm test
 npm run build
