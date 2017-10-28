@@ -80,21 +80,34 @@ const rule = require("textlint-rule-no-todo");
 // ruleName, rule, { valid, invalid }
 tester.run("no-todo", rule, {
     valid: [
-        "this is test",
+        "This is ok",
         {
             // text with options
-            text: "this is test",
+            text: "This is test",
             options: {
                 "key": "value"
             }
         }
     ],
     invalid: [
+        // line, column
         {
             text: "- [ ] string",
             errors: [
                 {
-                    message: "found TODO: '- [ ] string'"
+                    message: "Found TODO: '- [ ] string'",
+                    line: 1,
+                    column: 3
+                }
+            ]
+        },
+        // index
+        {
+            text: "- [ ] string",
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] string'",
+                    index: 2
                 }
             ]
         },
