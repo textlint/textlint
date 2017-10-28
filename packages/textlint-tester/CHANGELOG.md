@@ -1,7 +1,15 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
-See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/textlint/textlint/compare/textlint-tester@3.0.0-beta.1...textlint-tester@3.0.0) (2017-10-28)
+
+
+
+
+**Note:** Version bump only for package textlint-tester
 
 <a name="2.2.4"></a>
 ## [2.2.4](https://github.com/textlint/textlint/compare/textlint-tester@2.2.3...textlint-tester@2.2.4) (2017-05-21)
