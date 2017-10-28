@@ -1,6 +1,6 @@
 {
   "name": "@textlint/ast-node-types",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0",
   "description": "textlint AST node type difinition.",
   "main": "./lib/TextLintASTNodeTypes.js",
   "types": "./lib/TextLintASTNodeTypes.d.ts",
@@ -23,7 +23,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "@textlint/monorepo-scripts": "^2.0.0-beta.0",
+    "@textlint/monorepo-scripts": "^2.0.0",
     "mocha": "^3.3.0"
   }
 }

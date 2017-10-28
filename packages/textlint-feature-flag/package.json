@@ -10,7 +10,7 @@
     "src/"
   ],
   "name": "@textlint/feature-flag",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0",
   "description": "textlint internal feature flag manager.",
   "main": "lib/textlint-feature-flag.js",
   "scripts": {
