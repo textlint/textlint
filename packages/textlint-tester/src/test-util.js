@@ -48,7 +48,6 @@ ${JSON.stringify(lintResult, null, 4)}`
         errors.forEach((error, errorIndex) => {
             const { ruleId, message, line, column, index } = error;
             const resultMessageObject = lintResult.messages[errorIndex];
-            console.log(resultMessageObject);
             // check
             assert.ok(
                 resultMessageObject.line >= 1,
