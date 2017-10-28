@@ -101,7 +101,6 @@ export class RuleError {
 
 export class TextLintRuleContext {
     id: string;
-    config: TextLintConfig;
     RuleError: RuleError;
     /**
      * report function that is called in a rule
@@ -123,7 +122,6 @@ export class TextLintRuleContext {
 }
 export class TextLintFilterRuleContext {
     id: string;
-    config: TextLintConfig;
     RuleError: RuleError;
     /**
      * Gets the source code for the given node.

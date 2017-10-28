@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import SeverityLevel from "../shared/type/SeverityLevel";
-import { TextLintConfig, TextLintMessage } from "../textlint-kernel-interface";
+import { TextlintKernelConstructorOptions, TextLintMessage } from "../textlint-kernel-interface";
 
 /**
  * Filter messages by their severity.
@@ -28,7 +28,7 @@ export function through(messages = []) {
  * @param {Config} config
  * @returns {Function} filter function for messages
  */
-export default function createSeverityFilter(config: TextLintConfig) {
+export default function createSeverityFilter(config: TextlintKernelConstructorOptions) {
     if (config.quiet) {
         return filterWarningMessages;
     } else {

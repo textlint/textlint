@@ -13,6 +13,13 @@ export interface TextLintPluginOptions {
     [index: string]: any;
 }
 
+export interface TextlintKernelConstructorOptions {
+    /**
+     * Suppress messages of severity:warning and severity:info
+     */
+    quiet?: boolean;
+}
+
 // config
 export interface TextLintConfig {
     // rule directories path

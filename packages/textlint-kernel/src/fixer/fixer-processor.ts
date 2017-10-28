@@ -8,8 +8,8 @@ import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
 import { hasFixer } from "../core/rule-creator-helper";
 import {
-    TextLintConfig,
     TextLintFixResult,
+    TextlintKernelConstructorOptions,
     TextlintKernelFilterRule,
     TextlintKernelProcessor,
     TextlintKernelRule,
@@ -18,7 +18,7 @@ import {
 import MessageProcessManager from "../messages/MessageProcessManager";
 
 export interface FixerProcessorProcessArgs {
-    config: TextLintConfig;
+    config: TextlintKernelConstructorOptions;
     configBaseDir?: string;
     rules?: TextlintKernelRule[];
     filterRules?: TextlintKernelFilterRule[];
