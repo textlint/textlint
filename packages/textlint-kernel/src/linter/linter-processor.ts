@@ -4,7 +4,7 @@ import * as assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
 import {
-    TextLintConfig,
+    TextlintKernelConstructorOptions,
     TextlintKernelFilterRule,
     TextlintKernelProcessor,
     TextlintKernelRule
@@ -13,7 +13,7 @@ import MessageProcessManager from "../messages/MessageProcessManager";
 import SourceCode from "../core/source-code";
 
 export interface LinterProcessorArgs {
-    config: TextLintConfig;
+    config: TextlintKernelConstructorOptions;
     configBaseDir?: string;
     rules?: TextlintKernelRule[];
     filterRules?: TextlintKernelFilterRule[];

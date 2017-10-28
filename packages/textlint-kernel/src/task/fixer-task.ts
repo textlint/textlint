@@ -1,16 +1,20 @@
 // LICENSE : MIT
 "use strict";
 import CoreTask from "./textlint-core-task";
-import { getFixer, getFilter } from "../core/rule-creator-helper";
+import { getFilter, getFixer } from "../core/rule-creator-helper";
 import RuleContext from "../core/rule-context";
 import FilterRuleContext from "../core/filter-rule-context";
-import { TextLintConfig, TextlintKernelFilterRule, TextlintKernelRule } from "../textlint-kernel-interface";
+import {
+    TextlintKernelConstructorOptions,
+    TextlintKernelFilterRule,
+    TextlintKernelRule
+} from "../textlint-kernel-interface";
 import SourceCode from "../core/source-code";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 
 export interface TextLintCoreTaskArgs {
-    config: TextLintConfig;
+    config: TextlintKernelConstructorOptions;
     fixerRule: TextlintKernelRule;
     filterRules: TextlintKernelFilterRule[];
     sourceCode: SourceCode;
@@ -18,7 +22,7 @@ export interface TextLintCoreTaskArgs {
 }
 
 export default class TextLintCoreTask extends CoreTask {
-    config: TextLintConfig;
+    config: TextlintKernelConstructorOptions;
     fixerRule: TextlintKernelRule;
     filterRules: TextlintKernelFilterRule[];
     sourceCode: SourceCode;

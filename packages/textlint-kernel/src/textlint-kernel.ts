@@ -13,12 +13,13 @@ import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
 import {
-    TextLintConfig,
     TextLintFixResult,
+    TextlintKernelConstructorOptions,
     TextlintKernelOptions,
     TextlintKernelPlugin,
     TextlintKernelProcessor,
-    TextlintKernelProcessorConstructor
+    TextlintKernelProcessorConstructor,
+    TextLintResult
 } from "./textlint-kernel-interface";
 
 /**
@@ -68,6 +69,7 @@ at ${fileName}`;
 }
 
 /**
+ * TextlintKernel is core logic written by pure JavaScript.
  *
  * Pass
  *
@@ -79,13 +81,13 @@ at ${fileName}`;
  *
  */
 export class TextlintKernel {
-    config: TextLintConfig;
+    private config: TextlintKernelConstructorOptions;
     private messageProcessManager: MessageProcessManager;
 
     /**
      * @param config
      */
-    constructor(config: TextLintConfig = {}) {
+    constructor(config: TextlintKernelConstructorOptions = {}) {
         // this.config often is undefined.
         this.config = config;
         // Initialize Message Processor
@@ -106,7 +108,7 @@ export class TextlintKernel {
      * @param {Object} options linting options
      * @returns {Promise.<TextLintResult>}
      */
-    lintText(text: string, options: TextlintKernelOptions) {
+    lintText(text: string, options: TextlintKernelOptions): Promise<TextLintResult> {
         return Promise.resolve().then(() => {
             const ext = options.ext;
             const plugin = findPluginWithExt(options.plugins, ext);
@@ -131,7 +133,7 @@ export class TextlintKernel {
      * @param {Object} options lint options
      * @returns {Promise.<TextLintFixResult>}
      */
-    fixText(text: string, options: TextlintKernelOptions) {
+    fixText(text: string, options: TextlintKernelOptions): Promise<TextLintResult> {
         return Promise.resolve().then(() => {
             const ext = options.ext;
             const plugin = findPluginWithExt(options.plugins, ext);

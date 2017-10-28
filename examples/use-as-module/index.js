@@ -4,7 +4,6 @@ var TextLintEngine = require("textlint").TextLintEngine;
 var path = require("path");
 function lintFile(filePath) {
     /**
-     * @type {TextLintConfig}
      * See lib/_typing/textlint.d.ts
      */
     var options = {
