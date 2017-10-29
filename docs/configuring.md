@@ -38,9 +38,9 @@ Add rule name to `rules` field.
 - `true` means that enable `"no-todo"` rule
 - `false` means that disable `"very-nice-rule"` rule
 
-### Rule's config
+### Rule's options
 
-Each rule's config can accept a `object`.
+Each rule's options can accept a `object`.
 
 ```json
 {
@@ -67,6 +67,23 @@ export default function rule(contet, config){
     /* { "key" : "value" } */
 }
 ```
+
+### Rule name
+
+```json
+{
+  "rules": {
+    "<name>": true
+  }
+}
+```
+
+The rule `<name>` can be accept following patterns:
+
+- `textlint-rule-<name>`
+- `<name>`
+- `@scope/textlint-rule-<name>`
+- `@scope/<name>`
 
 ### Severity config of rules
 
@@ -171,31 +188,6 @@ One more example, `very-nice-rule` is useful, but you want to ignore some report
 ```
 
 :information_source: See [examples/filter](../examples/filter)
-
-## Plugin
-
-textlint plugin also has a set of rules and rulesConfig.
-
-It is similar to preset, but plugin's [main task is extension of feature](./plugin.md)
-
-To enable plugin, put the "plugin-name" into `.textlinrc`.
-
-```json
-{
-    "plugins": [
-        "plugin-name"
-    ],
-    // overwrite-plugins rules config
-    // <plugin>/<rule>
-    "rules": {
-        "plugin-name/rule-name" : false
-    }
-}
-```
-
-:information_source: See [docs/plugin.md](docs/plugin.md)
-
-## Sharable Configuration
 
 textlint support module of configuration.
 
