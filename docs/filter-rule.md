@@ -16,6 +16,23 @@ Add filter rule name to `filters` field.
 
 See [configuring.md](./configuring.md) for details.
 
+### Filter rule name
+
+```json
+{
+  "filters": {
+    "<name>": true
+  }
+}
+```
+
+The rule `<name>` can be accept following patterns:
+
+- `textlint-filter-rule-<name>`
+- `<name>`
+- `@scope/textlint-filter-rule-<name>`
+- `@scope/<name>`
+
 ## FilterRuleContext
 
 `shouldIgnore()` is core API of `FilterRuleContext`.
@@ -69,9 +86,9 @@ module.exports = function(context) {
 
 textlint's filter rule should use `textlint-filter-rule-` prefix.
 
-e.g.) `textlint-filter-rule-comments`
+For example, filtering by comment rule is `textlint-filter-rule-comments`.
 
-textlint user use it following:
+textlint user use it by setting following:
 
 ```json
 {
@@ -81,6 +98,6 @@ textlint user use it following:
 }
 ```
 
-Examples:
+### Example rules:
 
 - [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments "textlint-filter-rule-comments")

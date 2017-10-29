@@ -97,7 +97,24 @@ export default class YourProcessor {
     // ...
 }
 ```
-### Example
+
+## Package name convention
+
+textlint's plugin should use `textlint-plugin-` prefix.
+
+For example, markdown plugins is named `textlint-plugin-markdown`.
+
+textlint user use it by setting following:
+
+```json
+{
+    "plugins": {
+        "markdown": true
+    }
+}
+```
+
+## Example
 
 (limited) XML plugin
 

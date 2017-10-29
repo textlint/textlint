@@ -2,13 +2,32 @@
 "use strict";
 const path = require("path");
 import assert from "power-assert";
-import TextLintModuleResolver from "../../src/engine/textlint-module-resolver";
+import TextLintModuleResolver, { createFullPackageName } from "../../src/engine/textlint-module-resolver";
 import Config from "../../src/config/config";
+
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
 const createResolve = ruleBaseDir => {
     return new TextLintModuleResolver(Config, ruleBaseDir);
 };
 describe("textlint-module-resolver", function() {
+    describe("createFullPackageName", () => {
+        const PREFIX = "textlint-rule-";
+        it("<name> -> textlint-rule-<name>", () => {
+            assert.equal(createFullPackageName(PREFIX, "name"), "textlint-rule-name");
+        });
+        it("textlint-rule-<name> -> textlint-rule-<name>", () => {
+            assert.equal(createFullPackageName(PREFIX, "textlint-rule-name"), "textlint-rule-textlint-rule-name");
+        });
+        it("@scope/<name> -> @scope/textlint-rule-<name>", () => {
+            assert.equal(createFullPackageName(PREFIX, "@scope/name"), "@scope/textlint-rule-name");
+        });
+        it("@scope/textlint-rule-<name> -> @scope/textlint-rule-<name>", () => {
+            assert.equal(
+                createFullPackageName(PREFIX, "@scope/textlint-rule-name"),
+                "@scope/textlint-rule-textlint-rule-name"
+            );
+        });
+    });
     describe("#resolveRulePackageName", function() {
         it("should resolve rule package name", function() {
             const resolver = createResolve();
@@ -18,12 +37,19 @@ describe("textlint-module-resolver", function() {
             assert.equal(typeof longPkg, "string");
             assert.equal(shortPkg, longPkg);
         });
+        it("should resolve scoped short style package", function() {
+            const resolver = createResolve(FIXTURE_DIR);
+            const shortPkg = resolver.resolveRulePackageName("@textlint/scoped-rule");
+            const longPkg = resolver.resolveRulePackageName("@textlint/textlint-rule-scoped-rule");
+            assert.equal(typeof longPkg, "string");
+            assert.equal(shortPkg, longPkg);
+        });
         it("should resolve rule file path", function() {
             const resolver = createResolve(FIXTURE_DIR);
             const packageName = "rule";
             const modulePath = resolver.resolveRulePackageName(packageName);
             assert.equal(typeof modulePath, "string");
-            assert.equal(modulePath, path.resolve(FIXTURE_DIR, packageName + ".js"));
+            assert.equal(modulePath, path.resolve(FIXTURE_DIR, `${packageName}.js`));
         });
         it("Not found, throw error", function() {
             const resolver = createResolve(FIXTURE_DIR);
@@ -39,7 +65,7 @@ describe("textlint-module-resolver", function() {
             const packageName = "filter-rule";
             const modulePath = resolver.resolveFilterRulePackageName(packageName);
             assert.equal(typeof modulePath, "string");
-            assert.equal(modulePath, path.resolve(FIXTURE_DIR, packageName + ".js"));
+            assert.equal(modulePath, path.resolve(FIXTURE_DIR, `${packageName}.js`));
         });
         it("Not found, throw error", function() {
             const resolver = createResolve(FIXTURE_DIR);
@@ -63,7 +89,7 @@ describe("textlint-module-resolver", function() {
             const packageName = "plugin";
             const modulePath = resolver.resolvePluginPackageName(packageName);
             assert.equal(typeof modulePath, "string");
-            assert.equal(modulePath, path.resolve(FIXTURE_DIR, packageName + ".js"));
+            assert.equal(modulePath, path.resolve(FIXTURE_DIR, `${packageName}.js`));
         });
         it("Not found, throw error", function() {
             const resolver = createResolve(FIXTURE_DIR);
@@ -106,7 +132,7 @@ describe("textlint-module-resolver", function() {
             const packageName = "preset";
             const modulePath = resolver.resolvePresetPackageName(packageName);
             assert.equal(typeof modulePath, "string");
-            assert.equal(modulePath, path.resolve(FIXTURE_DIR, packageName + ".js"));
+            assert.equal(modulePath, path.resolve(FIXTURE_DIR, `${packageName}.js`));
         });
         it("Not found, throw error", function() {
             const resolver = createResolve(FIXTURE_DIR);
@@ -135,7 +161,7 @@ describe("textlint-module-resolver", function() {
             const packageName = "config";
             const modulePath = resolver.resolveConfigPackageName(packageName);
             assert.equal(typeof modulePath, "string");
-            assert.equal(modulePath, path.resolve(FIXTURE_DIR, packageName + ".js"));
+            assert.equal(modulePath, path.resolve(FIXTURE_DIR, `${packageName}.js`));
         });
         it("Not found, throw error", function() {
             const resolver = createResolve(FIXTURE_DIR);
