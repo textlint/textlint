@@ -1,0 +1,10 @@
+{
+  "name": "@textlint/textlint-rule-scoped-rule",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "azu",
+  "license": "MIT"
+}

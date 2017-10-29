@@ -12,6 +12,31 @@ const validateConfigConstructor = ConfigConstructor => {
             ConfigConstructor.PLUGIN_NAME_PREFIX
     );
 };
+
+/**
+ * Create full package name and return
+ * @param {string} prefix
+ * @param {string} name
+ * @returns {string}
+ */
+export const createFullPackageName = (prefix, name) => {
+    if (name.charAt(0) === "@") {
+        /*
+         * it's a scoped package
+         * package name is "textlint-rule", or just a username
+         */
+        const scopedPackageNameRegex = new RegExp(`^${prefix}(-|$)`);
+        if (!scopedPackageNameRegex.test(name.split("/")[1])) {
+            // if @scope/<name> -> @scope/<prefix><name>
+            /*
+             * for scoped packages, insert the textlint-rule after the first / unless
+             * the path is already @scope/<name> or @scope/textlint-rule-<name>
+             */
+            return name.replace(/^@([^/]+)\/(.*)$/, `@$1/${prefix}$2`);
+        }
+    }
+    return `${prefix}${name}`;
+};
 /**
  * This class aim to resolve textlint's package name and get the module path.
  *
@@ -72,7 +97,7 @@ export default class TextLintModuleResolver {
     resolveRulePackageName(packageName) {
         const baseDir = this.baseDirectory;
         const PREFIX = this.RULE_NAME_PREFIX;
-        const fullPackageName = `${PREFIX}${packageName}`;
+        const fullPackageName = createFullPackageName(PREFIX, packageName);
         // <rule-name> or textlint-rule-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
@@ -91,8 +116,8 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
     resolveFilterRulePackageName(packageName) {
         const baseDir = this.baseDirectory;
         const PREFIX = this.FILTER_RULE_NAME_PREFIX;
-        const fullPackageName = `${PREFIX}${packageName}`;
-        // <rule-name> or textlint-filter-rule-<rule-name>
+        const fullPackageName = createFullPackageName(PREFIX, packageName);
+        // <rule-name> or textlint-filter-rule-<rule-name> or @scope/<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             throw new ReferenceError(`Failed to load textlint's filter rule module: "${packageName}" is not found.
@@ -110,7 +135,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
     resolvePluginPackageName(packageName) {
         const baseDir = this.baseDirectory;
         const PREFIX = this.PLUGIN_NAME_PREFIX;
-        const fullPackageName = `${PREFIX}${packageName}`;
+        const fullPackageName = createFullPackageName(PREFIX, packageName);
         // <plugin-name> or textlint-plugin-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
@@ -129,10 +154,10 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
     resolvePresetPackageName(packageName) {
         const baseDir = this.baseDirectory;
         const PREFIX = this.RULE_PRESET_NAME_PREFIX;
-        const fullPackageName = `${PREFIX}${packageName}`;
+        const fullPackageName = createFullPackageName(PREFIX, packageName);
 
         /* Implementation Note
-        
+
         preset name is defined in config file:
         In the case, `packageName` is "preset-gizmo"
         TextLintModuleResolver resolve "preset-gizmo" to "textlint-rule-preset-gizmo"
@@ -171,7 +196,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
     resolveConfigPackageName(packageName) {
         const baseDir = this.baseDirectory;
         const PREFIX = this.CONFIG_PACKAGE_PREFIX;
-        const fullPackageName = `${PREFIX}${packageName}`;
+        const fullPackageName = createFullPackageName(PREFIX, packageName);
         // <plugin-name> or textlint-config-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
