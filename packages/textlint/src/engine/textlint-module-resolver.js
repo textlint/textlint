@@ -21,13 +21,9 @@ const validateConfigConstructor = ConfigConstructor => {
  */
 export const createFullPackageName = (prefix, name) => {
     if (name.charAt(0) === "@") {
-        /*
-         * it's a scoped package
-         * package name is "textlint-rule", or just a username
-         */
         const scopedPackageNameRegex = new RegExp(`^${prefix}(-|$)`);
+        // if @scope/<name> -> @scope/<prefix><name>
         if (!scopedPackageNameRegex.test(name.split("/")[1])) {
-            // if @scope/<name> -> @scope/<prefix><name>
             /*
              * for scoped packages, insert the textlint-rule after the first / unless
              * the path is already @scope/<name> or @scope/textlint-rule-<name>
