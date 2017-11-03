@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="9.1.0"></a>
+# [9.1.0](https://github.com/textlint/textlint/compare/textlint@9.0.1...textlint@9.1.0) (2017-11-03)
+
+
+### Features
+
+* **textlint:** support shortcut scoped package name ([#326](https://github.com/textlint/textlint/issues/326)) ([0dff2cc](https://github.com/textlint/textlint/commit/0dff2cc))
+
+
+
+
 <a name="9.0.0"></a>
 # [9.0.0](https://github.com/textlint/textlint/compare/textlint@9.0.0-beta.0...textlint@9.0.0) (2017-10-28)
 

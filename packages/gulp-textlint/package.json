@@ -1,7 +1,7 @@
 {
   "name": "gulp-textlint",
   "description": "gulp plugin for textlint",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "main": "index.js",
   "files": [
     "index.js"
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
   "dependencies": {
     "gulp-util": "^3.0.6",
-    "textlint": "^9.0.1",
+    "textlint": "^9.1.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {

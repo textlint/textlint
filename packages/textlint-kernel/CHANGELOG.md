@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/textlint/textlint/compare/@textlint/kernel@1.0.1...@textlint/kernel@1.0.2) (2017-11-03)
+
+
+
+
+**Note:** Version bump only for package @textlint/kernel
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/textlint/textlint/compare/@textlint/kernel@1.0.0-beta.0...@textlint/kernel@1.0.0) (2017-10-28)
 
