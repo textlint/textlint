@@ -5,6 +5,7 @@
   "author": "azu",
   "license": "MIT",
   "files": [
+    "register.js",
     "bin/",
     "scripts/",
     "configs/"
