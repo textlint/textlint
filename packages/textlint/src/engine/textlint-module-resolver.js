@@ -3,6 +3,7 @@
 const assert = require("assert");
 const path = require("path");
 const tryResolve = require("try-resolve");
+const debug = require("debug")("textlint:module-resolver");
 const validateConfigConstructor = ConfigConstructor => {
     assert(
         ConfigConstructor.CONFIG_PACKAGE_PREFIX &&
@@ -97,6 +98,7 @@ export default class TextLintModuleResolver {
         // <rule-name> or textlint-rule-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
+            debug(`rule fullPackageName: ${fullPackageName}`);
             throw new ReferenceError(`Failed to load textlint's rule module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `);
@@ -116,6 +118,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         // <rule-name> or textlint-filter-rule-<rule-name> or @scope/<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
+            debug(`filter rule fullPackageName: ${fullPackageName}`);
             throw new ReferenceError(`Failed to load textlint's filter rule module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `);
@@ -135,6 +138,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         // <plugin-name> or textlint-plugin-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
+            debug(`plugin fullPackageName: ${fullPackageName}`);
             throw new ReferenceError(`Failed to load textlint's plugin module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `);
@@ -181,6 +185,8 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
             tryResolve(path.join(baseDir, fullPackageName)) ||
             tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
+            debug(`preset fullPackageName: ${fullPackageName}`);
+            debug(`preset fullFullPackageName: ${fullFullPackageName}`);
             throw new ReferenceError(`Failed to load textlint's preset module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
 `);
