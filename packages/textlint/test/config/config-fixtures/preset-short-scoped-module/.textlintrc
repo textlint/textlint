@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "@textlint/preset-foo": true
+  }
+}
