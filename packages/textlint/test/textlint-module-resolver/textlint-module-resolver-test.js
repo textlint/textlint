@@ -27,6 +27,9 @@ describe("textlint-module-resolver", function() {
                 "@scope/textlint-rule-textlint-rule-name"
             );
         });
+        it("@scope/preset-<name> -> @scope/textlint-rule-preset-<name>", () => {
+            assert.equal(createFullPackageName(PREFIX, "@scope/preset-name"), "@scope/textlint-rule-preset-name");
+        });
     });
     describe("#resolveRulePackageName", function() {
         it("should resolve rule package name", function() {
@@ -101,15 +104,6 @@ describe("textlint-module-resolver", function() {
     });
     describe("#resolvePresetPackageName", function() {
         context("In Configuration", function() {
-            /*
-             {
-             "rules": {
-             "preset-gizmo": {
-             "ruleA": false
-             }
-             }
-             }
-             */
             it("should resolve plugin package name", function() {
                 const resolver = createResolve();
                 const shortPkg = resolver.resolvePresetPackageName("preset-jtf-style");
@@ -119,11 +113,19 @@ describe("textlint-module-resolver", function() {
                 assert.equal(shortPkg, longPkg);
             });
         });
-        it("should resolve plugin package name", function() {
+        it("should not resolve package name without preset- prefix", function() {
             const resolver = createResolve();
             const shortPkg = resolver.resolvePresetPackageName("jtf-style");
             assert.equal(typeof shortPkg, "string");
             const longPkg = resolver.resolvePresetPackageName("textlint-rule-preset-jtf-style");
+            assert.equal(typeof longPkg, "string");
+            assert.equal(shortPkg, longPkg);
+        });
+        it("should resolve scoped package name", function() {
+            const resolver = createResolve(FIXTURE_DIR);
+            const shortPkg = resolver.resolvePresetPackageName("@textlint/preset-example");
+            assert.equal(typeof shortPkg, "string");
+            const longPkg = resolver.resolvePresetPackageName("@textlint/textlint-rule-preset-example");
             assert.equal(typeof longPkg, "string");
             assert.equal(shortPkg, longPkg);
         });
