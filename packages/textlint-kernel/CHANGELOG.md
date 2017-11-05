@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/textlint/textlint/compare/@textlint/kernel@1.0.2...@textlint/kernel@1.0.3) (2017-11-05)
+
+
+### Bug Fixes
+
+* **textlint:** support scoped preset module  ([#329](https://github.com/textlint/textlint/issues/329)) ([a2c8f6b](https://github.com/textlint/textlint/commit/a2c8f6b))
+
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/textlint/textlint/compare/@textlint/kernel@1.0.1...@textlint/kernel@1.0.2) (2017-11-03)
 
