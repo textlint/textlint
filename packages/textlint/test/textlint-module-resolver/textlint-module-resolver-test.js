@@ -113,7 +113,7 @@ describe("textlint-module-resolver", function() {
                 assert.equal(shortPkg, longPkg);
             });
         });
-        it("should not resolve package name without preset- prefix", function() {
+        it("should resolve package name without preset- prefix", function() {
             const resolver = createResolve();
             const shortPkg = resolver.resolvePresetPackageName("jtf-style");
             assert.equal(typeof shortPkg, "string");
