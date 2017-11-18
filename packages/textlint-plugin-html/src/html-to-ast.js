@@ -21,7 +21,7 @@ function removeUnusedProperties(node) {
 function mapNodeType(node, parent) {
     if (parent) {
         let parentNode = parent.parent.node;
-        if (parentNode.tagName === "script") {
+        if (parentNode.tagName === "script" || parentNode.tagName === "style") {
             return "CodeBlock";
         }
     }

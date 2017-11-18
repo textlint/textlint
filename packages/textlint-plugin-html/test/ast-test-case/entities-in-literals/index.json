@@ -127,7 +127,7 @@
             "properties": {},
             "children": [
                 {
-                    "type": "Str",
+                    "type": "CodeBlock",
                     "value": "\nhtml > body {\n  color: red;\n}\n",
                     "loc": {
                         "start": {

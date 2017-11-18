@@ -19,6 +19,13 @@ describe("HTMLProcessor-test", function () {
                 assert.equal(code.type, "CodeBlock");
             });
         });
+        it("style should CodeBlock", function () {
+            const result = parse(`<style> hr{border:0}body{margin:0} </style>`);
+            const script = result.children[0];
+            script.children.forEach(code => {
+                assert.equal(code.type, "CodeBlock");
+            });
+        });
         it("<p> should Paragraph", function () {
             const result = parse(`<p>test</p>`);
             const pTag = result.children[0];
