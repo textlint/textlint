@@ -78,6 +78,10 @@ export function parse(html) {
                 node.range = range;
                 node.raw = html.slice(range[0], range[1]);
             }
+            // map `url` to Link node
+            if (node.type === "Link" && typeof node.properties.href !== "undefined") {
+                node.url = node.properties.href;
+            }
         }
         removeUnusedProperties(node);
     });

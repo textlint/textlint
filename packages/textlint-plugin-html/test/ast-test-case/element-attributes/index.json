@@ -42,6 +42,7 @@
         {
             "type": "Link",
             "tagName": "a",
+            "url": "http://alpha.com",
             "properties": {
                 "href": "http://alpha.com",
                 "className": [
@@ -2136,22 +2137,120 @@
         },
         {
             "type": "Str",
-            "value": "\n",
+            "value": "\n\n",
             "loc": {
                 "start": {
                     "line": 95,
                     "column": 63
                 },
                 "end": {
-                    "line": 96,
+                    "line": 97,
                     "column": 0
                 }
             },
             "range": [
                 1405,
-                1406
+                1407
             ],
-            "raw": "\n"
+            "raw": "\n\n"
+        },
+        {
+            "loc": {
+                "end": {
+                    "column": 19,
+                    "line": 97
+                },
+                "start": {
+                    "column": 0,
+                    "line": 97
+                }
+            },
+            "range": [
+                1407,
+                1426
+            ],
+            "raw": "<!--placeholder:-->",
+            "type": "Comment",
+            "value": "placeholder:"
+        },
+        {
+            "loc": {
+                "end": {
+                    "column": 0,
+                    "line": 99
+                },
+                "start": {
+                    "column": 19,
+                    "line": 97
+                }
+            },
+            "range": [
+                1426,
+                1428
+            ],
+            "raw": "\n\n",
+            "type": "Str",
+            "value": "\n\n"
+        },
+        {
+            "children": [
+                {
+                    "loc": {
+                        "end": {
+                            "column": 14,
+                            "line": 99
+                        },
+                        "start": {
+                            "column": 3,
+                            "line": 99
+                        }
+                    },
+                    "range": [
+                        1431,
+                        1442
+                    ],
+                    "raw": "placeholder",
+                    "type": "Str",
+                    "value": "placeholder"
+                }
+            ],
+            "loc": {
+                "end": {
+                    "column": 18,
+                    "line": 99
+                },
+                "start": {
+                    "column": 0,
+                    "line": 99
+                }
+            },
+            "properties": {},
+            "range": [
+                1428,
+                1446
+            ],
+            "raw": "<a>placeholder</a>",
+            "tagName": "a",
+            "type": "Link"
+        },
+        {
+            "loc": {
+                "end": {
+                    "column": 0,
+                    "line": 100
+                },
+                "start": {
+                    "column": 18,
+                    "line": 99
+                }
+            },
+            "range": [
+                1446,
+                1447
+            ],
+            "raw": "\n",
+            "type": "Str",
+            "value": "\n"
         }
     ],
     "loc": {
@@ -2160,13 +2259,13 @@
             "column": 0
         },
         "end": {
-            "line": 96,
+            "line": 100,
             "column": 0
         }
     },
     "range": [
         0,
-        1406
+        1447
     ],
-    "raw": "<!--core:-->\n\n<a href=\"http://alpha.com\" class=\"bravo\" download></a>\n\n<!--double:-->\n\n<div class class></div>\n\n<!--unknown:-->\n\n<a ng-init></a>\n\n<a ng-repeat=\"\"></a>\n\n<a ng-click=\"ctrl.onintentclick($scope)\">ng-whatevs</a>.\n\n<!--empty:-->\n\n<abbr title></abbr>\n\n<!--space separated:-->\n\n<code class=\"language-foo bar\"></code>\n\n<code class=\"\"></code>\n\n<code class></code>\n\n<code class=\" \"></code>\n\n<!--comma separated:-->\n\n<img srcset=\"medium.jpg 1000w, large.jpg 2000w\">\n\n<img srcset=\"medium.jpg 1000w\">\n\n<img srcset=\"\">\n\n<img srcset=\" \">\n\n<img srcset=\",\">\n\n<img srcset=\" , \">\n\n<img srcset=\",foo\">\n\n<img srcset=\"bar,\">\n\n<img srcset=\",baz,\">\n\n<!--style:-->\n\n<div></div>\n\n<div style=\"\"></div>\n\n<div style=\"color\"></div>\n\n<div style=\"color:\"></div>\n\n<div style=\"color:red\"></div>\n\n<div style=\"color:;\"></div>\n\n<div style=\"color:red;\"></div>\n\n<div style=\"color:red;background-color\"></div>\n\n<div style=\"color:red;background-color: blue\"></div>\n\n<div style=\"color:red;background-color: blue;\"></div>\n\n<!--boolean:-->\n\n<script async></script>\n<script async=\"\"></script>\n<script async=\"async\"></script>\n\n<!--overloaded boolean (as boolean):-->\n\n<a download></a>\n<a download=\"\"></a>\n<a download=\"download\"></a>\n\n<!--overloaded boolean (as overloaded):-->\n\n<a download=\"example.mp3\"></a>\n\n<!--positive numeric:-->\n\n<img height=\"100\">\n\n<!--numeric:-->\n\n<meter min=\"0\" low=\"40\" high=\"90\" max=\"100\" value=\"95\"></meter>\n"
+    "raw": "<!--core:-->\n\n<a href=\"http://alpha.com\" class=\"bravo\" download></a>\n\n<!--double:-->\n\n<div class class></div>\n\n<!--unknown:-->\n\n<a ng-init></a>\n\n<a ng-repeat=\"\"></a>\n\n<a ng-click=\"ctrl.onintentclick($scope)\">ng-whatevs</a>.\n\n<!--empty:-->\n\n<abbr title></abbr>\n\n<!--space separated:-->\n\n<code class=\"language-foo bar\"></code>\n\n<code class=\"\"></code>\n\n<code class></code>\n\n<code class=\" \"></code>\n\n<!--comma separated:-->\n\n<img srcset=\"medium.jpg 1000w, large.jpg 2000w\">\n\n<img srcset=\"medium.jpg 1000w\">\n\n<img srcset=\"\">\n\n<img srcset=\" \">\n\n<img srcset=\",\">\n\n<img srcset=\" , \">\n\n<img srcset=\",foo\">\n\n<img srcset=\"bar,\">\n\n<img srcset=\",baz,\">\n\n<!--style:-->\n\n<div></div>\n\n<div style=\"\"></div>\n\n<div style=\"color\"></div>\n\n<div style=\"color:\"></div>\n\n<div style=\"color:red\"></div>\n\n<div style=\"color:;\"></div>\n\n<div style=\"color:red;\"></div>\n\n<div style=\"color:red;background-color\"></div>\n\n<div style=\"color:red;background-color: blue\"></div>\n\n<div style=\"color:red;background-color: blue;\"></div>\n\n<!--boolean:-->\n\n<script async></script>\n<script async=\"\"></script>\n<script async=\"async\"></script>\n\n<!--overloaded boolean (as boolean):-->\n\n<a download></a>\n<a download=\"\"></a>\n<a download=\"download\"></a>\n\n<!--overloaded boolean (as overloaded):-->\n\n<a download=\"example.mp3\"></a>\n\n<!--positive numeric:-->\n\n<img height=\"100\">\n\n<!--numeric:-->\n\n<meter min=\"0\" low=\"40\" high=\"90\" max=\"100\" value=\"95\"></meter>\n\n<!--placeholder:-->\n\n<a>placeholder</a>\n"
 }
