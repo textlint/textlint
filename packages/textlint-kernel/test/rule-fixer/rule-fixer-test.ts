@@ -1,16 +1,15 @@
 // LICENSE : MIT
 "use strict";
+import { TxtNode } from "../../src/textlint-kernel-interface";
+
 const assert = require("assert");
 import RuleFixer from "../../src/fixer/rule-fixer";
 // Original: https://github.com/eslint/eslint/blob/master/tests/src/util/rule-fixer.js
+const fixer = new RuleFixer();
 describe("RuleFixer", function() {
-    let fixer;
-    beforeEach(function() {
-        fixer = new RuleFixer();
-    });
     describe("insertTextBefore", function() {
         it("should return an object with the correct information when called", function() {
-            const result = fixer.insertTextBefore({ range: [0, 1] }, "Hi");
+            const result = fixer.insertTextBefore({ range: [0, 1] } as TxtNode, "Hi");
             assert.deepEqual(result, { range: [0, 0], text: "Hi", isAbsolute: true });
         });
     });
@@ -22,7 +21,7 @@ describe("RuleFixer", function() {
     });
     describe("insertTextAfter", function() {
         it("should return an object with the correct information when called", function() {
-            const result = fixer.insertTextAfter({ range: [0, 1] }, "Hi");
+            const result = fixer.insertTextAfter({ range: [0, 1] } as TxtNode, "Hi");
             assert.deepEqual(result, { range: [1, 1], text: "Hi", isAbsolute: true });
         });
     });
@@ -34,7 +33,7 @@ describe("RuleFixer", function() {
     });
     describe("removeAfter", function() {
         it("should return an object with the correct information when called", function() {
-            const result = fixer.remove({ range: [0, 1] });
+            const result = fixer.remove({ range: [0, 1] } as TxtNode);
             assert.deepEqual(result, { range: [0, 1], text: "", isAbsolute: true });
         });
     });
@@ -46,7 +45,7 @@ describe("RuleFixer", function() {
     });
     describe("replaceText", function() {
         it("should return an object with the correct information when called", function() {
-            const result = fixer.replaceText({ range: [0, 1] }, "Hi");
+            const result = fixer.replaceText({ range: [0, 1] } as TxtNode, "Hi");
             assert.deepEqual(result, { range: [0, 1], text: "Hi", isAbsolute: true });
         });
     });
