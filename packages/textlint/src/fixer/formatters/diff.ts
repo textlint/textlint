@@ -31,7 +31,7 @@ function addMarkEachLine(mark: string, text: any) {
     return `${markedLines.join("\n")}\n`;
 }
 
-module.exports = function(results: TextlintTypes.TextlintFixResult[], options: any) {
+export default function(results: TextlintTypes.TextlintFixResult[], options: any) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -128,4 +128,4 @@ module.exports = function(results: TextlintTypes.TextlintFixResult[], options: a
     }
 
     return totalFixed > 0 ? output : "";
-};
+}

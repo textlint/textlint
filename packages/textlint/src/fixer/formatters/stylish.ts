@@ -3,6 +3,7 @@ const chalk = require("chalk");
 const table = require("text-table");
 const widthOfString = require("string-width");
 import { TextlintTypes } from "@textlint/kernel";
+
 /**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.
@@ -13,7 +14,7 @@ function pluralize(word: string, count: number): string {
     return count === 1 ? word : `${word}s`;
 }
 
-module.exports = function(results: TextlintTypes.TextlintFixResult[], options: any) {
+export default function(results: TextlintTypes.TextlintFixResult[], options: any) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -52,7 +53,7 @@ module.exports = function(results: TextlintTypes.TextlintFixResult[], options: a
             }),
             {
                 align: ["", "r", "l"],
-                stringLength(str: string) {
+                stringLength: (str: string) => {
                     const lines = chalk.stripColor(str).split("\n");
                     return Math.max.apply(
                         null,
@@ -97,4 +98,4 @@ module.exports = function(results: TextlintTypes.TextlintFixResult[], options: a
     }
 
     return totalFixed > 0 ? output : "";
-};
+}
