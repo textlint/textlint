@@ -7,8 +7,7 @@
   "scripts": {
     "publish": "lerna publish --conventional-commits",
     "publish:beta": "lerna publish --conventional-commits --npm-tag=next",
-    "prepare": "yarn run bootstrap",
-    "bootstrap": "lerna bootstrap && yarn run build --scope textlint",
+    "bootstrap": "lerna bootstrap",
     "example": "npm-run-all -l example:*",
     "example:cli": "cd ./examples/cli && npm run test:ci",
     "example:config-file": "cd ./examples/config-file && npm run test:ci",
