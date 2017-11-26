@@ -2,7 +2,8 @@
   "name": "textlint",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/@textlint/*"
   ],
   "scripts": {
     "publish": "lerna publish --conventional-commits",
