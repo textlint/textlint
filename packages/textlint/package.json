@@ -86,7 +86,7 @@
     "object-assign": "^4.0.1",
     "optionator": "^0.8.0",
     "path-to-glob-pattern": "^1.0.2",
-    "rc-config-loader": "file:../../../../azu/rc-config-loader",
+    "rc-config-loader": "^2.0.1",
     "read-pkg": "^1.1.0",
     "resolve": "^1.4.0",
     "string-width": "^1.0.1",
