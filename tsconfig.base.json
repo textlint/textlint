@@ -8,12 +8,13 @@
         "./textlint-kernel/src"
       ]
     },
+    // SHOULD BE OVERWRITE
+    "outDir": "./SHOULD_BE_OVERWRITE/",
     /* Basic Options */
     "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "newLine": "LF",
-    "outDir": "lib/",
     "target": "es5",
     "sourceMap": false,
     // SourceMap by babel
@@ -34,12 +35,5 @@
     /* Report error when not all code paths in function return a value. */
     "noFallthroughCasesInSwitch": true
     /* Report errors for fallthrough cases in switch statement. */
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    ".git",
-    "node_modules"
-  ]
+  }
 }
