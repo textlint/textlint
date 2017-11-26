@@ -27,11 +27,11 @@ import { separateAvailableOrDisable } from "./separate-by-config-option";
  * @param rulesConfig
  * @returns {{string: string}}
  */
-function convertRulesConfigToFlatPath(rulesConfig) {
+function convertRulesConfigToFlatPath(rulesConfig: any) {
     if (!rulesConfig) {
         return {};
     }
-    const filteredConfig = {};
+    const filteredConfig: { [index: string]: any } = {};
     Object.keys(rulesConfig).forEach(key => {
         if (isPresetRuleKey(key)) {
             // <preset>/<rule>
@@ -90,8 +90,35 @@ const defaultOptions = Object.freeze({
     cacheLocation: path.resolve(process.cwd(), ".textlintcache")
 });
 
+export interface ConfigStatics {
+    CONFIG_PACKAGE_PREFIX: string;
+    FILTER_RULE_NAME_PREFIX: string;
+    RULE_NAME_PREFIX: string;
+    RULE_PRESET_NAME_PREFIX: string;
+    PLUGIN_NAME_PREFIX: string;
+}
+
 // Priority: CLI > Code options > config file
 export class Config {
+    rules: any;
+    rulesBaseDirectory: string | undefined;
+    configFile: string | undefined;
+    disabledRules: string[];
+    filterRules: string[];
+    disabledFilterRules: string[];
+    presets: string[];
+    plugins: string[];
+    pluginsConfig: { [index: string]: any };
+    rulesConfig: { [index: string]: any };
+    filterRulesConfig: { [index: string]: any };
+    extensions: string[];
+    rulePaths: string[];
+    formatterName: string | undefined;
+    quiet: boolean;
+    color: boolean;
+    cache: boolean;
+    cacheLocation: string;
+
     /**
      * @return {string} rc config filename
      * it's name use as `.<name>rc`
@@ -141,8 +168,8 @@ export class Config {
      * @param {object} cliOptions the options is command line option object. @see options.js
      * @returns {Config}
      */
-    static initWithCLIOptions(cliOptions) {
-        const options = {};
+    static initWithCLIOptions(cliOptions: any) {
+        const options: { [index: string]: any } = {};
         options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
         // TODO: CLI --filter <rule>?
@@ -170,7 +197,7 @@ export class Config {
     /* eslint-disable complexity */
 
     // load config and merge options.
-    static initWithAutoLoading(options = {}) {
+    static initWithAutoLoading(options: any = {}) {
         // Base directory
         const rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
@@ -246,7 +273,7 @@ export class Config {
      * @returns {Config}
      * @constructor
      */
-    constructor(options = {}) {
+    constructor(options: Partial<Config> = {}) {
         /**
          * @type {string|undefined} absolute path to .textlintrc file.
          * - If using .textlintrc, return path to .textlintrc
@@ -261,7 +288,17 @@ export class Config {
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // rule names that are defined in ,textlintrc
-        const moduleResolver = new TextLintModuleResolver(this.constructor, this.rulesBaseDirectory);
+        const configConstructor: ConfigStatics = (this.constructor as any) as ConfigStatics;
+        const moduleResolver = new TextLintModuleResolver(
+            {
+                CONFIG_PACKAGE_PREFIX: configConstructor.CONFIG_PACKAGE_PREFIX,
+                FILTER_RULE_NAME_PREFIX: configConstructor.FILTER_RULE_NAME_PREFIX,
+                RULE_NAME_PREFIX: configConstructor.RULE_NAME_PREFIX,
+                RULE_PRESET_NAME_PREFIX: configConstructor.RULE_PRESET_NAME_PREFIX,
+                PLUGIN_NAME_PREFIX: configConstructor.PLUGIN_NAME_PREFIX
+            },
+            this.rulesBaseDirectory
+        );
         /**
          * @type {string[]} rule key list
          * but, plugins's rules are not contained in `rules`
@@ -296,7 +333,6 @@ export class Config {
         // rulesConfig
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = objectAssign({}, presetRulesConfig, options.rulesConfig);
-
         // filterRulesConfig
         this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
         /**
@@ -333,7 +369,7 @@ export class Config {
         this._assertCacheLocation(this.cacheLocation);
     }
 
-    _assertCacheLocation(locationPath) {
+    _assertCacheLocation(locationPath: string) {
         let fileStats;
         try {
             fileStats = fs.lstatSync(locationPath);
@@ -356,7 +392,7 @@ export class Config {
             if (!this.hasOwnProperty(key)) {
                 return;
             }
-            const value = this[key];
+            const value = (this as any)[key];
             if (value == null) {
                 return;
             }

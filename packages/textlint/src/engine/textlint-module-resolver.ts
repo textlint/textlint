@@ -4,7 +4,7 @@ const assert = require("assert");
 const path = require("path");
 const tryResolve = require("try-resolve");
 const debug = require("debug")("textlint:module-resolver");
-const validateConfigConstructor = ConfigConstructor => {
+const validateConfigConstructor = (ConfigConstructor: any) => {
     assert(
         ConfigConstructor.CONFIG_PACKAGE_PREFIX &&
             ConfigConstructor.FILTER_RULE_NAME_PREFIX &&
@@ -20,7 +20,7 @@ const validateConfigConstructor = ConfigConstructor => {
  * @param {string} name
  * @returns {string}
  */
-export const createFullPackageName = (prefix, name) => {
+export const createFullPackageName = (prefix: string, name: string): string => {
     if (name.charAt(0) === "@") {
         const scopedPackageNameRegex = new RegExp(`^${prefix}(-|$)`);
         // if @scope/<name> -> @scope/<prefix><name>
@@ -34,6 +34,15 @@ export const createFullPackageName = (prefix, name) => {
     }
     return `${prefix}${name}`;
 };
+
+export interface ConfigModulePrefix {
+    CONFIG_PACKAGE_PREFIX: string;
+    FILTER_RULE_NAME_PREFIX: string;
+    RULE_NAME_PREFIX: string;
+    RULE_PRESET_NAME_PREFIX: string;
+    PLUGIN_NAME_PREFIX: string;
+}
+
 /**
  * This class aim to resolve textlint's package name and get the module path.
  *
@@ -50,6 +59,12 @@ export const createFullPackageName = (prefix, name) => {
  * - textlint-config-*
  */
 export class TextLintModuleResolver {
+    private baseDirectory: string;
+    private PLUGIN_NAME_PREFIX: string;
+    private RULE_PRESET_NAME_PREFIX: string;
+    private FILTER_RULE_NAME_PREFIX: string;
+    private RULE_NAME_PREFIX: string;
+    private CONFIG_PACKAGE_PREFIX: string;
     /**
      *
      * @param {Config|*} ConfigConstructor config constructor like object
@@ -57,7 +72,7 @@ export class TextLintModuleResolver {
      * @param {string} [baseDirectory]
      * @constructor
      */
-    constructor(ConfigConstructor, baseDirectory = "") {
+    constructor(ConfigConstructor: ConfigModulePrefix, baseDirectory: string = "") {
         validateConfigConstructor(ConfigConstructor);
         /**
          * @type {string} config package prefix
@@ -79,7 +94,6 @@ export class TextLintModuleResolver {
          * @type {string} plugins package's name prefix
          */
         this.PLUGIN_NAME_PREFIX = ConfigConstructor.PLUGIN_NAME_PREFIX;
-
         /**
          * @type {string} baseDirectory for resolving
          */
@@ -91,7 +105,7 @@ export class TextLintModuleResolver {
      * @param {string} packageName
      * @returns {string} return path to module
      */
-    resolveRulePackageName(packageName) {
+    resolveRulePackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
         const PREFIX = this.RULE_NAME_PREFIX;
         const fullPackageName = createFullPackageName(PREFIX, packageName);
@@ -111,7 +125,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * @param {string} packageName
      * @returns {string} return path to module
      */
-    resolveFilterRulePackageName(packageName) {
+    resolveFilterRulePackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
         const PREFIX = this.FILTER_RULE_NAME_PREFIX;
         const fullPackageName = createFullPackageName(PREFIX, packageName);
@@ -131,7 +145,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * @param {string} packageName
      * @returns {string} return path to module
      */
-    resolvePluginPackageName(packageName) {
+    resolvePluginPackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
         const PREFIX = this.PLUGIN_NAME_PREFIX;
         const fullPackageName = createFullPackageName(PREFIX, packageName);
@@ -152,11 +166,11 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * The user must specify preset- prefix to these `packageName`.
      * @returns {string} return path to module
      */
-    resolvePresetPackageName(packageName) {
+    resolvePresetPackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
         const PREFIX = this.RULE_PRESET_NAME_PREFIX;
         /* Implementation Note
-
+    
         preset name is defined in config file:
         In the case, `packageName` is "preset-gizmo"
         TextLintModuleResolver resolve "preset-gizmo" to "textlint-rule-preset-gizmo"
@@ -171,9 +185,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         // preset-<name> or textlint-rule-preset-<name>
         // @scope/preset-<name> or @scope/textlint-rule-preset-<name>
         const packageNameWithoutPreset = packageName
-            // preset-<name> -> <name>
             .replace(/^preset-/, "")
-            // @scope/preset-<name> -> @scope/<name>
             .replace(/^@([^/]+)\/preset-(.*)$/, `@$1/$2`);
         const fullPackageName = createFullPackageName(PREFIX, packageNameWithoutPreset);
         const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
@@ -199,7 +211,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * @param {string} packageName
      * @returns {string} return path to module
      */
-    resolveConfigPackageName(packageName) {
+    resolveConfigPackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
         const PREFIX = this.CONFIG_PACKAGE_PREFIX;
         const fullPackageName = createFullPackageName(PREFIX, packageName);

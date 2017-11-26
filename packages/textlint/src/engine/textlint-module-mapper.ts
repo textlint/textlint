@@ -15,8 +15,8 @@ export class TextLintModuleMapper {
      * @param {string} prefixKey prefix key is plugin name or preset name
      * @returns {[string, string][]}
      */
-    static createEntities(pluginRules, prefixKey) {
-        const entities = [];
+    static createEntities(pluginRules: { [index: string]: string }, prefixKey: string): [string, string][] {
+        const entities: [string, string][] = [];
         Object.keys(pluginRules).forEach(ruleId => {
             const qualifiedRuleId = prefixKey + RuleSeparator + ruleId;
             const ruleCreator = pluginRules[ruleId];
@@ -32,8 +32,11 @@ export class TextLintModuleMapper {
      * @param {string} prefixKey prefix key is plugin name or preset name
      * @returns {Object}
      */
-    static createMappedObject(pluginRules, prefixKey) {
-        const mapped = {};
+    static createMappedObject(
+        pluginRules: { [index: string]: string },
+        prefixKey: string
+    ): { [index: string]: string } {
+        const mapped: { [index: string]: string } = {};
         Object.keys(pluginRules).forEach(key => {
             mapped[`${prefixKey}/${key}`] = pluginRules[key];
         });

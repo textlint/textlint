@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
-const EventEmitter = require("events");
+import { EventEmitter } from "events";
+
 const interopRequire = require("interop-require");
 const debug = require("debug")("textlint:module-loader");
 const isFile = require("is-file");
@@ -9,8 +10,12 @@ import { loadFromDir } from "./rule-loader";
 import { Logger } from "../util/logger";
 import { TextLintModuleResolver } from "./textlint-module-resolver";
 import { TextLintModuleMapper } from "./textlint-module-mapper";
+import { Config } from "../config/config";
 
 export class TextLintModuleLoader extends EventEmitter {
+    moduleResolver: TextLintModuleResolver;
+    config: any;
+
     static get Event() {
         return {
             rule: "rule",
@@ -20,7 +25,7 @@ export class TextLintModuleLoader extends EventEmitter {
         };
     }
 
-    constructor(config) {
+    constructor(config: Config) {
         super();
         /**
          * @type {Config} config is need for static prefix value
@@ -37,7 +42,7 @@ export class TextLintModuleLoader extends EventEmitter {
      * The {@lint Config} object was created with initialized {@link TextLintEngine} (as-known Constructor).
      * @param {Config} config the config is parsed object
      */
-    loadFromConfig(config) {
+    loadFromConfig(config: Config) {
         debug("config %O", config);
         // --ruledir
         if (config.rulePaths) {
@@ -54,7 +59,7 @@ export class TextLintModuleLoader extends EventEmitter {
         // --rule
         if (config.rules) {
             // load in additional rules
-            config.rules.forEach(ruleName => {
+            config.rules.forEach((ruleName: string) => {
                 this.loadRule(ruleName);
             });
         }
@@ -85,7 +90,7 @@ export class TextLintModuleLoader extends EventEmitter {
      * plugin module has `rules` object and define rule with plugin prefix.
      * @param {string} pluginName
      */
-    loadPlugin(pluginName) {
+    loadPlugin(pluginName: string) {
         const pkgPath = this.moduleResolver.resolvePluginPackageName(pluginName);
         debug("Loading rules from plugin: %s", pkgPath);
         const plugin = interopRequire(pkgPath);
@@ -108,7 +113,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         this.emit(TextLintModuleLoader.Event.plugin, pluginEntry);
     }
 
-    loadPreset(presetName) {
+    loadPreset(presetName: string) {
         /*
          Caution: Rules of preset are defined as following.
              {
@@ -148,7 +153,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
      * if already rule is loaded, do not anything.
      * @param {string} ruleName
      */
-    loadRule(ruleName) {
+    loadRule(ruleName: string) {
         /*
            Task
              - check already define
@@ -186,7 +191,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
      * if already rule is loaded, do not anything.
      * @param {string} ruleName
      */
-    loadFilterRule(ruleName) {
+    loadFilterRule(ruleName: string) {
         /*
            Task
              - check already define

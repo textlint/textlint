@@ -6,7 +6,7 @@ const path = require("path");
 const ObjectAssign = require("object-assign");
 const isFile = require("is-file");
 const readPkg = require("read-pkg");
-import { Config } from "../config/config";
+import { Config } from "./config";
 import { Logger } from "../util/logger";
 
 /**
@@ -14,9 +14,9 @@ import { Logger } from "../util/logger";
  * @param {string} dir
  * @returns {Promise.<Array.<String>>}
  */
-const getTextlintDependencyNames = dir => {
+const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
     return readPkg(dir)
-        .then(pkg => {
+        .then((pkg: any) => {
             const dependencies = pkg.dependencies || {};
             const devDependencies = pkg.devDependencies || {};
             const mergedDependencies = ObjectAssign({}, dependencies, devDependencies);
@@ -42,8 +42,8 @@ const getTextlintDependencyNames = dir => {
  * @param {*} defaultValue
  * @returns {Object}
  */
-const arrayToObject = (array, defaultValue) => {
-    const object = {};
+const arrayToObject = (array: Array<any>, defaultValue: any): object => {
+    const object: { [index: string]: string } = {};
     array.forEach(item => {
         object[item] = defaultValue;
     });
@@ -58,7 +58,7 @@ export const configInit = {
      * @params {string} dir The directory of .textlintrc file
      * @returns {Promise.<number>} The exit code for the operation.
      */
-    initializeConfig(dir) {
+    initializeConfig(dir: string) {
         return getTextlintDependencyNames(dir).then(pkgNames => {
             const rcFile = `.${Config.CONFIG_FILE_NAME}rc`;
             const filePath = path.resolve(dir, rcFile);

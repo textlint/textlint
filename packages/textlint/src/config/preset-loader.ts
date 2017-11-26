@@ -3,6 +3,7 @@
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
 import { TextLintModuleMapper } from "../engine/textlint-module-mapper";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 
 /**
  * create `<plugin>/<rule>` option
@@ -10,7 +11,7 @@ import { TextLintModuleMapper } from "../engine/textlint-module-mapper";
  * @param {string} presetName
  * @returns {Object}
  */
-export function mapRulesConfig(rulesConfig, presetName) {
+export function mapRulesConfig(rulesConfig: { [index: string]: string }, presetName: string): object {
     const mapped = {};
     // missing "rulesConfig"
     if (rulesConfig === undefined || typeof rulesConfig !== "object") {
@@ -18,6 +19,7 @@ export function mapRulesConfig(rulesConfig, presetName) {
     }
     return TextLintModuleMapper.createMappedObject(rulesConfig, presetName);
 }
+
 // load rulesConfig from plugins
 /**
  *
@@ -25,7 +27,7 @@ export function mapRulesConfig(rulesConfig, presetName) {
  * @param {TextLintModuleResolver} moduleResolver
  * @returns {{}}
  */
-export function loadRulesConfigFromPresets(ruleNames = [], moduleResolver) {
+export function loadRulesConfigFromPresets(ruleNames: string[] = [], moduleResolver: TextLintModuleResolver): {} {
     const presetRulesConfig = {};
     ruleNames.forEach(ruleName => {
         const pkgPath = moduleResolver.resolvePresetPackageName(ruleName);

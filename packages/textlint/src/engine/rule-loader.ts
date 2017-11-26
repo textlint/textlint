@@ -9,15 +9,15 @@ const path = require("path");
  * @param {String} [extname] extension name
  * @returns {Object} Loaded rule modules by rule ids (file names).
  */
-export function loadFromDir(rulesDir, extname = ".js") {
-    let rulesDirAbsolutePath;
+export function loadFromDir(rulesDir: string, extname: string = ".js"): { [index: string]: any } {
+    let rulesDirAbsolutePath: string;
     if (!rulesDir) {
         rulesDirAbsolutePath = path.join(__dirname, "rules");
     } else {
         rulesDirAbsolutePath = path.resolve(process.cwd(), rulesDir);
     }
     const rules = Object.create(null);
-    fs.readdirSync(rulesDirAbsolutePath).forEach(file => {
+    fs.readdirSync(rulesDirAbsolutePath).forEach((file: string) => {
         if (path.extname(file) !== extname) {
             return;
         }

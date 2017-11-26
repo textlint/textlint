@@ -1,3 +1,4 @@
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 // LICENSE : MIT
 "use strict";
 const interopRequire = require("interop-require");
@@ -9,7 +10,7 @@ const assert = require("assert");
  * @param configFileRaw
  * @returns {Array}
  */
-export function getPluginNames(configFileRaw) {
+export function getPluginNames(configFileRaw: { plugins: any }) {
     const plugins = configFileRaw.plugins;
     if (!plugins) {
         return [];
@@ -57,7 +58,7 @@ export function getPluginNames(configFileRaw) {
  * }
  * ```
  */
-export function getPluginConfig(configFileRaw) {
+export function getPluginConfig(configFileRaw: { [index: string]: any }): { [index: string]: any } {
     const plugins = configFileRaw.plugins;
     if (!plugins) {
         return {};
@@ -75,8 +76,8 @@ export function getPluginConfig(configFileRaw) {
     return plugins;
 }
 
-export function loadAvailableExtensions(pluginNames = [], moduleResolver) {
-    const availableExtensions = [];
+export function loadAvailableExtensions(pluginNames: string[] = [], moduleResolver: TextLintModuleResolver) {
+    const availableExtensions: string[] = [];
     pluginNames.forEach(pluginName => {
         const pkgPath = moduleResolver.resolvePluginPackageName(pluginName);
         const plugin = interopRequire(pkgPath);
