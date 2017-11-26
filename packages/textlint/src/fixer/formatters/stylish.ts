@@ -2,18 +2,18 @@
 const chalk = require("chalk");
 const table = require("text-table");
 const widthOfString = require("string-width");
-
+import { TextlintTypes } from "@textlint/kernel";
 /**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.
- * @param {int} count A number controlling whether word should be pluralized.
+ * @param {number} count A number controlling whether word should be pluralized.
  * @returns {string} The original word with an s on the end if count is not one.
  */
-function pluralize(word, count) {
+function pluralize(word: string, count: number): string {
     return count === 1 ? word : `${word}s`;
 }
 
-module.exports = function(results, options) {
+module.exports = function(results: TextlintTypes.TextlintFixResult[], options: any) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -52,11 +52,11 @@ module.exports = function(results, options) {
             }),
             {
                 align: ["", "r", "l"],
-                stringLength(str) {
+                stringLength(str: string) {
                     const lines = chalk.stripColor(str).split("\n");
                     return Math.max.apply(
                         null,
-                        lines.map(function(line) {
+                        lines.map(function(line: string) {
                             return widthOfString(line);
                         })
                     );
@@ -64,8 +64,8 @@ module.exports = function(results, options) {
             }
         )
             .split("\n")
-            .map(function(el) {
-                return el.replace(/(\d+)\s+(\d+)/, function(m, p1, p2) {
+            .map(function(el: string) {
+                return el.replace(/(\d+)\s+(\d+)/, function(_m, p1, p2) {
                     return chalk.gray(`${p1}:${p2}`);
                 });
             })

@@ -106,7 +106,7 @@ export class TextLintCore {
      * The result contains target filePath and error messages.
      * @param {string} text
      * @param {string} ext ext is extension. default: .txt
-     * @returns {Promise.<TextLintResult>}
+     * @returns {Promise.<TextlintResult>}
      */
     lintText(text, ext = ".txt") {
         const options = this._mergeSetupOptions({
@@ -119,7 +119,7 @@ export class TextLintCore {
      * lint markdown text by registered rules.
      * The result contains target filePath and error messages.
      * @param {string} text markdown format text
-     * @returns {Promise.<TextLintResult>}
+     * @returns {Promise.<TextlintResult>}
      */
     lintMarkdown(text) {
         const ext = ".md";
@@ -132,7 +132,7 @@ export class TextLintCore {
     /**
      * lint file and return result object
      * @param {string} filePath
-     * @returns {Promise.<TextLintResult>} result
+     * @returns {Promise.<TextlintResult>} result
      */
     lintFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
@@ -149,7 +149,7 @@ export class TextLintCore {
     /**
      * fix file and return fix result object
      * @param {string} filePath
-     * @returns {Promise.<TextLintFixResult>}
+     * @returns {Promise.<TextlintFixResult>}
      */
     fixFile(filePath) {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
@@ -167,7 +167,7 @@ export class TextLintCore {
      * fix texts and return fix result object
      * @param {string} text
      * @param {string} ext
-     * @returns {Promise.<TextLintFixResult>}
+     * @returns {Promise.<TextlintFixResult>}
      */
     fixText(text, ext = ".txt") {
         const options = this._mergeSetupOptions({

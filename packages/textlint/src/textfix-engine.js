@@ -22,7 +22,7 @@ export class TextFixEngine {
                  * Fixes the current configuration on an array of file and directory names.
                  * TextFixEngine#executeOnFiles
                  * @param {String[]}  files An array of file and directory names.
-                 * @returns {TextLintFixResult[]} The results for all files that were linted.
+                 * @returns {TextlintFixResult[]} The results for all files that were linted.
                  */
                 return file => {
                     return textlintCore.fixFile(file);
@@ -38,7 +38,7 @@ export class TextFixEngine {
                  * TextFixEngine#executeOnText
                  * @param {string} text linting text content
                  * @param {string} ext ext is a type for linting. default: ".txt"
-                 * @returns {TextLintFixResult[]}
+                 * @returns {TextlintFixResult[]}
                  */
                 return (text, ext) => {
                     return textlintCore.fixText(text, ext);

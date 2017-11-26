@@ -11,7 +11,7 @@ export class AbstractBacker {
     }
 
     /**
-     * @param {TextLintResult} result
+     * @param {TextlintResult} result
      * @returns {boolean}
      */
     didExecute({ result }) {

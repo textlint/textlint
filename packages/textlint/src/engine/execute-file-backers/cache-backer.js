@@ -37,7 +37,7 @@ export class CacheBacker extends AbstractBacker {
     }
 
     /**
-     * @param {TextLintResult} result
+     * @param {TextlintResult} result
      */
     didExecute({ result }) {
         if (!this.isEnabled) {

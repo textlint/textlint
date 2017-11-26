@@ -31,7 +31,7 @@ export class ExecuteFileBackerManager {
      * process `messages` with registered processes
      * @param {string[]} files
      * @param {function(filePath: string):Promise} executeFile
-     * @returns {Promise.<TextLintResult[]>}
+     * @returns {Promise.<TextlintResult[]>}
      */
     process(files, executeFile) {
         const unExecutedResults = [];
@@ -67,7 +67,7 @@ export class ExecuteFileBackerManager {
     /**
      * create fake result object
      * @param {string} filePath
-     * @returns {TextLintResult}
+     * @returns {TextlintResult}
      * @private
      */
     _createFakeResult(filePath) {

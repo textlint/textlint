@@ -3,33 +3,35 @@ const fs = require("fs");
 const isFile = require("is-file");
 const jsdiff = require("diff");
 const chalk = require("chalk");
+import { TextlintTypes } from "@textlint/kernel";
 /**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.
- * @param {int} count A number controlling whether word should be pluralized.
+ * @param {number} count A number controlling whether word should be pluralized.
  * @returns {string} The original word with an s on the end if count is not one.
  */
-function pluralize(word, count) {
+function pluralize(word: string, count: number): string {
     return count === 1 ? word : `${word}s`;
 }
 
-function isModified(part) {
+function isModified(part: any) {
     if (!part) {
         return false;
     }
     return typeof part === "object" && (part.removed || part.added);
 }
-function addMarkEachLine(mark, text) {
+function addMarkEachLine(mark: string, text: any) {
     if (text.length === 0) {
         return "\n";
     }
     const lines = text.split("\n");
-    const markedLines = lines.filter(line => line.length > 0).map(line => {
+    const markedLines = lines.filter((line: string) => line.length > 0).map((line: string) => {
         return mark + line;
     });
     return `${markedLines.join("\n")}\n`;
 }
-module.exports = function(results, options) {
+
+module.exports = function(results: TextlintTypes.TextlintFixResult[], options: any) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -56,7 +58,7 @@ module.exports = function(results, options) {
         const originalContent = fs.readFileSync(filePath, "utf-8");
         const diff = jsdiff.diffLines(originalContent, result.output);
 
-        diff.forEach(function(part, index) {
+        diff.forEach(function(part: any, index: number) {
             const prevLine = diff[index - 1];
             const nextLine = diff[index + 1];
             if (!isModified(part) && part.count > 1) {

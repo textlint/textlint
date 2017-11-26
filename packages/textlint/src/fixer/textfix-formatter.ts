@@ -6,10 +6,11 @@ const tryResolve = require("try-resolve");
 const interopRequire = require("interop-require");
 const isFile = require("is-file");
 const debug = require("debug")("textlint:textfix-formatter");
-export function createFormatter(formatterConfig) {
+import { TextlintTypes } from "@textlint/kernel";
+export function createFormatter(formatterConfig: { formatterName: any }) {
     const formatterName = formatterConfig.formatterName;
     debug(`try formatterName: ${formatterName}`);
-    let formatter;
+    let formatter: any;
     let formatterPath;
     if (fs.existsSync(formatterName)) {
         formatterPath = formatterName;
@@ -34,7 +35,7 @@ See https://github.com/textlint/textlint/issues/148
 ${ex}`);
     }
     debug(`use formatter: ${formatterPath}`);
-    return function(results) {
+    return function(results: TextlintTypes.TextlintFixResult[]) {
         return formatter(results, formatterConfig);
     };
 }

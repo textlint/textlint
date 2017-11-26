@@ -190,7 +190,7 @@ new TextLintEngine({
     /**
      * Executes the current configuration on an array of file and directory names.
      * @param {String[]}  files An array of file and directory names.
-     * @returns {Promise<TextLintResult[]>} The results for all files that were linted.
+     * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
      */
     executeOnFiles(files) {
         const boundLintFile = file => {
@@ -219,7 +219,7 @@ new TextLintEngine({
      * But, if you have a target file, use {@link executeOnFiles} instead of it.
      * @param {string} text linting text content
      * @param {string} ext ext is a type for linting. default: ".txt"
-     * @returns {Promise<TextLintResult[]>}
+     * @returns {Promise<TextlintResult[]>}
      */
     executeOnText(text, ext = ".txt") {
         const boundLintText = (file, ext) => {
@@ -239,7 +239,7 @@ new TextLintEngine({
 
     /**
      * format {@link results} and return output text.
-     * @param {TextLintResult[]} results the collection of result
+     * @param {TextlintResult[]} results the collection of result
      * @returns {string} formatted output text
      * @example
      *  console.log(formatResults(results));
@@ -258,7 +258,7 @@ new TextLintEngine({
 
     /**
      * Checks if the given message is an error message.
-     * @param {TextLintMessage} message The message to check.
+     * @param {TextlintMessage} message The message to check.
      * @returns {boolean} Whether or not the message is an error message.
      */
     isErrorMessage(message) {
@@ -268,7 +268,7 @@ new TextLintEngine({
     /**
      * Checks if the given results contain error message.
      * If there is even one error then return true.
-     * @param {TextLintResult[]} results Linting result collection
+     * @param {TextlintResult[]} results Linting result collection
      * @returns {Boolean} Whether or not the results contain error message.
      */
     isErrorResults(results) {

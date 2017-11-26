@@ -1,13 +1,11 @@
-const Promise = require("bluebird");
+import Promise = require("bluebird");
 const fs = require("fs");
-/**
- * @param {TextLintResult} result
- */
-function overWriteResult(result) {
+import { TextlintTypes } from "@textlint/kernel";
+function overWriteResult(result: TextlintTypes.TextlintFixResult) {
     return new Promise((resolve, reject) => {
         const targetFilePath = result.filePath;
         const output = result.output;
-        fs.writeFile(targetFilePath, output, (error, result) => {
+        fs.writeFile(targetFilePath, output, (error: any, result: TextlintTypes.TextlintFixResult) => {
             if (error) {
                 return reject(error);
             }
@@ -21,7 +19,7 @@ export class TextLintFixer {
      * @param textFixMessages
      * @returns {Promise}
      */
-    write(textFixMessages) {
+    write(textFixMessages: TextlintTypes.TextlintFixResult[]) {
         const promises = textFixMessages.map(overWriteResult);
         return Promise.all(promises);
     }

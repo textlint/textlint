@@ -22,7 +22,7 @@ export class TextLintEngine {
                  * Executes the current configuration on an array of file and directory names.
                  * TextLintEngine#executeOnFile
                  * @param {String} file An array of file and directory names.
-                 * @returns {TextLintResult[]} The results for all files that were linted.
+                 * @returns {TextlintResult[]} The results for all files that were linted.
                  */
                 return function executeOnFile(file) {
                     return textlintCore.lintFile(file);
@@ -34,11 +34,11 @@ export class TextLintEngine {
              */
             onText: textlintCore => {
                 /**
-                 * lint text, and return TextLintResult[]
+                 * lint text, and return TextlintResult[]
                  * TextLintEngine#executeOnText
                  * @param {string} text linting text content
                  * @param {string} ext ext is a type for linting. default: ".txt"
-                 * @returns {TextLintResult[]}
+                 * @returns {TextlintResult[]}
                  */
                 return function executeOnText(text, ext) {
                     return textlintCore.lintText(text, ext);

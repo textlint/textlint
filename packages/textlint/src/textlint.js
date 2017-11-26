@@ -7,7 +7,7 @@
     # Usage
 
     First, register rules by `api.setupRules`.
-    Second, lint text and get `TextLintResult` by `api.lint*`.
+    Second, lint text and get `TextlintResult` by `api.lint*`.
     Finally, cleanup by `api.resetRules`.
 
     ## Concept

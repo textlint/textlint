@@ -44,7 +44,7 @@ function convertRulesConfigToFlatPath(rulesConfig) {
 }
 
 /**
- * @type {TextLintConfig}
+ * @type {TextlintConfig}
  */
 const defaultOptions = Object.freeze({
     // rule package names
@@ -242,7 +242,7 @@ export class Config {
 
     /**
      * initialize with options.
-     * @param {TextLintConfig} options the option object is defined as TextLintConfig.
+     * @param {TextlintConfig} options the option object is defined as TextlintConfig.
      * @returns {Config}
      * @constructor
      */
