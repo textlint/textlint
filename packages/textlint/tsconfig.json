@@ -1,6 +1,14 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": "../packages",
+    "paths": {
+      // TODO: re-structure directry
+      // Move textlint-kernel to @textlint/kernel
+      "@textlint/kernel": [
+        "./textlint-kernel/src"
+      ]
+    },
     "outDir": "./lib/"
   },
   "include": [
