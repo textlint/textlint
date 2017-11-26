@@ -16,16 +16,15 @@ const debug = require("debug")("textlint:traverse");
  * @returns {void}
  * @private
  */
-function walk(name, extensions, exclude, callback) {
+function walk(name: string, extensions: string[], exclude: Function, callback: Function): void {
     const stat = fs.statSync(name);
-
     /**
-     * @param {string} dir 
-     * @param {string[]} stack 
+     * @param {string} dir
+     * @param {string[]} stack
      */
-    function traverse(dir, stack) {
+    function traverse(dir: string, stack: string[]) {
         stack.push(dir);
-        fs.readdirSync(path.join(...stack)).forEach(file => {
+        fs.readdirSync(path.join(...stack)).forEach((file: string) => {
             // skip all hidden things (dirs, files, links)
             if (file[0] === ".") {
                 return;
@@ -47,7 +46,6 @@ function walk(name, extensions, exclude, callback) {
         });
         stack.pop();
     }
-
     const basename = path.basename(name);
     // don't ignore cases like 'textlint ./'
     if ((basename !== "." && basename !== ".." && basename[0] === ".") || (exclude && exclude(name))) {
@@ -65,13 +63,16 @@ function walk(name, extensions, exclude, callback) {
 }
 /**
  * Traverses multiple directories and calls a callback on each file.
- * @param {Object} options The option for the traversal.
+ * @param {{files:string[], exclude:Function, extensions:string[]}} options The option for the traversal.
  * param {string[]} options.files An array of file and directory paths to traverse.
  * param {Function} options.exclude The function to check if file/path should be excluded.
  * @param {Function} callback A function to call for each file.
  * @returns {void}
  */
-module.exports = function traverse(options, callback) {
+module.exports = function traverse(
+    options: { files: string[]; exclude: Function; extensions: string[] },
+    callback: Function
+): void {
     const files = options.files;
     const exclude = options.exclude;
     const extensions = options.extensions;
