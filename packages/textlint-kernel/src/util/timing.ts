@@ -50,14 +50,14 @@ function display(data: any) {
         .map(function(key) {
             const time = data[key];
             total += time;
-            return [key, time];
+            return [key, time] as any;
         })
         .sort(function(a: [string, number], b: [string, number]) {
             return b[1] - a[1];
         })
         .slice(0, 10);
 
-    rows.forEach(function(row) {
+    rows.forEach(function(row: any) {
         row.push((row[1] * 100 / total).toFixed(1) + "%");
         row[1] = row[1].toFixed(3);
     });
@@ -76,7 +76,7 @@ function display(data: any) {
 
     const table = rows.map(function(row) {
         return row
-            .map(function(cell, index) {
+            .map(function(cell: any, index: number) {
                 return ALIGN[index](cell, widths[index]);
             })
             .join(" | ");

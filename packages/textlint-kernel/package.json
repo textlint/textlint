@@ -56,18 +56,16 @@
     "shelljs": "^0.7.7",
     "textlint-plugin-markdown": "^3.0.3",
     "ts-node": "^3.3.0",
-    "typescript": "~2.5.2",
+    "typescript": "~2.6.1",
     "typescript-json-schema": "^0.11.0"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^2.0.0",
     "@textlint/feature-flag": "^2.0.0",
     "@types/bluebird": "^3.5.18",
-    "bluebird": "^3.5.0",
+    "bluebird": "^3.5.1",
     "debug": "^2.6.6",
     "deep-equal": "^1.0.1",
-    "is-my-json-valid": "^2.16.0",
-    "map-like": "^1.1.2",
     "object-assign": "^4.1.1",
     "structured-source": "^3.0.2",
     "txt-ast-traverse": "^1.2.1"
