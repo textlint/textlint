@@ -31,10 +31,8 @@
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
     "prepublish": "npm run build",
-    "lint:js": "eslint src/",
     "test": "npm-run-all test:unit",
     "test:unit": "mocha test",
-    "test:all": "npm-run-all test:js --parallel lint:* example:*",
     "perf": "cd perf && npm run perf"
   },
   "directories": {
@@ -51,7 +49,6 @@
     "clone": "^2.0.0",
     "cpx": "^1.5.0",
     "cross-env": "^4.0.0",
-    "eslint": "^3.1.1",
     "mocha": "^3.0.2",
     "npm-run-all": "^4.0.2",
     "power-assert": "^1.3.1",
@@ -63,7 +60,7 @@
     "textlint-rule-preset-ja-spacing": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.3.0",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.1"
+    "typescript": "~2.6.1"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^2.0.0",
