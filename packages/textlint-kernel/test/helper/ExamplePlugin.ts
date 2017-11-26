@@ -12,7 +12,7 @@ export class ExampleProcessor implements TextlintKernelProcessor {
         return [".md"];
     }
 
-    constructor(public options: ExampleProcessorOptions) {}
+    constructor(public options: any) {}
 
     processor(_extension: string) {
         return {
@@ -34,7 +34,7 @@ export const plugin: TextlintPluginCreator = {
 };
 
 export const createPluginStub = () => {
-    let assignedOptions: undefined | ExampleProcessorOptions;
+    let assignedOptions: undefined | ExampleProcessorOptions | boolean;
     return {
         getOptions() {
             return assignedOptions;
@@ -42,7 +42,7 @@ export const createPluginStub = () => {
         getPlugin(): TextlintPluginCreator {
             return {
                 Processor: class MockProcessor extends ExampleProcessor {
-                    constructor(options: ExampleProcessorOptions) {
+                    constructor(options: any) {
                         super(options);
                         assignedOptions = options;
                     }

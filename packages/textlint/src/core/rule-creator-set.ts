@@ -4,7 +4,7 @@ const deepEqual = require("deep-equal");
 import { MapLike } from "map-like";
 import { assertRuleShape, hasFixer } from "./rule-creator-helper";
 
-const filterByAvailable = (rules, rulesConfig) => {
+const filterByAvailable = (rules: { [index: string]: any }, rulesConfig: { [index: string]: any }) => {
     const resultRules = Object.create(null);
     Object.keys(rules).forEach(key => {
         const ruleCreator = rules[key];
@@ -22,12 +22,17 @@ const filterByAvailable = (rules, rulesConfig) => {
  * Manage RuleCreator*s* object and RuleOption*s*
  */
 export class RuleCreatorSet {
+    rulesConfig: { [index: string]: any };
+    ruleNames: string[];
+    rules: any;
+    rawRulesConfigObject: object;
+    rawRulesObject: object;
     /**
      * @param {Object} [rules]
      * @param {Object} [rulesConfig]
      * @constructor
      */
-    constructor(rules = {}, rulesConfig = {}) {
+    constructor(rules: object = {}, rulesConfig: object = {}) {
         this.rawRulesObject = rules;
         this.rawRulesConfigObject = rulesConfig;
         /**
@@ -51,7 +56,7 @@ export class RuleCreatorSet {
      * Convert this to TextlintKernel rules format
      * @returns {Array}
      */
-    toKernelRulesFormat() {
+    toKernelRulesFormat(): Array<any> {
         return this.withoutDuplicated().ruleNames.map(ruleName => {
             return {
                 ruleId: ruleName,
@@ -65,11 +70,15 @@ export class RuleCreatorSet {
      * filter duplicated rules and rulesConfig and return new RuleCreatorSet.
      * @return {RuleCreatorSet}
      */
-    withoutDuplicated() {
-        const newRawRules = {};
-        const newRawRulesConfig = {};
+    withoutDuplicated(): RuleCreatorSet {
+        const newRawRules: {
+            [index: string]: any;
+        } = {};
+        const newRawRulesConfig: {
+            [index: string]: any;
+        } = {};
         // for index
-        const addedRuleMap = new MapLike();
+        const addedRuleMap = new MapLike<string, any[]>();
         // if already contain same ruleModule and ruleConfig value
         // Fill following condition, remove it
         // 1. same ruleModule
@@ -77,13 +86,13 @@ export class RuleCreatorSet {
         this.ruleNames.forEach(ruleName => {
             const rule = this.rules[ruleName];
             const ruleConfig = this.rulesConfig[ruleName];
-            const savedConfigList = addedRuleMap.has(rule) ? addedRuleMap.get(rule) : [];
+            const savedConfigList = addedRuleMap.get(rule) || [];
             // same ruleCreator and ruleConfig
             const hasSameConfig = savedConfigList.some(savedConfig => {
                 return deepEqual(savedConfig, ruleConfig, { strict: true });
             });
             if (hasSameConfig) {
-                return false;
+                return;
             }
             newRawRules[ruleName] = rule;
             newRawRulesConfig[ruleName] = ruleConfig;
@@ -103,7 +112,7 @@ export class RuleCreatorSet {
      *  });
      * @param {function({ ruleId: string, rule: Function, ruleConfig: Object|boolean})} handler
      */
-    forEach(handler) {
+    forEach(handler: (arg0: { ruleId: string; rule: Function; ruleConfig: object | boolean }) => void) {
         return this.ruleNames.forEach(ruleName => {
             return handler({
                 ruleId: ruleName,
@@ -119,7 +128,7 @@ export class RuleCreatorSet {
         });
     }
 
-    mapFixer(mapHandler) {
+    mapFixer(mapHandler: (set: RuleCreatorSet) => any) {
         return this.getFixerNames().map(ruleName => {
             const rules = { [ruleName]: this.rules[ruleName] };
             const rulesConfig = { [ruleName]: this.rulesConfig[ruleName] };
@@ -134,8 +143,8 @@ export class RuleCreatorSet {
      * @param {Object} rawRulesConfigObject
      * @private
      */
-    _normalizeRulesConfig(ruleNames, rawRulesConfigObject) {
-        const rulesConfig = {};
+    _normalizeRulesConfig(ruleNames: string[], rawRulesConfigObject: { [index: string]: any }) {
+        const rulesConfig: { [index: string]: any } = {};
         // default: { ruleName: true }
         const defaultRuleConfigValue = true;
         ruleNames.forEach(ruleName => {

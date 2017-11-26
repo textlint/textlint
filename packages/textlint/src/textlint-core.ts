@@ -6,11 +6,12 @@
  */
 const path = require("path");
 const ObjectAssign = require("object-assign");
-import { TextlintKernel } from "@textlint/kernel";
+import { TextlintKernel, TextlintTypes } from "@textlint/kernel";
 import { readFile } from "./util/fs-promise";
 import { RuleCreatorSet } from "./core/rule-creator-set";
 import { PluginCreatorSet } from "./core/plugin-creator-set";
-import { throwIfTesting } from "@textlint/feature-flag";
+const { throwIfTesting } = require("@textlint/feature-flag");
+import { Config } from "./config/config";
 const markdownPlugin = require("textlint-plugin-markdown");
 const textPlugin = require("textlint-plugin-text");
 
@@ -18,7 +19,16 @@ const textPlugin = require("textlint-plugin-text");
  * @class {TextLintCore}
  */
 export class TextLintCore {
-    constructor(config = {}) {
+    filterRuleCreatorSet: RuleCreatorSet;
+    ruleCreatorSet: RuleCreatorSet;
+    pluginCreatorSet: PluginCreatorSet;
+    kernel: TextlintKernel;
+    config: Partial<Config>;
+    defaultPlugins: {
+        markdown: TextlintTypes.TextlintPluginCreator;
+        text: TextlintTypes.TextlintPluginCreator;
+    };
+    constructor(config: Partial<Config> = {}) {
         // this.config often is undefined.
         this.config = config;
         // Markdown and Text is enabled by default
@@ -49,7 +59,7 @@ export class TextLintCore {
      *
      * It will be removed until textlint@10
      */
-    addProcessor(Processor) {
+    addProcessor(Processor: TextlintTypes.TextlintKernelProcessorConstructor) {
         throwIfTesting(
             "Use setupPlugins insteadof addProcessor method.`addProcessor` will be removed in the future." +
                 "For more details, See https://github.com/textlint/textlint/issues/293"
@@ -108,7 +118,7 @@ export class TextLintCore {
      * @param {string} ext ext is extension. default: .txt
      * @returns {Promise.<TextlintResult>}
      */
-    lintText(text, ext = ".txt") {
+    lintText(text: string, ext: string = ".txt"): Promise<TextlintTypes.TextlintResult> {
         const options = this._mergeSetupOptions({
             ext
         });
@@ -121,7 +131,7 @@ export class TextLintCore {
      * @param {string} text markdown format text
      * @returns {Promise.<TextlintResult>}
      */
-    lintMarkdown(text) {
+    lintMarkdown(text: string): Promise<TextlintTypes.TextlintResult> {
         const ext = ".md";
         const options = this._mergeSetupOptions({
             ext
@@ -134,14 +144,14 @@ export class TextLintCore {
      * @param {string} filePath
      * @returns {Promise.<TextlintResult>} result
      */
-    lintFile(filePath) {
+    lintFile(filePath: string): Promise<TextlintTypes.TextlintResult> {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
         const options = this._mergeSetupOptions({
             ext,
             filePath: absoluteFilePath
         });
-        return readFile(absoluteFilePath).then(text => {
+        return readFile(absoluteFilePath).then((text: string) => {
             return this.kernel.lintText(text, options);
         });
     }
@@ -151,14 +161,14 @@ export class TextLintCore {
      * @param {string} filePath
      * @returns {Promise.<TextlintFixResult>}
      */
-    fixFile(filePath) {
+    fixFile(filePath: string): Promise<TextlintTypes.TextlintFixResult> {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
         const options = this._mergeSetupOptions({
             ext,
             filePath: absoluteFilePath
         });
-        return readFile(absoluteFilePath).then(text => {
+        return readFile(absoluteFilePath).then((text: string) => {
             return this.kernel.fixText(text, options);
         });
     }
@@ -169,7 +179,7 @@ export class TextLintCore {
      * @param {string} ext
      * @returns {Promise.<TextlintFixResult>}
      */
-    fixText(text, ext = ".txt") {
+    fixText(text: string, ext: string = ".txt"): Promise<TextlintTypes.TextlintFixResult> {
         const options = this._mergeSetupOptions({
             ext
         });
@@ -179,7 +189,7 @@ export class TextLintCore {
     /**
      * @private
      */
-    _mergeSetupOptions(options) {
+    _mergeSetupOptions(options: { ext: string } | { ext: any; filePath: any }) {
         const configFileBaseDir =
             typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
         return ObjectAssign({}, options, {

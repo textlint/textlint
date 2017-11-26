@@ -133,7 +133,7 @@ export class TextlintKernel {
      * @param {Object} options lint options
      * @returns {Promise.<TextlintFixResult>}
      */
-    fixText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
+    fixText(text: string, options: TextlintKernelOptions): Promise<TextlintFixResult> {
         return Promise.resolve().then(() => {
             const ext = options.ext;
             const plugin = findPluginWithExt(options.plugins, ext);

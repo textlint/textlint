@@ -19,7 +19,7 @@ export function filterWarningMessages(messages: TextlintMessage[] = []) {
  * @param {TextlintMessage[]} messages
  * @returns {TextlintMessage[]}
  */
-export function through(messages = []) {
+export function through<T>(messages: T[] = []): T[] {
     return messages;
 }
 
@@ -28,7 +28,9 @@ export function through(messages = []) {
  * @param {Config} config
  * @returns {Function} filter function for messages
  */
-export default function createSeverityFilter(config: TextlintKernelConstructorOptions) {
+export default function createSeverityFilter(
+    config: TextlintKernelConstructorOptions
+): (messages: TextlintMessage[]) => TextlintMessage[] {
     if (config.quiet) {
         return filterWarningMessages;
     } else {
