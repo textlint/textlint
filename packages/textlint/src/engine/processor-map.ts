@@ -1,14 +1,15 @@
 // LICENSE : MIT
 "use strict";
-const MapLike = require("map-like");
+import { MapLike } from "map-like";
+
 /**
  * Processor Map object
  */
-export class PluginMap extends MapLike {
+export class PluginMap extends MapLike<string, Function> {
     toJSON() {
         const object = {};
         this.forEach((value, key) => {
-            object[key] = value;
+            (object as any)[key] = value;
         });
         return object;
     }

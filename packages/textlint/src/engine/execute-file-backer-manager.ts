@@ -1,26 +1,29 @@
+import { AbstractBacker } from "./execute-file-backers/abstruct-backer";
+import { TextlintTypes } from "@textlint/kernel";
 // MIT © 2016 azu
 "use strict";
 const Promise = require("bluebird");
 export class ExecuteFileBackerManager {
+    _backers: AbstractBacker[];
     /**
      * create MessageProcessManager with backers
-     * @param {function()[]} backers
+     * @param {AbstractBacker[]} backers
      */
-    constructor(backers = []) {
+    constructor(backers: AbstractBacker[] = []) {
         this._backers = backers;
     }
 
     /**
      * @param {AbstractBacker} backer
      */
-    add(backer) {
+    add(backer: AbstractBacker) {
         this._backers.push(backer);
     }
 
     /**
      * @param {AbstractBacker} backer
      */
-    remove(backer) {
+    remove(backer: AbstractBacker) {
         const index = this._backers.indexOf(backer);
         if (index !== -1) {
             this._backers.splice(index, 1);
@@ -30,11 +33,13 @@ export class ExecuteFileBackerManager {
     /**
      * process `messages` with registered processes
      * @param {string[]} files
-     * @param {function(filePath: string):Promise} executeFile
      * @returns {Promise.<TextlintResult[]>}
      */
-    process(files, executeFile) {
-        const unExecutedResults = [];
+    process(
+        files: string[],
+        executeFile: (filePath: string) => Promise<TextlintTypes.TextlintResult>
+    ): Promise<TextlintTypes.TextlintResult[]> {
+        const unExecutedResults: Array<Promise<TextlintTypes.TextlintResult>> = [];
         const resultPromises = files
             .filter(filePath => {
                 const shouldExecute = this._backers.every(backer => {
@@ -56,7 +61,7 @@ export class ExecuteFileBackerManager {
             })
             .concat(unExecutedResults);
         // wait all resolved, and call afterAll
-        return Promise.all(resultPromises).then(results => {
+        return Promise.all(resultPromises).then((results: TextlintTypes.TextlintResult[]) => {
             this._backers.forEach(backer => {
                 backer.afterAll();
             });
@@ -70,10 +75,10 @@ export class ExecuteFileBackerManager {
      * @returns {TextlintResult}
      * @private
      */
-    _createFakeResult(filePath) {
-        return {
+    _createFakeResult(filePath: string): Promise<TextlintTypes.TextlintResult> {
+        return Promise.resolve({
             filePath,
             messages: []
-        };
+        });
     }
 }

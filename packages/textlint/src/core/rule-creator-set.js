@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const deepEqual = require("deep-equal");
-const MapLike = require("map-like");
+import { MapLike } from "map-like";
 import { assertRuleShape, hasFixer } from "./rule-creator-helper";
 
 const filterByAvailable = (rules, rulesConfig) => {

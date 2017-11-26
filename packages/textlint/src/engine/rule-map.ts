@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
-const MapLike = require("map-like");
+import { MapLike } from "map-like";
+
 /**
  * @typedef {{key: Function}} RulesObject
  */
-export class RuleMap extends MapLike {
+export class RuleMap extends MapLike<string, Function> {
     /**
      * has rule at least one > 0
      * @returns {boolean}
@@ -17,7 +18,7 @@ export class RuleMap extends MapLike {
         return this.keys();
     }
 
-    getRule(ruleKey) {
+    getRule(ruleKey: string) {
         return this.get(ruleKey);
     }
 
@@ -28,7 +29,7 @@ export class RuleMap extends MapLike {
         return this.toJSON();
     }
 
-    isDefinedRule(ruleKey) {
+    isDefinedRule(ruleKey: string) {
         return this.has(ruleKey);
     }
 
@@ -36,7 +37,7 @@ export class RuleMap extends MapLike {
      * @param {string} ruleKey
      * @param ruleHandler
      */
-    defineRule(ruleKey, ruleHandler) {
+    defineRule(ruleKey: string, ruleHandler: Function | undefined) {
         this.set(ruleKey, ruleHandler);
     }
 
@@ -48,7 +49,7 @@ export class RuleMap extends MapLike {
     }
 
     toJSON() {
-        const object = {};
+        const object: { [index: string]: any } = {};
         this.forEach((value, key) => {
             object[key] = value;
         });

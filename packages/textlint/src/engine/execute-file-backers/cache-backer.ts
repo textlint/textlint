@@ -3,12 +3,16 @@
 const fileEntryCache = require("file-entry-cache");
 const debug = require("debug")("CacheBacker");
 import { AbstractBacker } from "./abstruct-backer";
-export class CacheBacker extends AbstractBacker {
+import { Config } from "../../config/config";
+import { TextlintTypes } from "@textlint/kernel";
+export class CacheBacker implements AbstractBacker {
+    hashOfConfig: string;
+    fileCache: any;
+    isEnabled: boolean;
     /**
      * @param {Config} config
      */
-    constructor(config) {
-        super();
+    constructor(config: Config) {
         /**
          * @type {boolean}
          */
@@ -24,7 +28,7 @@ export class CacheBacker extends AbstractBacker {
      * @param {string} filePath
      * @returns {boolean}
      */
-    shouldExecute({ filePath }) {
+    shouldExecute({ filePath }: { filePath: string }) {
         if (!this.isEnabled) {
             return true;
         }
@@ -39,7 +43,7 @@ export class CacheBacker extends AbstractBacker {
     /**
      * @param {TextlintResult} result
      */
-    didExecute({ result }) {
+    didExecute({ result }: { result: TextlintTypes.TextlintResult }) {
         if (!this.isEnabled) {
             return;
         }
