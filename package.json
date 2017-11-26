@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "packages/@textlint/*"
+    "packages/@textlint/*",
+    "test/integration-test"
   ],
   "scripts": {
     "publish": "lerna publish --conventional-commits",
