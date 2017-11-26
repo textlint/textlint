@@ -205,7 +205,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      */
     tryToGetRuleObject(
         ruleCreator: RuleCreatorReporter,
-        ruleContext: RuleContext | FilterRuleContext,
+        // FIXME: remove any and common context
+        ruleContext: RuleContext | FilterRuleContext | any,
         ruleOptions?: TextlintRuleOptions | boolean
     ) {
         try {
