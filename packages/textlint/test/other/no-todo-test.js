@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
+import * as assert from "assert";
 import noTodo from "./fixtures/no-todo";
 import { textlint } from "../../src/index";
 describe("no-todo-rule-test", function() {

@@ -1,4 +1,4 @@
-import { TextLintFixCommand, TextLintMessage } from "../textlint-kernel-interface";
+import { TextLintFixCommand, TextlintMessage } from "../textlint-kernel-interface";
 
 const debug = require("debug")("textlint:source-code-fixer");
 import SourceCode from "../core/source-code";
@@ -7,12 +7,12 @@ const BOM = "\uFEFF";
 
 /**
  * Compares items in a messages array by line and column.
- * @param {TextLintMessage} a The first message.
- * @param {TextLintMessage} b The second message.
+ * @param {TextlintMessage} a The first message.
+ * @param {TextlintMessage} b The second message.
  * @returns {int} -1 if a comes before b, 1 if a comes after b, 0 if equal.
  * @private
  */
-function compareMessagesByLocation(a: TextLintMessage, b: TextLintMessage) {
+function compareMessagesByLocation(a: TextlintMessage, b: TextlintMessage) {
     const lineDiff = a.line - b.line;
 
     if (lineDiff === 0) {
@@ -26,7 +26,7 @@ function clone(object: any) {
     return JSON.parse(JSON.stringify(object));
 }
 
-export interface TextLintMessageFixable extends TextLintMessage {
+export interface TextLintMessageFixable extends TextlintMessage {
     fix: TextLintFixCommand;
 }
 
@@ -40,15 +40,15 @@ export default class SourceCodeFixer {
      * Applies the fixes specified by the messages to the given text. Tries to be
      * smart about the fixes and won't apply fixes over the same area in the text.
      * @param {SourceCode} sourceCode The source code to apply the changes to.
-     * @param {TextLintMessage[]} messages The array of messages reported by ESLint.
+     * @param {TextlintMessage[]} messages The array of messages reported by ESLint.
      * @returns {Object} An object containing the fixed text and any unfixed messages.
      */
-    static applyFixes(sourceCode: SourceCode, messages: TextLintMessage[]) {
+    static applyFixes(sourceCode: SourceCode, messages: TextlintMessage[]) {
         debug("Applying fixes");
         const text = sourceCode.text;
         // As as result, show diff
-        const remainingMessages: TextLintMessage[] = [];
-        const applyingMessages: TextLintMessage[] = [];
+        const remainingMessages: TextlintMessage[] = [];
+        const applyingMessages: TextlintMessage[] = [];
         const cloneMessages = messages.slice();
         const fixes: TextLintMessageFixable[] = [];
         let lastFixPos = text.length + 1;
@@ -131,10 +131,10 @@ export default class SourceCodeFixer {
     /**
      * Sequentially Applies the fixes specified by the messages to the given text.
      * @param {SourceCode} sourceCode The source code to apply the changes to.
-     * @param {TextLintMessage[]} applyingMessages The array of TextLintMessage reported by SourceCodeFixer#applyFixes
+     * @param {TextlintMessage[]} applyingMessages The array of TextLintMessage reported by SourceCodeFixer#applyFixes
      * @returns {string} An object containing the fixed text and any unfixed messages.
      */
-    static sequentiallyApplyFixes(sourceCode: SourceCode, applyingMessages: TextLintMessage[]) {
+    static sequentiallyApplyFixes(sourceCode: SourceCode, applyingMessages: TextlintMessage[]) {
         debug("Restore applied fixes");
         let text = sourceCode.text;
         applyingMessages.forEach(message => {

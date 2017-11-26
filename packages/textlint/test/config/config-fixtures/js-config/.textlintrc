@@ -4,4 +4,4 @@ module.exports = {
     "b": true,
     "c": true
   }
-}
+};

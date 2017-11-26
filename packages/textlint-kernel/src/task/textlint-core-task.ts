@@ -12,7 +12,7 @@ import MessageType from "../shared/type/MessageType";
 import { EventEmitter } from "events";
 import * as assert from "assert";
 import SourceCode from "../core/source-code";
-import { TextLintFixCommand, TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { TextLintFixCommand, TextlintRuleOptions, TxtNode } from "../textlint-kernel-interface";
 import { default as RuleContext, RuleReportedObject } from "../core/rule-context";
 import { RuleCreatorReporter } from "../core/rule-creator-helper";
 import FilterRuleContext from "../core/filter-rule-context";
@@ -205,8 +205,9 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      */
     tryToGetRuleObject(
         ruleCreator: RuleCreatorReporter,
-        ruleContext: RuleContext | FilterRuleContext,
-        ruleOptions?: TextLintRuleOptions | boolean
+        // FIXME: remove any and common context
+        ruleContext: RuleContext | FilterRuleContext | any,
+        ruleOptions?: TextlintRuleOptions | boolean
     ) {
         try {
             return ruleCreator(ruleContext, ruleOptions);
@@ -226,10 +227,11 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     tryToAddListenRule(
         ruleCreator: RuleCreatorReporter,
         ruleContext: RuleContext | FilterRuleContext,
-        ruleOptions?: TextLintRuleOptions | boolean
+        ruleOptions?: TextlintRuleOptions | boolean
     ): void {
         const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions);
-        Object.keys(ruleObject).forEach((nodeType: keyof typeof ruleObject) => {
+        const types = Object.keys(ruleObject) as (keyof typeof ruleObject)[];
+        types.forEach((nodeType: keyof typeof ruleObject) => {
             this.ruleTypeEmitter.on(
                 nodeType,
                 timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType] as Function) : ruleObject[nodeType]!

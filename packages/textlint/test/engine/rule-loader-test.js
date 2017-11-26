@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const path = require("path");
-import assert from "power-assert";
+import * as assert from "assert";
 import { loadFromDir } from "../../src/engine/rule-loader";
 import { assertRuleShape } from "../../src/core/rule-creator-helper";
 const fixtureDir = path.join(__dirname, "fixtures", "rule-loader");

@@ -81,6 +81,16 @@ export default class FilterRuleContext {
     };
 
     /**
+     * Not use
+     * @returns {() => void}
+     */
+    get report() {
+        return () => {
+            throw new Error("Filter rule can not report");
+        };
+    }
+
+    /**
      * get file path current processing.
      */
     getFilePath = () => {

@@ -1,12 +1,12 @@
 // MIT © 2016 azu
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
 const os = require("os");
 const sh = require("shelljs");
 const fs = require("fs");
-import CacheBacker from "../../src/engine/execute-file-backers/cache-backer";
-import Config from "../../src/config/config";
+import { CacheBacker } from "../../src/engine/execute-file-backers/cache-backer";
+import { Config } from "../../src/config/config";
 
 describe("CacheBacker", function() {
     let configDir;

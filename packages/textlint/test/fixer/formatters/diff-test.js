@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("power-assert");
+var assert = require("assert");
 var path = require("path");
-var fs = require("fs");
-var diff = require("../../../src/fixer/formatters/diff");
+import diff from "../../../src/fixer/formatters/diff";
+
 const formatter = code => {
     return diff(code, { color: false });
 };

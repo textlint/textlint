@@ -8,12 +8,12 @@ import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
 import { hasFixer } from "../core/rule-creator-helper";
 import {
-    TextLintFixResult,
+    TextlintFixResult,
     TextlintKernelConstructorOptions,
     TextlintKernelFilterRule,
     TextlintKernelProcessor,
     TextlintKernelRule,
-    TextLintMessage
+    TextlintMessage
 } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
 
@@ -45,7 +45,7 @@ export default class FixerProcessor {
      * @param {TextlintKernelRule[]} [rules]
      * @param {TextlintKernelFilterRule[]} [filterRules]
      * @param {SourceCode} sourceCode
-     * @returns {Promise.<TextLintFixResult>}
+     * @returns {Promise.<TextlintFixResult>}
      */
     process({
         config,
@@ -53,7 +53,7 @@ export default class FixerProcessor {
         rules = [],
         filterRules = [],
         sourceCode
-    }: FixerProcessorProcessArgs): Promise<TextLintFixResult> {
+    }: FixerProcessorProcessArgs): Promise<TextlintFixResult> {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
@@ -61,12 +61,12 @@ export default class FixerProcessor {
         // applied fixing messages
         // Revert = Sequentially apply applied message to applied output
         // SourceCodeFixer.sequentiallyApplyFixes(fixedOutput, result.applyingMessages);
-        const applyingMessages: TextLintMessage[] = [];
+        const applyingMessages: TextlintMessage[] = [];
         // not applied fixing messages
-        const remainingMessages: TextLintMessage[] = [];
+        const remainingMessages: TextlintMessage[] = [];
         // original means original for applyingMessages and remainingMessages
         // pre-applyingMessages + remainingMessages
-        const originalMessages: TextLintMessage[] = [];
+        const originalMessages: TextlintMessage[] = [];
         const fixerProcessList = rules
             .filter(rule => {
                 return hasFixer(rule.rule);

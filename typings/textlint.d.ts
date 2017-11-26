@@ -39,7 +39,7 @@ export interface TextLintFixResult {
     // fixed content
     output: string;
     // all messages = pre-applyingMessages + remainingMessages
-    // it is same with one of `TextLintResult`
+    // it is same with one of `TextlintResult`
     messages: TextLintMessage[];
     // applied fixable messages
     applyingMessages: TextLintMessage[];

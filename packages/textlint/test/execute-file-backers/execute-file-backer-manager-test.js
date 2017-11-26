@@ -1,8 +1,9 @@
 // MIT © 2016 azu
 "use strict";
-const assert = require("power-assert");
-import ExecuteFileBackerManager from "../../src/engine/execute-file-backer-manager";
-import AbstractBacker from "../../src/engine/execute-file-backers/abstruct-backer";
+const assert = require("assert");
+import { ExecuteFileBackerManager } from "../../src/engine/execute-file-backer-manager";
+import { AbstractBacker } from "../../src/engine/execute-file-backers/abstruct-backer";
+
 describe("execute-file-backer-manager", function() {
     context("when no backer", function() {
         it("should process all files", function() {
@@ -20,6 +21,7 @@ describe("execute-file-backer-manager", function() {
         it("call each backer lifecycle", function() {
             const manager = new ExecuteFileBackerManager();
             const callStack = [];
+
             class ExampleBacker extends AbstractBacker {
                 shouldExecute({ filePath }) {
                     callStack.push(`shouldExecute:${filePath}`);
@@ -34,6 +36,7 @@ describe("execute-file-backer-manager", function() {
                     callStack.push("afterAll");
                 }
             }
+
             manager.add(new ExampleBacker());
             const executeFile = filePath => {
                 return Promise.resolve({ filePath, messages: [] });
@@ -56,7 +59,11 @@ describe("execute-file-backer-manager", function() {
                 shouldExecute() {
                     return false;
                 }
+                didExecute() {}
+
+                afterAll() {}
             }
+
             const manager = new ExecuteFileBackerManager();
             manager.add(new ShouldNotExecuteBacker());
             const executeFile = () => {

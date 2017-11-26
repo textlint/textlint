@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 const path = require("path");
-const assert = require("power-assert");
+const assert = require("assert");
 import { TextLintEngine } from "../../src/index";
-import TextLintCore from "../../src/textlint-core";
+import { TextLintCore } from "../../src/textlint-core";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 // fixture
 import fixtureRule from "./fixtures/rules/example-rule";

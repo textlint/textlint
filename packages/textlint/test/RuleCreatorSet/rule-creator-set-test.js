@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
-import RuleCreatorSet from "../../src/core/rule-creator-set";
+const assert = require("assert");
+import { RuleCreatorSet } from "../../src/core/rule-creator-set";
 describe("RuleCreatorSet", function() {
     context("when passing undefined", function() {
         it("should return empty result", function() {

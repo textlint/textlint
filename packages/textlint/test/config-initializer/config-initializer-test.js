@@ -1,13 +1,13 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
 const os = require("os");
 const sh = require("shelljs");
-import Config from "../../src/config/config";
-import configInit from "../../src/config/config-initializer";
-import loadConfig from "../../src/config/config-loader";
-import Logger from "../../src/util/logger";
+import { Config } from "../../src/config/config";
+import { configInit } from "../../src/config/config-initializer";
+import { loadConfig } from "../../src/config/config-loader";
+import { Logger } from "../../src/util/logger";
 /*
  config file generate test
  */

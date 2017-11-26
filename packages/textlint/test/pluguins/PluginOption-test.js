@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 import { TextLintCore } from "../../src/index";
 import { createPluginStub } from "./fixtures/example-plugin";
 

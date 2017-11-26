@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
 import { TextLintEngine } from "../../src/";
+import { Config } from "../../src/config/config";
 
 const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");
 const filterRulesDir = path.join(__dirname, "fixtures/textlint-engine/filters");
@@ -24,8 +25,7 @@ describe("textlint-engine-test", function() {
         });
         context("when args is Config object", function() {
             it("should set directory to config", function() {
-                // Issue : when use Config as argus, have to export `../src/config/config`
-                const Config = require("../../src/config/config");
+                // Issue : when use Config as argumenet, have to export `../src/config/config`
                 const config = new Config({ rulePaths: [rulesDir] });
                 const engine = new TextLintEngine(config);
                 assert.deepEqual(engine.config.rulePaths, [rulesDir]);

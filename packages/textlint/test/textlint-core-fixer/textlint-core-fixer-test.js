@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
-import fs from "fs";
-import TextLintCore from "../../src/textlint-core";
+import * as fs from "fs";
+import { TextLintCore } from "../../src/textlint-core";
 import ruleAdd from "./fixtures/fixer-rules/fixer-rule-add";
 import ruleReplace from "./fixtures/fixer-rules/fixer-rule-replace";
 import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";

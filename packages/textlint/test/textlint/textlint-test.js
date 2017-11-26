@@ -1,12 +1,13 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
 const deepClone = require("clone");
 import { textlint } from "../../src/";
 import { assertRuleContext } from "./assert-rule-context";
 import { loadFromDir } from "../../src/engine/rule-loader";
-import Config from "../../src/config/config";
+import { Config } from "../../src/config/config";
+
 const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
 describe("textlint-test", function() {
     beforeEach(function() {

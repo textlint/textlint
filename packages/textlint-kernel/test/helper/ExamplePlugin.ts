@@ -1,5 +1,5 @@
 // MIT © 2017 azu
-import { TextlintKernelProcessor, TextLintPluginCreator } from "../../src/textlint-kernel-interface";
+import { TextlintKernelProcessor, TextlintPluginCreator } from "../../src/textlint-kernel-interface";
 
 const parse = require("markdown-to-ast").parse;
 
@@ -12,7 +12,7 @@ export class ExampleProcessor implements TextlintKernelProcessor {
         return [".md"];
     }
 
-    constructor(public options: ExampleProcessorOptions) {}
+    constructor(public options: any) {}
 
     processor(_extension: string) {
         return {
@@ -29,20 +29,20 @@ export class ExampleProcessor implements TextlintKernelProcessor {
     }
 }
 
-export const plugin: TextLintPluginCreator = {
+export const plugin: TextlintPluginCreator = {
     Processor: ExampleProcessor
 };
 
 export const createPluginStub = () => {
-    let assignedOptions: undefined | ExampleProcessorOptions;
+    let assignedOptions: undefined | ExampleProcessorOptions | boolean;
     return {
         getOptions() {
             return assignedOptions;
         },
-        getPlugin(): TextLintPluginCreator {
+        getPlugin(): TextlintPluginCreator {
             return {
                 Processor: class MockProcessor extends ExampleProcessor {
-                    constructor(options: ExampleProcessorOptions) {
+                    constructor(options: any) {
                         super(options);
                         assignedOptions = options;
                     }
