@@ -98,6 +98,19 @@ Adding :new: feature in the same way.
   - `npm test`
 5. Submit a pull request :D
 
+### Install
+
+We use yarn as package manager.
+
+Please [install yarn](https://yarnpkg.com/lang/en/docs/install/) before starting development.
+
+```sh
+git clone {YOUR_FORKED_REPOSITORY}
+cd {YOUR_FORKED_REPOSITORY}
+yarn install
+yarn run bootstrap
+```
+
 ### Testing
 
 #### Test each pacakge
