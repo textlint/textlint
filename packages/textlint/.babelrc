@@ -1,9 +1,0 @@
-{
-  "presets": [
-    "es2015"
-  ],
-  "ignore":[
-    "lib",
-    "node_modules"
-  ]
-}
