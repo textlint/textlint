@@ -1,21 +1,30 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": "../packages",
-    "paths": {
-      // TODO: re-structure directry
-      // Move textlint-kernel to @textlint/kernel
-      "@textlint/kernel": [
-        "./textlint-kernel/src"
-      ]
-    },
-    "outDir": "./lib/"
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    ".git",
-    "node_modules"
-  ]
+    "outDir": "./lib/",
+    /* Basic Options */
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "newLine": "LF",
+    "target": "es5",
+    "sourceMap": false,
+    // SourceMap by babel
+    "declaration": true,
+    "jsx": "preserve",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    /* Strict Type-Checking Options */
+    "strict": true,
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    /* Report errors on unused locals. */
+    "noUnusedParameters": true,
+    /* Report errors on unused parameters. */
+    "noImplicitReturns": true,
+    /* Report error when not all code paths in function return a value. */
+    "noFallthroughCasesInSwitch": true
+    /* Report errors for fallthrough cases in switch statement. */
+  }
 }

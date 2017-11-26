@@ -30,7 +30,7 @@
     "clean": "rimraf out/ lib/ es_modules/",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
-    "prepublish": "npm run --if-present build",
+    "prepublish": "echo 'DISABLE TEMPORARLY'",
     "lint:js": "eslint src/",
     "test": "npm-run-all test:unit",
     "test:unit": "mocha test",

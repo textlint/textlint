@@ -1,5 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "./packages",
+    "paths": {
+      // TODO: re-structure directry
+      // Move textlint-kernel to @textlint/kernel
+      "@textlint/kernel": [
+        "./textlint-kernel/src"
+      ]
+    },
     // SHOULD BE OVERWRITE
     "outDir": "./SHOULD_BE_OVERWRITE/",
     /* Basic Options */
