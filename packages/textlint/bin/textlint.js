@@ -8,7 +8,7 @@ if (isDebug) {
     require("debug").enable("textlint*");
 }
 // must do this initialization *before* other requires in order to work
-var cli = require("../lib/cli");
+var cli = require("../lib/cli").cli;
 var coreFlags = require("@textlint/feature-flag");
 // it is for --experimental logger
 // update state
