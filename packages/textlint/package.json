@@ -16,10 +16,10 @@
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "main": "lib/index.js",
+  "main": "lib/textlint/src/index.js",
   "files": [
     "bin/",
-    "lib/",
+    "lib/textlint/src",
     "src/",
     "typings/"
   ],
