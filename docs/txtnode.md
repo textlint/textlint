@@ -85,7 +85,7 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
 console.log(ASTNodeTypes.Str); // "Str"
 ```
 
-See [packages/ast-node-types](../packages/ast-node-types) for more details.
+See [packages/ast-node-types](../packages/@textlint/ast-node-types) for more details.
 
 These types are be available at all times:
 
@@ -124,7 +124,7 @@ Following parsers are built-in.
 
 If you want to get other type, please file issue.
 
-- [packages/ast-node-types](../packages/ast-node-types)
+- [packages/ast-node-types](../packages/@textlint/ast-node-types)
 
 ### Online Parsing Demo
 

@@ -29,7 +29,7 @@ export const isFeatureEnabled = (flagName, { loose = false } = {}) => {
             // loose-mode, return false
             return false;
         } else {
-            throw new Error(`textlint-feature-flag:Error: ${flagName} is not defined.`);
+            throw new Error(`@textlint/feature-flag:Error: ${flagName} is not defined.`);
         }
     }
     const status = flagMap.get(flagName);

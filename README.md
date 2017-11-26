@@ -482,7 +482,7 @@ These modules are useful for textlint rule/plugin author.
 
 | Package | Version | Description |
 |---------|---------|-------------|
-| [`@textlint/ast-node-types`](/packages/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/ast-node-types.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
+| [`@textlint/ast-node-types`](/packages/@textlint/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/ast-node-types.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
 | [`textlint-tester`](/packages/textlint-tester) | [![npm](https://img.shields.io/npm/v/textlint-tester.svg?style=flat-square)](https://www.npmjs.com/package/textlint-tester) | textlint rule testing tools |
 | [`textlint-scripts`](https://github.com/textlint/textlint-scripts) | [![npm](https://img.shields.io/npm/v/textlint-scripts.svg?style=flat-square)](https://www.npmjs.com/package/textlint-scripts) | textlint rule npm run-scripts |
 | [`create-textlint-rule`](https://github.com/textlint/create-textlint-rule) | [![npm](https://img.shields.io/npm/v/create-textlint-rule.svg?style=flat-square)](https://www.npmjs.com/package/create-textlint-rule) | create textlint rule with no build configuration |
@@ -502,7 +502,7 @@ These modules are internal usage in the monorepo.
 | Package | Version | Description |
 |---------|---------|-------------|
 | [`@textlint/monorepo-scripts`](/packages/textlint-monorepo-scripts) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/monorepo-scripts) | textlint monorepo build scripts |
-| [`@textlint/feature-flag`](/packages/textlint-feature-flag) | [![npm](https://img.shields.io/npm/v/@textlint/feature-flag.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/feature-flag) | feature flag manager |
+| [`@textlint/feature-flag`](/packages/@textlint/textlint-feature-flag) | [![npm](https://img.shields.io/npm/v/@textlint/feature-flag.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/feature-flag) | feature flag manager |
 
 ## Who's using textlint?
 
