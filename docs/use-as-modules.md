@@ -77,7 +77,7 @@ const TextLintEngine = require("textlint").TextLintEngine;
 const path = require("path");
 function lintFile(filePath) {
     /**
-     * TextLintConfig
+     * TextlintConfig
      * See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
      */
     const options = {

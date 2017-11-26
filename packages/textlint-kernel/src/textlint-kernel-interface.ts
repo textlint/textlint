@@ -3,13 +3,13 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
 import { SeverityLevelTypes } from "./shared/type/SeverityLevel";
 import { TextLintRuleCreator } from "./core/rule-creator-helper";
 
-export interface TextLintRuleOptions {
+export interface TextlintRuleOptions {
     [index: string]: any;
 
     severity?: SeverityLevelTypes;
 }
 
-export interface TextLintPluginOptions {
+export interface TextlintPluginOptions {
     [index: string]: any;
 }
 
@@ -21,7 +21,7 @@ export interface TextlintKernelConstructorOptions {
 }
 
 // config
-export interface TextLintConfig {
+export interface TextlintConfig {
     // rule directories path
     rulePaths?: string[];
     // filter by file extensions
@@ -91,13 +91,13 @@ export interface Position {
 export interface TextlintKernelProcessorConstructor extends Function {
     // TODO: support plugin config
     // https://github.com/textlint/textlint/issues/296
-    new (options?: TextLintPluginOptions | boolean): TextlintKernelProcessor;
+    new (options?: TextlintPluginOptions | boolean): TextlintKernelProcessor;
 
     availableExtensions(): Array<string>;
 }
 
 export declare class TextlintKernelProcessor {
-    constructor(options?: TextLintPluginOptions | boolean);
+    constructor(options?: TextlintPluginOptions | boolean);
 
     static availableExtensions(): Array<string>;
 
@@ -110,7 +110,7 @@ export declare class TextlintKernelProcessor {
 }
 
 // textlint plugin module should export this interface
-export interface TextLintPluginCreator {
+export interface TextlintPluginCreator {
     Processor: TextlintKernelProcessorConstructor;
 }
 
@@ -119,9 +119,9 @@ export interface TextlintKernelPlugin {
     pluginId: string;
     // plugin module
     // For example, `plugin: require("textlint-plugin-markdown")`
-    plugin: TextLintPluginCreator;
+    plugin: TextlintPluginCreator;
     // plugin options
-    options?: TextLintPluginOptions | boolean;
+    options?: TextlintPluginOptions | boolean;
 }
 
 export interface TextlintKernelRule {
@@ -132,7 +132,7 @@ export interface TextlintKernelRule {
     rule: TextLintRuleCreator;
     // rule options
     // Often rule option is written in .textlintrc
-    options?: TextLintRuleOptions | boolean;
+    options?: TextlintRuleOptions | boolean;
 }
 
 export interface TextlintKernelFilterRule {
@@ -142,7 +142,7 @@ export interface TextlintKernelFilterRule {
     rule: any;
     // filter rule options
     // Often rule option is written in .textlintrc
-    options?: TextLintRuleOptions | boolean;
+    options?: TextlintRuleOptions | boolean;
 }
 
 export interface TextlintKernelOptions {
@@ -169,7 +169,7 @@ export class TextLintFixCommand {
     isAbsolute: boolean;
 }
 
-export class TextLintMessage {
+export class TextlintMessage {
     // See src/shared/type/MessageType.js
     // Message Type
     type: string;
@@ -181,7 +181,7 @@ export class TextLintMessage {
     // FixCommand
     fix?: TextLintFixCommand;
     // location info
-    // Text -> AST TxtNode(0-based columns) -> textlint -> TextLintMessage(**1-based columns**)
+    // Text -> AST TxtNode(0-based columns) -> textlint -> TextlintMessage(**1-based columns**)
     line: number; // start with 1
     column: number; // start with 1
     // indexed-location
@@ -192,22 +192,22 @@ export class TextLintMessage {
 }
 
 // Linting result
-export interface TextLintResult {
+export interface TextlintResult {
     filePath: string;
-    messages: TextLintMessage[];
+    messages: TextlintMessage[];
 }
 
 // Fixing result
-export interface TextLintFixResult {
+export interface TextlintFixResult {
     filePath: string;
     // fixed content
     output: string;
     // all messages = pre-applyingMessages + remainingMessages
-    // it is same with one of `TextLintResult`
-    messages: TextLintMessage[];
+    // it is same with one of `TextlintResult`
+    messages: TextlintMessage[];
     // applied fixable messages
-    applyingMessages: TextLintMessage[];
+    applyingMessages: TextlintMessage[];
     // original means original for applyingMessages and remainingMessages
     // pre-applyingMessages + remainingMessages
-    remainingMessages: TextLintMessage[];
+    remainingMessages: TextlintMessage[];
 }

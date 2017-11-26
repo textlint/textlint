@@ -2,7 +2,7 @@
 "use strict";
 import SourceCode from "./source-code";
 import RuleError, { RuleErrorPadding } from "./rule-error";
-import { TextLintMessage, TxtNode } from "../textlint-kernel-interface";
+import { TextlintMessage, TxtNode } from "../textlint-kernel-interface";
 
 const assert = require("assert");
 const ObjectAssign = require("object-assign");
@@ -179,11 +179,11 @@ report(node, new RuleError("message", {
      * Adjust `fix` command range
      * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
      * @param {TxtNode} node
-     * @param {TextLintMessage} paddingMessage
+     * @param {TextlintMessage} paddingMessage
      * @returns {FixCommand|Object}
      * @private
      */
-    _adjustFix(node: TxtNode, paddingMessage: TextLintMessage) {
+    _adjustFix(node: TxtNode, paddingMessage: TextlintMessage) {
         const nodeRange = node.range;
         // if not found `fix`, return empty object
         if (paddingMessage.fix === undefined) {

@@ -40,7 +40,7 @@ export default class LinterProcessor {
      * @param {TextlintKernelRule[]} [rules]
      * @param {TextlintKernelFilterRule[]} [filterRules]
      * @param {SourceCode} sourceCode
-     * @returns {Promise.<TextLintResult>}
+     * @returns {Promise.<TextlintResult>}
      */
     process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: LinterProcessorArgs) {
         assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);

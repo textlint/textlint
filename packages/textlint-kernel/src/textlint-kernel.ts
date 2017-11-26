@@ -13,13 +13,13 @@ import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
 import {
-    TextLintFixResult,
+    TextlintFixResult,
     TextlintKernelConstructorOptions,
     TextlintKernelOptions,
     TextlintKernelPlugin,
     TextlintKernelProcessor,
     TextlintKernelProcessorConstructor,
-    TextLintResult
+    TextlintResult
 } from "./textlint-kernel-interface";
 
 /**
@@ -106,9 +106,9 @@ export class TextlintKernel {
      * The result contains target filePath and error messages.
      * @param {string} text
      * @param {Object} options linting options
-     * @returns {Promise.<TextLintResult>}
+     * @returns {Promise.<TextlintResult>}
      */
-    lintText(text: string, options: TextlintKernelOptions): Promise<TextLintResult> {
+    lintText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
         return Promise.resolve().then(() => {
             const ext = options.ext;
             const plugin = findPluginWithExt(options.plugins, ext);
@@ -131,9 +131,9 @@ export class TextlintKernel {
      * fix texts and return fix result object
      * @param {string} text
      * @param {Object} options lint options
-     * @returns {Promise.<TextLintFixResult>}
+     * @returns {Promise.<TextlintFixResult>}
      */
-    fixText(text: string, options: TextlintKernelOptions): Promise<TextLintResult> {
+    fixText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
         return Promise.resolve().then(() => {
             const ext = options.ext;
             const plugin = findPluginWithExt(options.plugins, ext);
@@ -158,7 +158,7 @@ export class TextlintKernel {
      * @param {*} processor
      * @param {string} text
      * @param {Object} options
-     * @returns {Promise.<TextLintResult>}
+     * @returns {Promise.<TextlintResult>}
      * @private
      */
     _parallelProcess({
@@ -199,12 +199,12 @@ export class TextlintKernel {
     }
 
     /**
-     * process text in series for Rules and return {Promise.<TextLintFixResult>}
+     * process text in series for Rules and return {Promise.<TextlintFixResult>}
      * In other word, sequence flow process.
      * @param {*} processor
      * @param {string} text
      * @param {TextlintKernelOptions} options
-     * @returns {Promise.<TextLintFixResult>}
+     * @returns {Promise.<TextlintFixResult>}
      * @private
      */
     _sequenceProcess({
@@ -215,7 +215,7 @@ export class TextlintKernel {
         processor: TextlintKernelProcessor;
         text: string;
         options: TextlintKernelOptions;
-    }): Promise<TextLintFixResult> {
+    }): Promise<TextlintFixResult> {
         const { ext, filePath, rules, filterRules, configBaseDir } = options;
         assert(processor, `processor is not found for ${ext}`);
         const { preProcess, postProcess } = processor.processor(ext);

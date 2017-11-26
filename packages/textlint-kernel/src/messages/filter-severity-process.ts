@@ -1,14 +1,14 @@
 // LICENSE : MIT
 "use strict";
 import SeverityLevel from "../shared/type/SeverityLevel";
-import { TextlintKernelConstructorOptions, TextLintMessage } from "../textlint-kernel-interface";
+import { TextlintKernelConstructorOptions, TextlintMessage } from "../textlint-kernel-interface";
 
 /**
  * Filter messages by their severity.
- * @param {TextLintMessage[]} messages
- * @returns {TextLintMessage[]} filtered messages
+ * @param {TextlintMessage[]} messages
+ * @returns {TextlintMessage[]} filtered messages
  */
-export function filterWarningMessages(messages: TextLintMessage[] = []) {
+export function filterWarningMessages(messages: TextlintMessage[] = []) {
     return messages.filter(message => {
         return message.severity === SeverityLevel.error;
     });
@@ -16,8 +16,8 @@ export function filterWarningMessages(messages: TextLintMessage[] = []) {
 
 /**
  * Pass through all messages.
- * @param {TextLintMessage[]} messages
- * @returns {TextLintMessage[]}
+ * @param {TextlintMessage[]} messages
+ * @returns {TextlintMessage[]}
  */
 export function through(messages = []) {
     return messages;

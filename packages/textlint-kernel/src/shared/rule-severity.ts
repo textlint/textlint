@@ -2,14 +2,14 @@
 "use strict";
 import * as assert from "assert";
 import SeverityLevel from "./type/SeverityLevel";
-import { TextLintRuleOptions } from "../textlint-kernel-interface";
+import { TextlintRuleOptions } from "../textlint-kernel-interface";
 
 /**
  * get severity level from ruleConfig.
  * @param {Object|boolean|undefined} ruleConfig
  * @returns {number}
  */
-export function getSeverity(ruleConfig?: TextLintRuleOptions | boolean) {
+export function getSeverity(ruleConfig?: TextlintRuleOptions | boolean) {
     if (ruleConfig === undefined) {
         return SeverityLevel.error;
     }

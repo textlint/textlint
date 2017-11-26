@@ -12,7 +12,7 @@ import MessageType from "../shared/type/MessageType";
 import { EventEmitter } from "events";
 import * as assert from "assert";
 import SourceCode from "../core/source-code";
-import { TextLintFixCommand, TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { TextLintFixCommand, TextlintRuleOptions, TxtNode } from "../textlint-kernel-interface";
 import { default as RuleContext, RuleReportedObject } from "../core/rule-context";
 import { RuleCreatorReporter } from "../core/rule-creator-helper";
 import FilterRuleContext from "../core/filter-rule-context";
@@ -206,7 +206,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     tryToGetRuleObject(
         ruleCreator: RuleCreatorReporter,
         ruleContext: RuleContext | FilterRuleContext,
-        ruleOptions?: TextLintRuleOptions | boolean
+        ruleOptions?: TextlintRuleOptions | boolean
     ) {
         try {
             return ruleCreator(ruleContext, ruleOptions);
@@ -226,7 +226,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     tryToAddListenRule(
         ruleCreator: RuleCreatorReporter,
         ruleContext: RuleContext | FilterRuleContext,
-        ruleOptions?: TextLintRuleOptions | boolean
+        ruleOptions?: TextlintRuleOptions | boolean
     ): void {
         const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions);
         Object.keys(ruleObject).forEach((nodeType: keyof typeof ruleObject) => {

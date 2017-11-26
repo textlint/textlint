@@ -2,7 +2,7 @@
 "use strict";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 import RuleContext from "./rule-context";
-import { TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { TextlintRuleOptions, TxtNode } from "../textlint-kernel-interface";
 import FilterRuleContext from "./filter-rule-context";
 /**
  * Reporter function
@@ -11,7 +11,7 @@ import FilterRuleContext from "./filter-rule-context";
  */
 export type RuleCreatorReporter = (
     context: RuleContext | FilterRuleContext,
-    options?: TextLintRuleOptions | boolean
+    options?: TextlintRuleOptions | boolean
 ) => { [P in keyof typeof ASTNodeTypes]?: (node: TxtNode) => void | Promise<any> };
 
 export type RuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter };

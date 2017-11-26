@@ -6,7 +6,7 @@ import RuleError from "./rule-error";
 import SeverityLevel from "../shared/type/SeverityLevel";
 import { getSeverity } from "../shared/rule-severity";
 import SourceCode from "./source-code";
-import { TextLintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { TextlintRuleOptions, TxtNode } from "../textlint-kernel-interface";
 import { ReportFunction } from "../task/textlint-core-task";
 // instance for rule context
 const ruleFixer = new RuleFixer();
@@ -29,7 +29,7 @@ export interface RuleContextArgs {
     ruleId: string;
     sourceCode: SourceCode;
     report: ReportFunction;
-    ruleOptions?: TextLintRuleOptions | boolean;
+    ruleOptions?: TextlintRuleOptions | boolean;
     configBaseDir?: string;
 }
 
@@ -44,7 +44,7 @@ export default class RuleContext {
     private _ruleId: string;
     private _sourceCode: SourceCode;
     private _report: ReportFunction;
-    private _ruleOptions?: TextLintRuleOptions | boolean;
+    private _ruleOptions?: TextlintRuleOptions | boolean;
     private _configBaseDir?: string;
     private _severity: number;
 
