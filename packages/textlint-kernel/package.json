@@ -64,7 +64,6 @@
     "@textlint/feature-flag": "^2.0.0",
     "@types/bluebird": "^3.5.11",
     "bluebird": "^3.5.0",
-    "carrack": "^0.5.0",
     "debug": "^2.6.6",
     "deep-equal": "^1.0.1",
     "is-my-json-valid": "^2.16.0",
