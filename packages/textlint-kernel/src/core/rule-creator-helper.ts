@@ -3,14 +3,13 @@
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 import RuleContext from "./rule-context";
 import { TextlintRuleOptions, TxtNode } from "../textlint-kernel-interface";
-import FilterRuleContext from "./filter-rule-context";
 /**
  * Reporter function
  *
  * FIXME: Separate RuleCreatorReporter to FilterRuleCreatorReporter
  */
 export type RuleCreatorReporter = (
-    context: RuleContext | FilterRuleContext,
+    context: RuleContext,
     options?: TextlintRuleOptions | boolean
 ) => { [P in keyof typeof ASTNodeTypes]?: (node: TxtNode) => void | Promise<any> };
 

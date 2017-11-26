@@ -13,12 +13,12 @@ export interface ReportOptions {
     }[];
 }
 
-export const report: RuleCreatorReporter = (context: RuleContext, options: ReportOptions = {}) => {
+export const report: RuleCreatorReporter = (context: RuleContext, options: ReportOptions | any = {}) => {
     const errors = options.errors || [];
     const { Syntax, RuleError, report, fixer } = context;
     return {
         [Syntax.Document](node: TxtNode) {
-            errors.forEach(error => {
+            errors.forEach((error: any) => {
                 if (error.range && error.output) {
                     report(
                         node,
