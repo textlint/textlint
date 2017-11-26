@@ -19,6 +19,10 @@ const debug = require("debug")("textlint:traverse");
 function walk(name, extensions, exclude, callback) {
     const stat = fs.statSync(name);
 
+    /**
+     * @param {string} dir 
+     * @param {string[]} stack 
+     */
     function traverse(dir, stack) {
         stack.push(dir);
         fs.readdirSync(path.join(...stack)).forEach(file => {
