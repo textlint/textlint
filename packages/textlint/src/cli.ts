@@ -12,16 +12,13 @@ import { Config } from "./config/config";
 import { configInit } from "./config/config-initializer";
 import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
+import { TextLintEngineCore } from "./engine/textlint-engine-core";
+import { TextlintTypes } from "@textlint/kernel";
 /*
  cli.js is command line **interface**
 
  processing role is cli-engine.js.
  @see cli-engine.js
- */
-
-/** @typedef {Object} TextLintFormatterOption
- *  @property {string} formatterName
- *  @property {boolean} noColor
  */
 
 /**
@@ -30,7 +27,7 @@ import { Logger } from "./util/logger";
  * @param {object} options cli option object {@lint ./options.js}
  * @returns {boolean} does print result success?
  */
-function printResults(output, options) {
+function printResults(output: string, options: any): boolean {
     if (!output) {
         return true;
     }
@@ -65,7 +62,7 @@ export const cli = {
      * @param {string} [text] The text to lint (used for TTY).
      * @returns {Promise<number>} The exit code for the operation.
      */
-    execute(args, text) {
+    execute(args: string | Array<any> | object, text: string): Promise<number> {
         let currentOptions;
         try {
             currentOptions = options.parse(args);
@@ -97,7 +94,7 @@ export const cli = {
      * @param {string} [stdinFilename]
      * @returns {Promise<number>} exit status
      */
-    executeWithOptions(cliOptions, files, text, stdinFilename) {
+    executeWithOptions(cliOptions: any, files: string[], text: string, stdinFilename: string): Promise<number> {
         const config = Config.initWithCLIOptions(cliOptions);
         const showEmptyRuleWarning = () => {
             Logger.log(`
@@ -106,10 +103,10 @@ export const cli = {
 See https://github.com/textlint/textlint/blob/master/docs/configuring.md
 `);
         };
-
         if (cliOptions.fix) {
             // --fix
-            const fixEngine = new TextFixEngine(config);
+            // TODO: fix to type
+            const fixEngine = new TextFixEngine(config) as TextLintEngineCore;
             if (!fixEngine.hasRuleAtLeastOne()) {
                 showEmptyRuleWarning();
                 return Promise.resolve(0);
@@ -127,13 +124,13 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                     return Promise.resolve(0);
                 }
                 // modify file and return exit status
-                return fixer.write(results).then(() => {
+                return fixer.write(results as TextlintTypes.TextlintFixResult[]).then(() => {
                     return 0;
                 });
             });
         }
         // lint as default
-        const lintEngine = new TextLintEngine(config);
+        const lintEngine = new TextLintEngine(config) as TextLintEngineCore;
         if (!lintEngine.hasRuleAtLeastOne()) {
             showEmptyRuleWarning();
             return Promise.resolve(0);

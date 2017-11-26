@@ -1,6 +1,9 @@
 "use strict";
 import { TextLintEngineCore } from "./engine/textlint-engine-core";
 import { createFormatter } from "./fixer/textfix-formatter";
+import { Config } from "./config/config";
+import { TextLintCore } from "./textlint-core";
+import { TextLintFormatterOption } from "./textlint-interface";
 /**
  * TextFixEngine a adapter for TextLintEngineCore.
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
@@ -11,20 +14,19 @@ export class TextFixEngine {
      * @param {Config|Object} [config]
      * @returns {TextLintEngineCore}
      */
-    constructor(config) {
+    constructor(config: Config | object) {
         const executor = {
             /**
              * @param {TextLintCore} textlintCore
              * @returns {function()}
              */
-            onFile: textlintCore => {
+            onFile: (textlintCore: TextLintCore) => {
                 /**
                  * Fixes the current configuration on an array of file and directory names.
                  * TextFixEngine#executeOnFiles
-                 * @param {String[]}  files An array of file and directory names.
                  * @returns {TextlintFixResult[]} The results for all files that were linted.
                  */
-                return file => {
+                return (file: string) => {
                     return textlintCore.fixFile(file);
                 };
             },
@@ -32,7 +34,7 @@ export class TextFixEngine {
              * @param {TextLintCore} textlintCore
              * @returns {function()}
              */
-            onText: textlintCore => {
+            onText: (textlintCore: TextLintCore) => {
                 /**
                  * Fix texts with ext option.
                  * TextFixEngine#executeOnText
@@ -40,14 +42,14 @@ export class TextFixEngine {
                  * @param {string} ext ext is a type for linting. default: ".txt"
                  * @returns {TextlintFixResult[]}
                  */
-                return (text, ext) => {
+                return (text: string, ext: string) => {
                     return textlintCore.fixText(text, ext);
                 };
             },
             /**
              * @param {TextLintFormatterOption} formatterConfig
              */
-            onFormat: formatterConfig => {
+            onFormat: (formatterConfig: TextLintFormatterOption) => {
                 // default formatter name: stylish
                 if (!formatterConfig.formatterName) {
                     formatterConfig.formatterName = "stylish";

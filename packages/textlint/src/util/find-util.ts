@@ -16,7 +16,10 @@ const isFile = (filePath: string) => {
  * @param {string[]} patterns glob patterns
  * @param {{extensions?: string[], cwd?: string }} options
  */
-export function pathsToGlobPatterns(patterns: string[], options: { extensions?: string[]; cwd?: string } = {}) {
+export function pathsToGlobPatterns(
+    patterns: string[],
+    options: { extensions?: string[]; cwd?: string } = {}
+): string[] {
     const processPatterns = pathToGlob({
         extensions: options.extensions || [],
         cwd: options.cwd || process.cwd()
