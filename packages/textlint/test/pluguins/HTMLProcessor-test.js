@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
-import htmlPlugin from "textlint-plugin-html";
+import * as assert from "assert";
 import { TextLintCore } from "../../src/index";
-import path from "path";
+import * as path from "path";
+
+const htmlPlugin = require("textlint-plugin-html");
 
 describe("HTMLPlugin", function() {
     let textlintCore;

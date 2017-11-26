@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import { TextLintCore } from "../../src/index";
-import assert from "power-assert";
+import * as assert from "assert";
 import { assertRuleContext } from "./assert-rule-context";
+
 describe("Fixer Rule", function() {
     it("should context and receive options", function() {
         const textlint = new TextLintCore();
@@ -18,8 +19,8 @@ describe("Fixer Rule", function() {
             { "rule-name": expectedOptions }
         ); // config
         return textlint.lintMarkdown("string").then(result => {
-            assert(result.filePath === "<markdown>");
-            assert(result.messages.length === 0);
+            assert.equal(result.filePath, "<markdown>");
+            assert.equal(result.messages.length, 0);
         });
     });
 });

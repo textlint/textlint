@@ -4,7 +4,7 @@ const MapLike = require("map-like");
 /**
  * @typedef {{key: Function}} RulesObject
  */
-export default class RuleMap extends MapLike {
+export class RuleMap extends MapLike {
     /**
      * has rule at least one > 0
      * @returns {boolean}

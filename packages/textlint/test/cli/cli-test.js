@@ -1,10 +1,10 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const cli = require("../../src/index").cli;
 const path = require("path");
 const spawnSync = require("child_process").spawnSync;
-import Logger from "../../src/util/logger";
+import { Logger } from "../../src/util/logger";
 const originLog = Logger.log;
 describe("cli-test", function() {
     beforeEach(function() {
@@ -208,7 +208,7 @@ describe("cli-test", function() {
                 isCalled = true;
             };
             const targetFile = path.join(__dirname, "fixtures/todo.html");
-            const configFile = path.join(__dirname, "fixtures/.textlintrc.quiet");
+            const configFile = path.join(__dirname, "fixtures/quite.textlintrc.json");
             return cli.execute(`${targetFile} -c ${configFile} --quiet ${targetFile}`).then(result => {
                 assert.equal(result, 0);
                 assert(!isCalled);

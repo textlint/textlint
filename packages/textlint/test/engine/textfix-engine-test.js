@@ -1,8 +1,10 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
 import { TextFixEngine } from "../../src/";
+import { Config } from "../../src/config/config";
+
 const rulesDir = path.join(__dirname, "fixtures/textfix-engine/fixer-rules");
 const inputTextPath = path.join(__dirname, "fixtures/textfix-engine/fixer-rules", "input.md");
 const formatterPath = path.join(__dirname, "fixtures/textfix-engine/formatter/example-fixer-formatter.js");
@@ -24,7 +26,6 @@ describe("textfix-engine", function() {
         context("when args is Config object", function() {
             it("should set directory to config", function() {
                 // Issue : when use Config as argus, have to export `../src/config/config`
-                var Config = require("../../src/config/config");
                 var config = new Config({ rulePaths: [rulesDir] });
                 const engine = new TextFixEngine(config);
                 assert.deepEqual(engine.config.rulePaths, [rulesDir]);

@@ -5,13 +5,13 @@ const fs = require("fs");
 const path = require("path");
 const debug = require("debug")("textlint:cli");
 const mkdirp = require("mkdirp");
-import options from "./options";
-import TextLintEngine from "./textlint-engine";
-import TextFixEngine from "./textfix-engine";
-import Config from "./config/config";
-import configInit from "./config/config-initializer";
-import TextLintFixer from "./fixer/textlint-fixer";
-import Logger from "./util/logger";
+import { options } from "./options";
+import { TextLintEngine } from "./textlint-engine";
+import { TextFixEngine } from "./textfix-engine";
+import { Config } from "./config/config";
+import { configInit } from "./config/config-initializer";
+import { TextLintFixer } from "./fixer/textlint-fixer";
+import { Logger } from "./util/logger";
 /*
  cli.js is command line **interface**
 
@@ -58,7 +58,7 @@ function printResults(output, options) {
  * Encapsulates all CLI behavior for eslint. Makes it easier to test as well as
  * for other Node.js programs to effectively run the CLI.
  */
-const cli = {
+export const cli = {
     /**
      * Executes the CLI based on an array of arguments that is passed in.
      * @param {string|Array|Object} args The arguments to process.
@@ -149,4 +149,3 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
         });
     }
 };
-module.exports = cli;

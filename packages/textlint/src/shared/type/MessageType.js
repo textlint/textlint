@@ -3,7 +3,7 @@
  * @typedef {Object} MessageType
  * @type {{lint: string, ignore: string}}
  */
-export default {
+export const MessageType = {
     // Linting(also include Fix) Message Type
     lint: "lint",
     // Ignoring Message Type

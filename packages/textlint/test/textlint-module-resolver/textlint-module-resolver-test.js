@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 const path = require("path");
-import assert from "power-assert";
-import TextLintModuleResolver, { createFullPackageName } from "../../src/engine/textlint-module-resolver";
-import Config from "../../src/config/config";
+import * as assert from "assert";
+import { TextLintModuleResolver, createFullPackageName } from "../../src/engine/textlint-module-resolver";
+import { Config } from "../../src/config/config";
 
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
 const createResolve = ruleBaseDir => {

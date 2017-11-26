@@ -1,7 +1,7 @@
 // MIT © 2016 azu
 "use strict";
 const Promise = require("bluebird");
-export default class ExecuteFileBackerManager {
+export class ExecuteFileBackerManager {
     /**
      * create MessageProcessManager with backers
      * @param {function()[]} backers

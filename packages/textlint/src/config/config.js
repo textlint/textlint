@@ -7,13 +7,13 @@ const assert = require("assert");
 const pkg = require("../../package.json");
 const concat = require("unique-concat");
 const path = require("path");
-import loadConfig from "./config-loader";
+import { loadConfig } from "./config-loader";
 import { isPresetRuleKey } from "../util/config-util";
 import { mapRulesConfig } from "./preset-loader";
 import { loadAvailableExtensions, getPluginConfig, getPluginNames } from "./plugin-loader";
-import loadRulesConfigFromPresets from "./preset-loader";
-import TextLintModuleResolver from "../engine/textlint-module-resolver";
-import separateAvailableOrDisable from "./separate-by-config-option";
+import { loadRulesConfigFromPresets } from "./preset-loader";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { separateAvailableOrDisable } from "./separate-by-config-option";
 
 /**
  * Convert config of preset to rulesConfig flat path format.
@@ -91,7 +91,7 @@ const defaultOptions = Object.freeze({
 });
 
 // Priority: CLI > Code options > config file
-class Config {
+export class Config {
     /**
      * @return {string} rc config filename
      * it's name use as `.<name>rc`
@@ -365,5 +365,3 @@ class Config {
         return r;
     }
 }
-
-module.exports = Config;

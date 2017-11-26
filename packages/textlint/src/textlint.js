@@ -34,7 +34,6 @@
 
 
  */
-import TextlintCore from "./textlint-core";
+import { TextLintCore } from "./textlint-core";
 // singleton instance
-const api = new TextlintCore();
-export default api;
+export const textlint = new TextLintCore();

@@ -1,7 +1,7 @@
 // MIT © 2016 azu
 "use strict";
 /* eslint-disable */
-export default class AbstractBacker {
+export class AbstractBacker {
     /**
      * @param {string} filePath
      * @returns {boolean}

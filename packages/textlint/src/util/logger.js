@@ -8,7 +8,7 @@
  * Use this instead of `console.log`
  * Main purpose for helping linting.
  */
-export default class Logger {
+export class Logger {
     static log(...message) {
         console.log(...message);
     }

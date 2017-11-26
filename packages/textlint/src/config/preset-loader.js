@@ -2,7 +2,7 @@
 "use strict";
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
-import TextLintModuleMapper from "../engine/textlint-module-mapper";
+import { TextLintModuleMapper } from "../engine/textlint-module-mapper";
 
 /**
  * create `<plugin>/<rule>` option
@@ -25,7 +25,7 @@ export function mapRulesConfig(rulesConfig, presetName) {
  * @param {TextLintModuleResolver} moduleResolver
  * @returns {{}}
  */
-export default function findRulesAndConfig(ruleNames = [], moduleResolver) {
+export function loadRulesConfigFromPresets(ruleNames = [], moduleResolver) {
     const presetRulesConfig = {};
     ruleNames.forEach(ruleName => {
         const pkgPath = moduleResolver.resolvePresetPackageName(ruleName);

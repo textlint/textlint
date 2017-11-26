@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const optionator = require("optionator");
-export default optionator({
+export const options = optionator({
     prepend: "textlint [options] file.md [file|dir|glob*]",
     concatRepeatedArrays: true,
     mergeRepeatedObjects: true,

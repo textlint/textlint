@@ -2,8 +2,8 @@
 "use strict";
 const fileEntryCache = require("file-entry-cache");
 const debug = require("debug")("CacheBacker");
-import AbstractBacker from "./abstruct-backer";
-export default class CacheBacker extends AbstractBacker {
+import { AbstractBacker } from "./abstruct-backer";
+export class CacheBacker extends AbstractBacker {
     /**
      * @param {Config} config
      */

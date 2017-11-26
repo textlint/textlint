@@ -1,17 +1,17 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
-import glob from "glob";
-import fs from "fs";
-import path from "path";
-import Config from "../../src/config/config";
+import * as assert from "assert";
+import * as glob from "glob";
+import * as fs from "fs";
+import * as path from "path";
+import { Config } from "../../src/config/config";
 /* load config from "./config/" and match expected result */
 describe("config-as-example", function() {
-    const configList = glob.sync(path.join(__dirname, "/config-fixtures/**/.textlintrc*"));
+    const configList = glob.sync(path.join(__dirname, "/config-fixtures/**/.textlintrc"));
     configList.forEach(textlintrcPath => {
         const projectDir = path.dirname(textlintrcPath);
         const dirName = projectDir.split("/").pop();
-        it(`test ${dirName}`, function() {
+        it(`test config: ${dirName}`, function() {
             let config;
             try {
                 config = Config.initWithAutoLoading({

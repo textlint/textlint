@@ -3,15 +3,15 @@
 const createFormatter = require("textlint-formatter");
 const path = require("path");
 const debug = require("debug")("textlint:engine-core");
-import TextLintCore from "./../textlint-core";
-import RuleMap from "./rule-map";
-import PluginMap from "./processor-map";
-import Config from "../config/config";
+import { TextLintCore } from "./../textlint-core";
+import { RuleMap } from "./rule-map";
+import { PluginMap } from "./processor-map";
+import { Config } from "../config/config";
 import { pathsToGlobPatterns, findFiles, separateByAvailability } from "../util/find-util";
-import TextLintModuleLoader from "./textlint-module-loader";
-import ExecuteFileBackerManager from "./execute-file-backer-manager";
-import CacheBaker from "./execute-file-backers/cache-backer";
-import SeverityLevel from "../shared/type/SeverityLevel";
+import { TextLintModuleLoader } from "./textlint-module-loader";
+import { ExecuteFileBackerManager } from "./execute-file-backer-manager";
+import { CacheBacker } from "./execute-file-backers/cache-backer";
+import { SeverityLevel } from "../shared/type/SeverityLevel";
 /**
  * Core of TextLintEngine.
  * It is internal user.
@@ -24,7 +24,7 @@ import SeverityLevel from "../shared/type/SeverityLevel";
  *
  * There are hackable by `executor` option.
  */
-export default class TextLintEngineCore {
+export class TextLintEngineCore {
     /**
      * Process files are wanted to lint.
      * TextLintEngine is a wrapper of textlint.js.
@@ -64,7 +64,7 @@ export default class TextLintEngineCore {
          * @private
          */
         this.executeFileBackerManger = new ExecuteFileBackerManager();
-        const cacheBaker = new CacheBaker(this.config);
+        const cacheBaker = new CacheBacker(this.config);
         if (this.config.cache) {
             this.executeFileBackerManger.add(cacheBaker);
         } else {

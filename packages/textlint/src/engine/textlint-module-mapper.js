@@ -6,7 +6,7 @@
  */
 // The separator of `<plugin>/<rule>`
 const RuleSeparator = "/";
-export default class TextLintModuleMapper {
+export class TextLintModuleMapper {
     /**
      * create entities from rules/rulesConfig and prefix
      * entities is a array which contain [key, value]

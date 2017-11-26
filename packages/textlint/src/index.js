@@ -1,13 +1,13 @@
 // LICENSE : MIT
 "use strict";
-import cli from "./cli";
-import textlint from "./textlint";
-import TextLintEngine from "./textlint-engine";
-import TextFixEngine from "./textfix-engine";
-import TextLintCore from "./textlint-core";
+import { cli } from "./cli";
+import { textlint } from "./textlint";
+import { TextLintEngine } from "./textlint-engine";
+import { TextFixEngine } from "./textfix-engine";
+import { TextLintCore } from "./textlint-core";
 // FIXME: will be removed
-import MessageType from "./shared/type/MessageType";
-import SeverityLevel from "./shared/type/SeverityLevel";
+import { MessageType } from "./shared/type/MessageType";
+import { SeverityLevel } from "./shared/type/SeverityLevel";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 // Level of abstraction(descending order)
 // cli > TextLintEngine > TextLintCore(textlint)

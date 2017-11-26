@@ -21,7 +21,7 @@ const filterByAvailable = (rules, rulesConfig) => {
 /**
  * Manage RuleCreator*s* object and RuleOption*s*
  */
-export default class RuleCreatorSet {
+export class RuleCreatorSet {
     /**
      * @param {Object} [rules]
      * @param {Object} [rulesConfig]
@@ -99,7 +99,7 @@ export default class RuleCreatorSet {
      * forEach method
      * @example
      *  ruleCreatorSet.forEach(({ruleId, rule, ruleConfig}) => {
-     *      // 
+     *      //
      *  });
      * @param {function({ ruleId: string, rule: Function, ruleConfig: Object|boolean})} handler
      */

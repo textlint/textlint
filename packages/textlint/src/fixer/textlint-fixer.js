@@ -15,7 +15,7 @@ function overWriteResult(result) {
         });
     });
 }
-export default class TextLintFixer {
+export class TextLintFixer {
     /**
      * write output to each files and return promise
      * @param textFixMessages

@@ -1,11 +1,11 @@
 "use strict";
 const createFormatter = require("textlint-formatter");
-import TextLintEngineCore from "./engine/textlint-engine-core";
+import { TextLintEngineCore } from "./engine/textlint-engine-core";
 /**
  * TextLintEngine a adapter for TextLintEngineCore.
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
  */
-export default class TextLintEngine {
+export class TextLintEngine {
     /**
      * TextLintEngine is a adaptor of TextLintEngineCore.
      * @param {Config|Object} [config]

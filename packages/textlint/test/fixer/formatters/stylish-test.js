@@ -1,5 +1,5 @@
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const stylish = require("../../../src/fixer/formatters/stylish");
 const formatter = code => {
     return stylish(code, { color: false });

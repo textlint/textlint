@@ -6,7 +6,7 @@ const tryResolve = require("try-resolve");
 const interopRequire = require("interop-require");
 const isFile = require("is-file");
 const debug = require("debug")("textlint:textfix-formatter");
-export default function createFormatter(formatterConfig) {
+export function createFormatter(formatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`try formatterName: ${formatterName}`);
     let formatter;

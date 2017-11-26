@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-export default {
+module.exports = {
     rules: {
         config: {
             key: true

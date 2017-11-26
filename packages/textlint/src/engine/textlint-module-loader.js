@@ -6,11 +6,11 @@ const debug = require("debug")("textlint:module-loader");
 const isFile = require("is-file");
 import { isPluginRuleKey } from "../util/config-util";
 import { loadFromDir } from "./rule-loader";
-import Logger from "../util/logger";
-import TextLintModuleResolver from "./textlint-module-resolver";
-import TextLintModuleMapper from "./textlint-module-mapper";
+import { Logger } from "../util/logger";
+import { TextLintModuleResolver } from "./textlint-module-resolver";
+import { TextLintModuleMapper } from "./textlint-module-mapper";
 
-export default class TextLintModuleLoader extends EventEmitter {
+export class TextLintModuleLoader extends EventEmitter {
     static get Event() {
         return {
             rule: "rule",

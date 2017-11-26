@@ -1,10 +1,10 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
-import Config from "../../src/config/config";
+import { Config } from "../../src/config/config";
 import { loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
-import TextLintModuleResolver from "../../src/engine/textlint-module-resolver";
+import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 
 const moduleResolver = new TextLintModuleResolver(Config, path.join(__dirname, "fixtures"));
 describe("plugin-loader", function() {

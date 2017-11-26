@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
-import Config from "../../src/config/config";
+import { Config } from "../../src/config/config";
 /*
     config file test reference to config-as-example.js
  */

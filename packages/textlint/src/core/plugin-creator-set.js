@@ -9,7 +9,7 @@ const getPlugins = rawPluginObject => {
 /**
  * Plugin Creator
  */
-export default class PluginCreatorSet {
+export class PluginCreatorSet {
     /**
      * @param {Object} [pluginObject]
      * @param {Object} [pluginOptionObject]

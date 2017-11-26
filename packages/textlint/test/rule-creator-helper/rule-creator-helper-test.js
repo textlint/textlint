@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
+import * as assert from "assert";
 import {
     hasLinter,
     getLinter,

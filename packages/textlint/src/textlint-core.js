@@ -8,16 +8,16 @@ const path = require("path");
 const ObjectAssign = require("object-assign");
 import { TextlintKernel } from "@textlint/kernel";
 import { readFile } from "./util/fs-promise";
-import markdownPlugin from "textlint-plugin-markdown";
-import textPlugin from "textlint-plugin-text";
-import RuleCreatorSet from "./core/rule-creator-set";
-import PluginCreatorSet from "./core/plugin-creator-set";
+import { RuleCreatorSet } from "./core/rule-creator-set";
+import { PluginCreatorSet } from "./core/plugin-creator-set";
 import { throwIfTesting } from "@textlint/feature-flag";
+const markdownPlugin = require("textlint-plugin-markdown");
+const textPlugin = require("textlint-plugin-text");
 
 /**
- * @class {TextlintCore}
+ * @class {TextLintCore}
  */
-export default class TextlintCore {
+export class TextLintCore {
     constructor(config = {}) {
         // this.config often is undefined.
         this.config = config;

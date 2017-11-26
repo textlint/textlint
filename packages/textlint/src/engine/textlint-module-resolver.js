@@ -49,7 +49,7 @@ export const createFullPackageName = (prefix, name) => {
  * - textlint-plugin-*
  * - textlint-config-*
  */
-export default class TextLintModuleResolver {
+export class TextLintModuleResolver {
     /**
      *
      * @param {Config|*} ConfigConstructor config constructor like object

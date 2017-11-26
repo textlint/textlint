@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const path = require("path");
 import { TextLintCore } from "../../src/index";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";

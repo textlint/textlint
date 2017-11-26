@@ -2,13 +2,14 @@
 "use strict";
 const rcConfigLoader = require("rc-config-loader");
 const interopRequire = require("interop-require");
+
 /**
  * @param configFilePath
  * @param configFileName
  * @param moduleResolver
  * @returns {{ config: Object, filePath:string}}
  */
-export default function load(configFilePath, { configFileName, moduleResolver }) {
+export function loadConfig(configFilePath, { configFileName, moduleResolver }) {
     // if specify Config module, use it
     if (configFilePath) {
         try {

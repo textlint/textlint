@@ -1,11 +1,11 @@
 "use strict";
-import TextLintEngineCore from "./engine/textlint-engine-core";
-import createFormatter from "./fixer/textfix-formatter";
+import { TextLintEngineCore } from "./engine/textlint-engine-core";
+import { createFormatter } from "./fixer/textfix-formatter";
 /**
  * TextFixEngine a adapter for TextLintEngineCore.
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
  */
-export default class TextFixEngine {
+export class TextFixEngine {
     /**
      * TextFixEngine is a adaptor of TextLintEngineCore.
      * @param {Config|Object} [config]

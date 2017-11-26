@@ -5,7 +5,7 @@
  * It is used in configuration and message
  * @typedef {Object} SeverityLevel
  */
-export default {
+export const SeverityLevel = {
     none: 0,
     info: 0,
     warning: 1,

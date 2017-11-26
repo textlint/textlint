@@ -6,7 +6,7 @@ import { isPluginRuleKey, isPresetRuleKey } from "../util/config-util";
  * @param {Object} [rulesConfig]
  * @returns {{available: string[], disable: string[]}}
  */
-export default function separateAvailableOrDisable(rulesConfig) {
+export function separateAvailableOrDisable(rulesConfig) {
     const ruleOf = {
         presets: [],
         available: [],

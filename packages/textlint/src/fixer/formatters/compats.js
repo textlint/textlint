@@ -8,7 +8,7 @@ function getMessageType(message) {
     }
 }
 
-export default function format(results) {
+export function format(results) {
     let output = "";
     let total = 0;
 

@@ -8,7 +8,7 @@ const callAsync = text => {
  * @param {Array} array
  * @returns {function(*)}
  */
-module.exports = array => {
+export const createAfterAllRule = array => {
     return context => {
         const { Syntax, getSource } = context;
         const promiseQueue = [];

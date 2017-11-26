@@ -1,8 +1,8 @@
 // MIT © 2016 azu
 "use strict";
-const assert = require("power-assert");
-import ExecuteFileBackerManager from "../../src/engine/execute-file-backer-manager";
-import AbstractBacker from "../../src/engine/execute-file-backers/abstruct-backer";
+const assert = require("assert");
+import { ExecuteFileBackerManager } from "../../src/engine/execute-file-backer-manager";
+import { AbstractBacker } from "../../src/engine/execute-file-backers/abstruct-backer";
 describe("execute-file-backer-manager", function() {
     context("when no backer", function() {
         it("should process all files", function() {

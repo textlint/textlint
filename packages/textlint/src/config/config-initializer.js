@@ -6,8 +6,8 @@ const path = require("path");
 const ObjectAssign = require("object-assign");
 const isFile = require("is-file");
 const readPkg = require("read-pkg");
-import Config from "../config/config";
-import Logger from "../util/logger";
+import { Config } from "../config/config";
+import { Logger } from "../util/logger";
 
 /**
  * read package.json if found it
@@ -52,7 +52,7 @@ const arrayToObject = (array, defaultValue) => {
 /**
  * Initializer class for config of textlint.
  */
-const init = {
+export const configInit = {
     /**
      * Create .textlintrc file
      * @params {string} dir The directory of .textlintrc file
@@ -90,4 +90,3 @@ const init = {
         });
     }
 };
-module.exports = init;
