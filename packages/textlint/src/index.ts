@@ -26,9 +26,3 @@ export { TextFixEngine } from "./textfix-engine";
 
 // Core API for linting a **single** text or file.
 export { TextLintCore } from "./textlint-core";
-
-// Constant Types
-// FIXME: will be removed
-export { MessageType as TextLintMessageType } from "./shared/type/MessageType";
-export { SeverityLevel as TextLintMessageSeverityLevel } from "./shared/type/SeverityLevel";
-export { ASTNodeTypes as TextLintNodeType } from "@textlint/ast-node-types";
