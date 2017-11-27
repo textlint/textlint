@@ -513,11 +513,11 @@ These modules are internal usage in the monorepo.
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+For bugs and feature requests, [please create an issue](https://github.com/textlint/textlint/issues).
+
+Pull requests is always welcome.
+
+For more details, see [Contributing Guide](.github/CONTRIBUTING.md).
 
 ## License
 
