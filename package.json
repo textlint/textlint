@@ -7,7 +7,6 @@
     "test/integration-test"
   ],
   "scripts": {
-    "postinstall": "yarn run bootstrap",
     "publish": "lerna publish --conventional-commits",
     "publish:beta": "lerna publish --conventional-commits --npm-tag=next",
     "bootstrap": "lerna bootstrap",

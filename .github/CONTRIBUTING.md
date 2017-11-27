@@ -113,7 +113,7 @@ yarn run bootstrap
 
 ### Testing
 
-#### Test each pacakge
+#### Test each packages
 
 ```sh
 cd pacakges/<pacakge>
