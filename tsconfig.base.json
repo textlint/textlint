@@ -1,23 +1,19 @@
 {
   "compilerOptions": {
-    "baseUrl": "./packages",
+    "baseUrl": ".",
     "paths": {
-      // TODO: re-structure directry
-      // Move textlint-kernel to @textlint/kernel
-      "@textlint/kernel": [
-        "./textlint-kernel/src"
+      "@textlint/*": [
+        "./packages/@textlint/*/src"
       ]
     },
-    // SHOULD BE OVERWRITE
-    "outDir": "./SHOULD_BE_OVERWRITE/",
+    "outDir": "SHOULD_BE_OVERWRITE",
     /* Basic Options */
     "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "newLine": "LF",
     "target": "es5",
-    "sourceMap": false,
-    // SourceMap by babel
+    "sourceMap": true,
     "declaration": true,
     "jsx": "preserve",
     "lib": [

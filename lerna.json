@@ -1,9 +1,5 @@
 {
-  "lerna": "2.4.0",
-  "packages": [
-    "packages/*",
-    "test/integration-test"
-  ],
+  "lerna": "2.5.1",
   "commands": {
     "publish": {
       "ignore": [
@@ -13,5 +9,11 @@
     }
   },
   "version": "independent",
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "packages": [
+    "packages/*",
+    "packages/@textlint/*",
+    "test/integration-test"
+  ]
 }

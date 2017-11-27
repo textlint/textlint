@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-kernel/",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-kernel/",
   "devDependencies": {
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.28",

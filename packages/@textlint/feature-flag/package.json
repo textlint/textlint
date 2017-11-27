@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-feature-flag/",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/feature-flag/",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",

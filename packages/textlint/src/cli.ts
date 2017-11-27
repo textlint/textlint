@@ -73,7 +73,8 @@ export const cli = {
         const files = currentOptions._;
         if (currentOptions.version) {
             // version from package.json
-            Logger.log(`v${require("../package.json").version}`);
+            const pkgConf = require("pkg-conf");
+            Logger.log(`v${pkgConf.sync("version")}`);
         } else if (currentOptions.init) {
             return configInit.initializeConfig(process.cwd());
         } else if (currentOptions.help || (!files.length && !text)) {

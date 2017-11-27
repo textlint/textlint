@@ -4,7 +4,6 @@ const objectAssign = require("object-assign");
 const md5 = require("md5");
 const fs = require("fs");
 const assert = require("assert");
-const pkg = require("../../package.json");
 const concat = require("unique-concat");
 const path = require("path");
 import { loadConfig } from "./config-loader";
@@ -262,7 +261,8 @@ export class Config {
      * @returns {string}
      */
     get hash() {
-        const version = pkg.version;
+        const pkgConf = require("pkg-conf");
+        const version = pkgConf.sync("version");
         const toString = JSON.stringify(this.toJSON());
         return md5(`${version}-${toString}`);
     }
