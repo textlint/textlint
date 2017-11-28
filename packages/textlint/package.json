@@ -17,6 +17,7 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "main": "lib/textlint/src/index.js",
+  "types": "lib/textlint/src/index.d.ts",
   "files": [
     "bin/",
     "lib/textlint/src",

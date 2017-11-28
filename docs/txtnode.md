@@ -12,13 +12,9 @@ Each node of the tree has same interface, is called `TxtNode`.
 
 [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
-## [TxtAST](../typings/txtast.d.ts) interface
-
-Please see TypeScript definition file: [typings/txtast.ts](../typings/txtast.ts)
-
 ### `TxtNode`
 
-[`TxtNode`](../typings/txtast.ts) has these properties.
+`TxtNode` has these properties.
 
 ```typescript
 interface TxtNode {
