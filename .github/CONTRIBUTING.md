@@ -20,6 +20,12 @@ If you found a bug, please [create a new issue](https://github.com/textlint/text
 - Example of reproduce repository
 - [azu/textlint-isssue78: https://github.com/textlint/textlint/issues/78](https://github.com/azu/textlint-isssue78 "azu/textlint-isssue78: https://github.com/textlint/textlint/issues/78")
 
+## For beginner
+
+If you want to contribute to texltlint, let's see issues with the [`good first issue`](https://github.com/textlint/textlint/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
+
+We recommend these issues for your first contribution.
+
 ## Pull Request
 
 ### [Git Commit Message Format](https://github.com/stevemao/conventional-changelog-angular/blob/master/convention.md "Commit Message Format")
