@@ -470,7 +470,7 @@ These modules are parts of textlint.
 | Package | Version | Description |
 |---------|---------|-------------|
 | [`textlint`](/packages/textlint) | [![npm](https://img.shields.io/npm/v/textlint.svg?style=flat-square)](https://www.npmjs.com/package/textlint) | textlint command line tool itself |
-| [`@textlint/kernel`](/packages/textlint-kernel) | [![npm](https://img.shields.io/npm/v/@textlint/kernel.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/kernel) | textlint main logic module. It is universal JavaScript.  |
+| [`@textlint/kernel`](/packages/@textlint/kernel) | [![npm](https://img.shields.io/npm/v/@textlint/kernel.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/kernel) | textlint main logic module. It is universal JavaScript.  |
 | [`textlint-plugin-markdown`](/packages/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-markdown) | markdown support for textlint |
 | [`textlint-plugin-text`](/packages/textlint-plugin-text) | [![npm](https://img.shields.io/npm/v/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-text) | plain text support for textlint |
 | [`markdown-to-ast`](/packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
@@ -502,7 +502,7 @@ These modules are internal usage in the monorepo.
 | Package | Version | Description |
 |---------|---------|-------------|
 | [`@textlint/monorepo-scripts`](/packages/textlint-monorepo-scripts) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/monorepo-scripts) | textlint monorepo build scripts |
-| [`@textlint/feature-flag`](/packages/@textlint/textlint-feature-flag) | [![npm](https://img.shields.io/npm/v/@textlint/feature-flag.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/feature-flag) | feature flag manager |
+| [`@textlint/feature-flag`](/packages/@textlint/feature-flag) | [![npm](https://img.shields.io/npm/v/@textlint/feature-flag.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/feature-flag) | feature flag manager |
 
 ## Who's using textlint?
 
