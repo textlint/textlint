@@ -1,2 +1,2 @@
 --recursive
---compilers ts:ts-node/register,js:babel-register
+--require test/ts-setup.js
