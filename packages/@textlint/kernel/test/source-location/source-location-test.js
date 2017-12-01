@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
+import * as assert from "assert";
 import SourceLocation from "../../src/core/source-location";
 import RuleError from "../../src/core/rule-error";
 import RuleFixer from "../../src/fixer/rule-fixer";
