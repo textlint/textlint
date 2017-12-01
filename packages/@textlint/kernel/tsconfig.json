@@ -4,7 +4,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "LF",
-    "outDir": "./es_modules/",
+    "outDir": "./lib/",
     "target": "esnext",
     "sourceMap": false, // SourceMap by babel
     "declaration": true,
