@@ -17,10 +17,8 @@
   "scripts": {
     "test": "mocha test",
     "clean": "rimraf out/ lib/ es_modules/",
-    "build": "npm-run-all build:src build:lib:temp-js-copy build:lib",
+    "build": "npm-run-all build:src",
     "build:src": "cross-env NODE_ENV=production tsc -p .",
-    "build:lib": "cross-env NODE_ENV=production babel es_modules --out-dir lib --source-maps --copy-files",
-    "build:lib:temp-js-copy": "cpx 'src/**/*.{js,json}' es_modules/ --preserve",
     "prepublish": "npm run --if-present build"
   },
   "keywords": [
