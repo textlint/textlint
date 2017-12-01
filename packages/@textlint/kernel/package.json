@@ -35,11 +35,6 @@
   "devDependencies": {
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.28",
-    "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-jsdoc-to-assert": "^4.0.0",
-    "babel-preset-power-assert": "^1.0.0",
-    "babel-register": "^6.24.1",
     "cpx": "^1.5.0",
     "cross-env": "^5.0.5",
     "markdown-to-ast": "^5.0.0",
