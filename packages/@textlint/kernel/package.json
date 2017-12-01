@@ -15,11 +15,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "npm-run-all test:prepare test:unit",
-    "test:prepare": "npm-run-all test:build test:cp_mocha",
-    "test:build": "cross-env NODE_ENV=test tsc -p ./test",
-    "test:cp_mocha": "cpx 'test/**/mocha.opts' 'out/test/' --preserve --verbose",
-    "test:unit": "mocha out/test",
+    "test": "mocha test",
     "clean": "rimraf out/ lib/ es_modules/",
     "build": "npm-run-all build:src build:lib:temp-js-copy build:lib",
     "build:src": "cross-env NODE_ENV=production tsc -p .",
