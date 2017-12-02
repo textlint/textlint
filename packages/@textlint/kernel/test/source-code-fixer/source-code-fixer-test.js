@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
+import * as assert from "assert";
 import SourceCodeFixer from "../../src/fixer/source-code-fixer";
 import SourceCode from "../../src/core/source-code";
 import { parse } from "markdown-to-ast";
