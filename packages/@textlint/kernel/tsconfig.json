@@ -5,7 +5,7 @@
     "moduleResolution": "node",
     "newLine": "LF",
     "outDir": "./lib/",
-    "target": "esnext",
+    "target": "es5",
     "sourceMap": false, // SourceMap by babel
     "declaration": true,
     "jsx": "preserve",
