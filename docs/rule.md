@@ -91,19 +91,26 @@ export default function(context) {
 
 RuleContext object has following property:
 
-- `Syntax.*` is const values of [TxtNode type](./txtnode.md).
+- `Syntax.*` 
+    - This is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
     - [src/shared/type/NodeType.js](../src/shared/type/NodeType.js)
-- `report(<node>, <ruleError>)` is a method that reports a message from one of the rules.
+- `report(<node>, <ruleError>): void`
+    - This method is a method that reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
-- `getSource(<node>)`  is a method gets the source code for the given node.
+- `getSource(<node>): string`
+    - Thie method is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
-- `getFilePath()` return file path that is linting target.
+- `getFilePath(): string | undefined`
+    - This method return file path that is linting target.
     - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
-- `getConfigBaseDir()` return config base directory path that is the place of `.textlintrc`
+- `getConfigBaseDir(): string | undefined` (New in [9.0.0](https://github.com/textlint/textlint/releases/tag/textlint%409.0.0 "9.0.0"))
+    - Available [@textlint/get-config-base-dir](https://github.com/textlint/get-config-base-dir "@textlint/get-config-base-dir") polyfill for backward compatibility
+    - This method return config base directory path that is the place of `.textlintrc`
     - e.g.) `/path/to/dir/.textlintrc`
     - `getConfigBaseDir()` return `"/path/to/dir/"`.
-- `fixer` is creator of fix command.
+- `fixer`
+    - This is creator object of fix command.
     - See [How to create Fixable Rule?](./rule-fixer.md) for details
 
 ## RuleError
