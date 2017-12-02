@@ -109,7 +109,8 @@ RuleContext object has following property:
     - This method return config base directory path that is the place of `.textlintrc`
     - e.g.) `/path/to/dir/.textlintrc`
     - `getConfigBaseDir()` return `"/path/to/dir/"`.
-- `fixer` is creator of fix command.
+- `fixer`
+    - This is creator object of fix command.
     - See [How to create Fixable Rule?](./rule-fixer.md) for details
 
 ## RuleError
