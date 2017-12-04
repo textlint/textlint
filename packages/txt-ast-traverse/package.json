@@ -35,7 +35,7 @@
     "gulp-bump": "^0.1.11",
     "gulp-espower": "^0.10.0",
     "gulp-filter": "^2.0.0",
-    "gulp-git": "^0.5.5",
+    "gulp-git": "^2.4.2",
     "gulp-mocha": "^2.0.0",
     "gulp-sourcemaps": "^1.2.8",
     "gulp-tag-version": "^1.2.1",
