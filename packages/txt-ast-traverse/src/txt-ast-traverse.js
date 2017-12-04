@@ -31,11 +31,11 @@ class Controller {
     }
 
     __execute(callback, element) {
-        let previous, result;
+        let result;
 
         result = undefined;
 
-        previous = this.__current;
+        const previous = this.__current;
         this.__current = element;
         if (callback) {
             result = callback.call(this, element.node, this.__leavelist[this.__leavelist.length - 1].node);
@@ -53,9 +53,9 @@ class Controller {
      * @public
      */
     parents() {
-        let i, iz, result;
+        let i, iz;
         // first node is sentinel
-        result = [];
+        const result = [];
         for (i = 1, iz = this.__leavelist.length; i < iz; ++i) {
             result.push(this.__leavelist[i].node);
         }
@@ -72,6 +72,7 @@ class Controller {
     }
 
     traverse(root, visitor) {
+        let ret;
         this.__willStartTraverse(root, visitor);
 
         const sentinel = {};
@@ -90,7 +91,7 @@ class Controller {
             if (element === sentinel) {
                 element = leavelist.pop();
 
-                var ret = this.__execute(visitor.leave, element);
+                ret = this.__execute(visitor.leave, element);
 
                 if (ret === BREAK) {
                     return;
