@@ -1,4 +1,4 @@
-# txt-ast-traverse [![Build Status](https://travis-ci.org/textlint/txt-ast-traverse.svg)](https://travis-ci.org/textlint/txt-ast-traverse)
+# txt-ast-traverse
 
 txt-ast-traverse provide traversal functions for [Markdown AST](https://github.com/textlint/markdown-to-ast/ "textlint/markdown-to-ast").
 
