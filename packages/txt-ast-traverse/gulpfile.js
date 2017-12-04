@@ -23,47 +23,50 @@
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-var gulp = require('gulp'),
-    mocha = require('gulp-mocha'),
-    to5 = require('gulp-6to5'),
-    espower = require('gulp-espower'),
-    git = require('gulp-git'),
-    bump = require('gulp-bump'),
-    filter = require('gulp-filter'),
-    tagVersion = require('gulp-tag-version'),
-    sourcemaps = require('gulp-sourcemaps');
+var gulp = require("gulp"),
+    mocha = require("gulp-mocha"),
+    to5 = require("gulp-6to5"),
+    espower = require("gulp-espower"),
+    git = require("gulp-git"),
+    bump = require("gulp-bump"),
+    filter = require("gulp-filter"),
+    tagVersion = require("gulp-tag-version"),
+    sourcemaps = require("gulp-sourcemaps");
 
-var TEST = ['test/*.js'];
-var POWERED = ['powered-test/*.js'];
-var SOURCE = ['src/**/*.js'];
+var TEST = ["test/*.js"];
+var POWERED = ["powered-test/*.js"];
+var SOURCE = ["src/**/*.js"];
 
-gulp.task('build', function () {
-    return gulp.src(SOURCE)
+gulp.task("build", function() {
+    return gulp
+        .src(SOURCE)
         .pipe(sourcemaps.init())
         .pipe(to5())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('lib'));
+        .pipe(gulp.dest("lib"));
 });
 
-gulp.task('powered-test', function () {
-    return gulp.src(TEST)
+gulp.task("powered-test", function() {
+    return gulp
+        .src(TEST)
         .pipe(sourcemaps.init())
         .pipe(to5())
         .pipe(espower())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./powered-test/'));
+        .pipe(gulp.dest("./powered-test/"));
 });
 
-gulp.task('test', ['build', 'powered-test'], function () {
-    return gulp.src(POWERED)
-        .pipe(mocha({
-            reporter: 'spec',
+gulp.task("test", ["build", "powered-test"], function() {
+    return gulp.src(POWERED).pipe(
+        mocha({
+            reporter: "spec",
             timeout: 100000 // 100s
-        }));
+        })
+    );
 });
 
-gulp.task('watch', ['build'], function () {
-    gulp.watch(SOURCE, ['build']);
+gulp.task("watch", ["build"], function() {
+    gulp.watch(SOURCE, ["build"]);
 });
 
 /**
@@ -82,28 +85,31 @@ gulp.task('watch', ['build'], function () {
 
 function inc(importance) {
     // get all the files to bump version in
-    return gulp.src(['./package.json'])
-        // bump the version number in those files
-        .pipe(bump({type: importance}))
-        // save it back to filesystem
-        .pipe(gulp.dest('./'))
-        // commit the changed version number
-        .pipe(git.commit('Bumps package version'))
-        // read only one file to get the version number
-        .pipe(filter('package.json'))
-        // **tag it in the repository**
-        .pipe(tagVersion());
+    return (
+        gulp
+            .src(["./package.json"])
+            // bump the version number in those files
+            .pipe(bump({ type: importance }))
+            // save it back to filesystem
+            .pipe(gulp.dest("./"))
+            // commit the changed version number
+            .pipe(git.commit("Bumps package version"))
+            // read only one file to get the version number
+            .pipe(filter("package.json"))
+            // **tag it in the repository**
+            .pipe(tagVersion())
+    );
 }
 
-gulp.task('patch', ['build'], function () {
-    return inc('patch');
+gulp.task("patch", ["build"], function() {
+    return inc("patch");
 });
-gulp.task('minor', ['build'], function () {
-    return inc('minor');
+gulp.task("minor", ["build"], function() {
+    return inc("minor");
 });
-gulp.task('major', ['build'], function () {
-    return inc('major');
+gulp.task("major", ["build"], function() {
+    return inc("major");
 });
 
-gulp.task('travis', ['test']);
-gulp.task('default', ['travis']);
+gulp.task("travis", ["test"]);
+gulp.task("default", ["travis"]);

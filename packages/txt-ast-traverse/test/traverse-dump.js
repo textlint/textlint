@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import * as controller from '../lib/txt-ast-traverse.js';
+import * as controller from "../lib/txt-ast-traverse.js";
 class Dumper {
     constructor() {
         this.logs = [];
