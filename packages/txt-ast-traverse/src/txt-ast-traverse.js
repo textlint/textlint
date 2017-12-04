@@ -4,7 +4,7 @@ function isNode(node) {
     if (node == null) {
         return false;
     }
-    return typeof node === 'object' && (typeof node.type === 'string' || typeof node.t === 'string');
+    return typeof node === "object" && (typeof node.type === "string" || typeof node.t === "string");
 }
 function TxtElement(node, path, wrap, ref) {
     this.node = node;
@@ -28,11 +28,10 @@ class Controller {
         this.root = root;
         this.__worklist = [];
         this.__leavelist = [];
-
     }
 
     __execute(callback, element) {
-        var previous, result;
+        let previous, result;
 
         result = undefined;
 
@@ -54,7 +53,7 @@ class Controller {
      * @public
      */
     parents() {
-        var i, iz, result;
+        let i, iz, result;
         // first node is sentinel
         result = [];
         for (i = 1, iz = this.__leavelist.length; i < iz; ++i) {
@@ -73,21 +72,20 @@ class Controller {
     }
 
     traverse(root, visitor) {
-
         this.__willStartTraverse(root, visitor);
 
-        var sentinel = {};
+        const sentinel = {};
 
         // reference
-        var worklist = this.__worklist;
-        var leavelist = this.__leavelist;
+        const worklist = this.__worklist;
+        const leavelist = this.__leavelist;
 
         // initialize
         worklist.push(new TxtElement(root, null, null, null));
         leavelist.push(new TxtElement(null, null, null, null));
 
         while (worklist.length) {
-            var element = worklist.pop();
+            let element = worklist.pop();
 
             if (element === sentinel) {
                 element = leavelist.pop();
@@ -101,7 +99,6 @@ class Controller {
             }
 
             if (element.node) {
-
                 ret = this.__execute(visitor.enter, element);
 
                 if (ret === BREAK) {
@@ -115,20 +112,20 @@ class Controller {
                     continue;
                 }
 
-                var node = element.node;
-                var nodeType = element.wrap || node.type;
-                var candidates = Object.keys(node);
+                const node = element.node;
+                const nodeType = element.wrap || node.type;
+                const candidates = Object.keys(node);
 
-                var current = candidates.length;
+                let current = candidates.length;
                 while ((current -= 1) >= 0) {
-                    var key = candidates[current];
-                    var candidate = node[key];
+                    const key = candidates[current];
+                    const candidate = node[key];
                     if (!candidate) {
                         continue;
                     }
 
                     if (Array.isArray(candidate)) {
-                        var current2 = candidate.length;
+                        let current2 = candidate.length;
                         while ((current2 -= 1) >= 0) {
                             if (!candidate[current2]) {
                                 continue;
@@ -149,13 +146,8 @@ class Controller {
     }
 }
 
-
 function traverse(root, visitor) {
-    var controller = new Controller();
+    const controller = new Controller();
     return controller.traverse(root, visitor);
 }
-export {
-    Controller,
-    traverse,
-    VisitorOption
-    };
+export { Controller, traverse, VisitorOption };
