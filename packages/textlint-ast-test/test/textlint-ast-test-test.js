@@ -1,10 +1,10 @@
 import assert from "assert";
-import {test, isTxtAST} from "../src/textlint-ast-test";
+import { test, isTxtAST } from "../src/textlint-ast-test";
 const txtParse = require("txt-to-ast").parse;
 const markdownParse = require("markdown-to-ast").parse;
-describe("textlint-ast-test", function () {
-    context("when markdown-to-ast", function () {
-        it("should not throw", function () {
+describe("textlint-ast-test", function() {
+    context("when markdown-to-ast", function() {
+        it("should not throw", function() {
             const text = `This is text.
 これはテキストです。
 This is ⏩ emoji
@@ -17,8 +17,8 @@ This is ⏩ emoji
             assert(isTxtAST(AST));
         });
     });
-    context("when txt-to-ast", function () {
-        it("should not throw", function () {
+    context("when txt-to-ast", function() {
+        it("should not throw", function() {
             const text = `This is text.
 これはテキストです。
 This is ⏩ emoji
@@ -35,9 +35,9 @@ This is ⏩ emoji
         });
     });
 
-    context("when invalid case", function () {
-        it("should not throw", function () {
-            assert.throws(function () {
+    context("when invalid case", function() {
+        it("should not throw", function() {
+            assert.throws(function() {
                 test({
                     type: "string"
                 });
