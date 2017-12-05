@@ -11,11 +11,11 @@ export function isUnist(node) {
     return true;
 }
 export function test(node) {
-    assert.equal(typeof node, 'object');
-    assert.equal(typeof node.type, 'string');
+    assert.equal(typeof node, "object");
+    assert.equal(typeof node.type, "string");
     assert.ok(node.type.length >= 1);
 
-    assert.doesNotThrow(function () {
+    assert.doesNotThrow(function() {
         JSON.parse(JSON.stringify(node));
     });
 
@@ -25,51 +25,51 @@ export function test(node) {
     }
 
     if (node.value !== null && node.value !== undefined) {
-        assert.equal(typeof node.value, 'string');
+        assert.equal(typeof node.value, "string");
     }
 
     const position = node.position;
     if (position !== null && position !== undefined) {
-        assert.equal(typeof position, 'object');
+        assert.equal(typeof position, "object");
 
         const start = position.start;
         const indent = position.indent;
         const end = position.end;
 
         if (start !== null && start !== undefined) {
-            assert.equal(typeof start, 'object');
+            assert.equal(typeof start, "object");
 
             if (start.line !== null && start.line !== undefined) {
-                assert.equal(typeof start.line, 'number');
+                assert.equal(typeof start.line, "number");
                 assert.ok(start.line >= 0); // allow `0` for `null`.
             }
 
             if (start.column !== null && start.column !== undefined) {
-                assert.equal(typeof start.column, 'number');
+                assert.equal(typeof start.column, "number");
                 assert.ok(start.column >= 0); // allow `0` for `null`.
             }
 
             if (start.offset !== null && start.offset !== undefined) {
-                assert.equal(typeof start.offset, 'number');
+                assert.equal(typeof start.offset, "number");
                 assert.ok(start.offset >= 0);
             }
         }
 
         if (end !== null && end !== undefined) {
-            assert.equal(typeof end, 'object');
+            assert.equal(typeof end, "object");
 
             if (end.line !== null && end.line !== undefined) {
-                assert.equal(typeof end.line, 'number');
+                assert.equal(typeof end.line, "number");
                 assert.ok(end.line >= 0); // allow `0` for `null`.
             }
 
             if (end.column !== null && end.column !== undefined) {
-                assert.equal(typeof end.column, 'number');
+                assert.equal(typeof end.column, "number");
                 assert.ok(end.column >= 0); // allow `0` for `null`.
             }
 
             if (end.offset !== null && end.offset !== undefined) {
-                assert.equal(typeof end.offset, 'number');
+                assert.equal(typeof end.offset, "number");
                 assert.ok(end.offset >= 0);
             }
         }
@@ -77,8 +77,8 @@ export function test(node) {
         if (indent !== null && indent !== undefined) {
             assert.ok(Array.isArray(indent));
 
-            indent.forEach(function (indentation) {
-                assert.equal(typeof indentation, 'number');
+            indent.forEach(function(indentation) {
+                assert.equal(typeof indentation, "number");
                 assert.ok(indentation >= 0);
             });
         }
