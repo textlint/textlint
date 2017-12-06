@@ -473,6 +473,7 @@ These modules are parts of textlint.
 | [`@textlint/kernel`](/packages/@textlint/kernel) | [![npm](https://img.shields.io/npm/v/@textlint/kernel.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/kernel) | textlint main logic module. It is universal JavaScript.  |
 | [`textlint-plugin-markdown`](/packages/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-markdown) | markdown support for textlint |
 | [`textlint-plugin-text`](/packages/textlint-plugin-text) | [![npm](https://img.shields.io/npm/v/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-text) | plain text support for textlint |
+| [`textlint-ast-test`](/packages/textlint-ast-test) | [![npm](https://img.shields.io/npm/v/textlint-ast-test.svg?style=flat-square)](https://www.npmjs.com/package/textlint-ast-test) | Compliance tests for textlint's AST |
 | [`markdown-to-ast`](/packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
 | [`txt-ast-traverse`](/packages/txt-ast-traverse) | [![npm](https://img.shields.io/npm/v/txt-ast-traverse.svg?style=flat-square)](https://www.npmjs.com/package/txt-ast-traverse) | TxtNode traverse library |
 | [`txt-to-ast`](/packages/txt-to-ast) | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser |
