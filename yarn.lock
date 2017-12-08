@@ -301,7 +301,7 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argparse@^1.0.7:
+argparse@^1.0.2, argparse@^1.0.7:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.9.tgz#73d83bc263f86e97f8cc4f6bae1b0e90a7d22c86"
   dependencies:
@@ -1696,6 +1696,10 @@ commander@^2.9.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
 
+commandpost@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/commandpost/-/commandpost-1.0.0.tgz#efffcdc908de231c47660fc1af35db44c5b883f5"
+
 commandpost@^1.0.1, commandpost@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/commandpost/-/commandpost-1.2.1.tgz#2e9c4c7508b9dc704afefaa91cab92ee6054cc68"
@@ -2790,7 +2794,7 @@ esprima@^1.2.2, esprima@~1.2.2:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-1.2.5.tgz#0993502feaf668138325756f30f9a51feeec11e9"
 
-esprima@^2.0.0:
+esprima@^2.0.0, esprima@^2.6.0:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
 
@@ -4408,6 +4412,13 @@ joyo-kanji@^0.2.1:
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
+
+js-yaml@3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.4.3.tgz#98c3a3f06bdac9dfc270fd91cec9d943e364cecd"
+  dependencies:
+    argparse "^1.0.2"
+    esprima "^2.6.0"
 
 js-yaml@^3.2.4, js-yaml@^3.4.3, js-yaml@^3.9.1:
   version "3.10.0"
@@ -6224,6 +6235,13 @@ pretty-hrtime@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
 
+prh@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/prh/-/prh-0.9.0.tgz#ff32e0350f30b321e3d52a043fcf2cc3050fe7c7"
+  dependencies:
+    commandpost "1.0.0"
+    js-yaml "3.4.3"
+
 prh@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/prh/-/prh-1.1.0.tgz#1c22b2a1998daaa7445865e5c86fb30e5b8ebb33"
@@ -7643,7 +7661,7 @@ text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 
-textlint-filter-rule-comments@^1.2.2:
+textlint-filter-rule-comments@^1.2.0, textlint-filter-rule-comments@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/textlint-filter-rule-comments/-/textlint-filter-rule-comments-1.2.2.tgz#3a72c494994e068e0e4aaad0f24ea7cfe338503a"
 
@@ -7746,6 +7764,12 @@ textlint-rule-max-number-of-lines@^1.0.2:
   dependencies:
     object-assign "^4.0.1"
 
+textlint-rule-no-todo@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-todo/-/textlint-rule-no-todo-1.0.3.tgz#ade215b922022ae8b4adcf78a91d66414a8ebedc"
+  dependencies:
+    textlint-rule-helper "^1.1.3"
+
 textlint-rule-no-todo@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-no-todo/-/textlint-rule-no-todo-2.0.0.tgz#877b8e60c34cf84df3957d694e5d0f5c2158b72f"
@@ -7777,6 +7801,14 @@ textlint-rule-preset-jtf-style@^2.3.0:
     sorted-joyo-kanji "^0.2.0"
     textlint-rule-helper "^2.0.0"
     textlint-rule-prh "^5.0.0"
+
+textlint-rule-prh@^2.4.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/textlint-rule-prh/-/textlint-rule-prh-2.4.1.tgz#1f4e393b9c4216647ab96e0d0d230482f44c5798"
+  dependencies:
+    prh "^0.9.0"
+    structured-source "^3.0.2"
+    textlint-rule-helper "^1.1.3"
 
 textlint-rule-prh@^3.1.3:
   version "3.1.3"

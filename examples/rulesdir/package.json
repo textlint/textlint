@@ -12,6 +12,6 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../../packages/textlint"
+    "textlint": "^9.1.1"
   }
 }

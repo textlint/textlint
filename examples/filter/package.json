@@ -12,7 +12,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../../packages/textlint",
+    "textlint": "^9.1.1",
     "textlint-filter-rule-comments": "^1.2.0",
     "textlint-rule-no-todo": "^2.0.0"
   }

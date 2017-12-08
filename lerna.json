@@ -13,6 +13,7 @@
   "useWorkspaces": true,
   "packages": [
     "packages/*",
+    "examples/*",
     "packages/@textlint/*",
     "test/integration-test"
   ]
