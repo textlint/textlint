@@ -109,7 +109,7 @@ You can read the source code from `filePath` property.
 
 textlint use `textlint-formatter` module as built-in formatter.
 
-- [textlint/textlint-formatter](https://github.com/textlint/textlint-formatter "textlint/textlint-formatter")
+- [textlint-formatter](/packages/textlint-formatter "textlint-formatter")
 
 ## Custom Formatter
 
