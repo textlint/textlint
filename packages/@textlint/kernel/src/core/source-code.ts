@@ -1,4 +1,4 @@
-import { TxtNode } from "../textlint-kernel-interface";
+import { TxtNode } from "@textlint/ast-node-types";
 
 const assert = require("assert");
 const StructuredSource = require("structured-source");

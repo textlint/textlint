@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import { ASTNodeTypes } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import RuleContext from "./rule-context";
-import { TextlintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { TextlintRuleOptions } from "../textlint-kernel-interface";
 /**
  * Reporter function
  *

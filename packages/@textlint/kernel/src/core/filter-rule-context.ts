@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import SourceCode from "./source-code";
-import { TxtNode } from "../textlint-kernel-interface";
+import { TxtNode } from "@textlint/ast-node-types";
 import RuleError from "./rule-error";
 import { ShouldIgnoreFunction } from "../task/textlint-core-task";
 
