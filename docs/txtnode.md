@@ -313,6 +313,7 @@ test(AST); // if the AST is invalid, then throw Error
 
 isTextlintAST(AST); // true or false
 ```
+
 ## Warning
 
 Other properties is not assured.
