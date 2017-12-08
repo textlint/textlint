@@ -6,7 +6,7 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
 
 /**
  * Validates that the given AST has the required information.
- * @param {TxtAST.TxtNode} [ast] The Program node of the AST to check.
+ * @param {TxtNode} [ast] The Program node of the AST to check.
  * @throws {Error} If the AST doesn't contain the correct information.
  * @returns {void}
  * @private
