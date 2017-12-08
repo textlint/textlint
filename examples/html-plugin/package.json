@@ -2,7 +2,7 @@
   "private": true,
   "name": "textlint-example-html-plugin",
   "scripts": {
-    "test:ci": "npm i && npm t",
+    "test:ci": "npm test",
     "test": "npm run textlint",
     "textlint": "textlint -f pretty-error index.html"
   },

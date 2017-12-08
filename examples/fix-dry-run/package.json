@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm i && npm t",
+    "test:ci": "npm test",
     "test": "npm run textlint-fix",
     "textlint": "textlint README.md",
     "textlint-fix": "textlint --fix --dry-run README.md"

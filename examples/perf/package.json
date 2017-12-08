@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test:ci": "npm i && npm t",
+    "test:ci": "npm test",
     "perf": "node perf.js",
     "test": "npm run perf"
   },

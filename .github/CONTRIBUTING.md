@@ -123,7 +123,7 @@ yarn run bootstrap
 
 ```sh
 cd pacakges/<pacakge>
-npm test
+yarn test
 ```
 
 #### Test All packages
@@ -131,15 +131,15 @@ npm test
 Run unit test packages:
 
 ```sh
-npm run test:packages
+yarn run test
 ```
 
-Run unit test + E2E test:
+Run **Unit test** + [Example](../examples/) test + [Integration test](../test/integration-test) by following command.
 
-This test is heavy because this includes example testing.
+This test is heavy because this includes Integration testing.
 
 ```sh
-npm run test
+yarn run test:all
 ```
 
 #### Coding Style
@@ -149,11 +149,11 @@ The repository use [ESLint](http://eslint.org/ "ESLint").
 You can run lint:
 
 ```sh
-npm run eslint
+yarn run eslint
 ```
 
 It's possible that fix some wrong style using [--fix](http://eslint.org/docs/user-guide/command-line-interface#fix "--fix") feature of ESLint:
 
 ```
-npm run eslint:fix
+yarn run eslint:fix
 ```

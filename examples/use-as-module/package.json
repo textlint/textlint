@@ -3,7 +3,7 @@
   "name": "textlint-example-use-as-module",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm i && npm t",
+    "test:ci": "npm test",
     "test": "node index.js"
   },
   "author": "azu",
