@@ -5,9 +5,7 @@ The definition for textlint AST Node types.
 This module for parse plugin.
 
 
-Please see for more details:
-
-- <https://github.com/textlint/textlint/blob/master/docs/txtnode.md>
+For more details, see [TxtNode document](https://github.com/textlint/textlint/blob/master/docs/txtnode.md).
 
 ## Installation
 
@@ -19,6 +17,12 @@ Please see for more details:
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 console.log(ASTNodeTypes.Document)
 ```
+
+### Type interface for TxtNode
+
+This library include type interface of [TxtNode](https://github.com/textlint/textlint/blob/master/docs/txtnode.md).
+TypeScript user can use it as type of TxtNode.
+
 
 ## For parser creator
 
