@@ -119,22 +119,51 @@ yarn run bootstrap
 
 ### Testing
 
-#### Test each packages
+This repository has three type tests.
+You should run **Unit Test** before submit to Pull Request.
+
+- Unit Test – Run [packages/*](../packages/) tests
+- Example Test – Run [examples/*](../examples/) as test
+- Integration Test – Run [Integration test](../test/integration-test)
+
+#### Unit Test
+
+Test all [packages/*](../packages/)'s tests.
+
+```sh
+yarn test
+```
+
+You can run unit test in each package.
 
 ```sh
 cd pacakges/<pacakge>
 yarn test
 ```
 
-#### Test All packages
+#### Example Test
 
-Run unit test packages:
+Test [examples/*](../examples/) as test.
 
 ```sh
-yarn run test
+yarn run test:examples
 ```
 
-Run **Unit test** + [Example](../examples/) test + [Integration test](../test/integration-test) by following command.
+#### Integration Test
+
+Run [Integration test](../test/integration-test) that use actual textlint user project.
+This test is heavy.
+
+```sh
+# Require git submodule
+git submodule update
+# Run test
+yarn run test:integration
+```
+
+#### All Tests
+
+Run **Unit test** + **Example test** + **Integration test** by following command.
 
 This test is heavy because this includes Integration testing.
 
