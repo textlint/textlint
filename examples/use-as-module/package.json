@@ -1,5 +1,6 @@
 {
   "private": true,
+  "version": "1.0.0",
   "name": "textlint-example-use-as-module",
   "main": "index.js",
   "scripts": {

@@ -1,10 +1,10 @@
 {
   "scripts": {
-    "test:ci": "npm test",
     "perf": "node perf.js",
     "test": "npm run perf"
   },
   "private": true,
+  "version": "1.0.0",
   "name": "textlint-perf-test",
   "author": "azu",
   "license": "MIT",

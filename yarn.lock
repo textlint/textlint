@@ -219,7 +219,7 @@ amp-keys@^1.0.0:
     amp-index-of "^1.0.0"
     amp-is-object "^1.0.0"
 
-analyze-desumasu-dearu@^2.1.2:
+analyze-desumasu-dearu@^2.1.2, analyze-desumasu-dearu@^2.1.3:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/analyze-desumasu-dearu/-/analyze-desumasu-dearu-2.1.5.tgz#9caa2a5a06146c20679f7dc9f3af527db6f68f41"
 
@@ -1737,7 +1737,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@^1.4.10, concat-stream@^1.5.1, concat-stream@^1.6.0:
+concat-stream@^1.4.10, concat-stream@^1.5.1, concat-stream@^1.5.2, concat-stream@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
@@ -7016,6 +7016,13 @@ sentence-case@^1.1.2:
   dependencies:
     lower-case "^1.1.1"
 
+sentence-splitter@^2.0.0:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/sentence-splitter/-/sentence-splitter-2.3.2.tgz#5ad33cd0e6ae171d58c88f6bfef16a9ed04f3a79"
+  dependencies:
+    concat-stream "^1.5.2"
+    structured-source "^3.0.2"
+
 sequencify@~0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/sequencify/-/sequencify-0.0.7.tgz#90cff19d02e07027fd767f5ead3e7b95d1e7380c"
@@ -7064,6 +7071,10 @@ shell-quote@^1.6.1:
 shelljs@0.3.x:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.3.0.tgz#3596e6307a781544f591f37da618360f31db57b1"
+
+shelljs@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.5.3.tgz#c54982b996c76ef0c1e6b59fbdc5825f5b713113"
 
 shelljs@^0.7.7:
   version "0.7.8"
@@ -7238,6 +7249,13 @@ spdx-expression-parse@~1.0.0:
 spdx-license-ids@^1.0.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-1.2.2.tgz#c9df7a3424594ade6bd11900d596696dc06bac57"
+
+spellcheck-technical-word@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/spellcheck-technical-word/-/spellcheck-technical-word-1.3.0.tgz#ca84842f3c2eaa2edc2a5897e90e94b66d237b8c"
+  dependencies:
+    structured-source "^3.0.2"
+    technical-word-rules "^1.4.1"
 
 split-transform-stream@~0.1.1:
   version "0.1.1"
@@ -7618,6 +7636,10 @@ tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
+technical-word-rules@^1.4.1:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/technical-word-rules/-/technical-word-rules-1.9.3.tgz#40b1c286e1305ed798fdc831369a3ee7fb725542"
+
 temp-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/temp-dir/-/temp-dir-1.0.0.tgz#0a7c0ea26d3a39afa7e0ebea9c1fc0bc4daa011d"
@@ -7673,6 +7695,15 @@ textlint-plugin-html@^0.1.2:
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
+textlint-plugin-jtf-style@^0.8.5:
+  version "0.8.9"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-jtf-style/-/textlint-plugin-jtf-style-0.8.9.tgz#c4195fa835435a0199222633904051a31393cf68"
+  dependencies:
+    analyze-desumasu-dearu "^2.1.2"
+    sorted-joyo-kanji "^0.2.0"
+    textlint-rule-helper "^1.1.3"
+    textlint-rule-prh "^2.0.0"
+
 textlint-plugin-markdown@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.5.tgz#42277deca6feddba2712fb83570614631a7e21d0"
@@ -7696,7 +7727,7 @@ textlint-rule-eslint@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/textlint-rule-eslint/-/textlint-rule-eslint-2.0.1.tgz#d5dfb359b1e7df3ffa5002cf9067949d6cf988f6"
 
-textlint-rule-helper@^1.1.3:
+textlint-rule-helper@^1.1.2, textlint-rule-helper@^1.1.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-1.2.0.tgz#be68d47a5146b16dd116278c9aeb7bd35631ccda"
   dependencies:
@@ -7764,6 +7795,29 @@ textlint-rule-max-number-of-lines@^1.0.2:
   dependencies:
     object-assign "^4.0.1"
 
+textlint-rule-max-ten@^1.1.0:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/textlint-rule-max-ten/-/textlint-rule-max-ten-1.2.2.tgz#7e7ecae73a42ff702beef4889b18c4d07c71cd55"
+  dependencies:
+    object-assign "^4.0.1"
+    textlint-rule-helper "^1.1.3"
+
+textlint-rule-no-mix-dearu-desumasu@^1.0.1:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-mix-dearu-desumasu/-/textlint-rule-no-mix-dearu-desumasu-1.4.0.tgz#7049f41815bbf4bf6ffdebd8de26e63f3a4c612c"
+  dependencies:
+    analyze-desumasu-dearu "^2.1.3"
+    textlint-rule-helper "^1.1.3"
+
+textlint-rule-no-start-duplicated-conjunction@^1.0.3:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-start-duplicated-conjunction/-/textlint-rule-no-start-duplicated-conjunction-1.1.4.tgz#8306096fa8e26e0eac55af12687034975400f9fd"
+  dependencies:
+    object-assign "^4.0.1"
+    sentence-splitter "^2.0.0"
+    textlint-rule-helper "^2.0.0"
+    textlint-util-to-string "^2.1.1"
+
 textlint-rule-no-todo@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/textlint-rule-no-todo/-/textlint-rule-no-todo-1.0.3.tgz#ade215b922022ae8b4adcf78a91d66414a8ebedc"
@@ -7802,7 +7856,7 @@ textlint-rule-preset-jtf-style@^2.3.0:
     textlint-rule-helper "^2.0.0"
     textlint-rule-prh "^5.0.0"
 
-textlint-rule-prh@^2.4.0:
+textlint-rule-prh@^2.0.0, textlint-rule-prh@^2.4.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/textlint-rule-prh/-/textlint-rule-prh-2.4.1.tgz#1f4e393b9c4216647ab96e0d0d230482f44c5798"
   dependencies:
@@ -7836,6 +7890,21 @@ textlint-rule-rousseau@^1.4.5:
     textlint-util-to-string "^1.2.1"
     unist-util-map "^1.0.2"
 
+textlint-rule-sentence-length@^1.0.4:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/textlint-rule-sentence-length/-/textlint-rule-sentence-length-1.1.3.tgz#c8c44e41882d663907f9c1f8b6398d89cabbd6a8"
+  dependencies:
+    sentence-splitter "^2.0.0"
+    textlint-rule-helper "^2.0.0"
+    textlint-util-to-string "^2.1.1"
+
+textlint-rule-spellcheck-tech-word@^4.0.1:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-spellcheck-tech-word/-/textlint-rule-spellcheck-tech-word-4.2.0.tgz#1c88d15bec539bb9cc26100d38889ebeb7b49ca8"
+  dependencies:
+    spellcheck-technical-word "^1.3.0"
+    textlint-rule-helper "^1.1.2"
+
 textlint-rule-unexpanded-acronym@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/textlint-rule-unexpanded-acronym/-/textlint-rule-unexpanded-acronym-1.2.1.tgz#4e5c649898fea702c23683b60d46fe97fd903117"
@@ -7846,6 +7915,13 @@ textlint-rule-unexpanded-acronym@^1.2.1:
 textlint-util-to-string@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/textlint-util-to-string/-/textlint-util-to-string-1.2.1.tgz#1cf89956d27555a55e9588c06b35a50f0d1d46f9"
+  dependencies:
+    object-assign "^4.0.1"
+    structured-source "^3.0.2"
+
+textlint-util-to-string@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/textlint-util-to-string/-/textlint-util-to-string-2.1.1.tgz#7e456f16a2abc07e473cb9591acf19f110def2d1"
   dependencies:
     object-assign "^4.0.1"
     structured-source "^3.0.2"
