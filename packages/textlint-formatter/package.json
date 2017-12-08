@@ -1,0 +1,54 @@
+{
+  "name": "textlint-formatter",
+  "description": "textlint output formatter",
+  "version": "1.8.0",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-formatter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "main": "lib/textlint-formatter.js",
+  "bin": {
+    "textlint-formatter": "bin/cmd.js"
+  },
+  "files": [
+    "lib/",
+    "bin/"
+  ],
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "directories": {
+    "test": "test/"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "dependencies": {
+    "@azu/format-text": "^1.0.1",
+    "@azu/style-format": "^1.0.0",
+    "chalk": "^1.0.0",
+    "concat-stream": "^1.5.1",
+    "js-yaml": "^3.2.4",
+    "optionator": "^0.8.1",
+    "pluralize": "^2.0.0",
+    "string-width": "^1.0.1",
+    "string.prototype.padstart": "^3.0.0",
+    "strip-ansi": "^3.0.1",
+    "table": "^3.7.8",
+    "text-table": "^0.2.0",
+    "try-resolve": "^1.0.1",
+    "xml-escape": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "espower-loader": "^1.0.0",
+    "intelli-espower-loader": "^1.0.0",
+    "mocha": "^2.1.0",
+    "power-assert": "^1.1.0",
+    "proxyquire": "^1.7.4",
+    "sinon": "^1.17.3"
+  }
+}
