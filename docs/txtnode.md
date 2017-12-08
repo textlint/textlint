@@ -118,11 +118,15 @@ Following parsers are built-in.
 | [`markdown-to-ast`](../packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
 | [`txt-to-ast`](../packages/txt-to-ast) | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser |
 
-If you want to get other type, please file issue.
+If you want to get other type, please [create new issue](https://github.com/textlint/textlint/issues/new).
 
-- [packages/ast-node-types](../packages/@textlint/ast-node-types)
+## Package
 
-### Online Parsing Demo
+That `TxtNode` interface is defined in [packages/ast-node-types](../packages/@textlint/ast-node-types).
+
+If you want to use this interface from TypeScript, [packages/ast-node-types](../packages/@textlint/ast-node-types) is useful.
+
+## Online Parsing Demo
 
 [![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
@@ -291,11 +295,11 @@ Illustration
 
 We discuss about Unist in [Compliances tests for TxtNode #141](https://github.com/textlint/textlint/issues/141 "Compliances tests for TxtNode #141").
 
-## for Processor plugin creator
+## For testing Processor plugin
 
-You can use [textlint-ast-test](https://github.com/textlint/textlint/tree/master/packages/textlint-ast-test "textlint-ast-test") for testing your processor plugin's parser.
+You can use [textlint-ast-test](../packages/textlint-ast-test "textlint-ast-test") for testing your processor plugin's parser.
 
-- [textlint/textlint-ast-test: Compliance tests for textlint's AST](https://github.com/textlint/textlint/tree/master/packages/textlint-ast-test "textlint/textlint-ast-test: Compliance tests for textlint&#39;s AST")
+- [textlint/textlint-ast-test: Compliance tests for textlint's AST](../packages/textlint-ast-test)
 
 ```js
 import { test, isTextlintAST } from "textlint-ast-test";

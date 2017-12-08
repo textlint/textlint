@@ -15,13 +15,19 @@ For more details, see [TxtNode document](https://github.com/textlint/textlint/bl
 
 ```js
 import { ASTNodeTypes } from "@textlint/ast-node-types";
-console.log(ASTNodeTypes.Document)
+console.log(ASTNodeTypes.Document); // => string
 ```
 
 ### Type interface for TxtNode
 
 This library include type interface of [TxtNode](https://github.com/textlint/textlint/blob/master/docs/txtnode.md).
 TypeScript user can use it as type of TxtNode.
+
+```ts
+// type interface
+import { TxtNode } from "@textlint/ast-node-types";
+
+```
 
 
 ## For parser creator
