@@ -1,4 +1,4 @@
-# textlint-formatter [![Build Status](https://travis-ci.org/textlint/textlint-formatter.svg)](https://travis-ci.org/textlint/textlint-formatter)
+# textlint-formatter
 
 [textlint](https://github.com/textlint/textlint "textlint/textlint") output formatter.
 
