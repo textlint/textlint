@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { TxtNode } from "../textlint-kernel-interface";
+import { TxtNode } from "@textlint/ast-node-types";
 import { SourceCodeRange } from "../core/source-code";
 
 /**

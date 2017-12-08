@@ -1,12 +1,14 @@
 // LICENSE : MIT
 "use strict";
+
 const assert = require("assert");
+import { TxtNode } from "@textlint/ast-node-types";
 import RuleFixer from "../fixer/rule-fixer";
 import RuleError from "./rule-error";
 import SeverityLevel from "../shared/type/SeverityLevel";
 import { getSeverity } from "../shared/rule-severity";
 import SourceCode from "./source-code";
-import { TextlintRuleOptions, TxtNode } from "../textlint-kernel-interface";
+import { TextlintRuleOptions } from "../textlint-kernel-interface";
 import { ReportFunction } from "../task/textlint-core-task";
 // instance for rule context
 const ruleFixer = new RuleFixer();
