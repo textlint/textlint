@@ -4,16 +4,16 @@ var path = require("path");
 var assert = require("power-assert");
 var createFormatter = require("../");
 
-describe("textlint-formatter-test", function () {
-    describe("createFormatter", function () {
-        it("should return formatter function", function () {
+describe("textlint-formatter-test", function() {
+    describe("createFormatter", function() {
+        it("should return formatter function", function() {
             var formatter = createFormatter({
                 formatterName: "stylish"
             });
             assert(typeof formatter === "function");
         });
-        context("formatter", function () {
-            it("should return output text", function () {
+        context("formatter", function() {
+            it("should return output text", function() {
                 var formatter = createFormatter({
                     formatterName: "stylish"
                 });
@@ -33,7 +33,7 @@ describe("textlint-formatter-test", function () {
                 assert(output.length > 0);
             });
         });
-        it("run all formatter", function () {
+        it("run all formatter", function() {
             var formatterNames = [
                 "checkstyle",
                 "compact",
@@ -44,7 +44,7 @@ describe("textlint-formatter-test", function () {
                 "tap",
                 "json"
             ];
-            formatterNames.forEach(function (name) {
+            formatterNames.forEach(function(name) {
                 var formatter = createFormatter({
                     formatterName: name
                 });
@@ -93,9 +93,9 @@ describe("textlint-formatter-test", function () {
                                     range: [40, 45],
                                     text: "fixed 1"
                                 }
-                            }                        ]
+                            }
+                        ]
                     }
-
                 ]);
                 assert(output.length > 0);
                 console.log(output);
@@ -103,5 +103,4 @@ describe("textlint-formatter-test", function () {
             });
         });
     });
-
 });

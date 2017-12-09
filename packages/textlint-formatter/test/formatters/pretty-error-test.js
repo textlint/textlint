@@ -4,10 +4,9 @@ var assert = require("power-assert");
 var path = require("path");
 var prettyError = require("../../lib/formatters/pretty-error");
 var stripAnsi = require("strip-ansi");
-describe("pretty-error", function () {
-    context("when first line", function () {
-
-        it("should start 0 line", function () {
+describe("pretty-error", function() {
+    context("when first line", function() {
+        it("should start 0 line", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             var code = [
                 {
@@ -27,7 +26,9 @@ describe("pretty-error", function () {
             var output = prettyError(code, {
                 color: false
             });
-            assert.equal(output, `foo: Unexpected foo.
+            assert.equal(
+                output,
+                `foo: Unexpected foo.
 ${fooFile}:1:1
        v
     0. 
@@ -36,13 +37,13 @@ ${fooFile}:1:1
        ^
 
 \u2716 1 problem (1 error, 0 warnings)
-`);
+`
+            );
         });
     });
 
-    context("when contain fixable", function () {
-
-        it("should return output", function () {
+    context("when contain fixable", function() {
+        it("should return output", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             const barFile = path.join(__dirname, "../fixtures", "bar.md");
             var code = [
@@ -61,7 +62,8 @@ ${fooFile}:1:1
                             }
                         }
                     ]
-                }, {
+                },
+                {
                     filePath: barFile,
                     messages: [
                         {
@@ -74,7 +76,6 @@ ${fooFile}:1:1
                                 range: [50, 55],
                                 text: "fixed 2"
                             }
-
                         }
                     ]
                 }
@@ -82,7 +83,9 @@ ${fooFile}:1:1
             var output = prettyError(code, {
                 color: false
             });
-            assert.equal(output, `✓ foo: Unexpected foo.
+            assert.equal(
+                output,
+                `✓ foo: Unexpected foo.
 ${fooFile}:5:10
                 v
     4. 4th line
@@ -101,12 +104,12 @@ ${barFile}:6:1
 \u2716 2 problems (1 error, 1 warning)
 \u2713 2 fixable problems.
 Try to run: $ textlint --fix [file]
-`);
+`
+            );
         });
     });
-    context("when last line", function () {
-
-        it("should contain end+1 line", function () {
+    context("when last line", function() {
+        it("should contain end+1 line", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             var code = [
                 {
@@ -126,7 +129,9 @@ Try to run: $ textlint --fix [file]
             var output = prettyError(code, {
                 color: false
             });
-            assert.equal(output, `foo: Unexpected foo.
+            assert.equal(
+                output,
+                `foo: Unexpected foo.
 ${fooFile}:6:1
        v
     5. 5th line foo
@@ -135,12 +140,12 @@ ${fooFile}:6:1
        ^
 
 \u2716 1 problem (1 error, 0 warnings)
-`);
+`
+            );
         });
     });
-    context("when last line", function () {
-
-        it("should contain end+1 line", function () {
+    context("when last line", function() {
+        it("should contain end+1 line", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             var code = [
                 {
@@ -160,7 +165,9 @@ ${fooFile}:6:1
             var output = prettyError(code, {
                 color: false
             });
-            assert.equal(output, `foo: Unexpected foo.
+            assert.equal(
+                output,
+                `foo: Unexpected foo.
 ${fooFile}:6:1
        v
     5. 5th line foo
@@ -169,11 +176,12 @@ ${fooFile}:6:1
        ^
 
 \u2716 1 problem (1 error, 0 warnings)
-`);
+`
+            );
         });
     });
-    context("when CKJ(東アジア文字幅)", function () {
-        it("should correct position ^", function () {
+    context("when CKJ(東アジア文字幅)", function() {
+        it("should correct position ^", function() {
             const ckjFile = path.join(__dirname, "../fixtures", "ckj.md");
             var code = [
                 {
@@ -196,7 +204,9 @@ ${fooFile}:6:1
             var output = prettyError(code, {
                 color: false
             });
-            assert.equal(output, `✓ foo: Unexpected foo.
+            assert.equal(
+                output,
+                `✓ foo: Unexpected foo.
 ${ckjFile}:2:16
                              v
     1. 1st line
@@ -207,7 +217,8 @@ ${ckjFile}:2:16
 \u2716 1 problem (1 error, 0 warnings)
 \u2713 1 fixable problem.
 Try to run: $ textlint --fix [file]
-`);
+`
+            );
         });
-    })
+    });
 });

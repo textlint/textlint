@@ -1,2 +1,2 @@
-var code = "コードCode"
-var code2 = "コードCodeコード2"
+var code = "コードCode";
+var code2 = "コードCodeコード2";
