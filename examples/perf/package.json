@@ -1,16 +1,16 @@
 {
   "scripts": {
-    "test:ci": "npm i && npm t",
     "perf": "node perf.js",
     "test": "npm run perf"
   },
   "private": true,
+  "version": "1.0.0",
   "name": "textlint-perf-test",
   "author": "azu",
   "license": "MIT",
   "dependencies": {
     "shelljs": "^0.5.3",
-    "textlint": "file:../../packages/textlint",
+    "textlint": "^9.1.1",
     "textlint-plugin-jtf-style": "^0.8.5",
     "textlint-rule-max-ten": "^1.1.0",
     "textlint-rule-no-mix-dearu-desumasu": "^1.0.1",

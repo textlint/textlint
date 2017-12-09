@@ -5,14 +5,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm i && npm t",
+    "test:ci": "npm test",
     "test": "npm run textlint",
     "textlint": "textlint --rule no-todo '*.md'"
   },
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../../packages/textlint",
+    "textlint": "^9.1.1",
     "textlint-rule-no-todo": "^1.0.3"
   }
 }

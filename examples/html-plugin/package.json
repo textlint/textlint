@@ -1,15 +1,16 @@
 {
   "private": true,
+  "version": "1.0.0",
   "name": "textlint-example-html-plugin",
   "scripts": {
-    "test:ci": "npm i && npm t",
+    "test:ci": "npm test",
     "test": "npm run textlint",
     "textlint": "textlint -f pretty-error index.html"
   },
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "file:../../packages/textlint",
+    "textlint": "^9.1.1",
     "textlint-plugin-html": "^0.1.2",
     "textlint-rule-sentence-length": "^1.0.4"
   }

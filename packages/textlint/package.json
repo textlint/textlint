@@ -28,13 +28,12 @@
     "textlint": "./bin/textlint.js"
   },
   "scripts": {
-    "clean": "rimraf out/ lib/ es_modules/",
+    "clean": "rimraf out/ lib/",
     "build": "cross-env NODE_ENV=production tsc -p .",
     "watch": "tsc -p . --watch",
     "prepublish": "npm run build",
     "test": "npm-run-all test:unit",
-    "test:unit": "mocha test",
-    "perf": "cd perf && npm run perf"
+    "test:unit": "mocha test"
   },
   "directories": {
     "test": "test/"

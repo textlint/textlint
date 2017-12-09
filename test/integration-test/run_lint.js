@@ -39,10 +39,11 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     echo("📦 Install modules....");
     const packageListWithVersions = mapRuleWithVersion(pkg, packageList);
     console.log(packageListWithVersions.join(", "));
-    shell.exec("yarn --ignore-scripts --silent", { silent: true });
+    shell.exec("yarn --pure-lockfile --ignore-scripts --silent", { silent: true });
     echo("📝 Run textlint");
-    process.env.NODE_PATH = path.join(projectDirPath, "node_modules");
-    shell.exec(`${textlintBin} ${sourceTarget}`);
+    const NODE_PATH = path.join(projectDirPath, "node_modules");
+    process.env.NODE_PATH = NODE_PATH;
+    shell.exec(`${textlintBin} --rules-base-directory "${NODE_PATH}" ${sourceTarget}`);
     echo("💚 Pass textlint");
     echo("--------------------");
 };

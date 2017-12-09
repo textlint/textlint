@@ -119,27 +119,56 @@ yarn run bootstrap
 
 ### Testing
 
-#### Test each packages
+This repository has three type tests.
+You should run **Unit Test** before submit to Pull Request.
+
+- Unit Test – Run [packages/*](../packages/) tests
+- Example Test – Run [examples/*](../examples/) as test
+- Integration Test – Run [Integration test](../test/integration-test)
+
+#### Unit Test
+
+Test all [packages/*](../packages/)'s tests.
+
+```sh
+yarn test
+```
+
+You can run unit test in each package.
 
 ```sh
 cd pacakges/<pacakge>
-npm test
+yarn test
 ```
 
-#### Test All packages
+#### Example Test
 
-Run unit test packages:
+Test [examples/*](../examples/) as test.
 
 ```sh
-npm run test:packages
+yarn run test:examples
 ```
 
-Run unit test + E2E test:
+#### Integration Test
 
-This test is heavy because this includes example testing.
+Run [Integration test](../test/integration-test) that use actual textlint user project.
+This test is heavy.
 
 ```sh
-npm run test
+# Require git submodule
+git submodule update
+# Run test
+yarn run test:integration
+```
+
+#### All Tests
+
+Run **Unit test** + **Example test** + **Integration test** by following command.
+
+This test is heavy because this includes Integration testing.
+
+```sh
+yarn run test:all
 ```
 
 #### Coding Style
@@ -149,11 +178,11 @@ The repository use [ESLint](http://eslint.org/ "ESLint").
 You can run lint:
 
 ```sh
-npm run eslint
+yarn run eslint
 ```
 
 It's possible that fix some wrong style using [--fix](http://eslint.org/docs/user-guide/command-line-interface#fix "--fix") feature of ESLint:
 
 ```
-npm run eslint:fix
+yarn run eslint:fix
 ```
