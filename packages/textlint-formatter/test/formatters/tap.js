@@ -18,10 +18,12 @@ var assert = require("power-assert"),
 
 describe("formatter:tap", function() {
     describe("when passed no messages", function() {
-        var code = [{
-            filePath: "foo.js",
-            messages: []
-        }];
+        var code = [
+            {
+                filePath: "foo.js",
+                messages: []
+            }
+        ];
 
         it("should return nothing", function() {
             var result = formatter(code);
@@ -30,20 +32,27 @@ describe("formatter:tap", function() {
     });
 
     describe("when passed a single message", function() {
-        var code = [{
-            filePath: "foo.js",
-            messages: [{
-                message: "Unexpected foo.",
-                severity: 2,
-                line: 5,
-                column: 10,
-                ruleId: "foo"
-            }]
-        }];
+        var code = [
+            {
+                filePath: "foo.js",
+                messages: [
+                    {
+                        message: "Unexpected foo.",
+                        severity: 2,
+                        line: 5,
+                        column: 10,
+                        ruleId: "foo"
+                    }
+                ]
+            }
+        ];
 
         it("should return a string with YAML severity, line and column", function() {
             var result = formatter(code);
-            assert.equal(result, "TAP version 13\n1..1\nnot ok 1 - foo.js\n  ---\n  message: Unexpected foo.\n  severity: error\n  data:\n    line: 5\n    column: 10\n    ruleId: foo\n  ...\n");
+            assert.equal(
+                result,
+                "TAP version 13\n1..1\nnot ok 1 - foo.js\n  ---\n  message: Unexpected foo.\n  severity: error\n  data:\n    line: 5\n    column: 10\n    ruleId: foo\n  ...\n"
+            );
         });
 
         it("should return a string with line: x, column: y, severity: warning for warnings", function() {
@@ -58,16 +67,20 @@ describe("formatter:tap", function() {
     });
 
     describe("when passed a fatal error message", function() {
-        var code = [{
-            filePath: "foo.js",
-            messages: [{
-                fatal: true,
-                message: "Unexpected foo.",
-                line: 5,
-                column: 10,
-                ruleId: "foo"
-            }]
-        }];
+        var code = [
+            {
+                filePath: "foo.js",
+                messages: [
+                    {
+                        fatal: true,
+                        message: "Unexpected foo.",
+                        line: 5,
+                        column: 10,
+                        ruleId: "foo"
+                    }
+                ]
+            }
+        ];
 
         it("should return a an error string", function() {
             var result = formatter(code);
@@ -77,28 +90,34 @@ describe("formatter:tap", function() {
     });
 
     describe("when passed multiple messages", function() {
-        var code = [{
-            filePath: "foo.js",
-            messages: [{
-                message: "Unexpected foo.",
-                severity: 2,
-                line: 5,
-                column: 10,
-                ruleId: "foo"
-            }, {
-                message: "Unexpected bar.",
-                severity: 1,
-                line: 6,
-                column: 11,
-                ruleId: "bar"
-            }, {
-                message: "Unexpected baz.",
-                severity: 1,
-                line: 7,
-                column: 12,
-                ruleId: "baz"
-            }]
-        }];
+        var code = [
+            {
+                filePath: "foo.js",
+                messages: [
+                    {
+                        message: "Unexpected foo.",
+                        severity: 2,
+                        line: 5,
+                        column: 10,
+                        ruleId: "foo"
+                    },
+                    {
+                        message: "Unexpected bar.",
+                        severity: 1,
+                        line: 6,
+                        column: 11,
+                        ruleId: "bar"
+                    },
+                    {
+                        message: "Unexpected baz.",
+                        severity: 1,
+                        line: 7,
+                        column: 12,
+                        ruleId: "baz"
+                    }
+                ]
+            }
+        ];
 
         it("should return a string with multiple entries", function() {
             var result = formatter(code);
@@ -117,25 +136,32 @@ describe("formatter:tap", function() {
     });
 
     describe("when passed multiple files with 1 message each", function() {
-        var code = [{
-            filePath: "foo.js",
-            messages: [{
-                message: "Unexpected foo.",
-                severity: 2,
-                line: 5,
-                column: 10,
-                ruleId: "foo"
-            }]
-        }, {
-            filePath: "bar.js",
-            messages: [{
-                message: "Unexpected bar.",
-                severity: 1,
-                line: 6,
-                column: 11,
-                ruleId: "bar"
-            }]
-        }];
+        var code = [
+            {
+                filePath: "foo.js",
+                messages: [
+                    {
+                        message: "Unexpected foo.",
+                        severity: 2,
+                        line: 5,
+                        column: 10,
+                        ruleId: "foo"
+                    }
+                ]
+            },
+            {
+                filePath: "bar.js",
+                messages: [
+                    {
+                        message: "Unexpected bar.",
+                        severity: 1,
+                        line: 6,
+                        column: 11,
+                        ruleId: "bar"
+                    }
+                ]
+            }
+        ];
 
         it("should return a string with multiple entries", function() {
             var result = formatter(code);
@@ -145,13 +171,17 @@ describe("formatter:tap", function() {
     });
 
     describe("when passed one file not found message", function() {
-        var code = [{
-            filePath: "foo.js",
-            messages: [{
-                fatal: true,
-                message: "Couldn't find foo.js."
-            }]
-        }];
+        var code = [
+            {
+                filePath: "foo.js",
+                messages: [
+                    {
+                        fatal: true,
+                        message: "Couldn't find foo.js."
+                    }
+                ]
+            }
+        ];
 
         it("should return a string without line and column", function() {
             var result = formatter(code);
