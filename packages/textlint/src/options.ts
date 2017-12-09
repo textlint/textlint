@@ -144,6 +144,12 @@ export const options = optionator({
             default: false,
             description: "Enable experimental flag.Some feature use on experimental.",
             example: "--experimental"
+        },
+        {
+            option: "rulesBaseDirectory",
+            type: "path::String",
+            description: "Set rules base directory. textlint load rules from the rulesBaseDirectory.",
+            example: 'textlint --rulesBaseDirectory "/path/to/other/project/node_modules/"'
         }
     ]
 });

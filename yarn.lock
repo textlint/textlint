@@ -41,33 +41,6 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@textlint/ast-node-types@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@textlint/ast-node-types/-/ast-node-types-1.1.2.tgz#58bc95a6826b84eb1f1671be5921aa243409fb31"
-
-"@textlint/feature-flag@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@textlint/feature-flag/-/feature-flag-1.0.1.tgz#fe1e6699293b44305e90ab1eba79404d9edd581a"
-  dependencies:
-    map-like "^1.1.2"
-
-"@textlint/kernel@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@textlint/kernel/-/kernel-0.2.1.tgz#c76d1cc11c25b0f21df2ef2f833b49d8640353b2"
-  dependencies:
-    "@textlint/ast-node-types" "^1.1.2"
-    "@textlint/feature-flag" "^1.0.1"
-    ajv "^4"
-    bluebird "^3.5.0"
-    carrack "^0.5.0"
-    debug "^2.6.6"
-    deep-equal "^1.0.1"
-    is-my-json-valid "^2.16.0"
-    map-like "^1.1.2"
-    object-assign "^4.1.1"
-    structured-source "^3.0.2"
-    txt-ast-traverse "^1.2.1"
-
 "@types/bluebird@^3.5.18":
   version "3.5.18"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.18.tgz#6a60435d4663e290f3709898a4f75014f279c4d6"
@@ -129,7 +102,7 @@ ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
-ajv@^4, ajv@^4.7.0, ajv@^4.9.1:
+ajv@^4.7.0, ajv@^4.9.1:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
   dependencies:
@@ -1094,7 +1067,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.0.1, bluebird@^3.0.5, bluebird@^3.5.0, bluebird@^3.5.1:
+bluebird@^3.0.5, bluebird@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -1386,13 +1359,6 @@ caniuse-lite@^1.0.30000770:
 capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
-
-carrack@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/carrack/-/carrack-0.5.0.tgz#d8ce373a5d89d55dc22dc10213b74e219b9ecee9"
-  dependencies:
-    bluebird "^3.0.1"
-    throat "^2.0.2"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -3274,16 +3240,6 @@ gaze@^0.5.1:
   dependencies:
     globule "~0.1.0"
 
-generate-function@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/generate-function/-/generate-function-2.0.0.tgz#6858fe7c0969b7d4e9093337647ac79f60dfbe74"
-
-generate-object-property@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/generate-object-property/-/generate-object-property-1.2.0.tgz#9c0e1c40308ce804f4783618b937fa88f99d50d0"
-  dependencies:
-    is-property "^1.0.0"
-
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
@@ -4200,15 +4156,6 @@ is-hidden@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-hidden/-/is-hidden-1.1.0.tgz#a9b04cfbc3a585c539c8c7c50a3414d91ee85119"
 
-is-my-json-valid@^2.16.0:
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/is-my-json-valid/-/is-my-json-valid-2.16.1.tgz#5a846777e2c2620d1e69104e5d3a03b1f6088f11"
-  dependencies:
-    generate-function "^2.0.0"
-    generate-object-property "^1.1.0"
-    jsonpointer "^4.0.0"
-    xtend "^4.0.0"
-
 is-npm@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-npm/-/is-npm-1.0.0.tgz#f2fb63a65e4905b406c86072765a1a4dc793b9f4"
@@ -4264,10 +4211,6 @@ is-primitive@^2.0.0:
 is-promise@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-2.1.0.tgz#79a2a9ece7f096e80f36d2b2f3bc16c1ff4bf3fa"
-
-is-property@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/is-property/-/is-property-1.0.2.tgz#57fe1c4e48474edd65b09911f26b1cd4095dda84"
 
 is-redirect@^1.0.0:
   version "1.0.0"
@@ -4519,10 +4462,6 @@ jsonify@~0.0.0:
 jsonparse@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.0.tgz#85fc245b1d9259acc6941960b905adf64e7de0e8"
-
-jsonpointer@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/jsonpointer/-/jsonpointer-4.0.1.tgz#4fd92cb34e0e9db3c89c8622ecf51f9b978c6cb9"
 
 jsprim@^1.2.2:
   version "1.4.1"
@@ -5124,7 +5063,7 @@ map-cache@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
 
-map-like@^1.0.1, map-like@^1.1.2:
+map-like@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/map-like/-/map-like-1.1.3.tgz#6faaca5339e0cc6567a3a55dd281fd871a39e5da"
 
@@ -5173,16 +5112,6 @@ markdown-to-ast@^3.2.3:
   dependencies:
     debug "^2.1.3"
     remark "^5.0.1"
-    structured-source "^3.0.2"
-    traverse "^0.6.6"
-
-markdown-to-ast@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/markdown-to-ast/-/markdown-to-ast-4.0.0.tgz#37d4b0d9d84b19c8dd713e56eaf69dcc7ce2e6c3"
-  dependencies:
-    "@textlint/ast-node-types" "^1.1.2"
-    debug "^2.1.3"
-    remark "^7.0.1"
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
@@ -6376,7 +6305,7 @@ randomfill@^1.0.3:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
 
-rc-config-loader@^2.0.0, rc-config-loader@^2.0.1:
+rc-config-loader@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-2.0.1.tgz#8c8452f59bdd10d448a67762dccf7c1b247db860"
   dependencies:
@@ -7704,18 +7633,6 @@ textlint-plugin-jtf-style@^0.8.5:
     textlint-rule-helper "^1.1.3"
     textlint-rule-prh "^2.0.0"
 
-textlint-plugin-markdown@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-2.0.5.tgz#42277deca6feddba2712fb83570614631a7e21d0"
-  dependencies:
-    markdown-to-ast "^4.0.0"
-
-textlint-plugin-text@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.4.tgz#fe2079167b79b9bec269eb684265081664bb1d1d"
-  dependencies:
-    txt-to-ast "^1.1.0"
-
 textlint-rule-alex@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-alex/-/textlint-rule-alex-1.2.0.tgz#b1a105971b2d9e69cc05c9ae42768f03b7202b5d"
@@ -7926,52 +7843,12 @@ textlint-util-to-string@^2.1.1:
     object-assign "^4.0.1"
     structured-source "^3.0.2"
 
-textlint@^8.0.0:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/textlint/-/textlint-8.2.1.tgz#6803ab76cdf9532aac0ea106a89e09ae6aa7975d"
-  dependencies:
-    "@textlint/ast-node-types" "^1.1.2"
-    "@textlint/feature-flag" "^1.0.1"
-    "@textlint/kernel" "^0.2.1"
-    bluebird "^3.0.5"
-    chalk "^1.1.1"
-    debug "^2.1.0"
-    deep-equal "^1.0.1"
-    diff "^2.2.2"
-    file-entry-cache "^2.0.0"
-    get-stdin "^5.0.1"
-    glob "^7.1.1"
-    interop-require "^1.0.0"
-    is-file "^1.0.0"
-    log-symbols "^1.0.2"
-    map-like "^1.0.1"
-    md5 "^2.2.1"
-    mkdirp "^0.5.0"
-    object-assign "^4.0.1"
-    optionator "^0.8.0"
-    path-to-glob-pattern "^1.0.2"
-    rc-config-loader "^2.0.0"
-    read-pkg "^1.1.0"
-    string-width "^1.0.1"
-    structured-source "^3.0.2"
-    text-table "^0.2.0"
-    textlint-formatter "^1.7.3"
-    textlint-plugin-markdown "^2.0.5"
-    textlint-plugin-text "^1.1.4"
-    try-resolve "^1.0.1"
-    txt-ast-traverse "^1.2.0"
-    unique-concat "^0.2.2"
-
 textlintrc-to-pacakge-list@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/textlintrc-to-pacakge-list/-/textlintrc-to-pacakge-list-1.2.1.tgz#24ee6c299f5af4121941e18f38644d83bb7b5929"
   dependencies:
     concat-stream "^1.5.1"
     strip-json-comments "^2.0.1"
-
-throat@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/throat/-/throat-2.0.2.tgz#a9fce808b69e133a632590780f342c30a6249b02"
 
 through2@2.X, through2@^2.0.0, through2@^2.0.1, through2@^2.0.2, through2@^2.0.3, through2@~2.0.0:
   version "2.0.3"

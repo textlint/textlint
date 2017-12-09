@@ -190,6 +190,8 @@ export class Config {
             cliOptions.cacheLocation !== undefined
                 ? path.resolve(process.cwd(), cliOptions.cacheLocation)
                 : defaultOptions.cacheLocation;
+        // TODO: not documented --rulesBaseDirectory
+        options.rulesBaseDirectory = cliOptions.rulesBaseDirectory || defaultOptions.rulesBaseDirectory;
         return this.initWithAutoLoading(options);
     }
 
