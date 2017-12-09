@@ -1,5 +1,8 @@
 sudo: false
 language: node_js
+node_js:
+- 4
+- stable
 cache: yarn
 before_install:
 # try-resolve won't work on examples
@@ -9,19 +12,5 @@ before_install:
 install:
 - yarn install
 - yarn run bootstrap
-
-matrix:
-  include:
-  - env: TEST_TYPE="unit"
-    node_js: "4"
-  - env: TEST_TYPE="unit"
-    node_js: "stable"
-  - env: TEST_TYPE="e2e"
-    node_js: "4"
-  - env: TEST_TYPE="e2e"
-    node_js: "stable"
-
 script:
-  - if [[ "$TEST_TYPE" == "unit" ]]; then yarn test; fi
-  - if [[ "$TEST_TYPE" == "unit" ]]; then yarn run test:examples; fi
-  - if [[ "$TEST_TYPE" == "e2e" ]]; then yarn run test:integration; fi
+- yarn test:all
