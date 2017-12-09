@@ -43,7 +43,7 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     echo("📝 Run textlint");
     const NODE_PATH = path.join(projectDirPath, "node_modules");
     process.env.NODE_PATH = NODE_PATH;
-    shell.exec(`${textlintBin} --rulesBaseDirectory "${NODE_PATH}" ${sourceTarget}`);
+    shell.exec(`${textlintBin} --rules-base-directory "${NODE_PATH}" ${sourceTarget}`);
     echo("💚 Pass textlint");
     echo("--------------------");
 };

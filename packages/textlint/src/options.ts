@@ -146,10 +146,11 @@ export const options = optionator({
             example: "--experimental"
         },
         {
-            option: "rulesBaseDirectory",
+            option: "rules-base-directory",
             type: "path::String",
-            description: "Set rules base directory. textlint load rules from the rulesBaseDirectory.",
-            example: 'textlint --rulesBaseDirectory "/path/to/other/project/node_modules/"'
+            description:
+                "Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.",
+            example: 'textlint --rules-base-directory "/path/to/other/project/node_modules/"'
         }
     ]
 });
