@@ -59,6 +59,7 @@
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.3.0",
+    "textlint-fixer-formatter": "^1.0.0",
     "ts-node": "^3.3.0",
     "typescript": "~2.6.1"
   },
