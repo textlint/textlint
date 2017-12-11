@@ -1,11 +1,19 @@
 {
   "name": "textlint-fixer-formatter",
-  "version": "9.1.1",
+  "version": "1.0.0",
   "description": "TBD",
   "main": "lib/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
+    "clean": "rimraf lib/",
+    "prepublish": "npm run build",
+    "build": "cross-env NODE_ENV=production tsc -p .",
     "test": "mocha test"
   },
+  "files": [
+    "lib/",
+    "src/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/textlint/textlint.git"
@@ -24,5 +32,14 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "homepage": "https://github.com/textlint/textlint#readme"
+  "homepage": "https://github.com/textlint/textlint#readme",
+  "devDependencies": {
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.57",
+    "cross-env": "^5.1.1",
+    "mocha": "^4.0.1",
+    "rimraf": "^2.6.2",
+    "ts-node": "^4.0.1",
+    "typescript": "^2.6.2"
+  }
 }
