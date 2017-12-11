@@ -1,16 +1,13 @@
 // LICENSE : MIT
 "use strict";
-import {parse} from "./html-to-ast";
+import { parse } from "./html-to-ast";
 export default class HTMLProcessor {
     constructor(config) {
         this.config = config;
     }
 
     static availableExtensions() {
-        return [
-            ".htm",
-            ".html"
-        ];
+        return [".htm", ".html"];
     }
 
     processor(ext) {
