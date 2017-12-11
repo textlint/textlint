@@ -41,5 +41,8 @@
     "rimraf": "^2.6.2",
     "ts-node": "^4.0.1",
     "typescript": "^2.6.2"
+  },
+  "dependencies": {
+    "@textlint/kernel": "^1.0.3"
   }
 }

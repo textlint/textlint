@@ -89,11 +89,11 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
-"@types/v8flags@github:types/npm-v8flags#de224ae1cd5fd7dbb4e7158a6cc7a29e5315930d":
+"@types/v8flags@types/npm-v8flags#de224ae1cd5fd7dbb4e7158a6cc7a29e5315930d":
   version "2.0.0"
   resolved "https://codeload.github.com/types/npm-v8flags/tar.gz/de224ae1cd5fd7dbb4e7158a6cc7a29e5315930d"
 
-"@types/yn@github:types/npm-yn#ca75f6c82940fae6a06fb41d2d37a6aa9b4ea8e9":
+"@types/yn@types/npm-yn#ca75f6c82940fae6a06fb41d2d37a6aa9b4ea8e9":
   version "2.0.0"
   resolved "https://codeload.github.com/types/npm-yn/tar.gz/ca75f6c82940fae6a06fb41d2d37a6aa9b4ea8e9"
 
