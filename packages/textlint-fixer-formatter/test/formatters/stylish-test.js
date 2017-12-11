@@ -1,5 +1,5 @@
 "use strict";
-import stylish from "../../../src/fixer/formatters/stylish";
+import stylish from "../../src/formatters/stylish";
 
 const assert = require("assert");
 const formatter = code => {

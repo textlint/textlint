@@ -1,6 +1,6 @@
 "use strict";
 import { TextLintEngineCore } from "./engine/textlint-engine-core";
-import { createFormatter } from "./fixer/textfix-formatter";
+import { createFormatter } from "textlint-fixer-formatter";
 import { Config } from "./config/config";
 import { TextLintCore } from "./textlint-core";
 import { TextLintFormatterOption } from "./textlint-interface";
