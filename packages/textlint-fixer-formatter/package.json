@@ -1,0 +1,28 @@
+{
+  "name": "textlint-fixer-formatter",
+  "version": "9.1.1",
+  "description": "TBD",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/textlint/textlint.git"
+  },
+  "keywords": [
+    "plugable",
+    "text",
+    "textlint",
+    "markdown",
+    "lint",
+    "linting",
+    "AST"
+  ],
+  "author": "azu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "homepage": "https://github.com/textlint/textlint#readme"
+}
