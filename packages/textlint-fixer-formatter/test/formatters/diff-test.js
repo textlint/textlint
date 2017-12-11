@@ -2,7 +2,7 @@
 "use strict";
 var assert = require("assert");
 var path = require("path");
-import diff from "../../../src/fixer/formatters/diff";
+import diff from "../../src/formatters/diff";
 
 const formatter = code => {
     return diff(code, { color: false });
