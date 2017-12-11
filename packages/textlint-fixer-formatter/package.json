@@ -43,6 +43,14 @@
     "typescript": "^2.6.2"
   },
   "dependencies": {
-    "@textlint/kernel": "^1.0.3"
+    "@textlint/kernel": "^1.0.3",
+    "chalk": "^2.3.0",
+    "debug": "^2.1.0",
+    "diff": "^2.2.2",
+    "interop-require": "^1.0.0",
+    "is-file": "^1.0.0",
+    "string-width": "^1.0.1",
+    "text-table": "^0.2.0",
+    "try-resolve": "^1.0.1"
   }
 }
