@@ -22,7 +22,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "NODE_ENV=production babel src --out-dir lib --source-maps",
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "test": "mocha"
@@ -39,6 +39,7 @@
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.8.0",
+    "cross-env": "^5.1.1",
     "glob": "^7.1.1",
     "mocha": "^3.2.0",
     "power-assert": "^1.4.0",
