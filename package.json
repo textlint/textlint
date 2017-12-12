@@ -8,6 +8,7 @@
     "test/integration-test"
   ],
   "scripts": {
+    "clean": "lerna run clean",
     "publish": "lerna publish --conventional-commits",
     "publish:beta": "lerna publish --conventional-commits --npm-tag=next",
     "bootstrap": "lerna bootstrap",
