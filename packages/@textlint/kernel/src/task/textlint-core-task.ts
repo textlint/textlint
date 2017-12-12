@@ -13,7 +13,7 @@ import { EventEmitter } from "events";
 import * as assert from "assert";
 import SourceCode from "../core/source-code";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextLintFixCommand, TextlintRuleOptions } from "../textlint-kernel-interface";
+import { TextlintFixCommand, TextlintRuleOptions } from "../textlint-kernel-interface";
 import { default as RuleContext, RuleReportedObject } from "../core/rule-context";
 import { RuleCreatorReporter } from "../core/rule-creator-helper";
 import FilterRuleContext from "../core/filter-rule-context";
@@ -76,7 +76,7 @@ export interface LintReportedMessage {
     line: number; // start with 1(1-based line number)
     column: number; // start with 1(1-based column number)
     severity: number; // it's for compatible ESLint formatter
-    fix?: TextLintFixCommand;
+    fix?: TextlintFixCommand;
 }
 
 /**

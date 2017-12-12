@@ -11,7 +11,7 @@ import {
     TextlintFixResult,
     TextlintKernelConstructorOptions,
     TextlintKernelFilterRule,
-    TextlintKernelProcessor,
+    TextlintPluginProcessor,
     TextlintKernelRule,
     TextlintMessage
 } from "../textlint-kernel-interface";
@@ -26,14 +26,14 @@ export interface FixerProcessorProcessArgs {
 }
 
 export default class FixerProcessor {
-    private processor: TextlintKernelProcessor;
+    private processor: TextlintPluginProcessor;
     private messageProcessManager: MessageProcessManager;
 
     /**
      * @param {Processor} processor
      * @param {MessageProcessManager} messageProcessManager
      */
-    constructor(processor: TextlintKernelProcessor, messageProcessManager: MessageProcessManager) {
+    constructor(processor: TextlintPluginProcessor, messageProcessManager: MessageProcessManager) {
         this.processor = processor;
         this.messageProcessManager = messageProcessManager;
     }

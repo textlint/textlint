@@ -17,8 +17,8 @@ import {
     TextlintKernelConstructorOptions,
     TextlintKernelOptions,
     TextlintKernelPlugin,
-    TextlintKernelProcessor,
-    TextlintKernelProcessorConstructor,
+    TextlintPluginProcessor,
+    TextlintPluginProcessorConstructor,
     TextlintResult
 } from "./textlint-kernel-interface";
 
@@ -40,7 +40,7 @@ function findPluginWithExt(plugins: TextlintKernelPlugin[] = [], ext: string) {
     const matchPlugins = availablePlugins.filter(kernelPlugin => {
         const plugin = kernelPlugin.plugin;
         // static availableExtensions() method
-        const textlintKernelProcessor: TextlintKernelProcessorConstructor = plugin.Processor;
+        const textlintKernelProcessor: TextlintPluginProcessorConstructor = plugin.Processor;
         assert.ok(
             typeof textlintKernelProcessor.availableExtensions === "function",
             `Processor(${textlintKernelProcessor.name} should have availableExtensions()`
@@ -166,7 +166,7 @@ export class TextlintKernel {
         text,
         options
     }: {
-        processor: TextlintKernelProcessor;
+        processor: TextlintPluginProcessor;
         text: string;
         options: TextlintKernelOptions;
     }) {
@@ -212,7 +212,7 @@ export class TextlintKernel {
         text,
         options
     }: {
-        processor: TextlintKernelProcessor;
+        processor: TextlintPluginProcessor;
         text: string;
         options: TextlintKernelOptions;
     }): Promise<TextlintFixResult> {

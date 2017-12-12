@@ -1,6 +1,16 @@
 // Kernel
 export { TextlintKernel } from "./textlint-kernel";
 // Types
-import * as TextlintTypes from "./textlint-kernel-interface";
-
-export { TextlintTypes };
+export {
+    TextlintResult,
+    TextlintFixResult,
+    TextlintFixCommand,
+    TextlintMessage,
+    TextlintKernelRule,
+    TextlintKernelFilterRule,
+    TextlintKernelPlugin,
+    // plugin interface
+    TextlintPluginCreator,
+    TextlintPluginProcessor,
+    TextlintPluginProcessorConstructor
+} from "./textlint-kernel-interface";

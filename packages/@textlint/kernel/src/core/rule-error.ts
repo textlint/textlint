@@ -1,12 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import { TextLintFixCommand } from "../textlint-kernel-interface";
+import { TextlintFixCommand } from "../textlint-kernel-interface";
 
 export interface RuleErrorPadding {
     line?: number;
     column?: number;
     index?: number;
-    fix?: TextLintFixCommand;
+    fix?: TextlintFixCommand;
 }
 
 export default class RuleError {
@@ -14,7 +14,7 @@ export default class RuleError {
     private line?: number;
     private column?: number;
     private index?: number;
-    private fix?: TextLintFixCommand;
+    private fix?: TextlintFixCommand;
 
     /**
      * RuleError is like Error object.

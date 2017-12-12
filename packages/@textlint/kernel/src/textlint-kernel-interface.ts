@@ -21,7 +21,7 @@ export interface TextlintKernelConstructorOptions {
 }
 
 // config
-export interface TextlintConfig {
+export interface TextlintConfigObject {
     // rule directories path
     rulePaths?: string[];
     // filter by file extensions
@@ -50,15 +50,15 @@ export interface TextlintConfig {
 }
 
 // Plugin
-export interface TextlintKernelProcessorConstructor extends Function {
+export interface TextlintPluginProcessorConstructor extends Function {
     // TODO: support plugin config
     // https://github.com/textlint/textlint/issues/296
-    new (options?: TextlintPluginOptions | boolean): TextlintKernelProcessor;
+    new (options?: TextlintPluginOptions | boolean): TextlintPluginProcessor;
 
     availableExtensions(): Array<string>;
 }
 
-export declare class TextlintKernelProcessor {
+export declare class TextlintPluginProcessor {
     constructor(options?: TextlintPluginOptions | boolean);
 
     static availableExtensions(): Array<string>;
@@ -73,7 +73,7 @@ export declare class TextlintKernelProcessor {
 
 // textlint plugin module should export this interface
 export interface TextlintPluginCreator {
-    Processor: TextlintKernelProcessorConstructor;
+    Processor: TextlintPluginProcessorConstructor;
 }
 
 export interface TextlintKernelPlugin {
@@ -125,7 +125,7 @@ export interface TextlintKernelOptions {
 }
 
 // "range" is replaced by "text"
-export class TextLintFixCommand {
+export class TextlintFixCommand {
     text: string;
     range: [number, number];
     isAbsolute: boolean;
@@ -141,7 +141,7 @@ export class TextlintMessage {
     // optional data
     data?: any;
     // FixCommand
-    fix?: TextLintFixCommand;
+    fix?: TextlintFixCommand;
     // location info
     // Text -> AST TxtNode(0-based columns) -> textlint -> TextlintMessage(**1-based columns**)
     line: number; // start with 1
