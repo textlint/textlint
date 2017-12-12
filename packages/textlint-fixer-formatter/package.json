@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "textlint output formatter for fixer",
   "main": "lib/index.js",
-  "types": "src/index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "clean": "rimraf lib/",
     "prepublish": "npm run build",
