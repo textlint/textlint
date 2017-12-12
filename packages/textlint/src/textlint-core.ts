@@ -6,12 +6,20 @@
  */
 const path = require("path");
 const ObjectAssign = require("object-assign");
-import { TextlintKernel, TextlintTypes } from "@textlint/kernel";
+import {
+    TextlintFixResult,
+    TextlintKernel,
+    TextlintPluginProcessorConstructor,
+    TextlintPluginCreator,
+    TextlintResult
+} from "@textlint/kernel";
 import { readFile } from "./util/fs-promise";
 import { RuleCreatorSet } from "./core/rule-creator-set";
 import { PluginCreatorSet } from "./core/plugin-creator-set";
+
 const { throwIfTesting } = require("@textlint/feature-flag");
 import { Config } from "./config/config";
+
 const markdownPlugin = require("textlint-plugin-markdown");
 const textPlugin = require("textlint-plugin-text");
 
@@ -25,9 +33,10 @@ export class TextLintCore {
     kernel: TextlintKernel;
     config: Partial<Config>;
     defaultPlugins: {
-        markdown: TextlintTypes.TextlintPluginCreator;
-        text: TextlintTypes.TextlintPluginCreator;
+        markdown: TextlintPluginCreator;
+        text: TextlintPluginCreator;
     };
+
     constructor(config: Partial<Config> = {}) {
         // this.config often is undefined.
         this.config = config;
@@ -59,7 +68,7 @@ export class TextLintCore {
      *
      * It will be removed until textlint@10
      */
-    addProcessor(Processor: TextlintTypes.TextlintKernelProcessorConstructor) {
+    addProcessor(Processor: TextlintPluginProcessorConstructor) {
         throwIfTesting(
             "Use setupPlugins insteadof addProcessor method.`addProcessor` will be removed in the future." +
                 "For more details, See https://github.com/textlint/textlint/issues/293"
@@ -118,7 +127,7 @@ export class TextLintCore {
      * @param {string} ext ext is extension. default: .txt
      * @returns {Promise.<TextlintResult>}
      */
-    lintText(text: string, ext: string = ".txt"): Promise<TextlintTypes.TextlintResult> {
+    lintText(text: string, ext: string = ".txt"): Promise<TextlintResult> {
         const options = this._mergeSetupOptions({
             ext
         });
@@ -131,7 +140,7 @@ export class TextLintCore {
      * @param {string} text markdown format text
      * @returns {Promise.<TextlintResult>}
      */
-    lintMarkdown(text: string): Promise<TextlintTypes.TextlintResult> {
+    lintMarkdown(text: string): Promise<TextlintResult> {
         const ext = ".md";
         const options = this._mergeSetupOptions({
             ext
@@ -144,7 +153,7 @@ export class TextLintCore {
      * @param {string} filePath
      * @returns {Promise.<TextlintResult>} result
      */
-    lintFile(filePath: string): Promise<TextlintTypes.TextlintResult> {
+    lintFile(filePath: string): Promise<TextlintResult> {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
         const options = this._mergeSetupOptions({
@@ -161,7 +170,7 @@ export class TextLintCore {
      * @param {string} filePath
      * @returns {Promise.<TextlintFixResult>}
      */
-    fixFile(filePath: string): Promise<TextlintTypes.TextlintFixResult> {
+    fixFile(filePath: string): Promise<TextlintFixResult> {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
         const ext = path.extname(absoluteFilePath);
         const options = this._mergeSetupOptions({
@@ -179,7 +188,7 @@ export class TextLintCore {
      * @param {string} ext
      * @returns {Promise.<TextlintFixResult>}
      */
-    fixText(text: string, ext: string = ".txt"): Promise<TextlintTypes.TextlintFixResult> {
+    fixText(text: string, ext: string = ".txt"): Promise<TextlintFixResult> {
         const options = this._mergeSetupOptions({
             ext
         });

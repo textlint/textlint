@@ -4,7 +4,7 @@ const fileEntryCache = require("file-entry-cache");
 const debug = require("debug")("CacheBacker");
 import { AbstractBacker } from "./abstruct-backer";
 import { Config } from "../../config/config";
-import { TextlintTypes } from "@textlint/kernel";
+import { TextlintResult } from "@textlint/kernel";
 export class CacheBacker implements AbstractBacker {
     hashOfConfig: string;
     fileCache: any;
@@ -43,7 +43,7 @@ export class CacheBacker implements AbstractBacker {
     /**
      * @param {TextlintResult} result
      */
-    didExecute({ result }: { result: TextlintTypes.TextlintResult }) {
+    didExecute({ result }: { result: TextlintResult }) {
         if (!this.isEnabled) {
             return;
         }

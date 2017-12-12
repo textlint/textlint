@@ -1,10 +1,12 @@
 import { AbstractBacker } from "./execute-file-backers/abstruct-backer";
-import { TextlintTypes } from "@textlint/kernel";
+import { TextlintResult } from "@textlint/kernel";
 // MIT © 2016 azu
 "use strict";
 const Promise = require("bluebird");
+
 export class ExecuteFileBackerManager {
     _backers: AbstractBacker[];
+
     /**
      * create MessageProcessManager with backers
      * @param {AbstractBacker[]} backers
@@ -32,14 +34,9 @@ export class ExecuteFileBackerManager {
 
     /**
      * process `messages` with registered processes
-     * @param {string[]} files
-     * @returns {Promise.<TextlintResult[]>}
      */
-    process(
-        files: string[],
-        executeFile: (filePath: string) => Promise<TextlintTypes.TextlintResult>
-    ): Promise<TextlintTypes.TextlintResult[]> {
-        const unExecutedResults: Array<Promise<TextlintTypes.TextlintResult>> = [];
+    process(files: string[], executeFile: (filePath: string) => Promise<TextlintResult>): Promise<TextlintResult[]> {
+        const unExecutedResults: Array<Promise<TextlintResult>> = [];
         const resultPromises = files
             .filter(filePath => {
                 const shouldExecute = this._backers.every(backer => {
@@ -61,7 +58,7 @@ export class ExecuteFileBackerManager {
             })
             .concat(unExecutedResults);
         // wait all resolved, and call afterAll
-        return Promise.all(resultPromises).then((results: TextlintTypes.TextlintResult[]) => {
+        return Promise.all(resultPromises).then((results: (TextlintResult)[]) => {
             this._backers.forEach(backer => {
                 backer.afterAll();
             });
@@ -71,11 +68,8 @@ export class ExecuteFileBackerManager {
 
     /**
      * create fake result object
-     * @param {string} filePath
-     * @returns {TextlintResult}
-     * @private
      */
-    _createFakeResult(filePath: string): Promise<TextlintTypes.TextlintResult> {
+    _createFakeResult(filePath: string): Promise<TextlintResult> {
         return Promise.resolve({
             filePath,
             messages: []

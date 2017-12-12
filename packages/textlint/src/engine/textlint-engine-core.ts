@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
-const createFormatter = require("textlint-formatter");
+import { TextLintFormatterOption } from "../textlint-interface";
+
 const path = require("path");
 const debug = require("debug")("textlint:engine-core");
-import { TextLintCore } from "./../textlint-core";
+import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "./rule-map";
 import { PluginMap } from "./processor-map";
 import { Config } from "../config/config";
@@ -12,7 +13,8 @@ import { TextLintModuleLoader } from "./textlint-module-loader";
 import { ExecuteFileBackerManager } from "./execute-file-backer-manager";
 import { CacheBacker } from "./execute-file-backers/cache-backer";
 import { SeverityLevel } from "../shared/type/SeverityLevel";
-import { TextlintTypes } from "@textlint/kernel";
+import { TextlintMessage, TextlintResult } from "@textlint/kernel";
+
 /**
  * Core of TextLintEngine.
  * It is internal user.
@@ -25,7 +27,7 @@ import { TextlintTypes } from "@textlint/kernel";
  *
  * There are hackable by `executor` option.
  */
-export class TextLintEngineCore {
+export abstract class AbstractTextLintEngine<LintResult extends TextlintResult> {
     filerRuleMap: any;
     availableExtensions: any;
     moduleLoader: TextLintModuleLoader;
@@ -33,18 +35,33 @@ export class TextLintEngineCore {
     filterRuleMap: RuleMap;
     ruleMap: RuleMap;
     executeFileBackerManger: ExecuteFileBackerManager;
-    executor: { onFile: Function; onText: Function; onFormat: Function };
     textlint: TextLintCore;
     config: Config;
+    // abstract interface
+    // Each engines should be implemented these
+    /**
+     * @param {TextLintCore} textlintCore
+     * @returns {function()}
+     */
+    abstract onFile: (textlintCore: TextLintCore) => ((filePath: string) => Promise<LintResult>);
+    /**
+     * @param {TextLintCore} textlintCore
+     * @returns {function()}
+     */
+    abstract onText: (textlintCore: TextLintCore) => ((text: string, ext?: string) => Promise<LintResult>);
+    /**
+     * @param {TextLintFormatterOption} formatterConfig
+     */
+    abstract onFormat: (formatterConfig: TextLintFormatterOption) => ((results: LintResult[]) => string);
+
     /**
      * Process files are wanted to lint.
      * TextLintEngine is a wrapper of textlint.js.
      * Aim to be called from cli with cli options.
      * @param {Config|Object} [options] the options is command line options or Config object.
-     * @param {{ onFile: Function, onText: Function, onFormat:Function }} [executor] executor are injectable function.
      * @constructor
      */
-    constructor(options: Config | object, executor: { onFile: Function; onText: Function; onFormat: Function }) {
+    constructor(options?: Config | object) {
         /**
          * @type {Config}
          */
@@ -59,13 +76,6 @@ export class TextLintEngineCore {
          * @private
          */
         this.textlint = new TextLintCore(this.config);
-        /**
-         * @type {{
-         *  onFile: function(textlint: TextlintCore):Function,
-         *  onText: function(textlint: TextlintCore):Function,
-         *  onFormat:Function}}
-         */
-        this.executor = executor;
         /**
          * @type {ExecuteFileBackerManager}
          * @private
@@ -171,7 +181,7 @@ new TextLintEngine({
      * Update rules from current config
      * @private
      */
-    _setupRules() {
+    private _setupRules() {
         // set Rules
         const textlintConfig = this.config ? this.config.toJSON() : {};
         this.textlint.setupRules(this.ruleMap.getAllRules(), textlintConfig.rulesConfig);
@@ -199,12 +209,8 @@ new TextLintEngine({
      * @param {String[]}  files An array of file and directory names.
      * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
      */
-    executeOnFiles(files: string[]): Promise<TextlintTypes.TextlintResult[]> {
-        const boundLintFile = (file: string) => {
-            return this.textlint.lintFile(file);
-        };
-        const execFile =
-            typeof this.executor.onFile === "function" ? this.executor.onFile(this.textlint) : boundLintFile;
+    executeOnFiles(files: string[]): Promise<LintResult[]> {
+        const execFile = this.onFile(this.textlint);
         const patterns = pathsToGlobPatterns(files, {
             extensions: this.availableExtensions
         });
@@ -218,7 +224,8 @@ new TextLintEngine({
         });
         debug("Process files", availableFiles);
         debug("Not Process files", unAvailableFiles);
-        return this.executeFileBackerManger.process(availableFiles, execFile);
+        // FIXME: remove cast
+        return this.executeFileBackerManger.process(availableFiles, execFile) as Promise<LintResult[]>;
     }
 
     /**
@@ -228,18 +235,15 @@ new TextLintEngine({
      * @param {string} ext ext is a type for linting. default: ".txt"
      * @returns {Promise<TextlintResult[]>}
      */
-    executeOnText(text: string, ext: string = ".txt"): Promise<TextlintTypes.TextlintResult[]> {
-        const boundLintText = (file: string, ext: string) => {
-            return this.textlint.lintText(file, ext);
-        };
+    executeOnText(text: string, ext: string = ".txt"): Promise<LintResult[]> {
         const textlint = this.textlint;
-        const execText = typeof this.executor.onText === "function" ? this.executor.onText(textlint) : boundLintText;
+        const execText = this.onText(textlint);
         // filePath or ext
         const actualExt = ext[0] === "." ? ext : path.extname(ext);
         if (actualExt.length === 0) {
             throw new Error("should specify the extension.\nex) .md");
         }
-        return execText(text, actualExt).then((result: TextlintTypes.TextlintResult) => {
+        return execText(text, actualExt).then((result: LintResult) => {
             return [result];
         });
     }
@@ -251,15 +255,12 @@ new TextLintEngine({
      * @example
      *  console.log(formatResults(results));
      */
-    formatResults(results: TextlintTypes.TextlintResult[]): string {
-        const formatterConfig = {
-            formatterName: this.config.formatterName,
+    formatResults(results: LintResult[]): string {
+        // default formatter: "stylish"
+        const formatter = this.onFormat({
+            formatterName: this.config.formatterName || "stylish",
             color: this.config.color
-        };
-        const formatter =
-            typeof this.executor.onFormat === "function"
-                ? this.executor.onFormat(formatterConfig)
-                : createFormatter(formatterConfig);
+        });
         return formatter(results);
     }
 
@@ -268,7 +269,7 @@ new TextLintEngine({
      * @param {TextlintMessage} message The message to check.
      * @returns {boolean} Whether or not the message is an error message.
      */
-    isErrorMessage(message: TextlintTypes.TextlintMessage): boolean {
+    isErrorMessage(message: TextlintMessage): boolean {
         return message.severity === SeverityLevel.error;
     }
 
@@ -278,7 +279,7 @@ new TextLintEngine({
      * @param {TextlintResult[]} results Linting result collection
      * @returns {Boolean} Whether or not the results contain error message.
      */
-    isErrorResults(results: TextlintTypes.TextlintResult[]): boolean {
+    isErrorResults(results: TextlintResult[]): boolean {
         return results.some(result => {
             return result.messages.some(this.isErrorMessage);
         });

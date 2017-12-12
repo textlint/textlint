@@ -1,5 +1,7 @@
 // LICENSE : MIT
 "use strict";
+import { TextlintFixResult } from "@textlint/kernel";
+
 const Promise = require("bluebird");
 const fs = require("fs");
 const path = require("path");
@@ -12,8 +14,6 @@ import { Config } from "./config/config";
 import { configInit } from "./config/config-initializer";
 import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
-import { TextLintEngineCore } from "./engine/textlint-engine-core";
-import { TextlintTypes } from "@textlint/kernel";
 /*
  cli.js is command line **interface**
 
@@ -107,7 +107,7 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
         if (cliOptions.fix) {
             // --fix
             // TODO: fix to type
-            const fixEngine = new TextFixEngine(config) as TextLintEngineCore;
+            const fixEngine = new TextFixEngine(config);
             if (!fixEngine.hasRuleAtLeastOne()) {
                 showEmptyRuleWarning();
                 return Promise.resolve(0);
@@ -125,13 +125,13 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
                     return Promise.resolve(0);
                 }
                 // modify file and return exit status
-                return fixer.write(results as TextlintTypes.TextlintFixResult[]).then(() => {
+                return fixer.write(results as TextlintFixResult[]).then(() => {
                     return 0;
                 });
             });
         }
         // lint as default
-        const lintEngine = new TextLintEngine(config) as TextLintEngineCore;
+        const lintEngine = new TextLintEngine(config);
         if (!lintEngine.hasRuleAtLeastOne()) {
             showEmptyRuleWarning();
             return Promise.resolve(0);
