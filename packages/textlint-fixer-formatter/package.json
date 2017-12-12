@@ -11,7 +11,7 @@
     "test": "mocha test"
   },
   "files": [
-    "lib/",
+    "lib/textlint-fixer-formatter",
     "src/"
   ],
   "repository": {
