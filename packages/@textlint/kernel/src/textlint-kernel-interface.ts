@@ -9,7 +9,7 @@ import FilterRuleContext from "./core/filter-rule-context";
 export type RuleCreatorReporter = (
     context: RuleContext,
     options?: TextlintRuleOptions
-) => { [P in keyof TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
+) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
 /**
  * Filter rule reporter function
  */
@@ -18,7 +18,7 @@ export type TextlintRuleCreator = RuleCreatorReporter | TextlintRuleFixableCreat
 export type TextlintFilterRuleCreator = (
     context: FilterRuleContext,
     options?: TextlintFilterRuleOptions
-) => { [P in keyof TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
+) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
 
 /**
  * textlint rule option values is object or boolean.

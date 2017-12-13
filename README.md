@@ -533,7 +533,7 @@ However, textlint is not different with most semver project.
     - New public API are added (new classes, new methods, new arguments to existing methods, etc.).
         - It might break type interface(`.d.ts`)
     - A new formatter is created.
-- Major release (likely to break your lint build)
+- Major release (break your lint build)
     - A new option to an existing rule that results in ESLint reporting more errors by default.
     - An existing formatter is removed.
     - Part of the public API is removed or changed in an incompatible way.

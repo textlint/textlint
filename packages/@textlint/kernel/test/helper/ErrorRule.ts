@@ -1,8 +1,9 @@
 // MIT © 2017 azu
 
-import { RuleCreatorReporter, TextlintRuleCreator } from "../../src/core/rule-creator-helper";
+import { RuleCreatorReporter } from "../../src/textlint-kernel-interface";
+import { TxtNode } from "@textlint/ast-node-types";
 import RuleContext from "../../src/core/rule-context";
-import { TxtNode } from "../../src/textlint-kernel-interface";
+import { TextlintRuleCreator } from "../../src";
 
 export interface ReportOptions {
     errors?: {
@@ -39,7 +40,7 @@ export const report: RuleCreatorReporter = (context: RuleContext, options: Repor
         }
     };
 };
-export const errorRule: TextLintRuleCreator = {
+export const errorRule: TextlintRuleCreator = {
     linter: report,
     fixer: report
 };
