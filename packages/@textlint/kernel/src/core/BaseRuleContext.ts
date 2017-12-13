@@ -1,6 +1,5 @@
-import { ASTNodeTypes } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import RuleError from "./rule-error";
-import { TxtNode } from "../../../ast-node-types/src/TextLintASTNodeTypes";
 
 export abstract class BaseRuleContext {
     abstract get id(): string;
