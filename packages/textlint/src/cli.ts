@@ -106,7 +106,6 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
         };
         if (cliOptions.fix) {
             // --fix
-            // TODO: fix to type
             const fixEngine = new TextFixEngine(config);
             if (!fixEngine.hasRuleAtLeastOne()) {
                 showEmptyRuleWarning();
