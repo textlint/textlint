@@ -2,7 +2,7 @@
 const chalk = require("chalk");
 const table = require("text-table");
 const widthOfString = require("string-width");
-import { TextlintTypes } from "@textlint/kernel";
+import { TextlintFixResult } from "@textlint/kernel";
 
 /**
  * Given a word and a count, append an s if count is not one.
@@ -14,7 +14,7 @@ function pluralize(word: string, count: number): string {
     return count === 1 ? word : `${word}s`;
 }
 
-export default function(results: TextlintTypes.TextlintFixResult[], options: any) {
+export default function(results: TextlintFixResult[], options: any) {
     // default: true
     chalk.enabled = options.color !== undefined ? options.color : true;
     let output = "\n";

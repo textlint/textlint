@@ -2,8 +2,8 @@
   "name": "textlint-fixer-formatter",
   "version": "1.0.0",
   "description": "textlint output formatter for fixer",
-  "main": "lib/index.js",
-  "types": "src/index.d.ts",
+  "main": "lib/textlint-fixer-formatter/src/index.js",
+  "types": "lib/textlint-fixer-formatter/src/index.d.ts",
   "scripts": {
     "clean": "rimraf lib/",
     "prepublish": "npm run build",
@@ -11,7 +11,7 @@
     "test": "mocha test"
   },
   "files": [
-    "lib/",
+    "lib/textlint-fixer-formatter",
     "src/"
   ],
   "repository": {

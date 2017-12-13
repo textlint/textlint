@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintTypes } from "@textlint/kernel";
+import { TextlintFixResult } from "@textlint/kernel";
 function getMessageType(message: any) {
     if (message.fatal || message.severity === 2) {
         return "Error";
@@ -9,7 +9,7 @@ function getMessageType(message: any) {
     }
 }
 
-export function format(results: TextlintTypes.TextlintFixResult[]) {
+export function format(results: TextlintFixResult[]) {
     let output = "";
     let total = 0;
 

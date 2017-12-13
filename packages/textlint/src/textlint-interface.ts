@@ -4,5 +4,5 @@
  */
 export interface TextLintFormatterOption {
     formatterName: string;
-    noColor?: boolean;
+    color?: boolean;
 }

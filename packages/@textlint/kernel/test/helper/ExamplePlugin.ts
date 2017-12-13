@@ -1,5 +1,5 @@
 // MIT © 2017 azu
-import { TextlintKernelProcessor, TextlintPluginCreator } from "../../src/textlint-kernel-interface";
+import { TextlintPluginProcessor, TextlintPluginCreator } from "../../src/textlint-kernel-interface";
 
 const parse = require("markdown-to-ast").parse;
 
@@ -7,7 +7,7 @@ export interface ExampleProcessorOptions {
     testOption: string;
 }
 
-export class ExampleProcessor implements TextlintKernelProcessor {
+export class ExampleProcessor implements TextlintPluginProcessor {
     static availableExtensions() {
         return [".md"];
     }

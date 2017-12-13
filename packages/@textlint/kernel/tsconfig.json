@@ -6,7 +6,7 @@
     "newLine": "LF",
     "outDir": "./lib/",
     "target": "es5",
-    "sourceMap": false, // SourceMap by babel
+    "sourceMap": false,
     "declaration": true,
     "jsx": "preserve",
     "lib": [

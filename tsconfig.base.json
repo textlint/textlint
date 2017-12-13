@@ -4,6 +4,9 @@
     "paths": {
       "@textlint/*": [
         "./packages/@textlint/*/src"
+      ],
+      "*": [
+        "./packages/*/src"
       ]
     },
     "outDir": "SHOULD_BE_OVERWRITE",

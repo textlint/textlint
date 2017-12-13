@@ -6,7 +6,7 @@ import TaskRunner from "../task/task-runner";
 import {
     TextlintKernelConstructorOptions,
     TextlintKernelFilterRule,
-    TextlintKernelProcessor,
+    TextlintPluginProcessor,
     TextlintKernelRule
 } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
@@ -21,14 +21,14 @@ export interface LinterProcessorArgs {
 }
 
 export default class LinterProcessor {
-    private processor: TextlintKernelProcessor;
+    private processor: TextlintPluginProcessor;
     private messageProcessManager: MessageProcessManager;
 
     /**
      * @param {Processor} processor
      * @param {MessageProcessManager} messageProcessManager
      */
-    constructor(processor: TextlintKernelProcessor, messageProcessManager: MessageProcessManager) {
+    constructor(processor: TextlintPluginProcessor, messageProcessManager: MessageProcessManager) {
         this.processor = processor;
         this.messageProcessManager = messageProcessManager;
     }

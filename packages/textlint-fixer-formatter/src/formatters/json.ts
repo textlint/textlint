@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintTypes } from "@textlint/kernel";
-export default function(results: TextlintTypes.TextlintFixResult[]) {
+import { TextlintFixResult } from "@textlint/kernel";
+export default function(results: TextlintFixResult[]) {
     return JSON.stringify(results);
 }
