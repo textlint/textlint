@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
 
+import { BaseRuleContext } from "./BaseRuleContext";
+
 const assert = require("assert");
 import { TxtNode } from "@textlint/ast-node-types";
 import RuleFixer from "../fixer/rule-fixer";
@@ -31,7 +33,7 @@ export interface RuleContextArgs {
     ruleId: string;
     sourceCode: SourceCode;
     report: ReportFunction;
-    ruleOptions?: TextlintRuleOptions | boolean;
+    ruleOptions?: TextlintRuleOptions;
     configBaseDir?: string;
 }
 
@@ -42,11 +44,11 @@ export interface RuleReportedObject {
     severity?: number;
 }
 
-export default class RuleContext {
+export default class RuleContext implements BaseRuleContext {
     private _ruleId: string;
     private _sourceCode: SourceCode;
     private _report: ReportFunction;
-    private _ruleOptions?: TextlintRuleOptions | boolean;
+    private _ruleOptions?: TextlintRuleOptions;
     private _configBaseDir?: string;
     private _severity: number;
 

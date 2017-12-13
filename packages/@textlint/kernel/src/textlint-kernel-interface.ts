@@ -1,17 +1,56 @@
 // rule config
-import { TxtNode } from "@textlint/ast-node-types";
+import { TxtNode, TxtNodeType } from "@textlint/ast-node-types";
 import { SeverityLevelTypes } from "./shared/type/SeverityLevel";
-import { TextLintRuleCreator } from "./core/rule-creator-helper";
+import RuleContext from "./core/rule-context";
+import FilterRuleContext from "./core/filter-rule-context";
+/**
+ * Rule reporter function
+ */
+export type RuleCreatorReporter = (
+    context: RuleContext,
+    options?: TextlintRuleOptions
+) => { [P in keyof TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
+/**
+ * Filter rule reporter function
+ */
+export type TextlintRuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter };
+export type TextlintRuleCreator = RuleCreatorReporter | TextlintRuleFixableCreator;
+export type TextlintFilterRuleCreator = (
+    context: FilterRuleContext,
+    options?: TextlintFilterRuleOptions
+) => { [P in keyof TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
 
-export interface TextlintRuleOptions {
-    [index: string]: any;
+/**
+ * textlint rule option values is object or boolean.
+ * if this option value is false, disable the rule.
+ */
+export type TextlintRuleOptions =
+    | {
+          [index: string]: any;
 
-    severity?: SeverityLevelTypes;
-}
+          severity?: SeverityLevelTypes;
+      }
+    | boolean;
 
-export interface TextlintPluginOptions {
-    [index: string]: any;
-}
+/**
+ * textlint filter rule option values is object or boolean.
+ * if this option value is false, disable the filter rule.
+ */
+export type TextlintFilterRuleOptions =
+    | {
+          [index: string]: any;
+      }
+    | boolean;
+
+/**
+ * textlint plugin option values is object or boolean.
+ * if this option value is false, disable the plugin.
+ */
+export type TextlintPluginOptions =
+    | {
+          [index: string]: any;
+      }
+    | boolean;
 
 export interface TextlintKernelConstructorOptions {
     /**
@@ -51,15 +90,13 @@ export interface TextlintConfigObject {
 
 // Plugin
 export interface TextlintPluginProcessorConstructor extends Function {
-    // TODO: support plugin config
-    // https://github.com/textlint/textlint/issues/296
-    new (options?: TextlintPluginOptions | boolean): TextlintPluginProcessor;
+    new (options?: TextlintPluginOptions): TextlintPluginProcessor;
 
     availableExtensions(): Array<string>;
 }
 
 export declare class TextlintPluginProcessor {
-    constructor(options?: TextlintPluginOptions | boolean);
+    constructor(options?: TextlintPluginOptions);
 
     static availableExtensions(): Array<string>;
 
@@ -83,7 +120,7 @@ export interface TextlintKernelPlugin {
     // For example, `plugin: require("textlint-plugin-markdown")`
     plugin: TextlintPluginCreator;
     // plugin options
-    options?: TextlintPluginOptions | boolean;
+    options?: TextlintPluginOptions;
 }
 
 export interface TextlintKernelRule {
@@ -91,20 +128,20 @@ export interface TextlintKernelRule {
     ruleId: string;
     // rule module
     // For example, `rule: require("textlint-rule-example")`
-    rule: TextLintRuleCreator;
+    rule: TextlintRuleCreator;
     // rule options
     // Often rule option is written in .textlintrc
-    options?: TextlintRuleOptions | boolean;
+    options?: TextlintRuleOptions;
 }
 
 export interface TextlintKernelFilterRule {
     // filter rule name as key
     ruleId: string;
     // filter rule module instance
-    rule: any;
+    rule: TextlintFilterRuleCreator;
     // filter rule options
     // Often rule option is written in .textlintrc
-    options?: TextlintRuleOptions | boolean;
+    options?: TextlintRuleOptions;
 }
 
 export interface TextlintKernelOptions {

@@ -4,7 +4,6 @@ const TraverseController = require("txt-ast-traverse").Controller;
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 import { PromiseEventEmitter } from "./promise-event-emitter";
-import Bluebird = require("bluebird");
 import RuleError from "../core/rule-error";
 import SourceLocation from "../core/source-location";
 import timing from "../util/timing";
@@ -13,10 +12,16 @@ import { EventEmitter } from "events";
 import * as assert from "assert";
 import SourceCode from "../core/source-code";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintFixCommand, TextlintRuleOptions } from "../textlint-kernel-interface";
+import {
+    RuleCreatorReporter,
+    TextlintFilterRuleCreator,
+    TextlintFilterRuleOptions,
+    TextlintFixCommand,
+    TextlintRuleOptions
+} from "../textlint-kernel-interface";
 import { default as RuleContext, RuleReportedObject } from "../core/rule-context";
-import { RuleCreatorReporter } from "../core/rule-creator-helper";
 import FilterRuleContext from "../core/filter-rule-context";
+import Bluebird = require("bluebird");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}
 
@@ -198,22 +203,28 @@ export default abstract class TextLintCoreTask extends EventEmitter {
 
     /**
      * try to get rule object
-     * @param {Function} ruleCreator
-     * @param {RuleContext|FilterRuleContext} ruleContext
-     * @param {Object|boolean|undefined} ruleOptions
-     * @returns {Object}
-     * @throws
      */
-    tryToGetRuleObject(
-        ruleCreator: RuleCreatorReporter,
-        // FIXME: remove any and common context
-        ruleContext: RuleContext | FilterRuleContext | any,
-        ruleOptions?: TextlintRuleOptions | boolean
-    ) {
+    tryToGetRuleObject(ruleCreator: RuleCreatorReporter, ruleContext: RuleContext, ruleOptions?: TextlintRuleOptions) {
         try {
             return ruleCreator(ruleContext, ruleOptions);
         } catch (error) {
             error.message = `Error while loading rule '${ruleContext.id}': ${error.message}`;
+            throw error;
+        }
+    }
+
+    /**
+     * try to get filter rule object
+     */
+    tryToGetFilterRuleObject(
+        ruleCreator: TextlintFilterRuleCreator,
+        ruleContext: FilterRuleContext,
+        ruleOptions?: TextlintFilterRuleOptions
+    ) {
+        try {
+            return ruleCreator(ruleContext, ruleOptions);
+        } catch (error) {
+            error.message = `Error while loading filter rule '${ruleContext.id}': ${error.message}`;
             throw error;
         }
     }
@@ -226,11 +237,14 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * @returns {Object}
      */
     tryToAddListenRule(
-        ruleCreator: RuleCreatorReporter,
+        ruleCreator: RuleCreatorReporter | TextlintFilterRuleCreator,
         ruleContext: RuleContext | FilterRuleContext,
-        ruleOptions?: TextlintRuleOptions | boolean
+        ruleOptions?: TextlintRuleOptions | TextlintFilterRuleOptions
     ): void {
-        const ruleObject = this.tryToGetRuleObject(ruleCreator, ruleContext, ruleOptions);
+        const ruleObject =
+            ruleContext instanceof RuleContext
+                ? this.tryToGetRuleObject(ruleCreator as RuleCreatorReporter, ruleContext, ruleOptions)
+                : this.tryToGetFilterRuleObject(ruleCreator as TextlintFilterRuleCreator, ruleContext, ruleOptions);
         const types = Object.keys(ruleObject) as (keyof typeof ruleObject)[];
         types.forEach((nodeType: keyof typeof ruleObject) => {
             this.ruleTypeEmitter.on(

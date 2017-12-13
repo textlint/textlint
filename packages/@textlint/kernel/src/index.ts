@@ -6,14 +6,20 @@ export {
     TextlintFixResult,
     TextlintFixCommand,
     TextlintMessage,
-    // Kernel rule/filter/plugin
+    // Kernel rule/filter/plugin format
     TextlintKernelRule,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
-    // TODO: textlint rule interface
-    // TODO: textlint filter rule interface
+    // Notes: Following interface will be separated module in the future.
+    // textlint rule interface
+    TextlintRuleCreator,
+    TextlintRuleOptions,
+    // textlint filter rule interface
+    TextlintFilterRuleCreator,
+    TextlintFilterRuleOptions,
     // textlint plugin interface
     TextlintPluginCreator,
+    TextlintPluginOptions,
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
 } from "./textlint-kernel-interface";

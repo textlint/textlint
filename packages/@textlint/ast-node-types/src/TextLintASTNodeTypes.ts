@@ -29,16 +29,16 @@ export const ASTNodeTypes = {
     Delete: "Delete"
 };
 /**
- * Key of TxtNode type
- * Union Types
+ * Key of ASTNodeTypes or any string
+ * For example, TxtNodeType is "Document".
  */
-export type TxtNodeType = keyof typeof ASTNodeTypes;
+export type TxtNodeType = keyof typeof ASTNodeTypes | string;
 
 /**
  * Basic TxtNode
  */
 export interface TxtNode {
-    type: TxtNodeType | string;
+    type: TxtNodeType;
     raw: string;
     range: TextNodeRange;
     loc: TxtNodeLineLocation;

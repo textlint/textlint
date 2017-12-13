@@ -4,6 +4,7 @@ import SourceCode from "./source-code";
 import { TxtNode } from "@textlint/ast-node-types";
 import RuleError from "./rule-error";
 import { ShouldIgnoreFunction } from "../task/textlint-core-task";
+import { BaseRuleContext } from "./BaseRuleContext";
 
 const assert = require("assert");
 
@@ -35,7 +36,7 @@ export interface FilterRuleContextArgs {
  * @param {function(ShouldIgnoreArgs)} ignoreReport
  * @constructor
  */
-export default class FilterRuleContext {
+export default class FilterRuleContext implements BaseRuleContext {
     private _ruleId: string;
     private _ignoreReport: ShouldIgnoreFunction;
     private _sourceCode: SourceCode;
