@@ -111,7 +111,7 @@ We use yarn as package manager.
 Please [install yarn](https://yarnpkg.com/lang/en/docs/install/) before starting development.
 
 ```sh
-git clone {YOUR_FORKED_REPOSITORY}
+git clone --recursive {YOUR_FORKED_REPOSITORY}
 cd {YOUR_FORKED_REPOSITORY}
 yarn install
 yarn run bootstrap
@@ -156,7 +156,7 @@ This test is heavy.
 
 ```sh
 # Require git submodule
-git submodule update
+git submodule update --init
 # Run test
 yarn run test:integration
 ```
