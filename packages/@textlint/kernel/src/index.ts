@@ -6,10 +6,13 @@ export {
     TextlintFixResult,
     TextlintFixCommand,
     TextlintMessage,
+    // Kernel rule/filter/plugin
     TextlintKernelRule,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
-    // plugin interface
+    // TODO: textlint rule interface
+    // TODO: textlint filter rule interface
+    // textlint plugin interface
     TextlintPluginCreator,
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
