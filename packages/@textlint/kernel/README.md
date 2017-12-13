@@ -2,7 +2,7 @@
 
 textlint kernel is core logic by pure JavaScript.
 
-This module is low layer of textlint.
+This module is a low layer of textlint.
 
 No plugin, No rule, No filter rule by default.
 
@@ -15,7 +15,7 @@ Install with [npm](https://www.npmjs.com/):
 ## Usage
 
 ```js
-import TextlintKernel from "@textlint/kernel";
+import { TextlintKernel } from "@textlint/kernel";
 const kernel = new TextlintKernel();
 const options = {
     filePath: "/path/to/file.md",
@@ -37,6 +37,37 @@ kernel.lintText("TODO: text", options).then(result => {
     assert.ok(typeof result.filePath === "string");
     assert.ok(result.messages.length === 1);
 });
+```
+
+## Type Interface
+
+`@textlint/kernel` export core types of textlint.
+
+If you use TypeScript, this types help you.
+
+```ts
+// Types
+import {
+    TextlintResult,
+    TextlintFixResult,
+    TextlintFixCommand,
+    TextlintMessage,
+    // Kernel rule/filter/plugin format
+    TextlintKernelRule,
+    TextlintKernelFilterRule,
+    TextlintKernelPlugin,
+    // textlint rule interface
+    TextlintRuleCreator,
+    TextlintRuleOptions,
+    // textlint filter rule interface
+    TextlintFilterRuleCreator,
+    TextlintFilterRuleOptions,
+    // textlint plugin interface
+    TextlintPluginCreator,
+    TextlintPluginOptions,
+    TextlintPluginProcessor,
+    TextlintPluginProcessorConstructor
+} from "@textlint/kernel";
 ```
 
 ## Changelog

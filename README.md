@@ -459,6 +459,13 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
 - [Pronto](https://github.com/mmozuras/pronto "Pronto"): [pronto-textlint](https://github.com/seikichi/pronto-textlint "pronto-textlint")
 - [reviewdog](https://github.com/haya14busa/reviewdog "reviewdog"): [azu/textlint-reviewdog-example](https://github.com/azu/textlint-reviewdog-example "azu/textlint-reviewdog-example: textlint + reviewdog example project")
 
+## Who's using textlint?
+
+- [survivejs/webpack-book](https://github.com/survivejs/webpack-book "survivejs/webpack-book: From apprentice to master (CC BY-NC-ND)")
+- [hoodiehq/hoodie](https://github.com/hoodiehq/hoodie "hoodiehq/hoodie")
+- [asciidwango/js-primer](https://github.com/asciidwango/js-primer "asciidwango/js-primer: JavaScriptの入門書")
+- [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
+
 ## Packages
 
 This repository is a monorepo that we manage using [Lerna](https://github.com/lerna/lerna). That means that we actually publish [several packages](/packages) to npm from the same codebase, including:
@@ -508,12 +515,28 @@ These modules are internal usage in the monorepo.
 | [`@textlint/monorepo-scripts`](/packages/textlint-monorepo-scripts) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/monorepo-scripts) | textlint monorepo build scripts |
 | [`@textlint/feature-flag`](/packages/@textlint/feature-flag) | [![npm](https://img.shields.io/npm/v/@textlint/feature-flag.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/feature-flag) | feature flag manager |
 
-## Who's using textlint?
 
-- [survivejs/webpack-book](https://github.com/survivejs/webpack-book "survivejs/webpack-book: From apprentice to master (CC BY-NC-ND)")
-- [hoodiehq/hoodie](https://github.com/hoodiehq/hoodie "hoodiehq/hoodie")
-- [asciidwango/js-primer](https://github.com/asciidwango/js-primer "asciidwango/js-primer: JavaScriptの入門書")
-- [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
+## Semantic Versioning Policy
+
+textlint project follow [Semantic Versioning](https://semver.org/ "Semantic Versioning").
+However, textlint is not different with most semver project.
+
+- Patch release (intended to not break your lint build)
+    - A bug fix to the CLI or core (including formatters).
+    - Improvements to documentation.
+    - Non-user-facing changes such as refactoring.
+    - Re-releasing after a failed release (i.e., publishing a release that doesn't work for anyone).
+- Minor release (might break your lint build)
+    - A new option.
+    - An existing rule is deprecated.
+    - A new CLI capability is created.
+    - New public API are added (new classes, new methods, new arguments to existing methods, etc.).
+        - It might break type interface(`.d.ts`)
+    - A new formatter is created.
+- Major release (likely to break your lint build)
+    - A new option to an existing rule that results in ESLint reporting more errors by default.
+    - An existing formatter is removed.
+    - Part of the public API is removed or changed in an incompatible way.
 
 ## Contributing
 
