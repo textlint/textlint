@@ -9,7 +9,7 @@ import { TextlintRuleOptions } from "../textlint-kernel-interface";
  * @param {Object|boolean|undefined} ruleConfig
  * @returns {number}
  */
-export function getSeverity(ruleConfig?: TextlintRuleOptions | boolean) {
+export function getSeverity(ruleConfig?: TextlintRuleOptions) {
     if (ruleConfig === undefined) {
         return SeverityLevel.error;
     }

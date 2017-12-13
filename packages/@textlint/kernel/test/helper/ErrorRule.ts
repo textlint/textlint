@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 
-import { RuleCreatorReporter, TextLintRuleCreator } from "../../src/core/rule-creator-helper";
+import { RuleCreatorReporter, TextlintRuleCreator } from "../../src/core/rule-creator-helper";
 import RuleContext from "../../src/core/rule-context";
 import { TxtNode } from "../../src/textlint-kernel-interface";
 
