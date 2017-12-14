@@ -17,25 +17,48 @@ Each node of the tree has same interface, is called `TxtNode`.
 `TxtNode` has these properties.
 
 ```typescript
+/**
+ * Basic TxtNode
+ * Probably, Real TxtNode implementation has more properties.
+ */
 interface TxtNode {
     type: string;
     raw: string;
-    range: [number, number]
-    loc: LineLocation;
+    range: TextNodeRange;
+    loc: TxtNodeLineLocation;
     // parent is runtime information
     // Not need in AST
+    // For example, top Root Node like `Document` has not parent.
     parent?: TxtNode;
+
+    [index: string]: any;
 }
-interface LineLocation {
-    start: Position;
-    end: Position;
+
+
+/**
+ * Location
+ */
+interface TxtNodeLineLocation {
+    start: TxtNodePosition;
+    end: TxtNodePosition;
 }
-interface Position {
+
+/**
+ * Position's line start with 1.
+ * Position's column start with 0.
+ * This is for compatibility with JavaScript AST.
+ * https://gist.github.com/azu/8866b2cb9b7a933e01fe
+ */
+interface TxtNodePosition {
     line: number; // start with 1
-    column: number;// start with 0
-    // This is for compatibility with JavaScript AST.
-    // https://gist.github.com/azu/8866b2cb9b7a933e01fe
+    column: number; // start with 0
 }
+
+/**
+ * Range start with 0
+ */
+type TextNodeRange = [number, number];
+
 ```
 
 - `type`: type of Node
@@ -50,8 +73,13 @@ interface Position {
 `TxtInlineNode` is inherit the `TxtNode` abstract interface.
 
 ```typescript
+/**
+ * Text Node.
+ * Text Node has inline value.
+ * For example, `Str` Node is an TxtTextNode.
+ */
 interface TxtTextNode extends TxtNode {
-    value: string
+    value: string;
 }
 ```
 
@@ -62,8 +90,12 @@ interface TxtTextNode extends TxtNode {
 `TxtParentNode` is inherit the `TxtNode` abstract interface.
 
 ```typescript
+/**
+ * Parent Node.
+ * Parent Node has children that are consist of TxtNode or TxtTextNode
+ */
 interface TxtParentNode extends TxtNode {
-    children: TxtNode[] | TxtTextNode[];
+    children: Array<TxtNode | TxtTextNode>;
 }
 ```
 
@@ -186,7 +218,7 @@ In other word, textlint's rule handle `TxtNode`, but [formatter](./formatter.md 
 
 Input: `*text*`
 
-Output: AST by [markdown-to-ast](https://github.com/textlint/markdown-to-ast "markdown-to-ast")
+Output: The AST by [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") + Markdown
 
 ```json
 {
