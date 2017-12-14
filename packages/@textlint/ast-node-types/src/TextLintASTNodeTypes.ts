@@ -36,6 +36,7 @@ export type TxtNodeType = keyof typeof ASTNodeTypes | string;
 
 /**
  * Basic TxtNode
+ * Probably, Real TxtNode implementation has more properties.
  */
 export interface TxtNode {
     type: TxtNodeType;
@@ -44,33 +45,10 @@ export interface TxtNode {
     loc: TxtNodeLineLocation;
     // parent is runtime information
     // Not need in AST
+    // For example, top Root Node like `Document` has not parent.
     parent?: TxtNode;
-}
 
-/**
- * Inline Text Node.
- * For example, Str Node.
- */
-export interface TxtTextNode extends TxtNode {
-    value: string;
-}
-
-/**
- * Parent Node.
- * For example, Paragraph Node
- */
-export interface TxtParentNode extends TxtNode {
-    children: TxtNode[] | TxtTextNode[];
-}
-
-/**
- * Root Node.
- * Root Node is only one in the document.
- * In other words, Root Node is Document Node.
- */
-export interface TxtRootNode extends TxtNode {
-    type: "Document";
-    children: TxtNode[];
+    [index: string]: any;
 }
 
 /**
@@ -96,3 +74,20 @@ export interface TxtNodePosition {
  * Range start with 0
  */
 export type TextNodeRange = [number, number];
+
+/**
+ * Text Node.
+ * Text Node has inline value.
+ * For example, `Str` Node is an TxtTextNode.
+ */
+export interface TxtTextNode extends TxtNode {
+    value: string;
+}
+
+/**
+ * Parent Node.
+ * Parent Node has children that are consist of TxtNode or TxtTextNode
+ */
+export interface TxtParentNode extends TxtNode {
+    children: Array<TxtNode | TxtTextNode>;
+}
