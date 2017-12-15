@@ -85,7 +85,6 @@
     "pkg-conf": "^2.0.0",
     "rc-config-loader": "^2.0.1",
     "read-pkg": "^1.1.0",
-    "resolve": "^1.4.0",
     "structured-source": "^3.0.2",
     "textlint-fixer-formatter": "^2.0.0-next.0",
     "textlint-formatter": "^2.0.0-next.0",
