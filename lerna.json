@@ -3,7 +3,6 @@
   "commands": {
     "publish": {
       "ignore": [
-        "integration-test",
         "**/yarn.lock"
       ]
     }
