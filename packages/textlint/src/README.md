@@ -2,7 +2,7 @@
 
 ## Overview
 
-![overview](../../docs/resources/architecture.png)
+![overview](../../../docs/resources/architecture.png)
 
 ```
 title: Architecture
@@ -17,7 +17,7 @@ Engine-->CLI: output
 
 - CLI know Engine
 - Engine know Core
-- Core know [kernel](https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-kernel/)
+- Core know [kernel](https://github.com/textlint/textlint/tree/master/packages/@textlint/kernel/)
 
 textlint apply [Separation of Concern](http://weblogs.asp.net/arturtrosin/separation-of-concern-vs-single-responsibility-principle-soc-vs-srp "Separation of Concern").
 
