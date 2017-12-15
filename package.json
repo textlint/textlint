@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "lerna run clean",
     "publish": "lerna publish --conventional-commits",
-    "publish:beta": "lerna publish --conventional-commits --npm-tag=next",
+    "publish:beta": "lerna publish --conventional-commits --npm-tag=next --preid=next",
     "publish:canary": "lerna publish --canary",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
