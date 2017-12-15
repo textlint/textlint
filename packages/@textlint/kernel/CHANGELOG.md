@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0-next.0"></a>
+# [2.0.0-next.0](https://github.com/textlint/textlint/compare/@textlint/kernel@1.0.3...@textlint/kernel@2.0.0-next.0) (2017-12-15)
+
+
+### Bug Fixes
+
+* **textlint:** fix kernel test ([#374](https://github.com/textlint/textlint/issues/374)) ([d6953cc](https://github.com/textlint/textlint/commit/d6953cc))
+* **textlint-fixer-formatter:** use paths ([734806f](https://github.com/textlint/textlint/commit/734806f))
+
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/textlint/textlint/compare/@textlint/kernel@1.0.2...@textlint/kernel@1.0.3) (2017-11-05)
 

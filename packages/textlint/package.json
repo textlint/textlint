@@ -1,7 +1,7 @@
 {
   "name": "textlint",
   "description": "The pluggable linting tool for text and markdown.",
-  "version": "9.1.1",
+  "version": "10.0.0-next.0",
   "homepage": "https://github.com/textlint/textlint/",
   "keywords": [
     "plugable",
@@ -63,9 +63,9 @@
     "typescript": "~2.6.1"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^2.0.0",
-    "@textlint/feature-flag": "^2.0.0",
-    "@textlint/kernel": "^1.0.3",
+    "@textlint/ast-node-types": "^3.0.0-next.0",
+    "@textlint/feature-flag": "^3.0.0-next.0",
+    "@textlint/kernel": "^2.0.0-next.0",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.0.5",
     "debug": "^2.1.0",
@@ -87,12 +87,12 @@
     "read-pkg": "^1.1.0",
     "resolve": "^1.4.0",
     "structured-source": "^3.0.2",
-    "textlint-formatter": "^1.7.3",
-    "textlint-fixer-formatter": "^1.0.0",
-    "textlint-plugin-markdown": "^3.0.3",
-    "textlint-plugin-text": "^2.0.3",
+    "textlint-fixer-formatter": "^2.0.0-next.0",
+    "textlint-formatter": "^2.0.0-next.0",
+    "textlint-plugin-markdown": "^4.0.0-next.0",
+    "textlint-plugin-text": "^3.0.0-next.0",
     "try-resolve": "^1.0.1",
-    "txt-ast-traverse": "^1.2.0",
+    "txt-ast-traverse": "^2.0.0-next.0",
     "unique-concat": "^0.2.2"
   }
 }

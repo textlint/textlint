@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.0.0-next.0"></a>
+# [10.0.0-next.0](https://github.com/textlint/textlint/compare/textlint@9.1.1...textlint@10.0.0-next.0) (2017-12-15)
+
+
+### Bug Fixes
+
+* **textlint:** fix bin/cli.js ([3e0f103](https://github.com/textlint/textlint/commit/3e0f103))
+* **textlint:** fix build temp ([a0bc1af](https://github.com/textlint/textlint/commit/a0bc1af))
+* **textlint:** fix tsconfig resolution ([c2f588a](https://github.com/textlint/textlint/commit/c2f588a))
+* **textlint:** move textlint-fixer-formatter from devDeps to deps ([#367](https://github.com/textlint/textlint/issues/367)) ([da23f71](https://github.com/textlint/textlint/commit/da23f71))
+* **textlint:** overwrite tsconfig.json ([de60be3](https://github.com/textlint/textlint/commit/de60be3))
+* **textlint:** support nest read pkg ([bf14941](https://github.com/textlint/textlint/commit/bf14941))
+* **textlint:** Update README ([88cdb2e](https://github.com/textlint/textlint/commit/88cdb2e))
+
+
+### BREAKING CHANGES
+
+* **textlint:** It need to upgrade to 10.0.0
+
+
+
+
 <a name="9.1.1"></a>
 ## [9.1.1](https://github.com/textlint/textlint/compare/textlint@9.1.0...textlint@9.1.1) (2017-11-05)
 

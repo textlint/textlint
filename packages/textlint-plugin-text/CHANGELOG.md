@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0-next.0"></a>
+# [3.0.0-next.0](https://github.com/textlint/textlint/compare/textlint-plugin-text@2.0.3...textlint-plugin-text@3.0.0-next.0) (2017-12-15)
+
+
+
+
+**Note:** Version bump only for package textlint-plugin-text
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/textlint/textlint/compare/textlint-plugin-text@2.0.2...textlint-plugin-text@2.0.3) (2017-11-05)
 
