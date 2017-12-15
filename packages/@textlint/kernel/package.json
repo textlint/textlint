@@ -44,8 +44,7 @@
     "shelljs": "^0.7.7",
     "textlint-plugin-markdown": "^4.0.0-next.0",
     "ts-node": "^3.3.0",
-    "typescript": "~2.6.1",
-    "typescript-json-schema": "^0.11.0"
+    "typescript": "~2.6.1"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^3.0.0-next.0",
