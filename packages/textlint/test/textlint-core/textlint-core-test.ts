@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { TextLintCore } from "../../src/index";
+import { TextLintCore } from "../../src";
 import exampleRule from "./fixtures/rules/example-rule";
 
 describe("textlint-core", function() {
@@ -24,7 +24,7 @@ describe("textlint-core", function() {
         });
     });
     context("when a linting text is empty", function() {
-        let textlint;
+        let textlint: TextLintCore;
         beforeEach(function() {
             textlint = new TextLintCore();
             textlint.setupRules({ "example-rule": exampleRule });

@@ -2,12 +2,14 @@
 "use strict";
 const path = require("path");
 const assert = require("assert");
-import { TextLintEngine } from "../../src/index";
-import { TextLintCore } from "../../src/textlint-core";
-import { coreFlags, resetFlags } from "@textlint/feature-flag";
+import { TextLintEngine, TextLintCore } from "../../src";
+
+const { coreFlags, resetFlags } = require("@textlint/feature-flag");
+import { TextlintRuleCreator } from "@textlint/kernel";
 // fixture
 import fixtureRule from "./fixtures/rules/example-rule";
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
+
 describe("Async", function() {
     beforeEach(() => {
         coreFlags.experimental = true;
@@ -34,7 +36,7 @@ describe("Async", function() {
                         report(node, new RuleError("after"));
                     }
                 };
-            }
+            } as TextlintRuleCreator
         });
         return textlint.lintMarkdown("string").then(result => {
             assert(result.filePath === "<markdown>");
