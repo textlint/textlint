@@ -75,9 +75,11 @@ If you want to fix `docs/`
 1. Fix document!
 2. Commit your changes
   - `git commit -am 'docs(<file-name>): Short description'`
-3. Run the tests
+3. During your first run after clone (`git clone`) or clean up (`npm run clean`), build the project
+  - `npm run build`
+4. Run the tests
   - `npm run lint`
-4. Submit a pull request :D
+5. Submit a pull request :D
 
 Welcome to fix the document!
 
