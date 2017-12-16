@@ -263,8 +263,8 @@ export class Config {
      * @returns {string}
      */
     get hash() {
-        const pkgConf = require("pkg-conf");
-        const version = pkgConf.sync("version");
+        const pkgConf = require("read-pkg-up");
+        const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
         const toString = JSON.stringify(this.toJSON());
         return md5(`${version}-${toString}`);
     }
