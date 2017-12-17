@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.0.0-next.1"></a>
+# [10.0.0-next.1](https://github.com/textlint/textlint/compare/textlint@10.0.0-next.0...textlint@10.0.0-next.1) (2017-12-17)
+
+
+### Bug Fixes
+
+* **textlint:** Replace pkg-conf with read-pkg-up to get package version ([e3e6197](https://github.com/textlint/textlint/commit/e3e6197))
+* **textlint:** use read-pkg-up to get package version ([c1aeaa2](https://github.com/textlint/textlint/commit/c1aeaa2)), closes [#388](https://github.com/textlint/textlint/issues/388)
+
+
+
+
 <a name="10.0.0-next.0"></a>
 # [10.0.0-next.0](https://github.com/textlint/textlint/compare/textlint@9.1.1...textlint@10.0.0-next.0) (2017-12-15)
 

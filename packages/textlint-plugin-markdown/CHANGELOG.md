@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.0-next.1"></a>
+# [4.0.0-next.1](https://github.com/textlint/textlint/compare/textlint-plugin-markdown@4.0.0-next.0...textlint-plugin-markdown@4.0.0-next.1) (2017-12-17)
+
+
+
+
+**Note:** Version bump only for package textlint-plugin-markdown
+
 <a name="4.0.0-next.0"></a>
 # [4.0.0-next.0](https://github.com/textlint/textlint/compare/textlint-plugin-markdown@3.0.3...textlint-plugin-markdown@4.0.0-next.0) (2017-12-15)
 
