@@ -98,8 +98,6 @@ describe("textlint-formatter-test", function() {
                     }
                 ]);
                 assert(output.length > 0);
-                console.log(output);
-                console.log("==================");
             });
         });
     });
