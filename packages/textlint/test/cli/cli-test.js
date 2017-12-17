@@ -5,6 +5,7 @@ const cli = require("../../src/index").cli;
 const path = require("path");
 const spawnSync = require("child_process").spawnSync;
 import { Logger } from "../../src/util/logger";
+
 const originLog = Logger.log;
 describe("cli-test", function() {
     beforeEach(function() {
@@ -223,6 +224,17 @@ describe("cli-test", function() {
             var targetFile = path.join(__dirname, "fixtures/test.md");
             return cli.execute(`${targetFile}`).then(result => {
                 assert.equal(result, 0);
+            });
+        });
+    });
+    describe("--version", function() {
+        it("should output current textlint version", function() {
+            const pkg = require("../../package");
+            Logger.log = function mockLog(message) {
+                assert.equal(message, `v${pkg.version}`);
+            };
+            return cli.execute("--version").then(exitCode => {
+                assert.strictEqual(exitCode, 0);
             });
         });
     });
