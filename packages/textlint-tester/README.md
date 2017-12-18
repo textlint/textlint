@@ -20,8 +20,9 @@
 - `{string[]|object[]} valid` valid is an array of text which should be passed.
     - You can use `object` if you want to specify some options. `object` can have the following properties:
         - `{string} text`: a text to be linted
-        - `{object} options`: options to be passed to the rule
         - `{string} ext`: an extension key. Default: `.md` (Markdown)
+        - `{string} filePath`: a test text filePath that prefer to `text` property
+        - `{object} options`: options to be passed to the rule
 
 `valid` object example:
 
