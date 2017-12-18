@@ -16,6 +16,19 @@ describe("config-loader", function() {
         assert.equal(typeof config.rules["no-todo"], "object");
         assert.equal(config.rules["no-todo"]["use-task-list"], true);
     });
+    context("when config file is not encoded in UTF8", () => {
+        it("should throw an Error", () => {
+            const notUTF8Files = ["shift-jis.js", "euc-jp.json"];
+            notUTF8Files.forEach(notUTF8File => {
+                const configFile = path.join(__dirname, "fixtures", "shift-jis.js");
+                assert.throws(() => {
+                    loadConfig(configFile, {
+                        configFileName: Config.CONFIG_FILE_NAME
+                    });
+                }, notUTF8File);
+            });
+        });
+    });
     context("when specify Config module, found it", function() {
         it("should load from Config module", function() {
             const baseDir = path.join(__dirname, "fixtures");
