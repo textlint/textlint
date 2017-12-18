@@ -13,7 +13,12 @@ describe("Broken Rule", function() {
             const fixtureRule = path.join(fixturesDir, caseName);
             const textlint = new TextLintCore();
             textlint.setupRules({ "broken-rule": require(fixtureRule) });
-            return testInvalid(textlint, "text", ".md", [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }])
+            return testInvalid({
+                textlint,
+                text: "text",
+                ext: ".md",
+                errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }]
+            })
                 .then(() => {
                     throw new Error("WRONG");
                 })

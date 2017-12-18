@@ -18,6 +18,7 @@ const it =
         : function(text, method) {
               return method.apply(this);
           };
+
 /* eslint-enable no-invalid-this */
 /**
  * get fixer function from ruleCreator
@@ -34,6 +35,7 @@ function assertHasFixer(ruleCreator, ruleName) {
     }
     throw new Error(`Not found \`fixer\` function in the ruleCreator: ${ruleName}`);
 }
+
 export default class TextLintTester {
     constructor() {
         if (typeof coreFlags === "object") {
@@ -42,6 +44,7 @@ export default class TextLintTester {
     }
 
     testValidPattern(ruleName, rule, valid) {
+        const filePath = typeof valid === "object" ? valid.filePath : undefined;
         const text = valid.text !== undefined ? valid.text : valid;
         const options = valid.options || {};
         const ext = valid.ext !== undefined ? valid.ext : ".md";
@@ -54,13 +57,14 @@ export default class TextLintTester {
                 [ruleName]: options
             }
         );
-        it(text, () => {
-            return testValid(textlint, text, ext);
+        it(filePath || text, () => {
+            return testValid({ textlint, filePath, text, ext });
         });
     }
 
     testInvalidPattern(ruleName, rule, invalid) {
         const errors = invalid.errors;
+        const filePath = invalid.filePath;
         const text = invalid.text;
         const options = invalid.options || {};
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
@@ -73,8 +77,8 @@ export default class TextLintTester {
                 [ruleName]: options
             }
         );
-        it(text, () => {
-            return testInvalid(textlint, text, ext, errors);
+        it(filePath || text, () => {
+            return testInvalid({ textlint, filePath, text, ext, errors });
         });
         // --fix
         if (invalid.hasOwnProperty("output")) {

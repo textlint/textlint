@@ -1,11 +1,35 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
+const fs = require("fs");
 
-export function testInvalid(textlint, text, ext, errors) {
-    const lines = text.split(/\n/);
+/**
+ *
+ * @param {string} [text]
+ * @param {string} [filePath]
+ * @returns {string}
+ */
+function getTestText({ text, filePath }) {
+    if (text !== undefined) {
+        return text;
+    }
+    if (filePath === undefined) {
+        throw new Error("should be defined { text } or { filePath }");
+    }
+    return fs.readFileSync(filePath, "utf-8");
+}
+
+/**
+ * @param {TextLintCore} textlint
+ * @param {string} [text]
+ * @param {string} [ext]
+ * @param {string} [filePath]
+ * @param {*[]} errors
+ */
+export function testInvalid({ textlint, filePath, text, ext, errors }) {
+    const lines = getTestText({ text, filePath }).split(/\n/);
     assert.strictEqual(
-        typeof text,
+        typeof (filePath || text),
         "string",
         `invalid property should have text string
 e.g.)
@@ -34,7 +58,8 @@ invalid : [
             `
     );
     const errorLength = errors.length;
-    return textlint.lintText(text, ext).then(lintResult => {
+    const promise = filePath !== undefined ? textlint.lintFile(filePath) : textlint.lintText(text, ext);
+    return promise.then(lintResult => {
         assert.strictEqual(
             lintResult.messages.length,
             errorLength,
@@ -93,9 +118,16 @@ The result's column number should be less than ${columnText.length + 1}`
     });
 }
 
-export function testValid(textlint, text, ext) {
-    assert.strictEqual(typeof text, "string", "valid should has string of text.");
-    return textlint.lintText(text, ext).then(results => {
+/**
+ * @param {TextLintCore} textlint
+ * @param {string} [filePath]
+ * @param {string} [text]
+ * @param {string} [ext]
+ */
+export function testValid({ textlint, filePath, text, ext }) {
+    assert.strictEqual(typeof (filePath || text), "string", "valid should has string of text.");
+    const promise = filePath !== undefined ? textlint.lintFile(filePath) : textlint.lintText(text, ext);
+    return promise.then(results => {
         assert.strictEqual(
             results.messages.length,
             0,
