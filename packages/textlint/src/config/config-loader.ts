@@ -1,8 +1,8 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import * as fs from "fs";
 
 // LICENSE : MIT
 "use strict";
-const fs = require("fs");
 const isValidUTF8 = require("utf-8-validate");
 const rcConfigLoader = require("rc-config-loader");
 const interopRequire = require("interop-require");
