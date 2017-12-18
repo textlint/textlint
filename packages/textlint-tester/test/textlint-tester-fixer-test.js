@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const TextLintTester = require("../src/index");
+const path = require("path");
 const fixerRule = require("./fixtures/rule/fixer-rule-add");
 const tester = new TextLintTester();
 tester.run("fixer-rule-add", fixerRule, {
@@ -9,6 +10,17 @@ tester.run("fixer-rule-add", fixerRule, {
         {
             text: "This is fixed",
             output: "This is fixed.",
+            errors: [
+                {
+                    message: "Please add . to end of a sentence.",
+                    line: 1,
+                    column: 14
+                }
+            ]
+        },
+        {
+            inputPath: path.join(__dirname, "fixtures/text/fixture-rule-add.md"),
+            output: "This is fixed.\n",
             errors: [
                 {
                     message: "Please add . to end of a sentence.",

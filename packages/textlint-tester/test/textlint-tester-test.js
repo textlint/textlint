@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
-var TextLintTester = require("../src/index");
-var noTodo = require("textlint-rule-no-todo");
-var maxNumberOfLine = require("textlint-rule-max-number-of-lines");
-var tester = new TextLintTester();
+const path = require("path");
+const TextLintTester = require("../src/index");
+const noTodo = require("textlint-rule-no-todo");
+const maxNumberOfLine = require("textlint-rule-max-number-of-lines");
+const tester = new TextLintTester();
 tester.run("no-todo", noTodo, {
     valid: [
         "string, test desu",
@@ -13,6 +14,9 @@ tester.run("no-todo", noTodo, {
         {
             text: "- [ ] This text is parsed as plain text.",
             ext: ".txt"
+        },
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ok.md")
         }
     ],
     invalid: [
@@ -55,6 +59,15 @@ tester.run("no-todo", noTodo, {
                     message: "Found TODO: 'TODO: this text is parsed as plain text.'",
                     line: 1,
                     column: 7
+                }
+            ]
+        },
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] This is NG'",
+                    index: 2
                 }
             ]
         }
