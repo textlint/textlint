@@ -10,13 +10,13 @@ const fs = require("fs");
  * @returns {string}
  */
 function getTestText({ text, inputPath }) {
-    if (text !== undefined) {
+    if (typeof inputPath === "string") {
+        return fs.readFileSync(inputPath, "utf-8");
+    }
+    if (typeof text === "string") {
         return text;
     }
-    if (inputPath === undefined) {
-        throw new Error("should be defined { text } or { inputPath }");
-    }
-    return fs.readFileSync(inputPath, "utf-8");
+    throw new Error("should be defined { text } or { inputPath }");
 }
 
 /**
@@ -27,9 +27,10 @@ function getTestText({ text, inputPath }) {
  * @param {*[]} errors
  */
 export function testInvalid({ textlint, inputPath, text, ext, errors }) {
-    const lines = getTestText({ text, inputPath }).split(/\n/);
+    const actualText = getTestText({ text, inputPath });
+    const lines = actualText.split(/\n/);
     assert.strictEqual(
-        typeof (inputPath || text),
+        typeof actualText,
         "string",
         `invalid property should have text string
 e.g.)
@@ -65,7 +66,7 @@ invalid : [
             errorLength,
             `invalid: should have ${errorLength} errors but had ${lintResult.messages.length}:
 ===Text===:
-${text}
+${actualText}
 
 ==Result==:
 ${JSON.stringify(lintResult, null, 4)}`
@@ -125,7 +126,8 @@ The result's column number should be less than ${columnText.length + 1}`
  * @param {string} [ext]
  */
 export function testValid({ textlint, inputPath, text, ext }) {
-    assert.strictEqual(typeof (inputPath || text), "string", "valid should has string of text.");
+    const actualText = getTestText({ text, inputPath });
+    assert.strictEqual(typeof actualText, "string", "valid should has string of text.");
     const promise = inputPath !== undefined ? textlint.lintFile(inputPath) : textlint.lintText(text, ext);
     return promise.then(results => {
         assert.strictEqual(
@@ -133,7 +135,7 @@ export function testValid({ textlint, inputPath, text, ext }) {
             0,
             `valid: should have no errors but had Error results:
 ===Text===:
-${text}
+${actualText}
 
 ==Result==:
 ${JSON.stringify(results, null, 4)}`
