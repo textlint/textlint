@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-var TextLintTester = require("../src/index");
-var tester = new TextLintTester();
+const TextLintTester = require("../src/index");
+const tester = new TextLintTester();
 function rule(context) {
-    let { Syntax, RuleError, report, getSource } = context;
+    const { Syntax, RuleError, report } = context;
     return {
         [Syntax.Document](node) {
             return new Promise(resolve => {
