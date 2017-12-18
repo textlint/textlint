@@ -44,7 +44,7 @@ export default class TextLintTester {
     }
 
     testValidPattern(ruleName, rule, valid) {
-        const filePath = typeof valid === "object" ? valid.filePath : undefined;
+        const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
         const text = valid.text !== undefined ? valid.text : valid;
         const options = valid.options || {};
         const ext = valid.ext !== undefined ? valid.ext : ".md";
@@ -57,14 +57,14 @@ export default class TextLintTester {
                 [ruleName]: options
             }
         );
-        it(filePath || text, () => {
-            return testValid({ textlint, filePath, text, ext });
+        it(inputPath || text, () => {
+            return testValid({ textlint, inputPath, text, ext });
         });
     }
 
     testInvalidPattern(ruleName, rule, invalid) {
         const errors = invalid.errors;
-        const filePath = invalid.filePath;
+        const inputPath = invalid.inputPath;
         const text = invalid.text;
         const options = invalid.options || {};
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
@@ -77,14 +77,15 @@ export default class TextLintTester {
                 [ruleName]: options
             }
         );
-        it(filePath || text, () => {
-            return testInvalid({ textlint, filePath, text, ext, errors });
+        it(inputPath || text, () => {
+            return testInvalid({ textlint, inputPath, text, ext, errors });
         });
         // --fix
         if (invalid.hasOwnProperty("output")) {
-            it(`Fixer: ${text}`, () => {
+            it(`Fixer: ${inputPath || text}`, () => {
                 assertHasFixer(rule, ruleName);
-                return textlint.fixText(text, ext).then(result => {
+                const promise = inputPath !== undefined ? textlint.fixFile(inputPath) : textlint.fixText(text, ext);
+                return promise.then(result => {
                     const output = invalid.output;
                     assert.strictEqual(result.output, output);
                 });

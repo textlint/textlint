@@ -16,7 +16,7 @@ tester.run("no-todo", noTodo, {
             ext: ".txt"
         },
         {
-            filePath: path.join(__dirname, "fixtures/text/ok.md")
+            inputPath: path.join(__dirname, "fixtures/text/ok.md")
         }
     ],
     invalid: [
@@ -63,7 +63,7 @@ tester.run("no-todo", noTodo, {
             ]
         },
         {
-            filePath: path.join(__dirname, "fixtures/text/ng.md"),
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
             errors: [
                 {
                     message: "Found TODO: '- [ ] This is NG'",

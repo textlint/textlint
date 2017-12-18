@@ -15,13 +15,15 @@
 
 #### TextLintTester#run(ruleName, rule, {valid=[], invalid=[]})
 
+##### valid object
+
 - `{string} ruleName` ruleName is a name of the rule.
 - `{Function} rule` rule is the exported function of the rule.
 - `{string[]|object[]} valid` valid is an array of text which should be passed.
     - You can use `object` if you want to specify some options. `object` can have the following properties:
         - `{string} text`: a text to be linted
         - `{string} ext`: an extension key. Default: `.md` (Markdown)
-        - `{string} filePath`: a test text filePath that prefer to `text` property
+        - `{string} inputPath`: a test text filePath that prefer to `text` property
         - `{object} options`: options to be passed to the rule
 
 `valid` object example:
@@ -43,9 +45,13 @@
 ]
 ```
 
+
+##### invalid object
+
 - `{object[]} invalid` invalid is an array of object which should be failed.
     - `object` can have the following properties:
         - `{string} text`: a text to be linted.
+        - `{string} inputPath`: a test text filePath that prefer to `text` property.
         - `{string} output`: a fixed text.
         - `{string} ext`: an extension key.
         - `{object[]} errors`: an array of error objects which should be raised againt the text.

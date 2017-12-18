@@ -6,30 +6,30 @@ const fs = require("fs");
 /**
  *
  * @param {string} [text]
- * @param {string} [filePath]
+ * @param {string} [inputPath]
  * @returns {string}
  */
-function getTestText({ text, filePath }) {
+function getTestText({ text, inputPath }) {
     if (text !== undefined) {
         return text;
     }
-    if (filePath === undefined) {
-        throw new Error("should be defined { text } or { filePath }");
+    if (inputPath === undefined) {
+        throw new Error("should be defined { text } or { inputPath }");
     }
-    return fs.readFileSync(filePath, "utf-8");
+    return fs.readFileSync(inputPath, "utf-8");
 }
 
 /**
  * @param {TextLintCore} textlint
  * @param {string} [text]
  * @param {string} [ext]
- * @param {string} [filePath]
+ * @param {string} [inputPath]
  * @param {*[]} errors
  */
-export function testInvalid({ textlint, filePath, text, ext, errors }) {
-    const lines = getTestText({ text, filePath }).split(/\n/);
+export function testInvalid({ textlint, inputPath, text, ext, errors }) {
+    const lines = getTestText({ text, inputPath }).split(/\n/);
     assert.strictEqual(
-        typeof (filePath || text),
+        typeof (inputPath || text),
         "string",
         `invalid property should have text string
 e.g.)
@@ -58,7 +58,7 @@ invalid : [
             `
     );
     const errorLength = errors.length;
-    const promise = filePath !== undefined ? textlint.lintFile(filePath) : textlint.lintText(text, ext);
+    const promise = inputPath !== undefined ? textlint.lintFile(inputPath) : textlint.lintText(text, ext);
     return promise.then(lintResult => {
         assert.strictEqual(
             lintResult.messages.length,
@@ -120,13 +120,13 @@ The result's column number should be less than ${columnText.length + 1}`
 
 /**
  * @param {TextLintCore} textlint
- * @param {string} [filePath]
+ * @param {string} [inputPath]
  * @param {string} [text]
  * @param {string} [ext]
  */
-export function testValid({ textlint, filePath, text, ext }) {
-    assert.strictEqual(typeof (filePath || text), "string", "valid should has string of text.");
-    const promise = filePath !== undefined ? textlint.lintFile(filePath) : textlint.lintText(text, ext);
+export function testValid({ textlint, inputPath, text, ext }) {
+    assert.strictEqual(typeof (inputPath || text), "string", "valid should has string of text.");
+    const promise = inputPath !== undefined ? textlint.lintFile(inputPath) : textlint.lintText(text, ext);
     return promise.then(results => {
         assert.strictEqual(
             results.messages.length,
