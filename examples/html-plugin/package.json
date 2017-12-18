@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "2.0.0-next.2",
+  "version": "2.0.0",
   "name": "textlint-example-html-plugin",
   "scripts": {
     "test:ci": "npm test",
@@ -10,7 +10,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "^10.0.0-next.2",
+    "textlint": "^10.0.0",
     "textlint-plugin-html": "^0.1.2",
     "textlint-rule-sentence-length": "^1.0.4"
   }

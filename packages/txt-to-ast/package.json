@@ -12,7 +12,7 @@
   ],
   "name": "txt-to-ast",
   "description": "Parse plain text to AST with location info.",
-  "version": "3.0.0-next.0",
+  "version": "3.0.0",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/",
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/txt-to-ast/",
   "dependencies": {
-    "@textlint/ast-node-types": "^3.0.0-next.0"
+    "@textlint/ast-node-types": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -45,6 +45,6 @@
     "cross-env": "^4.0.0",
     "mocha": "^3.3.0",
     "power-assert": "^1.4.2",
-    "textlint-ast-test": "^2.0.0-next.0"
+    "textlint-ast-test": "^2.0.0"
   }
 }

@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "version": "4.0.0-next.2",
+  "version": "4.0.0",
   "description": "testing tool for textlint rule.",
   "main": "lib/index.js",
   "files": [
@@ -33,8 +33,8 @@
     "testing"
   ],
   "dependencies": {
-    "@textlint/feature-flag": "^3.0.0-next.0",
-    "textlint": "^10.0.0-next.2"
+    "@textlint/feature-flag": "^3.0.0",
+    "textlint": "^10.0.0"
   },
   "devDependencies": {
     "analyze-desumasu-dearu": "^3.1.0",
@@ -47,7 +47,7 @@
     "match-index": "^1.0.1",
     "mocha": "^3.3.0",
     "power-assert": "^1.4.1",
-    "textlint": "^10.0.0-next.2",
+    "textlint": "^10.0.0",
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-max-number-of-lines": "^1.0.2",
     "textlint-rule-no-todo": "^2.0.0"

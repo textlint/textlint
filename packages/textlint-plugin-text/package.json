@@ -11,7 +11,7 @@
   ],
   "name": "textlint-plugin-text",
   "description": "plain text plugin for textlint",
-  "version": "3.0.0-next.2",
+  "version": "3.0.0",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-plugin-text/",
   "dependencies": {
-    "txt-to-ast": "^3.0.0-next.0"
+    "txt-to-ast": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -39,7 +39,7 @@
     "cross-env": "^4.0.0",
     "mocha": "^3.3.0",
     "power-assert": "^1.4.2",
-    "textlint": "^10.0.0-next.2",
+    "textlint": "^10.0.0",
     "textlint-rule-no-todo": "^2.0.0"
   }
 }
