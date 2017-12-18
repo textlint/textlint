@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0-next.2"></a>
+# [2.0.0-next.2](https://github.com/textlint/textlint/compare/textlint-fixer-formatter@2.0.0-next.1...textlint-fixer-formatter@2.0.0-next.2) (2017-12-18)
+
+
+
+
+**Note:** Version bump only for package textlint-fixer-formatter
+
 <a name="2.0.0-next.1"></a>
 # [2.0.0-next.1](https://github.com/textlint/textlint/compare/textlint-fixer-formatter@2.0.0-next.0...textlint-fixer-formatter@2.0.0-next.1) (2017-12-17)
 

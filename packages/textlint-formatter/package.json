@@ -1,7 +1,7 @@
 {
   "name": "textlint-formatter",
   "description": "textlint output formatter",
-  "version": "2.0.0-next.0",
+  "version": "2.0.0-next.1",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-formatter",
   "repository": {
     "type": "git",
