@@ -92,6 +92,7 @@
     "textlint-plugin-text": "^3.0.0",
     "try-resolve": "^1.0.1",
     "txt-ast-traverse": "^2.0.0",
-    "unique-concat": "^0.2.2"
+    "unique-concat": "^0.2.2",
+    "utf-8-validate": "^4.0.0"
   }
 }
