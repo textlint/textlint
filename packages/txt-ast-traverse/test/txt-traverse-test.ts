@@ -1,20 +1,23 @@
 // LICENSE : MIT
 "use strict";
 import { Controller, traverse, VisitorOption } from "../lib/txt-ast-traverse.js";
-import { parse, Syntax } from "markdown-to-ast";
+
+const { parse, Syntax } = require("markdown-to-ast");
 import dump from "./traverse-dump.js";
-var assert = require("power-assert");
-var enter = "enter",
-    leave = "leave";
+import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+
+const assert = require("assert");
+const enter = "enter";
+const leave = "leave";
 describe("txt-traverse", () => {
     describe("#traverse", () => {
-        var AST;
+        let AST: TxtParentNode;
         beforeEach(() => {
             AST = parse("# Header\n" + "Hello*world*");
         });
         it("should traverse", () => {
-            var resultOfDump = dump(AST);
-            var expected = [
+            const resultOfDump = dump(AST);
+            const expected = [
                 [enter, Syntax.Document],
                 // # Header
                 [enter, Syntax.Header],
@@ -39,19 +42,20 @@ describe("txt-traverse", () => {
         });
         context("SKIP", () => {
             it("skip child nodes", () => {
-                var results = [];
+                const results: [string, string][] = [];
                 traverse(AST, {
-                    enter(node) {
+                    enter(node: TxtNode) {
                         results.push([enter, node.type]);
                         if (node.type === Syntax.Header) {
                             return VisitorOption.Skip;
                         }
+                        return;
                     },
                     leave(node) {
                         results.push([leave, node.type]);
                     }
                 });
-                var expected = [
+                const expected = [
                     [enter, Syntax.Document],
                     // # Header
                     [enter, Syntax.Header],
@@ -77,19 +81,20 @@ describe("txt-traverse", () => {
         });
         context("BREAK", () => {
             it("break child nodes", () => {
-                var results = [];
+                const results: [string, string][] = [];
                 traverse(AST, {
-                    enter(node) {
+                    enter(node: TxtNode) {
                         results.push([enter, node.type]);
                         if (node.type === Syntax.Header) {
                             return VisitorOption.Break;
                         }
+                        return;
                     },
                     leave(node) {
                         results.push([leave, node.type]);
                     }
                 });
-                var expected = [
+                const expected = [
                     [enter, Syntax.Document],
                     // # Header
                     [enter, Syntax.Header]
@@ -100,12 +105,12 @@ describe("txt-traverse", () => {
     });
     describe("#parents", () => {
         it("should return parent nodes", () => {
-            var AST = parse("Hello*world*");
-            var controller = new Controller();
-            var emParents = [],
-                documentParents = [];
+            const AST = parse("Hello*world*");
+            const controller = new Controller();
+            let emParents: any[] = [];
+            let documentParents: any[] = [];
             controller.traverse(AST, {
-                enter(node) {
+                enter(node: TxtNode) {
                     if (node.type === Syntax.Document) {
                         documentParents = controller.parents();
                     }
@@ -114,10 +119,10 @@ describe("txt-traverse", () => {
                     }
                 }
             });
-            var emParentTypes = emParents.map(node => {
+            const emParentTypes = emParents.map(node => {
                 return node.type;
             });
-            var documentParentTypes = documentParents.map(node => {
+            const documentParentTypes = documentParents.map(node => {
                 return node.type;
             });
             assert.deepEqual(emParentTypes, [Syntax.Document, Syntax.Paragraph]);
@@ -126,14 +131,14 @@ describe("txt-traverse", () => {
     });
     describe("#current", () => {
         it("should return current node", () => {
-            var AST = parse("Hello*world*");
-            var controller = new Controller();
+            const AST = parse("Hello*world*");
+            const controller = new Controller();
             controller.traverse(AST, {
                 enter(node) {
-                    assert.equal(controller.current().type, node.type);
+                    assert.equal(controller.current()!.type, node.type);
                 },
                 leave(node) {
-                    assert.equal(controller.current().type, node.type);
+                    assert.equal(controller.current()!.type, node.type);
                 }
             });
         });

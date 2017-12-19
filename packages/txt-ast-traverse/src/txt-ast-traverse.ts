@@ -1,16 +1,22 @@
+import { TxtNode } from "@textlint/ast-node-types";
 // LICENSE : MIT
 "use strict";
-function isNode(node) {
+import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+
+function isNode(node: any): node is TxtNode {
     if (node == null) {
         return false;
     }
     return typeof node === "object" && (typeof node.type === "string" || typeof node.t === "string");
 }
-function TxtElement(node, path, wrap, ref) {
-    this.node = node;
-    this.path = path;
-    this.wrap = wrap;
-    this.ref = ref;
+
+export class TxtElement {
+    constructor(
+        public node: TxtNode | null,
+        public path: string | null,
+        public wrap: string | null,
+        public ref: string | null
+    ) {}
 }
 
 const BREAK = {},
@@ -21,16 +27,19 @@ const VisitorOption = {
     Skip: SKIP,
     Remove: REMOVE
 };
+
 class Controller {
-    __willStartTraverse(root, visitor) {
+    private __worklist: TxtElement[];
+    private __leavelist: TxtElement[];
+    private __current: null | TxtElement;
+
+    __willStartTraverse() {
         this.__current = null;
-        this.visitor = visitor;
-        this.root = root;
         this.__worklist = [];
         this.__leavelist = [];
     }
 
-    __execute(callback, element) {
+    __execute(callback: ((..._: any[]) => any) | undefined, element: TxtElement) {
         let result;
 
         result = undefined;
@@ -52,12 +61,16 @@ class Controller {
      * @returns {Array}
      * @public
      */
-    parents() {
+    parents(): TxtNode[] {
         let i, iz;
         // first node is sentinel
-        const result = [];
+        const result: TxtNode[] = [];
         for (i = 1, iz = this.__leavelist.length; i < iz; ++i) {
-            result.push(this.__leavelist[i].node);
+            const txtElement = this.__leavelist[i];
+            const node = txtElement.node;
+            if (node) {
+                result.push(node);
+            }
         }
         return result;
     }
@@ -67,15 +80,19 @@ class Controller {
      * @returns {TxtNode}
      * @public
      */
-    current() {
+    current(): TxtNode | null {
+        if (!this.__current) {
+            return null;
+        }
         return this.__current.node;
     }
 
-    traverse(root, visitor) {
+    traverse(root: TxtParentNode, visitor: Visitor) {
         let ret;
-        this.__willStartTraverse(root, visitor);
+        this.__willStartTraverse();
 
-        const sentinel = {};
+        // Stop object
+        const sentinel = new TxtElement(null, null, null, null);
 
         // reference
         const worklist = this.__worklist;
@@ -87,10 +104,14 @@ class Controller {
 
         while (worklist.length) {
             let element = worklist.pop();
-
+            if (element === undefined) {
+                continue;
+            }
             if (element === sentinel) {
                 element = leavelist.pop();
-
+                if (element === undefined) {
+                    continue;
+                }
                 ret = this.__execute(visitor.leave, element);
 
                 if (ret === BREAK) {
@@ -114,7 +135,6 @@ class Controller {
                 }
 
                 const node = element.node;
-                const nodeType = element.wrap || node.type;
                 const candidates = Object.keys(node);
 
                 let current = candidates.length;
@@ -132,11 +152,13 @@ class Controller {
                                 continue;
                             }
                             if (isNode(candidate[current2])) {
-                                element = new TxtElement(candidate[current2], [key, current2], null, null);
+                                element = new TxtElement(candidate[current2], null, null, null);
                             } else {
                                 continue;
                             }
-                            worklist.push(element);
+                            if (element) {
+                                worklist.push(element);
+                            }
                         }
                     } else if (isNode(candidate)) {
                         worklist.push(new TxtElement(candidate, key, null, null));
@@ -147,8 +169,15 @@ class Controller {
     }
 }
 
-function traverse(root, visitor) {
+export interface Visitor {
+    enter?(node: TxtNode): any | void;
+
+    leave?(node: TxtNode): any | void;
+}
+
+function traverse(root: TxtParentNode, visitor: Visitor) {
     const controller = new Controller();
     return controller.traverse(root, visitor);
 }
+
 export { Controller, traverse, VisitorOption };
