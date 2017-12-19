@@ -16,7 +16,7 @@
     "bin/"
   ],
   "scripts": {
-    "test": "mocha test/*.js"
+    "test": "mocha test/**/*.js"
   },
   "directories": {
     "test": "test/"
