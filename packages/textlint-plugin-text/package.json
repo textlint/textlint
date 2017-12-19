@@ -11,7 +11,7 @@
   ],
   "name": "textlint-plugin-text",
   "description": "plain text plugin for textlint",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/",
@@ -39,7 +39,7 @@
     "cross-env": "^4.0.0",
     "mocha": "^3.3.0",
     "power-assert": "^1.4.2",
-    "textlint": "^10.0.0",
+    "textlint": "^10.0.1",
     "textlint-rule-no-todo": "^2.0.0"
   }
 }

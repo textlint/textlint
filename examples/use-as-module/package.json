@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "2.0.0",
+  "version": "2.0.1",
   "name": "textlint-example-use-as-module",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "azu",
   "license": "MIT",
   "dependencies": {
-    "textlint": "^10.0.0",
+    "textlint": "^10.0.1",
     "textlint-rule-no-todo": "^1.0.3"
   }
 }

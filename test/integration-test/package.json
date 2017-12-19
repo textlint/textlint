@@ -18,7 +18,7 @@
     "run_lint.js",
     "test.js"
   ],
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "textlint testbot sandbox.",
   "main": "./run_test.js",
   "scripts": {
@@ -33,7 +33,7 @@
   "devDependencies": {
     "json5": "^0.5.1",
     "shelljs": "^0.7.7",
-    "textlint": "^10.0.0",
+    "textlint": "^10.0.1",
     "textlintrc-to-pacakge-list": "^1.2.0"
   },
   "dependencies": {

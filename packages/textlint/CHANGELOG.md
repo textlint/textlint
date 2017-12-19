@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.0.1"></a>
+## [10.0.1](https://github.com/textlint/textlint/compare/textlint@10.0.0...textlint@10.0.1) (2017-12-19)
+
+
+### Bug Fixes
+
+* **textlint:** throw an error if file is not encoded in UTF8 ([dfe7e28](https://github.com/textlint/textlint/commit/dfe7e28))
+
+
+
+
 <a name="10.0.0"></a>
 # [10.0.0](https://github.com/textlint/textlint/compare/textlint@10.0.0-next.2...textlint@10.0.0) (2017-12-18)
 
