@@ -2,8 +2,11 @@
 "use strict";
 import { Controller, traverse, VisitorOption } from "../lib/txt-ast-traverse.js";
 
-const { parse, Syntax } = require("markdown-to-ast");
-import dump from "./traverse-dump.js";
+import { ASTNodeTypes } from "@textlint/ast-node-types";
+
+const { parse } = require("markdown-to-ast");
+const Syntax = require("markdown-to-ast").Syntax as typeof ASTNodeTypes;
+import { dump } from "./traverse-dump";
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 
 const assert = require("assert");
@@ -11,37 +14,95 @@ const enter = "enter";
 const leave = "leave";
 describe("txt-traverse", () => {
     describe("#traverse", () => {
-        let AST: TxtParentNode;
-        beforeEach(() => {
-            AST = parse("# Header\n" + "Hello*world*");
-        });
         it("should traverse", () => {
+            const AST: TxtParentNode = parse("# Header\n" + "Hello*world*");
             const resultOfDump = dump(AST);
             const expected = [
-                [enter, Syntax.Document],
+                [enter, Syntax.Document, null],
                 // # Header
-                [enter, Syntax.Header],
-                [enter, Syntax.Str],
-                [leave, Syntax.Str],
-                [leave, Syntax.Header],
+                [enter, Syntax.Header, Syntax.Document],
+                [enter, Syntax.Str, Syntax.Header],
+                [leave, Syntax.Str, Syntax.Header],
+                [leave, Syntax.Header, Syntax.Document],
                 // => Paragraph
-                [enter, Syntax.Paragraph],
-                [enter, Syntax.Str],
-                [leave, Syntax.Str],
+                [enter, Syntax.Paragraph, Syntax.Document],
+                [enter, Syntax.Str, Syntax.Paragraph],
+                [leave, Syntax.Str, Syntax.Paragraph],
                 // *world*
-                [enter, Syntax.Emphasis],
-                [enter, Syntax.Str],
-                [leave, Syntax.Str],
-                [leave, Syntax.Emphasis],
+                [enter, Syntax.Emphasis, Syntax.Paragraph],
+                [enter, Syntax.Str, Syntax.Emphasis],
+                [leave, Syntax.Str, Syntax.Emphasis],
+                [leave, Syntax.Emphasis, Syntax.Paragraph],
                 // <= Paragraph
-                [leave, Syntax.Paragraph],
+                [leave, Syntax.Paragraph, Syntax.Document],
                 // End
-                [leave, Syntax.Document]
+                [leave, Syntax.Document, null]
             ];
             assert.deepEqual(resultOfDump, expected);
         });
+        it("should traverse empty string", () => {
+            const AST: TxtParentNode = parse("");
+            const resultOfDump = dump(AST);
+            const expected = [
+                // Enter
+                [enter, Syntax.Document, null],
+                // Leave
+                [leave, Syntax.Document, null]
+            ];
+            assert.deepEqual(resultOfDump, expected);
+        });
+        it("should traverse List", () => {
+            const AST: TxtParentNode = parse(`- item 1 **Bold**`);
+            const resultOfDump = dump(AST);
+            const expected = [
+                ["enter", Syntax.Document, null],
+                ["enter", Syntax.List, Syntax.Document],
+                ["enter", Syntax.ListItem, Syntax.List],
+                ["enter", Syntax.Paragraph, Syntax.ListItem],
+                ["enter", Syntax.Str, Syntax.Paragraph],
+                ["leave", Syntax.Str, Syntax.Paragraph],
+                ["enter", Syntax.Strong, Syntax.Paragraph],
+                ["enter", Syntax.Str, Syntax.Strong],
+                ["leave", Syntax.Str, Syntax.Strong],
+                ["leave", Syntax.Strong, Syntax.Paragraph],
+                ["leave", Syntax.Paragraph, Syntax.ListItem],
+                ["leave", Syntax.ListItem, Syntax.List],
+                ["leave", Syntax.List, Syntax.Document],
+                ["leave", Syntax.Document, null]
+            ];
+            assert.deepEqual(resultOfDump, expected, JSON.stringify(resultOfDump));
+        });
+        it("should traverse Code", () => {
+            const AST: TxtParentNode = parse("This is `code`");
+            const resultOfDump = dump(AST);
+            const expected = [
+                ["enter", Syntax.Document, null],
+                ["enter", Syntax.Paragraph, Syntax.Document],
+                ["enter", Syntax.Str, Syntax.Paragraph],
+                ["leave", Syntax.Str, Syntax.Paragraph],
+                ["enter", Syntax.Code, Syntax.Paragraph],
+                ["leave", Syntax.Code, Syntax.Paragraph],
+                ["leave", Syntax.Paragraph, Syntax.Document],
+                ["leave", Syntax.Document, null]
+            ];
+            assert.deepEqual(resultOfDump, expected, JSON.stringify(resultOfDump));
+        });
+        it("should traverse CodeBlock", () => {
+            const AST: TxtParentNode = parse("```" + "code block" + "```");
+            const resultOfDump = dump(AST);
+            const expected = [
+                ["enter", Syntax.Document, null],
+                ["enter", Syntax.Paragraph, Syntax.Document],
+                ["enter", Syntax.Code, Syntax.Paragraph],
+                ["leave", Syntax.Code, Syntax.Paragraph],
+                ["leave", Syntax.Paragraph, Syntax.Document],
+                ["leave", Syntax.Document, null]
+            ];
+            assert.deepEqual(resultOfDump, expected, JSON.stringify(resultOfDump));
+        });
         context("SKIP", () => {
             it("skip child nodes", () => {
+                const AST: TxtParentNode = parse("# Header\n" + "Hello*world*");
                 const results: [string, string][] = [];
                 traverse(AST, {
                     enter(node: TxtNode) {
@@ -81,6 +142,7 @@ describe("txt-traverse", () => {
         });
         context("BREAK", () => {
             it("break child nodes", () => {
+                const AST: TxtParentNode = parse("# Header\n" + "Hello*world*");
                 const results: [string, string][] = [];
                 traverse(AST, {
                     enter(node: TxtNode) {

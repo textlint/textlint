@@ -1,4 +1,3 @@
-import { TxtNode } from "@textlint/ast-node-types";
 // LICENSE : MIT
 "use strict";
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
@@ -87,7 +86,14 @@ class Controller {
         return this.__current.node;
     }
 
+    /**
+     * Traverse AST with visitor
+     * @param {TxtParentNode} root
+     * @param {Visitor} visitor
+     */
     traverse(root: TxtParentNode, visitor: Visitor) {
+        // Note: This is based https://github.com/estools/estraverse
+        // Avoid recursive call by design
         let ret;
         this.__willStartTraverse();
 
@@ -170,9 +176,9 @@ class Controller {
 }
 
 export interface Visitor {
-    enter?(node: TxtNode): any | void;
+    enter?(node: TxtNode, parent?: TxtParentNode): any | void;
 
-    leave?(node: TxtNode): any | void;
+    leave?(node: TxtNode, parent?: TxtParentNode): any | void;
 }
 
 function traverse(root: TxtParentNode, visitor: Visitor) {
