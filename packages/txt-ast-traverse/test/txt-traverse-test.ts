@@ -72,6 +72,21 @@ describe("txt-traverse", () => {
             ];
             assert.deepEqual(resultOfDump, expected, JSON.stringify(resultOfDump));
         });
+        it("should traverse Link", () => {
+            const AST: TxtParentNode = parse(`[link](http://example.com)`);
+            const resultOfDump = dump(AST);
+            const expected = [
+                ["enter", "Document", null],
+                ["enter", "Paragraph", "Document"],
+                ["enter", "Link", "Paragraph"],
+                ["enter", "Str", "Link"],
+                ["leave", "Str", "Link"],
+                ["leave", "Link", "Paragraph"],
+                ["leave", "Paragraph", "Document"],
+                ["leave", "Document", null]
+            ];
+            assert.deepEqual(resultOfDump, expected, JSON.stringify(resultOfDump));
+        });
         it("should traverse BlockQuote", () => {
             const AST: TxtParentNode = parse(`> **bold**`);
             const resultOfDump = dump(AST);
