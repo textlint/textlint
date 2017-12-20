@@ -1,39 +1,44 @@
 // LICENSE : MIT
 "use strict";
-function isNode(node) {
+import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+
+/**
+ * is TxtNode?
+ */
+function isNode(node: any): node is TxtNode {
     if (node == null) {
         return false;
     }
     return typeof node === "object" && (typeof node.type === "string" || typeof node.t === "string");
 }
-function TxtElement(node, path, wrap, ref) {
-    this.node = node;
-    this.path = path;
-    this.wrap = wrap;
-    this.ref = ref;
+
+export class TxtElement {
+    constructor(public node: TxtNode | null) {}
 }
 
-const BREAK = {},
-    SKIP = {},
-    REMOVE = {};
+const BREAK = {};
+const SKIP = {};
 const VisitorOption = {
     Break: BREAK,
-    Skip: SKIP,
-    Remove: REMOVE
+    Skip: SKIP
 };
+
 class Controller {
-    __willStartTraverse(root, visitor) {
+    private __worklist: TxtElement[];
+    private __leavelist: TxtElement[];
+    private __current: null | TxtElement;
+
+    private __willStartTraverse() {
         this.__current = null;
-        this.visitor = visitor;
-        this.root = root;
         this.__worklist = [];
         this.__leavelist = [];
     }
 
-    __execute(callback, element) {
-        let result;
-
-        result = undefined;
+    private __execute(
+        callback: ((this: Controller, current: TxtNode, parent: TxtParentNode) => any) | undefined,
+        element: TxtElement
+    ) {
+        let result = undefined;
 
         const previous = this.__current;
         this.__current = element;
@@ -52,45 +57,64 @@ class Controller {
      * @returns {Array}
      * @public
      */
-    parents() {
+    parents(): TxtNode[] {
         let i, iz;
         // first node is sentinel
-        const result = [];
+        const result: TxtNode[] = [];
         for (i = 1, iz = this.__leavelist.length; i < iz; ++i) {
-            result.push(this.__leavelist[i].node);
+            const txtElement = this.__leavelist[i];
+            const node = txtElement.node;
+            if (node) {
+                result.push(node);
+            }
         }
         return result;
     }
 
     /**
      * Gets current node during traverse.
-     * @returns {TxtNode}
+     * @returns {TxtNode|null}
      * @public
      */
-    current() {
+    current(): TxtNode | null {
+        if (!this.__current) {
+            return null;
+        }
         return this.__current.node;
     }
 
-    traverse(root, visitor) {
+    /**
+     * Traverse AST with visitor
+     * @param {TxtParentNode} root
+     * @param {Visitor} visitor
+     */
+    traverse(root: TxtParentNode, visitor: Visitor) {
+        // Note: This is based https://github.com/estools/estraverse
+        // Avoid recursive call by design
         let ret;
-        this.__willStartTraverse(root, visitor);
+        this.__willStartTraverse();
 
-        const sentinel = {};
+        // Stop object
+        const sentinel = new TxtElement(null);
 
         // reference
         const worklist = this.__worklist;
         const leavelist = this.__leavelist;
 
         // initialize
-        worklist.push(new TxtElement(root, null, null, null));
-        leavelist.push(new TxtElement(null, null, null, null));
+        worklist.push(new TxtElement(root));
+        leavelist.push(new TxtElement(null));
 
         while (worklist.length) {
             let element = worklist.pop();
-
+            if (element === undefined) {
+                continue;
+            }
             if (element === sentinel) {
                 element = leavelist.pop();
-
+                if (element === undefined) {
+                    continue;
+                }
                 ret = this.__execute(visitor.leave, element);
 
                 if (ret === BREAK) {
@@ -114,7 +138,6 @@ class Controller {
                 }
 
                 const node = element.node;
-                const nodeType = element.wrap || node.type;
                 const candidates = Object.keys(node);
 
                 let current = candidates.length;
@@ -132,14 +155,16 @@ class Controller {
                                 continue;
                             }
                             if (isNode(candidate[current2])) {
-                                element = new TxtElement(candidate[current2], [key, current2], null, null);
+                                element = new TxtElement(candidate[current2]);
                             } else {
                                 continue;
                             }
-                            worklist.push(element);
+                            if (element) {
+                                worklist.push(element);
+                            }
                         }
                     } else if (isNode(candidate)) {
-                        worklist.push(new TxtElement(candidate, key, null, null));
+                        worklist.push(new TxtElement(candidate));
                     }
                 }
             }
@@ -147,8 +172,15 @@ class Controller {
     }
 }
 
-function traverse(root, visitor) {
+export interface Visitor {
+    enter?(node: TxtNode, parent?: TxtParentNode): any | void;
+
+    leave?(node: TxtNode, parent?: TxtParentNode): any | void;
+}
+
+function traverse(root: TxtParentNode, visitor: Visitor) {
     const controller = new Controller();
     return controller.traverse(root, visitor);
 }
+
 export { Controller, traverse, VisitorOption };
