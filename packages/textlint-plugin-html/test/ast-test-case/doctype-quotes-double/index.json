@@ -1,0 +1,59 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "UNKNOWN",
+            "name": "!doctype",
+            "value": "!DOCTYPE HTML PUBLIC '-//Alpha \"bravo\" charlie//DTD HTML Extended 1.0//EN'",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 76
+                }
+            },
+            "range": [
+                0,
+                76
+            ],
+            "raw": "<!DOCTYPE HTML PUBLIC '-//Alpha \"bravo\" charlie//DTD HTML Extended 1.0//EN'>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 76
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                76,
+                77
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        77
+    ],
+    "raw": "<!DOCTYPE HTML PUBLIC '-//Alpha \"bravo\" charlie//DTD HTML Extended 1.0//EN'>\n"
+}

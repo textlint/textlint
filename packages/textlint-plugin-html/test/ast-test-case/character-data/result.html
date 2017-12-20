@@ -1,0 +1,21 @@
+<!--
+CDATA in HTML is no longer allowed.
+It will be parsed like a declaration (`<!content>`, just like
+the doctype), which means `>`s will break out of them.
+Then, it’ll result in a comment.
+
+CDATA in foreign contet is allowed, but is also “garbled”.
+-->
+
+<!--[CDATA[<delta-->Echo]]>
+
+<!--[CDATA[]]-->
+
+<p>You can add a string to a number, but this stringifies the number:</p>
+<math>
+ <ms><!--[CDATA[x<y]]--></ms>
+ <mo>+</mo>
+ <mn>3</mn>
+ <mo>=</mo>
+ <ms><!--[CDATA[x-->y3]]></ms>
+</math>

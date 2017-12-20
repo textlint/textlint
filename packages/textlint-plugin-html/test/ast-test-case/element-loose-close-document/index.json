@@ -1,0 +1,162 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "tagName": "body",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 19
+                }
+            },
+            "range": [
+                0,
+                19
+            ],
+            "raw": "<body></div></body>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 26
+                },
+                "end": {
+                    "line": 4,
+                    "column": 0
+                }
+            },
+            "range": [
+                26,
+                29
+            ],
+            "raw": "\n\n\n"
+        },
+        {
+            "type": "Paragraph",
+            "tagName": "p",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 3
+                },
+                "end": {
+                    "line": 4,
+                    "column": 4
+                }
+            },
+            "range": [
+                32,
+                33
+            ],
+            "raw": ">"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 3
+                },
+                "end": {
+                    "line": 6,
+                    "column": 0
+                }
+            },
+            "range": [
+                32,
+                35
+            ],
+            "raw": ">\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "tagName": "p",
+                    "properties": {},
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        43,
+                        44
+                    ],
+                    "raw": ">"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
+                },
+                "end": {
+                    "line": 6,
+                    "column": 14
+                }
+            },
+            "range": [
+                35,
+                49
+            ],
+            "raw": "<div></p></div"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 14
+                },
+                "end": {
+                    "line": 7,
+                    "column": 0
+                }
+            },
+            "range": [
+                49,
+                51
+            ],
+            "raw": ">\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 7,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        51
+    ],
+    "raw": "<body></div></body></html>\n\n\n</p>\n\n<div></p></div>\n"
+}

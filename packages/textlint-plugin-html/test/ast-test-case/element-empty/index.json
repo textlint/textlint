@@ -1,0 +1,60 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "tagName": "span",
+            "properties": {},
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 13
+                }
+            },
+            "range": [
+                0,
+                13
+            ],
+            "raw": "<span></span>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 13
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                13,
+                14
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        14
+    ],
+    "raw": "<span></span>\n"
+}

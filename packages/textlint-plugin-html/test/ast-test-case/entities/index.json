@@ -1,0 +1,39 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Str",
+            "value": "© & baz. AT&T.\nalpha < bravo ' charlie > delta.\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
+            },
+            "range": [
+                0,
+                67
+            ],
+            "raw": "&copy &amp; baz. AT&T.\nalpha &lt; bravo &apos; charlie &gt; delta.\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 3,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        67
+    ],
+    "raw": "&copy &amp; baz. AT&T.\nalpha &lt; bravo &apos; charlie &gt; delta.\n"
+}

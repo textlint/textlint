@@ -1,0 +1,200 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "tagName": "script",
+            "properties": {},
+            "children": [
+                {
+                    "type": "CodeBlock",
+                    "value": "\nif (12 > 13) {\n    console.log('foo');\n}\n",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        8,
+                        50
+                    ],
+                    "raw": "\nif (12 > 13) {\n    console.log('foo');\n}\n"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 9
+                }
+            },
+            "range": [
+                0,
+                59
+            ],
+            "raw": "<script>\nif (12 > 13) {\n    console.log('foo');\n}\n</script>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 9
+                },
+                "end": {
+                    "line": 7,
+                    "column": 0
+                }
+            },
+            "range": [
+                59,
+                61
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "script",
+            "properties": {},
+            "children": [
+                {
+                    "type": "CodeBlock",
+                    "value": "\n  for (var index = -1, length = 2; index < length; index++) {\n    console.log(index);\n  }\n",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        69,
+                        160
+                    ],
+                    "raw": "\n  for (var index = -1, length = 2; index < length; index++) {\n    console.log(index);\n  }\n"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 11,
+                    "column": 9
+                }
+            },
+            "range": [
+                61,
+                169
+            ],
+            "raw": "<script>\n  for (var index = -1, length = 2; index < length; index++) {\n    console.log(index);\n  }\n</script>"
+        },
+        {
+            "type": "Str",
+            "value": "\n\n",
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 9
+                },
+                "end": {
+                    "line": 13,
+                    "column": 0
+                }
+            },
+            "range": [
+                169,
+                171
+            ],
+            "raw": "\n\n"
+        },
+        {
+            "type": "Html",
+            "tagName": "style",
+            "properties": {},
+            "children": [
+                {
+                    "type": "CodeBlock",
+                    "value": "\nhtml > body {\n  color: red;\n}\n",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        178,
+                        209
+                    ],
+                    "raw": "\nhtml > body {\n  color: red;\n}\n"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
+                    "line": 17,
+                    "column": 8
+                }
+            },
+            "range": [
+                171,
+                217
+            ],
+            "raw": "<style>\nhtml > body {\n  color: red;\n}\n</style>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 8
+                },
+                "end": {
+                    "line": 18,
+                    "column": 0
+                }
+            },
+            "range": [
+                217,
+                218
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 18,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        218
+    ],
+    "raw": "<script>\nif (12 > 13) {\n    console.log('foo');\n}\n</script>\n\n<script>\n  for (var index = -1, length = 2; index < length; index++) {\n    console.log(index);\n  }\n</script>\n\n<style>\nhtml > body {\n  color: red;\n}\n</style>\n"
+}

@@ -1,0 +1,192 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "foo": "",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 11
+                }
+            },
+            "range": [
+                0,
+                11
+            ],
+            "raw": "<a foo></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 11
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                11,
+                12
+            ],
+            "raw": "\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "foo": "",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 11
+                }
+            },
+            "range": [
+                12,
+                23
+            ],
+            "raw": "<a Foo></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 11
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
+            },
+            "range": [
+                23,
+                24
+            ],
+            "raw": "\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "foo": "",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 11
+                }
+            },
+            "range": [
+                24,
+                35
+            ],
+            "raw": "<a FOO></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 11
+                },
+                "end": {
+                    "line": 4,
+                    "column": 0
+                }
+            },
+            "range": [
+                35,
+                36
+            ],
+            "raw": "\n"
+        },
+        {
+            "type": "Link",
+            "tagName": "a",
+            "properties": {
+                "foo": "",
+                "type": "UNKNOWN"
+            },
+            "children": [],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 19
+                }
+            },
+            "range": [
+                36,
+                55
+            ],
+            "raw": "<a foo Foo FOO></a>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 19
+                },
+                "end": {
+                    "line": 5,
+                    "column": 0
+                }
+            },
+            "range": [
+                55,
+                56
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 5,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        56
+    ],
+    "raw": "<a foo></a>\n<a Foo></a>\n<a FOO></a>\n<a foo Foo FOO></a>\n"
+}

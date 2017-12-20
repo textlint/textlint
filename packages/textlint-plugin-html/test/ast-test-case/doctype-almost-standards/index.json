@@ -1,0 +1,59 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "UNKNOWN",
+            "name": "!doctype",
+            "value": "!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 63
+                }
+            },
+            "range": [
+                0,
+                63
+            ],
+            "raw": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\">"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 63
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                63,
+                64
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        64
+    ],
+    "raw": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\">\n"
+}

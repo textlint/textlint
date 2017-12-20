@@ -1,0 +1,156 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "tagName": "html",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "\n",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        6,
+                        7
+                    ],
+                    "raw": "\n"
+                },
+                {
+                    "type": "Html",
+                    "tagName": "body",
+                    "properties": {
+                        "id": "a",
+                        "title": "b",
+                        "className": [
+                            "c"
+                        ],
+                        "type": "UNKNOWN"
+                    },
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "\n",
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 33
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 0
+                                }
+                            },
+                            "range": [
+                                40,
+                                41
+                            ],
+                            "raw": "\n"
+                        },
+                        {
+                            "type": "Html",
+                            "tagName": "body",
+                            "properties": {
+                                "className": [
+                                    "d"
+                                ],
+                                "onclick": "e",
+                                "type": "UNKNOWN"
+                            },
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "\n",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 28
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 0
+                                        }
+                                    },
+                                    "range": [
+                                        69,
+                                        70
+                                    ],
+                                    "raw": "\n"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 1
+                                }
+                            },
+                            "range": [
+                                41,
+                                71
+                            ],
+                            "raw": "<body class=\"d\" onclick=\"e\">\n"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 1
+                        }
+                    },
+                    "range": [
+                        7,
+                        71
+                    ],
+                    "raw": "<body id=\"a\" title=\"b\" class=\"c\">\n<body class=\"d\" onclick=\"e\">\n"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 4,
+                    "column": 1
+                }
+            },
+            "range": [
+                0,
+                71
+            ],
+            "raw": "<html>\n<body id=\"a\" title=\"b\" class=\"c\">\n<body class=\"d\" onclick=\"e\">\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        70
+    ],
+    "raw": "<html>\n<body id=\"a\" title=\"b\" class=\"c\">\n<body class=\"d\" onclick=\"e\">\n"
+}

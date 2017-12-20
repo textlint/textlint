@@ -515,7 +515,7 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-babel-cli@^6.10.1, babel-cli@^6.24.1, babel-cli@^6.5.1, babel-cli@^6.6.5:
+babel-cli@^6.10.1, babel-cli@^6.24.1, babel-cli@^6.5.1, babel-cli@^6.6.5, babel-cli@^6.8.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-cli/-/babel-cli-6.26.0.tgz#502ab54874d7db88ad00b887a06383ce03d002f1"
   dependencies:
@@ -1015,7 +1015,7 @@ babel-preset-power-assert@^1.0.0:
     babel-plugin-empower-assert "^1.2.0"
     babel-plugin-espower "^2.1.2"
 
-babel-register@^6.24.1, babel-register@^6.26.0, babel-register@^6.7.2, babel-register@^6.9.0:
+babel-register@^6.24.1, babel-register@^6.26.0, babel-register@^6.7.2, babel-register@^6.8.0, babel-register@^6.9.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-register/-/babel-register-6.26.0.tgz#6ed021173e2fcb486d7acb45c6009a856f647071"
   dependencies:
@@ -1121,7 +1121,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.0.5, bluebird@^3.5.1:
+bluebird@^3.0.1, bluebird@^3.0.5, bluebird@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -1409,6 +1409,12 @@ caniuse-lite@^1.0.30000770:
 capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
+
+carrack@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/carrack/-/carrack-0.0.5.tgz#ab28fbedcd8d2b953d1643353e262272bf0c4bdb"
+  dependencies:
+    bluebird "^3.0.1"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -5143,7 +5149,7 @@ map-cache@^0.2.0:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
 
-map-like@^1.1.2:
+map-like@^1.0.1, map-like@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/map-like/-/map-like-1.1.3.tgz#6faaca5339e0cc6567a3a55dd281fd871a39e5da"
 
@@ -5186,7 +5192,7 @@ markdown-to-ast@^2.0.0:
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
-markdown-to-ast@^3.2.3:
+markdown-to-ast@^3.2.3, markdown-to-ast@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/markdown-to-ast/-/markdown-to-ast-3.4.0.tgz#0e2cba81390b0549a9153ec3b0d915b61c164be7"
   dependencies:
@@ -5420,7 +5426,7 @@ mocha@^2.0.1, mocha@^2.1.0, mocha@^2.4.5:
     supports-color "1.2.0"
     to-iso-string "0.0.2"
 
-mocha@^3.0.2, mocha@^3.3.0, mocha@^3.5.3:
+mocha@^3.0.2, mocha@^3.2.0, mocha@^3.3.0, mocha@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.5.3.tgz#1e0480fe36d2da5858d1eb6acc38418b26eaa20d"
   dependencies:
@@ -6044,7 +6050,7 @@ path-root@^0.1.1:
   dependencies:
     path-root-regex "^0.1.0"
 
-path-to-glob-pattern@^1.0.2:
+path-to-glob-pattern@^1.0.1, path-to-glob-pattern@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-to-glob-pattern/-/path-to-glob-pattern-1.0.2.tgz#473e6a3a292a9d13fbae3edccee72d3baba8c619"
 
@@ -6225,7 +6231,7 @@ power-assert@^0.10.0:
     power-assert-formatter "~0.10.2"
     xtend "~4.0.0"
 
-power-assert@^1.1.0, power-assert@^1.3.1, power-assert@^1.4.1, power-assert@^1.4.2:
+power-assert@^1.1.0, power-assert@^1.3.1, power-assert@^1.4.0, power-assert@^1.4.1, power-assert@^1.4.2:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/power-assert/-/power-assert-1.4.4.tgz#9295ea7437196f5a601fde420f042631186d7517"
   dependencies:
@@ -6428,6 +6434,18 @@ randomfill@^1.0.3:
   dependencies:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
+
+rc-config-loader@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-1.0.2.tgz#c5e903ab36c22204f3cca9d9ddfd7e68fe3758eb"
+  dependencies:
+    debug "^2.2.0"
+    js-yaml "^3.6.1"
+    json5 "^0.5.0"
+    object-assign "^4.1.0"
+    object-keys "^1.0.9"
+    path-exists "^2.1.0"
+    require-uncached "^1.0.3"
 
 rc-config-loader@^2.0.1:
   version "2.0.1"
@@ -7136,7 +7154,7 @@ shelljs@^0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.5.3.tgz#c54982b996c76ef0c1e6b59fbdc5825f5b713113"
 
-shelljs@^0.7.7:
+shelljs@^0.7.6, shelljs@^0.7.7:
   version "0.7.8"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.8.tgz#decbcf874b0d1e5fb72e14b164a9683048e9acb3"
   dependencies:
@@ -7773,14 +7791,6 @@ textlint-filter-rule-comments@^1.2.0, textlint-filter-rule-comments@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/textlint-filter-rule-comments/-/textlint-filter-rule-comments-1.2.2.tgz#3a72c494994e068e0e4aaad0f24ea7cfe338503a"
 
-textlint-plugin-html@^0.1.2:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-html/-/textlint-plugin-html-0.1.7.tgz#acb90a9b8edcc013cf48b491b2a90d60321a23cf"
-  dependencies:
-    hast "0.0.2"
-    structured-source "^3.0.2"
-    traverse "^0.6.6"
-
 textlint-plugin-jtf-style@^0.8.5:
   version "0.8.9"
   resolved "https://registry.yarnpkg.com/textlint-plugin-jtf-style/-/textlint-plugin-jtf-style-0.8.9.tgz#c4195fa835435a0199222633904051a31393cf68"
@@ -7789,6 +7799,18 @@ textlint-plugin-jtf-style@^0.8.5:
     sorted-joyo-kanji "^0.2.0"
     textlint-rule-helper "^1.1.3"
     textlint-rule-prh "^2.0.0"
+
+textlint-plugin-markdown@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-markdown/-/textlint-plugin-markdown-1.1.0.tgz#36490eb2704f4969b4b2f00c624197111e5d1568"
+  dependencies:
+    markdown-to-ast "^3.4.0"
+
+textlint-plugin-text@^1.0.1:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-text/-/textlint-plugin-text-1.1.4.tgz#fe2079167b79b9bec269eb684265081664bb1d1d"
+  dependencies:
+    txt-to-ast "^1.1.0"
 
 textlint-rule-alex@^1.2.0:
   version "1.2.0"
@@ -7999,6 +8021,42 @@ textlint-util-to-string@^2.1.1:
   dependencies:
     object-assign "^4.0.1"
     structured-source "^3.0.2"
+
+textlint@^7.2.2:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/textlint/-/textlint-7.4.0.tgz#854e6f5c98281943e6d7e5f50a8a23b4d42f930c"
+  dependencies:
+    bluebird "^3.0.5"
+    carrack "0.0.5"
+    chalk "^1.1.1"
+    debug "^2.1.0"
+    deep-equal "^1.0.1"
+    diff "^2.2.2"
+    file-entry-cache "^2.0.0"
+    get-stdin "^5.0.1"
+    glob "^7.1.1"
+    interop-require "^1.0.0"
+    is-file "^1.0.0"
+    log-symbols "^1.0.2"
+    map-like "^1.0.1"
+    md5 "^2.2.1"
+    mkdirp "^0.5.0"
+    object-assign "^4.0.1"
+    optionator "^0.8.0"
+    path-to-glob-pattern "^1.0.1"
+    rc-config-loader "^1.0.2"
+    read-pkg "^1.1.0"
+    shelljs "^0.7.6"
+    string-width "^1.0.1"
+    structured-source "^3.0.2"
+    text-table "^0.2.0"
+    textlint-formatter "^1.7.3"
+    textlint-plugin-markdown "^1.1.0"
+    textlint-plugin-text "^1.0.1"
+    traverse "^0.6.6"
+    try-resolve "^1.0.1"
+    txt-ast-traverse "^1.2.0"
+    unique-concat "^0.2.2"
 
 textlintrc-to-pacakge-list@^1.2.0:
   version "1.2.1"

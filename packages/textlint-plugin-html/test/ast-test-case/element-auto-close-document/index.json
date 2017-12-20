@@ -1,0 +1,386 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "tagName": "head",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "\n  ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 2
+                        }
+                    },
+                    "range": [
+                        6,
+                        9
+                    ],
+                    "raw": "\n  "
+                },
+                {
+                    "type": "Html",
+                    "tagName": "title",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Alpha",
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 14
+                                }
+                            },
+                            "range": [
+                                16,
+                                21
+                            ],
+                            "raw": "Alpha"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 22
+                        }
+                    },
+                    "range": [
+                        9,
+                        29
+                    ],
+                    "raw": "<title>Alpha</title>"
+                },
+                {
+                    "type": "Str",
+                    "value": "\n",
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 22
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        29,
+                        30
+                    ],
+                    "raw": "\n"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 6
+                }
+            },
+            "range": [
+                0,
+                36
+            ],
+            "raw": "<head>\n  <title>Alpha</title>\n<body>"
+        },
+        {
+            "type": "Html",
+            "tagName": "body",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "\n",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        35,
+                        37
+                    ],
+                    "raw": ">\n"
+                },
+                {
+                    "type": "Paragraph",
+                    "tagName": "p",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "bravo\n",
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 0
+                                }
+                            },
+                            "range": [
+                                40,
+                                46
+                            ],
+                            "raw": "bravo\n"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        37,
+                        49
+                    ],
+                    "raw": "<p>bravo\n<p>"
+                },
+                {
+                    "type": "Paragraph",
+                    "tagName": "p",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "charlie",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                48,
+                                55
+                            ],
+                            "raw": ">charli"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        48,
+                        59
+                    ],
+                    "raw": ">charlie</p"
+                },
+                {
+                    "type": "Str",
+                    "value": "\n",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 13
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        59,
+                        61
+                    ],
+                    "raw": ">\n"
+                },
+                {
+                    "type": "Html",
+                    "tagName": "ol",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "\n  ",
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 2
+                                }
+                            },
+                            "range": [
+                                65,
+                                68
+                            ],
+                            "raw": "\n  "
+                        },
+                        {
+                            "type": "List",
+                            "tagName": "li",
+                            "properties": {},
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "delta\n  ",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 8,
+                                            "column": 2
+                                        }
+                                    },
+                                    "range": [
+                                        72,
+                                        80
+                                    ],
+                                    "raw": "delta\n  "
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 8,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                68,
+                                84
+                            ],
+                            "raw": "<li>delta\n  <li>"
+                        },
+                        {
+                            "type": "List",
+                            "tagName": "li",
+                            "properties": {},
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "echo\n",
+                                    "loc": {
+                                        "start": {
+                                            "line": 8,
+                                            "column": 5
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 0
+                                        }
+                                    },
+                                    "range": [
+                                        83,
+                                        89
+                                    ],
+                                    "raw": ">echo\n"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 8,
+                                    "column": 5
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 1
+                                }
+                            },
+                            "range": [
+                                83,
+                                90
+                            ],
+                            "raw": ">echo\n"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 1
+                        }
+                    },
+                    "range": [
+                        61,
+                        90
+                    ],
+                    "raw": "<ol>\n  <li>delta\n  <li>echo\n"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 5
+                },
+                "end": {
+                    "line": 9,
+                    "column": 1
+                }
+            },
+            "range": [
+                35,
+                90
+            ],
+            "raw": ">\n<p>bravo\n<p>charlie</p>\n<ol>\n  <li>delta\n  <li>echo\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 9,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        89
+    ],
+    "raw": "<head>\n  <title>Alpha</title>\n<body>\n<p>bravo\n<p>charlie</p>\n<ol>\n  <li>delta\n  <li>echo\n"
+}

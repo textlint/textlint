@@ -1,0 +1,241 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Html",
+            "tagName": "div",
+            "properties": {},
+            "children": [
+                {
+                    "type": "Strong",
+                    "tagName": "strong",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Strong",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                13,
+                                19
+                            ],
+                            "raw": "Strong"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 5
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 28
+                        }
+                    },
+                    "range": [
+                        5,
+                        28
+                    ],
+                    "raw": "<strong>Strong</strong>"
+                },
+                {
+                    "type": "Str",
+                    "value": ", ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 28
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 30
+                        }
+                    },
+                    "range": [
+                        28,
+                        30
+                    ],
+                    "raw": ", "
+                },
+                {
+                    "type": "Emphasis",
+                    "tagName": "em",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "emphasis",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 34
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 42
+                                }
+                            },
+                            "range": [
+                                34,
+                                42
+                            ],
+                            "raw": "emphasis"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 30
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 47
+                        }
+                    },
+                    "range": [
+                        30,
+                        47
+                    ],
+                    "raw": "<em>emphasis</em>"
+                },
+                {
+                    "type": "Str",
+                    "value": ", and ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 47
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 53
+                        }
+                    },
+                    "range": [
+                        47,
+                        53
+                    ],
+                    "raw": ", and "
+                },
+                {
+                    "type": "CodeBlock",
+                    "tagName": "code",
+                    "properties": {},
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "code",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 59
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 63
+                                }
+                            },
+                            "range": [
+                                59,
+                                63
+                            ],
+                            "raw": "code"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 53
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        53,
+                        70
+                    ],
+                    "raw": "<code>code</code>"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 70
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 71
+                        }
+                    },
+                    "range": [
+                        70,
+                        71
+                    ],
+                    "raw": "."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 77
+                }
+            },
+            "range": [
+                0,
+                77
+            ],
+            "raw": "<div><strong>Strong</strong>, <em>emphasis</em>, and <code>code</code>.</div>"
+        },
+        {
+            "type": "Str",
+            "value": "\n",
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 77
+                },
+                "end": {
+                    "line": 2,
+                    "column": 0
+                }
+            },
+            "range": [
+                77,
+                78
+            ],
+            "raw": "\n"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 2,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        78
+    ],
+    "raw": "<div><strong>Strong</strong>, <em>emphasis</em>, and <code>code</code>.</div>\n"
+}
