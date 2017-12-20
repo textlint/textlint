@@ -2,6 +2,9 @@
 "use strict";
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 
+/**
+ * is TxtNode?
+ */
 function isNode(node: any): node is TxtNode {
     if (node == null) {
         return false;
@@ -10,21 +13,14 @@ function isNode(node: any): node is TxtNode {
 }
 
 export class TxtElement {
-    constructor(
-        public node: TxtNode | null,
-        public path: string | null,
-        public wrap: string | null,
-        public ref: string | null
-    ) {}
+    constructor(public node: TxtNode | null) {}
 }
 
-const BREAK = {},
-    SKIP = {},
-    REMOVE = {};
+const BREAK = {};
+const SKIP = {};
 const VisitorOption = {
     Break: BREAK,
-    Skip: SKIP,
-    Remove: REMOVE
+    Skip: SKIP
 };
 
 class Controller {
@@ -32,16 +28,17 @@ class Controller {
     private __leavelist: TxtElement[];
     private __current: null | TxtElement;
 
-    __willStartTraverse() {
+    private __willStartTraverse() {
         this.__current = null;
         this.__worklist = [];
         this.__leavelist = [];
     }
 
-    __execute(callback: ((..._: any[]) => any) | undefined, element: TxtElement) {
-        let result;
-
-        result = undefined;
+    private __execute(
+        callback: ((this: Controller, current: TxtNode, parent: TxtParentNode) => any) | undefined,
+        element: TxtElement
+    ) {
+        let result = undefined;
 
         const previous = this.__current;
         this.__current = element;
@@ -76,7 +73,7 @@ class Controller {
 
     /**
      * Gets current node during traverse.
-     * @returns {TxtNode}
+     * @returns {TxtNode|null}
      * @public
      */
     current(): TxtNode | null {
@@ -98,15 +95,15 @@ class Controller {
         this.__willStartTraverse();
 
         // Stop object
-        const sentinel = new TxtElement(null, null, null, null);
+        const sentinel = new TxtElement(null);
 
         // reference
         const worklist = this.__worklist;
         const leavelist = this.__leavelist;
 
         // initialize
-        worklist.push(new TxtElement(root, null, null, null));
-        leavelist.push(new TxtElement(null, null, null, null));
+        worklist.push(new TxtElement(root));
+        leavelist.push(new TxtElement(null));
 
         while (worklist.length) {
             let element = worklist.pop();
@@ -158,7 +155,7 @@ class Controller {
                                 continue;
                             }
                             if (isNode(candidate[current2])) {
-                                element = new TxtElement(candidate[current2], null, null, null);
+                                element = new TxtElement(candidate[current2]);
                             } else {
                                 continue;
                             }
@@ -167,7 +164,7 @@ class Controller {
                             }
                         }
                     } else if (isNode(candidate)) {
-                        worklist.push(new TxtElement(candidate, key, null, null));
+                        worklist.push(new TxtElement(candidate));
                     }
                 }
             }
