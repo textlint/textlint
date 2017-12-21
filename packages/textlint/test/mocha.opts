@@ -1,3 +1,2 @@
---recursive
 --timeout 5000
 --require test/ts-setup.js

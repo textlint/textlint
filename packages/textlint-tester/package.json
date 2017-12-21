@@ -25,7 +25,7 @@
     "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
-    "test": "mocha"
+    "test": "mocha \"test/**/*.{js,ts}\""
   },
   "keywords": [
     "textlint",
@@ -45,7 +45,7 @@
     "babel-register": "^6.9.0",
     "cross-env": "^4.0.0",
     "match-index": "^1.0.1",
-    "mocha": "^3.3.0",
+    "mocha": "^4.0.1",
     "power-assert": "^1.4.1",
     "textlint": "^10.0.1",
     "textlint-rule-helper": "^2.0.0",

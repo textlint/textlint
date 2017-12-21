@@ -8,7 +8,7 @@
     "clean": "rimraf lib/",
     "prepublish": "npm run build",
     "build": "cross-env NODE_ENV=production tsc -p .",
-    "test": "mocha test"
+    "test": "mocha \"test/**/*.{js,ts}\""
   },
   "files": [
     "lib/textlint-fixer-formatter",

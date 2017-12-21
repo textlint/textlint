@@ -16,7 +16,7 @@
     "bin/"
   ],
   "scripts": {
-    "test": "mocha --no-colors test/**/*.js"
+    "test": "mocha \"test/**/*.{js,ts}\""
   },
   "directories": {
     "test": "test/"
@@ -46,7 +46,7 @@
     "chai": "^3.5.0",
     "espower-loader": "^1.0.0",
     "intelli-espower-loader": "^1.0.0",
-    "mocha": "^2.1.0",
+    "mocha": "^4.0.1",
     "power-assert": "^1.1.0",
     "proxyquire": "^1.7.4",
     "sinon": "^1.17.3"

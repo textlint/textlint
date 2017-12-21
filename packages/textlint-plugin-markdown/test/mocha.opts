@@ -1,1 +1,1 @@
---compilers js:babel-register
+--require babel-register
