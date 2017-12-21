@@ -16,7 +16,7 @@
     "bin/"
   ],
   "scripts": {
-    "test": "mocha --no-colors \"test/**/*.{js,ts}\""
+    "test": "mocha \"test/**/*.{js,ts}\""
   },
   "directories": {
     "test": "test/"
