@@ -43,7 +43,7 @@
     "browserify": "^14.3.0",
     "cross-env": "^4.0.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^3.3.0",
+    "mocha": "^4.0.1",
     "power-assert": "^1.4.2",
     "textlint-ast-test": "^2.0.0",
     "txt-ast-traverse": "^2.0.0"
