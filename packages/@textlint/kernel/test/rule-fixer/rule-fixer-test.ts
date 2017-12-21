@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TxtNode } from "../../src/textlint-kernel-interface";
+import { TxtNode } from "@textlint/ast-node-types";
 
 const assert = require("assert");
 import RuleFixer from "../../src/fixer/rule-fixer";
