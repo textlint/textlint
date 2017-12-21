@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "example:build": "browserify example/js/index.js -o example/app/app.js",
-    "test": "mocha test/",
+    "test": "mocha \"test/**/*.{js,ts}\"",
     "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build"

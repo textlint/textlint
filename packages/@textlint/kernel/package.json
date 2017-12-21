@@ -15,7 +15,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "mocha test",
+    "test": "mocha \"test/**/*.{js,ts}\"",
     "clean": "rimraf out/ lib/ es_modules/",
     "build": "npm-run-all build:src",
     "build:src": "cross-env NODE_ENV=production tsc -p .",

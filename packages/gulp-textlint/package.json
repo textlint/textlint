@@ -16,7 +16,7 @@
     "url": "https://github.com/textlint/textlint/issues"
   },
   "scripts": {
-    "test": "mocha test/"
+    "test": "mocha \"test/**/*.{js,ts}\""
   },
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
   "dependencies": {

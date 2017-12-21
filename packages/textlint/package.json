@@ -33,7 +33,7 @@
     "watch": "tsc -p . --watch",
     "prepublish": "npm run build",
     "test": "npm-run-all test:unit",
-    "test:unit": "mocha test"
+    "test:unit": "mocha \"test/**/*.{js,ts}\""
   },
   "directories": {
     "test": "test/"

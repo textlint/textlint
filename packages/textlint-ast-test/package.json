@@ -24,7 +24,7 @@
     "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
-    "test": "mocha"
+    "test": "mocha \"test/**/*.{js,ts}\""
   },
   "keywords": [
     "textlint",
