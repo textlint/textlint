@@ -32,15 +32,15 @@ describe("cli-test", function() {
         });
     });
     context("when fail linting", function() {
-        it("should return no error when use no-todo rules is specified", function() {
+        it("should return an error when use no-todo rules is specified", function() {
             cli.execute("", "text").then(result => {
-                assert.equal(result, 0);
+                assert.equal(result, 1);
             });
         });
-        it("should return 0(no error)", function() {
+        it("should return 1 (error)", function() {
             var targetFile = path.join(__dirname, "fixtures/test.md");
             return cli.execute(`${targetFile}`).then(result => {
-                assert.equal(result, 0);
+                assert.equal(result, 1);
             });
         });
     });
@@ -178,7 +178,7 @@ describe("cli-test", function() {
         });
     });
     context("When run with --fix", function() {
-        context("when not set rules", function() {
+        context("when not rules found", function() {
             it("show suggestion message from FAQ", function() {
                 let isCalled = false;
                 Logger.log = function mockLog(message) {
@@ -187,7 +187,7 @@ describe("cli-test", function() {
                 };
                 const targetFile = path.join(__dirname, "fixtures/test.md");
                 return cli.execute(`${targetFile} --fix`).then(result => {
-                    assert.equal(result, 0);
+                    assert.equal(result, 1);
                     assert(isCalled);
                 });
             });
@@ -216,14 +216,14 @@ describe("cli-test", function() {
             });
         });
     });
-    context("When not set rules", function() {
+    context("When no rules found", function() {
         it("show suggestion message from FAQ", function() {
             Logger.log = function mockLog(message) {
                 assert(message.length > 0);
             };
             var targetFile = path.join(__dirname, "fixtures/test.md");
             return cli.execute(`${targetFile}`).then(result => {
-                assert.equal(result, 0);
+                assert.equal(result, 1);
             });
         });
     });

@@ -100,9 +100,15 @@ export const cli = {
         const config = Config.initWithCLIOptions(cliOptions);
         const showEmptyRuleWarning = () => {
             Logger.log(`
-== Not have rules, textlint do not anything ==
-=> How to set rule?
-See https://github.com/textlint/textlint/blob/master/docs/configuring.md
+== No rules found, textlint hasn’t done anything ==
+
+Possible reasons:
+* Your textlint config file has no rules.
+* You have no config file and you aren’t passing rules via command line.
+* Your textlint config has a syntax error.
+
+=> How to set up rules?
+https://github.com/textlint/textlint/blob/master/docs/configuring.md
 `);
         };
         if (cliOptions.fix) {
@@ -110,7 +116,7 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
             const fixEngine = new TextFixEngine(config);
             if (!fixEngine.hasRuleAtLeastOne()) {
                 showEmptyRuleWarning();
-                return Promise.resolve(0);
+                return Promise.resolve(1);
             }
             const resultsPromise = text
                 ? fixEngine.executeOnText(text, stdinFilename)
@@ -134,7 +140,7 @@ See https://github.com/textlint/textlint/blob/master/docs/configuring.md
         const lintEngine = new TextLintEngine(config);
         if (!lintEngine.hasRuleAtLeastOne()) {
             showEmptyRuleWarning();
-            return Promise.resolve(0);
+            return Promise.resolve(1);
         }
         const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
         return resultsPromise.then(results => {
