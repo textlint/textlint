@@ -36,6 +36,7 @@
   "devDependencies": {
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.0.57",
+    "@types/power-assert": "^1.4.29",
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "rimraf": "^2.6.2",
