@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import * as controller from "../lib/txt-ast-traverse.js";
+import { Controller } from "../src";
 import { TxtParentNode } from "@textlint/ast-node-types";
 
 export class Dumper {
@@ -32,6 +32,7 @@ export class Dumper {
  */
 function dump(root: TxtParentNode) {
     const dumper = new Dumper();
+    const controller = new Controller();
     controller.traverse(root, {
         enter(node, parent) {
             dumper.addLog(["enter", node.type, parent ? parent.type : null]);
