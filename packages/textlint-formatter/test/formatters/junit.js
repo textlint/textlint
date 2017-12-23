@@ -6,13 +6,13 @@
 /* jshint node:true */
 
 "use strict";
+import formatter from "../../src/formatters/junit";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert"),
-    formatter = require("../../lib/formatters/junit");
+var assert = require("power-assert");
 
 //------------------------------------------------------------------------------
 // Tests

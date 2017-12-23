@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
+import { createFormatter } from "../src/textlint-formatter";
+
 var path = require("path");
 var assert = require("power-assert");
-var createFormatter = require("../");
 
 describe("textlint-formatter-test", function() {
     describe("createFormatter", function() {
@@ -79,8 +80,7 @@ describe("textlint-formatter-test", function() {
                             }
                         ]
                     },
-
-                    {
+                   {
                         filePath: ckjFile,
                         messages: [
                             {

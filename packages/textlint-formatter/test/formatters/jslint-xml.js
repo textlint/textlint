@@ -4,13 +4,13 @@
  */
 
 "use strict";
+import formatter from "../../src/formatters/jslint-xml";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert"),
-    formatter = require("../../lib/formatters/jslint-xml");
+var assert = require("power-assert");
 
 //------------------------------------------------------------------------------
 // Tests

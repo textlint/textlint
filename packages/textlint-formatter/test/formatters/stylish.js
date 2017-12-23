@@ -33,7 +33,7 @@ var chalkStub = Object.create(chalk, {
 chalkStub.yellow.bold = chalk.yellow.bold;
 chalkStub.red.bold = chalk.red.bold;
 
-var formatter = proxyquire("../../lib/formatters/stylish", { chalk: chalkStub });
+var formatter = proxyquire("../../src/formatters/stylish", { chalk: chalkStub }).default;
 
 //------------------------------------------------------------------------------
 // Tests

@@ -4,13 +4,13 @@
  * @copyright 2016 Gajus Kuizinas <gajus@gajus.com>. All rights reserved.
  */
 "use strict";
+import formatter from "../../src/formatters/table";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
 var assert = require("power-assert");
-var formatter = require("../../lib/formatters/table");
 
 //------------------------------------------------------------------------------
 // Tests
