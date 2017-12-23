@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 "use strict";
-const { ASTNodeTypes } = require("../lib/TextLintASTNodeTypes");
+const { ASTNodeTypes } = require("../src");
 const assert = require("assert");
 describe("TextLintASTNodeTypes", () => {
     it("should have same value with key", () => {

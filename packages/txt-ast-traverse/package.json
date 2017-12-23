@@ -11,8 +11,8 @@
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "main": "lib/txt-ast-traverse.js",
-  "types": "lib/txt-ast-traverse.d.ts",
+  "main": "./lib/txt-ast-traverse/src/index.js",
+  "types": "./lib/txt-ast-traverse/src/index.d.ts",
   "files": [
     "lib"
   ],
