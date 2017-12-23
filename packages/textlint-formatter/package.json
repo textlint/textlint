@@ -16,6 +16,9 @@
     "bin/"
   ],
   "scripts": {
+    "clean": "rimraf lib/",
+    "prepublish": "npm run build",
+    "build": "cross-env NODE_ENV=production tsc -p .",
     "test": "mocha \"test/**/*.{js,ts}\""
   },
   "directories": {
@@ -43,6 +46,12 @@
     "xml-escape": "^1.0.0"
   },
   "devDependencies": {
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.57",
+    "cross-env": "^5.1.1",
+    "rimraf": "^2.6.2",
+    "ts-node": "^4.0.1",
+    "typescript": "^2.6.2",
     "chai": "^3.5.0",
     "espower-loader": "^1.0.0",
     "intelli-espower-loader": "^1.0.0",
