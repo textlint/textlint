@@ -25,7 +25,9 @@ module.exports = function(results) {
         messages.forEach(function(message) {
             output += "<issue line=\"" + message.line + "\" " +
                 "char=\"" + message.column + "\" " +
-                "evidence=\"" + lodash.escape(message.source || "") + "\" " +
+                // TODO: evidence is always empty string
+                // See: https://github.com/textlint/textlint/issues/400
+                "evidence=\"\" " +
                 "reason=\"" + lodash.escape(message.message || "") +
                 (message.ruleId ? " (" + message.ruleId + ")" : "") + "\" />";
         });
