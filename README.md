@@ -512,7 +512,6 @@ These modules are internal usage in the monorepo.
 
 | Package | Version | Description |
 |---------|---------|-------------|
-| [`@textlint/monorepo-scripts`](/packages/textlint-monorepo-scripts) | [![npm](https://img.shields.io/npm/v/@textlint/monorepo-scripts.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/monorepo-scripts) | textlint monorepo build scripts |
 | [`@textlint/feature-flag`](/packages/@textlint/feature-flag) | [![npm](https://img.shields.io/npm/v/@textlint/feature-flag.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/feature-flag) | feature flag manager |
 
 
