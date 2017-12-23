@@ -54,8 +54,6 @@
     "ts-node": "^4.0.1",
     "typescript": "^2.6.2",
     "chai": "^3.5.0",
-    "espower-loader": "^1.0.0",
-    "intelli-espower-loader": "^1.0.0",
     "mocha": "^4.0.1",
     "power-assert": "^1.1.0",
     "proxyquire": "^1.7.4",
