@@ -9,7 +9,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert");
+import * as assert from "assert"
 var chalk = require("chalk");
 var proxyquire = require("proxyquire");
 var sinon = require("sinon");

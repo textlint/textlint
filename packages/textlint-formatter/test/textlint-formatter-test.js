@@ -3,7 +3,7 @@
 import { createFormatter } from "../src/textlint-formatter";
 
 var path = require("path");
-var assert = require("power-assert");
+import * as assert from "assert"
 
 describe("textlint-formatter-test", function() {
     describe("createFormatter", function() {

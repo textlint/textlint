@@ -12,7 +12,7 @@ import formatter from "../../src/formatters/junit";
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert");
+import * as assert from "assert"
 
 //------------------------------------------------------------------------------
 // Tests

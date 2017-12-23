@@ -11,7 +11,7 @@ import formatter from "../../src/formatters/unix";
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert");
+import * as assert from "assert"
 
 //------------------------------------------------------------------------------
 // Tests

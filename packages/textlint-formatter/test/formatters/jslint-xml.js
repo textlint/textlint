@@ -10,7 +10,7 @@ import formatter from "../../src/formatters/jslint-xml";
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert");
+import * as assert from "assert"
 
 //------------------------------------------------------------------------------
 // Tests
