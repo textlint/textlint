@@ -65,6 +65,16 @@ $ textlint -f json README.md --rule no-todo | textlint-formatter -f pretty-error
 - [azu/textlint-formatter-codecov: textlint formatter for codecov json.](https://github.com/azu/textlint-formatter-codecov)
 - [azu/textlint-formatter-lcov: textlint formatter for lcov format](https://github.com/azu/textlint-formatter-lcov)
 
+
+## Running tests
+
+Install devDependencies and Run `npm test`:
+
+    npm test
+
+:memo: Note: Disable chalk coloring by `--no-color` option in testing.
+For more details, see <https://github.com/textlint/textlint/issues/402#issuecomment-352808734>
+
 ## Contributing
 
 1. Fork it!
