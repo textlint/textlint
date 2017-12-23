@@ -2,9 +2,11 @@
  * @fileoverview TAP reporter
  * @author Jonathan Kingston
  */
-"use strict";
 
-var yaml = require("js-yaml");
+"use strict";
+import { TextlintResult } from "@textlint/kernel";
+
+const yaml = require("js-yaml");
 
 //------------------------------------------------------------------------------
 // Helper Functions
@@ -15,7 +17,7 @@ var yaml = require("js-yaml");
  * @param {object} message Individual error message provided by eslint
  * @returns {String} Error level string
  */
-function getMessageType(message) {
+function getMessageType(message: any): string {
     if (message.fatal || message.severity === 2) {
         return "error";
     } else {
@@ -28,10 +30,15 @@ function getMessageType(message) {
  * @param {object} diagnostic JavaScript object to be embedded as YAML into output.
  * @returns {string} diagnostics string with YAML embedded - TAP version 13 compliant
  */
-function outputDiagnostics(diagnostic) {
-    var prefix = "  ";
-    var output = prefix + "---\n";
-    output += prefix + yaml.safeDump(diagnostic).split("\n").join("\n" + prefix);
+function outputDiagnostics(diagnostic: any): string {
+    const prefix = "  ";
+    let output = prefix + "---\n";
+    output +=
+        prefix +
+        yaml
+            .safeDump(diagnostic)
+            .split("\n")
+            .join("\n" + prefix);
     output += "...\n";
     return output;
 }
@@ -40,19 +47,19 @@ function outputDiagnostics(diagnostic) {
 // Public Interface
 //------------------------------------------------------------------------------
 
-module.exports = function(results) {
-    var output = "TAP version 13\n1.." + results.length + "\n";
+function formatter(results: TextlintResult[]) {
+    let output = "TAP version 13\n1.." + results.length + "\n";
 
     results.forEach(function(result, id) {
-        var messages = result.messages;
-        var testResult = "ok";
-        var diagnostics = {};
+        const messages = result.messages;
+        let testResult = "ok";
+        let diagnostics: any = {};
 
         if (messages.length > 0) {
             testResult = "not ok";
 
             messages.forEach(function(message) {
-                var diagnostic = {
+                const diagnostic = {
                     message: message.message,
                     severity: getMessageType(message),
                     data: {
@@ -82,8 +89,9 @@ module.exports = function(results) {
         if (messages.length > 0) {
             output += outputDiagnostics(diagnostics);
         }
-
     });
 
     return output;
-};
+}
+
+export default formatter;

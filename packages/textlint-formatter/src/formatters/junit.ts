@@ -3,20 +3,15 @@
  * @author Jamund Ferguson
  */
 "use strict";
+import { TextlintResult } from "@textlint/kernel";
 
-var lodash = require("lodash");
+const lodash = require("lodash");
 
 //------------------------------------------------------------------------------
 // Helper Functions
 //------------------------------------------------------------------------------
 
-/**
- * Returns the severity of warning or error
- * @param {object} message message object to examine
- * @returns {string} severity level
- * @private
- */
-function getMessageType(message) {
+function getMessageType(message: any): string {
     if (message.fatal || message.severity === 2) {
         return "Error";
     } else {
@@ -28,30 +23,35 @@ function getMessageType(message) {
 // Public Interface
 //------------------------------------------------------------------------------
 
-module.exports = function(results) {
+function formatter(results: TextlintResult[]) {
+    let output = "";
 
-    var output = "";
-
-    output += "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
+    output += '<?xml version="1.0" encoding="utf-8"?>\n';
     output += "<testsuites>\n";
 
     results.forEach(function(result) {
-
-        var messages = result.messages;
+        const messages = result.messages;
 
         if (messages.length) {
-            output += "<testsuite package=\"org.eslint\" time=\"0\" tests=\"" + messages.length + "\" errors=\"" + messages.length + "\" name=\"" + result.filePath + "\">\n";
+            output +=
+                '<testsuite package="org.eslint" time="0" tests="' +
+                messages.length +
+                '" errors="' +
+                messages.length +
+                '" name="' +
+                result.filePath +
+                '">\n';
         }
 
         messages.forEach(function(message) {
-            var type = message.fatal ? "error" : "failure";
-            output += "<testcase time=\"0\" name=\"org.eslint." + (message.ruleId || "unknown") + "\">";
-            output += "<" + type + " message=\"" + lodash.escape(message.message || "") + "\">";
+            const type = (message as any).fatal ? "error" : "failure";
+            output += '<testcase time="0" name="org.eslint.' + (message.ruleId || "unknown") + '">';
+            output += "<" + type + ' message="' + lodash.escape(message.message || "") + '">';
             output += "<![CDATA[";
             output += "line " + (message.line || 0) + ", col ";
             output += (message.column || 0) + ", " + getMessageType(message);
             output += " - " + lodash.escape(message.message || "");
-            output += (message.ruleId ? " (" + message.ruleId + ")" : "");
+            output += message.ruleId ? " (" + message.ruleId + ")" : "";
             output += "]]>";
             output += "</" + type + ">";
             output += "</testcase>\n";
@@ -60,10 +60,11 @@ module.exports = function(results) {
         if (messages.length) {
             output += "</testsuite>\n";
         }
-
     });
 
     output += "</testsuites>\n";
 
     return output;
-};
+}
+
+export default formatter;
