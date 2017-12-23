@@ -3,8 +3,12 @@
 // Original code is https://github.com/azer/prettify-error
 // Author : azer
 "use strict";
-import { TextlintMessage, TextlintResult } from "@textlint/kernel";
-import { TextLintFormatterOption } from "../../../textlint/src/textlint-interface";
+import {TextlintMessage, TextlintResult} from "@textlint/kernel";
+
+export interface TextLintFormatterOption {
+    formatterName: string;
+    color?: boolean;
+}
 
 const format = require("@azu/format-text");
 const chalk = require("chalk");
@@ -19,13 +23,13 @@ let summaryColor = "yellow";
 let greenColor = "green";
 const template = style(
     "{grey}{ruleId}: {red}{title}{reset}\n" +
-        "{grey}{filename}{reset}\n" +
-        "    {red}{paddingForLineNo}  {v}{reset}\n" +
-        "    {grey}{previousLineNo}. {previousLine}{reset}\n" +
-        "    {reset}{failingLineNo}. {failingLine}{reset}\n" +
-        "    {grey}{nextLineNo}. {nextLine}{reset}\n" +
-        "    {red}{paddingForLineNo}  {^}{reset}\n" +
-        ""
+    "{grey}{filename}{reset}\n" +
+    "    {red}{paddingForLineNo}  {v}{reset}\n" +
+    "    {grey}{previousLineNo}. {previousLine}{reset}\n" +
+    "    {reset}{failingLineNo}. {failingLine}{reset}\n" +
+    "    {grey}{nextLineNo}. {nextLine}{reset}\n" +
+    "    {red}{paddingForLineNo}  {^}{reset}\n" +
+    ""
 );
 
 /**
@@ -124,14 +128,14 @@ function formatter(results: TextlintResult[], options: TextLintFormatterOption) 
     let errors = 0;
     let warnings = 0;
     let totalFixable = 0;
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         const code = require("fs").readFileSync(result.filePath, "utf-8");
         const messages = result.messages;
         if (messages.length === 0) {
             return;
         }
         total += messages.length;
-        messages.forEach(function(message) {
+        messages.forEach(function (message) {
             // fixable
             const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
             if (message.fix) {
@@ -180,4 +184,4 @@ function formatter(results: TextlintResult[], options: TextLintFormatterOption) 
 }
 
 export default formatter;
-export { prettyError };
+export {prettyError};
