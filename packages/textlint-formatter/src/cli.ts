@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const fs = require("fs");
+import * as fs from "fs";
 import { createFormatter } from "./textlint-formatter";
 
 module.exports = function run(argv: string[], text: string) {
