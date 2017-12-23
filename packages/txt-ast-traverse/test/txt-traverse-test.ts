@@ -1,13 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import { Controller, traverse, VisitorOption } from "../lib/txt-ast-traverse.js";
 
-import { ASTNodeTypes } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import { Controller, traverse, VisitorOption } from "../src/";
 
 const { parse } = require("markdown-to-ast");
 const Syntax = require("markdown-to-ast").Syntax as typeof ASTNodeTypes;
 import { dump } from "./traverse-dump";
-import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 
 const assert = require("assert");
 const enter = "enter";

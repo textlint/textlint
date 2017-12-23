@@ -12,8 +12,8 @@
   "name": "@textlint/kernel",
   "version": "2.0.1",
   "description": "textlint kernel is core logic by pure JavaScript.",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "lib/kernel/src/index.js",
+  "typings": "lib/kernel/src/index.d.ts",
   "scripts": {
     "test": "mocha \"test/**/*.{js,ts}\"",
     "clean": "rimraf out/ lib/ es_modules/",
