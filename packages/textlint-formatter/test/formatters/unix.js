@@ -11,7 +11,7 @@ import formatter from "../../src/formatters/unix";
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert"
+import * as assert from "assert";
 
 //------------------------------------------------------------------------------
 // Tests

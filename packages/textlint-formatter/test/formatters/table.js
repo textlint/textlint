@@ -10,7 +10,7 @@ import formatter from "../../src/formatters/table";
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert"
+import * as assert from "assert";
 
 //------------------------------------------------------------------------------
 // Tests

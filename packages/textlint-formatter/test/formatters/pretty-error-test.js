@@ -2,7 +2,7 @@
 "use strict";
 import prettyError from "../../src/formatters/pretty-error";
 
-import * as assert from "assert"
+import * as assert from "assert";
 var path = require("path");
 var stripAnsi = require("strip-ansi");
 describe("pretty-error", function() {

@@ -3,7 +3,7 @@
 import { createFormatter } from "../src/textlint-formatter";
 
 var path = require("path");
-import * as assert from "assert"
+import * as assert from "assert";
 
 describe("textlint-formatter-test", function() {
     describe("createFormatter", function() {
@@ -80,7 +80,7 @@ describe("textlint-formatter-test", function() {
                             }
                         ]
                     },
-                   {
+                    {
                         filePath: ckjFile,
                         messages: [
                             {

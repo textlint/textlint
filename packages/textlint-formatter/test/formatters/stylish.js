@@ -9,7 +9,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-import * as assert from "assert"
+import * as assert from "assert";
 var chalk = require("chalk");
 var proxyquire = require("proxyquire");
 var sinon = require("sinon");
