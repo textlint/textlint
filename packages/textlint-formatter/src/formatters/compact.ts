@@ -1,20 +1,16 @@
 /**
- * @fileoverview unix-style formatter.
- * @author oshi-shinobu
- * @copyright 2015 oshi-shinobu. All rights reserved.
+ * @fileoverview Compact reporter
+ * @author Nicholas C. Zakas
  */
+
 "use strict";
+import { TextlintResult } from "@textlint/kernel";
 
 //------------------------------------------------------------------------------
 // Helper Functions
 //------------------------------------------------------------------------------
 
-/**
- * Returns a canonical error level string based upon the error message passed in.
- * @param {object} message Individual error message provided by eslint
- * @returns {String} Error level string
- */
-function getMessageType(message) {
+function getMessageType(message: any): string {
     if (message.fatal || message.severity === 2) {
         return "Error";
     } else {
@@ -22,33 +18,27 @@ function getMessageType(message) {
     }
 }
 
-
 //------------------------------------------------------------------------------
 // Public Interface
 //------------------------------------------------------------------------------
 
-module.exports = function(results) {
-
-    var output = "",
+function formatter(results: TextlintResult[]) {
+    let output = "",
         total = 0;
 
     results.forEach(function(result) {
-
-        var messages = result.messages;
+        const messages = result.messages;
         total += messages.length;
 
         messages.forEach(function(message) {
-
-            output += result.filePath + ":";
-            output += (message.line || 0) + ":";
-            output += (message.column || 0) + ":";
-            output += " " + message.message + " ";
-            output += "[" + getMessageType(message) +
-                      (message.ruleId ? "/" + message.ruleId : "") + "]";
+            output += result.filePath + ": ";
+            output += "line " + (message.line || 0);
+            output += ", col " + (message.column || 0);
+            output += ", " + getMessageType(message);
+            output += " - " + message.message;
+            output += message.ruleId ? " (" + message.ruleId + ")" : "";
             output += "\n";
-
         });
-
     });
 
     if (total > 0) {
@@ -56,4 +46,6 @@ module.exports = function(results) {
     }
 
     return output;
-};
+}
+
+export default formatter;

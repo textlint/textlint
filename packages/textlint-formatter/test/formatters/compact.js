@@ -4,13 +4,13 @@
  */
 
 "use strict";
+import formatter from "../../src/formatters/compact";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert"),
-    formatter = require("../../lib/formatters/compact");
+import * as assert from "assert";
 
 //------------------------------------------------------------------------------
 // Tests

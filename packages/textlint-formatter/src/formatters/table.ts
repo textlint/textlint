@@ -3,19 +3,17 @@
  * @author Gajus Kuizinas <gajus@gajus.com>
  * @copyright 2016 Gajus Kuizinas <gajus@gajus.com>. All rights reserved.
  */
+
 "use strict";
+import { TextlintMessage } from "@textlint/kernel";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var chalk,
-    table,
-    pluralize;
-
-chalk = require("chalk");
-table = require("table").default;
-pluralize = require("pluralize");
+const chalk = require("chalk");
+const table = require("table").default;
+const pluralize = require("pluralize");
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -26,10 +24,8 @@ pluralize = require("pluralize");
  * @param {Array<Object>} messages Error messages relating to a specific file.
  * @returns {string} A text table.
  */
-function drawTable(messages) {
-    var rows;
-
-    rows = [];
+function drawTable(messages: any): string {
+    let rows: any = [];
 
     if (messages.length === 0) {
         return "";
@@ -43,22 +39,16 @@ function drawTable(messages) {
         chalk.bold("Rule ID")
     ]);
 
-    messages.forEach(function(message) {
-        var messageType;
+    messages.forEach(function(message: TextlintMessage) {
+        let messageType;
 
-        if (message.fatal || message.severity === 2) {
+        if ((message as any).fatal || message.severity === 2) {
             messageType = chalk.red("error");
         } else {
             messageType = chalk.yellow("warning");
         }
 
-        rows.push([
-            message.line || 0,
-            message.column || 0,
-            messageType,
-            message.message,
-            message.ruleId || ""
-        ]);
+        rows.push([message.line || 0, message.column || 0, messageType, message.message, message.ruleId || ""]);
     });
 
     return table(rows, {
@@ -85,7 +75,7 @@ function drawTable(messages) {
                 wrapWord: true
             }
         },
-        drawHorizontalLine: function(index) {
+        drawHorizontalLine: function(index: number) {
             return index === 1;
         }
     });
@@ -96,10 +86,10 @@ function drawTable(messages) {
  * @param {Array} results Report results for every file.
  * @returns {string} A column of text tables.
  */
-function drawReport(results) {
-    var files;
+function drawReport(results: any): string {
+    let files;
 
-    files = results.map(function(result) {
+    files = results.map(function(result: any) {
         if (!result.messages.length) {
             return "";
         }
@@ -107,7 +97,7 @@ function drawReport(results) {
         return "\n" + result.filePath + "\n\n" + drawTable(result.messages);
     });
 
-    files = files.filter(function(content) {
+    files = files.filter(function(content: string) {
         return content.trim();
     });
 
@@ -118,16 +108,12 @@ function drawReport(results) {
 // Public Interface
 //------------------------------------------------------------------------------
 
-module.exports = function(report) {
-    var result,
-        errorCount,
-        warningCount;
+function formatter(report: any) {
+    let result = "";
+    let errorCount = 0;
+    let warningCount = 0;
 
-    result = "";
-    errorCount = 0;
-    warningCount = 0;
-
-    report.forEach(function(fileReport) {
+    report.forEach(function(fileReport: any) {
         errorCount += fileReport.errorCount;
         warningCount += fileReport.warningCount;
     });
@@ -136,24 +122,27 @@ module.exports = function(report) {
         result = drawReport(report);
     }
 
-    result += "\n" + table([
-        [
-            chalk.red(pluralize("Error", errorCount, true))
-        ],
-        [
-            chalk.yellow(pluralize("Warning", warningCount, true))
-        ]
-    ], {
-        columns: {
-            0: {
-                width: 110,
-                wrapWord: true
+    result +=
+        "\n" +
+        table(
+            [
+                [chalk.red(pluralize("Error", errorCount, true))],
+                [chalk.yellow(pluralize("Warning", warningCount, true))]
+            ],
+            {
+                columns: {
+                    0: {
+                        width: 110,
+                        wrapWord: true
+                    }
+                },
+                drawHorizontalLine: function() {
+                    return true;
+                }
             }
-        },
-        drawHorizontalLine: function() {
-            return true;
-        }
-    });
+        );
 
     return result;
-};
+}
+
+export default formatter;

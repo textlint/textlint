@@ -1,1 +1,2 @@
---require intelli-espower-loader
+--require test/ts-setup.js
+--no-colors

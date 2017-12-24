@@ -5,13 +5,13 @@
  */
 
 "use strict";
+import formatter from "../../src/formatters/unix";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert"),
-    formatter = require("../../lib/formatters/unix");
+import * as assert from "assert";
 
 //------------------------------------------------------------------------------
 // Tests

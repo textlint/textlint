@@ -2,7 +2,9 @@
  * @fileoverview CheckStyle XML reporter
  * @author Ian Christian Myers
  */
+
 "use strict";
+import { TextlintResult } from "@textlint/kernel";
 
 //------------------------------------------------------------------------------
 // Helper Functions
@@ -14,7 +16,7 @@
  * @returns {string} severity level
  * @private
  */
-function getMessageType(message) {
+function getMessageType(message: any): string {
     if (message.fatal || message.severity === 2) {
         return "error";
     } else {
@@ -28,7 +30,7 @@ function getMessageType(message) {
  * @returns {string} severity level
  * @private
  */
-function xmlEscape(s) {
+function xmlEscape(s: any): string {
     return ("" + s).replace(/[<>&"']/g, function(c) {
         switch (c) {
             case "<":
@@ -37,7 +39,7 @@ function xmlEscape(s) {
                 return "&gt;";
             case "&":
                 return "&amp;";
-            case "\"":
+            case '"':
                 return "&quot;";
             case "'":
                 return "&apos;";
@@ -51,32 +53,43 @@ function xmlEscape(s) {
 // Public Interface
 //------------------------------------------------------------------------------
 
-module.exports = function(results) {
+function formatter(results: TextlintResult[]) {
+    let output = "";
 
-    var output = "";
-
-    output += "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
-    output += "<checkstyle version=\"4.3\">";
+    output += '<?xml version="1.0" encoding="utf-8"?>';
+    output += '<checkstyle version="4.3">';
 
     results.forEach(function(result) {
-        var messages = result.messages;
+        const messages = result.messages;
 
-        output += "<file name=\"" + xmlEscape(result.filePath) + "\">";
+        output += '<file name="' + xmlEscape(result.filePath) + '">';
 
         messages.forEach(function(message) {
-            output += "<error line=\"" + xmlEscape(message.line) + "\" " +
-                "column=\"" + xmlEscape(message.column) + "\" " +
-                "severity=\"" + xmlEscape(getMessageType(message)) + "\" " +
-                "message=\"" + xmlEscape(message.message) +
-                (message.ruleId ? " (" + message.ruleId + ")" : "") + "\" " +
-                "source=\"" + (message.ruleId ? xmlEscape("eslint.rules." + message.ruleId) : "") + "\" />";
+            output +=
+                '<error line="' +
+                xmlEscape(message.line) +
+                '" ' +
+                'column="' +
+                xmlEscape(message.column) +
+                '" ' +
+                'severity="' +
+                xmlEscape(getMessageType(message)) +
+                '" ' +
+                'message="' +
+                xmlEscape(message.message) +
+                (message.ruleId ? " (" + message.ruleId + ")" : "") +
+                '" ' +
+                'source="' +
+                (message.ruleId ? xmlEscape("eslint.rules." + message.ruleId) : "") +
+                '" />';
         });
 
         output += "</file>";
-
     });
 
     output += "</checkstyle>";
 
     return output;
-};
+}
+
+export default formatter;

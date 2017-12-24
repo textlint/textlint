@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var concat = require("concat-stream");
 var fs = require("fs");
-var run = require("../lib/cli");
+var run = require("../lib/textlint-formatter/src/cli");
 var useStdIn = process.argv.indexOf("--stdin") > -1;
 if (useStdIn) {
     process.stdin.pipe(

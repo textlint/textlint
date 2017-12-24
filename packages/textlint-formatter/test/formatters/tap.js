@@ -4,13 +4,13 @@
  */
 
 "use strict";
+import formatter from "../../src/formatters/tap";
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var assert = require("power-assert"),
-    formatter = require("../../lib/formatters/tap");
+import * as assert from "assert";
 
 //------------------------------------------------------------------------------
 // Tests

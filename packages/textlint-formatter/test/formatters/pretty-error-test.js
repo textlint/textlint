@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("power-assert");
+import prettyError from "../../src/formatters/pretty-error";
+
+import * as assert from "assert";
 var path = require("path");
-var prettyError = require("../../lib/formatters/pretty-error");
 var stripAnsi = require("strip-ansi");
 describe("pretty-error", function() {
     context("when first line", function() {

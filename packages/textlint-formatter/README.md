@@ -15,13 +15,13 @@ See [formatters/](lib/formatters).
 Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error".
 
 ```js
-var createFormatter = require("textlint-formatter")
-var formatter = createFormatter({
+const createFormatter = require("textlint-formatter").createFormatter;
+const formatter = createFormatter({
     formatterName: "stylish"
 });
-var output = formatter([
+const output = formatter([
     {
-        filePath: "./myfile.js",
+        filePath: "./README.md",
         messages: [
             {
                 ruleId: "semi",
@@ -34,10 +34,10 @@ var output = formatter([
 ]);
 console.log(output);
 /*
-./myfile.js
+./README.md
   1:23  warning  Expected a semicolon  semi
 
-✖ 1 problem
+✖ 1 problem (0 errors, 1 warning)
 */
 ```
 
