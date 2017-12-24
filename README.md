@@ -106,6 +106,8 @@ Using stdin:
 Output:
   -o, --output-file path::String  Enable report to be written to a file.
   -f, --format String        Use a specific output format.
+                             Available formatter          : checkstyle, compact, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
+                             Available formatter for fixer: compats, diff, json, stylish
   --no-color                 Disable color in piped output.
   --quiet                    Report errors only. - default: false
 
@@ -121,6 +123,7 @@ Caching:
 
 Experimental:
   --experimental             Enable experimental flag.Some feature use on experimental.
+  --rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
 ```
 
 Allow to use glob as a target.
