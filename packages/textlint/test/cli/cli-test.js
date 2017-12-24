@@ -3,6 +3,7 @@
 const assert = require("assert");
 const cli = require("../../src/index").cli;
 const path = require("path");
+const fs = require("fs");
 const spawnSync = require("child_process").spawnSync;
 import { Logger } from "../../src/util/logger";
 
@@ -234,6 +235,17 @@ describe("cli-test", function() {
                 assert.equal(message, `v${pkg.version}`);
             };
             return cli.execute("--version").then(exitCode => {
+                assert.strictEqual(exitCode, 0);
+            });
+        });
+    });
+    describe("--help", function() {
+        it("should output expected help message", function() {
+            const expected = fs.readFileSync(path.join(__dirname, "fixtures/help.txt")).toString();
+            Logger.log = function mockLog(message) {
+                assert.equal(message + "\n", expected);
+            };
+            return cli.execute("--help").then(exitCode => {
                 assert.strictEqual(exitCode, 0);
             });
         });
