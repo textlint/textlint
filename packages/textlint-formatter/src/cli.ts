@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import * as fs from "fs";
-import { createFormatter } from "./textlint-formatter";
+import { createFormatter, getFormatterList } from "./textlint-formatter";
 
 module.exports = function run(argv: string[], text: string) {
     return new Promise(function(resolve) {
@@ -23,6 +23,12 @@ module.exports = function run(argv: string[], text: string) {
                     example: "textlint -f json README.md | textlint-formatter -f pretty-error"
                 },
                 {
+                    option: "list",
+                    alias: "l",
+                    type: "Boolean",
+                    description: "print available formatters"
+                },
+                {
                     option: "stdin",
                     type: "Boolean",
                     default: "false",
@@ -32,6 +38,16 @@ module.exports = function run(argv: string[], text: string) {
         });
         const options = optionator.parseArgv(argv);
         const files = options._;
+        if (options.list) {
+            return resolve(
+                "Available formatters:\n" +
+                    getFormatterList()
+                        .map((formatter: { name: string }) => {
+                            return `- ${formatter.name}`;
+                        })
+                        .join("\n")
+            );
+        }
         if (options.help || (!files.length && !text)) {
             return resolve(optionator.generateHelp());
         }
