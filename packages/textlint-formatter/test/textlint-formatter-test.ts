@@ -1,31 +1,33 @@
 // LICENSE : MIT
 "use strict";
-import { createFormatter } from "../src/textlint-formatter";
+import { createFormatter, getFormatterList } from "textlint-formatter";
 
-var path = require("path");
+import * as path from "path";
 import * as assert from "assert";
 
 describe("textlint-formatter-test", function() {
     describe("createFormatter", function() {
         it("should return formatter function", function() {
-            var formatter = createFormatter({
+            const formatter = createFormatter({
                 formatterName: "stylish"
             });
             assert(typeof formatter === "function");
         });
         context("formatter", function() {
             it("should return output text", function() {
-                var formatter = createFormatter({
+                const formatter = createFormatter({
                     formatterName: "stylish"
                 });
-                var output = formatter([
+                const output = formatter([
                     {
                         filePath: "./myfile.js",
                         messages: [
                             {
+                                type: "lint",
                                 ruleId: "semi",
                                 line: 1,
                                 column: 23,
+                                index: 0,
                                 message: "Expected a semicolon."
                             }
                         ]
@@ -35,7 +37,7 @@ describe("textlint-formatter-test", function() {
             });
         });
         it("run all formatter", function() {
-            var formatterNames = [
+            const formatterNames = [
                 "checkstyle",
                 "compact",
                 "jslint-xml",
@@ -46,36 +48,44 @@ describe("textlint-formatter-test", function() {
                 "json"
             ];
             formatterNames.forEach(function(name) {
-                var formatter = createFormatter({
+                const formatter = createFormatter({
                     formatterName: name
                 });
                 const ckjFile = path.join(__dirname, "./fixtures", "ckj.md");
-                var output = formatter([
+                const output = formatter([
                     {
                         filePath: __dirname + "/fixtures/myfile.js",
                         messages: [
                             {
+                                type: "lint",
                                 ruleId: "semi",
                                 line: 1,
                                 column: 1,
+                                index: 0,
                                 message: "0 pattern."
                             },
                             {
+                                type: "lint",
                                 ruleId: "semi",
                                 line: 2,
                                 column: 26,
+                                index: 0,
                                 message: "Expected a semicolon."
                             },
                             {
+                                type: "lint",
                                 ruleId: "semi",
                                 line: 1,
                                 column: 21,
+                                index: 0,
                                 message: "Expected a semicolon."
                             },
                             {
+                                type: "lint",
                                 ruleId: "semi",
                                 line: 2,
                                 column: 26,
+                                index: 0,
                                 message: "Expected a semicolon."
                             }
                         ]
@@ -84,14 +94,17 @@ describe("textlint-formatter-test", function() {
                         filePath: ckjFile,
                         messages: [
                             {
+                                type: "lint",
                                 message: "Unexpected !!!.",
                                 severity: 2,
                                 line: 2,
                                 column: 16,
+                                index: 0,
                                 ruleId: "foo",
                                 fix: {
                                     range: [40, 45],
-                                    text: "fixed 1"
+                                    text: "fixed 1",
+                                    isAbsolute: false
                                 }
                             }
                         ]
@@ -99,6 +112,22 @@ describe("textlint-formatter-test", function() {
                 ]);
                 assert(output.length > 0);
             });
+        });
+    });
+    describe("getFormatterList", function() {
+        it("should return list of formatter(s)", function() {
+            assert.deepEqual(getFormatterList(), [
+                { name: "checkstyle" },
+                { name: "compact" },
+                { name: "jslint-xml" },
+                { name: "json" },
+                { name: "junit" },
+                { name: "pretty-error" },
+                { name: "stylish" },
+                { name: "table" },
+                { name: "tap" },
+                { name: "unix" }
+            ]);
         });
     });
 });

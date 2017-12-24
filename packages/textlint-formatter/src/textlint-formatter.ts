@@ -42,3 +42,14 @@ ${ex}`);
         return formatter(results, formatterConfig);
     };
 }
+
+export function getFormatterList() {
+    return fs
+        .readdirSync(path.join(__dirname, "formatters"))
+        .filter((file: string) => {
+            return path.extname(file) === ".js";
+        })
+        .map((file: string) => {
+            return { name: path.basename(file, ".js") };
+        });
+}
