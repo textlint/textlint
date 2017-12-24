@@ -10,9 +10,9 @@ npm install textlint-formatter
 
 ## Usage
 
-See [formatters/](lib/formatters).
+See [formatters/](src/formatters).
 
-Currently, you can use "stylish" (defaults), "compact", "checkstyle", "jslint-xml", "junit", "tap", "pretty-error".
+Currently, you can use "stylish" (defaults), "checkstyle", "compact", "jslint-xml", "json", "junit", "pretty-error", "table", "tap", and "unix".
 
 ```js
 const createFormatter = require("textlint-formatter").createFormatter;
@@ -46,12 +46,14 @@ console.log(output);
 
 See [lib/_typing/textlint-formatter.d.ts](lib/_typing/textlint-formatter.d.ts)
 
-```
-// createFormatter(options)
-interface options {
+```typescript
+function createFormatter(formatterConfig: FormatterConfig) {/*...*/}
+type FormatterConfig = {
     // formatter file name
-    formatterName?: string;
-}
+    formatterName: string
+    // enable coloring if supported (default: true)
+    color?: boolean;
+};
 ```
 
 ## CLI
