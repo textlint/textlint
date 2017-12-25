@@ -43,7 +43,11 @@ ${ex}`);
     };
 }
 
-export function getFormatterList() {
+export interface FormatterDetail {
+    name: string;
+}
+
+export function getFormatterList(): FormatterDetail[] {
     return fs
         .readdirSync(path.join(__dirname, "formatters"))
         .filter((file: string) => {

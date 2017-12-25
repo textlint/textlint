@@ -44,16 +44,16 @@ console.log(output);
 
 ## API
 
-See [lib/_typing/textlint-formatter.d.ts](lib/_typing/textlint-formatter.d.ts)
-
 ```typescript
-function createFormatter(formatterConfig: FormatterConfig) {/*...*/}
-type FormatterConfig = {
-    // formatter file name
-    formatterName: string
-    // enable coloring if supported (default: true)
+export declare type FormatterConfig = {
     color?: boolean;
+    formatterName: string;
 };
+export declare function createFormatter(formatterConfig: FormatterConfig): (results: TextlintResult[]) => string;
+export interface FormatterDetail {
+    name: string;
+}
+export declare function getFormatterList(): FormatterDetail[];
 ```
 
 ## CLI
