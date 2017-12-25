@@ -94,7 +94,7 @@ export const options = optionator({
             type: "String",
             description: `Use a specific output format.
                              Available formatter          : ${concatFormatterList(getFormatterList())}
-                             Available formatter for fixer: ${concatFormatterList(getFixerFormatterList())}`,
+                             Available formatter for --fix: ${concatFormatterList(getFixerFormatterList())}`,
             example: "--format pretty-error"
         },
         {
