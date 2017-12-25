@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.1.0"></a>
+# [10.1.0](https://github.com/textlint/textlint/compare/textlint@10.0.1...textlint@10.1.0) (2017-12-25)
+
+
+### Bug Fixes
+
+* **textlint:** Return an exit status when no rules found ([#408](https://github.com/textlint/textlint/issues/408)) ([3dc76e4](https://github.com/textlint/textlint/commit/3dc76e4)), closes [#406](https://github.com/textlint/textlint/issues/406)
+
+
+### Features
+
+* **textlint:** show available formatter in help ([af6b0da](https://github.com/textlint/textlint/commit/af6b0da)), closes [#85](https://github.com/textlint/textlint/issues/85)
+
+
+
+
 <a name="10.0.1"></a>
 ## [10.0.1](https://github.com/textlint/textlint/compare/textlint@10.0.0...textlint@10.0.1) (2017-12-19)
 

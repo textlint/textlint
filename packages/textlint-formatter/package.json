@@ -1,7 +1,7 @@
 {
   "name": "textlint-formatter",
   "description": "textlint output formatter",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-formatter",
   "repository": {
     "type": "git",
@@ -49,14 +49,14 @@
   "devDependencies": {
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.0.57",
-    "cross-env": "^5.1.1",
-    "rimraf": "^2.6.2",
-    "ts-node": "^4.0.1",
-    "typescript": "^2.6.2",
     "chai": "^3.5.0",
+    "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "power-assert": "^1.1.0",
     "proxyquire": "^1.7.4",
-    "sinon": "^1.17.3"
+    "rimraf": "^2.6.2",
+    "sinon": "^1.17.3",
+    "ts-node": "^4.0.1",
+    "typescript": "^2.6.2"
   }
 }

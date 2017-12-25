@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.1...@textlint/kernel@2.0.2) (2017-12-25)
+
+
+### Bug Fixes
+
+* **kernel:** fix import path ([02d98fe](https://github.com/textlint/textlint/commit/02d98fe))
+* **monorepo:** fix TypeScript module resolution in monorepo ([d5df499](https://github.com/textlint/textlint/commit/d5df499))
+
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.0...@textlint/kernel@2.0.1) (2017-12-19)
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/textlint/textlint/compare/txt-ast-traverse@2.0.0...txt-ast-traverse@2.0.1) (2017-12-25)
+
+
+### Bug Fixes
+
+* **monorepo:** fix TypeScript module resolution in monorepo ([d5df499](https://github.com/textlint/textlint/commit/d5df499))
+* **txt-ast-traverse:** fix test scripts ([a78f99b](https://github.com/textlint/textlint/commit/a78f99b))
+* **txt-ast-traverse:** fix txt-ast-traverse test reference ([190723b](https://github.com/textlint/textlint/commit/190723b))
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/textlint/textlint/compare/txt-ast-traverse@2.0.0-next.0...txt-ast-traverse@2.0.0) (2017-12-18)
 

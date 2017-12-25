@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@3.0.0...@textlint/ast-node-types@3.0.1) (2017-12-25)
+
+
+### Bug Fixes
+
+* **monorepo:** fix TypeScript module resolution in monorepo ([d5df499](https://github.com/textlint/textlint/commit/d5df499))
+
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@3.0.0-next.0...@textlint/ast-node-types@3.0.0) (2017-12-18)
 

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/textlint/textlint/compare/textlint-formatter@2.0.0...textlint-formatter@3.0.0) (2017-12-25)
+
+
+### Bug Fixes
+
+* **textlint-formatter:** define `TextLintFormatterOption` interface ([31146c7](https://github.com/textlint/textlint/commit/31146c7))
+* **textlint-formatter:** run all tests ([6d507c2](https://github.com/textlint/textlint/commit/6d507c2)), closes [#402](https://github.com/textlint/textlint/issues/402)
+
+
+### Documentation
+
+* **textlint-formatter:** Update API ([8f4901f](https://github.com/textlint/textlint/commit/8f4901f))
+
+
+### Features
+
+* **textlint-formatter:** add getFormatterList function ([25e1113](https://github.com/textlint/textlint/commit/25e1113))
+* **textlint-formatter:** add new option to cli ([30351a8](https://github.com/textlint/textlint/commit/30351a8))
+
+
+### BREAKING CHANGES
+
+* **textlint-formatter:** export `{ createFormatter }` instead of `{ default }`
+
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/textlint/textlint/compare/textlint-formatter@2.0.0-next.1...textlint-formatter@2.0.0) (2017-12-18)
 

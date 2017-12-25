@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/textlint/textlint/compare/textlint-fixer-formatter@2.0.1...textlint-fixer-formatter@2.1.0) (2017-12-25)
+
+
+### Features
+
+* **textlint-fixer-formatter:** add getFormatterList function ([8de3fef](https://github.com/textlint/textlint/commit/8de3fef))
+
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/textlint/textlint/compare/textlint-fixer-formatter@2.0.0...textlint-fixer-formatter@2.0.1) (2017-12-19)
 
