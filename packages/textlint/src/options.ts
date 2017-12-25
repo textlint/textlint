@@ -1,6 +1,18 @@
 // LICENSE : MIT
 "use strict";
+import { getFormatterList } from "textlint-formatter";
+import { getFormatterList as getFixerFormatterList } from "textlint-fixer-formatter";
+
 const optionator = require("optionator");
+
+const concatFormatterList = (formatterList: { name: string }[]) => {
+    return formatterList
+        .map(formatter => {
+            return formatter.name;
+        })
+        .join(", ");
+};
+
 export const options = optionator({
     prepend: "textlint [options] file.md [file|dir|glob*]",
     concatRepeatedArrays: true,
@@ -80,7 +92,9 @@ export const options = optionator({
             option: "format",
             alias: "f",
             type: "String",
-            description: "Use a specific output format.",
+            description: `Use a specific output format.
+                             Available formatter          : ${concatFormatterList(getFormatterList())}
+                             Available formatter for --fix: ${concatFormatterList(getFixerFormatterList())}`,
             example: "--format pretty-error"
         },
         {
