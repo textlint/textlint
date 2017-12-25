@@ -35,7 +35,7 @@
   "homepage": "https://github.com/textlint/textlint-scripts",
   "devDependencies": {
     "husky": "^0.14.3",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^6.0.0",
     "prettier": "^1.7.4"
   },
   "dependencies": {
@@ -46,7 +46,7 @@
     "cross-spawn": "^5.0.1",
     "mocha": "^4.0.1",
     "pkg-to-readme": "^1.1.0",
-    "textlint-tester": "^3.0.1"
+    "textlint-tester": "^4.0.2"
   },
   "prettier": {
     "printWidth": 120,
