@@ -1,11 +1,12 @@
 // MIT © 2017 azu
 "use strict";
+
 /**
  * AST Node types list on TxtNode.
  * Constant value of types
  * @see https://github.com/textlint/textlint/blob/master/docs/txtnode.md
  */
-export const ASTNodeTypes = {
+export const ASTNodeTypes: { [key: string]: string } = {
     Document: "Document",
     Paragraph: "Paragraph",
     BlockQuote: "BlockQuote",
