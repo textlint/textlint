@@ -28,9 +28,8 @@
     "textlint": "node packages/textlint/bin/textlint.js --cache -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
     "textlint:fix": "node packages/textlint/bin/textlint.js --fix --cache -c docs/.textlintrc docs/ .github/ README.md",
     "perf": "cd ./examples/perf && npm run test:ci",
-    "precommit": "lint-staged",
+    "precommit": "yarn run yarn-check && lint-staged",
     "postcommit": "git reset",
-    "prepush": "yarn run yarn-check",
     "prettier": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,css}'"
   },
   "devDependencies": {
