@@ -14,6 +14,7 @@
     "publish:canary": "lerna publish --canary",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
+    "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)",
     "pretest": "npm run build",
     "test": "npm-run-all --parallel lint test:packages",
     "test:all": "npm-run-all test test:examples test:integration",
@@ -27,7 +28,7 @@
     "textlint": "node packages/textlint/bin/textlint.js --cache -c docs/.textlintrc docs/ .github/ README.md -f pretty-error",
     "textlint:fix": "node packages/textlint/bin/textlint.js --fix --cache -c docs/.textlintrc docs/ .github/ README.md",
     "perf": "cd ./examples/perf && npm run test:ci",
-    "precommit": "lint-staged",
+    "precommit": "yarn run yarn-check && lint-staged",
     "postcommit": "git reset",
     "prettier": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,css}'"
   },

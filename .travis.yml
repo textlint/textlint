@@ -10,7 +10,7 @@ before_install:
 - npm install -g npm@4
 - npm install -g yarn@latest
 install:
-- yarn install
+- yarn install --frozon-lockfile
 - yarn run bootstrap
 script:
 - yarn test:all
