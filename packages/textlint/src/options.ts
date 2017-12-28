@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import { getFormatterList, FormatterDetail } from "textlint-formatter";
-import { getFixerFormatterList } from "textlint-fixer-formatter";
+import { getFixerFormatterList, FixerFormatterDetail } from "textlint-fixer-formatter";
 
 const optionator = require("optionator");
 
-const concatFormatterList = (formatterList: FormatterDetail[]) => {
+const concatFormatterList = (formatterList: FormatterDetail[] | FixerFormatterDetail[]) => {
     return formatterList
         .map(formatter => {
             return formatter.name;
