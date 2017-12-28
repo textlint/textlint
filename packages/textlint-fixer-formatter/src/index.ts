@@ -21,7 +21,6 @@ export function createFormatter(formatterConfig: FormatterConfig) {
     } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
         formatterPath = path.resolve(process.cwd(), formatterName);
     } else {
-        // FIXME: Move textfix-formatter to pacakges/
         if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.js`)) {
             formatterPath = `${path.join(__dirname, "formatters/", formatterName)}.js`;
         } else if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.ts`)) {
@@ -46,11 +45,11 @@ ${ex}`);
     };
 }
 
-export interface FormatterDetail {
+export interface FixerFormatterDetail {
     name: string;
 }
 
-export function getFormatterList(): FormatterDetail[] {
+export function getFormatterList(): FixerFormatterDetail[] {
     return fs
         .readdirSync(path.join(__dirname, "formatters"))
         .filter((file: string) => {
