@@ -49,7 +49,7 @@ export interface FixerFormatterDetail {
     name: string;
 }
 
-export function getFormatterList(): FixerFormatterDetail[] {
+export function getFixerFormatterList(): FixerFormatterDetail[] {
     return fs
         .readdirSync(path.join(__dirname, "formatters"))
         .filter((file: string) => {
