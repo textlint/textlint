@@ -4,16 +4,19 @@ import { SourceCodeRange } from "../core/source-code";
 
 /**
  * Fix Command object has `range` and `text`.
- * @typedef {Object} FixCommand
- * @property {number[]} range range is an array of numbers : [start, end]
- * @property {string} text text is replace value.
- * @property {boolean} isAbsolute if `range` is relative, should be `false`
+ * `IntermediateFixCommand` has also `isAbsolute` flag value.
  */
+export class IntermediateFixCommand {
+    text: string;
+    range: [number, number];
+    isAbsolute: boolean;
+}
+
 /**
  * Creates a fix command that inserts text at the specified index in the source text.
  * @param {number} index The 0-based index at which to insert the new text.
  * @param {string} text The text to insert.
- * @returns {FixCommand} The fix command.
+ * @returns {IntermediateFixCommand} The fix command.
  * @private
  */
 function insertTextAt(index: number, text: string) {
@@ -29,7 +32,7 @@ function insertTextAt(index: number, text: string) {
  * Creates a fix command that inserts text at the specified index in the source text.
  * @param {number} index The 0-based index at which to insert the new text.
  * @param {string} text The text to insert.
- * @returns {FixCommand} The fix command.
+ * @returns {IntermediateFixCommand} The fix command.
  * @private
  */
 function insertTextAtAbsolute(index: number, text: string) {
@@ -54,7 +57,7 @@ export default class RuleFixer {
      * The fix is not applied until applyFixes() is called.
      * @param {TxtNode} node The node or token to insert after.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     insertTextAfter(node: TxtNode, text: string) {
         return insertTextAtAbsolute(node.range[1], text);
@@ -67,7 +70,7 @@ export default class RuleFixer {
      *      is end of range.
      *      The `range` should be **relative** value from reported node.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     insertTextAfterRange(range: SourceCodeRange, text: string) {
         return insertTextAt(range[1], text);
@@ -78,7 +81,7 @@ export default class RuleFixer {
      * The fix is not applied until applyFixes() is called.
      * @param {TxtNode} node The node or token to insert before.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     insertTextBefore(node: TxtNode, text: string) {
         return insertTextAtAbsolute(node.range[0], text);
@@ -91,7 +94,7 @@ export default class RuleFixer {
      *      is end of range.
      *      The `range` should be **relative** value from reported node.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     insertTextBeforeRange(range: SourceCodeRange, text: string) {
         return insertTextAt(range[0], text);
@@ -102,7 +105,7 @@ export default class RuleFixer {
      * The fix is not applied until applyFixes() is called.
      * @param {TxtNode} node The node or token to remove.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     replaceText(node: TxtNode, text: string) {
         return {
@@ -119,7 +122,7 @@ export default class RuleFixer {
      *      is end of range.
      *      The `range` should be **relative** value from reported node.
      * @param {string} text The text to insert.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     replaceTextRange(range: SourceCodeRange, text: string) {
         return {
@@ -133,7 +136,7 @@ export default class RuleFixer {
      * Creates a fix command that removes the node or token from the source.
      * The fix is not applied until applyFixes() is called.
      * @param {TxtNode} node The node or token to remove.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     remove(node: TxtNode) {
         return this.replaceText(node, "");
@@ -145,7 +148,7 @@ export default class RuleFixer {
      * @param {number[]} range The range to remove, first item is start of range, second
      *      is end of range.
      *      The `range` should be **relative** value from reported node.
-     * @returns {FixCommand} The fix command.
+     * @returns {IntermediateFixCommand} The fix command.
      */
     removeRange(range: SourceCodeRange) {
         return this.replaceTextRange(range, "");
