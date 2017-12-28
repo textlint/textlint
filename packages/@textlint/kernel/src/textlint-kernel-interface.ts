@@ -161,11 +161,10 @@ export interface TextlintKernelOptions {
     configBaseDir?: string;
 }
 
-// "range" is replaced by "text"
+// "range" will be replaced by "text"
 export class TextlintFixCommand {
     text: string;
     range: [number, number];
-    isAbsolute: boolean;
 }
 
 export class TextlintMessage {
@@ -187,7 +186,7 @@ export class TextlintMessage {
     index: number; // start with 0
     // Severity Level
     // See src/shared/type/SeverityLevel.js
-    severity?: number;
+    severity: number;
 }
 
 // Linting result

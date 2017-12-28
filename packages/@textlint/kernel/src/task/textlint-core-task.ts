@@ -136,12 +136,12 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         const sourceLocation = new SourceLocation(sourceCode);
         /**
          * push new RuleError to results
-         * @param {ReportMessage} reportedMessage
+         * @param {ReportMessage} reportArgs
          */
-        const reportFunction = (reportedMessage: ReportArgs) => {
-            const { ruleId, severity, ruleError } = reportedMessage;
+        const reportFunction = (reportArgs: ReportArgs) => {
+            const { ruleId, severity, ruleError } = reportArgs;
             debug("%s pushReport %s", ruleId, ruleError);
-            const { line, column, fix } = sourceLocation.adjust(reportedMessage);
+            const { line, column, fix } = sourceLocation.adjust(reportArgs);
             const index = sourceCode.positionToIndex({ line, column });
             // add TextLintMessage
             const message: LintReportedMessage = {

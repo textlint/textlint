@@ -2,8 +2,9 @@
 "use strict";
 import SourceCode from "./source-code";
 import RuleError, { RuleErrorPadding } from "./rule-error";
-import { TextlintMessage } from "../textlint-kernel-interface";
 import { TxtNode } from "@textlint/ast-node-types";
+import { ReportArgs } from "../task/textlint-core-task";
+import { TextlintFixCommand } from "@textlint/kernel";
 
 const assert = require("assert");
 const ObjectAssign = require("object-assign");
@@ -36,11 +37,11 @@ export default class SourceLocation {
 
     /**
      * adjust node's location with error's padding location.
-     * @param {ReportMessage} reportedMessage
+     * @param {ReportMessage} reportArgs
      * @returns {{line: number, column: number, fix?: FixCommand}}
      */
-    adjust(reportedMessage: any) {
-        const { node, ruleError, ruleId } = reportedMessage;
+    adjust(reportArgs: ReportArgs): { line: number; column: number; fix?: TextlintFixCommand } {
+        const { node, ruleError, ruleId } = reportArgs;
         const errorPrefix = `[${ruleId}]` || "";
         const padding = ruleError;
         /*
@@ -79,7 +80,7 @@ report(node, new RuleError("message", {
 `);
         }
 
-        // Not use {column, line} with {index}
+        // When either one of {column, line} or {index} is not used, throw error
         if ((padding.line !== undefined || padding.column !== undefined) && padding.index !== undefined) {
             // Introduced textlint 5.6
             // https://github.com/textlint/textlint/releases/tag/5.6.0
@@ -180,25 +181,25 @@ report(node, new RuleError("message", {
      * Adjust `fix` command range
      * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
      * @param {TxtNode} node
-     * @param {TextlintMessage} paddingMessage
+     * @param {RuleError} ruleErrorObject
      * @returns {FixCommand|Object}
      * @private
      */
-    _adjustFix(node: TxtNode, paddingMessage: TextlintMessage) {
+    _adjustFix(node: TxtNode, ruleErrorObject: RuleError) {
         const nodeRange = node.range;
         // if not found `fix`, return empty object
-        if (paddingMessage.fix === undefined) {
+        if (ruleErrorObject.fix === undefined) {
             return {};
         }
-        assert(typeof paddingMessage.fix === "object", "fix should be FixCommand object");
+        assert(typeof ruleErrorObject.fix === "object", "fix should be FixCommand object");
         // if absolute position return self
-        if (paddingMessage.fix.isAbsolute) {
+        if (ruleErrorObject.fix.isAbsolute) {
             return {
                 // remove other property that is not related `fix`
                 // the return object will be merged by `Object.assign`
                 fix: {
-                    range: paddingMessage.fix.range,
-                    text: paddingMessage.fix.text
+                    range: ruleErrorObject.fix.range,
+                    text: ruleErrorObject.fix.text
                 }
             };
         }
@@ -206,8 +207,8 @@ report(node, new RuleError("message", {
         return {
             // fix(command) is relative from node's range
             fix: {
-                range: [nodeRange[0] + paddingMessage.fix.range[0], nodeRange[0] + paddingMessage.fix.range[1]],
-                text: paddingMessage.fix.text
+                range: [nodeRange[0] + ruleErrorObject.fix.range[0], nodeRange[0] + ruleErrorObject.fix.range[1]],
+                text: ruleErrorObject.fix.text
             }
         };
     }

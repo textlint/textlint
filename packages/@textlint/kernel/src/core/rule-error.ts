@@ -1,26 +1,26 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintFixCommand } from "../textlint-kernel-interface";
+import { IntermediateFixCommand } from "../fixer/rule-fixer";
 
 export interface RuleErrorPadding {
     line?: number;
     column?: number;
     index?: number;
-    fix?: TextlintFixCommand;
+    fix?: IntermediateFixCommand;
 }
 
 export default class RuleError {
     public message: string;
-    private line?: number;
-    private column?: number;
-    private index?: number;
-    private fix?: TextlintFixCommand;
+    public line?: number;
+    public column?: number;
+    public index?: number;
+    public fix?: IntermediateFixCommand;
 
     /**
      * RuleError is like Error object.
      * It's used for adding to TextlintResult.
-     * @param {string} message error message should start with lowercase letter
-     * @param {RuleError~Padding|number} [paddingLocation] - the object has padding {line, column} for actual error reason
+     * @param message error message should start with lowercase letter
+     * @param [paddingLocation] - the object has padding {line, column} for actual error reason
      * @constructor
      */
     constructor(message: string, paddingLocation?: number | RuleErrorPadding) {

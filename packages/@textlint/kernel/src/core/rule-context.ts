@@ -5,7 +5,7 @@ import { BaseRuleContext } from "./BaseRuleContext";
 
 const assert = require("assert");
 import { TxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
-import RuleFixer from "../fixer/rule-fixer";
+import RuleFixer, { IntermediateFixCommand } from "../fixer/rule-fixer";
 import RuleError from "./rule-error";
 import SeverityLevel from "../shared/type/SeverityLevel";
 import { getSeverity } from "../shared/rule-severity";
@@ -37,11 +37,23 @@ export interface RuleContextArgs {
     configBaseDir?: string;
 }
 
+/**
+ * Object version of RuleError
+ * It is un-document way
+ *
+ * report(node, {
+ *   message: ""
+ * })
+ */
 export interface RuleReportedObject {
-    [index: string]: any;
-
+    line?: number;
+    column?: number;
+    index?: number;
+    fix?: IntermediateFixCommand;
     message: string;
     severity?: number;
+
+    [index: string]: any;
 }
 
 export default class RuleContext implements BaseRuleContext {
@@ -104,11 +116,13 @@ export default class RuleContext implements BaseRuleContext {
         assert(!(node instanceof RuleError), "1st argument should be node. Usage: `report(node, ruleError);`");
         assert(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
         if (ruleError instanceof RuleError) {
-            // FIXME: severity is internal API
+            // severity come from `.textlintrc` option like `{ "<rule-name>" : { serverity: "warning" } } `
             this._report({ ruleId: this._ruleId, node, severity: this._severity, ruleError });
         } else {
-            const level = ruleError.severity || SeverityLevel.error;
-            this._report({ ruleId: this._ruleId, node, severity: level, ruleError });
+            const ruleReportedObject: RuleReportedObject = ruleError;
+            // severity come from report arguments like `report(node, { severity: 1 })`
+            const level = ruleReportedObject.severity || SeverityLevel.error;
+            this._report({ ruleId: this._ruleId, node, severity: level, ruleError: ruleReportedObject });
         }
     };
 
