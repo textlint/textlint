@@ -187,7 +187,7 @@ export class TextlintMessage {
     index: number; // start with 0
     // Severity Level
     // See src/shared/type/SeverityLevel.js
-    severity?: number;
+    severity: number;
 }
 
 // Linting result
