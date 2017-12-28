@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import SourceCode from "./source-code";
-import { TxtNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import RuleError from "./rule-error";
 import { ShouldIgnoreFunction } from "../task/textlint-core-task";
 import { BaseRuleContext } from "./BaseRuleContext";
@@ -61,7 +61,7 @@ export default class FilterRuleContext implements BaseRuleContext {
      * Node's type values
      * @type {TextLintNodeType}
      */
-    get Syntax() {
+    get Syntax(): typeof ASTNodeTypes {
         return this._sourceCode.getSyntax();
     }
 

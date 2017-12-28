@@ -4,7 +4,7 @@
 import { BaseRuleContext } from "./BaseRuleContext";
 
 const assert = require("assert");
-import { TxtNode } from "@textlint/ast-node-types";
+import { TxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
 import RuleFixer from "../fixer/rule-fixer";
 import RuleError from "./rule-error";
 import SeverityLevel from "../shared/type/SeverityLevel";
@@ -75,9 +75,9 @@ export default class RuleContext implements BaseRuleContext {
 
     /**
      * Node's type values
-     * @type {TextLintNodeType}
+     * @type {ASTNodeTypes}
      */
-    get Syntax() {
+    get Syntax(): typeof ASTNodeTypes {
         return this._sourceCode.getSyntax();
     }
 
