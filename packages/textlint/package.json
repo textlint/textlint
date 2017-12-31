@@ -1,7 +1,7 @@
 {
   "name": "textlint",
   "description": "The pluggable linting tool for text and markdown.",
-  "version": "10.1.0",
+  "version": "10.1.1",
   "homepage": "https://github.com/textlint/textlint/",
   "keywords": [
     "plugable",
@@ -66,7 +66,7 @@
   "dependencies": {
     "@textlint/ast-node-types": "^4.0.0",
     "@textlint/feature-flag": "^3.0.1",
-    "@textlint/kernel": "^2.0.2",
+    "@textlint/kernel": "^2.0.3",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.0.5",
     "debug": "^2.1.0",
@@ -87,10 +87,10 @@
     "read-pkg": "^1.1.0",
     "read-pkg-up": "^3.0.0",
     "structured-source": "^3.0.2",
-    "textlint-fixer-formatter": "^3.0.0",
-    "textlint-formatter": "^3.0.0",
-    "textlint-plugin-markdown": "^4.0.2",
-    "textlint-plugin-text": "^3.0.2",
+    "textlint-fixer-formatter": "^3.0.1",
+    "textlint-formatter": "^3.0.1",
+    "textlint-plugin-markdown": "^4.0.4",
+    "textlint-plugin-text": "^3.0.4",
     "try-resolve": "^1.0.1",
     "txt-ast-traverse": "^2.0.1",
     "unique-concat": "^0.2.2",
