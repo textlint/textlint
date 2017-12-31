@@ -28,11 +28,11 @@ We recommend these issues for your first contribution.
 
 ## Pull Request
 
-### [Git Commit Message Format](https://github.com/stevemao/conventional-changelog-angular/blob/master/convention.md "Commit Message Format")
+### [Git Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular  "Commit Message Format")
 
 We use AngularJS Commit Convention.
 
-Please see [Commit Message Format](https://github.com/stevemao/conventional-changelog-angular/blob/master/convention.md "Commit Message Format") for detail.
+Please see [Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular  "Commit Message Format") for detail.
 
 ```
                        component        commit title
@@ -175,7 +175,7 @@ yarn run test:all
 
 #### Coding Style
 
-The repository use [ESLint](http://eslint.org/ "ESLint").
+The repository use [ESLint](https://eslint.org/ "ESLint").
 
 You can run lint:
 
@@ -183,7 +183,7 @@ You can run lint:
 yarn run eslint
 ```
 
-It's possible that fix some wrong style using [--fix](http://eslint.org/docs/user-guide/command-line-interface#fix "--fix") feature of ESLint:
+It's possible that fix some wrong style using [--fix](https://eslint.org/docs/user-guide/command-line-interface#--fix "--fix") feature of ESLint:
 
 ```
 yarn run eslint:fix
