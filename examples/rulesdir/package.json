@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "textlint-example-rulesdir",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,6 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "^10.1.0"
+    "textlint": "^10.1.1"
   }
 }

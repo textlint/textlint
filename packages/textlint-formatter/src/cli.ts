@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import * as fs from "fs";
-import { createFormatter, getFormatterList } from "./textlint-formatter";
+import { createFormatter, getFormatterList } from "./index";
 
 module.exports = function run(argv: string[], text: string) {
     return new Promise(function(resolve) {

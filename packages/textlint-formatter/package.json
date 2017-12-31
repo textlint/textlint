@@ -1,14 +1,14 @@
 {
   "name": "textlint-formatter",
   "description": "textlint output formatter",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-formatter",
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "main": "lib/textlint-formatter/src/textlint-formatter.js",
-  "types": "lib/textlint-formatter/src/textlint-formatter.d.ts",
+  "main": "lib/textlint-formatter/src/index.js",
+  "types": "lib/textlint-formatter/src/index.d.ts",
   "bin": {
     "textlint-formatter": "bin/cmd.js"
   },
@@ -33,6 +33,7 @@
   "dependencies": {
     "@azu/format-text": "^1.0.1",
     "@azu/style-format": "^1.0.0",
+    "@textlint/kernel": "^2.0.3",
     "chalk": "^1.0.0",
     "concat-stream": "^1.5.1",
     "js-yaml": "^3.2.4",

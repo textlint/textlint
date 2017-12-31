@@ -5,7 +5,7 @@
     "AST",
     "traverse"
   ],
-  "version": "2.0.1",
+  "version": "2.0.2",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/txt-ast-traverse",
   "repository": {
     "type": "git",
@@ -40,6 +40,6 @@
     "typescript": "^2.6.2"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^3.0.1"
+    "@textlint/ast-node-types": "^4.0.0"
   }
 }

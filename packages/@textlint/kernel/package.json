@@ -10,7 +10,7 @@
     "src/"
   ],
   "name": "@textlint/kernel",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "textlint kernel is core logic by pure JavaScript.",
   "main": "lib/kernel/src/index.js",
   "typings": "lib/kernel/src/index.d.ts",
@@ -42,12 +42,12 @@
     "npm-run-all": "^4.1.1",
     "rimraf": "^2.6.2",
     "shelljs": "^0.7.7",
-    "textlint-plugin-markdown": "^4.0.2",
+    "textlint-plugin-markdown": "^4.0.4",
     "ts-node": "^3.3.0",
     "typescript": "~2.6.1"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^3.0.1",
+    "@textlint/ast-node-types": "^4.0.0",
     "@textlint/feature-flag": "^3.0.1",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.5.1",
