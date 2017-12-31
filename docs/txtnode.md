@@ -150,7 +150,7 @@ Following parsers are built-in.
 | [`markdown-to-ast`](../packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
 | [`txt-to-ast`](../packages/txt-to-ast) | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser |
 
-If you want to get other type, please [create new issue](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Ftextlint%2Ftextlint%2Fissues%2Fnew).
+If you want to get other type, please [create new issue](https://github.com/textlint/textlint/issues/new).
 
 ## Package
 
