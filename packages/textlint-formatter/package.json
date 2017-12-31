@@ -7,8 +7,8 @@
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "main": "lib/textlint-formatter/src/textlint-formatter.js",
-  "types": "lib/textlint-formatter/src/textlint-formatter.d.ts",
+  "main": "lib/textlint-formatter/src/index.js",
+  "types": "lib/textlint-formatter/src/index.d.ts",
   "bin": {
     "textlint-formatter": "bin/cmd.js"
   },
