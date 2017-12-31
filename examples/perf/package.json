@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "perf": "node perf.js",
-    "test": "npm run perf"
+    "perf": "node perf.js"
   },
   "private": true,
   "version": "2.0.2",
