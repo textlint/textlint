@@ -75,7 +75,7 @@ $ textlint file.md
 ## Next Steps
    
 - Learn about advanced [configuring](./configuring.md) of textlint.
-- Explore [textlint's rules](https://github.com/azu/textlint/wiki/Collection-of-textlint-rule)
+- Explore [textlint's rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule)
 - Can't find just the right rule? Make your own [custom rule](./rule.md).
 - Can't handling `.ext` file? Make your own [custom plugin](./plugin.md).
 - Make textlint even better by [contributing](../.github/CONTRIBUTING.md).

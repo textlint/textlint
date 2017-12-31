@@ -1,9 +1,8 @@
 # Creating Rules
 
-textlint's AST(Abstract Syntax Tree) is defined these pages.
+textlint's AST(Abstract Syntax Tree) is defined at the page.
 
-- [txtnode.d.ts](../typings/txtast.d.ts)
-- [txtnode.md](../typings/txtast.d.ts)
+- [txtnode.md](./txtnode.md)
     - If you want to know AST of a text, use [Online Parsing Demo](./txtnode.md#online-parsing-demo)
 
 Each rules are represented by a object with some properties.
@@ -94,7 +93,7 @@ RuleContext object has following property:
 - `Syntax.*` 
     - This is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
-    - [src/shared/type/NodeType.js](../src/shared/type/NodeType.js)
+    - [packages/@textlint/ast-node-types/src/index.ts](../packages/@textlint/ast-node-types/src/index.ts)
 - `report(<node>, <ruleError>): void`
     - This method is a method that reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
@@ -111,7 +110,7 @@ RuleContext object has following property:
     - `getConfigBaseDir()` return `"/path/to/dir/"`.
 - `fixer`
     - This is creator object of fix command.
-    - See [How to create Fixable Rule?](./rule-fixer.md) for details
+    - See [How to create Fixable Rule?](./rule-fixable.md) for details
 
 ## RuleError
 
@@ -605,7 +604,7 @@ Example rules:
 
 Reference
 
-- [Working with Rules - ESLint - Pluggable JavaScript linter](http://eslint.org/docs/developer-guide/working-with-rules#rule-naming-conventions "Working with Rules - ESLint - Pluggable JavaScript linter")
+- [Working with Rules - ESLint - Pluggable JavaScript linter](https://eslint.org/docs/developer-guide/working-with-rules "Working with Rules - ESLint - Pluggable JavaScript linter")
 
 ### FAQ: Publishing
 

@@ -4,7 +4,7 @@ TxtAST define AST(Abstract Syntax Tree) for processing in textlint.
 
 ## What is AST?
 
-[Abstract syntax tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree "Abstract syntax tree - Wikipedia, the free encyclopedia") is a tree representation of the abstract syntactic structure of text.
+[Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree "Abstract syntax tree - Wikipedia, the free encyclopedia") is a tree representation of the abstract syntactic structure of text.
 
 Each node of the tree has same interface, is called `TxtNode`.
 
@@ -150,7 +150,7 @@ Following parsers are built-in.
 | [`markdown-to-ast`](../packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser |
 | [`txt-to-ast`](../packages/txt-to-ast) | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser |
 
-If you want to get other type, please [create new issue](https://github.com/textlint/textlint/issues/new).
+If you want to get other type, please [create new issue](https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Ftextlint%2Ftextlint%2Fissues%2Fnew).
 
 ## Package
 
@@ -323,7 +323,7 @@ Illustration
 
 ## Unist
 
-`TxtAST` have a minimum of compatibility for [unist: Universal Syntax Tree](https://github.com/wooorm/unist "wooorm/unist: Universal Syntax Tree").
+`TxtAST` have a minimum of compatibility for [unist: Universal Syntax Tree](https://github.com/syntax-tree/unist "wooorm/unist: Universal Syntax Tree").
 
 We discuss about Unist in [Compliances tests for TxtNode #141](https://github.com/textlint/textlint/issues/141 "Compliances tests for TxtNode #141").
 

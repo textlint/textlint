@@ -2,7 +2,7 @@
 
 ## Result of linting
 
-Pass following array of [TextLintResult](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "TextLintResult") to reporter module.
+Pass following array of `TextLintResult` to reporter module.
 
 ```js
 // results of linting
@@ -24,9 +24,45 @@ const results = [
 ];
 ```
 
-`TextLintMessage` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "textlint.d.ts").
+`TextLintMessage` and `TextLintResult` are defined as follows.
 
-It is compatible for [ESLint formatter](http://eslint.org/docs/developer-guide/working-with-custom-formatters "Documentation - ESLint - Pluggable JavaScript linter"). 
+```typescript
+export class TextlintMessage {
+    // See src/shared/type/MessageType.js
+    // Message Type
+    type: string;
+    // Rule Id
+    ruleId: string;
+    message: string;
+    // optional data
+    data?: any;
+    // FixCommand
+    fix?: TextlintFixCommand;
+    // location info
+    // Text -> AST TxtNode(0-based columns) -> textlint -> TextlintMessage(**1-based columns**)
+    line: number; // start with 1
+    column: number; // start with 1
+    // indexed-location
+    index: number; // start with 0
+    // Severity Level
+    // See src/shared/type/SeverityLevel.js
+    severity: number;
+}
+
+// Linting result
+export interface TextlintResult {
+    filePath: string;
+    messages: TextlintMessage[];
+}
+
+// "range" will be replaced by "text"
+export class TextlintFixCommand {
+    text: string;
+    range: [number, number];
+}
+```
+
+It is compatible for [ESLint formatter](https://eslint.org/docs/developer-guide/working-with-custom-formatters "Documentation - ESLint - Pluggable JavaScript linter"). 
 
 ### Simple usage from Command line
 
@@ -79,8 +115,24 @@ const results = [
 ];
 ```
 
-`TextLintFixResult` and `TextLintResult` are defined in [textlint.d.ts](https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts "textlint.d.ts").
+`TextLintFixResult` is defined as follows.
 
+```typescript
+// Fixing result
+export interface TextlintFixResult {
+    filePath: string;
+    // fixed content
+    output: string;
+    // all messages = pre-applyingMessages + remainingMessages
+    // it is same with one of `TextlintResult`
+    messages: TextlintMessage[];
+    // applied fixable messages
+    applyingMessages: TextlintMessage[];
+    // original means original for applyingMessages and remainingMessages
+    // pre-applyingMessages + remainingMessages
+    remainingMessages: TextlintMessage[];
+}
+```
 It is not compatible for ESLint.
 
 ### Simple usage from Command line
@@ -109,7 +161,7 @@ You can read the source code from `filePath` property.
 
 textlint use `textlint-formatter` module as built-in formatter.
 
-- [textlint-formatter](/packages/textlint-formatter "textlint-formatter")
+- [textlint-formatter](../packages/textlint-formatter/README.md "textlint-formatter")
 
 ## Custom Formatter
 
