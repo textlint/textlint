@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Markdown support for textlint.",
   "main": "lib/index.js",
   "files": [
@@ -45,6 +45,6 @@
     "textlint-rule-no-todo": "^2.0.0"
   },
   "dependencies": {
-    "markdown-to-ast": "^6.0.1"
+    "markdown-to-ast": "^6.0.2"
   }
 }

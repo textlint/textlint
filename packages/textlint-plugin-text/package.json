@@ -11,7 +11,7 @@
   ],
   "name": "textlint-plugin-text",
   "description": "plain text plugin for textlint",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha \"test/**/*.{js,ts}\"",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-plugin-text/",
   "dependencies": {
-    "txt-to-ast": "^3.0.1"
+    "txt-to-ast": "^3.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

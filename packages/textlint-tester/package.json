@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "testing tool for textlint rule.",
   "main": "lib/index.js",
   "files": [
@@ -33,7 +33,7 @@
     "testing"
   ],
   "dependencies": {
-    "@textlint/feature-flag": "^3.0.1",
+    "@textlint/feature-flag": "^3.0.2",
     "textlint": "^10.1.0"
   },
   "devDependencies": {

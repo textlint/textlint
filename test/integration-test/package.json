@@ -18,7 +18,7 @@
     "run_lint.js",
     "test.js"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "textlint testbot sandbox.",
   "main": "./run_test.js",
   "scripts": {

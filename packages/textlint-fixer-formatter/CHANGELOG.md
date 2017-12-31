@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/textlint/textlint/compare/textlint-fixer-formatter@2.1.0...textlint-fixer-formatter@3.0.0) (2017-12-31)
+
+
+### Chores
+
+* **fixer-formatter:** rename `getFormatterList` to `getFixerFormatterList` ([75420c3](https://github.com/textlint/textlint/commit/75420c3))
+
+
+### BREAKING CHANGES
+
+* **fixer-formatter:** `getFormatterList` method is renamed.
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/textlint/textlint/compare/textlint-fixer-formatter@2.0.1...textlint-fixer-formatter@2.1.0) (2017-12-25)
 

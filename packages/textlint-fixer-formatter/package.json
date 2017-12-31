@@ -1,6 +1,6 @@
 {
   "name": "textlint-fixer-formatter",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "textlint output formatter for fixer",
   "main": "lib/textlint-fixer-formatter/src/index.js",
   "types": "lib/textlint-fixer-formatter/src/index.d.ts",
