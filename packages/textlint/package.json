@@ -64,7 +64,7 @@
     "typescript": "~2.6.1"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^3.0.1",
+    "@textlint/ast-node-types": "^4.0.0",
     "@textlint/feature-flag": "^3.0.1",
     "@textlint/kernel": "^2.0.2",
     "@types/bluebird": "^3.5.18",
@@ -87,7 +87,7 @@
     "read-pkg": "^1.1.0",
     "read-pkg-up": "^3.0.0",
     "structured-source": "^3.0.2",
-    "textlint-fixer-formatter": "^2.1.0",
+    "textlint-fixer-formatter": "^3.0.0",
     "textlint-formatter": "^3.0.0",
     "textlint-plugin-markdown": "^4.0.2",
     "textlint-plugin-text": "^3.0.2",
