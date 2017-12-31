@@ -41,6 +41,6 @@
     "power-assert": "^1.4.2"
   },
   "dependencies": {
-    "map-like": "^1.1.2"
+    "map-like": "^2.0.0"
   }
 }
