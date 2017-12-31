@@ -1,8 +1,8 @@
 // MIT © 2017 azu
 "use strict";
-const Map = require("map-like");
+const MapLike = require("map-like").MapLike;
 const assert = require("assert");
-const flagMap = new Map();
+const flagMap = new MapLike();
 /**
  * IT IS FOR TESTING
  */
