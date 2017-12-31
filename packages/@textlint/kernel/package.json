@@ -47,7 +47,7 @@
     "typescript": "~2.6.1"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^3.0.1",
+    "@textlint/ast-node-types": "^4.0.0",
     "@textlint/feature-flag": "^3.0.1",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.5.1",
