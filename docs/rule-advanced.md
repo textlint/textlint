@@ -29,7 +29,7 @@ These library are used in the module.
 
 ## Terms
 
-- **Paragraph** is a type of [`TxtParentNode`](./txtnode.md).
+- **Paragraph** is a type of [`TxtParentNode`](./txtnode.md#txtparentnode).
     - Paragraph has `children` nodes.
 - **Sentence** is not defined in textlint.
     - It has language dependency.
@@ -96,7 +96,7 @@ How do you handle `Code` node?
 
 In this case, We select *Case 2*.
 
-Replace `Code` to dummy object that is a single **word** Using [unist-util-map](https://github.com/azu/unist-util-map "unist-util-map").
+Replace `Code` to dummy object that is a single **word** Using [unist-util-map](https://github.com/syntax-tree/unist-util-map "unist-util-map").
 
 ```js
 // Helper for creating new AST using map function

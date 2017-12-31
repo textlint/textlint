@@ -5,7 +5,7 @@
 ![overview](./resources/architecture.png)
 
 
-`textlint` module expose these header at [index.js](../src/index.js)
+`textlint` module expose these header at [index.js](../packages/textlint/src/index.ts)
 
 ```js
 // Level of abstraction(descending order)
@@ -39,7 +39,7 @@ Recommend to use `TextLintEngine`.
 
 ## Architecture
 
-See [src/README.md](../src/README.md) for details.
+See [README.md](../README.md) for details.
 
 ### CLI(Command Line Interface)
 
@@ -69,50 +69,38 @@ textlint's core
 
 Lint files using `TextLintEngine`:
 
-See [example/node-module/lint-file.js](example/node-module/lint-file.js)
+See [examples/use-as-module/index.js](../examples/use-as-module/index.js)
 
 ```js
+// LICENSE : MIT
+"use strict";
 const TextLintEngine = require("textlint").TextLintEngine;
 const path = require("path");
 function lintFile(filePath) {
     /**
-     * TextlintConfig
-     * See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
+     * See lib/_typing/textlint.d.ts
      */
     const options = {
         // load rules from [../rules]
-        rulePaths: [path.join(__dirname, "..", "rules/")],
+        rules: ["no-todo"],
         formatterName: "pretty-error"
     };
     const engine = new TextLintEngine(options);
     const filePathList = [path.resolve(process.cwd(), filePath)];
-    engine
-        .executeOnFiles(filePathList)
-        .then(function(results) {
-            /* 
-        See https://github.com/textlint/textlint/blob/master/typings/textlint.d.ts
-        messages are TextLintMessage` array.
-        [
-            "filePath": "path/to/file",
-            "messages" :[
-                {
-                    id: "rule-name",
-                    message:"lint message",
-                    line: 1, // 1-based columns(TextLintMessage)
-                    column:1 // 1-based columns(TextLintMessage)
-                }
-            ]
-        ]
-         */
-            if (engine.isErrorResults(results)) {
-                const output = engine.formatResults(results);
-                console.log(output);
-            }
-        })
-        .catch(function(error) {
-            console.error(error);
-        });
+    return engine.executeOnFiles(filePathList).then(function(results) {
+        if (engine.isErrorResults(results)) {
+            const output = engine.formatResults(results);
+            console.log(output);
+        } else {
+            console.log("All Passed!");
+        }
+    });
 }
+
+lintFile(`${__dirname}/README.md`).catch(function(error) {
+    console.error(error);
+    process.exit(1);
+});
 ```
 
 ## Testing
@@ -124,4 +112,4 @@ You can use [textlint-tester](https://www.npmjs.com/package/textlint-tester "tex
 
 Consult link: 
 
-- [spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule](https://github.com/azu/spellcheck-tech-word-textlint-rule/blob/master/test/test.js "spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule")
+- [spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule](https://github.com/azu/textlint-rule-spellcheck-tech-word/blob/master/test/test.js "spellcheck-tech-word-textlint-rule/test.js at master · azu/spellcheck-tech-word-textlint-rule")
