@@ -44,7 +44,8 @@
     "shelljs": "^0.7.7",
     "textlint-plugin-markdown": "^4.0.4",
     "ts-node": "^3.3.0",
-    "typescript": "~2.6.1"
+    "typescript": "~2.6.1",
+    "unist-util-select": "^1.5.0"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.0.0",

@@ -138,9 +138,9 @@ export default class RuleContext implements BaseRuleContext {
      * @param {TxtNode=} node The AST node to get the text for.
      * @param {int=} beforeCount The number of characters before the node to retrieve.
      * @param {int=} afterCount The number of characters after the node to retrieve.
-     * @returns {string|null} The text representing the AST node.
+     * @returns {string} The text representing the AST node.
      */
-    getSource = (node: TxtNode, beforeCount?: number, afterCount?: number) => {
+    getSource = (node?: TxtNode, beforeCount?: number, afterCount?: number): string => {
         return this._sourceCode.getSource(node, beforeCount, afterCount);
     };
 

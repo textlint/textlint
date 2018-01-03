@@ -36,6 +36,7 @@ export interface SourceCodeLocation {
 }
 
 export type SourceCodeRange = [number, number];
+export type SourceCodeArgs = { text: string; ast: TxtNode; ext: string; filePath?: string };
 /**
  * This class represent of source code.
  */
@@ -54,7 +55,7 @@ export default class SourceCode {
      * @param {string} ext
      * @param {string} [filePath]
      */
-    constructor({ text = "", ast, ext, filePath }: { text: string; ast: TxtNode; ext: string; filePath?: string }) {
+    constructor({ text = "", ast, ext, filePath }: SourceCodeArgs) {
         validate(ast);
         assert(ext || filePath, "should be set either of fileExt or filePath.");
         this.hasBOM = text.charCodeAt(0) === 0xfeff;
@@ -92,13 +93,10 @@ export default class SourceCode {
      * @param {TxtNode=} node The AST node to get the text for.
      * @param {int=} beforeCount The number of characters before the node to retrieve.
      * @param {int=} afterCount The number of characters after the node to retrieve.
-     * @returns {string|null} The text representing the AST node.
+     * @returns {string} The text representing the AST node.
      */
-    getSource(node: TxtNode, beforeCount?: number, afterCount?: number) {
+    getSource(node?: TxtNode, beforeCount?: number, afterCount?: number): string {
         const currentText = this.text;
-        if (currentText == null) {
-            return null;
-        }
         if (node) {
             const start = Math.max(node.range[0] - (beforeCount || 0), 0);
             const end = node.range[1] + (afterCount || 0);
