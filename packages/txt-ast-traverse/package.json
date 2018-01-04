@@ -20,7 +20,8 @@
     "build": "cross-env NODE_ENV=production tsc -p .",
     "test": "mocha \"test/**/*.ts\"",
     "watch": "tsc -p . --watch",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "clean": "rimraf lib/"
   },
   "directories": {
     "test": "test/"
@@ -36,6 +37,7 @@
     "cross-env": "^5.1.1",
     "markdown-to-ast": "^2.0.0",
     "mocha": "^4.0.1",
+    "rimraf": "^2.6.2",
     "ts-node": "^4.0.2",
     "typescript": "^2.6.2"
   },
