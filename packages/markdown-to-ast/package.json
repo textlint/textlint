@@ -17,7 +17,8 @@
     "test": "mocha \"test/**/*.{js,ts}\"",
     "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
-    "prepublish": "npm run --if-present build"
+    "prepublish": "npm run --if-present build",
+    "clean": "rimraf lib/"
   },
   "directories": {
     "test": "test/"
@@ -45,6 +46,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^4.0.1",
     "power-assert": "^1.4.2",
+    "rimraf": "^2.6.2",
     "textlint-ast-test": "^2.0.1",
     "txt-ast-traverse": "^2.0.2"
   }
