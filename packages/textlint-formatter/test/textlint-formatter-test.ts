@@ -28,7 +28,8 @@ describe("textlint-formatter-test", function() {
                                 line: 1,
                                 column: 23,
                                 index: 0,
-                                message: "Expected a semicolon."
+                                message: "Expected a semicolon.",
+                                severity: 2
                             }
                         ]
                     }
@@ -62,7 +63,8 @@ describe("textlint-formatter-test", function() {
                                 line: 1,
                                 column: 1,
                                 index: 0,
-                                message: "0 pattern."
+                                message: "0 pattern.",
+                                severity: 2
                             },
                             {
                                 type: "lint",
@@ -70,7 +72,8 @@ describe("textlint-formatter-test", function() {
                                 line: 2,
                                 column: 26,
                                 index: 0,
-                                message: "Expected a semicolon."
+                                message: "Expected a semicolon.",
+                                severity: 2
                             },
                             {
                                 type: "lint",
@@ -78,7 +81,8 @@ describe("textlint-formatter-test", function() {
                                 line: 1,
                                 column: 21,
                                 index: 0,
-                                message: "Expected a semicolon."
+                                message: "Expected a semicolon.",
+                                severity: 2
                             },
                             {
                                 type: "lint",
@@ -86,7 +90,8 @@ describe("textlint-formatter-test", function() {
                                 line: 2,
                                 column: 26,
                                 index: 0,
-                                message: "Expected a semicolon."
+                                message: "Expected a semicolon.",
+                                severity: 2
                             }
                         ]
                     },
@@ -103,8 +108,7 @@ describe("textlint-formatter-test", function() {
                                 ruleId: "foo",
                                 fix: {
                                     range: [40, 45],
-                                    text: "fixed 1",
-                                    isAbsolute: false
+                                    text: "fixed 1"
                                 }
                             }
                         ]
