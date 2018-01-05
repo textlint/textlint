@@ -3,7 +3,7 @@
 [![textlint logo](http://textlint.github.io/media/logo/spaced/textlint-logo.png)](http://textlint.github.io/)
 
 > The pluggable linting tool for text and markdown.  
-> It is similar to [ESLint](http://eslint.org/ "ESLint"), but textlint for natural language.
+textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use with natural language.
 
 <!-- textlint-disable -->
 
@@ -14,26 +14,24 @@
 
 ## Online Demo
 
-Visit [https://textlint.github.io/](https://textlint.github.io/) and type text!
+Visit [https://textlint.github.io/](https://textlint.github.io/) to see textlint in action!
 
 ## Features
 
 - No bundled rules.
 - To use a rule, install a textlint rule via npm.
     - `npm install textlint-rule-xxx`.
-    - See [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
-- [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are supported by default. [HTML](https://github.com/textlint/textlint-plugin-html) and [other formats](https://github.com/textlint/textlint#supported-file-formats) are supported by plugins.
-- Allow to use bundled [formatter(reporter)](/packages/textlint-formatter) and custom formatters
+    - See [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rules · textlint/textlint Wiki")
+- [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text ) are supported by default. Support is available for [HTML](https://github.com/textlint/textlint-plugin-html) and [other file formats](https://github.com/textlint/textlint#supported-file-formats) via plugins.
+- Supports the use of custom formatters and formatter bundles [formatter(reporter)](/packages/textlint-formatter)
 
 ## Quick Tour
 
-Quick tour of textlint!
-
-Read [Getting Started](./docs/getting-started.md) :squirrel:
+For a quick tour of textlint, checkout our [Getting Started](./docs/getting-started.md) guide :squirrel:
 
 ## Installation
 
-You can install `textlint` command using npm:
+You can install the `textlint` command using npm:
 
 ```
 $ npm install textlint -g
@@ -44,18 +42,17 @@ $ npm install textlint -g
 - Node.js 4.0.0+
 - npm 2.0.0+
 
-Test: Run `node -v` in your console. The version should be higher than v4.0.0.
+If you're not sure what version of Node you're running, you can run `node -v` in your console to find out.
+:warning: Note:
 
-:warning: Caution: Mixed location of installation.
+- If you have installed `textlint` globally you must install each reference rule globally as well.
+- If you have installed `textlint` locally you must install each rule locally as well.
 
-- If you have installed `textlint` as `--global`(`-g`), must install each rule as `--global`.
-- If you have installed `textlint` as `--save-dev`(`-D`), must install each rule as `--save-dev`.
+We recommend installing `textlint` locally. 
 
-Recommended way: Install `textlint` and rules as `--save-dev` per project.
+### For Node.js beginners
 
-### For Node.js beginner
-
-If you never use Node.js and npm (package manager for Node.js), please see following:
+If you've never used Node.js and npm, please see the following:
 
 - [Installing Node.js and updating npm | npm Documentation](https://docs.npmjs.com/getting-started/installing-node "02 - Installing Node.js and updating npm | npm Documentation")
 
@@ -65,7 +62,7 @@ If you never use Node.js and npm (package manager for Node.js), please see follo
 
 textlint has no default rules!!
 
-Use textlint with `--rule` or `--rulesdir`, `.textlintrc` config file.
+You can run textlint with the `--rule` or `--rulesdir` flag to specify rules, or you can just use a `.textlintrc` config file.
 
 ```sh
 # Install textlint's rule
@@ -79,12 +76,12 @@ Use with `textlint-rule-no-todo` rule.
 textlint --rule no-todo README.md
 ```
 
-:memo: We recommended to use `.textlintrc` instead of `--rule` or `--rulesdir`.
-`.textlintrc` is suitable format to maintain rules.
+:memo: We recommended using `.textlintrc` to specify rules instead of `--rule` or `--rulesdir` flags.
+Your `.textlintrc` is a great way to maintain your rules.
 
 ## CLI
 
-See command help
+Run `textlint -h` for information on how to use the CLI. 
 
 ```
 $ textlint -h
@@ -126,9 +123,7 @@ Experimental:
   --rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
 ```
 
-Allow to use glob as a target.
-
-Please note that you have to quote your parameter as follows:
+When running texlint, you can target files to lint using the glob patterns. Make sure that you enclose any glob parameter you pass in quotes. 
 
 ```sh
 $ textlint "docs/**"
@@ -143,11 +138,13 @@ Example:
 
 `.textlintrc` is config file that is loaded as JSON, YAML or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
 
+Running textlint with the following arguments
+
 ```
 $ textlint --rule no-todo --rule very-nice-rule README.md
 ```
 
-is equal to create `.textlintrc` file
+is equivalent to running `textlint README.md` in a directory with a `.textlintrc` containing the following json
 
 ```json
 {
@@ -158,14 +155,7 @@ is equal to create `.textlintrc` file
 }
 ```
 
-and run `textlint` command
-
-```sh
-$ textlint README.md
-# Automatically load `.textlintrc` in current directory
-```
-
-`.textlintrc` can define rule's option.
+You can also configure options for specific rules in your `.textlintrc` file. 
 
 ```json
 {
@@ -178,9 +168,9 @@ $ textlint README.md
 }
 ```
 
-Pass rule's options ("key": "value") to `very-nice-rule`.
+For example here we pass the options ("key": "value") to `very-nice-rule`.
 
-It mean that use the following format:
+Options can be specified in your `.textlintrc` file as follows:
 
 <!-- textlint-disable -->
 
@@ -195,14 +185,14 @@ It mean that use the following format:
 
 <!-- textlint-enable -->
 
-:information_source: for more details
+:information_source: for more details see
 
 - [docs/configuring](docs/configuring.md)
 - [examples/config-file](examples/config-file)
 
 ### Plugin
 
-textlint plugin is a set of rules and rulesConfig or customize parser.
+A textlint plugin is a set of rules and rulesConfig or customize parser.
 
 To enable plugin, put the "plugin-name" into `.textlinrc`.
 
