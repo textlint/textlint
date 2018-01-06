@@ -34,7 +34,7 @@ For a quick tour of textlint, checkout our [Getting Started](./docs/getting-star
 You can install the `textlint` command using npm:
 
 ```
-$ npm install textlint -g
+$ npm install textlint --global
 ```
 
 **Requirements**: 
@@ -43,12 +43,13 @@ $ npm install textlint -g
 - npm 2.0.0+
 
 If you're not sure what version of Node you're running, you can run `node -v` in your console to find out.
+
 :warning: Note:
 
 - If you have installed `textlint` globally you must install each reference rule globally as well.
 - If you have installed `textlint` locally you must install each rule locally as well.
 
-We recommend installing `textlint` locally. 
+We recommend installing `textlint` locally via `npm install --save-dev textlint`.
 
 ### For Node.js beginners
 
