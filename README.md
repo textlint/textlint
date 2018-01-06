@@ -44,12 +44,12 @@ $ npm install textlint --global
 
 If you're not sure what version of Node you're running, you can run `node -v` in your console to find out.
 
-:warning: Note:
+**:warning: Warning:**
 
 - If you have installed `textlint` globally you must install each reference rule globally as well.
 - If you have installed `textlint` locally you must install each rule locally as well.
 
-We recommend installing `textlint` locally via `npm install --save-dev textlint`.
+We recommend installing `textlint` locally.
 
 ### For Node.js beginners
 
