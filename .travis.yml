@@ -3,6 +3,9 @@ language: node_js
 node_js:
 - 4
 - stable
+env:
+- LINT=true
+- LINT=false
 cache: yarn
 before_install:
 - npm install -g npm@5
@@ -11,4 +14,18 @@ install:
 - yarn install --frozon-lockfile
 - yarn run bootstrap
 script:
-- yarn test:all
+- yarn test:packages
+- yarn test:examples
+- yarn test:integration
+matrix:
+  exclude:
+  - node_js: 4
+    env: LINT=false
+  - node_js: stable
+    env: LINT=false
+jobs:
+  include:
+    - stage: lint
+      if: env(LINT) = true
+      script: yarn lint
+      node_js: stable
