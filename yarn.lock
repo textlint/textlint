@@ -6805,9 +6805,9 @@ textlint-rule-max-ten@^1.1.0:
     object-assign "^4.0.1"
     textlint-rule-helper "^1.1.3"
 
-textlint-rule-no-dead-link@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/textlint-rule-no-dead-link/-/textlint-rule-no-dead-link-4.1.1.tgz#47b11df6ba9f2a855c965cc75a19b10a05206f9d"
+textlint-rule-no-dead-link@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-dead-link/-/textlint-rule-no-dead-link-4.1.2.tgz#9516cae67b749fa14b090a533b593e9d967a5196"
   dependencies:
     fs-extra "^5.0.0"
     isomorphic-fetch "^2.2.1"
