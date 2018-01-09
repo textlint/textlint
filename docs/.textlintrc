@@ -37,6 +37,13 @@
         "weasel"
       ]
     },
-    "alex": false
+    "alex": false,
+    "no-dead-link": {
+      "checkRelative": true,
+      "ignore": [
+        "https://www.npmjs.com/search?q=textlint",
+        "https://github.com/textlint/textlint/issues/new"
+      ]
+    }
   }
 }
