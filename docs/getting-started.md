@@ -13,7 +13,7 @@
 You can install `textlint` using npm:
 
 ```sh
-$ npm install -g textlint
+$ npm install -D textlint
 ```
 
 ## Installation of rules
@@ -23,7 +23,7 @@ You can find a rule in [A Collection of textlint rule](https://github.com/textli
 As an example, let's install [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "textlint-rule-no-todo").
 
 ```sh
-$ npm install -g textlint-rule-no-todo
+$ npm install -D textlint-rule-no-todo
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ $ npm install -g textlint-rule-no-todo
 You can run textlint on any Markdown files:
 
 ```sh
-$ textlint --rule no-todo file.md
+$ $(npm bin)/textlint --rule no-todo file.md
 ```
 
 ![screenshot lint error](./resources/screenshot-lint-error.png)
@@ -52,23 +52,24 @@ We recommended that use textlint with `.textlintrc` configuration file.
 Create a `.textlintrc` file in your directory. 
 
 ```sh
-$ textlint --init
+$ $(npm bin)/textlint --init
 ```
 
 In it, you'll see some rules configured like this:
 
 ```json
 {
-    "rules": {
-        "no-todo": true
-    }
+  "filters": {},
+  "rules": {
+    "no-todo": true
+  }
 }
 ```
 
 You can run textlint without any command line options:
 
 ```sh
-$ textlint file.md
+$ $(npm bin)/textlint file.md
 # Automatically, load `.textlintrc` in your directory
 ```
 
