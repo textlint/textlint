@@ -26,7 +26,7 @@ npm init --yes
 
 ### Installation of textlint
    
-You can install `textlint` using npm. We recommend that you install `textlint` locally by running npm command with `--save-dev` option. This means that npm installs `textlint` in the <your-workspace>/node_modules folder.
+You can install `textlint` using npm. We recommend that you install `textlint` locally by running npm command with `--save-dev` option. This means that npm installs `textlint` in the `<your-workspace>/node_modules` folder.
 
 ```
 # Installed textlint locally
