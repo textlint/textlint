@@ -2,31 +2,50 @@
 
 **textlint** does the following steps:
 
-1. textlint load rules, every single rule is a plugin and you can add more at runtime.
-2. textlint parse *texts* using Markdown/Text/HTML parser plugin.
+1. textlint loads rules, every single rule is a plugin and you can add more at runtime.
+2. textlint parses *texts* using Markdown/Text/HTML parser plugin.
 3. textlint uses an AST([Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree "Abstract syntax tree")) to evaluate patterns in *texts*.
-4. textlint report errors/warning if exist.
+4. textlint reports errors/warning if exist.
 
+## Installation and Usage
 
-## Installation
+NOTICE: If you run the following procedures on Windows, please use PowerShell.
+
+### Create new workspace
+
+Create `<your-workspace>` directory and `package.json` file. A [package.json](https://docs.npmjs.com/files/package.json "package.json") manages dependencies of packages that include `textlint`:
+
+```
+# Create your workspace directory and move to it.
+mkdir your-workspace
+cd your-workspace
+
+# `npm init` command creates `package.json` file.
+npm init --yes
+```
+
+### Installation of textlint
    
-You can install `textlint` using npm:
+You can install `textlint` using npm. We recommend installing `textlint` locally:
 
-```sh
-$ npm install -D textlint
+```
+# Installed textlint locally
+npm install --save-dev textlint
 ```
 
-## Installation of rules
+### Installation of rules
 
-You can find a rule in [A Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "A Collection of textlint rule")
+You can find a rule in [A Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "A Collection of textlint rule").
 
-As an example, let's install [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "textlint-rule-no-todo").
+As an example, let's install [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "textlint-rule-no-todo"). We recommend installing a rule locally:
 
-```sh
-$ npm install -D textlint-rule-no-todo
+```
+npm install --save-dev textlint-rule-no-todo
 ```
 
-## Usage
+### Usage
+
+You can run `textlint` on any Markdown files:
 
 ``` markdown
 # file.md
@@ -37,25 +56,23 @@ $ npm install -D textlint-rule-no-todo
 
 ```
 
-You can run textlint on any Markdown files:
-
-```sh
-$ $(npm bin)/textlint --rule no-todo file.md
+```
+./node_modules/.bin/textlint --rule no-todo file.md
 ```
 
 ![screenshot lint error](./resources/screenshot-lint-error.png)
 
-We recommended that use textlint with `.textlintrc` configuration file.
-
 ## Configuration
 
-Create a `.textlintrc` file in your directory. 
+We recommend using `textlint` with `.textlintrc` configuration file.
 
-```sh
-$ $(npm bin)/textlint --init
+Create a `.textlintrc` file in your workspace:
+
+```
+./node_modules/.bin/textlint --init
 ```
 
-In it, you'll see some rules configured like this:
+In this file, you'll see some rules configured like this:
 
 ```json
 {
@@ -66,11 +83,10 @@ In it, you'll see some rules configured like this:
 }
 ```
 
-You can run textlint without any command line options:
+If there is a `.textlintrc` file in your workspace, `textlint` loads `.textlintrc` automatically. So you can run textlint without any command line options:
 
-```sh
-$ $(npm bin)/textlint file.md
-# Automatically, load `.textlintrc` in your directory
+```
+./node_modules/.bin/textlint file.md
 ```
 
 ## Next Steps
