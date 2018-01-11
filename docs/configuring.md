@@ -4,13 +4,13 @@
 
 - `.textlintrc`
 
-`.textlintrc` is config file that loaded as YAML, JSON or JS via [MoOx/rc-loader](https://github.com/MoOx/rc-loader "MoOx/rc-loader").
+`.textlintrc` is config file that is loaded as JSON, YAML or JS via [azu/rc-config-loader](https://github.com/azu/rc-config-loader).
 
 Put the config of rules into `.textlintrc`
 
 ## Rule
 
-A **rule** provide linting/fixing function. 
+A **rule** provide linting/fixing function.
 
 ### Usage of rule
 
@@ -45,7 +45,7 @@ Each rule's options can accept a `object`.
 ```json
 {
   "rules": {
-    "no-todo": true, 
+    "no-todo": true,
     "very-nice-rule": {
         "key": "value"
     }
