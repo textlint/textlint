@@ -102,7 +102,7 @@ export default class YourProcessor {
 
 If you want to publish your textlint plugin, see following documents.
 
-## Package name convention
+### Package name convention
 
 textlint plugin package naming should have `textlint-plugin-` prefix.
 
@@ -122,7 +122,20 @@ textlint user use it by setting following:
 }
 ```
 
-## Example
+### Keywords
+
+You should add `textlintplugin` to npm's `keywords`
+
+```json
+{
+  "name": "textlint-plugin-format-name",
+  "keywords": [
+    "textlintplugin"
+  ]
+}
+```
+
+## Plugin Example
 
 (limited) XML plugin
 
