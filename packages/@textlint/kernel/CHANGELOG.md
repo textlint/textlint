@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.3...@textlint/kernel@2.0.4) (2018-01-12)
+
+
+### Bug Fixes
+
+* **kernel:** fix return type of `SourceCode#getSource` ([1b55894](https://github.com/textlint/textlint/commit/1b55894))
+* **kernel:** pass the file path to preProcess() that is on FixerProcessor ([#458](https://github.com/textlint/textlint/issues/458)) ([5b947aa](https://github.com/textlint/textlint/commit/5b947aa))
+
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.1...@textlint/kernel@2.0.2) (2017-12-25)
 

@@ -12,7 +12,7 @@
   ],
   "name": "txt-to-ast",
   "description": "Parse plain text to AST with location info.",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha \"test/**/*.{js,ts}\"",
@@ -47,6 +47,6 @@
     "mocha": "^4.0.1",
     "power-assert": "^1.4.2",
     "rimraf": "^2.6.2",
-    "textlint-ast-test": "^2.0.1"
+    "textlint-ast-test": "^2.0.2"
   }
 }

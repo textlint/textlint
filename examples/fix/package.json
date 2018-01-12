@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "textlint-example-fix",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "^10.1.1",
+    "textlint": "^10.1.2",
     "textlint-rule-prh": "^2.4.0"
   }
 }

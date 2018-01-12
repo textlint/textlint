@@ -1,7 +1,7 @@
 {
   "name": "markdown-to-ast",
   "description": "Parse Markdown to AST with location info.",
-  "version": "6.0.2",
+  "version": "6.0.3",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/markdown-to-ast/",
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
     "mocha": "^4.0.1",
     "power-assert": "^1.4.2",
     "rimraf": "^2.6.2",
-    "textlint-ast-test": "^2.0.1",
-    "txt-ast-traverse": "^2.0.2"
+    "textlint-ast-test": "^2.0.2",
+    "txt-ast-traverse": "^2.0.3"
   }
 }
