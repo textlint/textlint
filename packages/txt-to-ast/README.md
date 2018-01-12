@@ -3,7 +3,7 @@ Parse plain text to AST with location info.
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
-Markdown version : [textlint/markdown-to-ast](https://github.com/textlint/markdown-to-ast "textlint/markdown-to-ast")
+Markdown version : [markdown-to-ast](https://github.com/textlint/textlint/tree/master/packages/markdown-to-ast/ "textlint/markdown-to-ast")
 
 The AST consists of `TxtNode`s.
 A `TxtNode` of the AST has following properties:
