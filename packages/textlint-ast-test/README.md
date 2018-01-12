@@ -1,4 +1,4 @@
-# textlint-ast-test [![Build Status](https://travis-ci.org/textlint/textlint-ast-test.svg?branch=master)](https://travis-ci.org/textlint/textlint-ast-test)
+# textlint-ast-test
 
 Compliance tests for [textlint](https://github.com/textlint/textlint "textlint")'s AST(Abstract Syntax Tree).
 

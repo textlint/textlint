@@ -468,44 +468,47 @@ This repository is a monorepo that we manage using [Lerna](https://github.com/le
 
 These modules are parts of textlint.
 
-| Package                                                           | Version                                                                                                                                       | Description                                             |
-|:------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|
-| [`textlint`](./packages/textlint)                                 | [![npm](https://img.shields.io/npm/v/textlint.svg?style=flat-square)](https://www.npmjs.com/package/textlint)                                 | textlint command line tool itself                       |
-| [`@textlint/kernel`](./packages/@textlint/kernel)                 | [![npm](https://img.shields.io/npm/v/@textlint/kernel.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/kernel)                 | textlint main logic module. It is universal JavaScript. |
-| [`textlint-formatter`](./packages/textlint-formatter)             | [![npm](https://img.shields.io/npm/v/textlint-formatter.svg?style=flat-square)](https://www.npmjs.com/package/textlint-formatter)             | textlint output formatter                               |
-| [`textlint-fixer-formatter`](./packages/textlint-fixer-formatter) | [![npm](https://img.shields.io/npm/v/textlint-fixer-formatter.svg?style=flat-square)](https://www.npmjs.com/package/textlint-fixer-formatter) | textlint output formatter for fixer                     |
-| [`textlint-plugin-markdown`](./packages/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-markdown) | markdown support for textlint                           |
-| [`textlint-plugin-text`](./packages/textlint-plugin-text)         | [![npm](https://img.shields.io/npm/v/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-text)         | plain text support for textlint                         |
-| [`textlint-ast-test`](./packages/textlint-ast-test)               | [![npm](https://img.shields.io/npm/v/textlint-ast-test.svg?style=flat-square)](https://www.npmjs.com/package/textlint-ast-test)               | Compliance tests for textlint's AST                     |
-| [`markdown-to-ast`](./packages/markdown-to-ast)                   | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast)                   | markdown parser                                         |
-| [`txt-ast-traverse`](./packages/txt-ast-traverse)                 | [![npm](https://img.shields.io/npm/v/txt-ast-traverse.svg?style=flat-square)](https://www.npmjs.com/package/txt-ast-traverse)                 | TxtNode traverse library                                |
-| [`txt-to-ast`](./packages/txt-to-ast)                             | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast)                             | plain text parser                                       |
+| Package                                  | Version                                  | Description                              |
+| :--------------------------------------- | :--------------------------------------- | :--------------------------------------- |
+| [`textlint`](./packages/textlint)        | [![npm](https://img.shields.io/npm/v/textlint.svg?style=flat-square)](https://www.npmjs.com/package/textlint) | textlint command line tool itself        |
+| [`@textlint/kernel`](./packages/@textlint/kernel) | [![npm](https://img.shields.io/npm/v/@textlint/kernel.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/kernel) | textlint main logic module. It is universal JavaScript. |
+| [`textlint-formatter`](./packages/textlint-formatter) | [![npm](https://img.shields.io/npm/v/textlint-formatter.svg?style=flat-square)](https://www.npmjs.com/package/textlint-formatter) | textlint output formatter                |
+| [`textlint-fixer-formatter`](./packages/textlint-fixer-formatter) | [![npm](https://img.shields.io/npm/v/textlint-fixer-formatter.svg?style=flat-square)](https://www.npmjs.com/package/textlint-fixer-formatter) | textlint output formatter for fixer      |
+| [`textlint-plugin-markdown`](./packages/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-markdown) | markdown support for textlint            |
+| [`textlint-plugin-text`](./packages/textlint-plugin-text) | [![npm](https://img.shields.io/npm/v/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-text) | plain text support for textlint          |
+| [`textlint-ast-test`](./packages/textlint-ast-test) | [![npm](https://img.shields.io/npm/v/textlint-ast-test.svg?style=flat-square)](https://www.npmjs.com/package/textlint-ast-test) | Compliance tests for textlint's AST      |
+| [`markdown-to-ast`](./packages/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/markdown-to-ast) | markdown parser                          |
+| [`txt-ast-traverse`](./packages/txt-ast-traverse) | [![npm](https://img.shields.io/npm/v/txt-ast-traverse.svg?style=flat-square)](https://www.npmjs.com/package/txt-ast-traverse) | TxtNode traverse library                 |
+| [`txt-to-ast`](./packages/txt-to-ast)    | [![npm](https://img.shields.io/npm/v/txt-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/txt-to-ast) | plain text parser                        |
+
 
 ### Rule/Plugin helper
 
 These modules are useful for textlint rule/plugin author.
 
-| Package                                                                    | Version                                                                                                                                       | Description                                                             |
-|:---------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------|
-| [`@textlint/ast-node-types`](./packages/@textlint/ast-node-types)          | [![npm](https://img.shields.io/npm/v/@textlint/ast-node-types.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
-| [`textlint-tester`](./packages/textlint-tester)                            | [![npm](https://img.shields.io/npm/v/textlint-tester.svg?style=flat-square)](https://www.npmjs.com/package/textlint-tester)                   | textlint rule testing tools                                             |
-| [`textlint-scripts`](https://github.com/textlint/textlint-scripts)         | [![npm](https://img.shields.io/npm/v/textlint-scripts.svg?style=flat-square)](https://www.npmjs.com/package/textlint-scripts)                 | textlint rule npm run-scripts                                           |
-| [`create-textlint-rule`](https://github.com/textlint/create-textlint-rule) | [![npm](https://img.shields.io/npm/v/create-textlint-rule.svg?style=flat-square)](https://www.npmjs.com/package/create-textlint-rule)         | create textlint rule with no build configuration                        |
+| Package                                  | Version                                  | Description                              |
+| :--------------------------------------- | :--------------------------------------- | :--------------------------------------- |
+| [`@textlint/ast-node-types`](./packages/@textlint/ast-node-types) | [![npm](https://img.shields.io/npm/v/@textlint/ast-node-types.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-node-types) | [textlint AST(Abstract Syntax Tree)](./docs/txtnode.md) type definition |
+| [`textlint-tester`](./packages/textlint-tester) | [![npm](https://img.shields.io/npm/v/textlint-tester.svg?style=flat-square)](https://www.npmjs.com/package/textlint-tester) | textlint rule testing tools              |
+| [`textlint-scripts`](https://github.com/textlint/textlint-scripts) | [![npm](https://img.shields.io/npm/v/textlint-scripts.svg?style=flat-square)](https://www.npmjs.com/package/textlint-scripts) | textlint rule npm run-scripts            |
+| [`create-textlint-rule`](https://github.com/textlint/create-textlint-rule) | [![npm](https://img.shields.io/npm/v/create-textlint-rule.svg?style=flat-square)](https://www.npmjs.com/package/create-textlint-rule) | create textlint rule with no build configuration |
+
 
 ### Integrations
 
 These modules are useful integration with textlint.
 
-| Package                                     | Version                                                                                                                 | Description              |
-|:--------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:-------------------------|
+| Package                                  | Version                                  | Description              |
+| :--------------------------------------- | :--------------------------------------- | :----------------------- |
 | [`gulp-textlint`](./packages/gulp-textlint) | [![npm](https://img.shields.io/npm/v/gulp-textlint.svg?style=flat-square)](https://www.npmjs.com/package/gulp-textlint) | gulp plugin for textlint |
+
 
 ### Internal
 
 These modules are internal usage in the monorepo.
 
-| Package                                                       | Version                                                                                                                                   | Description          |
-|:--------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------|:---------------------|
+| Package                                  | Version                                  | Description          |
+| :--------------------------------------- | :--------------------------------------- | :------------------- |
 | [`@textlint/feature-flag`](./packages/@textlint/feature-flag) | [![npm](https://img.shields.io/npm/v/@textlint/feature-flag.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/feature-flag) | feature flag manager |
 
 
