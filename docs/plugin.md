@@ -98,11 +98,19 @@ export default class YourProcessor {
 }
 ```
 
+## Publishing
+
+If you want to publish your textlint plugin, see following documents.
+
 ## Package name convention
 
-textlint's plugin should use `textlint-plugin-` prefix.
+textlint plugin package naming should have `textlint-plugin-` prefix.
 
-For example, markdown plugins is named `textlint-plugin-markdown`.
+- `textlint-plugin-<name>`
+- `@scope/textlint-plugin-<name>`
+    - textlint supports [Scoped packages](https://docs.npmjs.com/misc/scope "Scoped packages")
+
+Example: `textlint-plugin-markdown`
 
 textlint user use it by setting following:
 

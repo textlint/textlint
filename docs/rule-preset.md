@@ -60,6 +60,43 @@ Usage of "textlint-rule-preset-gizmo":
 
 ## Publishing
 
+If you want to publish your textlint rule preset, see following documents.
+
+
+### Package Naming Conventions
+
+textlint rule package naming should have `textlint-rule-preset-` prefix.
+ 
+- `textlint-rule-preset-<name>`
+- `@scope/textlint-rule-preset-<name>`
+    - textlint supports [Scoped packages](https://docs.npmjs.com/misc/scope "Scoped packages")
+
+Example: `textlint-rule-preset-example`
+
+textlint user use it following:
+
+```json
+{
+    "rules": {
+        "preset-example": true
+    }
+}
+```
+
+Example: `@textlint-rule/textlint-rule-preset-google-developer`
+
+textlint user use it following:
+
+```json
+{
+    "rules": {
+        "@textlint-rule/preset-google-developer": true
+    }
+}
+```
+
+### Keywords
+
 You should add `textlintrule` to npm's `keywords`
 
 ```json
@@ -72,7 +109,3 @@ You should add `textlintrule` to npm's `keywords`
   ]
 }
 ```
-
-We recommend that preset's name should start with `textlint-rule-preset-*`.
-
-e.g.) textlint-rule-preset-foo-bar
