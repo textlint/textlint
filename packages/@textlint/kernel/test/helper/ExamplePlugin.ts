@@ -1,5 +1,6 @@
 // MIT © 2017 azu
 import { TextlintPluginProcessor, TextlintPluginCreator } from "../../src/textlint-kernel-interface";
+import { TextlintMessage } from "@textlint/kernel";
 
 const parse = require("markdown-to-ast").parse;
 
@@ -7,44 +8,50 @@ export interface ExampleProcessorOptions {
     testOption: string;
 }
 
-export class ExampleProcessor implements TextlintPluginProcessor {
-    static availableExtensions() {
-        return [".md"];
-    }
-
-    constructor(public options: any) {}
-
-    processor(_extension: string) {
-        return {
-            preProcess(text: string, _filePath: string | undefined) {
-                return parse(text);
-            },
-            postProcess(messages: any[], filePath: string | undefined) {
-                return {
-                    messages,
-                    filePath: filePath || "unknown"
-                };
-            }
-        };
-    }
-}
-
-export const plugin: TextlintPluginCreator = {
-    Processor: ExampleProcessor
-};
-
 export const createPluginStub = () => {
     let assignedOptions: undefined | ExampleProcessorOptions | boolean;
+    let processorArgs: [string];
+    let preProcessArgs: [string, string];
+    let postProcessArgs: [TextlintMessage[], string];
     return {
         getOptions() {
             return assignedOptions;
         },
+        getProcessorArgs() {
+            return processorArgs;
+        },
+        getPreProcessArgs() {
+            return preProcessArgs;
+        },
+        getPostProcessArgs() {
+            return postProcessArgs;
+        },
         getPlugin(): TextlintPluginCreator {
             return {
-                Processor: class MockProcessor extends ExampleProcessor {
-                    constructor(options: any) {
-                        super(options);
+                Processor: class MockExampleProcessor implements TextlintPluginProcessor {
+                    static availableExtensions() {
+                        return [".md"];
+                    }
+
+                    constructor(public options: any) {
                         assignedOptions = options;
+                    }
+
+                    processor(extension: string) {
+                        processorArgs = [extension];
+                        return {
+                            preProcess(text: string, filePath: string) {
+                                preProcessArgs = [text, filePath];
+                                return parse(text);
+                            },
+                            postProcess(messages: TextlintMessage[], filePath: string) {
+                                postProcessArgs = [messages, filePath];
+                                return {
+                                    messages,
+                                    filePath: filePath || "unknown"
+                                };
+                            }
+                        };
                     }
                 }
             };
