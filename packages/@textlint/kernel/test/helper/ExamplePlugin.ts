@@ -2,7 +2,7 @@
 import { TextlintPluginProcessor, TextlintPluginCreator } from "../../src/textlint-kernel-interface";
 import { TextlintMessage } from "@textlint/kernel";
 
-const parse = require("markdown-to-ast").parse;
+const parse = require("@textlint/markdown-to-ast").parse;
 
 export interface ExampleProcessorOptions {
     testOption: string;

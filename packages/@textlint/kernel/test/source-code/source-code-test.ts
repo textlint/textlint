@@ -3,7 +3,7 @@ import * as assert from "power-assert";
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 
 const select = require("unist-util-select");
-const { parse } = require("markdown-to-ast");
+const { parse } = require("@textlint/markdown-to-ast");
 const TEST_TEXT = "This is **strong**.";
 const TEST_AST = parse(TEST_TEXT);
 const createSourceCode = (text: string, ast: TxtParentNode) => {

@@ -3,7 +3,7 @@
 import * as assert from "assert";
 import SourceCodeFixer from "../../src/fixer/source-code-fixer";
 import SourceCode from "../../src/core/source-code";
-import { parse } from "markdown-to-ast";
+import { parse } from "@textlint/markdown-to-ast";
 const TEST_CODE = "var answer = 6 * 7;";
 const TEST_AST = parse(TEST_CODE);
 const INSERT_AT_END = {

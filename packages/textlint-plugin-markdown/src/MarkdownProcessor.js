@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // LICENSE : MIT
 "use strict";
-import { parse } from "markdown-to-ast";
+import { parse } from "@textlint/markdown-to-ast";
 export class MarkdownProcessor {
     constructor(config) {
         this.config = config;
