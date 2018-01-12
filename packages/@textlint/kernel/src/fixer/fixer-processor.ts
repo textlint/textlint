@@ -76,7 +76,7 @@ export default class FixerProcessor {
                     // create new SourceCode object
                     const newSourceCode = new SourceCode({
                         text: sourceText,
-                        ast: preProcess(sourceText),
+                        ast: preProcess(sourceText, sourceCode.filePath),
                         filePath: resultFilePath,
                         ext: sourceCode.ext
                     });
