@@ -1,4 +1,4 @@
-# markdown-to-ast
+# @textlint/markdown-to-ast
 
 Parse Markdown to AST with location info.
 
@@ -22,20 +22,18 @@ This library is a part of [textlint/textlint](https://github.com/textlint/textli
 
 ## DEMO
 
-[![screenshot](http://monosnap.com/image/0fqi1UF7yOv89nxJPaDWtvyqERaM49.png)](http://textlint.github.io/markdown-to-ast/example/)
-
-[Online Parsing Demo](http://textlint.github.io/markdown-to-ast/example/) provide markdown to AST on-the-fly.
+- [textlint AST explorer](https://textlint.github.io/astexplorer/ "textlint AST explorer")
 
 ## Installation
 
 ```
-npm install markdown-to-ast
+npm install @textlint/markdown-to-ast
 ```
 
 ## Usage
 
 ```sh
-var parse = require("markdown-to-ast").parse;
+var parse = require("@textlint/markdown-to-ast").parse;
 var markdown = "It's a *text*";
 var AST = parse(markdown);
 /*
