@@ -5,7 +5,8 @@
     "packages/*",
     "examples/*",
     "packages/@textlint/*",
-    "test/integration-test"
+    "test/integration-test",
+    "website"
   ],
   "scripts": {
     "clean": "lerna run clean",
