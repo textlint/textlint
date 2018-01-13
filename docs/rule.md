@@ -550,7 +550,63 @@ If you want to know more details, please see other example.
 
 - [Paragraph rule](./rule-advanced.md)
 
-## Information for Publishing
+## Publishing
+
+If you want to publish your textlint rule, see following documents.
+
+### Package Naming Conventions
+
+textlint rule package naming should have `textlint-rule-` prefix.
+ 
+- `textlint-rule-<name>`
+- `@scope/textlint-rule-<name>`
+    - textlint supports [Scoped packages](https://docs.npmjs.com/misc/scope "Scoped packages")
+
+Example: `textlint-rule-no-todo`
+
+textlint user use it following:
+
+```json
+{
+    "rules": {
+        "no-todo": true
+    }
+}
+```
+
+Example: `@scope/textlint-rule-awesome`
+
+textlint user use it following:
+
+```json
+{
+    "rules": {
+        "@scope/awesome": true
+    }
+}
+```
+
+### Rule Naming Conventions
+
+The rule naming conventions for textlint are simple:
+
+- If your rule is disallowing something, prefix it with `no-`.
+    - For example, `no-todo` disallowing `TODO:` and `no-exclamation-question-mark` for disallowing `!` and `?`.
+- If your rule is enforcing the inclusion of something, use a short name without a special prefix.
+    - If the rule for english, please uf `textlint-rule-en-` prefix.
+- Keep your rule names as short as possible, use abbreviations where appropriate.
+- Use dashes(`-`) between words.
+
+npm information:
+
+- [package.json | npm Documentation](https://docs.npmjs.com/files/package.json "package.json | npm Documentation")
+- [results for textlint](https://www.npmjs.com/search?q=textlint "results for textlint")
+
+Example rules:
+
+- [Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
+
+### Keywords
 
 You should add `textlintrule` to npm's `keywords`
 
@@ -566,60 +622,20 @@ You should add `textlintrule` to npm's `keywords`
 }
 ```
 
-
-## Package Naming conventions
-
-textlint's rule should use `textlint-rule-` prefix.
-
-e.g.) `textlint-rule-no-todo`
-
-textlint user use it following:
-
-```json
-{
-    "rules": {
-        "no-todo": true
-    }
-}
-```
-
-The rule naming conventions for textlint are simple:
-
-- If your rule is disallowing something, prefix it with `no-`.
-    - For example, `no-todo` disallowing `TODO:` and `no-exclamation-question-mark` for disallowing `!` and `?`.
-- If your rule is enforcing the inclusion of something, use a short name without a special prefix.
-    - If the rule for english, please uf `textlint-rule-en-` prefix.
-- Keep your rule names as short as possible, use abbreviations where appropriate.
-- Use dashes(`-`) between words.
-
-npm info:
-
-- [package.json | npm Documentation](https://docs.npmjs.com/files/package.json "package.json | npm Documentation")
-- [results for textlint](https://www.npmjs.com/search?q=textlint "results for textlint")
-
-Example rules:
-
-- [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo")
-- [Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
-
-Reference
-
-- [Working with Rules - ESLint - Pluggable JavaScript linter](https://eslint.org/docs/developer-guide/working-with-rules "Working with Rules - ESLint - Pluggable JavaScript linter")
-
 ### FAQ: Publishing
 
-#### Q. `textlint @ 5.5.x` has new feature. My rule module want to use it.
+#### Q. `textlint @ 5.5.x` has new feature. My rule package want to use it.
 
 A. You should
 
 - Add `textlint >= 5.5` to `peerDependencies`
     - See example: [textlint-rule-no-todo/package.json](https://github.com/azu/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json#L47-L49)
-- Release the rule module as *major* because it has breaking change.
+- Release the rule package as *major* because it has breaking change.
 
-#### Q. `textlint` does major update. Do my rule module major update?
+#### Q. `textlint` does major update. Do my rule package major update?
 
-A. If the update contain breaking change, should update as *major*.
-if not, update as *major* or *minor*.
+A. If the update contains a breaking change on your rule, should update as *major*.
+If the update **does not** contain a breaking change on your rule, update as *minor*.
 
 ## Performance
 
