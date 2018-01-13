@@ -2,7 +2,7 @@
 
 txt-ast-traverse provide traversal functions for [TxtAST](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "TxtAST").
 
-This traverse function is a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [textlint/markdown-to-ast](https://github.com/textlint/textlint/tree/master/packages/markdown-to-ast/ "textlint/markdown-to-ast").
+This traverse function is a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [@textlint/markdown-to-ast](https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/ "textlint/markdown-to-ast").
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
 
@@ -15,8 +15,8 @@ npm install txt-ast-traverse
 ## Usage
 
 ```js
-var parse = require("markdown-to-ast").parse,
-    Syntax = require("markdown-to-ast").Syntax;
+var parse = require("@textlint/markdown-to-ast").parse,
+    Syntax = require("@textlint/markdown-to-ast").Syntax;
 var traverse = require("txt-ast-traverse").traverse,
     VisitorOption = require("txt-ast-traverse").VisitorOption;
 var AST = parse("# Header\nHello*world*");

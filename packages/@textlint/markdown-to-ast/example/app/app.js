@@ -86,7 +86,7 @@
                 "use strict";
                 var traverse = require("traverse");
                 var StructuredSource = require("structured-source");
-                var debug = require("debug")("markdown-to-ast");
+                var debug = require("debug")("@textlint/markdown-to-ast");
                 var remarkAbstract = require("remark");
                 var remark = remarkAbstract();
                 /**

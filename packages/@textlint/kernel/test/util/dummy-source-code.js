@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { parse } from "markdown-to-ast";
+import { parse } from "@textlint/markdown-to-ast";
 import * as path from "path";
 import SourceCode from "../../src/core/source-code";
 const testPath = path.join(__dirname, "fixtures", "test.md");

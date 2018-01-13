@@ -47,6 +47,6 @@
     "textlint-rule-no-todo": "^2.0.0"
   },
   "dependencies": {
-    "markdown-to-ast": "^6.0.3"
+    "@textlint/markdown-to-ast": "^6.0.3"
   }
 }

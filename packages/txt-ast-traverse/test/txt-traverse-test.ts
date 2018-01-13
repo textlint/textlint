@@ -4,8 +4,8 @@
 import { ASTNodeTypes, TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import { Controller, traverse, VisitorOption } from "../src/";
 
-const { parse } = require("markdown-to-ast");
-const Syntax = require("markdown-to-ast").Syntax as typeof ASTNodeTypes;
+const { parse } = require("@textlint/markdown-to-ast");
+const Syntax = require("@textlint/markdown-to-ast").Syntax as typeof ASTNodeTypes;
 import { dump } from "./traverse-dump";
 
 const assert = require("assert");

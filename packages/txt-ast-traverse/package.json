@@ -35,7 +35,7 @@
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.5.1",
     "cross-env": "^5.1.1",
-    "markdown-to-ast": "^2.0.0",
+    "@textlint/markdown-to-ast": "^6.0.3",
     "mocha": "^4.0.1",
     "rimraf": "^2.6.2",
     "ts-node": "^4.0.2",

@@ -1,30 +1,8 @@
 {
-  "name": "markdown-to-ast",
+  "name": "@textlint/markdown-to-ast",
   "description": "Parse Markdown to AST with location info.",
   "version": "6.0.3",
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/markdown-to-ast/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "main": "lib/markdown-parser.js",
-  "files": [
-    "lib/",
-    "src/"
-  ],
-  "scripts": {
-    "example:build": "browserify example/js/index.js -o example/app/app.js",
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
-    "prepublish": "npm run --if-present build",
-    "clean": "rimraf lib/"
-  },
-  "directories": {
-    "test": "test/"
-  },
   "author": "azu",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
@@ -49,5 +27,30 @@
     "rimraf": "^2.6.2",
     "textlint-ast-test": "^2.0.2",
     "txt-ast-traverse": "^2.0.3"
+  },
+  "directories": {
+    "test": "test/"
+  },
+  "files": [
+    "lib/",
+    "src/"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/",
+  "license": "MIT",
+  "main": "lib/markdown-parser.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
+    "clean": "rimraf lib/",
+    "example:build": "browserify example/js/index.js -o example/app/app.js",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.{js,ts}\"",
+    "watch": "babel src --out-dir lib --watch --source-maps"
   }
 }

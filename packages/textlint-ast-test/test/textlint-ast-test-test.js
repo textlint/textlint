@@ -1,7 +1,7 @@
 import assert from "assert";
 import { test, isTxtAST } from "../src/textlint-ast-test";
 const txtParse = require("txt-to-ast").parse;
-const markdownParse = require("markdown-to-ast").parse;
+const markdownParse = require("@textlint/markdown-to-ast").parse;
 describe("textlint-ast-test", function() {
     context("when markdown-to-ast", function() {
         it("should not throw", function() {
