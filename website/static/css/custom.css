@@ -1,0 +1,34 @@
+.mainContainer .wrapper p {
+    max-width: 100%;
+}
+
+.productShowcaseSection .logos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    align-items: left;
+}
+
+.header-has-icon:before {
+    content: "";
+    background: url(../img/textlint-icon_black-white-128x128.png) no-repeat left center;
+    background-size: 0.8em;
+    padding-right: 1em;
+}
+
+/* your custom css */
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}

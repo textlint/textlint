@@ -78,7 +78,7 @@ If you want to fix `docs/`
 3. During your first run after clone (`git clone`) or clean up (`npm run clean`), build the project
   - `npm run build`
 4. Run the tests
-  - `npm run lint`
+  - `npm run test:docs`
 5. Submit a pull request :D
 
 Welcome to fix the document!
@@ -161,6 +161,14 @@ This test is heavy.
 git submodule update --init
 # Run test
 yarn run test:integration
+```
+
+#### Documentation Test
+
+Documentation including [`README.md`](../README.md), [`.github/`](../.github/), and [`docs/`](../docs) can be tested by:
+
+```sh
+yarn run test:docs
 ```
 
 #### All Tests

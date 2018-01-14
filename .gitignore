@@ -89,3 +89,9 @@ packages/*/lib/
 packages/@textlint/*/lib/
 packages/**/yarn.lock
 test/**/yarn.lock
+
+# Docusaurus
+website/translated_docs
+website/build
+website/i18n/*
+!website/i18n/en.json
