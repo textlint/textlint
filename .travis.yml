@@ -3,6 +3,9 @@ language: node_js
 node_js:
 - 4
 - stable
+env:
+- DOCS=true
+- DOCS=false
 cache: yarn
 before_install:
 - npm install -g npm@5
@@ -11,4 +14,20 @@ install:
 - yarn install --frozon-lockfile
 - yarn run bootstrap
 script:
-- yarn test:all
+- yarn test
+- yarn test:examples
+- yarn test:integration
+matrix:
+  exclude:
+  - node_js: 4
+    env: DOCS=true
+  - node_js: stable
+    env: DOCS=true
+jobs:
+  include:
+    - stage: DOCUMENTATION
+      if: env(DOCS) = true
+      script:
+      - yarn test:docs
+      - yarn build:website
+      node_js: stable
