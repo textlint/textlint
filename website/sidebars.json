@@ -1,10 +1,20 @@
 {
   "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+    "User Manual": [
+      "getting-started",
+      "configuring"
+    ],
+    "Developer Documentation": [
+      "rule",
+      "filter-rule",
+      "rule-fixable",
+      "rule-preset",
+      "rule-advanced",
+      "rule-tips-after-all",
+      "plugin",
+      "formatter",
+      "use-as-modules",
+      "txtnode"
+    ]
   }
 }
