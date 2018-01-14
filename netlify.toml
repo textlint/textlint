@@ -2,3 +2,5 @@
   base    = "website"
   publish = "website/build/textlint"
   command = "yarn run build"
+[build.environment]
+  YARN_VERSION = "1.3.2"
