@@ -165,7 +165,7 @@ yarn run test:integration
 
 #### Documentation Test
 
-Documentation including [README.md](../README.md), [.github/](../.github/), and [docs/](../docs) can be tested by:
+Documentation including [`README.md`](../README.md), [`.github/`](../.github/), and [`docs/`](../docs) can be tested by:
 
 ```sh
 yarn run test:docs
