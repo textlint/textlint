@@ -540,7 +540,7 @@ For bugs and feature requests, [please create an issue](https://github.com/textl
 
 Pull requests is always welcome.
 
-For more details, see [Contributing Guide](.github/CONTRIBUTING.md).
+For more details, see [Contributing Guide](docs/CONTRIBUTING.md).
 
 ## License
 

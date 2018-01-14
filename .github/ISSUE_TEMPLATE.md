@@ -1,6 +1,6 @@
 <!--
 **Before** Bug Reporting, Please update textlint and try it.
-Also see https://github.com/textlint/textlint/blob/master/.github/CONTRIBUTING.md#bug-reporting
+Also see https://github.com/textlint/textlint/blob/master/docs/CONTRIBUTING.md#bug-reporting
 -->
 
 **What version of textlint are you using?**
