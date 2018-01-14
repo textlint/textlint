@@ -1,4 +1,7 @@
-# Advanced: Paragraph rule
+---
+id: rule-advanced
+title: Advanced: Paragraph Rule
+---
 
 ## Readme
 

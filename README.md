@@ -59,7 +59,7 @@ If you've never used Node.js and npm, please see the following:
 
 ## Usage
 
-![screenshot lint pretty-error](docs/resources/screenshot-lint-pretty-error.png)
+![screenshot lint pretty-error](docs/assets/screenshot-lint-pretty-error.png)
 
 textlint has no default rules!!
 
@@ -279,7 +279,7 @@ $ textlint --fix README.md
 # As a possible, textlint fix the content.
 ```
 
-![fixable-error](./docs/resources/fixable-error.png)
+![fixable-error](./docs/assets/fixable-error.png)
 
 Also, support [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing) "dry run") mode.
 
@@ -391,7 +391,7 @@ textlint has four extensible points:
 - [plugin](docs/plugin.md)
     - plugin contains a processor.
 
-![rule-preset-plugin](docs/resources/rule-preset-plugin.png)
+![rule-preset-plugin](docs/assets/rule-preset-plugin.png)
 
 ## FAQ: How to create rules?
 

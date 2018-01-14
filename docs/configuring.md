@@ -1,4 +1,7 @@
-# Configuring textlint
+---
+id: configuring
+title: Configuring textlint
+---
 
 ## Configuration Files
 
@@ -203,4 +206,4 @@ textlint --config @<scope>/<config-module-name>
 
 ## Overview
 
-![rule-preset-plugin](resources/rule-preset-plugin.png)
+![rule-preset-plugin](assets/rule-preset-plugin.png)

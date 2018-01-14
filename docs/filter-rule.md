@@ -1,4 +1,7 @@
-# Filter rule
+---
+id: filter-rule
+title: Filter Rule
+---
 
 Filter rule is same writing convention with [linting/fixing rule](./rule.md), but has different context.
 

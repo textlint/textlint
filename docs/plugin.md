@@ -1,4 +1,7 @@
-# Plugin
+---
+id: plugin
+title: Plugin
+---
 
 Each plugin is an npm module with a name in the format of `textlint-plugin-<plugin-name>`.
 For example, `textlint-plugin-markdown` is a textlint plugin.

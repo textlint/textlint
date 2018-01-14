@@ -1,4 +1,7 @@
-# TxtAST interface
+---
+id: txtnode
+title: TxtAST Interface
+---
 
 TxtAST define AST(Abstract Syntax Tree) for processing in textlint.
 
@@ -8,7 +11,7 @@ TxtAST define AST(Abstract Syntax Tree) for processing in textlint.
 
 Each node of the tree has same interface, is called `TxtNode`.
 
-[![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
 [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
@@ -160,7 +163,7 @@ If you want to use this interface from TypeScript, [packages/ast-node-types](../
 
 ## Online Parsing Demo
 
-[![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
 [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
