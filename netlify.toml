@@ -1,0 +1,4 @@
+[build]
+  base    = "website"
+  publish = "website/build/textlint"
+  command = "yarn run build"
