@@ -8,8 +8,6 @@
 const React = require("react");
 
 const CompLibrary = require("../../core/CompLibrary.js");
-const MarkdownBlock = CompLibrary.MarkdownBlock;
-/* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
@@ -17,10 +15,6 @@ const siteConfig = require(process.cwd() + "/siteConfig.js");
 
 function imgUrl(img) {
     return siteConfig.baseUrl + "img/" + img;
-}
-
-function docUrl(doc, language) {
-    return siteConfig.baseUrl + "docs/" + (language ? language + "/" : "") + doc;
 }
 
 function pageUrl(page, language) {
@@ -81,7 +75,7 @@ class HomeSplash extends React.Component {
                 <div className="inner">
                     <ProjectTitle />
                     <PromoSection>
-                        <Button href="https://textlint.github.io/">Try It Out</Button>
+                        <Button href="#try">Try It Out</Button>
                         <Button href="https://github.com/textlint/textlint">GitHub</Button>
                     </PromoSection>
                 </div>
@@ -96,59 +90,67 @@ const Block = props => (
     </Container>
 );
 
-const Features = props => (
-    <Block layout="fourColumn">
-        {[
-            {
-                content: "This is the content of my feature",
-                image: imgUrl("docusaurus.svg"),
-                imageAlign: "top",
-                title: "Feature One"
-            },
-            {
-                content: "The content of my second feature",
-                image: imgUrl("docusaurus.svg"),
-                imageAlign: "top",
-                title: "Feature Two"
-            }
-        ]}
-    </Block>
-);
-
 const FeatureCallout = props => (
-    <div className="productShowcaseSection paddingBottom" style={{ textAlign: "left" }}>
-        <h2>What is textlint?</h2>
+    <Container padding="top" id={props.id} background={props.background}>
+        <h2 className="header-has-icon">What is textlint?</h2>
         <p>
             textlint is an open source text linting utility written in JavaScript. It is hard to lint natural language
-            texts, but we try to resolve this issue by <em>pluggable</em> approach.
+            texts, but we try to resolve this issue by <strong>pluggable</strong> approach.
         </p>
-    </div>
-);
 
-const LearnHow = props => (
-    <Block background="light">
-        {[
-            {
-                content: "Talk about learning how to use this",
-                image: imgUrl("docusaurus.svg"),
-                imageAlign: "right",
-                title: "Learn How"
-            }
-        ]}
-    </Block>
-);
+        <h3>Everything is pluggable:</h3>
+        <ul>
+            <li>No bundled rules</li>
+            <li>
+                To use a rule, simply run <code>npm install textlint-rule-xxx</code>. See the{" "}
+                <a
+                    href="https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule"
+                    title="Collection of textlint rule · textlint/textlint Wiki"
+                >
+                    collection of textlint rules
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/textlint/textlint-plugin-markdown" title="Markdown support for textlint.">
+                    Markdown
+                </a>{" "}
+                and{" "}
+                <a href="https://github.com/textlint/textlint-plugin-text" title="plain txt support for textlint">
+                    plain text
+                </a>{" "}
+                are supported by default. Additionally,{" "}
+                <a
+                    href="https://github.com/textlint/textlint-plugin-html"
+                    title="textlint/textlint-plugin-html: html support for textlint"
+                >
+                    HTML
+                </a>{" "}
+                and other formats are supported by custom plugins
+            </li>
+            <li>Formatter (reporter) is used both by bundled and custom formatters</li>
+        </ul>
 
-const TryOut = props => (
-    <Block id="try">
-        {[
-            {
-                content: "Talk about trying this out",
-                image: imgUrl("docusaurus.svg"),
-                imageAlign: "left",
-                title: "Try it Out"
-            }
-        ]}
-    </Block>
+        <h2 id="try" className="header-has-icon">
+            Online Demo
+        </h2>
+        <p>
+            Take textlint for a spin, start typing below. Want to use more? Go to{" "}
+            <a href="https://github.com/textlint/textlint">GitHub</a>.
+        </p>
+
+        <iframe src="https://textlint.github.io/playground?embed" title="online demo" width="100%" height="500">
+            <p>
+                Your browser does not support iframes. Please visit{" "}
+                <a href="https://textlint.github.io/playground">online demo</a>.
+            </p>
+        </iframe>
+
+        <h2 className="header-has-icon">Fixable in textlint</h2>
+        <p>
+            textlint is a <strong>linter</strong> and also is <strong>fixer</strong>. Please see{" "}
+            <a href="https://github.com/textlint/textlint#fixable">document about fixer</a> for details.
+        </p>
+    </Container>
 );
 
 const Description = props => (
@@ -181,16 +183,16 @@ const Showcase = props => {
         });
 
     return (
-        <div className="productShowcaseSection paddingBottom">
-            <h2>{"Who's Using This?"}</h2>
-            <p>This project is used by all these people</p>
-            <div className="logos">{showcase}</div>
-            <div className="more-users">
-                <a className="button" href={pageUrl("users.html", props.language)}>
-                    More {siteConfig.title} Users
-                </a>
+        <Container padding="top" id={props.id} background={props.background}>
+            <h2 className="header-has-icon">{"Who's Using This?"}</h2>
+            <p>
+                This project is used by all these people.{" "}
+                <a href={pageUrl("users.html", props.language)}>More {siteConfig.title} users</a>.
+            </p>
+            <div className="productShowcaseSection paddingBottom">
+                <div className="logos">{showcase}</div>
             </div>
-        </div>
+        </Container>
     );
 };
 
@@ -202,11 +204,7 @@ class Index extends React.Component {
             <div>
                 <HomeSplash language={language} />
                 <div className="mainContainer">
-                    {/*<Features />*/}
                     <FeatureCallout />
-                    {/*<LearnHow />*/}
-                    {/*<TryOut />*/}
-                    {/*<Description />*/}
                     <Showcase language={language} />
                 </div>
             </div>

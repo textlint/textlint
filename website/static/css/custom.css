@@ -1,3 +1,21 @@
+.mainContainer .wrapper p {
+    max-width: 100%;
+}
+
+.productShowcaseSection .logos {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    align-items: left;
+}
+
+.header-has-icon:before {
+    content: "";
+    background: url(../img/textlint-icon_black-white-128x128.png) no-repeat left center;
+    background-size: 0.8em;
+    padding-right: 1em;
+}
+
 /* your custom css */
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {

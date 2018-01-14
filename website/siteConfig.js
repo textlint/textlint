@@ -32,7 +32,12 @@ const siteConfig = {
     baseUrl: "/" /* base url for your project */,
     organizationName: "textlint", // or set an env variable ORGANIZATION_NAME
     projectName: "textlint",
-    headerLinks: [{ doc: "README", label: "Docs" }, { page: "help", label: "Help" }, { blog: true, label: "Blog" }],
+    headerLinks: [
+        { doc: "README", label: "Docs" },
+        { href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule", label: "Rules" },
+        { page: "help", label: "Help" },
+        { blog: true, label: "Blog" }
+    ],
     users,
     /* path to images for header/footer */
     headerIcon: "img/textlint-icon_256x256.png",
