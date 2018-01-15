@@ -1,56 +1,61 @@
 {
   "name": "textlint-tester",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textlint/textlint.git"
-  },
-  "author": "azu",
-  "email": "azuciao@gmail.com",
+  "version": "4.0.5",
+  "description": "testing tool for textlint rule.",
+  "keywords": [
+    "test",
+    "testing",
+    "textlint"
+  ],
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-tester/",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "version": "4.0.5",
-  "description": "testing tool for textlint rule.",
-  "main": "lib/index.js",
+  "license": "MIT",
+  "author": "azu",
   "files": [
     "lib",
     "src"
   ],
+  "main": "lib/index.js",
+  "types": "lib/textlint-tester.d.ts",
   "directories": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/textlint/textlint.git"
+  },
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "clean": "rimraf lib/",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
-    "clean": "rimraf lib/"
+    "watch": "tsc -p . --watch"
   },
-  "keywords": [
-    "textlint",
-    "test",
-    "testing"
-  ],
   "dependencies": {
     "@textlint/feature-flag": "^3.0.3",
     "textlint": "^10.1.2"
   },
   "devDependencies": {
+    "@types/mocha": "^2.2.46",
+    "@types/node": "^9.3.0",
     "analyze-desumasu-dearu": "^3.1.0",
     "babel-cli": "^6.10.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.9.0",
-    "cross-env": "^4.0.0",
+    "cross-env": "^5.1.3",
     "match-index": "^1.0.1",
-    "mocha": "^4.0.1",
+    "mocha": "^4.1.0",
     "power-assert": "^1.4.1",
     "textlint": "^10.1.2",
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-max-number-of-lines": "^1.0.2",
-    "textlint-rule-no-todo": "^2.0.0"
-  }
+    "textlint-rule-no-todo": "^2.0.0",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "email": "azuciao@gmail.com"
 }
