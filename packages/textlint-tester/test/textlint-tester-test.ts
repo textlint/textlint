@@ -1,7 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const path = require("path");
-const TextLintTester = require("../src/index");
+import * as path from "path";
+
+import TextLintTester = require("../src/index");
+
 const noTodo = require("textlint-rule-no-todo");
 const maxNumberOfLine = require("textlint-rule-max-number-of-lines");
 const tester = new TextLintTester();

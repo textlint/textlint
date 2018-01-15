@@ -1,9 +1,12 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
-const fs = require("fs");
-const TextLintCore = require("textlint").TextLintCore;
+import * as assert from "assert";
+
+import * as fs from "fs";
+
+import * as path from "path";
+
+import { TextLintCore } from "textlint";
 import { testInvalid } from "../src/test-util";
 
 describe("Broken Rule", function() {

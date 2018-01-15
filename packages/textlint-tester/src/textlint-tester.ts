@@ -3,7 +3,7 @@
 import * as assert from "assert";
 import { testInvalid, testValid } from "./test-util";
 import { TextLintCore } from "textlint";
-import { TextlintRuleCreator } from "@textlint/kernel";
+import { TextlintFixResult, TextlintRuleCreator } from "@textlint/kernel";
 
 const { coreFlags } = require("@textlint/feature-flag");
 
@@ -43,18 +43,25 @@ function assertHasFixer(ruleCreator: any, ruleName: string): any {
 export type TesterValid =
     | string
     | {
-          text: string;
+          text?: string;
           ext?: string;
           inputPath?: string;
           options?: any;
       };
-export type TesterInvalidValid = {
-    text: string;
+export type TesterInvalid = {
+    text?: string;
     output?: string;
     ext?: string;
     inputPath?: string;
     options?: any;
-    errors: { index?: number; line?: number; column?: number; message?: string }[];
+    errors: {
+        ruleId?: string;
+        index?: number;
+        line?: number;
+        column?: number;
+        message?: string;
+        [index: string]: any;
+    }[];
 };
 
 export class TextLintTester {
@@ -83,7 +90,7 @@ export class TextLintTester {
         });
     }
 
-    testInvalidPattern(ruleName: string, rule: TextlintRuleCreator, invalid: TesterInvalidValid) {
+    testInvalidPattern(ruleName: string, rule: TextlintRuleCreator, invalid: TesterInvalid) {
         const errors = invalid.errors;
         const inputPath = invalid.inputPath;
         const text = invalid.text;
@@ -105,7 +112,14 @@ export class TextLintTester {
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${inputPath || text}`, () => {
                 assertHasFixer(rule, ruleName);
-                const promise = inputPath !== undefined ? textlint.fixFile(inputPath) : textlint.fixText(text, ext);
+                let promise: Promise<TextlintFixResult>;
+                if (inputPath !== undefined) {
+                    promise = textlint.fixFile(inputPath);
+                } else if (text !== undefined) {
+                    promise = textlint.fixText(text, ext);
+                } else {
+                    throw new Error("Should set `text` or `inputPath`");
+                }
                 return promise.then(result => {
                     const output = invalid.output;
                     assert.strictEqual(result.output, output);
@@ -121,7 +135,17 @@ export class TextLintTester {
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
-    run(ruleName: string, rule: TextlintRuleCreator, { valid = [], invalid = [] }) {
+    run(
+        ruleName: string,
+        rule: TextlintRuleCreator,
+        {
+            valid = [],
+            invalid = []
+        }: {
+            valid?: TesterValid[];
+            invalid?: TesterInvalid[];
+        }
+    ) {
         describe(ruleName, () => {
             invalid.forEach(state => {
                 this.testInvalidPattern(ruleName, rule, state);
