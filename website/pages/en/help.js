@@ -17,13 +17,13 @@ class Help extends React.Component {
     render() {
         const supportLinks = [
             {
-                content: "Learn more using the [documentation on this site.](/docs/README.html)",
+                content: "Learn more using the [documentation on this site.](/docs/getting-started.html)",
                 title: "Browse Docs"
             },
             {
                 content:
-                    "For bugs and feature requests, please [open an issue](https://github.com/textlint/textlint/issues).",
-                title: "Join the community"
+                    "For bugs and feature requests, please [open an issue](https://github.com/textlint/textlint/issues). Be sure to also check out our [Contributing Guideline](/docs/contributing.html).",
+                title: "Join the Community"
             }
         ];
 
