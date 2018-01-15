@@ -15,6 +15,9 @@
       "formatter",
       "use-as-modules",
       "txtnode"
+    ],
+    "Contributing": [
+      "contributing"
     ]
   }
 }
