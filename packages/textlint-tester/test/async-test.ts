@@ -1,11 +1,13 @@
 // LICENSE : MIT
 "use strict";
-const TextLintTester = require("../src/index");
+import TextLintTester = require("../src/index");
+
 const tester = new TextLintTester();
-function rule(context) {
+
+function rule(context: any) {
     const { Syntax, RuleError, report } = context;
     return {
-        [Syntax.Document](node) {
+        [Syntax.Document](node: any) {
             return new Promise(resolve => {
                 setTimeout(() => {
                     report(node, new RuleError("error"));
@@ -15,6 +17,7 @@ function rule(context) {
         }
     };
 }
+
 tester.run("async-rule", rule, {
     invalid: [
         {

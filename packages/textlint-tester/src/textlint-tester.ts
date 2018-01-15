@@ -1,21 +1,25 @@
 // LICENSE : MIT
 "use strict";
-import assert from "assert";
-import { testValid, testInvalid } from "./test-util";
+import * as assert from "assert";
+import { testInvalid, testValid } from "./test-util";
 import { TextLintCore } from "textlint";
-import { coreFlags } from "@textlint/feature-flag";
+import { TextlintFixResult, TextlintRuleCreator } from "@textlint/kernel";
+
+const { coreFlags } = require("@textlint/feature-flag");
+
 /* eslint-disable no-invalid-this */
+const globalObject: any = global;
 const describe =
-    typeof global.describe === "function"
-        ? global.describe
-        : function(text, method) {
+    typeof globalObject.describe === "function"
+        ? globalObject.describe
+        : function(this: any, _text: string, method: () => any) {
               return method.apply(this);
           };
 
 const it =
-    typeof global.it === "function"
-        ? global.it
-        : function(text, method) {
+    typeof globalObject.it === "function"
+        ? globalObject.it
+        : function(this: any, _text: string, method: () => any) {
               return method.apply(this);
           };
 
@@ -26,7 +30,7 @@ const it =
  * @param {Function|Object} ruleCreator
  * @param {string} ruleName
  */
-function assertHasFixer(ruleCreator, ruleName) {
+function assertHasFixer(ruleCreator: any, ruleName: string): any {
     if (typeof ruleCreator.fixer === "function") {
         return;
     }
@@ -36,18 +40,42 @@ function assertHasFixer(ruleCreator, ruleName) {
     throw new Error(`Not found \`fixer\` function in the ruleCreator: ${ruleName}`);
 }
 
-export default class TextLintTester {
+export type TesterValid =
+    | string
+    | {
+          text?: string;
+          ext?: string;
+          inputPath?: string;
+          options?: any;
+      };
+export type TesterInvalid = {
+    text?: string;
+    output?: string;
+    ext?: string;
+    inputPath?: string;
+    options?: any;
+    errors: {
+        ruleId?: string;
+        index?: number;
+        line?: number;
+        column?: number;
+        message?: string;
+        [index: string]: any;
+    }[];
+};
+
+export class TextLintTester {
     constructor() {
         if (typeof coreFlags === "object") {
             coreFlags.runningTester = true;
         }
     }
 
-    testValidPattern(ruleName, rule, valid) {
+    testValidPattern(ruleName: string, rule: TextlintRuleCreator, valid: TesterValid) {
+        const text = typeof valid === "object" ? valid.text : valid;
         const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
-        const text = valid.text !== undefined ? valid.text : valid;
-        const options = valid.options || {};
-        const ext = valid.ext !== undefined ? valid.ext : ".md";
+        const options = (typeof valid === "object" && valid.options) || {};
+        const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
         const textlint = new TextLintCore();
         textlint.setupRules(
             {
@@ -62,7 +90,7 @@ export default class TextLintTester {
         });
     }
 
-    testInvalidPattern(ruleName, rule, invalid) {
+    testInvalidPattern(ruleName: string, rule: TextlintRuleCreator, invalid: TesterInvalid) {
         const errors = invalid.errors;
         const inputPath = invalid.inputPath;
         const text = invalid.text;
@@ -84,7 +112,14 @@ export default class TextLintTester {
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${inputPath || text}`, () => {
                 assertHasFixer(rule, ruleName);
-                const promise = inputPath !== undefined ? textlint.fixFile(inputPath) : textlint.fixText(text, ext);
+                let promise: Promise<TextlintFixResult>;
+                if (inputPath !== undefined) {
+                    promise = textlint.fixFile(inputPath);
+                } else if (text !== undefined) {
+                    promise = textlint.fixText(text, ext);
+                } else {
+                    throw new Error("Should set `text` or `inputPath`");
+                }
                 return promise.then(result => {
                     const output = invalid.output;
                     assert.strictEqual(result.output, output);
@@ -100,7 +135,17 @@ export default class TextLintTester {
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
-    run(ruleName, rule, { valid = [], invalid = [] }) {
+    run(
+        ruleName: string,
+        rule: TextlintRuleCreator,
+        {
+            valid = [],
+            invalid = []
+        }: {
+            valid?: TesterValid[];
+            invalid?: TesterInvalid[];
+        }
+    ) {
         describe(ruleName, () => {
             invalid.forEach(state => {
                 this.testInvalidPattern(ruleName, rule, state);
