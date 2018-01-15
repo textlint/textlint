@@ -8,7 +8,7 @@ title: Documentation
 - [Getting Started](./getting-started.md)
 - [Configuring](./configuring.md)
 
-## Developer Documentation
+## Developer Guide
 
 - [How to create rule?](./rule.md)
     - [Advanced: Paragraph rule](./rule-advanced.md)
