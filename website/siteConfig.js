@@ -33,7 +33,7 @@ const siteConfig = {
     organizationName: "textlint", // or set an env variable ORGANIZATION_NAME
     projectName: "textlint",
     headerLinks: [
-        { doc: "index", label: "Docs" },
+        { doc: "getting-started", label: "Documentation" },
         { href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule", label: "Rules" },
         { page: "help", label: "Help" },
         { blog: true, label: "Blog" }

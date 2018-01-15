@@ -1,6 +1,6 @@
 ---
 id: filter-rule
-title: Filter Rule
+title: Creating Filter Rule
 ---
 
 Filter rule is same writing convention with [linting/fixing rule](./rule.md), but has different context.

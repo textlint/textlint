@@ -1,6 +1,6 @@
 ---
 id: index
-title: textlint Documentation
+title: Documentation
 ---
 
 ## User Manual
