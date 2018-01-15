@@ -1,4 +1,7 @@
-# Creating preset
+---
+id: rule-preset
+title: Creating Preset
+---
 
 "preset" is a collection of rules and rulesConfig.
 

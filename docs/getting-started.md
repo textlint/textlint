@@ -1,4 +1,7 @@
-# Getting Started with textlint
+---
+id: getting-started
+title: Getting Started with textlint
+---
 
 **textlint** does the following steps:
 
@@ -60,7 +63,7 @@ You can run `textlint` on any Markdown files:
 ./node_modules/.bin/textlint --rule no-todo file.md
 ```
 
-![screenshot lint error](./resources/screenshot-lint-error.png)
+![screenshot lint error](assets/screenshot-lint-error.png)
 
 ## Configuration
 
@@ -95,4 +98,4 @@ If there is a `.textlintrc` file in your workspace, `textlint` loads `.textlintr
 - Explore [textlint's rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule)
 - Can't find just the right rule? Make your own [custom rule](./rule.md).
 - Can't handling `.ext` file? Make your own [custom plugin](./plugin.md).
-- Make textlint even better by [contributing](../.github/CONTRIBUTING.md).
+- Make textlint even better by [contributing](./CONTRIBUTING.md).

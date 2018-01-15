@@ -1,4 +1,7 @@
-# Creating Rules
+---
+id: rule
+title: Creating Rules
+---
 
 textlint's AST(Abstract Syntax Tree) is defined at the page.
 
@@ -77,7 +80,7 @@ export default function(context) {
 
 [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") help you better understand [TxtAST](./txtnode.md).
 
-[![ast-explorer fork](./resources/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
 
 **Related information:**

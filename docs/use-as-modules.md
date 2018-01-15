@@ -1,8 +1,11 @@
-# Use as node modules
+---
+id: use-as-modules
+title: Use as Node Modules
+---
 
 ## Overview
 
-![overview](./resources/architecture.png)
+![overview](assets/architecture.png)
 
 
 `textlint` module expose these header at [index.js](../packages/textlint/src/index.ts)

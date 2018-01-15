@@ -33,7 +33,7 @@ const siteConfig = {
     organizationName: "textlint", // or set an env variable ORGANIZATION_NAME
     projectName: "textlint",
     headerLinks: [
-        { doc: "README", label: "Docs" },
+        { doc: "getting-started", label: "Documentation" },
         { href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule", label: "Rules" },
         { page: "help", label: "Help" },
         { blog: true, label: "Blog" }
@@ -46,7 +46,7 @@ const siteConfig = {
     /* colors for website */
     colors: {
         primaryColor: "#5acbe3",
-        secondaryColor: "#f9f2f4"
+        secondaryColor: "#c7254e"
     },
     // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
     copyright: "Copyright © " + new Date().getFullYear() + "textlint organization",

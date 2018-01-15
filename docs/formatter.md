@@ -1,4 +1,7 @@
-# Formatter
+---
+id: formatter
+title: Formatter
+---
 
 ## Result of linting
 

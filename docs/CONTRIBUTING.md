@@ -1,4 +1,7 @@
-# Contributing Guide
+---
+id: contributing
+title: Contributing Guideline
+---
 
 ## Monorepo
 

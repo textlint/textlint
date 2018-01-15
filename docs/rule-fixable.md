@@ -1,4 +1,7 @@
-# Creating fixable rule
+---
+id: rule-fixable
+title: Creating Fixable Rule
+---
 
 textlint has `linter` and also has `fixer`.
 
