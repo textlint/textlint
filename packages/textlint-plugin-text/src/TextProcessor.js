@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // LICENSE : MIT
 "use strict";
-import { parse } from "txt-to-ast";
+import { parse } from "@textlint/text-to-ast";
 export class TextProcessor {
     constructor(config) {
         this.config = config;
