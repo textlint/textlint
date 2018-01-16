@@ -17,7 +17,7 @@ This is ⏩ emoji
             assert(isTxtAST(AST));
         });
     });
-    context("when txt-to-ast", function() {
+    context("when @textlint/text-to-ast", function() {
         it("should not throw", function() {
             const text = `This is text.
 これはテキストです。

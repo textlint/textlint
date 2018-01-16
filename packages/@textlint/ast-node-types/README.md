@@ -37,8 +37,8 @@ Please use it for creating your textlint-plugin parser.
 Use it by
 
 - textlint internal
-- txt-to-ast
-- markdown-to-ast
+- `@textlint/text-to-ast`
+- `@textlint/markdown-to-ast`
 
 ## Versioning
 
