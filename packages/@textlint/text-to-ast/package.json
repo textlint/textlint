@@ -1,10 +1,38 @@
 {
   "name": "@textlint/text-to-ast",
-  "description": "Parse plain text to AST with location info.",
   "version": "3.0.3",
-  "author": "azu",
+  "description": "Parse plain text to AST with location info.",
+  "keywords": [
+    "ast",
+    "textlint",
+    "txt"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/text-to-ast/",
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/index.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
+    "clean": "rimraf lib/",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.{js,ts}\"",
+    "watch": "babel src --out-dir lib --watch --source-maps"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.0.0"
@@ -21,32 +49,7 @@
     "rimraf": "^2.6.2",
     "textlint-ast-test": "^2.0.2"
   },
-  "directories": {
-    "example": "example",
-    "test": "test"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "src/"
-  ],
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/text-to-ast/",
-  "keywords": [
-    "ast",
-    "textlint",
-    "txt"
-  ],
-  "license": "MIT",
-  "main": "lib/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "scripts": {
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "clean": "rimraf lib/",
-    "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "babel src --out-dir lib --watch --source-maps"
+  "publishConfig": {
+    "access": "public"
   }
 }
