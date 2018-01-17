@@ -23,7 +23,7 @@ Visit [https://textlint.github.io/](https://textlint.github.io/) to see textlint
     - `npm install textlint-rule-xxx`.
     - See [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
 - [Markdown](https://github.com/textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text) are supported by default. Support is available for [HTML](https://github.com/textlint/textlint-plugin-html) and [other file formats](https://github.com/textlint/textlint#supported-file-formats) via plugins.
-- Supports the use of custom formatters and formatter bundles [formatter(reporter)](./packages/textlint-formatter)
+- Supports the use of custom formatters and formatter bundles [formatter(reporter)](./packages/@textlint/linter-formatter)
 
 ## Quick Tour
 
@@ -315,7 +315,7 @@ e.g. use `pretty-error` formatter:
 $ textlint -f pretty-error file.md
 ```
 
-More details in [textlint-formatter](./packages/textlint-formatter "textlint-formatter").
+More details in [@textlint/linter-formatter](./packages/@textlint/linter-formatter "@textlint/linter-formatter").
 
 ## Use as node module
 
@@ -472,7 +472,7 @@ These modules are parts of textlint.
 | :--------------------------------------- | :--------------------------------------- | :--------------------------------------- |
 | [`textlint`](./packages/textlint)        | [![npm](https://img.shields.io/npm/v/textlint.svg?style=flat-square)](https://www.npmjs.com/package/textlint) | textlint command line tool itself        |
 | [`@textlint/kernel`](./packages/@textlint/kernel) | [![npm](https://img.shields.io/npm/v/@textlint/kernel.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/kernel) | textlint main logic module. It is universal JavaScript. |
-| [`textlint-formatter`](./packages/textlint-formatter) | [![npm](https://img.shields.io/npm/v/textlint-formatter.svg?style=flat-square)](https://www.npmjs.com/package/textlint-formatter) | textlint output formatter                |
+| [`@textlint/linter-formatter`](./packages/@textlint/linter-formatter) | [![npm](https://img.shields.io/npm/v/@textlint/linter-formatter.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/linter-formatter) | textlint output formatter                |
 | [`textlint-fixer-formatter`](./packages/textlint-fixer-formatter) | [![npm](https://img.shields.io/npm/v/textlint-fixer-formatter.svg?style=flat-square)](https://www.npmjs.com/package/textlint-fixer-formatter) | textlint output formatter for fixer      |
 | [`textlint-plugin-markdown`](./packages/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-markdown) | markdown support for textlint            |
 | [`textlint-plugin-text`](./packages/textlint-plugin-text) | [![npm](https://img.shields.io/npm/v/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/textlint-plugin-text) | plain text support for textlint          |
