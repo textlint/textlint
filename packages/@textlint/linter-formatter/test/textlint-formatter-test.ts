@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import { createFormatter, getFormatterList } from "textlint-formatter";
+import { createFormatter, getFormatterList } from "@textlint/linter-formatter";
 
 import * as path from "path";
 import * as assert from "assert";
 
-describe("textlint-formatter-test", function() {
+describe("@textlint/linter-formatter-test", function() {
     describe("createFormatter", function() {
         it("should return formatter function", function() {
             const formatter = createFormatter({
