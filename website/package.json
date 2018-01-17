@@ -1,26 +1,26 @@
 {
   "name": "textlint-website",
-  "private": true,
   "version": "10.1.2",
+  "private": true,
   "homepage": "https://github.com/textlint/textlint/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
   "scripts": {
-    "examples": "docusaurus-examples",
-    "start": "docusaurus-start",
     "build": "docusaurus-build",
+    "examples": "docusaurus-examples",
     "publish-gh-pages": "docusaurus-publish",
-    "write-translations": "docusaurus-write-translations",
-    "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version",
+    "start": "docusaurus-start",
     "test": "npm-run-all textlint",
     "textlint": "textlint --cache -c .textlintrc ../docs/ ../.github/ ../README.md -f pretty-error",
-    "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md"
+    "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md",
+    "version": "docusaurus-version",
+    "write-translations": "docusaurus-write-translations"
   },
   "devDependencies": {
     "docusaurus": "^1.0.5",

@@ -1,12 +1,12 @@
 {
+  "name": "textlint-perf-test",
+  "version": "2.0.5",
+  "private": true,
+  "license": "MIT",
+  "author": "azu",
   "scripts": {
     "perf": "node perf.js"
   },
-  "private": true,
-  "version": "2.0.5",
-  "name": "textlint-perf-test",
-  "author": "azu",
-  "license": "MIT",
   "dependencies": {
     "shelljs": "^0.5.3",
     "textlint": "^10.1.2",

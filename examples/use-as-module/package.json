@@ -1,14 +1,14 @@
 {
-  "private": true,
-  "version": "2.0.5",
   "name": "textlint-example-use-as-module",
+  "version": "2.0.5",
+  "private": true,
+  "license": "MIT",
+  "author": "azu",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm test",
-    "test": "node index.js"
+    "test": "node index.js",
+    "test:ci": "npm test"
   },
-  "author": "azu",
-  "license": "MIT",
   "dependencies": {
     "textlint": "^10.1.2",
     "textlint-rule-no-todo": "^1.0.3"

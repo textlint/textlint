@@ -1,16 +1,16 @@
 {
-  "private": true,
   "name": "textlint-example-cli",
   "version": "2.0.5",
+  "private": true,
   "description": "",
+  "license": "MIT",
+  "author": "azu",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm test",
     "test": "npm run textlint",
+    "test:ci": "npm test",
     "textlint": "textlint --rule no-todo '*.md'"
   },
-  "author": "azu",
-  "license": "MIT",
   "devDependencies": {
     "textlint": "^10.1.2",
     "textlint-rule-no-todo": "^1.0.3"

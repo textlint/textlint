@@ -1,14 +1,14 @@
 {
-  "private": true,
-  "version": "2.0.5",
   "name": "textlint-example-html-plugin",
+  "version": "2.0.5",
+  "private": true,
+  "license": "MIT",
+  "author": "azu",
   "scripts": {
-    "test:ci": "npm test",
     "test": "npm run textlint",
+    "test:ci": "npm test",
     "textlint": "textlint -f pretty-error index.html"
   },
-  "author": "azu",
-  "license": "MIT",
   "devDependencies": {
     "textlint": "^10.1.2",
     "textlint-plugin-html": "^0.1.2",

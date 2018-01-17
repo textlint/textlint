@@ -1,16 +1,16 @@
 {
-  "private": true,
   "name": "textlint-example-rulesdir",
   "version": "2.0.5",
+  "private": true,
   "description": "",
+  "license": "MIT",
+  "author": "azu",
   "main": "index.js",
   "scripts": {
-    "test:ci": "npm test",
     "test": "npm run textlint",
+    "test:ci": "npm test",
     "textlint": "textlint --rulesdir ./rules README.md"
   },
-  "author": "azu",
-  "license": "MIT",
   "devDependencies": {
     "textlint": "^10.1.2"
   }
