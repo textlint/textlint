@@ -1,24 +1,24 @@
 {
   "name": "gulp-textlint",
-  "description": "gulp plugin for textlint",
   "version": "5.0.5",
-  "main": "index.js",
+  "description": "gulp plugin for textlint",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "license": "MIT",
+  "author": "nakajmg",
   "files": [
     "index.js"
   ],
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "author": "nakajmg",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
   "scripts": {
     "test": "mocha \"test/**/*.{js,ts}\""
   },
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
   "dependencies": {
     "gulp-util": "^3.0.6",
     "textlint": "^10.1.2",

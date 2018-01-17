@@ -1,47 +1,47 @@
 {
   "name": "txt-ast-traverse",
+  "version": "2.0.3",
   "description": "TxtNode traverse library",
   "keywords": [
     "AST",
     "traverse"
   ],
-  "version": "2.0.3",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/txt-ast-traverse",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/txt-ast-traverse/src/index.js",
+  "types": "./lib/txt-ast-traverse/src/index.d.ts",
+  "directories": {
+    "test": "test/"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "main": "./lib/txt-ast-traverse/src/index.js",
-  "types": "./lib/txt-ast-traverse/src/index.d.ts",
-  "files": [
-    "lib"
-  ],
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
-    "test": "mocha \"test/**/*.ts\"",
-    "watch": "tsc -p . --watch",
+    "clean": "rimraf lib/",
     "prepublish": "npm run --if-present build",
-    "clean": "rimraf lib/"
+    "test": "mocha \"test/**/*.ts\"",
+    "watch": "tsc -p . --watch"
   },
-  "directories": {
-    "test": "test/"
-  },
-  "author": "azu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
+  "dependencies": {
+    "@textlint/ast-node-types": "^4.0.0"
   },
   "devDependencies": {
+    "@textlint/markdown-to-ast": "^6.0.3",
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.5.1",
     "cross-env": "^5.1.1",
-    "@textlint/markdown-to-ast": "^6.0.3",
     "mocha": "^4.0.1",
     "rimraf": "^2.6.2",
     "ts-node": "^4.0.2",
     "typescript": "^2.6.2"
-  },
-  "dependencies": {
-    "@textlint/ast-node-types": "^4.0.0"
   }
 }

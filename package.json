@@ -1,38 +1,31 @@
 {
   "name": "textlint",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "examples/*",
-    "packages/@textlint/*",
-    "test/integration-test",
-    "website"
-  ],
   "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build --ignore textlint-website",
+    "build:website": "lerna run build --scope textlint-website",
     "clean": "lerna run clean",
+    "precommit": "lint-staged",
+    "postcommit": "git reset",
+    "eslint": "eslint --cache 'packages/*/src/**/*.js'",
+    "eslint:fix": "eslint --fix --cache 'packages/*/src/**/*.js'",
+    "lint": "npm-run-all eslint",
+    "lint:fix": "npm-run-all eslint:fix",
+    "perf": "cd ./examples/perf && npm run test:ci",
     "prepublish": "npm-run-all clean build",
     "publish": "lerna publish --conventional-commits",
     "publish:beta": "lerna publish --conventional-commits --npm-tag=next --preid=next",
     "publish:canary": "lerna publish --canary",
-    "bootstrap": "lerna bootstrap",
-    "build": "lerna run build --ignore textlint-website",
-    "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)",
     "pretest": "npm-run-all clean build",
     "test": "npm-run-all --parallel lint test:packages",
     "test:all": "npm-run-all test test:examples test:integration test:docs",
-    "test:packages": "lerna run test --ignore integration-test --ignore textlint-example-* --ignore textlint-website",
+    "test:docs": "lerna run test --scope textlint-website",
     "test:examples": "lerna run test:ci --scope textlint-example-*",
     "test:integration": "lerna run test --scope integration-test",
-    "test:docs": "lerna run test --scope textlint-website",
-    "build:website": "lerna run build --scope textlint-website",
-    "lint": "npm-run-all eslint",
-    "lint:fix": "npm-run-all eslint:fix",
-    "eslint": "eslint --cache 'packages/*/src/**/*.js'",
-    "eslint:fix": "eslint --fix --cache 'packages/*/src/**/*.js'",
-    "perf": "cd ./examples/perf && npm run test:ci",
-    "precommit": "lint-staged",
-    "postcommit": "git reset",
-    "prettier": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,css}'"
+    "test:packages": "lerna run test --ignore integration-test --ignore textlint-example-* --ignore textlint-website",
+    "prettier": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,css}'",
+    "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)"
   },
   "devDependencies": {
     "eslint": "^4.7.2",
@@ -51,14 +44,21 @@
     "textlint-rule-rousseau": "^1.4.5",
     "textlint-rule-unexpanded-acronym": "^1.2.1"
   },
-  "prettier": {
-    "printWidth": 120,
-    "tabWidth": 4
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*",
+    "packages/@textlint/*",
+    "test/integration-test",
+    "website"
+  ]
 }

@@ -1,38 +1,40 @@
 {
   "name": "textlint-plugin-markdown",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textlint/textlint.git"
-  },
-  "author": "azu",
-  "email": "azuciao@gmail.com",
+  "version": "4.0.5",
+  "description": "Markdown support for textlint.",
+  "keywords": [
+    "markdown",
+    "plugin",
+    "textlint"
+  ],
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-plugin-markdown",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "version": "4.0.5",
-  "description": "Markdown support for textlint.",
-  "main": "lib/index.js",
+  "license": "MIT",
+  "author": "azu",
   "files": [
     "lib",
     "src"
   ],
+  "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/textlint/textlint.git"
+  },
   "scripts": {
     "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
+    "clean": "rimraf lib/",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
-    "clean": "rimraf lib/"
+    "watch": "babel src --out-dir lib --watch --source-maps"
   },
-  "keywords": [
-    "textlint",
-    "plugin",
-    "markdown"
-  ],
+  "dependencies": {
+    "@textlint/markdown-to-ast": "^6.0.3"
+  },
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-preset-env": "^1.4.0",
@@ -46,7 +48,5 @@
     "textlint": "^10.1.2",
     "textlint-rule-no-todo": "^2.0.0"
   },
-  "dependencies": {
-    "@textlint/markdown-to-ast": "^6.0.3"
-  }
+  "email": "azuciao@gmail.com"
 }

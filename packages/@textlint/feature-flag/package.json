@@ -1,36 +1,39 @@
 {
-  "directories": {
-    "test": "test"
+  "name": "@textlint/feature-flag",
+  "version": "3.0.3",
+  "description": "textlint internal feature flag manager.",
+  "keywords": [
+    "textlint"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/feature-flag/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
   },
-  "author": "azu",
   "license": "MIT",
+  "author": "azu",
   "files": [
     "bin/",
     "lib/",
     "src/"
   ],
-  "name": "@textlint/feature-flag",
-  "version": "3.0.3",
-  "description": "textlint internal feature flag manager.",
   "main": "lib/textlint-feature-flag.js",
-  "scripts": {
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
-    "prepublish": "npm run --if-present build",
-    "clean": "rimraf lib/"
+  "directories": {
+    "test": "test"
   },
-  "keywords": [
-    "textlint"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
+  "scripts": {
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
+    "clean": "rimraf lib/",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.{js,ts}\"",
+    "watch": "babel src --out-dir lib --watch --source-maps"
   },
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/feature-flag/",
+  "dependencies": {
+    "map-like": "^2.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",
@@ -41,8 +44,5 @@
     "mocha": "^4.0.1",
     "power-assert": "^1.4.2",
     "rimraf": "^2.6.2"
-  },
-  "dependencies": {
-    "map-like": "^2.0.0"
   }
 }

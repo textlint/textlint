@@ -1,51 +1,36 @@
 {
-  "directories": {
-    "test": "test"
+  "name": "@textlint/kernel",
+  "version": "2.0.4",
+  "description": "textlint kernel is core logic by pure JavaScript.",
+  "keywords": [
+    "textlint"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-kernel/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
   },
-  "author": "azu",
   "license": "MIT",
+  "author": "azu",
   "files": [
     "bin/",
     "lib/",
     "src/"
   ],
-  "name": "@textlint/kernel",
-  "version": "2.0.4",
-  "description": "textlint kernel is core logic by pure JavaScript.",
   "main": "lib/kernel/src/index.js",
   "typings": "lib/kernel/src/index.d.ts",
-  "scripts": {
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "clean": "rimraf out/ lib/ es_modules/",
-    "build": "npm-run-all build:src",
-    "build:src": "cross-env NODE_ENV=production tsc -p .",
-    "prepublish": "npm run --if-present build"
+  "directories": {
+    "test": "test"
   },
-  "keywords": [
-    "textlint"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-kernel/",
-  "devDependencies": {
-    "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.28",
-    "cpx": "^1.5.0",
-    "cross-env": "^5.0.5",
-    "@textlint/markdown-to-ast": "^6.0.3",
-    "mocha": "^4.0.1",
-    "npm-run-all": "^4.1.1",
-    "rimraf": "^2.6.2",
-    "shelljs": "^0.7.7",
-    "textlint-plugin-markdown": "^4.0.5",
-    "ts-node": "^3.3.0",
-    "typescript": "~2.6.1",
-    "unist-util-select": "^1.5.0"
+  "scripts": {
+    "build": "npm-run-all build:src",
+    "build:src": "cross-env NODE_ENV=production tsc -p .",
+    "clean": "rimraf out/ lib/ es_modules/",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.{js,ts}\""
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.0.0",
@@ -57,5 +42,20 @@
     "object-assign": "^4.1.1",
     "structured-source": "^3.0.2",
     "txt-ast-traverse": "^2.0.3"
+  },
+  "devDependencies": {
+    "@textlint/markdown-to-ast": "^6.0.3",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.28",
+    "cpx": "^1.5.0",
+    "cross-env": "^5.0.5",
+    "mocha": "^4.0.1",
+    "npm-run-all": "^4.1.1",
+    "rimraf": "^2.6.2",
+    "shelljs": "^0.7.7",
+    "textlint-plugin-markdown": "^4.0.5",
+    "ts-node": "^3.3.0",
+    "typescript": "~2.6.1",
+    "unist-util-select": "^1.5.0"
   }
 }

@@ -1,33 +1,33 @@
 {
-  "directories": {
-    "test": "test"
+  "name": "textlint-plugin-text",
+  "version": "3.0.5",
+  "description": "plain text plugin for textlint",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-plugin-text/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
   },
-  "author": "azu",
   "license": "MIT",
+  "author": "azu",
   "files": [
     "bin/",
     "lib/",
     "src/"
   ],
-  "name": "textlint-plugin-text",
-  "description": "plain text plugin for textlint",
-  "version": "3.0.5",
   "main": "lib/index.js",
-  "scripts": {
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "watch": "babel src --out-dir lib --watch --source-maps",
-    "prepublish": "npm run --if-present build",
-    "clean": "rimraf lib/"
+  "directories": {
+    "test": "test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/textlint/textlint.git"
   },
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
+  "scripts": {
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
+    "clean": "rimraf lib/",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.{js,ts}\"",
+    "watch": "babel src --out-dir lib --watch --source-maps"
   },
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-plugin-text/",
   "dependencies": {
     "@textlint/text-to-ast": "^3.0.3"
   },
