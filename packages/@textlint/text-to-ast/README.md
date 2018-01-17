@@ -1,4 +1,5 @@
-# txt-to-ast 
+# @textlint/text-to-ast
+
 Parse plain text to AST with location info.
 
 This library is a part of [textlint/textlint](https://github.com/textlint/textlint "textlint/textlint").
@@ -20,17 +21,17 @@ This library is a part of [textlint/textlint](https://github.com/textlint/textli
 ## Installation
 
 ```
-npm install txt-to-ast
+npm install @textlint/text-to-ast
 ```
 
 ## DEMO
 
-Try to http://azu.github.io/txt-to-ast/example/
+- [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint")
 
 ## Usage
 
 ```js
-var parse = require("txt-to-ast").parse;
+var parse = require("@textlint/text-to-ast").parse;
 var text = "This is a text\nParse text to AST";
 var AST = parse(text);
 console.log(JSON.stringify(AST, null ,4))
