@@ -17,8 +17,8 @@
     "lib",
     "src"
   ],
-  "main": "textlint-tester/src/index.js",
-  "types": "textlint-tester/src/indexr.d.ts",
+  "main": "lib/textlint-tester/src/index.js",
+  "types": "lib/textlint-tester/src/index.d.ts",
   "directories": {
     "test": "test"
   },
