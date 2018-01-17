@@ -30,6 +30,9 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@azu/format-text": "^1.0.1",
     "@azu/style-format": "^1.0.0",
