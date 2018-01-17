@@ -162,9 +162,9 @@ You can read the source code from `filePath` property.
 
 ## Built-in formatter
 
-textlint use `textlint-formatter` module as built-in formatter.
+textlint use `@textlint/linter-formatter` module as built-in formatter.
 
-- [textlint-formatter](../packages/textlint-formatter/README.md "textlint-formatter")
+- [@textlint/linter-formatter](../packages/@textlint/linter-formatter/README.md "@textlint/linter-formatter")
 
 ## Custom Formatter
 

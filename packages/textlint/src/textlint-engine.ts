@@ -1,5 +1,5 @@
 "use strict";
-import { createFormatter } from "textlint-formatter";
+import { createFormatter } from "@textlint/linter-formatter";
 import { AbstractTextLintEngine } from "./engine/textlint-engine-core";
 import { TextLintCore } from "./textlint-core";
 import { TextLintFormatterOption } from "./textlint-interface";
