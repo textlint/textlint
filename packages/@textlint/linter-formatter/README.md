@@ -1,11 +1,11 @@
-# textlint-formatter
+# @textlint/linter-formatter
 
 [textlint](https://github.com/textlint/textlint "textlint/textlint") output formatter.
 
 ## Installation
 
 ```
-npm install textlint-formatter
+npm install @textlint/linter-formatter
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ See [formatters/](src/formatters).
 Currently, you can use "stylish" (defaults), "checkstyle", "compact", "jslint-xml", "json", "junit", "pretty-error", "table", "tap", and "unix".
 
 ```js
-const createFormatter = require("textlint-formatter").createFormatter;
+const createFormatter = require("@textlint/linter-formatter").createFormatter;
 const formatter = createFormatter({
     formatterName: "stylish"
 });

@@ -7,7 +7,7 @@ const path = require("path");
 const tryResolve = require("try-resolve");
 const interopRequire = require("interop-require");
 const isFile = require("is-file");
-const debug = require("debug")("textlint:textfix-formatter");
+const debug = require("debug")("textlint:@textlint/linter-formatter");
 
 export type FormatterConfig = { color?: boolean; formatterName: string };
 
