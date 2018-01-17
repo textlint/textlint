@@ -1,0 +1,82 @@
+.TextlintFeature {
+    margin: auto;
+    width: 668px;
+    font-family: HelveticaNeue;
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+    color: var(--textColor);
+}
+
+.TextlintFeature-gridBlock p {
+    color: var(--textColor) !important;
+}
+
+.homeContainer {
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, #29e7f5, #6f9bf2);
+    background-image: linear-gradient(to bottom, var(--primaryColor), #6f9bf2);
+}
+
+.ProjectTitle {
+    font-family: HelveticaNeue;
+    font-size: 72px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+
+.ProjectTitle-copy {
+    font-family: HelveticaNeue;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+    color: #ffffff;
+}
+
+.GettingStartedButton {
+    color: #ffffff;
+    width: 236px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 100px;
+    background-color: var(--textColor);
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+}
+
+.GettingStartedButton:hover {
+    color: var(--textColor);
+    background-color: #ffffff;
+}
+
+.GettingStartedButton:focus {
+    outline: 0;
+}
+
+.Playground .Playground-title {
+    font-family: HelveticaNeue;
+    font-size: 30px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: var(--textColor) !important;
+}
+
+.Playground .Playground-copy {
+    font-family: Lato;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    text-align: center !important;
+    color: var(--textColor) !important;
+}
+
+.Showcase .Showcase-title {
+    font-family: HelveticaNeue;
+    font-size: 30px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: var(--textColor) !important;
+}

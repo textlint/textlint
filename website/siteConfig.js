@@ -45,8 +45,9 @@ const siteConfig = {
     favicon: "img/textlint-icon_256x256.png",
     /* colors for website */
     colors: {
-        primaryColor: "#5acbe3",
-        secondaryColor: "#c7254e"
+        primaryColor: "#29e7f5",
+        secondaryColor: "#c7254e",
+        textColor: "#000000"
     },
     // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
     copyright: "Copyright © " + new Date().getFullYear() + "textlint organization",

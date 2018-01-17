@@ -1,3 +1,34 @@
+/* Color palette */
+
+:root {
+    --primaryColor: #29e7f5;
+    --textColor: #000000;
+}
+
+/* Override */
+.highlightBackground {
+    background-color: #f7f7f7;
+}
+
+/* Header */
+
+.navigationSlider .slidingNav ul {
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Text styles */
+.heading {
+    font-family: HelveticaNeue;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    color: var(--textColor);
+}
+
 .mainContainer .wrapper p {
     max-width: 100%;
 }
@@ -11,7 +42,7 @@
 
 .header-has-icon:before {
     content: "";
-    background: url(../img/textlint-icon_black-white-128x128.png) no-repeat left center;
+    background: url(../img/textlint-header-logo.svg) no-repeat left center;
     background-size: 0.8em;
     padding-right: 1em;
 }
