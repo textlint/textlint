@@ -10,7 +10,7 @@ install:
   - ps: Install-Product node $env:nodejs_version
   # install modules
   - npm i -g yarn
-  - yarn install --frozon-lockfile
+  - yarn install --frozen-lockfile
   - yarn run bootstrap
 
 # Post-install test scripts.
