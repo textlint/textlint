@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.0.4"></a>
+## 6.0.4 (2018-01-18)
+
+
+### Bug Fixes
+
+* **markdown-to-ast:** add "publishConfig" ([929b575](https://github.com/textlint/textlint/commit/929b575))
+
+
+
+
 <a name="6.0.3"></a>
 ## [6.0.3](https://github.com/textlint/textlint/compare/markdown-to-ast@6.0.2...markdown-to-ast@6.0.3) (2018-01-12)
 

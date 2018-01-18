@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.6"></a>
+## [4.0.6](https://github.com/textlint/textlint/compare/textlint-tester@4.0.5...textlint-tester@4.0.6) (2018-01-18)
+
+
+### Bug Fixes
+
+* **tester:** fix "main" and "types" field in package.json ([567ba65](https://github.com/textlint/textlint/commit/567ba65))
+
+
+
+
 <a name="4.0.5"></a>
 ## [4.0.5](https://github.com/textlint/textlint/compare/textlint-tester@4.0.4...textlint-tester@4.0.5) (2018-01-12)
 

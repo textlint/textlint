@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.3"></a>
+## 3.0.3 (2018-01-18)
+
+
+### Bug Fixes
+
+* **fixer-formatter:** add `publishConfig` ([3e89e3c](https://github.com/textlint/textlint/commit/3e89e3c))
+
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/textlint/textlint/compare/textlint-fixer-formatter@3.0.1...textlint-fixer-formatter@3.0.2) (2018-01-12)
 

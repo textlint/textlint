@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.3"></a>
+## 2.0.3 (2018-01-18)
+
+
+### Bug Fixes
+
+* **ast-tester:** add `publishConfig` ([e7a150b](https://github.com/textlint/textlint/commit/e7a150b))
+
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/textlint/textlint/compare/textlint-ast-test@2.0.1...textlint-ast-test@2.0.2) (2018-01-12)
 

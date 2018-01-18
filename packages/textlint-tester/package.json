@@ -1,6 +1,6 @@
 {
   "name": "textlint-tester",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "testing tool for textlint rule.",
   "keywords": [
     "test",
@@ -34,9 +34,9 @@
     "watch": "tsc -p . --watch"
   },
   "dependencies": {
-    "@textlint/feature-flag": "^3.0.3",
-    "@textlint/kernel": "^2.0.4",
-    "textlint": "^10.1.2"
+    "@textlint/feature-flag": "^3.0.4",
+    "@textlint/kernel": "^2.0.5",
+    "textlint": "^10.1.3"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.46",
@@ -52,7 +52,7 @@
     "mocha": "^4.1.0",
     "power-assert": "^1.4.1",
     "rimraf": "^2.6.2",
-    "textlint": "^10.1.2",
+    "textlint": "^10.1.3",
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-max-number-of-lines": "^1.0.2",
     "textlint-rule-no-todo": "^2.0.0",
