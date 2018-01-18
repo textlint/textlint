@@ -1,5 +1,5 @@
 {
-  "name": "textlint-fixer-formatter",
+  "name": "@textlint/fixer-formatter",
   "version": "3.0.2",
   "description": "textlint output formatter for fixer",
   "keywords": [
@@ -18,11 +18,11 @@
   "license": "MIT",
   "author": "azu",
   "files": [
-    "lib/textlint-fixer-formatter",
+    "lib/fixer-formatter",
     "src/"
   ],
-  "main": "lib/textlint-fixer-formatter/src/index.js",
-  "types": "lib/textlint-fixer-formatter/src/index.d.ts",
+  "main": "lib/fixer-formatter/src/index.js",
+  "types": "lib/fixer-formatter/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/textlint/textlint.git"
@@ -53,5 +53,8 @@
     "rimraf": "^2.6.2",
     "ts-node": "^4.0.1",
     "typescript": "^2.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

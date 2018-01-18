@@ -1,10 +1,10 @@
-# textlint-fixer-formatter
+# @textlint/fixer-formatter
 
 textlint output formatter for fixer
 
 ## Installation
 
-    npm install textlint-fixer-formatter
+    npm install @textlint/fixer-formatter
 
 ## Usage
 

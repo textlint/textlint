@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { getFormatterList, FormatterDetail } from "@textlint/linter-formatter";
-import { getFixerFormatterList, FixerFormatterDetail } from "textlint-fixer-formatter";
+import { getFixerFormatterList, FixerFormatterDetail } from "@textlint/fixer-formatter";
 
 const optionator = require("optionator");
 
