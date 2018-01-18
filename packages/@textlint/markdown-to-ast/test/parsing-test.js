@@ -5,7 +5,7 @@ const assert = require("assert");
 const parse = require("../src/markdown-parser").parse;
 const fs = require("fs");
 const path = require("path");
-const isTxtAST = require("textlint-ast-test").isTxtAST;
+const isTxtAST = require("@textlint/ast-tester").isTxtAST;
 describe("parsing", function() {
     const fixtureDir = path.join(__dirname, "fixtures");
     fs.readdirSync(fixtureDir).forEach(function(filePath) {

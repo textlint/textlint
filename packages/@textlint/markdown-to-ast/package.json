@@ -36,6 +36,7 @@
     "traverse": "^0.6.6"
   },
   "devDependencies": {
+    "@textlint/ast-tester": "^2.0.2",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
@@ -47,7 +48,6 @@
     "mocha": "^4.0.1",
     "power-assert": "^1.4.2",
     "rimraf": "^2.6.2",
-    "textlint-ast-test": "^2.0.2",
     "txt-ast-traverse": "^2.0.3"
   },
   "publishConfig": {
