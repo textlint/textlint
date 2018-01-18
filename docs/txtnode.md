@@ -332,12 +332,12 @@ We discuss about Unist in [Compliances tests for TxtNode #141](https://github.co
 
 ## For testing Processor plugin
 
-You can use [textlint-ast-test](../packages/textlint-ast-test "textlint-ast-test") for testing your processor plugin's parser.
+You can use [@textlint/ast-tester](../packages/@textlint/ast-tester "@textlint/ast-tester") for testing your processor plugin's parser.
 
-- [textlint/textlint-ast-test: Compliance tests for textlint's AST](../packages/textlint-ast-test)
+- [textlint/@textlint/ast-tester: Compliance tests for textlint's AST](../packages/@textlint/ast-tester)
 
 ```js
-import { test, isTextlintAST } from "textlint-ast-test";
+import { test, isTextlintAST } from "@textlint/ast-tester";
 // your implement
 import yourParse from "your-parser";
 // recommenced: test much pattern test

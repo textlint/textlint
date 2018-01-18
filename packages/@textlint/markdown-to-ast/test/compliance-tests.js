@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-const test = require("textlint-ast-test").test;
+const test = require("@textlint/ast-tester").test;
 const parse = require("../src/markdown-parser").parse;
 // String -> [String]
 describe("Compliance tests", function() {

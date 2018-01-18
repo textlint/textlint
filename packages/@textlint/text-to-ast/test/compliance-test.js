@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-var test = require("textlint-ast-test").test;
-var isTxtAST = require("textlint-ast-test").isTxtAST;
+var test = require("@textlint/ast-tester").test;
+var isTxtAST = require("@textlint/ast-tester").isTxtAST;
 var parse = require("../src/plaintext-parser");
 var assert = require("assert");
 describe("Compliance tests", function() {
