@@ -1,12 +1,12 @@
 {
-  "name": "txt-ast-traverse",
+  "name": "@textlint/ast-traverse",
   "version": "2.0.4",
   "description": "TxtNode traverse library",
   "keywords": [
     "AST",
     "traverse"
   ],
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/txt-ast-traverse",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-traverse",
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
@@ -15,8 +15,8 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/txt-ast-traverse/src/index.js",
-  "types": "./lib/txt-ast-traverse/src/index.d.ts",
+  "main": "./lib/ast-traverse/src/index.js",
+  "types": "./lib/ast-traverse/src/index.d.ts",
   "directories": {
     "test": "test/"
   },

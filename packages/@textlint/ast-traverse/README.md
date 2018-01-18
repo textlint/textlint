@@ -1,6 +1,6 @@
-# txt-ast-traverse
+# @textlint/ast-traverse
 
-txt-ast-traverse provide traversal functions for [TxtAST](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "TxtAST").
+@textlint/ast-traverse provide traversal functions for [TxtAST](https://github.com/textlint/textlint/blob/master/docs/txtnode.md "TxtAST").
 
 This traverse function is a fork of [estraverse](https://github.com/estools/estraverse "Estraverse") for [@textlint/markdown-to-ast](https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/ "textlint/markdown-to-ast").
 
@@ -9,7 +9,7 @@ This library is a part of [textlint/textlint](https://github.com/textlint/textli
 ## Installation
 
 ```
-npm install txt-ast-traverse
+npm install @textlint/ast-traverse
 ```
 
 ## Usage
@@ -17,8 +17,8 @@ npm install txt-ast-traverse
 ```js
 var parse = require("@textlint/markdown-to-ast").parse,
     Syntax = require("@textlint/markdown-to-ast").Syntax;
-var traverse = require("txt-ast-traverse").traverse,
-    VisitorOption = require("txt-ast-traverse").VisitorOption;
+var traverse = require("@textlint/ast-traverse").traverse,
+    VisitorOption = require("@textlint/ast-traverse").VisitorOption;
 var AST = parse("# Header\nHello*world*");
 traverse(AST, {
     enter(node) {
@@ -203,7 +203,7 @@ You want to set property on Node.
 Bad example:
 
 ```js
-var TraverseController = require("txt-ast-traverse").Controller;
+var TraverseController = require("@textlint/ast-traverse").Controller;
 var controller = new TraverseController();
 controller.traverse(ast, {
     enter: function (node, parent) {
@@ -219,7 +219,7 @@ controller.traverse(ast, {
 Correct example:
 
 ```js
-var TraverseController = require("txt-ast-traverse").Controller;
+var TraverseController = require("@textlint/ast-traverse").Controller;
 var controller = new TraverseController();
 controller.traverse(ast, {
     enter: function (node, parent) {
