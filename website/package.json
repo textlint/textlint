@@ -19,7 +19,7 @@
     "test": "npm-run-all textlint",
     "textlint": "textlint --cache -c .textlintrc ../docs/ ../.github/ ../README.md -f pretty-error",
     "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md",
-    "version": "docusaurus-version",
+    "docusaurus-version": "docusaurus-version",
     "write-translations": "docusaurus-write-translations"
   },
   "devDependencies": {
