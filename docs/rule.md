@@ -86,7 +86,7 @@ export default function(context) {
 **Related information:**
 
 - [azu/visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
-- [textlint/txt-ast-traverse](https://github.com/textlint/txt-ast-traverse "textlint/txt-ast-traverse")
+- [packages/@textlint/ast-traverse](../packages/@textlint/ast-traverse "packages/@textlint/ast-traverse")
 - [estools/estraverse](https://github.com/estools/estraverse "estools/estraverse")
 
 ## RuleContext API
