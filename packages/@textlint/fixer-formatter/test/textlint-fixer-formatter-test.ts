@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { getFixerFormatterList } from "textlint-fixer-formatter";
+import { getFixerFormatterList } from "@textlint/fixer-formatter";
 import assert from "power-assert";
 
 describe("textlint-fixer-formatter-test", function() {
