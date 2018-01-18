@@ -1,4 +1,4 @@
-# textlint-ast-test
+# @textlint/ast-tester
 
 Compliance tests for [textlint](https://github.com/textlint/textlint "textlint")'s AST(Abstract Syntax Tree).
 
@@ -10,7 +10,7 @@ If you have created [Processor](https://github.com/textlint/textlint/blob/master
 
 ## Installation
 
-    npm install -D textlint-ast-test
+    npm install -D @textlint/ast-tester
 
 ## Usage
 
@@ -23,7 +23,7 @@ if the AST is invalid, then throw Error
 if the AST is valid, then return `true`.
 
 ```js
-import {test, isTxtAST} from "textlint-ast-test";
+import {test, isTxtAST} from "@textlint/ast-tester";
 import yourParse from "your-parser";
 // recommenced: test much pattern test
 const AST = yourParse("This is text");
