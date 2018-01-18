@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const TraverseController = require("txt-ast-traverse").Controller;
+const TraverseController = require("@textlint/ast-traverse").Controller;
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
 import { PromiseEventEmitter } from "./promise-event-emitter";

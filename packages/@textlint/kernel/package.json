@@ -34,14 +34,14 @@
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.0.1",
+    "@textlint/ast-traverse": "^2.0.4",
     "@textlint/feature-flag": "^3.0.4",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.5.1",
     "debug": "^2.6.6",
     "deep-equal": "^1.0.1",
     "object-assign": "^4.1.1",
-    "structured-source": "^3.0.2",
-    "txt-ast-traverse": "^2.0.4"
+    "structured-source": "^3.0.2"
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "^6.0.4",
