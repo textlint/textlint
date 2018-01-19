@@ -1,10 +1,10 @@
-# textlint-plugin-markdown
+# @textlint/textlint-plugin-markdown
 
 Markdown support for [textlint](https://github.com/textlint/textlint "textlint").
 
 ## Installation
 
-    npm install textlint-plugin-markdown
+    npm install @textlint/textlint-plugin-markdown
 
 ## Usage
 

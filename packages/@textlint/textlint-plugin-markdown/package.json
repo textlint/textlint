@@ -1,5 +1,5 @@
 {
-  "name": "textlint-plugin-markdown",
+  "name": "@textlint/textlint-plugin-markdown",
   "version": "4.0.6",
   "description": "Markdown support for textlint.",
   "keywords": [
@@ -7,7 +7,7 @@
     "plugin",
     "textlint"
   ],
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-plugin-markdown",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-markdown",
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
