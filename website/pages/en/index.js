@@ -111,11 +111,17 @@ const FeatureCallout = props => (
                 </a>
             </li>
             <li>
-                <a href="https://github.com/textlint/textlint-plugin-markdown" title="Markdown support for textlint.">
+                <a
+                    href="https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-markdown"
+                    title="Markdown support for textlint"
+                >
                     Markdown
                 </a>{" "}
                 and{" "}
-                <a href="https://github.com/textlint/textlint-plugin-text" title="plain txt support for textlint">
+                <a
+                    href="https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text"
+                    title="plain text support for textlint"
+                >
                     plain text
                 </a>{" "}
                 are supported by default. Additionally,{" "}
