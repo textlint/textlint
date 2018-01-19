@@ -48,5 +48,8 @@
     "textlint": "^10.1.3",
     "textlint-rule-no-todo": "^2.0.0"
   },
-  "email": "azuciao@gmail.com"
+  "email": "azuciao@gmail.com",
+  "publishConfig": {
+    "access": "public"
+  }
 }
