@@ -23,7 +23,7 @@ const options = {
     plugins: [
         {
             pluginId: "markdown",
-            plugin: require("textlint-plugin-markdown")
+            plugin: require("@textlint/textlint-plugin-markdown")
         }
     ],
     rules: [

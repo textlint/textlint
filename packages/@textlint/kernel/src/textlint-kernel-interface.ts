@@ -117,7 +117,7 @@ export interface TextlintKernelPlugin {
     // plugin name as key
     pluginId: string;
     // plugin module
-    // For example, `plugin: require("textlint-plugin-markdown")`
+    // For example, `plugin: require("@textlint/textlint-plugin-markdown")`
     plugin: TextlintPluginCreator;
     // plugin options
     options?: TextlintPluginOptions;

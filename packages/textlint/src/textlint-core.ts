@@ -20,7 +20,7 @@ import { PluginCreatorSet } from "./core/plugin-creator-set";
 const { throwIfTesting } = require("@textlint/feature-flag");
 import { Config } from "./config/config";
 
-const markdownPlugin = require("textlint-plugin-markdown");
+const markdownPlugin = require("@textlint/textlint-plugin-markdown");
 const textPlugin = require("textlint-plugin-text");
 
 /**
