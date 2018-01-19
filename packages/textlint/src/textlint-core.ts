@@ -21,7 +21,7 @@ const { throwIfTesting } = require("@textlint/feature-flag");
 import { Config } from "./config/config";
 
 const markdownPlugin = require("@textlint/textlint-plugin-markdown");
-const textPlugin = require("textlint-plugin-text");
+const textPlugin = require("@textlint/textlint-plugin-text");
 
 /**
  * @class {TextLintCore}
