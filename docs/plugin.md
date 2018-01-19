@@ -4,7 +4,7 @@ title: Plugin
 ---
 
 Each plugin is an npm module with a name in the format of `textlint-plugin-<plugin-name>`.
-For example, `textlint-plugin-markdown` is a textlint plugin.
+For example, `@textlint/textlint-plugin-markdown` is a textlint plugin.
 
 ## Processor
 
@@ -21,7 +21,7 @@ export default {
 
 textlint support `.txt` and `.md` by default. These are implemented as `Processor` plugin.
 
-- [textlint/textlint-plugin-markdown](../packages/textlint-plugin-markdown)
+- [@textlint/textlint-plugin-markdown](../packages/@textlint/textlint-plugin-markdown)
 - [textlint/textlint-plugin-text](../packages/textlint-plugin-text)
 - [textlint/textlint-plugin-html](https://github.com/textlint/textlint-plugin-html)
 
@@ -113,7 +113,7 @@ textlint plugin package naming should have `textlint-plugin-` prefix.
 - `@scope/textlint-plugin-<name>`
     - textlint supports [Scoped packages](https://docs.npmjs.com/misc/scope "Scoped packages")
 
-Example: `textlint-plugin-markdown`
+Example: `@textlint/textlint-plugin-markdown`
 
 textlint user use it by setting following:
 
@@ -151,4 +151,4 @@ For more plugins, See [Processor Plugin List](https://github.com/textlint/textli
 textlint has built-in plugins
 
 - [`textlint-plugin-text`](../packages/textlint-plugin-text)
-- [`textlint-plugin-markdown`](../packages/textlint-plugin-markdown)
+- [`@textlint/textlint-plugin-markdown`](../packages/@textlint/textlint-plugin-markdown)

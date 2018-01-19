@@ -81,7 +81,7 @@ describe("textlint-engine-test", function() {
         });
         context("when Plugin has not rules", function() {
             it("should not throw Error", function() {
-                const engine = new TextLintEngine({ plugins: ["markdown"] });
+                const engine = new TextLintEngine({ plugins: ["@textlint/markdown"] });
                 const ruleNames = engine.ruleMap.getAllRuleNames();
                 assert(ruleNames.length === 0);
             });

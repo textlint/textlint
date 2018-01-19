@@ -32,7 +32,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "markdown", plugin: require("textlint-plugin-markdown") }],
+                plugins: [{ pluginId: "markdown", plugin: require("@textlint/textlint-plugin-markdown") }],
                 rules: [
                     { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
                 ]
@@ -53,7 +53,7 @@ describe("textlint-kernel", () => {
                 const options = {
                     filePath: "/path/to/file.md",
                     ext: ".md",
-                    plugins: [{ pluginId: "markdown", plugin: require("textlint-plugin-markdown") }],
+                    plugins: [{ pluginId: "markdown", plugin: require("@textlint/textlint-plugin-markdown") }],
                     rules: [
                         {
                             ruleId: "error",
@@ -113,7 +113,7 @@ describe("textlint-kernel", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
-                plugins: [{ pluginId: "markdown", plugin: require("textlint-plugin-markdown") }],
+                plugins: [{ pluginId: "markdown", plugin: require("@textlint/textlint-plugin-markdown") }],
                 rules: [
                     { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
                 ]
