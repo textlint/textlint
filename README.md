@@ -22,7 +22,7 @@ Visit [https://textlint.github.io/](https://textlint.github.io/) to see textlint
 - To use a rule, install a textlint rule via npm.
     - `npm install textlint-rule-xxx`.
     - See [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
-- [Markdown](./packages/@textlint/textlint-plugin-markdown) and [plain text](https://github.com/textlint/textlint-plugin-text) are supported by default. Support is available for [HTML](https://github.com/textlint/textlint-plugin-html) and [other file formats](https://github.com/textlint/textlint#supported-file-formats) via plugins.
+- [Markdown](./packages/@textlint/textlint-plugin-markdown) and [plain text](./packages/@textlint/textlint-plugin-text) are supported by default. Support is available for [HTML](https://github.com/textlint/textlint-plugin-html) and [other file formats](https://github.com/textlint/textlint#supported-file-formats) via plugins.
 - Supports the use of custom formatters and formatter bundles [formatter(reporter)](./packages/@textlint/linter-formatter)
 
 ## Quick Tour

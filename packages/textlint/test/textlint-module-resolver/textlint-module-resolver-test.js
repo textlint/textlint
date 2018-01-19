@@ -81,9 +81,9 @@ describe("textlint-module-resolver", function() {
     describe("#resolvePluginPackageName", function() {
         it("should resolve plugin package name", function() {
             const resolver = createResolve();
-            const shortPkg = resolver.resolvePluginPackageName("text");
+            const shortPkg = resolver.resolvePluginPackageName("@textlint/text");
             assert.equal(typeof shortPkg, "string");
-            const longPkg = resolver.resolvePluginPackageName("textlint-plugin-text");
+            const longPkg = resolver.resolvePluginPackageName("@textlint/textlint-plugin-text");
             assert.equal(typeof longPkg, "string");
             assert.equal(shortPkg, longPkg);
         });
