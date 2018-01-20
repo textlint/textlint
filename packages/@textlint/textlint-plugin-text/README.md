@@ -1,6 +1,6 @@
 # @textlint/textlint-plugin-text
 
-Plain text plugin for [textlint](https://github.com/textlint/textlint &#34;textlint&#34;).
+Plain text plugin for [textlint](https://github.com/textlint/textlint "textlint").
 
 ## Install
 
