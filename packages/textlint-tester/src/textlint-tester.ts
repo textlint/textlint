@@ -45,7 +45,7 @@ export type TestTarget = {
     rules: { ruleId: string; rule: TextlintRuleCreator }[];
 };
 
-function isTestTarget(arg: any) {
+function isTestTarget(arg: any): arg is TestTarget {
     return arg.plugins !== undefined;
 }
 
@@ -91,7 +91,7 @@ export class TextLintTester {
         const textlint = new TextLintCore();
         const pluginOptions = (typeof valid === "object" && valid.pluginOptions) || {};
         if (isTestTarget(param)) {
-            (param as TestTarget).rules.forEach(rule => {
+            param.rules.forEach(rule => {
                 const ruleName = rule.ruleId;
                 const ruleObject = rule.rule;
                 textlint.setupRules(
@@ -103,7 +103,7 @@ export class TextLintTester {
                     }
                 );
             });
-            (param as TestTarget).plugins.forEach(plugin => {
+            param.plugins.forEach(plugin => {
                 const pluginName = plugin.pluginId;
                 const pluginObject = plugin.plugin;
                 textlint.setupPlugins(
@@ -139,7 +139,7 @@ export class TextLintTester {
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
         const textlint = new TextLintCore();
         if (isTestTarget(param)) {
-            (param as TestTarget).rules.forEach(rule => {
+            param.rules.forEach(rule => {
                 const ruleName = rule.ruleId;
                 const ruleObject = rule.rule;
                 textlint.setupRules(
@@ -151,7 +151,7 @@ export class TextLintTester {
                     }
                 );
             });
-            (param as TestTarget).plugins.forEach(plugin => {
+            param.plugins.forEach(plugin => {
                 const pluginName = plugin.pluginId;
                 const pluginObject = plugin.plugin;
                 textlint.setupPlugins(
