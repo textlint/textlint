@@ -40,12 +40,12 @@ function assertHasFixer(ruleCreator: any, ruleName: string): any {
     throw new Error(`Not found \`fixer\` function in the ruleCreator: ${ruleName}`);
 }
 
-export type TestTarget = {
+export type TestConfig = {
     plugins: { pluginId: string; plugin: TextlintPluginCreator }[];
     rules: { ruleId: string; rule: TextlintRuleCreator }[];
 };
 
-function isTestTarget(arg: any): arg is TestTarget {
+function isTestConfig(arg: any): arg is TestConfig {
     return arg.plugins !== undefined;
 }
 
@@ -83,14 +83,14 @@ export class TextLintTester {
         }
     }
 
-    testValidPattern(name: string, param: TextlintRuleCreator | TestTarget, valid: TesterValid) {
+    testValidPattern(name: string, param: TextlintRuleCreator | TestConfig, valid: TesterValid) {
         const text = typeof valid === "object" ? valid.text : valid;
         const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
         const options = (typeof valid === "object" && valid.options) || {};
         const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
         const textlint = new TextLintCore();
         const pluginOptions = (typeof valid === "object" && valid.pluginOptions) || {};
-        if (isTestTarget(param)) {
+        if (isTestConfig(param)) {
             param.rules.forEach(rule => {
                 const ruleName = rule.ruleId;
                 const ruleObject = rule.rule;
@@ -130,7 +130,7 @@ export class TextLintTester {
         });
     }
 
-    testInvalidPattern(name: string, param: TextlintRuleCreator | TestTarget, invalid: TesterInvalid) {
+    testInvalidPattern(name: string, param: TextlintRuleCreator | TestConfig, invalid: TesterInvalid) {
         const errors = invalid.errors;
         const inputPath = invalid.inputPath;
         const text = invalid.text;
@@ -138,7 +138,7 @@ export class TextLintTester {
         const pluginOptions = (typeof invalid === "object" && invalid.pluginOptions) || {};
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
         const textlint = new TextLintCore();
-        if (isTestTarget(param)) {
+        if (isTestConfig(param)) {
             param.rules.forEach(rule => {
                 const ruleName = rule.ruleId;
                 const ruleObject = rule.rule;
@@ -179,8 +179,8 @@ export class TextLintTester {
         // --fix
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${inputPath || text}`, () => {
-                if (isTestTarget(param)) {
-                    (param as TestTarget).rules.forEach(rule => {
+                if (isTestConfig(param)) {
+                    (param as TestConfig).rules.forEach(rule => {
                         assertHasFixer(rule.rule, rule.ruleId);
                     });
                 } else {
@@ -205,13 +205,13 @@ export class TextLintTester {
     /**
      * run test for textlint rule.
      * @param {string} name name is name of the test or rule
-     * @param {TextlintRuleCreator|TestTarget} param param is TextlintRuleCreator or TestTarget
+     * @param {TextlintRuleCreator|TestConfig} param param is TextlintRuleCreator or TestConfig
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
     run(
         name: string,
-        param: TextlintRuleCreator | TestTarget,
+        param: TextlintRuleCreator | TestConfig,
         {
             valid = [],
             invalid = []
