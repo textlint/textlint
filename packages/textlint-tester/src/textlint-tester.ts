@@ -3,7 +3,7 @@
 import * as assert from "assert";
 import { testInvalid, testValid } from "./test-util";
 import { TextLintCore } from "textlint";
-import { TextlintFixResult, TextlintRuleCreator } from "@textlint/kernel";
+import { TextlintFixResult, TextlintPluginCreator, TextlintRuleCreator } from "@textlint/kernel";
 
 const { coreFlags } = require("@textlint/feature-flag");
 
@@ -40,6 +40,15 @@ function assertHasFixer(ruleCreator: any, ruleName: string): any {
     throw new Error(`Not found \`fixer\` function in the ruleCreator: ${ruleName}`);
 }
 
+export type TestTarget = {
+    plugins: { pluginId: string; plugin: TextlintPluginCreator }[];
+    rules: { ruleId: string; rule: TextlintRuleCreator }[];
+};
+
+function isTestTarget(arg: any) {
+    return arg.plugins !== undefined;
+}
+
 export type TesterValid =
     | string
     | {
@@ -47,13 +56,16 @@ export type TesterValid =
           ext?: string;
           inputPath?: string;
           options?: any;
+          pluginOptions?: any;
       };
+
 export type TesterInvalid = {
     text?: string;
     output?: string;
     ext?: string;
     inputPath?: string;
     options?: any;
+    pluginOptions?: any;
     errors: {
         ruleId?: string;
         index?: number;
@@ -71,47 +83,109 @@ export class TextLintTester {
         }
     }
 
-    testValidPattern(ruleName: string, rule: TextlintRuleCreator, valid: TesterValid) {
+    testValidPattern(name: string, param: TextlintRuleCreator | TestTarget, valid: TesterValid) {
         const text = typeof valid === "object" ? valid.text : valid;
         const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
         const options = (typeof valid === "object" && valid.options) || {};
         const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
         const textlint = new TextLintCore();
-        textlint.setupRules(
-            {
-                [ruleName]: rule
-            },
-            {
-                [ruleName]: options
-            }
-        );
+        const pluginOptions = (typeof valid === "object" && valid.pluginOptions) || {};
+        if (isTestTarget(param)) {
+            (param as TestTarget).rules.forEach(rule => {
+                const ruleName = rule.ruleId;
+                const ruleObject = rule.rule;
+                textlint.setupRules(
+                    {
+                        [ruleName]: ruleObject
+                    },
+                    {
+                        [ruleName]: options
+                    }
+                );
+            });
+            (param as TestTarget).plugins.forEach(plugin => {
+                const pluginName = plugin.pluginId;
+                const pluginObject = plugin.plugin;
+                textlint.setupPlugins(
+                    {
+                        [pluginName]: pluginObject
+                    },
+                    {
+                        [pluginName]: pluginOptions
+                    }
+                );
+            });
+        } else {
+            textlint.setupRules(
+                {
+                    [name]: param
+                },
+                {
+                    [name]: options
+                }
+            );
+        }
         it(inputPath || text, () => {
             return testValid({ textlint, inputPath, text, ext });
         });
     }
 
-    testInvalidPattern(ruleName: string, rule: TextlintRuleCreator, invalid: TesterInvalid) {
+    testInvalidPattern(name: string, param: TextlintRuleCreator | TestTarget, invalid: TesterInvalid) {
         const errors = invalid.errors;
         const inputPath = invalid.inputPath;
         const text = invalid.text;
         const options = invalid.options || {};
+        const pluginOptions = (typeof invalid === "object" && invalid.pluginOptions) || {};
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
         const textlint = new TextLintCore();
-        textlint.setupRules(
-            {
-                [ruleName]: rule
-            },
-            {
-                [ruleName]: options
-            }
-        );
+        if (isTestTarget(param)) {
+            (param as TestTarget).rules.forEach(rule => {
+                const ruleName = rule.ruleId;
+                const ruleObject = rule.rule;
+                textlint.setupRules(
+                    {
+                        [ruleName]: ruleObject
+                    },
+                    {
+                        [ruleName]: options
+                    }
+                );
+            });
+            (param as TestTarget).plugins.forEach(plugin => {
+                const pluginName = plugin.pluginId;
+                const pluginObject = plugin.plugin;
+                textlint.setupPlugins(
+                    {
+                        [pluginName]: pluginObject
+                    },
+                    {
+                        [pluginName]: pluginOptions
+                    }
+                );
+            });
+        } else {
+            textlint.setupRules(
+                {
+                    [name]: param
+                },
+                {
+                    [name]: options
+                }
+            );
+        }
         it(inputPath || text, () => {
             return testInvalid({ textlint, inputPath, text, ext, errors });
         });
         // --fix
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${inputPath || text}`, () => {
-                assertHasFixer(rule, ruleName);
+                if (isTestTarget(param)) {
+                    (param as TestTarget).rules.forEach(rule => {
+                        assertHasFixer(rule.rule, rule.ruleId);
+                    });
+                } else {
+                    assertHasFixer(param, name);
+                }
                 let promise: Promise<TextlintFixResult>;
                 if (inputPath !== undefined) {
                     promise = textlint.fixFile(inputPath);
@@ -130,14 +204,14 @@ export class TextLintTester {
 
     /**
      * run test for textlint rule.
-     * @param {string} ruleName ruleName is name of thee rule
-     * @param {Function|Object} rule rule is the function of rule
+     * @param {string} name name is name of the test or rule
+     * @param {TextlintRuleCreator|TestTarget} param param is TextlintRuleCreator or TestTarget
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
     run(
-        ruleName: string,
-        rule: TextlintRuleCreator,
+        name: string,
+        param: TextlintRuleCreator | TestTarget,
         {
             valid = [],
             invalid = []
@@ -146,12 +220,12 @@ export class TextLintTester {
             invalid?: TesterInvalid[];
         }
     ) {
-        describe(ruleName, () => {
+        describe(name, () => {
             invalid.forEach(state => {
-                this.testInvalidPattern(ruleName, rule, state);
+                this.testInvalidPattern(name, param, state);
             });
             valid.forEach(state => {
-                this.testValidPattern(ruleName, rule, state);
+                this.testValidPattern(name, param, state);
             });
         });
     }
