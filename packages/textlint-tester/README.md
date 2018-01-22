@@ -77,6 +77,7 @@ export declare type TestConfig = {
         - `{string} ext`: an extension key. Default: `.md` (Markdown)
         - `{string} inputPath`: a test text filePath that prefer to `text` property
         - `{object} options`: options to be passed to the rule
+        - `{object} plugibOptions`: options to be passed to the plugin
 
 TypeScript declaration is for valid as follows:
 
@@ -118,6 +119,8 @@ export declare type TesterValid = string | {
         - `{string} output`: a fixed text.
         - `{string} ext`: an extension key.
         - `{object[]} errors`: an array of error objects which should be raised againt the text.
+        - `{object} options`: options to be passed to the rule
+        - `{object} plugibOptions`: options to be passed to the plugin
 
 TypeScript declaration is as follows:
 
