@@ -142,7 +142,7 @@ describe("new-style-of-test: invalid testConfig", () => {
                     ]
                 });
             } catch (err) {
-                assert.equal(err.code, "ERR_ASSERTION");
+                assert(err instanceof assert.AssertionError);
                 assert.equal(err.message, testConfig.expectedErrorMessage);
             }
         });

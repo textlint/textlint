@@ -48,7 +48,7 @@ function assertTestConfig(testConfig: TestConfig): any {
         "TestConfig is empty"
     );
     assert(Array.isArray(testConfig.rules), "TestConfig.rules should be an array");
-    assert.notEqual(testConfig.rules.length, 0, "TestConfig.rules should have at least one rule");
+    assert(testConfig.rules.length > 0, "TestConfig.rules should have at least one rule");
     testConfig.rules.forEach(rule => {
         assert(rule.hasOwnProperty("ruleId"), "ruleId property not found");
         assert(rule.hasOwnProperty("rule"), "rule property not found");
@@ -112,6 +112,44 @@ export type TesterInvalid = {
     }[];
 };
 
+export type TestRuleSet = {
+    rules: { [index: string]: TextlintRuleCreator };
+    rulesOptions: any;
+};
+
+export type TestPluginSet = {
+    plugins: { [index: string]: TextlintPluginCreator };
+    pluginOptions: any;
+};
+
+function createTestRuleSet(testConfigRules: TestConfigRule[]): TestRuleSet {
+    const testRuleSet: TestRuleSet = {
+        rules: {},
+        rulesOptions: {}
+    };
+    testConfigRules.forEach(rule => {
+        const ruleName = rule.ruleId;
+        const ruleOptions = rule.options || {};
+        testRuleSet.rules[ruleName] = rule.rule;
+        testRuleSet.rulesOptions[ruleName] = ruleOptions;
+    });
+    return testRuleSet;
+}
+
+function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginSet {
+    const testPluginSet: TestPluginSet = {
+        plugins: {},
+        pluginOptions: {}
+    };
+    testConfigPlugins.forEach(plugin => {
+        const pluginName = plugin.pluginId;
+        const pluginOptions = plugin.options || {};
+        testPluginSet.plugins[pluginName] = plugin.plugin;
+        testPluginSet.pluginOptions[pluginName] = pluginOptions;
+    });
+    return testPluginSet;
+}
+
 export class TextLintTester {
     constructor() {
         if (typeof coreFlags === "object") {
@@ -125,30 +163,11 @@ export class TextLintTester {
         const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
         const textlint = new TextLintCore();
         if (isTestConfig(param)) {
-            const rules: any = {};
-            const rulesOptions: any = {};
-            param.rules.forEach(rule => {
-                const ruleName = rule.ruleId;
-                const ruleObject = rule.rule;
-                const ruleOptions = rule.options || {};
-                rules[ruleName] = ruleObject;
-                rulesOptions[ruleName] = ruleOptions;
-            });
-            textlint.setupRules(rules, rulesOptions);
+            const testRuleSet = createTestRuleSet(param.rules);
+            textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
             if (param.plugins !== undefined) {
-                param.plugins.forEach(plugin => {
-                    const pluginName = plugin.pluginId;
-                    const pluginObject = plugin.plugin;
-                    const pluginOptions = plugin.options || {};
-                    textlint.setupPlugins(
-                        {
-                            [pluginName]: pluginObject
-                        },
-                        {
-                            [pluginName]: pluginOptions
-                        }
-                    );
-                });
+                const testPluginSet = createTestPluginSet(param.plugins);
+                textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
             }
         } else {
             const options = (typeof valid === "object" && valid.options) || {};
@@ -173,30 +192,11 @@ export class TextLintTester {
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
         const textlint = new TextLintCore();
         if (isTestConfig(param)) {
-            const rules: any = {};
-            const rulesOptions: any = {};
-            param.rules.forEach(rule => {
-                const ruleName = rule.ruleId;
-                const ruleObject = rule.rule;
-                const ruleOptions = rule.options || {};
-                rules[ruleName] = ruleObject;
-                rulesOptions[ruleName] = ruleOptions;
-            });
-            textlint.setupRules(rules, rulesOptions);
-            if (param.plugins !== undefined) {
-                param.plugins.forEach(plugin => {
-                    const pluginName = plugin.pluginId;
-                    const pluginObject = plugin.plugin;
-                    const pluginOptions = plugin.options || {};
-                    textlint.setupPlugins(
-                        {
-                            [pluginName]: pluginObject
-                        },
-                        {
-                            [pluginName]: pluginOptions
-                        }
-                    );
-                });
+            const testRuleSet = createTestRuleSet(param.rules);
+            textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
+            if (Array.isArray(param.plugins)) {
+                const testPluginSet = createTestPluginSet(param.plugins);
+                textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
             }
         } else {
             const options = invalid.options || {};
@@ -216,7 +216,7 @@ export class TextLintTester {
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${inputPath || text}`, () => {
                 if (isTestConfig(param)) {
-                    (param as TestConfig).rules.forEach(rule => {
+                    param.rules.forEach(rule => {
                         assertHasFixer(rule.rule, rule.ruleId);
                     });
                 } else {
