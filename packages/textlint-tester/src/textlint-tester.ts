@@ -41,8 +41,8 @@ function assertHasFixer(ruleCreator: any, ruleName: string): any {
 }
 
 export type TestConfig = {
-    plugins: { pluginId: string; plugin: TextlintPluginCreator }[];
-    rules: { ruleId: string; rule: TextlintRuleCreator }[];
+    plugins: { pluginId: string; plugin: TextlintPluginCreator; options?: any }[];
+    rules: { ruleId: string; rule: TextlintRuleCreator; options?: any }[];
 };
 
 function isTestConfig(arg: any): arg is TestConfig {
@@ -56,7 +56,6 @@ export type TesterValid =
           ext?: string;
           inputPath?: string;
           options?: any;
-          pluginOptions?: any;
       };
 
 export type TesterInvalid = {
@@ -65,7 +64,6 @@ export type TesterInvalid = {
     ext?: string;
     inputPath?: string;
     options?: any;
-    pluginOptions?: any;
     errors: {
         ruleId?: string;
         index?: number;
@@ -86,26 +84,23 @@ export class TextLintTester {
     testValidPattern(name: string, param: TextlintRuleCreator | TestConfig, valid: TesterValid) {
         const text = typeof valid === "object" ? valid.text : valid;
         const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
-        const options = (typeof valid === "object" && valid.options) || {};
         const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
         const textlint = new TextLintCore();
-        const pluginOptions = (typeof valid === "object" && valid.pluginOptions) || {};
         if (isTestConfig(param)) {
+            const rules: any = {};
+            const rulesOptions: any = {};
             param.rules.forEach(rule => {
                 const ruleName = rule.ruleId;
                 const ruleObject = rule.rule;
-                textlint.setupRules(
-                    {
-                        [ruleName]: ruleObject
-                    },
-                    {
-                        [ruleName]: options
-                    }
-                );
+                const ruleOptions = rule.options || {};
+                rules[ruleName] = ruleObject;
+                rulesOptions[ruleName] = ruleOptions;
             });
+            textlint.setupRules(rules, rulesOptions);
             param.plugins.forEach(plugin => {
                 const pluginName = plugin.pluginId;
                 const pluginObject = plugin.plugin;
+                const pluginOptions = plugin.options || {};
                 textlint.setupPlugins(
                     {
                         [pluginName]: pluginObject
@@ -116,6 +111,7 @@ export class TextLintTester {
                 );
             });
         } else {
+            const options = (typeof valid === "object" && valid.options) || {};
             textlint.setupRules(
                 {
                     [name]: param
@@ -134,26 +130,23 @@ export class TextLintTester {
         const errors = invalid.errors;
         const inputPath = invalid.inputPath;
         const text = invalid.text;
-        const options = invalid.options || {};
-        const pluginOptions = (typeof invalid === "object" && invalid.pluginOptions) || {};
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
         const textlint = new TextLintCore();
         if (isTestConfig(param)) {
+            const rules: any = {};
+            const rulesOptions: any = {};
             param.rules.forEach(rule => {
                 const ruleName = rule.ruleId;
                 const ruleObject = rule.rule;
-                textlint.setupRules(
-                    {
-                        [ruleName]: ruleObject
-                    },
-                    {
-                        [ruleName]: options
-                    }
-                );
+                const ruleOptions = rule.options || {};
+                rules[ruleName] = ruleObject;
+                rulesOptions[ruleName] = ruleOptions;
             });
+            textlint.setupRules(rules, rulesOptions);
             param.plugins.forEach(plugin => {
                 const pluginName = plugin.pluginId;
                 const pluginObject = plugin.plugin;
+                const pluginOptions = plugin.options || {};
                 textlint.setupPlugins(
                     {
                         [pluginName]: pluginObject
@@ -164,6 +157,7 @@ export class TextLintTester {
                 );
             });
         } else {
+            const options = invalid.options || {};
             textlint.setupRules(
                 {
                     [name]: param

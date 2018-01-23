@@ -41,10 +41,12 @@ export declare type TestConfig = {
     plugins: {
         pluginId: string; // name of plugin
         plugin: TextlintPluginCreator; // textlint plugin
+        options?: any; // options for plugin
     }[];
     rules: {
         ruleId: string; // name of rule
         rule: TextlintRuleCreator; // textlint rule
+        options?: any; // optionsfor rule
     }[];
 };
 ```
@@ -63,7 +65,13 @@ export declare type TestConfig = {
         {
             ruleId: "no-todo",
             rule: noTodoRule // = require("textlint-rule-no-todo")
-
+        },
+        {
+            ruleId: "max-number-of-lines",
+            rule: maxNumberOfLineRule, // = require("textlint-rule-max-number-of-lines")
+            options: {
+                max: 2
+            }
         }
     ]
 }
@@ -76,8 +84,7 @@ export declare type TestConfig = {
         - `{string} text`: a text to be linted
         - `{string} ext`: an extension key. Default: `.md` (Markdown)
         - `{string} inputPath`: a test text filePath that prefer to `text` property
-        - `{object} options`: options to be passed to the rule
-        - `{object} plugibOptions`: options to be passed to the plugin
+        - `{object} options`: options to be passed to the rule. Will be ignored if `testConfig` is specified 
 
 TypeScript declaration is for valid as follows:
 
@@ -87,7 +94,6 @@ export declare type TesterValid = string | {
     ext?: string;
     inputPath?: string;
     options?: any;
-    pluginOptions?: any;
 };
 ```
 
@@ -119,8 +125,7 @@ export declare type TesterValid = string | {
         - `{string} output`: a fixed text.
         - `{string} ext`: an extension key.
         - `{object[]} errors`: an array of error objects which should be raised againt the text.
-        - `{object} options`: options to be passed to the rule
-        - `{object} plugibOptions`: options to be passed to the plugin
+        - `{object} options`: options to be passed to the rule. Will be ignored if `testConfig` is specified 
 
 TypeScript declaration is as follows:
 
@@ -131,7 +136,6 @@ export declare type TesterInvalid = {
     ext?: string;
     inputPath?: string;
     options?: any;
-    pluginOptions?: any;
     errors: {
         ruleId?: string;
         index?: number;
