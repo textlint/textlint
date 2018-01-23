@@ -40,13 +40,51 @@ function assertHasFixer(ruleCreator: any, ruleName: string): any {
     throw new Error(`Not found \`fixer\` function in the ruleCreator: ${ruleName}`);
 }
 
+function assertTestConfig(testConfig: TestConfig): any {
+    assert.notEqual(testConfig, null, "TestConfig is null");
+    assert.notEqual(
+        Object.keys(testConfig).length === 0 && testConfig.constructor === Object,
+        true,
+        "TestConfig is empty"
+    );
+    assert(Array.isArray(testConfig.rules), "TestConfig.rules should be an array");
+    assert.notEqual(testConfig.rules.length, 0, "TestConfig.rules should have at least one rule");
+    testConfig.rules.forEach(rule => {
+        assert(rule.hasOwnProperty("ruleId"), "ruleId property not found");
+        assert(rule.hasOwnProperty("rule"), "rule property not found");
+    });
+    if (typeof testConfig.plugins !== "undefined") {
+        assert(Array.isArray(testConfig.plugins), "TestConfig.plugins should be an array");
+        testConfig.plugins.forEach(plugin => {
+            assert(plugin.hasOwnProperty("pluginId"), "pluginId property not found");
+            assert(plugin.hasOwnProperty("plugin"), "plugin property not found");
+        });
+    }
+}
+
+export type TestConfigPlugin = {
+    pluginId: string;
+    plugin: TextlintPluginCreator;
+    options?: any;
+};
+export type TestConfigRule = {
+    ruleId: string;
+    rule: TextlintRuleCreator;
+    options?: any;
+};
 export type TestConfig = {
-    plugins?: { pluginId: string; plugin: TextlintPluginCreator; options?: any }[];
-    rules: { ruleId: string; rule: TextlintRuleCreator; options?: any }[];
+    plugins?: TestConfigPlugin[];
+    rules: TestConfigRule[];
 };
 
 function isTestConfig(arg: any): arg is TestConfig {
-    return arg.plugins !== undefined;
+    if (arg.hasOwnProperty("rules")) {
+        return true;
+    }
+    if (typeof arg.fixer === "function" || typeof arg === "function") {
+        return false;
+    }
+    return true;
 }
 
 export type TesterValid =
@@ -218,6 +256,10 @@ export class TextLintTester {
             invalid?: TesterInvalid[];
         }
     ) {
+        if (isTestConfig(param)) {
+            assertTestConfig(param);
+        }
+
         describe(name, () => {
             invalid.forEach(state => {
                 this.testInvalidPattern(name, param, state);
