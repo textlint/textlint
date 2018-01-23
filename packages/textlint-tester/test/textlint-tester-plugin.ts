@@ -9,7 +9,49 @@ const maxNumberOfLineRule = require("textlint-rule-max-number-of-lines");
 const tester = new TextLintTester();
 
 tester.run(
-    "new-style-of-test",
+    "new-style-of-test: rule and plugin",
+    {
+        plugins: [
+            {
+                pluginId: "html",
+                plugin: htmlPlugin
+            }
+        ],
+        rules: [
+            {
+                ruleId: "no-todo",
+                rule: noTodoRule
+            }
+        ]
+    },
+    {
+        valid: [
+            {
+                text: "<p>日本語 is Japanese.</p>",
+                ext: ".html"
+            }
+        ],
+        invalid: [
+            // line, column
+            {
+                text: `<p>TODO: no todo</p>
+<p>Another paragraph</p>
+<p>Yet another paragraph</p>`,
+                ext: ".html",
+                errors: [
+                    {
+                        message: "Found TODO: 'TODO: no todo'",
+                        line: 1,
+                        column: 4
+                    }
+                ]
+            }
+        ]
+    }
+);
+
+tester.run(
+    "new-style-of-test: multiple rules and single plugin",
     {
         plugins: [
             {

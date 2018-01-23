@@ -41,7 +41,7 @@ function assertHasFixer(ruleCreator: any, ruleName: string): any {
 }
 
 export type TestConfig = {
-    plugins: { pluginId: string; plugin: TextlintPluginCreator; options?: any }[];
+    plugins?: { pluginId: string; plugin: TextlintPluginCreator; options?: any }[];
     rules: { ruleId: string; rule: TextlintRuleCreator; options?: any }[];
 };
 
@@ -97,19 +97,21 @@ export class TextLintTester {
                 rulesOptions[ruleName] = ruleOptions;
             });
             textlint.setupRules(rules, rulesOptions);
-            param.plugins.forEach(plugin => {
-                const pluginName = plugin.pluginId;
-                const pluginObject = plugin.plugin;
-                const pluginOptions = plugin.options || {};
-                textlint.setupPlugins(
-                    {
-                        [pluginName]: pluginObject
-                    },
-                    {
-                        [pluginName]: pluginOptions
-                    }
-                );
-            });
+            if (param.plugins !== undefined) {
+                param.plugins.forEach(plugin => {
+                    const pluginName = plugin.pluginId;
+                    const pluginObject = plugin.plugin;
+                    const pluginOptions = plugin.options || {};
+                    textlint.setupPlugins(
+                        {
+                            [pluginName]: pluginObject
+                        },
+                        {
+                            [pluginName]: pluginOptions
+                        }
+                    );
+                });
+            }
         } else {
             const options = (typeof valid === "object" && valid.options) || {};
             textlint.setupRules(
@@ -143,19 +145,21 @@ export class TextLintTester {
                 rulesOptions[ruleName] = ruleOptions;
             });
             textlint.setupRules(rules, rulesOptions);
-            param.plugins.forEach(plugin => {
-                const pluginName = plugin.pluginId;
-                const pluginObject = plugin.plugin;
-                const pluginOptions = plugin.options || {};
-                textlint.setupPlugins(
-                    {
-                        [pluginName]: pluginObject
-                    },
-                    {
-                        [pluginName]: pluginOptions
-                    }
-                );
-            });
+            if (param.plugins !== undefined) {
+                param.plugins.forEach(plugin => {
+                    const pluginName = plugin.pluginId;
+                    const pluginObject = plugin.plugin;
+                    const pluginOptions = plugin.options || {};
+                    textlint.setupPlugins(
+                        {
+                            [pluginName]: pluginObject
+                        },
+                        {
+                            [pluginName]: pluginOptions
+                        }
+                    );
+                });
+            }
         } else {
             const options = invalid.options || {};
             textlint.setupRules(

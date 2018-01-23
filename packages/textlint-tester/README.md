@@ -38,7 +38,7 @@ $(npm bin)/mocha test/
 
 ```typescript
 export declare type TestConfig = {
-    plugins: {
+    plugins?: {
         pluginId: string; // name of plugin
         plugin: TextlintPluginCreator; // textlint plugin
         options?: any; // options for plugin
