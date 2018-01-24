@@ -104,3 +104,51 @@ tester.run(
         ]
     }
 );
+
+tester.run(
+    "new-style-of-test: multiple rules and no plugin",
+    {
+        rules: [
+            {
+                ruleId: "no-todo",
+                rule: noTodoRule
+            },
+            {
+                ruleId: "max-number-of-lines",
+                rule: maxNumberOfLineRule,
+                options: {
+                    max: 2
+                }
+            }
+        ]
+    },
+    {
+        valid: [
+            {
+                text: "日本語 is Japanese.",
+                ext: ".txt"
+            }
+        ],
+        invalid: [
+            {
+                text: `- TODO: no todo
+- Another paragraph
+- Yet another paragraph`,
+                ext: ".md",
+                errors: [
+                    {
+                        message: "Document is too long(number of lines: 3).",
+                        index: 0,
+                        line: 1,
+                        column: 1
+                    },
+                    {
+                        message: "Found TODO: 'TODO: no todo'",
+                        line: 1,
+                        column: 3
+                    }
+                ]
+            }
+        ]
+    }
+);
