@@ -46,7 +46,7 @@ export declare type TestConfig = {
     rules: {
         ruleId: string; // name of rule
         rule: TextlintRuleCreator; // textlint rule
-        options?: any; // optionsfor rule
+        options?: any; // options for rule
     }[];
 };
 ```
@@ -84,7 +84,7 @@ export declare type TestConfig = {
         - `{string} text`: a text to be linted
         - `{string} ext`: an extension key. Default: `.md` (Markdown)
         - `{string} inputPath`: a test text filePath that prefer to `text` property
-        - `{object} options`: options to be passed to the rule. Will be ignored if `testConfig` is specified 
+        - `{object} options`: options to be passed to the rule. Will throw assertion error if `testConfig` is specified
 
 TypeScript declaration is for valid as follows:
 
@@ -124,8 +124,8 @@ export declare type TesterValid = string | {
         - `{string} inputPath`: a test text filePath that prefer to `text` property.
         - `{string} output`: a fixed text.
         - `{string} ext`: an extension key.
-        - `{object[]} errors`: an array of error objects which should be raised againt the text.
-        - `{object} options`: options to be passed to the rule. Will be ignored if `testConfig` is specified 
+        - `{object[]} errors`: an array of error objects which should be raised against the text.
+        - `{object} options`: options to be passed to the rule. Will throw assertion error if `testConfig` is specified
 
 TypeScript declaration is as follows:
 

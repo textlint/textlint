@@ -4,13 +4,31 @@
 const TextLintTester = require("../src/index");
 const htmlPlugin = require("textlint-plugin-html");
 const noTodoRule = require("textlint-rule-no-todo");
+const maxNumberOfLineRule = require("textlint-rule-max-number-of-lines");
 const tester = new TextLintTester();
 const assert = require("assert");
+
+const baseCase = {
+    valid: [
+        {
+            text: "text",
+            ext: ".md"
+        }
+    ],
+    invalid: [
+        {
+            text: "- [ ] string",
+            ext: ".md",
+            errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }]
+        }
+    ]
+};
 
 const testConfigs = [
     {
         description: "TestConfig is an empty object",
         config: {},
+        case: baseCase,
         expectedErrorMessage: "TestConfig is empty"
     },
     {
@@ -23,6 +41,7 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "TestConfig.rules should be an array"
     },
     {
@@ -36,6 +55,7 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "TestConfig.rules should be an array"
     },
     {
@@ -49,6 +69,7 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "TestConfig.rules should have at least one rule"
     },
     {
@@ -60,6 +81,7 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "ruleId property not found"
     },
     {
@@ -71,6 +93,7 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "rule property not found"
     },
     {
@@ -84,6 +107,7 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "TestConfig.plugins should be an array"
     },
     {
@@ -101,6 +125,7 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "pluginId property not found"
     },
     {
@@ -118,7 +143,100 @@ const testConfigs = [
                 }
             ]
         },
+        case: baseCase,
         expectedErrorMessage: "plugin property not found"
+    },
+    {
+        description: "options in valid object when use with TestConfig",
+        config: {
+            plugins: [
+                {
+                    pluginId: "html",
+                    plugin: htmlPlugin
+                }
+            ],
+            rules: [
+                {
+                    ruleId: "max-number-of-lines",
+                    rule: maxNumberOfLineRule
+                }
+            ]
+        },
+        case: {
+            valid: [
+                {
+                    text: "日本語 is Japanese.",
+                    ext: ".txt",
+                    options: {
+                        max: 2
+                    }
+                }
+            ],
+            invalid: [
+                {
+                    text: `- TODO: no todo
+- Another paragraph
+- Yet another paragraph`,
+                    ext: ".md",
+                    errors: [
+                        {
+                            message: "Document is too long(number of lines: 3).",
+                            index: 0,
+                            line: 1,
+                            column: 1
+                        }
+                    ]
+                }
+            ]
+        },
+        expectedErrorMessage:
+            "Could not specify options property in valid object when TestConfig was passed. Use TestConfig.rules.options."
+    },
+    {
+        description: "options in invalid object when use with TestConfig",
+        config: {
+            plugins: [
+                {
+                    pluginId: "html",
+                    plugin: htmlPlugin
+                }
+            ],
+            rules: [
+                {
+                    ruleId: "max-number-of-lines",
+                    rule: maxNumberOfLineRule
+                }
+            ]
+        },
+        case: {
+            valid: [
+                {
+                    text: "日本語 is Japanese.",
+                    ext: ".txt"
+                }
+            ],
+            invalid: [
+                {
+                    text: `- TODO: no todo
+- Another paragraph
+- Yet another paragraph`,
+                    ext: ".md",
+                    options: {
+                        max: 2
+                    },
+                    errors: [
+                        {
+                            message: "Document is too long(number of lines: 3).",
+                            index: 0,
+                            line: 1,
+                            column: 1
+                        }
+                    ]
+                }
+            ]
+        },
+        expectedErrorMessage:
+            "Could not specify options property in invalid object when TestConfig was passed. Use TestConfig.rules.options."
     }
 ];
 
@@ -126,21 +244,7 @@ describe("new-style-of-test: invalid testConfig", () => {
     testConfigs.forEach(testConfig => {
         it(`Should throw assertion error: ${testConfig.description}`, () => {
             try {
-                tester.run("invalid-testConfig-test", testConfig.config, {
-                    valid: [
-                        {
-                            text: "text",
-                            ext: ".md"
-                        }
-                    ],
-                    invalid: [
-                        {
-                            text: "- [ ] string",
-                            ext: ".md",
-                            errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }]
-                        }
-                    ]
-                });
+                tester.run("invalid-testConfig-test", testConfig.config, testConfig.case);
             } catch (err) {
                 assert(err instanceof assert.AssertionError);
                 assert.equal(err.message, testConfig.expectedErrorMessage);

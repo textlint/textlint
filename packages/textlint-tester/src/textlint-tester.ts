@@ -258,6 +258,22 @@ export class TextLintTester {
     ) {
         if (isTestConfig(param)) {
             assertTestConfig(param);
+            if (valid) {
+                valid.forEach(validCase => {
+                    assert(
+                        !validCase.hasOwnProperty("options"),
+                        "Could not specify options property in valid object when TestConfig was passed. Use TestConfig.rules.options."
+                    );
+                });
+            }
+            if (invalid) {
+                invalid.forEach(invalidCase => {
+                    assert(
+                        !invalidCase.hasOwnProperty("options"),
+                        "Could not specify options property in invalid object when TestConfig was passed. Use TestConfig.rules.options."
+                    );
+                });
+            }
         }
 
         describe(name, () => {
