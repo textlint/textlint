@@ -7255,7 +7255,7 @@ textlint-filter-rule-comments@^1.2.0, textlint-filter-rule-comments@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/textlint-filter-rule-comments/-/textlint-filter-rule-comments-1.2.2.tgz#3a72c494994e068e0e4aaad0f24ea7cfe338503a"
 
-textlint-plugin-html@^0.1.2:
+textlint-plugin-html@^0.1.2, textlint-plugin-html@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/textlint-plugin-html/-/textlint-plugin-html-0.1.7.tgz#acb90a9b8edcc013cf48b491b2a90d60321a23cf"
   dependencies:
