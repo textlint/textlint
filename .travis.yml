@@ -12,7 +12,7 @@ before_install:
 - npm install -g yarn@latest
 install:
 - yarn install --frozen-lockfile
-- yarn run bootstrap
+- yarn run bootstrap --ignore textlint-script-release
 script:
 - yarn test
 - yarn test:examples
