@@ -13,6 +13,7 @@
   "packages": [
     "packages/*",
     "examples/*",
+    "scripts/*",
     "packages/@textlint/*",
     "test/integration-test",
     "website"
