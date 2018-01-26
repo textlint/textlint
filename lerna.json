@@ -1,5 +1,5 @@
 {
-  "lerna": "2.5.1",
+  "lerna": "2.8.0",
   "commands": {
     "publish": {
       "ignore": [
@@ -13,6 +13,7 @@
   "packages": [
     "packages/*",
     "examples/*",
+    "scripts/*",
     "packages/@textlint/*",
     "test/integration-test",
     "website"
