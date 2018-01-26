@@ -11,8 +11,8 @@ before_install:
 - npm install -g npm@5
 - npm install -g yarn@latest
 install:
-- yarn install --frozen-lockfile
-- yarn run bootstrap --ignore textlint-script-release
+- yarn install --frozen-lockfile --ignore-engines
+- yarn run bootstrap
 script:
 - yarn test
 - yarn test:examples
