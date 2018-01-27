@@ -13,6 +13,6 @@
   },
   "devDependencies": {
     "textlint": "^10.1.4",
-    "textlint-rule-preset-jtf-style": "^2.3.0"
+    "textlint-rule-preset-jtf-style": "^2.3.1"
   }
 }
