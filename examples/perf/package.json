@@ -8,13 +8,13 @@
     "perf": "node perf.js"
   },
   "dependencies": {
-    "shelljs": "^0.5.3",
+    "shelljs": "^0.8.1",
     "textlint": "^10.1.4",
-    "textlint-plugin-jtf-style": "^0.8.5",
-    "textlint-rule-max-ten": "^1.1.0",
-    "textlint-rule-no-mix-dearu-desumasu": "^1.0.1",
-    "textlint-rule-no-start-duplicated-conjunction": "^1.0.3",
-    "textlint-rule-prh": "^2.0.0",
-    "textlint-rule-spellcheck-tech-word": "^4.0.1"
+    "textlint-plugin-jtf-style": "^1.0.1",
+    "textlint-rule-max-ten": "^2.0.3",
+    "textlint-rule-no-mix-dearu-desumasu": "^3.0.3",
+    "textlint-rule-no-start-duplicated-conjunction": "^2.0.2",
+    "textlint-rule-prh": "^5.0.1",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
   }
 }
