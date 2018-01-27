@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.6"></a>
+## [2.0.6](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.5...@textlint/kernel@2.0.6) (2018-01-27)
+
+
+### Code Refactoring
+
+* **ast-traverse:** update usage of [@textlint](https://github.com/textlint)/ast-traverse ([133ab5a](https://github.com/textlint/textlint/commit/133ab5a))
+* **plugin-markdown:** update usage of [@textlint](https://github.com/textlint)/textlint-plugin-markdown ([d34ee08](https://github.com/textlint/textlint/commit/d34ee08))
+
+
+
+
 <a name="2.0.5"></a>
 ## [2.0.5](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.4...@textlint/kernel@2.0.5) (2018-01-18)
 

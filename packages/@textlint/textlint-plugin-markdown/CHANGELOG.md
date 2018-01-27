@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.0.7"></a>
+## 4.0.7 (2018-01-27)
+
+
+### Bug Fixes
+
+* **plugin-markdown:** add `publishConfig` ([f3a20c9](https://github.com/textlint/textlint/commit/f3a20c9))
+
+
+### Code Refactoring
+
+* **plugin-markdown:** move to [@textlint](https://github.com/textlint) ([f50f851](https://github.com/textlint/textlint/commit/f50f851))
+
+
+
+
 <a name="4.0.6"></a>
 ## [4.0.6](https://github.com/textlint/textlint/compare/textlint-plugin-markdown@4.0.5...textlint-plugin-markdown@4.0.6) (2018-01-18)
 

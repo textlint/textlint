@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.5"></a>
+## 2.0.5 (2018-01-27)
+
+
+### Bug Fixes
+
+* **ast-traverse:** add `publishConfig` ([2ceeb99](https://github.com/textlint/textlint/commit/2ceeb99))
+
+
+### Code Refactoring
+
+* **txt-ast-traverse:** move to [@textlint](https://github.com/textlint)/ast-traverse ([7629a50](https://github.com/textlint/textlint/commit/7629a50))
+
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/textlint/textlint/compare/txt-ast-traverse@2.0.3...txt-ast-traverse@2.0.4) (2018-01-18)
 

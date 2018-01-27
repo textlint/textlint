@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/textlint/textlint/compare/textlint-tester@4.0.6...textlint-tester@4.1.0) (2018-01-27)
+
+
+### Bug Fixes
+
+* **textlint-tester:** clarify when multiple options were found ([5ffe903](https://github.com/textlint/textlint/commit/5ffe903))
+* **textlint-tester:** correct options handling for rules and plugins ([985d03a](https://github.com/textlint/textlint/commit/985d03a))
+* **textlint-tester:** make `plugins` at `TestConfig` optional ([3ebc1d7](https://github.com/textlint/textlint/commit/3ebc1d7))
+
+
+### Chores
+
+* **textlint-tester:** add user-defined type guard ([77b0e95](https://github.com/textlint/textlint/commit/77b0e95))
+* **textlint-tester:** improve codes according to review comments ([178ba8a](https://github.com/textlint/textlint/commit/178ba8a))
+* **textlint-tester:** rename `TestTarget` to `TestConfig` ([59ed69d](https://github.com/textlint/textlint/commit/59ed69d))
+
+
+### Documentation
+
+* **textlint-tester:** update README ([46aed3f](https://github.com/textlint/textlint/commit/46aed3f))
+* **textlint-tester:** update README with new function signature ([d419a15](https://github.com/textlint/textlint/commit/d419a15))
+
+
+### Features
+
+* **textlint-tester:** add multiple rules and plugins test support ([bedf761](https://github.com/textlint/textlint/commit/bedf761))
+
+
+### Tests
+
+* **textlint-tester:** add new style test case ([9e36143](https://github.com/textlint/textlint/commit/9e36143))
+* **textlint-tester:** add valid test case which pass a TestConfig that has multiple rules only ([c02a1ec](https://github.com/textlint/textlint/commit/c02a1ec))
+* **textlint-tester:** implement configuration assertion ([09c9db3](https://github.com/textlint/textlint/commit/09c9db3))
+
+
+
+
 <a name="4.0.6"></a>
 ## [4.0.6](https://github.com/textlint/textlint/compare/textlint-tester@4.0.5...textlint-tester@4.0.6) (2018-01-18)
 
