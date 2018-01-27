@@ -3,199 +3,208 @@ id: contributing
 title: Contributing Guideline
 ---
 
-## Monorepo
+You can contribute to textlint in various ways:
 
-This repository is monorepo.
-This repository includes multiple packages.
+- Reporting issues
+- Submitting pull request which fixes known issues, improve documentation, or implement new feature
+- Creating an enhancement request or suggestions
+- Writing your own rules or plugins
+- Writing an article about textlint on your blog
 
-## Bug Reporting
+Although we are accepting pull request, we recommend creating an issue first as it enables us to discuss your proposal before you put significant effort into it.
 
-If you found a bug, please [create a new issue](https://github.com/textlint/textlint/issues/new) on GitHub. Be sure to include the following information:
+## Reporting New Issues or Feature Suggestions
 
-- The version of `textlint -v`
-- Reproduce steps
-- Actual result
-    - Attach the log of `textlint --debug <options>`
-- Expected result
+Please [create a new issue](https://github.com/textlint/textlint/issues/new) on GitHub if you found a bug, got a question, or had an idea for improvement. All work on textlint happens on GitHub in English.
 
-:information_source: Creating reproduce repository help us to resolve the issue :)
+As described at the [`ISSUE_TEMPLATE`](https://github.com/textlint/textlint/blob/master/.github/ISSUE_TEMPLATE.md), please include following information when reporting a bug:
 
-- Example of reproduce repository
-- [azu/textlint-isssue78: https://github.com/textlint/textlint/issues/78](https://github.com/azu/textlint-isssue78 "azu/textlint-isssue78: https://github.com/textlint/textlint/issues/78")
+- What version of textlint are you using? (`textlint -v`)
+- What file type (Markdown, plain text, etc.) are you using?
+- What did you do? Please include the actual source code causing the issue.
+- What did you expect to happen?
+- What actually happened? Please include the actual, raw output from textlint. (`textlint --debug <options> ...`)
 
-## For beginner
+Creating a new repository that can reproduce the issue helps us understand your situation. [This repository](https://github.com/azu/textlint-isssue78) for example.
 
-If you want to contribute to texltlint, let's see issues with the [`good first issue`](https://github.com/textlint/textlint/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) label.
+## Development Workflow
 
-We recommend these issues for your first contribution.
+Here you can see how to get the source of textlint, build it, and run tests locally. We use [GitHub Flow](https://guides.github.com/introduction/flow/) as development workflow.
 
-## Pull Request
+If you want to contribute to textlint, please check issues labeled [`good first issue`](https://github.com/textlint/textlint/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22). These issues are suitable for your first contribution.
 
-### [Git Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular  "Commit Message Format")
+### Installing Prerequisites
 
-We use AngularJS Commit Convention.
+Please install following development prerequisites. You also need a [GitHub](https://github.com/) account for contribution.
 
-Please see [Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular  "Commit Message Format") for detail.
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en/) -- we tend to use latest stable Node.js although textlint supports >= 4.0.0
+- [Yarn](https://yarnpkg.com/en/) -- textlint supports [npm](https://www.npmjs.com/get-npm) >= 2.0.0, but for development purpose, we chose Yarn as package manager
+- Text editor
+- Terminal emulator
+
+### Cloning Copy of textlint
+
+Forking a repository allows you to work with textlint codebase without special permission to the textlint repository itself.
+
+1. Navigate to [textlint](https://github.com/textlint/textlint/) repository
+2. In the top–right corner of the page, click **Fork** button
+3. Create a clone of the fork locally in your terminal: `git clone --recursive https://github.com/YOUR_ACCOUNT/textlint YOUR_FORKED_REPOSITORY`
+
+See [Fork A Repo: GitHub Help](https://help.github.com/articles/fork-a-repo/) for further detail.
+
+### Building textlint
+
+After getting your clone, you can start playing with textlint.
+
+1. Change directory to your clone: `cd YOUR_FORKED_REPOSITORY`
+2. Install dependencies and build packages: `yarn install`
+3. Install all of textlint packages' dependencies: `yarn bootstrap`
+4. Building website: `yarn build:website`
+
+Under the hood, textlint uses [Lerna](https://lernajs.io) to manage multiple packages:
+
+- `packages/*`
+- `packages/@textlint/*`
+- `examples/*`
+- `scripts/release`
+- `test/integration-test`
+- `website`
+
+If you are new to Lerna, it seems to add another layer of complexity but it's simpler than you think; you can edit codes, run tests, commit changes, etc. as usual in most cases.
+
+Note that `yarn install` also builds a codebase, you can manually build by running `yarn build`. We have separate task `yarn build:website` since code and documentation have different life cycle, 
+
+### Creating a Branch for Your Work
+
+Before adding changes to your clone, please create a new branch (typically called _feature branch_). Changes made to feature branch don't affect or corrupt `master` branch so you will feel safe. In Git, creating a branch is easy and fast: `git checkout -b your-new-feature`
+
+### Making Changes
+
+You have your feature branch with working textlint then it's time to start making changes! Edit codes with text editor of your choice and add commits as you work on. Please don't forget to add or modify test cases and documents according to your changes.
+
+#### Coding Guideline
+
+##### Languages
+
+We are migrating entire codes to TypeScript so use [TypeScript](https://www.typescriptlang.org/) for new codes and tests, and use [GitHub flavored Markdown](https://github.github.com/gfm/) for documentation.
+
+##### Linting and Style
+
+This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Prettier](https://prettier.io/) for code formatter.
+
+- Run ESLint: `yarn eslint`
+- Run ESLint with [`--fix`](https://eslint.org/docs/user-guide/command-line-interface#--fix) feature to fix some wrong style automatically: `yarn eslint:fix`
+- Run Prettier to reformat code: `yarn prettier`
+
+We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [`husky`](https://www.npmjs.com/package/husky) to keep coding style before commit, but if you have your own [Git hooks](https://git-scm.com/book/gr/v2/Customizing-Git-Git-Hooks) locally, these setup doesn't work. In such case, please run ESLint and Prettier after making changes.
+
+##### Commit Message Format
+
+We use [Angular Convention](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular) for commit message.
+
+In order to make repository history clean, please follow the following guideline as possible as you can. It also enables us creating comprehensive changelog.
 
 ```
-                       component        commit title
-        commit type       /                /      
-                \        |                |
-                 feat(rule-context): add template url parameter to events
+                      component        commit title
+       commit type       /                /      
+               \        |                |
+                feat(rule-context): add template url parameter to events
+                (a blank line)
+       body ->  The `src` (i.e. the url of the template to load) is now provided to the
+                `$includeContentRequested`, `$includeContentLoaded` and `$includeContentError`
+                events.
 
-        body ->  The 'src` (i.e. the url of the template to load) is now provided to the
-                 `$includeContentRequested`, `$includeContentLoaded` and `$includeContentError`
-                 events.
-
- referenced  ->  Closes #8453
- issues          Closes #8454
+referenced  ->  Closes #8453
+issues          Ref. #8454
 ```
 
-- `commit type`: feat | fix | docs | style | perf | test | chore
-    - `chore` is useful type
-- `component`: package name or file name
-    - e.g.) `textlint`, `kernel`, `ast-node-types`
-    
-    
-Example commit messages
+- commit type:
+    - `docs`: create or update document
+    - `feat`: add new feature
+    - `fix`: fix a bug
+    - `style`: change formatting
+    - `perf`: performance related change
+    - `test`: update on tests
+    - `chore`: house–keeping
+    - `refactor`: refactoring related change
+- component: package or file name
+- commit title:
+    - Limit to 50 characters including commit type and component (as possible as you can)
+    - Do not capitalize first character
+    - Do not end with a period
+    - Use imperative mood, in present tense; commit title should always be able to complete the following sentence:
+        - If applied, this commit will _commit title here_
+- body:
+    - Separate from subject with a blank line
+    - Wrap texts at 72 characters
+    - Explain _what_ and _why_, not _how_
+    - [GitHub flavored Markdown](https://github.github.com/gfm/) is ok to use
+    - Start with `BREAKING CHANGE: ` when you made significant change in the commit.
+
+Example commit message:
 
 ```
-feat(rule): context.report support index-based position
+test(textlint-formatter): check types while testing
 
-support following syntax
+- Add strict type check option to `ts-node` to make sure future
+  interface changes will be took into account while running test.
+- Update test case for interface changes made at #430.
 
-e.g.) 
-context.report(node, new RuleError({ index: index }));
-
-fix #134
+Closes #448.
 ```
 
+Please see [Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular), [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/), and [Semantic Commit Messages](https://seesparkbox.com/foundry/semantic_commit_messages) for detail.
 
-### Fixing document
+##### Versioning
 
-If you want to fix `docs/`
+We care version number when releasing so you should not modify `version` field of `package.json`. For the record, we use [Semantic Versioning](https://semver.org/).
 
-1. Fix document!
-2. Commit your changes
-  - `git commit -am 'docs(<file-name>): Short description'`
-3. During your first run after clone (`git clone`) or clean up (`npm run clean`), build the project
-  - `npm run build`
-4. Run the tests
-  - `npm run test:docs`
-5. Submit a pull request :D
+- Patch release (intended to not break your lint build)
+    - A bug fix to the CLI or core (including formatters)
+    - Improvements to documentation
+    - Non-user-facing changes such as refactoring
+    - Re-releasing after a failed release (i.e., publishing a release that doesn't work for anyone)
+- Minor release (might break your lint build)
+    - A new option
+    - An existing rule is deprecated
+    - A new CLI capability is created
+    - New public API are added (new classes, new methods, new arguments to existing methods, etc.)
+        - It might break type interface(`.d.ts`)
+    - A new formatter is created
+- Major release (break your lint build)
+    - A new option to an existing rule that results in ESLint reporting more errors by default
+    - An existing formatter is removed
+    - Part of the public API is removed or changed in an incompatible way
 
-Welcome to fix the document!
+### Running Tests
 
-### Fixing bugs in code
+We have four type of tests. You should run at least **unit test** or **documentation test** according to your type of changes before submitting a pull request.
 
-textlint follows a [monorepo](https://github.com/babel/babel/blob/master/doc/design/monorepo.md "monorepo") approach, so textlint use [Lerna](https://lernajs.io/ "Lerna").
+1. Unit test: `yarn test` to run tests under [`packages/`](../packages)
+2. Example test: `yarn test:examples` to run [`examples`](../examples) as test
+3. Integration test: `git submodule update --init && yarn test:integration` to run tests with [real–world documents](../test/integration-test)
+4. Documentation test: `yarn test:docs` to run textlint to [`docs`](../docs), [`.github`](../.github), and [README](../README.md) (we are dog–fooding!)
 
-If you want to fix `src/` or `test/` in each packages.
-
-1. Fix the bug in code!
-2. Commit your changes
-  - `git commit -am 'fix(<file-name>): Short description'`
-3. Run the tests
-  - `npm test`
-4. Submit a pull request :D
-
-Adding :new: feature in the same way.
-
-1. Add feature
-2. Commit your changes
-  - `git commit -am 'feat(<file-name>): Short description'`
-3. Write tests
-4. Run the tests
-  - `npm test`
-5. Submit a pull request :D
-
-### Install
-
-We use yarn as package manager.
-
-Please [install yarn](https://yarnpkg.com/lang/en/docs/install/) before starting development.
+All tests should be run at the top directory of your fork. But while developing, it would be good to run package level unit test since it will run faster:
 
 ```sh
-git clone --recursive {YOUR_FORKED_REPOSITORY}
-cd {YOUR_FORKED_REPOSITORY}
-yarn install
-yarn run bootstrap
-```
-
-### Testing
-
-This repository has three type tests.
-You should run **Unit Test** before submit to Pull Request.
-
-- Unit Test – Run [packages/*](../packages/) tests
-- Example Test – Run [examples/*](../examples/) as test
-- Integration Test – Run [Integration test](../test/integration-test)
-
-#### Unit Test
-
-Test all [packages/*](../packages/)'s tests.
-
-```sh
+cd packages/PACKAGE
 yarn test
 ```
 
-You can run unit test in each package.
+Also you can run all of the above by `yarn test:all`.
 
-```sh
-cd pacakges/<pacakge>
-yarn test
-```
+### Pushing the Commit and Opening a Pull Request
 
-#### Example Test
+After finishing your changes and unit tests or documentation test ran fine, you can push your feature branch to GitHub. Please see [GitHub Help](https://help.github.com/articles/pushing-to-a-remote/) for detail but typically, run `git push origin feature-branch` at your terminal.
 
-Test [examples/*](../examples/) as test.
+Then follow another [GitHub Help](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to create a pull request.
 
-```sh
-yarn run test:examples
-```
+### Working with Reviews (if any)
 
-#### Integration Test
+Once a pull request has been created, it will initiate continuous integration build and we can work on your changes. You can push additional commits to your fork according to feedback.
 
-Run [Integration test](../test/integration-test) that use actual textlint user project.
-This test is heavy.
+### Merging
 
-```sh
-# Require git submodule
-git submodule update --init
-# Run test
-yarn run test:integration
-```
-
-#### Documentation Test
-
-Documentation including [`README.md`](../README.md), [`.github/`](../.github/), and [`docs/`](../docs) can be tested by:
-
-```sh
-yarn run test:docs
-```
-
-#### All Tests
-
-Run **Unit test** + **Example test** + **Integration test** by following command.
-
-This test is heavy because this includes Integration testing.
-
-```sh
-yarn run test:all
-```
-
-#### Coding Style
-
-The repository use [ESLint](https://eslint.org/ "ESLint").
-
-You can run lint:
-
-```sh
-yarn run eslint
-```
-
-It's possible that fix some wrong style using [--fix](https://eslint.org/docs/user-guide/command-line-interface#--fix "--fix") feature of ESLint:
-
-```
-yarn run eslint:fix
-```
+After all participants are satisfied to the changes, we will merge your code into the textlint master branch. Yay!
