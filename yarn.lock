@@ -7687,7 +7687,7 @@ textlint-rule-preset-ja-spacing@^2.0.0:
     textlint-rule-ja-space-around-code "^2.0.1"
     textlint-rule-ja-space-between-half-and-full-width "^2.0.1"
 
-textlint-rule-preset-jtf-style@2.3.1, textlint-rule-preset-jtf-style@^2.3.0:
+textlint-rule-preset-jtf-style@^2.3.0, textlint-rule-preset-jtf-style@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/textlint-rule-preset-jtf-style/-/textlint-rule-preset-jtf-style-2.3.1.tgz#5f2aece16b1d1296032d0d57cc2f8d8f3362318c"
   dependencies:
