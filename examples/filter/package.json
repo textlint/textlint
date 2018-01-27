@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-filter",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "private": true,
   "description": "filter rule example",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "textlint": "textlint -f pretty-error README.md"
   },
   "devDependencies": {
-    "textlint": "^10.1.3",
+    "textlint": "^10.1.4",
     "textlint-filter-rule-comments": "^1.2.0",
     "textlint-rule-no-todo": "^2.0.0"
   }

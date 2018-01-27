@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.1.4"></a>
+## [10.1.4](https://github.com/textlint/textlint/compare/textlint@10.1.3...textlint@10.1.4) (2018-01-27)
+
+
+### Code Refactoring
+
+* **ast-traverse:** update usage of [@textlint](https://github.com/textlint)/ast-traverse ([133ab5a](https://github.com/textlint/textlint/commit/133ab5a))
+* **plugin-markdown:** update usage of [@textlint](https://github.com/textlint)/textlint-plugin-markdown ([d34ee08](https://github.com/textlint/textlint/commit/d34ee08))
+* **plugin-text:** update usage of [@textlint](https://github.com/textlint)/textlint-plugin-text ([b040b33](https://github.com/textlint/textlint/commit/b040b33))
+
+
+### Tests
+
+* **textlint:** add non-scoped case to module-resolver ([5eeaa02](https://github.com/textlint/textlint/commit/5eeaa02))
+
+
+
+
 <a name="10.1.3"></a>
 ## [10.1.3](https://github.com/textlint/textlint/compare/textlint@10.1.2...textlint@10.1.3) (2018-01-18)
 

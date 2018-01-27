@@ -42,7 +42,7 @@ const release = async dry => {
             await canNpmPublish(pkg.location);
             return true;
         } catch (error) {
-            return true;
+            return false;
         }
     });
 

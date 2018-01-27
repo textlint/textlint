@@ -1,6 +1,6 @@
 {
   "name": "textlint-perf-test",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "shelljs": "^0.5.3",
-    "textlint": "^10.1.3",
+    "textlint": "^10.1.4",
     "textlint-plugin-jtf-style": "^0.8.5",
     "textlint-rule-max-ten": "^1.1.0",
     "textlint-rule-no-mix-dearu-desumasu": "^1.0.1",
