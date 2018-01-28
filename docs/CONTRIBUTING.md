@@ -114,7 +114,12 @@ You have your feature branch with working textlint then it's time to start makin
 
 ##### Languages
 
-We are migrating entire codes to TypeScript so use [TypeScript](https://www.typescriptlang.org/) for new codes and tests, and use [GitHub flavored Markdown](https://github.github.com/gfm/) for documentation.
+While working with your idea, please use:
+
+- [TypeScript](https://www.typescriptlang.org/) for new codes and tests
+- [GitHub flavored Markdown](https://github.github.com/gfm/) for documentation
+
+We are migrating entire codes to TypeScript.
 
 ##### Linting and Style
 
@@ -224,7 +229,7 @@ All tests should be run at the top directory of your fork.
 
 #### Unit Test
 
-Run tests under [`packages/`](../packages):
+Run tests under [`packages/`](https://github.com/textlint/textlint/tree/master/packages):
 
 ```sh
 $ yarn test
@@ -239,7 +244,7 @@ $ yarn test
 
 #### Example Test
 
-Run [`examples`](../examples) as test:
+Run [`examples`](https://github.com/textlint/textlint/tree/master/examples) as test:
 
 ```sh
 $ yarn test:examples
@@ -247,7 +252,7 @@ $ yarn test:examples
 
 #### Integration Test
 
-Run tests with [real–world documents](../test/integration-test):
+Run tests with [real–world documents](https://github.com/textlint/textlint/tree/master/test/integration-test):
 
 
 ```sh
@@ -257,7 +262,7 @@ $ yarn test:integration
 
 #### Documentation Test
 
-Run textlint to [`docs/`](../docs/), [`.github/`](../.github/), and [README](../README.md) (we are dog–fooding!):
+Run textlint to [`docs/`](https://github.com/textlint/textlint/tree/master/docs), [`.github/`](https://github.com/textlint/textlint/tree/master/.github), and [README](https://github.com/textlint/textlint/blob/master/README.md) (we are dog–fooding!):
 
 ```sh
 $ yarn test:docs
