@@ -73,7 +73,7 @@ Under the hood, textlint uses [Lerna](https://lernajs.io) to manage multiple pac
 
 If you are new to Lerna, it seems to add another layer of complexity but it's simpler than you think; you can edit codes, run tests, commit changes, etc. as usual in most cases.
 
-Note that `yarn install` also builds a codebase, you can manually build by running `yarn build`. We have separate task `yarn build:website` since code and documentation have different life cycle, 
+Note that `yarn install` also builds a codebase, you can manually build by running `yarn build`. We have separate task `yarn build:website` since code and documentation have different life cycle.
 
 ### Creating a Branch for Your Work
 
@@ -97,13 +97,13 @@ This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Pr
 - Run ESLint with [`--fix`](https://eslint.org/docs/user-guide/command-line-interface#--fix) feature to fix some wrong style automatically: `yarn eslint:fix`
 - Run Prettier to reformat code: `yarn prettier`
 
-We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [`husky`](https://www.npmjs.com/package/husky) to keep coding style before commit, but if you have your own [Git hooks](https://git-scm.com/book/gr/v2/Customizing-Git-Git-Hooks) locally, these setup doesn't work. In such case, please run ESLint and Prettier after making changes.
+We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [`husky`](https://www.npmjs.com/package/husky) to keep coding style before commit, but if you have your own [Git hooks](https://git-scm.com/book/gr/v2/Customizing-Git-Git-Hooks) locally, these setup doesn't work. In such case, please run ESLint and Prettier manually as above after making changes.
 
 ##### Commit Message Format
 
 We use [Angular Convention](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular) for commit message.
 
-In order to make repository history clean, please follow the following guideline as possible as you can. It also enables us creating comprehensive changelog.
+In order to make repository history clean, please use the following guideline as possible as you can. It also enables us creating comprehensive changelog semi–automatically.
 
 ```
                       component        commit title
@@ -140,7 +140,7 @@ issues          Ref. #8454
     - Wrap texts at 72 characters
     - Explain _what_ and _why_, not _how_
     - [GitHub flavored Markdown](https://github.github.com/gfm/) is ok to use
-    - Start with `BREAKING CHANGE: ` when you made significant change in the commit.
+    - Start with `BREAKING CHANGE: ` when you made significant change in the commit (see versioning section below).
 
 Example commit message:
 
@@ -158,7 +158,7 @@ Please see [Commit Message Format](https://github.com/conventional-changelog/co
 
 ##### Versioning
 
-We care version number when releasing so you should not modify `version` field of `package.json`. For the record, we use [Semantic Versioning](https://semver.org/).
+We care version number while releasing packages to npm registry so you should not modify `version` field of `package.json`. For the record, we use [Semantic Versioning](https://semver.org/).
 
 - Patch release (intended to not break your lint build)
     - A bug fix to the CLI or core (including formatters)
@@ -184,7 +184,7 @@ We have four type of tests. You should run at least **unit test** or **documenta
 1. Unit test: `yarn test` to run tests under [`packages/`](../packages)
 2. Example test: `yarn test:examples` to run [`examples`](../examples) as test
 3. Integration test: `git submodule update --init && yarn test:integration` to run tests with [real–world documents](../test/integration-test)
-4. Documentation test: `yarn test:docs` to run textlint to [`docs`](../docs), [`.github`](../.github), and [README](../README.md) (we are dog–fooding!)
+4. Documentation test: `yarn test:docs` to run textlint to [`docs/`](../docs/), [`.github/`](../.github/), and [README](../README.md) (we are dog–fooding!)
 
 All tests should be run at the top directory of your fork. But while developing, it would be good to run package level unit test since it will run faster:
 
@@ -203,8 +203,8 @@ Then follow another [GitHub Help](https://help.github.com/articles/creating-a-pu
 
 ### Working with Reviews (if any)
 
-Once a pull request has been created, it will initiate continuous integration build and we can work on your changes. You can push additional commits to your fork according to feedback.
+Once a pull request has been created, it will initiate continuous integration builds and we can work on your changes. You can push additional commits to your fork according to feedback.
 
 ### Merging
 
-After all participants are satisfied to the changes, we will merge your code into the textlint master branch. Yay!
+After all participants on pull request are satisfied to the changes, we will merge your code into the textlint master branch. Yay!
