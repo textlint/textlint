@@ -17,7 +17,7 @@ Although we are accepting pull request, we recommend creating an issue first as 
 
 Please [create a new issue](https://github.com/textlint/textlint/issues/new) on GitHub if you found a bug, got a question, or had an idea for improvement. All work on textlint happens on GitHub in English.
 
-As described at the [`ISSUE_TEMPLATE`](https://github.com/textlint/textlint/blob/master/.github/ISSUE_TEMPLATE.md), please include following information when reporting a bug:
+As described at the [`ISSUE_TEMPLATE.md`](https://github.com/textlint/textlint/blob/master/.github/ISSUE_TEMPLATE.md), please include following information when reporting a bug:
 
 - What version of textlint are you using? (`textlint -v`)
 - What file type (Markdown, plain text, etc.) are you using?
@@ -49,7 +49,11 @@ Forking a repository allows you to work with textlint codebase without special p
 
 1. Navigate to [textlint](https://github.com/textlint/textlint/) repository
 2. In the top–right corner of the page, click **Fork** button
-3. Create a clone of the fork locally in your terminal: `git clone --recursive https://github.com/YOUR_ACCOUNT/textlint YOUR_FORKED_REPOSITORY`
+3. Create a clone of the fork locally in your terminal:
+
+    ```sh
+    $ git clone --recursive https://github.com/YOUR_ACCOUNT/textlint YOUR_FORKED_REPOSITORY
+    ```
 
 See [Fork A Repo: GitHub Help](https://help.github.com/articles/fork-a-repo/) for further detail.
 
@@ -57,10 +61,29 @@ See [Fork A Repo: GitHub Help](https://help.github.com/articles/fork-a-repo/) fo
 
 After getting your clone, you can start playing with textlint.
 
-1. Change directory to your clone: `cd YOUR_FORKED_REPOSITORY`
-2. Install dependencies and build packages: `yarn install`
-3. Install all of textlint packages' dependencies: `yarn bootstrap`
-4. Building website: `yarn build:website`
+1. Change directory to your clone:
+
+    ```sh
+    $ cd YOUR_FORKED_REPOSITORY
+    ```
+
+2. Install dependencies and build packages:
+
+    ```sh
+    $ yarn install
+    ```
+
+3. Install all of textlint packages' dependencies:
+
+    ```sh
+    $ yarn bootstrap
+    ```
+
+4. Building website:
+
+    ```sh
+    $ yarn build:website
+    ```
 
 Under the hood, textlint uses [Lerna](https://lernajs.io) to manage multiple packages:
 
@@ -77,7 +100,11 @@ Note that `yarn install` also builds a codebase, you can manually build by runni
 
 ### Creating a Branch for Your Work
 
-Before adding changes to your clone, please create a new branch (typically called _feature branch_). Changes made to feature branch don't affect or corrupt `master` branch so you will feel safe. In Git, creating a branch is easy and fast: `git checkout -b your-new-feature`
+Before adding changes to your clone, please create a new branch (typically called _feature branch_). Changes made to feature branch don't affect or corrupt `master` branch so you will feel safe. In Git, creating a branch is easy and fast:
+
+```sh
+$ git checkout -b your-new-feature
+```
 
 ### Making Changes
 
@@ -91,13 +118,25 @@ We are migrating entire codes to TypeScript so use [TypeScript](https://www.type
 
 ##### Linting and Style
 
-This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Prettier](https://prettier.io/) for code formatter.
+This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Prettier](https://prettier.io/) for code formatter. We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [`husky`](https://www.npmjs.com/package/husky) to make coding style consistent before commit, but if you have your own [Git hooks](https://git-scm.com/book/gr/v2/Customizing-Git-Git-Hooks) locally, these setup doesn't work. In such case, please run ESLint and Prettier manually as below after making changes.
 
-- Run ESLint: `yarn eslint`
-- Run ESLint with [`--fix`](https://eslint.org/docs/user-guide/command-line-interface#--fix) feature to fix some wrong style automatically: `yarn eslint:fix`
-- Run Prettier to reformat code: `yarn prettier`
+- Run ESLint:
 
-We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [`husky`](https://www.npmjs.com/package/husky) to keep coding style before commit, but if you have your own [Git hooks](https://git-scm.com/book/gr/v2/Customizing-Git-Git-Hooks) locally, these setup doesn't work. In such case, please run ESLint and Prettier manually as above after making changes.
+    ```sh
+    $ yarn eslint
+    ```
+
+- Run ESLint with [`--fix`](https://eslint.org/docs/user-guide/command-line-interface#--fix) feature to fix some wrong style automatically:
+
+    ```sh
+    $ yarn eslint:fix
+    ```
+
+- Run Prettier to reformat code:
+
+    ```sh
+    $ yarn prettier
+    ```
 
 ##### Commit Message Format
 
@@ -181,23 +220,64 @@ We care version number while releasing packages to npm registry so you should no
 
 We have four type of tests. You should run at least **unit test** or **documentation test** according to your type of changes before submitting a pull request.
 
-1. Unit test: `yarn test` to run tests under [`packages/`](../packages)
-2. Example test: `yarn test:examples` to run [`examples`](../examples) as test
-3. Integration test: `git submodule update --init && yarn test:integration` to run tests with [real–world documents](../test/integration-test)
-4. Documentation test: `yarn test:docs` to run textlint to [`docs/`](../docs/), [`.github/`](../.github/), and [README](../README.md) (we are dog–fooding!)
+All tests should be run at the top directory of your fork.
 
-All tests should be run at the top directory of your fork. But while developing, it would be good to run package level unit test since it will run faster:
+#### Unit Test
+
+Run tests under [`packages/`](../packages):
 
 ```sh
-cd packages/PACKAGE
-yarn test
+$ yarn test
 ```
 
-Also you can run all of the above by `yarn test:all`.
+While developing, it would be good to run package level unit test since it will run faster:
+
+```sh
+$ cd packages/PACKAGE
+$ yarn test
+```
+
+#### Example Test
+
+Run [`examples`](../examples) as test:
+
+```sh
+$ yarn test:examples
+```
+
+#### Integration Test
+
+Run tests with [real–world documents](../test/integration-test):
+
+
+```sh
+$ git submodule update --init
+$ yarn test:integration
+```
+
+#### Documentation Test
+
+Run textlint to [`docs/`](../docs/), [`.github/`](../.github/), and [README](../README.md) (we are dog–fooding!):
+
+```sh
+$ yarn test:docs
+```
+
+#### All Tests
+
+Also you can run all of the above by:
+
+```sh
+$ yarn test:all
+```
 
 ### Pushing the Commit and Opening a Pull Request
 
-After finishing your changes and unit tests or documentation test ran fine, you can push your feature branch to GitHub. Please see [GitHub Help](https://help.github.com/articles/pushing-to-a-remote/) for detail but typically, run `git push origin feature-branch` at your terminal.
+After finishing your changes and unit tests or documentation test ran fine, you can push your feature branch to GitHub. Please see [GitHub Help](https://help.github.com/articles/pushing-to-a-remote/) for detail but typically, run `git push` at your terminal.
+
+```sh
+$ git push origin feature-branch
+```
 
 Then follow another [GitHub Help](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) to create a pull request.
 
