@@ -7925,6 +7925,12 @@ try-resolve@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/try-resolve/-/try-resolve-1.0.1.tgz#cfde6fabd72d63e5797cfaab873abbe8e700e912"
 
+ts-node-test-register@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ts-node-test-register/-/ts-node-test-register-1.0.1.tgz#2496000aabcaca96973ece6164ffd6f1c2f6a82d"
+  dependencies:
+    read-pkg "^3.0.0"
+
 ts-node@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-3.3.0.tgz#c13c6a3024e30be1180dd53038fc209289d4bf69"
