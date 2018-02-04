@@ -17,7 +17,7 @@ Each node of the tree has same interface, is called `TxtNode`.
 
 ### `TxtNode`
 
-`TxtNode` has these properties.
+`TxtNode` is a abstract node.
 
 ```typescript
 /**
@@ -64,16 +64,20 @@ type TextNodeRange = [number, number];
 
 ```
 
+`TxtNode` **must** have these properties.
+
 - `type`: type of Node
 - `raw`: raw value of Node
-    - if you want to get raw value, please use `getSource(<node>)` instead of it.
+    - if you want to get raw value, please use `getSource(<node>)` instead of it..
 - `loc`: location object
 - `range`: location info array like `[startIndex, endIndex]`
-- `parent`: (optional) parent node of this node. it is attached in runtime.
-
+- `parent`: (optional) parent node of this node. 
+    - It is attached in runtime
+    - Parser user ignore this property
+    
 ### `TxtTextNode` 
 
-`TxtInlineNode` is inherit the `TxtNode` abstract interface.
+`TxtTextNode` is inherit the `TxtNode` abstract interface.
 
 ```typescript
 /**
@@ -86,7 +90,11 @@ interface TxtTextNode extends TxtNode {
 }
 ```
 
+`TxtTextNode` **must** have these properties.
+
 - `value`: the value of inline node.
+
+Example: `Str` node is a `TxtTextNode`.
 
 ### `TxtParentNode`
  
@@ -102,7 +110,11 @@ interface TxtParentNode extends TxtNode {
 }
 ```
 
+`TxtParentNode` **must** have these properties.
+
 - `children`: child nodes of this node.
+
+Example: `Paragraph` node is a `TxtParentNode`.
 
 ### `type`
 
@@ -120,8 +132,9 @@ See [packages/ast-node-types](../packages/@textlint/ast-node-types) for more det
 
 These types are be available at all times:
 
-```json
+```json5
 {
+    // TxtParentNode
     "Document": "Document",
     "Paragraph": "Paragraph",
     "BlockQuote": "BlockQuote",
@@ -133,6 +146,7 @@ These types are be available at all times:
     "ReferenceDef": "ReferenceDef",
     "HorizontalRule": "HorizontalRule",
     "Comment": "Comment",
+    // TxtTextNode
     "Str": "Str",
     "Break": "Break",
     "Emphasis": "Emphasis",
@@ -146,7 +160,27 @@ These types are be available at all times:
 
 The type is based on HTML tag.
 
-Following parsers are built-in.
+### Minimal node property
+
+TxtAST allow to extend node property.
+But, Following node **should** have some properties.
+
+#### `Header`
+
+- `depth`: level of header
+    - Example: `<h1>` is `depth:1`, `<h2>` is `depth:2`...
+
+#### `Link`
+
+- `url`: link url
+
+#### `Image`
+
+- `url`: image url
+
+## Built-in Parser
+
+textlint has built-in parsers.
 
 | Package | Version | Description |
 |---------|---------|-------------|
