@@ -1,4 +1,5 @@
-const gutil = require("gulp-util");
+const log = require("fancy-log");
+const PluginError = require("plugin-error");
 const through = require("through2");
 const TextLintEngine = require("textlint").TextLintEngine;
 
@@ -19,12 +20,12 @@ module.exports = function(options) {
                 .executeOnFiles(filePaths)
                 .then(function(results) {
                     if (textlint.isErrorResults(results)) {
-                        gutil.log(textlint.formatResults(results));
-                        that.emit("error", new gutil.PluginError("textlint", "Lint failed."));
+                        log(textlint.formatResults(results));
+                        that.emit("error", new PluginError("textlint", "Lint failed."));
                     }
                 })
                 .catch(function(error) {
-                    that.emit("error", new gutil.PluginError("textlint", `Lint failed. \n${error.message}`));
+                    that.emit("error", new PluginError("textlint", `Lint failed. \n${error.message}`));
                 })
                 .then(function() {
                     cb();
