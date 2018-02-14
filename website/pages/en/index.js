@@ -196,6 +196,7 @@ class Index extends React.Component {
                     <Playground />
                     <Showcase language={language} />
                 </div>
+                <script src={siteConfig.baseUrl + "js/transparent-header.js"} />
             </div>
         );
     }

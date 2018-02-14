@@ -1,7 +1,7 @@
 /* Color palette */
 
 :root {
-    --primaryColor: #29e7f5;
+    --primaryColor: #29bfcd;
     --textColor: #000000;
 }
 
@@ -11,9 +11,8 @@
 }
 
 /* Header */
-
 .navigationSlider .slidingNav ul {
-    font-family: Lato;
+    font-family: Lato, serif;
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
@@ -21,11 +20,10 @@
 
 /* Text styles */
 .heading {
-    font-family: HelveticaNeue;
+    font-family: HelveticaNeue, serif;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    color: #000000;
     color: var(--textColor);
 }
 
