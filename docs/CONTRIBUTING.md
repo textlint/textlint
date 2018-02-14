@@ -198,7 +198,7 @@ test(textlint-formatter): check types while testing
 Closes #448.
 ```
 
-Please see [Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular), [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/), and [Semantic Commit Messages](https://seesparkbox.com/foundry/semantic_commit_messages) for detail.
+Please see [Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular) and [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for detail.
 
 ##### Versioning
 
