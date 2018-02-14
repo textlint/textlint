@@ -11,7 +11,18 @@
 
     .is-bottom-of-main .fixedHeaderContainer {
         background-color: #6f9bf2;
-        transition: background-color 0.15s ease-out;
+        animation: HeaderFlipAnimation 0.15s ease-out;
+    }
+}
+
+@keyframes HeaderFlipAnimation {
+    0% {
+        background-color: transparent;
+        transform: scaleY(0);
+    }
+    100% {
+        background-color: #6f9bf2;
+        transform: scaleY(1);
     }
 }
 
