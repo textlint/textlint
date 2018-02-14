@@ -45,12 +45,12 @@ const siteConfig = {
     favicon: "img/textlint-icon_256x256.png",
     /* colors for website */
     colors: {
-        primaryColor: "#29e7f5",
+        primaryColor: "#29bfcd",
         secondaryColor: "#c7254e",
         textColor: "#000000"
     },
     // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
-    copyright: "Copyright © " + new Date().getFullYear() + "textlint organization",
+    copyright: `Copyright © ${new Date().getFullYear()}textlint organization`,
     highlight: {
         // Highlight.js theme to use for syntax highlighting in code blocks
         theme: "default"
