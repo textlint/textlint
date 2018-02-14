@@ -90,10 +90,10 @@
                 var remarkAbstract = require("remark");
                 var remark = remarkAbstract();
                 /**
- * parse markdown text and return ast mapped location info.
- * @param {string} text
- * @returns {TxtNode}
- */
+                 * parse markdown text and return ast mapped location info.
+                 * @param {string} text
+                 * @returns {TxtNode}
+                 */
                 function parse(text) {
                     var ast = remark.parse(text);
                     var SyntaxMap = require("./mapping/markdown-syntax-map");
@@ -184,30 +184,30 @@
         5: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer. All rights reserved.
- * @module bail
- * @fileoverview Throw a given error.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer. All rights reserved.
+                 * @module bail
+                 * @fileoverview Throw a given error.
+                 */
 
                 "use strict";
 
                 /**
- * Throw a given error.
- *
- * @example
- *   bail();
- *
- * @example
- *   bail(new Error('failure'));
- *   // Error: failure
- *   //     at repl:1:6
- *   //     at REPLServer.defaultEval (repl.js:154:27)
- *   //     ...
- *
- * @param {Error?} [err] - Optional error.
- * @throws {Error} - `err`, when given.
- */
+                 * Throw a given error.
+                 *
+                 * @example
+                 *   bail();
+                 *
+                 * @example
+                 *   bail(new Error('failure'));
+                 *   // Error: failure
+                 *   //     at repl:1:6
+                 *   //     at REPLServer.defaultEval (repl.js:154:27)
+                 *   //     ...
+                 *
+                 * @param {Error?} [err] - Optional error.
+                 * @throws {Error} - `err`, when given.
+                 */
                 function bail(err) {
                     if (err) {
                         throw err;
@@ -512,14 +512,14 @@
                     }
 
                     /**
- * The Buffer constructor returns instances of `Uint8Array` that have their
- * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
- * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
- * and the `Uint8Array` methods. Square bracket notation works as expected -- it
- * returns a single octet.
- *
- * The `Uint8Array` prototype remains unmodified.
- */
+                     * The Buffer constructor returns instances of `Uint8Array` that have their
+                     * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
+                     * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
+                     * and the `Uint8Array` methods. Square bracket notation works as expected -- it
+                     * returns a single octet.
+                     *
+                     * The `Uint8Array` prototype remains unmodified.
+                     */
                     function Buffer(arg) {
                         if (!(this instanceof Buffer)) {
                             // Avoid going through an ArgumentsAdaptorTrampoline in the common case.
@@ -1936,28 +1936,28 @@
         10: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer. All rights reserved.
- * @module ccount
- * @fileoverview Count characters.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer. All rights reserved.
+                 * @module ccount
+                 * @fileoverview Count characters.
+                 */
 
                 "use strict";
 
                 /**
- * Count how many characters `character` occur in `value`.
- *
- * @example
- *   ccount('foo(bar(baz)', '(') // 2
- *   ccount('foo(bar(baz)', ')') // 1
- *
- * @param {string} value - Content, coerced to string.
- * @param {string} character - Single character to look
- *   for.
- * @return {number} - Count.
- * @throws {Error} - when `character` is not a single
- *   character.
- */
+                 * Count how many characters `character` occur in `value`.
+                 *
+                 * @example
+                 *   ccount('foo(bar(baz)', '(') // 2
+                 *   ccount('foo(bar(baz)', ')') // 1
+                 *
+                 * @param {string} value - Content, coerced to string.
+                 * @param {string} character - Single character to look
+                 *   for.
+                 * @return {number} - Count.
+                 * @throws {Error} - when `character` is not a single
+                 *   character.
+                 */
                 function ccount(value, character) {
                     var index = -1;
                     var count = 0;
@@ -2249,12 +2249,12 @@
         12: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module character-entities-html4
- * @fileoverview HTML4 character entity information.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module character-entities-html4
+                 * @fileoverview HTML4 character entity information.
+                 */
 
                 "use strict";
 
@@ -2384,12 +2384,12 @@
         14: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module character-entities-legacy
- * @fileoverview HTML legacy character entity information.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module character-entities-legacy
+                 * @fileoverview HTML legacy character entity information.
+                 */
 
                 "use strict";
 
@@ -4538,12 +4538,12 @@
         16: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module character-entities
- * @fileoverview HTML character entity information.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module character-entities
+                 * @fileoverview HTML character entity information.
+                 */
 
                 "use strict";
 
@@ -4595,12 +4595,12 @@
         18: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module character-reference-invalid
- * @fileoverview HTML invalid numeric character reference information.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module character-reference-invalid
+                 * @fileoverview HTML invalid numeric character reference information.
+                 */
 
                 "use strict";
 
@@ -4621,23 +4621,23 @@
                         "use strict";
 
                         /**
- * Clones (copies) an Object using deep copying.
- *
- * This function supports circular references by default, but if you are certain
- * there are no circular references in your object, you can save some CPU time
- * by calling clone(obj, false).
- *
- * Caution: if `circular` is false and `parent` contains circular references,
- * your program may enter an infinite loop and crash.
- *
- * @param `parent` - the object to be cloned
- * @param `circular` - set to true if the object to be cloned may contain
- *    circular references. (optional - true by default)
- * @param `depth` - set to a number if the object is only to be cloned to
- *    a particular depth. (optional - defaults to Infinity)
- * @param `prototype` - sets the prototype to be used when cloning an object.
- *    (optional - defaults to parent prototype).
-*/
+                         * Clones (copies) an Object using deep copying.
+                         *
+                         * This function supports circular references by default, but if you are certain
+                         * there are no circular references in your object, you can save some CPU time
+                         * by calling clone(obj, false).
+                         *
+                         * Caution: if `circular` is false and `parent` contains circular references,
+                         * your program may enter an infinite loop and crash.
+                         *
+                         * @param `parent` - the object to be cloned
+                         * @param `circular` - set to true if the object to be cloned may contain
+                         *    circular references. (optional - true by default)
+                         * @param `depth` - set to a number if the object is only to be cloned to
+                         *    a particular depth. (optional - defaults to Infinity)
+                         * @param `prototype` - sets the prototype to be used when cloning an object.
+                         *    (optional - defaults to parent prototype).
+                         */
                         function clone(parent, circular, depth, prototype) {
                             var filter;
                             if (typeof circular === "object") {
@@ -4720,12 +4720,12 @@
                         }
 
                         /**
- * Simple flat clone using prototype, accepts only objects, usefull for property
- * override on FLAT configuration object (no nested props).
- *
- * USE WITH CAUTION! This may not behave as you wish if you do not know how this
- * works.
- */
+                         * Simple flat clone using prototype, accepts only objects, usefull for property
+                         * override on FLAT configuration object (no nested props).
+                         *
+                         * USE WITH CAUTION! This may not behave as you wish if you do not know how this
+                         * works.
+                         */
                         clone.clonePrototype = function clonePrototype(parent) {
                             if (parent === null) return null;
 
@@ -4787,15 +4787,15 @@
                 var SPACE = " ";
 
                 /**
- * Replace multiple white-space characters with a single space.
- *
- * @example
- *   collapse(' \t\nbar \nbaz\t'); // ' bar baz '
- *
- * @param {string} value - Value with uncollapsed white-space,
- *   coerced to string.
- * @return {string} - Value with collapsed white-space.
- */
+                 * Replace multiple white-space characters with a single space.
+                 *
+                 * @example
+                 *   collapse(' \t\nbar \nbaz\t'); // ' bar baz '
+                 *
+                 * @param {string} value - Value with uncollapsed white-space,
+                 *   coerced to string.
+                 * @return {string} - Value with collapsed white-space.
+                 */
                 function collapse(value) {
                     return String(value).replace(WHITE_SPACE_COLLAPSABLE, SPACE);
                 }
@@ -4811,10 +4811,10 @@
         21: [
             function(require, module, exports) {
                 /**
- * This is the web browser implementation of `debug()`.
- *
- * Expose `debug()` as the module.
- */
+                 * This is the web browser implementation of `debug()`.
+                 *
+                 * Expose `debug()` as the module.
+                 */
 
                 exports = module.exports = require("./debug");
                 exports.log = log;
@@ -4828,18 +4828,18 @@
                         : localstorage();
 
                 /**
- * Colors.
- */
+                 * Colors.
+                 */
 
                 exports.colors = ["lightseagreen", "forestgreen", "goldenrod", "dodgerblue", "darkorchid", "crimson"];
 
                 /**
- * Currently only WebKit-based Web Inspectors, Firefox >= v31,
- * and the Firebug extension (any Firefox version) are known
- * to support "%c" CSS customizations.
- *
- * TODO: add a `localStorage` variable to explicitly enable/disable colors
- */
+                 * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+                 * and the Firebug extension (any Firefox version) are known
+                 * to support "%c" CSS customizations.
+                 *
+                 * TODO: add a `localStorage` variable to explicitly enable/disable colors
+                 */
 
                 function useColors() {
                     // is webkit? http://stackoverflow.com/a/16459606/376773
@@ -4854,18 +4854,18 @@
                 }
 
                 /**
- * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
- */
+                 * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+                 */
 
                 exports.formatters.j = function(v) {
                     return JSON.stringify(v);
                 };
 
                 /**
- * Colorize log arguments if enabled.
- *
- * @api public
- */
+                 * Colorize log arguments if enabled.
+                 *
+                 * @api public
+                 */
 
                 function formatArgs() {
                     var args = arguments;
@@ -4905,11 +4905,11 @@
                 }
 
                 /**
- * Invokes `console.log()` when available.
- * No-op when `console.log` is not a "function".
- *
- * @api public
- */
+                 * Invokes `console.log()` when available.
+                 * No-op when `console.log` is not a "function".
+                 *
+                 * @api public
+                 */
 
                 function log() {
                     // this hackery is required for IE8/9, where
@@ -4922,11 +4922,11 @@
                 }
 
                 /**
- * Save `namespaces`.
- *
- * @param {String} namespaces
- * @api private
- */
+                 * Save `namespaces`.
+                 *
+                 * @param {String} namespaces
+                 * @api private
+                 */
 
                 function save(namespaces) {
                     try {
@@ -4939,11 +4939,11 @@
                 }
 
                 /**
- * Load `namespaces`.
- *
- * @return {String} returns the previously persisted debug modes
- * @api private
- */
+                 * Load `namespaces`.
+                 *
+                 * @return {String} returns the previously persisted debug modes
+                 * @api private
+                 */
 
                 function load() {
                     var r;
@@ -4954,21 +4954,21 @@
                 }
 
                 /**
- * Enable namespaces listed in `localStorage.debug` initially.
- */
+                 * Enable namespaces listed in `localStorage.debug` initially.
+                 */
 
                 exports.enable(load());
 
                 /**
- * Localstorage attempts to return the localstorage.
- *
- * This is necessary because safari throws
- * when a user disables cookies/localstorage
- * and you attempt to access it.
- *
- * @return {LocalStorage}
- * @api private
- */
+                 * Localstorage attempts to return the localstorage.
+                 *
+                 * This is necessary because safari throws
+                 * when a user disables cookies/localstorage
+                 * and you attempt to access it.
+                 *
+                 * @return {LocalStorage}
+                 * @api private
+                 */
 
                 function localstorage() {
                     try {
@@ -4981,11 +4981,11 @@
         22: [
             function(require, module, exports) {
                 /**
- * This is the common logic for both the Node.js and web browser
- * implementations of `debug()`.
- *
- * Expose `debug()` as the module.
- */
+                 * This is the common logic for both the Node.js and web browser
+                 * implementations of `debug()`.
+                 *
+                 * Expose `debug()` as the module.
+                 */
 
                 exports = module.exports = debug;
                 exports.coerce = coerce;
@@ -4995,50 +4995,50 @@
                 exports.humanize = require("ms");
 
                 /**
- * The currently active debug mode names, and names to skip.
- */
+                 * The currently active debug mode names, and names to skip.
+                 */
 
                 exports.names = [];
                 exports.skips = [];
 
                 /**
- * Map of special "%n" handling functions, for the debug "format" argument.
- *
- * Valid key names are a single, lowercased letter, i.e. "n".
- */
+                 * Map of special "%n" handling functions, for the debug "format" argument.
+                 *
+                 * Valid key names are a single, lowercased letter, i.e. "n".
+                 */
 
                 exports.formatters = {};
 
                 /**
- * Previously assigned color.
- */
+                 * Previously assigned color.
+                 */
 
                 var prevColor = 0;
 
                 /**
- * Previous log timestamp.
- */
+                 * Previous log timestamp.
+                 */
 
                 var prevTime;
 
                 /**
- * Select a color.
- *
- * @return {Number}
- * @api private
- */
+                 * Select a color.
+                 *
+                 * @return {Number}
+                 * @api private
+                 */
 
                 function selectColor() {
                     return exports.colors[prevColor++ % exports.colors.length];
                 }
 
                 /**
- * Create a debugger with the given `namespace`.
- *
- * @param {String} namespace
- * @return {Function}
- * @api public
- */
+                 * Create a debugger with the given `namespace`.
+                 *
+                 * @param {String} namespace
+                 * @return {Function}
+                 * @api public
+                 */
 
                 function debug(namespace) {
                     // define the `disabled` version
@@ -5104,12 +5104,12 @@
                 }
 
                 /**
- * Enables a debug mode by namespaces. This can include modes
- * separated by a colon and wildcards.
- *
- * @param {String} namespaces
- * @api public
- */
+                 * Enables a debug mode by namespaces. This can include modes
+                 * separated by a colon and wildcards.
+                 *
+                 * @param {String} namespaces
+                 * @api public
+                 */
 
                 function enable(namespaces) {
                     exports.save(namespaces);
@@ -5129,22 +5129,22 @@
                 }
 
                 /**
- * Disable debug output.
- *
- * @api public
- */
+                 * Disable debug output.
+                 *
+                 * @api public
+                 */
 
                 function disable() {
                     exports.enable("");
                 }
 
                 /**
- * Returns true if the given mode name is enabled, false otherwise.
- *
- * @param {String} name
- * @return {Boolean}
- * @api public
- */
+                 * Returns true if the given mode name is enabled, false otherwise.
+                 *
+                 * @param {String} name
+                 * @return {Boolean}
+                 * @api public
+                 */
 
                 function enabled(name) {
                     var i, len;
@@ -5162,12 +5162,12 @@
                 }
 
                 /**
- * Coerce `val`.
- *
- * @param {Mixed} val
- * @return {Mixed}
- * @api private
- */
+                 * Coerce `val`.
+                 *
+                 * @param {Mixed} val
+                 * @return {Mixed}
+                 * @api private
+                 */
 
                 function coerce(val) {
                     if (val instanceof Error) return val.stack || val.message;
@@ -5676,21 +5676,21 @@
                 "use strict";
 
                 /**
- * Get the count of the longest repeating streak of
- * `character` in `value`.
- *
- * @example
- *   longestStreak('` foo `` bar `', '`') // 2
- *
- * @param {string} value - Content, coerced to string.
- * @param {string} character - Single character to look
- *   for.
- * @return {number} - Number of characters at the place
- *   where `character` occurs in its longest streak in
- *   `value`.
- * @throws {Error} - when `character` is not a single
- *   character.
- */
+                 * Get the count of the longest repeating streak of
+                 * `character` in `value`.
+                 *
+                 * @example
+                 *   longestStreak('` foo `` bar `', '`') // 2
+                 *
+                 * @param {string} value - Content, coerced to string.
+                 * @param {string} character - Single character to look
+                 *   for.
+                 * @return {number} - Number of characters at the place
+                 *   where `character` occurs in its longest streak in
+                 *   `value`.
+                 * @throws {Error} - when `character` is not a single
+                 *   character.
+                 */
                 function longestStreak(value, character) {
                     var count = 0;
                     var maximum = 0;
@@ -5761,32 +5761,32 @@
                 var NEW_LINE = "\n";
 
                 /**
- * Get the length of `value`.
- *
- * @param {string} value
- * @return {number}
- */
+                 * Get the length of `value`.
+                 *
+                 * @param {string} value
+                 * @return {number}
+                 */
                 function lengthNoop(value) {
                     return String(value).length;
                 }
 
                 /**
- * Get a string consisting of `length` `character`s.
- *
- * @param {number} length
- * @param {string} [character=' ']
- * @return {string}
- */
+                 * Get a string consisting of `length` `character`s.
+                 *
+                 * @param {number} length
+                 * @param {string} [character=' ']
+                 * @return {string}
+                 */
                 function pad(length, character) {
                     return Array(length + 1).join(character || SPACE);
                 }
 
                 /**
- * Get the position of the last dot in `value`.
- *
- * @param {string} value
- * @return {number}
- */
+                 * Get the position of the last dot in `value`.
+                 *
+                 * @param {string} value
+                 * @return {number}
+                 */
                 function dotindex(value) {
                     var match = EXPRESSION_LAST_DOT.exec(value);
 
@@ -5794,18 +5794,18 @@
                 }
 
                 /**
- * Create a table from a matrix of strings.
- *
- * @param {Array.<Array.<string>>} table
- * @param {Object?} options
- * @param {boolean?} [options.rule=true]
- * @param {string?} [options.delimiter=" | "]
- * @param {string?} [options.start="| "]
- * @param {string?} [options.end=" |"]
- * @param {Array.<string>?} options.align
- * @param {function(string)?} options.stringLength
- * @return {string} Pretty table
- */
+                 * Create a table from a matrix of strings.
+                 *
+                 * @param {Array.<Array.<string>>} table
+                 * @param {Object?} options
+                 * @param {boolean?} [options.rule=true]
+                 * @param {string?} [options.delimiter=" | "]
+                 * @param {string?} [options.start="| "]
+                 * @param {string?} [options.end=" |"]
+                 * @param {Array.<string>?} options.align
+                 * @param {function(string)?} options.stringLength
+                 * @return {string} Pretty table
+                 */
                 function markdownTable(table, options) {
                     var settings = options || {};
                     var delimiter = settings.delimiter;
@@ -6020,8 +6020,8 @@
         29: [
             function(require, module, exports) {
                 /**
- * Helpers.
- */
+                 * Helpers.
+                 */
 
                 var s = 1000;
                 var m = s * 60;
@@ -6030,17 +6030,17 @@
                 var y = d * 365.25;
 
                 /**
- * Parse or format the given `val`.
- *
- * Options:
- *
- *  - `long` verbose formatting [false]
- *
- * @param {String|Number} val
- * @param {Object} options
- * @return {String|Number}
- * @api public
- */
+                 * Parse or format the given `val`.
+                 *
+                 * Options:
+                 *
+                 *  - `long` verbose formatting [false]
+                 *
+                 * @param {String|Number} val
+                 * @param {Object} options
+                 * @return {String|Number}
+                 * @api public
+                 */
 
                 module.exports = function(val, options) {
                     options = options || {};
@@ -6049,12 +6049,12 @@
                 };
 
                 /**
- * Parse the given `str` and return milliseconds.
- *
- * @param {String} str
- * @return {Number}
- * @api private
- */
+                 * Parse the given `str` and return milliseconds.
+                 *
+                 * @param {String} str
+                 * @return {Number}
+                 * @api private
+                 */
 
                 function parse(str) {
                     str = "" + str;
@@ -6104,12 +6104,12 @@
                 }
 
                 /**
- * Short format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
+                 * Short format for `ms`.
+                 *
+                 * @param {Number} ms
+                 * @return {String}
+                 * @api private
+                 */
 
                 function short(ms) {
                     if (ms >= d) return Math.round(ms / d) + "d";
@@ -6120,12 +6120,12 @@
                 }
 
                 /**
- * Long format for `ms`.
- *
- * @param {Number} ms
- * @return {String}
- * @api private
- */
+                 * Long format for `ms`.
+                 *
+                 * @param {Number} ms
+                 * @return {String}
+                 * @api private
+                 */
 
                 function long(ms) {
                     return (
@@ -6138,8 +6138,8 @@
                 }
 
                 /**
- * Pluralization helper.
- */
+                 * Pluralization helper.
+                 */
 
                 function plural(ms, n, name) {
                     if (ms < n) return;
@@ -6178,13 +6178,13 @@
         31: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module parse-entities
- * @fileoverview Parse HTML character references: fast, spec-compliant,
- *   positional information.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module parse-entities
+                 * @fileoverview Parse HTML character references: fast, spec-compliant,
+                 *   positional information.
+                 */
 
                 "use strict";
 
@@ -6270,23 +6270,23 @@
                 var TAB = "\t";
 
                 /**
- * Get the character-code at the first indice in
- * `character`.
- *
- * @param {string} character - Value.
- * @return {number} - Character-code at the first indice
- *   in `character`.
- */
+                 * Get the character-code at the first indice in
+                 * `character`.
+                 *
+                 * @param {string} character - Value.
+                 * @return {number} - Character-code at the first indice
+                 *   in `character`.
+                 */
                 function charCode(character) {
                     return character.charCodeAt(0);
                 }
 
                 /**
- * Check whether `character` is a decimal.
- *
- * @param {string} character - Value.
- * @return {boolean} - Whether `character` is a decimal.
- */
+                 * Check whether `character` is a decimal.
+                 *
+                 * @param {string} character - Value.
+                 * @return {boolean} - Whether `character` is a decimal.
+                 */
                 function isDecimal(character) {
                     var code = charCode(character);
 
@@ -6294,12 +6294,12 @@
                 }
 
                 /**
- * Check whether `character` is a hexadecimal.
- *
- * @param {string} character - Value.
- * @return {boolean} - Whether `character` is a
- *   hexadecimal.
- */
+                 * Check whether `character` is a hexadecimal.
+                 *
+                 * @param {string} character - Value.
+                 * @return {boolean} - Whether `character` is a
+                 *   hexadecimal.
+                 */
                 function isHexadecimal(character) {
                     var code = charCode(character);
 
@@ -6311,12 +6311,12 @@
                 }
 
                 /**
- * Check whether `character` is an alphanumeric.
- *
- * @param {string} character - Value.
- * @return {boolean} - Whether `character` is an
- *   alphanumeric.
- */
+                 * Check whether `character` is an alphanumeric.
+                 *
+                 * @param {string} character - Value.
+                 * @return {boolean} - Whether `character` is an
+                 *   alphanumeric.
+                 */
                 function isAlphanumeric(character) {
                     var code = charCode(character);
 
@@ -6328,23 +6328,23 @@
                 }
 
                 /**
- * Check whether `character` is outside the permissible
- * unicode range.
- *
- * @param {number} characterCode - Value.
- * @return {boolean} - Whether `character` is an
- *   outside the permissible unicode range.
- */
+                 * Check whether `character` is outside the permissible
+                 * unicode range.
+                 *
+                 * @param {number} characterCode - Value.
+                 * @return {boolean} - Whether `character` is an
+                 *   outside the permissible unicode range.
+                 */
                 function isProhibited(characterCode) {
                     return (characterCode >= 0xd800 && characterCode <= 0xdfff) || characterCode > 0x10ffff;
                 }
 
                 /**
- * Check whether `character` is disallowed.
- *
- * @param {number} characterCode - Value.
- * @return {boolean} - Whether `character` is disallowed.
- */
+                 * Check whether `character` is disallowed.
+                 *
+                 * @param {number} characterCode - Value.
+                 * @return {boolean} - Whether `character` is disallowed.
+                 */
                 function isWarning(characterCode) {
                     return (
                         (characterCode >= 0x0001 && characterCode <= 0x0008) ||
@@ -6403,11 +6403,11 @@
                 TESTS[HEXADECIMAL] = isHexadecimal;
 
                 /**
- * Parse entities.
- *
- * @param {string} value - Value to tokenise.
- * @param {Object?} [settings] - Configuration.
- */
+                 * Parse entities.
+                 *
+                 * @param {string} value - Value to tokenise.
+                 * @param {Object?} [settings] - Configuration.
+                 */
                 function parse(value, settings) {
                     var additional = settings.additional;
                     var handleText = settings.text;
@@ -6445,11 +6445,11 @@
                     var end;
 
                     /**
-     * Get current position.
-     *
-     * @return {Object} - Positional information of a
-     *   single point.
-     */
+                     * Get current position.
+                     *
+                     * @return {Object} - Positional information of a
+                     *   single point.
+                     */
                     function now() {
                         return {
                             line: line,
@@ -6459,14 +6459,14 @@
                     }
 
                     /**
-     * “Throw” a parse-error: a warning.
-     *
-     * @param {number} code - Identifier of reason for
-     *   failing.
-     * @param {number} offset - Offset in characters from
-     *   the current position point at which the
-     *   parse-error ocurred, cannot point past newlines.
-     */
+                     * “Throw” a parse-error: a warning.
+                     *
+                     * @param {number} code - Identifier of reason for
+                     *   failing.
+                     * @param {number} offset - Offset in characters from
+                     *   the current position point at which the
+                     *   parse-error ocurred, cannot point past newlines.
+                     */
                     function parseError(code, offset) {
                         var position = now();
 
@@ -6477,22 +6477,22 @@
                     }
 
                     /**
-     * Get character at position.
-     *
-     * @param {number} position - Indice of character in `value`.
-     * @return {string} - Character at `position` in
-     *   `value`.
-     */
+                     * Get character at position.
+                     *
+                     * @param {number} position - Indice of character in `value`.
+                     * @return {string} - Character at `position` in
+                     *   `value`.
+                     */
                     function at(position) {
                         return value.charAt(position);
                     }
 
                     /**
-     * Flush `queue` (normal text). Macro invoked before
-     * each entity and at the end of `value`.
-     *
-     * Does nothing when `queue` is empty.
-     */
+                     * Flush `queue` (normal text). Macro invoked before
+                     * each entity and at the end of `value`.
+                     *
+                     * Does nothing when `queue` is empty.
+                     */
                     function flush() {
                         if (queue) {
                             result.push(queue);
@@ -6851,11 +6851,11 @@
                 };
 
                 /**
- * Wrap to ensure clean parameters are given to `parse`.
- *
- * @param {string} value - Value with entities.
- * @param {Object?} [options] - Configuration.
- */
+                 * Wrap to ensure clean parameters are given to `parse`.
+                 *
+                 * @param {string} value - Value with entities.
+                 * @param {Object?} [options] - Configuration.
+                 */
                 function wrapper(value, options) {
                     var settings = {};
                     var key;
@@ -6891,12 +6891,12 @@
         32: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015-2016 Titus Wormer
- * @license MIT
- * @module remark:parse
- * @fileoverview Markdown parser.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015-2016 Titus Wormer
+                 * @license MIT
+                 * @module remark:parse
+                 * @fileoverview Markdown parser.
+                 */
 
                 "use strict";
 
@@ -6907,10 +6907,10 @@
                 var Parser = require("./lib/parser.js");
 
                 /**
- * Attacher.
- *
- * @param {unified} processor - Unified processor.
- */
+                 * Attacher.
+                 *
+                 * @param {unified} processor - Unified processor.
+                 */
                 function parse(processor) {
                     processor.Parser = unherit(Parser);
                 }
@@ -6983,12 +6983,12 @@
         34: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015-2016 Titus Wormer
- * @license MIT
- * @module remark:parse:defaults
- * @fileoverview Default options for `parse`.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015-2016 Titus Wormer
+                 * @license MIT
+                 * @module remark:parse:defaults
+                 * @fileoverview Default options for `parse`.
+                 */
 
                 "use strict";
 
@@ -7053,12 +7053,12 @@
         36: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015-2016 Titus Wormer
- * @license MIT
- * @module remark:parser
- * @fileoverview Markdown parser.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015-2016 Titus Wormer
+                 * @license MIT
+                 * @module remark:parser
+                 * @fileoverview Markdown parser.
+                 */
 
                 "use strict";
 
@@ -7373,11 +7373,11 @@
                 LIST_ITEM_MAP.false = renderNormalListItem;
 
                 /**
- * Check whether `character` is alphabetic.
- *
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` is alphabetic.
- */
+                 * Check whether `character` is alphabetic.
+                 *
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` is alphabetic.
+                 */
                 function isAlphabetic(character) {
                     var code = character.charCodeAt(0);
 
@@ -7385,11 +7385,11 @@
                 }
 
                 /**
- * Check whether `character` is numeric.
- *
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` is numeric.
- */
+                 * Check whether `character` is numeric.
+                 *
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` is numeric.
+                 */
                 function isNumeric(character) {
                     var code = character.charCodeAt(0);
 
@@ -7397,22 +7397,22 @@
                 }
 
                 /**
- * Check whether `character` is a word character.
- *
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` is a word
- *   character.
- */
+                 * Check whether `character` is a word character.
+                 *
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` is a word
+                 *   character.
+                 */
                 function isWordCharacter(character) {
                     return character === C_UNDERSCORE || isAlphabetic(character) || isNumeric(character);
                 }
 
                 /**
- * Check whether `character` is white-space.
- *
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` is white-space.
- */
+                 * Check whether `character` is white-space.
+                 *
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` is white-space.
+                 */
                 function isWhiteSpace(character) {
                     return (
                         character === C_SPACE ||
@@ -7444,13 +7444,13 @@
                 }
 
                 /**
- * Check whether `character` can be inside an unquoted
- * attribute value.
- *
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` can be inside
- *   an unquoted attribute value.
- */
+                 * Check whether `character` can be inside an unquoted
+                 * attribute value.
+                 *
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` can be inside
+                 *   an unquoted attribute value.
+                 */
                 function isUnquotedAttributeCharacter(character) {
                     return (
                         character !== C_DOUBLE_QUOTE &&
@@ -7463,14 +7463,14 @@
                 }
 
                 /**
- * Check whether `character` can be inside a double-quoted
- * attribute value.
- *
- * @property {string} delimiter - Closing delimiter.
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` can be inside
- *   a double-quoted attribute value.
- */
+                 * Check whether `character` can be inside a double-quoted
+                 * attribute value.
+                 *
+                 * @property {string} delimiter - Closing delimiter.
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` can be inside
+                 *   a double-quoted attribute value.
+                 */
                 function isDoubleQuotedAttributeCharacter(character) {
                     return character !== C_DOUBLE_QUOTE;
                 }
@@ -7478,14 +7478,14 @@
                 isDoubleQuotedAttributeCharacter.delimiter = C_DOUBLE_QUOTE;
 
                 /**
- * Check whether `character` can be inside a single-quoted
- * attribute value.
- *
- * @property {string} delimiter - Closing delimiter.
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` can be inside
- *   a single-quoted attribute value.
- */
+                 * Check whether `character` can be inside a single-quoted
+                 * attribute value.
+                 *
+                 * @property {string} delimiter - Closing delimiter.
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` can be inside
+                 *   a single-quoted attribute value.
+                 */
                 function isSingleQuotedAttributeCharacter(character) {
                     return character !== C_SINGLE_QUOTE;
                 }
@@ -7493,14 +7493,14 @@
                 isSingleQuotedAttributeCharacter.delimiter = C_SINGLE_QUOTE;
 
                 /**
- * Check whether `character` can be inside an enclosed
- * URI.
- *
- * @property {string} delimiter - Closing delimiter.
- * @param {string} character - Character to test.
- * @return {boolean} - Whether `character` can be inside
- *   an enclosed URI.
- */
+                 * Check whether `character` can be inside an enclosed
+                 * URI.
+                 *
+                 * @property {string} delimiter - Closing delimiter.
+                 * @param {string} character - Character to test.
+                 * @return {boolean} - Whether `character` can be inside
+                 *   an enclosed URI.
+                 */
                 function isEnclosedURLCharacter(character) {
                     return character !== C_GT && character !== C_BRACKET_OPEN && character !== C_BRACKET_CLOSE;
                 }
@@ -7508,62 +7508,62 @@
                 isEnclosedURLCharacter.delimiter = C_GT;
 
                 /**
- * Check whether `character` can be inside an unclosed
- * URI.
- *
- * @param {string} character - Character to test.
- * @return {boolean} - Whether `character` can be inside
- *   an unclosed URI.
- */
+                 * Check whether `character` can be inside an unclosed
+                 * URI.
+                 *
+                 * @param {string} character - Character to test.
+                 * @return {boolean} - Whether `character` can be inside
+                 *   an unclosed URI.
+                 */
                 function isUnclosedURLCharacter(character) {
                     return character !== C_BRACKET_OPEN && character !== C_BRACKET_CLOSE && !isWhiteSpace(character);
                 }
 
                 /**
- * Normalize an identifier.  Collapses multiple white space
- * characters into a single space, and removes casing.
- *
- * @example
- *   normalizeIdentifier('FOO\t bar'); // 'foo bar'
- *
- * @param {string} value - Content to normalize.
- * @return {string} - Normalized content.
- */
+                 * Normalize an identifier.  Collapses multiple white space
+                 * characters into a single space, and removes casing.
+                 *
+                 * @example
+                 *   normalizeIdentifier('FOO\t bar'); // 'foo bar'
+                 *
+                 * @param {string} value - Content to normalize.
+                 * @return {string} - Normalized content.
+                 */
                 function normalize(value) {
                     return collapseWhiteSpace(value).toLowerCase();
                 }
 
                 /**
- * Construct a state `toggler`: a function which inverses
- * `property` in context based on its current value.
- * The by `toggler` returned function restores that value.
- *
- * @example
- *   var context = {};
- *   var key = 'foo';
- *   var val = true;
- *   context[key] = val;
- *   context.enter = toggle(key, val);
- *   context[key]; // true
- *   var exit = context.enter();
- *   context[key]; // false
- *   var nested = context.enter();
- *   context[key]; // false
- *   nested();
- *   context[key]; // false
- *   exit();
- *   context[key]; // true
- *
- * @param {string} key - Property to toggle.
- * @param {boolean} state - It's default state.
- * @return {function(): function()} - Enter.
- */
+                 * Construct a state `toggler`: a function which inverses
+                 * `property` in context based on its current value.
+                 * The by `toggler` returned function restores that value.
+                 *
+                 * @example
+                 *   var context = {};
+                 *   var key = 'foo';
+                 *   var val = true;
+                 *   context[key] = val;
+                 *   context.enter = toggle(key, val);
+                 *   context[key]; // true
+                 *   var exit = context.enter();
+                 *   context[key]; // false
+                 *   var nested = context.enter();
+                 *   context[key]; // false
+                 *   nested();
+                 *   context[key]; // false
+                 *   exit();
+                 *   context[key]; // true
+                 *
+                 * @param {string} key - Property to toggle.
+                 * @param {boolean} state - It's default state.
+                 * @return {function(): function()} - Enter.
+                 */
                 function toggle(key, state) {
                     /**
-     * Construct a toggler for the bound `key`.
-     *
-     * @return {Function} - Exit state.
-     */
+                     * Construct a toggler for the bound `key`.
+                     *
+                     * @return {Function} - Exit state.
+                     */
                     function enter() {
                         var self = this;
                         var current = self[key];
@@ -7571,8 +7571,8 @@
                         self[key] = !state;
 
                         /**
-         * State canceler, cancels the state, if allowed.
-         */
+                         * State canceler, cancels the state, if allowed.
+                         */
                         function exit() {
                             self[key] = current;
                         }
@@ -7590,11 +7590,11 @@
                 var MERGEABLE_NODES = {};
 
                 /**
- * Check whether a node is mergeable with adjacent nodes.
- *
- * @param {Object} node - Node to check.
- * @return {boolean} - Whether `node` is mergable.
- */
+                 * Check whether a node is mergeable with adjacent nodes.
+                 *
+                 * @param {Object} node - Node to check.
+                 * @return {boolean} - Whether `node` is mergable.
+                 */
                 function mergeable(node) {
                     var start;
                     var end;
@@ -7615,12 +7615,12 @@
                 }
 
                 /**
- * Merge two text nodes: `node` into `prev`.
- *
- * @param {Object} prev - Preceding sibling.
- * @param {Object} node - Following sibling.
- * @return {Object} - `prev`.
- */
+                 * Merge two text nodes: `node` into `prev`.
+                 *
+                 * @param {Object} prev - Preceding sibling.
+                 * @param {Object} node - Following sibling.
+                 * @return {Object} - `prev`.
+                 */
                 MERGEABLE_NODES.text = function(prev, node) {
                     prev.value += node.value;
 
@@ -7628,13 +7628,13 @@
                 };
 
                 /**
- * Merge two blockquotes: `node` into `prev`, unless in
- * CommonMark mode.
- *
- * @param {Object} prev - Preceding sibling.
- * @param {Object} node - Following sibling.
- * @return {Object} - `prev`, or `node` in CommonMark mode.
- */
+                 * Merge two blockquotes: `node` into `prev`, unless in
+                 * CommonMark mode.
+                 *
+                 * @param {Object} prev - Preceding sibling.
+                 * @param {Object} node - Following sibling.
+                 * @return {Object} - `prev`, or `node` in CommonMark mode.
+                 */
                 MERGEABLE_NODES.blockquote = function(prev, node) {
                     if (this.options.commonmark) {
                         return node;
@@ -7646,19 +7646,19 @@
                 };
 
                 /**
- * Factory to create an entity decoder.
- *
- * @param {Object} context - Context to attach to, e.g.,
- *   a parser.
- * @return {Function} - See `decode`.
- */
+                 * Factory to create an entity decoder.
+                 *
+                 * @param {Object} context - Context to attach to, e.g.,
+                 *   a parser.
+                 * @return {Function} - See `decode`.
+                 */
                 function decodeFactory(context) {
                     /**
-     * Normalize `position` to add an `indent`.
-     *
-     * @param {Position} position - Reference
-     * @return {Position} - Augmented with `indent`.
-     */
+                     * Normalize `position` to add an `indent`.
+                     *
+                     * @param {Position} position - Reference
+                     * @return {Position} - Augmented with `indent`.
+                     */
                     function normalize(position) {
                         return {
                             start: position,
@@ -7667,13 +7667,13 @@
                     }
 
                     /**
-     * Handle a warning.
-     *
-     * @this {VFile} - Virtual file.
-     * @param {string} reason - Reason for warning.
-     * @param {Position} position - Place of warning.
-     * @param {number} code - Code for warning.
-     */
+                     * Handle a warning.
+                     *
+                     * @this {VFile} - Virtual file.
+                     * @param {string} reason - Reason for warning.
+                     * @param {Position} position - Place of warning.
+                     * @param {number} code - Code for warning.
+                     */
                     function handleWarning(reason, position, code) {
                         if (code === 3) {
                             return;
@@ -7683,12 +7683,12 @@
                     }
 
                     /**
-     * Decode `value` (at `position`) into text-nodes.
-     *
-     * @param {string} value - Value to parse.
-     * @param {Position} position - Position to start parsing at.
-     * @param {Function} handler - Node handler.
-     */
+                     * Decode `value` (at `position`) into text-nodes.
+                     *
+                     * @param {string} value - Value to parse.
+                     * @param {Position} position - Position to start parsing at.
+                     * @param {Function} handler - Node handler.
+                     */
                     function decoder(value, position, handler) {
                         decode(value, {
                             position: normalize(position),
@@ -7701,13 +7701,13 @@
                     }
 
                     /**
-     * Decode `value` (at `position`) into a string.
-     *
-     * @param {string} value - Value to parse.
-     * @param {Position} position - Position to start
-     *   parsing at.
-     * @return {string} - Plain-text.
-     */
+                     * Decode `value` (at `position`) into a string.
+                     *
+                     * @param {string} value - Value to parse.
+                     * @param {Position} position - Position to start
+                     *   parsing at.
+                     * @return {string} - Plain-text.
+                     */
                     function decodeRaw(value, position) {
                         return decode(value, {
                             position: normalize(position),
@@ -7721,32 +7721,32 @@
                 }
 
                 /**
- * Factory to de-escape a value, based on a list at `key`
- * in `scope`.
- *
- * @example
- *   var scope = {escape: ['a']}
- *   var descape = descapeFactory(scope, 'escape');
- *
- * @param {Object} scope - List of escapable characters.
- * @param {string} key - Key in `map` at which the list
- *   exists.
- * @return {function(string): string} - Function which
- *   takes a value and returns its unescaped version.
- */
+                 * Factory to de-escape a value, based on a list at `key`
+                 * in `scope`.
+                 *
+                 * @example
+                 *   var scope = {escape: ['a']}
+                 *   var descape = descapeFactory(scope, 'escape');
+                 *
+                 * @param {Object} scope - List of escapable characters.
+                 * @param {string} key - Key in `map` at which the list
+                 *   exists.
+                 * @return {function(string): string} - Function which
+                 *   takes a value and returns its unescaped version.
+                 */
                 function descapeFactory(scope, key) {
                     /**
-     * De-escape a string using the expression at `key`
-     * in `scope`.
-     *
-     * @example
-     *   var scope = {escape: ['a']}
-     *   var descape = descapeFactory(scope, 'escape');
-     *   descape('\a \b'); // 'a \b'
-     *
-     * @param {string} value - Escaped string.
-     * @return {string} - Unescaped string.
-     */
+                     * De-escape a string using the expression at `key`
+                     * in `scope`.
+                     *
+                     * @example
+                     *   var scope = {escape: ['a']}
+                     *   var descape = descapeFactory(scope, 'escape');
+                     *   descape('\a \b'); // 'a \b'
+                     *
+                     * @param {string} value - Escaped string.
+                     * @return {string} - Unescaped string.
+                     */
                     function descape(value) {
                         var prev = 0;
                         var index = value.indexOf(C_BACKSLASH);
@@ -7780,24 +7780,24 @@
                 }
 
                 /**
- * Gets indentation information for a line.
- *
- * @example
- *   getIndent('  foo');
- *   // {indent: 2, stops: {1: 0, 2: 1}}
- *
- *   getIndent('\tfoo');
- *   // {indent: 4, stops: {4: 0}}
- *
- *   getIndent('  \tfoo');
- *   // {indent: 4, stops: {1: 0, 2: 1, 4: 2}}
- *
- *   getIndent('\t  foo')
- *   // {indent: 6, stops: {4: 0, 5: 1, 6: 2}}
- *
- * @param {string} value - Indented line.
- * @return {Object} - Indetation information.
- */
+                 * Gets indentation information for a line.
+                 *
+                 * @example
+                 *   getIndent('  foo');
+                 *   // {indent: 2, stops: {1: 0, 2: 1}}
+                 *
+                 *   getIndent('\tfoo');
+                 *   // {indent: 4, stops: {4: 0}}
+                 *
+                 *   getIndent('  \tfoo');
+                 *   // {indent: 4, stops: {1: 0, 2: 1, 4: 2}}
+                 *
+                 *   getIndent('\t  foo')
+                 *   // {indent: 6, stops: {4: 0, 5: 1, 6: 2}}
+                 *
+                 * @param {string} value - Indented line.
+                 * @return {Object} - Indetation information.
+                 */
                 function getIndent(value) {
                     var index = 0;
                     var indent = 0;
@@ -7826,21 +7826,21 @@
                 }
 
                 /**
- * Remove the minimum indent from every line in `value`.
- * Supports both tab, spaced, and mixed indentation (as
- * well as possible).
- *
- * @example
- *   removeIndentation('  foo'); // 'foo'
- *   removeIndentation('    foo', 2); // '  foo'
- *   removeIndentation('\tfoo', 2); // '  foo'
- *   removeIndentation('  foo\n bar'); // ' foo\n bar'
- *
- * @param {string} value - Value to trim.
- * @param {number?} [maximum] - Maximum indentation
- *   to remove.
- * @return {string} - Unindented `value`.
- */
+                 * Remove the minimum indent from every line in `value`.
+                 * Supports both tab, spaced, and mixed indentation (as
+                 * well as possible).
+                 *
+                 * @example
+                 *   removeIndentation('  foo'); // 'foo'
+                 *   removeIndentation('    foo', 2); // '  foo'
+                 *   removeIndentation('\tfoo', 2); // '  foo'
+                 *   removeIndentation('  foo\n bar'); // ' foo\n bar'
+                 *
+                 * @param {string} value - Value to trim.
+                 * @param {number?} [maximum] - Maximum indentation
+                 *   to remove.
+                 * @return {string} - Unindented `value`.
+                 */
                 function removeIndentation(value, maximum) {
                     var values = value.split(C_NEWLINE);
                     var position = values.length + 1;
@@ -7900,16 +7900,16 @@
                 }
 
                 /**
- * Tokenise a line.
- *
- * @example
- *   tokenizeNewline(eat, '\n\n');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {boolean?} - `true` when matching.
- */
+                 * Tokenise a line.
+                 *
+                 * @example
+                 *   tokenizeNewline(eat, '\n\n');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {boolean?} - `true` when matching.
+                 */
                 function tokenizeNewline(eat, value, silent) {
                     var character = value.charAt(0);
                     var length;
@@ -7952,16 +7952,16 @@
                 }
 
                 /**
- * Tokenise an indented code block.
- *
- * @example
- *   tokenizeIndentedCode(eat, '\tfoo');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `code` node.
- */
+                 * Tokenise an indented code block.
+                 *
+                 * @example
+                 *   tokenizeIndentedCode(eat, '\tfoo');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `code` node.
+                 */
                 function tokenizeIndentedCode(eat, value, silent) {
                     var self = this;
                     var index = -1;
@@ -8041,16 +8041,16 @@
                 }
 
                 /**
- * Tokenise a fenced code block.
- *
- * @example
- *   tokenizeFencedCode(eat, '```js\nfoo()\n```');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `code` node.
- */
+                 * Tokenise a fenced code block.
+                 *
+                 * @example
+                 *   tokenizeFencedCode(eat, '```js\nfoo()\n```');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `code` node.
+                 */
                 function tokenizeFencedCode(eat, value, silent) {
                     var self = this;
                     var settings = self.options;
@@ -8278,16 +8278,16 @@
                 }
 
                 /**
- * Tokenise an ATX-style heading.
- *
- * @example
- *   tokenizeATXHeading(eat, ' # foo');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `heading` node.
- */
+                 * Tokenise an ATX-style heading.
+                 *
+                 * @example
+                 *   tokenizeATXHeading(eat, ' # foo');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `heading` node.
+                 */
                 function tokenizeATXHeading(eat, value, silent) {
                     var self = this;
                     var settings = self.options;
@@ -8415,16 +8415,16 @@
                 }
 
                 /**
- * Tokenise a Setext-style heading.
- *
- * @example
- *   tokenizeSetextHeading(eat, 'foo\n===');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `heading` node.
- */
+                 * Tokenise a Setext-style heading.
+                 *
+                 * @example
+                 *   tokenizeSetextHeading(eat, 'foo\n===');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `heading` node.
+                 */
                 function tokenizeSetextHeading(eat, value, silent) {
                     var self = this;
                     var now = eat.now();
@@ -8522,16 +8522,16 @@
                 }
 
                 /**
- * Tokenise a horizontal rule.
- *
- * @example
- *   tokenizeThematicBreak(eat, '***');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `thematicBreak` node.
- */
+                 * Tokenise a horizontal rule.
+                 *
+                 * @example
+                 *   tokenizeThematicBreak(eat, '***');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `thematicBreak` node.
+                 */
                 function tokenizeThematicBreak(eat, value, silent) {
                     var self = this;
                     var index = -1;
@@ -8588,16 +8588,16 @@
                 }
 
                 /**
- * Tokenise a blockquote.
- *
- * @example
- *   tokenizeBlockquote(eat, '> Foo');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `blockquote` node.
- */
+                 * Tokenise a blockquote.
+                 *
+                 * @example
+                 *   tokenizeBlockquote(eat, '> Foo');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `blockquote` node.
+                 */
                 function tokenizeBlockquote(eat, value, silent) {
                     var self = this;
                     var commonmark = self.options.commonmark;
@@ -8722,16 +8722,16 @@
                 }
 
                 /**
- * Tokenise a list.
- *
- * @example
- *   tokenizeList(eat, '- Foo');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `list` node.
- */
+                 * Tokenise a list.
+                 *
+                 * @example
+                 *   tokenizeList(eat, '- Foo');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `list` node.
+                 */
                 function tokenizeList(eat, value, silent) {
                     var self = this;
                     var commonmark = self.options.commonmark;
@@ -9045,14 +9045,14 @@
                 }
 
                 /**
- * Try to match comment.
- *
- * @param {string} value - Value to parse.
- * @param {Object} settings - Configuration as available on
- *   a parser.
- * @return {string?} - When applicable, the comment at the
- *   start of `value`.
- */
+                 * Try to match comment.
+                 *
+                 * @param {string} value - Value to parse.
+                 * @param {Object} settings - Configuration as available on
+                 *   a parser.
+                 * @return {string?} - When applicable, the comment at the
+                 *   start of `value`.
+                 */
                 function eatHTMLComment(value, settings) {
                     var index = COMMENT_START_LENGTH;
                     var queue = COMMENT_START;
@@ -9093,12 +9093,12 @@
                 }
 
                 /**
- * Try to match CDATA.
- *
- * @param {string} value - Value to parse.
- * @return {string?} - When applicable, the CDATA at the
- *   start of `value`.
- */
+                 * Try to match CDATA.
+                 *
+                 * @param {string} value - Value to parse.
+                 * @return {string?} - When applicable, the CDATA at the
+                 *   start of `value`.
+                 */
                 function eatHTMLCDATA(value) {
                     var index = CDATA_START_LENGTH;
                     var queue = value.slice(0, index);
@@ -9123,12 +9123,12 @@
                 }
 
                 /**
- * Try to match a processing instruction.
- *
- * @param {string} value - Value to parse.
- * @return {string?} - When applicable, the processing
- *   instruction at the start of `value`.
- */
+                 * Try to match a processing instruction.
+                 *
+                 * @param {string} value - Value to parse.
+                 * @return {string?} - When applicable, the processing
+                 *   instruction at the start of `value`.
+                 */
                 function eatHTMLProcessingInstruction(value) {
                     var index = 0;
                     var queue = EMPTY;
@@ -9153,12 +9153,12 @@
                 }
 
                 /**
- * Try to match a declaration.
- *
- * @param {string} value - Value to parse.
- * @return {string?} - When applicable, the declaration at
- *   the start of `value`.
- */
+                 * Try to match a declaration.
+                 *
+                 * @param {string} value - Value to parse.
+                 * @return {string?} - When applicable, the declaration at
+                 *   the start of `value`.
+                 */
                 function eatHTMLDeclaration(value) {
                     var index = 0;
                     var length = value.length;
@@ -9209,14 +9209,14 @@
                 }
 
                 /**
- * Try to match a closing tag.
- *
- * @param {string} value - Value to parse.
- * @param {boolean?} [isBlock] - Whether the tag-name
- *   must be a known block-level node to match.
- * @return {string?} - When applicable, the closing tag at
- *   the start of `value`.
- */
+                 * Try to match a closing tag.
+                 *
+                 * @param {string} value - Value to parse.
+                 * @param {boolean?} [isBlock] - Whether the tag-name
+                 *   must be a known block-level node to match.
+                 * @return {string?} - When applicable, the closing tag at
+                 *   the start of `value`.
+                 */
                 function eatHTMLClosingTag(value, isBlock) {
                     var index = 0;
                     var length = value.length;
@@ -9278,14 +9278,14 @@
                 }
 
                 /**
- * Try to match an opening tag.
- *
- * @param {string} value - Value to parse.
- * @param {boolean?} [isBlock] - Whether the tag-name
- *   must be a known block-level node to match.
- * @return {string?} - When applicable, the opening tag at
- *   the start of `value`.
- */
+                 * Try to match an opening tag.
+                 *
+                 * @param {string} value - Value to parse.
+                 * @param {boolean?} [isBlock] - Whether the tag-name
+                 *   must be a known block-level node to match.
+                 * @return {string?} - When applicable, the opening tag at
+                 *   the start of `value`.
+                 */
                 function eatHTMLOpeningTag(value, isBlock) {
                     var index = 0;
                     var length = value.length;
@@ -9486,16 +9486,16 @@
                 }
 
                 /**
- * Tokenise HTML.
- *
- * @example
- *   tokenizeBlockHTML(eat, '<span>foo</span>');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `html` node.
- */
+                 * Tokenise HTML.
+                 *
+                 * @example
+                 *   tokenizeBlockHTML(eat, '<span>foo</span>');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `html` node.
+                 */
                 function tokenizeBlockHTML(eat, value, silent) {
                     var self = this;
                     var index = 0;
@@ -9568,19 +9568,19 @@
                 }
 
                 /**
- * Tokenise a definition.
- *
- * @example
- *   var value = '[foo]: http://example.com "Example Domain"';
- *   tokenizeDefinition(eat, value);
- *
- * @property {boolean} notInList
- * @property {boolean} notInBlock
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `definition` node.
- */
+                 * Tokenise a definition.
+                 *
+                 * @example
+                 *   var value = '[foo]: http://example.com "Example Domain"';
+                 *   tokenizeDefinition(eat, value);
+                 *
+                 * @property {boolean} notInList
+                 * @property {boolean} notInBlock
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `definition` node.
+                 */
                 function tokenizeDefinition(eat, value, silent) {
                     var self = this;
                     var commonmark = self.options.commonmark;
@@ -9813,17 +9813,17 @@
                 tokenizeDefinition.notInBlock = true;
 
                 /**
- * Tokenise YAML front matter.
- *
- * @example
- *   tokenizeYAMLFrontMatter(eat, '---\nfoo: bar\n---');
- *
- * @property {boolean} onlyAtStart
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `yaml` node.
- */
+                 * Tokenise YAML front matter.
+                 *
+                 * @example
+                 *   tokenizeYAMLFrontMatter(eat, '---\nfoo: bar\n---');
+                 *
+                 * @property {boolean} onlyAtStart
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `yaml` node.
+                 */
                 function tokenizeYAMLFrontMatter(eat, value, silent) {
                     var self = this;
                     var subvalue;
@@ -9880,18 +9880,18 @@
                 tokenizeYAMLFrontMatter.onlyAtStart = true;
 
                 /**
- * Tokenise a footnote definition.
- *
- * @example
- *   tokenizeFootnoteDefinition(eat, '[^foo]: Bar.');
- *
- * @property {boolean} notInList
- * @property {boolean} notInBlock
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `footnoteDefinition` node.
- */
+                 * Tokenise a footnote definition.
+                 *
+                 * @example
+                 *   tokenizeFootnoteDefinition(eat, '[^foo]: Bar.');
+                 *
+                 * @property {boolean} notInList
+                 * @property {boolean} notInBlock
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `footnoteDefinition` node.
+                 */
                 function tokenizeFootnoteDefinition(eat, value, silent) {
                     var self = this;
                     var index;
@@ -10039,17 +10039,17 @@
                 tokenizeFootnoteDefinition.notInBlock = true;
 
                 /**
- * Tokenise a table.
- *
- * @example
- *   tokenizeTable(eat, ' | foo |\n | --- |\n | bar |');
- *
- * @property {boolean} notInList
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `table` node.
- */
+                 * Tokenise a table.
+                 *
+                 * @example
+                 *   tokenizeTable(eat, ' | foo |\n | --- |\n | bar |');
+                 *
+                 * @property {boolean} notInList
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `table` node.
+                 */
                 function tokenizeTable(eat, value, silent) {
                     var self = this;
                     var index;
@@ -10316,16 +10316,16 @@
                 tokenizeTable.notInList = true;
 
                 /**
- * Tokenise a paragraph node.
- *
- * @example
- *   tokenizeParagraph(eat, 'Foo.');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `paragraph` node.
- */
+                 * Tokenise a paragraph node.
+                 *
+                 * @example
+                 *   tokenizeParagraph(eat, 'Foo.');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `paragraph` node.
+                 */
                 function tokenizeParagraph(eat, value, silent) {
                     var self = this;
                     var settings = self.options;
@@ -10441,16 +10441,16 @@
                 }
 
                 /**
- * Tokenise a text node.
- *
- * @example
- *   tokenizeText(eat, 'foo');
- *
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `text` node.
- */
+                 * Tokenise a text node.
+                 *
+                 * @example
+                 *   tokenizeText(eat, 'foo');
+                 *
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `text` node.
+                 */
                 function tokenizeText(eat, value, silent) {
                     var self = this;
                     var methods;
@@ -10505,16 +10505,16 @@
                 }
 
                 /**
- * Create a code-block node.
- *
- * @example
- *   renderCodeBlock('foo()', 'js', now());
- *
- * @param {string?} [value] - Code.
- * @param {string?} [language] - Optional language flag.
- * @param {Function} eat - Eater.
- * @return {Object} - `code` node.
- */
+                 * Create a code-block node.
+                 *
+                 * @example
+                 *   renderCodeBlock('foo()', 'js', now());
+                 *
+                 * @param {string?} [value] - Code.
+                 * @param {string?} [language] - Optional language flag.
+                 * @param {Function} eat - Eater.
+                 * @return {Object} - `code` node.
+                 */
                 function renderCodeBlock(value, language) {
                     return {
                         type: T_CODE,
@@ -10524,26 +10524,26 @@
                 }
 
                 /**
- * Create a list-item using overly simple mechanics.
- *
- * @example
- *   renderPedanticListItem('- _foo_', now());
- *
- * @param {string} value - List-item.
- * @param {Object} position - List-item location.
- * @return {string} - Cleaned `value`.
- */
+                 * Create a list-item using overly simple mechanics.
+                 *
+                 * @example
+                 *   renderPedanticListItem('- _foo_', now());
+                 *
+                 * @param {string} value - List-item.
+                 * @param {Object} position - List-item location.
+                 * @return {string} - Cleaned `value`.
+                 */
                 function renderPedanticListItem(value, position) {
                     var self = this;
                     var indent = self.indent(position.line);
 
                     /**
-     * A simple replacer which removed all matches,
-     * and adds their length to `offset`.
-     *
-     * @param {string} $0 - Indentation to subtract.
-     * @return {string} - An empty string.
-     */
+                     * A simple replacer which removed all matches,
+                     * and adds their length to `offset`.
+                     *
+                     * @param {string} $0 - Indentation to subtract.
+                     * @return {string} - An empty string.
+                     */
                     function replacer($0) {
                         indent($0.length);
 
@@ -10567,15 +10567,15 @@
                 }
 
                 /**
- * Create a list-item using sane mechanics.
- *
- * @example
- *   renderNormalListItem('- _foo_', now());
- *
- * @param {string} value - List-item.
- * @param {Object} position - List-item location.
- * @return {string} - Cleaned `value`.
- */
+                 * Create a list-item using sane mechanics.
+                 *
+                 * @example
+                 *   renderNormalListItem('- _foo_', now());
+                 *
+                 * @param {string} value - List-item.
+                 * @param {Object} position - List-item location.
+                 * @return {string} - Cleaned `value`.
+                 */
                 function renderNormalListItem(value, position) {
                     var self = this;
                     var indent = self.indent(position.line);
@@ -10638,15 +10638,15 @@
                 }
 
                 /**
- * Create a list-item node.
- *
- * @example
- *   renderListItem('- _foo_', now());
- *
- * @param {Object} value - List-item.
- * @param {Object} position - List-item location.
- * @return {Object} - `listItem` node.
- */
+                 * Create a list-item node.
+                 *
+                 * @example
+                 *   renderListItem('- _foo_', now());
+                 *
+                 * @param {Object} value - List-item.
+                 * @param {Object} position - List-item location.
+                 * @return {Object} - `listItem` node.
+                 */
                 function renderListItem(value, position) {
                     var self = this;
                     var checked = null;
@@ -10680,16 +10680,16 @@
                 }
 
                 /**
- * Create a footnote-definition node.
- *
- * @example
- *   renderFootnoteDefinition('1', '_foo_', now());
- *
- * @param {string} identifier - Unique reference.
- * @param {string} value - Contents
- * @param {Object} position - Definition location.
- * @return {Object} - `footnoteDefinition` node.
- */
+                 * Create a footnote-definition node.
+                 *
+                 * @example
+                 *   renderFootnoteDefinition('1', '_foo_', now());
+                 *
+                 * @param {string} identifier - Unique reference.
+                 * @param {string} value - Contents
+                 * @param {Object} position - Definition location.
+                 * @return {Object} - `footnoteDefinition` node.
+                 */
                 function renderFootnoteDefinition(identifier, value, position) {
                     var self = this;
                     var exitBlockquote = self.enterBlock();
@@ -10707,16 +10707,16 @@
                 }
 
                 /**
- * Create a heading node.
- *
- * @example
- *   renderHeading('_foo_', 1, now());
- *
- * @param {string} value - Content.
- * @param {number} depth - Heading depth.
- * @param {Object} position - Heading content location.
- * @return {Object} - `heading` node
- */
+                 * Create a heading node.
+                 *
+                 * @example
+                 *   renderHeading('_foo_', 1, now());
+                 *
+                 * @param {string} value - Content.
+                 * @param {number} depth - Heading depth.
+                 * @param {Object} position - Heading content location.
+                 * @return {Object} - `heading` node
+                 */
                 function renderHeading(value, depth, position) {
                     return {
                         type: T_HEADING,
@@ -10726,15 +10726,15 @@
                 }
 
                 /**
- * Create a blockquote node.
- *
- * @example
- *   renderBlockquote('_foo_', eat);
- *
- * @param {string} value - Content.
- * @param {Object} now - Position.
- * @return {Object} - `blockquote` node.
- */
+                 * Create a blockquote node.
+                 *
+                 * @example
+                 *   renderBlockquote('_foo_', eat);
+                 *
+                 * @param {string} value - Content.
+                 * @param {Object} now - Position.
+                 * @return {Object} - `blockquote` node.
+                 */
                 function renderBlockquote(value, now) {
                     var self = this;
                     var exitBlockquote = self.enterBlock();
@@ -10749,14 +10749,14 @@
                 }
 
                 /**
- * Create a void node.
- *
- * @example
- *   renderVoid('thematicBreak');
- *
- * @param {string} type - Node type.
- * @return {Object} - Node of type `type`.
- */
+                 * Create a void node.
+                 *
+                 * @example
+                 *   renderVoid('thematicBreak');
+                 *
+                 * @param {string} type - Node type.
+                 * @return {Object} - Node of type `type`.
+                 */
                 function renderVoid(type) {
                     return {
                         type: type
@@ -10764,15 +10764,15 @@
                 }
 
                 /**
- * Create a parent.
- *
- * @example
- *   renderParent('paragraph', '_foo_');
- *
- * @param {string} type - Node type.
- * @param {Array.<Object>} children - Child nodes.
- * @return {Object} - Node of type `type`.
- */
+                 * Create a parent.
+                 *
+                 * @example
+                 *   renderParent('paragraph', '_foo_');
+                 *
+                 * @param {string} type - Node type.
+                 * @param {Array.<Object>} children - Child nodes.
+                 * @return {Object} - Node of type `type`.
+                 */
                 function renderParent(type, children) {
                     return {
                         type: type,
@@ -10781,15 +10781,15 @@
                 }
 
                 /**
- * Create a raw node.
- *
- * @example
- *   renderRaw('inlineCode', 'foo()');
- *
- * @param {string} type - Node type.
- * @param {string} value - Contents.
- * @return {Object} - Node of type `type`.
- */
+                 * Create a raw node.
+                 *
+                 * @example
+                 *   renderRaw('inlineCode', 'foo()');
+                 *
+                 * @param {string} type - Node type.
+                 * @param {string} value - Contents.
+                 * @return {Object} - Node of type `type`.
+                 */
                 function renderRaw(type, value) {
                     return {
                         type: type,
@@ -10798,20 +10798,20 @@
                 }
 
                 /**
- * Create a link node.
- *
- * @example
- *   renderLink(true, 'example.com', 'example', 'Example Domain', now(), eat);
- *   renderLink(false, 'fav.ico', 'example', 'Example Domain', now(), eat);
- *
- * @param {boolean} isLink - Whether linking to a document
- *   or an image.
- * @param {string} url - URI reference.
- * @param {string} content - Content.
- * @param {string?} title - Title.
- * @param {Object} position - Location of link.
- * @return {Object} - `link` or `image` node.
- */
+                 * Create a link node.
+                 *
+                 * @example
+                 *   renderLink(true, 'example.com', 'example', 'Example Domain', now(), eat);
+                 *   renderLink(false, 'fav.ico', 'example', 'Example Domain', now(), eat);
+                 *
+                 * @param {boolean} isLink - Whether linking to a document
+                 *   or an image.
+                 * @param {string} url - URI reference.
+                 * @param {string} content - Content.
+                 * @param {string?} title - Title.
+                 * @param {Object} position - Location of link.
+                 * @return {Object} - `link` or `image` node.
+                 */
                 function renderLink(isLink, url, content, title, position) {
                     var self = this;
                     var exitLink = self.enterLink();
@@ -10836,75 +10836,75 @@
                 }
 
                 /**
- * Create a footnote node.
- *
- * @example
- *   renderFootnote('_foo_', now());
- *
- * @param {string} value - Contents.
- * @param {Object} position - Location of footnote.
- * @return {Object} - `footnote` node.
- */
+                 * Create a footnote node.
+                 *
+                 * @example
+                 *   renderFootnote('_foo_', now());
+                 *
+                 * @param {string} value - Contents.
+                 * @param {Object} position - Location of footnote.
+                 * @return {Object} - `footnote` node.
+                 */
                 function renderFootnote(value, position) {
                     return this.renderInline(T_FOOTNOTE, value, position);
                 }
 
                 /**
- * Add a node with inline content.
- *
- * @example
- *   renderInline('strong', '_foo_', now());
- *
- * @param {string} type - Node type.
- * @param {string} value - Contents.
- * @param {Object} position - Location of node.
- * @return {Object} - Node of type `type`.
- */
+                 * Add a node with inline content.
+                 *
+                 * @example
+                 *   renderInline('strong', '_foo_', now());
+                 *
+                 * @param {string} type - Node type.
+                 * @param {string} value - Contents.
+                 * @param {Object} position - Location of node.
+                 * @return {Object} - Node of type `type`.
+                 */
                 function renderInline(type, value, position) {
                     return this.renderParent(type, this.tokenizeInline(value, position));
                 }
 
                 /**
- * Add a node with block content.
- *
- * @example
- *   renderBlock('blockquote', 'Foo.', now());
- *
- * @param {string} type - Node type.
- * @param {string} value - Contents.
- * @param {Object} position - Location of node.
- * @return {Object} - Node of type `type`.
- */
+                 * Add a node with block content.
+                 *
+                 * @example
+                 *   renderBlock('blockquote', 'Foo.', now());
+                 *
+                 * @param {string} type - Node type.
+                 * @param {string} value - Contents.
+                 * @param {Object} position - Location of node.
+                 * @return {Object} - Node of type `type`.
+                 */
                 function renderBlock(type, value, position) {
                     return this.renderParent(type, this.tokenizeBlock(value, position));
                 }
 
                 /**
- * Find a possible escape sequence.
- *
- * @example
- *   locateEscape('foo \- bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible escape sequence.
- */
+                 * Find a possible escape sequence.
+                 *
+                 * @example
+                 *   locateEscape('foo \- bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible escape sequence.
+                 */
                 function locateEscape(value, fromIndex) {
                     return value.indexOf(C_BACKSLASH, fromIndex);
                 }
 
                 /**
- * Tokenise an escape sequence.
- *
- * @example
- *   tokenizeEscape(eat, '\\a');
- *
- * @property {Function} locator - Escape locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `text` or `break` node.
- */
+                 * Tokenise an escape sequence.
+                 *
+                 * @example
+                 *   tokenizeEscape(eat, '\\a');
+                 *
+                 * @property {Function} locator - Escape locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `text` or `break` node.
+                 */
                 function tokenizeEscape(eat, value, silent) {
                     var self = this;
                     var character;
@@ -10928,32 +10928,32 @@
                 tokenizeEscape.locator = locateEscape;
 
                 /**
- * Find a possible auto-link.
- *
- * @example
- *   locateAutoLink('foo <bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible auto-link.
- */
+                 * Find a possible auto-link.
+                 *
+                 * @example
+                 *   locateAutoLink('foo <bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible auto-link.
+                 */
                 function locateAutoLink(value, fromIndex) {
                     return value.indexOf(C_LT, fromIndex);
                 }
 
                 /**
- * Tokenise a URL in carets.
- *
- * @example
- *   tokenizeAutoLink(eat, '<http://foo.bar>');
- *
- * @property {boolean} notInLink
- * @property {Function} locator - Auto-link locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `link` node.
- */
+                 * Tokenise a URL in carets.
+                 *
+                 * @example
+                 *   tokenizeAutoLink(eat, '<http://foo.bar>');
+                 *
+                 * @property {boolean} notInLink
+                 * @property {Function} locator - Auto-link locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `link` node.
+                 */
                 function tokenizeAutoLink(eat, value, silent) {
                     var self;
                     var subvalue;
@@ -11078,15 +11078,15 @@
                 tokenizeAutoLink.locator = locateAutoLink;
 
                 /**
- * Find a possible URL.
- *
- * @example
- *   locateURL('foo http://bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible URL.
- */
+                 * Find a possible URL.
+                 *
+                 * @example
+                 *   locateURL('foo http://bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible URL.
+                 */
                 function locateURL(value, fromIndex) {
                     var index = -1;
                     var min = -1;
@@ -11108,18 +11108,18 @@
                 }
 
                 /**
- * Tokenise a URL in text.
- *
- * @example
- *   tokenizeURL(eat, 'http://foo.bar');
- *
- * @property {boolean} notInLink
- * @property {Function} locator - URL locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `link` node.
- */
+                 * Tokenise a URL in text.
+                 *
+                 * @example
+                 *   tokenizeURL(eat, 'http://foo.bar');
+                 *
+                 * @property {boolean} notInLink
+                 * @property {Function} locator - URL locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `link` node.
+                 */
                 function tokenizeURL(eat, value, silent) {
                     var self = this;
                     var subvalue;
@@ -11233,31 +11233,31 @@
                 tokenizeURL.locator = locateURL;
 
                 /**
- * Find a possible tag.
- *
- * @example
- *   locateTag('foo <bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible tag.
- */
+                 * Find a possible tag.
+                 *
+                 * @example
+                 *   locateTag('foo <bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible tag.
+                 */
                 function locateTag(value, fromIndex) {
                     return value.indexOf(C_LT, fromIndex);
                 }
 
                 /**
- * Tokenise an HTML tag.
- *
- * @example
- *   tokenizeInlineHTML(eat, '<span foo="bar">');
- *
- * @property {Function} locator - Tag locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `html` node.
- */
+                 * Tokenise an HTML tag.
+                 *
+                 * @example
+                 *   tokenizeInlineHTML(eat, '<span foo="bar">');
+                 *
+                 * @property {Function} locator - Tag locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `html` node.
+                 */
                 function tokenizeInlineHTML(eat, value, silent) {
                     var self = this;
                     var subvalue =
@@ -11289,15 +11289,15 @@
                 tokenizeInlineHTML.locator = locateTag;
 
                 /**
- * Find a possible link.
- *
- * @example
- *   locateLink('foo ![bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible link.
- */
+                 * Find a possible link.
+                 *
+                 * @example
+                 *   locateLink('foo ![bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible link.
+                 */
                 function locateLink(value, fromIndex) {
                     var link = value.indexOf(C_BRACKET_OPEN, fromIndex);
                     var image = value.indexOf(C_EXCLAMATION_MARK + C_BRACKET_OPEN, fromIndex);
@@ -11315,17 +11315,17 @@
                 }
 
                 /**
- * Tokenise a link.
- *
- * @example
- *   tokenizeLink(eat, '![foo](fav.ico "Favicon"));
- *
- * @property {Function} locator - Link locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `link` or `image` node.
- */
+                 * Tokenise a link.
+                 *
+                 * @example
+                 *   tokenizeLink(eat, '![foo](fav.ico "Favicon"));
+                 *
+                 * @property {Function} locator - Link locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `link` or `image` node.
+                 */
                 function tokenizeLink(eat, value, silent) {
                     var self = this;
                     var subvalue = EMPTY;
@@ -11664,20 +11664,20 @@
                 tokenizeLink.locator = locateLink;
 
                 /**
- * Tokenise a reference link, image, or footnote;
- * shortcut reference link, or footnote.
- *
- * @example
- *   tokenizeReference(eat, '[foo]');
- *   tokenizeReference(eat, '[foo][]');
- *   tokenizeReference(eat, '[foo][bar]');
- *
- * @property {Function} locator - Reference locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - Reference node.
- */
+                 * Tokenise a reference link, image, or footnote;
+                 * shortcut reference link, or footnote.
+                 *
+                 * @example
+                 *   tokenizeReference(eat, '[foo]');
+                 *   tokenizeReference(eat, '[foo][]');
+                 *   tokenizeReference(eat, '[foo][bar]');
+                 *
+                 * @property {Function} locator - Reference locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - Reference node.
+                 */
                 function tokenizeReference(eat, value, silent) {
                     var self = this;
                     var character = value.charAt(0);
@@ -11880,15 +11880,15 @@
                 tokenizeReference.locator = locateLink;
 
                 /**
- * Find a possible strong emphasis.
- *
- * @example
- *   locateStrong('foo **bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible strong emphasis.
- */
+                 * Find a possible strong emphasis.
+                 *
+                 * @example
+                 *   locateStrong('foo **bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible strong emphasis.
+                 */
                 function locateStrong(value, fromIndex) {
                     var asterisk = value.indexOf(C_ASTERISK + C_ASTERISK, fromIndex);
                     var underscore = value.indexOf(C_UNDERSCORE + C_UNDERSCORE, fromIndex);
@@ -11905,18 +11905,18 @@
                 }
 
                 /**
- * Tokenise strong emphasis.
- *
- * @example
- *   tokenizeStrong(eat, '**foo**');
- *   tokenizeStrong(eat, '__foo__');
- *
- * @property {Function} locator - Strong emphasis locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `strong` node.
- */
+                 * Tokenise strong emphasis.
+                 *
+                 * @example
+                 *   tokenizeStrong(eat, '**foo**');
+                 *   tokenizeStrong(eat, '__foo__');
+                 *
+                 * @property {Function} locator - Strong emphasis locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `strong` node.
+                 */
                 function tokenizeStrong(eat, value, silent) {
                     var self = this;
                     var index = 0;
@@ -11986,15 +11986,15 @@
                 tokenizeStrong.locator = locateStrong;
 
                 /**
- * Find possible slight emphasis.
- *
- * @example
- *   locateEmphasis('foo *bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible slight emphasis.
- */
+                 * Find possible slight emphasis.
+                 *
+                 * @example
+                 *   locateEmphasis('foo *bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible slight emphasis.
+                 */
                 function locateEmphasis(value, fromIndex) {
                     var asterisk = value.indexOf(C_ASTERISK, fromIndex);
                     var underscore = value.indexOf(C_UNDERSCORE, fromIndex);
@@ -12011,18 +12011,18 @@
                 }
 
                 /**
- * Tokenise slight emphasis.
- *
- * @example
- *   tokenizeEmphasis(eat, '*foo*');
- *   tokenizeEmphasis(eat, '_foo_');
- *
- * @property {Function} locator - Slight emphasis locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `emphasis` node.
- */
+                 * Tokenise slight emphasis.
+                 *
+                 * @example
+                 *   tokenizeEmphasis(eat, '*foo*');
+                 *   tokenizeEmphasis(eat, '_foo_');
+                 *
+                 * @property {Function} locator - Slight emphasis locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `emphasis` node.
+                 */
                 function tokenizeEmphasis(eat, value, silent) {
                     var self = this;
                     var index = 0;
@@ -12091,31 +12091,31 @@
                 tokenizeEmphasis.locator = locateEmphasis;
 
                 /**
- * Find a possible deletion.
- *
- * @example
- *   locateDeletion('foo ~~bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible deletion.
- */
+                 * Find a possible deletion.
+                 *
+                 * @example
+                 *   locateDeletion('foo ~~bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible deletion.
+                 */
                 function locateDeletion(value, fromIndex) {
                     return value.indexOf(C_TILDE + C_TILDE, fromIndex);
                 }
 
                 /**
- * Tokenise a deletion.
- *
- * @example
- *   tokenizeDeletion(eat, '~~foo~~');
- *
- * @property {Function} locator - Deletion locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `delete` node.
- */
+                 * Tokenise a deletion.
+                 *
+                 * @example
+                 *   tokenizeDeletion(eat, '~~foo~~');
+                 *
+                 * @property {Function} locator - Deletion locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `delete` node.
+                 */
                 function tokenizeDeletion(eat, value, silent) {
                     var self = this;
                     var character = EMPTY;
@@ -12164,31 +12164,31 @@
                 tokenizeDeletion.locator = locateDeletion;
 
                 /**
- * Find possible inline code.
- *
- * @example
- *   locateInlineCode('foo `bar'); // 4
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible inline code.
- */
+                 * Find possible inline code.
+                 *
+                 * @example
+                 *   locateInlineCode('foo `bar'); // 4
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible inline code.
+                 */
                 function locateInlineCode(value, fromIndex) {
                     return value.indexOf(C_TICK, fromIndex);
                 }
 
                 /**
- * Tokenise inline code.
- *
- * @example
- *   tokenizeInlineCode(eat, '`foo()`');
- *
- * @property {Function} locator - Inline code locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `inlineCode` node.
- */
+                 * Tokenise inline code.
+                 *
+                 * @example
+                 *   tokenizeInlineCode(eat, '`foo()`');
+                 *
+                 * @property {Function} locator - Inline code locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `inlineCode` node.
+                 */
                 function tokenizeInlineCode(eat, value, silent) {
                     var self = this;
                     var length = value.length;
@@ -12291,15 +12291,15 @@
                 tokenizeInlineCode.locator = locateInlineCode;
 
                 /**
- * Find a possible break.
- *
- * @example
- *   locateBreak('foo   \nbar'); // 3
- *
- * @param {string} value - Value to search.
- * @param {number} fromIndex - Index to start searching at.
- * @return {number} - Location of possible break.
- */
+                 * Find a possible break.
+                 *
+                 * @example
+                 *   locateBreak('foo   \nbar'); // 3
+                 *
+                 * @param {string} value - Value to search.
+                 * @param {number} fromIndex - Index to start searching at.
+                 * @return {number} - Location of possible break.
+                 */
                 function locateBreak(value, fromIndex) {
                     var index = value.indexOf(C_NEWLINE, fromIndex);
 
@@ -12315,17 +12315,17 @@
                 }
 
                 /**
- * Tokenise a break.
- *
- * @example
- *   tokenizeBreak(eat, '  \n');
- *
- * @property {Function} locator - Break locator.
- * @param {function(string)} eat - Eater.
- * @param {string} value - Rest of content.
- * @param {boolean?} [silent] - Whether this is a dry run.
- * @return {Node?|boolean} - `break` node.
- */
+                 * Tokenise a break.
+                 *
+                 * @example
+                 *   tokenizeBreak(eat, '  \n');
+                 *
+                 * @property {Function} locator - Break locator.
+                 * @param {function(string)} eat - Eater.
+                 * @param {string} value - Rest of content.
+                 * @param {boolean?} [silent] - Whether this is a dry run.
+                 * @return {Node?|boolean} - `break` node.
+                 */
                 function tokenizeBreak(eat, value, silent) {
                     var self = this;
                     var breaks = self.options.breaks;
@@ -12362,17 +12362,17 @@
                 tokenizeBreak.locator = locateBreak;
 
                 /**
- * Construct a new parser.
- *
- * @example
- *   var parser = new Parser(new VFile('Foo'));
- *
- * @constructor
- * @class {Parser}
- * @param {VFile} file - File to parse.
- * @param {Object?} [options] - Passed to
- *   `Parser#setOptions()`.
- */
+                 * Construct a new parser.
+                 *
+                 * @example
+                 *   var parser = new Parser(new VFile('Foo'));
+                 *
+                 * @constructor
+                 * @class {Parser}
+                 * @param {VFile} file - File to parse.
+                 * @param {Object?} [options] - Passed to
+                 *   `Parser#setOptions()`.
+                 */
                 function Parser(file, options) {
                     var self = this;
 
@@ -12392,18 +12392,18 @@
                 }
 
                 /**
- * Set options.  Does not overwrite previously set
- * options.
- *
- * @example
- *   var parser = new Parser();
- *   parser.setOptions({gfm: true});
- *
- * @this {Parser}
- * @throws {Error} - When an option is invalid.
- * @param {Object?} [options] - Parse settings.
- * @return {Parser} - `self`.
- */
+                 * Set options.  Does not overwrite previously set
+                 * options.
+                 *
+                 * @example
+                 *   var parser = new Parser();
+                 *   parser.setOptions({gfm: true});
+                 *
+                 * @this {Parser}
+                 * @throws {Error} - When an option is invalid.
+                 * @param {Object?} [options] - Parse settings.
+                 * @return {Parser} - `self`.
+                 */
                 Parser.prototype.setOptions = function(options) {
                     var self = this;
                     var current = self.options;
@@ -12451,27 +12451,27 @@
                 Parser.prototype.options = defaultOptions;
 
                 /**
- * Factory to track indentation for each line corresponding
- * to the given `start` and the number of invocations.
- *
- * @param {number} start - Starting line.
- * @return {function(offset)} - Indenter.
- */
+                 * Factory to track indentation for each line corresponding
+                 * to the given `start` and the number of invocations.
+                 *
+                 * @param {number} start - Starting line.
+                 * @return {function(offset)} - Indenter.
+                 */
                 Parser.prototype.indent = function(start) {
                     var self = this;
                     var line = start;
 
                     /**
-     * Intender which increments the global offset,
-     * starting at the bound line, and further incrementing
-     * each line for each invocation.
-     *
-     * @example
-     *   indenter(2);
-     *
-     * @param {number} offset - Number to increment the
-     *   offset.
-     */
+                     * Intender which increments the global offset,
+                     * starting at the bound line, and further incrementing
+                     * each line for each invocation.
+                     *
+                     * @example
+                     *   indenter(2);
+                     *
+                     * @param {number} offset - Number to increment the
+                     *   offset.
+                     */
                     function indenter(offset) {
                         self.offset[line] = (self.offset[line] || 0) + offset;
 
@@ -12482,11 +12482,11 @@
                 };
 
                 /**
- * Get found offsets starting at `start`.
- *
- * @param {number} start - Starting line.
- * @return {Array.<number>} - Offsets starting at `start`.
- */
+                 * Get found offsets starting at `start`.
+                 *
+                 * @param {number} start - Starting line.
+                 * @return {Array.<number>} - Offsets starting at `start`.
+                 */
                 Parser.prototype.getIndent = function(start) {
                     var offset = this.offset;
                     var result = [];
@@ -12503,14 +12503,14 @@
                 };
 
                 /**
- * Parse the bound file.
- *
- * @example
- *   new Parser(new File('_Foo_.')).parse();
- *
- * @this {Parser}
- * @return {Object} - `root` node.
- */
+                 * Parse the bound file.
+                 *
+                 * @example
+                 *   new Parser(new File('_Foo_.')).parse();
+                 *
+                 * @this {Parser}
+                 * @return {Object} - `root` node.
+                 */
                 Parser.prototype.parse = function() {
                     var self = this;
                     var value = String(self.file);
@@ -12588,30 +12588,30 @@
                 Parser.prototype.renderFootnote = renderFootnote;
 
                 /**
- * Construct a tokenizer.  This creates both
- * `tokenizeInline` and `tokenizeBlock`.
- *
- * @example
- *   Parser.prototype.tokenizeInline = tokenizeFactory('inline');
- *
- * @param {string} type - Name of parser, used to find
- *   its expressions (`%sMethods`) and tokenizers
- *   (`%Tokenizers`).
- * @return {Function} - Tokenizer.
- */
+                 * Construct a tokenizer.  This creates both
+                 * `tokenizeInline` and `tokenizeBlock`.
+                 *
+                 * @example
+                 *   Parser.prototype.tokenizeInline = tokenizeFactory('inline');
+                 *
+                 * @param {string} type - Name of parser, used to find
+                 *   its expressions (`%sMethods`) and tokenizers
+                 *   (`%Tokenizers`).
+                 * @return {Function} - Tokenizer.
+                 */
                 function tokenizeFactory(type) {
                     /**
-     * Tokenizer for a bound `type`
-     *
-     * @example
-     *   parser = new Parser();
-     *   parser.tokenizeInline('_foo_');
-     *
-     * @param {string} value - Content.
-     * @param {Object} location - Offset at which `value`
-     *   starts.
-     * @return {Array.<Object>} - Nodes.
-     */
+                     * Tokenizer for a bound `type`
+                     *
+                     * @example
+                     *   parser = new Parser();
+                     *   parser.tokenizeInline('_foo_');
+                     *
+                     * @param {string} value - Content.
+                     * @param {Object} location - Offset at which `value`
+                     *   starts.
+                     * @return {Array.<Object>} - Nodes.
+                     */
                     function tokenize(value, location) {
                         var self = this;
                         var offset = self.offset;
@@ -12637,14 +12637,14 @@
                         }
 
                         /**
-         * Update line, column, and offset based on
-         * `value`.
-         *
-         * @example
-         *   updatePosition('foo');
-         *
-         * @param {string} subvalue - Subvalue to eat.
-         */
+                         * Update line, column, and offset based on
+                         * `value`.
+                         *
+                         * @example
+                         *   updatePosition('foo');
+                         *
+                         * @param {string} subvalue - Subvalue to eat.
+                         */
                         function updatePosition(subvalue) {
                             var lastIndex = -1;
                             var index = subvalue.indexOf(C_NEWLINE);
@@ -12671,22 +12671,22 @@
                         }
 
                         /**
-         * Get offset. Called before the first character is
-         * eaten to retrieve the range's offsets.
-         *
-         * @return {Function} - `done`, to be called when
-         *   the last character is eaten.
-         */
+                         * Get offset. Called before the first character is
+                         * eaten to retrieve the range's offsets.
+                         *
+                         * @return {Function} - `done`, to be called when
+                         *   the last character is eaten.
+                         */
                         function getOffset() {
                             var indentation = [];
                             var pos = line + 1;
 
                             /**
-             * Done. Called when the last character is
-             * eaten to retrieve the range’s offsets.
-             *
-             * @return {Array.<number>} - Offset.
-             */
+                             * Done. Called when the last character is
+                             * eaten to retrieve the range’s offsets.
+                             *
+                             * @return {Array.<number>} - Offset.
+                             */
                             function done() {
                                 var last = line + 1;
 
@@ -12703,13 +12703,13 @@
                         }
 
                         /**
-         * Get the current position.
-         *
-         * @example
-         *   position = now(); // {line: 1, column: 1, offset: 0}
-         *
-         * @return {Object} - Current Position.
-         */
+                         * Get the current position.
+                         *
+                         * @example
+                         *   position = now(); // {line: 1, column: 1, offset: 0}
+                         *
+                         * @return {Object} - Current Position.
+                         */
                         function now() {
                             var pos = {
                                 line: line,
@@ -12722,40 +12722,40 @@
                         }
 
                         /**
-         * Store position information for a node.
-         *
-         * @example
-         *   start = now();
-         *   updatePosition('foo');
-         *   location = new Position(start);
-         *   // {
-         *   //   start: {line: 1, column: 1, offset: 0},
-         *   //   end: {line: 1, column: 3, offset: 2}
-         *   // }
-         *
-         * @param {Object} start - Starting position.
-         */
+                         * Store position information for a node.
+                         *
+                         * @example
+                         *   start = now();
+                         *   updatePosition('foo');
+                         *   location = new Position(start);
+                         *   // {
+                         *   //   start: {line: 1, column: 1, offset: 0},
+                         *   //   end: {line: 1, column: 3, offset: 2}
+                         *   // }
+                         *
+                         * @param {Object} start - Starting position.
+                         */
                         function Position(start) {
                             this.start = start;
                             this.end = now();
                         }
 
                         /**
-         * Throw when a value is incorrectly eaten.
-         * This shouldn’t happen but will throw on new,
-         * incorrect rules.
-         *
-         * @example
-         *   // When the current value is set to `foo bar`.
-         *   validateEat('foo');
-         *   eat('foo');
-         *
-         *   validateEat('bar');
-         *   // throws, because the space is not eaten.
-         *
-         * @param {string} subvalue - Value to be eaten.
-         * @throws {Error} - When `subvalue` cannot be eaten.
-         */
+                         * Throw when a value is incorrectly eaten.
+                         * This shouldn’t happen but will throw on new,
+                         * incorrect rules.
+                         *
+                         * @example
+                         *   // When the current value is set to `foo bar`.
+                         *   validateEat('foo');
+                         *   eat('foo');
+                         *
+                         *   validateEat('bar');
+                         *   // throws, because the space is not eaten.
+                         *
+                         * @param {string} subvalue - Value to be eaten.
+                         * @throws {Error} - When `subvalue` cannot be eaten.
+                         */
                         function validateEat(subvalue) {
                             /* istanbul ignore if */
                             if (value.substring(0, subvalue.length) !== subvalue) {
@@ -12764,36 +12764,36 @@
                         }
 
                         /**
-         * Mark position and patch `node.position`.
-         *
-         * @example
-         *   var update = position();
-         *   updatePosition('foo');
-         *   update({});
-         *   // {
-         *   //   position: {
-         *   //     start: {line: 1, column: 1, offset: 0},
-         *   //     end: {line: 1, column: 3, offset: 2}
-         *   //   }
-         *   // }
-         *
-         * @returns {Function} - Updater.
-         */
+                         * Mark position and patch `node.position`.
+                         *
+                         * @example
+                         *   var update = position();
+                         *   updatePosition('foo');
+                         *   update({});
+                         *   // {
+                         *   //   position: {
+                         *   //     start: {line: 1, column: 1, offset: 0},
+                         *   //     end: {line: 1, column: 3, offset: 2}
+                         *   //   }
+                         *   // }
+                         *
+                         * @returns {Function} - Updater.
+                         */
                         function position() {
                             var before = now();
 
                             /**
-             * Add the position to a node.
-             *
-             * @example
-             *   update({type: 'text', value: 'foo'});
-             *
-             * @param {Node} node - Node to attach position
-             *   on.
-             * @param {Array} [indent] - Indentation for
-             *   `node`.
-             * @return {Node} - `node`.
-             */
+                             * Add the position to a node.
+                             *
+                             * @example
+                             *   update({type: 'text', value: 'foo'});
+                             *
+                             * @param {Node} node - Node to attach position
+                             *   on.
+                             * @param {Array} [indent] - Indentation for
+                             *   `node`.
+                             * @return {Node} - `node`.
+                             */
                             function update(node, indent) {
                                 var prev = node.position;
                                 var start = prev ? prev.start : before;
@@ -12837,18 +12837,18 @@
                         }
 
                         /**
-         * Add `node` to `parent`s children or to `tokens`.
-         * Performs merges where possible.
-         *
-         * @example
-         *   add({});
-         *
-         *   add({}, {children: []});
-         *
-         * @param {Object} node - Node to add.
-         * @param {Object} [parent] - Parent to insert into.
-         * @return {Object} - Added or merged into node.
-         */
+                         * Add `node` to `parent`s children or to `tokens`.
+                         * Performs merges where possible.
+                         *
+                         * @example
+                         *   add({});
+                         *
+                         *   add({}, {children: []});
+                         *
+                         * @param {Object} node - Node to add.
+                         * @param {Object} [parent] - Parent to insert into.
+                         * @return {Object} - Added or merged into node.
+                         */
                         add = function(node, parent) {
                             var prev;
                             var children;
@@ -12883,17 +12883,17 @@
                         };
 
                         /**
-         * Remove `subvalue` from `value`.
-         * `subvalue` must be at the start of `value`.
-         *
-         * @example
-         *   eat('foo')({type: 'text', value: 'foo'});
-         *
-         * @param {string} subvalue - Removed from `value`,
-         *   and passed to `updatePosition`.
-         * @return {Function} - Wrapper around `add`, which
-         *   also adds `position` to node.
-         */
+                         * Remove `subvalue` from `value`.
+                         * `subvalue` must be at the start of `value`.
+                         *
+                         * @example
+                         *   eat('foo')({type: 'text', value: 'foo'});
+                         *
+                         * @param {string} subvalue - Removed from `value`,
+                         *   and passed to `updatePosition`.
+                         * @return {Function} - Wrapper around `add`, which
+                         *   also adds `position` to node.
+                         */
                         function eat(subvalue) {
                             var indent = getOffset();
                             var pos = position();
@@ -12902,30 +12902,30 @@
                             validateEat(subvalue);
 
                             /**
-             * Add the given arguments, add `position` to
-             * the returned node, and return the node.
-             *
-             * @param {Object} node - Node to add.
-             * @param {Object} [parent] - Node to insert into.
-             * @return {Node} - Added node.
-             */
+                             * Add the given arguments, add `position` to
+                             * the returned node, and return the node.
+                             *
+                             * @param {Object} node - Node to add.
+                             * @param {Object} [parent] - Node to insert into.
+                             * @return {Node} - Added node.
+                             */
                             function apply(node, parent) {
                                 return pos(add(pos(node), parent), indent);
                             }
 
                             /**
-             * Functions just like apply, but resets the
-             * content:  the line and column are reversed,
-             * and the eaten value is re-added.
-             *
-             * This is useful for nodes with a single
-             * type of content, such as lists and tables.
-             *
-             * See `apply` above for what parameters are
-             * expected.
-             *
-             * @return {Node} - Added node.
-             */
+                             * Functions just like apply, but resets the
+                             * content:  the line and column are reversed,
+                             * and the eaten value is re-added.
+                             *
+                             * This is useful for nodes with a single
+                             * type of content, such as lists and tables.
+                             *
+                             * See `apply` above for what parameters are
+                             * expected.
+                             *
+                             * @return {Node} - Added node.
+                             */
                             function reset() {
                                 var node = apply.apply(null, arguments);
 
@@ -12937,11 +12937,11 @@
                             }
 
                             /**
-             * Test the position, after eating, and reverse
-             * to a not-eaten state.
-             *
-             * @return {Position} - Position after eating `subvalue`.
-             */
+                             * Test the position, after eating, and reverse
+                             * to a not-eaten state.
+                             *
+                             * @return {Position} - Position after eating `subvalue`.
+                             */
                             function test() {
                                 var result = pos({});
 
@@ -13082,15 +13082,15 @@
                 ];
 
                 /**
- * Block tokenizer.
- *
- * @example
- *   var parser = new Parser();
- *   parser.tokenizeBlock('> foo.');
- *
- * @param {string} value - Content.
- * @return {Array.<Object>} - Nodes.
- */
+                 * Block tokenizer.
+                 *
+                 * @example
+                 *   var parser = new Parser();
+                 *   parser.tokenizeBlock('> foo.');
+                 *
+                 * @param {string} value - Content.
+                 * @return {Array.<Object>} - Nodes.
+                 */
 
                 Parser.prototype.tokenizeBlock = tokenizeFactory(BLOCK);
 
@@ -13133,15 +13133,15 @@
                 ];
 
                 /**
- * Inline tokenizer.
- *
- * @example
- *   var parser = new Parser();
- *   parser.tokenizeInline('_foo_');
- *
- * @param {string} value - Content.
- * @return {Array.<Object>} - Nodes.
- */
+                 * Inline tokenizer.
+                 *
+                 * @example
+                 *   var parser = new Parser();
+                 *   parser.tokenizeInline('_foo_');
+                 *
+                 * @param {string} value - Content.
+                 * @return {Array.<Object>} - Nodes.
+                 */
 
                 Parser.prototype.tokenizeInline = tokenizeFactory(INLINE);
 
@@ -13175,12 +13175,12 @@
         37: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015-2016 Titus Wormer
- * @license MIT
- * @module remark:stringify
- * @fileoverview Markdown Compiler.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015-2016 Titus Wormer
+                 * @license MIT
+                 * @module remark:stringify
+                 * @fileoverview Markdown Compiler.
+                 */
 
                 "use strict";
 
@@ -13191,10 +13191,10 @@
                 var Compiler = require("./lib/compiler.js");
 
                 /**
- * Attacher.
- *
- * @param {unified} processor - Unified processor.
- */
+                 * Attacher.
+                 *
+                 * @param {unified} processor - Unified processor.
+                 */
                 function stringify(processor) {
                     processor.Compiler = unherit(Compiler);
                 }
@@ -13210,12 +13210,12 @@
         38: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015-2016 Titus Wormer
- * @license MIT
- * @module remark:compiler
- * @fileoverview Markdown compiler
- */
+                 * @author Titus Wormer
+                 * @copyright 2015-2016 Titus Wormer
+                 * @license MIT
+                 * @module remark:compiler
+                 * @fileoverview Markdown compiler
+                 */
 
                 "use strict";
 
@@ -13308,11 +13308,11 @@
                 var UNDERSCORE = "_";
 
                 /**
- * Check whether `character` is alphanumeric.
- *
- * @param {string} character - Single character to check.
- * @return {boolean} - Whether `character` is alphanumeric.
- */
+                 * Check whether `character` is alphanumeric.
+                 *
+                 * @param {string} character - Single character to check.
+                 * @return {boolean} - Whether `character` is alphanumeric.
+                 */
                 function isAlphanumeric(character) {
                     return /\w/.test(character) && character !== UNDERSCORE;
                 }
@@ -13417,32 +13417,32 @@
                 CHECKBOX_MAP.false = SQUARE_BRACKET_OPEN + SPACE + SQUARE_BRACKET_CLOSE + SPACE;
 
                 /**
- * Throw an exception with in its `message` `value`
- * and `name`.
- *
- * @param {*} value - Invalid value.
- * @param {string} name - Setting name.
- */
+                 * Throw an exception with in its `message` `value`
+                 * and `name`.
+                 *
+                 * @param {*} value - Invalid value.
+                 * @param {string} name - Setting name.
+                 */
                 function raise(value, name) {
                     throw new Error("Invalid value `" + value + "` " + "for setting `" + name + "`");
                 }
 
                 /**
- * Validate a value to be boolean. Defaults to `def`.
- * Raises an exception with `context[name]` when not
- * a boolean.
- *
- * @example
- *   validateBoolean({foo: null}, 'foo', true) // true
- *   validateBoolean({foo: false}, 'foo', true) // false
- *   validateBoolean({foo: 'bar'}, 'foo', true) // Throws
- *
- * @throws {Error} - When a setting is neither omitted nor
- *   a boolean.
- * @param {Object} context - Settings.
- * @param {string} name - Setting name.
- * @param {boolean} def - Default value.
- */
+                 * Validate a value to be boolean. Defaults to `def`.
+                 * Raises an exception with `context[name]` when not
+                 * a boolean.
+                 *
+                 * @example
+                 *   validateBoolean({foo: null}, 'foo', true) // true
+                 *   validateBoolean({foo: false}, 'foo', true) // false
+                 *   validateBoolean({foo: 'bar'}, 'foo', true) // Throws
+                 *
+                 * @throws {Error} - When a setting is neither omitted nor
+                 *   a boolean.
+                 * @param {Object} context - Settings.
+                 * @param {string} name - Setting name.
+                 * @param {boolean} def - Default value.
+                 */
                 function validateBoolean(context, name, def) {
                     var value = context[name];
 
@@ -13458,21 +13458,21 @@
                 }
 
                 /**
- * Validate a value to be boolean. Defaults to `def`.
- * Raises an exception with `context[name]` when not
- * a boolean.
- *
- * @example
- *   validateNumber({foo: null}, 'foo', 1) // 1
- *   validateNumber({foo: 2}, 'foo', 1) // 2
- *   validateNumber({foo: 'bar'}, 'foo', 1) // Throws
- *
- * @throws {Error} - When a setting is neither omitted nor
- *   a number.
- * @param {Object} context - Settings.
- * @param {string} name - Setting name.
- * @param {number} def - Default value.
- */
+                 * Validate a value to be boolean. Defaults to `def`.
+                 * Raises an exception with `context[name]` when not
+                 * a boolean.
+                 *
+                 * @example
+                 *   validateNumber({foo: null}, 'foo', 1) // 1
+                 *   validateNumber({foo: 2}, 'foo', 1) // 2
+                 *   validateNumber({foo: 'bar'}, 'foo', 1) // Throws
+                 *
+                 * @throws {Error} - When a setting is neither omitted nor
+                 *   a number.
+                 * @param {Object} context - Settings.
+                 * @param {string} name - Setting name.
+                 * @param {number} def - Default value.
+                 */
                 function validateNumber(context, name, def) {
                     var value = context[name];
 
@@ -13488,23 +13488,23 @@
                 }
 
                 /**
- * Validate a value to be in `map`. Defaults to `def`.
- * Raises an exception with `context[name]` when not
- * in `map`.
- *
- * @example
- *   var map = {bar: true, baz: true};
- *   validateString({foo: null}, 'foo', 'bar', map) // 'bar'
- *   validateString({foo: 'baz'}, 'foo', 'bar', map) // 'baz'
- *   validateString({foo: true}, 'foo', 'bar', map) // Throws
- *
- * @throws {Error} - When a setting is neither omitted nor
- *   in `map`.
- * @param {Object} context - Settings.
- * @param {string} name - Setting name.
- * @param {string} def - Default value.
- * @param {Object} map - Enum.
- */
+                 * Validate a value to be in `map`. Defaults to `def`.
+                 * Raises an exception with `context[name]` when not
+                 * in `map`.
+                 *
+                 * @example
+                 *   var map = {bar: true, baz: true};
+                 *   validateString({foo: null}, 'foo', 'bar', map) // 'bar'
+                 *   validateString({foo: 'baz'}, 'foo', 'bar', map) // 'baz'
+                 *   validateString({foo: true}, 'foo', 'bar', map) // Throws
+                 *
+                 * @throws {Error} - When a setting is neither omitted nor
+                 *   in `map`.
+                 * @param {Object} context - Settings.
+                 * @param {string} name - Setting name.
+                 * @param {string} def - Default value.
+                 * @param {Object} map - Enum.
+                 */
                 function validateString(context, name, def, map) {
                     var value = context[name];
 
@@ -13530,36 +13530,36 @@
                 };
 
                 /**
- * Construct a state `toggler`: a function which inverses
- * `property` in context based on its current value.
- * The by `toggler` returned function restores that value.
- *
- * @example
- *   var context = {};
- *   var key = 'foo';
- *   var val = true;
- *   context[key] = val;
- *   context.enter = toggler(key, val);
- *   context[key]; // true
- *   var exit = context.enter();
- *   context[key]; // false
- *   var nested = context.enter();
- *   context[key]; // false
- *   nested();
- *   context[key]; // false
- *   exit();
- *   context[key]; // true
- *
- * @param {string} key - Property to toggle.
- * @param {boolean} state - It's default state.
- * @return {function(): function()} - Enter.
- */
+                 * Construct a state `toggler`: a function which inverses
+                 * `property` in context based on its current value.
+                 * The by `toggler` returned function restores that value.
+                 *
+                 * @example
+                 *   var context = {};
+                 *   var key = 'foo';
+                 *   var val = true;
+                 *   context[key] = val;
+                 *   context.enter = toggler(key, val);
+                 *   context[key]; // true
+                 *   var exit = context.enter();
+                 *   context[key]; // false
+                 *   var nested = context.enter();
+                 *   context[key]; // false
+                 *   nested();
+                 *   context[key]; // false
+                 *   exit();
+                 *   context[key]; // true
+                 *
+                 * @param {string} key - Property to toggle.
+                 * @param {boolean} state - It's default state.
+                 * @return {function(): function()} - Enter.
+                 */
                 function toggler(key, state) {
                     /**
-     * Construct a toggler for the bound `key`.
-     *
-     * @return {Function} - Exit state.
-     */
+                     * Construct a toggler for the bound `key`.
+                     *
+                     * @return {Function} - Exit state.
+                     */
                     function enter() {
                         var self = this;
                         var current = self[key];
@@ -13567,8 +13567,8 @@
                         self[key] = !state;
 
                         /**
-         * State canceler, cancels the state, if allowed.
-         */
+                         * State canceler, cancels the state, if allowed.
+                         */
                         function exit() {
                             self[key] = current;
                         }
@@ -13580,11 +13580,11 @@
                 }
 
                 /**
- * Check whether a node is mergeable with adjacent nodes.
- *
- * @param {Object} node - Node to check.
- * @return {boolean} - Whether `node` is mergable.
- */
+                 * Check whether a node is mergeable with adjacent nodes.
+                 *
+                 * @param {Object} node - Node to check.
+                 * @return {boolean} - Whether `node` is mergable.
+                 */
                 function mergeable(node) {
                     var start;
                     var end;
@@ -13605,38 +13605,38 @@
                 }
 
                 /**
- * Encode noop.
- * Simply returns the given value.
- *
- * @example
- *   var encode = encodeNoop();
- *   encode('AT&T') // 'AT&T'
- *
- * @param {string} value - Content.
- * @return {string} - Content, without any modifications.
- */
+                 * Encode noop.
+                 * Simply returns the given value.
+                 *
+                 * @example
+                 *   var encode = encodeNoop();
+                 *   encode('AT&T') // 'AT&T'
+                 *
+                 * @param {string} value - Content.
+                 * @return {string} - Content, without any modifications.
+                 */
                 function encodeNoop(value) {
                     return value;
                 }
 
                 /**
- * Factory to encode HTML entities.
- * Creates a no-operation function when `type` is
- * `'false'`, a function which encodes using named
- * references when `type` is `'true'`, and a function
- * which encodes using numbered references when `type` is
- * `'numbers'`.
- *
- * @example
- *   encodeFactory('false')('AT&T') // 'AT&T'
- *   encodeFactory('true')('AT&T') // 'AT&amp;T'
- *   encodeFactory('numbers')('AT&T') // 'ATT&#x26;T'
- *
- * @param {string} type - Either `'true'`, `'false'`, or
- *   `'numbers'`.
- * @return {function(string): string} - Function which
- *   takes a value and returns its encoded version.
- */
+                 * Factory to encode HTML entities.
+                 * Creates a no-operation function when `type` is
+                 * `'false'`, a function which encodes using named
+                 * references when `type` is `'true'`, and a function
+                 * which encodes using numbered references when `type` is
+                 * `'numbers'`.
+                 *
+                 * @example
+                 *   encodeFactory('false')('AT&T') // 'AT&T'
+                 *   encodeFactory('true')('AT&T') // 'AT&amp;T'
+                 *   encodeFactory('numbers')('AT&T') // 'ATT&#x26;T'
+                 *
+                 * @param {string} type - Either `'true'`, `'false'`, or
+                 *   `'numbers'`.
+                 * @return {function(string): string} - Function which
+                 *   takes a value and returns its encoded version.
+                 */
                 function encodeFactory(type) {
                     var options = {};
 
@@ -13653,19 +13653,19 @@
                     }
 
                     /**
-     * Encode HTML entities using the bound options.
-     *
-     * @example
-     *   // When `type` is `'true'`.
-     *   encode('AT&T'); // 'AT&amp;T'
-     *
-     *   // When `type` is `'numbers'`.
-     *   encode('AT&T'); // 'ATT&#x26;T'
-     *
-     * @param {string} value - Content.
-     * @param {Object} [node] - Node which is compiled.
-     * @return {string} - Encoded content.
-     */
+                     * Encode HTML entities using the bound options.
+                     *
+                     * @example
+                     *   // When `type` is `'true'`.
+                     *   encode('AT&T'); // 'AT&amp;T'
+                     *
+                     *   // When `type` is `'numbers'`.
+                     *   encode('AT&T'); // 'ATT&#x26;T'
+                     *
+                     * @param {string} value - Content.
+                     * @param {Object} [node] - Node which is compiled.
+                     * @return {string} - Encoded content.
+                     */
                     function encoder(value) {
                         return encode(value, options);
                     }
@@ -13674,17 +13674,17 @@
                 }
 
                 /**
- * Returns the length of HTML entity that is a prefix of
- * the given string (excluding the ampersand), 0 if it
- * does not start with an entity.
- *
- * @example
- *   entityPrefixLength('&copycat') // 4
- *   entityPrefixLength('&foo &amp &bar') // 0
- *
- * @param {string} value - Input string.
- * @return {number} - Length of an entity.
- */
+                 * Returns the length of HTML entity that is a prefix of
+                 * the given string (excluding the ampersand), 0 if it
+                 * does not start with an entity.
+                 *
+                 * @example
+                 *   entityPrefixLength('&copycat') // 4
+                 *   entityPrefixLength('&foo &amp &bar') // 0
+                 *
+                 * @param {string} value - Input string.
+                 * @return {number} - Length of an entity.
+                 */
                 function entityPrefixLength(value) {
                     var prefix;
 
@@ -13701,46 +13701,46 @@
                 }
 
                 /**
- * Checks if a string starts with HTML entity.
- *
- * @example
- *   startsWithEntity('&copycat') // true
- *   startsWithEntity('&foo &amp &bar') // false
- *
- * @param {string} value - Value to check.
- * @return {number} - Whether `value` starts an entity.
- */
+                 * Checks if a string starts with HTML entity.
+                 *
+                 * @example
+                 *   startsWithEntity('&copycat') // true
+                 *   startsWithEntity('&foo &amp &bar') // false
+                 *
+                 * @param {string} value - Value to check.
+                 * @return {number} - Whether `value` starts an entity.
+                 */
                 function startsWithEntity(value) {
                     return entityPrefixLength(value) > 0;
                 }
 
                 /**
- * Check if `character` is a valid alignment row character.
- *
- * @example
- *   isAlignmentRowCharacter(':') // true
- *   isAlignmentRowCharacter('=') // false
- *
- * @param {string} character - Character to check.
- * @return {boolean} - Whether `character` is a valid
- *   alignment row character.
- */
+                 * Check if `character` is a valid alignment row character.
+                 *
+                 * @example
+                 *   isAlignmentRowCharacter(':') // true
+                 *   isAlignmentRowCharacter('=') // false
+                 *
+                 * @param {string} character - Character to check.
+                 * @return {boolean} - Whether `character` is a valid
+                 *   alignment row character.
+                 */
                 function isAlignmentRowCharacter(character) {
                     return character === COLON || character === DASH || character === SPACE || character === PIPE;
                 }
 
                 /**
- * Check if `index` in `value` is inside an alignment row.
- *
- * @example
- *   isInAlignmentRow(':--:', 2) // true
- *   isInAlignmentRow(':--:\n:-*-:', 9) // false
- *
- * @param {string} value - Value to check.
- * @param {number} index - Position in `value` to check.
- * @return {boolean} - Whether `index` in `value` is in
- *   an alignment row.
- */
+                 * Check if `index` in `value` is inside an alignment row.
+                 *
+                 * @example
+                 *   isInAlignmentRow(':--:', 2) // true
+                 *   isInAlignmentRow(':--:\n:-*-:', 9) // false
+                 *
+                 * @param {string} value - Value to check.
+                 * @param {number} index - Position in `value` to check.
+                 * @return {boolean} - Whether `index` in `value` is in
+                 *   an alignment row.
+                 */
                 function isInAlignmentRow(value, index) {
                     var length = value.length;
                     var start = index;
@@ -13776,26 +13776,26 @@
                 }
 
                 /**
- * Factory to escape characters.
- *
- * @example
- *   var escape = escapeFactory({ commonmark: true });
- *   escape('x*x', { type: 'text', value: 'x*x' }) // 'x\\*x'
- *
- * @param {Object} options - Compiler options.
- * @return {function(value, node, parent): string} - Function which
- *   takes a value and a node and (optionally) its parent and returns
- *   its escaped value.
- */
+                 * Factory to escape characters.
+                 *
+                 * @example
+                 *   var escape = escapeFactory({ commonmark: true });
+                 *   escape('x*x', { type: 'text', value: 'x*x' }) // 'x\\*x'
+                 *
+                 * @param {Object} options - Compiler options.
+                 * @return {function(value, node, parent): string} - Function which
+                 *   takes a value and a node and (optionally) its parent and returns
+                 *   its escaped value.
+                 */
                 function escapeFactory(options) {
                     /**
-     * Escape punctuation characters in a node's value.
-     *
-     * @param {string} value - Value to escape.
-     * @param {Object} node - Node in which `value` exists.
-     * @param {Object} [parent] - Parent of `node`.
-     * @return {string} - Escaped `value`.
-     */
+                     * Escape punctuation characters in a node's value.
+                     *
+                     * @param {string} value - Value to escape.
+                     * @param {Object} node - Node in which `value` exists.
+                     * @param {Object} [parent] - Parent of `node`.
+                     * @return {string} - Escaped `value`.
+                     */
                     return function escape(value, node, parent) {
                         var self = this;
                         var gfm = options.gfm;
@@ -14037,27 +14037,27 @@
                 }
 
                 /**
- * Wrap `url` in angle brackets when needed, or when
- * forced.
- *
- * In links, images, and definitions, the URL part needs
- * to be enclosed when it:
- *
- * - has a length of `0`;
- * - contains white-space;
- * - has more or less opening than closing parentheses.
- *
- * @example
- *   encloseURI('foo bar') // '<foo bar>'
- *   encloseURI('foo(bar(baz)') // '<foo(bar(baz)>'
- *   encloseURI('') // '<>'
- *   encloseURI('example.com') // 'example.com'
- *   encloseURI('example.com', true) // '<example.com>'
- *
- * @param {string} uri - URI to enclose.
- * @param {boolean?} [always] - Force enclosing.
- * @return {boolean} - Properly enclosed `uri`.
- */
+                 * Wrap `url` in angle brackets when needed, or when
+                 * forced.
+                 *
+                 * In links, images, and definitions, the URL part needs
+                 * to be enclosed when it:
+                 *
+                 * - has a length of `0`;
+                 * - contains white-space;
+                 * - has more or less opening than closing parentheses.
+                 *
+                 * @example
+                 *   encloseURI('foo bar') // '<foo bar>'
+                 *   encloseURI('foo(bar(baz)') // '<foo(bar(baz)>'
+                 *   encloseURI('') // '<>'
+                 *   encloseURI('example.com') // 'example.com'
+                 *   encloseURI('example.com', true) // '<example.com>'
+                 *
+                 * @param {string} uri - URI to enclose.
+                 * @param {boolean?} [always] - Force enclosing.
+                 * @return {boolean} - Properly enclosed `uri`.
+                 */
                 function encloseURI(uri, always) {
                     if (
                         always ||
@@ -14072,24 +14072,24 @@
                 }
 
                 /**
- * There is currently no way to support nested delimiters
- * across Markdown.pl, CommonMark, and GitHub (RedCarpet).
- * The following code supports Markdown.pl and GitHub.
- * CommonMark is not supported when mixing double- and
- * single quotes inside a title.
- *
- * @see https://github.com/vmg/redcarpet/issues/473
- * @see https://github.com/jgm/CommonMark/issues/308
- *
- * @example
- *   encloseTitle('foo') // '"foo"'
- *   encloseTitle('foo \'bar\' baz') // '"foo \'bar\' baz"'
- *   encloseTitle('foo "bar" baz') // '\'foo "bar" baz\''
- *   encloseTitle('foo "bar" \'baz\'') // '"foo "bar" \'baz\'"'
- *
- * @param {string} title - Content.
- * @return {string} - Properly enclosed title.
- */
+                 * There is currently no way to support nested delimiters
+                 * across Markdown.pl, CommonMark, and GitHub (RedCarpet).
+                 * The following code supports Markdown.pl and GitHub.
+                 * CommonMark is not supported when mixing double- and
+                 * single quotes inside a title.
+                 *
+                 * @see https://github.com/vmg/redcarpet/issues/473
+                 * @see https://github.com/jgm/CommonMark/issues/308
+                 *
+                 * @example
+                 *   encloseTitle('foo') // '"foo"'
+                 *   encloseTitle('foo \'bar\' baz') // '"foo \'bar\' baz"'
+                 *   encloseTitle('foo "bar" baz') // '\'foo "bar" baz\''
+                 *   encloseTitle('foo "bar" \'baz\'') // '"foo "bar" \'baz\'"'
+                 *
+                 * @param {string} title - Content.
+                 * @return {string} - Properly enclosed title.
+                 */
                 function encloseTitle(title) {
                     var delimiter = QUOTE_DOUBLE;
 
@@ -14101,16 +14101,16 @@
                 }
 
                 /**
- * Pad `value` with `level * INDENT` spaces.  Respects
- * lines. Ignores empty lines.
- *
- * @example
- *   pad('foo', 1) // '    foo'
- *
- * @param {string} value - Content.
- * @param {number} level - Indentation level.
- * @return {string} - Padded `value`.
- */
+                 * Pad `value` with `level * INDENT` spaces.  Respects
+                 * lines. Ignores empty lines.
+                 *
+                 * @example
+                 *   pad('foo', 1) // '    foo'
+                 *
+                 * @param {string} value - Content.
+                 * @param {number} level - Indentation level.
+                 * @return {string} - Padded `value`.
+                 */
                 function pad(value, level) {
                     var index;
                     var padding;
@@ -14130,17 +14130,17 @@
                 }
 
                 /**
- * Construct a new compiler.
- *
- * @example
- *   var compiler = new Compiler(new File('> foo.'));
- *
- * @constructor
- * @class {Compiler}
- * @param {File} file - Virtual file.
- * @param {Object?} [options] - Passed to
- *   `Compiler#setOptions()`.
- */
+                 * Construct a new compiler.
+                 *
+                 * @example
+                 *   var compiler = new Compiler(new File('> foo.'));
+                 *
+                 * @constructor
+                 * @class {Compiler}
+                 * @param {File} file - Virtual file.
+                 * @param {Object?} [options] - Passed to
+                 *   `Compiler#setOptions()`.
+                 */
                 function Compiler(file, options) {
                     var self = this;
 
@@ -14184,18 +14184,18 @@
                 };
 
                 /**
- * Set options.  Does not overwrite previously set
- * options.
- *
- * @example
- *   var compiler = new Compiler();
- *   compiler.setOptions({bullet: '*'});
- *
- * @this {Compiler}
- * @throws {Error} - When an option is invalid.
- * @param {Object?} [options] - Stringify settings.
- * @return {Compiler} - `self`.
- */
+                 * Set options.  Does not overwrite previously set
+                 * options.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *   compiler.setOptions({bullet: '*'});
+                 *
+                 * @this {Compiler}
+                 * @throws {Error} - When an option is invalid.
+                 * @param {Object?} [options] - Stringify settings.
+                 * @return {Compiler} - `self`.
+                 */
                 compilerPrototype.setOptions = function(options) {
                     var self = this;
                     var current = self.options;
@@ -14236,19 +14236,19 @@
                 compilerPrototype.enterTable = toggler("inTable", false);
 
                 /**
- * Shortcut and collapsed link references need no escaping
- * and encoding during the processing of child nodes (it
- * must be implied from identifier).
- *
- * This toggler turns encoding and escaping off for shortcut
- * and collapsed references.
- *
- * Implies `enterLink`.
- *
- * @param {Compiler} compiler - Compiler instance.
- * @param {LinkReference} node - LinkReference node.
- * @return {Function} - Exit state.
- */
+                 * Shortcut and collapsed link references need no escaping
+                 * and encoding during the processing of child nodes (it
+                 * must be implied from identifier).
+                 *
+                 * This toggler turns encoding and escaping off for shortcut
+                 * and collapsed references.
+                 *
+                 * Implies `enterLink`.
+                 *
+                 * @param {Compiler} compiler - Compiler instance.
+                 * @param {LinkReference} node - LinkReference node.
+                 * @return {Function} - Exit state.
+                 */
                 compilerPrototype.enterLinkReference = function(compiler, node) {
                     var encode = compiler.encode;
                     var escape = compiler.escape;
@@ -14267,24 +14267,24 @@
                 };
 
                 /**
- * Visit a node.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.visit({
- *     type: 'strong',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *   // '**Foo**'
- *
- * @param {Object} node - Node.
- * @param {Object?} [parent] - `node`s parent.
- * @return {string} - Compiled `node`.
- */
+                 * Visit a node.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.visit({
+                 *     type: 'strong',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *   // '**Foo**'
+                 *
+                 * @param {Object} node - Node.
+                 * @param {Object?} [parent] - `node`s parent.
+                 * @return {string} - Compiled `node`.
+                 */
                 compilerPrototype.visit = function(node, parent) {
                     var self = this;
 
@@ -14300,27 +14300,27 @@
                 };
 
                 /**
- * Visit all children of `parent`.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.all({
- *     type: 'strong',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     },
- *     {
- *       type: 'text',
- *       value: 'Bar'
- *     }]
- *   });
- *   // ['Foo', 'Bar']
- *
- * @param {Object} parent - Parent node of children.
- * @return {Array.<string>} - List of compiled children.
- */
+                 * Visit all children of `parent`.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.all({
+                 *     type: 'strong',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     },
+                 *     {
+                 *       type: 'text',
+                 *       value: 'Bar'
+                 *     }]
+                 *   });
+                 *   // ['Foo', 'Bar']
+                 *
+                 * @param {Object} parent - Parent node of children.
+                 * @return {Array.<string>} - List of compiled children.
+                 */
                 compilerPrototype.all = function(parent) {
                     var self = this;
                     var children = parent.children;
@@ -14354,44 +14354,44 @@
                 };
 
                 /**
- * Visit ordered list items.
- *
- * Starts the list with
- * `node.start` and increments each following list item
- * bullet by one:
- *
- *     2. foo
- *     3. bar
- *
- * In `incrementListMarker: false` mode, does not increment
- * each marker and stays on `node.start`:
- *
- *     1. foo
- *     1. bar
- *
- * Adds an extra line after an item if it has
- * `loose: true`.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.visitOrderedItems({
- *     type: 'list',
- *     ordered: true,
- *     children: [{
- *       type: 'listItem',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // '1.  bar'
- *
- * @param {Object} node - `list` node with
- *   `ordered: true`.
- * @return {string} - Markdown list.
- */
+                 * Visit ordered list items.
+                 *
+                 * Starts the list with
+                 * `node.start` and increments each following list item
+                 * bullet by one:
+                 *
+                 *     2. foo
+                 *     3. bar
+                 *
+                 * In `incrementListMarker: false` mode, does not increment
+                 * each marker and stays on `node.start`:
+                 *
+                 *     1. foo
+                 *     1. bar
+                 *
+                 * Adds an extra line after an item if it has
+                 * `loose: true`.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.visitOrderedItems({
+                 *     type: 'list',
+                 *     ordered: true,
+                 *     children: [{
+                 *       type: 'listItem',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // '1.  bar'
+                 *
+                 * @param {Object} node - `list` node with
+                 *   `ordered: true`.
+                 * @return {string} - Markdown list.
+                 */
                 compilerPrototype.visitOrderedItems = function(node) {
                     var self = this;
                     var increment = self.options.incrementListMarker;
@@ -14412,33 +14412,33 @@
                 };
 
                 /**
- * Visit unordered list items.
- *
- * Uses `options.bullet` as each item's bullet.
- *
- * Adds an extra line after an item if it has
- * `loose: true`.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.visitUnorderedItems({
- *     type: 'list',
- *     ordered: false,
- *     children: [{
- *       type: 'listItem',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // '-   bar'
- *
- * @param {Object} node - `list` node with
- *   `ordered: false`.
- * @return {string} - Markdown list.
- */
+                 * Visit unordered list items.
+                 *
+                 * Uses `options.bullet` as each item's bullet.
+                 *
+                 * Adds an extra line after an item if it has
+                 * `loose: true`.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.visitUnorderedItems({
+                 *     type: 'list',
+                 *     ordered: false,
+                 *     children: [{
+                 *       type: 'listItem',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // '-   bar'
+                 *
+                 * @param {Object} node - `list` node with
+                 *   `ordered: false`.
+                 * @return {string} - Markdown list.
+                 */
                 compilerPrototype.visitUnorderedItems = function(node) {
                     var self = this;
                     var values = [];
@@ -14456,31 +14456,31 @@
                 };
 
                 /**
- * Stringify a block node with block children (e.g., `root`
- * or `blockquote`).
- *
- * Knows about code following a list, or adjacent lists
- * with similar bullets, and places an extra newline
- * between them.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.block({
- *     type: 'root',
- *     children: [{
- *       type: 'paragraph',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // 'bar'
- *
- * @param {Object} node - `root` node.
- * @return {string} - Markdown block content.
- */
+                 * Stringify a block node with block children (e.g., `root`
+                 * or `blockquote`).
+                 *
+                 * Knows about code following a list, or adjacent lists
+                 * with similar bullets, and places an extra newline
+                 * between them.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.block({
+                 *     type: 'root',
+                 *     children: [{
+                 *       type: 'paragraph',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // 'bar'
+                 *
+                 * @param {Object} node - `root` node.
+                 * @return {string} - Markdown block content.
+                 */
                 compilerPrototype.block = function(node) {
                     var self = this;
                     var values = [];
@@ -14522,69 +14522,69 @@
                 };
 
                 /**
- * Stringify a root.
- *
- * Adds a final newline to ensure valid POSIX files.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.root({
- *     type: 'root',
- *     children: [{
- *       type: 'paragraph',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // 'bar'
- *
- * @param {Object} node - `root` node.
- * @return {string} - Markdown document.
- */
+                 * Stringify a root.
+                 *
+                 * Adds a final newline to ensure valid POSIX files.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.root({
+                 *     type: 'root',
+                 *     children: [{
+                 *       type: 'paragraph',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // 'bar'
+                 *
+                 * @param {Object} node - `root` node.
+                 * @return {string} - Markdown document.
+                 */
                 visitors.root = function(node) {
                     return this.block(node) + LINE;
                 };
 
                 /**
- * Stringify a heading.
- *
- * In `setext: true` mode and when `depth` is smaller than
- * three, creates a setext header:
- *
- *     Foo
- *     ===
- *
- * Otherwise, an ATX header is generated:
- *
- *     ### Foo
- *
- * In `closeAtx: true` mode, the header is closed with
- * hashes:
- *
- *     ### Foo ###
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.heading({
- *     type: 'heading',
- *     depth: 2,
- *     children: [{
- *       type: 'strong',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // '## **bar**'
- *
- * @param {Object} node - `heading` node.
- * @return {string} - Markdown heading.
- */
+                 * Stringify a heading.
+                 *
+                 * In `setext: true` mode and when `depth` is smaller than
+                 * three, creates a setext header:
+                 *
+                 *     Foo
+                 *     ===
+                 *
+                 * Otherwise, an ATX header is generated:
+                 *
+                 *     ### Foo
+                 *
+                 * In `closeAtx: true` mode, the header is closed with
+                 * hashes:
+                 *
+                 *     ### Foo ###
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.heading({
+                 *     type: 'heading',
+                 *     depth: 2,
+                 *     children: [{
+                 *       type: 'strong',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // '## **bar**'
+                 *
+                 * @param {Object} node - `heading` node.
+                 * @return {string} - Markdown heading.
+                 */
                 visitors.heading = function(node) {
                     var self = this;
                     var setext = self.options.setext;
@@ -14608,83 +14608,83 @@
                 };
 
                 /**
- * Stringify text.
- *
- * Supports named entities in `settings.encode: true` mode:
- *
- *     AT&amp;T
- *
- * Supports numbered entities in `settings.encode: numbers`
- * mode:
- *
- *     AT&#x26;T
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.text({
- *     type: 'text',
- *     value: 'foo'
- *   });
- *   // 'foo'
- *
- * @param {Object} node - `text` node.
- * @param {Object} parent - Parent of `node`.
- * @return {string} - Raw markdown text.
- */
+                 * Stringify text.
+                 *
+                 * Supports named entities in `settings.encode: true` mode:
+                 *
+                 *     AT&amp;T
+                 *
+                 * Supports numbered entities in `settings.encode: numbers`
+                 * mode:
+                 *
+                 *     AT&#x26;T
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.text({
+                 *     type: 'text',
+                 *     value: 'foo'
+                 *   });
+                 *   // 'foo'
+                 *
+                 * @param {Object} node - `text` node.
+                 * @param {Object} parent - Parent of `node`.
+                 * @return {string} - Raw markdown text.
+                 */
                 visitors.text = function(node, parent) {
                     return this.encode(this.escape(node.value, node, parent), node);
                 };
 
                 /**
- * Stringify a paragraph.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.paragraph({
- *     type: 'paragraph',
- *     children: [{
- *       type: 'strong',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // '**bar**'
- *
- * @param {Object} node - `paragraph` node.
- * @return {string} - Markdown paragraph.
- */
+                 * Stringify a paragraph.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.paragraph({
+                 *     type: 'paragraph',
+                 *     children: [{
+                 *       type: 'strong',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // '**bar**'
+                 *
+                 * @param {Object} node - `paragraph` node.
+                 * @return {string} - Markdown paragraph.
+                 */
                 visitors.paragraph = function(node) {
                     return this.all(node).join(EMPTY);
                 };
 
                 /**
- * Stringify a block quote.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.paragraph({
- *     type: 'blockquote',
- *     children: [{
- *       type: 'paragraph',
- *       children: [{
- *         type: 'strong',
- *         children: [{
- *           type: 'text',
- *           value: 'bar'
- *         }]
- *       }]
- *     }]
- *   });
- *   // '> **bar**'
- *
- * @param {Object} node - `blockquote` node.
- * @return {string} - Markdown block quote.
- */
+                 * Stringify a block quote.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.paragraph({
+                 *     type: 'blockquote',
+                 *     children: [{
+                 *       type: 'paragraph',
+                 *       children: [{
+                 *         type: 'strong',
+                 *         children: [{
+                 *           type: 'text',
+                 *           value: 'bar'
+                 *         }]
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // '> **bar**'
+                 *
+                 * @param {Object} node - `blockquote` node.
+                 * @return {string} - Markdown block quote.
+                 */
                 visitors.blockquote = function(node) {
                     var values = this.block(node).split(LINE);
                     var result = [];
@@ -14701,76 +14701,76 @@
                 };
 
                 /**
- * Stringify a list. See `Compiler#visitOrderedList()` and
- * `Compiler#visitUnorderedList()` for internal working.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.visitUnorderedItems({
- *     type: 'list',
- *     ordered: false,
- *     children: [{
- *       type: 'listItem',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // '-   bar'
- *
- * @param {Object} node - `list` node.
- * @return {string} - Markdown list.
- */
+                 * Stringify a list. See `Compiler#visitOrderedList()` and
+                 * `Compiler#visitUnorderedList()` for internal working.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.visitUnorderedItems({
+                 *     type: 'list',
+                 *     ordered: false,
+                 *     children: [{
+                 *       type: 'listItem',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // '-   bar'
+                 *
+                 * @param {Object} node - `list` node.
+                 * @return {string} - Markdown list.
+                 */
                 visitors.list = function(node) {
                     return this[ORDERED_MAP[node.ordered]](node);
                 };
 
                 /**
- * Stringify a list item.
- *
- * Prefixes the content with a checked checkbox when
- * `checked: true`:
- *
- *     [x] foo
- *
- * Prefixes the content with an unchecked checkbox when
- * `checked: false`:
- *
- *     [ ] foo
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.listItem({
- *     type: 'listItem',
- *     checked: true,
- *     children: [{
- *       type: 'text',
- *       value: 'bar'
- *     }]
- *   }, {
- *     type: 'list',
- *     ordered: false,
- *     children: [{
- *       type: 'listItem',
- *       checked: true,
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   }, 0, '*');
- *   '-   [x] bar'
- *
- * @param {Object} node - `listItem` node.
- * @param {Object} parent - `list` node.
- * @param {number} position - Index of `node` in `parent`.
- * @param {string} bullet - Bullet to use.  This, and the
- *   `listItemIndent` setting define the used indent.
- * @return {string} - Markdown list item.
- */
+                 * Stringify a list item.
+                 *
+                 * Prefixes the content with a checked checkbox when
+                 * `checked: true`:
+                 *
+                 *     [x] foo
+                 *
+                 * Prefixes the content with an unchecked checkbox when
+                 * `checked: false`:
+                 *
+                 *     [ ] foo
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.listItem({
+                 *     type: 'listItem',
+                 *     checked: true,
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'bar'
+                 *     }]
+                 *   }, {
+                 *     type: 'list',
+                 *     ordered: false,
+                 *     children: [{
+                 *       type: 'listItem',
+                 *       checked: true,
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   }, 0, '*');
+                 *   '-   [x] bar'
+                 *
+                 * @param {Object} node - `listItem` node.
+                 * @param {Object} parent - `list` node.
+                 * @param {number} position - Index of `node` in `parent`.
+                 * @param {string} bullet - Bullet to use.  This, and the
+                 *   `listItemIndent` setting define the used indent.
+                 * @return {string} - Markdown list item.
+                 */
                 visitors.listItem = function(node, parent, position, bullet) {
                     var self = this;
                     var style = self.options.listItemIndent;
@@ -14807,30 +14807,30 @@
                 };
 
                 /**
- * Stringify inline code.
- *
- * Knows about internal ticks (`\``), and ensures one more
- * tick is used to enclose the inline code:
- *
- *     ```foo ``bar`` baz```
- *
- * Even knows about inital and final ticks:
- *
- *     `` `foo ``
- *     `` foo` ``
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.inlineCode({
- *     type: 'inlineCode',
- *     value: 'foo(); `bar`; baz()'
- *   });
- *   // '``foo(); `bar`; baz()``'
- *
- * @param {Object} node - `inlineCode` node.
- * @return {string} - Markdown inline code.
- */
+                 * Stringify inline code.
+                 *
+                 * Knows about internal ticks (`\``), and ensures one more
+                 * tick is used to enclose the inline code:
+                 *
+                 *     ```foo ``bar`` baz```
+                 *
+                 * Even knows about inital and final ticks:
+                 *
+                 *     `` `foo ``
+                 *     `` foo` ``
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.inlineCode({
+                 *     type: 'inlineCode',
+                 *     value: 'foo(); `bar`; baz()'
+                 *   });
+                 *   // '``foo(); `bar`; baz()``'
+                 *
+                 * @param {Object} node - `inlineCode` node.
+                 * @return {string} - Markdown inline code.
+                 */
                 visitors.inlineCode = function(node) {
                     var value = node.value;
                     var ticks = repeat(TICK, longestStreak(value, TICK) + 1);
@@ -14849,20 +14849,20 @@
                 };
 
                 /**
- * Stringify YAML front matter.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.yaml({
- *     type: 'yaml',
- *     value: 'foo: bar'
- *   });
- *   // '---\nfoo: bar\n---'
- *
- * @param {Object} node - `yaml` node.
- * @return {string} - Markdown YAML document.
- */
+                 * Stringify YAML front matter.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.yaml({
+                 *     type: 'yaml',
+                 *     value: 'foo: bar'
+                 *   });
+                 *   // '---\nfoo: bar\n---'
+                 *
+                 * @param {Object} node - `yaml` node.
+                 * @return {string} - Markdown YAML document.
+                 */
                 visitors.yaml = function(node) {
                     var delimiter = repeat(DASH, YAML_FENCE_LENGTH);
                     var value = node.value ? LINE + node.value : EMPTY;
@@ -14871,52 +14871,52 @@
                 };
 
                 /**
- * Stringify a code block.
- *
- * Creates indented code when:
- *
- * - No language tag exists;
- * - Not in `fences: true` mode;
- * - A non-empty value exists.
- *
- * Otherwise, GFM fenced code is created:
- *
- *     ```js
- *     foo();
- *     ```
- *
- * When in ``fence: `~` `` mode, uses tildes as fences:
- *
- *     ~~~js
- *     foo();
- *     ~~~
- *
- * Knows about internal fences (Note: GitHub/Kramdown does
- * not support this):
- *
- *     ````javascript
- *     ```markdown
- *     foo
- *     ```
- *     ````
- *
- * Supports named entities in the language flag with
- * `settings.encode` mode.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.code({
- *     type: 'code',
- *     lang: 'js',
- *     value: 'fooo();'
- *   });
- *   // '```js\nfooo();\n```'
- *
- * @param {Object} node - `code` node.
- * @param {Object} parent - Parent of `node`.
- * @return {string} - Markdown code block.
- */
+                 * Stringify a code block.
+                 *
+                 * Creates indented code when:
+                 *
+                 * - No language tag exists;
+                 * - Not in `fences: true` mode;
+                 * - A non-empty value exists.
+                 *
+                 * Otherwise, GFM fenced code is created:
+                 *
+                 *     ```js
+                 *     foo();
+                 *     ```
+                 *
+                 * When in ``fence: `~` `` mode, uses tildes as fences:
+                 *
+                 *     ~~~js
+                 *     foo();
+                 *     ~~~
+                 *
+                 * Knows about internal fences (Note: GitHub/Kramdown does
+                 * not support this):
+                 *
+                 *     ````javascript
+                 *     ```markdown
+                 *     foo
+                 *     ```
+                 *     ````
+                 *
+                 * Supports named entities in the language flag with
+                 * `settings.encode` mode.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.code({
+                 *     type: 'code',
+                 *     lang: 'js',
+                 *     value: 'fooo();'
+                 *   });
+                 *   // '```js\nfooo();\n```'
+                 *
+                 * @param {Object} node - `code` node.
+                 * @param {Object} parent - Parent of `node`.
+                 * @return {string} - Markdown code block.
+                 */
                 visitors.code = function(node, parent) {
                     var self = this;
                     var value = node.value;
@@ -14967,51 +14967,51 @@
                 };
 
                 /**
- * Stringify HTML.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.html({
- *     type: 'html',
- *     value: '<div>bar</div>'
- *   });
- *   // '<div>bar</div>'
- *
- * @param {Object} node - `html` node.
- * @return {string} - Markdown HTML.
- */
+                 * Stringify HTML.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.html({
+                 *     type: 'html',
+                 *     value: '<div>bar</div>'
+                 *   });
+                 *   // '<div>bar</div>'
+                 *
+                 * @param {Object} node - `html` node.
+                 * @return {string} - Markdown HTML.
+                 */
                 visitors.html = function(node) {
                     return node.value;
                 };
 
                 /**
- * Stringify a horizontal rule.
- *
- * The character used is configurable by `rule`: (`'_'`)
- *
- *     ___
- *
- * The number of repititions is defined through
- * `ruleRepetition`: (`6`)
- *
- *     ******
- *
- * Whether spaces delimit each character, is configured
- * through `ruleSpaces`: (`true`)
- *
- *     * * *
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.thematicBreak({
- *     type: 'thematicBreak'
- *   });
- *   // '***'
- *
- * @return {string} - Markdown rule.
- */
+                 * Stringify a horizontal rule.
+                 *
+                 * The character used is configurable by `rule`: (`'_'`)
+                 *
+                 *     ___
+                 *
+                 * The number of repititions is defined through
+                 * `ruleRepetition`: (`6`)
+                 *
+                 *     ******
+                 *
+                 * Whether spaces delimit each character, is configured
+                 * through `ruleSpaces`: (`true`)
+                 *
+                 *     * * *
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.thematicBreak({
+                 *     type: 'thematicBreak'
+                 *   });
+                 *   // '***'
+                 *
+                 * @return {string} - Markdown rule.
+                 */
                 visitors.thematicBreak = function() {
                     var options = this.options;
                     var rule = repeat(options.rule, options.ruleRepetition);
@@ -15024,29 +15024,29 @@
                 };
 
                 /**
- * Stringify a strong.
- *
- * The marker used is configurable by `strong`, which
- * defaults to an asterisk (`'*'`) but also accepts an
- * underscore (`'_'`):
- *
- *     _foo_
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.strong({
- *     type: 'strong',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *   // '**Foo**'
- *
- * @param {Object} node - `strong` node.
- * @return {string} - Markdown strong-emphasised text.
- */
+                 * Stringify a strong.
+                 *
+                 * The marker used is configurable by `strong`, which
+                 * defaults to an asterisk (`'*'`) but also accepts an
+                 * underscore (`'_'`):
+                 *
+                 *     _foo_
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.strong({
+                 *     type: 'strong',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *   // '**Foo**'
+                 *
+                 * @param {Object} node - `strong` node.
+                 * @return {string} - Markdown strong-emphasised text.
+                 */
                 visitors.strong = function(node) {
                     var marker = this.options.strong;
 
@@ -15056,29 +15056,29 @@
                 };
 
                 /**
- * Stringify an emphasis.
- *
- * The marker used is configurable by `emphasis`, which
- * defaults to an underscore (`'_'`) but also accepts an
- * asterisk (`'*'`):
- *
- *     *foo*
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.emphasis({
- *     type: 'emphasis',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *   // '_Foo_'
- *
- * @param {Object} node - `emphasis` node.
- * @return {string} - Markdown emphasised text.
- */
+                 * Stringify an emphasis.
+                 *
+                 * The marker used is configurable by `emphasis`, which
+                 * defaults to an underscore (`'_'`) but also accepts an
+                 * asterisk (`'*'`):
+                 *
+                 *     *foo*
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.emphasis({
+                 *     type: 'emphasis',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *   // '_Foo_'
+                 *
+                 * @param {Object} node - `emphasis` node.
+                 * @return {string} - Markdown emphasised text.
+                 */
                 visitors.emphasis = function(node) {
                     var marker = this.options.emphasis;
 
@@ -15086,82 +15086,82 @@
                 };
 
                 /**
- * Stringify a hard break.
- *
- * In Commonmark mode, trailing backslash form is used in order
- * to preserve trailing whitespace that the line may end with,
- * and also for better visibility.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.break({
- *     type: 'break'
- *   });
- *   // '  \n'
- *
- * @return {string} - Hard markdown break.
- */
+                 * Stringify a hard break.
+                 *
+                 * In Commonmark mode, trailing backslash form is used in order
+                 * to preserve trailing whitespace that the line may end with,
+                 * and also for better visibility.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.break({
+                 *     type: 'break'
+                 *   });
+                 *   // '  \n'
+                 *
+                 * @return {string} - Hard markdown break.
+                 */
                 visitors.break = function() {
                     return this.options.commonmark ? BACKSLASH + LINE : SPACE + SPACE + LINE;
                 };
 
                 /**
- * Stringify a delete.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.delete({
- *     type: 'delete',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *   // '~~Foo~~'
- *
- * @param {Object} node - `delete` node.
- * @return {string} - Markdown strike-through.
- */
+                 * Stringify a delete.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.delete({
+                 *     type: 'delete',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *   // '~~Foo~~'
+                 *
+                 * @param {Object} node - `delete` node.
+                 * @return {string} - Markdown strike-through.
+                 */
                 visitors.delete = function(node) {
                     return DOUBLE_TILDE + this.all(node).join(EMPTY) + DOUBLE_TILDE;
                 };
 
                 /**
- * Stringify a link.
- *
- * When no title exists, the compiled `children` equal
- * `url`, and `url` starts with a protocol, an auto
- * link is created:
- *
- *     <http://example.com>
- *
- * Otherwise, is smart about enclosing `url` (see
- * `encloseURI()`) and `title` (see `encloseTitle()`).
- *
- *    [foo](<foo at bar dot com> 'An "example" e-mail')
- *
- * Supports named entities in the `url` and `title` when
- * in `settings.encode` mode.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.link({
- *     type: 'link',
- *     url: 'http://example.com',
- *     title: 'Example Domain',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *   // '[Foo](http://example.com "Example Domain")'
- *
- * @param {Object} node - `link` node.
- * @return {string} - Markdown link.
- */
+                 * Stringify a link.
+                 *
+                 * When no title exists, the compiled `children` equal
+                 * `url`, and `url` starts with a protocol, an auto
+                 * link is created:
+                 *
+                 *     <http://example.com>
+                 *
+                 * Otherwise, is smart about enclosing `url` (see
+                 * `encloseURI()`) and `title` (see `encloseTitle()`).
+                 *
+                 *    [foo](<foo at bar dot com> 'An "example" e-mail')
+                 *
+                 * Supports named entities in the `url` and `title` when
+                 * in `settings.encode` mode.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.link({
+                 *     type: 'link',
+                 *     url: 'http://example.com',
+                 *     title: 'Example Domain',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *   // '[Foo](http://example.com "Example Domain")'
+                 *
+                 * @param {Object} node - `link` node.
+                 * @return {string} - Markdown link.
+                 */
                 visitors.link = function(node) {
                     var self = this;
                     var url = self.encode(node.url, node);
@@ -15198,40 +15198,40 @@
                 };
 
                 /**
- * Stringify a link label.
- *
- * Because link references are easily, mistakingly,
- * created (for example, `[foo]`), reference nodes have
- * an extra property depicting how it looked in the
- * original document, so stringification can cause minimal
- * changes.
- *
- * @example
- *   label({
- *     type: 'referenceImage',
- *     referenceType: 'full',
- *     identifier: 'foo'
- *   });
- *   // '[foo]'
- *
- *   label({
- *     type: 'referenceImage',
- *     referenceType: 'collapsed',
- *     identifier: 'foo'
- *   });
- *   // '[]'
- *
- *   label({
- *     type: 'referenceImage',
- *     referenceType: 'shortcut',
- *     identifier: 'foo'
- *   });
- *   // ''
- *
- * @param {Object} node - `linkReference` or
- *   `imageReference` node.
- * @return {string} - Markdown label reference.
- */
+                 * Stringify a link label.
+                 *
+                 * Because link references are easily, mistakingly,
+                 * created (for example, `[foo]`), reference nodes have
+                 * an extra property depicting how it looked in the
+                 * original document, so stringification can cause minimal
+                 * changes.
+                 *
+                 * @example
+                 *   label({
+                 *     type: 'referenceImage',
+                 *     referenceType: 'full',
+                 *     identifier: 'foo'
+                 *   });
+                 *   // '[foo]'
+                 *
+                 *   label({
+                 *     type: 'referenceImage',
+                 *     referenceType: 'collapsed',
+                 *     identifier: 'foo'
+                 *   });
+                 *   // '[]'
+                 *
+                 *   label({
+                 *     type: 'referenceImage',
+                 *     referenceType: 'shortcut',
+                 *     identifier: 'foo'
+                 *   });
+                 *   // ''
+                 *
+                 * @param {Object} node - `linkReference` or
+                 *   `imageReference` node.
+                 * @return {string} - Markdown label reference.
+                 */
                 function label(node) {
                     var value = EMPTY;
                     var type = node.referenceType;
@@ -15248,24 +15248,24 @@
                 }
 
                 /**
- * For shortcut and collapsed reference links, the contents
- * is also an identifier, so we need to restore the original
- * encoding and escaping that were present in the source
- * string.
- *
- * This function takes the unescaped & unencoded value from
- * shortcut's child nodes and the identifier and encodes
- * the former according to the latter.
- *
- * @example
- *   copyIdentifierEncoding('a*b', 'a\\*b*c')
- *   // 'a\\*b*c'
- *
- * @param {string} value - Unescaped and unencoded stringified
- *   link value.
- * @param {string} identifier - Link identifier.
- * @return {string} - Encoded link value.
- */
+                 * For shortcut and collapsed reference links, the contents
+                 * is also an identifier, so we need to restore the original
+                 * encoding and escaping that were present in the source
+                 * string.
+                 *
+                 * This function takes the unescaped & unencoded value from
+                 * shortcut's child nodes and the identifier and encodes
+                 * the former according to the latter.
+                 *
+                 * @example
+                 *   copyIdentifierEncoding('a*b', 'a\\*b*c')
+                 *   // 'a\\*b*c'
+                 *
+                 * @param {string} value - Unescaped and unencoded stringified
+                 *   link value.
+                 * @param {string} identifier - Link identifier.
+                 * @return {string} - Encoded link value.
+                 */
                 function copyIdentifierEncoding(value, identifier) {
                     var index = 0;
                     var position = 0;
@@ -15320,27 +15320,27 @@
                 }
 
                 /**
- * Stringify a link reference.
- *
- * See `label()` on how reference labels are created.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.linkReference({
- *     type: 'linkReference',
- *     referenceType: 'collapsed',
- *     identifier: 'foo',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *   // '[Foo][]'
- *
- * @param {Object} node - `linkReference` node.
- * @return {string} - Markdown link reference.
- */
+                 * Stringify a link reference.
+                 *
+                 * See `label()` on how reference labels are created.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.linkReference({
+                 *     type: 'linkReference',
+                 *     referenceType: 'collapsed',
+                 *     identifier: 'foo',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *   // '[Foo][]'
+                 *
+                 * @param {Object} node - `linkReference` node.
+                 * @return {string} - Markdown link reference.
+                 */
                 visitors.linkReference = function(node) {
                     var self = this;
                     var exitLinkReference = self.enterLinkReference(self, node);
@@ -15356,27 +15356,27 @@
                 };
 
                 /**
- * Stringify an image reference.
- *
- * See `label()` on how reference labels are created.
- *
- * Supports named entities in the `alt` when
- * in `settings.encode` mode.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.imageReference({
- *     type: 'imageReference',
- *     referenceType: 'full',
- *     identifier: 'foo',
- *     alt: 'Foo'
- *   });
- *   // '![Foo][foo]'
- *
- * @param {Object} node - `imageReference` node.
- * @return {string} - Markdown image reference.
- */
+                 * Stringify an image reference.
+                 *
+                 * See `label()` on how reference labels are created.
+                 *
+                 * Supports named entities in the `alt` when
+                 * in `settings.encode` mode.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.imageReference({
+                 *     type: 'imageReference',
+                 *     referenceType: 'full',
+                 *     identifier: 'foo',
+                 *     alt: 'Foo'
+                 *   });
+                 *   // '![Foo][foo]'
+                 *
+                 * @param {Object} node - `imageReference` node.
+                 * @return {string} - Markdown image reference.
+                 */
                 visitors.imageReference = function(node) {
                     var alt = this.encode(node.alt, node) || EMPTY;
 
@@ -15384,46 +15384,46 @@
                 };
 
                 /**
- * Stringify a footnote reference.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.footnoteReference({
- *     type: 'footnoteReference',
- *     identifier: 'foo'
- *   });
- *   // '[^foo]'
- *
- * @param {Object} node - `footnoteReference` node.
- * @return {string} - Markdown footnote reference.
- */
+                 * Stringify a footnote reference.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.footnoteReference({
+                 *     type: 'footnoteReference',
+                 *     identifier: 'foo'
+                 *   });
+                 *   // '[^foo]'
+                 *
+                 * @param {Object} node - `footnoteReference` node.
+                 * @return {string} - Markdown footnote reference.
+                 */
                 visitors.footnoteReference = function(node) {
                     return SQUARE_BRACKET_OPEN + CARET + node.identifier + SQUARE_BRACKET_CLOSE;
                 };
 
                 /**
- * Stringify a link- or image definition.
- *
- * Is smart about enclosing `url` (see `encloseURI()`) and
- * `title` (see `encloseTitle()`).
- *
- *    [foo]: <foo at bar dot com> 'An "example" e-mail'
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.definition({
- *     type: 'definition',
- *     url: 'http://example.com',
- *     title: 'Example Domain',
- *     identifier: 'foo'
- *   });
- *   // '[foo]: http://example.com "Example Domain"'
- *
- * @param {Object} node - `definition` node.
- * @return {string} - Markdown link- or image definition.
- */
+                 * Stringify a link- or image definition.
+                 *
+                 * Is smart about enclosing `url` (see `encloseURI()`) and
+                 * `title` (see `encloseTitle()`).
+                 *
+                 *    [foo]: <foo at bar dot com> 'An "example" e-mail'
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.definition({
+                 *     type: 'definition',
+                 *     url: 'http://example.com',
+                 *     title: 'Example Domain',
+                 *     identifier: 'foo'
+                 *   });
+                 *   // '[foo]: http://example.com "Example Domain"'
+                 *
+                 * @param {Object} node - `definition` node.
+                 * @return {string} - Markdown link- or image definition.
+                 */
                 visitors.definition = function(node) {
                     var value = SQUARE_BRACKET_OPEN + node.identifier + SQUARE_BRACKET_CLOSE;
                     var url = encloseURI(node.url);
@@ -15436,30 +15436,30 @@
                 };
 
                 /**
- * Stringify an image.
- *
- * Is smart about enclosing `url` (see `encloseURI()`) and
- * `title` (see `encloseTitle()`).
- *
- *    ![foo](</fav icon.png> 'My "favourite" icon')
- *
- * Supports named entities in `url`, `alt`, and `title`
- * when in `settings.encode` mode.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.image({
- *     type: 'image',
- *     url: 'http://example.png/favicon.png',
- *     title: 'Example Icon',
- *     alt: 'Foo'
- *   });
- *   // '![Foo](http://example.png/favicon.png "Example Icon")'
- *
- * @param {Object} node - `image` node.
- * @return {string} - Markdown image.
- */
+                 * Stringify an image.
+                 *
+                 * Is smart about enclosing `url` (see `encloseURI()`) and
+                 * `title` (see `encloseTitle()`).
+                 *
+                 *    ![foo](</fav icon.png> 'My "favourite" icon')
+                 *
+                 * Supports named entities in `url`, `alt`, and `title`
+                 * when in `settings.encode` mode.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.image({
+                 *     type: 'image',
+                 *     url: 'http://example.png/favicon.png',
+                 *     title: 'Example Icon',
+                 *     alt: 'Foo'
+                 *   });
+                 *   // '![Foo](http://example.png/favicon.png "Example Icon")'
+                 *
+                 * @param {Object} node - `image` node.
+                 * @return {string} - Markdown image.
+                 */
                 visitors.image = function(node) {
                     var url = encloseURI(this.encode(node.url, node));
                     var value;
@@ -15480,49 +15480,49 @@
                 };
 
                 /**
- * Stringify a footnote.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.footnote({
- *     type: 'footnote',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *   // '[^Foo]'
- *
- * @param {Object} node - `footnote` node.
- * @return {string} - Markdown footnote.
- */
+                 * Stringify a footnote.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.footnote({
+                 *     type: 'footnote',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *   // '[^Foo]'
+                 *
+                 * @param {Object} node - `footnote` node.
+                 * @return {string} - Markdown footnote.
+                 */
                 visitors.footnote = function(node) {
                     return SQUARE_BRACKET_OPEN + CARET + this.all(node).join(EMPTY) + SQUARE_BRACKET_CLOSE;
                 };
 
                 /**
- * Stringify a footnote definition.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.footnoteDefinition({
- *     type: 'footnoteDefinition',
- *     identifier: 'foo',
- *     children: [{
- *       type: 'paragraph',
- *       children: [{
- *         type: 'text',
- *         value: 'bar'
- *       }]
- *     }]
- *   });
- *   // '[^foo]: bar'
- *
- * @param {Object} node - `footnoteDefinition` node.
- * @return {string} - Markdown footnote definition.
- */
+                 * Stringify a footnote definition.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.footnoteDefinition({
+                 *     type: 'footnoteDefinition',
+                 *     identifier: 'foo',
+                 *     children: [{
+                 *       type: 'paragraph',
+                 *       children: [{
+                 *         type: 'text',
+                 *         value: 'bar'
+                 *       }]
+                 *     }]
+                 *   });
+                 *   // '[^foo]: bar'
+                 *
+                 * @param {Object} node - `footnoteDefinition` node.
+                 * @return {string} - Markdown footnote definition.
+                 */
                 visitors.footnoteDefinition = function(node) {
                     var id = node.identifier.toLowerCase();
 
@@ -15538,78 +15538,78 @@
                 };
 
                 /**
- * Stringify table.
- *
- * Creates a fenced table by default, but not in
- * `looseTable: true` mode:
- *
- *     Foo | Bar
- *     :-: | ---
- *     Baz | Qux
- *
- * NOTE: Be careful with `looseTable: true` mode, as a
- * loose table inside an indented code block on GitHub
- * renders as an actual table!
- *
- * Creates a spaces table by default, but not in
- * `spacedTable: false`:
- *
- *     |Foo|Bar|
- *     |:-:|---|
- *     |Baz|Qux|
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.table({
- *     type: 'table',
- *     align: ['center', null],
- *     children: [
- *       {
- *         type: 'tableRow',
- *         children: [
- *           {
- *             type: 'tableCell'
- *             children: [{
- *               type: 'text'
- *               value: 'Foo'
- *             }]
- *           },
- *           {
- *             type: 'tableCell'
- *             children: [{
- *               type: 'text'
- *               value: 'Bar'
- *             }]
- *           }
- *         ]
- *       },
- *       {
- *         type: 'tableRow',
- *         children: [
- *           {
- *             type: 'tableCell'
- *             children: [{
- *               type: 'text'
- *               value: 'Baz'
- *             }]
- *           },
- *           {
- *             type: 'tableCell'
- *             children: [{
- *               type: 'text'
- *               value: 'Qux'
- *             }]
- *           }
- *         ]
- *       }
- *     ]
- *   });
- *   // '| Foo | Bar |\n| :-: | --- |\n| Baz | Qux |'
- *
- * @param {Object} node - `table` node.
- * @return {string} - Markdown table.
- */
+                 * Stringify table.
+                 *
+                 * Creates a fenced table by default, but not in
+                 * `looseTable: true` mode:
+                 *
+                 *     Foo | Bar
+                 *     :-: | ---
+                 *     Baz | Qux
+                 *
+                 * NOTE: Be careful with `looseTable: true` mode, as a
+                 * loose table inside an indented code block on GitHub
+                 * renders as an actual table!
+                 *
+                 * Creates a spaces table by default, but not in
+                 * `spacedTable: false`:
+                 *
+                 *     |Foo|Bar|
+                 *     |:-:|---|
+                 *     |Baz|Qux|
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.table({
+                 *     type: 'table',
+                 *     align: ['center', null],
+                 *     children: [
+                 *       {
+                 *         type: 'tableRow',
+                 *         children: [
+                 *           {
+                 *             type: 'tableCell'
+                 *             children: [{
+                 *               type: 'text'
+                 *               value: 'Foo'
+                 *             }]
+                 *           },
+                 *           {
+                 *             type: 'tableCell'
+                 *             children: [{
+                 *               type: 'text'
+                 *               value: 'Bar'
+                 *             }]
+                 *           }
+                 *         ]
+                 *       },
+                 *       {
+                 *         type: 'tableRow',
+                 *         children: [
+                 *           {
+                 *             type: 'tableCell'
+                 *             children: [{
+                 *               type: 'text'
+                 *               value: 'Baz'
+                 *             }]
+                 *           },
+                 *           {
+                 *             type: 'tableCell'
+                 *             children: [{
+                 *               type: 'text'
+                 *               value: 'Qux'
+                 *             }]
+                 *           }
+                 *         ]
+                 *       }
+                 *     ]
+                 *   });
+                 *   // '| Foo | Bar |\n| :-: | --- |\n| Baz | Qux |'
+                 *
+                 * @param {Object} node - `table` node.
+                 * @return {string} - Markdown table.
+                 */
                 visitors.table = function(node) {
                     var self = this;
                     var loose = self.options.looseTable;
@@ -15640,48 +15640,48 @@
                 };
 
                 /**
- * Stringify a table cell.
- *
- * @example
- *   var compiler = new Compiler();
- *
- *   compiler.tableCell({
- *     type: 'tableCell',
- *     children: [{
- *       type: 'text'
- *       value: 'Qux'
- *     }]
- *   });
- *   // 'Qux'
- *
- * @param {Object} node - `tableCell` node.
- * @return {string} - Markdown table cell.
- */
+                 * Stringify a table cell.
+                 *
+                 * @example
+                 *   var compiler = new Compiler();
+                 *
+                 *   compiler.tableCell({
+                 *     type: 'tableCell',
+                 *     children: [{
+                 *       type: 'text'
+                 *       value: 'Qux'
+                 *     }]
+                 *   });
+                 *   // 'Qux'
+                 *
+                 * @param {Object} node - `tableCell` node.
+                 * @return {string} - Markdown table cell.
+                 */
                 visitors.tableCell = function(node) {
                     return this.all(node).join(EMPTY);
                 };
 
                 /**
- * Stringify the bound file.
- *
- * @example
- *   var file = new VFile('__Foo__');
- *
- *   file.namespace('mdast').tree = {
- *     type: 'strong',
- *     children: [{
- *       type: 'text',
- *       value: 'Foo'
- *     }]
- *   });
- *
- *   new Compiler(file).compile();
- *   // '**Foo**'
- *
- * @this {Compiler}
- * @param {Node} node - Syntax tree.
- * @return {string} - Markdown document.
- */
+                 * Stringify the bound file.
+                 *
+                 * @example
+                 *   var file = new VFile('__Foo__');
+                 *
+                 *   file.namespace('mdast').tree = {
+                 *     type: 'strong',
+                 *     children: [{
+                 *       type: 'text',
+                 *       value: 'Foo'
+                 *     }]
+                 *   });
+                 *
+                 *   new Compiler(file).compile();
+                 *   // '**Foo**'
+                 *
+                 * @this {Compiler}
+                 * @param {Node} node - Syntax tree.
+                 * @return {string} - Markdown document.
+                 */
                 compilerPrototype.compile = function(node) {
                     return this.visit(node);
                 };
@@ -15706,12 +15706,12 @@
         39: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015-2016 Titus Wormer
- * @license MIT
- * @module remark:stringify:defaults
- * @fileoverview Default options for `stringify`.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015-2016 Titus Wormer
+                 * @license MIT
+                 * @module remark:stringify:defaults
+                 * @fileoverview Default options for `stringify`.
+                 */
 
                 "use strict";
 
@@ -15743,12 +15743,12 @@
         40: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015-2016 Titus Wormer
- * @license MIT
- * @module remark
- * @fileoverview Markdown processor powered by plugins.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015-2016 Titus Wormer
+                 * @license MIT
+                 * @module remark
+                 * @fileoverview Markdown processor powered by plugins.
+                 */
 
                 "use strict";
 
@@ -15779,35 +15779,35 @@
                 "use strict";
 
                 /**
- * Results cache
- */
+                 * Results cache
+                 */
 
                 var res = "";
                 var cache;
 
                 /**
- * Expose `repeat`
- */
+                 * Expose `repeat`
+                 */
 
                 module.exports = repeat;
 
                 /**
- * Repeat the given `string` the specified `number`
- * of times.
- *
- * **Example:**
- *
- * ```js
- * var repeat = require('repeat-string');
- * repeat('A', 5);
- * //=> AAAAA
- * ```
- *
- * @param {String} `string` The string to repeat
- * @param {Number} `number` The number of times to repeat the string
- * @return {String} Repeated string
- * @api public
- */
+                 * Repeat the given `string` the specified `number`
+                 * of times.
+                 *
+                 * **Example:**
+                 *
+                 * ```js
+                 * var repeat = require('repeat-string');
+                 * repeat('A', 5);
+                 * //=> AAAAA
+                 * ```
+                 *
+                 * @param {String} `string` The string to repeat
+                 * @param {Number} `number` The number of times to repeat the string
+                 * @return {String} Repeated string
+                 * @api public
+                 */
 
                 function repeat(str, num) {
                     if (typeof str !== "string") {
@@ -15842,12 +15842,12 @@
         42: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module stringify-entities
- * @fileoverview Encode HTML character references and character entities.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module stringify-entities
+                 * @fileoverview Encode HTML character references and character entities.
+                 */
 
                 "use strict";
 
@@ -15895,57 +15895,57 @@
                 var EXPRESSION_BMP = /[\x01-\t\x0B\f\x0E-\x1F\x7F\x81\x8D\x8F\x90\x9D\xA0-\uFFFF]/g;
 
                 /**
- * Transform `code` into a hexadecimal character reference.
- *
- * @param {number} code - Number to encode.
- * @return {string} - `code` encoded as hexadecimal.
- */
+                 * Transform `code` into a hexadecimal character reference.
+                 *
+                 * @param {number} code - Number to encode.
+                 * @return {string} - `code` encoded as hexadecimal.
+                 */
                 function characterCodeToHexadecimalReference(code) {
                     return "&#x" + code.toString(16).toUpperCase() + ";";
                 }
 
                 /**
- * Transform `character` into a hexadecimal character
- * reference.
- *
- * @param {string} character - Character to encode.
- * @return {string} - `character` encoded as hexadecimal.
- */
+                 * Transform `character` into a hexadecimal character
+                 * reference.
+                 *
+                 * @param {string} character - Character to encode.
+                 * @return {string} - `character` encoded as hexadecimal.
+                 */
                 function characterToHexadecimalReference(character) {
                     return characterCodeToHexadecimalReference(character.charCodeAt(0));
                 }
 
                 /**
- * Transform `code` into an entity.
- *
- * @param {string} name - Name to wrap.
- * @return {string} - `name` encoded as hexadecimal.
- */
+                 * Transform `code` into an entity.
+                 *
+                 * @param {string} name - Name to wrap.
+                 * @return {string} - `name` encoded as hexadecimal.
+                 */
                 function toNamedEntity(name) {
                     return "&" + name + ";";
                 }
 
                 /**
- * Transform `code` into an entity.
- *
- * @param {string} character - Character to encode.
- * @return {string} - `name` encoded as hexadecimal.
- */
+                 * Transform `code` into an entity.
+                 *
+                 * @param {string} character - Character to encode.
+                 * @return {string} - `name` encoded as hexadecimal.
+                 */
                 function characterToNamedEntity(character) {
                     return toNamedEntity(characters[character]);
                 }
 
                 /**
- * Encode special characters in `value`.
- *
- * @param {string} value - Value to encode.
- * @param {Object?} [options] - Configuration.
- * @param {boolean?} [options.escapeOnly=false]
- *   - Whether to only escape required characters.
- * @param {boolean?} [options.useNamedReferences=false]
- *   - Whether to use entities where possible.
- * @return {string} - Encoded `value`.
- */
+                 * Encode special characters in `value`.
+                 *
+                 * @param {string} value - Value to encode.
+                 * @param {Object?} [options] - Configuration.
+                 * @param {boolean?} [options.escapeOnly=false]
+                 *   - Whether to only escape required characters.
+                 * @param {boolean?} [options.useNamedReferences=false]
+                 *   - Whether to use entities where possible.
+                 * @return {string} - Encoded `value`.
+                 */
                 function encode(value, options) {
                     var settings = options || {};
                     var escapeOnly = settings.escapeOnly;
@@ -15976,11 +15976,11 @@
                 }
 
                 /**
- * Shortcut to escape special characters in HTML.
- *
- * @param {string} value - Value to encode.
- * @return {string} - Encoded `value`.
- */
+                 * Shortcut to escape special characters in HTML.
+                 *
+                 * @param {string} value - Value to encode.
+                 * @return {string} - Encoded `value`.
+                 */
                 function escape(value) {
                     return encode(value, {
                         escapeOnly: true,
@@ -16048,9 +16048,9 @@
                 var StructuredSource = (function() {
                     var StructuredSource =
                         /**
-   * @constructs StructuredSource
-   * @param {string} source - source code text.
-   */
+                         * @constructs StructuredSource
+                         * @param {string} source - source code text.
+                         */
                         function StructuredSource(source) {
                             this.indice = [0];
                             var regexp = /[\r\n\u2028\u2029]/g;
@@ -16460,17 +16460,17 @@
                 var LINE = "\n";
 
                 /**
- * Remove final newline characters from `value`.
- *
- * @example
- *   trimTrailingLines('foo\nbar'); // 'foo\nbar'
- *   trimTrailingLines('foo\nbar\n'); // 'foo\nbar'
- *   trimTrailingLines('foo\nbar\n\n'); // 'foo\nbar'
- *
- * @param {string} value - Value with trailing newlines,
- *   coerced to string.
- * @return {string} - Value without trailing newlines.
- */
+                 * Remove final newline characters from `value`.
+                 *
+                 * @example
+                 *   trimTrailingLines('foo\nbar'); // 'foo\nbar'
+                 *   trimTrailingLines('foo\nbar\n'); // 'foo\nbar'
+                 *   trimTrailingLines('foo\nbar\n\n'); // 'foo\nbar'
+                 *
+                 * @param {string} value - Value with trailing newlines,
+                 *   coerced to string.
+                 * @return {string} - Value without trailing newlines.
+                 */
                 function trimTrailingLines(value) {
                     var index;
 
@@ -16513,22 +16513,22 @@
         49: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module unherit
- * @fileoverview Create a custom constructor which can be modified
- *   without affecting the original class.
- * @example
- *   var EventEmitter = require('events').EventEmitter;
- *   var Emitter = unherit(EventEmitter);
- *   // Create a private class which acts just like
- *   // `EventEmitter`.
- *
- *   Emitter.prototype.defaultMaxListeners = 0;
- *   // Now, all instances of `Emitter` have no maximum
- *   // listeners, without affecting other `EventEmitter`s.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module unherit
+                 * @fileoverview Create a custom constructor which can be modified
+                 *   without affecting the original class.
+                 * @example
+                 *   var EventEmitter = require('events').EventEmitter;
+                 *   var Emitter = unherit(EventEmitter);
+                 *   // Create a private class which acts just like
+                 *   // `EventEmitter`.
+                 *
+                 *   Emitter.prototype.defaultMaxListeners = 0;
+                 *   // Now, all instances of `Emitter` have no maximum
+                 *   // listeners, without affecting other `EventEmitter`s.
+                 */
 
                 "use strict";
 
@@ -16540,30 +16540,30 @@
                 var inherits = require("inherits");
 
                 /**
- * Create a custom constructor which can be modified
- * without affecting the original class.
- *
- * @param {Function} Super - Super-class.
- * @return {Function} - Constructor acting like `Super`,
- *   which can be modified without affecting the original
- *   class.
- */
+                 * Create a custom constructor which can be modified
+                 * without affecting the original class.
+                 *
+                 * @param {Function} Super - Super-class.
+                 * @return {Function} - Constructor acting like `Super`,
+                 *   which can be modified without affecting the original
+                 *   class.
+                 */
                 function unherit(Super) {
                     var base = clone(Super.prototype);
                     var result;
                     var key;
 
                     /**
-     * Constructor accepting a single argument,
-     * which itself is an `arguments` object.
-     */
+                     * Constructor accepting a single argument,
+                     * which itself is an `arguments` object.
+                     */
                     function From(parameters) {
                         return Super.apply(this, parameters);
                     }
 
                     /**
-     * Constructor accepting variadic arguments.
-     */
+                     * Constructor accepting variadic arguments.
+                     */
                     function Of() {
                         if (!(this instanceof Of)) {
                             return new From(arguments);
@@ -16603,12 +16603,12 @@
         50: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module unified
- * @fileoverview Pluggable text processing interface.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module unified
+                 * @fileoverview Pluggable text processing interface.
+                 */
 
                 "use strict";
 
@@ -16625,14 +16625,14 @@
         51: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module unified
- * @fileoverview Middleware.  Inspired by `segmentio/ware`,
- *   but able to change the values from transformer to
- *   transformer.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module unified
+                 * @fileoverview Middleware.  Inspired by `segmentio/ware`,
+                 *   but able to change the values from transformer to
+                 *   transformer.
+                 */
 
                 "use strict";
 
@@ -16641,24 +16641,24 @@
                 var slice = [].slice;
 
                 /**
- * Wrap `fn`.  Can be sync or async; return a promise,
- * receive a completion handler, return new values and
- * errors.
- *
- * @param {Function} fn - Thing to wrap.
- * @param {Function} next - Completion handler.
- * @return {Function} - Wrapped `fn`.
- */
+                 * Wrap `fn`.  Can be sync or async; return a promise,
+                 * receive a completion handler, return new values and
+                 * errors.
+                 *
+                 * @param {Function} fn - Thing to wrap.
+                 * @param {Function} next - Completion handler.
+                 * @return {Function} - Wrapped `fn`.
+                 */
                 function wrap(fn, next) {
                     var invoked;
                     var failed;
 
                     /**
-     * Invoke `next`, only once.
-     * Tracks if an error is passed, too.
-     *
-     * @param {Error?} err - Optional error.
-     */
+                     * Invoke `next`, only once.
+                     * Tracks if an error is passed, too.
+                     *
+                     * @param {Error?} err - Optional error.
+                     */
                     function done(err) {
                         if (!invoked) {
                             invoked = true;
@@ -16672,11 +16672,11 @@
                     }
 
                     /**
-     * Invoke `done` with one value.
-     * Tracks if an error is passed, too.
-     *
-     * @param {*} value - Optional value.
-     */
+                     * Invoke `done` with one value.
+                     * Tracks if an error is passed, too.
+                     *
+                     * @param {*} value - Optional value.
+                     */
                     function then(value) {
                         done(null, value);
                     }
@@ -16721,31 +16721,31 @@
                 }
 
                 /**
- * Create new middleware.
- *
- * @return {Object} - Middlewre.
- */
+                 * Create new middleware.
+                 *
+                 * @return {Object} - Middlewre.
+                 */
                 function trough() {
                     var fns = [];
                     var middleware = {};
 
                     /**
-     * Run `fns`.  Last argument must be
-     * a completion handler.
-     *
-     * @param {...*} input - Parameters
-     */
+                     * Run `fns`.  Last argument must be
+                     * a completion handler.
+                     *
+                     * @param {...*} input - Parameters
+                     */
                     function run() {
                         var index = -1;
                         var input = slice.call(arguments, 0, -1);
                         var done = arguments[arguments.length - 1];
 
                         /**
-         * Run the next `fn`, if any.
-         *
-         * @param {Error?} err - Failure.
-         * @param {...*} values - Other input.
-         */
+                         * Run the next `fn`, if any.
+                         *
+                         * @param {Error?} err - Failure.
+                         * @param {...*} values - Other input.
+                         */
                         function next(err) {
                             var fn = fns[++index];
                             var params = slice.call(arguments, 0);
@@ -16781,10 +16781,10 @@
                     }
 
                     /**
-     * Add `fn` to the list.
-     *
-     * @param {Function} fn - Anything `wrap` accepts.
-     */
+                     * Add `fn` to the list.
+                     *
+                     * @param {Function} fn - Anything `wrap` accepts.
+                     */
                     function use(fn) {
                         fns.push(fn);
 
@@ -16809,12 +16809,12 @@
             function(require, module, exports) {
                 (function(global) {
                     /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module unified
- * @fileoverview Pluggable text processing interface.
- */
+                     * @author Titus Wormer
+                     * @copyright 2015 Titus Wormer
+                     * @license MIT
+                     * @module unified
+                     * @fileoverview Pluggable text processing interface.
+                     */
 
                     "use strict";
 
@@ -16862,60 +16862,60 @@
                         });
 
                     /**
- * Check if `node` is a Unist node.
- *
- * @param {*} node - Value.
- * @return {boolean} - Whether `node` is a Unist node.
- */
+                     * Check if `node` is a Unist node.
+                     *
+                     * @param {*} node - Value.
+                     * @return {boolean} - Whether `node` is a Unist node.
+                     */
                     function isNode(node) {
                         return node && typeof node.type === "string" && node.type.length !== 0;
                     }
 
                     /**
- * Check if `file` is a VFile.
- *
- * @param {*} file - Value.
- * @return {boolean} - Whether `file` is a VFile.
- */
+                     * Check if `file` is a VFile.
+                     *
+                     * @param {*} file - Value.
+                     * @return {boolean} - Whether `file` is a VFile.
+                     */
                     function isFile(file) {
                         return file && typeof file.contents === "string";
                     }
 
                     /**
- * Check if `fn` is a function.
- *
- * @param {*} fn - Value.
- * @return {boolean} - Whether `fn` is a function.
- */
+                     * Check if `fn` is a function.
+                     *
+                     * @param {*} fn - Value.
+                     * @return {boolean} - Whether `fn` is a function.
+                     */
                     function isFunction(fn) {
                         return typeof fn === "function";
                     }
 
                     /**
- * Check if `compiler` is a Compiler.
- *
- * @param {*} compiler - Value.
- * @return {boolean} - Whether `compiler` is a Compiler.
- */
+                     * Check if `compiler` is a Compiler.
+                     *
+                     * @param {*} compiler - Value.
+                     * @return {boolean} - Whether `compiler` is a Compiler.
+                     */
                     function isCompiler(compiler) {
                         return isFunction(compiler) && compiler.prototype && isFunction(compiler.prototype.compile);
                     }
 
                     /**
- * Check if `parser` is a Parser.
- *
- * @param {*} parser - Value.
- * @return {boolean} - Whether `parser` is a Parser.
- */
+                     * Check if `parser` is a Parser.
+                     *
+                     * @param {*} parser - Value.
+                     * @return {boolean} - Whether `parser` is a Parser.
+                     */
                     function isParser(parser) {
                         return isFunction(parser) && parser.prototype && isFunction(parser.prototype.parse);
                     }
 
                     /**
- * Function to create the first processor.
- *
- * @return {Function} - First processor.
- */
+                     * Function to create the first processor.
+                     *
+                     * @return {Function} - First processor.
+                     */
                     function unified() {
                         var attachers = [];
                         var transformers = trough();
@@ -16928,12 +16928,12 @@
                         var key;
 
                         /**
-     * Create a new processor based on the processor
-     * in the current scope.
-     *
-     * @return {Processor} - New concrete processor based
-     *   on the descendant processor.
-     */
+                         * Create a new processor based on the processor
+                         * in the current scope.
+                         *
+                         * @return {Processor} - New concrete processor based
+                         *   on the descendant processor.
+                         */
                         function processor() {
                             var destination = unified();
                             var length = attachers.length;
@@ -16961,10 +16961,10 @@
      */
 
                         /**
-     * Assert a parser is available.
-     *
-     * @param {string} name - Name of callee.
-     */
+                         * Assert a parser is available.
+                         *
+                         * @param {string} name - Name of callee.
+                         */
                         function assertParser(name) {
                             if (!isParser(processor.Parser)) {
                                 throw new Error("Cannot `" + name + "` without `Parser`");
@@ -16972,10 +16972,10 @@
                         }
 
                         /**
-     * Assert a compiler is available.
-     *
-     * @param {string} name - Name of callee.
-     */
+                         * Assert a compiler is available.
+                         *
+                         * @param {string} name - Name of callee.
+                         */
                         function assertCompiler(name) {
                             if (!isCompiler(processor.Compiler)) {
                                 throw new Error("Cannot `" + name + "` without `Compiler`");
@@ -16983,10 +16983,10 @@
                         }
 
                         /**
-     * Assert the processor is concrete.
-     *
-     * @param {string} name - Name of callee.
-     */
+                         * Assert the processor is concrete.
+                         *
+                         * @param {string} name - Name of callee.
+                         */
                         function assertConcrete(name) {
                             if (!concrete) {
                                 throw new Error(
@@ -17000,10 +17000,10 @@
                         }
 
                         /**
-     * Assert `node` is a Unist node.
-     *
-     * @param {*} node - Value to check.
-     */
+                         * Assert `node` is a Unist node.
+                         *
+                         * @param {*} node - Value to check.
+                         */
                         function assertNode(node) {
                             if (!isNode(node)) {
                                 throw new Error("Expected node, got `" + node + "`");
@@ -17011,15 +17011,15 @@
                         }
 
                         /**
-     * Assert, if no `done` is given, that `complete` is
-     * `true`.
-     *
-     * @param {string} name - Name of callee.
-     * @param {boolean} complete - Whether an async process
-     *   is complete.
-     * @param {Function?} done - Optional handler of async
-     *   results.
-     */
+                         * Assert, if no `done` is given, that `complete` is
+                         * `true`.
+                         *
+                         * @param {string} name - Name of callee.
+                         * @param {boolean} complete - Whether an async process
+                         *   is complete.
+                         * @param {Function?} done - Optional handler of async
+                         *   results.
+                         */
                         function assertDone(name, complete, done) {
                             if (!complete && !done) {
                                 throw new Error(
@@ -17039,18 +17039,18 @@
                         });
 
                         /**
-     * Abstract: used to signal an abstract processor which
-     * should made concrete before using.
-     *
-     * For example, take unified itself.  It’s abstract.
-     * Plug-ins should not be added to it.  Rather, it should
-     * be made concrete (by invoking it) before modifying it.
-     *
-     * In essence, always invoke this when exporting a
-     * processor.
-     *
-     * @return {Processor} - The operated on processor.
-     */
+                         * Abstract: used to signal an abstract processor which
+                         * should made concrete before using.
+                         *
+                         * For example, take unified itself.  It’s abstract.
+                         * Plug-ins should not be added to it.  Rather, it should
+                         * be made concrete (by invoking it) before modifying it.
+                         *
+                         * In essence, always invoke this when exporting a
+                         * processor.
+                         *
+                         * @return {Processor} - The operated on processor.
+                         */
                         function abstract() {
                             concrete = false;
 
@@ -17058,16 +17058,16 @@
                         }
 
                         /**
-     * Data management.
-     *
-     * Getter / setter for processor-specific informtion.
-     *
-     * @param {string} key - Key to get or set.
-     * @param {*} value - Value to set.
-     * @return {*} - Either the operator on processor in
-     *   setter mode; or the value stored as `key` in
-     *   getter mode.
-     */
+                         * Data management.
+                         *
+                         * Getter / setter for processor-specific informtion.
+                         *
+                         * @param {string} key - Key to get or set.
+                         * @param {*} value - Value to set.
+                         * @return {*} - Either the operator on processor in
+                         *   setter mode; or the value stored as `key` in
+                         *   getter mode.
+                         */
                         function data(key, value) {
                             assertConcrete("data");
 
@@ -17095,18 +17095,18 @@
                         }
 
                         /**
-     * Plug-in management.
-     *
-     * Pass it:
-     * *   an attacher and options,
-     * *   a list of attachers and options for all of them;
-     * *   a tuple of one attacher and options.
-     * *   a matrix: list containing any of the above and
-     *     matrices.
-     *
-     * @param {...*} value - See description.
-     * @return {Processor} - The operated on processor.
-     */
+                         * Plug-in management.
+                         *
+                         * Pass it:
+                         * *   an attacher and options,
+                         * *   a list of attachers and options for all of them;
+                         * *   a tuple of one attacher and options.
+                         * *   a matrix: list containing any of the above and
+                         *     matrices.
+                         *
+                         * @param {...*} value - See description.
+                         * @return {Processor} - The operated on processor.
+                         */
                         function use(value) {
                             var args = slice.call(arguments, 0);
                             var params = args.slice(1);
@@ -17162,14 +17162,14 @@
                         }
 
                         /**
-     * Parse a file (in string or VFile representation)
-     * into a Unist node using the `Parser` on the
-     * processor.
-     *
-     * @param {(string|VFile)?} [file] - File to process.
-     * @param {Object?} [options] - Configuration.
-     * @return {Node} - Unist node.
-     */
+                         * Parse a file (in string or VFile representation)
+                         * into a Unist node using the `Parser` on the
+                         * processor.
+                         *
+                         * @param {(string|VFile)?} [file] - File to process.
+                         * @param {Object?} [options] - Configuration.
+                         * @return {Node} - Unist node.
+                         */
                         function parse(file, options) {
                             assertConcrete("parse");
                             assertParser("parse");
@@ -17178,14 +17178,14 @@
                         }
 
                         /**
-     * Run transforms on a Unist node representation of a file
-     * (in string or VFile representation).
-     *
-     * @param {Node} node - Unist node.
-     * @param {(string|VFile)?} [file] - File representation.
-     * @param {Function?} [done] - Callback.
-     * @return {Node} - The given or resulting Unist node.
-     */
+                         * Run transforms on a Unist node representation of a file
+                         * (in string or VFile representation).
+                         *
+                         * @param {Node} node - Unist node.
+                         * @param {(string|VFile)?} [file] - File representation.
+                         * @param {Function?} [done] - Callback.
+                         * @return {Node} - The given or resulting Unist node.
+                         */
                         function run(node, file, done) {
                             var complete = false;
                             var result;
@@ -17213,15 +17213,15 @@
                         }
 
                         /**
-     * Stringify a Unist node representation of a file
-     * (in string or VFile representation) into a string
-     * using the `Compiler` on the processor.
-     *
-     * @param {Node} node - Unist node.
-     * @param {(string|VFile)?} [file] - File representation.
-     * @param {Object?} [options] - Configuration.
-     * @return {string} - String representation.
-     */
+                         * Stringify a Unist node representation of a file
+                         * (in string or VFile representation) into a string
+                         * using the `Compiler` on the processor.
+                         *
+                         * @param {Node} node - Unist node.
+                         * @param {(string|VFile)?} [file] - File representation.
+                         * @param {Object?} [options] - Configuration.
+                         * @return {string} - String representation.
+                         */
                         function stringify(node, file, options) {
                             assertConcrete("stringify");
                             assertCompiler("stringify");
@@ -17236,17 +17236,17 @@
                         }
 
                         /**
-     * Parse a file (in string or VFile representation)
-     * into a Unist node using the `Parser` on the processor,
-     * then run transforms on that node, and compile the
-     * resulting node using the `Compiler` on the processor,
-     * and store that result on the VFile.
-     *
-     * @param {(string|VFile)?} file - File representation.
-     * @param {Object?} [options] - Configuration.
-     * @param {Function?} [done] - Callback.
-     * @return {VFile} - The given or resulting VFile.
-     */
+                         * Parse a file (in string or VFile representation)
+                         * into a Unist node using the `Parser` on the processor,
+                         * then run transforms on that node, and compile the
+                         * resulting node using the `Compiler` on the processor,
+                         * and store that result on the VFile.
+                         *
+                         * @param {(string|VFile)?} file - File representation.
+                         * @param {Object?} [options] - Configuration.
+                         * @param {Function?} [done] - Callback.
+                         * @return {VFile} - The given or resulting VFile.
+                         */
                         function process(file, options, done) {
                             var complete = false;
                             var exception;
@@ -17292,13 +17292,13 @@
      */
 
                         /**
-     * Write a chunk into memory.
-     *
-     * @param {(Buffer|string)?} chunk - Value to write.
-     * @param {string?} [encoding] - Encoding.
-     * @param {Function?} [callback] - Callback.
-     * @return {boolean} - Whether the write was succesful.
-     */
+                         * Write a chunk into memory.
+                         *
+                         * @param {(Buffer|string)?} chunk - Value to write.
+                         * @param {string?} [encoding] - Encoding.
+                         * @param {Function?} [callback] - Callback.
+                         * @return {boolean} - Whether the write was succesful.
+                         */
                         function write(chunk, encoding, callback) {
                             assertConcrete("write");
 
@@ -17322,16 +17322,16 @@
                         }
 
                         /**
-     * End the writing.  Passes all arguments to a final
-     * `write`.  Starts the process, which will trigger
-     * `error`, with a fatal error, if any; `data`, with
-     * the generated document in `string` form, if
-     * succesful.  If messages are triggered during the
-     * process, those are triggerd as `warning`s.
-     *
-     * @return {boolean} - Whether the last write was
-     *   succesful.
-     */
+                         * End the writing.  Passes all arguments to a final
+                         * `write`.  Starts the process, which will trigger
+                         * `error`, with a fatal error, if any; `data`, with
+                         * the generated document in `string` form, if
+                         * succesful.  If messages are triggered during the
+                         * process, those are triggerd as `warning`s.
+                         *
+                         * @return {boolean} - Whether the last write was
+                         *   succesful.
+                         */
                         function end() {
                             assertConcrete("end");
                             assertParser("end");
@@ -17370,18 +17370,18 @@
                         }
 
                         /**
-     * Pipe the processor into a writable stream.
-     *
-     * Basically `Stream#pipe`, but inlined and
-     * simplified to keep the bundled size down.
-     *
-     * @see https://github.com/nodejs/node/blob/master/lib/stream.js#L26
-     *
-     * @param {Stream} dest - Writable stream.
-     * @param {Object?} [options] - Processing
-     *   configuration.
-     * @return {Stream} - The destination stream.
-     */
+                         * Pipe the processor into a writable stream.
+                         *
+                         * Basically `Stream#pipe`, but inlined and
+                         * simplified to keep the bundled size down.
+                         *
+                         * @see https://github.com/nodejs/node/blob/master/lib/stream.js#L26
+                         *
+                         * @param {Stream} dest - Writable stream.
+                         * @param {Object?} [options] - Processing
+                         *   configuration.
+                         * @return {Stream} - The destination stream.
+                         */
                         function pipe(dest, options) {
                             var onend = once(function() {
                                 dest.end();
@@ -17392,10 +17392,10 @@
                             settings = options || {};
 
                             /**
-         * Handle data.
-         *
-         * @param {*} chunk - Data to pass through.
-         */
+                             * Handle data.
+                             *
+                             * @param {*} chunk - Data to pass through.
+                             */
                             function ondata(chunk) {
                                 if (dest.writable) {
                                     dest.write(chunk);
@@ -17403,8 +17403,8 @@
                             }
 
                             /**
-         * Clean listeners.
-         */
+                             * Clean listeners.
+                             */
                             function cleanup() {
                                 processor.removeListener("data", ondata);
                                 processor.removeListener("end", onend);
@@ -17417,10 +17417,10 @@
                             }
 
                             /**
-         * Close dangling pipes and handle unheard errors.
-         *
-         * @param {Error} err - Exception.
-         */
+                             * Close dangling pipes and handle unheard errors.
+                             *
+                             * @param {Error} err - Exception.
+                             */
                             function onerror(err) {
                                 var handlers = processor._events.error;
 
@@ -17512,12 +17512,12 @@
         53: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2016 Titus Wormer
- * @license MIT
- * @module unist:util:remove-position
- * @fileoverview Remove `position`s from a unist tree.
- */
+                 * @author Titus Wormer
+                 * @copyright 2016 Titus Wormer
+                 * @license MIT
+                 * @module unist:util:remove-position
+                 * @fileoverview Remove `position`s from a unist tree.
+                 */
 
                 "use strict";
 
@@ -17530,11 +17530,11 @@
                 var visit = require("unist-util-visit");
 
                 /**
- * Remove `position`s from `tree`.
- *
- * @param {Node} tree - Node.
- * @return {Node} - Node without `position`s.
- */
+                 * Remove `position`s from `tree`.
+                 *
+                 * @param {Node} tree - Node.
+                 * @return {Node} - Node without `position`s.
+                 */
                 function removePosition(tree) {
                     visit(tree, function(node) {
                         node.position = undefined;
@@ -17554,28 +17554,28 @@
         54: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module unist:util:visit
- * @fileoverview Recursively walk over unist nodes.
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module unist:util:visit
+                 * @fileoverview Recursively walk over unist nodes.
+                 */
 
                 "use strict";
 
                 /* eslint-env commonjs */
 
                 /**
- * Visit.
- *
- * @param {Node} tree - Root node
- * @param {string} [type] - Node type.
- * @param {function(node): boolean?} visitor - Invoked
- *   with each found node.  Can return `false` to stop.
- * @param {boolean} [reverse] - By default, `visit` will
- *   walk forwards, when `reverse` is `true`, `visit`
- *   walks backwards.
- */
+                 * Visit.
+                 *
+                 * @param {Node} tree - Root node
+                 * @param {string} [type] - Node type.
+                 * @param {function(node): boolean?} visitor - Invoked
+                 *   with each found node.  Can return `false` to stop.
+                 * @param {boolean} [reverse] - By default, `visit` will
+                 *   walk forwards, when `reverse` is `true`, `visit`
+                 *   walks backwards.
+                 */
                 function visit(tree, type, visitor, reverse) {
                     if (typeof type === "function") {
                         reverse = visitor;
@@ -17584,12 +17584,12 @@
                     }
 
                     /**
-     * Visit children in `parent`.
-     *
-     * @param {Array.<Node>} children - Children of `node`.
-     * @param {Node?} parent - Parent of `node`.
-     * @return {boolean?} - `false` if the visiting stopped.
-     */
+                     * Visit children in `parent`.
+                     *
+                     * @param {Array.<Node>} children - Children of `node`.
+                     * @param {Node?} parent - Parent of `node`.
+                     * @return {boolean?} - `false` if the visiting stopped.
+                     */
                     function all(children, parent) {
                         var step = reverse ? -1 : 1;
                         var max = children.length;
@@ -17611,13 +17611,13 @@
                     }
 
                     /**
-     * Visit a single node.
-     *
-     * @param {Node} node - Node to visit.
-     * @param {number?} [index] - Position of `node` in `parent`.
-     * @param {Node?} [parent] - Parent of `node`.
-     * @return {boolean?} - A result of invoking `visitor`.
-     */
+                     * Visit a single node.
+                     *
+                     * @param {Node} node - Node to visit.
+                     * @param {number?} [index] - Position of `node` in `parent`.
+                     * @param {Node?} [parent] - Parent of `node`.
+                     * @return {boolean?} - A result of invoking `visitor`.
+                     */
                     function one(node, index, parent) {
                         var result;
 
@@ -17648,25 +17648,25 @@
         55: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2016 Titus Wormer
- * @license MIT
- * @module vfile:location
- * @fileoverview Convert between positions (line and
- *   column-based) and offsets (range-based) locations.
- */
+                 * @author Titus Wormer
+                 * @copyright 2016 Titus Wormer
+                 * @license MIT
+                 * @module vfile:location
+                 * @fileoverview Convert between positions (line and
+                 *   column-based) and offsets (range-based) locations.
+                 */
 
                 "use strict";
 
                 /* eslint-env commonjs */
 
                 /**
- * Get indices of line-breaks in `value`.
- *
- * @param {string} value - Value.
- * @return {Array.<number>} - List of indices of
- *   line-breaks.
- */
+                 * Get indices of line-breaks in `value`.
+                 *
+                 * @param {string} value - Value.
+                 * @return {Array.<number>} - List of indices of
+                 *   line-breaks.
+                 */
                 function indices(value) {
                     var result = [];
                     var index = value.indexOf("\n");
@@ -17683,23 +17683,23 @@
                 }
 
                 /**
- * Factory to get the `offset` for a line and column-based
- * `position` in the bound indices.
- *
- * @param {Array.<number>} indices - Indices of
- *   line-breaks in `value`.
- * @return {Function} - Bound method.
- */
+                 * Factory to get the `offset` for a line and column-based
+                 * `position` in the bound indices.
+                 *
+                 * @param {Array.<number>} indices - Indices of
+                 *   line-breaks in `value`.
+                 * @return {Function} - Bound method.
+                 */
                 function positionToOffsetFactory(indices) {
                     /**
-     * Get the `offset` for a line and column-based
-     * `position` in the bound indices.
-     *
-     * @param {Position} position - Object with `line` and
-     *   `column` properties.
-     * @return {number} - Offset. `-1` when given invalid
-     *   or out of bounds input.
-     */
+                     * Get the `offset` for a line and column-based
+                     * `position` in the bound indices.
+                     *
+                     * @param {Position} position - Object with `line` and
+                     *   `column` properties.
+                     * @return {number} - Offset. `-1` when given invalid
+                     *   or out of bounds input.
+                     */
                     function positionToOffset(position) {
                         var line = position && position.line;
                         var column = position && position.column;
@@ -17715,24 +17715,24 @@
                 }
 
                 /**
- * Factory to get the line and column-based `position` for
- * `offset` in the bound indices.
- *
- * @param {Array.<number>} indices - Indices of
- *   line-breaks in `value`.
- * @return {Function} - Bound method.
- */
+                 * Factory to get the line and column-based `position` for
+                 * `offset` in the bound indices.
+                 *
+                 * @param {Array.<number>} indices - Indices of
+                 *   line-breaks in `value`.
+                 * @return {Function} - Bound method.
+                 */
                 function offsetToPositionFactory(indices) {
                     /**
-     * Get the line and column-based `position` for
-     * `offset` in the bound indices.
-     *
-     * @param {number} offset - Offset.
-     * @return {Position} - Object with `line`, `column`,
-     *   and `offset` properties based on the bound
-     *   `indices`.  An empty object when given invalid
-     *   or out of bounds input.
-     */
+                     * Get the line and column-based `position` for
+                     * `offset` in the bound indices.
+                     *
+                     * @param {number} offset - Offset.
+                     * @return {Position} - Object with `line`, `column`,
+                     *   and `offset` properties based on the bound
+                     *   `indices`.  An empty object when given invalid
+                     *   or out of bounds input.
+                     */
                     function offsetToPosition(offset) {
                         var index = -1;
                         var length = indices.length;
@@ -17758,10 +17758,10 @@
                 }
 
                 /**
- * Factory.
- *
- * @param {VFile|string} file - Virtual file or document.
- */
+                 * Factory.
+                 *
+                 * @param {VFile|string} file - Virtual file or document.
+                 */
                 function factory(file) {
                     var contents = indices(String(file));
 
@@ -17786,40 +17786,40 @@
         56: [
             function(require, module, exports) {
                 /**
- * @author Titus Wormer
- * @copyright 2015 Titus Wormer
- * @license MIT
- * @module vfile
- * @fileoverview Virtual file format to attach additional
- *   information related to processed input.  Similar to
- *   `wearefractal/vinyl`.  Additionally, `VFile` can be
- *   passed directly to ESLint formatters to visualise
- *   warnings and errors relating to a file.
- * @example
- *   var VFile = require('vfile');
- *
- *   var file = new VFile({
- *     'directory': '~',
- *     'filename': 'example',
- *     'extension': 'txt',
- *     'contents': 'Foo *bar* baz'
- *   });
- *
- *   file.toString(); // 'Foo *bar* baz'
- *   file.filePath(); // '~/example.txt'
- *
- *   file.move({'extension': 'md'});
- *   file.filePath(); // '~/example.md'
- *
- *   file.warn('Something went wrong', {'line': 2, 'column': 3});
- *   // { [~/example.md:2:3: Something went wrong]
- *   //   name: '~/example.md:2:3',
- *   //   file: '~/example.md',
- *   //   reason: 'Something went wrong',
- *   //   line: 2,
- *   //   column: 3,
- *   //   fatal: false }
- */
+                 * @author Titus Wormer
+                 * @copyright 2015 Titus Wormer
+                 * @license MIT
+                 * @module vfile
+                 * @fileoverview Virtual file format to attach additional
+                 *   information related to processed input.  Similar to
+                 *   `wearefractal/vinyl`.  Additionally, `VFile` can be
+                 *   passed directly to ESLint formatters to visualise
+                 *   warnings and errors relating to a file.
+                 * @example
+                 *   var VFile = require('vfile');
+                 *
+                 *   var file = new VFile({
+                 *     'directory': '~',
+                 *     'filename': 'example',
+                 *     'extension': 'txt',
+                 *     'contents': 'Foo *bar* baz'
+                 *   });
+                 *
+                 *   file.toString(); // 'Foo *bar* baz'
+                 *   file.filePath(); // '~/example.txt'
+                 *
+                 *   file.move({'extension': 'md'});
+                 *   file.filePath(); // '~/example.md'
+                 *
+                 *   file.warn('Something went wrong', {'line': 2, 'column': 3});
+                 *   // { [~/example.md:2:3: Something went wrong]
+                 *   //   name: '~/example.md:2:3',
+                 *   //   file: '~/example.md',
+                 *   //   reason: 'Something went wrong',
+                 *   //   line: 2,
+                 *   //   column: 3,
+                 *   //   fatal: false }
+                 */
 
                 "use strict";
 
@@ -17836,39 +17836,39 @@
                 }
 
                 /**
- * Construct a new file message.
- *
- * Note: We cannot invoke `Error` on the created context,
- * as that adds readonly `line` and `column` attributes on
- * Safari 9, thus throwing and failing the data.
- *
- * @example
- *   var message = new VFileMessage('Whoops!');
- *
- *   message instanceof Error // true
- *
- * @constructor
- * @class {VFileMessage}
- * @param {string} reason - Reason for messaging.
- * @property {boolean} [fatal=null] - Whether the message
- *   is fatal.
- * @property {string} [name=''] - File-name and positional
- *   information.
- * @property {string} [file=''] - File-path.
- * @property {string} [reason=''] - Reason for messaging.
- * @property {number} [line=null] - Start of message.
- * @property {number} [column=null] - Start of message.
- * @property {Position|Location} [location=null] - Place of
- *   message.
- * @property {string} [stack] - Stack-trace of warning.
- */
+                 * Construct a new file message.
+                 *
+                 * Note: We cannot invoke `Error` on the created context,
+                 * as that adds readonly `line` and `column` attributes on
+                 * Safari 9, thus throwing and failing the data.
+                 *
+                 * @example
+                 *   var message = new VFileMessage('Whoops!');
+                 *
+                 *   message instanceof Error // true
+                 *
+                 * @constructor
+                 * @class {VFileMessage}
+                 * @param {string} reason - Reason for messaging.
+                 * @property {boolean} [fatal=null] - Whether the message
+                 *   is fatal.
+                 * @property {string} [name=''] - File-name and positional
+                 *   information.
+                 * @property {string} [file=''] - File-path.
+                 * @property {string} [reason=''] - Reason for messaging.
+                 * @property {number} [line=null] - Start of message.
+                 * @property {number} [column=null] - Start of message.
+                 * @property {Position|Location} [location=null] - Place of
+                 *   message.
+                 * @property {string} [stack] - Stack-trace of warning.
+                 */
                 function VFileMessage(reason) {
                     this.message = reason;
                 }
 
                 /**
- * Inherit from `Error#`.
- */
+                 * Inherit from `Error#`.
+                 */
                 function VFileMessagePrototype() {}
 
                 VFileMessagePrototype.prototype = Error.prototype;
@@ -17885,39 +17885,39 @@
                 proto.fatal = proto.column = proto.line = null;
 
                 /**
- * File-related message with location information.
- *
- * @typedef {Error} VFileMessage
- * @property {string} name - (Starting) location of the
- *   message, preceded by its file-path when available,
- *   and joined by `:`. Used internally by the native
- *   `Error#toString()`.
- * @property {string} file - File-path.
- * @property {string} reason - Reason for message.
- * @property {number?} line - Line of message, when
- *   available.
- * @property {number?} column - Column of message, when
- *   available.
- * @property {string?} stack - Stack of message, when
- *   available.
- * @property {boolean?} fatal - Whether the associated file
- *   is still processable.
- */
+                 * File-related message with location information.
+                 *
+                 * @typedef {Error} VFileMessage
+                 * @property {string} name - (Starting) location of the
+                 *   message, preceded by its file-path when available,
+                 *   and joined by `:`. Used internally by the native
+                 *   `Error#toString()`.
+                 * @property {string} file - File-path.
+                 * @property {string} reason - Reason for message.
+                 * @property {number?} line - Line of message, when
+                 *   available.
+                 * @property {number?} column - Column of message, when
+                 *   available.
+                 * @property {string?} stack - Stack of message, when
+                 *   available.
+                 * @property {boolean?} fatal - Whether the associated file
+                 *   is still processable.
+                 */
 
                 /**
- * Stringify a position.
- *
- * @example
- *   stringify({'line': 1, 'column': 3}) // '1:3'
- *   stringify({'line': 1}) // '1:1'
- *   stringify({'column': 3}) // '1:3'
- *   stringify() // '1:1'
- *
- * @private
- * @param {Object?} [position] - Single position, like
- *   those available at `node.position.start`.
- * @return {string} - Compiled location.
- */
+                 * Stringify a position.
+                 *
+                 * @example
+                 *   stringify({'line': 1, 'column': 3}) // '1:3'
+                 *   stringify({'line': 1}) // '1:1'
+                 *   stringify({'column': 3}) // '1:3'
+                 *   stringify() // '1:1'
+                 *
+                 * @private
+                 * @param {Object?} [position] - Single position, like
+                 *   those available at `node.position.start`.
+                 * @return {string} - Compiled location.
+                 */
                 function stringify(position) {
                     if (!position) {
                         position = {};
@@ -17927,50 +17927,50 @@
                 }
 
                 /**
- * ESLint's formatter API expects `filePath` to be a
- * string.  This hack supports invocation as well as
- * implicit coercion.
- *
- * @example
- *   var file = new VFile({
- *     'filename': 'example',
- *     'extension': 'txt'
- *   });
- *
- *   filePath = filePathFactory(file);
- *
- *   String(filePath); // 'example.txt'
- *   filePath(); // 'example.txt'
- *
- * @private
- * @param {VFile} file - Virtual file.
- * @return {Function} - `filePath` getter.
- */
+                 * ESLint's formatter API expects `filePath` to be a
+                 * string.  This hack supports invocation as well as
+                 * implicit coercion.
+                 *
+                 * @example
+                 *   var file = new VFile({
+                 *     'filename': 'example',
+                 *     'extension': 'txt'
+                 *   });
+                 *
+                 *   filePath = filePathFactory(file);
+                 *
+                 *   String(filePath); // 'example.txt'
+                 *   filePath(); // 'example.txt'
+                 *
+                 * @private
+                 * @param {VFile} file - Virtual file.
+                 * @return {Function} - `filePath` getter.
+                 */
                 function filePathFactory(file) {
                     /**
-     * Get the filename, with extension and directory, if applicable.
-     *
-     * @example
-     *   var file = new VFile({
-     *     'directory': '~',
-     *     'filename': 'example',
-     *     'extension': 'txt'
-     *   });
-     *
-     *   String(file.filePath); // ~/example.txt
-     *   file.filePath() // ~/example.txt
-     *
-     * @memberof {VFile}
-     * @property {Function} toString - Itself. ESLint's
-     *   formatter API expects `filePath` to be `string`.
-     *   This hack supports invocation as well as implicit
-     *   coercion.
-     * @return {string} - If the `vFile` has a `filename`,
-     *   it will be prefixed with the directory (slashed),
-     *   if applicable, and suffixed with the (dotted)
-     *   extension (if applicable).  Otherwise, an empty
-     *   string is returned.
-     */
+                     * Get the filename, with extension and directory, if applicable.
+                     *
+                     * @example
+                     *   var file = new VFile({
+                     *     'directory': '~',
+                     *     'filename': 'example',
+                     *     'extension': 'txt'
+                     *   });
+                     *
+                     *   String(file.filePath); // ~/example.txt
+                     *   file.filePath() // ~/example.txt
+                     *
+                     * @memberof {VFile}
+                     * @property {Function} toString - Itself. ESLint's
+                     *   formatter API expects `filePath` to be `string`.
+                     *   This hack supports invocation as well as implicit
+                     *   coercion.
+                     * @return {string} - If the `vFile` has a `filename`,
+                     *   it will be prefixed with the directory (slashed),
+                     *   if applicable, and suffixed with the (dotted)
+                     *   extension (if applicable).  Otherwise, an empty
+                     *   string is returned.
+                     */
                     function filePath() {
                         var directory = file.directory;
                         var separator;
@@ -18002,20 +18002,20 @@
                 }
 
                 /**
-* Get the filename with extantion.
-*
-* @example
-*   var file = new VFile({
-*     'directory': '~/foo/bar'
-*     'filename': 'example',
-*     'extension': 'txt'
-*   });
-*
-*   file.basename() // example.txt
-*
-* @memberof {VFile}
-* @return {string} - name of file with extantion.
-*/
+                 * Get the filename with extantion.
+                 *
+                 * @example
+                 *   var file = new VFile({
+                 *     'directory': '~/foo/bar'
+                 *     'filename': 'example',
+                 *     'extension': 'txt'
+                 *   });
+                 *
+                 *   file.basename() // example.txt
+                 *
+                 * @memberof {VFile}
+                 * @return {string} - name of file with extantion.
+                 */
                 function basename() {
                     var self = this;
                     var extension = self.extension;
@@ -18028,43 +18028,43 @@
                 }
 
                 /**
- * Construct a new file.
- *
- * @example
- *   var file = new VFile({
- *     'directory': '~',
- *     'filename': 'example',
- *     'extension': 'txt',
- *     'contents': 'Foo *bar* baz'
- *   });
- *
- *   file === VFile(file) // true
- *   file === new VFile(file) // true
- *   VFile('foo') instanceof VFile // true
- *
- * @constructor
- * @class {VFile}
- * @param {Object|VFile|string} [options] - either an
- *   options object, or the value of `contents` (both
- *   optional).  When a `file` is passed in, it's
- *   immediately returned.
- * @property {string} [contents=''] - Content of file.
- * @property {string} [directory=''] - Path to parent
- *   directory.
- * @property {string} [filename=''] - Filename.
- *   A file-path can still be generated when no filename
- *   exists.
- * @property {string} [extension=''] - Extension.
- *   A file-path can still be generated when no extension
- *   exists.
- * @property {boolean?} quiet - Whether an error created by
- *   `VFile#fail()` is returned (when truthy) or thrown
- *   (when falsey). Ensure all `messages` associated with
- *   a file are handled properly when setting this to
- *   `true`.
- * @property {Array.<VFileMessage>} messages - List of associated
- *   messages.
- */
+                 * Construct a new file.
+                 *
+                 * @example
+                 *   var file = new VFile({
+                 *     'directory': '~',
+                 *     'filename': 'example',
+                 *     'extension': 'txt',
+                 *     'contents': 'Foo *bar* baz'
+                 *   });
+                 *
+                 *   file === VFile(file) // true
+                 *   file === new VFile(file) // true
+                 *   VFile('foo') instanceof VFile // true
+                 *
+                 * @constructor
+                 * @class {VFile}
+                 * @param {Object|VFile|string} [options] - either an
+                 *   options object, or the value of `contents` (both
+                 *   optional).  When a `file` is passed in, it's
+                 *   immediately returned.
+                 * @property {string} [contents=''] - Content of file.
+                 * @property {string} [directory=''] - Path to parent
+                 *   directory.
+                 * @property {string} [filename=''] - Filename.
+                 *   A file-path can still be generated when no filename
+                 *   exists.
+                 * @property {string} [extension=''] - Extension.
+                 *   A file-path can still be generated when no extension
+                 *   exists.
+                 * @property {boolean?} quiet - Whether an error created by
+                 *   `VFile#fail()` is returned (when truthy) or thrown
+                 *   (when falsey). Ensure all `messages` associated with
+                 *   a file are handled properly when setting this to
+                 *   `true`.
+                 * @property {Array.<VFileMessage>} messages - List of associated
+                 *   messages.
+                 */
                 function VFile(options) {
                     var self = this;
 
@@ -18113,45 +18113,45 @@
                 }
 
                 /**
- * Get the value of the file.
- *
- * @example
- *   var vFile = new VFile('Foo');
- *   String(vFile); // 'Foo'
- *
- * @this {VFile}
- * @memberof {VFile}
- * @return {string} - value at the `contents` property
- *   in context.
- */
+                 * Get the value of the file.
+                 *
+                 * @example
+                 *   var vFile = new VFile('Foo');
+                 *   String(vFile); // 'Foo'
+                 *
+                 * @this {VFile}
+                 * @memberof {VFile}
+                 * @return {string} - value at the `contents` property
+                 *   in context.
+                 */
                 function toString() {
                     return this.contents;
                 }
 
                 /**
- * Move a file by passing a new directory, filename,
- * and extension.  When these are not given, the default
- * values are kept.
- *
- * @example
- *   var file = new VFile({
- *     'directory': '~',
- *     'filename': 'example',
- *     'extension': 'txt',
- *     'contents': 'Foo *bar* baz'
- *   });
- *
- *   file.move({'directory': '/var/www'});
- *   file.filePath(); // '/var/www/example.txt'
- *
- *   file.move({'extension': 'md'});
- *   file.filePath(); // '/var/www/example.md'
- *
- * @this {VFile}
- * @memberof {VFile}
- * @param {Object?} [options] - Configuration.
- * @return {VFile} - Context object.
- */
+                 * Move a file by passing a new directory, filename,
+                 * and extension.  When these are not given, the default
+                 * values are kept.
+                 *
+                 * @example
+                 *   var file = new VFile({
+                 *     'directory': '~',
+                 *     'filename': 'example',
+                 *     'extension': 'txt',
+                 *     'contents': 'Foo *bar* baz'
+                 *   });
+                 *
+                 *   file.move({'directory': '/var/www'});
+                 *   file.filePath(); // '/var/www/example.txt'
+                 *
+                 *   file.move({'extension': 'md'});
+                 *   file.filePath(); // '/var/www/example.md'
+                 *
+                 * @this {VFile}
+                 * @memberof {VFile}
+                 * @param {Object?} [options] - Configuration.
+                 * @return {VFile} - Context object.
+                 */
                 function move(options) {
                     var self = this;
                     var before = self.filePath();
@@ -18175,30 +18175,30 @@
                 }
 
                 /**
- * Create a message with `reason` at `position`.
- * When an error is passed in as `reason`, copies the
- * stack.  This does not add a message to `messages`.
- *
- * @example
- *   var file = new VFile();
- *
- *   file.message('Something went wrong');
- *   // { [1:1: Something went wrong]
- *   //   name: '1:1',
- *   //   file: '',
- *   //   reason: 'Something went wrong',
- *   //   line: null,
- *   //   column: null }
- *
- * @this {VFile}
- * @memberof {VFile}
- * @param {string|Error} reason - Reason for message.
- * @param {Node|Location|Position} [position] - Location
- *   of message in file.
- * @param {string} [ruleId] - Category of warning.
- * @return {VFileMessage} - File-related message with
- *   location information.
- */
+                 * Create a message with `reason` at `position`.
+                 * When an error is passed in as `reason`, copies the
+                 * stack.  This does not add a message to `messages`.
+                 *
+                 * @example
+                 *   var file = new VFile();
+                 *
+                 *   file.message('Something went wrong');
+                 *   // { [1:1: Something went wrong]
+                 *   //   name: '1:1',
+                 *   //   file: '',
+                 *   //   reason: 'Something went wrong',
+                 *   //   line: null,
+                 *   //   column: null }
+                 *
+                 * @this {VFile}
+                 * @memberof {VFile}
+                 * @param {string|Error} reason - Reason for message.
+                 * @param {Node|Location|Position} [position] - Location
+                 *   of message in file.
+                 * @param {string} [ruleId] - Category of warning.
+                 * @return {VFileMessage} - File-related message with
+                 *   location information.
+                 */
                 function message(reason, position, ruleId) {
                     var filePath = this.filePath();
                     var range;
@@ -18254,25 +18254,25 @@
                 }
 
                 /**
- * Warn. Creates a non-fatal message (see `VFile#message()`),
- * and adds it to the file's `messages` list.
- *
- * @example
- *   var file = new VFile();
- *
- *   file.warn('Something went wrong');
- *   // { [1:1: Something went wrong]
- *   //   name: '1:1',
- *   //   file: '',
- *   //   reason: 'Something went wrong',
- *   //   line: null,
- *   //   column: null,
- *   //   fatal: false }
- *
- * @see VFile#message
- * @this {VFile}
- * @memberof {VFile}
- */
+                 * Warn. Creates a non-fatal message (see `VFile#message()`),
+                 * and adds it to the file's `messages` list.
+                 *
+                 * @example
+                 *   var file = new VFile();
+                 *
+                 *   file.warn('Something went wrong');
+                 *   // { [1:1: Something went wrong]
+                 *   //   name: '1:1',
+                 *   //   file: '',
+                 *   //   reason: 'Something went wrong',
+                 *   //   line: null,
+                 *   //   column: null,
+                 *   //   fatal: false }
+                 *
+                 * @see VFile#message
+                 * @this {VFile}
+                 * @memberof {VFile}
+                 */
                 function warn() {
                     var err = this.message.apply(this, arguments);
 
@@ -18284,39 +18284,39 @@
                 }
 
                 /**
- * Fail. Creates a fatal message (see `VFile#message()`),
- * sets `fatal: true`, adds it to the file's
- * `messages` list.
- *
- * If `quiet` is not `true`, throws the error.
- *
- * @example
- *   var file = new VFile();
- *
- *   file.fail('Something went wrong');
- *   // 1:1: Something went wrong
- *   //     at VFile.exception (vfile/index.js:296:11)
- *   //     at VFile.fail (vfile/index.js:360:20)
- *   //     at repl:1:6
- *
- *   file.quiet = true;
- *   file.fail('Something went wrong');
- *   // { [1:1: Something went wrong]
- *   //   name: '1:1',
- *   //   file: '',
- *   //   reason: 'Something went wrong',
- *   //   line: null,
- *   //   column: null,
- *   //   fatal: true }
- *
- * @this {VFile}
- * @memberof {VFile}
- * @throws {VFileMessage} - When not `quiet: true`.
- * @param {string|Error} reason - Reason for failure.
- * @param {Node|Location|Position} [position] - Place
- *   of failure in file.
- * @return {VFileMessage} - Unless thrown, of course.
- */
+                 * Fail. Creates a fatal message (see `VFile#message()`),
+                 * sets `fatal: true`, adds it to the file's
+                 * `messages` list.
+                 *
+                 * If `quiet` is not `true`, throws the error.
+                 *
+                 * @example
+                 *   var file = new VFile();
+                 *
+                 *   file.fail('Something went wrong');
+                 *   // 1:1: Something went wrong
+                 *   //     at VFile.exception (vfile/index.js:296:11)
+                 *   //     at VFile.fail (vfile/index.js:360:20)
+                 *   //     at repl:1:6
+                 *
+                 *   file.quiet = true;
+                 *   file.fail('Something went wrong');
+                 *   // { [1:1: Something went wrong]
+                 *   //   name: '1:1',
+                 *   //   file: '',
+                 *   //   reason: 'Something went wrong',
+                 *   //   line: null,
+                 *   //   column: null,
+                 *   //   fatal: true }
+                 *
+                 * @this {VFile}
+                 * @memberof {VFile}
+                 * @throws {VFileMessage} - When not `quiet: true`.
+                 * @param {string|Error} reason - Reason for failure.
+                 * @param {Node|Location|Position} [position] - Place
+                 *   of failure in file.
+                 * @return {VFileMessage} - Unless thrown, of course.
+                 */
                 function fail(reason, position) {
                     var err = this.message(reason, position);
 
@@ -18332,23 +18332,23 @@
                 }
 
                 /**
- * Check if a fatal message occurred making the file no
- * longer processable.
- *
- * @example
- *   var file = new VFile();
- *   file.quiet = true;
- *
- *   file.hasFailed(); // false
- *
- *   file.fail('Something went wrong');
- *   file.hasFailed(); // true
- *
- * @this {VFile}
- * @memberof {VFile}
- * @return {boolean} - `true` if at least one of file's
- *   `messages` has a `fatal` property set to `true`
- */
+                 * Check if a fatal message occurred making the file no
+                 * longer processable.
+                 *
+                 * @example
+                 *   var file = new VFile();
+                 *   file.quiet = true;
+                 *
+                 *   file.hasFailed(); // false
+                 *
+                 *   file.fail('Something went wrong');
+                 *   file.hasFailed(); // true
+                 *
+                 * @this {VFile}
+                 * @memberof {VFile}
+                 * @return {boolean} - `true` if at least one of file's
+                 *   `messages` has a `fatal` property set to `true`
+                 */
                 function hasFailed() {
                     var messages = this.messages;
                     var index = -1;
@@ -18364,20 +18364,20 @@
                 }
 
                 /**
- * Access metadata.
- *
- * @example
- *   var file = new VFile('Foo');
- *
- *   file.namespace('foo').bar = 'baz';
- *
- *   console.log(file.namespace('foo').bar) // 'baz';
- *
- * @this {VFile}
- * @memberof {VFile}
- * @param {string} key - Namespace key.
- * @return {Object} - Private space.
- */
+                 * Access metadata.
+                 *
+                 * @example
+                 *   var file = new VFile('Foo');
+                 *
+                 *   file.namespace('foo').bar = 'baz';
+                 *
+                 *   console.log(file.namespace('foo').bar) // 'baz';
+                 *
+                 * @this {VFile}
+                 * @memberof {VFile}
+                 * @param {string} key - Namespace key.
+                 * @return {Object} - Private space.
+                 */
                 function namespace(key) {
                     var self = this;
                     var space = self.data;
