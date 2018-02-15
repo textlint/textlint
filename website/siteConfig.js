@@ -45,7 +45,7 @@ const siteConfig = {
     favicon: "img/textlint-icon_256x256.png",
     /* colors for website */
     colors: {
-        primaryColor: "#29bfcd",
+        primaryColor: "#155F66",
         secondaryColor: "#6f9bf2",
         textColor: "#000000"
     },

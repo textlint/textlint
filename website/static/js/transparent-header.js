@@ -37,6 +37,7 @@ function clearBodyClass() {
  * TODO: IT IS HARD CODE VALUE
  */
 var HeaderHeight = 52;
+
 function scrollHandler() {
     var currentTopPosition = bodyOrHtml().scrollTop;
     if (0 <= currentTopPosition && currentTopPosition <= HeaderHeight) {
@@ -51,6 +52,13 @@ function scrollHandler() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", scrollHandler);
+function addIndexClass() {
+    document.body.classList.add("is-index");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    addIndexClass();
+    scrollHandler();
+});
 document.addEventListener("load", scrollHandler);
 window.addEventListener("scroll", debounce(scrollHandler, 16));
