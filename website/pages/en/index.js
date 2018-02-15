@@ -190,13 +190,18 @@ class Index extends React.Component {
 
         return (
             <div className={"main"}>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `document.body.classList.add("is-index");`
+                    }}
+                />
+                <script src={siteConfig.baseUrl + "js/transparent-header.js"} />
                 <HomeSplash language={language} />
                 <div className="mainContainer">
                     <FeatureCallout />
                     <Playground />
                     <Showcase language={language} />
                 </div>
-                <script src={siteConfig.baseUrl + "js/transparent-header.js"} />
             </div>
         );
     }

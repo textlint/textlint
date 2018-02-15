@@ -52,13 +52,6 @@ function scrollHandler() {
     }
 }
 
-function addIndexClass() {
-    document.body.classList.add("is-index");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    addIndexClass();
-    scrollHandler();
-});
+document.addEventListener("DOMContentLoaded", scrollHandler);
 document.addEventListener("load", scrollHandler);
 window.addEventListener("scroll", debounce(scrollHandler, 16));
