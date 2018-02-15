@@ -43,7 +43,7 @@ function scrollHandler() {
     if (0 <= currentTopPosition && currentTopPosition <= HeaderHeight) {
         clearBodyClass();
         document.body.classList.add("is-top");
-    } else if (HeaderHeight < currentTopPosition && currentTopPosition <= 300) {
+    } else if (HeaderHeight < currentTopPosition && currentTopPosition <= 320) {
         clearBodyClass();
         document.body.classList.add("is-over-main");
     } else {

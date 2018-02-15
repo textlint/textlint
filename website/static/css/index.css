@@ -50,6 +50,7 @@
 }
 
 .ProjectTitle {
+    margin-top: 80px;
     font-family: HelveticaNeue, serif;
     font-size: 72px;
     font-weight: bold;
@@ -60,7 +61,7 @@
 .ProjectTitle-copy {
     font-family: HelveticaNeue, serif;
     font-size: 30px !important;
-    max-width: 350px !important;
+    max-width: 380px !important;
     max-height: 70px;
     margin: 0.7em auto 1.3em !important;
     font-weight: 300;
