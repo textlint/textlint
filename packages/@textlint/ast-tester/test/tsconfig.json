@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "allowJs": true,
+        "outDir": "../out"
+    },
+    "include": [
+        "../src/**/*",
+        "./**/*"
+    ],
+    "exclude": [
+        ".git",
+        "node_modules"
+    ]
+}

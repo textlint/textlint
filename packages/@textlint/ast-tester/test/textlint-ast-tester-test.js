@@ -1,4 +1,4 @@
-import assert from "assert";
+import * as assert from "assert";
 import { test, isTxtAST } from "@textlint/ast-tester";
 const txtParse = require("@textlint/text-to-ast").parse;
 const markdownParse = require("@textlint/markdown-to-ast").parse;
