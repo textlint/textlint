@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
+import * as assert from "assert";
+
 // https://github.com/wooorm/unist
-export function isUnist(node) {
+export function isUnist(node: any): boolean {
     try {
         test(node);
     } catch (error) {
@@ -10,7 +11,8 @@ export function isUnist(node) {
     }
     return true;
 }
-export function test(node) {
+
+export function test(node: any): void {
     assert.equal(typeof node, "object");
     assert.equal(typeof node.type, "string");
     assert.ok(node.type.length >= 1);
@@ -77,7 +79,7 @@ export function test(node) {
         if (indent !== null && indent !== undefined) {
             assert.ok(Array.isArray(indent));
 
-            indent.forEach(function(indentation) {
+            indent.forEach(function(indentation: number) {
                 assert.equal(typeof indentation, "number");
                 assert.ok(indentation >= 0);
             });

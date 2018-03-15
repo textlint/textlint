@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
+import * as assert from "assert";
 import { test as UnistTest } from "./unist-test";
-export function isTxtAST(node) {
+
+export function isTxtAST(node: any): boolean {
     try {
         test(node);
     } catch (error) {
@@ -10,7 +11,8 @@ export function isTxtAST(node) {
     }
     return true;
 }
-export function test(node) {
+
+export function test(node: any): void {
     // test unist that is weak.
     UnistTest(node);
     assert.equal(typeof node, "object");
@@ -81,7 +83,7 @@ export function test(node) {
     const range = node.range;
     assert(range !== null && range !== undefined);
     assert.ok(Array.isArray(range));
-    range.forEach(function(index) {
+    range.forEach(function(index: number) {
         assert.equal(typeof index, "number");
         assert.ok(index >= 0);
     });
