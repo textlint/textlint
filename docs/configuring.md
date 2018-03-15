@@ -198,6 +198,8 @@ One more example, `very-nice-rule` is useful, but you want to ignore some report
 
 :information_source: See [examples/filter](../examples/filter)
 
+## Sharable Configuration
+
 textlint support module of configuration.
 
 - [ ] Not support `config` in `.textlintrc` yet. See https://github.com/textlint/textlint/issues/210
