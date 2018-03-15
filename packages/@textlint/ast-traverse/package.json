@@ -41,8 +41,8 @@
     "cross-env": "^5.1.1",
     "mocha": "^4.0.1",
     "rimraf": "^2.6.2",
-    "ts-node": "^4.0.2",
-    "ts-node-test-register": "^1.0.1",
+    "ts-node": "^5.0.1",
+    "ts-node-test-register": "^2.0.0",
     "typescript": "^2.6.2"
   },
   "publishConfig": {

@@ -93,8 +93,8 @@
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.3.0",
-    "ts-node": "^3.3.0",
-    "ts-node-test-register": "^1.0.1",
+    "ts-node": "^5.0.1",
+    "ts-node-test-register": "^2.0.0",
     "typescript": "~2.6.1"
   }
 }

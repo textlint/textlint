@@ -57,8 +57,8 @@
     "proxyquire": "^1.7.4",
     "rimraf": "^2.6.2",
     "sinon": "^1.17.3",
-    "ts-node": "^4.0.1",
-    "ts-node-test-register": "^1.0.1",
+    "ts-node": "^5.0.1",
+    "ts-node-test-register": "^2.0.0",
     "typescript": "^2.6.2"
   },
   "publishConfig": {

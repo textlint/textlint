@@ -57,8 +57,8 @@
     "textlint-rule-helper": "^2.0.0",
     "textlint-rule-max-number-of-lines": "^1.0.2",
     "textlint-rule-no-todo": "^2.0.0",
-    "ts-node": "^4.1.0",
-    "ts-node-test-register": "^1.0.1",
+    "ts-node": "^5.0.1",
+    "ts-node-test-register": "^2.0.0",
     "typescript": "^2.6.2"
   },
   "email": "azuciao@gmail.com"
