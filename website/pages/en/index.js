@@ -108,7 +108,7 @@ It is hard to lint natural language texts, but we try to resolve this issue by *
                     image: siteConfig.baseUrl + "img/icon-pen.svg",
                     title: "Rules",
                     content: `To use a rule, simply run npm install textlint-rule-xxx.
-See the collection of textlint rules.`
+See the [collection of textlint rules](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule).`
                 },
                 {
                     imageAlign: "top",
@@ -121,7 +121,7 @@ HTML and other formats are offered by custom plugins`
                     imageAlign: "top",
                     image: siteConfig.baseUrl + "img/icon-formatters.svg",
                     title: "Custom Formatters",
-                    content: `Formatter (reporter) is used both by bundled and custom formatters`
+                    content: `Formatter is used both by bundled and custom formatters`
                 }
             ]}
             layout="threeColumn"
