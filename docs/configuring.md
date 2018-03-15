@@ -7,7 +7,7 @@ title: Configuring textlint
 
 You can use following file as configuration file:
 
-- `.textlintrc` – try parse it as JSON, YML or JS
+- `.textlintrc` – try parse it as JSON, YAML or JS
 - `.textlintrc.js` – parse it as JavaScript
 - `.textlintrc.json` – parse it as JSON
 - `.textlintrc.yml` – parse it as YAML
