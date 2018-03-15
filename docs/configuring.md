@@ -5,9 +5,15 @@ title: Configuring textlint
 
 ## Configuration Files
 
-- `.textlintrc`
+You can use following file as configuration file:
 
-`.textlintrc` is config file that is loaded as JSON, YAML or JS via [azu/rc-config-loader](https://github.com/azu/rc-config-loader).
+- `.textlintrc` – try parse it as JSON, YML or JS
+- `.textlintrc.js` – parse it as JavaScript
+- `.textlintrc.json` – parse it as JSON
+- `.textlintrc.yml` – parse it as YAML
+- `.textlintrc.yaml` – parse it as YAML
+
+`.textlintrc` is a config file which is loaded as JSON, YAML or JS via [azu/rc-config-loader](https://github.com/azu/rc-config-loader).
 
 Put the config of rules into `.textlintrc`
 
