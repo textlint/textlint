@@ -1,3 +1,46 @@
+/* Color palette */
+
+:root {
+    --primaryColor: #259eac;
+    --textColor: #000000;
+}
+
+/* Link color */
+.post a {
+    color: #3344dd;
+}
+
+.post a:hover,
+.post a:active {
+    color: #bb1122;
+}
+
+.post a:visited {
+    color: #884488;
+}
+
+/* Override */
+.highlightBackground {
+    background-color: #f7f7f7;
+}
+
+/* Header */
+.navigationSlider .slidingNav ul {
+    font-family: Lato, serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Text styles */
+.heading {
+    font-family: HelveticaNeue, serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--textColor);
+}
+
 .mainContainer .wrapper p {
     max-width: 100%;
 }
@@ -11,7 +54,7 @@
 
 .header-has-icon:before {
     content: "";
-    background: url(../img/textlint-icon_black-white-128x128.png) no-repeat left center;
+    background: url(../img/textlint-header-logo.svg) no-repeat left center;
     background-size: 0.8em;
     padding-right: 1em;
 }

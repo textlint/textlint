@@ -1,0 +1,221 @@
+/* Header */
+:root {
+    --indexPrimaryColor: #29bfcd;
+    --indexSecondaryColor: #6f9bf2;
+}
+
+@media only screen and (min-width: 736px) {
+    .is-index.navPusher {
+        padding-top: 0;
+    }
+
+    .is-index.is-top .fixedHeaderContainer {
+        background: var(--indexPrimaryColor);
+    }
+
+    .is-index.is-over-main .fixedHeaderContainer {
+        background: transparent;
+    }
+
+    .is-index.is-bottom-of-main .fixedHeaderContainer {
+        background-color: var(--indexSecondaryColor);
+        animation: HeaderFlipAnimation 0.15s ease-out;
+    }
+}
+
+@keyframes HeaderFlipAnimation {
+    0% {
+        background-color: transparent;
+        transform: scaleY(0);
+    }
+    100% {
+        background-color: var(--indexSecondaryColor);
+        transform: scaleY(1);
+    }
+}
+
+.TextlintFeature {
+    margin: auto;
+    max-width: 668px;
+    font-family: HelveticaNeue, serif;
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+    color: var(--textColor);
+}
+
+.TextlintFeature-gridBlock p {
+    color: var(--textColor) !important;
+}
+
+.homeContainer {
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, var(--indexPrimaryColor), var(--indexSecondaryColor));
+}
+
+.ProjectTitle {
+    margin-top: 80px;
+    font-family: HelveticaNeue, serif;
+    font-size: 72px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+
+.ProjectTitle-copy {
+    font-family: HelveticaNeue, serif;
+    font-size: 30px !important;
+    max-width: 380px !important;
+    max-height: 70px;
+    margin: 0.7em auto 1.3em !important;
+    font-weight: 300;
+    text-align: center;
+    color: #ffffff;
+}
+
+.GettingStartedButton {
+    color: #ffffff;
+    width: 236px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 100px;
+    background-color: var(--textColor);
+    font-family: Lato, serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+}
+
+.GettingStartedButton:hover {
+    color: var(--textColor);
+    background-color: #ffffff;
+}
+
+.GettingStartedButton:focus {
+    outline: 0;
+}
+
+.Playground .Playground-title,
+.GettingStarted .GettingStarted-title {
+    font-family: HelveticaNeue, serif;
+    font-size: 30px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: var(--textColor) !important;
+}
+
+.Playground .Playground-copy,
+.GettingStarted .GettingStarted-copy {
+    font-family: Lato, serif;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    text-align: center !important;
+    color: var(--textColor) !important;
+}
+
+/* Hide Playground on mobile*/
+@media only screen and (max-width: 736px) {
+    .Playground-frame {
+        display: none;
+    }
+}
+
+.Showcase .Showcase-title {
+    font-family: HelveticaNeue, serif;
+    font-size: 30px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: var(--textColor) !important;
+}
+
+/* GettingStarted */
+/* Mobile */
+@media only screen and (max-width: 736px) {
+    .GettingStarted-steps {
+        width: 100%;
+    }
+
+    .GettingStarted-images {
+        display: none;
+    }
+
+    /* Mobile shrink width*/
+    .GettingStarted ol {
+        margin-top: 32px;
+        margin-left: 0;
+        padding: 0 !important;
+    }
+
+    .GettingStarted ol li::before {
+        color: var(--primaryColor);
+        font-size: 24px;
+    }
+}
+
+/* PC */
+@media only screen and (min-width: 736px) {
+    .GettingStarted ol li::before {
+        color: var(--primaryColor);
+        font-size: 58px;
+        position: absolute;
+        left: -24px;
+        top: -44px;
+        width: 58px;
+        text-align: right;
+    }
+
+    .GettingStarted ol {
+        list-style: none;
+        margin-top: 64px;
+        margin-left: 48px;
+    }
+
+    .GettingStarted-steps ol li {
+        margin: 0 0 22px 0 !important;
+        min-height: 120px;
+        padding-left: 46px;
+        position: relative;
+    }
+
+    .GettingStarted-images ol li {
+        margin: 0 0 22px 0 !important;
+        min-height: 120px;
+        padding-left: 16px;
+        position: relative;
+    }
+
+    .GettingStarted-images img {
+        max-height: 120px;
+    }
+
+    .GettingStarted-images img:hover {
+        transform: scale(1.5);
+        transition-duration: 0.3s;
+    }
+}
+
+.GettingStarted h2 {
+    font-size: 34px !important;
+    color: var(--primaryColor) !important;
+}
+
+.GettingStarted-steps ol li:nth-of-type(1)::before {
+    content: "1.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(2)::before {
+    content: "2.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(3)::before {
+    content: "3.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(4)::before {
+    content: "4.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(5)::before {
+    content: "5.";
+}

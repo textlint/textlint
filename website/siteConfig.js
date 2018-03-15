@@ -32,11 +32,16 @@ const siteConfig = {
     baseUrl: "/" /* base url for your project */,
     organizationName: "textlint", // or set an env variable ORGANIZATION_NAME
     projectName: "textlint",
+    onPageNav: "separate",
     headerLinks: [
         { doc: "getting-started", label: "Documentation" },
         { href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule", label: "Rules" },
+        { blog: true, label: "Blog" },
         { page: "help", label: "Help" },
-        { blog: true, label: "Blog" }
+        {
+            href: "https://github.com/textlint/textlint",
+            label: "GitHub"
+        }
     ],
     users,
     /* path to images for header/footer */
@@ -45,11 +50,12 @@ const siteConfig = {
     favicon: "img/textlint-icon_256x256.png",
     /* colors for website */
     colors: {
-        primaryColor: "#5acbe3",
-        secondaryColor: "#c7254e"
+        primaryColor: "#259eac",
+        secondaryColor: "#6f9bf2",
+        textColor: "#000000"
     },
     // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
-    copyright: "Copyright © " + new Date().getFullYear() + "textlint organization",
+    copyright: `Copyright © ${new Date().getFullYear()}textlint organization`,
     highlight: {
         // Highlight.js theme to use for syntax highlighting in code blocks
         theme: "default"
