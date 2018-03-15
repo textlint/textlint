@@ -155,13 +155,13 @@ const GetStartedSection = props => {
                     <div className="GettingStarted-steps">
                         <ol>
                             <li>
-                                Create your project
+                                Create your project:
                                 <div className="getStartedStep">
                                     <MarkdownBlock>{bash`npm init --yes`}</MarkdownBlock>
                                 </div>
                             </li>
                             <li>
-                                Install textlint into your project
+                                Install textlint into your project:
                                 <div className="getStartedStep">
                                     <MarkdownBlock>{bash`npm install --save-dev textlint`}</MarkdownBlock>
                                 </div>
