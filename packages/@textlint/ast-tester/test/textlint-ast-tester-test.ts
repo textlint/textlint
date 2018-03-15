@@ -1,5 +1,6 @@
 import * as assert from "assert";
-import { test, isTxtAST } from "../src/textlint-ast-tester";
+import { test, isTxtAST } from "../src/";
+
 const txtParse = require("@textlint/text-to-ast").parse;
 const markdownParse = require("@textlint/markdown-to-ast").parse;
 describe("@textlint/ast-tester", function() {

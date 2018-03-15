@@ -1,14 +1,14 @@
 {
-    "extends": "../tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../out"
-    },
-    "include": [
-        "../src/**/*",
-        "./**/*"
-    ],
-    "exclude": [
-        ".git",
-        "node_modules"
-    ]
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out"
+  },
+  "include": [
+    "../src/**/*",
+    "./**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ]
 }
