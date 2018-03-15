@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^2.2.46",
-    "@types/node": "^9.3.0",
+    "@types/node": "^9.4.7",
     "analyze-desumasu-dearu": "^3.1.0",
     "babel-cli": "^6.10.1",
     "babel-preset-env": "^1.4.0",

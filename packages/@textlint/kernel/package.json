@@ -47,7 +47,7 @@
     "@textlint/markdown-to-ast": "^6.0.5",
     "@textlint/textlint-plugin-markdown": "^4.0.7",
     "@types/mocha": "^2.2.43",
-    "@types/node": "^8.0.28",
+    "@types/node": "^9.4.7",
     "cpx": "^1.5.0",
     "cross-env": "^5.0.5",
     "mocha": "^4.0.1",
