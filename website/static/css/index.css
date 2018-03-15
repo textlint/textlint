@@ -114,6 +114,13 @@
     color: var(--textColor) !important;
 }
 
+/* Hide Playground on mobile*/
+@media only screen and (max-width: 736px) {
+    .Playground-frame {
+        display: none;
+    }
+}
+
 .Showcase .Showcase-title {
     font-family: HelveticaNeue, serif;
     font-size: 30px !important;
@@ -123,74 +130,74 @@
 }
 
 /* GettingStarted */
+/* Mobile */
 @media only screen and (max-width: 736px) {
+    .GettingStarted-steps {
+        width: 100%;
+    }
+
     .GettingStarted-images {
         display: none;
+    }
+
+    /* Mobile shrink width*/
+    .GettingStarted ol {
+        margin-top: 32px;
+        margin-left: 0;
+        padding: 0 !important;
+    }
+
+    .GettingStarted ol li::before {
+        color: var(--primaryColor);
+        font-size: 24px;
+    }
+}
+
+/* PC */
+@media only screen and (min-width: 736px) {
+    .GettingStarted ol li::before {
+        color: var(--primaryColor);
+        font-size: 58px;
+        position: absolute;
+        left: -24px;
+        top: -44px;
+        width: 58px;
+        text-align: right;
+    }
+
+    .GettingStarted ol {
+        list-style: none;
+        margin-top: 64px;
+        margin-left: 48px;
+    }
+
+    .GettingStarted-steps ol li {
+        margin: 0 0 22px 0 !important;
+        min-height: 120px;
+        padding-left: 46px;
+        position: relative;
+    }
+
+    .GettingStarted-images ol li {
+        margin: 0 0 22px 0 !important;
+        min-height: 120px;
+        padding-left: 16px;
+        position: relative;
+    }
+
+    .GettingStarted-images img {
+        max-height: 120px;
+    }
+
+    .GettingStarted-images img:hover {
+        transform: scale(1.5);
+        transition-duration: 0.3s;
     }
 }
 
 .GettingStarted h2 {
     font-size: 34px !important;
     color: var(--primaryColor) !important;
-}
-
-.GettingStarted {
-    text-align: left;
-}
-
-.GettingStarted-steps .button {
-    border: 1px solid var(--primaryColor);
-    color: var(--primaryColor) !important;
-    line-height: 1em;
-}
-
-.GettingStarted-steps .button.active {
-    background: var(--primaryColor);
-    color: white !important;
-}
-
-.GettingStarted-steps .button:hover {
-    background: var(--primaryColor);
-    color: white !important;
-}
-
-.GettingStarted-steps ol li {
-    margin: 0 0 22px 0 !important;
-    min-height: 120px;
-    padding-left: 46px;
-    position: relative;
-}
-
-.GettingStarted-images ol li {
-    margin: 0 0 22px 0 !important;
-    min-height: 120px;
-    padding-left: 16px;
-    position: relative;
-}
-
-.GettingStarted ol {
-    list-style: none;
-    margin-top: 64px;
-    margin-left: 48px;
-}
-
-.GettingStarted-images img {
-    max-height: 120px;
-}
-
-.GettingStarted-images img:hover {
-    transform: scale(1.5);
-    transition-duration: 0.3s;
-}
-
-.GettingStarted ol li::before {
-    color: var(--primaryColor);
-    font-size: 58px;
-    position: absolute;
-    left: -24px;
-    top: -44px;
-    width: 58px;
-    text-align: right;
 }
 
 .GettingStarted-steps ol li:nth-of-type(1)::before {

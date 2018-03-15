@@ -148,7 +148,7 @@ const GetStartedSection = props => {
                     style={{
                         display: "flex",
                         flexFlow: "row",
-                        alignItems: "top",
+                        alignItems: "flex-start",
                         justifyContent: "space-between"
                     }}
                 >
@@ -260,10 +260,11 @@ const Playground = props => {
                 <p className="Playground-copy">
                     Take textlint for a spin, start typing below.
                     <br />
-                    Want to try more? Go to <a href="https://textlint.github.io/playground">playground</a>..
+                    Want to try more? Go to <a href="https://textlint.github.io/playground">playground</a>.
                 </p>
             </div>
             <iframe
+                className={"Playground-frame"}
                 sandbox={"allow-scripts"}
                 src="https://textlint.github.io/playground?embed"
                 title="online demo"
