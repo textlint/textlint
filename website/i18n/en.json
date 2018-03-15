@@ -22,8 +22,9 @@
     "use-as-modules": "Use as Node Modules",
     "Documentation": "Documentation",
     "Rules": "Rules",
-    "Help": "Help",
     "Blog": "Blog",
+    "Help": "Help",
+    "GitHub": "GitHub",
     "User Manual": "User Manual",
     "Developer Guide": "Developer Guide",
     "Contributing": "Contributing"

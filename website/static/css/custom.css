@@ -1,8 +1,22 @@
 /* Color palette */
 
 :root {
-    --primaryColor: #155f66;
+    --primaryColor: #259eac;
     --textColor: #000000;
+}
+
+/* Link color */
+.post a {
+    color: #3344dd;
+}
+
+.post a:hover,
+.post a:active {
+    color: #bb1122;
+}
+
+.post a:visited {
+    color: #884488;
 }
 
 /* Override */

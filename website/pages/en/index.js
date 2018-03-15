@@ -139,10 +139,16 @@ const Playground = props => {
                 <p className="Playground-copy">
                     Take textlint for a spin, start typing below.
                     <br />
-                    Want to use more? Go to GitHub.
+                    Want to try more? Go to <a href="https://textlint.github.io/playground">playground</a>..
                 </p>
             </div>
-            <iframe src="https://textlint.github.io/playground?embed" title="online demo" width="100%" height="500">
+            <iframe
+                sandbox={"allow-scripts"}
+                src="https://textlint.github.io/playground?embed"
+                title="online demo"
+                width="100%"
+                height="500"
+            >
                 <p>
                     Your browser does not support iframes. Please visit{" "}
                     <a href="https://textlint.github.io/playground">online demo</a>.

@@ -1,20 +1,24 @@
 /* Header */
+:root {
+    --indexPrimaryColor: #29bfcd;
+    --indexSecondaryColor: #6f9bf2;
+}
 
 @media only screen and (min-width: 736px) {
-    .is-index .navPusher {
+    .is-index.navPusher {
         padding-top: 0;
     }
 
-    .is-top .fixedHeaderContainer {
+    .is-index.is-top .fixedHeaderContainer {
+        background: var(--indexPrimaryColor);
+    }
+
+    .is-index.is-over-main .fixedHeaderContainer {
         background: transparent;
     }
 
-    .is-over-main .fixedHeaderContainer {
-        background: transparent;
-    }
-
-    .is-bottom-of-main .fixedHeaderContainer {
-        background-color: #6f9bf2;
+    .is-index.is-bottom-of-main .fixedHeaderContainer {
+        background-color: var(--indexSecondaryColor);
         animation: HeaderFlipAnimation 0.15s ease-out;
     }
 }
@@ -25,7 +29,7 @@
         transform: scaleY(0);
     }
     100% {
-        background-color: #6f9bf2;
+        background-color: var(--indexSecondaryColor);
         transform: scaleY(1);
     }
 }
@@ -46,7 +50,7 @@
 
 .homeContainer {
     color: #ffffff;
-    background-image: linear-gradient(to bottom, var(--primaryColor), #6f9bf2);
+    background-image: linear-gradient(to bottom, var(--indexPrimaryColor), var(--indexSecondaryColor));
 }
 
 .ProjectTitle {
