@@ -7936,6 +7936,12 @@ ts-node-test-register@^1.0.1:
   dependencies:
     read-pkg "^3.0.0"
 
+ts-node-test-register@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ts-node-test-register/-/ts-node-test-register-2.0.0.tgz#ca4d2b82a19414baa66f0080057e3b35e4a4ddfb"
+  dependencies:
+    read-pkg "^3.0.0"
+
 ts-node@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-3.3.0.tgz#c13c6a3024e30be1180dd53038fc209289d4bf69"
@@ -7966,9 +7972,9 @@ ts-node@^4.0.1, ts-node@^4.0.2, ts-node@^4.1.0:
     v8flags "^3.0.0"
     yn "^2.0.0"
 
-ts-node@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-5.0.0.tgz#9aa573889ad7949411f972981c209e064705e36f"
+ts-node@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-5.0.1.tgz#78e5d1cb3f704de1b641e43b76be2d4094f06f81"
   dependencies:
     arrify "^1.0.0"
     chalk "^2.3.0"
