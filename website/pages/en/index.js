@@ -129,9 +129,130 @@ HTML and other formats are offered by custom plugins`
     </Container>
 );
 
+const bash = (...args) => `~~~bash\n${String.raw(...args)}\n~~~`;
+const json = object => `~~~json\n${JSON.stringify(object, null, 2)}\n~~~`;
+const GetStartedSection = props => {
+    return (
+        <div className="GettingStarted productShowcaseSection">
+            <Container>
+                <h2 id="getting-started" className="GettingStarted-title">
+                    Getting Started
+                </h2>
+                <p className="GettingStarted-copy">
+                    You can use textlint by following steps:
+                    <br />
+                    For more details, see <a href={`${props.language}/docs/getting-started.html`}>documents</a>.
+                </p>
+                <div
+                    className="getStartedFlexContainer"
+                    style={{
+                        display: "flex",
+                        flexFlow: "row",
+                        alignItems: "top",
+                        justifyContent: "space-between"
+                    }}
+                >
+                    <div className="GettingStarted-steps">
+                        <ol>
+                            <li>
+                                Create your project
+                                <div className="getStartedStep">
+                                    <MarkdownBlock>{bash`npm init --yes`}</MarkdownBlock>
+                                </div>
+                            </li>
+                            <li>
+                                Install textlint into your project
+                                <div className="getStartedStep">
+                                    <MarkdownBlock>{bash`npm install --save-dev textlint`}</MarkdownBlock>
+                                </div>
+                            </li>
+                            <li>
+                                Install textlint rule:
+                                <div className="getStartedStep">
+                                    <MarkdownBlock>{bash`npm install --save-dev textlint-rule-no-todo`}</MarkdownBlock>
+                                </div>
+                            </li>
+                            <li>
+                                Create .textlintrc file:
+                                <div className="getStartedStep">
+                                    <MarkdownBlock>{bash`./node_modules/.bin/textlint --init`}</MarkdownBlock>
+                                </div>
+                            </li>
+                            <li>
+                                Run textlint:
+                                <div className="getStartedStep">
+                                    <MarkdownBlock>{bash`./node_modules/.bin/textlint README.md`}</MarkdownBlock>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div className="GettingStarted-images">
+                        <ol>
+                            <li>
+                                <img
+                                    src={imgUrl("get-started-steps/1.png")}
+                                    alt={`$ npm init --yes
+Wrote to ~/textlint-demo/package.json:
+
+{
+  "name": "textlint-demo",
+  "version": "1.0.0"
+}`}
+                                />
+                            </li>
+                            <li>
+                                <img
+                                    src={imgUrl("get-started-steps/2.png")}
+                                    alt={`$ npm install --save-dev textlint
+
++ textlint@10.0.0
+added 239 packages in 10.23s`}
+                                />
+                            </li>
+
+                            <li>
+                                <img
+                                    src={imgUrl("get-started-steps/3.png")}
+                                    alt={`
+$ npm install --save-dev textlint-rule-no-todo
+
++ textlint@latest
+added 239 packages in 10.23s`}
+                                />
+                            </li>
+                            <li>
+                                <img
+                                    src={imgUrl("get-started-steps/4.png")}
+                                    alt={`$ ./node_modules/.bin/textlint --init
+
+Create .textlintrc`}
+                                />
+                            </li>
+                            <li>
+                                <img
+                                    src={imgUrl("get-started-steps/5.png")}
+                                    alt={`$./node_modules/.bin/textlint README.md
+
+~/textlint-demo/README.md
+  1:3  error  Found TODO: '- [ ] Write usage'  no-todo
+
+✖ 1 problem (1 error, 0 warnings)
+
+                            `}
+                                />
+                                {/**/}
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </Container>
+        </div>
+    );
+};
+
 const Playground = props => {
     return (
-        <Container adding={["bottom", "top"]} background="highlight">
+        <Container adding={["bottom", "top"]}>
             <div className="productShowcaseSection paddingBottom paddingTop Playground">
                 <h2 id="try" className="Playground-title">
                     Playground
@@ -201,10 +322,11 @@ class Index extends React.Component {
                         __html: `document.body.classList.add("is-index");`
                     }}
                 />
-                <script src={siteConfig.baseUrl + "js/transparent-header.js"} />
+                <script src={siteConfig.baseUrl + "js/index.js"} />
                 <HomeSplash language={language} />
                 <div className="mainContainer">
                     <FeatureCallout />
+                    <GetStartedSection language={language} />
                     <Playground />
                     <Showcase language={language} />
                 </div>

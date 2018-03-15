@@ -96,7 +96,8 @@
     outline: 0;
 }
 
-.Playground .Playground-title {
+.Playground .Playground-title,
+.GettingStarted .GettingStarted-title {
     font-family: HelveticaNeue, serif;
     font-size: 30px !important;
     font-weight: bold !important;
@@ -104,7 +105,8 @@
     color: var(--textColor) !important;
 }
 
-.Playground .Playground-copy {
+.Playground .Playground-copy,
+.GettingStarted .GettingStarted-copy {
     font-family: Lato, serif;
     font-size: 18px !important;
     font-weight: 300 !important;
@@ -118,4 +120,95 @@
     font-weight: bold !important;
     text-align: center !important;
     color: var(--textColor) !important;
+}
+
+/* GettingStarted */
+@media only screen and (max-width: 736px) {
+    .GettingStarted-images {
+        display: none;
+    }
+}
+
+.GettingStarted h2 {
+    font-size: 34px !important;
+    color: var(--primaryColor) !important;
+}
+
+.GettingStarted {
+    text-align: left;
+}
+
+.GettingStarted-steps .button {
+    border: 1px solid var(--primaryColor);
+    color: var(--primaryColor) !important;
+    line-height: 1em;
+}
+
+.GettingStarted-steps .button.active {
+    background: var(--primaryColor);
+    color: white !important;
+}
+
+.GettingStarted-steps .button:hover {
+    background: var(--primaryColor);
+    color: white !important;
+}
+
+.GettingStarted-steps ol li {
+    margin: 0 0 22px 0 !important;
+    min-height: 120px;
+    padding-left: 46px;
+    position: relative;
+}
+
+.GettingStarted-images ol li {
+    margin: 0 0 22px 0 !important;
+    min-height: 120px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.GettingStarted ol {
+    list-style: none;
+    margin-top: 64px;
+    margin-left: 48px;
+}
+
+.GettingStarted-images img {
+    max-height: 120px;
+}
+
+.GettingStarted-images img:hover {
+    transform: scale(1.5);
+    transition-duration: 0.3s;
+}
+
+.GettingStarted ol li::before {
+    color: var(--primaryColor);
+    font-size: 58px;
+    position: absolute;
+    left: -24px;
+    top: -44px;
+    width: 58px;
+    text-align: right;
+}
+
+.GettingStarted-steps ol li:nth-of-type(1)::before {
+    content: "1.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(2)::before {
+    content: "2.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(3)::before {
+    content: "3.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(4)::before {
+    content: "4.";
+}
+
+.GettingStarted-steps ol li:nth-of-type(5)::before {
+    content: "5.";
 }
