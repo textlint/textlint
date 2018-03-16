@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build",
+    "build": "lerna run build --ignore textlint-website",
     "website": "lerna run build --scope textlint-website",
     "clean": "lerna run clean",
     "precommit": "lint-staged",
