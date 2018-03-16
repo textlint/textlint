@@ -30,8 +30,8 @@ jobs:
     - stage: DOCUMENTATION
       node_js: stable
       script:
-      - yarn test:docs
-      - yarn build:website
+      - yarn run test:docs
+      - yarn run website
   # Deploy Docusaurus
     - stage: deploy
       node_js: stable
