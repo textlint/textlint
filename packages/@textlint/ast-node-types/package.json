@@ -21,7 +21,7 @@
     "build": "cross-env NODE_ENV=production tsc -p .",
     "clean": "rimraf lib/",
     "prepublish": "npm run build",
-    "test": "mocha \"test/**/*.{js,ts}\""
+    "test": "mocha \"test/**/*.ts\""
   },
   "devDependencies": {
     "@types/mocha": "^2.2.48",
