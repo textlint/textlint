@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.8"></a>
+## [5.0.8](https://github.com/textlint/textlint/compare/gulp-textlint@5.0.7...gulp-textlint@5.0.8) (2018-03-25)
+
+
+### Code Refactoring
+
+* **gulp-textlint:** remove gulp-util ([7899ecf](https://github.com/textlint/textlint/commit/7899ecf))
+
+
+
+
 <a name="5.0.7"></a>
 ## [5.0.7](https://github.com/textlint/textlint/compare/gulp-textlint@5.0.6...gulp-textlint@5.0.7) (2018-01-27)
 
