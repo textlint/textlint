@@ -1,9 +1,7 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import * as fs from "fs";
 
 // LICENSE : MIT
 "use strict";
-const isValidUTF8 = require("utf-8-validate");
 const rcConfigLoader = require("rc-config-loader");
 const interopRequire = require("interop-require");
 
@@ -39,9 +37,6 @@ export function loadConfig(
             config: {},
             filePath: undefined
         };
-    }
-    if (!isValidUTF8(fs.readFileSync(result.filePath))) {
-        throw new Error("textlint configuration file must be encoded in UTF8");
     }
     return {
         config: result.config,
