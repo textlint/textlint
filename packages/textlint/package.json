@@ -73,8 +73,7 @@
     "read-pkg-up": "^3.0.0",
     "structured-source": "^3.0.2",
     "try-resolve": "^1.0.1",
-    "unique-concat": "^0.2.2",
-    "utf-8-validate": "^4.0.0"
+    "unique-concat": "^0.2.2"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.44",
