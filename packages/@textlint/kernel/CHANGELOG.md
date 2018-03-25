@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.7"></a>
+## [2.0.7](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.6...@textlint/kernel@2.0.7) (2018-03-25)
+
+
+### Chores
+
+* **test:** use `ts-node-test-register` for TypeScript testing ([be746d8](https://github.com/textlint/textlint/commit/be746d8)), closes [#451](https://github.com/textlint/textlint/issues/451)
+
+
+
+
 <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.5...@textlint/kernel@2.0.6) (2018-01-27)
 

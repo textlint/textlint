@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-html-plugin",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -10,7 +10,7 @@
     "textlint": "textlint -f pretty-error index.html"
   },
   "devDependencies": {
-    "textlint": "^10.1.4",
+    "textlint": "^10.1.5",
     "textlint-plugin-html": "^0.1.7",
     "textlint-rule-sentence-length": "^2.0.2"
   }

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/textlint/textlint/compare/textlint-tester@4.1.0...textlint-tester@4.1.1) (2018-03-25)
+
+
+### Chores
+
+* **test:** use `ts-node-test-register` for TypeScript testing ([be746d8](https://github.com/textlint/textlint/commit/be746d8)), closes [#451](https://github.com/textlint/textlint/issues/451)
+* format ([d8f44db](https://github.com/textlint/textlint/commit/d8f44db))
+
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/textlint/textlint/compare/textlint-tester@4.0.6...textlint-tester@4.1.0) (2018-01-27)
 

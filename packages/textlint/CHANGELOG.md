@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.1.5"></a>
+## [10.1.5](https://github.com/textlint/textlint/compare/textlint@10.1.4...textlint@10.1.5) (2018-03-25)
+
+
+### Bug Fixes
+
+* **textlint:** remove utf-8-validate ([7668c1b](https://github.com/textlint/textlint/commit/7668c1b))
+
+
+### Chores
+
+* **test:** use `ts-node-test-register` for TypeScript testing ([be746d8](https://github.com/textlint/textlint/commit/be746d8)), closes [#451](https://github.com/textlint/textlint/issues/451)
+
+
+
+
 <a name="10.1.4"></a>
 ## [10.1.4](https://github.com/textlint/textlint/compare/textlint@10.1.3...textlint@10.1.4) (2018-01-27)
 

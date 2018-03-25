@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.8"></a>
+## [2.0.8](https://github.com/textlint/textlint/compare/textlint-example-preset@2.0.7...textlint-example-preset@2.0.8) (2018-03-25)
+
+
+### Chores
+
+* **examples:** update `rule-preset-jtf-style` to ^2.3.1 ([f77f869](https://github.com/textlint/textlint/commit/f77f869))
+* **examples:** update dependencies ([ab4960b](https://github.com/textlint/textlint/commit/ab4960b)), closes [textlint/textlint#493](https://github.com/textlint/textlint/issues/493) [azu/sentence-splitter#9](https://github.com/azu/sentence-splitter/issues/9) [azu/sentence-splitter#11](https://github.com/azu/sentence-splitter/issues/11) [textlint-rule/textlint-rule-sentence-length#10](https://github.com/textlint-rule/textlint-rule-sentence-length/issues/10) [textlint-rule/textlint-rule-sentence-length#11](https://github.com/textlint-rule/textlint-rule-sentence-length/issues/11)
+
+
+
+
 <a name="2.0.7"></a>
 ## [2.0.7](https://github.com/textlint/textlint/compare/textlint-example-preset@2.0.6...textlint-example-preset@2.0.7) (2018-01-27)
 
