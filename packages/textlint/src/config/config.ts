@@ -211,15 +211,16 @@ export class Config {
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
-        const loadedResult = options.textlintrc
-            ? loadConfig(options.configFile, {
-                  moduleResolver,
-                  configFileName: this.CONFIG_FILE_NAME
-              })
-            : {
-                  config: {},
-                  filePath: undefined
-              };
+        const loadedResult =
+            typeof options.textlintrc === "undefined" || options.textlintrc
+                ? loadConfig(options.configFile, {
+                      moduleResolver,
+                      configFileName: this.CONFIG_FILE_NAME
+                  })
+                : {
+                      config: {},
+                      filePath: undefined
+                  };
         const configFileRaw = loadedResult.config;
         const configFilePath = loadedResult.filePath;
         // => Load options from .textlintrc
