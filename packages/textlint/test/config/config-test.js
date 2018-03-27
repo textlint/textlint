@@ -21,6 +21,23 @@ describe("config", function() {
                 assert(config.rules.length > 0);
             });
         });
+        context("when specify --no-textlintrc", function() {
+            it("should not use the config file", function() {
+                const config = Config.initWithCLIOptions({
+                    textlintrc: false,
+                    config: path.join(__dirname, "fixtures", ".textlintrc")
+                });
+                assert(config.rules.length === 0);
+            });
+            it("should use the rules", function() {
+                const rules = ["no-todo"];
+                const config = Config.initWithCLIOptions({
+                    textlintrc: false,
+                    rule: rules
+                });
+                assert.deepEqual(config.rules, rules);
+            });
+        });
     });
     describe("#absolutePath", function() {
         context("when init configFile", function() {
