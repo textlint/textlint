@@ -113,6 +113,12 @@ export const options = optionator({
             heading: "Specifying rules and plugins"
         },
         {
+            option: "textlintrc",
+            type: "Boolean",
+            default: "true",
+            description: "Disable .textlintrc"
+        },
+        {
             option: "plugin",
             type: "[String]",
             description: "Set plugin package name",
