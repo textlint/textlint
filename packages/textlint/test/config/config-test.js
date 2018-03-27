@@ -40,6 +40,7 @@ describe("config", function() {
             it("should return undefined", function() {
                 const baseDir = path.join(__dirname, "fixtures");
                 const config = Config.initWithAutoLoading({
+                    textlintrc: true,
                     configFile: "@textlint/textlint-config-example",
                     rulesBaseDirectory: baseDir
                 });
