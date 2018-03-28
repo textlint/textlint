@@ -83,6 +83,8 @@ const defaultOptions = Object.freeze({
     quiet: false,
     // --no-color
     color: true,
+    // --no-textlintrc
+    textlintrc: true,
     // --cache : enable or disable
     cache: false,
     // --cache-location: cache file path
@@ -183,6 +185,7 @@ export class Config {
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
         options.quiet = cliOptions.quiet !== undefined ? cliOptions.quiet : defaultOptions.quiet;
         options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
+        options.textlintrc = cliOptions.textlintrc !== undefined ? cliOptions.textlintrc : defaultOptions.textlintrc;
         // --cache
         options.cache = cliOptions.cache !== undefined ? cliOptions.cache : defaultOptions.cache;
         // --cache-location="path/to/file"
@@ -208,10 +211,16 @@ export class Config {
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
-        const loadedResult = loadConfig(options.configFile, {
-            moduleResolver,
-            configFileName: this.CONFIG_FILE_NAME
-        });
+        const loadedResult =
+            typeof options.textlintrc === "undefined" || options.textlintrc
+                ? loadConfig(options.configFile, {
+                      moduleResolver,
+                      configFileName: this.CONFIG_FILE_NAME
+                  })
+                : {
+                      config: {},
+                      filePath: undefined
+                  };
         const configFileRaw = loadedResult.config;
         const configFilePath = loadedResult.filePath;
         // => Load options from .textlintrc
