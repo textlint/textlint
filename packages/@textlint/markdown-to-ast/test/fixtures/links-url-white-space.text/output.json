@@ -5,9 +5,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Link",
-                    "title": null,
-                    "url": "./wo rld.html",
+                    "type": "LinkReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -36,22 +36,22 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 22
+                            "column": 7
                         }
                     },
                     "range": [
                         0,
-                        22
+                        7
                     ],
-                    "raw": "[Hello](./wo rld.html)"
+                    "raw": "[Hello]"
                 },
                 {
                     "type": "Str",
-                    "value": ".",
+                    "value": "(./wo rld.html).",
                     "loc": {
                         "start": {
                             "line": 1,
-                            "column": 22
+                            "column": 7
                         },
                         "end": {
                             "line": 1,
@@ -59,10 +59,10 @@
                         }
                     },
                     "range": [
-                        22,
+                        7,
                         23
                     ],
-                    "raw": "."
+                    "raw": "(./wo rld.html)."
                 }
             ],
             "loc": {
@@ -165,9 +165,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Image",
-                    "title": null,
-                    "url": "./wo rld.png",
+                    "type": "imageReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
                     "alt": "Hello",
                     "loc": {
                         "start": {
@@ -176,22 +176,22 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 22
+                            "column": 8
                         }
                     },
                     "range": [
                         52,
-                        74
+                        60
                     ],
-                    "raw": "![Hello](./wo rld.png)"
+                    "raw": "![Hello]"
                 },
                 {
                     "type": "Str",
-                    "value": ".",
+                    "value": "(./wo rld.png).",
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 22
+                            "column": 8
                         },
                         "end": {
                             "line": 5,
@@ -199,10 +199,10 @@
                         }
                     },
                     "range": [
-                        74,
+                        60,
                         75
                     ],
-                    "raw": "."
+                    "raw": "(./wo rld.png)."
                 }
             ],
             "loc": {

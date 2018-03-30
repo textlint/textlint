@@ -107,7 +107,7 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "And in an auto-link: ",
+                            "value": "And in an auto-link: <",
                             "loc": {
                                 "start": {
                                     "line": 9,
@@ -115,82 +115,101 @@
                                 },
                                 "end": {
                                     "line": 9,
-                                    "column": 23
+                                    "column": 24
                                 }
                             },
                             "range": [
                                 171,
-                                192
+                                193
                             ],
-                            "raw": "And in an auto-link: "
+                            "raw": "And in an auto-link: <"
                         },
                         {
                             "type": "Link",
                             "title": null,
-                            "url": "http://e\nxample©xample.com",
+                            "url": "http://e",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "http://e\nxample",
+                                    "value": "http://e",
                                     "loc": {
                                         "start": {
                                             "line": 9,
                                             "column": 24
                                         },
                                         "end": {
-                                            "line": 10,
-                                            "column": 8
+                                            "line": 9,
+                                            "column": 32
                                         }
                                     },
                                     "range": [
                                         193,
-                                        210
+                                        201
                                     ],
-                                    "raw": "http://e\n> xample"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "©",
-                                    "loc": {
-                                        "start": {
-                                            "line": 10,
-                                            "column": 8
-                                        },
-                                        "end": {
-                                            "line": 10,
-                                            "column": 13
-                                        }
-                                    },
-                                    "range": [
-                                        210,
-                                        215
-                                    ],
-                                    "raw": "&copy"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "xample.com",
-                                    "loc": {
-                                        "start": {
-                                            "line": 10,
-                                            "column": 13
-                                        },
-                                        "end": {
-                                            "line": 10,
-                                            "column": 23
-                                        }
-                                    },
-                                    "range": [
-                                        215,
-                                        225
-                                    ],
-                                    "raw": "xample.com"
+                                    "raw": "http://e"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 9,
-                                    "column": 23
+                                    "column": 24
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 32
+                                }
+                            },
+                            "range": [
+                                193,
+                                201
+                            ],
+                            "raw": "http://e"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "\nxample",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 32
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                201,
+                                210
+                            ],
+                            "raw": "\n> xample"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "©",
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                210,
+                                215
+                            ],
+                            "raw": "&copy"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "xample.com>",
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 13
                                 },
                                 "end": {
                                     "line": 10,
@@ -198,10 +217,10 @@
                                 }
                             },
                             "range": [
-                                192,
+                                215,
                                 226
                             ],
-                            "raw": "<http://e\n> xample&copyxample.com>"
+                            "raw": "xample.com>"
                         }
                     ],
                     "loc": {
@@ -245,7 +264,7 @@
                         {
                             "type": "Link",
                             "title": null,
-                            "url": "http://example©xample.com",
+                            "url": "http://example&copyxample.com",
                             "children": [
                                 {
                                     "type": "Str",
@@ -382,7 +401,7 @@
                         {
                             "type": "Link",
                             "title": "in some pl©ce",
-                            "url": "~/some©file",
+                            "url": "~/some&copyfile",
                             "children": [
                                 {
                                     "type": "Str",
@@ -500,7 +519,7 @@
                         {
                             "type": "Link",
                             "title": "in some pl©ce",
-                            "url": "~/some©file",
+                            "url": "~/some&copyfile",
                             "children": [
                                 {
                                     "type": "Str",
@@ -618,7 +637,7 @@
                         {
                             "type": "Image",
                             "title": "in some pl©ce",
-                            "url": "~/some©file",
+                            "url": "~/some&copyfile",
                             "alt": "\n  l©nks\n",
                             "loc": {
                                 "start": {
@@ -716,7 +735,7 @@
                         {
                             "type": "Image",
                             "title": "in some pl©ce",
-                            "url": "~/some©file",
+                            "url": "~/some&copyfile",
                             "alt": "l©lnks",
                             "loc": {
                                 "start": {
@@ -877,7 +896,7 @@
                         {
                             "type": "Link",
                             "title": null,
-                            "url": "http://example©xample.com",
+                            "url": "http://example&copyxample.com",
                             "children": [
                                 {
                                     "type": "Str",
@@ -1093,7 +1112,7 @@
                         {
                             "type": "Link",
                             "title": null,
-                            "url": "http://example©xample.com",
+                            "url": "http://example&copyxample.com",
                             "children": [
                                 {
                                     "type": "Str",
