@@ -424,9 +424,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Link",
-                    "title": null,
-                    "url": "/url/has space",
+                    "type": "LinkReference",
+                    "identifier": "url and title",
+                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -455,22 +455,22 @@
                         },
                         "end": {
                             "line": 11,
-                            "column": 33
+                            "column": 15
                         }
                     },
                     "range": [
                         219,
-                        252
+                        234
                     ],
-                    "raw": "[URL and title]( /url/has space )"
+                    "raw": "[URL and title]"
                 },
                 {
                     "type": "Str",
-                    "value": ".",
+                    "value": "( /url/has space ).",
                     "loc": {
                         "start": {
                             "line": 11,
-                            "column": 33
+                            "column": 15
                         },
                         "end": {
                             "line": 11,
@@ -478,10 +478,10 @@
                         }
                     },
                     "range": [
-                        252,
+                        234,
                         253
                     ],
-                    "raw": "."
+                    "raw": "( /url/has space )."
                 }
             ],
             "loc": {
@@ -504,9 +504,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Link",
-                    "title": "url has space and title",
-                    "url": "/url/has space/",
+                    "type": "LinkReference",
+                    "identifier": "url and title",
+                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -535,22 +535,22 @@
                         },
                         "end": {
                             "line": 13,
-                            "column": 59
+                            "column": 15
                         }
                     },
                     "range": [
                         255,
-                        314
+                        270
                     ],
-                    "raw": "[URL and title]( /url/has space/ \"url has space and title\")"
+                    "raw": "[URL and title]"
                 },
                 {
                     "type": "Str",
-                    "value": ".",
+                    "value": "( /url/has space/ \"url has space and title\").",
                     "loc": {
                         "start": {
                             "line": 13,
-                            "column": 59
+                            "column": 15
                         },
                         "end": {
                             "line": 13,
@@ -558,10 +558,10 @@
                         }
                     },
                     "range": [
-                        314,
+                        270,
                         315
                     ],
-                    "raw": "."
+                    "raw": "( /url/has space/ \"url has space and title\")."
                 }
             ],
             "loc": {

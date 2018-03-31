@@ -5,9 +5,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "hello",
-                    "referenceType": "shortcut",
+                    "type": "Link",
+                    "title": null,
+                    "url": "./world.html?a=1&b=xxx&not=0",
                     "children": [
                         {
                             "type": "Str",
@@ -36,33 +36,33 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        0,
-                        7
-                    ],
-                    "raw": "[Hello]"
-                },
-                {
-                    "type": "Str",
-                    "value": "(./world.html (Hello World!)).",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 37
                         }
                     },
                     "range": [
-                        7,
+                        0,
                         37
                     ],
-                    "raw": "(./world.html (Hello World!))."
+                    "raw": "[Hello](./world.html?a=1&b=xxx&not=0)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 37
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 38
+                        }
+                    },
+                    "range": [
+                        37,
+                        38
+                    ],
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -72,22 +72,22 @@
                 },
                 "end": {
                     "line": 1,
-                    "column": 37
+                    "column": 38
                 }
             },
             "range": [
                 0,
-                37
+                38
             ],
-            "raw": "[Hello](./world.html (Hello World!))."
+            "raw": "[Hello](./world.html?a=1&b=xxx&not=0)."
         },
         {
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "hello",
-                    "referenceType": "shortcut",
+                    "type": "Link",
+                    "title": null,
+                    "url": "./world.html?a=1&b=xxx&not=0",
                     "children": [
                         {
                             "type": "Str",
@@ -103,8 +103,8 @@
                                 }
                             },
                             "range": [
-                                40,
-                                45
+                                41,
+                                46
                             ],
                             "raw": "Hello"
                         }
@@ -116,33 +116,33 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        39,
-                        46
-                    ],
-                    "raw": "[Hello]"
-                },
-                {
-                    "type": "Str",
-                    "value": "(<./world.html> (Hello World!)).",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 39
                         }
                     },
                     "range": [
-                        46,
-                        78
+                        40,
+                        79
                     ],
-                    "raw": "(<./world.html> (Hello World!))."
+                    "raw": "[Hello](<./world.html?a=1&b=xxx&not=0>)"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 40
+                        }
+                    },
+                    "range": [
+                        79,
+                        80
+                    ],
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -152,22 +152,22 @@
                 },
                 "end": {
                     "line": 3,
-                    "column": 39
+                    "column": 40
                 }
             },
             "range": [
-                39,
-                78
+                40,
+                80
             ],
-            "raw": "[Hello](<./world.html> (Hello World!))."
+            "raw": "[Hello](<./world.html?a=1&b=xxx&not=0>)."
         },
         {
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "imageReference",
-                    "identifier": "hello",
-                    "referenceType": "shortcut",
+                    "type": "Image",
+                    "title": null,
+                    "url": "./world.png?a=1&b=xxx&not=0",
                     "alt": "Hello",
                     "loc": {
                         "start": {
@@ -176,22 +176,22 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 8
+                            "column": 37
                         }
                     },
                     "range": [
-                        80,
-                        88
+                        82,
+                        119
                     ],
-                    "raw": "![Hello]"
+                    "raw": "![Hello](./world.png?a=1&b=xxx&not=0)"
                 },
                 {
                     "type": "Str",
-                    "value": "(./world.html (Hello World!)).",
+                    "value": ".",
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 8
+                            "column": 37
                         },
                         "end": {
                             "line": 5,
@@ -199,10 +199,10 @@
                         }
                     },
                     "range": [
-                        88,
-                        118
+                        119,
+                        120
                     ],
-                    "raw": "(./world.html (Hello World!))."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -216,18 +216,18 @@
                 }
             },
             "range": [
-                80,
-                118
+                82,
+                120
             ],
-            "raw": "![Hello](./world.html (Hello World!))."
+            "raw": "![Hello](./world.png?a=1&b=xxx&not=0)."
         },
         {
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "imageReference",
-                    "identifier": "hello",
-                    "referenceType": "shortcut",
+                    "type": "Image",
+                    "title": null,
+                    "url": "./world.png?a=1&b=xxx&not=0",
                     "alt": "Hello",
                     "loc": {
                         "start": {
@@ -236,22 +236,22 @@
                         },
                         "end": {
                             "line": 7,
-                            "column": 8
+                            "column": 39
                         }
                     },
                     "range": [
-                        120,
-                        128
+                        122,
+                        161
                     ],
-                    "raw": "![Hello]"
+                    "raw": "![Hello](<./world.png?a=1&b=xxx&not=0>)"
                 },
                 {
                     "type": "Str",
-                    "value": "(<./world.html> (Hello World!)).",
+                    "value": ".",
                     "loc": {
                         "start": {
                             "line": 7,
-                            "column": 8
+                            "column": 39
                         },
                         "end": {
                             "line": 7,
@@ -259,10 +259,10 @@
                         }
                     },
                     "range": [
-                        128,
-                        160
+                        161,
+                        162
                     ],
-                    "raw": "(<./world.html> (Hello World!))."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -276,10 +276,10 @@
                 }
             },
             "range": [
-                120,
-                160
+                122,
+                162
             ],
-            "raw": "![Hello](<./world.html> (Hello World!))."
+            "raw": "![Hello](<./world.png?a=1&b=xxx&not=0>)."
         }
     ],
     "loc": {
@@ -294,7 +294,7 @@
     },
     "range": [
         0,
-        161
+        163
     ],
-    "raw": "[Hello](./world.html (Hello World!)).\n\n[Hello](<./world.html> (Hello World!)).\n\n![Hello](./world.html (Hello World!)).\n\n![Hello](<./world.html> (Hello World!)).\n"
+    "raw": "[Hello](./world.html?a=1&b=xxx&not=0).\n\n[Hello](<./world.html?a=1&b=xxx&not=0>).\n\n![Hello](./world.png?a=1&b=xxx&not=0).\n\n![Hello](<./world.png?a=1&b=xxx&not=0>).\n"
 }

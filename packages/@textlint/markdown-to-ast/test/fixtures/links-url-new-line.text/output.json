@@ -5,9 +5,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Link",
-                    "title": null,
-                    "url": "./wo\nrld.html",
+                    "type": "LinkReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -35,23 +35,23 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 2,
-                            "column": 9
+                            "line": 1,
+                            "column": 7
                         }
                     },
                     "range": [
                         0,
-                        22
+                        7
                     ],
-                    "raw": "[Hello](./wo\nrld.html)"
+                    "raw": "[Hello]"
                 },
                 {
                     "type": "Str",
-                    "value": ".",
+                    "value": "(./wo\nrld.html).",
                     "loc": {
                         "start": {
-                            "line": 2,
-                            "column": 9
+                            "line": 1,
+                            "column": 7
                         },
                         "end": {
                             "line": 2,
@@ -59,10 +59,10 @@
                         }
                     },
                     "range": [
-                        22,
+                        7,
                         23
                     ],
-                    "raw": "."
+                    "raw": "(./wo\nrld.html)."
                 }
             ],
             "loc": {
@@ -165,9 +165,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Image",
-                    "title": null,
-                    "url": "./wo\nrld.png",
+                    "type": "imageReference",
+                    "identifier": "hello",
+                    "referenceType": "shortcut",
                     "alt": "Hello",
                     "loc": {
                         "start": {
@@ -175,22 +175,22 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 8,
+                            "line": 7,
                             "column": 8
                         }
                     },
                     "range": [
                         52,
-                        74
+                        60
                     ],
-                    "raw": "![Hello](./wo\nrld.png)"
+                    "raw": "![Hello]"
                 },
                 {
                     "type": "Str",
-                    "value": ".",
+                    "value": "(./wo\nrld.png).",
                     "loc": {
                         "start": {
-                            "line": 8,
+                            "line": 7,
                             "column": 8
                         },
                         "end": {
@@ -199,10 +199,10 @@
                         }
                     },
                     "range": [
-                        74,
+                        60,
                         75
                     ],
-                    "raw": "."
+                    "raw": "(./wo\nrld.png)."
                 }
             ],
             "loc": {
