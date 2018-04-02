@@ -1,6 +1,6 @@
 {
   "name": "@textlint/markdown-to-ast",
-  "version": "6.0.7",
+  "version": "6.0.8",
   "description": "Parse Markdown to AST with location info.",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/",
   "bugs": {
@@ -38,8 +38,8 @@
     "unified": "^6.1.6"
   },
   "devDependencies": {
-    "@textlint/ast-tester": "^2.0.6",
-    "@textlint/ast-traverse": "^2.0.7",
+    "@textlint/ast-tester": "^2.0.7",
+    "@textlint/ast-traverse": "^2.0.8",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",

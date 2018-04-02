@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.10"></a>
+## [2.0.10](https://github.com/textlint/textlint/compare/textlint-example-cli@2.0.9...textlint-example-cli@2.0.10) (2018-04-02)
+
+
+
+
+**Note:** Version bump only for package textlint-example-cli
+
 <a name="2.0.9"></a>
 ## [2.0.9](https://github.com/textlint/textlint/compare/textlint-example-cli@2.0.8...textlint-example-cli@2.0.9) (2018-04-02)
 
