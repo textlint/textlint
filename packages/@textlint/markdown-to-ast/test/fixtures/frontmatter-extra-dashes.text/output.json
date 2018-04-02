@@ -2,89 +2,11 @@
     "type": "Document",
     "children": [
         {
-            "type": "HorizontalRule",
+            "type": "Yaml",
+            "value": "title: post\nobject:\n  key: value ---",
             "loc": {
                 "start": {
                     "line": 1,
-                    "column": 0
-                },
-                "end": {
-                    "line": 1,
-                    "column": 3
-                }
-            },
-            "range": [
-                0,
-                3
-            ],
-            "raw": "---"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "title: post\nobject:",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        4,
-                        23
-                    ],
-                    "raw": "title: post\nobject:"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 2,
-                    "column": 0
-                },
-                "end": {
-                    "line": 3,
-                    "column": 7
-                }
-            },
-            "range": [
-                4,
-                23
-            ],
-            "raw": "title: post\nobject:"
-        },
-        {
-            "type": "Header",
-            "depth": 2,
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "key: value ---",
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 4,
-                            "column": 16
-                        }
-                    },
-                    "range": [
-                        26,
-                        40
-                    ],
-                    "raw": "key: value ---"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 4,
                     "column": 0
                 },
                 "end": {
@@ -93,10 +15,10 @@
                 }
             },
             "range": [
-                24,
+                0,
                 44
             ],
-            "raw": "  key: value ---\n---"
+            "raw": "---\ntitle: post\nobject:\n  key: value ---\n---"
         },
         {
             "type": "Header",

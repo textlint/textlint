@@ -5,8 +5,12 @@ const { ASTNodeTypes } = require("@textlint/ast-node-types");
 const StructuredSource = require("structured-source");
 const debug = require("debug")("@textlint/markdown-to-ast");
 const SyntaxMap = require("./mapping/markdown-syntax-map");
-const remarkAbstract = require("remark");
-const remark = remarkAbstract();
+const unified = require("unified");
+const remarkParse = require("remark-parse");
+const frontmatter = require("remark-frontmatter");
+const remark = unified()
+    .use(remarkParse)
+    .use(frontmatter, ["yaml"]);
 /**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
