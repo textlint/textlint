@@ -1,6 +1,6 @@
 {
   "name": "@textlint/text-to-ast",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Parse plain text to AST with location info.",
   "keywords": [
     "ast",
@@ -38,7 +38,7 @@
     "@textlint/ast-node-types": "^4.0.2"
   },
   "devDependencies": {
-    "@textlint/ast-tester": "^2.0.6",
+    "@textlint/ast-tester": "^2.0.7",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
