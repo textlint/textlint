@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.2.0"></a>
+# [10.2.0](https://github.com/textlint/textlint/compare/textlint@10.1.5...textlint@10.2.0) (2018-04-02)
+
+
+### Bug Fixes
+
+* **textlint:** check textlintrc option exists for internal use ([744da23](https://github.com/textlint/textlint/commit/744da23))
+
+
+### Features
+
+* **textlint:** support --no-textlintrc ([466e257](https://github.com/textlint/textlint/commit/466e257))
+
+
+### Tests
+
+* **textlint:** add tests for --no-textlintrc ([289deb3](https://github.com/textlint/textlint/commit/289deb3))
+* **textlint:** pass textlintrc options for failure tests ([bc0804d](https://github.com/textlint/textlint/commit/bc0804d))
+* **textlint:** simplify textlint --help test ([0d2114d](https://github.com/textlint/textlint/commit/0d2114d))
+
+
+
+
 <a name="10.1.5"></a>
 ## [10.1.5](https://github.com/textlint/textlint/compare/textlint@10.1.4...textlint@10.1.5) (2018-03-25)
 
