@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.0.7"></a>
+## [6.0.7](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.0.6...@textlint/markdown-to-ast@6.0.7) (2018-04-02)
+
+
+### Bug Fixes
+
+* **markdown-to-ast:** upgrade remark@^9.0.0 ([8a70c0f](https://github.com/textlint/textlint/commit/8a70c0f))
+
+
+### Chores
+
+* **markdown-to-ast:** update fixtures ([ac61a54](https://github.com/textlint/textlint/commit/ac61a54))
+
+
+### Tests
+
+* **markdown-to-ast:** add failure test case ([87f218d](https://github.com/textlint/textlint/commit/87f218d))
+
+
+
+
 <a name="6.0.6"></a>
 ## [6.0.6](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.0.5...@textlint/markdown-to-ast@6.0.6) (2018-03-25)
 
