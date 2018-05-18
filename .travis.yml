@@ -39,10 +39,5 @@ jobs:
       before_script:
         - $(npm bin)/set-up-ssh --key "$encrypted_6407ccbe9d33_key" --iv "$encrypted_6407ccbe9d33_iv" --path-encrypted-key ".travis/textlint.github.io-deploykey.enc"
       script:
-        - $(npm bin)/update-branch --commands "npm run website" \
-                             --commit-message "Update Website [skip ci]" \
-                             --directory "website/build/textlint" \
-                             --distribution-branch "master" \
-                             --distribution-repository "git@github.com:textlint/textlint.github.io.git" \
-                             --source-branch "master"
+        - $(npm bin)/update-branch --commands "npm run website" --commit-message "Update Website [skip ci]" --directory "website/build/textlint" --distribution-branch "master" --distribution-repository "git@github.com:textlint/textlint.github.io.git" --source-branch "master"
 
