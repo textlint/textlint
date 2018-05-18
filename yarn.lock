@@ -12,9 +12,9 @@
   dependencies:
     "@azu/format-text" "^1.0.1"
 
-"@azu/travis-scripts@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@azu/travis-scripts/-/travis-scripts-3.0.1.tgz#ff93257e055cf0272d37078df9f69e12e3be484b"
+"@azu/travis-scripts@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@azu/travis-scripts/-/travis-scripts-3.0.3.tgz#789bbf1013a89f1b5cff6d9d0727d74d803cd889"
 
 "@textlint/ast-node-types@^3.0.0":
   version "3.0.1"
