@@ -7,13 +7,13 @@ const users = [
     },
     {
         caption: "Hoodie",
-        image: "http://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png",
+        image: "https://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png",
         infoLink: "http://hood.ie/",
         pinned: true
     },
     {
         caption: "JavaScriptの入門書",
-        image: "http://78.media.tumblr.com/avatar_c63524fcb991_128.pnj",
+        image: "https://78.media.tumblr.com/avatar_c63524fcb991_128.png",
         infoLink: "https://asciidwango.github.io/js-primer/ ",
         pinned: true
     },
