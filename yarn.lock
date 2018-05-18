@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-"@alrra/travis-scripts@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@alrra/travis-scripts/-/travis-scripts-3.0.1.tgz#45d5b9357317b6cc5553dfd99931843ae0b0e53a"
-
 "@azu/format-text@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@azu/format-text/-/format-text-1.0.1.tgz#6967350a94640f6b02855169bd897ce54d6cebe2"
@@ -15,6 +11,10 @@
   resolved "https://registry.yarnpkg.com/@azu/style-format/-/style-format-1.0.0.tgz#e70187f8a862e191b1bce6c0268f13acd3a56b20"
   dependencies:
     "@azu/format-text" "^1.0.1"
+
+"@azu/travis-scripts@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@azu/travis-scripts/-/travis-scripts-3.0.1.tgz#ff93257e055cf0272d37078df9f69e12e3be484b"
 
 "@textlint/ast-node-types@^3.0.0":
   version "3.0.1"

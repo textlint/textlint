@@ -30,7 +30,7 @@
     "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)"
   },
   "devDependencies": {
-    "@alrra/travis-scripts": "^3.0.1",
+    "@azu/travis-scripts": "^3.0.1",
     "conventional-changelog-angular-all": "^1.6.1",
     "eslint": "^4.7.2",
     "eslint-config-prettier": "^2.6.0",

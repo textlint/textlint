@@ -43,4 +43,5 @@ jobs:
                              --commit-message "Update Website [skip ci]" \
                              --directory "website/build/textlint" \
                              --distribution-branch "master" \
+                             --distribution-repository "git@github.com:textlint/textlint.github.io.git" \
                              --source-branch "master"
