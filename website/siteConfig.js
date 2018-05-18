@@ -1,17 +1,5 @@
 const users = [
     {
-        caption: "SURVIVEJS - WEBPACK",
-        image: "https://www.gravatar.com/avatar/b26ec3c2769168c2cbc64cc3df9cdd9c?s=200",
-        infoLink: "https://survivejs.com/webpack/",
-        pinned: true
-    },
-    {
-        caption: "Hoodie",
-        image: "https://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png",
-        infoLink: "http://hood.ie/",
-        pinned: true
-    },
-    {
         caption: "JavaScriptの入門書",
         image: "https://78.media.tumblr.com/avatar_c63524fcb991_128.png",
         infoLink: "https://asciidwango.github.io/js-primer/ ",
@@ -21,6 +9,18 @@ const users = [
         caption: "jp.vuejs.org",
         image: "https://avatars3.githubusercontent.com/u/11144750?s=200&v=4",
         infoLink: "https://github.com/vuejs-jp/jp.vuejs.org",
+        pinned: true
+    },
+    {
+        caption: "SURVIVEJS - WEBPACK",
+        image: "https://www.gravatar.com/avatar/b26ec3c2769168c2cbc64cc3df9cdd9c?s=200",
+        infoLink: "https://survivejs.com/webpack/",
+        pinned: true
+    },
+    {
+        caption: "Hoodie",
+        image: "https://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png",
+        infoLink: "http://hood.ie/",
         pinned: true
     }
 ];

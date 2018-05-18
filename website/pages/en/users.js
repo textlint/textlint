@@ -36,7 +36,7 @@ class Users extends React.Component {
                             href="https://github.com/textlint/textlint/edit/master/website/siteConfig.js"
                             className="button"
                         >
-                            Add your company
+                            Add your company or project
                         </a>
                     </div>
                 </Container>
