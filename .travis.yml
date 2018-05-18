@@ -16,7 +16,7 @@ install:
 jobs:
   include:
     - stage: TEST
-      node_js: 4
+      node_js: 6
       script:
       - yarn test
       - yarn test:examples
