@@ -36,10 +36,10 @@
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "^6.0.8",
-    "@types/mocha": "^2.2.44",
+    "@types/mocha": "^5.2.0",
     "@types/node": "^8.5.1",
     "cross-env": "^5.1.1",
-    "mocha": "^4.0.1",
+    "mocha": "^5.1.1",
     "rimraf": "^2.6.2",
     "ts-node": "^4.0.2",
     "ts-node-test-register": "^1.0.1",

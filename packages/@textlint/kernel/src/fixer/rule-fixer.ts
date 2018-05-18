@@ -6,7 +6,7 @@ import { SourceCodeRange } from "../core/source-code";
  * Fix Command object has `range` and `text`.
  * `IntermediateFixCommand` has also `isAbsolute` flag value.
  */
-export class IntermediateFixCommand {
+export interface IntermediateFixCommand {
     text: string;
     range: [number, number];
     isAbsolute: boolean;

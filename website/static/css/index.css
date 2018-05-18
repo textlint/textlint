@@ -59,6 +59,7 @@
     font-size: 72px;
     font-weight: bold;
     text-align: center;
+    line-height: 1em;
     color: #ffffff;
 }
 
@@ -71,6 +72,9 @@
     font-weight: 300;
     text-align: center;
     color: #ffffff;
+
+    display: block;
+    line-height: 1em;
 }
 
 .GettingStartedButton {

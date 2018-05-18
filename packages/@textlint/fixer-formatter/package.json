@@ -45,11 +45,11 @@
     "try-resolve": "^1.0.1"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.44",
+    "@types/mocha": "^5.2.0",
     "@types/node": "^8.0.57",
     "@types/power-assert": "^1.4.29",
     "cross-env": "^5.1.1",
-    "mocha": "^4.0.1",
+    "mocha": "^5.1.1",
     "rimraf": "^2.6.2",
     "ts-node": "^4.0.1",
     "ts-node-test-register": "^1.0.1",

@@ -1,11 +1,11 @@
 sudo: false
 language: node_js
 node_js:
-- 4
 - stable
 env:
-- DOCS=true
-- DOCS=false
+  global:
+  - GH_USER_EMAIL="azuciao@gmail.com"
+  - GH_USER_NAME="azu"
 cache: yarn
 before_install:
 - npm install -g npm@5
@@ -13,21 +13,35 @@ before_install:
 install:
 - yarn install --frozen-lockfile --ignore-engines
 - yarn run bootstrap
-script:
-- yarn test
-- yarn test:examples
-- yarn test:integration
-matrix:
-  exclude:
-  - node_js: 4
-    env: DOCS=true
-  - node_js: stable
-    env: DOCS=true
 jobs:
   include:
-    - stage: DOCUMENTATION
-      if: env(DOCS) = true
+    - stage: TEST
+      node_js: 6
       script:
-      - yarn test:docs
-      - yarn build:website
+      - yarn test
+      - yarn test:examples
+      - yarn test:integration
+    - stage: TEST
       node_js: stable
+      script:
+      - yarn test
+      - yarn test:examples
+      - yarn test:integration
+    - stage: DOCUMENTATION
+      node_js: stable
+      script:
+      - yarn run test:docs
+      - yarn run website
+  # Deploy Docusaurus
+    - stage: deploy
+      node_js: stable
+      if: branch = master AND type != pull_request
+      before_script:
+        - $(npm bin)/set-up-ssh --key "$encrypted_6407ccbe9d33_key" --iv "$encrypted_6407ccbe9d33_iv" --path-encrypted-key ".travis/textlint.github.io-deploykey.enc"
+      script:
+        - $(npm bin)/update-branch --commands "npm run website" \
+                             --commit-message "Update Website [skip ci]" \
+                             --directory "website/build/textlint" \
+                             --distribution-branch "master" \
+                             --distribution-repository "git@github.com:textlint/textlint.github.io.git" \
+                             --source-branch "master"
