@@ -48,7 +48,7 @@
     "browserify": "^14.3.0",
     "cross-env": "^4.0.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^4.0.1",
+    "mocha": "^5.1.1",
     "power-assert": "^1.4.2",
     "rimraf": "^2.6.2"
   },

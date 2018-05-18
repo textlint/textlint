@@ -48,11 +48,11 @@
     "xml-escape": "^1.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.44",
+    "@types/mocha": "^5.2.0",
     "@types/node": "^8.0.57",
     "chai": "^3.5.0",
     "cross-env": "^5.1.1",
-    "mocha": "^4.0.1",
+    "mocha": "^5.1.1",
     "power-assert": "^1.1.0",
     "proxyquire": "^1.7.4",
     "rimraf": "^2.6.2",
