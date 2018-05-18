@@ -1916,7 +1916,11 @@
                     this,
                     typeof global !== "undefined"
                         ? global
-                        : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}
+                        : typeof self !== "undefined"
+                            ? self
+                            : typeof window !== "undefined"
+                                ? window
+                                : {}
                 ));
             },
             { "base64-js": 6, ieee754: 25, isarray: 9 }
@@ -5288,9 +5292,8 @@
                     else if (isObject(this._events[type]))
                         // If we've already got an array, just append.
                         this._events[type].push(listener);
-                    else
-                        // Adding the second element, need to change to array.
-                        this._events[type] = [this._events[type], listener];
+                    // Adding the second element, need to change to array.
+                    else this._events[type] = [this._events[type], listener];
 
                     // Check for listener leak
                     if (isObject(this._events[type]) && !this._events[type].warned) {
@@ -17504,7 +17507,11 @@
                     this,
                     typeof global !== "undefined"
                         ? global
-                        : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}
+                        : typeof self !== "undefined"
+                            ? self
+                            : typeof window !== "undefined"
+                                ? window
+                                : {}
                 ));
             },
             { "./trough.js": 51, bail: 5, events: 23, extend: 24, once: 30, vfile: 56 }

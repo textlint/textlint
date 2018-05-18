@@ -162,12 +162,12 @@ export interface TextlintKernelOptions {
 }
 
 // "range" will be replaced by "text"
-export class TextlintFixCommand {
+export interface TextlintFixCommand {
     text: string;
     range: [number, number];
 }
 
-export class TextlintMessage {
+export interface TextlintMessage {
     // See src/shared/type/MessageType.js
     // Message Type
     type: string;

@@ -24,9 +24,9 @@ const VisitorOption = {
 };
 
 class Controller {
-    private __worklist: TxtElement[];
-    private __leavelist: TxtElement[];
-    private __current: null | TxtElement;
+    private __worklist!: TxtElement[];
+    private __leavelist!: TxtElement[];
+    private __current!: null | TxtElement;
 
     private __willStartTraverse() {
         this.__current = null;
