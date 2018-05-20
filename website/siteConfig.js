@@ -7,8 +7,8 @@ const users = [
     },
     {
         caption: "jp.vuejs.org",
-        image: "https://avatars3.githubusercontent.com/u/11144750?s=200&v=4",
-        infoLink: "https://github.com/vuejs-jp/jp.vuejs.org",
+        image: "https://avatars3.githubusercontent.com/u/6128107?s=200&v=4",
+        infoLink: "https://github.com/vuejs/jp.vuejs.org",
         pinned: true
     },
     {
