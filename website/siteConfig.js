@@ -40,8 +40,7 @@ const siteConfig = {
     projectName: "textlint",
     onPageNav: "separate",
     headerLinks: [
-        { search: true },
-        { doc: "getting-started", label: "Documentation" },
+        { doc: "getting-started", label: "Docs" },
         { href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule", label: "Rules" },
         { blog: true, label: "Blog" },
         { page: "help", label: "Help" },
