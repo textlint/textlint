@@ -47,7 +47,8 @@ const siteConfig = {
         {
             href: "https://github.com/textlint/textlint",
             label: "GitHub"
-        }
+        },
+        { search: true }
     ],
     users,
     /* path to images for header/footer */
