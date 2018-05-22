@@ -22,6 +22,12 @@ const users = [
         image: "https://hoodiehq.github.io/hoodie-css/src/content_img/animals/low-profile-dog-3.png",
         infoLink: "http://hood.ie/",
         pinned: true
+    },
+    {
+        caption: "GIS実習オープン教材",
+        image: "https://raw.githubusercontent.com/gis-oer/gis-oer/master/img/logo/logo_gis-oer_01_256px.png",
+        infoLink: "https://github.com/gis-oer/gis-oer",
+        pinned: true
     }
 ];
 
