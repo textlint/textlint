@@ -40,14 +40,15 @@ const siteConfig = {
     projectName: "textlint",
     onPageNav: "separate",
     headerLinks: [
-        { doc: "getting-started", label: "Documentation" },
+        { doc: "getting-started", label: "Docs" },
         { href: "https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule", label: "Rules" },
         { blog: true, label: "Blog" },
         { page: "help", label: "Help" },
         {
             href: "https://github.com/textlint/textlint",
             label: "GitHub"
-        }
+        },
+        { search: true }
     ],
     users,
     /* path to images for header/footer */
@@ -59,6 +60,11 @@ const siteConfig = {
         primaryColor: "#259eac",
         secondaryColor: "#6f9bf2",
         textColor: "#000000"
+    },
+    algolia: {
+        apiKey: "27ef1d5fc0d12142485f3784f7d3cb46",
+        indexName: "textlint",
+        algoliaOptions: {} // Optional, if provided by Algolia
     },
     // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
     copyright: `Copyright © ${new Date().getFullYear()}textlint organization`,
