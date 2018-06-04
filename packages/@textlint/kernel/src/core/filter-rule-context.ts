@@ -29,6 +29,10 @@ export interface FilterRuleContextArgs {
     configBaseDir?: string;
 }
 
+export const createFreezedFilterRuleContext = (args: FilterRuleContextArgs) => {
+    return Object.freeze(new FilterRuleContext(args));
+};
+
 /**
  * Rule context object is passed to each rule as `context`
  * @param {string} ruleId

@@ -56,6 +56,10 @@ export interface RuleReportedObject {
     [index: string]: any;
 }
 
+export const createFreezedRuleContext = (args: RuleContextArgs) => {
+    return Object.freeze(new RuleContext(args));
+};
+
 export default class RuleContext implements BaseRuleContext {
     private _ruleId: string;
     private _sourceCode: SourceCode;

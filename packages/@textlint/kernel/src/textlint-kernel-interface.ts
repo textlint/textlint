@@ -7,7 +7,7 @@ import FilterRuleContext from "./core/filter-rule-context";
  * Rule reporter function
  */
 export type RuleCreatorReporter = (
-    context: RuleContext,
+    context: Readonly<RuleContext>,
     options?: TextlintRuleOptions
 ) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
 /**
@@ -16,7 +16,7 @@ export type RuleCreatorReporter = (
 export type TextlintRuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter };
 export type TextlintRuleCreator = RuleCreatorReporter | TextlintRuleFixableCreator;
 export type TextlintFilterRuleCreator = (
-    context: FilterRuleContext,
+    context: Readonly<FilterRuleContext>,
     options?: TextlintFilterRuleOptions
 ) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
 

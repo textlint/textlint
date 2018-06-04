@@ -2,8 +2,8 @@
 "use strict";
 import CoreTask from "./textlint-core-task";
 import { getFilter, getLinter } from "../core/rule-creator-helper";
-import RuleContext from "../core/rule-context";
-import FilterRuleContext from "../core/filter-rule-context";
+import { createFreezedRuleContext } from "../core/rule-context";
+import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
 import {
     TextlintKernelConstructorOptions,
     TextlintKernelFilterRule,
@@ -59,27 +59,25 @@ export default class TextLintCoreTask extends CoreTask {
         // see https://github.com/textlint/textlint/issues/219
         debug("rules", this.rules);
         this.rules.forEach(({ ruleId, rule, options }) => {
-            const ruleContext = new RuleContext({
+            const ruleContext = createFreezedRuleContext({
                 ruleId,
                 ruleOptions: options,
                 sourceCode,
                 report,
                 configBaseDir: this.configBaseDir
             });
-            Object.freeze(ruleContext);
             const ruleCreator = getLinter(rule);
             this.tryToAddListenRule(ruleCreator, ruleContext, options);
         });
         // setup "filters" field
         debug("filterRules", this.filterRules);
         this.filterRules.forEach(({ ruleId, rule, options }) => {
-            const ruleContext = new FilterRuleContext({
+            const ruleContext = createFreezedFilterRuleContext({
                 ruleId,
                 sourceCode,
                 ignoreReport,
                 configBaseDir: this.configBaseDir
             });
-            Object.freeze(ruleContext);
             // "filters" rule is the same with "rules"
             const ruleModule = getFilter(rule);
             this.tryToAddListenRule(ruleModule, ruleContext, options);
