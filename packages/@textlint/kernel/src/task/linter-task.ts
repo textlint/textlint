@@ -66,6 +66,7 @@ export default class TextLintCoreTask extends CoreTask {
                 report,
                 configBaseDir: this.configBaseDir
             });
+            Object.freeze(ruleContext);
             const ruleCreator = getLinter(rule);
             this.tryToAddListenRule(ruleCreator, ruleContext, options);
         });
@@ -78,6 +79,7 @@ export default class TextLintCoreTask extends CoreTask {
                 ignoreReport,
                 configBaseDir: this.configBaseDir
             });
+            Object.freeze(ruleContext);
             // "filters" rule is the same with "rules"
             const ruleModule = getFilter(rule);
             this.tryToAddListenRule(ruleModule, ruleContext, options);

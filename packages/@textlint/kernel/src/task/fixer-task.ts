@@ -63,6 +63,7 @@ export default class TextLintCoreTask extends CoreTask {
             report,
             configBaseDir: this.configBaseDir
         });
+        Object.freeze(ruleContext);
         const ruleModule = getFixer(this.fixerRule.rule);
         this.tryToAddListenRule(ruleModule, ruleContext, this.fixerRule.options);
         // setup "filters" field
@@ -73,6 +74,7 @@ export default class TextLintCoreTask extends CoreTask {
                 sourceCode,
                 ignoreReport
             });
+            Object.freeze(ruleContext);
             // "filters" rule is the same with "rules"
             const ruleModule = getFilter(rule);
             this.tryToAddListenRule(ruleModule, ruleContext, options);
