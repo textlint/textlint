@@ -14,7 +14,7 @@ export interface ReportOptions {
     }[];
 }
 
-export const report: RuleCreatorReporter = (context: RuleContext, options: ReportOptions | any = {}) => {
+export const report: RuleCreatorReporter = (context: Readonly<RuleContext>, options: ReportOptions | any = {}) => {
     const errors = options.errors || [];
     const { Syntax, RuleError, report, fixer } = context;
     return {

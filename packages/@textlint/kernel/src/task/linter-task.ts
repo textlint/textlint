@@ -2,8 +2,8 @@
 "use strict";
 import CoreTask from "./textlint-core-task";
 import { getFilter, getLinter } from "../core/rule-creator-helper";
-import RuleContext from "../core/rule-context";
-import FilterRuleContext from "../core/filter-rule-context";
+import { createFreezedRuleContext } from "../core/rule-context";
+import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
 import {
     TextlintKernelConstructorOptions,
     TextlintKernelFilterRule,
@@ -59,7 +59,7 @@ export default class TextLintCoreTask extends CoreTask {
         // see https://github.com/textlint/textlint/issues/219
         debug("rules", this.rules);
         this.rules.forEach(({ ruleId, rule, options }) => {
-            const ruleContext = new RuleContext({
+            const ruleContext = createFreezedRuleContext({
                 ruleId,
                 ruleOptions: options,
                 sourceCode,
@@ -72,7 +72,7 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "filters" field
         debug("filterRules", this.filterRules);
         this.filterRules.forEach(({ ruleId, rule, options }) => {
-            const ruleContext = new FilterRuleContext({
+            const ruleContext = createFreezedFilterRuleContext({
                 ruleId,
                 sourceCode,
                 ignoreReport,

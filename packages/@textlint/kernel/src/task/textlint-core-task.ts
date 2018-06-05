@@ -204,7 +204,11 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     /**
      * try to get rule object
      */
-    tryToGetRuleObject(ruleCreator: RuleCreatorReporter, ruleContext: RuleContext, ruleOptions?: TextlintRuleOptions) {
+    tryToGetRuleObject(
+        ruleCreator: RuleCreatorReporter,
+        ruleContext: Readonly<RuleContext>,
+        ruleOptions?: TextlintRuleOptions
+    ) {
         try {
             return ruleCreator(ruleContext, ruleOptions);
         } catch (error) {
@@ -218,7 +222,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      */
     tryToGetFilterRuleObject(
         ruleCreator: TextlintFilterRuleCreator,
-        ruleContext: FilterRuleContext,
+        ruleContext: Readonly<FilterRuleContext>,
         ruleOptions?: TextlintFilterRuleOptions
     ) {
         try {
@@ -232,19 +236,27 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     /**
      * add all the node types as listeners of the rule
      * @param {Function} ruleCreator
-     * @param {RuleContext|FilterRuleContext} ruleContext
+     * @param {Readonly<RuleContext>|Readonly<FilterRuleContext>} ruleContext
      * @param {Object|boolean|undefined} ruleOptions
      * @returns {Object}
      */
     tryToAddListenRule(
         ruleCreator: RuleCreatorReporter | TextlintFilterRuleCreator,
-        ruleContext: RuleContext | FilterRuleContext,
+        ruleContext: Readonly<RuleContext> | Readonly<FilterRuleContext>,
         ruleOptions?: TextlintRuleOptions | TextlintFilterRuleOptions
     ): void {
         const ruleObject =
             ruleContext instanceof RuleContext
-                ? this.tryToGetRuleObject(ruleCreator as RuleCreatorReporter, ruleContext, ruleOptions)
-                : this.tryToGetFilterRuleObject(ruleCreator as TextlintFilterRuleCreator, ruleContext, ruleOptions);
+                ? this.tryToGetRuleObject(
+                      ruleCreator as RuleCreatorReporter,
+                      ruleContext as Readonly<RuleContext>,
+                      ruleOptions
+                  )
+                : this.tryToGetFilterRuleObject(
+                      ruleCreator as TextlintFilterRuleCreator,
+                      ruleContext as Readonly<FilterRuleContext>,
+                      ruleOptions
+                  );
         const types = Object.keys(ruleObject) as (keyof typeof ruleObject)[];
         types.forEach((nodeType: keyof typeof ruleObject) => {
             this.ruleTypeEmitter.on(
