@@ -1,22 +1,24 @@
 // LICENSE : MIT
 "use strict";
+import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
+
 const assert = require("assert");
 const path = require("path");
 const os = require("os");
 const sh = require("shelljs");
 import { Config } from "../../src/config/config";
-import { configInit } from "../../src/config/config-initializer";
+import { createConfigFile } from "../../src/config/config-initializer";
 import { loadConfig } from "../../src/config/config-loader";
 import { Logger } from "../../src/util/logger";
 /*
  config file generate test
  */
 describe("config-initializer-test", function() {
-    let configDir;
+    let configDir: string;
     const originErrorLog = Logger.error;
 
     beforeEach(function() {
-        configDir = os.tmpdir() + "/textlint-config";
+        configDir = `${os.tmpdir()}/textlint-config`;
         sh.mkdir("-p", configDir);
     });
 
@@ -30,10 +32,14 @@ describe("config-initializer-test", function() {
         });
         it("should create new file with packages", function() {
             const configFile = path.join(configDir, ".textlintrc");
-            return configInit.initializeConfig(configDir).then(function(exitStatus) {
+            const moduleResolver = new TextLintModuleResolver(Config, configDir);
+            return createConfigFile({
+                dir: configDir,
+                verbose: false
+            }).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
                 const { config } = loadConfig(configFile, {
-                    configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
+                    moduleResolver,
                     configFileName: Config.CONFIG_FILE_NAME
                 });
                 assert.equal(typeof config.filters, "object");
@@ -46,15 +52,31 @@ describe("config-initializer-test", function() {
     context("when .textlintrc is not existed", function() {
         it("should create new file", function() {
             const configFile = path.join(configDir, ".textlintrc");
-            return configInit.initializeConfig(configDir).then(function(exitStatus) {
+            const moduleResolver = new TextLintModuleResolver(Config, configDir);
+
+            return createConfigFile({
+                dir: configDir,
+                verbose: false
+            }).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
                 const { config } = loadConfig(configFile, {
-                    configPackagePrefix: Config.CONFIG_PACKAGE_PREFIX,
+                    moduleResolver,
                     configFileName: Config.CONFIG_FILE_NAME
                 });
                 assert.equal(typeof config.filters, "object");
                 assert.equal(typeof config.rules, "object");
                 assert(Object.keys(config.rules).length === 0);
+            });
+        });
+        it("should create and show message if verbose:true", function() {
+            Logger.log = function mockErrorLog(message) {
+                assert.ok(/\.textlintrc is created/.test(message), "should show created message");
+            };
+            return createConfigFile({
+                dir: configDir,
+                verbose: true
+            }).then(function(exitStatus) {
+                assert.equal(exitStatus, 0);
             });
         });
     });
@@ -72,12 +94,17 @@ describe("config-initializer-test", function() {
             Logger.error = function mockErrorLog(message) {
                 assert.equal(message, ".textlintrc is already existed.");
             };
-            return configInit
-                .initializeConfig(configDir)
+            return createConfigFile({
+                dir: configDir,
+                verbose: false
+            })
                 .then(exitStatus => {
                     assert.equal(exitStatus, 0);
                     // try to re-create
-                    return configInit.initializeConfig(configDir);
+                    return createConfigFile({
+                        dir: configDir,
+                        verbose: false
+                    });
                 })
                 .then(exitStatus => {
                     assert.equal(exitStatus, 1);

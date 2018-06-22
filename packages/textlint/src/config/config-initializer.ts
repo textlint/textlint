@@ -49,44 +49,51 @@ const arrayToObject = (array: Array<any>, defaultValue: any): object => {
     });
     return object;
 };
+
+export interface CreateConfigFileOption {
+    // create .textlint in the `dir`
+    dir: string;
+    // display log message if it is `true`
+    verbose: boolean;
+}
+
 /**
- * Initializer class for config of textlint.
+ * Create .textlintrc file
+ * @params {string} dir The directory of .textlintrc file
+ * @returns {Promise.<number>} The exit code for the operation.
  */
-export const configInit = {
-    /**
-     * Create .textlintrc file
-     * @params {string} dir The directory of .textlintrc file
-     * @returns {Promise.<number>} The exit code for the operation.
-     */
-    initializeConfig(dir: string) {
-        return getTextlintDependencyNames(dir).then(pkgNames => {
-            const rcFile = `.${Config.CONFIG_FILE_NAME}rc`;
-            const filePath = path.resolve(dir, rcFile);
-            if (isFile(filePath)) {
-                Logger.error(`${rcFile} is already existed.`);
-                return Promise.resolve(1);
-            }
-            const filters = pkgNames
-                .filter(pkgName => {
-                    return pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1;
-                })
-                .map(filterName => {
-                    return filterName.replace(Config.FILTER_RULE_NAME_PREFIX, "");
-                });
-            const rules = pkgNames
-                .filter(pkgName => {
-                    return pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
-                })
-                .map(filterName => {
-                    return filterName.replace(Config.RULE_NAME_PREFIX, "");
-                });
-            const defaultTextlintRc = {
-                filters: arrayToObject(filters, true),
-                rules: arrayToObject(rules, true)
-            };
-            const output = JSON.stringify(defaultTextlintRc, null, 2);
-            fs.writeFileSync(filePath, output);
-            return Promise.resolve(0);
-        });
-    }
+export const createConfigFile = (options: CreateConfigFileOption) => {
+    const dir = options.dir;
+    return getTextlintDependencyNames(dir).then(pkgNames => {
+        const rcFile = `.${Config.CONFIG_FILE_NAME}rc`;
+        const filePath = path.resolve(dir, rcFile);
+        if (isFile(filePath)) {
+            Logger.error(`${rcFile} is already existed.`);
+            return Promise.resolve(1);
+        }
+        const filters = pkgNames
+            .filter(pkgName => {
+                return pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1;
+            })
+            .map(filterName => {
+                return filterName.replace(Config.FILTER_RULE_NAME_PREFIX, "");
+            });
+        const rules = pkgNames
+            .filter(pkgName => {
+                return pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
+            })
+            .map(filterName => {
+                return filterName.replace(Config.RULE_NAME_PREFIX, "");
+            });
+        const defaultTextlintRc = {
+            filters: arrayToObject(filters, true),
+            rules: arrayToObject(rules, true)
+        };
+        const output = JSON.stringify(defaultTextlintRc, null, 2);
+        fs.writeFileSync(filePath, output);
+        if (options.verbose) {
+            Logger.log(`${rcFile} is created.`);
+        }
+        return Promise.resolve(0);
+    });
 };

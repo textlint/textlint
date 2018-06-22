@@ -11,9 +11,10 @@ import { options } from "./options";
 import { TextLintEngine } from "./textlint-engine";
 import { TextFixEngine } from "./textfix-engine";
 import { Config } from "./config/config";
-import { configInit } from "./config/config-initializer";
+import { createConfigFile } from "./config/config-initializer";
 import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
+
 /*
  cli.js is command line **interface**
 
@@ -77,7 +78,10 @@ export const cli = {
             const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
             Logger.log(`v${version}`);
         } else if (currentOptions.init) {
-            return configInit.initializeConfig(process.cwd());
+            return createConfigFile({
+                dir: process.cwd(),
+                verbose: !currentOptions.quiet
+            });
         } else if (currentOptions.help || (!files.length && !text)) {
             Logger.log(options.generateHelp());
         } else {
