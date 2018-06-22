@@ -11,7 +11,6 @@ before_install:
 - npm install -g yarn@latest
 install:
 - yarn install --frozen-lockfile
-after_install:
 - yarn run bootstrap
 jobs:
   include:
@@ -29,7 +28,8 @@ jobs:
       - yarn test:integration
     - stage: DOCUMENTATION
       node_js: stable
-      after_install:
+      install:
+      - yarn install --frozen-lockfile
       - yarn run bootstrap --scope website
       script:
       - yarn run test:docs
@@ -38,8 +38,9 @@ jobs:
     - stage: deploy
       node_js: stable
       if: branch = master AND type != pull_request
-      after_install:
-        - yarn run bootstrap --scope website
+      install:
+      - yarn install --frozen-lockfile
+      - yarn run bootstrap --scope website
       before_script:
         - $(npm bin)/set-up-ssh --key "$encrypted_6407ccbe9d33_key" --iv "$encrypted_6407ccbe9d33_iv" --path-encrypted-key ".travis/textlint.github.io-deploykey.enc"
       script:
