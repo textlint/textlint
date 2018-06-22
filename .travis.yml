@@ -30,7 +30,7 @@ jobs:
       node_js: stable
       install:
       - yarn install --frozen-lockfile
-      - yarn run bootstrap --scope website
+      - yarn run bootstrap --scope textlint-website
       script:
       - yarn run test:docs
       - yarn run website
@@ -40,7 +40,7 @@ jobs:
       if: branch = master AND type != pull_request
       install:
       - yarn install --frozen-lockfile
-      - yarn run bootstrap --scope website
+      - yarn run bootstrap --scope textlint-website
       before_script:
         - $(npm bin)/set-up-ssh --key "$encrypted_6407ccbe9d33_key" --iv "$encrypted_6407ccbe9d33_iv" --path-encrypted-key ".travis/textlint.github.io-deploykey.enc"
       script:
