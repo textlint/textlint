@@ -18,28 +18,42 @@ describe("cli-test", function() {
         Logger.log = originLog;
     });
     context("when pass linting", function() {
-        it("should return error when text with incorrect quotes is passed as argument", function() {
-            var ruleDir = path.join(__dirname, "fixtures/rules");
-            return cli.execute("--rulesdir " + ruleDir, "text").then(result => {
-                assert.equal(result, 1);
-            });
-        });
-        it("should return error", function() {
-            var ruleDir = path.join(__dirname, "fixtures/rules");
-            var targetFile = path.join(__dirname, "fixtures/test.md");
-            return cli.execute(`--rulesdir ${ruleDir} ${targetFile}`).then(result => {
-                assert.equal(result, 1);
+        it("should output checkstyle xml if the results length is 0", function() {
+            let isCalled = false;
+            const messages = [];
+            Logger.log = function mockLog(message) {
+                isCalled = true;
+                messages.push(message);
+            };
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            const ruleModuleName = "textlint-rule-no-todo";
+            return cli.execute(`-f checkstyle --rule ${ruleModuleName} ${targetFile}`).then(() => {
+                assert.ok(isCalled, "checkstyle should always output xml");
+                assert.ok(messages.length > 0, "should output if empty results");
             });
         });
     });
     context("when fail linting", function() {
+        it("should return error when text with incorrect quotes is passed as argument", function() {
+            const ruleDir = path.join(__dirname, "fixtures/rules");
+            return cli.execute(`--rulesdir ${ruleDir}`, "text").then(result => {
+                assert.equal(result, 1);
+            });
+        });
+        it("should return error", function() {
+            const ruleDir = path.join(__dirname, "fixtures/rules");
+            const targetFile = path.join(__dirname, "fixtures/test.md");
+            return cli.execute(`--rulesdir ${ruleDir} ${targetFile}`).then(result => {
+                assert.equal(result, 1);
+            });
+        });
         it("should return an error when use no-todo rules is specified", function() {
             cli.execute("", "text").then(result => {
                 assert.equal(result, 1);
             });
         });
         it("should return 1 (error)", function() {
-            var targetFile = path.join(__dirname, "fixtures/test.md");
+            const targetFile = path.join(__dirname, "fixtures/test.md");
             return cli.execute(`${targetFile}`).then(result => {
                 assert.equal(result, 1);
             });
@@ -222,7 +236,7 @@ describe("cli-test", function() {
             Logger.log = function mockLog(message) {
                 assert(message.length > 0);
             };
-            var targetFile = path.join(__dirname, "fixtures/test.md");
+            const targetFile = path.join(__dirname, "fixtures/test.md");
             return cli.execute(`${targetFile}`).then(result => {
                 assert.equal(result, 1);
             });
