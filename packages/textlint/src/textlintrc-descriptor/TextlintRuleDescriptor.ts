@@ -1,10 +1,15 @@
 // LICENSE : MIT
 "use strict";
+import { TextlintRuleCreator, TextlintRuleOptions } from "@textlint/kernel";
+
 const deepEqual = require("deep-equal");
 import { MapLike } from "map-like";
 import { assertRuleShape, hasFixer } from "./rule-creator-helper";
 
-const filterByAvailable = (rules: { [index: string]: any }, rulesConfig: { [index: string]: any }) => {
+const filterByAvailable = (
+    rules: { [index: string]: TextlintRuleCreator },
+    rulesConfig: { [index: string]: TextlintRuleOptions }
+) => {
     const resultRules = Object.create(null);
     Object.keys(rules).forEach(key => {
         const ruleCreator = rules[key];
@@ -19,20 +24,20 @@ const filterByAvailable = (rules: { [index: string]: any }, rulesConfig: { [inde
 };
 
 /**
+ * Textlint Rule Descriptor
  * Manage RuleCreator*s* object and RuleOption*s*
  */
-export class RuleCreatorSet {
-    rulesConfig: { [index: string]: any };
-    ruleNames: string[];
+export class TextlintRuleDescriptor {
     rules: any;
-    rawRulesConfigObject: object;
-    rawRulesObject: object;
-    /**
-     * @param {Object} [rules]
-     * @param {Object} [rulesConfig]
-     * @constructor
-     */
-    constructor(rules: object = {}, rulesConfig: object = {}) {
+    ruleNames: string[];
+    rulesConfig: { [index: string]: TextlintRuleOptions };
+    rawRulesConfigObject: { [index: string]: TextlintRuleOptions };
+    rawRulesObject: { [index: string]: TextlintRuleCreator };
+
+    constructor(
+        rules: { [index: string]: TextlintRuleCreator } = {},
+        rulesConfig: { [index: string]: TextlintRuleOptions } = {}
+    ) {
         this.rawRulesObject = rules;
         this.rawRulesConfigObject = rulesConfig;
         /**
@@ -68,9 +73,9 @@ export class RuleCreatorSet {
 
     /**
      * filter duplicated rules and rulesConfig and return new RuleCreatorSet.
-     * @return {RuleCreatorSet}
+     * @return {TextlintRuleDescriptor}
      */
-    withoutDuplicated(): RuleCreatorSet {
+    withoutDuplicated(): TextlintRuleDescriptor {
         const newRawRules: {
             [index: string]: any;
         } = {};
@@ -101,7 +106,7 @@ export class RuleCreatorSet {
             addedRuleMap.set(rule, savedConfigList);
         });
         addedRuleMap.clear();
-        return new RuleCreatorSet(newRawRules, newRawRulesConfig);
+        return new TextlintRuleDescriptor(newRawRules, newRawRulesConfig);
     }
 
     /**
@@ -128,11 +133,11 @@ export class RuleCreatorSet {
         });
     }
 
-    mapFixer(mapHandler: (set: RuleCreatorSet) => any) {
+    mapFixer(mapHandler: (set: TextlintRuleDescriptor) => any) {
         return this.getFixerNames().map(ruleName => {
             const rules = { [ruleName]: this.rules[ruleName] };
             const rulesConfig = { [ruleName]: this.rulesConfig[ruleName] };
-            return mapHandler(new RuleCreatorSet(rules, rulesConfig));
+            return mapHandler(new TextlintRuleDescriptor(rules, rulesConfig));
         });
     }
 
@@ -143,7 +148,7 @@ export class RuleCreatorSet {
      * @param {Object} rawRulesConfigObject
      * @private
      */
-    _normalizeRulesConfig(ruleNames: string[], rawRulesConfigObject: { [index: string]: any }) {
+    private _normalizeRulesConfig(ruleNames: string[], rawRulesConfigObject: { [index: string]: any }) {
         const rulesConfig: { [index: string]: any } = {};
         // default: { ruleName: true }
         const defaultRuleConfigValue = true;

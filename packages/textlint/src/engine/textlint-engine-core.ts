@@ -1,19 +1,19 @@
 // LICENSE : MIT
 "use strict";
 import { TextLintFormatterOption } from "../textlint-interface";
-
-const path = require("path");
-const debug = require("debug")("textlint:engine-core");
 import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "./rule-map";
 import { PluginMap } from "./processor-map";
 import { Config } from "../config/config";
-import { pathsToGlobPatterns, findFiles, separateByAvailability } from "../util/find-util";
+import { findFiles, pathsToGlobPatterns, separateByAvailability } from "../util/find-util";
 import { TextLintModuleLoader } from "./textlint-module-loader";
 import { ExecuteFileBackerManager } from "./execute-file-backer-manager";
 import { CacheBacker } from "./execute-file-backers/cache-backer";
 import { SeverityLevel } from "../shared/type/SeverityLevel";
 import { TextlintMessage, TextlintResult } from "@textlint/kernel";
+
+const path = require("path");
+const debug = require("debug")("textlint:engine-core");
 
 /**
  * Core of TextLintEngine.
@@ -29,7 +29,6 @@ import { TextlintMessage, TextlintResult } from "@textlint/kernel";
  */
 export abstract class AbstractTextLintEngine<LintResult extends TextlintResult> {
     filerRuleMap: any;
-    availableExtensions: any;
     moduleLoader: TextLintModuleLoader;
     pluginMap: PluginMap;
     filterRuleMap: RuleMap;
@@ -188,10 +187,6 @@ new TextLintEngine({
         this.textlint.setupFilterRules(this.filterRuleMap.getAllRules(), textlintConfig.filterRulesConfig);
         // set Processor
         this.textlint.setupPlugins(this.pluginMap.toJSON(), textlintConfig.pluginsConfig);
-        // execute files that are filtered by availableExtensions.
-        // TODO: it very hackable way, should be fixed
-        // it is depend on textlintCore's state
-        this.availableExtensions = this.textlint.pluginCreatorSet.availableExtensions.concat(this.config.extensions);
     }
 
     /**
@@ -205,6 +200,15 @@ new TextLintEngine({
     }
 
     /**
+     * Return meta descriptor object for this engine
+     *
+     * WARNING: This is experimental method.
+     * It will be renamed.
+     */
+    get textlintrcDescriptor() {
+        return this.textlint.textlintrcDescriptor;
+    }
+    /**
      * Executes the current configuration on an array of file and directory names.
      * @param {String[]}  files An array of file and directory names.
      * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
@@ -212,7 +216,7 @@ new TextLintEngine({
     executeOnFiles(files: string[]): Promise<LintResult[]> {
         const execFile = this.onFile(this.textlint);
         const patterns = pathsToGlobPatterns(files, {
-            extensions: this.availableExtensions
+            extensions: this.textlintrcDescriptor.availableExtensions
         });
         const targetFiles = findFiles(patterns);
         // Maybe, unAvailableFilePath should be warning.
@@ -220,7 +224,7 @@ new TextLintEngine({
         // pathsToGlobPatterns not modified that pattern.
         // So, unAvailableFilePath should be ignored silently.
         const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
-            extensions: this.availableExtensions
+            extensions: this.textlintrcDescriptor.availableExtensions
         });
         debug("Process files", availableFiles);
         debug("Not Process files", unAvailableFiles);

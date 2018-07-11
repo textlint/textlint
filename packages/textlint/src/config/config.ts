@@ -171,7 +171,6 @@ export class Config {
      */
     static initWithCLIOptions(cliOptions: any) {
         const options: { [index: string]: any } = {};
-        options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
         // TODO: CLI --filter <rule>?
         options.filterRules = defaultOptions.filterRules;
@@ -346,13 +345,8 @@ export class Config {
         this.rulesConfig = objectAssign({}, presetRulesConfig, options.rulesConfig);
         // filterRulesConfig
         this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
-        /**
-         * @type {string[]}
-         */
-        this.extensions = options.extensions ? options.extensions : defaultOptions.extensions;
         // additional availableExtensions from plugin
-        const additionalExtensions = loadAvailableExtensions(this.plugins, moduleResolver);
-        this.extensions = this.extensions.concat(additionalExtensions);
+        this.extensions = loadAvailableExtensions(this.plugins, moduleResolver);
         /**
          * @type {string[]}
          */

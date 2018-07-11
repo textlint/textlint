@@ -7,7 +7,7 @@ import * as path from "path";
 const htmlPlugin = require("textlint-plugin-html");
 
 describe("HTMLPlugin", function() {
-    let textlintCore;
+    let textlintCore: TextLintCore;
     context("when target file is a HTML", function() {
         beforeEach(function() {
             textlintCore = new TextLintCore();
@@ -15,14 +15,14 @@ describe("HTMLPlugin", function() {
             textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
         });
         it("should have default + additional processors", function() {
-            const availableExtensions = textlintCore.pluginCreatorSet.plugins;
-            assert(availableExtensions.length === 3);
+            const plugins = textlintCore.textlintrcDescriptor.plugin.plugins;
+            assert.strictEqual(plugins.length, 3);
         });
         it("should ignore duplicated processor", function() {
             textlintCore.setupPlugins({ html: htmlPlugin });
             textlintCore.setupPlugins({ html: htmlPlugin });
-            const availableExtensions = textlintCore.pluginCreatorSet.plugins;
-            assert(availableExtensions.length === 3);
+            const plugins = textlintCore.textlintrcDescriptor.plugin.plugins;
+            assert.strictEqual(plugins.length, 3);
         });
         it("should report error", function() {
             const fixturePath = path.join(__dirname, "./fixtures/test.html");
