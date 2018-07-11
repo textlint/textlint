@@ -97,7 +97,7 @@ export interface TextlintPluginProcessorConstructor extends Function {
      * @deprecated textlint@11+
      * @see https://github.com/textlint/textlint/issues/531
      */
-    availableExtensions(): Array<string>;
+    availableExtensions?(): Array<string>;
 }
 
 export declare class TextlintPluginProcessor {

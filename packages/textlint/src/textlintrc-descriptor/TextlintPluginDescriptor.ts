@@ -26,7 +26,10 @@ const getAvailableExtensions = (pluginProcessor: TextlintPluginProcessor): strin
     // Recommended: `availableExtensions()` should be defined as instance method.
     // https://github.com/textlint/textlint/issues/531
     const PluginProcessorConstructor = pluginProcessor.constructor as TextlintPluginProcessorConstructor;
-    return PluginProcessorConstructor.availableExtensions();
+    if (typeof PluginProcessorConstructor.availableExtensions === "function") {
+        return PluginProcessorConstructor.availableExtensions();
+    }
+    throw new Error(`Plugin(${pluginProcessor}) should implement availableExtensions() method`);
 };
 const createPluginInstances = (
     rawPluginObject: { [index: string]: TextlintPluginCreator } = {},
