@@ -29,7 +29,7 @@ export const createPluginStub = () => {
         getPlugin(): TextlintPluginCreator {
             return {
                 Processor: class MockExampleProcessor implements TextlintPluginProcessor {
-                    static availableExtensions() {
+                    availableExtensions() {
                         return [".md"];
                     }
 

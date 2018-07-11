@@ -45,7 +45,9 @@ function findPluginWithExt(plugins: TextlintKernelPlugin[] = [], ext: string) {
             typeof textlintKernelProcessor.availableExtensions === "function",
             `Processor(${textlintKernelProcessor.name} should have availableExtensions()`
         );
-        const extList = textlintKernelProcessor.availableExtensions();
+        const extList = textlintKernelProcessor.availableExtensions
+            ? textlintKernelProcessor.availableExtensions()
+            : [];
         return extList.some(targetExt => targetExt === ext || "." + targetExt === ext);
     });
     if (matchPlugins.length === 0) {
