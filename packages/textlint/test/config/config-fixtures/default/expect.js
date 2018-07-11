@@ -1,7 +1,6 @@
 const path = require("path");
 module.exports = {
     disabledRules: [],
-    extensions: [],
     plugins: [],
     rulePaths: [],
     rules: [],

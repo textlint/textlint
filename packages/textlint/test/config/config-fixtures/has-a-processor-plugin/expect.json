@@ -6,9 +6,5 @@
   ],
   "pluginsConfig": {
     "textlint-plugin-pl-example": true
-  },
-  "extensions": [
-    ".test1",
-    ".test2"
-  ]
+  }
 }

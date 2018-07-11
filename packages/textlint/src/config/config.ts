@@ -8,9 +8,8 @@ const concat = require("unique-concat");
 const path = require("path");
 import { loadConfig } from "./config-loader";
 import { isPresetRuleKey } from "../util/config-util";
-import { mapRulesConfig } from "./preset-loader";
-import { loadAvailableExtensions, getPluginConfig, getPluginNames } from "./plugin-loader";
-import { loadRulesConfigFromPresets } from "./preset-loader";
+import { loadRulesConfigFromPresets, mapRulesConfig } from "./preset-loader";
+import { getPluginConfig, getPluginNames } from "./plugin-loader";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { separateAvailableOrDisable } from "./separate-by-config-option";
 
@@ -71,9 +70,6 @@ const defaultOptions = Object.freeze({
     configFile: undefined,
     // rule directories
     rulePaths: [],
-    // available extensions
-    // if set the option, should filter by extension.
-    extensions: [],
     // formatter file name
     // e.g.) stylish.js => set "stylish"
     // NOTE: default formatter is defined in Engine,
@@ -112,7 +108,6 @@ export class Config {
     pluginsConfig: { [index: string]: any };
     rulesConfig: { [index: string]: any };
     filterRulesConfig: { [index: string]: any };
-    extensions: string[];
     rulePaths: string[];
     formatterName: string | undefined;
     quiet: boolean;
@@ -345,8 +340,6 @@ export class Config {
         this.rulesConfig = objectAssign({}, presetRulesConfig, options.rulesConfig);
         // filterRulesConfig
         this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
-        // additional availableExtensions from plugin
-        this.extensions = loadAvailableExtensions(this.plugins, moduleResolver);
         /**
          * @type {string[]}
          */
