@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
+import { TextlintrcDescriptor } from "../textlintrc-descriptor/TextlintrcDescriptor";
 import { TextLintFormatterOption } from "../textlint-interface";
 import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "./rule-map";
@@ -205,9 +206,10 @@ new TextLintEngine({
      * WARNING: This is experimental method.
      * It will be renamed.
      */
-    get textlintrcDescriptor() {
+    get textlintrcDescriptor(): TextlintrcDescriptor {
         return this.textlint.textlintrcDescriptor;
     }
+
     /**
      * Executes the current configuration on an array of file and directory names.
      * @param {String[]}  files An array of file and directory names.
