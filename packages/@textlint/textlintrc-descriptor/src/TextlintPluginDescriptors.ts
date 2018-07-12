@@ -34,6 +34,16 @@ export class TextlintPluginDescriptors {
     }
 
     /**
+     * find PluginDescriptor with extension.
+     * This is forward match.
+     */
+    findPluginDescriptorWithExt(ext: string) {
+        return this.descriptors.find(descriptor => {
+            return descriptor.availableExtensions.includes(ext);
+        });
+    }
+
+    /**
      * Convert this to TextlintKernel rules format
      * @returns {Array}
      */

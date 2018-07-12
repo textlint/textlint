@@ -16,45 +16,10 @@ import {
     TextlintFixResult,
     TextlintKernelConstructorOptions,
     TextlintKernelOptions,
-    TextlintKernelPlugin,
     TextlintPluginProcessor,
-    TextlintPluginProcessorConstructor,
     TextlintResult
 } from "./textlint-kernel-interface";
-
-/**
- * @param {TextlintKernelPlugin[]} plugins
- * @param {string} ext
- * @returns {TextlintKernelPlugin|undefined} PluginConstructor
- */
-function findPluginWithExt(plugins: TextlintKernelPlugin[] = [], ext: string) {
-    const availablePlugins = plugins.filter(kernelPlugin => {
-        const plugin = kernelPlugin.plugin;
-        assert.ok(
-            plugin !== undefined,
-            `Processor(${kernelPlugin.pluginId} should have { "pluginId": string, "plugin": plugin }.`
-        );
-        const options = kernelPlugin.options;
-        return options !== false;
-    });
-    const matchPlugins = availablePlugins.filter(kernelPlugin => {
-        const plugin = kernelPlugin.plugin;
-        // static availableExtensions() method
-        const textlintKernelProcessor: TextlintPluginProcessorConstructor = plugin.Processor;
-        assert.ok(
-            typeof textlintKernelProcessor.availableExtensions === "function",
-            `Processor(${textlintKernelProcessor.name} should have availableExtensions()`
-        );
-        const extList = textlintKernelProcessor.availableExtensions
-            ? textlintKernelProcessor.availableExtensions()
-            : [];
-        return extList.some(targetExt => targetExt === ext || "." + targetExt === ext);
-    });
-    if (matchPlugins.length === 0) {
-        return;
-    }
-    return matchPlugins[0];
-}
+import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
 
 /**
  * add fileName to trailing of error message
@@ -113,14 +78,16 @@ export class TextlintKernel {
     lintText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
         return Promise.resolve().then(() => {
             const ext = options.ext;
-            const plugin = findPluginWithExt(options.plugins, ext);
+            const descriptor = new TextlintrcDescriptor({
+                rules: options.rules || [],
+                filterRules: options.filterRules || [],
+                plugins: options.plugins || []
+            });
+            const plugin = descriptor.findPluginDescriptorWithExt(ext);
             if (plugin === undefined) {
                 throw new Error(`Not found available plugin for ${ext}`);
             }
-            const Processor = plugin.plugin.Processor;
-            const pluginOptions = plugin.options;
-            assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-            const processor = new Processor(pluginOptions);
+            const processor = plugin.processor;
             return this._parallelProcess({
                 processor,
                 text,
@@ -138,14 +105,16 @@ export class TextlintKernel {
     fixText(text: string, options: TextlintKernelOptions): Promise<TextlintFixResult> {
         return Promise.resolve().then(() => {
             const ext = options.ext;
-            const plugin = findPluginWithExt(options.plugins, ext);
+            const descriptor = new TextlintrcDescriptor({
+                rules: options.rules || [],
+                filterRules: options.filterRules || [],
+                plugins: options.plugins || []
+            });
+            const plugin = descriptor.findPluginDescriptorWithExt(ext);
             if (plugin === undefined) {
                 throw new Error(`Not found available plugin for ${ext}`);
             }
-            const Processor = plugin.plugin.Processor;
-            const pluginOptions = plugin.options;
-            assert(Processor !== undefined, `This plugin has not Processor: ${plugin}`);
-            const processor = new Processor(pluginOptions);
+            const processor = plugin.processor;
             return this._sequenceProcess({
                 processor,
                 text,

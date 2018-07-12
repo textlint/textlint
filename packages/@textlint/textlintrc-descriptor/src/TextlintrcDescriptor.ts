@@ -7,6 +7,7 @@ import {
     createTextlintPluginDescriptors,
     createTextlintRuleDescriptors
 } from "./DescriptorsFactory";
+import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
 
 export interface TextlintrcDescriptorArgs {
     rules: TextlintKernelRule[];
@@ -34,5 +35,9 @@ export class TextlintrcDescriptor {
             ...this.args,
             ...args
         });
+    }
+
+    findPluginDescriptorWithExt(ext: string): TextlintPluginDescriptor | undefined {
+        return this.plugin.findPluginDescriptorWithExt(ext);
     }
 }
