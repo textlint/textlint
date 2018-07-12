@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
-const reporter = context => {
+import { TextlintRuleCreator } from "@textlint/kernel";
+
+const reporter: TextlintRuleCreator = context => {
     const { Syntax, fixer, report, getSource } = context;
     return {
         [Syntax.Str](node) {
@@ -8,7 +10,7 @@ const reporter = context => {
             if (/\.$/.test(text)) {
                 return;
             }
-            var add = fixer.insertTextAfter(node, ".");
+            const add = fixer.insertTextAfter(node, ".");
             report(node, {
                 message: "Added",
                 fix: add
@@ -18,5 +20,6 @@ const reporter = context => {
 };
 
 export default {
+    linter: reporter,
     fixer: reporter
 };

@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintrcDescriptor } from "../textlintrc-descriptor/TextlintrcDescriptor";
+import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
 import { TextLintFormatterOption } from "../textlint-interface";
 import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "./rule-map";

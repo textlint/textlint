@@ -4,16 +4,23 @@
  textlint-core.js is a class
  textlint.js is a singleton object that is instance of textlint-core.js.
  */
-import { TextlintrcDescriptor } from "./textlintrc-descriptor/TextlintrcDescriptor";
+import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
 import {
     TextlintFixResult,
     TextlintKernel,
+    TextlintKernelPlugin,
     TextlintPluginCreator,
+    TextlintPluginOptions,
     TextlintPluginProcessorConstructor,
     TextlintResult
 } from "@textlint/kernel";
 import { readFile } from "./util/fs-promise";
 import { Config } from "./config/config";
+import {
+    filterRulesObjectToKernelRule,
+    pluginsObjectToKernelRule,
+    rulesObjectToKernelRule
+} from "../../@textlint/textlintrc-descriptor/test/TextlintRulesDescriptor/TextlintRulesDescriptor-test";
 
 const path = require("path");
 const ObjectAssign = require("object-assign");
@@ -29,10 +36,7 @@ const textPlugin = require("@textlint/textlint-plugin-text");
 export class TextLintCore {
     kernel: TextlintKernel;
     config: Partial<Config>;
-    defaultPlugins: {
-        markdown: TextlintPluginCreator;
-        text: TextlintPluginCreator;
-    };
+    defaultPlugins: TextlintKernelPlugin[];
     public textlintrcDescriptor: TextlintrcDescriptor;
 
     constructor(config: Partial<Config> = {}) {
@@ -40,20 +44,23 @@ export class TextLintCore {
         this.config = config;
         // Markdown and Text is enabled by default
         // Markdown and Text are for backward compatibility.
-        this.defaultPlugins = {
-            markdown: markdownPlugin,
-            text: textPlugin
-        };
+        this.defaultPlugins = [
+            {
+                pluginId: "markdown",
+                plugin: markdownPlugin
+            },
+            {
+                pluginId: "text",
+                plugin: textPlugin
+            }
+        ];
         // TODO: remove `config`
         // https://github.com/textlint/textlint/issues/296
         this.kernel = new TextlintKernel(config);
         this.textlintrcDescriptor = new TextlintrcDescriptor({
-            rules: {},
-            rulesOption: {},
+            rules: [],
             plugins: this.defaultPlugins,
-            pluginsOption: {},
-            filterRules: {},
-            filterRulesOption: {}
+            filterRules: []
         });
     }
 
@@ -77,12 +84,12 @@ export class TextLintCore {
                 "For more details, See https://github.com/textlint/textlint/issues/293"
         );
         this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
-            plugins: {
-                ...this.defaultPlugins,
-                [`${Processor.name}@deprecated`]: {
-                    Processor
+            plugins: [
+                {
+                    pluginId: "`${Processor.name}@deprecated`",
+                    plugin: { Processor }
                 }
-            }
+            ].concat(this.defaultPlugins)
         });
     }
 
@@ -91,13 +98,14 @@ export class TextLintCore {
      * @param {Object} plugins
      * @param {Object} [pluginsConfig]
      */
-    setupPlugins(plugins = {}, pluginsConfig = {}) {
+    setupPlugins(
+        plugins: { [index: string]: TextlintPluginCreator } = {},
+        pluginsConfig: { [index: string]: TextlintPluginOptions } = {}
+    ) {
+        // Append default plugin to the plugins list.
+        // Because, default plugin can be override by user plugins
         this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
-            plugins: {
-                ...this.defaultPlugins,
-                ...plugins
-            },
-            pluginsOption: pluginsConfig
+            plugins: pluginsObjectToKernelRule(plugins, pluginsConfig).concat(this.defaultPlugins)
         });
     }
 
@@ -109,8 +117,7 @@ export class TextLintCore {
      */
     setupRules(rules = {}, rulesOption = {}) {
         this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
-            rules: rules,
-            rulesOption: rulesOption
+            rules: rulesObjectToKernelRule(rules, rulesOption)
         });
     }
 
@@ -122,8 +129,7 @@ export class TextLintCore {
      */
     setupFilterRules(filterRules = {}, filterRulesOption = {}) {
         this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
-            filterRules: filterRules,
-            filterRulesOption: filterRulesOption
+            filterRules: filterRulesObjectToKernelRule(filterRules, filterRulesOption)
         });
     }
 
@@ -132,12 +138,9 @@ export class TextLintCore {
      */
     resetRules() {
         this.textlintrcDescriptor = new TextlintrcDescriptor({
-            rules: {},
-            rulesOption: {},
+            rules: [],
             plugins: this.defaultPlugins,
-            pluginsOption: {},
-            filterRules: {},
-            filterRulesOption: {}
+            filterRules: []
         });
     }
 
@@ -226,7 +229,7 @@ export class TextLintCore {
             configBaseDir: configFileBaseDir,
             plugins: this.textlintrcDescriptor.plugin.toKernelPluginsFormat(),
             rules: this.textlintrcDescriptor.rule.toKernelRulesFormat(),
-            filterRules: this.textlintrcDescriptor.filterRule.toKernelRulesFormat()
+            filterRules: this.textlintrcDescriptor.filterRule.toKernelFilterRulesFormat()
         });
     }
 }

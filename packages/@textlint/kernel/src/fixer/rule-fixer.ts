@@ -8,7 +8,7 @@ import { SourceCodeRange } from "../core/source-code";
  */
 export interface IntermediateFixCommand {
     text: string;
-    range: [number, number];
+    range: number[];
     isAbsolute: boolean;
 }
 
