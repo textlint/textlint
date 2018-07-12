@@ -20,7 +20,7 @@ import {
     filterRulesObjectToKernelRule,
     pluginsObjectToKernelRule,
     rulesObjectToKernelRule
-} from "../../@textlint/textlintrc-descriptor/test/TextlintRulesDescriptor/TextlintRulesDescriptor-test";
+} from "./util/object-to-kernel-format";
 
 const path = require("path");
 const ObjectAssign = require("object-assign");

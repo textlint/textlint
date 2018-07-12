@@ -4,6 +4,7 @@
         "declaration": false
     },
     "include": [
+        "../src**/*",
         "**/*"
     ]
 }
