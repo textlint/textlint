@@ -16,7 +16,7 @@ describe("plugin-option", () => {
             assert.deepStrictEqual(actualOptions, expectedOptions);
         });
     });
-    it("should not load plugin options if does't match ext", () => {
+    it("should load plugin options when does't match any ext for instance availableExtensions()", () => {
         const textlintCore = new TextLintCore();
         const { getPlugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
@@ -25,7 +25,7 @@ describe("plugin-option", () => {
         // .md is built-in
         return textlintCore.lintText("test", ".md").then(results => {
             const actualOptions = getOptions();
-            assert.ok(actualOptions === undefined);
+            assert.strictEqual(actualOptions, expectedOptions);
         });
     });
 });

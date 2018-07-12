@@ -8,9 +8,8 @@ const concat = require("unique-concat");
 const path = require("path");
 import { loadConfig } from "./config-loader";
 import { isPresetRuleKey } from "../util/config-util";
-import { mapRulesConfig } from "./preset-loader";
-import { loadAvailableExtensions, getPluginConfig, getPluginNames } from "./plugin-loader";
-import { loadRulesConfigFromPresets } from "./preset-loader";
+import { loadRulesConfigFromPresets, mapRulesConfig } from "./preset-loader";
+import { getPluginConfig, getPluginNames } from "./plugin-loader";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { separateAvailableOrDisable } from "./separate-by-config-option";
 
@@ -71,9 +70,6 @@ const defaultOptions = Object.freeze({
     configFile: undefined,
     // rule directories
     rulePaths: [],
-    // available extensions
-    // if set the option, should filter by extension.
-    extensions: [],
     // formatter file name
     // e.g.) stylish.js => set "stylish"
     // NOTE: default formatter is defined in Engine,
@@ -112,7 +108,6 @@ export class Config {
     pluginsConfig: { [index: string]: any };
     rulesConfig: { [index: string]: any };
     filterRulesConfig: { [index: string]: any };
-    extensions: string[];
     rulePaths: string[];
     formatterName: string | undefined;
     quiet: boolean;
@@ -171,7 +166,6 @@ export class Config {
      */
     static initWithCLIOptions(cliOptions: any) {
         const options: { [index: string]: any } = {};
-        options.extensions = cliOptions.ext ? cliOptions.ext : defaultOptions.extensions;
         options.rules = cliOptions.rule ? cliOptions.rule : defaultOptions.rules;
         // TODO: CLI --filter <rule>?
         options.filterRules = defaultOptions.filterRules;
@@ -346,13 +340,6 @@ export class Config {
         this.rulesConfig = objectAssign({}, presetRulesConfig, options.rulesConfig);
         // filterRulesConfig
         this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
-        /**
-         * @type {string[]}
-         */
-        this.extensions = options.extensions ? options.extensions : defaultOptions.extensions;
-        // additional availableExtensions from plugin
-        const additionalExtensions = loadAvailableExtensions(this.plugins, moduleResolver);
-        this.extensions = this.extensions.concat(additionalExtensions);
         /**
          * @type {string[]}
          */

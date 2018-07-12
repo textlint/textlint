@@ -8,9 +8,5 @@
     "textlint-plugin-pl-example": {
       "flag": true
     }
-  },
-  "extensions": [
-    ".test1",
-    ".test2"
-  ]
+  }
 }

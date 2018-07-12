@@ -102,14 +102,14 @@ describe("textlint-engine-test", function() {
         context("when loading html plugin", function() {
             it("should add .html to availableExtensions", function() {
                 const engine = new TextLintEngine({ plugins: ["html"] });
-                const availableExtensions = engine.availableExtensions;
+                const availableExtensions = engine.textlintrcDescriptor.availableExtensions;
                 assert(availableExtensions.indexOf(".html") !== -1);
             });
             it("manually loading case, should add .html to availableExtensions", function() {
                 const engine = new TextLintEngine();
-                assert(engine.availableExtensions.indexOf(".html") === -1);
+                assert(engine.textlintrcDescriptor.availableExtensions.indexOf(".html") === -1);
                 engine.loadPlugin("html");
-                assert(engine.availableExtensions.indexOf(".html") !== -1);
+                assert(engine.textlintrcDescriptor.availableExtensions.indexOf(".html") !== -1);
             });
         });
     });

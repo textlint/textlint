@@ -36,6 +36,7 @@
     "@textlint/ast-node-types": "^4.0.2",
     "@textlint/ast-traverse": "^2.0.8",
     "@textlint/feature-flag": "^3.0.4",
+    "@textlint/textlintrc-descriptor": "^1.0.0",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.5.1",
     "debug": "^2.6.6",

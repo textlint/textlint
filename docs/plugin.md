@@ -35,7 +35,7 @@ export default class TextProcessor {
         this.options = options;
     }
     // available ".ext" list
-    static availableExtensions() {
+    availableExtensions() {
         return [".txt", ".text"];
     }
     // define pre/post process
@@ -59,12 +59,33 @@ export default class TextProcessor {
 }
 ```
 
-### `preProcess`
+`Processor` class should implement these method.
+
+### `availableExtensions(): string[]`
+
+It should return supported extension name list.
+
+Notes: 
+
+textlint@10<= support `static availableExtensions(): string[]`.
+The static method is deprecated in textlint@11.
+you should implement `availableExtensions()` method as instance method.
+
+### `processor(ext)`
+
+`processor()` method should return a object that have `preProcess` and `postProcess` method.
+
+#### `preProcess(text, filePath)`
 
 `preProcess` method should return `TxtAST` object.
 `TxtAST` object is a Abstract Syntax Tree(AST) of the text.
 
 :information_source: For more details about `TxtAST`, see [TxtAST interface documents](txtnode.md).
+
+#### `postProcess(messages, filePath)`
+
+`postProcess` method should return `{ messages, filePath }`.
+`filePath` argument may be undefined when text was input from stdin. 
 
 ## Plugin configuration
 

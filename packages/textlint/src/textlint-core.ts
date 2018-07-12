@@ -4,21 +4,28 @@
  textlint-core.js is a class
  textlint.js is a singleton object that is instance of textlint-core.js.
  */
-const path = require("path");
-const ObjectAssign = require("object-assign");
+import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
 import {
     TextlintFixResult,
     TextlintKernel,
-    TextlintPluginProcessorConstructor,
+    TextlintKernelPlugin,
     TextlintPluginCreator,
+    TextlintPluginOptions,
+    TextlintPluginProcessorConstructor,
     TextlintResult
 } from "@textlint/kernel";
 import { readFile } from "./util/fs-promise";
-import { RuleCreatorSet } from "./core/rule-creator-set";
-import { PluginCreatorSet } from "./core/plugin-creator-set";
+import { Config } from "./config/config";
+import {
+    filterRulesObjectToKernelRule,
+    pluginsObjectToKernelRule,
+    rulesObjectToKernelRule
+} from "./util/object-to-kernel-format";
+
+const path = require("path");
+const ObjectAssign = require("object-assign");
 
 const { throwIfTesting } = require("@textlint/feature-flag");
-import { Config } from "./config/config";
 
 const markdownPlugin = require("@textlint/textlint-plugin-markdown");
 const textPlugin = require("@textlint/textlint-plugin-text");
@@ -27,31 +34,34 @@ const textPlugin = require("@textlint/textlint-plugin-text");
  * @class {TextLintCore}
  */
 export class TextLintCore {
-    filterRuleCreatorSet: RuleCreatorSet;
-    ruleCreatorSet: RuleCreatorSet;
-    pluginCreatorSet: PluginCreatorSet;
     kernel: TextlintKernel;
     config: Partial<Config>;
-    defaultPlugins: {
-        markdown: TextlintPluginCreator;
-        text: TextlintPluginCreator;
-    };
+    defaultPlugins: TextlintKernelPlugin[];
+    public textlintrcDescriptor: TextlintrcDescriptor;
 
     constructor(config: Partial<Config> = {}) {
         // this.config often is undefined.
         this.config = config;
         // Markdown and Text is enabled by default
         // Markdown and Text are for backward compatibility.
-        this.defaultPlugins = {
-            markdown: markdownPlugin,
-            text: textPlugin
-        };
+        this.defaultPlugins = [
+            {
+                pluginId: "markdown",
+                plugin: markdownPlugin
+            },
+            {
+                pluginId: "text",
+                plugin: textPlugin
+            }
+        ];
         // TODO: remove `config`
         // https://github.com/textlint/textlint/issues/296
         this.kernel = new TextlintKernel(config);
-        this.pluginCreatorSet = new PluginCreatorSet(this.defaultPlugins);
-        this.ruleCreatorSet = new RuleCreatorSet();
-        this.filterRuleCreatorSet = new RuleCreatorSet();
+        this.textlintrcDescriptor = new TextlintrcDescriptor({
+            rules: [],
+            plugins: this.defaultPlugins,
+            filterRules: []
+        });
     }
 
     /**
@@ -73,13 +83,14 @@ export class TextLintCore {
             "Use setupPlugins insteadof addProcessor method.`addProcessor` will be removed in the future." +
                 "For more details, See https://github.com/textlint/textlint/issues/293"
         );
-        this.pluginCreatorSet = new PluginCreatorSet(
-            ObjectAssign({}, this.defaultPlugins, {
-                [`${Processor.name}@deprecated`]: {
-                    Processor
+        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+            plugins: [
+                {
+                    pluginId: "`${Processor.name}@deprecated`",
+                    plugin: { Processor }
                 }
-            })
-        );
+            ].concat(this.defaultPlugins)
+        });
     }
 
     /**
@@ -87,37 +98,50 @@ export class TextLintCore {
      * @param {Object} plugins
      * @param {Object} [pluginsConfig]
      */
-    setupPlugins(plugins = {}, pluginsConfig = {}) {
-        this.pluginCreatorSet = new PluginCreatorSet(ObjectAssign({}, this.defaultPlugins, plugins), pluginsConfig);
+    setupPlugins(
+        plugins: { [index: string]: TextlintPluginCreator } = {},
+        pluginsConfig: { [index: string]: TextlintPluginOptions } = {}
+    ) {
+        // Append default plugin to the plugins list.
+        // Because, default plugin can be override by user plugins
+        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+            plugins: pluginsObjectToKernelRule(plugins, pluginsConfig).concat(this.defaultPlugins)
+        });
     }
 
     /**
      * Register rules and rulesConfig.
      * if want to release rules, please call {@link resetRules}.
      * @param {object} rules rule objects array
-     * @param {object} [rulesConfig] ruleConfig is object
+     * @param {object} [rulesOption] ruleConfig is object
      */
-    setupRules(rules = {}, rulesConfig = {}) {
-        this.ruleCreatorSet = new RuleCreatorSet(rules, rulesConfig);
+    setupRules(rules = {}, rulesOption = {}) {
+        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+            rules: rulesObjectToKernelRule(rules, rulesOption)
+        });
     }
 
     /**
      * Register filterRules and filterRulesConfig.
      * if want to release rules, please call {@link resetRules}.
-     * @param {object} rules rule objects array
-     * @param {object} [rulesConfig] ruleConfig is object
+     * @param {object} filterRules rule objects array
+     * @param {object} [filterRulesOption] ruleConfig is object
      */
-    setupFilterRules(rules = {}, rulesConfig = {}) {
-        this.filterRuleCreatorSet = new RuleCreatorSet(rules, rulesConfig);
+    setupFilterRules(filterRules = {}, filterRulesOption = {}) {
+        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+            filterRules: filterRulesObjectToKernelRule(filterRules, filterRulesOption)
+        });
     }
 
     /**
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        this.pluginCreatorSet = new PluginCreatorSet(this.defaultPlugins);
-        this.ruleCreatorSet = new RuleCreatorSet();
-        this.filterRuleCreatorSet = new RuleCreatorSet();
+        this.textlintrcDescriptor = new TextlintrcDescriptor({
+            rules: [],
+            plugins: this.defaultPlugins,
+            filterRules: []
+        });
     }
 
     /**
@@ -203,9 +227,9 @@ export class TextLintCore {
             typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
         return ObjectAssign({}, options, {
             configBaseDir: configFileBaseDir,
-            plugins: this.pluginCreatorSet.toKernelPluginsFormat(),
-            rules: this.ruleCreatorSet.toKernelRulesFormat(),
-            filterRules: this.filterRuleCreatorSet.toKernelRulesFormat()
+            plugins: this.textlintrcDescriptor.plugin.toKernelPluginsFormat(),
+            rules: this.textlintrcDescriptor.rule.toKernelRulesFormat(),
+            filterRules: this.textlintrcDescriptor.filterRule.toKernelFilterRulesFormat()
         });
     }
 }

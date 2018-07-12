@@ -92,13 +92,22 @@ export interface TextlintConfigObject {
 export interface TextlintPluginProcessorConstructor extends Function {
     new (options?: TextlintPluginOptions): TextlintPluginProcessor;
 
-    availableExtensions(): Array<string>;
+    /**
+     * Should defined `availableExtensions()` as instance method instead of static method.
+     * @deprecated textlint@11+
+     * @see https://github.com/textlint/textlint/issues/531
+     */
+    availableExtensions?(): Array<string>;
 }
 
 export declare class TextlintPluginProcessor {
     constructor(options?: TextlintPluginOptions);
-
-    static availableExtensions(): Array<string>;
+    /**
+     * Return available extensions for this plugin.
+     * This extension should start with `.`(dot).
+     * Example is [".md", ".mkd"]
+     */
+    availableExtensions(): Array<string>;
 
     processor(
         extension: string

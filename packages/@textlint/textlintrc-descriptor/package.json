@@ -1,0 +1,63 @@
+{
+  "name": "@textlint/textlintrc-descriptor",
+  "version": "1.0.0",
+  "description": "A Descriptor class for textlintrc.",
+  "keywords": [
+    "textlint",
+    "textlintrc"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlintrc-descriptor/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "clean": "rimraf lib/",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.ts\"",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "watch": "tsc -p . --watch"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "dependencies": {
+    "map-like": "^2.0.0",
+    "deep-equal":"^1.0.1",
+    "@textlint/kernel": "^2.0.9"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.2",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.7",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.0",
+    "ts-node-test-register": "^4.0.0",
+    "typescript": "^2.9.2",
+    "textlint-rule-preset-ja-spacing": "^2.0.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

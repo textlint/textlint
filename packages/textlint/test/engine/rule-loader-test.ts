@@ -3,7 +3,7 @@
 const path = require("path");
 import * as assert from "assert";
 import { loadFromDir } from "../../src/engine/rule-loader";
-import { assertRuleShape } from "../../src/core/rule-creator-helper";
+import { assertRuleShape } from "../../../@textlint/textlintrc-descriptor/src/rule-creator-helper";
 const fixtureDir = path.join(__dirname, "fixtures", "rule-loader");
 describe("engine/rule-loader", function() {
     it("should return object", function() {
