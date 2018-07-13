@@ -1,4 +1,4 @@
-# Custom extensions support
+# Plugin support custom extensions
 
 textlint can lint custom extension file as specified format.
 
