@@ -1,46 +1,41 @@
 // LICENSE : MIT
 "use strict";
 import CoreTask from "./textlint-core-task";
-import { getFilter, getLinter } from "../core/rule-creator-helper";
 import { createFreezedRuleContext } from "../core/rule-context";
 import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
-import {
-    TextlintKernelConstructorOptions,
-    TextlintKernelFilterRule,
-    TextlintKernelRule
-} from "../textlint-kernel-interface";
+import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import SourceCode from "../core/source-code";
+import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "@textlint/textlintrc-descriptor";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 
 export interface TextLintCoreTaskArgs {
     config: TextlintKernelConstructorOptions;
-    rules: TextlintKernelRule[];
-    filterRules: TextlintKernelFilterRule[];
+    ruleDescriptors: TextlintRuleDescriptors;
+    filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: SourceCode;
     configBaseDir?: string;
 }
 
 export default class TextLintCoreTask extends CoreTask {
     config: TextlintKernelConstructorOptions;
-    rules: TextlintKernelRule[];
-    filterRules: TextlintKernelFilterRule[];
+    ruleDescriptors: TextlintRuleDescriptors;
+    filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: SourceCode;
     configBaseDir?: string;
 
-    /**
-     * @param {Config} config
-     * @param {string} [configBaseDir]
-     * @param {TextlintKernelRule[]} rules rules and config set
-     * @param {TextlintKernelFilterRule[]} filterRules rules filter rules and config set
-     * @param {SourceCode} sourceCode
-     */
-    constructor({ config, configBaseDir, rules, filterRules, sourceCode }: TextLintCoreTaskArgs) {
+    constructor({
+        config,
+        configBaseDir,
+        ruleDescriptors,
+        filterRuleDescriptors: filterRuleDescriptors,
+        sourceCode
+    }: TextLintCoreTaskArgs) {
         super();
         this.config = config;
         this.configBaseDir = configBaseDir;
-        this.rules = rules;
-        this.filterRules = filterRules;
+        this.ruleDescriptors = ruleDescriptors;
+        this.filterRuleDescriptors = filterRuleDescriptors;
         this.sourceCode = sourceCode;
         this._setupRules();
     }
@@ -57,30 +52,29 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "rules" field
         // filter duplicated rules for improving experience
         // see https://github.com/textlint/textlint/issues/219
-        debug("rules", this.rules);
-        this.rules.forEach(({ ruleId, rule, options }) => {
+        debug("rules", this.ruleDescriptors);
+        this.ruleDescriptors.descriptors.forEach(ruleDescriptor => {
+            const ruleOptions = ruleDescriptor.normalizedOptions;
             const ruleContext = createFreezedRuleContext({
-                ruleId,
-                ruleOptions: options,
+                ruleId: ruleDescriptor.id,
+                ruleOptions: ruleOptions,
                 sourceCode,
                 report,
                 configBaseDir: this.configBaseDir
             });
-            const ruleCreator = getLinter(rule);
-            this.tryToAddListenRule(ruleCreator, ruleContext, options);
+            console.log("ruleDescriptor.linter", ruleDescriptor.rule);
+            this.tryToAddListenRule(ruleDescriptor.linter, ruleContext, ruleOptions);
         });
         // setup "filters" field
-        debug("filterRules", this.filterRules);
-        this.filterRules.forEach(({ ruleId, rule, options }) => {
+        debug("filterRules", this.filterRuleDescriptors);
+        this.filterRuleDescriptors.descriptors.forEach(filterDescriptor => {
             const ruleContext = createFreezedFilterRuleContext({
-                ruleId,
+                ruleId: filterDescriptor.id,
                 sourceCode,
                 ignoreReport,
                 configBaseDir: this.configBaseDir
             });
-            // "filters" rule is the same with "rules"
-            const ruleModule = getFilter(rule);
-            this.tryToAddListenRule(ruleModule, ruleContext, options);
+            this.tryToAddListenRule(filterDescriptor.filter, ruleContext, filterDescriptor.normalizedOptions);
         });
     }
 }

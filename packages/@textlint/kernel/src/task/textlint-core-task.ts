@@ -13,7 +13,7 @@ import * as assert from "assert";
 import SourceCode from "../core/source-code";
 import { TxtNode } from "@textlint/ast-node-types";
 import {
-    RuleCreatorReporter,
+    TextlintRuleCreateReporter,
     TextlintFilterRuleCreator,
     TextlintFilterRuleOptions,
     TextlintFixCommand,
@@ -205,7 +205,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * try to get rule object
      */
     tryToGetRuleObject(
-        ruleCreator: RuleCreatorReporter,
+        ruleCreator: TextlintRuleCreateReporter,
         ruleContext: Readonly<RuleContext>,
         ruleOptions?: TextlintRuleOptions
     ) {
@@ -241,14 +241,14 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * @returns {Object}
      */
     tryToAddListenRule(
-        ruleCreator: RuleCreatorReporter | TextlintFilterRuleCreator,
+        ruleCreator: TextlintRuleCreateReporter | TextlintFilterRuleCreator,
         ruleContext: Readonly<RuleContext> | Readonly<FilterRuleContext>,
         ruleOptions?: TextlintRuleOptions | TextlintFilterRuleOptions
     ): void {
         const ruleObject =
             ruleContext instanceof RuleContext
                 ? this.tryToGetRuleObject(
-                      ruleCreator as RuleCreatorReporter,
+                      ruleCreator as TextlintRuleCreateReporter,
                       ruleContext as Readonly<RuleContext>,
                       ruleOptions
                   )

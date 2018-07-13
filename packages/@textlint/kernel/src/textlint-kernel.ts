@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 "use strict";
-const assert = require("assert");
+import * as assert from "assert";
 import SourceCode from "./core/source-code";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
@@ -16,7 +16,6 @@ import {
     TextlintFixResult,
     TextlintKernelConstructorOptions,
     TextlintKernelOptions,
-    TextlintPluginProcessor,
     TextlintResult
 } from "./textlint-kernel-interface";
 import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
@@ -77,19 +76,13 @@ export class TextlintKernel {
      */
     lintText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
         return Promise.resolve().then(() => {
-            const ext = options.ext;
             const descriptor = new TextlintrcDescriptor({
                 rules: options.rules || [],
                 filterRules: options.filterRules || [],
                 plugins: options.plugins || []
             });
-            const plugin = descriptor.findPluginDescriptorWithExt(ext);
-            if (plugin === undefined) {
-                throw new Error(`Not found available plugin for ${ext}`);
-            }
-            const processor = plugin.processor;
             return this._parallelProcess({
-                processor,
+                descriptor,
                 text,
                 options
             });
@@ -104,21 +97,15 @@ export class TextlintKernel {
      */
     fixText(text: string, options: TextlintKernelOptions): Promise<TextlintFixResult> {
         return Promise.resolve().then(() => {
-            const ext = options.ext;
             const descriptor = new TextlintrcDescriptor({
                 rules: options.rules || [],
                 filterRules: options.filterRules || [],
                 plugins: options.plugins || []
             });
-            const plugin = descriptor.findPluginDescriptorWithExt(ext);
-            if (plugin === undefined) {
-                throw new Error(`Not found available plugin for ${ext}`);
-            }
-            const processor = plugin.processor;
             return this._sequenceProcess({
-                processor,
-                text,
-                options
+                descriptor,
+                options,
+                text
             });
         });
     }
@@ -133,19 +120,24 @@ export class TextlintKernel {
      * @private
      */
     _parallelProcess({
-        processor,
+        descriptor,
         text,
         options
     }: {
-        processor: TextlintPluginProcessor;
+        descriptor: TextlintrcDescriptor;
         text: string;
         options: TextlintKernelOptions;
     }) {
-        const { ext, filePath, rules, filterRules, configBaseDir } = options;
+        const { ext, filePath, configBaseDir } = options;
+        const plugin = descriptor.findPluginDescriptorWithExt(ext);
+        if (plugin === undefined) {
+            throw new Error(`Not found available plugin for ${ext}`);
+        }
+        const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         assert(
             typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implement {preProcess, postProcess}"
+            "processor should implements {preProcess, postProcess}"
         );
         const ast = preProcess(text, filePath);
         const sourceCode = new SourceCode({
@@ -158,8 +150,8 @@ export class TextlintKernel {
         return linterProcessor
             .process({
                 config: this.config,
-                rules,
-                filterRules,
+                ruleDescriptors: descriptor.rule,
+                filterRuleDescriptors: descriptor.filterRule,
                 sourceCode,
                 configBaseDir
             })
@@ -179,20 +171,24 @@ export class TextlintKernel {
      * @private
      */
     _sequenceProcess({
-        processor,
+        descriptor,
         text,
         options
     }: {
-        processor: TextlintPluginProcessor;
+        descriptor: TextlintrcDescriptor;
         text: string;
         options: TextlintKernelOptions;
     }): Promise<TextlintFixResult> {
-        const { ext, filePath, rules, filterRules, configBaseDir } = options;
-        assert(processor, `processor is not found for ${ext}`);
+        const { ext, filePath, configBaseDir } = options;
+        const plugin = descriptor.findPluginDescriptorWithExt(ext);
+        if (plugin === undefined) {
+            throw new Error(`Not found available plugin for ${ext}`);
+        }
+        const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         assert(
             typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implement {preProcess, postProcess}"
+            "processor should implements {preProcess, postProcess}"
         );
         const ast = preProcess(text, filePath);
         const sourceCode = new SourceCode({
@@ -205,8 +201,8 @@ export class TextlintKernel {
         return fixerProcessor
             .process({
                 config: this.config,
-                rules,
-                filterRules,
+                ruleDescriptors: descriptor.rule,
+                filterRules: descriptor.filterRule,
                 sourceCode,
                 configBaseDir
             })

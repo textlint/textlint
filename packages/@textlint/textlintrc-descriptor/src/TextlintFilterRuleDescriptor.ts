@@ -29,7 +29,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
     }
 
     get hasLinter() {
-        return hasLinter(this.kernelFilterRule);
+        return hasLinter(this.rule);
     }
 
     /**
@@ -37,7 +37,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
      * You should check hasLiner before call this.
      */
     get filter() {
-        return getFilter(this.kernelFilterRule);
+        return getFilter(this.rule);
     }
 
     /**

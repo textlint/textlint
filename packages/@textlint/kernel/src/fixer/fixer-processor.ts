@@ -1,27 +1,26 @@
 // LICENSE : MIT
 "use strict";
+
 const debug = require("debug")("textlint:fixer-processor");
 import * as assert from "assert";
 import FixerTask from "../task/fixer-task";
 import SourceCode from "../core/source-code";
 import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
-import { hasFixer } from "../core/rule-creator-helper";
 import {
     TextlintFixResult,
     TextlintKernelConstructorOptions,
-    TextlintKernelFilterRule,
-    TextlintPluginProcessor,
-    TextlintKernelRule,
-    TextlintMessage
+    TextlintMessage,
+    TextlintPluginProcessor
 } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
+import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "@textlint/textlintrc-descriptor";
 
 export interface FixerProcessorProcessArgs {
     config: TextlintKernelConstructorOptions;
     configBaseDir?: string;
-    rules?: TextlintKernelRule[];
-    filterRules?: TextlintKernelFilterRule[];
+    ruleDescriptors: TextlintRuleDescriptors;
+    filterRules: TextlintFilterRuleDescriptors;
     sourceCode: SourceCode;
 }
 
@@ -50,11 +49,11 @@ export default class FixerProcessor {
     process({
         config,
         configBaseDir,
-        rules = [],
-        filterRules = [],
+        ruleDescriptors,
+        filterRules,
         sourceCode
     }: FixerProcessorProcessArgs): Promise<TextlintFixResult> {
-        assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
+        assert(sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
         let resultFilePath = sourceCode.filePath;
@@ -67,11 +66,11 @@ export default class FixerProcessor {
         // original means original for applyingMessages and remainingMessages
         // pre-applyingMessages + remainingMessages
         const originalMessages: TextlintMessage[] = [];
-        const fixerProcessList = rules
-            .filter(rule => {
-                return hasFixer(rule.rule);
+        const fixerProcessList = ruleDescriptors.descriptors
+            .filter(ruleDescriptor => {
+                return ruleDescriptor.hasFixer;
             })
-            .map(fixerRule => {
+            .map(ruleDescriptor => {
                 return (sourceText: string): Promise<string> => {
                     // create new SourceCode object
                     const newSourceCode = new SourceCode({
@@ -83,8 +82,8 @@ export default class FixerProcessor {
                     // create new Task
                     const task = new FixerTask({
                         config,
-                        fixerRule,
-                        filterRules,
+                        ruleDescriptor,
+                        filterRuleDescriptors: filterRules,
                         sourceCode: newSourceCode,
                         configBaseDir
                     });

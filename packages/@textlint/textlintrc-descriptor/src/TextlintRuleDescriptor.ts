@@ -1,6 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelRule, TextlintRuleCreator, TextlintRuleOptions } from "@textlint/kernel";
+import {
+    TextlintKernelRule,
+    TextlintRuleCreateReporter,
+    TextlintRuleCreator,
+    TextlintRuleOptions
+} from "@textlint/kernel";
 import { getLinter, getFixer, hasLinter, hasFixer } from "./rule-creator-helper";
 
 import deepEqual = require("deep-equal");
@@ -31,27 +36,27 @@ export class TextlintRuleDescriptor {
     }
 
     get hasLinter() {
-        return hasLinter(this.textlintKernelRule);
+        return hasLinter(this.rule);
     }
 
     get hasFixer() {
-        return hasFixer(this.textlintKernelRule);
+        return hasFixer(this.rule);
     }
 
     /**
      * Return linter function
      * You should check hasLiner before call this.
      */
-    get linter() {
-        return getLinter(this.textlintKernelRule);
+    get linter(): TextlintRuleCreateReporter {
+        return getLinter(this.rule);
     }
 
     /**
      * Return fixer function
      * You should check hasFixer before call this.
      */
-    get fixer() {
-        return getFixer(this.textlintKernelRule);
+    get fixer(): TextlintRuleCreateReporter {
+        return getFixer(this.rule);
     }
 
     /**

@@ -5,16 +5,17 @@ import RuleContext from "./core/rule-context";
 import FilterRuleContext from "./core/filter-rule-context";
 /**
  * Rule reporter function
+ * TODO: should be separated to fixable RuleCreatorReporter.
  */
-export type RuleCreatorReporter = (
+export type TextlintRuleCreateReporter = (
     context: Readonly<RuleContext>,
     options?: TextlintRuleOptions
 ) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
 /**
  * Filter rule reporter function
  */
-export type TextlintRuleFixableCreator = { linter: RuleCreatorReporter; fixer: RuleCreatorReporter };
-export type TextlintRuleCreator = RuleCreatorReporter | TextlintRuleFixableCreator;
+export type TextlintRuleFixableCreator = { linter: TextlintRuleCreateReporter; fixer: TextlintRuleCreateReporter };
+export type TextlintRuleCreator = TextlintRuleCreateReporter | TextlintRuleFixableCreator;
 export type TextlintFilterRuleCreator = (
     context: Readonly<FilterRuleContext>,
     options?: TextlintFilterRuleOptions
