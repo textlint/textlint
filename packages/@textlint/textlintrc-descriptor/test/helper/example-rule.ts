@@ -9,7 +9,4 @@ const linter: TextlintRuleCreator = function(context) {
         }
     };
 };
-/**
- * @param {RuleContext} context
- */
 export default linter;

@@ -1,32 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { TextlintPluginDescriptors } from "../../src";
-import { createTextlintPluginDescriptors } from "../../src/DescriptorsFactory";
-import { TextlintPluginCreator } from "@textlint/kernel";
-import { TextlintPluginDescriptor } from "../../src/TextlintPluginDescriptor";
+import { TextlintPluginDescriptors } from "../src/index";
+import { createTextlintPluginDescriptors } from "../src/DescriptorsFactory";
+import { TextlintPluginDescriptor } from "../src/TextlintPluginDescriptor";
+import { createDummyPlugin } from "./helper/dummy-plugin";
 
-const createDummyPlugin = (extensions: string[] = [".dummy"]) => {
-    const DummyPlugin: TextlintPluginCreator = {
-        Processor: class DummyProcessor {
-            availableExtensions() {
-                return extensions;
-            }
-
-            processor() {
-                return {
-                    preProcess(_: string) {
-                        return {} as any;
-                    },
-                    postProcess(_messages: Array<any>, _filePath?: string) {
-                        return {} as any;
-                    }
-                };
-            }
-        }
-    };
-    return DummyPlugin;
-};
 describe("TextlintRuleDescriptors", function() {
     context("when passing undefined", function() {
         it("should return empty result", function() {
@@ -72,7 +51,7 @@ describe("TextlintRuleDescriptors", function() {
             assert.deepStrictEqual(withoutDuplicatedRuleCreatorSet.descriptors, [descriptorA]);
         });
     });
-    describe("#find", function() {
+    describe("#findPluginDescriptorWithExt", function() {
         it("should return a descriptor that match forward with extension", function() {
             const descriptorA = new TextlintPluginDescriptor({
                 pluginId: "TextPlugin",

@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { TextlintRuleDescriptors } from "../../src";
-import exampleRule from "./example-rule";
+import { TextlintRuleDescriptors } from "../src/index";
+import exampleRule from "./helper/example-rule";
 import {
     TextlintKernelPlugin,
     TextlintKernelRule,
@@ -11,9 +11,9 @@ import {
     TextlintRuleCreator,
     TextlintRuleOptions
 } from "@textlint/kernel";
-import { createTextlintRuleDescriptors } from "../../src/DescriptorsFactory";
-import { TextlintRuleDescriptor } from "../../src/TextlintRuleDescriptor";
-import { TextlintFilterRuleCreator, TextlintFilterRuleOptions, TextlintKernelFilterRule } from "../../../kernel/src";
+import { createTextlintRuleDescriptors } from "../src/DescriptorsFactory";
+import { TextlintRuleDescriptor } from "../src/TextlintRuleDescriptor";
+import { TextlintFilterRuleCreator, TextlintFilterRuleOptions, TextlintKernelFilterRule } from "../../kernel/src/index";
 
 /**
  * Convert rulesObject to TextlintKernelRule
