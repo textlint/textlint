@@ -10,19 +10,35 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-This plugin is built-in support on textlint.
-
------
-
+This plugin is built-in in textlint.
 No need configuration.
 
-Manually add text plugin to do following:
+------
+
+Following config is set by default.
 
 ```
 {
-    "plugins": [
-        "text"
-    ]
+    "plugins": {
+        "@textlint/markdown": true
+    }
+}
+```
+
+## Options
+
+- `extensions`: `string[]`
+    - Additional file extensions for markdown
+    
+For example, if you want to treat `.custom-ext` as text, put following config to `.textlintrc`    
+
+```json5
+{
+    "plugins": {
+        "@textlint/text": {
+            "extensions": [".custom-ext"]
+        }
+    }
 }
 ```
 ## Changelog

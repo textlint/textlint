@@ -13,7 +13,7 @@ No need configuration.
 
 ------
 
-Manually add Markdown plugin to do following:
+Following config is set by default.
 
 ```
 {
@@ -28,7 +28,7 @@ Manually add Markdown plugin to do following:
 - `extensions`: `string[]`
     - Additional file extensions for markdown
     
-For example, if you want to treat `.hown` as markdown, add following config to `.textlintrc`    
+For example, if you want to treat `.hown` as markdown, put following config to `.textlintrc`    
 
 ```json5
 {
