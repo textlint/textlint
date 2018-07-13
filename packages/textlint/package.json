@@ -55,7 +55,6 @@
     "@textlint/linter-formatter": "^3.0.7",
     "@textlint/textlint-plugin-markdown": "^4.0.10",
     "@textlint/textlint-plugin-text": "^3.0.10",
-    "@textlint/textlintrc-descriptor": "^1.0.0",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.0.5",
     "debug": "^2.1.0",
