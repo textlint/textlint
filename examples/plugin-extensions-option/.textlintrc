@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "@textlint/markdown": {
+      "extensions": [
+        ".custom-ext"
+      ]
+    }
+  },
+  "rules": {
+    "no-todo": true
+  }
+}

@@ -198,6 +198,39 @@ One more example, `very-nice-rule` is useful, but you want to ignore some report
 
 :information_source: See [examples/filter](../examples/filter)
 
+## Plugin
+
+textlint can treat markdown and text file by default.
+
+textlint support other file format by plugin.
+
+- Other plugin
+    - see [Processor Plugin list](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule#processor-plugin-list).
+- How to create a plugin:
+    - see [Plugin document](./plugin.md)
+
+### Plugin option
+
+textlint's built-in plugins are text and markdown.
+
+- [`@textlint/textlint-plugin-text`](../packages/@textlint/textlint-plugin-text)
+- [`@textlint/textlint-plugin-markdown`](../packages/@textlint/textlint-plugin-markdown)
+
+These plugin support custom "extensions" options.
+
+For example, if you want to treat `.hown` as markdown, put following config to `.textlintrc`    
+
+```json5
+{
+    "plugins": {
+        "@textlint/markdown": {
+            "extensions": [".hown"]
+        }
+    }
+}
+```
+
+
 ## Sharable Configuration
 
 textlint support module of configuration.
