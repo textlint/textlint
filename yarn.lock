@@ -3054,9 +3054,9 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-expected-exit-status@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/expected-exit-status/-/expected-exit-status-1.0.1.tgz#64bd3c035980675bab115afd0230cc5782b8d669"
+expected-exit-status@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/expected-exit-status/-/expected-exit-status-1.0.2.tgz#79c5ba9ae113bc8b7a290787686216001e28cf57"
   dependencies:
     cross-spawn "^6.0.5"
     meow "^5.0.0"
