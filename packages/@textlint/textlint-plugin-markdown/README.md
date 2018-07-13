@@ -17,11 +17,29 @@ Manually add Markdown plugin to do following:
 
 ```
 {
-    "plugins": [
-        "markdown"
-    ]
+    "plugins": {
+        "@textlint/markdown": true
+    }
 }
 ```
+
+## Options
+
+- `extensions`: `string[]`
+    - Additional file extensions for markdown
+    
+For example, if you want to treat `.hown` as markdown, add following config to `.textlintrc`    
+
+```json5
+{
+    "plugins": {
+        "@textlint/markdown": {
+            "extensions": [".hown"]
+        }
+    }
+}
+```
+
 
 ## Tests
 

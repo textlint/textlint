@@ -2,13 +2,15 @@
 // LICENSE : MIT
 "use strict";
 import { parse } from "@textlint/markdown-to-ast";
+
 export class MarkdownProcessor {
     constructor(config) {
         this.config = config;
+        this.extensions = config.extensions ? config.extensions : [];
     }
 
-    static availableExtensions() {
-        return [".md", ".markdown", ".mdown", ".mkdn", ".mkd", ".mdwn", ".mkdown", ".ron"];
+    availableExtensions() {
+        return [".md", ".markdown", ".mdown", ".mkdn", ".mkd", ".mdwn", ".mkdown", ".ron"].concat(this.extensions);
     }
 
     processor(ext) {
