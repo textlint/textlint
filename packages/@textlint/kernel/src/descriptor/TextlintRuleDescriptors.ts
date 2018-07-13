@@ -1,20 +1,20 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelFilterRule } from "@textlint/kernel";
-import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor";
+import { TextlintKernelRule } from "../textlint-kernel-interface";
+import { TextlintRuleDescriptor } from "./TextlintRuleDescriptor";
 import { filterDuplicateDescriptor } from "./DescriptorUtil";
 
 /**
- * The collection class of TextlintFilterRuleDescriptor
+ * The collection class of TextlintRuleDescriptor
  */
-export class TextlintFilterRuleDescriptors {
-    constructor(private ruleDescriptorList: TextlintFilterRuleDescriptor[] = []) {}
+export class TextlintRuleDescriptors {
+    constructor(private ruleDescriptorList: TextlintRuleDescriptor[] = []) {}
 
     /**
      * Convert this to TextlintKernel rules format
      * @returns {Array}
      */
-    toKernelFilterRulesFormat(): Array<TextlintKernelFilterRule> {
+    toKernelRulesFormat(): Array<TextlintKernelRule> {
         return this.withoutDuplicated().descriptors.map(descriptor => {
             return descriptor.toKernel();
         });
@@ -39,9 +39,8 @@ export class TextlintFilterRuleDescriptors {
     /**
      * filter duplicated descriptors
      */
-    withoutDuplicated(): TextlintFilterRuleDescriptors {
-        // remove last duplicated item
+    withoutDuplicated() {
         const newDescriptorList = filterDuplicateDescriptor(this.ruleDescriptorList);
-        return new TextlintFilterRuleDescriptors(newDescriptorList);
+        return new TextlintRuleDescriptors(newDescriptorList);
     }
 }

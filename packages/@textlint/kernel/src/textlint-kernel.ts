@@ -18,7 +18,7 @@ import {
     TextlintKernelOptions,
     TextlintResult
 } from "./textlint-kernel-interface";
-import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
+import { TextlintKernelDescriptor } from "./descriptor";
 
 /**
  * add fileName to trailing of error message
@@ -76,7 +76,7 @@ export class TextlintKernel {
      */
     lintText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
         return Promise.resolve().then(() => {
-            const descriptor = new TextlintrcDescriptor({
+            const descriptor = new TextlintKernelDescriptor({
                 rules: options.rules || [],
                 filterRules: options.filterRules || [],
                 plugins: options.plugins || []
@@ -97,7 +97,7 @@ export class TextlintKernel {
      */
     fixText(text: string, options: TextlintKernelOptions): Promise<TextlintFixResult> {
         return Promise.resolve().then(() => {
-            const descriptor = new TextlintrcDescriptor({
+            const descriptor = new TextlintKernelDescriptor({
                 rules: options.rules || [],
                 filterRules: options.filterRules || [],
                 plugins: options.plugins || []
@@ -124,7 +124,7 @@ export class TextlintKernel {
         text,
         options
     }: {
-        descriptor: TextlintrcDescriptor;
+        descriptor: TextlintKernelDescriptor;
         text: string;
         options: TextlintKernelOptions;
     }) {
@@ -175,7 +175,7 @@ export class TextlintKernel {
         text,
         options
     }: {
-        descriptor: TextlintrcDescriptor;
+        descriptor: TextlintKernelDescriptor;
         text: string;
         options: TextlintKernelOptions;
     }): Promise<TextlintFixResult> {

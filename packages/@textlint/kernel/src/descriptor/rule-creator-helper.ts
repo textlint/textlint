@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 
-import { TextlintRuleCreateReporter, TextlintFilterRuleCreator } from "@textlint/kernel";
+import { TextlintRuleCreateReporter, TextlintFilterRuleCreator } from "../textlint-kernel-interface";
 
 /**
  * detect that ruleCreator has linter function

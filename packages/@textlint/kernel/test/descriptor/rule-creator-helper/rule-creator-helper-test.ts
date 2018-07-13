@@ -1,7 +1,14 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { hasLinter, getLinter, hasFixer, getFixer, isRuleModule, assertRuleShape } from "../../src/rule-creator-helper";
+import {
+    hasLinter,
+    getLinter,
+    hasFixer,
+    getFixer,
+    isRuleModule,
+    assertRuleShape
+} from "../../../src/descriptor/rule-creator-helper";
 import FixerRule from "./fixtures/fixer";
 import FixerOnlyRule from "./fixtures/fixer-only-is-bad";
 import LinterRule from "./fixtures/linter";

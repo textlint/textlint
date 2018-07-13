@@ -5,7 +5,7 @@ import { createFreezedRuleContext } from "../core/rule-context";
 import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import SourceCode from "../core/source-code";
-import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "@textlint/textlintrc-descriptor";
+import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 
@@ -62,7 +62,6 @@ export default class TextLintCoreTask extends CoreTask {
                 report,
                 configBaseDir: this.configBaseDir
             });
-            console.log("ruleDescriptor.linter", ruleDescriptor.rule);
             this.tryToAddListenRule(ruleDescriptor.linter, ruleContext, ruleOptions);
         });
         // setup "filters" field

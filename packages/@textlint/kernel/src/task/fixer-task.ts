@@ -5,7 +5,7 @@ import { createFreezedRuleContext } from "../core/rule-context";
 import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import SourceCode from "../core/source-code";
-import { TextlintFilterRuleDescriptors, TextlintRuleDescriptor } from "@textlint/textlintrc-descriptor";
+import { TextlintFilterRuleDescriptors, TextlintRuleDescriptor } from "../descriptor";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 

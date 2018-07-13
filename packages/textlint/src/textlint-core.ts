@@ -4,7 +4,7 @@
  textlint-core.js is a class
  textlint.js is a singleton object that is instance of textlint-core.js.
  */
-import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
+import { TextlintKernelDescriptor } from "@textlint/kernel";
 import {
     TextlintFixResult,
     TextlintKernel,
@@ -37,7 +37,7 @@ export class TextLintCore {
     kernel: TextlintKernel;
     config: Partial<Config>;
     defaultPlugins: TextlintKernelPlugin[];
-    public textlintrcDescriptor: TextlintrcDescriptor;
+    public textlintKernelDescriptor: TextlintKernelDescriptor;
 
     constructor(config: Partial<Config> = {}) {
         // this.config often is undefined.
@@ -57,7 +57,7 @@ export class TextLintCore {
         // TODO: remove `config`
         // https://github.com/textlint/textlint/issues/296
         this.kernel = new TextlintKernel(config);
-        this.textlintrcDescriptor = new TextlintrcDescriptor({
+        this.textlintKernelDescriptor = new TextlintKernelDescriptor({
             rules: [],
             plugins: this.defaultPlugins,
             filterRules: []
@@ -83,7 +83,7 @@ export class TextLintCore {
             "Use setupPlugins insteadof addProcessor method.`addProcessor` will be removed in the future." +
                 "For more details, See https://github.com/textlint/textlint/issues/293"
         );
-        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
             plugins: [
                 {
                     pluginId: "`${Processor.name}@deprecated`",
@@ -104,7 +104,7 @@ export class TextLintCore {
     ) {
         // Append default plugin to the plugins list.
         // Because, default plugin can be override by user plugins
-        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
             plugins: pluginsObjectToKernelRule(plugins, pluginsConfig).concat(this.defaultPlugins)
         });
     }
@@ -116,7 +116,7 @@ export class TextLintCore {
      * @param {object} [rulesOption] ruleConfig is object
      */
     setupRules(rules = {}, rulesOption = {}) {
-        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
             rules: rulesObjectToKernelRule(rules, rulesOption)
         });
     }
@@ -128,7 +128,7 @@ export class TextLintCore {
      * @param {object} [filterRulesOption] ruleConfig is object
      */
     setupFilterRules(filterRules = {}, filterRulesOption = {}) {
-        this.textlintrcDescriptor = this.textlintrcDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
             filterRules: filterRulesObjectToKernelRule(filterRules, filterRulesOption)
         });
     }
@@ -137,7 +137,7 @@ export class TextLintCore {
      * Remove all registered rule and clear messages.
      */
     resetRules() {
-        this.textlintrcDescriptor = new TextlintrcDescriptor({
+        this.textlintKernelDescriptor = new TextlintKernelDescriptor({
             rules: [],
             plugins: this.defaultPlugins,
             filterRules: []
@@ -227,9 +227,9 @@ export class TextLintCore {
             typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
         return ObjectAssign({}, options, {
             configBaseDir: configFileBaseDir,
-            plugins: this.textlintrcDescriptor.plugin.toKernelPluginsFormat(),
-            rules: this.textlintrcDescriptor.rule.toKernelRulesFormat(),
-            filterRules: this.textlintrcDescriptor.filterRule.toKernelFilterRulesFormat()
+            plugins: this.textlintKernelDescriptor.plugin.toKernelPluginsFormat(),
+            rules: this.textlintKernelDescriptor.rule.toKernelRulesFormat(),
+            filterRules: this.textlintKernelDescriptor.filterRule.toKernelFilterRulesFormat()
         });
     }
 }

@@ -1,5 +1,5 @@
 "use strict";
-import { TextlintKernelPlugin } from "@textlint/kernel";
+import { TextlintKernelPlugin } from "../textlint-kernel-interface";
 import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
 import { filterDuplicateDescriptor } from "./DescriptorUtil";
 

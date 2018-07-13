@@ -4,7 +4,7 @@ import {
     TextlintPluginOptions,
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
-} from "@textlint/kernel";
+} from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
 
 import deepEqual = require("deep-equal");

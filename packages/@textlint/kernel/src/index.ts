@@ -1,5 +1,7 @@
 // Kernel
 export { TextlintKernel } from "./textlint-kernel";
+// Kernel Descriptor
+export * from "./descriptor/index";
 // Types
 export {
     TextlintResult,

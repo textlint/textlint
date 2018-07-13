@@ -5,8 +5,8 @@ import {
     TextlintRuleCreateReporter,
     TextlintRuleCreator,
     TextlintRuleOptions
-} from "@textlint/kernel";
-import { getLinter, getFixer, hasLinter, hasFixer } from "./rule-creator-helper";
+} from "../textlint-kernel-interface";
+import { getLinter, getFixer, hasLinter, hasFixer, assertRuleShape } from "./rule-creator-helper";
 
 import deepEqual = require("deep-equal");
 
@@ -15,7 +15,9 @@ import deepEqual = require("deep-equal");
  * It handle RuleCreator and RuleOption.
  */
 export class TextlintRuleDescriptor {
-    constructor(private textlintKernelRule: TextlintKernelRule) {}
+    constructor(private textlintKernelRule: TextlintKernelRule) {
+        assertRuleShape(textlintKernelRule.rule);
+    }
 
     get id() {
         return this.textlintKernelRule.ruleId;

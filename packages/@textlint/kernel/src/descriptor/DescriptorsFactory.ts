@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "@textlint/kernel";
+import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "../textlint-kernel-interface";
 import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor";
 import { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors";
 import { TextlintRuleDescriptors } from "./TextlintRuleDescriptors";

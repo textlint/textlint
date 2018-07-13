@@ -1,11 +1,11 @@
 import * as assert from "assert";
 import { createDummyPlugin } from "./helper/dummy-plugin";
-import { TextlintrcDescriptor } from "../src";
+import { TextlintKernelDescriptor } from "../../src/descriptor/index";
 import exampleRule from "./helper/example-rule";
 
 describe("TextlintrcDescriptor", () => {
     it("example code", () => {
-        const descriptors = new TextlintrcDescriptor({
+        const descriptors = new TextlintKernelDescriptor({
             plugins: [
                 {
                     pluginId: "text",

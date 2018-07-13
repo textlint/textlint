@@ -10,7 +10,7 @@ import {
 } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
 import SourceCode from "../core/source-code";
-import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "@textlint/textlintrc-descriptor";
+import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
 
 export interface LinterProcessorArgs {
     config: TextlintKernelConstructorOptions;

@@ -1,7 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import { getFilter, hasLinter } from "./rule-creator-helper";
-import { TextlintFilterRuleCreator, TextlintFilterRuleOptions, TextlintKernelFilterRule } from "@textlint/kernel";
+import {
+    TextlintFilterRuleCreator,
+    TextlintFilterRuleOptions,
+    TextlintKernelFilterRule
+} from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
 
 import deepEqual = require("deep-equal");
