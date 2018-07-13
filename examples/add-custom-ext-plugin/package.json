@@ -1,0 +1,16 @@
+{
+  "name": "textlint-example-add-custom-ext-plugin",
+  "version": "2.0.10",
+  "private": true,
+  "license": "MIT",
+  "author": "azu",
+  "scripts": {
+    "test": "npm run textlint",
+    "test:ci": "npm test",
+    "textlint": "textlint -f pretty-error test.custom-ext"
+  },
+  "devDependencies": {
+    "textlint": "^10.2.1",
+    "textlint-rule-no-todo": "^2.0.0"
+  }
+}
