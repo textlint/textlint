@@ -2,14 +2,15 @@
 "use strict";
 import { getFilter, hasLinter } from "./rule-creator-helper";
 import { TextlintFilterRuleCreator, TextlintFilterRuleOptions, TextlintKernelFilterRule } from "@textlint/kernel";
+import { Descriptor } from "./Descriptor";
 
-const deepEqual = require("deep-equal");
+import deepEqual = require("deep-equal");
 
 /**
  * Textlint Rule Descriptor.
  * It handle RuleCreator and RuleOption.
  */
-export class TextlintFilterRuleDescriptor {
+export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFilterRule> {
     constructor(private kernelFilterRule: TextlintKernelFilterRule) {}
 
     get id() {
@@ -60,11 +61,16 @@ export class TextlintFilterRuleDescriptor {
     /**
      * Return true if descriptor is same
      */
-    equals(descriptor: TextlintFilterRuleDescriptor): boolean {
-        return this.rule === descriptor.rule && deepEqual(this.normalizedOptions, descriptor.normalizedOptions);
+    equals(descriptor: this): boolean {
+        return (
+            this.rule === descriptor.rule &&
+            deepEqual(this.normalizedOptions, descriptor.normalizedOptions, {
+                strict: true
+            })
+        );
     }
 
-    toKernel(): TextlintKernelFilterRule {
+    toKernel() {
         return this.kernelFilterRule;
     }
 }

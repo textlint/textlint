@@ -51,6 +51,7 @@ export const filterRulesObjectToKernelRule = (
         };
     });
 };
+
 /**
  * Convert pluginsObject to TextlintKernelPlugin
  * {

@@ -1,6 +1,7 @@
 "use strict";
 import { TextlintKernelPlugin } from "@textlint/kernel";
 import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
+import { filterDuplicateDescriptor } from "./DescriptorUtil";
 
 /**
  * Collection class of TextlintPluginDescriptor
@@ -41,6 +42,14 @@ export class TextlintPluginDescriptors {
         return this.descriptors.find(descriptor => {
             return descriptor.availableExtensions.includes(ext);
         });
+    }
+
+    /**
+     * filter duplicated descriptors
+     */
+    withoutDuplicated() {
+        const newDescriptorList = filterDuplicateDescriptor(this.pluginDescriptorList);
+        return new TextlintPluginDescriptors(newDescriptorList);
     }
 
     /**
