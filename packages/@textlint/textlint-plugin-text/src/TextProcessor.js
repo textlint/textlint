@@ -6,6 +6,7 @@ import { parse } from "@textlint/text-to-ast";
 export class TextProcessor {
     constructor(config) {
         this.config = config;
+        // support "extension" option
         this.extensions = this.config.extensions ? this.config.extensions : [];
     }
 

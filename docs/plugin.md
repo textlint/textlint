@@ -33,10 +33,13 @@ import { parse } from "txt-to-ast";
 export default class TextProcessor {
     constructor(options) {
         this.options = options;
+        // support "extension" option
+        this.extensions = this.config.extensions ? this.config.extensions : [];
     }
     // available ".ext" list
+    // user can add own custom extension as "extensions" option
     availableExtensions() {
-        return [".txt", ".text"];
+        return [".txt", ".text"].concat(this.extensions);
     }
     // define pre/post process
     // in other words, parse and generate process
@@ -141,8 +144,20 @@ textlint user use it by setting following:
 ```json
 {
     "plugins": {
-        "markdown": true
+        "@textlint/markdown": true
     }
+}
+```
+
+Also, textlint user can set options to the plugin.
+      
+```json
+{
+  "plugins": {
+      "@textlint/markdown": {
+        "extensions": [".custom-ext"]
+      }
+  }
 }
 ```
 
