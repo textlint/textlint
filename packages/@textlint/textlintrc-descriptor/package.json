@@ -48,6 +48,7 @@
   "devDependencies": {
     "@types/mocha": "^5.2.4",
     "@types/node": "^10.5.2",
+    "@types/deep-equal": "^1.0.1",
     "cross-env": "^5.2.0",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7",

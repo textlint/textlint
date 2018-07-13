@@ -2,6 +2,7 @@
 "use strict";
 import { TextlintKernelFilterRule } from "@textlint/kernel";
 import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor";
+import { filterDuplicateDescriptor } from "./DescriptorUtil";
 
 /**
  * The collection class of TextlintFilterRuleDescriptor
@@ -40,15 +41,7 @@ export class TextlintFilterRuleDescriptors {
      */
     withoutDuplicated(): TextlintFilterRuleDescriptors {
         // remove last duplicated item
-        const newDescriptorList: TextlintFilterRuleDescriptor[] = [];
-        this.ruleDescriptorList.forEach(descriptor => {
-            const existsDescriptor = newDescriptorList.some(existDescriptor => {
-                return existDescriptor.equals(descriptor);
-            });
-            if (!existsDescriptor) {
-                newDescriptorList.push(descriptor);
-            }
-        });
+        const newDescriptorList = filterDuplicateDescriptor(this.ruleDescriptorList);
         return new TextlintFilterRuleDescriptors(newDescriptorList);
     }
 }

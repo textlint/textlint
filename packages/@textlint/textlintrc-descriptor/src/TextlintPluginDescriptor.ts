@@ -5,6 +5,9 @@ import {
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
 } from "@textlint/kernel";
+import { Descriptor } from "./Descriptor";
+
+import deepEqual = require("deep-equal");
 
 /**
  * Get instance/static `availableExtensions()` from TextlintPluginProcessor
@@ -26,7 +29,7 @@ const getAvailableExtensions = (pluginProcessor: TextlintPluginProcessor): strin
 /**
  * Textlint Plugin Descriptor
  */
-export class TextlintPluginDescriptor {
+export class TextlintPluginDescriptor implements Descriptor<TextlintKernelPlugin> {
     public processor: TextlintPluginProcessor;
 
     constructor(private plugin: TextlintKernelPlugin) {
@@ -64,5 +67,14 @@ export class TextlintPluginDescriptor {
 
     toKernel() {
         return this.plugin;
+    }
+
+    equals(target: this): boolean {
+        return (
+            this.plugin.plugin === target.plugin.plugin &&
+            deepEqual(this.plugin.options, target.plugin.options, {
+                strict: true
+            })
+        );
     }
 }

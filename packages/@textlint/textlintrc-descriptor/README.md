@@ -20,7 +20,34 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+```js
+const descriptors = new TextlintrcDescriptor({
+    plugins: [
+        {
+            pluginId: "text",
+            plugin: createDummyPlugin([".txt"])
+        },
+        {
+            pluginId: "markdown",
+            plugin: createDummyPlugin([".md"])
+        }
+    ],
+    rules: [
+        {
+            ruleId: "example",
+            rule: exampleRule
+        }
+    ],
+    filterRules: []
+});
+// available extensions
+assert.deepStrictEqual(descriptors.plugin.availableExtensions, [".txt", ".md"]);
+// get plugin instance
+const markdownProcessor = descriptors.findPluginDescriptorWithExt(".md");
+assert.ok(markdownProcessor !== undefined);
+// rules
+assert.strictEqual(descriptors.rule.descriptors.length, 1);
+```
 
 ## Changelog
 

@@ -3,7 +3,7 @@
 import { TextlintKernelRule, TextlintRuleCreator, TextlintRuleOptions } from "@textlint/kernel";
 import { getLinter, getFixer, hasLinter, hasFixer } from "./rule-creator-helper";
 
-const deepEqual = require("deep-equal");
+import deepEqual = require("deep-equal");
 
 /**
  * Textlint Rule Descriptor.
@@ -78,7 +78,9 @@ export class TextlintRuleDescriptor {
     equals(descriptor: TextlintRuleDescriptor): boolean {
         return (
             this.textlintKernelRule.rule === descriptor.textlintKernelRule.rule &&
-            deepEqual(this.normalizedOptions, descriptor.normalizedOptions)
+            deepEqual(this.normalizedOptions, descriptor.normalizedOptions, {
+                strict: true
+            })
         );
     }
 
