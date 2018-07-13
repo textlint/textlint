@@ -5,12 +5,13 @@
   "license": "MIT",
   "author": "azu",
   "scripts": {
-    "test": "! textlint test.custom-ext",
+    "test": "expected-exit-status 1 --command \"textlint test.custom-ext\"",
     "test:ci": "npm test",
     "textlint": "textlint -f pretty-error test.custom-ext"
   },
   "devDependencies": {
     "textlint": "^10.2.1",
-    "textlint-rule-no-todo": "^2.0.0"
+    "textlint-rule-no-todo": "^2.0.0",
+    "expected-exit-status": "^1.0.1"
   }
 }
