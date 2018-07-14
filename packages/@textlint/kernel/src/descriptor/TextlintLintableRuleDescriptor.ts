@@ -8,7 +8,6 @@ import {
 } from "../textlint-kernel-interface";
 import { assertRuleShape, getLinter } from "./rule-creator-helper";
 import deepEqual = require("deep-equal");
-import { TextlintRuleDescriptorType } from "./TextlintRuleDescriptorType";
 
 /**
  * Textlint Rule Descriptor.
@@ -17,10 +16,6 @@ import { TextlintRuleDescriptorType } from "./TextlintRuleDescriptorType";
 export class TextlintLintableRuleDescriptor {
     constructor(private textlintKernelRule: TextlintKernelRule) {
         assertRuleShape(textlintKernelRule.rule);
-    }
-
-    get type() {
-        return TextlintRuleDescriptorType.LINTER;
     }
 
     get id() {
