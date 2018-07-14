@@ -33,7 +33,7 @@ describe("TextlintKernelDescriptor", () => {
         // rules
         assert.strictEqual(descriptors.rule.lintableDescriptors.length, 1);
     });
-    describe("#merge", () => {
+    describe("#shallowMerge", () => {
         it("should merge partial arguments", () => {
             const descriptors = new TextlintKernelDescriptor({
                 plugins: [
