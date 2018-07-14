@@ -28,7 +28,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
      * Return true if this rule is enabled.
      */
     get enabled(): boolean {
-        return this.normalizedOptions !== false;
+        return this.rawOptions !== false;
     }
 
     /**
@@ -45,15 +45,15 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
      */
     get normalizedOptions(): TextlintFilterRuleOptions {
         // default: { ruleName: true }
-        const defaultRuleConfigValue = true;
-        if (this.kernelFilterRule.options === undefined) {
-            return defaultRuleConfigValue;
+        const DefaultRuleConfigValue = {};
+        if (typeof this.kernelFilterRule.options === "boolean" || this.kernelFilterRule.options === undefined) {
+            return DefaultRuleConfigValue;
         } else {
             return this.kernelFilterRule.options;
         }
     }
 
-    get rawOptions(): TextlintFilterRuleOptions | undefined {
+    get rawOptions() {
         return this.kernelFilterRule.options;
     }
 

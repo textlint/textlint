@@ -33,7 +33,7 @@ export class TextlintLintableRuleDescriptor {
      * Return true if this rule is enabled.
      */
     get enabled(): boolean {
-        return this.normalizedOptions !== false;
+        return this.rawOptions !== false;
     }
 
     /**
@@ -50,15 +50,15 @@ export class TextlintLintableRuleDescriptor {
      */
     get normalizedOptions(): TextlintRuleOptions {
         // default: { ruleName: true }
-        const defaultRuleConfigValue = true;
-        if (this.textlintKernelRule.options === undefined) {
-            return defaultRuleConfigValue;
+        const DefaultRuleConfigValue = {};
+        if (typeof this.textlintKernelRule.options === "boolean" || this.textlintKernelRule.options === undefined) {
+            return DefaultRuleConfigValue;
         } else {
             return this.textlintKernelRule.options;
         }
     }
 
-    get rawOptions(): TextlintRuleOptions | undefined {
+    get rawOptions() {
         return this.textlintKernelRule.options;
     }
 

@@ -129,7 +129,7 @@ function createTestRuleSet(testConfigRules: TestConfigRule[]): TestRuleSet {
     };
     testConfigRules.forEach(rule => {
         const ruleName = rule.ruleId;
-        const ruleOptions = rule.options || {};
+        const ruleOptions = rule.options;
         testRuleSet.rules[ruleName] = rule.rule;
         testRuleSet.rulesOptions[ruleName] = ruleOptions;
     });
@@ -143,7 +143,7 @@ function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginS
     };
     testConfigPlugins.forEach(plugin => {
         const pluginName = plugin.pluginId;
-        const pluginOptions = plugin.options || {};
+        const pluginOptions = plugin.options;
         testPluginSet.plugins[pluginName] = plugin.plugin;
         testPluginSet.pluginOptions[pluginName] = pluginOptions;
     });
@@ -170,7 +170,7 @@ export class TextLintTester {
                 textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
             }
         } else {
-            const options = (typeof valid === "object" && valid.options) || {};
+            const options = typeof valid === "object" && valid.options;
             textlint.setupRules(
                 {
                     [name]: param
@@ -199,7 +199,7 @@ export class TextLintTester {
                 textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
             }
         } else {
-            const options = invalid.options || {};
+            const options = invalid.options;
             textlint.setupRules(
                 {
                     [name]: param

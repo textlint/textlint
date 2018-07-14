@@ -52,7 +52,7 @@ module.exports = {
      * Return true if this rule is enabled.
      */
     get enabled(): boolean {
-        return this.normalizedOptions !== false;
+        return this.rawOptions !== false;
     }
 
     /**
@@ -64,12 +64,16 @@ module.exports = {
 
     get normalizedOptions(): TextlintPluginOptions {
         // default: { ruleName: true }
-        const DEFAULT_PLUGIN_OPTIONS = true;
-        if (this.plugin.options === undefined) {
-            return DEFAULT_PLUGIN_OPTIONS;
+        const DefaultPluginOption = {};
+        if (typeof this.plugin.options === "boolean" || this.plugin.options === undefined) {
+            return DefaultPluginOption;
         } else {
             return this.plugin.options;
         }
+    }
+
+    get rawOptions() {
+        return this.plugin.options;
     }
 
     toKernel() {

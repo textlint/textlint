@@ -1,13 +1,14 @@
 // LICENSE : MIT
 "use strict";
 
-const TextLintTester = require("../src/index");
+import * as assert from "assert";
+
 const htmlPlugin = require("textlint-plugin-html");
 const noTodoRule = require("textlint-rule-no-todo");
 const maxNumberOfLineRule = require("textlint-rule-max-number-of-lines");
-const tester = new TextLintTester();
-const assert = require("assert");
+import { TextLintTester } from "../src/textlint-tester";
 
+const tester = new TextLintTester();
 const baseCase = {
     valid: [
         {
@@ -244,7 +245,7 @@ describe("new-style-of-test: invalid testConfig", () => {
     testConfigs.forEach(testConfig => {
         it(`Should throw assertion error: ${testConfig.description}`, () => {
             try {
-                tester.run("invalid-testConfig-test", testConfig.config, testConfig.case);
+                tester.run("invalid-testConfig-test", testConfig.config as any, testConfig.case);
             } catch (err) {
                 assert(err instanceof assert.AssertionError);
                 assert.equal(err.message, testConfig.expectedErrorMessage);
