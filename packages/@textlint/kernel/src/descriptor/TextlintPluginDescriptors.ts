@@ -1,5 +1,5 @@
 "use strict";
-import { TextlintKernelPlugin } from "@textlint/kernel";
+import { TextlintKernelPlugin } from "../textlint-kernel-interface";
 import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
 import { filterDuplicateDescriptor } from "./DescriptorUtil";
 
@@ -25,6 +25,10 @@ export class TextlintPluginDescriptors {
         return this.pluginDescriptorList;
     }
 
+    /**
+     * Return available extensions
+     * It is not includes disabled plugin's extensions.
+     */
     get availableExtensions(): string[] {
         return this.descriptors.reduce(
             (extensions, descriptor) => {

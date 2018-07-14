@@ -1,5 +1,7 @@
 // Kernel
 export { TextlintKernel } from "./textlint-kernel";
+// Kernel Descriptor
+export * from "./descriptor/index";
 // Types
 export {
     TextlintResult,
@@ -12,10 +14,11 @@ export {
     TextlintKernelPlugin,
     // Notes: Following interface will be separated module in the future.
     // textlint rule interface
-    TextlintRuleCreator,
+    TextlintRuleReporter,
+    TextlintRuleModule,
     TextlintRuleOptions,
     // textlint filter rule interface
-    TextlintFilterRuleCreator,
+    TextlintFilterRuleReporter,
     TextlintFilterRuleOptions,
     // textlint plugin interface
     TextlintPluginCreator,

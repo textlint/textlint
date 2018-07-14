@@ -55,7 +55,6 @@
     "@textlint/linter-formatter": "^3.0.7",
     "@textlint/textlint-plugin-markdown": "^4.0.10",
     "@textlint/textlint-plugin-text": "^3.0.10",
-    "@textlint/textlintrc-descriptor": "^1.0.0",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.0.5",
     "debug": "^2.1.0",
@@ -96,8 +95,8 @@
     "textlint-rule-no-todo": "^2.0.0",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.3.0",
-    "ts-node": "^3.3.0",
-    "ts-node-test-register": "^1.0.1",
-    "typescript": "~2.6.1"
+    "ts-node": "^7.0.0",
+    "ts-node-test-register": "^4.0.0",
+    "typescript": "~2.8.4"
   }
 }

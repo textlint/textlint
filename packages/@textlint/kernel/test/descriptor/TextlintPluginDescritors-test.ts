@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { TextlintPluginDescriptors } from "../src/index";
-import { createTextlintPluginDescriptors } from "../src/DescriptorsFactory";
-import { TextlintPluginDescriptor } from "../src/TextlintPluginDescriptor";
+import { TextlintPluginDescriptors } from "../../src/descriptor/index";
+import { createTextlintPluginDescriptors } from "../../src/descriptor/DescriptorsFactory";
+import { TextlintPluginDescriptor } from "../../src/descriptor/TextlintPluginDescriptor";
 import { createDummyPlugin } from "./helper/dummy-plugin";
 
 describe("TextlintRuleDescriptors", function() {

@@ -3,7 +3,8 @@
 const path = require("path");
 import * as assert from "assert";
 import { loadFromDir } from "../../src/engine/rule-loader";
-import { assertRuleShape } from "../../../@textlint/textlintrc-descriptor/src/rule-creator-helper";
+import { TextlintLintableRuleDescriptor } from "@textlint/kernel";
+
 const fixtureDir = path.join(__dirname, "fixtures", "rule-loader");
 describe("engine/rule-loader", function() {
     it("should return object", function() {
@@ -12,7 +13,11 @@ describe("engine/rule-loader", function() {
         const keys = Object.keys(rules);
         assert.deepEqual(keys.sort(), ["foo", "bar"].sort());
         keys.forEach(key => {
-            assertRuleShape(rules[key]);
+            const descriptor = new TextlintLintableRuleDescriptor({
+                ruleId: key,
+                rule: rules[key]
+            });
+            assert.strictEqual(descriptor.id, key);
         });
     });
     it("should filter by extension", function() {

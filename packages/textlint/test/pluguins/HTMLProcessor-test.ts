@@ -15,13 +15,13 @@ describe("HTMLPlugin", function() {
             textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
         });
         it("should have default + additional processors", function() {
-            const descriptors = textlintCore.textlintrcDescriptor.plugin.descriptors;
+            const descriptors = textlintCore.textlintKernelDescriptor.plugin.descriptors;
             assert.strictEqual(descriptors.length, 3);
         });
         it("should ignore duplicated processor", function() {
             textlintCore.setupPlugins({ html: htmlPlugin });
             textlintCore.setupPlugins({ html: htmlPlugin });
-            const descriptors = textlintCore.textlintrcDescriptor.plugin.descriptors;
+            const descriptors = textlintCore.textlintKernelDescriptor.plugin.descriptors;
             assert.strictEqual(descriptors.length, 3);
         });
         it("should report error", function() {

@@ -8,7 +8,7 @@ title: Use as Node Modules
 ![overview](assets/architecture.png)
 
 
-`textlint` module expose these header at [index.js](../packages/textlint/src/index.ts)
+`textlint` module expose these header at [index.js](https://github.com/textlint/textlint/blob/master/packages/textlint/src/index.ts)
 
 ```js
 // Level of abstraction(descending order)

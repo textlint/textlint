@@ -3,7 +3,7 @@
 import * as assert from "assert";
 import { testInvalid, testValid } from "./test-util";
 import { TextLintCore } from "textlint";
-import { TextlintFixResult, TextlintPluginCreator, TextlintRuleCreator } from "@textlint/kernel";
+import { TextlintFixResult, TextlintPluginCreator, TextlintRuleModule } from "@textlint/kernel";
 
 const { coreFlags } = require("@textlint/feature-flag");
 
@@ -69,7 +69,7 @@ export type TestConfigPlugin = {
 };
 export type TestConfigRule = {
     ruleId: string;
-    rule: TextlintRuleCreator;
+    rule: TextlintRuleModule;
     options?: any;
 };
 export type TestConfig = {
@@ -113,7 +113,7 @@ export type TesterInvalid = {
 };
 
 export type TestRuleSet = {
-    rules: { [index: string]: TextlintRuleCreator };
+    rules: { [index: string]: TextlintRuleModule };
     rulesOptions: any;
 };
 
@@ -157,7 +157,7 @@ export class TextLintTester {
         }
     }
 
-    testValidPattern(name: string, param: TextlintRuleCreator | TestConfig, valid: TesterValid) {
+    testValidPattern(name: string, param: TextlintRuleModule | TestConfig, valid: TesterValid) {
         const text = typeof valid === "object" ? valid.text : valid;
         const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
         const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
@@ -185,7 +185,7 @@ export class TextLintTester {
         });
     }
 
-    testInvalidPattern(name: string, param: TextlintRuleCreator | TestConfig, invalid: TesterInvalid) {
+    testInvalidPattern(name: string, param: TextlintRuleModule | TestConfig, invalid: TesterInvalid) {
         const errors = invalid.errors;
         const inputPath = invalid.inputPath;
         const text = invalid.text;
@@ -241,13 +241,13 @@ export class TextLintTester {
     /**
      * run test for textlint rule.
      * @param {string} name name is name of the test or rule
-     * @param {TextlintRuleCreator|TestConfig} param param is TextlintRuleCreator or TestConfig
+     * @param {TextlintRuleModule|TestConfig} param param is TextlintRuleCreator or TestConfig
      * @param {string[]|object[]} [valid]
      * @param {object[]} [invalid]
      */
     run(
         name: string,
-        param: TextlintRuleCreator | TestConfig,
+        param: TextlintRuleModule | TestConfig,
         {
             valid = [],
             invalid = []

@@ -21,8 +21,8 @@ export default {
 
 textlint support `.txt` and `.md` by default. These are implemented as `Processor` plugin.
 
-- [@textlint/textlint-plugin-markdown](../packages/@textlint/textlint-plugin-markdown)
-- [@textlint/textlint-plugin-text](../packages/@textlint/textlint-plugin-text)
+- [@textlint/textlint-plugin-markdown](https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-markdown)
+- [@textlint/textlint-plugin-text](https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text)
 - [textlint/textlint-plugin-html](https://github.com/textlint/textlint-plugin-html)
 
 `Processor` class example code:
@@ -186,5 +186,5 @@ For more plugins, See [Processor Plugin List](https://github.com/textlint/textli
 
 textlint has built-in plugins
 
-- [`@textlint/textlint-plugin-text`](../packages/@textlint/textlint-plugin-text)
-- [`@textlint/textlint-plugin-markdown`](../packages/@textlint/textlint-plugin-markdown)
+- [`@textlint/textlint-plugin-text`](https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text)
+- [`@textlint/textlint-plugin-markdown`](https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-markdown)

@@ -13,8 +13,8 @@ import * as assert from "assert";
 import SourceCode from "../core/source-code";
 import { TxtNode } from "@textlint/ast-node-types";
 import {
-    RuleCreatorReporter,
-    TextlintFilterRuleCreator,
+    TextlintRuleReporter,
+    TextlintFilterRuleReporter,
     TextlintFilterRuleOptions,
     TextlintFixCommand,
     TextlintRuleOptions
@@ -205,7 +205,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * try to get rule object
      */
     tryToGetRuleObject(
-        ruleCreator: RuleCreatorReporter,
+        ruleCreator: TextlintRuleReporter,
         ruleContext: Readonly<RuleContext>,
         ruleOptions?: TextlintRuleOptions
     ) {
@@ -221,7 +221,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * try to get filter rule object
      */
     tryToGetFilterRuleObject(
-        ruleCreator: TextlintFilterRuleCreator,
+        ruleCreator: TextlintFilterRuleReporter,
         ruleContext: Readonly<FilterRuleContext>,
         ruleOptions?: TextlintFilterRuleOptions
     ) {
@@ -241,19 +241,19 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      * @returns {Object}
      */
     tryToAddListenRule(
-        ruleCreator: RuleCreatorReporter | TextlintFilterRuleCreator,
+        ruleCreator: TextlintRuleReporter | TextlintFilterRuleReporter,
         ruleContext: Readonly<RuleContext> | Readonly<FilterRuleContext>,
         ruleOptions?: TextlintRuleOptions | TextlintFilterRuleOptions
     ): void {
         const ruleObject =
             ruleContext instanceof RuleContext
                 ? this.tryToGetRuleObject(
-                      ruleCreator as RuleCreatorReporter,
+                      ruleCreator as TextlintRuleReporter,
                       ruleContext as Readonly<RuleContext>,
                       ruleOptions
                   )
                 : this.tryToGetFilterRuleObject(
-                      ruleCreator as TextlintFilterRuleCreator,
+                      ruleCreator as TextlintFilterRuleReporter,
                       ruleContext as Readonly<FilterRuleContext>,
                       ruleOptions
                   );

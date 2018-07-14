@@ -10,13 +10,6 @@ const assert = require("assert");
 const ObjectAssign = require("object-assign");
 const throwIfTesting = require("@textlint/feature-flag").throwIfTesting;
 
-/**
- * @typedef {Object} ReportMessage
- * @property {string} ruleId
- * @property {TxtNode} node
- * @property {number} severity
- * @property {RuleError} ruleError error is a RuleError instance or any data
- */
 export interface ReportMessage {
     ruleId: string;
     node: any;
@@ -27,18 +20,12 @@ export interface ReportMessage {
 export default class SourceLocation {
     private source: SourceCode;
 
-    /**
-     *
-     * @param {SourceCode} source
-     */
     constructor(source: SourceCode) {
         this.source = source;
     }
 
     /**
      * adjust node's location with error's padding location.
-     * @param {ReportMessage} reportArgs
-     * @returns {{line: number, column: number, fix?: FixCommand}}
      */
     adjust(reportArgs: ReportArgs): { line: number; column: number; fix?: TextlintFixCommand } {
         const { node, ruleError, ruleId } = reportArgs;
@@ -180,12 +167,8 @@ report(node, new RuleError("message", {
     /**
      * Adjust `fix` command range
      * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
-     * @param {TxtNode} node
-     * @param {RuleError} ruleErrorObject
-     * @returns {FixCommand|Object}
-     * @private
      */
-    _adjustFix(node: TxtNode, ruleErrorObject: RuleError) {
+    private _adjustFix(node: TxtNode, ruleErrorObject: RuleError) {
         const nodeRange = node.range;
         // if not found `fix`, return empty object
         if (ruleErrorObject.fix === undefined) {

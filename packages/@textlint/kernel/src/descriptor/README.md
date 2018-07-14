@@ -1,6 +1,6 @@
-# @textlint/textlintrc-descriptor
+# descriptor
 
-A Descriptor class for textlintrc.
+A Descriptor class for kernel.
 
 The Descriptor is a structure object of rules, filter rules, plugins.
 
@@ -12,16 +12,10 @@ The Descriptor is a structure object of rules, filter rules, plugins.
 - Analyze plugins and provide available extensions for linting 
 - Analyze rules and provide normalized rule instance
 
-## Install
-
-Install with [npm](https://www.npmjs.com/):
-
-    npm install @textlint/textlintrc-descriptor
-
 ## Usage
 
 ```js
-const descriptors = new TextlintrcDescriptor({
+const descriptors = new TextlintKernelDescriptor({
     plugins: [
         {
             pluginId: "text",
@@ -48,8 +42,4 @@ assert.ok(markdownProcessor !== undefined);
 // rules
 assert.strictEqual(descriptors.rule.descriptors.length, 1);
 ```
-
-## Changelog
-
-See [CHANGELOG.md](./CHANGELOG.md).
 

@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintrcDescriptor } from "@textlint/textlintrc-descriptor";
+import { TextlintKernelDescriptor } from "@textlint/kernel";
 import { TextLintFormatterOption } from "../textlint-interface";
 import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "./rule-map";
@@ -206,8 +206,8 @@ new TextLintEngine({
      * WARNING: This is experimental method.
      * It will be renamed.
      */
-    get textlintrcDescriptor(): TextlintrcDescriptor {
-        return this.textlint.textlintrcDescriptor;
+    get textlintrcDescriptor(): TextlintKernelDescriptor {
+        return this.textlint.textlintKernelDescriptor;
     }
 
     /**

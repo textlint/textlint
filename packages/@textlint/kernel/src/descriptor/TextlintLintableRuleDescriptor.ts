@@ -1,16 +1,22 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelRule, TextlintRuleCreator, TextlintRuleOptions } from "@textlint/kernel";
-import { getLinter, getFixer, hasLinter, hasFixer } from "./rule-creator-helper";
-
+import {
+    TextlintKernelRule,
+    TextlintRuleModule,
+    TextlintRuleOptions,
+    TextlintRuleReporter
+} from "../textlint-kernel-interface";
+import { assertRuleShape, getLinter } from "./rule-creator-helper";
 import deepEqual = require("deep-equal");
 
 /**
  * Textlint Rule Descriptor.
  * It handle RuleCreator and RuleOption.
  */
-export class TextlintRuleDescriptor {
-    constructor(private textlintKernelRule: TextlintKernelRule) {}
+export class TextlintLintableRuleDescriptor {
+    constructor(private textlintKernelRule: TextlintKernelRule) {
+        assertRuleShape(textlintKernelRule.rule);
+    }
 
     get id() {
         return this.textlintKernelRule.ruleId;
@@ -19,7 +25,7 @@ export class TextlintRuleDescriptor {
     /**
      * Rule module-self
      */
-    get rule(): TextlintRuleCreator {
+    get rule(): TextlintRuleModule {
         return this.textlintKernelRule.rule;
     }
 
@@ -30,28 +36,12 @@ export class TextlintRuleDescriptor {
         return this.normalizedOptions !== false;
     }
 
-    get hasLinter() {
-        return hasLinter(this.textlintKernelRule);
-    }
-
-    get hasFixer() {
-        return hasFixer(this.textlintKernelRule);
-    }
-
     /**
      * Return linter function
      * You should check hasLiner before call this.
      */
-    get linter() {
-        return getLinter(this.textlintKernelRule);
-    }
-
-    /**
-     * Return fixer function
-     * You should check hasFixer before call this.
-     */
-    get fixer() {
-        return getFixer(this.textlintKernelRule);
+    get linter(): TextlintRuleReporter {
+        return getLinter(this.rule);
     }
 
     /**
@@ -75,9 +65,9 @@ export class TextlintRuleDescriptor {
     /**
      * Return true if descriptor is same
      */
-    equals(descriptor: TextlintRuleDescriptor): boolean {
+    equals(descriptor: TextlintLintableRuleDescriptor): boolean {
         return (
-            this.textlintKernelRule.rule === descriptor.textlintKernelRule.rule &&
+            this.rule === descriptor.rule &&
             deepEqual(this.normalizedOptions, descriptor.normalizedOptions, {
                 strict: true
             })

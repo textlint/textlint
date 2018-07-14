@@ -5,18 +5,18 @@ import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
 import {
     TextlintKernelConstructorOptions,
-    TextlintKernelFilterRule,
     TextlintPluginProcessor,
-    TextlintKernelRule
+    TextlintResult
 } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
 import SourceCode from "../core/source-code";
+import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
 
 export interface LinterProcessorArgs {
     config: TextlintKernelConstructorOptions;
     configBaseDir?: string;
-    rules?: TextlintKernelRule[];
-    filterRules?: TextlintKernelFilterRule[];
+    ruleDescriptors: TextlintRuleDescriptors;
+    filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: SourceCode;
 }
 
@@ -35,15 +35,14 @@ export default class LinterProcessor {
 
     /**
      * Run linter process
-     * @param {Config} config
-     * @param {string} [configBaseDir
-     * @param {TextlintKernelRule[]} [rules]
-     * @param {TextlintKernelFilterRule[]} [filterRules]
-     * @param {SourceCode} sourceCode
-     * @returns {Promise.<TextlintResult>}
      */
-    process({ config, configBaseDir, rules = [], filterRules = [], sourceCode }: LinterProcessorArgs) {
-        assert(config && Array.isArray(rules) && Array.isArray(filterRules) && sourceCode);
+    process({
+        config,
+        configBaseDir,
+        ruleDescriptors,
+        filterRuleDescriptors,
+        sourceCode
+    }: LinterProcessorArgs): Promise<TextlintResult> {
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         assert(
             typeof preProcess === "function" && typeof postProcess === "function",
@@ -51,8 +50,8 @@ export default class LinterProcessor {
         );
         const task = new LinterTask({
             config,
-            rules,
-            filterRules,
+            ruleDescriptors: ruleDescriptors,
+            filterRuleDescriptors: filterRuleDescriptors,
             sourceCode,
             configBaseDir
         });

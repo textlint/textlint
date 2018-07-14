@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleCreator } from "@textlint/kernel";
+import { TextlintRuleModule } from "@textlint/kernel";
 
-const reporter: TextlintRuleCreator = context => {
+const reporter: TextlintRuleModule = context => {
     const { Syntax, fixer, report, RuleError, getSource } = context;
     return {
         [Syntax.Str](node) {

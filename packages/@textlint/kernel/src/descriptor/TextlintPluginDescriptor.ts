@@ -4,7 +4,7 @@ import {
     TextlintPluginOptions,
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
-} from "@textlint/kernel";
+} from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
 
 import deepEqual = require("deep-equal");
@@ -34,6 +34,13 @@ export class TextlintPluginDescriptor implements Descriptor<TextlintKernelPlugin
 
     constructor(private plugin: TextlintKernelPlugin) {
         this.plugin = plugin;
+        if (!this.plugin.plugin.Processor) {
+            throw new Error(`Plugin should have Processor property.
+module.exports = {
+  Processor: class Processor{ ... }
+}
+`);
+        }
         this.processor = new plugin.plugin.Processor(this.normalizedOptions);
     }
 

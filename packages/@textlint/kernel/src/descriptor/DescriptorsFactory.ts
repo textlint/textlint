@@ -1,15 +1,24 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "@textlint/kernel";
+import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "../textlint-kernel-interface";
 import { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor";
 import { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors";
 import { TextlintRuleDescriptors } from "./TextlintRuleDescriptors";
-import { TextlintRuleDescriptor } from "./TextlintRuleDescriptor";
+import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor";
 import { TextlintPluginDescriptors } from "./TextlintPluginDescriptors";
 import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
+import { hasFixer } from "./rule-creator-helper";
+import { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor";
 
 export const createTextlintRuleDescriptors = (rules: TextlintKernelRule[]) => {
-    return new TextlintRuleDescriptors(rules.map(rule => new TextlintRuleDescriptor(rule)));
+    const ruleOrFixableRuleDescriptorList = rules.map(rule => {
+        if (hasFixer(rule.rule)) {
+            return new TextlintFixableRuleDescriptor(rule);
+        } else {
+            return new TextlintLintableRuleDescriptor(rule);
+        }
+    });
+    return new TextlintRuleDescriptors(ruleOrFixableRuleDescriptorList);
 };
 
 export const createTextlintFilterRuleDescriptors = (rules: TextlintKernelFilterRule[]) => {
