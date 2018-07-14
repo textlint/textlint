@@ -34,9 +34,11 @@ export class TextlintKernelDescriptor {
     }
 
     /**
-     * merge constructor args and partialArgs
+     * Merge constructor args and partialArgs
+     * It shallow merge partialArgs.
+     * It means that overwrite root properties by partialArgs.
      */
-    merge(partialArgs: Partial<TextlintKernelDescriptorArgs>) {
+    shallowMerge(partialArgs: Partial<TextlintKernelDescriptorArgs>) {
         return new TextlintKernelDescriptor({
             ...this.args,
             ...partialArgs

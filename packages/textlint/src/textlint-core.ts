@@ -83,7 +83,7 @@ export class TextLintCore {
             "Use setupPlugins insteadof addProcessor method.`addProcessor` will be removed in the future." +
                 "For more details, See https://github.com/textlint/textlint/issues/293"
         );
-        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.shallowMerge({
             plugins: [
                 {
                     pluginId: "`${Processor.name}@deprecated`",
@@ -104,7 +104,7 @@ export class TextLintCore {
     ) {
         // Append default plugin to the plugins list.
         // Because, default plugin can be override by user plugins
-        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.shallowMerge({
             plugins: pluginsObjectToKernelRule(plugins, pluginsConfig).concat(this.defaultPlugins)
         });
     }
@@ -116,7 +116,7 @@ export class TextLintCore {
      * @param {object} [rulesOption] ruleConfig is object
      */
     setupRules(rules = {}, rulesOption = {}) {
-        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.shallowMerge({
             rules: rulesObjectToKernelRule(rules, rulesOption)
         });
     }
@@ -128,7 +128,7 @@ export class TextLintCore {
      * @param {object} [filterRulesOption] ruleConfig is object
      */
     setupFilterRules(filterRules = {}, filterRulesOption = {}) {
-        this.textlintKernelDescriptor = this.textlintKernelDescriptor.merge({
+        this.textlintKernelDescriptor = this.textlintKernelDescriptor.shallowMerge({
             filterRules: filterRulesObjectToKernelRule(filterRules, filterRulesOption)
         });
     }
