@@ -164,7 +164,7 @@ You can read the source code from `filePath` property.
 
 textlint use `@textlint/linter-formatter` module as built-in formatter.
 
-- [@textlint/linter-formatter](https://github.com/textlint/textlint/tree/master/packages/@textlint/linter-formatter/README.md "@textlint/linter-formatter")
+- [@textlint/linter-formatter](https://github.com/textlint/textlint/blob/master/packages/%40textlint/linter-formatter/README.md "@textlint/linter-formatter")
 
 ## Custom Formatter
 

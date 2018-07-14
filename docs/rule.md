@@ -96,7 +96,7 @@ RuleContext object has following property:
 - `Syntax.*` 
     - This is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
-    - [packages/@textlint/ast-node-types/src/index.ts](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-node-types/src/index.ts)
+    - [packages/@textlint/ast-node-types/src/index.ts](https://github.com/textlint/textlint/blob/master/packages/%40textlint/ast-node-types/src/index.ts)
 - `report(<node>, <ruleError>): void`
     - This method is a method that reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
