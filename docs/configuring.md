@@ -213,8 +213,8 @@ textlint support other file format by plugin.
 
 textlint's built-in plugins are text and markdown.
 
-- [`@textlint/textlint-plugin-text`](../packages/@textlint/textlint-plugin-text)
-- [`@textlint/textlint-plugin-markdown`](../packages/@textlint/textlint-plugin-markdown)
+- [`@textlint/textlint-plugin-text`](https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text)
+- [`@textlint/textlint-plugin-markdown`](https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-markdown)
 
 These plugin support custom "extensions" options.
 

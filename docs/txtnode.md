@@ -128,7 +128,7 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
 console.log(ASTNodeTypes.Str); // "Str"
 ```
 
-See [packages/ast-node-types](../packages/@textlint/ast-node-types) for more details.
+See [packages/ast-node-types](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-node-types) for more details.
 
 These types are be available at all times:
 
@@ -184,16 +184,16 @@ textlint has built-in parsers.
 
 | Package | Version | Description |
 |---------|---------|-------------|
-| [`@textlint/markdown-to-ast-to-ast`](../packages/@textlint/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/markdown-to-ast) | markdown parser |
-| [`@textlint/text-to-ast`](../packages/@textlint/text-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/text-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/text-to-ast) | plain text parser |
+| [`@textlint/markdown-to-ast-to-ast`](https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/markdown-to-ast) | markdown parser |
+| [`@textlint/text-to-ast`](https://github.com/textlint/textlint/tree/master/packages/@textlint/text-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/text-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/text-to-ast) | plain text parser |
 
 If you want to get other type, please [create new issue](https://github.com/textlint/textlint/issues/new).
 
 ## Package
 
-That `TxtNode` interface is defined in [packages/ast-node-types](../packages/@textlint/ast-node-types).
+That `TxtNode` interface is defined in [packages/ast-node-types](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-node-types).
 
-If you want to use this interface from TypeScript, [packages/ast-node-types](../packages/@textlint/ast-node-types) is useful.
+If you want to use this interface from TypeScript, [packages/ast-node-types](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-node-types) is useful.
 
 ## Online Parsing Demo
 
@@ -366,9 +366,9 @@ We discuss about Unist in [Compliances tests for TxtNode #141](https://github.co
 
 ## For testing Processor plugin
 
-You can use [@textlint/ast-tester](../packages/@textlint/ast-tester "@textlint/ast-tester") for testing your processor plugin's parser.
+You can use [@textlint/ast-tester](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester "@textlint/ast-tester") for testing your processor plugin's parser.
 
-- [textlint/@textlint/ast-tester: Compliance tests for textlint's AST](../packages/@textlint/ast-tester)
+- [textlint/@textlint/ast-tester: Compliance tests for textlint's AST](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester)
 
 ```js
 import { test, isTextlintAST } from "@textlint/ast-tester";

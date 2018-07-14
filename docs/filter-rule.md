@@ -45,7 +45,7 @@ The rule `<name>` can be accept following patterns:
     - `context.shouldIgnore(node.range, { ruleId: "rule-id" });` filter messages that are reported `"rule-id"` rule. 
 - `Syntax.*` is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
-    - [packages/@textlint/ast-node-types/src/index.ts](../packages/@textlint/ast-node-types/src/index.ts)
+    - [packages/@textlint/ast-node-types/src/index.ts](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-node-types/src/index.ts)
 - `getSource(<node>)`  is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath()` return file path that is linting target.
