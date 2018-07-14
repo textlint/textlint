@@ -5,18 +5,20 @@ import RuleContext from "./core/rule-context";
 import FilterRuleContext from "./core/filter-rule-context";
 /**
  * Rule reporter function
- * TODO: should be separated to fixable RuleCreatorReporter.
  */
-export type TextlintRuleCreateReporter = (
+export type TextlintRuleReporter = (
     context: Readonly<RuleContext>,
     options?: TextlintRuleOptions
 ) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
+export type TextlintFixableRuleModule = { linter: TextlintRuleReporter; fixer: TextlintRuleReporter };
+/**
+ * module.export = reporter | { linter, fixer }
+ */
+export type TextlintRuleModule = TextlintRuleReporter | TextlintFixableRuleModule;
 /**
  * Filter rule reporter function
  */
-export type TextlintRuleFixableCreator = { linter: TextlintRuleCreateReporter; fixer: TextlintRuleCreateReporter };
-export type TextlintRuleCreator = TextlintRuleCreateReporter | TextlintRuleFixableCreator;
-export type TextlintFilterRuleCreator = (
+export type TextlintFilterRuleReporter = (
     context: Readonly<FilterRuleContext>,
     options?: TextlintFilterRuleOptions
 ) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
@@ -138,7 +140,7 @@ export interface TextlintKernelRule {
     ruleId: string;
     // rule module
     // For example, `rule: require("textlint-rule-example")`
-    rule: TextlintRuleCreator;
+    rule: TextlintRuleModule;
     // rule options
     // Often rule option is written in .textlintrc
     options?: TextlintRuleOptions;
@@ -148,7 +150,7 @@ export interface TextlintKernelFilterRule {
     // filter rule name as key
     ruleId: string;
     // filter rule module instance
-    rule: TextlintFilterRuleCreator;
+    rule: TextlintFilterRuleReporter;
     // filter rule options
     // Often rule option is written in .textlintrc
     options?: TextlintRuleOptions;

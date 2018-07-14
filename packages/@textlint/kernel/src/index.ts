@@ -14,11 +14,11 @@ export {
     TextlintKernelPlugin,
     // Notes: Following interface will be separated module in the future.
     // textlint rule interface
-    TextlintRuleCreateReporter,
-    TextlintRuleCreator,
+    TextlintRuleReporter,
+    TextlintRuleModule,
     TextlintRuleOptions,
     // textlint filter rule interface
-    TextlintFilterRuleCreator,
+    TextlintFilterRuleReporter,
     TextlintFilterRuleOptions,
     // textlint plugin interface
     TextlintPluginCreator,

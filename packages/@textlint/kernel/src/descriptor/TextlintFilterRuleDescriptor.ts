@@ -1,13 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import { getFilter, hasLinter } from "./rule-creator-helper";
+import { getFilter } from "./rule-creator-helper";
 import {
-    TextlintFilterRuleCreator,
     TextlintFilterRuleOptions,
+    TextlintFilterRuleReporter,
     TextlintKernelFilterRule
 } from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
-
 import deepEqual = require("deep-equal");
 
 /**
@@ -21,7 +20,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
         return this.kernelFilterRule.ruleId;
     }
 
-    get rule(): TextlintFilterRuleCreator {
+    get rule(): TextlintFilterRuleReporter {
         return this.kernelFilterRule.rule;
     }
 
@@ -32,12 +31,8 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
         return this.normalizedOptions !== false;
     }
 
-    get hasLinter() {
-        return hasLinter(this.rule);
-    }
-
     /**
-     * Return linter function
+     * Return filter function
      * You should check hasLiner before call this.
      */
     get filter() {

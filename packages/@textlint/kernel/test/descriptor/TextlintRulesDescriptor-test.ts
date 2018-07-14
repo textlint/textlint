@@ -3,17 +3,18 @@
 import * as assert from "assert";
 import { TextlintRuleDescriptors } from "../../src/descriptor/index";
 import exampleRule from "./helper/example-rule";
+import fixableExampleRule from "./helper/fixable-example-rule";
 import {
     TextlintKernelPlugin,
     TextlintKernelRule,
     TextlintPluginCreator,
     TextlintPluginOptions,
-    TextlintRuleCreator,
+    TextlintRuleModule,
     TextlintRuleOptions
 } from "@textlint/kernel";
 import { createTextlintRuleDescriptors } from "../../src/descriptor/DescriptorsFactory";
-import { TextlintRuleDescriptor } from "../../src/descriptor/TextlintRuleDescriptor";
-import { TextlintFilterRuleCreator, TextlintFilterRuleOptions, TextlintKernelFilterRule } from "../../src/index";
+import { TextlintLintableRuleDescriptor } from "../../src/descriptor/TextlintLintableRuleDescriptor";
+import { TextlintFilterRuleReporter, TextlintFilterRuleOptions, TextlintKernelFilterRule } from "../../src/index";
 
 /**
  * Convert rulesObject to TextlintKernelRule
@@ -27,7 +28,7 @@ import { TextlintFilterRuleCreator, TextlintFilterRuleOptions, TextlintKernelFil
  * => TextlintKernelRule
  */
 export const rulesObjectToKernelRule = (
-    rules: { [index: string]: TextlintRuleCreator },
+    rules: { [index: string]: TextlintRuleModule },
     rulesOption: { [index: string]: TextlintRuleOptions }
 ): TextlintKernelRule[] => {
     return Object.keys(rules).map(ruleId => {
@@ -40,7 +41,7 @@ export const rulesObjectToKernelRule = (
 };
 
 export const filterRulesObjectToKernelRule = (
-    rules: { [index: string]: TextlintFilterRuleCreator },
+    rules: { [index: string]: TextlintFilterRuleReporter },
     rulesOption: { [index: string]: TextlintFilterRuleOptions }
 ): TextlintKernelFilterRule[] => {
     return Object.keys(rules).map(ruleId => {
@@ -80,7 +81,7 @@ describe("TextlintRuleDescriptors", function() {
     context("when passing undefined", function() {
         it("should return empty result", function() {
             const ruleCreatorSet = new TextlintRuleDescriptors();
-            assert.deepStrictEqual(ruleCreatorSet.descriptors, []);
+            assert.deepStrictEqual(ruleCreatorSet.lintableDescriptors, []);
             assert.deepStrictEqual(ruleCreatorSet.allDescriptors, []);
         });
     });
@@ -89,16 +90,50 @@ describe("TextlintRuleDescriptors", function() {
             const ruleDescriptors = createTextlintRuleDescriptors(
                 rulesObjectToKernelRule({ rule: exampleRule }, { rule: false })
             );
-            assert.deepStrictEqual(ruleDescriptors.descriptors, []);
+            assert.deepStrictEqual(ruleDescriptors.lintableDescriptors, []);
         });
     });
     context("when passing available rule", function() {
         it("should return has result", function() {
             const rules = rulesObjectToKernelRule({ rule: exampleRule }, { rule: true });
-            const descriptors = rules.map(rule => new TextlintRuleDescriptor(rule));
+            const descriptors = rules.map(rule => new TextlintLintableRuleDescriptor(rule));
             const ruleCreatorSet = new TextlintRuleDescriptors(descriptors);
-            assert.strictEqual(ruleCreatorSet.descriptors.length, 1);
-            assert.strictEqual(ruleCreatorSet.descriptors[0], descriptors[0]);
+            assert.strictEqual(ruleCreatorSet.lintableDescriptors.length, 1);
+            assert.strictEqual(ruleCreatorSet.lintableDescriptors[0], descriptors[0]);
+        });
+    });
+    context("when mixed linter and fixable rule", function() {
+        it("can create ruleDescriptors from these", function() {
+            const ruleDescriptors = createTextlintRuleDescriptors([
+                {
+                    ruleId: "linter",
+                    rule: exampleRule
+                },
+                {
+                    ruleId: "fixer",
+                    rule: fixableExampleRule
+                }
+            ]);
+            assert.strictEqual(ruleDescriptors.lintableDescriptors.length, 2);
+        });
+        it("should return linter or fixer", function() {
+            const ruleDescriptors = createTextlintRuleDescriptors([
+                {
+                    ruleId: "linter",
+                    rule: exampleRule
+                },
+                {
+                    ruleId: "fixer",
+                    rule: fixableExampleRule
+                }
+            ]);
+            assert.strictEqual(ruleDescriptors.lintableDescriptors.length, 2);
+            assert.deepStrictEqual(
+                [ruleDescriptors.lintableDescriptors[0].id, ruleDescriptors.lintableDescriptors[1].id],
+                ["linter", "fixer"]
+            );
+            assert.strictEqual(ruleDescriptors.fixableDescriptors.length, 1);
+            assert.strictEqual(ruleDescriptors.fixableDescriptors[0].id, "fixer");
         });
     });
     describe("#wihtouDuplicated", function() {
@@ -109,26 +144,26 @@ describe("TextlintRuleDescriptors", function() {
                     { ruleA: true, ruleB: { key: true }, ruleC: true }
                 )
             );
-            assert.strictEqual(ruleDescriptors.descriptors.length, 3);
+            assert.strictEqual(ruleDescriptors.lintableDescriptors.length, 3);
             const withoutDuplicatedRuleCreatorSet = ruleDescriptors.withoutDuplicated();
-            assert.deepStrictEqual(withoutDuplicatedRuleCreatorSet.descriptors.length, 2);
+            assert.deepStrictEqual(withoutDuplicatedRuleCreatorSet.lintableDescriptors.length, 2);
         });
         it("should filter duplicated rule and ruleConfig", function() {
-            const descriptorA = new TextlintRuleDescriptor({
+            const descriptorA = new TextlintLintableRuleDescriptor({
                 ruleId: "ruleA",
                 rule: exampleRule,
                 options: true
             });
-            const descriptorB = new TextlintRuleDescriptor({
+            const descriptorB = new TextlintLintableRuleDescriptor({
                 ruleId: "ruleB",
                 rule: exampleRule,
                 options: true
             });
             const ruleDescriptors = new TextlintRuleDescriptors([descriptorA, descriptorB]);
-            assert.deepStrictEqual(ruleDescriptors.descriptors, [descriptorA, descriptorB]);
+            assert.deepStrictEqual(ruleDescriptors.lintableDescriptors, [descriptorA, descriptorB]);
             const withoutDuplicatedRuleCreatorSet = ruleDescriptors.withoutDuplicated();
             // save first item
-            assert.deepStrictEqual(withoutDuplicatedRuleCreatorSet.descriptors, [descriptorA]);
+            assert.deepStrictEqual(withoutDuplicatedRuleCreatorSet.lintableDescriptors, [descriptorA]);
         });
         // https://github.com/textlint/textlint/issues/231
         it("should not unexpected ignore testing", function() {
@@ -137,7 +172,10 @@ describe("TextlintRuleDescriptors", function() {
                 rulesObjectToKernelRule(preset.rules, preset.rulesConfig)
             );
             const withoutDuplicatedRuleCreatorSet = ruleCreatorSet.withoutDuplicated();
-            assert.deepStrictEqual(ruleCreatorSet.descriptors, withoutDuplicatedRuleCreatorSet.descriptors);
+            assert.deepStrictEqual(
+                ruleCreatorSet.lintableDescriptors,
+                withoutDuplicatedRuleCreatorSet.lintableDescriptors
+            );
         });
     });
 });

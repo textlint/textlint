@@ -5,7 +5,7 @@ const assert = require("assert");
 import { TextLintEngine, TextLintCore } from "../../src";
 
 const { coreFlags, resetFlags } = require("@textlint/feature-flag");
-import { TextlintRuleCreator } from "@textlint/kernel";
+import { TextlintRuleModule } from "@textlint/kernel";
 // fixture
 import fixtureRule from "./fixtures/rules/example-rule";
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
@@ -36,7 +36,7 @@ describe("Async", function() {
                         report(node, new RuleError("after"));
                     }
                 };
-            } as TextlintRuleCreator
+            } as TextlintRuleModule
         });
         return textlint.lintMarkdown("string").then(result => {
             assert(result.filePath === "<markdown>");

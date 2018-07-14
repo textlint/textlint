@@ -5,13 +5,13 @@ import { createFreezedRuleContext } from "../core/rule-context";
 import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import SourceCode from "../core/source-code";
-import { TextlintFilterRuleDescriptors, TextlintRuleDescriptor } from "../descriptor";
+import { TextlintFilterRuleDescriptors, TextlintFixableRuleDescriptor } from "../descriptor";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 
 export interface TextLintCoreTaskArgs {
     config: TextlintKernelConstructorOptions;
-    ruleDescriptor: TextlintRuleDescriptor;
+    fixableRuleDescriptor: TextlintFixableRuleDescriptor;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: SourceCode;
     configBaseDir?: string;
@@ -19,16 +19,22 @@ export interface TextLintCoreTaskArgs {
 
 export default class TextLintCoreTask extends CoreTask {
     config: TextlintKernelConstructorOptions;
-    ruleDescriptor: TextlintRuleDescriptor;
+    fixableRuleDescriptor: TextlintFixableRuleDescriptor;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
     sourceCode: SourceCode;
     configBaseDir?: string;
 
-    constructor({ config, configBaseDir, ruleDescriptor, filterRuleDescriptors, sourceCode }: TextLintCoreTaskArgs) {
+    constructor({
+        config,
+        configBaseDir,
+        fixableRuleDescriptor,
+        filterRuleDescriptors,
+        sourceCode
+    }: TextLintCoreTaskArgs) {
         super();
         this.config = config;
         this.configBaseDir = configBaseDir;
-        this.ruleDescriptor = ruleDescriptor;
+        this.fixableRuleDescriptor = fixableRuleDescriptor;
         this.filterRuleDescriptors = filterRuleDescriptors;
         this.sourceCode = sourceCode;
         this._setupRules();
@@ -44,15 +50,19 @@ export default class TextLintCoreTask extends CoreTask {
         const report = this.createReporter(sourceCode);
         const ignoreReport = this.createShouldIgnore();
         // setup "rules" field by using a single fixerRule
-        debug("fixerRule", this.ruleDescriptor);
+        debug("fixerRule", this.fixableRuleDescriptor);
         const ruleContext = createFreezedRuleContext({
-            ruleId: this.ruleDescriptor.id,
-            ruleOptions: this.ruleDescriptor.normalizedOptions,
+            ruleId: this.fixableRuleDescriptor.id,
+            ruleOptions: this.fixableRuleDescriptor.normalizedOptions,
             sourceCode,
             report,
             configBaseDir: this.configBaseDir
         });
-        this.tryToAddListenRule(this.ruleDescriptor.fixer, ruleContext, this.ruleDescriptor.normalizedOptions);
+        this.tryToAddListenRule(
+            this.fixableRuleDescriptor.fixer,
+            ruleContext,
+            this.fixableRuleDescriptor.normalizedOptions
+        );
         // setup "filters" field
         debug("filterRules", this.filterRuleDescriptors);
         this.filterRuleDescriptors.descriptors.forEach(filterRuleDescriptor => {

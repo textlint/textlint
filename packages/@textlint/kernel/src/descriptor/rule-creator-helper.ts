@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 
-import { TextlintRuleCreateReporter, TextlintFilterRuleCreator } from "../textlint-kernel-interface";
+import { TextlintRuleReporter, TextlintFilterRuleReporter } from "../textlint-kernel-interface";
 
 /**
  * detect that ruleCreator has linter function
@@ -25,7 +25,7 @@ export function hasLinter(ruleCreator: any): boolean {
  * @returns {Function} linter function
  * @throws
  */
-export function getLinter(ruleCreator: Function | object | any): TextlintRuleCreateReporter {
+export function getLinter(ruleCreator: Function | object | any): TextlintRuleReporter {
     if (typeof ruleCreator.linter === "function") {
         return ruleCreator.linter;
     }
@@ -51,7 +51,7 @@ export function hasFixer(ruleCreator: any): boolean {
  * @returns {Function} fixer function
  * @throws
  */
-export function getFixer(ruleCreator: Function | object | any): TextlintRuleCreateReporter {
+export function getFixer(ruleCreator: Function | object | any): TextlintRuleReporter {
     if (!hasLinter(ruleCreator)) {
         throw new Error("fixer module should have also linter function.");
     }
@@ -103,7 +103,7 @@ module.exports = function(context){
  * @returns {Function} linter function
  * @throws
  */
-export function getFilter(ruleCreator: any): TextlintFilterRuleCreator {
+export function getFilter(ruleCreator: any): TextlintFilterRuleReporter {
     if (typeof ruleCreator === "function") {
         return ruleCreator;
     }

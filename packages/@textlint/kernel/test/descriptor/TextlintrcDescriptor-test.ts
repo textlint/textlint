@@ -30,6 +30,6 @@ describe("TextlintrcDescriptor", () => {
         const markdownProcessor = descriptors.findPluginDescriptorWithExt(".md");
         assert.ok(markdownProcessor !== undefined);
         // rules
-        assert.strictEqual(descriptors.rule.descriptors.length, 1);
+        assert.strictEqual(descriptors.rule.lintableDescriptors.length, 1);
     });
 });

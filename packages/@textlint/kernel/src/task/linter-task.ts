@@ -53,7 +53,7 @@ export default class TextLintCoreTask extends CoreTask {
         // filter duplicated rules for improving experience
         // see https://github.com/textlint/textlint/issues/219
         debug("rules", this.ruleDescriptors);
-        this.ruleDescriptors.descriptors.forEach(ruleDescriptor => {
+        this.ruleDescriptors.lintableDescriptors.forEach(ruleDescriptor => {
             const ruleOptions = ruleDescriptor.normalizedOptions;
             const ruleContext = createFreezedRuleContext({
                 ruleId: ruleDescriptor.id,

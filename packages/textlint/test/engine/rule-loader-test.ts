@@ -3,7 +3,7 @@
 const path = require("path");
 import * as assert from "assert";
 import { loadFromDir } from "../../src/engine/rule-loader";
-import { TextlintRuleDescriptor } from "@textlint/kernel";
+import { TextlintLintableRuleDescriptor } from "@textlint/kernel";
 
 const fixtureDir = path.join(__dirname, "fixtures", "rule-loader");
 describe("engine/rule-loader", function() {
@@ -13,7 +13,7 @@ describe("engine/rule-loader", function() {
         const keys = Object.keys(rules);
         assert.deepEqual(keys.sort(), ["foo", "bar"].sort());
         keys.forEach(key => {
-            const descriptor = new TextlintRuleDescriptor({
+            const descriptor = new TextlintLintableRuleDescriptor({
                 ruleId: key,
                 rule: rules[key]
             });

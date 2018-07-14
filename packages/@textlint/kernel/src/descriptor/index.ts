@@ -1,7 +1,8 @@
 export { TextlintKernelDescriptor } from "./TextlintKernelDescriptor";
-export { TextlintRuleDescriptor } from "./TextlintRuleDescriptor";
-export { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor";
-export { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors";
 export { TextlintRuleDescriptors } from "./TextlintRuleDescriptors";
-export { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
+export { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor";
+export { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor";
+export { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors";
+export { TextlintFilterRuleDescriptor } from "./TextlintFilterRuleDescriptor";
 export { TextlintPluginDescriptors } from "./TextlintPluginDescriptors";
+export { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";

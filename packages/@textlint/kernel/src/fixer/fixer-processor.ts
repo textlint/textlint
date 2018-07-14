@@ -66,50 +66,46 @@ export default class FixerProcessor {
         // original means original for applyingMessages and remainingMessages
         // pre-applyingMessages + remainingMessages
         const originalMessages: TextlintMessage[] = [];
-        const fixerProcessList = ruleDescriptors.descriptors
-            .filter(ruleDescriptor => {
-                return ruleDescriptor.hasFixer;
-            })
-            .map(ruleDescriptor => {
-                return (sourceText: string): Promise<string> => {
-                    // create new SourceCode object
-                    const newSourceCode = new SourceCode({
-                        text: sourceText,
-                        ast: preProcess(sourceText, sourceCode.filePath),
-                        filePath: resultFilePath,
-                        ext: sourceCode.ext
-                    });
-                    // create new Task
-                    const task = new FixerTask({
-                        config,
-                        ruleDescriptor,
-                        filterRuleDescriptors: filterRules,
-                        sourceCode: newSourceCode,
-                        configBaseDir
-                    });
+        const fixerProcessList = ruleDescriptors.fixableDescriptors.map(ruleDescriptor => {
+            return (sourceText: string): Promise<string> => {
+                // create new SourceCode object
+                const newSourceCode = new SourceCode({
+                    text: sourceText,
+                    ast: preProcess(sourceText, sourceCode.filePath),
+                    filePath: resultFilePath,
+                    ext: sourceCode.ext
+                });
+                // create new Task
+                const task = new FixerTask({
+                    config,
+                    fixableRuleDescriptor: ruleDescriptor,
+                    filterRuleDescriptors: filterRules,
+                    sourceCode: newSourceCode,
+                    configBaseDir
+                });
 
-                    return TaskRunner.process(task).then(messages => {
-                        const result = postProcess(messages, sourceCode.filePath);
-                        const filteredResult = {
-                            messages: this.messageProcessManager.process(result.messages),
-                            filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
-                        };
-                        // TODO: should be removed resultFilePath
-                        resultFilePath = filteredResult.filePath;
-                        const applied = SourceCodeFixer.applyFixes(newSourceCode, filteredResult.messages);
-                        // add messages
-                        Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
-                        Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
-                        Array.prototype.push.apply(originalMessages, applied.messages);
-                        // if not fixed, still use current sourceText
-                        if (!applied.fixed) {
-                            return sourceText;
-                        }
-                        // if fixed, use fixed text at next
-                        return applied.output;
-                    });
-                };
-            });
+                return TaskRunner.process(task).then(messages => {
+                    const result = postProcess(messages, sourceCode.filePath);
+                    const filteredResult = {
+                        messages: this.messageProcessManager.process(result.messages),
+                        filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
+                    };
+                    // TODO: should be removed resultFilePath
+                    resultFilePath = filteredResult.filePath;
+                    const applied = SourceCodeFixer.applyFixes(newSourceCode, filteredResult.messages);
+                    // add messages
+                    Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
+                    Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
+                    Array.prototype.push.apply(originalMessages, applied.messages);
+                    // if not fixed, still use current sourceText
+                    if (!applied.fixed) {
+                        return sourceText;
+                    }
+                    // if fixed, use fixed text at next
+                    return applied.output;
+                });
+            };
+        });
 
         const promiseTask = fixerProcessList.reduce((promise, fixerProcess) => {
             return promise.then(sourceText => {

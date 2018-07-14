@@ -2,21 +2,25 @@
 "use strict";
 import {
     TextlintKernelRule,
-    TextlintRuleCreateReporter,
-    TextlintRuleCreator,
-    TextlintRuleOptions
+    TextlintRuleModule,
+    TextlintRuleOptions,
+    TextlintRuleReporter
 } from "../textlint-kernel-interface";
-import { getLinter, getFixer, hasLinter, hasFixer, assertRuleShape } from "./rule-creator-helper";
-
+import { assertRuleShape, getLinter } from "./rule-creator-helper";
 import deepEqual = require("deep-equal");
+import { TextlintRuleDescriptorType } from "./TextlintRuleDescriptorType";
 
 /**
  * Textlint Rule Descriptor.
  * It handle RuleCreator and RuleOption.
  */
-export class TextlintRuleDescriptor {
+export class TextlintLintableRuleDescriptor {
     constructor(private textlintKernelRule: TextlintKernelRule) {
         assertRuleShape(textlintKernelRule.rule);
+    }
+
+    get type() {
+        return TextlintRuleDescriptorType.LINTER;
     }
 
     get id() {
@@ -26,7 +30,7 @@ export class TextlintRuleDescriptor {
     /**
      * Rule module-self
      */
-    get rule(): TextlintRuleCreator {
+    get rule(): TextlintRuleModule {
         return this.textlintKernelRule.rule;
     }
 
@@ -37,28 +41,12 @@ export class TextlintRuleDescriptor {
         return this.normalizedOptions !== false;
     }
 
-    get hasLinter() {
-        return hasLinter(this.rule);
-    }
-
-    get hasFixer() {
-        return hasFixer(this.rule);
-    }
-
     /**
      * Return linter function
      * You should check hasLiner before call this.
      */
-    get linter(): TextlintRuleCreateReporter {
+    get linter(): TextlintRuleReporter {
         return getLinter(this.rule);
-    }
-
-    /**
-     * Return fixer function
-     * You should check hasFixer before call this.
-     */
-    get fixer(): TextlintRuleCreateReporter {
-        return getFixer(this.rule);
     }
 
     /**
@@ -82,9 +70,9 @@ export class TextlintRuleDescriptor {
     /**
      * Return true if descriptor is same
      */
-    equals(descriptor: TextlintRuleDescriptor): boolean {
+    equals(descriptor: TextlintLintableRuleDescriptor): boolean {
         return (
-            this.textlintKernelRule.rule === descriptor.textlintKernelRule.rule &&
+            this.rule === descriptor.rule &&
             deepEqual(this.normalizedOptions, descriptor.normalizedOptions, {
                 strict: true
             })
