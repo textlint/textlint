@@ -26,17 +26,33 @@ export class TextlintKernelDescriptor {
         this.plugin = createTextlintPluginDescriptors(args.plugins);
     }
 
+    /**
+     * Return available extensions of plugins
+     */
     get availableExtensions() {
         return this.plugin.availableExtensions;
     }
 
-    merge(args: Partial<TextlintKernelDescriptorArgs>) {
+    /**
+     * merge constructor args and partialArgs
+     */
+    merge(partialArgs: Partial<TextlintKernelDescriptorArgs>) {
         return new TextlintKernelDescriptor({
             ...this.args,
-            ...args
+            ...partialArgs
         });
     }
 
+    /**
+     * find PluginDescriptor with extension.
+     * This is forward match.
+     *
+     * If following config of textlint, this method prefer to select MarkdownA for markdown.
+     *
+     * {
+     *     "plugins": [MarkdownA, MarkdownB]
+     * }
+     */
     findPluginDescriptorWithExt(ext: string): TextlintPluginDescriptor | undefined {
         return this.plugin.findPluginDescriptorWithExt(ext);
     }
