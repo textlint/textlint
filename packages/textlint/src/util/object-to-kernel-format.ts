@@ -1,13 +1,10 @@
 import {
     TextlintFilterRuleReporter,
-    TextlintFilterRuleOptions,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
     TextlintKernelRule,
     TextlintPluginCreator,
-    TextlintPluginOptions,
-    TextlintRuleModule,
-    TextlintRuleOptions
+    TextlintRuleModule
 } from "@textlint/kernel";
 
 /**
@@ -23,7 +20,7 @@ import {
  */
 export const rulesObjectToKernelRule = (
     rules: { [index: string]: TextlintRuleModule },
-    rulesOption: { [index: string]: TextlintRuleOptions }
+    rulesOption: { [index: string]: TextlintKernelRule["options"] }
 ): TextlintKernelRule[] => {
     return Object.keys(rules).map(ruleId => {
         return {
@@ -33,9 +30,10 @@ export const rulesObjectToKernelRule = (
         };
     });
 };
+
 export const filterRulesObjectToKernelRule = (
     rules: { [index: string]: TextlintFilterRuleReporter },
-    rulesOption: { [index: string]: TextlintFilterRuleOptions }
+    rulesOption: { [index: string]: TextlintKernelFilterRule["options"] }
 ): TextlintKernelFilterRule[] => {
     return Object.keys(rules).map(ruleId => {
         return {
@@ -59,7 +57,7 @@ export const filterRulesObjectToKernelRule = (
  */
 export const pluginsObjectToKernelRule = (
     plugins: { [index: string]: TextlintPluginCreator },
-    pluginsOption: { [index: string]: TextlintPluginOptions }
+    pluginsOption: { [index: string]: TextlintKernelPlugin["options"] }
 ): TextlintKernelPlugin[] => {
     return Object.keys(plugins).map(pluginId => {
         return {
