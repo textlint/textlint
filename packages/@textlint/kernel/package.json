@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "^6.0.8",
-    "@textlint/textlint-plugin-markdown": "^4.0.10",
     "@types/deep-equal": "^1.0.1",
     "@types/mocha": "^5.2.0",
     "@types/node": "^8.0.28",
