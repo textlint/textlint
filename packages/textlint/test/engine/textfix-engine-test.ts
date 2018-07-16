@@ -14,13 +14,13 @@ describe("textfix-engine", function() {
         context("when no-args", function() {
             it("config should be empty", function() {
                 const engine = new TextFixEngine();
-                assert.deepEqual(engine.config.rulePaths, []);
+                assert.deepEqual((engine as any).config.rulePaths, []);
             });
         });
         context("when args is object", function() {
             it("should convert the object and set config", function() {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
-                assert.deepEqual(engine.config.rulePaths, [rulesDir]);
+                assert.deepEqual((engine as any).config.rulePaths, [rulesDir]);
             });
         });
         context("when args is Config object", function() {
@@ -28,7 +28,7 @@ describe("textfix-engine", function() {
                 // Issue : when use Config as argus, have to export `../src/config/config`
                 var config = new Config({ rulePaths: [rulesDir] });
                 const engine = new TextFixEngine(config);
-                assert.deepEqual(engine.config.rulePaths, [rulesDir]);
+                assert.deepEqual((engine as any).config.rulePaths, [rulesDir]);
             });
         });
     });
