@@ -43,7 +43,7 @@ export const createPluginStub = () => {
         getOptions() {
             return assignedOptions;
         },
-        createPlugin() {
+        get plugin() {
             return {
                 Processor: class MockProcessor extends ExampleProcessor {
                     constructor(options) {
