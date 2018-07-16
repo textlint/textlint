@@ -34,9 +34,9 @@ const textPlugin = require("@textlint/textlint-plugin-text");
  * @class {TextLintCore}
  */
 export class TextLintCore {
-    kernel: TextlintKernel;
-    config: Partial<Config>;
-    defaultPlugins: TextlintKernelPlugin[];
+    private kernel: TextlintKernel;
+    private config: Partial<Config>;
+    private defaultPlugins: TextlintKernelPlugin[];
     public textlintKernelDescriptor: TextlintKernelDescriptor;
 
     constructor(config: Partial<Config> = {}) {
@@ -222,7 +222,7 @@ export class TextLintCore {
     /**
      * @private
      */
-    _mergeSetupOptions(options: { ext: string } | { ext: any; filePath: any }) {
+    private _mergeSetupOptions(options: { ext: string } | { ext: any; filePath: any }) {
         const configFileBaseDir =
             typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
         return ObjectAssign({}, options, {

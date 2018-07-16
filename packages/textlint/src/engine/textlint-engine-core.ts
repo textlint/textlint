@@ -29,14 +29,13 @@ const debug = require("debug")("textlint:engine-core");
  * There are hackable by `executor` option.
  */
 export abstract class AbstractTextLintEngine<LintResult extends TextlintResult> {
-    filerRuleMap: any;
-    moduleLoader: TextLintModuleLoader;
-    pluginMap: PluginMap;
-    filterRuleMap: RuleMap;
-    ruleMap: RuleMap;
-    executeFileBackerManger: ExecuteFileBackerManager;
-    textlint: TextLintCore;
-    config: Config;
+    private moduleLoader: TextLintModuleLoader;
+    private pluginMap: PluginMap;
+    private ruleMap: RuleMap;
+    private filterRuleMap: RuleMap;
+    private executeFileBackerManger: ExecuteFileBackerManager;
+    private textlint: TextLintCore;
+    private config: Config;
     // abstract interface
     // Each engines should be implemented these
     /**
@@ -197,13 +196,24 @@ new TextLintEngine({
     resetRules() {
         this.textlint.resetRules();
         this.ruleMap.resetRules();
-        this.filerRuleMap.resetRules();
+        this.filterRuleMap.resetRules();
+    }
+
+    /**
+     * Return available extensions of plugins that include built-in plugins
+     * @example
+     * ```
+     * engine.availableExtensions; // => [".txt", ".md"]
+     * ```
+     */
+    get availableExtensions(): string[] {
+        return this.textlint.textlintKernelDescriptor.availableExtensions;
     }
 
     /**
      * Return meta descriptor object for this engine
      *
-     * WARNING: This is experimental method.
+     * WARNING: This is experimental getter method.
      * It will be renamed.
      */
     get textlintrcDescriptor(): TextlintKernelDescriptor {
