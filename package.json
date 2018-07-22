@@ -14,10 +14,12 @@
     "lint:fix": "npm-run-all eslint:fix",
     "perf": "cd ./examples/perf && npm run test:ci",
     "prepublish": "npm-run-all clean build",
-    "prepare-release": "node scripts/release/prepare-release.js",
-    "prepare-release:cancel": "git tag --points-at HEAD | xargs -I{} git tag --delete {} && git reset --hard HEAD^",
-    "release": "node scripts/release/release.js",
-    "publish:beta": "lerna publish --conventional-commits --changelog-preset=angular-all --npm-tag=next --preid=next",
+    "versionUp": "lerna publish --conventional-commits --changelog-preset=angular-all --skip-npm",
+    "versionUp:patch": "lerna publish --conventional-commits --changelog-preset=angular-all --skip-npm --cd-version patch",
+    "versionUp:minor": "lerna publish --conventional-commits --changelog-preset=angular-all --skip-npm --cd-version minor",
+    "versionUp:major": "lerna publish --conventional-commits --changelog-preset=angular-all --skip-npm --cd-version major",
+    "versionUp:cancel": "git tag --points-at HEAD | xargs -I{} git tag --delete {} && git reset --hard HEAD^",
+    "publish": "monorepo-utils-publish",
     "publish:canary": "lerna publish --canary",
     "pretest": "npm-run-all clean build",
     "test": "npm-run-all --parallel lint test:packages",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@azu/travis-scripts": "^3.0.3",
+    "@monorepo-utils/publish": "^1.2.0",
     "conventional-changelog-angular-all": "^1.6.1",
     "eslint": "^4.7.2",
     "eslint-config-prettier": "^2.6.0",
@@ -61,7 +64,6 @@
   "workspaces": [
     "packages/*",
     "examples/*",
-    "scripts/*",
     "packages/@textlint/*",
     "test/integration-test",
     "website"
