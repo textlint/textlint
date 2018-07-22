@@ -4,7 +4,7 @@
 import { parse } from "@textlint/markdown-to-ast";
 
 export class MarkdownProcessor {
-    constructor(config) {
+    constructor(config = {}) {
         this.config = config;
         this.extensions = config.extensions ? config.extensions : [];
     }

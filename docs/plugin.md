@@ -31,7 +31,7 @@ textlint support `.txt` and `.md` by default. These are implemented as `Processo
 // TextProcessor.js
 import { parse } from "txt-to-ast";
 export default class TextProcessor {
-    constructor(options) {
+    constructor(options = {}) {
         this.options = options;
         // support "extension" option
         this.extensions = this.config.extensions ? this.config.extensions : [];
@@ -109,7 +109,7 @@ You can pass a options to your plugin from `.textlintrc`.
 ```
 {
     "plugins": {
-        pluginName: processorOption
+        "pluginName": processorOption
     }
 }
 ```
@@ -120,6 +120,18 @@ You can receive the `processorOption` via constructor arguments.
 export default class YourProcessor {
     constructor(options) {
         this.options = options; // <= processorOption!
+    }
+    // ...
+}
+```
+
+:memo: Processor's option value is `{}` (empty object) by default.
+If not set plugin's option in `.textlintrc`, textlint pass `{}` as `options`.
+
+```js
+export default class YourProcessor {
+    constructor(options) {
+        this.options = options; // {}
     }
     // ...
 }

@@ -1,5 +1,7 @@
 // LICENSE : MIT
 "use strict";
+import { TextlintKernelDescriptor } from "@textlint/kernel";
+
 const assert = require("assert");
 const path = require("path");
 import { TextLintEngine } from "../../src/";
@@ -9,26 +11,54 @@ const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");
 const filterRulesDir = path.join(__dirname, "fixtures/textlint-engine/filters");
 const pluginsDir = path.join(__dirname, "fixtures/textlint-engine/plugins");
 const presetsDir = path.join(__dirname, "fixtures/textlint-engine/presets");
+
+const getRuleDescriptor = (descriptor: TextlintKernelDescriptor, ruleName: string) => {
+    const ruleAllRuleDescriptor = descriptor.rule.allDescriptors.find(ruleDescriptor => ruleDescriptor.id === ruleName);
+    return ruleAllRuleDescriptor && ruleAllRuleDescriptor;
+};
+const getRule = (descriptor: TextlintKernelDescriptor, ruleName: string) => {
+    const ruleAllRuleDescriptor = getRuleDescriptor(descriptor, ruleName);
+    return ruleAllRuleDescriptor && ruleAllRuleDescriptor.rule;
+};
+const getRuleOptions = (descriptor: TextlintKernelDescriptor, ruleName: string) => {
+    const ruleAllRuleDescriptor = getRuleDescriptor(descriptor, ruleName);
+    return ruleAllRuleDescriptor && ruleAllRuleDescriptor.rawOptions;
+};
+
+const getRuleNames = (descriptor: TextlintKernelDescriptor) => {
+    return descriptor.rule.allDescriptors.map(ruleDescriptor => ruleDescriptor.id);
+};
+
+const getFilterRule = (descriptor: TextlintKernelDescriptor, ruleName: string) => {
+    const ruleAllRuleDescriptor = descriptor.filterRule.allDescriptors.find(
+        ruleDescriptor => ruleDescriptor.id === ruleName
+    );
+    return ruleAllRuleDescriptor && ruleAllRuleDescriptor.rule;
+};
+const getFilterRuleNames = (descriptor: TextlintKernelDescriptor) => {
+    return descriptor.filterRule.allDescriptors.map(ruleDescriptor => ruleDescriptor.id);
+};
+
 describe("textlint-engine-test", function() {
     describe("Constructor", function() {
         context("when no-args", function() {
             it("config should be empty", function() {
                 const engine = new TextLintEngine();
-                assert.deepEqual(engine.config.rulePaths, []);
+                assert.deepEqual((engine as any).config.rulePaths, []);
             });
         });
         context("when args is object", function() {
             it("should convert the object and set config", function() {
                 const engine = new TextLintEngine({ rulePaths: [rulesDir] });
-                assert.deepEqual(engine.config.rulePaths, [rulesDir]);
+                assert.deepEqual((engine as any).config.rulePaths, [rulesDir]);
             });
         });
         context("when args is Config object", function() {
             it("should set directory to config", function() {
-                // Issue : when use Config as argumenet, have to export `../src/config/config`
+                // Issue : when use Config as arguments, have to export `../src/config/config`
                 const config = new Config({ rulePaths: [rulesDir] });
                 const engine = new TextLintEngine(config);
-                assert.deepEqual(engine.config.rulePaths, [rulesDir]);
+                assert.deepEqual((engine as any).config.rulePaths, [rulesDir]);
             });
         });
     });
@@ -39,17 +69,17 @@ describe("textlint-engine-test", function() {
                     rules: ["@textlint/textlint-rule-example"],
                     rulesBaseDirectory: rulesDir
                 });
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
                 const ruleName = ruleNames[0];
                 assert(ruleName === "@textlint/textlint-rule-example");
-                assert(typeof engine.ruleMap.getRule(ruleName) === "function");
+                assert(typeof getRule(engine.textlintrcDescriptor, ruleName) === "function");
             });
         });
         context("when (textlint-rule-)no-todo is specified", function() {
             it("should set `no-todo` as key to rule dict", function() {
                 const engine = new TextLintEngine({ rules: ["no-todo"] });
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -57,7 +87,7 @@ describe("textlint-engine-test", function() {
         context("when textlint-rule-no-todo is specified", function() {
             it("should set `no-todo` as key to rule dict", function() {
                 const engine = new TextLintEngine({ rules: ["textlint-rule-no-todo"] });
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -74,15 +104,13 @@ describe("textlint-engine-test", function() {
         context("when Processor Plugin is a scoped module", function() {
             it("should define processor of plugin", function() {
                 const engine = new TextLintEngine({ plugins: ["html"] });
-                const processorList = engine.pluginMap;
-                assert(processorList.keys().length > 0);
-                assert(processorList.values().length > 0);
+                assert(engine.textlintrcDescriptor.plugin.descriptors.length > 0);
             });
         });
         context("when Plugin has not rules", function() {
             it("should not throw Error", function() {
                 const engine = new TextLintEngine({ plugins: ["@textlint/markdown"] });
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 0);
             });
         });
@@ -90,13 +118,13 @@ describe("textlint-engine-test", function() {
             it("should not re-load rule", function() {
                 const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
                 engine.loadRule("example");
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
-                const ruleObject = engine.ruleMap.getRule(ruleNames[0]);
+                const ruleOptions = engine.textlintrcDescriptor.rule.descriptors[0].rawOptions;
                 // loadRule should ignore
                 engine.loadRule("example");
                 // should equal prev loaded object
-                assert(engine.ruleMap.getRule("example") === ruleObject);
+                assert.strictEqual(engine.textlintrcDescriptor.rule.descriptors[0].rawOptions, ruleOptions);
             });
         });
         context("when loading html plugin", function() {
@@ -109,7 +137,7 @@ describe("textlint-engine-test", function() {
                 const engine = new TextLintEngine();
                 assert(engine.textlintrcDescriptor.availableExtensions.indexOf(".html") === -1);
                 engine.loadPlugin("html");
-                assert(engine.textlintrcDescriptor.availableExtensions.indexOf(".html") !== -1);
+                assert.ok(engine.textlintrcDescriptor.availableExtensions.includes(".html"), " should includes .html");
             });
         });
     });
@@ -121,17 +149,17 @@ describe("textlint-engine-test", function() {
                     presets: ["@textlint/textlint-rule-preset-example"],
                     rulesBaseDirectory: presetsDir
                 });
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
                 const ruleName = ruleNames[0];
                 assert(ruleName === "@textlint/textlint-rule-preset-example/example-rule");
-                assert(typeof engine.ruleMap.getRule(ruleName) === "function");
+                assert(typeof getRule(engine.textlintrcDescriptor, ruleName) === "function");
             });
         });
         context("when the rule is **not** defined", function() {
             it("should define rules of preset", function() {
                 const engine = new TextLintEngine({ presets: ["preset-example"], rulesBaseDirectory: presetsDir });
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 2);
                 assert.equal(ruleNames[0], "preset-example/a");
                 assert.equal(ruleNames[1], "preset-example/b");
@@ -140,14 +168,15 @@ describe("textlint-engine-test", function() {
         context("when the rule is defined", function() {
             it("should not load rule", function() {
                 const engine = new TextLintEngine({ presets: ["preset-example"], rulesBaseDirectory: presetsDir });
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 2);
-                const ruleObject = engine.ruleMap.getRule("preset-example/a");
+
+                const ruleObject = getRuleOptions(engine.textlintrcDescriptor, "preset-example/a");
                 // loadRule should ignore
                 engine.loadPreset("preset-example");
                 assert(ruleNames.length === 2);
                 // should equal prev loaded object
-                assert(engine.ruleMap.getRule("preset-example/a") === ruleObject);
+                assert(getRuleOptions(engine.textlintrcDescriptor, "preset-example/a") === ruleObject);
             });
         });
     });
@@ -157,7 +186,7 @@ describe("textlint-engine-test", function() {
             it("should define the rule", function() {
                 const engine = new TextLintEngine();
                 engine.loadRule("textlint-rule-no-todo");
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length > 0);
                 assert.equal(ruleNames[0], "no-todo");
             });
@@ -165,21 +194,22 @@ describe("textlint-engine-test", function() {
         context("when the rule is defined", function() {
             it("should not re-load rule", function() {
                 const engine = new TextLintEngine();
-                engine.loadRule("textlint-rule-no-todo");
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleName = "textlint-rule-no-todo";
+                engine.loadRule(ruleName);
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
-                const ruleObject = engine.ruleMap.getRule(ruleNames[0]);
+                const ruleObject = getRule(engine.textlintrcDescriptor, ruleName);
                 // loadRule should ignore
-                engine.loadRule("textlint-rule-no-todo");
+                engine.loadRule(ruleName);
                 // should equal prev loaded object
-                assert(engine.ruleMap.getRule("no-todo") === ruleObject);
+                assert.strictEqual(getRule(engine.textlintrcDescriptor, ruleName), ruleObject);
             });
         });
         context("when use the rule directory", function() {
             it("should load rule from path", function() {
                 const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
                 engine.loadRule("example-rule");
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
             });
         });
@@ -189,7 +219,7 @@ describe("textlint-engine-test", function() {
                     rulesBaseDirectory: path.join(__dirname, "/fixtures/textlint-engine/issue81")
                 });
                 engine.loadRule("no-default-assign-rule");
-                const ruleNames = engine.ruleMap.getAllRuleNames();
+                const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
             });
         });
@@ -199,30 +229,29 @@ describe("textlint-engine-test", function() {
             it("should define the rule", function() {
                 const engine = new TextLintEngine();
                 engine.loadFilerRule("textlint-filter-rule-comments");
-                const ruleNames = engine.filterRuleMap.getAllRuleNames();
-                assert(ruleNames.length > 0);
-                assert.equal(ruleNames[0], "comments");
+                const ruleNames = getFilterRuleNames(engine.textlintrcDescriptor);
+                assert.deepStrictEqual(ruleNames, ["comments"]);
             });
         });
         context("when the rule is defined", function() {
             it("should not re-load rule", function() {
                 const engine = new TextLintEngine();
                 engine.loadFilerRule("textlint-filter-rule-comments");
-                const ruleNames = engine.filterRuleMap.getAllRuleNames();
+                const ruleNames = getFilterRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
-                const ruleObject = engine.filterRuleMap.getRule(ruleNames[0]);
+                const ruleObject = getFilterRule(engine.textlintrcDescriptor, ruleNames[0]);
                 // loadRule should ignore
                 // textlint-filter-rule-comments
                 engine.loadFilerRule("comments");
                 // should equal prev loaded object
-                assert(engine.filterRuleMap.getRule("comments") === ruleObject);
+                assert(getFilterRule(engine.textlintrcDescriptor, "comments") === ruleObject);
             });
         });
         context("when use the rule directory", function() {
             it("should load filter rule from path", function() {
                 const engine = new TextLintEngine({ rulesBaseDirectory: filterRulesDir });
                 engine.loadFilerRule("filter-rule");
-                const ruleNames = engine.filterRuleMap.getAllRuleNames();
+                const ruleNames = getFilterRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
             });
         });
@@ -243,9 +272,9 @@ describe("textlint-engine-test", function() {
             const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
             const filePath = path.join(__dirname, "fixtures/test.md");
             engine.loadRule("example-rule");
-            const beforeRuleNames = engine.ruleMap.getAllRuleNames();
+            const beforeRuleNames = getRuleNames(engine.textlintrcDescriptor);
             return engine.executeOnFiles([filePath]).then(() => {
-                const afterRuleNames = engine.ruleMap.getAllRuleNames();
+                const afterRuleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert.deepEqual(beforeRuleNames, afterRuleNames);
             });
         });
@@ -274,9 +303,9 @@ describe("textlint-engine-test", function() {
         it("should lint a text with same rules", function() {
             const engine = new TextLintEngine({ rulesBaseDirectory: rulesDir });
             engine.loadRule("example-rule");
-            const beforeRuleNames = engine.ruleMap.getAllRuleNames();
+            const beforeRuleNames = getRuleNames(engine.textlintrcDescriptor);
             return engine.executeOnText("text").then(() => {
-                const afterRuleNames = engine.ruleMap.getAllRuleNames();
+                const afterRuleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert.deepEqual(beforeRuleNames, afterRuleNames);
             });
         });

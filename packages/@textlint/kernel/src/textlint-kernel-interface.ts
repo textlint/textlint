@@ -27,33 +27,27 @@ export type TextlintFilterRuleReporter = (
  * textlint rule option values is object or boolean.
  * if this option value is false, disable the rule.
  */
-export type TextlintRuleOptions =
-    | {
-          [index: string]: any;
+export type TextlintRuleOptions = {
+    [index: string]: any;
 
-          severity?: SeverityLevelTypes;
-      }
-    | boolean;
+    severity?: SeverityLevelTypes;
+};
 
 /**
  * textlint filter rule option values is object or boolean.
  * if this option value is false, disable the filter rule.
  */
-export type TextlintFilterRuleOptions =
-    | {
-          [index: string]: any;
-      }
-    | boolean;
+export type TextlintFilterRuleOptions = {
+    [index: string]: any;
+};
 
 /**
  * textlint plugin option values is object or boolean.
  * if this option value is false, disable the plugin.
  */
-export type TextlintPluginOptions =
-    | {
-          [index: string]: any;
-      }
-    | boolean;
+export type TextlintPluginOptions = {
+    [index: string]: any;
+};
 
 export interface TextlintKernelConstructorOptions {
     /**
@@ -105,6 +99,7 @@ export interface TextlintPluginProcessorConstructor extends Function {
 
 export declare class TextlintPluginProcessor {
     constructor(options?: TextlintPluginOptions);
+
     /**
      * Return available extensions for this plugin.
      * This extension should start with `.`(dot).
@@ -132,7 +127,7 @@ export interface TextlintKernelPlugin {
     // For example, `plugin: require("@textlint/textlint-plugin-markdown")`
     plugin: TextlintPluginCreator;
     // plugin options
-    options?: TextlintPluginOptions;
+    options?: TextlintPluginOptions | boolean;
 }
 
 export interface TextlintKernelRule {
@@ -143,7 +138,7 @@ export interface TextlintKernelRule {
     rule: TextlintRuleModule;
     // rule options
     // Often rule option is written in .textlintrc
-    options?: TextlintRuleOptions;
+    options?: TextlintRuleOptions | boolean;
 }
 
 export interface TextlintKernelFilterRule {
@@ -153,7 +148,7 @@ export interface TextlintKernelFilterRule {
     rule: TextlintFilterRuleReporter;
     // filter rule options
     // Often rule option is written in .textlintrc
-    options?: TextlintRuleOptions;
+    options?: TextlintFilterRuleOptions | boolean;
 }
 
 export interface TextlintKernelOptions {

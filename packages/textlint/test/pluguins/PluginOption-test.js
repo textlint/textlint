@@ -7,9 +7,9 @@ import { createPluginStub } from "./fixtures/example-plugin";
 describe("plugin-option", () => {
     it("should load plugin options if match ext", () => {
         const textlintCore = new TextLintCore();
-        const { getPlugin, getOptions } = createPluginStub();
+        const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
-        textlintCore.setupPlugins({ example: getPlugin() }, { example: expectedOptions });
+        textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });
         textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
         return textlintCore.lintText("test", ".example").then(results => {
             const actualOptions = getOptions();
@@ -18,9 +18,9 @@ describe("plugin-option", () => {
     });
     it("should load plugin options when does't match any ext for instance availableExtensions()", () => {
         const textlintCore = new TextLintCore();
-        const { getPlugin, getOptions } = createPluginStub();
+        const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
-        textlintCore.setupPlugins({ example: getPlugin() }, { example: expectedOptions });
+        textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });
         textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
         // .md is built-in
         return textlintCore.lintText("test", ".md").then(results => {

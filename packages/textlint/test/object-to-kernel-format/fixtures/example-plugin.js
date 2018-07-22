@@ -1,5 +1,4 @@
-// MIT © 2017 azu
-export class ExampleProcessor {
+class ExampleProcessor {
     static availableExtensions() {
         return [".example"];
     }
@@ -37,21 +36,6 @@ export class ExampleProcessor {
     }
 }
 
-export const createPluginStub = () => {
-    let assignedOptions;
-    return {
-        getOptions() {
-            return assignedOptions;
-        },
-        get plugin() {
-            return {
-                Processor: class MockProcessor extends ExampleProcessor {
-                    constructor(options) {
-                        super(options);
-                        assignedOptions = options;
-                    }
-                }
-            };
-        }
-    };
+module.exports = {
+    Processor: ExampleProcessor
 };
