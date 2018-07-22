@@ -125,7 +125,7 @@ export default class YourProcessor {
 }
 ```
 
-:memo: Processor's option value is `{}` (empty obejct) by default.
+:memo: Processor's option value is `{}` (empty object) by default.
 If not set plugin's option in `.textlintrc`, textlint pass `{}` as `options`.
 
 ```js
