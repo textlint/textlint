@@ -12,9 +12,13 @@ textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use w
 
 <!-- textlint-enable -->
 
-## Online Demo
+## Website
 
-Visit [https://textlint.github.io/](https://textlint.github.io/) to see textlint in action!
+- Online demo
+- Searchable documents
+- Release blog
+
+Visit [https://textlint.github.io/](https://textlint.github.io/).
 
 ## Features
 
