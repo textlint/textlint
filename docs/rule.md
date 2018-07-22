@@ -547,7 +547,7 @@ export default function(context, options) {
 }
 ```
 
-:memo: The `options` value is `{}` (empty object) by default.
+The `options` value is `{}` (empty object) by default.
 
 For example, `very-nice-rule`'s option is `true`(enable the rule) in `.textlintrc`
 
@@ -567,6 +567,9 @@ export default function(context, options) {
 }
 ```
 
+**History**: This behavior is changed in textlint@11.
+
+- <https://github.com/textlint/textlint/issues/535>
 
 ## Advanced example
 
