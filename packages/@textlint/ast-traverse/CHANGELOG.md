@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.9"></a>
+## [2.0.9](https://github.com/textlint/textlint/compare/@textlint/ast-traverse@2.0.8...@textlint/ast-traverse@2.0.9) (2018-07-22)
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+### Code Refactoring
+
+* **kernel:** separate linter and fixer descriptor ([b5bc8bd](https://github.com/textlint/textlint/commit/b5bc8bd))
+* **typescript:** update to TypeScript 2.8 ([f7b2b08](https://github.com/textlint/textlint/commit/f7b2b08))
+
+
+
+
 <a name="2.0.8"></a>
 ## [2.0.8](https://github.com/textlint/textlint/compare/@textlint/ast-traverse@2.0.7...@textlint/ast-traverse@2.0.8) (2018-04-02)
 

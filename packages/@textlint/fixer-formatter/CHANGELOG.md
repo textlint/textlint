@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.8"></a>
+## [3.0.8](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.0.7...@textlint/fixer-formatter@3.0.8) (2018-07-22)
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+### Code Refactoring
+
+* **kernel:** separate linter and fixer descriptor ([b5bc8bd](https://github.com/textlint/textlint/commit/b5bc8bd))
+
+
+
+
 <a name="3.0.7"></a>
 ## [3.0.7](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.0.6...@textlint/fixer-formatter@3.0.7) (2018-04-02)
 

@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-plugin-extensions-option",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -10,8 +10,8 @@
     "textlint": "textlint -f pretty-error test.custom-ext"
   },
   "devDependencies": {
-    "textlint": "^10.2.1",
-    "textlint-rule-no-todo": "^2.0.0",
-    "expected-exit-status": "^1.0.2"
+    "expected-exit-status": "^1.0.2",
+    "textlint": "^11.0.0",
+    "textlint-rule-no-todo": "^2.0.0"
   }
 }

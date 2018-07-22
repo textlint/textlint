@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.4.0"></a>
+# [10.4.0](https://github.com/textlint/textlint/compare/textlint-website@10.3.2...textlint-website@10.4.0) (2018-07-22)
+
+
+### Bug Fixes
+
+* **website:** update index.css ([6f7977e](https://github.com/textlint/textlint/commit/6f7977e))
+* **website:** use https image ([4495ed3](https://github.com/textlint/textlint/commit/4495ed3))
+* **website:** use short menu name ([81911ad](https://github.com/textlint/textlint/commit/81911ad))
+
+
+### Chores
+
+* **website:** add { search: true }, ([0c3c4a9](https://github.com/textlint/textlint/commit/0c3c4a9))
+* **website:** add Edit url ([e85c6bf](https://github.com/textlint/textlint/commit/e85c6bf))
+* **website:** add new blog ([cabc987](https://github.com/textlint/textlint/commit/cabc987))
+* **website:** add project link ([2000dc4](https://github.com/textlint/textlint/commit/2000dc4))
+* **website:** add textlint icon ([54873c0](https://github.com/textlint/textlint/commit/54873c0))
+* **website:** change vuejs usecase ([9d832e5](https://github.com/textlint/textlint/commit/9d832e5))
+
+
+### Documentation
+
+* **website:** Add a project depends on textlint ([#523](https://github.com/textlint/textlint/issues/523)) ([80b4b73](https://github.com/textlint/textlint/commit/80b4b73))
+
+
+### Features
+
+* **website:** enable search ([9e18b9e](https://github.com/textlint/textlint/commit/9e18b9e))
+
+
+
+
 <a name="10.3.2"></a>
 ## [10.3.2](https://github.com/textlint/textlint/compare/textlint-website@10.3.1...textlint-website@10.3.2) (2018-04-02)
 

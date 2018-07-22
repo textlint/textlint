@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.11"></a>
+## [2.0.11](https://github.com/textlint/textlint/compare/integration-test@2.0.10...integration-test@2.0.11) (2018-07-22)
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+
+
 <a name="2.0.10"></a>
 ## [2.0.10](https://github.com/textlint/textlint/compare/integration-test@2.0.9...integration-test@2.0.10) (2018-04-02)
 

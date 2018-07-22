@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.0.9"></a>
+## [6.0.9](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.0.8...@textlint/markdown-to-ast@6.0.9) (2018-07-22)
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+### Code Refactoring
+
+* **typescript:** update to TypeScript 2.8 ([f7b2b08](https://github.com/textlint/textlint/commit/f7b2b08))
+
+
+
+
 <a name="6.0.8"></a>
 ## [6.0.8](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.0.7...@textlint/markdown-to-ast@6.0.8) (2018-04-02)
 
