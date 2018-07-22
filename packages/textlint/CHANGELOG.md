@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.0.0"></a>
+# [11.0.0](https://github.com/textlint/textlint/compare/textlint@10.2.1...textlint@11.0.0) (2018-07-22)
+
+
+### Bug Fixes
+
+* **textlint:** add engine.availableExtensions for backward-compatible ([e8652bc](https://github.com/textlint/textlint/commit/e8652bc))
+* **textlint:** fix config type ([0f2fd6f](https://github.com/textlint/textlint/commit/0f2fd6f))
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+* **textlint:** add type of public TextlintrcDescriptor ([7268b9e](https://github.com/textlint/textlint/commit/7268b9e))
+* **textlint:** make static availableExtensions() optional ([d471637](https://github.com/textlint/textlint/commit/d471637))
+* remove [@textlint](https://github.com/textlint)/textlintrc-descriptor ([3613e1f](https://github.com/textlint/textlint/commit/3613e1f))
+* **textlint:** use shallowMerge ([95d056d](https://github.com/textlint/textlint/commit/95d056d))
+
+
+### Code Refactoring
+
+* **kernel:** merge textlintrc-descriptor to kernel ([3c01067](https://github.com/textlint/textlint/commit/3c01067))
+* **kernel:** separate linter and fixer descriptor ([b5bc8bd](https://github.com/textlint/textlint/commit/b5bc8bd))
+* **textlint:** fix to import util ([6629bd5](https://github.com/textlint/textlint/commit/6629bd5))
+* **textlint:** remove `extensions` from Config ([7bc9ab8](https://github.com/textlint/textlint/commit/7bc9ab8))
+* **textlintrc-descriptor:** Introduce textlintrc-descriptor ([6177794](https://github.com/textlint/textlint/commit/6177794))
+
+
+### Features
+
+* **textlint:** show message if `textlint --init` is success ([#529](https://github.com/textlint/textlint/issues/529)) ([102d568](https://github.com/textlint/textlint/commit/102d568))
+* **textlint:** support availableExtensions() instance method in plugin ([a7cd053](https://github.com/textlint/textlint/commit/a7cd053))
+
+
+### Tests
+
+* **kernel:** add plugin's option tests ([f362257](https://github.com/textlint/textlint/commit/f362257))
+* **textlint:** add cli output test ([#533](https://github.com/textlint/textlint/issues/533)) ([abd314a](https://github.com/textlint/textlint/commit/abd314a)), closes [#532](https://github.com/textlint/textlint/issues/532)
+* **textlint:** add tests for object-to-kernel-format ([5fbb22d](https://github.com/textlint/textlint/commit/5fbb22d))
+* **textlint:** fix plugin tests ([bbfc8f6](https://github.com/textlint/textlint/commit/bbfc8f6))
+
+
+### BREAKING CHANGES
+
+* **textlint:** potentially it is a breaking change for tool user
+
+
+
+
 <a name="10.2.1"></a>
 ## [10.2.1](https://github.com/textlint/textlint/compare/textlint@10.2.0...textlint@10.2.1) (2018-04-02)
 

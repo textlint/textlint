@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/textlint/textlint/compare/textlint-tester@4.1.3...textlint-tester@5.0.0) (2018-07-22)
+
+
+### Bug Fixes
+
+* **kernel:** make rule and plugin's option value {} by default ([b7aa63d](https://github.com/textlint/textlint/commit/b7aa63d))
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+### Code Refactoring
+
+* **kernel:** separate linter and fixer descriptor ([b5bc8bd](https://github.com/textlint/textlint/commit/b5bc8bd))
+
+
+### BREAKING CHANGES
+
+* **kernel:** Previously, textlint pass `true` to rule and plugin as default value of option.
+This commit change the default value to `{}` (empty object).
+
+fix https://github.com/textlint/textlint/issues/535
+
+
+
+
 <a name="4.1.3"></a>
 ## [4.1.3](https://github.com/textlint/textlint/compare/textlint-tester@4.1.2...textlint-tester@4.1.3) (2018-04-02)
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.8"></a>
+## [2.1.8](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.1.7...textlint-example-use-as-ts-module@2.1.8) (2018-07-22)
+
+
+### Code Refactoring
+
+* **kernel:** separate linter and fixer descriptor ([b5bc8bd](https://github.com/textlint/textlint/commit/b5bc8bd))
+
+
+
+
 <a name="2.1.7"></a>
 ## [2.1.7](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.1.6...textlint-example-use-as-ts-module@2.1.7) (2018-04-02)
 

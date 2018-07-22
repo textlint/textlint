@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.9...@textlint/kernel@3.0.0) (2018-07-22)
+
+
+### Bug Fixes
+
+* **kernel:** kernel use TextlintrcDescriptor ([efd89c2](https://github.com/textlint/textlint/commit/efd89c2))
+* **kernel:** make rule and plugin's option value {} by default ([b7aa63d](https://github.com/textlint/textlint/commit/b7aa63d))
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+* remove [@textlint](https://github.com/textlint)/textlintrc-descriptor ([3613e1f](https://github.com/textlint/textlint/commit/3613e1f))
+* **kernel:** add comment ([582d0d6](https://github.com/textlint/textlint/commit/582d0d6))
+* **kernel:** add Processor validation ([86ed609](https://github.com/textlint/textlint/commit/86ed609))
+* **kernel:** fix test title ([4eeeff8](https://github.com/textlint/textlint/commit/4eeeff8))
+* **kernel:** support instance availableExtensions() method ([b821fc5](https://github.com/textlint/textlint/commit/b821fc5))
+* **textlint:** make static availableExtensions() optional ([d471637](https://github.com/textlint/textlint/commit/d471637))
+* **textlint:** use shallowMerge ([95d056d](https://github.com/textlint/textlint/commit/95d056d))
+
+
+### Code Refactoring
+
+* **kernel:** merge textlintrc-descriptor to kernel ([3c01067](https://github.com/textlint/textlint/commit/3c01067))
+* **kernel:** remove TextlintRuleDescriptorType ([a5b0f30](https://github.com/textlint/textlint/commit/a5b0f30))
+* **kernel:** Replace Object.freeze directly with factory function ([c43580b](https://github.com/textlint/textlint/commit/c43580b))
+* **kernel:** separate linter and fixer descriptor ([b5bc8bd](https://github.com/textlint/textlint/commit/b5bc8bd))
+* **kernel:** use textlintrc-descriptor instead of rule-creator-helper ([f0eb4bf](https://github.com/textlint/textlint/commit/f0eb4bf))
+* **textlintrc-descriptor:** Introduce textlintrc-descriptor ([6177794](https://github.com/textlint/textlint/commit/6177794))
+* **typescript:** update to TypeScript 2.8 ([f7b2b08](https://github.com/textlint/textlint/commit/f7b2b08))
+
+
+### Features
+
+* **kernel:** Freeze Context ([7fc9ec8](https://github.com/textlint/textlint/commit/7fc9ec8)), closes [#508](https://github.com/textlint/textlint/issues/508) [#508](https://github.com/textlint/textlint/issues/508)
+* **textlint:** support availableExtensions() instance method in plugin ([a7cd053](https://github.com/textlint/textlint/commit/a7cd053))
+
+
+### Tests
+
+* **kernel:** Add missing Readonly<T> ([c5313c8](https://github.com/textlint/textlint/commit/c5313c8))
+* **kernel:** add plugin's option tests ([f362257](https://github.com/textlint/textlint/commit/f362257))
+* **textlint:** add tests for object-to-kernel-format ([5fbb22d](https://github.com/textlint/textlint/commit/5fbb22d))
+
+
+### BREAKING CHANGES
+
+* **kernel:** Previously, textlint pass `true` to rule and plugin as default value of option.
+This commit change the default value to `{}` (empty object).
+
+fix https://github.com/textlint/textlint/issues/535
+
+
+
+
 <a name="2.0.9"></a>
 ## [2.0.9](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.8...@textlint/kernel@2.0.9) (2018-04-02)
 

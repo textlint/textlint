@@ -1,6 +1,6 @@
 {
   "name": "textlint",
-  "version": "10.2.1",
+  "version": "11.0.0",
   "description": "The pluggable linting tool for text and markdown.",
   "keywords": [
     "AST",
@@ -47,14 +47,14 @@
     "watch": "tsc -p . --watch"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^4.0.2",
-    "@textlint/ast-traverse": "^2.0.8",
-    "@textlint/feature-flag": "^3.0.4",
-    "@textlint/fixer-formatter": "^3.0.7",
-    "@textlint/kernel": "^2.0.9",
-    "@textlint/linter-formatter": "^3.0.7",
-    "@textlint/textlint-plugin-markdown": "^4.0.10",
-    "@textlint/textlint-plugin-text": "^3.0.10",
+    "@textlint/ast-node-types": "^4.0.3",
+    "@textlint/ast-traverse": "^2.0.9",
+    "@textlint/feature-flag": "^3.0.5",
+    "@textlint/fixer-formatter": "^3.0.8",
+    "@textlint/kernel": "^3.0.0",
+    "@textlint/linter-formatter": "^3.0.8",
+    "@textlint/textlint-plugin-markdown": "^5.0.0",
+    "@textlint/textlint-plugin-text": "^4.0.0",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.0.5",
     "debug": "^2.1.0",

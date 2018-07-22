@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@4.0.10...@textlint/textlint-plugin-markdown@5.0.0) (2018-07-22)
+
+
+### Bug Fixes
+
+* **kernel:** make rule and plugin's option value {} by default ([b7aa63d](https://github.com/textlint/textlint/commit/b7aa63d))
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+### Documentation
+
+* **plugin:** add plugin configuration ([6e179ec](https://github.com/textlint/textlint/commit/6e179ec))
+
+
+### Features
+
+* **textlint-plugin-markdown:** Support "extensions" option ([c3d55fe](https://github.com/textlint/textlint/commit/c3d55fe))
+
+
+### BREAKING CHANGES
+
+* **kernel:** Previously, textlint pass `true` to rule and plugin as default value of option.
+This commit change the default value to `{}` (empty object).
+
+fix https://github.com/textlint/textlint/issues/535
+
+
+
+
 <a name="4.0.10"></a>
 ## [4.0.10](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@4.0.9...@textlint/textlint-plugin-markdown@4.0.10) (2018-04-02)
 

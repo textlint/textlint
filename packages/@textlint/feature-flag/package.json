@@ -1,6 +1,6 @@
 {
   "name": "@textlint/feature-flag",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "textlint internal feature flag manager.",
   "keywords": [
     "textlint"

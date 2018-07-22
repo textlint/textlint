@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.8"></a>
+## [2.0.8](https://github.com/textlint/textlint/compare/@textlint/ast-tester@2.0.7...@textlint/ast-tester@2.0.8) (2018-07-22)
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+
+
 <a name="2.0.7"></a>
 ## [2.0.7](https://github.com/textlint/textlint/compare/@textlint/ast-tester@2.0.6...@textlint/ast-tester@2.0.7) (2018-04-02)
 

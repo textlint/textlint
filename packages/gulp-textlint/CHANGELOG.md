@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.11"></a>
+## [5.0.11](https://github.com/textlint/textlint/compare/gulp-textlint@5.0.10...gulp-textlint@5.0.11) (2018-07-22)
+
+
+### Bug Fixes
+
+* **deps:** update to natives@1.1.3 ([0c20f42](https://github.com/textlint/textlint/commit/0c20f42))
+
+
+### Chores
+
+* **deps:** update mocha ([5df8af4](https://github.com/textlint/textlint/commit/5df8af4))
+
+
+
+
 <a name="5.0.10"></a>
 ## [5.0.10](https://github.com/textlint/textlint/compare/gulp-textlint@5.0.9...gulp-textlint@5.0.10) (2018-04-02)
 
