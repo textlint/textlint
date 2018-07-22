@@ -518,11 +518,11 @@ Run the tests:
 
 :information_source: Please see [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo") for details.
 
-### Rule Config
+### Rule options
 
 `.textlintrc` is the config file for textlint.
 
-For example, there are a config file:
+For example, `very-nice-rule`'s option is `{ "key": "value" }` in `.textlintrc`
 
 ```json
 {
@@ -546,6 +546,27 @@ export default function(context, options) {
     */
 }
 ```
+
+:memo: The `options` value is `{}` (empty object) by default.
+
+For example, `very-nice-rule`'s option is `true`(enable the rule) in `.textlintrc`
+
+```json
+{
+  "rules": {
+    "very-nice-rule": true
+  }
+}
+```
+
+`very-nice-rule.js` rule get `{}` (emptry object) as `options`.
+
+```js
+export default function(context, options) {
+    console.log(options); // {}
+}
+```
+
 
 ## Advanced example
 
