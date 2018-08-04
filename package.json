@@ -28,7 +28,7 @@
     "test:examples": "lerna run test:ci --scope textlint-example-*",
     "test:integration": "lerna run test --scope integration-test",
     "test:packages": "lerna run test --ignore integration-test --ignore textlint-example-* --ignore textlint-script-* --ignore textlint-website",
-    "prettier": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,css}'",
+    "prettier": "prettier --write \"packages/**/*.{js,jsx,ts,tsx,css}\"",
     "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)"
   },
   "devDependencies": {
