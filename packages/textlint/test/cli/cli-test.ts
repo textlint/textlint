@@ -1,10 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const cli = require("../../src/index").cli;
-const path = require("path");
-const fs = require("fs");
-const spawnSync = require("child_process").spawnSync;
+import * as assert from "assert";
+import { cli } from "../../src/index";
+import * as path from "path";
+import * as childProcess from "child_process";
 import { Logger } from "../../src/util/logger";
 
 const originLog = Logger.log;
@@ -20,7 +19,7 @@ describe("cli-test", function() {
     context("when pass linting", function() {
         it("should output checkstyle xml if the results length is 0", function() {
             let isCalled = false;
-            const messages = [];
+            const messages: any[] = [];
             Logger.log = function mockLog(message) {
                 isCalled = true;
                 messages.push(message);
@@ -271,7 +270,7 @@ describe("cli-test", function() {
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const bin = path.join(__dirname, "../../bin/textlint.js");
             const args = ["--preset", "textlint-rule-preset-jtf-style", `${targetFile}`];
-            const result = spawnSync(`${bin}`, args, { encoding: "utf8" });
+            const result = childProcess.spawnSync(`${bin}`, args, { encoding: "utf8" });
             assert.strictEqual(result.stderr.indexOf("memory leak detected"), -1);
         });
     });

@@ -63,7 +63,7 @@ export const cli = {
      * @param {string} [text] The text to lint (used for TTY).
      * @returns {Promise<number>} The exit code for the operation.
      */
-    execute(args: string | Array<any> | object, text: string): Promise<number> {
+    execute(args: string | Array<any> | object, text?: string): Promise<number> {
         let currentOptions;
         try {
             currentOptions = options.parse(args);
@@ -100,7 +100,7 @@ export const cli = {
      * @param {string} [stdinFilename]
      * @returns {Promise<number>} exit status
      */
-    executeWithOptions(cliOptions: any, files: string[], text: string, stdinFilename: string): Promise<number> {
+    executeWithOptions(cliOptions: any, files: string[], text?: string, stdinFilename?: string): Promise<number> {
         const config = Config.initWithCLIOptions(cliOptions);
         const showEmptyRuleWarning = () => {
             Logger.log(`
