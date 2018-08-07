@@ -3,7 +3,9 @@
 import * as assert from "assert";
 import { testInvalid, testValid } from "./test-util";
 import { TextLintCore } from "textlint";
+import { TextlintKernelDescriptor } from "@textlint/kernel";
 import { TextlintFixResult, TextlintPluginCreator, TextlintRuleModule } from "@textlint/kernel";
+import { snapshotTest, TesterSnapshot } from "./snapshot-test";
 
 const { coreFlags } = require("@textlint/feature-flag");
 
@@ -150,8 +152,12 @@ function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginS
     return testPluginSet;
 }
 
+export interface TextLintTesterOptions {
+    snapshotFileName?: string;
+}
+
 export class TextLintTester {
-    constructor() {
+    constructor(private options: TextLintTesterOptions = {}) {
         if (typeof coreFlags === "object") {
             coreFlags.runningTester = true;
         }
@@ -243,21 +249,19 @@ export class TextLintTester {
     }
 
     /**
-     * run test for textlint rule.
-     * @param {string} name name is name of the test or rule
-     * @param {TextlintRuleModule|TestConfig} param param is TextlintRuleCreator or TestConfig
-     * @param {string[]|object[]} [valid]
-     * @param {object[]} [invalid]
+     * Run test for textlint rule.
      */
     run(
         name: string,
         param: TextlintRuleModule | TestConfig,
         {
             valid = [],
-            invalid = []
+            invalid = [],
+            snapshots = []
         }: {
             valid?: TesterValid[];
             invalid?: TesterInvalid[];
+            snapshots?: TesterSnapshot[];
         }
     ) {
         if (isTestConfig(param)) {
@@ -279,13 +283,68 @@ export class TextLintTester {
                 });
             }
         }
-
         describe(name, () => {
+            const createTextlint = (options: any) => {
+                const textlint = new TextLintCore();
+                if (isTestConfig(param)) {
+                    const testRuleSet = createTestRuleSet(param.rules);
+                    textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
+                    if (Array.isArray(param.plugins)) {
+                        const testPluginSet = createTestPluginSet(param.plugins);
+                        textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
+                    }
+                } else {
+                    textlint.setupRules(
+                        {
+                            [name]: param
+                        },
+                        {
+                            [name]: options
+                        }
+                    );
+                }
+                return textlint;
+            };
+            const hasFixableRuleDescriptors = (options: any): boolean => {
+                const rules = isTestConfig(param)
+                    ? param.rules
+                    : [
+                          {
+                              ruleId: name,
+                              rule: param,
+                              options: options
+                          }
+                      ];
+                const descriptors = new TextlintKernelDescriptor({
+                    rules: rules,
+                    filterRules: [],
+                    plugins: []
+                });
+                return descriptors.rule.fixableDescriptors.length > 0;
+            };
             invalid.forEach(state => {
                 this.testInvalidPattern(name, param, state);
             });
             valid.forEach(state => {
                 this.testValidPattern(name, param, state);
+            });
+            snapshots.forEach(state => {
+                const textlint = createTextlint(state.options);
+                const snapshotFileName = this.options.snapshotFileName;
+                if (!snapshotFileName) {
+                    throw new Error(`should pass snapshotFileName to constructor for snapshot testing.
+
+import { TextLintTester } from "textlint-tester";
+
+const tester = new TextLintTester({
+    snapshotFileName: __filename,
+});
+`);
+                }
+                snapshotTest(textlint, state, {
+                    snapshotFileName,
+                    fix: hasFixableRuleDescriptors(state.options)
+                });
             });
         });
     }

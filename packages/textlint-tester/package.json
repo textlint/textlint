@@ -31,12 +31,14 @@
     "clean": "rimraf lib/ out/",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
+    "test:updateSnapshot": "cross-env SNAPSHOT_UPDATE=1 mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -p . --watch"
   },
   "dependencies": {
     "@textlint/feature-flag": "^3.0.5",
     "@textlint/kernel": "^3.0.0",
-    "textlint": "^11.0.1"
+    "textlint": "^11.0.1",
+    "snap-shot-core": "^6.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.0",

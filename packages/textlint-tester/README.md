@@ -237,6 +237,17 @@ tester.run("no-todo", rule, {
 
 See [`textlint-tester-test.ts`](./test/textlint-tester-test.ts) or [`textlint-tester-plugin.ts`](./test/textlint-tester-plugin.ts) for concrete examples.
 
+### Snapshot Testing 
+
+> textlint-tester 5.1+
+
+Snapshot Testing easy to test a rule.
+
+It record from input to 
+
+- Input Text
+- Output Text(Fixed text)
+- Lint messages
 
 ## Contributing
 

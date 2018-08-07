@@ -1,0 +1,111 @@
+exports['This is all valid 1'] = `
+This is all valid
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[NO OUTPUT]]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[NO LINT MESSAGE]]
+`
+
+exports['This is all valid_            _Multi-line text is tested 1'] = `
+This is all valid
+            
+Multi-line text is tested
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[NO OUTPUT]]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[NO LINT MESSAGE]]
+`
+
+exports['TODOstest 1'] = `
+TODO: test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[NO OUTPUT]]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lint-message: Found TODO: 'TODO: test'
+<markdown>:1:1
+       v
+    0.
+    1. TODO: test
+    2.
+       ^
+
+✖ 1 problem (1 error, 0 warnings)
+
+`
+
+exports['- [ ] plain text_            _THIS IS TODO. 1'] = `
+- [ ] plain text
+            
+THIS IS TODO.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[NO OUTPUT]]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lint-message: Found TODO: '- [ ] plain text
+            '
+<markdown>:1:3
+         v
+    0. 
+    1. - [ ] plain text
+    2.             
+         ^
+
+✖ 1 problem (1 error, 0 warnings)
+
+`
+
+exports['Fix test 1'] = `
+Fix test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fix test.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+✓ fix-message: Please add . to end of a sentence.
+<markdown>:1:9
+              v
+    0. 
+    1. Fix test
+    2. 
+              ^
+
+✖ 1 problem (1 error, 0 warnings)
+✓ 1 fixable problem.
+Try to run: $ textlint --fix [file]
+
+`
+
+exports['123_345 1'] = `
+123
+345
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+123
+345.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+✓ fix-message: Please add . to end of a sentence.
+<markdown>:2:4
+         v
+    1. 123
+    2. 345
+    3. 
+         ^
+
+✖ 1 problem (1 error, 0 warnings)
+✓ 1 fixable problem.
+Try to run: $ textlint --fix [file]
+
+`
+
+exports['TODO: test 1'] = `
+TODO: test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[[NO OUTPUT]]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lint-message: Found TODO: 'TODO: test'
+<markdown>:1:1
+       v
+    0. 
+    1. TODO: test
+    2. 
+       ^
+
+✖ 1 problem (1 error, 0 warnings)
+
+`
