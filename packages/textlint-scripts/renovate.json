@@ -1,5 +1,5 @@
 {
   "extends": [
-    "@azu/renovate-config"
+    "@azu"
   ]
 }
