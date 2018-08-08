@@ -11,7 +11,7 @@
     "configs/"
   ],
   "name": "textlint-scripts",
-  "version": "1.4.2",
+  "version": "2.0.0",
   "description": "textlint npm-run-scripts CLI help to create textlint rule.",
   "bin": {
     "textlint-scripts": "./bin/cmd.js"
