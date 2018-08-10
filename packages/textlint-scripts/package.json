@@ -42,7 +42,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
-    "confirmer": "^1.1.1",
+    "confirmer": "^1.1.2",
     "cross-spawn": "^6.0.5",
     "mocha": "^5.2.0",
     "pkg-to-readme": "^1.1.0",
