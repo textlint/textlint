@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
-var pkgToReadme = require("pkg-to-readme");
 var path = require("path");
 var confirmer = require("confirmer");
+var pkgToReadme = require("pkg-to-readme");
 var fs = require("fs");
 // Update README.md
 var templatePath = path.resolve(__dirname, "..", "configs", "README.md.template");

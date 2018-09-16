@@ -1,2 +1,2 @@
 "use strict";
-require("babel-register")(require("./babelrc"));
+require("@babel/register")(require("./babelrc"));

@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
 process.env.NODE_ENV = "test";
-var path = require("path");
 var spawn = require("cross-spawn");
 var args = process.argv.slice(2);
 var mocha = require.resolve(".bin/mocha");
