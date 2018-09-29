@@ -39,8 +39,8 @@
     "prettier": "^1.8.1"
   },
   "dependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
     "confirmer": "^1.1.2",
