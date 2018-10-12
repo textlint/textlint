@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.5.0"></a>
+# [10.5.0](https://github.com/textlint/textlint/compare/textlint-website@10.4.0...textlint-website@10.5.0) (2018-10-12)
+
+
+### Chores
+
+* **website:** add example link ([49af883](https://github.com/textlint/textlint/commit/49af883))
+* **website:** update docusaurus ([3d76312](https://github.com/textlint/textlint/commit/3d76312))
+* **website:** Update release note ([2ed95f4](https://github.com/textlint/textlint/commit/2ed95f4))
+
+
+### Documentation
+
+* **textlint:** add ignore list ([c9077db](https://github.com/textlint/textlint/commit/c9077db))
+
+
+### Features
+
+* **website:** add "textlint 11 released" to blog ([e3fac28](https://github.com/textlint/textlint/commit/e3fac28))
+
+
+
+
 <a name="10.4.0"></a>
 # [10.4.0](https://github.com/textlint/textlint/compare/textlint-website@10.3.2...textlint-website@10.4.0) (2018-07-22)
 
