@@ -76,7 +76,7 @@ export default function(context) {
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
 
-[![gif visualize-txt-traverse](http://gyazo.com/155c68f0f9ff35e0a549d655a787c01e.gif)](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
+[![gif visualize-txt-traverse](https://gyazo.com/155c68f0f9ff35e0a549d655a787c01e.gif)](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse")
 
 [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") help you better understand [TxtAST](./txtnode.md).
 
@@ -306,7 +306,7 @@ $ npm run build
 $ textlint --rulesdir lib/ README.md -f pretty-error
 ```
 
-![result error](http://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
+![result error](https://monosnap.com/image/9FeIQr95kXjGPWFjZFRq6ZFG16YscF.png)
 
 ### Advanced rules
 
@@ -410,7 +410,7 @@ As as result, linting following text with modified rule, a result was no error.
 [todo:image](http://example.com)
 ```
 
-- The created rule is [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo").
+- The created rule is [textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo "azu/textlint-rule-no-todo").
 - These helper functions like `getParents` are implemented in [textlint/textlint-rule-helper](https://github.com/textlint/textlint-rule-helper "textlint/textlint-rule-helper").
 
 ### How to test the rule?
@@ -516,7 +516,7 @@ Run the tests:
     # or
     $(npm bin)/mocha test/
 
-:information_source: Please see [azu/textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "azu/textlint-rule-no-todo") for details.
+:information_source: Please see [azu/textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo "azu/textlint-rule-no-todo") for details.
 
 ### Rule options
 
@@ -656,7 +656,7 @@ You should add `textlintrule` to npm's `keywords`
 A. You should
 
 - Add `textlint >= 5.5` to `peerDependencies`
-    - See example: [textlint-rule-no-todo/package.json](https://github.com/azu/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json#L47-L49)
+    - See example: [textlint-rule-no-todo/package.json](https://github.com/textlint-rule/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json)
 - Release the rule package as *major* because it has breaking change.
 
 #### Q. `textlint` does major update. Do my rule package major update?

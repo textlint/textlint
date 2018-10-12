@@ -170,7 +170,11 @@ export class TextLintTester {
                 textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
             }
         } else {
-            const options = typeof valid === "object" && valid.options;
+            const options =
+                typeof valid === "object"
+                    ? valid.options
+                    : // just enable
+                      true;
             textlint.setupRules(
                 {
                     [name]: param
