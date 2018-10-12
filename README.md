@@ -262,7 +262,7 @@ See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection
 
 textlint has not built-in rules, but there are 100+ pluggable rules:
 
-- [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo)
+- [textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo)
 - [textlint-rule-max-number-of-lines](https://github.com/azu/textlint-rule-max-number-of-lines)
 - [textlint-rule-common-misspellings](https://github.com/io-monad/textlint-rule-common-misspellings)
 - [etc...](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule)

@@ -40,7 +40,7 @@ npm install --save-dev textlint
 
 You can find a rule in [A Collection of textlint rule](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "A Collection of textlint rule").
 
-As an example, let's install [textlint-rule-no-todo](https://github.com/azu/textlint-rule-no-todo "textlint-rule-no-todo"). If you have installed `textlint` locally, you must install each rule locally as well.
+As an example, let's install [textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo "textlint-rule-no-todo"). If you have installed `textlint` locally, you must install each rule locally as well.
 
 ```
 npm install --save-dev textlint-rule-no-todo
