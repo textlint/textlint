@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-markdown",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Markdown support for textlint.",
   "keywords": [
     "markdown",
@@ -45,7 +45,7 @@
     "mocha": "^5.1.1",
     "power-assert": "^1.4.1",
     "rimraf": "^2.6.2",
-    "textlint": "^11.0.0",
+    "textlint": "^11.0.1",
     "textlint-rule-no-todo": "^2.0.0"
   },
   "email": "azuciao@gmail.com",

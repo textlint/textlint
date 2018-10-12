@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.12"></a>
+## [5.0.12](https://github.com/textlint/textlint/compare/gulp-textlint@5.0.11...gulp-textlint@5.0.12) (2018-10-12)
+
+
+
+
+**Note:** Version bump only for package gulp-textlint
+
 <a name="5.0.11"></a>
 ## [5.0.11](https://github.com/textlint/textlint/compare/gulp-textlint@5.0.10...gulp-textlint@5.0.11) (2018-07-22)
 
