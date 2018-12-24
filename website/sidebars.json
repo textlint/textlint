@@ -2,7 +2,8 @@
   "docs": {
     "User Manual": [
       "getting-started",
-      "configuring"
+      "configuring",
+      "integrations"
     ],
     "Developer Guide": [
       "rule",

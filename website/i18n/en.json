@@ -4,30 +4,71 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "The pluggable linting tool for text and markdown",
-    "configuring": "Configuring textlint",
-    "contributing": "Contributing Guideline",
-    "faq/failed-to-load-textlints-module": "faq/failed-to-load-textlints-module",
-    "faq/line-column-or-index": "faq/line-column-or-index",
-    "filter-rule": "Creating Filter Rule",
-    "formatter": "Formatter",
-    "getting-started": "Getting Started with textlint",
-    "plugin": "Plugin",
-    "index": "Documentation",
-    "rule-advanced": "Advanced: Paragraph Rule",
-    "rule-fixable": "Creating Fixable Rule",
-    "rule-preset": "Creating Preset",
-    "rule-tips-after-all": "How to implement \"after-all\" in the rule?",
-    "rule": "Creating Rules",
-    "txtnode": "TxtAST Interface",
-    "use-as-modules": "Use as Node Modules",
-    "Docs": "Docs",
-    "Rules": "Rules",
-    "Blog": "Blog",
-    "Help": "Help",
-    "GitHub": "GitHub",
-    "User Manual": "User Manual",
-    "Developer Guide": "Developer Guide",
-    "Contributing": "Contributing"
+    "docs": {
+      "configuring": {
+        "title": "Configuring textlint"
+      },
+      "contributing": {
+        "title": "Contributing Guideline"
+      },
+      "faq/failed-to-load-textlints-module": {
+        "title": "faq/failed-to-load-textlints-module"
+      },
+      "faq/line-column-or-index": {
+        "title": "faq/line-column-or-index"
+      },
+      "filter-rule": {
+        "title": "Creating Filter Rule"
+      },
+      "formatter": {
+        "title": "Formatter"
+      },
+      "getting-started": {
+        "title": "Getting Started with textlint"
+      },
+      "integrations": {
+        "title": "Integrating with Editors, Tools, etc.."
+      },
+      "plugin": {
+        "title": "Plugin"
+      },
+      "index": {
+        "title": "Documentation"
+      },
+      "rule-advanced": {
+        "title": "Advanced: Paragraph Rule"
+      },
+      "rule-fixable": {
+        "title": "Creating Fixable Rule"
+      },
+      "rule-preset": {
+        "title": "Creating Preset"
+      },
+      "rule-tips-after-all": {
+        "title": "How to implement \"after-all\" in the rule?"
+      },
+      "rule": {
+        "title": "Creating Rules"
+      },
+      "txtnode": {
+        "title": "TxtAST Interface"
+      },
+      "use-as-modules": {
+        "title": "Use as Node Modules"
+      }
+    },
+    "links": {
+      "Docs": "Docs",
+      "Rules": "Rules",
+      "Blog": "Blog",
+      "Help": "Help",
+      "GitHub": "GitHub"
+    },
+    "categories": {
+      "User Manual": "User Manual",
+      "Developer Guide": "Developer Guide",
+      "Contributing": "Contributing"
+    }
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",
