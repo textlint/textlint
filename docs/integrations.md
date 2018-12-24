@@ -1,5 +1,5 @@
 ---
-id: integration
+id: integrations
 title: Integrating with Editors, Tools, etc..
 ---
 

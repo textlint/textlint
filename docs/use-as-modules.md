@@ -42,7 +42,7 @@ Recommend to use `TextLintEngine`.
 
 ## Architecture
 
-See [README.md](../README.md) for details.
+See <https://github.com/textlint/textlint/blob/master/packages/textlint/src/README.md>>
 
 ### CLI(Command Line Interface)
 
