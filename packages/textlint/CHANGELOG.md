@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.0.2"></a>
+## [11.0.2](https://github.com/textlint/textlint/compare/textlint@11.0.0...textlint@11.0.2) (2018-12-24)
+
+
+### Code Refactoring
+
+* **textlint:** convert cli tests to TypeScript ([58f2f5e](https://github.com/textlint/textlint/commit/58f2f5e))
+* **textlint:** make arguments optional correctly ([3077921](https://github.com/textlint/textlint/commit/3077921))
+
+
+
+
 <a name="11.0.1"></a>
 ## [11.0.1](https://github.com/textlint/textlint/compare/textlint@11.0.0...textlint@11.0.1) (2018-10-12)
 

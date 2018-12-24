@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.0.2"></a>
+## [5.0.2](https://github.com/textlint/textlint/compare/textlint-tester@5.0.0...textlint-tester@5.0.2) (2018-12-24)
+
+
+### Bug Fixes
+
+* **textlint-tester:** fix text only valid test is always passed ([#551](https://github.com/textlint/textlint/issues/551)) ([c104007](https://github.com/textlint/textlint/commit/c104007))
+
+
+
+
 <a name="5.0.1"></a>
 ## [5.0.1](https://github.com/textlint/textlint/compare/textlint-tester@5.0.0...textlint-tester@5.0.1) (2018-10-12)
 

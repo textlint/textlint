@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.13"></a>
+## [2.0.13](https://github.com/textlint/textlint/compare/integration-test@2.0.11...integration-test@2.0.13) (2018-12-24)
+
+
+### Bug Fixes
+
+* **textlint-tester:** fix text only valid test is always passed ([#551](https://github.com/textlint/textlint/issues/551)) ([c104007](https://github.com/textlint/textlint/commit/c104007))
+
+
+
+
 <a name="2.0.12"></a>
 ## [2.0.12](https://github.com/textlint/textlint/compare/integration-test@2.0.11...integration-test@2.0.12) (2018-10-12)
 

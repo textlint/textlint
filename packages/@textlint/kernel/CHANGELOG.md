@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/textlint/textlint/compare/@textlint/kernel@3.0.0...@textlint/kernel@3.0.1) (2018-12-24)
+
+
+### Bug Fixes
+
+* **kernel:** fix applyFix order on Node.js 11 ([714a90c](https://github.com/textlint/textlint/commit/714a90c))
+
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/textlint/textlint/compare/@textlint/kernel@2.0.9...@textlint/kernel@3.0.0) (2018-07-22)
 
