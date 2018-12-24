@@ -18,9 +18,7 @@
   },
   "scripts": {
     "test": "bash test/test-example.sh",
-    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "precommit": "lint-staged",
-    "postcommit": "git reset"
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "keywords": [
     "textlint"
@@ -34,8 +32,8 @@
   },
   "homepage": "https://github.com/textlint/textlint-scripts",
   "devDependencies": {
-    "husky": "^0.14.3",
-    "lint-staged": "^7.3.0",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
     "prettier": "^1.8.1"
   },
   "dependencies": {
@@ -59,5 +57,11 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "git reset",
+      "pre-commit": "lint-staged"
+    }
   }
 }
