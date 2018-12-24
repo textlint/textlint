@@ -11,14 +11,14 @@ import { TextlintResult } from "@textlint/kernel";
  * @param {string} [inputPath]
  * @returns {string}
  */
-function getTestText({ text, inputPath }: { text?: string; inputPath?: string }) {
+export function getTestText({ text, inputPath }: { text?: string; inputPath?: string }) {
     if (typeof inputPath === "string") {
         return fs.readFileSync(inputPath, "utf-8");
     }
     if (typeof text === "string") {
         return text;
     }
-    throw new Error("should be defined { text } or { inputPath }");
+    throw new Error("should define either one of { text } or { inputPath }");
 }
 
 export type InvalidPattern = {

@@ -14,8 +14,7 @@ tester.run("no-error", noTodoRule, {
             text: "This is all valid"
         },
         {
-            text: `This is all valid
-            
+            text: `This is all valid.
 Multi-line text is tested`
         }
     ]
@@ -41,6 +40,9 @@ tester.run("fix-message", fixerRule, {
         },
         {
             text: "123\n" + "345"
+        },
+        {
+            text: "`code` ${1122} pattern"
         }
     ]
 });

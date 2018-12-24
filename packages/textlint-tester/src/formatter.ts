@@ -3,7 +3,7 @@
 // Original code is https://github.com/azer/prettify-error
 // Author : azer
 "use strict";
-import { TextlintMessage, TextlintResult } from "@textlint/kernel";
+import { TextlintFixResult, TextlintMessage, TextlintResult } from "@textlint/kernel";
 
 export interface TextLintFormatterOption {
     formatterName: string;
@@ -114,7 +114,18 @@ function prettyError(code: string, filePath: string, message: TextlintMessage): 
     });
 }
 
-export function testerFormatter(text: string, results: TextlintResult[], options: TextLintFormatterOption) {
+export function formatOutput(text: string, formatterOutput?: string, output?: string) {
+    return `${text}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+${output ? output : "[[NO OUTPUT]]"}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+${formatterOutput ? formatterOutput : "[[NO LINT MESSAGE]]"}`;
+}
+
+export function testerFormatter(
+    { text, result, fixResult }: { text: string; result: TextlintResult; fixResult?: TextlintFixResult },
+    options: TextLintFormatterOption
+) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "";
@@ -122,29 +133,27 @@ export function testerFormatter(text: string, results: TextlintResult[], options
     let errors = 0;
     let warnings = 0;
     let totalFixable = 0;
-    results.forEach(function(result) {
-        const code = text || require("fs").readFileSync(result.filePath, "utf-8");
-        const messages = result.messages;
-        if (messages.length === 0) {
-            return;
+    const code = text || require("fs").readFileSync(result.filePath, "utf-8");
+    const messages = result.messages;
+    if (messages.length === 0) {
+        return formatOutput(text);
+    }
+    total += messages.length;
+    messages.forEach(function(message) {
+        // fixable
+        const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
+        if (message.fix) {
+            totalFixable++;
         }
-        total += messages.length;
-        messages.forEach(function(message) {
-            // fixable
-            const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
-            if (message.fix) {
-                totalFixable++;
-            }
-            if ((message as any).fatal || message.severity === 2) {
-                errors++;
-            } else {
-                warnings++;
-            }
-            const r = fixableIcon + prettyError(code, result.filePath, message);
-            if (r) {
-                output += r + "\n";
-            }
-        });
+        if ((message as any).fatal || message.severity === 2) {
+            errors++;
+        } else {
+            warnings++;
+        }
+        const r = fixableIcon + prettyError(code, result.filePath, message);
+        if (r) {
+            output += r + "\n";
+        }
     });
 
     if (total > 0) {
@@ -172,7 +181,7 @@ export function testerFormatter(text: string, results: TextlintResult[], options
     }
 
     if (!useColor) {
-        return stripAnsi(output);
+        return stripAnsi(formatOutput(text, output, fixResult ? fixResult.output : undefined));
     }
     return output;
 }

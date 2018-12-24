@@ -1,8 +1,9 @@
 import { testerFormatter } from "./formatter";
 import * as path from "path";
 import * as assert from "assert";
-import { TextLintCore } from "../../textlint/src";
+import { TextLintCore } from "textlint";
 import { TextlintFixResult, TextlintResult } from "@textlint/kernel";
+import { getTestText } from "./test-util";
 
 const snapShot = require("snap-shot-core");
 export type TesterSnapshot = {
@@ -17,31 +18,36 @@ export interface snapshotTestOptions {
     fix: boolean;
 }
 
+const escapeTemplateStringContent = (text: string) => {
+    return text.replace(/`/g, "\\`").replace(/\${/g, "\\${");
+};
 export const snapshotTest = (textlint: TextLintCore, state: TesterSnapshot, options: snapshotTestOptions) => {
     const text = typeof state === "object" ? state.text : state;
     const inputPath = typeof state === "object" ? state.inputPath : undefined;
     const ext = typeof state === "object" && state.ext !== undefined ? state.ext : ".md";
-    const singleName = text.split(/\n/g).join("_");
-    it(text || inputPath || "NO name", () => {
-        const lintPromise: Promise<TextlintResult> = textlint.lintText(text, ext);
-        const fixPromise: Promise<TextlintFixResult | void> = options.fix
-            ? textlint.fixText(text, ext)
-            : Promise.resolve();
+    const actualText = getTestText({ text, inputPath });
+    const singleName = actualText.split(/\n/g).join("_");
+    it(singleName || "No Name", () => {
+        const lintPromise: Promise<TextlintResult> = textlint.lintText(actualText, ext);
+        const fixPromise: Promise<TextlintFixResult | undefined> = options.fix
+            ? textlint.fixText(actualText, ext)
+            : Promise.resolve(undefined);
         return Promise.all([lintPromise, fixPromise]).then(([lintResult, fixResult]) => {
-            const output = testerFormatter(text, [lintResult], {
-                color: false,
-                formatterName: "tester"
-            });
+            const output = testerFormatter(
+                {
+                    text: actualText,
+                    result: lintResult,
+                    fixResult
+                },
+                {
+                    color: false,
+                    formatterName: "tester"
+                }
+            );
             //             if (output.length === 0) {
             //                 throw new Error(`Snapshot should not be empty result.
             // If you want to test the text is valid, please add it to "valid"`);
             //             }
-
-            const snapshotOutput = `${text}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-${fixResult ? fixResult.output : "[[NO OUTPUT]]"}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-${output ? output : "[[NO LINT MESSAGE]]"}`;
             // change current dir for snapshot
             // https://github.com/bahmutov/snap-shot-core/pull/51
             const cwd = process.cwd();
@@ -49,13 +55,15 @@ ${output ? output : "[[NO LINT MESSAGE]]"}`;
             try {
                 process.chdir(snapshotDir);
             } catch (_error) {
-                // nope
+                return Promise.reject(_error);
             }
             try {
                 snapShot({
-                    what: snapshotOutput,
+                    // Workaround*1: https://github.com/bahmutov/snap-shot-core/issues/117
+                    what: output,
                     file: options.snapshotFileName, // aliases: file, __filename
                     specName: singleName, // or whatever name you want to give,
+                    store: (text: string) => escapeTemplateStringContent(text),
                     raiser: ({
                         value, // current value
                         expected // loaded value
@@ -63,6 +71,8 @@ ${output ? output : "[[NO LINT MESSAGE]]"}`;
                         value: any;
                         expected: any;
                     }) => {
+                        // Workaround*1: https://github.com/bahmutov/snap-shot-core/issues/117
+                        // load value should be escaped with stored value
                         assert.deepStrictEqual(value, expected);
                     },
                     ext: ".snap",
@@ -72,9 +82,12 @@ ${output ? output : "[[NO LINT MESSAGE]]"}`;
                         update: Boolean(process.env.SNAPSHOT_UPDATE)
                     }
                 });
+            } catch (error) {
+                return Promise.reject(error);
             } finally {
                 process.chdir(cwd);
             }
+            return Promise.resolve();
         });
     });
 };

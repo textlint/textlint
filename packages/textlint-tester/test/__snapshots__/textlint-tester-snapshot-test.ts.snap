@@ -6,9 +6,8 @@ This is all valid
 [[NO LINT MESSAGE]]
 `
 
-exports['This is all valid_            _Multi-line text is tested 1'] = `
-This is all valid
-            
+exports['This is all valid._Multi-line text is tested 1'] = `
+This is all valid.
 Multi-line text is tested
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [[NO OUTPUT]]
@@ -16,7 +15,7 @@ Multi-line text is tested
 [[NO LINT MESSAGE]]
 `
 
-exports['TODOstest 1'] = `
+exports['TODO: test 1'] = `
 TODO: test
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [[NO OUTPUT]]
@@ -24,9 +23,9 @@ TODO: test
 lint-message: Found TODO: 'TODO: test'
 <markdown>:1:1
        v
-    0.
+    0. 
     1. TODO: test
-    2.
+    2. 
        ^
 
 ✖ 1 problem (1 error, 0 warnings)
@@ -93,19 +92,21 @@ Try to run: $ textlint --fix [file]
 
 `
 
-exports['TODO: test 1'] = `
-TODO: test
+exports['`code` ${1122} pattern 1'] = `
+\`code\` \${1122} pattern
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[[NO OUTPUT]]
+\`code\` \${1122} pattern.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-lint-message: Found TODO: 'TODO: test'
-<markdown>:1:1
-       v
+✓ fix-message: Please add . to end of a sentence.
+<markdown>:1:23
+                            v
     0. 
-    1. TODO: test
+    1. \`code\` \${1122} pattern
     2. 
-       ^
+                            ^
 
 ✖ 1 problem (1 error, 0 warnings)
+✓ 1 fixable problem.
+Try to run: $ textlint --fix [file]
 
 `
