@@ -417,7 +417,7 @@ Please see [docs/configuring.md](docs/configuring.md) for more details.
 
 ## Integrations
 
-For more details, see <https://textlint.github.io/docs/integrations.html>
+For more details, see [integrations document](./docs/integrations.md).
 
 ### App
 
