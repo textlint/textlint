@@ -26,7 +26,7 @@
       "getting-started": {
         "title": "Getting Started with textlint"
       },
-      "integration": {
+      "integrations": {
         "title": "Integrating with Editors, Tools, etc.."
       },
       "plugin": {

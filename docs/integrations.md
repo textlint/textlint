@@ -38,11 +38,11 @@ title: Integrating with Editors, Tools, etc..
   - [Chrome: textlint-proofreader](https://chrome.google.com/webstore/detail/textlint-proofreader/hdongmdneapmhfblomidbafplpanpdmm)
   - [io-monad/textlint-chrome-extension: textlint Chrome Extension](https://github.com/io-monad/textlint-chrome-extension "io-monad/textlint-chrome-extension: textlint Chrome Extension")
 
-## Program language binding
+## Program languages
 
 - [textlintr](https://github.com/uribo/textlintr): R language package
 
 ## Other
 
 - [Pronto](https://github.com/prontolabs/pronto "Pronto"): [pronto-textlint](https://github.com/seikichi/pronto-textlint "pronto-textlint")
-- [reviewdog](https://github.com/haya14busa/reviewdog "reviewdog"): [azu/textlint-reviewdog-example](https://github.com/azu/textlint-reviewdog-example "azu/textlint-reviewdog-example: textlint + reviewdog example project")
+- [reviewdog](https://github.com/haya14busa/reviewdog "reviewdog"): See [azu/textlint-reviewdog-example](https://github.com/azu/textlint-reviewdog-example "azu/textlint-reviewdog-example: textlint + reviewdog example project")
