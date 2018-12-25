@@ -45,7 +45,7 @@
     "cross-spawn": "^6.0.5",
     "mocha": "^5.2.0",
     "pkg-to-readme": "^1.1.0",
-    "textlint-tester": "^5.0.1"
+    "textlint-tester": "^5.0.2"
   },
   "prettier": {
     "singleQuote": false,
