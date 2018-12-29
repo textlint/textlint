@@ -1,5 +1,4 @@
 import {
-    TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
