@@ -1,8 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleError, TextlintRuleErrorPadding, TextlintSourceCode } from "@textlint/types";
+import {
+    TextlintRuleContextReportFunctionArgs,
+    TextlintRuleError,
+    TextlintRuleErrorPadding,
+    TextlintSourceCode
+} from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
-import { ReportArgs } from "../task/textlint-core-task";
 import { TextlintFixCommand } from "@textlint/kernel";
 
 const assert = require("assert");
@@ -26,7 +30,9 @@ export default class SourceLocation {
     /**
      * adjust node's location with error's padding location.
      */
-    adjust(reportArgs: ReportArgs): { line: number; column: number; fix?: TextlintFixCommand } {
+    adjust(
+        reportArgs: TextlintRuleContextReportFunctionArgs
+    ): { line: number; column: number; fix?: TextlintFixCommand } {
         const { node, ruleError, ruleId } = reportArgs;
         const errorPrefix = `[${ruleId}]` || "";
         const padding = ruleError;
