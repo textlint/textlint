@@ -36,7 +36,7 @@ describe("SourceCode", () => {
         });
         it("should retrieve all text for Strong node", () => {
             const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const StrongNode: TxtNode = select.one(TEST_AST, "Strong");
+            const StrongNode: TxtNode = select.select("Strong", TEST_AST);
             const text = sourceCode.getSource(StrongNode);
             assert.strictEqual(text, "**strong**");
             assert.strictEqual(text, StrongNode.raw);
@@ -44,14 +44,14 @@ describe("SourceCode", () => {
 
         it("should retrieve retrieve all text +1 character after for  bold node", () => {
             const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const StrongNode: TxtNode = select.one(TEST_AST, "Strong");
+            const StrongNode: TxtNode = select.select("Strong", TEST_AST);
             const text = sourceCode.getSource(StrongNode, 0, 1);
             assert.strictEqual(text, "**strong**.");
         });
 
         it("should retrieve retrieve all text +1 character before for  bold node", () => {
             const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const StrongNode: TxtNode = select.one(TEST_AST, "Strong");
+            const StrongNode: TxtNode = select.select("Strong", TEST_AST);
             const text = sourceCode.getSource(StrongNode, 1, 0);
             assert.strictEqual(text, " **strong**");
         });

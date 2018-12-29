@@ -14,7 +14,11 @@ export {
     TextlintKernelPlugin
 } from "./textlint-kernel-interface";
 
-// @deprecated It will removed in the future. Use @textlint/types instead of it
+/**
+ * @deprecated These types will removed in the future. Use @textlint/types instead of it
+ * If you use these types in your rule, you should use @textlint/types for your rule.
+ * Related changes: https://github.com/textlint/textlint/pull/562
+ */
 export {
     // textlint rule interface
     TextlintRuleReporter,

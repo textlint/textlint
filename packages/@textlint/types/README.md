@@ -1,8 +1,10 @@
 # @textlint/types
 
-Type definition pacakge for textlint.
+Type definition package for textlint and textlint rule.
 
-## Type Interface
+If you import types from `@textlint/kernel` in your rule module, please use `@textlint/types` instead of it.
+
+## Types
 
 ### Rule types
 
@@ -20,6 +22,17 @@ By contrasts, textlint's rule module should not depended on `@textlint/kernel`
 - NG: Kernel module <--- Rule module
 - NG: Kernel module ---> Rule module
 
+### Source
+
+Source type includes following definition.
+
+- Abstraction layer of source code/text
+
+### Other
+
+This package also includes other utilities for typing.
+It is similar meaning with [@babel/types](https://babeljs.io/docs/en/babel-types).
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
@@ -29,14 +42,18 @@ Install with [npm](https://www.npmjs.com/):
 ## Usage
 
 ```ts
-export { TextlintSourceCode, TextlintSourceCodeArgs, TextlintSourceCodeLocation, TextlintSourceCodePosition, TextlintSourceCodeRange } from "@textlint/types";
-export { TextlintFilterRuleContext } from "@textlint/types";
-export { TextlintRuleContext } from "@textlint/types";
-export { TextlintRuleContextFixCommand } from "@textlint/types";
-export { TextlintRuleContextFixCommandGenerator } from "@textlint/types";
-export { TextlintRuleError } from "@textlint/types";
-export { TextlintRuleOptions } from "@textlint/types";
-export { TextlintRuleSeverityLevel } from "@textlint/types";
+import { TextlintSourceCode, TextlintSourceCodeArgs, TextlintSourceCodeLocation, TextlintSourceCodePosition, TextlintSourceCodeRange } from "@textlint/types";
+import { TextlintRuleContextFixCommand } from "@textlint/types";
+import { TextlintRuleContextFixCommandGenerator } from "@textlint/types";
+import { TextlintRuleError, TextlintRuleErrorPadding, TextlintRuleReportedObject } from "@textlint/types";
+import { TextlintRuleSeverityLevel } from "@textlint/types";
+import { TextlintRuleContext, TextlintRuleContextArgs, TextlintRuleContextReportFunction, TextlintRuleContextReportFunctionArgs } from "@textlint/types";
+import { TextlintRuleOptions } from "@textlint/types";
+import { TextlintRuleReporter, TextlintFixableRuleModule, TextlintRuleModule, TextlintRuleReportHandler } from "@textlint/types";
+import { TextlintFilterRuleContext, TextlintFilterRuleShouldIgnoreFunction, TextlintFilterRuleShouldIgnoreFunctionArgs } from "@textlint/types";
+import { TextlintFilterRuleModule, TextlintFilterRuleOptions, TextlintFilterRuleReporter, TextlintFilterRuleReportHandler } from "@textlint/types";
+import { TextlintPluginCreator, TextlintPluginOptions, TextlintPluginProcessor, TextlintPluginProcessorConstructor } from "@textlint/types";
+
 ```
 
 ## Changelog
