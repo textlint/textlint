@@ -26,7 +26,7 @@ Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts "npm
 
 Build source codes in `src/` and output to `lib/`.
 
-It is built by [Babel](https://babeljs.io/ "Babel") with [Latest preset](https://babeljs.io/docs/plugins/preset-latest/ "Latest preset").
+It is built by [Babel](https://babeljs.io/ "Babel") with [`env` preset](https://babeljs.io/docs/plugins/preset-env/).
 
 ### `textlint-scripts test`
 
