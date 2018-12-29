@@ -1,10 +1,12 @@
 import {
+    TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
     TextlintKernelRule,
     TextlintPluginCreator,
-    TextlintRuleModule
+    TextlintRuleModule,
+    TextlintRuleOptions
 } from "@textlint/kernel";
 
 /**
@@ -18,9 +20,12 @@ import {
  *
  * => TextlintKernelRule
  */
-export const rulesObjectToKernelRule = (
+export const rulesObjectToKernelRule: (
+    rules: { [p: string]: TextlintRuleModule },
+    rulesOption: { [p: string]: TextlintRuleOptions }
+) => TextlintKernelRule[] = (
     rules: { [index: string]: TextlintRuleModule },
-    rulesOption: { [index: string]: TextlintKernelRule["options"] }
+    rulesOption: { [index: string]: TextlintRuleOptions }
 ): TextlintKernelRule[] => {
     return Object.keys(rules).map(ruleId => {
         return {
@@ -33,7 +38,7 @@ export const rulesObjectToKernelRule = (
 
 export const filterRulesObjectToKernelRule = (
     rules: { [index: string]: TextlintFilterRuleReporter },
-    rulesOption: { [index: string]: TextlintKernelFilterRule["options"] }
+    rulesOption: { [index: string]: TextlintFilterRuleOptions }
 ): TextlintKernelFilterRule[] => {
     return Object.keys(rules).map(ruleId => {
         return {

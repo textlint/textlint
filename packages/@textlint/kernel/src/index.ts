@@ -20,6 +20,7 @@ export {
     TextlintRuleReporter,
     TextlintRuleModule,
     TextlintRuleOptions,
+    TextlintRuleSeverityLevel,
     // textlint filter rule interface
     TextlintFilterRuleReporter,
     TextlintFilterRuleOptions,
