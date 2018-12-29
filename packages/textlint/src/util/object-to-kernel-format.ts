@@ -23,10 +23,7 @@ import {
 export const rulesObjectToKernelRule: (
     rules: { [p: string]: TextlintRuleModule },
     rulesOption: { [p: string]: TextlintRuleOptions }
-) => TextlintKernelRule[] = (
-    rules: { [index: string]: TextlintRuleModule },
-    rulesOption: { [index: string]: TextlintRuleOptions }
-): TextlintKernelRule[] => {
+) => TextlintKernelRule[] = (rules, rulesOption) => {
     return Object.keys(rules).map(ruleId => {
         return {
             ruleId,
@@ -36,10 +33,10 @@ export const rulesObjectToKernelRule: (
     });
 };
 
-export const filterRulesObjectToKernelRule = (
-    rules: { [index: string]: TextlintFilterRuleReporter },
-    rulesOption: { [index: string]: TextlintFilterRuleOptions }
-): TextlintKernelFilterRule[] => {
+export const filterRulesObjectToKernelRule: (
+    rules: { [p: string]: TextlintFilterRuleReporter },
+    rulesOption: { [p: string]: TextlintFilterRuleOptions }
+) => TextlintKernelFilterRule[] = (rules, rulesOption): TextlintKernelFilterRule[] => {
     return Object.keys(rules).map(ruleId => {
         return {
             ruleId,
