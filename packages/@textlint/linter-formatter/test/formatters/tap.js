@@ -56,7 +56,7 @@ describe("formatter:tap", function() {
         });
 
         it("should return a string with line: x, column: y, severity: warning for warnings", function() {
-            code[0].messages[0].severityLevel = 1;
+            code[0].messages[0].severity = 1;
             var result = formatter(code);
             assert(result.indexOf("line: 5") !== -1);
             assert(result.indexOf("column: 10") !== -1);
