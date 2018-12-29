@@ -11,39 +11,23 @@ import { EventEmitter } from "events";
 import * as assert from "assert";
 import { AnyTxtNode } from "@textlint/ast-node-types";
 import {
-    TextlintSourceCode,
-    TextlintRuleContext,
-    TextlintRuleError,
-    TextlintRuleReporter,
     TextlintFilterRuleContext,
-    TextlintRuleOptions,
-    TextlintFilterRuleReporter,
     TextlintFilterRuleOptions,
-    TextlintRuleReportedObject
+    TextlintFilterRuleReporter,
+    TextlintRuleContext,
+    TextlintRuleContextReportFunction,
+    TextlintRuleContextReportFunctionArgs,
+    TextlintRuleError,
+    TextlintRuleOptions,
+    TextlintRuleReporter,
+    TextlintRuleReporterShouldIgnoreFunction,
+    TextlintRuleReporterShouldIgnoreFunctionArgs,
+    TextlintSourceCode
 } from "@textlint/types";
-import Bluebird = require("bluebird");
 import { TextlintFixCommand } from "../textlint-kernel-interface";
+import Bluebird = require("bluebird");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}
-
-/**
- * Ignoring Report function
- */
-/**
- * Message of ignoring
- * @typedef {Object} ReportIgnoreMessage
- * @property {string} ruleId
- * @property {number[]} range
- * @property {string} ignoringRuleId to ignore ruleId
- * "*" is special case, it match all ruleId(work as wildcard).
- */
-export interface ShouldIgnoreArgs {
-    ruleId: string;
-    range: [number, number];
-    optional: {
-        ruleId?: string;
-    };
-}
 
 export interface IgnoreReportedMessage {
     ruleId: string;
@@ -58,20 +42,6 @@ export interface IgnoreReportedMessage {
 
     ignoringRuleId: string;
 }
-
-export type ShouldIgnoreFunction = (args: ShouldIgnoreArgs) => void;
-
-/**
- * context.report function
- */
-export interface ReportArgs {
-    ruleId: string;
-    node: AnyTxtNode;
-    severity: number;
-    ruleError: TextlintRuleError | TextlintRuleReportedObject;
-}
-
-export type ReportFunction = (args: ReportArgs) => void;
 
 export interface LintReportedMessage {
     type: typeof MessageType.lint;
@@ -112,8 +82,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
 
     abstract start(): void;
 
-    createShouldIgnore(): ShouldIgnoreFunction {
-        const shouldIgnore = (args: ShouldIgnoreArgs) => {
+    createShouldIgnore(): TextlintRuleReporterShouldIgnoreFunction {
+        const shouldIgnore = (args: TextlintRuleReporterShouldIgnoreFunctionArgs) => {
             const { ruleId, range, optional } = args;
             assert(
                 typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
@@ -133,13 +103,13 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         return shouldIgnore;
     }
 
-    createReporter(sourceCode: TextlintSourceCode): ReportFunction {
+    createReporter(sourceCode: TextlintSourceCode): TextlintRuleContextReportFunction {
         const sourceLocation = new SourceLocation(sourceCode);
         /**
          * push new RuleError to results
          * @param {ReportMessage} reportArgs
          */
-        const reportFunction = (reportArgs: ReportArgs) => {
+        const reportFunction = (reportArgs: TextlintRuleContextReportFunctionArgs) => {
             const { ruleId, severity, ruleError } = reportArgs;
             debug("%s pushReport %s", ruleId, ruleError);
             const { line, column, fix } = sourceLocation.adjust(reportArgs);

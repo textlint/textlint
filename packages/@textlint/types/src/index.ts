@@ -7,16 +7,25 @@ export {
     TextlintSourceCodeRange
 } from "./Source/TextlintSourceCode";
 // RuleContext
-export { TextlintRuleContext } from "./Rule/TextlintRuleContext";
 export { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
 export { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
 export { TextlintRuleError, TextlintRuleErrorPadding, TextlintRuleReportedObject } from "./Rule/TextlintRuleError";
 export { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
 // Rule
+export {
+    TextlintRuleContext,
+    TextlintRuleContextArgs,
+    TextlintRuleContextReportFunction,
+    TextlintRuleContextReportFunctionArgs
+} from "./Rule/TextlintRuleContext";
 export { TextlintRuleOptions } from "./Rule/TextlintRuleOptions";
 export { TextlintRuleReporter, TextlintFixableRuleModule, TextlintRuleModule } from "./Rule/TextlintRuleModule";
 // Filter Rule
-export { TextlintFilterRuleContext } from "./Rule/TextlintFilterRuleContext";
+export {
+    TextlintFilterRuleContext,
+    TextlintRuleReporterShouldIgnoreFunction,
+    TextlintRuleReporterShouldIgnoreFunctionArgs
+} from "./Rule/TextlintFilterRuleContext";
 export {
     TextlintFilterRuleModule,
     TextlintFilterRuleOptions,

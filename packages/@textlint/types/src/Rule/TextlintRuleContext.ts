@@ -13,7 +13,7 @@ import * as assert from "assert";
 /**
  * context.report function
  */
-export interface ReportArgs {
+export interface TextlintRuleContextReportFunctionArgs {
     ruleId: string;
     node: TxtNode;
     severity: number;
@@ -23,7 +23,7 @@ export interface ReportArgs {
 /**
  * Rule's context.report() function
  */
-export type RuleContextReportFunction = (args: ReportArgs) => void;
+export type TextlintRuleContextReportFunction = (args: TextlintRuleContextReportFunctionArgs) => void;
 
 // instance for rule context
 const ruleFixer = new TextlintRuleContextFixCommandGenerator();
@@ -37,10 +37,10 @@ const ruleFixer = new TextlintRuleContextFixCommandGenerator();
  * @param {string} [configBaseDir]
  * @constructor
  */
-export interface RuleContextArgs {
+export interface TextlintRuleContextArgs {
     ruleId: string;
     sourceCode: TextlintSourceCode;
-    report: RuleContextReportFunction;
+    report: TextlintRuleContextReportFunction;
     configBaseDir?: string;
     severityLevel: TextlintRuleSeverityLevel;
 }
@@ -48,11 +48,11 @@ export interface RuleContextArgs {
 export class TextlintRuleContext implements BaseRuleContext {
     private _ruleId: string;
     private _sourceCode: TextlintSourceCode;
-    private _report: RuleContextReportFunction;
+    private _report: TextlintRuleContextReportFunction;
     private _configBaseDir?: string;
     private _severityLevel: number;
 
-    constructor(args: RuleContextArgs) {
+    constructor(args: TextlintRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._report = args.report;

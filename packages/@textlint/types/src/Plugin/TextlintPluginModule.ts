@@ -1,6 +1,5 @@
 // Plugin
 import { TxtParentNode } from "@textlint/ast-node-types";
-import { TextlintPluginOptions } from "@textlint/kernel";
 /**
  * textlint plugin option values is object or boolean.
  * if this option value is false, disable the plugin.

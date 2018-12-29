@@ -5,10 +5,27 @@ import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import { TextlintSourceCode } from "../Source/TextlintSourceCode";
 import { TextlintRuleError } from "./TextlintRuleError";
 import { BaseRuleContext } from "./BaseRuleContext";
-import { ShouldIgnoreArgs } from "@textlint/linter-formatter/lib/kernel/src/task/textlint-core-task";
 import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
 
-export declare type RuleReporterShouldIgnoreFunction = (args: ShouldIgnoreArgs) => void;
+/**
+ * Message of ignoring
+ * @typedef {Object} ReportIgnoreMessage
+ * @property {string} ruleId
+ * @property {number[]} range
+ * @property {string} ignoringRuleId to ignore ruleId
+ * "*" is special case, it match all ruleId(work as wildcard).
+ */
+export interface TextlintRuleReporterShouldIgnoreFunctionArgs {
+    ruleId: string;
+    range: [number, number];
+    optional: {
+        ruleId?: string;
+    };
+}
+
+export declare type TextlintRuleReporterShouldIgnoreFunction = (
+    args: TextlintRuleReporterShouldIgnoreFunctionArgs
+) => void;
 
 /**
  * Rule context object is passed to each rule as `context`
@@ -21,7 +38,7 @@ export declare type RuleReporterShouldIgnoreFunction = (args: ShouldIgnoreArgs) 
  */
 export interface FilterRuleContextArgs {
     ruleId: string;
-    ignoreReport: RuleReporterShouldIgnoreFunction;
+    ignoreReport: TextlintRuleReporterShouldIgnoreFunction;
     sourceCode: TextlintSourceCode;
     configBaseDir?: string;
     severityLevel: TextlintRuleSeverityLevel;
@@ -36,7 +53,7 @@ export interface FilterRuleContextArgs {
  */
 export class TextlintFilterRuleContext implements BaseRuleContext {
     private _ruleId: string;
-    private _ignoreReport: RuleReporterShouldIgnoreFunction;
+    private _ignoreReport: TextlintRuleReporterShouldIgnoreFunction;
     private _sourceCode: TextlintSourceCode;
     private _configBaseDir?: string;
     private _severityLevel: TextlintRuleSeverityLevel;
