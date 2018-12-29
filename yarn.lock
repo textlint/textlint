@@ -7358,6 +7358,11 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
+not@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/not/-/not-0.1.0.tgz#c9691c1746c55dcfbe54cbd8bd4ff041bc2b519d"
+  integrity sha1-yWkcF0bFXc++VMvYvU/wQbwrUZ0=
+
 now-and-later@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/now-and-later/-/now-and-later-2.0.0.tgz#bc61cbb456d79cb32207ce47ca05136ff2e7d6ee"
@@ -10902,7 +10907,7 @@ unique-string@^1.0.0:
   dependencies:
     crypto-random-string "^1.0.0"
 
-unist-util-is@^2.1.1:
+unist-util-is@^2.1.1, unist-util-is@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/unist-util-is/-/unist-util-is-2.1.2.tgz#1193fa8f2bfbbb82150633f3a8d2eb9a1c1d55db"
 
@@ -10928,13 +10933,17 @@ unist-util-remove-position@^1.0.0:
   dependencies:
     unist-util-visit "^1.1.0"
 
-unist-util-select@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/unist-util-select/-/unist-util-select-1.5.0.tgz#a93c2be8c0f653827803b81331adec2aa24cd933"
+unist-util-select@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/unist-util-select/-/unist-util-select-2.0.0.tgz#226b1a673eaf255302133ff94e450148a021c2c6"
+  integrity sha512-fRQqhrpgRIwdaeeZwbgDO84VyiyQP6cOcbzCao4saXuMuP3fLiWkssEI+o71OC2mASWqa9JEEYiGOV8EqpStPw==
   dependencies:
     css-selector-parser "^1.1.0"
-    debug "^2.2.0"
+    debug "^3.1.0"
+    not "^0.1.0"
     nth-check "^1.0.1"
+    unist-util-is "^2.1.2"
+    zwitch "^1.0.3"
 
 unist-util-stringify-position@^1.0.0, unist-util-stringify-position@^1.1.1:
   version "1.1.2"
@@ -11547,3 +11556,8 @@ yn@^2.0.0:
 zlibjs@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/zlibjs/-/zlibjs-0.2.0.tgz#ae20f06243293d85c255563189f9b12f5b3ba1a0"
+
+zwitch@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/zwitch/-/zwitch-1.0.3.tgz#159fae4b3f737db1e42bf321d3423e4c96688a18"
+  integrity sha512-aynRpmJDw7JIq6X4NDWJoiK1yVSiG57ArWSg4HLC1SFupX5/bo0Cf4jpX0ifwuzBfxpYBuNSyvMlWNNRuy3cVA==

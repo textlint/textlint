@@ -1,6 +1,6 @@
-import * as assert from "power-assert";
+import * as assert from "assert";
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
-import { TextlintSourceCode } from "@textlint/types";
+import { TextlintSourceCode } from "../../src/";
 
 const select = require("unist-util-select");
 const { parse } = require("@textlint/markdown-to-ast");

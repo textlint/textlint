@@ -55,7 +55,9 @@
     "rimraf": "^2.6.2",
     "ts-node": "^7.0.1",
     "ts-node-test-register": "^4.0.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "unist-util-select": "^2.0.0",
+    "@textlint/markdown-to-ast": "^6.0.9"
   },
   "publishConfig": {
     "access": "public"
