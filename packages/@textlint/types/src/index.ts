@@ -19,7 +19,12 @@ export {
     TextlintRuleContextReportFunctionArgs
 } from "./Rule/TextlintRuleContext";
 export { TextlintRuleOptions } from "./Rule/TextlintRuleOptions";
-export { TextlintRuleReporter, TextlintFixableRuleModule, TextlintRuleModule } from "./Rule/TextlintRuleModule";
+export {
+    TextlintRuleReporter,
+    TextlintFixableRuleModule,
+    TextlintRuleModule,
+    TextlintRuleReportHandler
+} from "./Rule/TextlintRuleModule";
 // Filter Rule
 export {
     TextlintFilterRuleContext,
@@ -29,7 +34,8 @@ export {
 export {
     TextlintFilterRuleModule,
     TextlintFilterRuleOptions,
-    TextlintFilterRuleReporter
+    TextlintFilterRuleReporter,
+    TextlintFilterRuleReportHandler
 } from "./Rule/TextlintFilterRuleModule";
 // Plugin
 export {
