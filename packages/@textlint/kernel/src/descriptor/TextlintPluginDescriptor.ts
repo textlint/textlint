@@ -1,12 +1,7 @@
 "use strict";
-import {
-    TextlintKernelPlugin,
-    TextlintPluginOptions,
-    TextlintPluginProcessor,
-    TextlintPluginProcessorConstructor
-} from "../textlint-kernel-interface";
+import { TextlintKernelPlugin } from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
-
+import { TextlintPluginOptions, TextlintPluginProcessor, TextlintPluginProcessorConstructor } from "@textlint/types";
 import deepEqual = require("deep-equal");
 
 /**

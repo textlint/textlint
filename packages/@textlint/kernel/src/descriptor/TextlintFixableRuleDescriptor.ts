@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import { getFixer } from "./rule-creator-helper";
-import { TextlintRuleReporter } from "../textlint-kernel-interface";
 import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor";
+import { TextlintRuleReporter } from "@textlint/types";
 
 /**
  * Textlint Fixable Rule Descriptor.

@@ -13,8 +13,7 @@
   "author": "azu",
   "files": [
     "bin/",
-    "lib/",
-    "src/"
+    "lib/"
   ],
   "main": "lib/kernel/src/index.js",
   "typings": "lib/kernel/src/index.d.ts",
@@ -34,6 +33,7 @@
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.0.3",
+    "@textlint/types": "^1.0.0",
     "@textlint/ast-traverse": "^2.0.9",
     "@textlint/feature-flag": "^3.0.5",
     "@types/bluebird": "^3.5.18",

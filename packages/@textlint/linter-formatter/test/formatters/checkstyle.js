@@ -42,7 +42,7 @@ describe("formatter:checkstyle", function() {
         });
 
         it("should return a string in the format filename: line x, col y, Warning - z for warnings", function() {
-            code[0].messages[0].severity = 1;
+            code[0].messages[0].severityLevel = 1;
             var result = formatter(code);
             assert.equal(
                 result,

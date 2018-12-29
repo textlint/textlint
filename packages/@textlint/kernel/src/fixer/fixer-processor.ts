@@ -1,18 +1,15 @@
 // LICENSE : MIT
 "use strict";
 
+import { TextlintSourceCode } from "@textlint/types";
+
 const debug = require("debug")("textlint:fixer-processor");
 import * as assert from "assert";
 import FixerTask from "../task/fixer-task";
-import SourceCode from "../core/source-code";
 import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
-import {
-    TextlintFixResult,
-    TextlintKernelConstructorOptions,
-    TextlintMessage,
-    TextlintPluginProcessor
-} from "../textlint-kernel-interface";
+import { TextlintFixResult, TextlintKernelConstructorOptions, TextlintMessage } from "../textlint-kernel-interface";
+import { TextlintPluginProcessor } from "@textlint/types";
 import MessageProcessManager from "../messages/MessageProcessManager";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
 
@@ -21,7 +18,7 @@ export interface FixerProcessorProcessArgs {
     configBaseDir?: string;
     ruleDescriptors: TextlintRuleDescriptors;
     filterRules: TextlintFilterRuleDescriptors;
-    sourceCode: SourceCode;
+    sourceCode: TextlintSourceCode;
 }
 
 export default class FixerProcessor {
@@ -69,7 +66,7 @@ export default class FixerProcessor {
         const fixerProcessList = ruleDescriptors.fixableDescriptors.map(ruleDescriptor => {
             return (sourceText: string): Promise<string> => {
                 // create new SourceCode object
-                const newSourceCode = new SourceCode({
+                const newSourceCode = new TextlintSourceCode({
                     text: sourceText,
                     ast: preProcess(sourceText, sourceCode.filePath),
                     filePath: resultFilePath,

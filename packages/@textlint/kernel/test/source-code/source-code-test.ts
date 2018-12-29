@@ -1,13 +1,13 @@
-import SourceCode from "../../src/core/source-code";
 import * as assert from "power-assert";
 import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import { TextlintSourceCode } from "@textlint/types";
 
 const select = require("unist-util-select");
 const { parse } = require("@textlint/markdown-to-ast");
 const TEST_TEXT = "This is **strong**.";
 const TEST_AST = parse(TEST_TEXT);
 const createSourceCode = (text: string, ast: TxtParentNode) => {
-    return new SourceCode({
+    return new TextlintSourceCode({
         text: text,
         ast: ast,
         ext: ".md"

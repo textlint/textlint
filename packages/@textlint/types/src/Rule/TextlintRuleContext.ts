@@ -2,28 +2,36 @@
 "use strict";
 
 import { BaseRuleContext } from "./BaseRuleContext";
+import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
+import { TextlintRuleContextFixCommandGenerator } from "./TextlintRuleContextFixCommandGenerator";
+import { TextlintRuleError, TextlintRuleReportedObject } from "./TextlintRuleError";
+import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
+import { TextlintSourceCode } from "../Source/TextlintSourceCode";
 
-const assert = require("assert");
-import { TxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
-import RuleFixer, { IntermediateFixCommand } from "../fixer/rule-fixer";
-import RuleError from "./rule-error";
-import SeverityLevel from "../shared/type/SeverityLevel";
-import { getSeverity } from "../shared/rule-severity";
-import SourceCode from "./source-code";
-import { TextlintRuleOptions } from "../textlint-kernel-interface";
-import { ReportFunction } from "../task/textlint-core-task";
-// instance for rule context
-const ruleFixer = new RuleFixer();
+import * as assert from "assert";
 
 /**
- * This callback is displayed as a global member.
- * @callback ReportCallback
- * @param {ReportMessage} message
+ * context.report function
  */
+export interface ReportArgs {
+    ruleId: string;
+    node: TxtNode;
+    severity: number;
+    ruleError: TextlintRuleError | TextlintRuleReportedObject;
+}
+
+/**
+ * Rule's context.report() function
+ */
+export type RuleContextReportFunction = (args: ReportArgs) => void;
+
+// instance for rule context
+const ruleFixer = new TextlintRuleContextFixCommandGenerator();
+
 /**
  * Rule context object is passed to each rule as `context`
  * @param {string} ruleId
- * @param {SourceCode} sourceCode
+ * @param {TextlintSourceCode} sourceCode
  * @param {ReportCallback} report
  * @param {Object|boolean|undefined} ruleOptions
  * @param {string} [configBaseDir]
@@ -31,50 +39,26 @@ const ruleFixer = new RuleFixer();
  */
 export interface RuleContextArgs {
     ruleId: string;
-    sourceCode: SourceCode;
-    report: ReportFunction;
-    ruleOptions?: TextlintRuleOptions;
+    sourceCode: TextlintSourceCode;
+    report: RuleContextReportFunction;
     configBaseDir?: string;
+    severityLevel: TextlintRuleSeverityLevel;
 }
 
-/**
- * Object version of RuleError
- * It is un-document way
- *
- * report(node, {
- *   message: ""
- * })
- */
-export interface RuleReportedObject {
-    line?: number;
-    column?: number;
-    index?: number;
-    fix?: IntermediateFixCommand;
-    message: string;
-    severity?: number;
-
-    [index: string]: any;
-}
-
-export const createFreezedRuleContext = (args: RuleContextArgs) => {
-    return Object.freeze(new RuleContext(args));
-};
-
-export default class RuleContext implements BaseRuleContext {
+export class TextlintRuleContext implements BaseRuleContext {
     private _ruleId: string;
-    private _sourceCode: SourceCode;
-    private _report: ReportFunction;
-    private _ruleOptions?: TextlintRuleOptions;
+    private _sourceCode: TextlintSourceCode;
+    private _report: RuleContextReportFunction;
     private _configBaseDir?: string;
-    private _severity: number;
+    private _severityLevel: number;
 
     constructor(args: RuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._report = args.report;
-        this._ruleOptions = args.ruleOptions;
         this._configBaseDir = args.configBaseDir;
-        this._severity = getSeverity(this._ruleOptions);
+        this._severityLevel = args.severityLevel;
+        Object.freeze(this);
     }
 
     /**
@@ -85,8 +69,8 @@ export default class RuleContext implements BaseRuleContext {
         return this._ruleId;
     }
 
-    get severity() {
-        return this._severity;
+    get severityLevel() {
+        return this._severityLevel;
     }
 
     /**
@@ -102,7 +86,7 @@ export default class RuleContext implements BaseRuleContext {
      * @type {RuleError}
      */
     get RuleError() {
-        return RuleError;
+        return TextlintRuleError;
     }
 
     /**
@@ -116,16 +100,16 @@ export default class RuleContext implements BaseRuleContext {
     /**
      * report function that is called in a rule
      */
-    report = (node: TxtNode, ruleError: RuleError | RuleReportedObject, _shouldNotUsed?: any) => {
-        assert(!(node instanceof RuleError), "1st argument should be node. Usage: `report(node, ruleError);`");
+    report = (node: TxtNode, ruleError: TextlintRuleError | TextlintRuleReportedObject, _shouldNotUsed?: any) => {
+        assert(!(node instanceof TextlintRuleError), "1st argument should be node. Usage: `report(node, ruleError);`");
         assert(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
-        if (ruleError instanceof RuleError) {
+        if (ruleError instanceof TextlintRuleError) {
             // severity come from `.textlintrc` option like `{ "<rule-name>" : { serverity: "warning" } } `
-            this._report({ ruleId: this._ruleId, node, severity: this._severity, ruleError });
+            this._report({ ruleId: this._ruleId, node, severity: this._severityLevel, ruleError });
         } else {
-            const ruleReportedObject: RuleReportedObject = ruleError;
+            const ruleReportedObject: TextlintRuleReportedObject = ruleError;
             // severity come from report arguments like `report(node, { severity: 1 })`
-            const level = ruleReportedObject.severity || SeverityLevel.error;
+            const level = ruleReportedObject.severity || TextlintRuleSeverityLevel.error;
             this._report({ ruleId: this._ruleId, node, severity: level, ruleError: ruleReportedObject });
         }
     };

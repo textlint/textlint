@@ -98,7 +98,7 @@ describe("formatter:stylish", function() {
         });
 
         it("should return a string in the correct format for warnings", function() {
-            code[0].messages[0].severity = 1;
+            code[0].messages[0].severityLevel = 1;
             var result = formatter(code);
             assert.equal(
                 result,

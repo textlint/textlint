@@ -53,7 +53,7 @@ describe("formatter:compact", function() {
         });
 
         it("should return a string in the format filename: line x, col y, Warning - z for warnings", function() {
-            code[0].messages[0].severity = 1;
+            code[0].messages[0].severityLevel = 1;
             var result = formatter(code);
             assert.equal(result, "foo.js: line 5, col 10, Warning - Unexpected foo. (foo)\n\n1 problem");
         });

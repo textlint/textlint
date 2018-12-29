@@ -1,53 +1,12 @@
 // rule config
-import { TxtNode, TxtNodeType } from "@textlint/ast-node-types";
-import { SeverityLevelTypes } from "./shared/type/SeverityLevel";
-import RuleContext from "./core/rule-context";
-import FilterRuleContext from "./core/filter-rule-context";
-/**
- * Rule reporter function
- */
-export type TextlintRuleReporter = (
-    context: Readonly<RuleContext>,
-    options?: TextlintRuleOptions
-) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
-export type TextlintFixableRuleModule = { linter: TextlintRuleReporter; fixer: TextlintRuleReporter };
-/**
- * module.export = reporter | { linter, fixer }
- */
-export type TextlintRuleModule = TextlintRuleReporter | TextlintFixableRuleModule;
-/**
- * Filter rule reporter function
- */
-export type TextlintFilterRuleReporter = (
-    context: Readonly<FilterRuleContext>,
-    options?: TextlintFilterRuleOptions
-) => { [P in TxtNodeType]?: (node: TxtNode) => void | Promise<any> };
-
-/**
- * textlint rule option values is object or boolean.
- * if this option value is false, disable the rule.
- */
-export type TextlintRuleOptions = {
-    [index: string]: any;
-
-    severity?: SeverityLevelTypes;
-};
-
-/**
- * textlint filter rule option values is object or boolean.
- * if this option value is false, disable the filter rule.
- */
-export type TextlintFilterRuleOptions = {
-    [index: string]: any;
-};
-
-/**
- * textlint plugin option values is object or boolean.
- * if this option value is false, disable the plugin.
- */
-export type TextlintPluginOptions = {
-    [index: string]: any;
-};
+import {
+    TextlintFilterRuleOptions,
+    TextlintFilterRuleReporter,
+    TextlintPluginCreator,
+    TextlintPluginOptions,
+    TextlintRuleModule,
+    TextlintRuleOptions
+} from "@textlint/types";
 
 export interface TextlintKernelConstructorOptions {
     /**
@@ -83,41 +42,6 @@ export interface TextlintConfigObject {
      * quite options
      */
     quiet?: boolean;
-}
-
-// Plugin
-export interface TextlintPluginProcessorConstructor extends Function {
-    new (options?: TextlintPluginOptions): TextlintPluginProcessor;
-
-    /**
-     * Should defined `availableExtensions()` as instance method instead of static method.
-     * @deprecated textlint@11+
-     * @see https://github.com/textlint/textlint/issues/531
-     */
-    availableExtensions?(): Array<string>;
-}
-
-export declare class TextlintPluginProcessor {
-    constructor(options?: TextlintPluginOptions);
-
-    /**
-     * Return available extensions for this plugin.
-     * This extension should start with `.`(dot).
-     * Example is [".md", ".mkd"]
-     */
-    availableExtensions(): Array<string>;
-
-    processor(
-        extension: string
-    ): {
-        preProcess(text: string, filePath?: string): TxtNode;
-        postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string };
-    };
-}
-
-// textlint plugin module should export this interface
-export interface TextlintPluginCreator {
-    Processor: TextlintPluginProcessorConstructor;
 }
 
 export interface TextlintKernelPlugin {

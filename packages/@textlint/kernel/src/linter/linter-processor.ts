@@ -3,21 +3,17 @@
 import * as assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
-import {
-    TextlintKernelConstructorOptions,
-    TextlintPluginProcessor,
-    TextlintResult
-} from "../textlint-kernel-interface";
+import { TextlintKernelConstructorOptions, TextlintResult } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
-import SourceCode from "../core/source-code";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
+import { TextlintSourceCode, TextlintPluginProcessor } from "@textlint/types";
 
 export interface LinterProcessorArgs {
     config: TextlintKernelConstructorOptions;
     configBaseDir?: string;
     ruleDescriptors: TextlintRuleDescriptors;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
-    sourceCode: SourceCode;
+    sourceCode: TextlintSourceCode;
 }
 
 export default class LinterProcessor {

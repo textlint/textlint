@@ -53,7 +53,7 @@ describe("formatter:junit", function() {
         });
 
         it("should return a single <testcase> with a message and the line and col number in the body (warning)", function() {
-            code[0].messages[0].severity = 1;
+            code[0].messages[0].severityLevel = 1;
             var result = formatter(code);
             assert.equal(
                 result.replace(/\n/g, ""),

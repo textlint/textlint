@@ -54,7 +54,7 @@ describe("formatter:compact", function() {
         });
 
         it("should return a string in the format filename:line:column: warning [Warning/rule_id]", function() {
-            code[0].messages[0].severity = 1;
+            code[0].messages[0].severityLevel = 1;
             var result = formatter(code);
             assert.equal(result, "foo.js:5:10: Unexpected foo. [Warning/foo]\n\n1 problem");
         });

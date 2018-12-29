@@ -1,12 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import { getFilter } from "./rule-creator-helper";
-import {
-    TextlintFilterRuleOptions,
-    TextlintFilterRuleReporter,
-    TextlintKernelFilterRule
-} from "../textlint-kernel-interface";
+import { TextlintKernelFilterRule } from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
+import { TextlintFilterRuleOptions, TextlintFilterRuleReporter } from "@textlint/types";
 import deepEqual = require("deep-equal");
 
 /**
@@ -53,7 +50,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
         }
     }
 
-    get rawOptions() {
+    get rawOptions(): undefined | boolean | TextlintFilterRuleOptions {
         return this.kernelFilterRule.options;
     }
 

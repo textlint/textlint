@@ -1,12 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import {
-    TextlintKernelRule,
-    TextlintRuleModule,
-    TextlintRuleOptions,
-    TextlintRuleReporter
-} from "../textlint-kernel-interface";
+import { TextlintKernelRule } from "../textlint-kernel-interface";
 import { assertRuleShape, getLinter } from "./rule-creator-helper";
+import { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "@textlint/types";
 import deepEqual = require("deep-equal");
 
 /**
@@ -58,7 +54,7 @@ export class TextlintLintableRuleDescriptor {
         }
     }
 
-    get rawOptions() {
+    get rawOptions(): boolean | undefined | TextlintRuleOptions {
         return this.textlintKernelRule.options;
     }
 

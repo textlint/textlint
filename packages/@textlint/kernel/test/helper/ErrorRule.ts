@@ -1,9 +1,7 @@
 // MIT © 2017 azu
 
-import { TextlintRuleReporter } from "../../src/textlint-kernel-interface";
 import { TxtNode } from "@textlint/ast-node-types";
-import RuleContext from "../../src/core/rule-context";
-import { TextlintRuleModule } from "../../src";
+import { TextlintRuleContext, TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
 export interface ReportOptions {
     errors?: {
@@ -14,7 +12,10 @@ export interface ReportOptions {
     }[];
 }
 
-export const report: TextlintRuleReporter = (context: Readonly<RuleContext>, options: ReportOptions | any = {}) => {
+export const report: TextlintRuleReporter = (
+    context: Readonly<TextlintRuleContext>,
+    options: ReportOptions | any = {}
+) => {
     const errors = options.errors || [];
     const { Syntax, RuleError, report, fixer } = context;
     return {

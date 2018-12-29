@@ -1,7 +1,15 @@
+import { TextlintRuleError } from "./TextlintRuleError";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
-import RuleError from "./rule-error";
+import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
 
+/**
+ * This Base class is internal.
+ * @internal
+ */
 export abstract class BaseRuleContext {
+    /**
+     * Return rule id
+     */
     abstract get id(): string;
 
     /**
@@ -11,10 +19,15 @@ export abstract class BaseRuleContext {
     abstract get Syntax(): typeof ASTNodeTypes;
 
     /**
+     * Return rule "severity" level
+     */
+    abstract get severityLevel(): TextlintRuleSeverityLevel;
+
+    /**
      * CustomError object
      * @type {RuleError}
      */
-    abstract get RuleError(): typeof RuleError;
+    abstract get RuleError(): typeof TextlintRuleError;
 
     /**
      * get file path current processing.

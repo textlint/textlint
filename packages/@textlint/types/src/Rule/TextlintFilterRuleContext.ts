@@ -1,22 +1,19 @@
 // LICENSE : MIT
 "use strict";
-import SourceCode from "./source-code";
+import * as assert from "assert";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
-import RuleError from "./rule-error";
-import { ShouldIgnoreFunction } from "../task/textlint-core-task";
+import { TextlintSourceCode } from "../Source/TextlintSourceCode";
+import { TextlintRuleError } from "./TextlintRuleError";
 import { BaseRuleContext } from "./BaseRuleContext";
+import { ShouldIgnoreArgs } from "@textlint/linter-formatter/lib/kernel/src/task/textlint-core-task";
+import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
 
-const assert = require("assert");
+export declare type RuleReporterShouldIgnoreFunction = (args: ShouldIgnoreArgs) => void;
 
-/**
- * This callback is displayed as a global member.
- * @callback ReportCallback
- * @param {ReportMessage} message
- */
 /**
  * Rule context object is passed to each rule as `context`
  * @param {string} ruleId
- * @param {SourceCode} sourceCode
+ * @param {TextlintSourceCode} sourceCode
  * @param {ReportCallback} report
  * @param {Object|boolean|undefined} ruleOptions
  * @param {string} [configBaseDir]
@@ -24,33 +21,33 @@ const assert = require("assert");
  */
 export interface FilterRuleContextArgs {
     ruleId: string;
-    ignoreReport: ShouldIgnoreFunction;
-    sourceCode: SourceCode;
+    ignoreReport: RuleReporterShouldIgnoreFunction;
+    sourceCode: TextlintSourceCode;
     configBaseDir?: string;
+    severityLevel: TextlintRuleSeverityLevel;
 }
-
-export const createFreezedFilterRuleContext = (args: FilterRuleContextArgs) => {
-    return Object.freeze(new FilterRuleContext(args));
-};
 
 /**
  * Rule context object is passed to each rule as `context`
- * @param {string} ruleId
- * @param {SourceCode} sourceCode
- * @param {function(ShouldIgnoreArgs)} ignoreReport
+ * @param ruleId
+ * @param sourceCode
+ * @param ignoreReport shouldIgnore function
  * @constructor
  */
-export default class FilterRuleContext implements BaseRuleContext {
+export class TextlintFilterRuleContext implements BaseRuleContext {
     private _ruleId: string;
-    private _ignoreReport: ShouldIgnoreFunction;
-    private _sourceCode: SourceCode;
+    private _ignoreReport: RuleReporterShouldIgnoreFunction;
+    private _sourceCode: TextlintSourceCode;
     private _configBaseDir?: string;
+    private _severityLevel: TextlintRuleSeverityLevel;
 
     constructor(args: FilterRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._ignoreReport = args.ignoreReport;
         this._configBaseDir = args.configBaseDir;
+        this._severityLevel = args.severityLevel;
+        Object.freeze(this);
     }
 
     /**
@@ -59,6 +56,10 @@ export default class FilterRuleContext implements BaseRuleContext {
      */
     get id() {
         return this._ruleId;
+    }
+
+    get severityLevel() {
+        return this._severityLevel;
     }
 
     /**
@@ -74,7 +75,7 @@ export default class FilterRuleContext implements BaseRuleContext {
      * @type {RuleError}
      */
     get RuleError() {
-        return RuleError;
+        return TextlintRuleError;
     }
 
     shouldIgnore = (range: [number, number], optional = {}) => {

@@ -11,8 +11,11 @@ export {
     // Kernel rule/filter/plugin format
     TextlintKernelRule,
     TextlintKernelFilterRule,
-    TextlintKernelPlugin,
-    // Notes: Following interface will be separated module in the future.
+    TextlintKernelPlugin
+} from "./textlint-kernel-interface";
+
+// @deprecated It will removed in the future. Use @textlint/types instead of it
+export {
     // textlint rule interface
     TextlintRuleReporter,
     TextlintRuleModule,
@@ -25,4 +28,4 @@ export {
     TextlintPluginOptions,
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
-} from "./textlint-kernel-interface";
+} from "@textlint/types";

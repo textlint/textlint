@@ -1,16 +1,6 @@
 import * as assert from "assert";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintSourceCodeRange } from "@textlint/types";
-
-/**
- * Fix Command object has `range` and `text`.
- * `IntermediateFixCommand` has also `isAbsolute` flag value.
- */
-export interface IntermediateFixCommand {
-    text: string;
-    range: number[];
-    isAbsolute: boolean;
-}
+import { TextlintSourceCodeRange } from "../Source/TextlintSourceCode";
 
 /**
  * Creates a fix command that inserts text at the specified index in the source text.
@@ -51,7 +41,7 @@ function insertTextAtAbsolute(index: number, text: string) {
  * See {@link SourceLocation} class for more detail.
  * @constructor
  */
-export default class RuleFixer {
+export class TextlintRuleContextFixCommandGenerator {
     /**
      * Creates a fix command that inserts text after the given node or token.
      * The fix is not applied until applyFixes() is called.

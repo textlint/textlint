@@ -6,7 +6,7 @@ const assert = require("assert");
 import { TextlintKernel } from "../src/textlint-kernel";
 import { errorRule } from "./helper/ErrorRule";
 import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin";
-import SeverityLevel from "../src/shared/type/SeverityLevel";
+import { TextlintRuleSeverityLevel } from "@textlint/types";
 
 /**
  * assert: TextlintMessage must have these properties
@@ -19,9 +19,9 @@ const assertMessage = (message: TextlintMessage) => {
     assert.strictEqual(typeof message.line, "number");
     assert.strictEqual(typeof message.column, "number");
     assert.ok(
-        SeverityLevel.info === message.severity ||
-            message.severity === SeverityLevel.warning ||
-            message.severity === SeverityLevel.error
+        TextlintRuleSeverityLevel.info === message.severity ||
+            message.severity === TextlintRuleSeverityLevel.warning ||
+            message.severity === TextlintRuleSeverityLevel.error
     );
 };
 
