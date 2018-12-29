@@ -15,7 +15,7 @@ import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
  * @property {string} ignoringRuleId to ignore ruleId
  * "*" is special case, it match all ruleId(work as wildcard).
  */
-export interface TextlintRuleReporterShouldIgnoreFunctionArgs {
+export interface TextlintFilterRuleShouldIgnoreFunctionArgs {
     ruleId: string;
     range: [number, number];
     optional: {
@@ -23,9 +23,7 @@ export interface TextlintRuleReporterShouldIgnoreFunctionArgs {
     };
 }
 
-export declare type TextlintRuleReporterShouldIgnoreFunction = (
-    args: TextlintRuleReporterShouldIgnoreFunctionArgs
-) => void;
+export declare type TextlintFilterRuleShouldIgnoreFunction = (args: TextlintFilterRuleShouldIgnoreFunctionArgs) => void;
 
 /**
  * Rule context object is passed to each rule as `context`
@@ -38,7 +36,7 @@ export declare type TextlintRuleReporterShouldIgnoreFunction = (
  */
 export interface FilterRuleContextArgs {
     ruleId: string;
-    ignoreReport: TextlintRuleReporterShouldIgnoreFunction;
+    ignoreReport: TextlintFilterRuleShouldIgnoreFunction;
     sourceCode: TextlintSourceCode;
     configBaseDir?: string;
     severityLevel: TextlintRuleSeverityLevel;
@@ -53,7 +51,7 @@ export interface FilterRuleContextArgs {
  */
 export class TextlintFilterRuleContext implements BaseRuleContext {
     private _ruleId: string;
-    private _ignoreReport: TextlintRuleReporterShouldIgnoreFunction;
+    private _ignoreReport: TextlintFilterRuleShouldIgnoreFunction;
     private _sourceCode: TextlintSourceCode;
     private _configBaseDir?: string;
     private _severityLevel: TextlintRuleSeverityLevel;

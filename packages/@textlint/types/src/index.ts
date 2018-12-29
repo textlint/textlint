@@ -23,8 +23,8 @@ export { TextlintRuleReporter, TextlintFixableRuleModule, TextlintRuleModule } f
 // Filter Rule
 export {
     TextlintFilterRuleContext,
-    TextlintRuleReporterShouldIgnoreFunction,
-    TextlintRuleReporterShouldIgnoreFunctionArgs
+    TextlintFilterRuleShouldIgnoreFunction,
+    TextlintFilterRuleShouldIgnoreFunctionArgs
 } from "./Rule/TextlintFilterRuleContext";
 export {
     TextlintFilterRuleModule,

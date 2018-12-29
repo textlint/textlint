@@ -20,8 +20,8 @@ import {
     TextlintRuleError,
     TextlintRuleOptions,
     TextlintRuleReporter,
-    TextlintRuleReporterShouldIgnoreFunction,
-    TextlintRuleReporterShouldIgnoreFunctionArgs,
+    TextlintFilterRuleShouldIgnoreFunction,
+    TextlintFilterRuleShouldIgnoreFunctionArgs,
     TextlintSourceCode
 } from "@textlint/types";
 import { TextlintFixCommand } from "../textlint-kernel-interface";
@@ -82,8 +82,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
 
     abstract start(): void;
 
-    createShouldIgnore(): TextlintRuleReporterShouldIgnoreFunction {
-        const shouldIgnore = (args: TextlintRuleReporterShouldIgnoreFunctionArgs) => {
+    createShouldIgnore(): TextlintFilterRuleShouldIgnoreFunction {
+        const shouldIgnore = (args: TextlintFilterRuleShouldIgnoreFunctionArgs) => {
             const { ruleId, range, optional } = args;
             assert(
                 typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
