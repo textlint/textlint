@@ -349,8 +349,8 @@ describe("markdown-parser", function() {
         });
     });
     /*
-        *text*
-    */
+     *text*
+     */
     context("Node type is Emphasis", function() {
         var AST, rawValue, text;
         beforeEach(function() {

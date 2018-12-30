@@ -25,9 +25,11 @@ function addMarkEachLine(mark: string, text: any) {
         return "\n";
     }
     const lines = text.split("\n");
-    const markedLines = lines.filter((line: string) => line.length > 0).map((line: string) => {
-        return mark + line;
-    });
+    const markedLines = lines
+        .filter((line: string) => line.length > 0)
+        .map((line: string) => {
+            return mark + line;
+        });
     return `${markedLines.join("\n")}\n`;
 }
 
