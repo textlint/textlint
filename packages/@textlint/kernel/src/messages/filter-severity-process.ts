@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleSeverityLevel } from "@textlint/types";
-import { TextlintKernelConstructorOptions, TextlintMessage } from "../textlint-kernel-interface";
+import { TextlintRuleSeverityLevel, TextlintMessage } from "@textlint/types";
+import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 
 /**
  * Filter messages by their severity.

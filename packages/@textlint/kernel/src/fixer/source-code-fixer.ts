@@ -1,5 +1,4 @@
-import { TextlintFixCommand, TextlintMessage } from "../textlint-kernel-interface";
-import { TextlintSourceCode } from "@textlint/types";
+import { TextlintMessageFixCommand, TextlintMessage, TextlintSourceCode } from "@textlint/types";
 
 const debug = require("debug")("textlint:source-code-fixer");
 
@@ -27,7 +26,7 @@ function clone(object: any) {
 }
 
 export interface TextLintMessageFixable extends TextlintMessage {
-    fix: TextlintFixCommand;
+    fix: TextlintMessageFixCommand;
 }
 
 /**

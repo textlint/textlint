@@ -22,9 +22,9 @@ import {
     TextlintRuleReporter,
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs,
-    TextlintSourceCode
+    TextlintSourceCode,
+    TextlintMessageFixCommand
 } from "@textlint/types";
-import { TextlintFixCommand } from "../textlint-kernel-interface";
 import Bluebird = require("bluebird");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}
@@ -52,7 +52,7 @@ export interface LintReportedMessage {
     line: number; // start with 1(1-based line number)
     column: number; // start with 1(1-based column number)
     severity: number; // it's for compatible ESLint formatter
-    fix?: TextlintFixCommand;
+    fix?: TextlintMessageFixCommand;
 }
 
 /**

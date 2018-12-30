@@ -8,8 +8,8 @@ import * as assert from "assert";
 import FixerTask from "../task/fixer-task";
 import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
-import { TextlintFixResult, TextlintKernelConstructorOptions, TextlintMessage } from "../textlint-kernel-interface";
-import { TextlintPluginProcessor } from "@textlint/types";
+import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
+import { TextlintFixResult, TextlintMessage, TextlintPluginProcessor } from "@textlint/types";
 import MessageProcessManager from "../messages/MessageProcessManager";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
 

@@ -7,7 +7,7 @@ import {
     TextlintSourceCode
 } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintFixCommand } from "@textlint/kernel";
+import { TextlintMessageFixCommand } from "@textlint/kernel";
 
 const assert = require("assert");
 const ObjectAssign = require("object-assign");
@@ -32,7 +32,7 @@ export default class SourceLocation {
      */
     adjust(
         reportArgs: TextlintRuleContextReportFunctionArgs
-    ): { line: number; column: number; fix?: TextlintFixCommand } {
+    ): { line: number; column: number; fix?: TextlintMessageFixCommand } {
         const { node, ruleError, ruleId } = reportArgs;
         const errorPrefix = `[${ruleId}]` || "";
         const padding = ruleError;

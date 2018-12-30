@@ -11,12 +11,8 @@ import filterIgnoredProcess from "./messages/filter-ignored-process";
 import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
-import {
-    TextlintFixResult,
-    TextlintKernelConstructorOptions,
-    TextlintKernelOptions,
-    TextlintResult
-} from "./textlint-kernel-interface";
+import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface";
+import { TextlintResult, TextlintFixResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCode } from "@textlint/types";
 

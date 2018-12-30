@@ -44,3 +44,11 @@ export {
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
 } from "./Plugin/TextlintPluginModule";
+// Output message from textlint
+// This types is come from output of textlint lint results
+export {
+    TextlintResult,
+    TextlintFixResult,
+    TextlintMessage,
+    TextlintMessageFixCommand
+} from "./Message/TextlintResult";
