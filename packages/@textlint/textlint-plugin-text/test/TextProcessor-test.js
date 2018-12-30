@@ -13,7 +13,7 @@ const createTextlint = (options = true) => {
             text: options
         }
     );
-    textlint.setupRules({ "no-todo": require("textlint-rule-no-todo") });
+    textlint.setupRules({ "no-todo": require("textlint-rule-no-todo").default });
     return textlint;
 };
 

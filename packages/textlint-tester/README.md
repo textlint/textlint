@@ -64,7 +64,7 @@ export declare type TestConfig = {
     rules: [
         {
             ruleId: "no-todo",
-            rule: noTodoRule // = require("textlint-rule-no-todo")
+            rule: noTodoRule // = require("textlint-rule-no-todo").default
         },
         {
             ruleId: "max-number-of-lines",
@@ -174,7 +174,7 @@ export declare type TesterInvalid = {
 const TextLintTester = require("textlint-tester");
 const tester = new TextLintTester();
 // rule
-const rule = require("textlint-rule-no-todo");
+const rule = require("textlint-rule-no-todo").default;
 // ruleName, rule, { valid, invalid }
 tester.run("no-todo", rule, {
     valid: [

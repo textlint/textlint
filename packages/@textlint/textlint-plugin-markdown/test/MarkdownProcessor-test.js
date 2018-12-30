@@ -13,7 +13,7 @@ const createTextlint = (options = true) => {
             markdown: options
         }
     );
-    textlint.setupRules({ "no-todo": require("textlint-rule-no-todo") });
+    textlint.setupRules({ "no-todo": require("textlint-rule-no-todo").default });
     return textlint;
 };
 describe("MarkdownPlugin", function() {
