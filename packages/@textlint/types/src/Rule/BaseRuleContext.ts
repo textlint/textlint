@@ -21,7 +21,7 @@ export abstract class BaseRuleContext {
     /**
      * Return rule "severity" level
      */
-    abstract get severityLevel(): TextlintRuleSeverityLevel;
+    abstract get severity(): TextlintRuleSeverityLevel;
 
     /**
      * CustomError object

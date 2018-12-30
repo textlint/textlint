@@ -73,7 +73,7 @@ export class TextlintFilterRuleContext implements BaseRuleContext {
         return this._ruleId;
     }
 
-    get severityLevel() {
+    get severity() {
         return this._severityLevel;
     }
 
