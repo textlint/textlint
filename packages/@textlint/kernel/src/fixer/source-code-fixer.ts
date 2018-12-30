@@ -1,7 +1,6 @@
-import { TextlintFixCommand, TextlintMessage } from "../textlint-kernel-interface";
+import { TextlintMessageFixCommand, TextlintMessage, TextlintSourceCode } from "@textlint/types";
 
 const debug = require("debug")("textlint:source-code-fixer");
-import SourceCode from "../core/source-code";
 
 const BOM = "\uFEFF";
 
@@ -27,7 +26,7 @@ function clone(object: any) {
 }
 
 export interface TextLintMessageFixable extends TextlintMessage {
-    fix: TextlintFixCommand;
+    fix: TextlintMessageFixCommand;
 }
 
 /**
@@ -43,7 +42,7 @@ export default class SourceCodeFixer {
      * @param {TextlintMessage[]} messages The array of messages reported by ESLint.
      * @returns {Object} An object containing the fixed text and any unfixed messages.
      */
-    static applyFixes(sourceCode: SourceCode, messages: TextlintMessage[]) {
+    static applyFixes(sourceCode: TextlintSourceCode, messages: TextlintMessage[]) {
         debug("Applying fixes");
         const text = sourceCode.text;
         // As as result, show diff
@@ -130,11 +129,11 @@ export default class SourceCodeFixer {
      * @param {TextlintMessage[]} applyingMessages The array of TextLintMessage reported by SourceCodeFixer#applyFixes
      * @returns {string} An object containing the fixed text and any unfixed messages.
      */
-    static sequentiallyApplyFixes(sourceCode: SourceCode, applyingMessages: TextlintMessage[]) {
+    static sequentiallyApplyFixes(sourceCode: TextlintSourceCode, applyingMessages: TextlintMessage[]) {
         debug("Restore applied fixes");
         let text = sourceCode.text;
         applyingMessages.forEach(message => {
-            const newSource = new SourceCode({
+            const newSource = new TextlintSourceCode({
                 text,
                 ast: sourceCode.ast, // it's dummy
                 ext: sourceCode.ext,

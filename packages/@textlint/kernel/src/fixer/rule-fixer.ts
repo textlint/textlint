@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { TxtNode } from "@textlint/ast-node-types";
-import { SourceCodeRange } from "../core/source-code";
+import { TextlintSourceCodeRange } from "@textlint/types";
 
 /**
  * Fix Command object has `range` and `text`.
@@ -72,7 +72,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    insertTextAfterRange(range: SourceCodeRange, text: string) {
+    insertTextAfterRange(range: TextlintSourceCodeRange, text: string) {
         return insertTextAt(range[1], text);
     }
 
@@ -96,7 +96,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    insertTextBeforeRange(range: SourceCodeRange, text: string) {
+    insertTextBeforeRange(range: TextlintSourceCodeRange, text: string) {
         return insertTextAt(range[0], text);
     }
 
@@ -124,7 +124,7 @@ export default class RuleFixer {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    replaceTextRange(range: SourceCodeRange, text: string) {
+    replaceTextRange(range: TextlintSourceCodeRange, text: string) {
         return {
             range,
             text,
@@ -150,7 +150,7 @@ export default class RuleFixer {
      *      The `range` should be **relative** value from reported node.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    removeRange(range: SourceCodeRange) {
+    removeRange(range: TextlintSourceCodeRange) {
         return this.replaceTextRange(range, "");
     }
 }

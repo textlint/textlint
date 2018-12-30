@@ -1,8 +1,8 @@
 // MIT © 2017 azu
 import { TextlintMessage } from "@textlint/kernel";
+import { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
 
 const parse = require("@textlint/markdown-to-ast").parse;
-import { TextlintPluginProcessor, TextlintPluginCreator } from "../../src/textlint-kernel-interface";
 
 export interface ExampleProcessorOptions {
     testOption: string;

@@ -1,20 +1,39 @@
 // LICENSE : MIT
 "use strict";
-import { IntermediateFixCommand } from "../fixer/rule-fixer";
+import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
 
-export interface RuleErrorPadding {
+/**
+ * Object version of RuleError
+ * It is undocument way. Please dont use it.
+ *
+ * report(node, {
+ *   message: ""
+ * })
+ */
+export interface TextlintRuleReportedObject {
     line?: number;
     column?: number;
     index?: number;
-    fix?: IntermediateFixCommand;
+    fix?: TextlintRuleContextFixCommand;
+    message: string;
+    severity?: number;
+
+    [index: string]: any;
 }
 
-export default class RuleError {
+export interface TextlintRuleErrorPadding {
+    line?: number;
+    column?: number;
+    index?: number;
+    fix?: TextlintRuleContextFixCommand;
+}
+
+export class TextlintRuleError {
     public message: string;
     public line?: number;
     public column?: number;
     public index?: number;
-    public fix?: IntermediateFixCommand;
+    public fix?: TextlintRuleContextFixCommand;
 
     /**
      * RuleError is like Error object.
@@ -23,7 +42,7 @@ export default class RuleError {
      * @param [paddingLocation] - the object has padding {line, column} for actual error reason
      * @constructor
      */
-    constructor(message: string, paddingLocation?: number | RuleErrorPadding) {
+    constructor(message: string, paddingLocation?: number | TextlintRuleErrorPadding) {
         this.message = message;
         if (typeof paddingLocation === "object") {
             /**
@@ -43,7 +62,7 @@ export default class RuleError {
             this.index = paddingLocation.index;
             /**
              * fixCommand object
-             * @type {FixCommand}
+             * @type {TextlintRuleContextFixCommand}
              */
             this.fix = paddingLocation.fix;
         } else if (typeof paddingLocation === "number") {

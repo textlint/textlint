@@ -1,10 +1,13 @@
 // LICENSE : MIT
 "use strict";
-import SourceCode from "./source-code";
-import RuleError, { RuleErrorPadding } from "./rule-error";
+import {
+    TextlintRuleContextReportFunctionArgs,
+    TextlintRuleError,
+    TextlintRuleErrorPadding,
+    TextlintSourceCode
+} from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
-import { ReportArgs } from "../task/textlint-core-task";
-import { TextlintFixCommand } from "@textlint/kernel";
+import { TextlintMessageFixCommand } from "@textlint/kernel";
 
 const assert = require("assert");
 const ObjectAssign = require("object-assign");
@@ -14,20 +17,22 @@ export interface ReportMessage {
     ruleId: string;
     node: any;
     severity: number;
-    ruleError: RuleError;
+    ruleError: TextlintRuleError;
 }
 
 export default class SourceLocation {
-    private source: SourceCode;
+    private source: TextlintSourceCode;
 
-    constructor(source: SourceCode) {
+    constructor(source: TextlintSourceCode) {
         this.source = source;
     }
 
     /**
      * adjust node's location with error's padding location.
      */
-    adjust(reportArgs: ReportArgs): { line: number; column: number; fix?: TextlintFixCommand } {
+    adjust(
+        reportArgs: TextlintRuleContextReportFunctionArgs
+    ): { line: number; column: number; fix?: TextlintMessageFixCommand } {
         const { node, ruleError, ruleId } = reportArgs;
         const errorPrefix = `[${ruleId}]` || "";
         const padding = ruleError;
@@ -72,15 +77,19 @@ report(node, new RuleError("message", {
             // Introduced textlint 5.6
             // https://github.com/textlint/textlint/releases/tag/5.6.0
             // Always throw Error
-            throw new Error(`${errorPrefix} Have to use {line, column} or index.
-=> use either one of the two
+            throw new Error(`${errorPrefix} Have to use one of {line, column} or {index}.
+You should use either one:
+
+use "line" and "column" property
 
 report(node, new RuleError("message", {
     line: paddingLineNumber,
     column: paddingLineColumn
 });
 
-OR use "index" property
+OR 
+
+use "index" property
 
 report(node, new RuleError("message", {
     index: paddingIndexValue
@@ -88,8 +97,8 @@ report(node, new RuleError("message", {
 `);
         }
 
-        const adjustedLoc = this._adjustLoc(node, padding, _backwardCompatibleIndexValue);
-        const adjustedFix = this._adjustFix(node, padding);
+        const adjustedLoc = this.toAbsoluteLocation(node, padding, _backwardCompatibleIndexValue);
+        const adjustedFix = this.toAbsolutePositionFix(node, padding);
         /*
          {
          line,
@@ -100,7 +109,7 @@ report(node, new RuleError("message", {
         return ObjectAssign({}, adjustedLoc, adjustedFix);
     }
 
-    _adjustLoc(node: any, padding: RuleErrorPadding, _paddingIndex?: number) {
+    private toAbsoluteLocation(node: any, padding: TextlintRuleErrorPadding, _paddingIndex?: number) {
         const nodeRange = node.range;
         const line = node.loc.start.line;
         const column = node.loc.start.column;
@@ -147,7 +156,7 @@ report(node, new RuleError("message", {
         // Remove next version 6?
         /*
          new RuleError({
-         column: index
+            column: index
          });
          */
         if (padding.column !== undefined && padding.column > 0) {
@@ -168,7 +177,7 @@ report(node, new RuleError("message", {
      * Adjust `fix` command range
      * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
      */
-    private _adjustFix(node: TxtNode, ruleErrorObject: RuleError) {
+    private toAbsolutePositionFix(node: TxtNode, ruleErrorObject: TextlintRuleError) {
         const nodeRange = node.range;
         // if not found `fix`, return empty object
         if (ruleErrorObject.fix === undefined) {

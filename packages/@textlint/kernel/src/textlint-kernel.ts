@@ -1,7 +1,6 @@
 // MIT © 2017 azu
 "use strict";
 import * as assert from "assert";
-import SourceCode from "./core/source-code";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
 // parallel
@@ -12,13 +11,10 @@ import filterIgnoredProcess from "./messages/filter-ignored-process";
 import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
-import {
-    TextlintFixResult,
-    TextlintKernelConstructorOptions,
-    TextlintKernelOptions,
-    TextlintResult
-} from "./textlint-kernel-interface";
+import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface";
+import { TextlintResult, TextlintFixResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
+import { TextlintSourceCode } from "@textlint/types";
 
 /**
  * add fileName to trailing of error message
@@ -140,7 +136,7 @@ export class TextlintKernel {
             "processor should implements {preProcess, postProcess}"
         );
         const ast = preProcess(text, filePath);
-        const sourceCode = new SourceCode({
+        const sourceCode = new TextlintSourceCode({
             text,
             ast,
             ext,
@@ -191,7 +187,7 @@ export class TextlintKernel {
             "processor should implements {preProcess, postProcess}"
         );
         const ast = preProcess(text, filePath);
-        const sourceCode = new SourceCode({
+        const sourceCode = new TextlintSourceCode({
             text,
             ast,
             ext,

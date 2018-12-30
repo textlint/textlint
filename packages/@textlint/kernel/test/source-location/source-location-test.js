@@ -2,7 +2,7 @@
 "use strict";
 import * as assert from "assert";
 import SourceLocation from "../../src/core/source-location";
-import RuleError from "../../src/core/rule-error";
+import { TextlintRuleError } from "@textlint/types";
 import RuleFixer from "../../src/fixer/rule-fixer";
 import createDummySourceCode from "./../util/dummy-source-code";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
@@ -22,7 +22,7 @@ describe("compute-location", function() {
                 range: [10, 20],
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
-            const ruleError = new RuleError("message");
+            const ruleError = new TextlintRuleError("message");
             const { line, column, fix } = sourceLocation.adjust({ node, ruleError });
             assert.equal(line, 1);
             assert.equal(column, 10);
@@ -145,7 +145,7 @@ describe("compute-location", function() {
                 range: [10, 20],
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
-            const ruleError = new RuleError("message", { fix: { range: [1, 5], text: "replace" } });
+            const ruleError = new TextlintRuleError("message", { fix: { range: [1, 5], text: "replace" } });
             const { fix } = sourceLocation.adjust({ node, ruleError });
             assert.deepEqual(fix.range, [11, 15]);
         });
@@ -159,7 +159,7 @@ describe("compute-location", function() {
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
             const fixer = new RuleFixer();
-            const ruleError = new RuleError("message", {
+            const ruleError = new TextlintRuleError("message", {
                 line: 1,
                 column: 1,
                 fix: fixer.replaceTextRange([1, 5], "replace")
@@ -179,7 +179,7 @@ describe("compute-location", function() {
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
             const fixer = new RuleFixer();
-            const ruleError = new RuleError("message", { fix: fixer.insertTextAfter(node, ".") });
+            const ruleError = new TextlintRuleError("message", { fix: fixer.insertTextAfter(node, ".") });
             const { fix } = sourceLocation.adjust({ node, ruleError });
             assert.deepEqual(fix.range, [20, 20]);
             assert.deepEqual(fix.text, ".");
@@ -193,7 +193,7 @@ describe("compute-location", function() {
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
             const fixer = new RuleFixer();
-            const ruleError = new RuleError("message", { fix: fixer.remove(node) });
+            const ruleError = new TextlintRuleError("message", { fix: fixer.remove(node) });
             const { fix } = sourceLocation.adjust({ node, ruleError });
             assert.deepEqual(fix.range, [10, 20]);
             assert.deepEqual(fix.text, "");

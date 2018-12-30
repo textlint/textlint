@@ -4,7 +4,8 @@
     "outDir": "../out",
     "allowJs": true,
     "declaration": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmit": true
   },
   "include": [
     "../src/**/*",

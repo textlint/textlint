@@ -3,6 +3,7 @@
 const assert = require("assert");
 const path = require("path");
 import { TextLintCore } from "../../src/index";
+import { TextlintRuleSeverityLevel } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 /*
     TODO: rule-context-test has `lintText` and `fixText` test.
@@ -119,6 +120,37 @@ describe("rule-context-test", function() {
                     exports[context.Syntax.Document] = function(node) {
                         const text = context.getSource(node);
                         assert.equal(text, expectedText);
+                    };
+                    return exports;
+                }
+            });
+            return textlint.lintMarkdown(expectedText);
+        });
+        it("should get text with padding from TxtNode", function() {
+            const expectedText = "this is text.";
+            textlint.setupRules({
+                // rule-key : rule function(see docs/rule.md)
+                "rule-key": function(context) {
+                    const exports = {};
+                    exports[context.Syntax.Document] = function(node) {
+                        const text = context.getSource(node, -1, -1);
+                        assert.equal(text, expectedText.slice(1, expectedText.length - 1));
+                    };
+                    return exports;
+                }
+            });
+            return textlint.lintMarkdown(expectedText);
+        });
+    });
+    describe("#serverity", function() {
+        it("should return Error by default", function() {
+            const expectedText = "this is text.";
+            textlint.setupRules({
+                // rule-key : rule function(see docs/rule.md)
+                "rule-key": function(context) {
+                    const exports = {};
+                    exports[context.Syntax.Document] = function(node) {
+                        assert.strictEqual(context.severity, TextlintRuleSeverityLevel.error);
                     };
                     return exports;
                 }

@@ -1,11 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import CoreTask from "./textlint-core-task";
-import { createFreezedRuleContext } from "../core/rule-context";
-import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
-import SourceCode from "../core/source-code";
 import { TextlintFilterRuleDescriptors, TextlintFixableRuleDescriptor } from "../descriptor";
+import { TextlintSourceCode, TextlintRuleContext, TextlintFilterRuleContext } from "@textlint/types";
+import { getSeverity } from "../shared/rule-severity";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 
@@ -13,7 +12,7 @@ export interface TextLintCoreTaskArgs {
     config: TextlintKernelConstructorOptions;
     fixableRuleDescriptor: TextlintFixableRuleDescriptor;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
-    sourceCode: SourceCode;
+    sourceCode: TextlintSourceCode;
     configBaseDir?: string;
 }
 
@@ -21,7 +20,7 @@ export default class TextLintCoreTask extends CoreTask {
     config: TextlintKernelConstructorOptions;
     fixableRuleDescriptor: TextlintFixableRuleDescriptor;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
-    sourceCode: SourceCode;
+    sourceCode: TextlintSourceCode;
     configBaseDir?: string;
 
     constructor({
@@ -51,9 +50,9 @@ export default class TextLintCoreTask extends CoreTask {
         const ignoreReport = this.createShouldIgnore();
         // setup "rules" field by using a single fixerRule
         debug("fixerRule", this.fixableRuleDescriptor);
-        const ruleContext = createFreezedRuleContext({
+        const ruleContext = new TextlintRuleContext({
             ruleId: this.fixableRuleDescriptor.id,
-            ruleOptions: this.fixableRuleDescriptor.normalizedOptions,
+            severityLevel: getSeverity(this.fixableRuleDescriptor.normalizedOptions),
             sourceCode,
             report,
             configBaseDir: this.configBaseDir
@@ -66,8 +65,9 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "filters" field
         debug("filterRules", this.filterRuleDescriptors);
         this.filterRuleDescriptors.descriptors.forEach(filterRuleDescriptor => {
-            const ruleContext = createFreezedFilterRuleContext({
+            const ruleContext = new TextlintFilterRuleContext({
                 ruleId: filterRuleDescriptor.id,
+                severityLevel: getSeverity(filterRuleDescriptor.normalizedOptions),
                 sourceCode,
                 ignoreReport
             });

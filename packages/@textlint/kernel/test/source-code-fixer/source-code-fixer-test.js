@@ -2,7 +2,7 @@
 "use strict";
 import * as assert from "assert";
 import SourceCodeFixer from "../../src/fixer/source-code-fixer";
-import SourceCode from "../../src/core/source-code";
+import { TextlintSourceCode } from "@textlint/types";
 import { parse } from "@textlint/markdown-to-ast";
 
 const TEST_CODE = "var answer = 6 * 7;";
@@ -117,7 +117,7 @@ describe("SourceCodeFixer", function() {
         let sourceCode;
 
         beforeEach(function() {
-            sourceCode = new SourceCode({ text: TEST_CODE, ast: TEST_AST, ext: ".md" });
+            sourceCode = new TextlintSourceCode({ text: TEST_CODE, ast: TEST_AST, ext: ".md" });
         });
 
         describe("Text Insertion", function() {
@@ -317,7 +317,7 @@ describe("SourceCodeFixer", function() {
         let sourceCode;
 
         beforeEach(function() {
-            sourceCode = new SourceCode({ text: `\uFEFF${TEST_CODE}`, ast: TEST_AST, ext: ".md" });
+            sourceCode = new TextlintSourceCode({ text: `\uFEFF${TEST_CODE}`, ast: TEST_AST, ext: ".md" });
         });
 
         describe("Text Insertion", function() {
@@ -494,7 +494,7 @@ describe("SourceCodeFixer", function() {
         let sourceCode;
 
         beforeEach(function() {
-            sourceCode = new SourceCode({ text: TEST_CODE, ast: TEST_AST, ext: ".md" });
+            sourceCode = new TextlintSourceCode({ text: TEST_CODE, ast: TEST_AST, ext: ".md" });
         });
         it("should replace text at the beginning and end of the code", function() {
             const result = SourceCodeFixer.applyFixes(sourceCode, [REPLACE_ID, REPLACE_VAR, REPLACE_NUM]);
@@ -502,7 +502,7 @@ describe("SourceCodeFixer", function() {
             assert.equal(result.output, "let foo = 5 * 7;");
             assert.ok(result.fixed);
             // revert
-            const newSource = new SourceCode({ text: result.output, ast: parse(result.output), ext: ".md" });
+            const newSource = new TextlintSourceCode({ text: result.output, ast: parse(result.output), ext: ".md" });
             // Sequentially apply applied message to applied output = revert
             const revertText = SourceCodeFixer.sequentiallyApplyFixes(newSource, result.applyingMessages);
             assert.equal(revertText, sourceCode.text);
@@ -511,7 +511,7 @@ describe("SourceCodeFixer", function() {
             const result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_MIDDLE, REPLACE_ID, NO_FIX]);
             // revert
             const text = result.output;
-            const newSource = new SourceCode({ text, ast: parse(text), ext: ".md" });
+            const newSource = new TextlintSourceCode({ text, ast: parse(text), ext: ".md" });
             const revertText = SourceCodeFixer.sequentiallyApplyFixes(newSource, result.applyingMessages);
             assert.equal(revertText, sourceCode.text);
         });

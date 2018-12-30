@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintMessage } from "../textlint-kernel-interface";
+import { TextlintMessage } from "@textlint/types";
 
 /**
  * sort messages by line and column

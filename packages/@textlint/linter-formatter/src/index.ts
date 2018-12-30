@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintResult } from "@textlint/kernel";
+import { TextlintResult } from "@textlint/types";
 
 const fs = require("fs");
 const path = require("path");

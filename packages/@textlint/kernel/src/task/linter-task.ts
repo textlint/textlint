@@ -1,11 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import CoreTask from "./textlint-core-task";
-import { createFreezedRuleContext } from "../core/rule-context";
-import { createFreezedFilterRuleContext } from "../core/filter-rule-context";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
-import SourceCode from "../core/source-code";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
+import { TextlintFilterRuleContext, TextlintRuleContext, TextlintSourceCode } from "@textlint/types";
+import { getSeverity } from "../shared/rule-severity";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 
@@ -13,7 +12,7 @@ export interface TextLintCoreTaskArgs {
     config: TextlintKernelConstructorOptions;
     ruleDescriptors: TextlintRuleDescriptors;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
-    sourceCode: SourceCode;
+    sourceCode: TextlintSourceCode;
     configBaseDir?: string;
 }
 
@@ -21,7 +20,7 @@ export default class TextLintCoreTask extends CoreTask {
     config: TextlintKernelConstructorOptions;
     ruleDescriptors: TextlintRuleDescriptors;
     filterRuleDescriptors: TextlintFilterRuleDescriptors;
-    sourceCode: SourceCode;
+    sourceCode: TextlintSourceCode;
     configBaseDir?: string;
 
     constructor({
@@ -55,9 +54,9 @@ export default class TextLintCoreTask extends CoreTask {
         debug("rules", this.ruleDescriptors);
         this.ruleDescriptors.lintableDescriptors.forEach(ruleDescriptor => {
             const ruleOptions = ruleDescriptor.normalizedOptions;
-            const ruleContext = createFreezedRuleContext({
+            const ruleContext = new TextlintRuleContext({
                 ruleId: ruleDescriptor.id,
-                ruleOptions: ruleOptions,
+                severityLevel: getSeverity(ruleOptions),
                 sourceCode,
                 report,
                 configBaseDir: this.configBaseDir
@@ -67,11 +66,12 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "filters" field
         debug("filterRules", this.filterRuleDescriptors);
         this.filterRuleDescriptors.descriptors.forEach(filterDescriptor => {
-            const ruleContext = createFreezedFilterRuleContext({
+            const ruleContext = new TextlintFilterRuleContext({
                 ruleId: filterDescriptor.id,
                 sourceCode,
                 ignoreReport,
-                configBaseDir: this.configBaseDir
+                configBaseDir: this.configBaseDir,
+                severityLevel: getSeverity(filterDescriptor.normalizedOptions)
             });
             this.tryToAddListenRule(filterDescriptor.filter, ruleContext, filterDescriptor.normalizedOptions);
         });

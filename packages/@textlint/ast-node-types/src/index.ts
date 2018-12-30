@@ -37,6 +37,11 @@ export enum ASTNodeTypes {
 export type TxtNodeType = keyof typeof ASTNodeTypes | string;
 
 /**
+ * Any TxtNode types
+ */
+export type AnyTxtNode = TxtNode | TxtTextNode | TxtParentNode;
+
+/**
  * Basic TxtNode
  * Probably, Real TxtNode implementation has more properties.
  */

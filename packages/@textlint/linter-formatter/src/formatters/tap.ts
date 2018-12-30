@@ -4,7 +4,7 @@
  */
 
 "use strict";
-import { TextlintResult } from "@textlint/kernel";
+import { TextlintResult } from "@textlint/types";
 
 const yaml = require("js-yaml");
 

@@ -1,31 +1,39 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
-import SeverityLevel from "./type/SeverityLevel";
-import { TextlintRuleOptions } from "../textlint-kernel-interface";
+import { TextlintRuleOptions, TextlintRuleSeverityLevel } from "@textlint/types";
+
+const isSeverityLevelValue = (type: any): type is TextlintRuleSeverityLevel => {
+    if (type === undefined) {
+        throw new Error(`Please set following value to severity:
+"rule-key": {
+    "severity": "<warning|error>"
+}`);
+    }
+    return true;
+};
 
 /**
  * get severity level from ruleConfig.
  * @param {Object|boolean|undefined} ruleConfig
  * @returns {number}
  */
-export function getSeverity(ruleConfig?: TextlintRuleOptions) {
+export function getSeverity(ruleConfig?: TextlintRuleOptions): TextlintRuleSeverityLevel {
     if (ruleConfig === undefined) {
-        return SeverityLevel.error;
+        return TextlintRuleSeverityLevel.error;
     }
     // rule:<true|false>
     if (typeof ruleConfig === "boolean") {
-        return ruleConfig ? SeverityLevel.error : SeverityLevel.none;
+        return ruleConfig ? TextlintRuleSeverityLevel.error : TextlintRuleSeverityLevel.none;
     }
     if (ruleConfig.severity) {
-        assert(
-            SeverityLevel[ruleConfig.severity] !== undefined,
-            `please set
+        const severityValue = TextlintRuleSeverityLevel[ruleConfig.severity];
+        if (!isSeverityLevelValue(severityValue)) {
+            throw new Error(`Please set following value to severity:
 "rule-key": {
     "severity": "<warning|error>"
-}`
-        );
-        return SeverityLevel[ruleConfig.severity];
+}`);
+        }
+        return severityValue;
     }
-    return SeverityLevel.error;
+    return TextlintRuleSeverityLevel.error;
 }

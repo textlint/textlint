@@ -3,7 +3,7 @@ const fs = require("fs");
 const isFile = require("is-file");
 const jsdiff = require("diff");
 const chalk = require("chalk");
-import { TextlintFixResult } from "@textlint/kernel";
+import { TextlintFixResult } from "@textlint/types";
 /**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.

@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-core-task";
-import { TextlintMessage } from "../textlint-kernel-interface";
+import { TextlintMessage } from "@textlint/types";
 
 export type PreMessageProcessor = (
     messages: Array<LintReportedMessage | IgnoreReportedMessage>
