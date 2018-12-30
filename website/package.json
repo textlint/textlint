@@ -25,13 +25,13 @@
   "devDependencies": {
     "docusaurus": "^1.6.2",
     "eslint": "^4.15.0",
-    "npm-run-all": "^4.1.2",
+    "npm-run-all": "^4.1.5",
     "textlint": "^11.0.2",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-eslint": "^2.0.1",
     "textlint-rule-no-dead-link": "^4.3.0",
-    "textlint-rule-prh": "^5.0.1",
+    "textlint-rule-prh": "^5.2.0",
     "textlint-rule-rousseau": "^1.4.5",
-    "textlint-rule-unexpanded-acronym": "^1.2.1"
+    "textlint-rule-unexpanded-acronym": "^1.2.3"
   }
 }
