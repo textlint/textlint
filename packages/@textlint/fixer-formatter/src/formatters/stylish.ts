@@ -2,7 +2,7 @@
 const chalk = require("chalk");
 const table = require("text-table");
 const widthOfString = require("string-width");
-import { TextlintFixResult } from "@textlint/kernel";
+import { TextlintFixResult } from "@textlint/types";
 
 /**
  * Given a word and a count, append an s if count is not one.
