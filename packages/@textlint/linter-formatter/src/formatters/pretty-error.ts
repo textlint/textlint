@@ -3,7 +3,7 @@
 // Original code is https://github.com/azer/prettify-error
 // Author : azer
 "use strict";
-import { TextlintMessage, TextlintResult } from "@textlint/kernel";
+import { TextlintMessage, TextlintResult } from "@textlint/types";
 
 export interface TextLintFormatterOption {
     formatterName: string;

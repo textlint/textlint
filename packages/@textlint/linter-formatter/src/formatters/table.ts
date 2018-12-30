@@ -5,7 +5,7 @@
  */
 
 "use strict";
-import { TextlintMessage } from "@textlint/kernel";
+import { TextlintMessage } from "@textlint/types";
 
 //------------------------------------------------------------------------------
 // Requirements
