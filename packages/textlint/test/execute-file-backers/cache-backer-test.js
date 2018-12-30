@@ -50,7 +50,7 @@ describe("CacheBacker", function() {
             const config = new Config({ cache: true, cacheLocation: cacheFilePath });
             const cacheBacker = new CacheBacker(config);
             const filePath = path.join(__dirname, "fixtures/test.md");
-            const prevResult = { filePath: filePath, messages: [{}, {}] }; // has errors
+            const prevResult = { filePath, messages: [{}, {}] }; // has errors
             // prev
             cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();

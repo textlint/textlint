@@ -14,7 +14,7 @@ class Processor {
             preProcess(text) {
                 return text;
             },
-            postProcess(messages) {
+            postProcess(messages, filePath) {
                 return {
                     messages,
                     filePath: filePath ? filePath : "<x>"
@@ -25,5 +25,5 @@ class Processor {
 }
 
 export default {
-    Processor: Processor
+    Processor
 };

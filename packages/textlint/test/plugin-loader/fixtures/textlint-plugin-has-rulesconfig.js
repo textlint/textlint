@@ -2,7 +2,7 @@
 "use strict";
 module.exports = {
     rules: {
-        a: function() {}
+        a() {}
     },
     rulesConfig: {
         a: true

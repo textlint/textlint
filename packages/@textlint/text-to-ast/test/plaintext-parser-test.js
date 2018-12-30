@@ -1,13 +1,13 @@
 // LICENSE : MIT
 "use strict";
-var parse = require("../src").parse;
-var Syntax = require("../src").Syntax;
-var assert = require("assert");
+const parse = require("../src").parse;
+const Syntax = require("../src").Syntax;
+const assert = require("assert");
 describe("plaintext-parser-test", function() {
     context("Document", function() {
         it("should return AST", function() {
-            var text = "text";
-            var ast = parse(text);
+            const text = "text";
+            const ast = parse(text);
             assert(typeof ast === "object");
             // top type is always Document
             assert.equal(ast.type, Syntax.Document);
@@ -20,9 +20,9 @@ describe("plaintext-parser-test", function() {
     });
     context("Paragraph", function() {
         it("should contain Str node", function() {
-            var text = "Hello world";
-            var ast = parse(text);
-            var expected = {
+            const text = "Hello world";
+            const ast = parse(text);
+            const expected = {
                 type: "Document",
                 range: [0, 11],
                 raw: text,
@@ -50,10 +50,10 @@ describe("plaintext-parser-test", function() {
     });
     context("Paragraph ended with break line", function() {
         it("should contain Break node", function() {
-            var text = "text\n";
-            var ast = parse(text);
+            const text = "text\n";
+            const ast = parse(text);
             // Paragraph -> Break
-            var expected = {
+            const expected = {
                 type: "Document",
                 range: [0, 5],
                 raw: text,
@@ -88,10 +88,10 @@ describe("plaintext-parser-test", function() {
     });
     context("Paragraph + BR + Paragraph", function() {
         it("should equal to P + BR + P", function() {
-            var text = "text\ntext";
-            var ast = parse(text);
+            const text = "text\ntext";
+            const ast = parse(text);
             // Paragraph -> Break -> Paragraph
-            var expected = {
+            const expected = {
                 type: "Document",
                 range: [0, text.length],
                 raw: text,
@@ -141,11 +141,11 @@ describe("plaintext-parser-test", function() {
     });
     context("Paragraph + BR + BR + Paragraph", function() {
         it("should equal to P + BR + BR + P", function() {
-            var text = "text\n" + "\n" + "text";
-            var ast = parse(text);
+            const text = "text\n" + "\n" + "text";
+            const ast = parse(text);
 
             // Paragraph -> Break -> Paragraph
-            var expected = {
+            const expected = {
                 type: "Document",
                 range: [0, text.length],
                 raw: text,

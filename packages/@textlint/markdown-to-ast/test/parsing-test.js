@@ -10,7 +10,7 @@ describe("parsing", function() {
     const fixtureDir = path.join(__dirname, "fixtures");
     fs.readdirSync(fixtureDir).forEach(function(filePath) {
         const dirName = path.basename(filePath);
-        it(dirName + " match AST", function() {
+        it(`${dirName} match AST`, function() {
             const input = fs.readFileSync(path.join(fixtureDir, filePath, "input.md"), "utf-8");
             const AST = parse(input);
             assert(isTxtAST(AST), "AST Should be valid AST");

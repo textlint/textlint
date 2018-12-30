@@ -7,7 +7,7 @@ describe("textlint-module-mapper-test", function() {
         it("should create [prefix/key, ruleCreator] entity form rules", function() {
             const ruleA = () => {};
             const ruleB = () => {};
-            const map = TextLintModuleMapper.createEntities({ ruleA: ruleA, ruleB: ruleB }, "prefix");
+            const map = TextLintModuleMapper.createEntities({ ruleA, ruleB }, "prefix");
             assert.deepEqual(map, [["prefix/ruleA", ruleA], ["prefix/ruleB", ruleB]]);
         });
         it("should create [prefix/key, option] entity from rulesConfig", function() {
@@ -30,7 +30,7 @@ describe("textlint-module-mapper-test", function() {
         it("should create { 'prefix/key' : ruleCreator } map form rules", function() {
             const ruleA = () => {};
             const ruleB = () => {};
-            const map = TextLintModuleMapper.createMappedObject({ ruleA: ruleA, ruleB: ruleB }, "prefix");
+            const map = TextLintModuleMapper.createMappedObject({ ruleA, ruleB }, "prefix");
             assert.deepEqual(map, { "prefix/ruleA": ruleA, "prefix/ruleB": ruleB });
         });
         it("should create { 'prefix/key' : ruleOption } map from rulesConfig", function() {

@@ -1,5 +1,5 @@
 module.exports = function(context) {
-    var exports = {};
+    const exports = {};
     exports[context.Syntax.Str] = function(node) {
         context.shouldIgnore(node.range);
     };

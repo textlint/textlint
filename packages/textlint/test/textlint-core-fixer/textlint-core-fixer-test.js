@@ -13,7 +13,7 @@ const outputFilePath = path.join(__dirname, "/fixtures/fixer-rules/output.md");
 describe("textlint-fixer", function() {
     context("#fixText", function() {
         it("should return text added and replaced", function() {
-            var textlint = new TextLintCore();
+            const textlint = new TextLintCore();
             textlint.setupRules({ "fixer-rule-add": ruleAdd, "fixer-rule-replace": ruleReplace });
             return textlint.fixText("This is fix", ".md").then(result => {
                 assert(typeof result.output === "string");

@@ -19,7 +19,7 @@ function reporter(context) {
             const add = fixer.insertTextAfter(node, ".");
             report(node, {
                 message: "Please add . to end of a sentence.",
-                index: index,
+                index,
                 fix: add
             });
         }

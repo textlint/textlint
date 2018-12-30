@@ -11,7 +11,7 @@ const reporter = context => {
             }
             const index = text.search(matchRegexp);
             const length = "fix".length;
-            var replace = fixer.replaceTextRange([index, index + length], "fixed");
+            const replace = fixer.replaceTextRange([index, index + length], "fixed");
             report(node, {
                 message: "Replaced",
                 fix: replace

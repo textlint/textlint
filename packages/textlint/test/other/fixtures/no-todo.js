@@ -34,8 +34,8 @@ export default function(context) {
             - [ ] Todo
         */
         [Syntax.ListItem](node) {
-            var text = context.getSource(node);
-            var match = text.match(/\[\s+\]\s/i);
+            const text = context.getSource(node);
+            const match = text.match(/\[\s+\]\s/i);
             if (match) {
                 report(
                     node,

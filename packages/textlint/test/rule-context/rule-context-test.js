@@ -23,7 +23,7 @@ describe("rule-context-test", function() {
             beforeEach(function() {
                 textlint.setupRules({
                     // rule-key : rule function(see docs/rule.md)
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         const exports = {};
                         exports[context.Syntax.Str] = function(node) {
                             callCount++;
@@ -54,9 +54,9 @@ describe("rule-context-test", function() {
             beforeEach(function() {
                 textlint.setupRules({
                     // rule-key : rule function(see docs/rule.md)
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         const exports = {};
-                        exports[context.Syntax.Str + ":exit"] = function(node) {
+                        exports[`${context.Syntax.Str}:exit`] = function(node) {
                             callCount++;
                             const parent = node.parent;
                             assert.equal(parent.type, context.Syntax.Paragraph);
@@ -115,7 +115,7 @@ describe("rule-context-test", function() {
             const expectedText = "this is text.";
             textlint.setupRules({
                 // rule-key : rule function(see docs/rule.md)
-                "rule-key": function(context) {
+                "rule-key"(context) {
                     const exports = {};
                     exports[context.Syntax.Document] = function(node) {
                         const text = context.getSource(node);
@@ -130,7 +130,7 @@ describe("rule-context-test", function() {
             const expectedText = "this is text.";
             textlint.setupRules({
                 // rule-key : rule function(see docs/rule.md)
-                "rule-key": function(context) {
+                "rule-key"(context) {
                     const exports = {};
                     exports[context.Syntax.Document] = function(node) {
                         const text = context.getSource(node, -1, -1);
@@ -147,7 +147,7 @@ describe("rule-context-test", function() {
             const expectedText = "this is text.";
             textlint.setupRules({
                 // rule-key : rule function(see docs/rule.md)
-                "rule-key": function(context) {
+                "rule-key"(context) {
                     const exports = {};
                     exports[context.Syntax.Document] = function(node) {
                         assert.strictEqual(context.severity, TextlintRuleSeverityLevel.error);
@@ -161,7 +161,7 @@ describe("rule-context-test", function() {
             const expectedText = "this is text.";
             textlint.setupRules({
                 // rule-key : rule function(see docs/rule.md)
-                "rule-key": function(context) {
+                "rule-key"(context) {
                     const exports = {};
                     exports[context.Syntax.Document] = function(node) {
                         const text = context.getSource(node, -1, -1);
@@ -187,7 +187,7 @@ describe("rule-context-test", function() {
                 });
                 it("could use 2nd arguments as padding column", function() {
                     textlint.setupRules({
-                        "rule-key": function(context) {
+                        "rule-key"(context) {
                             return {
                                 [context.Syntax.Str](node) {
                                     // FIXME: this is un-document
@@ -208,7 +208,7 @@ describe("rule-context-test", function() {
             });
             it("could has padding column", function() {
                 textlint.setupRules({
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 // throw error in testing
@@ -225,7 +225,7 @@ describe("rule-context-test", function() {
             });
             it("could has padding location", function() {
                 textlint.setupRules({
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         return {
                             [context.Syntax.Code](node) {
                                 const ruleError = new context.RuleError("error", { line: 5, column: 5 }); // if line >=1 // then start with 0 + column
@@ -246,7 +246,7 @@ describe("rule-context-test", function() {
             const expectedData = { message: "message", key: "value" };
             textlint.setupRules({
                 // rule-key : rule function(see docs/rule.md)
-                "rule-key": function(context) {
+                "rule-key"(context) {
                     return {
                         [context.Syntax.Str](node) {
                             context.report(node, expectedData);
@@ -266,7 +266,7 @@ describe("rule-context-test", function() {
             const expectedData = { message: "message", key: "value" };
             textlint.setupRules({
                 // rule-key : rule function(see docs/rule.md)
-                "rule-key": function(context) {
+                "rule-key"(context) {
                     return {
                         [context.Syntax.Str](node) {
                             context.report(node, "message", {
@@ -285,7 +285,7 @@ describe("rule-context-test", function() {
         context("when ignoreMessages only", function() {
             it("should return empty message", function() {
                 textlint.setupFilterRules({
-                    "filter-rule": function(context) {
+                    "filter-rule"(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.shouldIgnore(node.range);
@@ -301,7 +301,7 @@ describe("rule-context-test", function() {
         context("when ignoreMessages not match message", function() {
             it("should preserve messages", function() {
                 textlint.setupRules({
-                    rule: function(context) {
+                    rule(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.report(node, new context.RuleError("message"));
@@ -310,7 +310,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 textlint.setupFilterRules({
-                    "filter-rule": function(context) {
+                    "filter-rule"(context) {
                         return {
                             [context.Syntax.Code](node) {
                                 context.shouldIgnore(node.range);
@@ -328,7 +328,7 @@ describe("rule-context-test", function() {
         context("when duplicated ignoreMessages", function() {
             it("should messages is ignore", function() {
                 textlint.setupRules({
-                    rule: function(context) {
+                    rule(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.report(node, new context.RuleError("message"));
@@ -337,7 +337,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 textlint.setupFilterRules({
-                    "filter-rule": function(context) {
+                    "filter-rule"(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.shouldIgnore(node.range, { ruleId: "*" });
@@ -355,7 +355,7 @@ describe("rule-context-test", function() {
         context("when ignoreMessages that is not specified ruleId", function() {
             it("should filter all messages *", function() {
                 textlint.setupRules({
-                    rule: function(context) {
+                    rule(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.report(node, new context.RuleError("message"));
@@ -364,7 +364,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 textlint.setupFilterRules({
-                    "filter-rule": function(context) {
+                    "filter-rule"(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 // no specify ruleId
@@ -381,7 +381,7 @@ describe("rule-context-test", function() {
         context("when exist messages and ignoreMessages", function() {
             it("should return filtered result by ignoreMessages", function() {
                 textlint.setupRules({
-                    rule: function(context) {
+                    rule(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.report(node, new context.RuleError("message"));
@@ -390,7 +390,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 textlint.setupFilterRules({
-                    "filter-rule": function(context) {
+                    "filter-rule"(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.shouldIgnore(node.range, { ruleId: "*" });
@@ -414,7 +414,7 @@ describe("rule-context-test", function() {
                 };
                 textlint.setupRules({ rule: { linter: reporter, fixer: reporter } });
                 textlint.setupFilterRules({
-                    "filter-rule": function(context) {
+                    "filter-rule"(context) {
                         return {
                             [context.Syntax.Str](node) {
                                 context.shouldIgnore(node.range, { ruleId: "*" });
@@ -445,7 +445,7 @@ describe("rule-context-test", function() {
                     textlint.setupRules({ rule: { linter: reporter, fixer: reporter } });
                     // not match == not ignore
                     textlint.setupFilterRules({
-                        "filter-rule": function(context) {
+                        "filter-rule"(context) {
                             return {
                                 [context.Syntax.Str](node) {
                                     // Not specify id = all filter
@@ -469,7 +469,7 @@ describe("rule-context-test", function() {
         context("when linting text", function() {
             it("should return undefined", function() {
                 textlint.setupRules({
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         return {
                             [context.Syntax.Document]() {
                                 const filePath = context.getFilePath();
@@ -485,7 +485,7 @@ describe("rule-context-test", function() {
             it("should return filePath that is linting now", function() {
                 const lintFilePath = path.join(__dirname, "fixtures/test.md");
                 textlint.setupRules({
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         return {
                             [context.Syntax.Document]() {
                                 const filePath = context.getFilePath();
@@ -502,7 +502,7 @@ describe("rule-context-test", function() {
         context("when linting text", function() {
             it("should return undefined", function() {
                 textlint.setupRules({
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         return {
                             [context.Syntax.Document]() {
                                 const baseDir = context.getConfigBaseDir();
@@ -520,7 +520,7 @@ describe("rule-context-test", function() {
                 // TODO: it will be moved to kernel
                 const textlint = new TextLintCore({ configFile: path.join(configBasedir, ".textlintrc") });
                 textlint.setupRules({
-                    "rule-key": function(context) {
+                    "rule-key"(context) {
                         return {
                             [context.Syntax.Document]() {
                                 const baseDir = context.getConfigBaseDir();

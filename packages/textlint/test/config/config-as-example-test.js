@@ -20,6 +20,7 @@ describe("config-as-example", function() {
                     rulesBaseDirectory: path.join(__dirname, "config-fixtures", dirName, "modules")
                 });
             } catch (error) {
+                // eslint-disable-next-line no-console
                 console.error(`Fail: ${dirName}`);
                 throw error;
             }
