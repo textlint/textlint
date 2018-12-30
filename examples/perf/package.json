@@ -14,7 +14,7 @@
     "textlint-rule-max-ten": "^2.0.3",
     "textlint-rule-no-mix-dearu-desumasu": "^3.0.3",
     "textlint-rule-no-start-duplicated-conjunction": "^2.0.2",
-    "textlint-rule-prh": "^5.0.1",
+    "textlint-rule-prh": "^5.2.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
   }
 }

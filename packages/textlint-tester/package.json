@@ -54,7 +54,7 @@
     "rimraf": "^2.6.2",
     "textlint": "^11.0.2",
     "textlint-plugin-html": "^0.1.7",
-    "textlint-rule-helper": "^2.0.0",
+    "textlint-rule-helper": "^2.0.1",
     "textlint-rule-max-number-of-lines": "^1.0.2",
     "textlint-rule-no-todo": "^2.0.1",
     "ts-node": "^7.0.1",

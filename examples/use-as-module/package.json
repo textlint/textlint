@@ -11,6 +11,6 @@
   },
   "dependencies": {
     "textlint": "^11.0.2",
-    "textlint-rule-no-todo": "^2.0.0"
+    "textlint-rule-no-todo": "^2.0.1"
   }
 }
