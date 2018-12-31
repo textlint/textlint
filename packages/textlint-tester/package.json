@@ -39,27 +39,27 @@
     "textlint": "^11.0.2"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.0",
-    "@types/node": "^9.3.0",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
     "analyze-desumasu-dearu": "^3.1.0",
     "babel-cli": "^6.10.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.9.0",
-    "cross-env": "^5.1.3",
+    "cross-env": "^5.2.0",
     "match-index": "^1.0.1",
-    "mocha": "^5.1.1",
-    "power-assert": "^1.4.1",
+    "mocha": "^5.2.0",
+    "power-assert": "^1.6.1",
     "rimraf": "^2.6.2",
     "textlint": "^11.0.2",
     "textlint-plugin-html": "^0.1.7",
-    "textlint-rule-helper": "^2.0.0",
+    "textlint-rule-helper": "^2.0.1",
     "textlint-rule-max-number-of-lines": "^1.0.2",
-    "textlint-rule-no-todo": "^2.0.0",
-    "ts-node": "^7.0.0",
+    "textlint-rule-no-todo": "^2.0.1",
+    "ts-node": "^7.0.1",
     "ts-node-test-register": "^4.0.0",
-    "typescript": "~2.8.4"
+    "typescript": "~3.2.2"
   },
   "email": "azuciao@gmail.com"
 }

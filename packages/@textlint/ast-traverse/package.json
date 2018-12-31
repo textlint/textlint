@@ -36,14 +36,14 @@
   },
   "devDependencies": {
     "@textlint/markdown-to-ast": "^6.0.9",
-    "@types/mocha": "^5.2.0",
-    "@types/node": "^8.5.1",
-    "cross-env": "^5.1.1",
-    "mocha": "^5.1.1",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
     "rimraf": "^2.6.2",
-    "ts-node": "^7.0.0",
+    "ts-node": "^7.0.1",
     "ts-node-test-register": "^4.0.0",
-    "typescript": "~2.8.4"
+    "typescript": "~3.2.2"
   },
   "publishConfig": {
     "access": "public"

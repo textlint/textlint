@@ -3,13 +3,13 @@
 import prettyError from "../../src/formatters/pretty-error";
 
 import * as assert from "assert";
-var path = require("path");
-var stripAnsi = require("strip-ansi");
+const path = require("path");
+const stripAnsi = require("strip-ansi");
 describe("pretty-error", function() {
     context("when first line", function() {
         it("should start 0 line", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
-            var code = [
+            const code = [
                 {
                     filePath: fooFile,
                     messages: [
@@ -24,7 +24,7 @@ describe("pretty-error", function() {
                     ]
                 }
             ];
-            var output = prettyError(code, {
+            const output = prettyError(code, {
                 color: false
             });
             assert.equal(
@@ -47,7 +47,7 @@ ${fooFile}:1:1
         it("should return output", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
             const barFile = path.join(__dirname, "../fixtures", "bar.md");
-            var code = [
+            const code = [
                 {
                     filePath: fooFile,
                     messages: [
@@ -81,7 +81,7 @@ ${fooFile}:1:1
                     ]
                 }
             ];
-            var output = prettyError(code, {
+            const output = prettyError(code, {
                 color: false
             });
             assert.equal(
@@ -112,7 +112,7 @@ Try to run: $ textlint --fix [file]
     context("when last line", function() {
         it("should contain end+1 line", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
-            var code = [
+            const code = [
                 {
                     filePath: fooFile,
                     messages: [
@@ -127,7 +127,7 @@ Try to run: $ textlint --fix [file]
                     ]
                 }
             ];
-            var output = prettyError(code, {
+            const output = prettyError(code, {
                 color: false
             });
             assert.equal(
@@ -148,7 +148,7 @@ ${fooFile}:6:1
     context("when last line", function() {
         it("should contain end+1 line", function() {
             const fooFile = path.join(__dirname, "../fixtures", "foo.md");
-            var code = [
+            const code = [
                 {
                     filePath: fooFile,
                     messages: [
@@ -163,7 +163,7 @@ ${fooFile}:6:1
                     ]
                 }
             ];
-            var output = prettyError(code, {
+            const output = prettyError(code, {
                 color: false
             });
             assert.equal(
@@ -184,7 +184,7 @@ ${fooFile}:6:1
     context("when CKJ(東アジア文字幅)", function() {
         it("should correct position ^", function() {
             const ckjFile = path.join(__dirname, "../fixtures", "ckj.md");
-            var code = [
+            const code = [
                 {
                     filePath: ckjFile,
                     messages: [
@@ -202,7 +202,7 @@ ${fooFile}:6:1
                     ]
                 }
             ];
-            var output = prettyError(code, {
+            const output = prettyError(code, {
                 color: false
             });
             assert.equal(

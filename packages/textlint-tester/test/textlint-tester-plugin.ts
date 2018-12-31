@@ -4,7 +4,7 @@
 import TextLintTester = require("../src/index");
 
 const htmlPlugin = require("textlint-plugin-html");
-const noTodoRule = require("textlint-rule-no-todo");
+const noTodoRule = require("textlint-rule-no-todo").default;
 const maxNumberOfLineRule = require("textlint-rule-max-number-of-lines");
 const tester = new TextLintTester();
 

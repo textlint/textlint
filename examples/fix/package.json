@@ -14,6 +14,6 @@
   },
   "devDependencies": {
     "textlint": "^11.0.2",
-    "textlint-rule-prh": "^5.0.1"
+    "textlint-rule-prh": "^5.2.0"
   }
 }

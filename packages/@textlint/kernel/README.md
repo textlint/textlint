@@ -29,7 +29,7 @@ const options = {
     rules: [
         {
             ruleId: "no-todo",
-            rule: require("textlint-rule-no-todo")
+            rule: require("textlint-rule-no-todo").default
         }
     ]
 };

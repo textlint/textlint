@@ -4,7 +4,7 @@
 import * as assert from "assert";
 
 const htmlPlugin = require("textlint-plugin-html");
-const noTodoRule = require("textlint-rule-no-todo");
+const noTodoRule = require("textlint-rule-no-todo").default;
 const maxNumberOfLineRule = require("textlint-rule-max-number-of-lines");
 import { TextLintTester } from "../src/textlint-tester";
 

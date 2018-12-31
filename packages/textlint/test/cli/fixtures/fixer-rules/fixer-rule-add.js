@@ -8,7 +8,7 @@ const reporter = context => {
             if (/\.$/.test(text)) {
                 return;
             }
-            var add = fixer.insertTextAfter(node, ".");
+            const add = fixer.insertTextAfter(node, ".");
             report(node, {
                 message: "Added",
                 fix: add

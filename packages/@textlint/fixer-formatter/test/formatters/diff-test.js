@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-var assert = require("assert");
-var path = require("path");
+const assert = require("assert");
+const path = require("path");
 import diff from "../../src/formatters/diff";
 
 const formatter = code => {

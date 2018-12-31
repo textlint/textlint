@@ -15,7 +15,7 @@ describe("no-todo-rule-test", function() {
             return textlint.lintMarkdown("TODO: something").then(result => {
                 assert(result.messages.length === 1);
                 // TextLintMessage
-                var message = result.messages[0];
+                const message = result.messages[0];
                 assert.equal(message.line, 1); // 1-based
                 assert.equal(message.column, 1); // 1-based
                 assert.equal(message.message, "Found TODO: 'TODO: something'");
@@ -25,7 +25,7 @@ describe("no-todo-rule-test", function() {
             return textlint.lintMarkdown("123456789TODO: something").then(result => {
                 assert(result.messages.length === 1);
                 // TextLintMessage
-                var message = result.messages[0];
+                const message = result.messages[0];
                 assert.equal(message.line, 1); // 1-based
                 assert.equal(message.column, 10); // 1-based
                 assert.equal(message.message, "Found TODO: '123456789TODO: something'");

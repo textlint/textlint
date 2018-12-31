@@ -10,7 +10,7 @@ The basic source code format for a preset is:
 ```js
 module.exports = {
     rules: {
-        "no-todo": require("textlint-rule-no-todo")
+        "no-todo": require("textlint-rule-no-todo").default
     },
     rulesConfig: {
         "no-todo": true

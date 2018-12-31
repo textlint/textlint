@@ -6,8 +6,7 @@ const textlint = require("../index");
 const path = require("path");
 describe("gulp-textlint", () => {
     it("should pass a test", done => {
-        gulp
-            .src(`${__dirname}/fixtures/pass/*.md`)
+        gulp.src(`${__dirname}/fixtures/pass/*.md`)
             .pipe(
                 textlint({
                     configFile: path.join(__dirname, ".textlintrc")
@@ -21,8 +20,7 @@ describe("gulp-textlint", () => {
     });
 
     it("should fail a test", done => {
-        gulp
-            .src(`${__dirname}/fixtures/fail/*.md`)
+        gulp.src(`${__dirname}/fixtures/fail/*.md`)
             .pipe(
                 textlint({
                     configFile: path.join(__dirname, ".textlintrc")

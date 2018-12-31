@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import { AnyTxtNode, TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 
 /**
  * is TxtNode?
@@ -13,7 +13,7 @@ function isNode(node: any): node is TxtNode {
 }
 
 export class TxtElement {
-    constructor(public node: TxtNode | null) {}
+    constructor(public node: AnyTxtNode | null) {}
 }
 
 const BREAK = {};
@@ -35,7 +35,7 @@ class Controller {
     }
 
     private __execute(
-        callback: ((this: Controller, current: TxtNode, parent: TxtParentNode) => any) | undefined,
+        callback: ((this: Controller, current: AnyTxtNode, parent: TxtParentNode) => any) | undefined,
         element: TxtElement
     ) {
         let result = undefined;
@@ -43,7 +43,12 @@ class Controller {
         const previous = this.__current;
         this.__current = element;
         if (callback) {
-            result = callback.call(this, element.node, this.__leavelist[this.__leavelist.length - 1].node);
+            const parentNode = this.__leavelist[this.__leavelist.length - 1].node as TxtParentNode;
+            // ignore null element
+            if (!element.node) {
+                return;
+            }
+            result = callback.call(this, element.node, parentNode);
         }
         this.__current = previous;
 

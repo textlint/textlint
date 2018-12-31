@@ -33,12 +33,12 @@
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.0.3",
-    "@textlint/types": "^1.0.0",
     "@textlint/ast-traverse": "^2.0.9",
     "@textlint/feature-flag": "^3.0.5",
+    "@textlint/types": "^1.0.0",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.5.1",
-    "debug": "^2.6.6",
+    "debug": "^4.1.1",
     "deep-equal": "^1.0.1",
     "map-like": "^2.0.0",
     "object-assign": "^4.1.1",
@@ -47,16 +47,16 @@
   "devDependencies": {
     "@textlint/markdown-to-ast": "^6.0.9",
     "@types/deep-equal": "^1.0.1",
-    "@types/mocha": "^5.2.0",
-    "@types/node": "^8.0.28",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
     "cpx": "^1.5.0",
-    "cross-env": "^5.0.5",
-    "mocha": "^5.1.1",
-    "npm-run-all": "^4.1.1",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.2",
-    "shelljs": "^0.8.2",
-    "ts-node": "^7.0.0",
+    "shelljs": "^0.8.3",
+    "ts-node": "^7.0.1",
     "ts-node-test-register": "^4.0.0",
-    "typescript": "~2.8.4"
+    "typescript": "~3.2.2"
   }
 }

@@ -7,15 +7,15 @@ const formatter = code => {
 };
 describe("formatter:stylish", function() {
     describe("when passed no messages", function() {
-        var code = [{ filePath: "foo.js", applyingMessages: [], remainingMessages: [] }];
+        const code = [{ filePath: "foo.js", applyingMessages: [], remainingMessages: [] }];
         it("should not return message", function() {
-            var result = formatter(code);
+            const result = formatter(code);
             assert.equal(result, "");
         });
     });
 
     describe("when passed a single message", function() {
-        var code = [
+        const code = [
             {
                 filePath: "foo.js",
                 applyingMessages: [{ message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }],
@@ -24,7 +24,7 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string in the correct format for errors", function() {
-            var result = formatter(code);
+            const result = formatter(code);
             assert.equal(
                 result,
                 `
@@ -38,7 +38,7 @@ foo.js
     });
 
     describe("when passed multiple messages", function() {
-        var code = [
+        const code = [
             {
                 filePath: "foo.js",
                 applyingMessages: [
@@ -50,7 +50,7 @@ foo.js
         ];
 
         it("should return a string with multiple entries", function() {
-            var result = formatter(code);
+            const result = formatter(code);
             assert.equal(
                 result,
                 `
@@ -65,7 +65,7 @@ foo.js
     });
 
     describe("when passed multiple files with 1 message each", function() {
-        var code = [
+        const code = [
             {
                 filePath: "foo.js",
                 applyingMessages: [{ message: "Unexpected foo.", severity: 2, line: 5, column: 10, ruleId: "foo" }],
@@ -79,7 +79,7 @@ foo.js
         ];
 
         it("should return a string with multiple entries", function() {
-            var result = formatter(code);
+            const result = formatter(code);
             assert.equal(
                 result,
                 `
@@ -96,7 +96,7 @@ bar.js
     });
 
     describe("when passed remainingMessages", function() {
-        var code = [
+        const code = [
             {
                 filePath: "foo.js",
                 applyingMessages: [
@@ -111,7 +111,7 @@ bar.js
         ];
 
         it("should show remaining count", function() {
-            var result = formatter(code);
+            const result = formatter(code);
             assert.equal(
                 result,
                 `
@@ -126,7 +126,7 @@ foo.js
         });
     });
     describe("when passed one remainingMessages", function() {
-        var code = [
+        const code = [
             {
                 filePath: "foo.js",
                 applyingMessages: [
@@ -138,7 +138,7 @@ foo.js
         ];
 
         it("should show remaining count", function() {
-            var result = formatter(code);
+            const result = formatter(code);
             assert.equal(
                 result,
                 `

@@ -4,7 +4,7 @@
  * @param {RuleContext} context
  */
 module.exports = function(context) {
-    var exports = {};
+    const exports = {};
     exports[context.Syntax.Str] = function(node) {
         context.report(node, new context.RuleError("found error message"));
     };

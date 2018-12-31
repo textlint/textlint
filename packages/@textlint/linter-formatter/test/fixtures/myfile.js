@@ -1,2 +1,2 @@
-var code = "コードCode";
-var code2 = "コードCodeコード2";
+const code = "コードCode";
+const code2 = "コードCodeコード2";

@@ -41,12 +41,12 @@
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.9.0",
-    "cross-env": "^4.0.0",
-    "mocha": "^5.1.1",
-    "power-assert": "^1.4.1",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
+    "power-assert": "^1.6.1",
     "rimraf": "^2.6.2",
     "textlint": "^11.0.2",
-    "textlint-rule-no-todo": "^2.0.0"
+    "textlint-rule-no-todo": "^2.0.1"
   },
   "email": "azuciao@gmail.com",
   "publishConfig": {

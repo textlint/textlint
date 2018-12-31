@@ -45,15 +45,13 @@ export function findFiles(patterns: string[], options: { cwd?: string } = {}): s
         if (isFile(file)) {
             addFile(fs.realpathSync(file));
         } else {
-            glob
-                .sync(pattern, {
-                    nodir: true
-                })
-                .forEach((filePath: string) => {
-                    // workaround for windows
-                    // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
-                    addFile(path.resolve(filePath));
-                });
+            glob.sync(pattern, {
+                nodir: true
+            }).forEach((filePath: string) => {
+                // workaround for windows
+                // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
+                addFile(path.resolve(filePath));
+            });
         }
     });
     return files;
