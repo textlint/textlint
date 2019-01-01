@@ -128,37 +128,64 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
 console.log(ASTNodeTypes.Str); // "Str"
 ```
 
-See [packages/ast-node-types](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-node-types) for more details.
+You can get Node type for Type name by `TypeofTxtNode` in TypeScript.
 
-These types are be available at all times:
-
-```json5
-{
-    // TxtParentNode
-    "Document": "Document",
-    "Paragraph": "Paragraph",
-    "BlockQuote": "BlockQuote",
-    "ListItem": "ListItem",
-    "List": "List",
-    "Header": "Header",
-    "CodeBlock": "CodeBlock",
-    "HtmlBlock": "HtmlBlock",
-    "ReferenceDef": "ReferenceDef",
-    "HorizontalRule": "HorizontalRule",
-    "Comment": "Comment",
-    // TxtTextNode
-    "Str": "Str",
-    "Break": "Break",
-    "Emphasis": "Emphasis",
-    "Strong": "Strong",
-    "Html": "Html",
-    "Link": "Link",
-    "Image": "Image",
-    "Code": "Code"
-}
+```ts
+// In TypeScript
+import { ASTNodeTypes } from "@textlint/ast-node-types";
+const nodeType = TypeofTxtNode<ASTNodeTypes.Str>; // TxtTextNode
 ```
 
-The type is based on HTML tag.
+These types are be defined in `@textlint/ast-node-types`.
+
+| Type name                       | Node type     | Description                          |
+| ------------------------------- | ------------- | ------------------------------------ |
+| ASTNodeTypes.Document           | TxtParentNode | Root Node                            |
+| ASTNodeTypes.DocumentExit       | TxtParentNode |                                      |
+| ASTNodeTypes.Paragraph          | TxtParentNode | Paragraph Node                       |
+| ASTNodeTypes.ParagraphExit      | TxtParentNode |                                      |
+| ASTNodeTypes.BlockQuote         | TxtParentNode | > Str                                |
+| ASTNodeTypes.BlockQuoteExit     | TxtParentNode |                                      |
+| ASTNodeTypes.List               | TxtParentNode | List Node                            |
+| ASTNodeTypes.ListExit           | TxtParentNode |                                      |
+| ASTNodeTypes.ListItem           | TxtParentNode | List (each) item Node                |
+| ASTNodeTypes.ListItemExit       | TxtParentNode |                                      |
+| ASTNodeTypes.Header             | TxtParentNode | # Header Node                        |
+| ASTNodeTypes.HeaderExit         | TxtParentNode |                                      |
+| ASTNodeTypes.CodeBlock          | TxtParentNode | Code Block Node                      |
+| ASTNodeTypes.CodeBlockExit      | TxtParentNode |                                      |
+| ASTNodeTypes.HtmlBlock          | TxtParentNode | HTML Block Node                      |
+| ASTNodeTypes.HtmlBlockExit      | TxtParentNode |                                      |
+| ASTNodeTypes.Link               | TxtParentNode | Link Node                            |
+| ASTNodeTypes.LinkExit           | TxtParentNode |                                      |
+| ASTNodeTypes.ReferenceDef       | TxtParentNode | Link Reference Node(`[link][]`)      |
+| ASTNodeTypes.ReferenceDefExit   | TxtParentNode |                                      |
+| ASTNodeTypes.Delete             | TxtParentNode | Delete Node(`~Str~`)                 |
+| ASTNodeTypes.DeleteExit         | TxtParentNode |                                      |
+| ASTNodeTypes.Emphasis           | TxtParentNode | Emphasis(`*Str*`)                    |
+| ASTNodeTypes.EmphasisExit       | TxtParentNode |                                      |
+| ASTNodeTypes.Strong             | TxtParentNode | Strong Node(`**Str**`)               |
+| ASTNodeTypes.StrongExit         | TxtParentNode |                                      |
+| ASTNodeTypes.Break              | TxtNode       | Hard Break Node(`Str<space><space>`) |
+| ASTNodeTypes.BreakExit          | TxtNode       |                                      |
+| ASTNodeTypes.Image              | TxtNode       | Image Node                           |
+| ASTNodeTypes.ImageExit          | TxtNode       |                                      |
+| ASTNodeTypes.HorizontalRule     | TxtNode       | Horizontal Node(`---`)               |
+| ASTNodeTypes.HorizontalRuleExit | TxtNode       |                                      |
+| ASTNodeTypes.Comment            | TxtTextNode   | Comment Node                         |
+| ASTNodeTypes.CommentExit        | TxtTextNode   |                                      |
+| ASTNodeTypes.Str                | TxtTextNode   | Str Node                             |
+| ASTNodeTypes.StrExit            | TxtTextNode   |                                      |
+| ASTNodeTypes.Code               | TxtTextNode   | Inline Code Node                     |
+| ASTNodeTypes.CodeExit           | TxtTextNode   |                                      |
+| ASTNodeTypes.Html               | TxtTextNode   | Inline HTML Node                     |
+| ASTNodeTypes.HtmlExit           | TxtTextNode   |                                      |
+
+
+
+
+The type is based on HTML tag and Markdown syntax.
+Other plugin has define other node type that is not defined in `@textlint/ast-node-types`, but you can specify it as just a string.
 
 ### Minimal node property
 

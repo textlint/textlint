@@ -32,11 +32,11 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         ? TxtParentNode
         : T extends ASTNodeTypes.HeaderExit
         ? TxtParentNode
-          /* ```
-           * code
-           * ```
-           */
-        : T extends ASTNodeTypes.CodeBlock
+        : /* ```
+         * code
+         * ```
+         */
+        T extends ASTNodeTypes.CodeBlock
         ? TxtParentNode
         : T extends ASTNodeTypes.CodeBlockExit
         ? TxtParentNode // <div>\n</div>
@@ -71,8 +71,14 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         : T extends ASTNodeTypes.Image
         ? TxtNode
         : T extends ASTNodeTypes.ImageExit
-        ? TxtNode // <!-- Str -->
-        : T extends ASTNodeTypes.Comment
+        ? TxtNode
+        : // ----
+        T extends ASTNodeTypes.HorizontalRule
+        ? TxtNode
+        : T extends ASTNodeTypes.HorizontalRuleExit
+        ? TxtNode
+        : // <!-- Str -->
+        T extends ASTNodeTypes.Comment
         ? TxtTextNode
         : T extends ASTNodeTypes.CommentExit
         ? TxtTextNode // Str
@@ -87,9 +93,5 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         : T extends ASTNodeTypes.Html
         ? TxtTextNode
         : T extends ASTNodeTypes.HtmlExit
-        ? TxtTextNode // ----
-        : T extends ASTNodeTypes.HorizontalRule
-        ? TxtTextNode
-        : T extends ASTNodeTypes.HorizontalRuleExit
         ? TxtTextNode
         : any;
