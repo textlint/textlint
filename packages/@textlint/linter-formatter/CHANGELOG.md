@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.0.9...@textlint/linter-formatter@3.1.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+* **formatter:** revert unnecessary changes ([70bef1e](https://github.com/textlint/textlint/commit/70bef1e))
+
+
+### Code Refactoring
+
+* **linter-formatter:** use [@textlint](https://github.com/textlint)/types instead of [@textlint](https://github.com/textlint)/kernel ([09cc67f](https://github.com/textlint/textlint/commit/09cc67f))
+* **types:** move type definition for rule to [@textlint](https://github.com/textlint)/types ([9be6e16](https://github.com/textlint/textlint/commit/9be6e16))
+
+
+### Styles
+
+* **eslint:** apply eslint to all files ([6a9573f](https://github.com/textlint/textlint/commit/6a9573f))
+
+
+
+
 <a name="3.0.9"></a>
 ## [3.0.9](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.0.8...@textlint/linter-formatter@3.0.9) (2018-12-24)
 

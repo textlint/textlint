@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.1.10...textlint-example-use-as-ts-module@2.2.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update eslint deps ([5bf2d38](https://github.com/textlint/textlint/commit/5bf2d38))
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+
+
 <a name="2.1.10"></a>
 ## [2.1.10](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.1.8...textlint-example-use-as-ts-module@2.1.10) (2018-12-24)
 

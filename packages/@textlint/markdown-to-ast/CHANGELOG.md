@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.1.0"></a>
+# [6.1.0](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.0.9...@textlint/markdown-to-ast@6.1.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+### Styles
+
+* **eslint:** apply eslint to all files ([6a9573f](https://github.com/textlint/textlint/commit/6a9573f))
+* **prettier:** format style by prettier ([19a2901](https://github.com/textlint/textlint/commit/19a2901))
+
+
+
+
 <a name="6.0.9"></a>
 ## [6.0.9](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.0.8...@textlint/markdown-to-ast@6.0.9) (2018-07-22)
 
