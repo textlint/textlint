@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/textlint/textlint/compare/@textlint/feature-flag@3.0.5...@textlint/feature-flag@3.1.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+
+
 <a name="3.0.5"></a>
 ## [3.0.5](https://github.com/textlint/textlint/compare/@textlint/feature-flag@3.0.4...@textlint/feature-flag@3.0.5) (2018-07-22)
 

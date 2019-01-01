@@ -1,6 +1,6 @@
 {
   "name": "gulp-textlint",
-  "version": "5.0.13",
+  "version": "5.1.0",
   "description": "gulp plugin for textlint",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
   "bugs": {
@@ -27,7 +27,7 @@
     "npm-run-all": "^4.0.1",
     "plugin-error": "^1.0.1",
     "prettier": "^1.7.4",
-    "textlint": "^11.0.2",
+    "textlint": "^11.1.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {

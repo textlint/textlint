@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/textlint/textlint/compare/@textlint/kernel@3.0.1...@textlint/kernel@3.1.0) (2019-01-01)
+
+
+### Bug Fixes
+
+* **kernel:** fix type error ([214c287](https://github.com/textlint/textlint/commit/214c287))
+* **kernel:** refer to TextlintRuleContextReportFunctionArgs ([27e6968](https://github.com/textlint/textlint/commit/27e6968))
+* **types:** fix name of type definition ([67d9c49](https://github.com/textlint/textlint/commit/67d9c49))
+
+
+### Chores
+
+* **deps:** update eslint deps ([5bf2d38](https://github.com/textlint/textlint/commit/5bf2d38))
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+### Code Refactoring
+
+* **kernel:** move report()/shouldIgnore() definition to types ([601ce3a](https://github.com/textlint/textlint/commit/601ce3a))
+* **kernel:** remove SeverityLevel.ts from kernel ([88a306c](https://github.com/textlint/textlint/commit/88a306c))
+* **types:** move type definition for rule to [@textlint](https://github.com/textlint)/types ([9be6e16](https://github.com/textlint/textlint/commit/9be6e16))
+
+
+### Documentation
+
+* **types:** Update README ([ab1e2ba](https://github.com/textlint/textlint/commit/ab1e2ba))
+
+
+### Features
+
+* **types:** Move TextlintResult/TextlintMessage type to [@textlint](https://github.com/textlint)/types ([b2a03a1](https://github.com/textlint/textlint/commit/b2a03a1))
+
+
+### Styles
+
+* **prettier:** format style by prettier ([19a2901](https://github.com/textlint/textlint/commit/19a2901))
+
+
+### Tests
+
+* **deps:** update no-todo rule reference ([6cecc88](https://github.com/textlint/textlint/commit/6cecc88))
+* **types:** Move SourceCode test to types ([ec61d65](https://github.com/textlint/textlint/commit/ec61d65))
+
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/textlint/textlint/compare/@textlint/kernel@3.0.0...@textlint/kernel@3.0.1) (2018-12-24)
 

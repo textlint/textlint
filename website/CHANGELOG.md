@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.7.0"></a>
+# [10.7.0](https://github.com/textlint/textlint/compare/textlint-website@10.6.0...textlint-website@10.7.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update eslint deps ([5bf2d38](https://github.com/textlint/textlint/commit/5bf2d38))
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+
+
 <a name="10.6.0"></a>
 # [10.6.0](https://github.com/textlint/textlint/compare/textlint-website@10.4.0...textlint-website@10.6.0) (2018-12-24)
 

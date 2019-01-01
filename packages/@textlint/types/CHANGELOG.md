@@ -1,0 +1,39 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+<a name="1.1.0"></a>
+# 1.1.0 (2019-01-01)
+
+
+### Bug Fixes
+
+* **types:** fix name of type definition ([67d9c49](https://github.com/textlint/textlint/commit/67d9c49))
+
+
+### Chores
+
+* **textlint:** restore get severity() ([6057210](https://github.com/textlint/textlint/commit/6057210))
+
+
+### Code Refactoring
+
+* **kernel:** move report()/shouldIgnore() definition to types ([601ce3a](https://github.com/textlint/textlint/commit/601ce3a))
+* **types:** move type definition for rule to [@textlint](https://github.com/textlint)/types ([9be6e16](https://github.com/textlint/textlint/commit/9be6e16))
+
+
+### Documentation
+
+* **types:** Update README ([ab1e2ba](https://github.com/textlint/textlint/commit/ab1e2ba))
+
+
+### Features
+
+* **types:** add ReportHandler types ([d5ffe55](https://github.com/textlint/textlint/commit/d5ffe55))
+* **types:** Move TextlintResult/TextlintMessage type to [@textlint](https://github.com/textlint)/types ([b2a03a1](https://github.com/textlint/textlint/commit/b2a03a1))
+
+
+### Tests
+
+* **types:** Move SourceCode test to types ([ec61d65](https://github.com/textlint/textlint/commit/ec61d65))

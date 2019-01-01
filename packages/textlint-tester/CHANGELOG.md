@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.0"></a>
+# [5.1.0](https://github.com/textlint/textlint/compare/textlint-tester@5.0.2...textlint-tester@5.1.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update eslint deps ([5bf2d38](https://github.com/textlint/textlint/commit/5bf2d38))
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+### Styles
+
+* **eslint:** apply eslint to all files ([6a9573f](https://github.com/textlint/textlint/commit/6a9573f))
+
+
+### Tests
+
+* **deps:** update no-todo rule reference ([6cecc88](https://github.com/textlint/textlint/commit/6cecc88))
+
+
+
+
 <a name="5.0.2"></a>
 ## [5.0.2](https://github.com/textlint/textlint/compare/textlint-tester@5.0.0...textlint-tester@5.0.2) (2018-12-24)
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.0.2...@textlint/textlint-plugin-text@4.1.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+### Tests
+
+* **deps:** update no-todo rule reference ([6cecc88](https://github.com/textlint/textlint/commit/6cecc88))
+
+
+
+
 <a name="4.0.2"></a>
 ## [4.0.2](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.0.0...@textlint/textlint-plugin-text@4.0.2) (2018-12-24)
 

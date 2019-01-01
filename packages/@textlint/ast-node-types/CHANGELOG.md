@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.0.3...@textlint/ast-node-types@4.1.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+### Code Refactoring
+
+* **types:** move type definition for rule to [@textlint](https://github.com/textlint)/types ([9be6e16](https://github.com/textlint/textlint/commit/9be6e16))
+
+
+
+
 <a name="4.0.3"></a>
 ## [4.0.3](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.0.2...@textlint/ast-node-types@4.0.3) (2018-07-22)
 

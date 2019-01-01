@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/textlint/textlint/compare/textlint-example-config-file@2.0.13...textlint-example-config-file@2.1.0) (2019-01-01)
+
+
+### Chores
+
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+
+
+
+
 <a name="2.0.13"></a>
 ## [2.0.13](https://github.com/textlint/textlint/compare/textlint-example-config-file@2.0.11...textlint-example-config-file@2.0.13) (2018-12-24)
 

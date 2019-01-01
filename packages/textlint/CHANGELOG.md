@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.1.0"></a>
+# [11.1.0](https://github.com/textlint/textlint/compare/textlint@11.0.2...textlint@11.1.0) (2019-01-01)
+
+
+### Bug Fixes
+
+* **kernel:** fix type error ([214c287](https://github.com/textlint/textlint/commit/214c287))
+* **textlint:** fix typing of converting function ([ab3b4ef](https://github.com/textlint/textlint/commit/ab3b4ef))
+
+
+### Chores
+
+* **deps:** update eslint deps ([5bf2d38](https://github.com/textlint/textlint/commit/5bf2d38))
+* **deps:** update TypeScript deps ([3ea7fb0](https://github.com/textlint/textlint/commit/3ea7fb0))
+* **textlint:** remove unused types ([5f86a62](https://github.com/textlint/textlint/commit/5f86a62))
+* **textlint:** restore get severity() ([6057210](https://github.com/textlint/textlint/commit/6057210))
+
+
+### Code Refactoring
+
+* **kernel:** simply typing ([f53ed51](https://github.com/textlint/textlint/commit/f53ed51))
+
+
+### Styles
+
+* **eslint:** apply eslint to all files ([6a9573f](https://github.com/textlint/textlint/commit/6a9573f))
+* **prettier:** format style by prettier ([19a2901](https://github.com/textlint/textlint/commit/19a2901))
+
+
+
+
 <a name="11.0.2"></a>
 ## [11.0.2](https://github.com/textlint/textlint/compare/textlint@11.0.0...textlint@11.0.2) (2018-12-24)
 
