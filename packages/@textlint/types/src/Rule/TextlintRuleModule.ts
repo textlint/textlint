@@ -1,17 +1,19 @@
 /**
  * Rule reporter function
  */
-import { AnyTxtNode, TxtNodeType } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleOptions } from "./TextlintRuleOptions";
 import { TextlintRuleContext } from "./TextlintRuleContext";
-
 /**
  * Rule Reporter Handler object define handler for each TxtNode type.
  *
  * Note: *Handler* naming is come from ES Proxy.
  * `new Proxy(target, handler)`
+ *
+ * Each comment is example value of Markdown
  */
-export type TextlintRuleReportHandler = { [P in TxtNodeType]?: (node: AnyTxtNode) => void | Promise<any> };
+export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any> };
+
 /**
  * Textlint rule reporter function
  */
