@@ -74,7 +74,7 @@ export default function(context) {
 ```
 
 Note: textlint@11.1.1+ support `Exit` constance value like `Syntax.DocumentExit`.
-Previously, you had to write `[Syntax.Document + ":exit"]`.
+In textlint@11.1.0<=, you had to write `[Syntax.Document + ":exit"]`.
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
 
