@@ -7,9 +7,10 @@
     "lint",
     "linting",
     "markdown",
-    "plugable",
+    "pluggable",
     "text",
-    "textlint"
+    "textlint",
+    "nlp"
   ],
   "homepage": "https://github.com/textlint/textlint/",
   "bugs": {
