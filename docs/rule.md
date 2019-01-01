@@ -60,19 +60,21 @@ module.exports = function(context) {
 
 By default, the method matching a node name is called during the traversal when the node is first encountered(This is called **Enter**), on the way down the AST.
 
-You can also specify to visit the node on the other side of the traversal, as it comes back up the tree(This is called **Leave**), but adding `:exit` to the end of the node type, such as:
-
+You can also specify to visit the node on the other side of the traversal, as it comes back up the tree(This is called **Leave**), but adding `Exit` to the end of the node type, such as:
 
 ```js
 export default function(context) {
     return {
         // Str:exit
-        [`${context.Syntax.Str}:exit`](node) {
+        [context.Syntax.StrExit](node) {
             // this method is called
         }
     };
 }
 ```
+
+Note: textlint@11.1.1+ support `Exit` constance value like `Syntax.DocumentExit`.
+Previously, you had to write `[Syntax.Document + ":exit"]`.
 
 [visualize-txt-traverse](https://github.com/azu/visualize-txt-traverse "azu/visualize-txt-traverse") help you better understand this traversing.
 

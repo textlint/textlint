@@ -25,9 +25,9 @@ module.exports = context => {
             promiseQueue.push(callAsync(text));
         },
         // call this method at the end
-        // Syntax.Document <-> Syntax.Document:exit
+        // Syntax.Document <-> Syntax.DocumentExit
         // https://github.com/textlint/textlint/blob/master/docs/rule.md
-        [`${Syntax.Document}:exit`]() {
+        [Syntax.DocumentExit]() {
             // Note: textlint wait for `Promise.all` is resolved.
             return Promise.all(promiseQueue)
                 .then((...responses) => {
