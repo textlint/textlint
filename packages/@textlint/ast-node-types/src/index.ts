@@ -6,6 +6,8 @@
  * Constant value of types
  * @see https://github.com/textlint/textlint/blob/master/docs/txtnode.md
  */
+import { TypeofTxtNode } from "./TypeofTxtNode";
+
 export enum ASTNodeTypes {
     Document = "Document",
     Paragraph = "Paragraph",
@@ -35,6 +37,12 @@ export enum ASTNodeTypes {
  * For example, TxtNodeType is "Document".
  */
 export type TxtNodeType = keyof typeof ASTNodeTypes | string;
+
+/**
+ * Type utility for TxtNodeType
+ * Return TxtNode interface for the TxtNodeTYpe
+ */
+export { TypeofTxtNode };
 
 /**
  * Any TxtNode types
