@@ -11,4 +11,12 @@ describe("TextLintASTNodeTypes", () => {
             assert.strictEqual(key, value);
         }
     });
+    it("Exit type should have :exit value ", () => {
+        for (let key in ASTNodeTypes) {
+            if (key.includes("Exit")) {
+                const value = ASTNodeTypes[key];
+                assert.ok(value.includes(":exit"), "should includes :exit");
+            }
+        }
+    });
 });

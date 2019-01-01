@@ -32,7 +32,7 @@ describe("Async", function() {
                             }, 100);
                         });
                     },
-                    [Syntax.Str + ":exit"](node) {
+                    [Syntax.StrExit](node) {
                         report(node, new RuleError("after"));
                     }
                 };
