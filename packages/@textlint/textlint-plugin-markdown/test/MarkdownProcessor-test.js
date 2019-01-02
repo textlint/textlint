@@ -4,6 +4,7 @@ import assert from "power-assert";
 import { TextlintKernel } from "@textlint/kernel";
 import fs from "fs";
 import path from "path";
+
 const MarkdownPlugin = require("../src/index");
 
 const lintFile = (filePath, options = true) => {
@@ -25,6 +26,7 @@ const lintFile = (filePath, options = true) => {
 const lintText = (text, options = true) => {
     const kernel = new TextlintKernel();
     return kernel.lintText(text, {
+        ext: ".md",
         plugins: [
             {
                 pluginId: "markdown",
@@ -53,6 +55,14 @@ describe("MarkdownPlugin", function() {
             }).then(results => {
                 assert(results.messages.length > 0);
                 assert(results.filePath === fixturePath);
+            });
+        });
+    });
+    context("When no file path", function() {
+        it("should filePath is <ext>", function() {
+            return lintText("- [ ] TODO").then(results => {
+                assert(results.messages.length > 0);
+                assert.strictEqual(results.filePath, "<markdown>");
             });
         });
     });
