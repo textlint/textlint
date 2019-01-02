@@ -1,0 +1,181 @@
+{
+  "type": "Document",
+  "children": [
+    {
+      "type": "Paragraph",
+      "children": [
+        {
+          "type": "Str",
+          "value": "This is text.\nこれはテキストです。\nThis is ⏩ emoji",
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 15
+            }
+          },
+          "range": [
+            0,
+            40
+          ],
+          "raw": "This is text.\nこれはテキストです。\nThis is ⏩ emoji"
+        }
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 15
+        }
+      },
+      "range": [
+        0,
+        40
+      ],
+      "raw": "This is text.\nこれはテキストです。\nThis is ⏩ emoji"
+    },
+    {
+      "type": "List",
+      "ordered": false,
+      "start": null,
+      "loose": false,
+      "children": [
+        {
+          "type": "ListItem",
+          "loose": false,
+          "checked": null,
+          "children": [
+            {
+              "type": "Paragraph",
+              "children": [
+                {
+                  "type": "Str",
+                  "value": "List",
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 6
+                    }
+                  },
+                  "range": [
+                    44,
+                    48
+                  ],
+                  "raw": "List"
+                }
+              ],
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 2
+                },
+                "end": {
+                  "line": 5,
+                  "column": 6
+                }
+              },
+              "range": [
+                44,
+                48
+              ],
+              "raw": "List"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 6
+            }
+          },
+          "range": [
+            42,
+            48
+          ],
+          "raw": "- List"
+        }
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 6
+        }
+      },
+      "range": [
+        42,
+        48
+      ],
+      "raw": "- List"
+    },
+    {
+      "type": "HorizontalRule",
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 7
+        }
+      },
+      "range": [
+        50,
+        57
+      ],
+      "raw": "-------"
+    },
+    {
+      "type": "CodeBlock",
+      "lang": null,
+      "value": "quote",
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 9
+        }
+      },
+      "range": [
+        59,
+        68
+      ],
+      "raw": "    quote"
+    }
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 10,
+      "column": 0
+    }
+  },
+  "range": [
+    0,
+    69
+  ],
+  "raw": "This is text.\nこれはテキストです。\nThis is ⏩ emoji\n\n- List\n\n-------\n\n    quote\n"
+}
