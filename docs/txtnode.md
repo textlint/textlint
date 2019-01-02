@@ -136,7 +136,7 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
 const nodeType = TypeofTxtNode<ASTNodeTypes.Str>; // TxtTextNode
 ```
 
-These types are be defined in `@textlint/ast-node-types`.
+These types are defined in `@textlint/ast-node-types`.
 
 | Type name                       | Node type     | Description                          |
 | ------------------------------- | ------------- | ------------------------------------ |
@@ -144,7 +144,7 @@ These types are be defined in `@textlint/ast-node-types`.
 | ASTNodeTypes.DocumentExit       | TxtParentNode |                                      |
 | ASTNodeTypes.Paragraph          | TxtParentNode | Paragraph Node                       |
 | ASTNodeTypes.ParagraphExit      | TxtParentNode |                                      |
-| ASTNodeTypes.BlockQuote         | TxtParentNode | > Str                                |
+| ASTNodeTypes.BlockQuote         | TxtParentNode | > Block Quote Node                   |
 | ASTNodeTypes.BlockQuoteExit     | TxtParentNode |                                      |
 | ASTNodeTypes.List               | TxtParentNode | List Node                            |
 | ASTNodeTypes.ListExit           | TxtParentNode |                                      |
