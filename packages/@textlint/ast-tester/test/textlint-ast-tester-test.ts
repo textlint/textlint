@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { test, isTxtAST } from "../src/textlint-ast-tester";
+import { test, isTxtAST } from "../src/";
 
 describe("@textlint/ast-tester", function() {
     context("when markdown-to-ast", function() {

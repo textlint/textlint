@@ -23,8 +23,8 @@
     "src/",
     "lib/"
   ],
-  "main": "lib/ast-tester/src/textlint-ast-tester.js",
-  "types": "lib/ast-tester/src/textlint-ast-tester.d.ts",
+  "main": "lib/ast-tester/src/index.js",
+  "types": "lib/ast-tester/src/index.d.ts",
   "directories": {
     "test": "test"
   },
