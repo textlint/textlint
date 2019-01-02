@@ -1,12 +1,4 @@
 {
-  "lerna": "2.8.0",
-  "commands": {
-    "publish": {
-      "ignore": [
-        "**/yarn.lock"
-      ]
-    }
-  },
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
@@ -16,5 +8,12 @@
     "packages/@textlint/*",
     "test/integration-test",
     "website"
-  ]
+  ],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "**/yarn.lock"
+      ]
+    }
+  }
 }
