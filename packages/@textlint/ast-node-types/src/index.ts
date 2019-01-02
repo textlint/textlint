@@ -6,28 +6,50 @@
  * Constant value of types
  * @see https://github.com/textlint/textlint/blob/master/docs/txtnode.md
  */
+import { TypeofTxtNode } from "./TypeofTxtNode";
+
 export enum ASTNodeTypes {
     Document = "Document",
+    DocumentExit = "Document:exit",
     Paragraph = "Paragraph",
+    ParagraphExit = "Paragraph:exit",
     BlockQuote = "BlockQuote",
+    BlockQuoteExit = "BlockQuote:exit",
     ListItem = "ListItem",
+    ListItemExit = "ListItem:exit",
     List = "List",
+    ListExit = "List:exit",
     Header = "Header",
+    HeaderExit = "Header:exit",
     CodeBlock = "CodeBlock",
+    CodeBlockExit = "CodeBlock:exit",
     HtmlBlock = "HtmlBlock",
+    HtmlBlockExit = "HtmlBlock:exit",
     ReferenceDef = "ReferenceDef",
+    ReferenceDefExit = "ReferenceDef:exit",
     HorizontalRule = "HorizontalRule",
+    HorizontalRuleExit = "HorizontalRule:exit",
     Comment = "Comment",
+    CommentExit = "Comment:exit",
     // inline
     Str = "Str",
+    StrExit = "Str:exit",
     Break = "Break", // well-known Hard Break
+    BreakExit = "Break:exit", // well-known Hard Break
     Emphasis = "Emphasis",
+    EmphasisExit = "Emphasis:exit",
     Strong = "Strong",
+    StrongExit = "Strong:exit",
     Html = "Html",
+    HtmlExit = "Html:exit",
     Link = "Link",
+    LinkExit = "Link:exit",
     Image = "Image",
+    ImageExit = "Image:exit",
     Code = "Code",
-    Delete = "Delete"
+    CodeExit = "Code:exit",
+    Delete = "Delete",
+    DeleteExit = "Delete:exit"
 }
 
 /**
@@ -35,6 +57,12 @@ export enum ASTNodeTypes {
  * For example, TxtNodeType is "Document".
  */
 export type TxtNodeType = keyof typeof ASTNodeTypes | string;
+
+/**
+ * Type utility for TxtNodeType
+ * Return TxtNode interface for the TxtNodeTYpe
+ */
+export { TypeofTxtNode };
 
 /**
  * Any TxtNode types
