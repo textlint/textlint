@@ -182,8 +182,6 @@ These types are defined in `@textlint/ast-node-types`.
 | ASTNodeTypes.HtmlExit           | TxtTextNode   |                                      |
 
 
-
-
 The type is based on HTML tag and Markdown syntax.
 Other plugin has define other node type that is not defined in `@textlint/ast-node-types`, but you can specify it as just a string.
 
