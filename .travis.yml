@@ -15,6 +15,15 @@ install:
 jobs:
   include:
     - stage: TEST
+      name: "Documentation Test"
+      node_js: stable
+      install:
+        - yarn install --frozen-lockfile
+        - yarn run bootstrap --scope textlint-website
+      script:
+        - yarn run test:docs
+        - yarn run website
+    - stage: TEST
       node_js: 6
       script:
       - yarn test
@@ -38,15 +47,7 @@ jobs:
         - yarn test
         - yarn test:examples
         - yarn test:integration
-    - stage: DOCUMENTATION
-      node_js: stable
-      install:
-      - yarn install --frozen-lockfile
-      - yarn run bootstrap --scope textlint-website
-      script:
-      - yarn run test:docs
-      - yarn run website
-  # Deploy Docusaurus
+    # Deploy Docusaurus
     - stage: deploy
       node_js: stable
       if: branch = master AND type != pull_request
