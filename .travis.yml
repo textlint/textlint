@@ -38,7 +38,8 @@ jobs:
         - yarn test
         - yarn test:examples
         - yarn test:integration
-    - stage: DOCUMENTATION
+    - stage: TEST
+      name: "Documentation Test"
       node_js: stable
       install:
       - yarn install --frozen-lockfile
@@ -46,7 +47,7 @@ jobs:
       script:
       - yarn run test:docs
       - yarn run website
-  # Deploy Docusaurus
+    # Deploy Docusaurus
     - stage: deploy
       node_js: stable
       if: branch = master AND type != pull_request
