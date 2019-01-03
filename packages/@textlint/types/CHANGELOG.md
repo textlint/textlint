@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/textlint/textlint/compare/@textlint/types@1.1.0...@textlint/types@1.1.1) (2019-01-03)
+
+
+### Bug Fixes
+
+* **types:** enhance `TextlintRuleReportHandler` typing ([aa354d1](https://github.com/textlint/textlint/commit/aa354d1))
+
+
+
+
+
 <a name="1.1.0"></a>
 # 1.1.0 (2019-01-01)
 

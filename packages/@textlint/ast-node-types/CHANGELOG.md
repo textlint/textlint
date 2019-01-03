@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.1.0...@textlint/ast-node-types@4.2.0) (2019-01-03)
+
+
+### Documentation
+
+* **rule:** add Type name and Node Type mapping table ([5ace9d1](https://github.com/textlint/textlint/commit/5ace9d1))
+
+
+### Features
+
+* **ast-node-types:** add `*Exit` type as constant value ([7106f5d](https://github.com/textlint/textlint/commit/7106f5d))
+* **ast-node-types:** add `TypeofTxtNode` type function ([69bc1ea](https://github.com/textlint/textlint/commit/69bc1ea))
+
+
+### Tests
+
+* **ast-note-types:** fix tests ([e708b7c](https://github.com/textlint/textlint/commit/e708b7c))
+
+
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.0.3...@textlint/ast-node-types@4.1.0) (2019-01-01)
 

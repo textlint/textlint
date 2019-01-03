@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.2.0"></a>
+# [11.2.0](https://github.com/textlint/textlint/compare/textlint@11.1.0...textlint@11.2.0) (2019-01-03)
+
+
+### Bug Fixes
+
+* **textlint:** fix package's keyword ([2a600b8](https://github.com/textlint/textlint/commit/2a600b8))
+
+
+### Features
+
+* **ast-node-types:** add `*Exit` type as constant value ([7106f5d](https://github.com/textlint/textlint/commit/7106f5d))
+
+
+
+
+
 <a name="11.1.0"></a>
 # [11.1.0](https://github.com/textlint/textlint/compare/textlint@11.0.2...textlint@11.1.0) (2019-01-01)
 

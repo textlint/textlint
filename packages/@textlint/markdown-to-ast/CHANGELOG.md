@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.1.1"></a>
+## [6.1.1](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.1.0...@textlint/markdown-to-ast@6.1.1) (2019-01-03)
+
+
+### Code Refactoring
+
+* **markdown-to-ast:** remove unused deps" ([3a5dc5d](https://github.com/textlint/textlint/commit/3a5dc5d))
+
+
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.0.9...@textlint/markdown-to-ast@6.1.0) (2019-01-01)
 
