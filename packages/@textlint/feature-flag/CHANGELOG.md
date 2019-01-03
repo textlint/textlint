@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.2"></a>
+## [3.1.2](https://github.com/textlint/textlint/compare/@textlint/feature-flag@3.1.1...@textlint/feature-flag@3.1.2) (2019-01-03)
+
+**Note:** Version bump only for package @textlint/feature-flag
+
+
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/textlint/textlint/compare/@textlint/feature-flag@3.1.0...@textlint/feature-flag@3.1.1) (2019-01-03)
 
