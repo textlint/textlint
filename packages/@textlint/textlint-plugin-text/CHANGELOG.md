@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.1.0...@textlint/textlint-plugin-text@4.1.1) (2019-01-03)
+
+
+### Code Refactoring
+
+* **textlint-plugin-text:** Use [@textlint](https://github.com/textlint)/kernel instead of textlint ([5a2fd25](https://github.com/textlint/textlint/commit/5a2fd25)), closes [#567](https://github.com/textlint/textlint/issues/567)
+
+
+
+
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.0.2...@textlint/textlint-plugin-text@4.1.0) (2019-01-01)
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/textlint/textlint/compare/@textlint/ast-tester@2.1.0...@textlint/ast-tester@2.1.1) (2019-01-03)
+
+
+### Chores
+
+* **ast-tester:** remove "noEmit" option ([85642be](https://github.com/textlint/textlint/commit/85642be))
+* **ast-tester:** rename index file to index.ts ([5149101](https://github.com/textlint/textlint/commit/5149101))
+
+
+### Code Refactoring
+
+* **ast-tester:** Convert to TypeScript ([2bb1247](https://github.com/textlint/textlint/commit/2bb1247)), closes [#567](https://github.com/textlint/textlint/issues/567)
+
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/textlint/textlint/compare/@textlint/ast-tester@2.0.8...@textlint/ast-tester@2.1.0) (2019-01-01)
 
