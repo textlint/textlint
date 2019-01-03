@@ -39,7 +39,6 @@
   },
   "devDependencies": {
     "@textlint/ast-tester": "^2.1.0",
-    "@textlint/ast-traverse": "^2.1.0",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
