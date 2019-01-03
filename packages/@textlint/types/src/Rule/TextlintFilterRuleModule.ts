@@ -2,7 +2,7 @@
  * Filter rule reporter function
  */
 import { TextlintFilterRuleContext } from "./TextlintFilterRuleContext";
-import { TxtNodeType, TypeofTxtNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
 /**
  * textlint filter rule option values is object or boolean.
  * if this option value is false, disable the filter rule.
@@ -14,7 +14,11 @@ export type TextlintFilterRuleOptions = {
 /**
  * Rule Reporter Handler object define handler for each TxtNode type.
  */
-export type TextlintFilterRuleReportHandler = { [P in TxtNodeType]?: (node: TypeofTxtNode<P>) => void | Promise<any> };
+export type TextlintFilterRuleReportHandler = {
+    [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any>
+} & {
+    [index: string]: (node: any) => void | Promise<any>;
+};
 
 /**
  * textlint filter rule report function
