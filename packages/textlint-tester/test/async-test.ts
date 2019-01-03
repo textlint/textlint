@@ -8,6 +8,9 @@ const tester = new TextLintTester();
 const report: TextlintRuleReporter = context => {
     const { Syntax, RuleError, report } = context;
     return {
+        ["my other type"](_node) {
+            throw new Error("DO NOT CALL");
+        },
         [Syntax.Document](node) {
             return new Promise(resolve => {
                 setTimeout(() => {

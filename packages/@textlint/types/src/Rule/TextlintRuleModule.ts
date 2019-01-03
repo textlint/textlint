@@ -12,7 +12,9 @@ import { TextlintRuleContext } from "./TextlintRuleContext";
  *
  * Each comment is example value of Markdown
  */
-export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any> };
+export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any> } & {
+    [index: string]: (node: any) => void | Promise<any>;
+};
 
 /**
  * Textlint rule reporter function
