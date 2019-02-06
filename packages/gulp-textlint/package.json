@@ -29,7 +29,6 @@
     "eslint": "^5.11.1",
     "eslint-plugin-prettier": "^3.0.1",
     "gulp": "^4.0.0",
-    "lerna": "^2.8.0",
     "mocha": "^5.2.0",
     "npm-run-all": "^4.0.1",
     "prettier": "^1.7.4",
