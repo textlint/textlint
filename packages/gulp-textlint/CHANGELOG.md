@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.3"></a>
+## [5.1.3](https://github.com/textlint/textlint/compare/gulp-textlint@5.1.2...gulp-textlint@5.1.3) (2019-02-07)
+
+
+### Chores
+
+* **gulp-textlint:** removed lerna ([a9df094](https://github.com/textlint/textlint/commit/a9df094))
+* **textlint:** move dependencies. ([9d09abc](https://github.com/textlint/textlint/commit/9d09abc))
+
+
+
+
+
 <a name="5.1.2"></a>
 ## [5.1.2](https://github.com/textlint/textlint/compare/gulp-textlint@5.1.1...gulp-textlint@5.1.2) (2019-01-03)
 
