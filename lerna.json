@@ -9,11 +9,9 @@
     "test/integration-test",
     "website"
   ],
-  "command": {
-    "publish": {
-      "ignoreChanges": [
-        "**/yarn.lock"
-      ]
-    }
-  }
+  "includeMergedTags": true,
+  "ignoreChanges": [
+    "**/test/**",
+    "**/*.md"
+  ]
 }
