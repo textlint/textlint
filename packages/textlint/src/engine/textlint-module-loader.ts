@@ -20,7 +20,6 @@ import {
 
 export class TextLintModuleLoader extends EventEmitter {
     moduleResolver: TextLintModuleResolver;
-    config: any;
 
     static get Event() {
         return {
@@ -31,16 +30,9 @@ export class TextLintModuleLoader extends EventEmitter {
         };
     }
 
-    constructor(config: Config) {
+    constructor(config: { rulesBaseDirectory?: string }) {
         super();
-        /**
-         * @type {Config} config is need for static prefix value
-         */
-        this.config = config;
-        /**
-         * @type {TextLintModuleResolver}
-         */
-        this.moduleResolver = new TextLintModuleResolver(this.config.constructor, this.config.rulesBaseDirectory);
+        this.moduleResolver = new TextLintModuleResolver(config);
     }
 
     /**

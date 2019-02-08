@@ -20,6 +20,14 @@ const assert = require("assert");
 const concat = require("unique-concat");
 const path = require("path");
 
+export const packageNameConvention = {
+    CONFIG_PACKAGE_PREFIX: PackageNamePrefix.config,
+    RULE_NAME_PREFIX: PackageNamePrefix.rule,
+    RULE_PRESET_NAME_PREFIX: PackageNamePrefix.rulePreset,
+    FILTER_RULE_NAME_PREFIX: PackageNamePrefix.filterRule,
+    PLUGIN_NAME_PREFIX: PackageNamePrefix.plugin
+};
+
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
     return names.map(name => {
         return normalizer(name);
@@ -120,41 +128,6 @@ export class Config {
     }
 
     /**
-     * @return {string} config package prefix
-     */
-    static get CONFIG_PACKAGE_PREFIX() {
-        return PackageNamePrefix.config;
-    }
-
-    /**
-     * @return {string} rule package's name prefix
-     */
-    static get RULE_NAME_PREFIX() {
-        return PackageNamePrefix.rule;
-    }
-
-    /**
-     * @return {string} filter rule package's name prefix
-     */
-    static get FILTER_RULE_NAME_PREFIX() {
-        return PackageNamePrefix.filterRule;
-    }
-
-    /**
-     * @return {string} rule preset package's name prefix
-     */
-    static get RULE_PRESET_NAME_PREFIX() {
-        return PackageNamePrefix.rulePreset;
-    }
-
-    /**
-     * @return {string} plugins package's name prefix
-     */
-    static get PLUGIN_NAME_PREFIX() {
-        return PackageNamePrefix.plugin;
-    }
-
-    /**
      * Create config object form command line options
      * See options.js
      * @param {object} cliOptions the options is command line option object. @see options.js
@@ -197,7 +170,9 @@ export class Config {
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // Create resolver
-        const moduleResolver = new TextLintModuleResolver(this, rulesBaseDirectory);
+        const moduleResolver = new TextLintModuleResolver({
+            rulesBaseDirectory
+        });
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
@@ -289,17 +264,9 @@ export class Config {
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // rule names that are defined in ,textlintrc
-        const configConstructor: ConfigStatics = (this.constructor as any) as ConfigStatics;
-        const moduleResolver = new TextLintModuleResolver(
-            {
-                CONFIG_PACKAGE_PREFIX: configConstructor.CONFIG_PACKAGE_PREFIX,
-                FILTER_RULE_NAME_PREFIX: configConstructor.FILTER_RULE_NAME_PREFIX,
-                RULE_NAME_PREFIX: configConstructor.RULE_NAME_PREFIX,
-                RULE_PRESET_NAME_PREFIX: configConstructor.RULE_PRESET_NAME_PREFIX,
-                PLUGIN_NAME_PREFIX: configConstructor.PLUGIN_NAME_PREFIX
-            },
-            this.rulesBaseDirectory
-        );
+        const moduleResolver = new TextLintModuleResolver({
+            rulesBaseDirectory: this.rulesBaseDirectory
+        });
         /**
          * @type {string[]} rule key list
          * but, plugins's rules are not contained in `rules`

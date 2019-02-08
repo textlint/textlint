@@ -1,5 +1,7 @@
 // LICENSE : MIT
 "use strict";
+import { PackageNamePrefix } from "./pacakge-prefix";
+
 const Promise = require("bluebird");
 const fs = require("fs");
 const path = require("path");
@@ -23,8 +25,8 @@ const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
             const pkgNames = Object.keys(mergedDependencies);
             return pkgNames.filter(pkgName => {
                 const ruleOrFilter =
-                    pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1 ||
-                    pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
+                    pkgName.indexOf(PackageNamePrefix.filterRule) !== -1 ||
+                    pkgName.indexOf(PackageNamePrefix.rule) !== -1;
                 if (pkgName === "textlint-rule-helper") {
                     return false;
                 }
@@ -73,17 +75,17 @@ export const createConfigFile = (options: CreateConfigFileOption) => {
         }
         const filters = pkgNames
             .filter(pkgName => {
-                return pkgName.indexOf(Config.FILTER_RULE_NAME_PREFIX) !== -1;
+                return pkgName.indexOf(PackageNamePrefix.filterRule) !== -1;
             })
             .map(filterName => {
-                return filterName.replace(Config.FILTER_RULE_NAME_PREFIX, "");
+                return filterName.replace(PackageNamePrefix.filterRule, "");
             });
         const rules = pkgNames
             .filter(pkgName => {
-                return pkgName.indexOf(Config.RULE_NAME_PREFIX) !== -1;
+                return pkgName.indexOf(PackageNamePrefix.rule) !== -1;
             })
             .map(filterName => {
-                return filterName.replace(Config.RULE_NAME_PREFIX, "");
+                return filterName.replace(PackageNamePrefix.rule, "");
             });
         const defaultTextlintRc = {
             filters: arrayToObject(filters, true),

@@ -105,7 +105,7 @@ export abstract class AbstractTextLintEngine<LintResult extends TextlintResult> 
          * @type {TextLintModuleLoader}
          * @private
          */
-        this.moduleLoader = new TextLintModuleLoader(this.config);
+        this.moduleLoader = new TextLintModuleLoader(options as any);
         this.moduleLoader.on(TextLintModuleLoader.Event.rule, ([ruleName, ruleCreator]) => {
             this.ruleMap.defineRule(ruleName, ruleCreator);
         });

@@ -32,7 +32,9 @@ describe("config-initializer-test", function() {
         });
         it("should create new file with packages", function() {
             const configFile = path.join(configDir, ".textlintrc");
-            const moduleResolver = new TextLintModuleResolver(Config, configDir);
+            const moduleResolver = new TextLintModuleResolver({
+                rulesBaseDirectory: configDir
+            });
             return createConfigFile({
                 dir: configDir,
                 verbose: false
@@ -52,7 +54,9 @@ describe("config-initializer-test", function() {
     context("when .textlintrc is not existed", function() {
         it("should create new file", function() {
             const configFile = path.join(configDir, ".textlintrc");
-            const moduleResolver = new TextLintModuleResolver(Config, configDir);
+            const moduleResolver = new TextLintModuleResolver({
+                rulesBaseDirectory: configDir
+            });
 
             return createConfigFile({
                 dir: configDir,

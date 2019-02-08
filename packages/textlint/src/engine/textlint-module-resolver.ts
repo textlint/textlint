@@ -1,19 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import * as path from "path";
-import * as assert from "assert";
-const tryResolve = require("try-resolve");
 import { createFullPackageName } from "./textlint-package-name-util";
+import { PackageNamePrefix } from "../config/pacakge-prefix";
+
+const tryResolve = require("try-resolve");
 const debug = require("debug")("textlint:module-resolver");
-const validateConfigConstructor = (ConfigConstructor: any) => {
-    assert(
-        ConfigConstructor.CONFIG_PACKAGE_PREFIX &&
-            ConfigConstructor.FILTER_RULE_NAME_PREFIX &&
-            ConfigConstructor.RULE_NAME_PREFIX &&
-            ConfigConstructor.RULE_PRESET_NAME_PREFIX &&
-            ConfigConstructor.PLUGIN_NAME_PREFIX
-    );
-};
 
 export interface ConfigModulePrefix {
     CONFIG_PACKAGE_PREFIX: string;
@@ -40,44 +32,12 @@ export interface ConfigModulePrefix {
  */
 export class TextLintModuleResolver {
     private baseDirectory: string;
-    private PLUGIN_NAME_PREFIX: string;
-    private RULE_PRESET_NAME_PREFIX: string;
-    private FILTER_RULE_NAME_PREFIX: string;
-    private RULE_NAME_PREFIX: string;
-    private CONFIG_PACKAGE_PREFIX: string;
-    /**
-     *
-     * @param {Config|*} ConfigConstructor config constructor like object
-     * It has static property like CONFIG_PACKAGE_PREFIX etc...
-     * @param {string} [baseDirectory]
-     * @constructor
-     */
-    constructor(ConfigConstructor: ConfigModulePrefix, baseDirectory: string = "") {
-        validateConfigConstructor(ConfigConstructor);
-        /**
-         * @type {string} config package prefix
-         */
-        this.CONFIG_PACKAGE_PREFIX = ConfigConstructor.CONFIG_PACKAGE_PREFIX;
-        /**
-         * @type {string} rule package's name prefix
-         */
-        this.RULE_NAME_PREFIX = ConfigConstructor.RULE_NAME_PREFIX;
-        /**
-         * @type {string} filter rule package's name prefix
-         */
-        this.FILTER_RULE_NAME_PREFIX = ConfigConstructor.FILTER_RULE_NAME_PREFIX;
-        /**
-         * @type {string} rule preset package's name prefix
-         */
-        this.RULE_PRESET_NAME_PREFIX = ConfigConstructor.RULE_PRESET_NAME_PREFIX;
-        /**
-         * @type {string} plugins package's name prefix
-         */
-        this.PLUGIN_NAME_PREFIX = ConfigConstructor.PLUGIN_NAME_PREFIX;
+
+    constructor(config: { rulesBaseDirectory?: string }) {
         /**
          * @type {string} baseDirectory for resolving
          */
-        this.baseDirectory = baseDirectory;
+        this.baseDirectory = config && config.rulesBaseDirectory ? config.rulesBaseDirectory : "";
     }
 
     /**
@@ -87,8 +47,7 @@ export class TextLintModuleResolver {
      */
     resolveRulePackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
-        const PREFIX = this.RULE_NAME_PREFIX;
-        const fullPackageName = createFullPackageName(PREFIX, packageName);
+        const fullPackageName = createFullPackageName(PackageNamePrefix.rule, packageName);
         // <rule-name> or textlint-rule-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
@@ -107,8 +66,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      */
     resolveFilterRulePackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
-        const PREFIX = this.FILTER_RULE_NAME_PREFIX;
-        const fullPackageName = createFullPackageName(PREFIX, packageName);
+        const fullPackageName = createFullPackageName(PackageNamePrefix.filterRule, packageName);
         // <rule-name> or textlint-filter-rule-<rule-name> or @scope/<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
@@ -127,8 +85,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      */
     resolvePluginPackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
-        const PREFIX = this.PLUGIN_NAME_PREFIX;
-        const fullPackageName = createFullPackageName(PREFIX, packageName);
+        const fullPackageName = createFullPackageName(PackageNamePrefix.plugin, packageName);
         // <plugin-name> or textlint-plugin-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
@@ -148,7 +105,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      */
     resolvePresetPackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
-        const PREFIX = this.RULE_PRESET_NAME_PREFIX;
+        const PREFIX = PackageNamePrefix.rulePreset;
         /* Implementation Note
 
         preset name is defined in config file:
@@ -195,8 +152,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      */
     resolveConfigPackageName(packageName: string): string {
         const baseDir = this.baseDirectory;
-        const PREFIX = this.CONFIG_PACKAGE_PREFIX;
-        const fullPackageName = createFullPackageName(PREFIX, packageName);
+        const fullPackageName = createFullPackageName(PackageNamePrefix.config, packageName);
         // <plugin-name> or textlint-config-<rule-name>
         const pkgPath = tryResolve(path.join(baseDir, fullPackageName)) || tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {

@@ -2,12 +2,13 @@
 "use strict";
 const path = require("path");
 import * as assert from "assert";
-import { TextLintModuleResolver, createFullPackageName } from "../../src/engine/textlint-module-resolver";
-import { Config } from "../../src/config/config";
+import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
 const createResolve = ruleBaseDir => {
-    return new TextLintModuleResolver(Config, ruleBaseDir);
+    return new TextLintModuleResolver({
+        rulesBaseDirectory: ruleBaseDir
+    });
 };
 describe("textlint-module-resolver", function() {
     describe("#resolveRulePackageName", function() {
