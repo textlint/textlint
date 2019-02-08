@@ -1,44 +1,40 @@
 // LICENSE : MIT
 "use strict";
+import { loadConfig } from "./config-loader";
+import { convertRulesConfigToFlatPath, loadRulesConfigFromPresets } from "./preset-loader";
+import { getPluginConfig, getPluginNames } from "./plugin-loader";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { separateAvailableOrDisable } from "./separate-by-config-option";
+import {
+    normalizeFilterRuleKey,
+    normalizePluginKey,
+    normalizeRuleKey,
+    normalizeRulePresetKey
+} from "./config-key-normalizer";
+import { PackageNamePrefix } from "./pacakge-prefix";
+
 const objectAssign = require("object-assign");
 const md5 = require("md5");
 const fs = require("fs");
 const assert = require("assert");
 const concat = require("unique-concat");
 const path = require("path");
-import { loadConfig } from "./config-loader";
-import { isPresetRuleKey } from "../util/config-util";
-import { loadRulesConfigFromPresets, mapRulesConfig } from "./preset-loader";
-import { getPluginConfig, getPluginNames } from "./plugin-loader";
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import { separateAvailableOrDisable } from "./separate-by-config-option";
 
-/**
- * Convert config of preset to rulesConfig flat path format.
- *
- * e.g.)
- * {
- *  "preset-a" : { "key": "value"}
- * }
- * => {"preset-a/key": "value"}
- *
- * @param rulesConfig
- * @returns {{string: string}}
- */
-function convertRulesConfigToFlatPath(rulesConfig: any) {
-    if (!rulesConfig) {
-        return {};
-    }
-    const filteredConfig: { [index: string]: any } = {};
-    Object.keys(rulesConfig).forEach(key => {
-        if (isPresetRuleKey(key)) {
-            // <preset>/<rule>
-            objectAssign(filteredConfig, mapRulesConfig(rulesConfig[key], key));
-            return;
-        }
-        filteredConfig[key] = rulesConfig[key];
+function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
+    return names.map(name => {
+        return normalizer(name);
     });
-    return filteredConfig;
+}
+
+function applyNormalizerToConfig(normalizer: (name: string) => string, config: { [index: string]: string }) {
+    return Object.keys(config).reduce(
+        (results, key) => {
+            const shortPluginName = normalizer(key);
+            results[shortPluginName] = config[key];
+            return results;
+        },
+        {} as { [index: string]: any }
+    );
 }
 
 /**
@@ -127,35 +123,35 @@ export class Config {
      * @return {string} config package prefix
      */
     static get CONFIG_PACKAGE_PREFIX() {
-        return "textlint-config-";
+        return PackageNamePrefix.config;
     }
 
     /**
      * @return {string} rule package's name prefix
      */
     static get RULE_NAME_PREFIX() {
-        return "textlint-rule-";
+        return PackageNamePrefix.rule;
     }
 
     /**
      * @return {string} filter rule package's name prefix
      */
     static get FILTER_RULE_NAME_PREFIX() {
-        return "textlint-filter-rule-";
+        return PackageNamePrefix.filterRule;
     }
 
     /**
      * @return {string} rule preset package's name prefix
      */
     static get RULE_PRESET_NAME_PREFIX() {
-        return "textlint-rule-preset-";
+        return PackageNamePrefix.rulePreset;
     }
 
     /**
      * @return {string} plugins package's name prefix
      */
     static get PLUGIN_NAME_PREFIX() {
-        return "textlint-plugin-";
+        return PackageNamePrefix.plugin;
     }
 
     /**
@@ -309,37 +305,59 @@ export class Config {
          * but, plugins's rules are not contained in `rules`
          * plugins's rule are loaded in TextLintEngine
          */
-        this.rules = options.rules ? options.rules : defaultOptions.rules;
+        this.rules = applyNormalizerToList(normalizeRuleKey, options.rules ? options.rules : defaultOptions.rules);
         /**
          * @type {string[]} rule key list
          * These rule is set `false` to options
          */
-        this.disabledRules = options.disabledRules ? options.disabledRules : defaultOptions.disabledRules;
+        this.disabledRules = applyNormalizerToList(
+            normalizeRuleKey,
+            options.disabledRules ? options.disabledRules : defaultOptions.disabledRules
+        );
         /**
          * @type {string[]} filter rule key list
          */
-        this.filterRules = options.filterRules ? options.filterRules : defaultOptions.filterRules;
+        this.filterRules = applyNormalizerToList(
+            normalizeFilterRuleKey,
+            options.filterRules ? options.filterRules : defaultOptions.filterRules
+        );
         /**
          * @type {string[]} rule key list
          * These rule is set `false` to options
          */
-        this.disabledFilterRules = options.disabledFilterRules
-            ? options.disabledFilterRules
-            : defaultOptions.disabledFilterRules;
+        this.disabledFilterRules = applyNormalizerToList(
+            normalizeFilterRuleKey,
+            options.disabledFilterRules ? options.disabledFilterRules : defaultOptions.disabledFilterRules
+        );
         /**
          * @type {string[]} preset key list
          */
-        this.presets = options.presets ? options.presets : defaultOptions.presets;
+        this.presets = applyNormalizerToList(
+            normalizeRulePresetKey,
+            options.presets ? options.presets : defaultOptions.presets
+        );
         // => load plugins
         // this.rules has not contain plugin rules
         // =====================
-        this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
-        this.pluginsConfig = options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig;
+        this.plugins = applyNormalizerToList(
+            normalizePluginKey,
+            options.plugins ? options.plugins : defaultOptions.plugins
+        );
+        this.pluginsConfig = applyNormalizerToConfig(
+            normalizePluginKey,
+            options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig
+        );
         // rulesConfig
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
-        this.rulesConfig = objectAssign({}, presetRulesConfig, options.rulesConfig);
+        this.rulesConfig = applyNormalizerToConfig(
+            normalizeRuleKey,
+            objectAssign({}, presetRulesConfig, options.rulesConfig)
+        );
         // filterRulesConfig
-        this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
+        this.filterRulesConfig = applyNormalizerToConfig(
+            normalizeFilterRuleKey,
+            options.filterRulesConfig || defaultOptions.filterRulesConfig
+        );
         /**
          * @type {string[]}
          */

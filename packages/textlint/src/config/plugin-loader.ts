@@ -1,6 +1,5 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-// LICENSE : MIT
-"use strict";
+
 const interopRequire = require("interop-require");
 const debug = require("debug")("textlint:plugin-loader");
 const assert = require("assert");

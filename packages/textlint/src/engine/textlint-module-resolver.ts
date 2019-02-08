@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
+import * as path from "path";
+import * as assert from "assert";
 const tryResolve = require("try-resolve");
+import { createFullPackageName } from "./textlint-package-name-util";
 const debug = require("debug")("textlint:module-resolver");
 const validateConfigConstructor = (ConfigConstructor: any) => {
     assert(
@@ -12,27 +13,6 @@ const validateConfigConstructor = (ConfigConstructor: any) => {
             ConfigConstructor.RULE_PRESET_NAME_PREFIX &&
             ConfigConstructor.PLUGIN_NAME_PREFIX
     );
-};
-
-/**
- * Create full package name and return
- * @param {string} prefix
- * @param {string} name
- * @returns {string}
- */
-export const createFullPackageName = (prefix: string, name: string): string => {
-    if (name.charAt(0) === "@") {
-        const scopedPackageNameRegex = new RegExp(`^${prefix}(-|$)`);
-        // if @scope/<name> -> @scope/<prefix><name>
-        if (!scopedPackageNameRegex.test(name.split("/")[1])) {
-            /*
-             * for scoped packages, insert the textlint-rule after the first / unless
-             * the path is already @scope/<name> or @scope/textlint-rule-<name>
-             */
-            return name.replace(/^@([^/]+)\/(.*)$/, `@$1/${prefix}$2`);
-        }
-    }
-    return `${prefix}${name}`;
 };
 
 export interface ConfigModulePrefix {
@@ -170,7 +150,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const baseDir = this.baseDirectory;
         const PREFIX = this.RULE_PRESET_NAME_PREFIX;
         /* Implementation Note
-    
+
         preset name is defined in config file:
         In the case, `packageName` is "preset-gizmo"
         TextLintModuleResolver resolve "preset-gizmo" to "textlint-rule-preset-gizmo"
@@ -189,12 +169,14 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
             .replace(/^@([^/]+)\/preset-(.*)$/, `@$1/$2`);
         const fullPackageName = createFullPackageName(PREFIX, packageNameWithoutPreset);
         const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
-        // preset-<preset-name> or textlint-rule-preset-<preset-name>
         const pkgPath =
+            // textlint-rule-preset-<preset-name> or @scope/textlint-rule-preset-<preset-name>
             tryResolve(path.join(baseDir, fullFullPackageName)) ||
+            // <preset-name>
             tryResolve(path.join(baseDir, packageNameWithoutPreset)) ||
-            // <preset-name> or textlint-rule-preset-<rule-name>
+            // <rule-name>
             tryResolve(path.join(baseDir, fullPackageName)) ||
+            // <package-name>
             tryResolve(path.join(baseDir, packageName));
         if (!pkgPath) {
             debug(`preset fullPackageName: ${fullPackageName}`);

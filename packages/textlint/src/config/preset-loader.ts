@@ -1,9 +1,38 @@
 // LICENSE : MIT
 "use strict";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { normalizeRuleKey, normalizeRulePresetKey } from "./config-key-normalizer";
+import { isPresetRuleKey } from "../util/config-util";
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
-import { TextLintModuleMapper } from "../engine/textlint-module-mapper";
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+
+/**
+ * Convert config of preset to rulesConfig flat path format.
+ *
+ * e.g.)
+ * {
+ *  "preset-a" : { "key": "value"}
+ * }
+ * => {"preset-a/key": "value"}
+ *
+ * @param rulesConfig
+ * @returns {{string: string}}
+ */
+export function convertRulesConfigToFlatPath(rulesConfig: any) {
+    if (!rulesConfig) {
+        return {};
+    }
+    const filteredConfig: { [index: string]: any } = {};
+    Object.keys(rulesConfig).forEach(key => {
+        if (isPresetRuleKey(key)) {
+            // <preset>/<rule>
+            ObjectAssign(filteredConfig, mapRulesConfig(rulesConfig[key], key));
+            return;
+        }
+        filteredConfig[key] = rulesConfig[key];
+    });
+    return filteredConfig;
+}
 
 /**
  * create `<plugin>/<rule>` option
@@ -12,34 +41,37 @@ import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
  * @returns {Object}
  */
 export function mapRulesConfig(rulesConfig: { [index: string]: string }, presetName: string): object {
-    const mapped = {};
+    const mapped: { [index: string]: string } = {};
     // missing "rulesConfig"
     if (rulesConfig === undefined || typeof rulesConfig !== "object") {
         return mapped;
     }
-    return TextLintModuleMapper.createMappedObject(rulesConfig, presetName);
+    Object.keys(rulesConfig).forEach(ruleName => {
+        mapped[`${normalizeRulePresetKey(presetName)}/${normalizeRuleKey(ruleName)}`] = rulesConfig[ruleName];
+    });
+    return mapped;
 }
 
 // load rulesConfig from plugins
 /**
  *
- * @param ruleNames
+ * @param presetNames
  * @param {TextLintModuleResolver} moduleResolver
  * @returns {{}}
  */
-export function loadRulesConfigFromPresets(ruleNames: string[] = [], moduleResolver: TextLintModuleResolver): {} {
+export function loadRulesConfigFromPresets(presetNames: string[] = [], moduleResolver: TextLintModuleResolver): {} {
     const presetRulesConfig = {};
-    ruleNames.forEach(ruleName => {
-        const pkgPath = moduleResolver.resolvePresetPackageName(ruleName);
+    presetNames.forEach(presetName => {
+        const pkgPath = moduleResolver.resolvePresetPackageName(presetName);
         const preset = interopRequire(pkgPath);
         if (!preset.hasOwnProperty("rules")) {
-            throw new Error(`${ruleName} has not rules`);
+            throw new Error(`${presetName} has not rules`);
         }
         if (!preset.hasOwnProperty("rulesConfig")) {
-            throw new Error(`${ruleName} has not rulesConfig`);
+            throw new Error(`${presetName} has not rulesConfig`);
         }
         // set config of <rule> to "<preset>/<rule>"
-        ObjectAssign(presetRulesConfig, mapRulesConfig(preset.rulesConfig, ruleName));
+        ObjectAssign(presetRulesConfig, mapRulesConfig(preset.rulesConfig, presetName));
     });
     return presetRulesConfig;
 }

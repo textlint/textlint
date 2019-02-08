@@ -11,6 +11,12 @@ import { Logger } from "../util/logger";
 import { TextLintModuleResolver } from "./textlint-module-resolver";
 import { TextLintModuleMapper } from "./textlint-module-mapper";
 import { Config } from "../config/config";
+import {
+    normalizeFilterRuleKey,
+    normalizePluginKey,
+    normalizeRuleKey,
+    normalizeRulePresetKey
+} from "../config/config-key-normalizer";
 
 export class TextLintModuleLoader extends EventEmitter {
     moduleResolver: TextLintModuleResolver;
@@ -94,9 +100,7 @@ export class TextLintModuleLoader extends EventEmitter {
         const pkgPath = this.moduleResolver.resolvePluginPackageName(pluginName);
         debug("Loading rules from plugin: %s", pkgPath);
         const plugin = interopRequire(pkgPath);
-        const PLUGIN_NAME_PREFIX = this.config.constructor.PLUGIN_NAME_PREFIX;
-        const prefixMatch = new RegExp(`^${PLUGIN_NAME_PREFIX}`);
-        const pluginNameWithoutPrefix = pluginName.replace(prefixMatch, "");
+        const pluginNameWithoutPrefix = normalizePluginKey(pluginName);
         // Notes: plugins not support "rules" and "rulesConfig"
         // https://github.com/textlint/textlint/issues/291
         if (plugin.hasOwnProperty("rules")) {
@@ -127,11 +131,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         It mean that "ruleA" is defined as "preset-gizmo/ruleA"
 
          */
-        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
-        // Strip **rule** prefix
-        // textlint-rule-preset-gizmo -> preset-gizmo
-        const prefixMatch = new RegExp(`^${RULE_NAME_PREFIX}`);
-        const presetRuleNameWithoutPrefix = presetName.replace(prefixMatch, "");
+        const presetRuleNameWithoutPrefix = normalizeRulePresetKey(presetName);
         // ignore plugin's rule
         if (isPluginRuleKey(presetRuleNameWithoutPrefix)) {
             Logger.warn(`${presetRuleNameWithoutPrefix} is Plugin's rule. This is unknown case, please report issue.`);
@@ -170,9 +170,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         }
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
-        const RULE_NAME_PREFIX = this.config.constructor.RULE_NAME_PREFIX;
-        const prefixMatch = new RegExp(`^${RULE_NAME_PREFIX}`);
-        const definedRuleName = ruleName.replace(prefixMatch, "");
+        const definedRuleName = normalizeRuleKey(ruleName);
         // ignore plugin's rule
         if (isPluginRuleKey(definedRuleName)) {
             Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);
@@ -207,9 +205,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
             this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
             return;
         }
-        const RULE_NAME_PREFIX = this.config.constructor.FILTER_RULE_NAME_PREFIX;
-        const prefixMatch = new RegExp(`^${RULE_NAME_PREFIX}`);
-        const definedRuleName = ruleName.replace(prefixMatch, "");
+        const definedRuleName = normalizeFilterRuleKey(ruleName);
         // ignore plugin's rule
         if (isPluginRuleKey(definedRuleName)) {
             Logger.warn(`${definedRuleName} is Plugin's rule. This is unknown case, please report issue.`);

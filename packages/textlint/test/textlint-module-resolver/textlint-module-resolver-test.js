@@ -10,27 +10,6 @@ const createResolve = ruleBaseDir => {
     return new TextLintModuleResolver(Config, ruleBaseDir);
 };
 describe("textlint-module-resolver", function() {
-    describe("createFullPackageName", () => {
-        const PREFIX = "textlint-rule-";
-        it("<name> -> textlint-rule-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "name"), "textlint-rule-name");
-        });
-        it("textlint-rule-<name> -> textlint-rule-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "textlint-rule-name"), "textlint-rule-textlint-rule-name");
-        });
-        it("@scope/<name> -> @scope/textlint-rule-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "@scope/name"), "@scope/textlint-rule-name");
-        });
-        it("@scope/textlint-rule-<name> -> @scope/textlint-rule-<name>", () => {
-            assert.equal(
-                createFullPackageName(PREFIX, "@scope/textlint-rule-name"),
-                "@scope/textlint-rule-textlint-rule-name"
-            );
-        });
-        it("@scope/preset-<name> -> @scope/textlint-rule-preset-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "@scope/preset-name"), "@scope/textlint-rule-preset-name");
-        });
-    });
     describe("#resolveRulePackageName", function() {
         it("should resolve rule package name", function() {
             const resolver = createResolve();

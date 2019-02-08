@@ -15,6 +15,14 @@ export function isPresetRuleKey(key: string) {
     if (/^preset-/.test(key)) {
         return true;
     }
+    if (/^textlint-rule-preset-/.test(key)) {
+        return true;
+    }
     // scoped module: @textlint/textlint-rule-preset-foo
-    return key[0] === "@" && (key.indexOf("/textlint-rule-preset-") !== -1 || key.indexOf("/preset-") !== -1);
+    if (key[0] === "@") {
+        if (key.indexOf("/preset-") !== -1 || key.indexOf("/textlint-rule-preset-") !== -1) {
+            return true;
+        }
+    }
+    return false;
 }
