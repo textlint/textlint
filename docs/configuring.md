@@ -39,7 +39,7 @@ Add rule name to `rules` field.
 {
   "rules": {
     "no-todo": true,
-    "very-nice-rule": false,
+    "very-nice-rule": false
   }
 }
 ```
@@ -93,6 +93,26 @@ The rule `<name>` can be accept following patterns:
 - `<name>`
 - `@scope/textlint-rule-<name>`
 - `@scope/<name>`
+
+For example, following configs express the same thing.
+
+```json
+{
+  "rules": {
+    "cool": true
+  }
+}
+```
+
+is equal to
+
+```json
+{
+  "rules": {
+    "textlint-rule-cool": true
+  }
+}
+```
 
 ### Severity config of rules
 
