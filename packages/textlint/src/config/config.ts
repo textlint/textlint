@@ -11,7 +11,6 @@ import {
     normalizeRuleKey,
     normalizeRulePresetKey
 } from "./config-key-normalizer";
-import { PackageNamePrefix } from "./pacakge-prefix";
 
 const objectAssign = require("object-assign");
 const md5 = require("md5");
