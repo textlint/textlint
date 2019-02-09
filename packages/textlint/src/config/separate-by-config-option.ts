@@ -1,42 +1,42 @@
 // LICENSE : MIT
 "use strict";
-import { isPluginRuleKey, isPresetRuleKey } from "../util/config-util";
+import { isPluginRuleKey, isPresetRuleKey } from "./config-util";
 export interface RuleOf {
-    presets: string[];
-    available: string[];
-    disable: string[];
+    presetNames: string[];
+    enabledRuleNames: string[];
+    disabledRuleNames: string[];
 }
 /**
  * Get rule keys from `.textlintrc` config object.
  * @param {Object} [rulesConfig]
- * @returns {{available: string[], disable: string[]}}
+ * @returns {{available: string[], disabledRuleNames: string[]}}
  */
-export function separateAvailableOrDisable(rulesConfig: any): RuleOf {
+export function separateEnabledOrDisabled(rulesConfig: any): RuleOf {
     const ruleOf: RuleOf = {
-        presets: [],
-        available: [],
-        disable: []
+        presetNames: [],
+        enabledRuleNames: [],
+        disabledRuleNames: []
     };
     if (!rulesConfig) {
         return ruleOf;
     }
     Object.keys(rulesConfig).forEach(key => {
-        // `textlint-rule-preset-XXX`
-        if (isPresetRuleKey(key)) {
-            if (typeof rulesConfig[key] === "object" || rulesConfig[key] === true) {
-                ruleOf.presets.push(key);
-            }
-            return;
-        }
         // `<plugin>/<rule-key>` should ignored
         if (isPluginRuleKey(key)) {
             return;
         }
+        // `textlint-rule-preset-XXX`
+        if (isPresetRuleKey(key)) {
+            if (typeof rulesConfig[key] === "object" || rulesConfig[key] === true) {
+                ruleOf.presetNames.push(key);
+            }
+            return;
+        }
         // ignore `false` value
         if (typeof rulesConfig[key] === "object" || rulesConfig[key] === true) {
-            ruleOf.available.push(key);
+            ruleOf.enabledRuleNames.push(key);
         } else {
-            ruleOf.disable.push(key);
+            ruleOf.disabledRuleNames.push(key);
         }
     });
     return ruleOf;

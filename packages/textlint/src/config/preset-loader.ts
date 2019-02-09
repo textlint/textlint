@@ -1,45 +1,94 @@
 // LICENSE : MIT
 "use strict";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { normalizePresetSubRuleKey } from "./config-key-normalizer";
+import { isPresetRuleKey } from "./config-util";
+
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
-import { TextLintModuleMapper } from "../engine/textlint-module-mapper";
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 
 /**
- * create `<plugin>/<rule>` option
+ * Convert config of preset to rawRulesConfig flat path format.
+ *
+ * This function convert Preset nesting rule to flat path
+ * ```
+ * {
+ *  "x" : true
+ *  "preset-a" : { "rule-name": "value" }
+ * }
+ * ```
+ * =>
+ * ```
+ * { "x": true }
+ * { "a/rule-name": "value" }
+ * ```
+ *
+ * @param rawRulesConfig
+ * @returns {{string: string}}
+ */
+export function createFlatRulesConfigFromRawRulesConfig(rawRulesConfig: any) {
+    if (!rawRulesConfig) {
+        return {};
+    }
+    const rulesConfig: { [index: string]: any } = {};
+    Object.keys(rawRulesConfig).forEach(key => {
+        if (isPresetRuleKey(key)) {
+            // <preset>/<rule>
+            const presetName = key;
+            const presetRuleConfig = rawRulesConfig[key];
+            ObjectAssign(rulesConfig, createFlatPresetRulesConfigFromRawPresetRuleConfig(presetRuleConfig, presetName));
+            return;
+        }
+        rulesConfig[key] = rawRulesConfig[key];
+    });
+    return rulesConfig;
+}
+
+/**
+ * create flat `<plugin>/<rule>` option
  * @param {Object} [rulesConfig]
  * @param {string} presetName
  * @returns {Object}
  */
-export function mapRulesConfig(rulesConfig: { [index: string]: string }, presetName: string): object {
-    const mapped = {};
+export function createFlatPresetRulesConfigFromRawPresetRuleConfig(
+    rulesConfig: { [index: string]: string },
+    presetName: string
+): object {
+    const mapped: { [index: string]: string } = {};
     // missing "rulesConfig"
     if (rulesConfig === undefined || typeof rulesConfig !== "object") {
         return mapped;
     }
-    return TextLintModuleMapper.createMappedObject(rulesConfig, presetName);
+    Object.keys(rulesConfig).forEach(ruleName => {
+        const normalizedKey = normalizePresetSubRuleKey({ preset: presetName, rule: ruleName });
+        mapped[normalizedKey] = rulesConfig[ruleName];
+    });
+    return mapped;
 }
 
 // load rulesConfig from plugins
 /**
  *
- * @param ruleNames
+ * @param presetNames
  * @param {TextLintModuleResolver} moduleResolver
  * @returns {{}}
  */
-export function loadRulesConfigFromPresets(ruleNames: string[] = [], moduleResolver: TextLintModuleResolver): {} {
+export function loadRulesConfigFromPresets(presetNames: string[] = [], moduleResolver: TextLintModuleResolver): {} {
     const presetRulesConfig = {};
-    ruleNames.forEach(ruleName => {
-        const pkgPath = moduleResolver.resolvePresetPackageName(ruleName);
+    presetNames.forEach(presetName => {
+        const pkgPath = moduleResolver.resolvePresetPackageName(presetName);
         const preset = interopRequire(pkgPath);
         if (!preset.hasOwnProperty("rules")) {
-            throw new Error(`${ruleName} has not rules`);
+            throw new Error(`${presetName} has not rules`);
         }
         if (!preset.hasOwnProperty("rulesConfig")) {
-            throw new Error(`${ruleName} has not rulesConfig`);
+            throw new Error(`${presetName} has not rulesConfig`);
         }
         // set config of <rule> to "<preset>/<rule>"
-        ObjectAssign(presetRulesConfig, mapRulesConfig(preset.rulesConfig, ruleName));
+        ObjectAssign(
+            presetRulesConfig,
+            createFlatPresetRulesConfigFromRawPresetRuleConfig(preset.rulesConfig, presetName)
+        );
     });
     return presetRulesConfig;
 }

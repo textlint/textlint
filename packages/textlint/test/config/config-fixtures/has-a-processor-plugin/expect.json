@@ -2,9 +2,9 @@
   "rules": [],
   "rulesConfig": {},
   "plugins": [
-    "textlint-plugin-pl-example"
+    "pl-example"
   ],
   "pluginsConfig": {
-    "textlint-plugin-pl-example": true
+    "pl-example": true
   }
 }

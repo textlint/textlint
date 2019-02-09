@@ -6,10 +6,12 @@
  */
 // The separator of `<plugin>/<rule>`
 const RuleSeparator = "/";
+
 export class TextLintModuleMapper {
     /**
      * create entities from rules/rulesConfig and prefix
      * entities is a array which contain [key, value]
+     *  it just create entity without normalization
      * see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
      * @param {Object} pluginRules an object is like "rules" or "rulesConfig" of plugin
      * @param {string} prefixKey prefix key is plugin name or preset name
@@ -28,6 +30,8 @@ export class TextLintModuleMapper {
     /**
      * create an object from rules/rulesConfig and prefix
      * the object shape is { key: value, key2: value }
+     *
+     * it just create object without normalization
      * @param {Object} pluginRules an object is like "rules" or "rulesConfig" of plugin
      * @param {string} prefixKey prefix key is plugin name or preset name
      * @returns {Object}

@@ -57,6 +57,32 @@ describe("cli-test", function() {
                 assert.equal(result, 1);
             });
         });
+        it("should report lint warning and error by using stylish reporter", function() {
+            const targetFile = path.join(__dirname, "fixtures/todo.md");
+            const configFile = path.join(__dirname, "fixtures/.textlintrc.json");
+            Logger.log = function mockLog(message) {
+                const json = JSON.parse(message);
+                assert.deepStrictEqual(json, [
+                    {
+                        filePath: targetFile,
+                        messages: [
+                            {
+                                column: 3,
+                                index: 17,
+                                line: 3,
+                                message: "Found TODO: '- [ ] TODO'",
+                                ruleId: "no-todo",
+                                severity: 1,
+                                type: "lint"
+                            }
+                        ]
+                    }
+                ]);
+            };
+            return cli.execute(`${targetFile} -f json --config ${configFile}`).then(result => {
+                assert.equal(result, 0);
+            });
+        });
     });
     context("When run with --rule", function() {
         it("should lint the file with long name", function(done) {

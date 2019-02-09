@@ -24,12 +24,21 @@ describe("config-as-example", function() {
                 console.error(`Fail: ${dirName}`);
                 throw error;
             }
-            const expect = fs.existsSync(path.join(projectDir, "expect.json"))
-                ? require(path.join(projectDir, "expect.json"))
-                : require(path.join(projectDir, "expect.js"));
+            const expectedPath = fs.existsSync(path.join(projectDir, "expect.json"))
+                ? path.join(projectDir, "expect.json")
+                : path.join(projectDir, "expect.js");
+            const expect = require(expectedPath);
             const actual = config.toJSON();
             Object.keys(expect).forEach(key => {
-                assert.deepEqual(actual[key], expect[key]);
+                try {
+                    assert.deepStrictEqual(actual[key], expect[key]);
+                } catch (error) {
+                    // eslint-disable-next-line no-console
+                    console.error(`Fail: does not match expected config.
+    at ${textlintrcPath}:1:1
+    at ${expectedPath}:1:1`);
+                    throw error;
+                }
             });
         });
     });

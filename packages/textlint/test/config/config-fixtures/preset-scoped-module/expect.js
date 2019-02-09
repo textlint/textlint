@@ -1,9 +1,9 @@
 const path = require("path");
 module.exports = {
     rules: [],
-    presets: ["@textlint/textlint-rule-preset-foo"],
+    presets: ["@textlint/foo"],
     rulesConfig: {
-        "@textlint/textlint-rule-preset-foo/a": true
+        "@textlint/foo/a": true
     },
     configFile: path.join(__dirname, ".textlintrc")
 };

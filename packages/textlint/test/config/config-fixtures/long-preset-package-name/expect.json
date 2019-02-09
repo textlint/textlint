@@ -1,0 +1,14 @@
+{
+  "presets": [
+    "foo",
+    "bar"
+  ],
+  "rulesConfig": {
+    "bar/a": {
+      "key": "value"
+    },
+    "foo/a": {
+      "key": "value"
+    }
+  }
+}

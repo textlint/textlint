@@ -72,7 +72,7 @@ describe("textlint-engine-test", function() {
                 const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 1);
                 const ruleName = ruleNames[0];
-                assert(ruleName === "@textlint/textlint-rule-example");
+                assert(ruleName === "@textlint/example");
                 assert(typeof getRule(engine.textlintrcDescriptor, ruleName) === "function");
             });
         });
@@ -150,33 +150,33 @@ describe("textlint-engine-test", function() {
                     rulesBaseDirectory: presetsDir
                 });
                 const ruleNames = getRuleNames(engine.textlintrcDescriptor);
-                assert(ruleNames.length === 1);
+                assert.strictEqual(ruleNames.length, 1);
                 const ruleName = ruleNames[0];
-                assert(ruleName === "@textlint/textlint-rule-preset-example/example-rule");
-                assert(typeof getRule(engine.textlintrcDescriptor, ruleName) === "function");
+                assert.strictEqual(ruleName, "@textlint/example/example-rule");
+                assert.strictEqual(typeof getRule(engine.textlintrcDescriptor, ruleName), "function");
             });
         });
         context("when the rule is **not** defined", function() {
             it("should define rules of preset", function() {
-                const engine = new TextLintEngine({ presets: ["preset-example"], rulesBaseDirectory: presetsDir });
+                const engine = new TextLintEngine({ presets: ["example"], rulesBaseDirectory: presetsDir });
                 const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 2);
-                assert.equal(ruleNames[0], "preset-example/a");
-                assert.equal(ruleNames[1], "preset-example/b");
+                assert.strictEqual(ruleNames[0], "example/a");
+                assert.strictEqual(ruleNames[1], "example/b");
             });
         });
         context("when the rule is defined", function() {
             it("should not load rule", function() {
-                const engine = new TextLintEngine({ presets: ["preset-example"], rulesBaseDirectory: presetsDir });
+                const engine = new TextLintEngine({ presets: ["example"], rulesBaseDirectory: presetsDir });
                 const ruleNames = getRuleNames(engine.textlintrcDescriptor);
                 assert(ruleNames.length === 2);
 
-                const ruleObject = getRuleOptions(engine.textlintrcDescriptor, "preset-example/a");
-                // loadRule should ignore
-                engine.loadPreset("preset-example");
+                const ruleObject = getRuleOptions(engine.textlintrcDescriptor, "example/a");
+                // FIXME: loadRule should ignore
+                engine.loadPreset("example");
                 assert(ruleNames.length === 2);
                 // should equal prev loaded object
-                assert(getRuleOptions(engine.textlintrcDescriptor, "preset-example/a") === ruleObject);
+                assert(getRuleOptions(engine.textlintrcDescriptor, "example/a") === ruleObject);
             });
         });
     });

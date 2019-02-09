@@ -1,11 +1,11 @@
 {
   "rules": [],
   "presets": [
-    "preset-foo",
-    "preset-bar"
+    "foo",
+    "bar"
   ],
   "rulesConfig": {
-    "preset-foo/a": true,
-    "preset-bar/a": true
+    "foo/a": true,
+    "bar/a": true
   }
 }

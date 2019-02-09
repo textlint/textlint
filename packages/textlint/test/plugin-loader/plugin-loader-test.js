@@ -2,11 +2,12 @@
 "use strict";
 const assert = require("assert");
 const path = require("path");
-import { Config } from "../../src/config/config";
 import { loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
 import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 
-const moduleResolver = new TextLintModuleResolver(Config, path.join(__dirname, "fixtures"));
+const moduleResolver = new TextLintModuleResolver({
+    rulesBaseDirectory: path.join(__dirname, "fixtures")
+});
 describe("plugin-loader", function() {
     describe("#getPluginConfig", () => {
         it("should return {} when plugins is empty", () => {

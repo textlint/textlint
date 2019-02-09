@@ -1,0 +1,10 @@
+{
+  "rules": [
+    "example"
+  ],
+  "rulesConfig": {
+    "example": {
+      "key": "value"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "textlint-rule-preset-foo": {
+      "a": {
+        "key": "value"
+      }
+    },
+    "textlint-rule-preset-bar": {
+      "textlint-rule-a": {
+        "key": "value"
+      }
+    }
+  }
+}

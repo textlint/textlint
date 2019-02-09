@@ -101,7 +101,8 @@ export const options = optionator({
             option: "color",
             type: "Boolean",
             default: "true",
-            description: "Disable color in piped output."
+            description: "Disable color in piped output.",
+            example: "textlint --no-color"
         },
         {
             option: "quiet",
@@ -116,7 +117,8 @@ export const options = optionator({
             option: "textlintrc",
             type: "Boolean",
             default: "true",
-            description: "Disable .textlintrc"
+            description: "Disable .textlintrc",
+            example: "--no-textlintrc"
         },
         {
             option: "plugin",

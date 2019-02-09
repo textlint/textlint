@@ -2,35 +2,15 @@
 "use strict";
 const path = require("path");
 import * as assert from "assert";
-import { TextLintModuleResolver, createFullPackageName } from "../../src/engine/textlint-module-resolver";
-import { Config } from "../../src/config/config";
+import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
 const createResolve = ruleBaseDir => {
-    return new TextLintModuleResolver(Config, ruleBaseDir);
+    return new TextLintModuleResolver({
+        rulesBaseDirectory: ruleBaseDir
+    });
 };
 describe("textlint-module-resolver", function() {
-    describe("createFullPackageName", () => {
-        const PREFIX = "textlint-rule-";
-        it("<name> -> textlint-rule-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "name"), "textlint-rule-name");
-        });
-        it("textlint-rule-<name> -> textlint-rule-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "textlint-rule-name"), "textlint-rule-textlint-rule-name");
-        });
-        it("@scope/<name> -> @scope/textlint-rule-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "@scope/name"), "@scope/textlint-rule-name");
-        });
-        it("@scope/textlint-rule-<name> -> @scope/textlint-rule-<name>", () => {
-            assert.equal(
-                createFullPackageName(PREFIX, "@scope/textlint-rule-name"),
-                "@scope/textlint-rule-textlint-rule-name"
-            );
-        });
-        it("@scope/preset-<name> -> @scope/textlint-rule-preset-<name>", () => {
-            assert.equal(createFullPackageName(PREFIX, "@scope/preset-name"), "@scope/textlint-rule-preset-name");
-        });
-    });
     describe("#resolveRulePackageName", function() {
         it("should resolve rule package name", function() {
             const resolver = createResolve();

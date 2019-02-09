@@ -1,44 +1,39 @@
 // LICENSE : MIT
 "use strict";
+import { loadConfig } from "./config-loader";
+import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./preset-loader";
+import { getPluginConfig, getPluginNames } from "./plugin-loader";
+import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { separateEnabledOrDisabled } from "./separate-by-config-option";
+import {
+    normalizeFilterRuleKey,
+    normalizePluginKey,
+    normalizeRuleKey,
+    normalizeRulePresetKey
+} from "./config-key-normalizer";
+
 const objectAssign = require("object-assign");
 const md5 = require("md5");
 const fs = require("fs");
 const assert = require("assert");
 const concat = require("unique-concat");
 const path = require("path");
-import { loadConfig } from "./config-loader";
-import { isPresetRuleKey } from "../util/config-util";
-import { loadRulesConfigFromPresets, mapRulesConfig } from "./preset-loader";
-import { getPluginConfig, getPluginNames } from "./plugin-loader";
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import { separateAvailableOrDisable } from "./separate-by-config-option";
 
-/**
- * Convert config of preset to rulesConfig flat path format.
- *
- * e.g.)
- * {
- *  "preset-a" : { "key": "value"}
- * }
- * => {"preset-a/key": "value"}
- *
- * @param rulesConfig
- * @returns {{string: string}}
- */
-function convertRulesConfigToFlatPath(rulesConfig: any) {
-    if (!rulesConfig) {
-        return {};
-    }
-    const filteredConfig: { [index: string]: any } = {};
-    Object.keys(rulesConfig).forEach(key => {
-        if (isPresetRuleKey(key)) {
-            // <preset>/<rule>
-            objectAssign(filteredConfig, mapRulesConfig(rulesConfig[key], key));
-            return;
-        }
-        filteredConfig[key] = rulesConfig[key];
+function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
+    return names.map(name => {
+        return normalizer(name);
     });
-    return filteredConfig;
+}
+
+function applyNormalizerToConfig(normalizer: (name: string) => string, config: { [index: string]: string }) {
+    return Object.keys(config).reduce(
+        (results, key) => {
+            const shortPluginName = normalizer(key);
+            results[shortPluginName] = config[key];
+            return results;
+        },
+        {} as { [index: string]: any }
+    );
 }
 
 /**
@@ -124,41 +119,6 @@ export class Config {
     }
 
     /**
-     * @return {string} config package prefix
-     */
-    static get CONFIG_PACKAGE_PREFIX() {
-        return "textlint-config-";
-    }
-
-    /**
-     * @return {string} rule package's name prefix
-     */
-    static get RULE_NAME_PREFIX() {
-        return "textlint-rule-";
-    }
-
-    /**
-     * @return {string} filter rule package's name prefix
-     */
-    static get FILTER_RULE_NAME_PREFIX() {
-        return "textlint-filter-rule-";
-    }
-
-    /**
-     * @return {string} rule preset package's name prefix
-     */
-    static get RULE_PRESET_NAME_PREFIX() {
-        return "textlint-rule-preset-";
-    }
-
-    /**
-     * @return {string} plugins package's name prefix
-     */
-    static get PLUGIN_NAME_PREFIX() {
-        return "textlint-plugin-";
-    }
-
-    /**
      * Create config object form command line options
      * See options.js
      * @param {object} cliOptions the options is command line option object. @see options.js
@@ -179,6 +139,7 @@ export class Config {
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
         options.quiet = cliOptions.quiet !== undefined ? cliOptions.quiet : defaultOptions.quiet;
         options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
+        // --no-textlintrc: disable textlint
         options.textlintrc = cliOptions.textlintrc !== undefined ? cliOptions.textlintrc : defaultOptions.textlintrc;
         // --cache
         options.cache = cliOptions.cache !== undefined ? cliOptions.cache : defaultOptions.cache;
@@ -193,15 +154,21 @@ export class Config {
     }
 
     /* eslint-disable complexity */
-
-    // load config and merge options.
+    /**
+     * load config and merge options.
+     * These config is user defined options.
+     * These config is prefer than preset packages's config that is defined by package author.
+     * @param options
+     */
     static initWithAutoLoading(options: any = {}) {
         // Base directory
         const rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // Create resolver
-        const moduleResolver = new TextLintModuleResolver(this, rulesBaseDirectory);
+        const moduleResolver = new TextLintModuleResolver({
+            rulesBaseDirectory
+        });
         // => ConfigFile
         // configFile is optional
         // => load .textlintrc
@@ -218,13 +185,16 @@ export class Config {
         const configFileRaw = loadedResult.config;
         const configFilePath = loadedResult.filePath;
         // => Load options from .textlintrc
-        const configRulesObject = separateAvailableOrDisable(configFileRaw.rules);
-        const configFilterRulesObject = separateAvailableOrDisable(configFileRaw.filters);
-        const configPresets = configRulesObject.presets;
+        const configRuleNamesObject = separateEnabledOrDisabled(configFileRaw.rules);
+        const configFilterRuleNamesObject = separateEnabledOrDisabled(configFileRaw.filters);
+        const configPresetNames = configRuleNamesObject.presetNames;
         const configFilePlugins = getPluginNames(configFileRaw);
         const configFilePluginConfig = getPluginConfig(configFileRaw);
-        const configFileRulesConfig = convertRulesConfigToFlatPath(configFileRaw.rules);
-        const configFileFilterRulesConfig = convertRulesConfigToFlatPath(configFileRaw.filters);
+        // Notes: vs. loadRulesConfigFromPresets
+        // loadRulesConfigFromPresets load rules config from **preset package**. (It is not user defined config. It is defined by package author)
+        // In other hands, this line load rules config from .textlintrc. (It is user defined config)
+        const configFileRulesConfig = createFlatRulesConfigFromRawRulesConfig(configFileRaw.rules);
+        const configFileFilterRulesConfig = createFlatRulesConfigFromRawRulesConfig(configFileRaw.filters);
         // => User specified Options
         const optionRules = options.rules || [];
         const optionFilterRules = options.filterRules || [];
@@ -237,15 +207,15 @@ export class Config {
         const optionPluginsConfig = options.pluginsConfig || {};
         // => Merge options and configFileOptions
         // Priority options > configFile
-        const rules = concat(optionRules, configRulesObject.available);
-        const disabledRules = concat(optionDisabledRules, configRulesObject.disable);
-        const filterRules = concat(optionFilterRules, configFilterRulesObject.available);
-        const disabledFilterRules = concat(optionDisabledFilterRules, configFilterRulesObject.disable);
+        const rules = concat(optionRules, configRuleNamesObject.enabledRuleNames);
+        const disabledRules = concat(optionDisabledRules, configRuleNamesObject.disabledRuleNames);
+        const filterRules = concat(optionFilterRules, configFilterRuleNamesObject.enabledRuleNames);
+        const disabledFilterRules = concat(optionDisabledFilterRules, configFilterRuleNamesObject.disabledRuleNames);
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
         const filterRulesConfig = objectAssign({}, configFileFilterRulesConfig, optionFilterRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
         const pluginsConfig = objectAssign({}, configFilePluginConfig, optionPluginsConfig);
-        const presets = concat(optionPresets, configPresets);
+        const presets = concat(optionPresets, configPresetNames);
         const mergedOptions = objectAssign({}, options, {
             rules,
             disabledRules,
@@ -293,53 +263,77 @@ export class Config {
             ? options.rulesBaseDirectory
             : defaultOptions.rulesBaseDirectory;
         // rule names that are defined in ,textlintrc
-        const configConstructor: ConfigStatics = (this.constructor as any) as ConfigStatics;
-        const moduleResolver = new TextLintModuleResolver(
-            {
-                CONFIG_PACKAGE_PREFIX: configConstructor.CONFIG_PACKAGE_PREFIX,
-                FILTER_RULE_NAME_PREFIX: configConstructor.FILTER_RULE_NAME_PREFIX,
-                RULE_NAME_PREFIX: configConstructor.RULE_NAME_PREFIX,
-                RULE_PRESET_NAME_PREFIX: configConstructor.RULE_PRESET_NAME_PREFIX,
-                PLUGIN_NAME_PREFIX: configConstructor.PLUGIN_NAME_PREFIX
-            },
-            this.rulesBaseDirectory
+        const moduleResolver = new TextLintModuleResolver({
+            rulesBaseDirectory: this.rulesBaseDirectory
+        });
+        /**
+         * @type {string[]} rule key list
+         * These rule is set `false` to options
+         */
+        this.disabledRules = applyNormalizerToList(
+            normalizeRuleKey,
+            options.disabledRules ? options.disabledRules : defaultOptions.disabledRules
         );
         /**
          * @type {string[]} rule key list
-         * but, plugins's rules are not contained in `rules`
-         * plugins's rule are loaded in TextLintEngine
+         * rules does not includes disabledRules
          */
-        this.rules = options.rules ? options.rules : defaultOptions.rules;
+        this.rules = applyNormalizerToList(
+            normalizeRuleKey,
+            options.rules ? options.rules : defaultOptions.rules
+        ).filter(ruleName => {
+            return !this.disabledRules.includes(ruleName);
+        });
+
         /**
          * @type {string[]} rule key list
          * These rule is set `false` to options
          */
-        this.disabledRules = options.disabledRules ? options.disabledRules : defaultOptions.disabledRules;
+        this.disabledFilterRules = applyNormalizerToList(
+            normalizeFilterRuleKey,
+            options.disabledFilterRules ? options.disabledFilterRules : defaultOptions.disabledFilterRules
+        );
+
         /**
          * @type {string[]} filter rule key list
          */
-        this.filterRules = options.filterRules ? options.filterRules : defaultOptions.filterRules;
-        /**
-         * @type {string[]} rule key list
-         * These rule is set `false` to options
-         */
-        this.disabledFilterRules = options.disabledFilterRules
-            ? options.disabledFilterRules
-            : defaultOptions.disabledFilterRules;
+        this.filterRules = applyNormalizerToList(
+            normalizeFilterRuleKey,
+            options.filterRules ? options.filterRules : defaultOptions.filterRules
+        ).filter(ruleName => {
+            return !this.disabledFilterRules.includes(ruleName);
+        });
         /**
          * @type {string[]} preset key list
          */
-        this.presets = options.presets ? options.presets : defaultOptions.presets;
+        this.presets = applyNormalizerToList(
+            normalizeRulePresetKey,
+            options.presets ? options.presets : defaultOptions.presets
+        );
         // => load plugins
         // this.rules has not contain plugin rules
         // =====================
-        this.plugins = options.plugins ? options.plugins : defaultOptions.plugins;
-        this.pluginsConfig = options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig;
+        this.plugins = applyNormalizerToList(
+            normalizePluginKey,
+            options.plugins ? options.plugins : defaultOptions.plugins
+        );
+        this.pluginsConfig = applyNormalizerToConfig(
+            normalizePluginKey,
+            options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig
+        );
         // rulesConfig
+        // load preset package's config and merge it to user defined rules config
+        // user config > default preset config
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
-        this.rulesConfig = objectAssign({}, presetRulesConfig, options.rulesConfig);
+        this.rulesConfig = applyNormalizerToConfig(
+            normalizeRuleKey,
+            objectAssign({}, presetRulesConfig, options.rulesConfig)
+        );
         // filterRulesConfig
-        this.filterRulesConfig = options.filterRulesConfig || defaultOptions.filterRulesConfig;
+        this.filterRulesConfig = applyNormalizerToConfig(
+            normalizeFilterRuleKey,
+            options.filterRulesConfig || defaultOptions.filterRulesConfig
+        );
         /**
          * @type {string[]}
          */
@@ -367,7 +361,7 @@ export class Config {
         this._assertCacheLocation(this.cacheLocation);
     }
 
-    _assertCacheLocation(locationPath: string) {
+    private _assertCacheLocation(locationPath: string) {
         let fileStats;
         try {
             fileStats = fs.lstatSync(locationPath);
@@ -377,7 +371,7 @@ export class Config {
         if (!fileStats) {
             return;
         }
-        // TODO: --cache-location not supported directory
+        // TODO: --cache-location does not support directory
         // We should defined what is default name.
         assert(!fileStats.isDirectory(), "--cache-location doesn't support directory");
     }

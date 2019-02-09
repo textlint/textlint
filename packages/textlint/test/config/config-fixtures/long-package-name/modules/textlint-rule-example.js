@@ -1,0 +1,7 @@
+module.exports = function(context) {
+    const exports = {};
+    exports[context.Syntax.Str] = function(node) {
+        context.report(node, new context.RuleError("found error message"));
+    };
+    return exports;
+};
