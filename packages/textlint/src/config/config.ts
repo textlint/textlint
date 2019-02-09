@@ -154,8 +154,12 @@ export class Config {
     }
 
     /* eslint-disable complexity */
-
-    // load config and merge options.
+    /**
+     * load config and merge options.
+     * These config is user defined options.
+     * These config is prefer than preset packages's config that is defined by package author.
+     * @param options
+     */
     static initWithAutoLoading(options: any = {}) {
         // Base directory
         const rulesBaseDirectory = options.rulesBaseDirectory
@@ -186,6 +190,9 @@ export class Config {
         const configPresetNames = configRuleNamesObject.presetNames;
         const configFilePlugins = getPluginNames(configFileRaw);
         const configFilePluginConfig = getPluginConfig(configFileRaw);
+        // Notes: vs. loadRulesConfigFromPresets
+        // loadRulesConfigFromPresets load rules config from **preset package**. (It is not user defined config. It is defined by package author)
+        // In other hands, this line load rules config from .textlintrc. (It is user defined config)
         const configFileRulesConfig = createFlatRulesConfigFromRawRulesConfig(configFileRaw.rules);
         const configFileFilterRulesConfig = createFlatRulesConfigFromRawRulesConfig(configFileRaw.filters);
         // => User specified Options
@@ -315,7 +322,8 @@ export class Config {
             options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig
         );
         // rulesConfig
-        // load preset config and merge it rules
+        // load preset package's config and merge it to user defined rules config
+        // user config > default preset config
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = applyNormalizerToConfig(
             normalizeRuleKey,
@@ -353,7 +361,7 @@ export class Config {
         this._assertCacheLocation(this.cacheLocation);
     }
 
-    _assertCacheLocation(locationPath: string) {
+    private _assertCacheLocation(locationPath: string) {
         let fileStats;
         try {
             fileStats = fs.lstatSync(locationPath);
