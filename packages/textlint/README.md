@@ -1,11 +1,6 @@
 # textlint
 
-## Internal Design
+The pluggable linting tool for text.  
 
-### Resolve algorithm
-
-- any package path -> full path
-- rule package name -> short name(`<name>`)
-- rule package config's name -> short name(`<name>`)
-- rule preset package name -> short name(`preset-<name>/<rule-short-name>`)
-- rule preset package config's name -> short name(`preset-<name>/<rule-short-name>`)
+- Website: <https://textlint.github.io/>
+- Repository: <https://github.com/textlint/textlint>

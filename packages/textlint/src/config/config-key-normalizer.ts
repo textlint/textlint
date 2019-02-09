@@ -2,6 +2,40 @@
  * @overview config-key-normalizer provide normalize function for `key`
  * It aim to normalize key and  use it for {rule,filterRule,plugin}'s config.
  *
+ * ### Resolve algorithm
+ *
+ * - Any package path -> full path
+ *
+ * **key**: key is normalized string for resolving {rule,filterRule,plugin} option.
+ *
+ * The key is shorten by design.
+ *
+ * For example, `@org/textlint-rule-preset-parent`'s `@org/textlint-rule-child` key is `@org/parent/@org/child`.
+ *
+ * `@org/textlint-rule-preset-parent`'s `@org/textlint-rule-child`:
+ * ```json
+ * {
+ *  "rules": {
+ *    "@org/textlint-rule-preset-parent": {
+ *       "@org/textlint-rule-child": true
+ *    }
+ *  }
+ *}
+ * ```
+ *
+ * In internal, this config is normalized to following:
+ *
+ * ```
+ * { @org/parent/@org/child: true }
+ * ```
+ *
+ * For more details, see textlint-package-name-util-test.ts
+ *
+ * **Related:**
+ *
+ * - <https://github.com/textlint/textlint/issues/583>
+ * - <https://github.com/textlint/textlint/pull/586>
+ *
  * @example
  *
  * - textlint-config-<name> -> <name>
@@ -9,7 +43,7 @@
  * - textlint-rule-preset-<name> -> <name>
  * - preset-<name> -> <name>
  *
- *  For more details, see textlint-package-name-util-test.ts
+ *
  */
 import { PackageNamePrefix } from "./pacakge-prefix";
 import { removePrefixFromPackageName } from "../engine/textlint-package-name-util";
