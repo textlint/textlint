@@ -5,8 +5,8 @@
         "key": "value"
       }
     },
-    "preset-bar": {
-      "a": {
+    "textlint-rule-preset-bar": {
+      "textlint-rule-a": {
         "key": "value"
       }
     }
