@@ -33,6 +33,7 @@ describe("config-as-example", function() {
                 try {
                     assert.deepStrictEqual(actual[key], expect[key]);
                 } catch (error) {
+                    // eslint-disable-next-line no-console
                     console.error(`Fail: does not match expected config.
     at ${textlintrcPath}:1:1
     at ${expectedPath}:1:1`);
