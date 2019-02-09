@@ -1,53 +1,67 @@
 // LICENSE : MIT
 "use strict";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import { normalizeRuleKey, normalizeRulePresetKey } from "./config-key-normalizer";
-import { isPresetRuleKey } from "../util/config-util";
+import { normalizePresetSubRuleKey } from "./config-key-normalizer";
+import { isPresetRuleKey } from "./config-util";
+
 const interopRequire = require("interop-require");
 const ObjectAssign = require("object-assign");
 
 /**
- * Convert config of preset to rulesConfig flat path format.
+ * Convert config of preset to rawRulesConfig flat path format.
  *
- * e.g.)
+ * This function convert Preset nesting rule to flat path
+ * ```
  * {
- *  "preset-a" : { "key": "value"}
+ *  "x" : true
+ *  "preset-a" : { "rule-name": "value" }
  * }
- * => {"preset-a/key": "value"}
+ * ```
+ * =>
+ * ```
+ * { "x": true }
+ * { "a/rule-name": "value" }
+ * ```
  *
- * @param rulesConfig
+ * @param rawRulesConfig
  * @returns {{string: string}}
  */
-export function convertRulesConfigToFlatPath(rulesConfig: any) {
-    if (!rulesConfig) {
+export function createFlatRulesConfigFromRawRulesConfig(rawRulesConfig: any) {
+    if (!rawRulesConfig) {
         return {};
     }
-    const filteredConfig: { [index: string]: any } = {};
-    Object.keys(rulesConfig).forEach(key => {
+    const rulesConfig: { [index: string]: any } = {};
+    Object.keys(rawRulesConfig).forEach(key => {
         if (isPresetRuleKey(key)) {
             // <preset>/<rule>
-            ObjectAssign(filteredConfig, mapRulesConfig(rulesConfig[key], key));
+            const presetName = key;
+            const presetRuleConfig = rawRulesConfig[key];
+            ObjectAssign(rulesConfig, createFlatPresetRulesConfigFromRawPresetRuleConfig(presetRuleConfig, presetName));
             return;
         }
-        filteredConfig[key] = rulesConfig[key];
+        rulesConfig[key] = rawRulesConfig[key];
     });
-    return filteredConfig;
+    return rulesConfig;
 }
 
 /**
- * create `<plugin>/<rule>` option
+ * create flat `<plugin>/<rule>` option
  * @param {Object} [rulesConfig]
  * @param {string} presetName
  * @returns {Object}
  */
-export function mapRulesConfig(rulesConfig: { [index: string]: string }, presetName: string): object {
+export function createFlatPresetRulesConfigFromRawPresetRuleConfig(
+    rulesConfig: { [index: string]: string },
+    presetName: string
+): object {
     const mapped: { [index: string]: string } = {};
     // missing "rulesConfig"
     if (rulesConfig === undefined || typeof rulesConfig !== "object") {
         return mapped;
     }
     Object.keys(rulesConfig).forEach(ruleName => {
-        mapped[`${normalizeRulePresetKey(presetName)}/${normalizeRuleKey(ruleName)}`] = rulesConfig[ruleName];
+        const normalizedKey = normalizePresetSubRuleKey({ preset: presetName, rule: ruleName });
+        mapped[normalizedKey] = rulesConfig[ruleName];
     });
     return mapped;
 }
@@ -71,7 +85,10 @@ export function loadRulesConfigFromPresets(presetNames: string[] = [], moduleRes
             throw new Error(`${presetName} has not rulesConfig`);
         }
         // set config of <rule> to "<preset>/<rule>"
-        ObjectAssign(presetRulesConfig, mapRulesConfig(preset.rulesConfig, presetName));
+        ObjectAssign(
+            presetRulesConfig,
+            createFlatPresetRulesConfigFromRawPresetRuleConfig(preset.rulesConfig, presetName)
+        );
     });
     return presetRulesConfig;
 }

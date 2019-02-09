@@ -12,6 +12,7 @@ export function isPluginRuleKey(key: string) {
 }
 
 export function isPresetRuleKey(key: string) {
+    // "preset-name" is special pattern
     if (/^preset-/.test(key)) {
         return true;
     }

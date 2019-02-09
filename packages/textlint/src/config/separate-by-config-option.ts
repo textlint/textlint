@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { isPluginRuleKey, isPresetRuleKey } from "../util/config-util";
+import { isPluginRuleKey, isPresetRuleKey } from "./config-util";
 export interface RuleOf {
     presets: string[];
     available: string[];

@@ -5,7 +5,7 @@ import { EventEmitter } from "events";
 const interopRequire = require("interop-require");
 const debug = require("debug")("textlint:module-loader");
 const isFile = require("is-file");
-import { isPluginRuleKey } from "../util/config-util";
+import { isPluginRuleKey } from "../config/config-util";
 import { loadFromDir } from "./rule-loader";
 import { Logger } from "../util/logger";
 import { TextLintModuleResolver } from "./textlint-module-resolver";

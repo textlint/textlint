@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { loadConfig } from "./config-loader";
-import { convertRulesConfigToFlatPath, loadRulesConfigFromPresets } from "./preset-loader";
+import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./preset-loader";
 import { getPluginConfig, getPluginNames } from "./plugin-loader";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { separateAvailableOrDisable } from "./separate-by-config-option";
@@ -194,8 +194,8 @@ export class Config {
         const configPresets = configRulesObject.presets;
         const configFilePlugins = getPluginNames(configFileRaw);
         const configFilePluginConfig = getPluginConfig(configFileRaw);
-        const configFileRulesConfig = convertRulesConfigToFlatPath(configFileRaw.rules);
-        const configFileFilterRulesConfig = convertRulesConfigToFlatPath(configFileRaw.filters);
+        const configFileRulesConfig = createFlatRulesConfigFromRawRulesConfig(configFileRaw.rules);
+        const configFileFilterRulesConfig = createFlatRulesConfigFromRawRulesConfig(configFileRaw.filters);
         // => User specified Options
         const optionRules = options.rules || [];
         const optionFilterRules = options.filterRules || [];
