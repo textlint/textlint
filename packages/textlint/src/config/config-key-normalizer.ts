@@ -2,7 +2,7 @@
  * @overview config-key-normalizer provide normalize function for `key`
  * It aim to normalize key and  use it for {rule,filterRule,plugin}'s config.
  *
- * ### Key resolving algorithm
+ * ### Key normalization algorithm
  *
  * - Any package path -> full path
  *
