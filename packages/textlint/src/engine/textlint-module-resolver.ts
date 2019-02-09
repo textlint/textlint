@@ -2,7 +2,7 @@
 "use strict";
 import * as path from "path";
 import { createFullPackageName } from "./textlint-package-name-util";
-import { PackageNamePrefix } from "../config/pacakge-prefix";
+import { PackageNamePrefix } from "../config/package-prefix";
 
 const tryResolve = require("try-resolve");
 const debug = require("debug")("textlint:module-resolver");

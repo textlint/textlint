@@ -2,7 +2,7 @@
  * @overview config-key-normalizer provide normalize function for `key`
  * It aim to normalize key and  use it for {rule,filterRule,plugin}'s config.
  *
- * ### Resolve algorithm
+ * ### Key resolving algorithm
  *
  * - Any package path -> full path
  *
@@ -36,6 +36,14 @@
  * - <https://github.com/textlint/textlint/issues/583>
  * - <https://github.com/textlint/textlint/pull/586>
  *
+ * **Not Related:**
+ *
+ * Package prefix name is similar with this key algorithm.
+ * But, it is not shared this algorithm.
+ * It is just prefix(shortcut name).
+ *
+ * For more details, see package-prefix.ts and textlint-module-resolver.ts
+ *
  * @example
  *
  * - textlint-config-<name> -> <name>
@@ -45,7 +53,7 @@
  *
  *
  */
-import { PackageNamePrefix } from "./pacakge-prefix";
+import { PackageNamePrefix } from "./package-prefix";
 import { removePrefixFromPackageName } from "../engine/textlint-package-name-util";
 
 /**

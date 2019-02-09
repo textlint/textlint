@@ -2,7 +2,7 @@
 "use strict";
 const assert = require("assert");
 const path = require("path");
-import { PackageNamePrefix } from "../../src/config/pacakge-prefix";
+import { PackageNamePrefix } from "../../src/config/package-prefix";
 import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 import { loadConfig } from "../../src/config/config-loader";
 import { Config } from "../../src/config/config";

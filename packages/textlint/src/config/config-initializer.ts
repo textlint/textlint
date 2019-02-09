@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { PackageNamePrefix } from "./pacakge-prefix";
+import { PackageNamePrefix } from "./package-prefix";
 
 const Promise = require("bluebird");
 const fs = require("fs");
