@@ -2,7 +2,6 @@
 "use strict";
 const assert = require("assert");
 const path = require("path");
-import { packageNameConvention } from "../../src/config/config";
 import { loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
 import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 

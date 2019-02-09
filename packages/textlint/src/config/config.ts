@@ -20,14 +20,6 @@ const assert = require("assert");
 const concat = require("unique-concat");
 const path = require("path");
 
-export const packageNameConvention = {
-    CONFIG_PACKAGE_PREFIX: PackageNamePrefix.config,
-    RULE_NAME_PREFIX: PackageNamePrefix.rule,
-    RULE_PRESET_NAME_PREFIX: PackageNamePrefix.rulePreset,
-    FILTER_RULE_NAME_PREFIX: PackageNamePrefix.filterRule,
-    PLUGIN_NAME_PREFIX: PackageNamePrefix.plugin
-};
-
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
     return names.map(name => {
         return normalizer(name);
