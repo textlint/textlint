@@ -4,7 +4,7 @@ import { loadConfig } from "./config-loader";
 import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./preset-loader";
 import { getPluginConfig, getPluginNames } from "./plugin-loader";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import { separateAvailableOrDisable } from "./separate-by-config-option";
+import { separateEnabledOrDisabled } from "./separate-by-config-option";
 import {
     normalizeFilterRuleKey,
     normalizePluginKey,
@@ -148,6 +148,7 @@ export class Config {
         options.formatterName = cliOptions.format ? cliOptions.format : defaultOptions.formatterName;
         options.quiet = cliOptions.quiet !== undefined ? cliOptions.quiet : defaultOptions.quiet;
         options.color = cliOptions.color !== undefined ? cliOptions.color : defaultOptions.color;
+        // --no-textlintrc: disable textlint
         options.textlintrc = cliOptions.textlintrc !== undefined ? cliOptions.textlintrc : defaultOptions.textlintrc;
         // --cache
         options.cache = cliOptions.cache !== undefined ? cliOptions.cache : defaultOptions.cache;
@@ -189,9 +190,9 @@ export class Config {
         const configFileRaw = loadedResult.config;
         const configFilePath = loadedResult.filePath;
         // => Load options from .textlintrc
-        const configRulesObject = separateAvailableOrDisable(configFileRaw.rules);
-        const configFilterRulesObject = separateAvailableOrDisable(configFileRaw.filters);
-        const configPresets = configRulesObject.presets;
+        const configRuleNamesObject = separateEnabledOrDisabled(configFileRaw.rules);
+        const configFilterRuleNamesObject = separateEnabledOrDisabled(configFileRaw.filters);
+        const configPresetNames = configRuleNamesObject.presetNames;
         const configFilePlugins = getPluginNames(configFileRaw);
         const configFilePluginConfig = getPluginConfig(configFileRaw);
         const configFileRulesConfig = createFlatRulesConfigFromRawRulesConfig(configFileRaw.rules);
@@ -208,15 +209,15 @@ export class Config {
         const optionPluginsConfig = options.pluginsConfig || {};
         // => Merge options and configFileOptions
         // Priority options > configFile
-        const rules = concat(optionRules, configRulesObject.available);
-        const disabledRules = concat(optionDisabledRules, configRulesObject.disable);
-        const filterRules = concat(optionFilterRules, configFilterRulesObject.available);
-        const disabledFilterRules = concat(optionDisabledFilterRules, configFilterRulesObject.disable);
+        const rules = concat(optionRules, configRuleNamesObject.enabledRuleNames);
+        const disabledRules = concat(optionDisabledRules, configRuleNamesObject.disabledRuleNames);
+        const filterRules = concat(optionFilterRules, configFilterRuleNamesObject.enabledRuleNames);
+        const disabledFilterRules = concat(optionDisabledFilterRules, configFilterRuleNamesObject.disabledRuleNames);
         const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
         const filterRulesConfig = objectAssign({}, configFileFilterRulesConfig, optionFilterRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
         const pluginsConfig = objectAssign({}, configFilePluginConfig, optionPluginsConfig);
-        const presets = concat(optionPresets, configPresets);
+        const presets = concat(optionPresets, configPresetNames);
         const mergedOptions = objectAssign({}, options, {
             rules,
             disabledRules,
@@ -269,12 +270,6 @@ export class Config {
         });
         /**
          * @type {string[]} rule key list
-         * but, plugins's rules are not contained in `rules`
-         * plugins's rule are loaded in TextLintEngine
-         */
-        this.rules = applyNormalizerToList(normalizeRuleKey, options.rules ? options.rules : defaultOptions.rules);
-        /**
-         * @type {string[]} rule key list
          * These rule is set `false` to options
          */
         this.disabledRules = applyNormalizerToList(
@@ -282,12 +277,16 @@ export class Config {
             options.disabledRules ? options.disabledRules : defaultOptions.disabledRules
         );
         /**
-         * @type {string[]} filter rule key list
+         * @type {string[]} rule key list
+         * rules does not includes disabledRules
          */
-        this.filterRules = applyNormalizerToList(
-            normalizeFilterRuleKey,
-            options.filterRules ? options.filterRules : defaultOptions.filterRules
-        );
+        this.rules = applyNormalizerToList(
+            normalizeRuleKey,
+            options.rules ? options.rules : defaultOptions.rules
+        ).filter(ruleName => {
+            return !this.disabledRules.includes(ruleName);
+        });
+
         /**
          * @type {string[]} rule key list
          * These rule is set `false` to options
@@ -296,6 +295,16 @@ export class Config {
             normalizeFilterRuleKey,
             options.disabledFilterRules ? options.disabledFilterRules : defaultOptions.disabledFilterRules
         );
+
+        /**
+         * @type {string[]} filter rule key list
+         */
+        this.filterRules = applyNormalizerToList(
+            normalizeFilterRuleKey,
+            options.filterRules ? options.filterRules : defaultOptions.filterRules
+        ).filter(ruleName => {
+            return !this.disabledFilterRules.includes(ruleName);
+        });
         /**
          * @type {string[]} preset key list
          */
@@ -315,6 +324,7 @@ export class Config {
             options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig
         );
         // rulesConfig
+        // load preset config and merge it rules
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = applyNormalizerToConfig(
             normalizeRuleKey,
@@ -362,7 +372,7 @@ export class Config {
         if (!fileStats) {
             return;
         }
-        // TODO: --cache-location not supported directory
+        // TODO: --cache-location does not support directory
         // We should defined what is default name.
         assert(!fileStats.isDirectory(), "--cache-location doesn't support directory");
     }

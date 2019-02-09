@@ -117,7 +117,8 @@ export const options = optionator({
             option: "textlintrc",
             type: "Boolean",
             default: "true",
-            description: "Disable .textlintrc"
+            description: "Disable .textlintrc",
+            example: "--no-textlintrc"
         },
         {
             option: "plugin",
