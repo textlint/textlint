@@ -239,7 +239,7 @@ new TextLintEngine({
             extensions: this.textlintrcDescriptor.availableExtensions
         });
         debug("Process files", availableFiles);
-        debug("Not Process files", unAvailableFiles);
+        debug("No Process files that are un-support extensions:", unAvailableFiles);
         // FIXME: remove cast
         return this.executeFileBackerManger.process(availableFiles, execFile) as Promise<LintResult[]>;
     }

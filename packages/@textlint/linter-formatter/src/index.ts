@@ -13,7 +13,7 @@ export type FormatterConfig = { color?: boolean; formatterName: string };
 
 export function createFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
-    debug(`try formatterName: ${formatterName}`);
+    debug(`formatterName: ${formatterName}`);
     let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
     let formatterPath;
     if (fs.existsSync(formatterName)) {

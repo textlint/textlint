@@ -6,8 +6,6 @@ import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descr
 import { TextlintFilterRuleContext, TextlintRuleContext, TextlintSourceCode } from "@textlint/types";
 import { getSeverity } from "../shared/rule-severity";
 
-const debug = require("debug")("textlint:TextLintCoreTask");
-
 export interface TextLintCoreTaskArgs {
     config: TextlintKernelConstructorOptions;
     ruleDescriptors: TextlintRuleDescriptors;
@@ -43,7 +41,7 @@ export default class TextLintCoreTask extends CoreTask {
         this.startTraverser(this.sourceCode);
     }
 
-    _setupRules() {
+    private _setupRules() {
         // rule
         const sourceCode = this.sourceCode;
         const report = this.createReporter(sourceCode);
@@ -51,7 +49,6 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "rules" field
         // filter duplicated rules for improving experience
         // see https://github.com/textlint/textlint/issues/219
-        debug("rules", this.ruleDescriptors);
         this.ruleDescriptors.lintableDescriptors.forEach(ruleDescriptor => {
             const ruleOptions = ruleDescriptor.normalizedOptions;
             const ruleContext = new TextlintRuleContext({
@@ -64,7 +61,6 @@ export default class TextLintCoreTask extends CoreTask {
             this.tryToAddListenRule(ruleDescriptor.linter, ruleContext, ruleOptions);
         });
         // setup "filters" field
-        debug("filterRules", this.filterRuleDescriptors);
         this.filterRuleDescriptors.descriptors.forEach(filterDescriptor => {
             const ruleContext = new TextlintFilterRuleContext({
                 ruleId: filterDescriptor.id,

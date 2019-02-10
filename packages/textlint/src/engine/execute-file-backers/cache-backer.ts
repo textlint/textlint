@@ -1,7 +1,7 @@
 // MIT © 2016 azu
 "use strict";
 const fileEntryCache = require("file-entry-cache");
-const debug = require("debug")("CacheBacker");
+const debug = require("debug")("textlint:CacheBacker");
 import { AbstractBacker } from "./abstruct-backer";
 import { Config } from "../../config/config";
 import { TextlintResult } from "@textlint/kernel";
