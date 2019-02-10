@@ -3,7 +3,8 @@ import {
     normalizePluginKey,
     normalizePresetSubRuleKey,
     normalizeRuleKey,
-    normalizeRulePresetKey
+    normalizeRulePresetKey,
+    splitKeyToPresetSubRule
 } from "../../src/config/config-key-normalizer";
 import * as assert from "assert";
 
@@ -17,6 +18,25 @@ const checkPatterns = (normalizeFunction: NormalizeFunction, patterns: { before:
 };
 
 describe("config-key-normalizer", function() {
+    describe("splitKeyToPresetSubRule", () => {
+        it("should return {preset,rule}", () => {
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/preset/@org/rule"), {
+                preset: "@org/preset",
+                rule: "@org/rule"
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/preset/rule"), {
+                preset: "@org/preset",
+                rule: "rule"
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("preset/@org/rule"), {
+                preset: "preset",
+                rule: "@org/rule"
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("preset/rule"), { preset: "preset", rule: "rule" });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/rule"), { preset: null, rule: "@org/rule" });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("rule"), { preset: null, rule: "rule" });
+        });
+    });
     describe("preset and rule", () => {
         const patterns = [
             {
