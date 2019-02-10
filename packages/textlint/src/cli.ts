@@ -65,6 +65,9 @@ export const cli = {
      */
     execute(args: string | Array<any> | object, text?: string): Promise<number> {
         let currentOptions;
+        // version from package.json
+        const pkgConf = require("read-pkg-up");
+        const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
         try {
             currentOptions = options.parse(args);
         } catch (error) {
@@ -73,9 +76,6 @@ export const cli = {
         }
         const files = currentOptions._;
         if (currentOptions.version) {
-            // version from package.json
-            const pkgConf = require("read-pkg-up");
-            const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
             Logger.log(`v${version}`);
         } else if (currentOptions.init) {
             return createConfigFile({
@@ -87,6 +87,7 @@ export const cli = {
         } else {
             // specify file name of stdin content
             const stdinFilename = currentOptions.stdinFilename;
+            debug(`textlint --version: ${version}`);
             debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
             return this.executeWithOptions(currentOptions, files, text, stdinFilename);
         }
@@ -126,12 +127,13 @@ https://github.com/textlint/textlint/blob/master/docs/configuring.md
                 ? fixEngine.executeOnText(text, stdinFilename)
                 : fixEngine.executeOnFiles(files);
             return resultsPromise.then(results => {
+                debug("fix results: %j", results);
                 const fixer = new TextLintFixer();
                 const output = fixEngine.formatResults(results);
                 printResults(output, cliOptions);
                 // --dry-run
                 if (cliOptions.dryRun) {
-                    debug("Enable dry-run mode.");
+                    debug("Enable dry-run mode");
                     return Promise.resolve(0);
                 }
                 // modify file and return exit status
@@ -148,6 +150,7 @@ https://github.com/textlint/textlint/blob/master/docs/configuring.md
         }
         const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
         return resultsPromise.then(results => {
+            debug("lint results: %j", results);
             const output = lintEngine.formatResults(results);
             if (printResults(output, cliOptions)) {
                 return lintEngine.isErrorResults(results) ? 1 : 0;

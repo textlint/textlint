@@ -33,7 +33,6 @@ function walk(name: string, extensions: string[], exclude: Function, callback: F
             const fileStat = fs.statSync(filePath);
             // if this file or directory is excluded from linting, skip over it.
             if (exclude && exclude(filePath)) {
-                // console.log("Ignoring " + filePath);
                 debug(`Ignoring ${filePath}`);
                 return;
             }

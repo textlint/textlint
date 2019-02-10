@@ -74,6 +74,7 @@ export class TextlintRuleError {
 
     toString() {
         return JSON.stringify({
+            message: this.message,
             line: this.line,
             column: this.column,
             index: this.index,

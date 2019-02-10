@@ -1,28 +1,31 @@
 #!/usr/bin/env node
 "use strict";
-var getStdin = require("get-stdin");
-var logSymbols = require("log-symbols");
-var useStdIn = process.argv.indexOf("--stdin") > -1;
-var isDebug = process.argv.indexOf("--debug") > -1;
+const getStdin = require("get-stdin");
+const logSymbols = require("log-symbols");
+const useStdIn = process.argv.indexOf("--stdin") > -1;
+const isDebug = process.argv.indexOf("--debug") > -1;
 if (isDebug) {
-    require("debug").enable("textlint*");
+    const debug = require("debug");
+    debug.enable("textlint*");
 }
 // must do this initialization *before* other requires in order to work
-var cli = require("../lib/textlint/src/cli").cli;
-var coreFlags = require("@textlint/feature-flag");
+const cli = require("../lib/textlint/src/cli").cli;
+const coreFlags = require("@textlint/feature-flag");
 // it is for --experimental logger
 // update state
 coreFlags.runningCLI = !module.parent;
+
 /**
  * show error message for user
  * @param {Error} error
  */
 function showError(error) {
     console.error(logSymbols.error, "Error");
-    console.error(error.message + "\n");
+    console.error(`${error.message}\n`);
     console.error(logSymbols.error, "Stack trace");
     console.error(error.stack);
 }
+
 // Always start as promise
 Promise.resolve()
     .then(function() {

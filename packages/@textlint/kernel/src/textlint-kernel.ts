@@ -16,6 +16,7 @@ import { TextlintResult, TextlintFixResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCode } from "@textlint/types";
 
+const debug = require("debug")("textlint:kernel");
 /**
  * add fileName to trailing of error message
  * @param {string|undefined} fileName
@@ -115,7 +116,7 @@ export class TextlintKernel {
      * @returns {Promise.<TextlintResult>}
      * @private
      */
-    _parallelProcess({
+    private _parallelProcess({
         descriptor,
         text,
         options
@@ -126,9 +127,11 @@ export class TextlintKernel {
     }) {
         const { ext, filePath, configBaseDir } = options;
         const plugin = descriptor.findPluginDescriptorWithExt(ext);
+        debug("available extensions: %o", descriptor.availableExtensions);
         if (plugin === undefined) {
             throw new Error(`Not found available plugin for ${ext}`);
         }
+        debug("use plugin: %s", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         assert(
@@ -166,7 +169,7 @@ export class TextlintKernel {
      * @returns {Promise.<TextlintFixResult>}
      * @private
      */
-    _sequenceProcess({
+    private _sequenceProcess({
         descriptor,
         text,
         options
@@ -177,9 +180,11 @@ export class TextlintKernel {
     }): Promise<TextlintFixResult> {
         const { ext, filePath, configBaseDir } = options;
         const plugin = descriptor.findPluginDescriptorWithExt(ext);
+        debug("available extensions: %o", descriptor.availableExtensions);
         if (plugin === undefined) {
             throw new Error(`Not found available plugin for ${ext}`);
         }
+        debug("use plugin: %s", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         assert(
