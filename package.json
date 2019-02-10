@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@azu/travis-scripts": "^3.0.3",
-    "@monorepo-utils/collect-changelog": "^2.0.1",
+    "@monorepo-utils/collect-changelog": "^2.1.1",
     "conventional-changelog-angular-all": "^1.6.1",
     "eslint": "^5.11.1",
     "eslint-config-prettier": "^3.3.0",
