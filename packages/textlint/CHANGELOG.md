@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.2.3"></a>
+## [11.2.3](https://github.com/textlint/textlint/compare/textlint@11.2.2...textlint@11.2.3) (2019-02-10)
+
+
+### Bug Fixes
+
+* **textlint:** fix regression for ignoreReport ([8d1c195](https://github.com/textlint/textlint/commit/8d1c195)), closes [#586](https://github.com/textlint/textlint/issues/586) [#586](https://github.com/textlint/textlint/issues/586)
+
+
+
+
+
 <a name="11.2.2"></a>
 ## [11.2.2](https://github.com/textlint/textlint/compare/textlint@11.2.1...textlint@11.2.2) (2019-02-10)
 
