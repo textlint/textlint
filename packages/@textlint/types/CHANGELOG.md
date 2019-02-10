@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/textlint/textlint/compare/@textlint/types@1.1.2...@textlint/types@1.1.3) (2019-02-10)
+
+
+### Bug Fixes
+
+* **textlint:** add reasonable debug log ([3931810](https://github.com/textlint/textlint/commit/3931810))
+
+
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/textlint/textlint/compare/@textlint/types@1.1.1...@textlint/types@1.1.2) (2019-01-03)
 

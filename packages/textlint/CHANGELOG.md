@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.2.2"></a>
+## [11.2.2](https://github.com/textlint/textlint/compare/textlint@11.2.1...textlint@11.2.2) (2019-02-10)
+
+
+### Bug Fixes
+
+* **textlint:** add normalization for rule config key ([a644d3d](https://github.com/textlint/textlint/commit/a644d3d)), closes [#583](https://github.com/textlint/textlint/issues/583)
+* **textlint:** add reasonable debug log ([3931810](https://github.com/textlint/textlint/commit/3931810))
+
+
+### Chores
+
+* **textlint:** disable eslint at line ([6696c7f](https://github.com/textlint/textlint/commit/6696c7f))
+* **textlint:** expand path ([9cb0e6d](https://github.com/textlint/textlint/commit/9cb0e6d))
+* **textlint:** fix comment ([74a07d9](https://github.com/textlint/textlint/commit/74a07d9))
+* **textlint:** fix name ([75c34fe](https://github.com/textlint/textlint/commit/75c34fe))
+* **textlint:** remove unused object ([8423993](https://github.com/textlint/textlint/commit/8423993))
+* **textlint:** remove unused object ([110179f](https://github.com/textlint/textlint/commit/110179f))
+* **textlint:** use this.config instead of raw option ([596e941](https://github.com/textlint/textlint/commit/596e941))
+
+
+### Code Refactoring
+
+* **textlint:** move Prefix constant to pacakge-prefix.ts ([533d822](https://github.com/textlint/textlint/commit/533d822))
+* **textlint:** polish config ([25dc89d](https://github.com/textlint/textlint/commit/25dc89d))
+* **textlint:** polish config utility ([dc204a4](https://github.com/textlint/textlint/commit/dc204a4))
+
+
+### Documentation
+
+* **textlint:** add document to config ([403543a](https://github.com/textlint/textlint/commit/403543a))
+* **textlint:** Add README for textlint ([d39e66c](https://github.com/textlint/textlint/commit/d39e66c))
+
+
+
+
+
 <a name="11.2.1"></a>
 ## [11.2.1](https://github.com/textlint/textlint/compare/textlint@11.2.0...textlint@11.2.1) (2019-01-03)
 
