@@ -1,6 +1,6 @@
 # @textlint/types
 
-Type definition package for textlint and textlint rule.
+Type definition and Typed object package for textlint and textlint rule.
 
 If you import types from `@textlint/kernel` in your rule module, please use `@textlint/types` instead of it.
 

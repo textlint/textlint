@@ -1,12 +1,12 @@
-import {
-    normalizeFilterRuleKey,
-    normalizePluginKey,
-    normalizePresetSubRuleKey,
-    normalizeRuleKey,
-    normalizeRulePresetKey,
-    splitKeyToPresetSubRule
-} from "../../src/config/config-key-normalizer";
 import * as assert from "assert";
+import {
+    normalizeTextlintFilterRuleKey,
+    normalizeTextlintPluginKey,
+    normalizeTextlintPresetSubRuleKey,
+    normalizeTextlintRuleKey,
+    normalizeTextlintRulePresetKey
+} from "../../src/KeyPath/TextlintKeyPath";
+import { splitKeyToPresetSubRule } from "../../src/KeyPath/KeyPathUtil";
 
 type NormalizeFunction = (name: string) => string;
 const checkPatterns = (normalizeFunction: NormalizeFunction, patterns: { before: string; after: string }[]) => {
@@ -89,7 +89,7 @@ describe("config-key-normalizer", function() {
         patterns.forEach(pattern => {
             it(`${pattern.preset}/${pattern.rule} -> ${pattern.result}`, () => {
                 assert.strictEqual(
-                    normalizePresetSubRuleKey({
+                    normalizeTextlintPresetSubRuleKey({
                         preset: pattern.preset,
                         rule: pattern.rule
                     }),
@@ -99,7 +99,7 @@ describe("config-key-normalizer", function() {
         });
     });
     describe("rule", () => {
-        checkPatterns(normalizeRuleKey, [
+        checkPatterns(normalizeTextlintRuleKey, [
             {
                 before: "textlint-rule-<name>",
                 after: "<name>"
@@ -115,7 +115,7 @@ describe("config-key-normalizer", function() {
         ]);
     });
     describe("preset", () => {
-        checkPatterns(normalizeRulePresetKey, [
+        checkPatterns(normalizeTextlintRulePresetKey, [
             {
                 before: "textlint-rule-preset-<name>",
                 after: "<name>"
@@ -139,7 +139,7 @@ describe("config-key-normalizer", function() {
         ]);
     });
     describe("filter", () => {
-        checkPatterns(normalizeFilterRuleKey, [
+        checkPatterns(normalizeTextlintFilterRuleKey, [
             {
                 before: "textlint-filter-rule-<name>",
                 after: "<name>"
@@ -160,7 +160,7 @@ describe("config-key-normalizer", function() {
     });
     // plugin
     describe("plugin", () => {
-        checkPatterns(normalizePluginKey, [
+        checkPatterns(normalizeTextlintPluginKey, [
             {
                 before: "textlint-plugin-<name>",
                 after: "<name>"

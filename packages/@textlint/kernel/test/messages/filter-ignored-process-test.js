@@ -84,16 +84,5 @@ describe("message-filter", function() {
             assert.equal(filterMessages(messages).length, 1);
             assert.equal(filterMessages(messages)[0].ruleId, "rule-a");
         });
-
-        it("should filter messages that are matched normalized the ruleId", function() {
-            const messages = [
-                { type: "lint", ruleId: "a", message: "message", index: 10, line: 1, column: 4, severity: 2 },
-                { type: "lint", ruleId: "b", message: "message", index: 10, line: 1, column: 4, severity: 2 },
-                { type: "lint", ruleId: "b", message: "message", index: 20, line: 2, column: 4, severity: 2 },
-                { type: "ignore", ruleId: "ignore-rule", range: [1, 100], ignoringRuleId: "textlint-rule-b" }
-            ]; // filter only "b"
-            assert.equal(filterMessages(messages).length, 1);
-            assert.equal(filterMessages(messages)[0].ruleId, "a");
-        });
     });
 });
