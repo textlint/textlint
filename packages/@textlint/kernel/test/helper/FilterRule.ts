@@ -19,7 +19,6 @@ export const report: TextlintFilterRuleReporter = (
     return {
         [Syntax.Document](_node: TxtNode) {
             const allows = options.allows;
-            console.log(allows);
             Array.isArray(allows) &&
                 allows.forEach(allow => {
                     shouldIgnore(allow.range, allow.ruleId);
