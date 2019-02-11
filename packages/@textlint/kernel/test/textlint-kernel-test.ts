@@ -7,6 +7,8 @@ import { TextlintKernel } from "../src/textlint-kernel";
 import { errorRule } from "./helper/ErrorRule";
 import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin";
 import { TextlintRuleSeverityLevel } from "@textlint/types";
+import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
+import { filterRule } from "./helper/FilterRule";
 
 /**
  * assert: TextlintMessage must have these properties
@@ -100,6 +102,136 @@ describe("textlint-kernel", () => {
             return kernel.lintText("text", options).then(_result => {
                 const actualPluginOptions = getOptions();
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
+            });
+        });
+        context("when rule error is match ignoredRange and ruleId", () => {
+            it("should not report these error", () => {
+                const kernel = new TextlintKernel();
+                const { plugin } = createPluginStub();
+                const errorIndex = 5;
+                const ignoreRange = [0, 6];
+                const options: TextlintKernelOptions = {
+                    filePath: "/path/to/file.md",
+                    ext: ".md",
+                    plugins: [{ pluginId: "markdown", plugin: plugin }],
+                    rules: [
+                        {
+                            ruleId: "error-id",
+                            rule: errorRule,
+                            options: {
+                                errors: [
+                                    {
+                                        message: "error message",
+                                        index: errorIndex
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    filterRules: [
+                        {
+                            ruleId: "filter",
+                            rule: filterRule,
+                            options: {
+                                allows: [
+                                    {
+                                        range: ignoreRange,
+                                        ruleId: "error-id"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                };
+                return kernel.lintText("text", options).then(results => {
+                    assert.strictEqual(results.messages.length, 0);
+                });
+            });
+            it("ignoreRuleId should be normalized", () => {
+                const kernel = new TextlintKernel();
+                const { plugin } = createPluginStub();
+                const errorIndex = 5;
+                const ignoreRange = [0, 5];
+                const options: TextlintKernelOptions = {
+                    filePath: "/path/to/file.md",
+                    ext: ".md",
+                    plugins: [{ pluginId: "markdown", plugin: plugin }],
+                    rules: [
+                        {
+                            ruleId: "error-id",
+                            rule: errorRule,
+                            options: {
+                                errors: [
+                                    {
+                                        message: "error message",
+                                        index: errorIndex
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    filterRules: [
+                        {
+                            ruleId: "filter",
+                            rule: filterRule,
+                            options: {
+                                allows: [
+                                    {
+                                        range: ignoreRange,
+                                        ruleId: "textlint-rule-error-id" // <= normalized to "error-id"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                };
+                return kernel.lintText("text", options).then(results => {
+                    assert.strictEqual(results.messages.length, 0);
+                });
+            });
+        });
+        context("when rule error is match ignoredRange", () => {
+            it("should not report these error", () => {
+                const kernel = new TextlintKernel();
+                const { plugin } = createPluginStub();
+                const errorIndex = 5;
+                const ignoreRange = [0, 5];
+                const options: TextlintKernelOptions = {
+                    filePath: "/path/to/file.md",
+                    ext: ".md",
+                    plugins: [{ pluginId: "markdown", plugin: plugin }],
+                    rules: [
+                        {
+                            ruleId: "error",
+                            rule: errorRule,
+                            options: {
+                                errors: [
+                                    {
+                                        message: "error message",
+                                        index: errorIndex
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    filterRules: [
+                        {
+                            ruleId: "filter",
+                            rule: filterRule,
+                            options: {
+                                allows: [
+                                    {
+                                        range: ignoreRange
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                };
+
+                return kernel.lintText("text", options).then(results => {
+                    assert.strictEqual(results.messages.length, 0);
+                });
             });
         });
         context("when pass invalid options", () => {

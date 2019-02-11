@@ -34,6 +34,7 @@ export default function filterMessages(messages: ReadonlyArray<LintReportedMessa
                 if (ignoreMessage.ignoringRuleId === "*") {
                     return true;
                 }
+                // compare normalized key path
                 return message.ruleId === ignoreMessage.ignoringRuleId;
             }
             return isInIgnoringRange;

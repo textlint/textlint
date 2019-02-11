@@ -1,11 +1,12 @@
-import {
-    normalizeFilterRuleKey,
-    normalizePluginKey,
-    normalizePresetSubRuleKey,
-    normalizeRuleKey,
-    normalizeRulePresetKey
-} from "../../src/config/config-key-normalizer";
 import * as assert from "assert";
+import {
+    normalizeTextlintFilterRuleKey,
+    normalizeTextlintPluginKey,
+    normalizeTextlintPresetSubRuleKey,
+    normalizeTextlintRuleKey,
+    normalizeTextlintRulePresetKey
+} from "../../src/KeyPath/TextlintKeyPath";
+import { splitKeyToPresetSubRule } from "../../src/KeyPath/KeyPathUtil";
 
 type NormalizeFunction = (name: string) => string;
 const checkPatterns = (normalizeFunction: NormalizeFunction, patterns: { before: string; after: string }[]) => {
@@ -17,6 +18,25 @@ const checkPatterns = (normalizeFunction: NormalizeFunction, patterns: { before:
 };
 
 describe("config-key-normalizer", function() {
+    describe("splitKeyToPresetSubRule", () => {
+        it("should return {preset,rule}", () => {
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/preset/@org/rule"), {
+                preset: "@org/preset",
+                rule: "@org/rule"
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/preset/rule"), {
+                preset: "@org/preset",
+                rule: "rule"
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("preset/@org/rule"), {
+                preset: "preset",
+                rule: "@org/rule"
+            });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("preset/rule"), { preset: "preset", rule: "rule" });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("@org/rule"), { preset: null, rule: "@org/rule" });
+            assert.deepStrictEqual(splitKeyToPresetSubRule("rule"), { preset: null, rule: "rule" });
+        });
+    });
     describe("preset and rule", () => {
         const patterns = [
             {
@@ -69,7 +89,7 @@ describe("config-key-normalizer", function() {
         patterns.forEach(pattern => {
             it(`${pattern.preset}/${pattern.rule} -> ${pattern.result}`, () => {
                 assert.strictEqual(
-                    normalizePresetSubRuleKey({
+                    normalizeTextlintPresetSubRuleKey({
                         preset: pattern.preset,
                         rule: pattern.rule
                     }),
@@ -79,7 +99,7 @@ describe("config-key-normalizer", function() {
         });
     });
     describe("rule", () => {
-        checkPatterns(normalizeRuleKey, [
+        checkPatterns(normalizeTextlintRuleKey, [
             {
                 before: "textlint-rule-<name>",
                 after: "<name>"
@@ -95,7 +115,7 @@ describe("config-key-normalizer", function() {
         ]);
     });
     describe("preset", () => {
-        checkPatterns(normalizeRulePresetKey, [
+        checkPatterns(normalizeTextlintRulePresetKey, [
             {
                 before: "textlint-rule-preset-<name>",
                 after: "<name>"
@@ -119,7 +139,7 @@ describe("config-key-normalizer", function() {
         ]);
     });
     describe("filter", () => {
-        checkPatterns(normalizeFilterRuleKey, [
+        checkPatterns(normalizeTextlintFilterRuleKey, [
             {
                 before: "textlint-filter-rule-<name>",
                 after: "<name>"
@@ -140,7 +160,7 @@ describe("config-key-normalizer", function() {
     });
     // plugin
     describe("plugin", () => {
-        checkPatterns(normalizePluginKey, [
+        checkPatterns(normalizeTextlintPluginKey, [
             {
                 before: "textlint-plugin-<name>",
                 after: "<name>"

@@ -39,6 +39,9 @@ kernel.lintText("TODO: text", options).then(result => {
 });
 ```
 
+Notes: Preset is a collection of Rules.
+Currently, `presets` option does not exist.
+
 ## Type Interface
 
 `@textlint/kernel` export core types of textlint.

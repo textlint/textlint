@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import { normalizePresetSubRuleKey } from "./config-key-normalizer";
+import { normalizeTextlintPresetSubRuleKey } from "@textlint/types";
 import { isPresetRuleKey } from "./config-util";
 
 const interopRequire = require("interop-require");
@@ -60,7 +60,7 @@ export function createFlatPresetRulesConfigFromRawPresetRuleConfig(
         return mapped;
     }
     Object.keys(rulesConfig).forEach(ruleName => {
-        const normalizedKey = normalizePresetSubRuleKey({ preset: presetName, rule: ruleName });
+        const normalizedKey = normalizeTextlintPresetSubRuleKey({ preset: presetName, rule: ruleName });
         mapped[normalizedKey] = rulesConfig[ruleName];
     });
     return mapped;

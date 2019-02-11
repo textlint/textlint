@@ -46,6 +46,7 @@ export interface TextlintConfigObject {
 
 export interface TextlintKernelPlugin {
     // plugin name as key
+    // this key should be normalized
     pluginId: string;
     // plugin module
     // For example, `plugin: require("@textlint/textlint-plugin-markdown")`
@@ -56,6 +57,7 @@ export interface TextlintKernelPlugin {
 
 export interface TextlintKernelRule {
     // rule name as key
+    // this key should be normalized
     ruleId: string;
     // rule module
     // For example, `rule: require("textlint-rule-example")`
@@ -67,6 +69,7 @@ export interface TextlintKernelRule {
 
 export interface TextlintKernelFilterRule {
     // filter rule name as key
+    // this key should be normalized
     ruleId: string;
     // filter rule module instance
     rule: TextlintFilterRuleReporter;

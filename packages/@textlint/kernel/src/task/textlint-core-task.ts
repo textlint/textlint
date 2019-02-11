@@ -23,7 +23,8 @@ import {
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs,
     TextlintSourceCode,
-    TextlintMessageFixCommand
+    TextlintMessageFixCommand,
+    normalizeTextlintKeyPath
 } from "@textlint/types";
 import Bluebird = require("bluebird");
 
@@ -96,7 +97,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 ruleId: ruleId,
                 range: range,
                 // ignoring target ruleId - default: filter all messages
-                ignoringRuleId: optional.ruleId || "*"
+                // This ruleId should be normalized, because the user can report any value
+                ignoringRuleId: optional.ruleId ? normalizeTextlintKeyPath(optional.ruleId) : "*"
             };
             this.emit(TextLintCoreTask.events.message, message);
         };

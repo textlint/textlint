@@ -6,11 +6,11 @@ import { getPluginConfig, getPluginNames } from "./plugin-loader";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { separateEnabledOrDisabled } from "./separate-by-config-option";
 import {
-    normalizeFilterRuleKey,
-    normalizePluginKey,
-    normalizeRuleKey,
-    normalizeRulePresetKey
-} from "./config-key-normalizer";
+    normalizeTextlintFilterRuleKey,
+    normalizeTextlintPluginKey,
+    normalizeTextlintRuleKey,
+    normalizeTextlintRulePresetKey
+} from "@textlint/types";
 
 const objectAssign = require("object-assign");
 const md5 = require("md5");
@@ -271,7 +271,7 @@ export class Config {
          * These rule is set `false` to options
          */
         this.disabledRules = applyNormalizerToList(
-            normalizeRuleKey,
+            normalizeTextlintRuleKey,
             options.disabledRules ? options.disabledRules : defaultOptions.disabledRules
         );
         /**
@@ -279,7 +279,7 @@ export class Config {
          * rules does not includes disabledRules
          */
         this.rules = applyNormalizerToList(
-            normalizeRuleKey,
+            normalizeTextlintRuleKey,
             options.rules ? options.rules : defaultOptions.rules
         ).filter(ruleName => {
             return !this.disabledRules.includes(ruleName);
@@ -290,7 +290,7 @@ export class Config {
          * These rule is set `false` to options
          */
         this.disabledFilterRules = applyNormalizerToList(
-            normalizeFilterRuleKey,
+            normalizeTextlintFilterRuleKey,
             options.disabledFilterRules ? options.disabledFilterRules : defaultOptions.disabledFilterRules
         );
 
@@ -298,7 +298,7 @@ export class Config {
          * @type {string[]} filter rule key list
          */
         this.filterRules = applyNormalizerToList(
-            normalizeFilterRuleKey,
+            normalizeTextlintFilterRuleKey,
             options.filterRules ? options.filterRules : defaultOptions.filterRules
         ).filter(ruleName => {
             return !this.disabledFilterRules.includes(ruleName);
@@ -307,18 +307,18 @@ export class Config {
          * @type {string[]} preset key list
          */
         this.presets = applyNormalizerToList(
-            normalizeRulePresetKey,
+            normalizeTextlintRulePresetKey,
             options.presets ? options.presets : defaultOptions.presets
         );
         // => load plugins
         // this.rules has not contain plugin rules
         // =====================
         this.plugins = applyNormalizerToList(
-            normalizePluginKey,
+            normalizeTextlintPluginKey,
             options.plugins ? options.plugins : defaultOptions.plugins
         );
         this.pluginsConfig = applyNormalizerToConfig(
-            normalizePluginKey,
+            normalizeTextlintPluginKey,
             options.pluginsConfig ? options.pluginsConfig : defaultOptions.pluginsConfig
         );
         // rulesConfig
@@ -326,12 +326,12 @@ export class Config {
         // user config > default preset config
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = applyNormalizerToConfig(
-            normalizeRuleKey,
+            normalizeTextlintRuleKey,
             objectAssign({}, presetRulesConfig, options.rulesConfig)
         );
         // filterRulesConfig
         this.filterRulesConfig = applyNormalizerToConfig(
-            normalizeFilterRuleKey,
+            normalizeTextlintFilterRuleKey,
             options.filterRulesConfig || defaultOptions.filterRulesConfig
         );
         /**
