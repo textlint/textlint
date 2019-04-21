@@ -85,7 +85,7 @@ After getting your clone, you can start playing with textlint.
     $ yarn build:website
     ```
 
-Under the hood, textlint uses [Lerna](https://lernajs.io) to manage multiple packages:
+Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple packages:
 
 - `packages/*`
 - `packages/@textlint/*`

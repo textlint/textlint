@@ -11922,9 +11922,10 @@ textlint-rule-max-ten@^2.0.3:
     structured-source "^3.0.2"
     textlint-rule-helper "^2.0.0"
 
-textlint-rule-no-dead-link@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/textlint-rule-no-dead-link/-/textlint-rule-no-dead-link-4.3.0.tgz#c6898709e484a6eabc82f0b3a02bc7cd2c64c490"
+textlint-rule-no-dead-link@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-dead-link/-/textlint-rule-no-dead-link-4.4.1.tgz#013f4eb268a3b093d2ea942c786807ed8a2a8873"
+  integrity sha512-gbz/pLJ+O6JyQviFGqS0rbgKmtbyjmrLRsEiXELX84Dfxm+xR8+fyey6tiqyxq145H/946Fl2FNxSLLgoTVS+A==
   dependencies:
     fs-extra "^5.0.0"
     get-url-origin "^1.0.1"
