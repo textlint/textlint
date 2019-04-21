@@ -45,4 +45,4 @@ title: Integrating with Editors, Tools, etc..
 ## Other
 
 - [Pronto](https://github.com/prontolabs/pronto "Pronto"): [pronto-textlint](https://github.com/seikichi/pronto-textlint "pronto-textlint")
-- [reviewdog](https://github.com/haya14busa/reviewdog "reviewdog"): See [azu/textlint-reviewdog-example](https://github.com/azu/textlint-reviewdog-example "azu/textlint-reviewdog-example: textlint + reviewdog example project")
+- [reviewdog](https://github.com/reviewdog/reviewdog "reviewdog"): See [azu/textlint-reviewdog-example](https://github.com/azu/textlint-reviewdog-example "azu/textlint-reviewdog-example: textlint + reviewdog example project")
