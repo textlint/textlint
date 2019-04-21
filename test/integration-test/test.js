@@ -14,10 +14,11 @@ const testList = [
         path: "manuscript/",
         version: "6.0.0"
     },
-    {
-        name: "scala_text",
-        path: "src/"
-    },
+    // TODO: break .textlintrc setting
+    // {
+    //     name: "scala_text",
+    //     path: "src/"
+    // },
     {
         name: "magi-hacker",
         path: "chapter-01/ chapter-02/ chapter-03/ chapter-04/ chapter-05/",

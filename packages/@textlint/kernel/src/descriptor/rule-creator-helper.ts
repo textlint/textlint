@@ -71,7 +71,7 @@ export function isRuleModule(ruleCreator: any): boolean {
  * Validate rule module.
  * if invalid throw error
  * @param {*} ruleModule
- * @param {string} key
+ * @param {string} [key]
  * @throws
  */
 export function assertRuleShape(ruleModule: any, key: string = "") {

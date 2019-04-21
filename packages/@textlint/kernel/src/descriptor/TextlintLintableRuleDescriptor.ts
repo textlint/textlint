@@ -11,7 +11,7 @@ import deepEqual = require("deep-equal");
  */
 export class TextlintLintableRuleDescriptor {
     constructor(private textlintKernelRule: TextlintKernelRule) {
-        assertRuleShape(textlintKernelRule.rule);
+        assertRuleShape(textlintKernelRule.rule, textlintKernelRule.ruleId);
     }
 
     get id() {
