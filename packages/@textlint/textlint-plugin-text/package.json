@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-text",
-  "version": "4.1.5",
+  "version": "4.1.6",
   "description": "plain text plugin for textlint",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text/",
   "bugs": {
@@ -29,10 +29,10 @@
     "watch": "babel src --out-dir lib --watch --source-maps"
   },
   "dependencies": {
-    "@textlint/text-to-ast": "^3.1.2"
+    "@textlint/text-to-ast": "^3.1.3"
   },
   "devDependencies": {
-    "@textlint/kernel": "^3.1.5",
+    "@textlint/kernel": "^3.1.6",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.2.5"></a>
+## [11.2.5](https://github.com/textlint/textlint/compare/textlint@11.2.4...textlint@11.2.5) (2019-04-30)
+
+
+### Bug Fixes
+
+* **textlint:** add `[@textlint](https://github.com/textlint)/types` as dependencies ([7bad9a2](https://github.com/textlint/textlint/commit/7bad9a2))
+* **textlint:** require node >= 8.0.0 ([51275e0](https://github.com/textlint/textlint/commit/51275e0))
+
+
+### Chores
+
+* **deps:** update deps && devDeps ([a19463b](https://github.com/textlint/textlint/commit/a19463b))
+
+
+### Styles
+
+* apply prettier ([925a5a5](https://github.com/textlint/textlint/commit/925a5a5))
+
+
+### BREAKING CHANGES
+
+* **textlint:** textlint require Node.js 8.0.0 and more
+
+
+
+
+
 <a name="11.2.4"></a>
 ## [11.2.4](https://github.com/textlint/textlint/compare/textlint@11.2.3...textlint@11.2.4) (2019-04-30)
 

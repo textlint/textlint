@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.7.6"></a>
+## [10.7.6](https://github.com/textlint/textlint/compare/textlint-website@10.7.5...textlint-website@10.7.6) (2019-04-30)
+
+
+### Chores
+
+* **deps:** update deps && devDeps ([a19463b](https://github.com/textlint/textlint/commit/a19463b))
+
+
+
+
+
 <a name="10.7.5"></a>
 ## [10.7.5](https://github.com/textlint/textlint/compare/textlint-website@10.7.4...textlint-website@10.7.5) (2019-04-30)
 

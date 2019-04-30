@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/textlint/textlint/compare/@textlint/types@1.1.4...@textlint/types@1.1.5) (2019-04-30)
+
+
+### Chores
+
+* **deps:** update deps && devDeps ([a19463b](https://github.com/textlint/textlint/commit/a19463b))
+
+
+
+
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://github.com/textlint/textlint/compare/@textlint/types@1.1.3...@textlint/types@1.1.4) (2019-04-30)
 
