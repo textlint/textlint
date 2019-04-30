@@ -24,19 +24,13 @@ jobs:
         - yarn run test:docs
         - yarn run website
     - stage: TEST
-      node_js: 6
-      script:
-      - yarn test
-      - yarn test:examples
-      - yarn test:integration
-    - stage: TEST
-      node_js: 8
+      node_js: "8"
       script:
         - yarn test
         - yarn test:examples
         - yarn test:integration
     - stage: TEST
-      node_js: 10
+      node_js: "10"
       script:
       - yarn test
       - yarn test:examples
