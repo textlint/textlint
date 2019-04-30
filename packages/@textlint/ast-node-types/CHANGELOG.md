@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.2"></a>
+## [4.2.2](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.2.1...@textlint/ast-node-types@4.2.2) (2019-04-30)
+
+
+### Chores
+
+* **deps:** update deps && devDeps ([a19463b](https://github.com/textlint/textlint/commit/a19463b))
+
+
+### Styles
+
+* apply prettier ([925a5a5](https://github.com/textlint/textlint/commit/925a5a5))
+
+
+
+
+
 <a name="4.2.1"></a>
 ## [4.2.1](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.2.0...@textlint/ast-node-types@4.2.1) (2019-01-03)
 

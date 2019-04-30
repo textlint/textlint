@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.7"></a>
+## [5.1.7](https://github.com/textlint/textlint/compare/gulp-textlint@5.1.6...gulp-textlint@5.1.7) (2019-04-30)
+
+
+### Chores
+
+* **deps:** update deps && devDeps ([a19463b](https://github.com/textlint/textlint/commit/a19463b))
+
+
+
+
+
 <a name="5.1.6"></a>
 ## [5.1.6](https://github.com/textlint/textlint/compare/gulp-textlint@5.1.5...gulp-textlint@5.1.6) (2019-04-30)
 

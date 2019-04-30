@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.6"></a>
+## [2.1.6](https://github.com/textlint/textlint/compare/textlint-example-plugin-extensions-option@2.1.5...textlint-example-plugin-extensions-option@2.1.6) (2019-04-30)
+
+**Note:** Version bump only for package textlint-example-plugin-extensions-option
+
+
+
+
+
 <a name="2.1.5"></a>
 ## [2.1.5](https://github.com/textlint/textlint/compare/textlint-example-plugin-extensions-option@2.1.4...textlint-example-plugin-extensions-option@2.1.5) (2019-04-30)
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.1.3"></a>
+## [6.1.3](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.1.2...@textlint/markdown-to-ast@6.1.3) (2019-04-30)
+
+
+### Chores
+
+* **deps:** update deps && devDeps ([a19463b](https://github.com/textlint/textlint/commit/a19463b))
+
+
+
+
+
 <a name="6.1.2"></a>
 ## [6.1.2](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.1.1...@textlint/markdown-to-ast@6.1.2) (2019-01-03)
 
