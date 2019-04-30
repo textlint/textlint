@@ -48,18 +48,18 @@
     "xml-escape": "^1.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.8",
     "chai": "^3.5.0",
     "cross-env": "^5.2.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.4",
     "power-assert": "^1.6.1",
     "proxyquire": "^1.7.4",
-    "rimraf": "^2.6.2",
+    "rimraf": "^2.6.3",
     "sinon": "^1.17.3",
-    "ts-node": "^7.0.1",
-    "ts-node-test-register": "^4.0.0",
-    "typescript": "~3.2.2"
+    "ts-node": "^8.1.0",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "~3.4.5"
   },
   "publishConfig": {
     "access": "public"
