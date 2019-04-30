@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.5"></a>
+## [2.1.5](https://github.com/textlint/textlint/compare/integration-test@2.1.4...integration-test@2.1.5) (2019-04-30)
+
+
+### Bug Fixes
+
+* **test:** fix integration tests ([24422ad](https://github.com/textlint/textlint/commit/24422ad))
+
+
+
+
+
 <a name="2.1.4"></a>
 ## [2.1.4](https://github.com/textlint/textlint/compare/integration-test@2.1.3...integration-test@2.1.4) (2019-02-10)
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.7.5"></a>
+## [10.7.5](https://github.com/textlint/textlint/compare/textlint-website@10.7.4...textlint-website@10.7.5) (2019-04-30)
+
+
+### Chores
+
+* **website:** fix setting ([13d62ec](https://github.com/textlint/textlint/commit/13d62ec))
+* **website:** ignore GitHub redirection ([10d53b2](https://github.com/textlint/textlint/commit/10d53b2))
+
+
+### Documentation
+
+* fix links ([0061b7a](https://github.com/textlint/textlint/commit/0061b7a))
+
+
+
+
+
 <a name="10.7.4"></a>
 ## [10.7.4](https://github.com/textlint/textlint/compare/textlint-website@10.7.3...textlint-website@10.7.4) (2019-02-10)
 

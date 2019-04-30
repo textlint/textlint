@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.2.4"></a>
+## [11.2.4](https://github.com/textlint/textlint/compare/textlint@11.2.3...textlint@11.2.4) (2019-04-30)
+
+
+### Bug Fixes
+
+* **textlint:** Config#hash return random value if can not get package.json ([f08d2db](https://github.com/textlint/textlint/commit/f08d2db))
+* **textlint:** should not refer `Config#hash` when no use --cache ([43d0842](https://github.com/textlint/textlint/commit/43d0842))
+
+
+### Code Refactoring
+
+* **textlint:** move normalization logic to [@textlint](https://github.com/textlint)/types ([9930809](https://github.com/textlint/textlint/commit/9930809))
+
+
+
+
+
 <a name="11.2.3"></a>
 ## [11.2.3](https://github.com/textlint/textlint/compare/textlint@11.2.2...textlint@11.2.3) (2019-02-10)
 

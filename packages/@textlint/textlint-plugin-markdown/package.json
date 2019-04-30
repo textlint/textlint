@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-markdown",
-  "version": "5.1.4",
+  "version": "5.1.5",
   "description": "Markdown support for textlint.",
   "keywords": [
     "markdown",
@@ -36,7 +36,7 @@
     "@textlint/markdown-to-ast": "^6.1.2"
   },
   "devDependencies": {
-    "@textlint/kernel": "^3.1.4",
+    "@textlint/kernel": "^3.1.5",
     "babel-cli": "^6.5.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",

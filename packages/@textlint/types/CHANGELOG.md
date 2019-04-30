@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/textlint/textlint/compare/@textlint/types@1.1.3...@textlint/types@1.1.4) (2019-04-30)
+
+
+### Code Refactoring
+
+* **textlint:** move normalization logic to [@textlint](https://github.com/textlint)/types ([9930809](https://github.com/textlint/textlint/commit/9930809))
+
+
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/textlint/textlint/compare/@textlint/types@1.1.2...@textlint/types@1.1.3) (2019-02-10)
 
