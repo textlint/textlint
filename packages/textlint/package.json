@@ -30,7 +30,7 @@
     "textlint": "./bin/textlint.js"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=6.0.0"
   },
   "directories": {
     "test": "test/"
