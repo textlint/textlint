@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
+import * as crypto from "crypto";
 import { loadConfig } from "./config-loader";
 import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./preset-loader";
 import { getPluginConfig, getPluginNames } from "./plugin-loader";
@@ -11,6 +12,7 @@ import {
     normalizeTextlintRuleKey,
     normalizeTextlintRulePresetKey
 } from "@textlint/types";
+import { Logger } from "../util/logger";
 
 const objectAssign = require("object-assign");
 const md5 = require("md5");
@@ -18,6 +20,7 @@ const fs = require("fs");
 const assert = require("assert");
 const concat = require("unique-concat");
 const path = require("path");
+const pkgConf = require("read-pkg-up");
 
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
     return names.map(name => {
@@ -236,10 +239,16 @@ export class Config {
      * @returns {string}
      */
     get hash() {
-        const pkgConf = require("read-pkg-up");
-        const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
-        const toString = JSON.stringify(this.toJSON());
-        return md5(`${version}-${toString}`);
+        try {
+            const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
+            const toString = JSON.stringify(this.toJSON());
+            return md5(`${version}-${toString}`);
+        } catch (error) {
+            // Fallback for some env
+            // https://github.com/textlint/textlint/issues/597
+            Logger.warn("Use random value as hash because calculating hash value throw error", error);
+            return crypto.randomBytes(20).toString("hex");
+        }
     }
 
     /**

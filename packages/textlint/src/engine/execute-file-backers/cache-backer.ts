@@ -6,22 +6,17 @@ import { AbstractBacker } from "./abstruct-backer";
 import { Config } from "../../config/config";
 import { TextlintResult } from "@textlint/kernel";
 export class CacheBacker implements AbstractBacker {
-    hashOfConfig: string;
     fileCache: any;
     isEnabled: boolean;
     /**
      * @param {Config} config
      */
-    constructor(config: Config) {
+    constructor(public config: Config) {
         /**
          * @type {boolean}
          */
         this.isEnabled = config.cache;
         this.fileCache = fileEntryCache.create(config.cacheLocation);
-        /**
-         * @type {string}
-         */
-        this.hashOfConfig = config.hash;
     }
 
     /**
@@ -35,7 +30,7 @@ export class CacheBacker implements AbstractBacker {
         const descriptor = this.fileCache.getFileDescriptor(filePath);
         const meta = descriptor.meta || {};
         // if the config is changed or file is changed, should execute return true
-        const isNotChanged = descriptor.changed || meta.hashOfConfig !== this.hashOfConfig;
+        const isNotChanged = descriptor.changed || meta.hashOfConfig !== this.config.hash;
         debug(`Skipping file since hasn't changed: ${filePath}`);
         return isNotChanged;
     }
@@ -60,7 +55,7 @@ export class CacheBacker implements AbstractBacker {
             this.fileCache.removeEntry(filePath);
         } else {
             // cache `config.hash`
-            meta.hashOfConfig = this.hashOfConfig;
+            meta.hashOfConfig = this.config.hash;
         }
     }
 
