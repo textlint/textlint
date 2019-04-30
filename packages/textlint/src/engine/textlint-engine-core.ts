@@ -42,16 +42,16 @@ export abstract class AbstractTextLintEngine<LintResult extends TextlintResult> 
      * @param {TextLintCore} textlintCore
      * @returns {function()}
      */
-    abstract onFile: (textlintCore: TextLintCore) => ((filePath: string) => Promise<LintResult>);
+    abstract onFile: (textlintCore: TextLintCore) => (filePath: string) => Promise<LintResult>;
     /**
      * @param {TextLintCore} textlintCore
      * @returns {function()}
      */
-    abstract onText: (textlintCore: TextLintCore) => ((text: string, ext?: string) => Promise<LintResult>);
+    abstract onText: (textlintCore: TextLintCore) => (text: string, ext?: string) => Promise<LintResult>;
     /**
      * @param {TextLintFormatterOption} formatterConfig
      */
-    abstract onFormat: (formatterConfig: TextLintFormatterOption) => ((results: LintResult[]) => string);
+    abstract onFormat: (formatterConfig: TextLintFormatterOption) => (results: LintResult[]) => string;
 
     /**
      * Process files are wanted to lint.

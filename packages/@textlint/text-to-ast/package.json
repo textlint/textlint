@@ -45,9 +45,9 @@
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.24.1",
     "cross-env": "^5.2.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.4",
     "power-assert": "^1.6.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.3"
   },
   "publishConfig": {
     "access": "public"

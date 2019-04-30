@@ -39,8 +39,8 @@
     "textlint": "^11.2.4"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.8",
     "analyze-desumasu-dearu": "^3.1.0",
     "babel-cli": "^6.10.1",
     "babel-preset-env": "^1.4.0",
@@ -49,17 +49,17 @@
     "babel-register": "^6.9.0",
     "cross-env": "^5.2.0",
     "match-index": "^1.0.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.4",
     "power-assert": "^1.6.1",
-    "rimraf": "^2.6.2",
+    "rimraf": "^2.6.3",
     "textlint": "^11.1.0",
     "textlint-plugin-html": "^0.1.7",
     "textlint-rule-helper": "^2.0.1",
     "textlint-rule-max-number-of-lines": "^1.0.2",
     "textlint-rule-no-todo": "^2.0.1",
-    "ts-node": "^7.0.1",
-    "ts-node-test-register": "^4.0.0",
-    "typescript": "~3.2.2"
+    "ts-node": "^8.1.0",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "~3.4.5"
   },
   "email": "azuciao@gmail.com"
 }

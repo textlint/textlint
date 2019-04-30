@@ -45,15 +45,15 @@
     "try-resolve": "^1.0.1"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.13.8",
     "@types/power-assert": "^1.4.29",
     "cross-env": "^5.2.0",
-    "mocha": "^5.2.0",
-    "rimraf": "^2.6.2",
-    "ts-node": "^7.0.1",
-    "ts-node-test-register": "^4.0.0",
-    "typescript": "~3.2.2"
+    "mocha": "^6.1.4",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.1.0",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "~3.4.5"
   },
   "publishConfig": {
     "access": "public"

@@ -47,9 +47,9 @@
     "browserify": "^14.3.0",
     "cross-env": "^5.2.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.1.4",
     "power-assert": "^1.6.1",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.3"
   },
   "publishConfig": {
     "access": "public"
