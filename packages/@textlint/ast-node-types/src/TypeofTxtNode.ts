@@ -71,14 +71,12 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         : T extends ASTNodeTypes.Image
         ? TxtNode
         : T extends ASTNodeTypes.ImageExit
-        ? TxtNode
-        : // ----
-        T extends ASTNodeTypes.HorizontalRule
+        ? TxtNode // ----
+        : T extends ASTNodeTypes.HorizontalRule
         ? TxtNode
         : T extends ASTNodeTypes.HorizontalRuleExit
-        ? TxtNode
-        : // <!-- Str -->
-        T extends ASTNodeTypes.Comment
+        ? TxtNode // <!-- Str -->
+        : T extends ASTNodeTypes.Comment
         ? TxtTextNode
         : T extends ASTNodeTypes.CommentExit
         ? TxtTextNode // Str
