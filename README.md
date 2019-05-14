@@ -199,12 +199,12 @@ Options can be specified in your `.textlintrc` file as follows:
 
 A textlint plugin is a set of rules and rulesConfig or customize parser.
 
-To enable plugin, put the "plugin-name" into `.textlinrc`.
+To enable plugin, put the "plugin-name" into `.textlintrc`.
 
 <!-- textlint-disable -->
 
 ```js
-// `.textlinrc`
+// `.textlintrc`
 {
     "plugins": [
         "plugin-name"
