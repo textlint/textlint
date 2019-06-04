@@ -465,6 +465,7 @@ For more details, see [integrations document](./docs/integrations.md).
 - [hoodiehq/hoodie](https://github.com/hoodiehq/hoodie "hoodiehq/hoodie")
 - [asciidwango/js-primer](https://github.com/asciidwango/js-primer "asciidwango/js-primer: JavaScriptの入門書")
 - [vuejs-jp/vuejs.org](https://github.com/vuejs-jp/jp.vuejs.org "vuejs-jp/vuejs.org")
+- [cypress-io/cypress-documentation](https://github.com/cypress-io/cypress-documentation "cypress-io/cypress-documentation: Cypress Documentation including Guides, API, Plugins, Examples, & FAQ. docs.cypress.io")
 
 ## Packages
 
