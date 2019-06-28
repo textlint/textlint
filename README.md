@@ -89,43 +89,44 @@ Your `.textlintrc` is a great way to maintain your rules.
 Run `textlint -h` for information on how to use the CLI.
 
 ```
-$ textlint -h
-textlint [options] file.md [file|dir|glob*]
+$ textlint [options] file.md [file|dir|glob*]
+  
+  Options:
+    -h, --help                 Show help.
+    -c, --config path::String  Use configuration from this file or sharable config.
+    --init                     Create the config file if not existed. - default: false
+    --fix                      Automatically fix problems
+    --dry-run                  Enable dry-run mode for --fix. Only show result, don't change the file.
+    --debug                    Outputs debugging information
+    -v, --version              Outputs the version number.
+  
+  Using stdin:
+    --stdin                    Lint text provided on <STDIN>. - default: false
+    --stdin-filename String    Specify filename to process STDIN as
+  
+  Output:
+    -o, --output-file path::String  Enable report to be written to a file.
+    -f, --format String        Use a specific output format.
+                               Available formatter          : checkstyle, compact, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
+                               Available formatter for --fix: compats, diff, json, stylish
+    --no-color                 Disable color in piped output.
+    --quiet                    Report errors only. - default: false
+  
+  Specifying rules and plugins:
+    --no-textlintrc            Disable .textlintrc
+    --plugin [String]          Set plugin package name
+    --rule [path::String]      Set rule package name
+    --preset [path::String]    Set preset package name and load rules from preset package.
+    --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
+  
+  Caching:
+    --cache                    Only check changed files - default: false
+    --cache-location path::String  Path to the cache file or directory
+  
+  Experimental:
+    --experimental             Enable experimental flag.Some feature use on experimental.
+    --rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
 
-Options:
-  -h, --help                 Show help.
-  -c, --config path::String  Use configuration from this file or sharable config.
-  --init                     Create the config file if not existed. - default: false
-  --fix                      Automatically fix problems
-  --dry-run                  Enable dry-run mode for --fix. Only show result, don't change the file.
-  --debug                    Outputs debugging information
-  -v, --version              Outputs the version number.
-
-Using stdin:
-  --stdin                    Lint text provided on <STDIN>. - default: false
-  --stdin-filename String    Specify filename to process STDIN as
-
-Output:
-  -o, --output-file path::String  Enable report to be written to a file.
-  -f, --format String        Use a specific output format.
-                             Available formatter          : checkstyle, compact, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
-                             Available formatter for fixer: compats, diff, json, stylish
-  --no-color                 Disable color in piped output.
-  --quiet                    Report errors only. - default: false
-
-Specifying rules and plugins:
-  --plugin [String]          Set plugin package name
-  --rule [path::String]      Set rule package name
-  --preset [path::String]    Set preset package name and load rules from preset package.
-  --rulesdir [path::String]  Set rules from this directory and set all default rules to off.
-
-Caching:
-  --cache                    Only check changed files - default: false
-  --cache-location path::String  Path to the cache file or directory
-
-Experimental:
-  --experimental             Enable experimental flag.Some feature use on experimental.
-  --rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
 ```
 
 When running texlint, you can target files to lint using the glob patterns. Make sure that you enclose any glob parameter you pass in quotes.
