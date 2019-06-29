@@ -20,7 +20,6 @@
     "release": "lerna publish from-package",
     "release:canary": "lerna publish --canary",
     "collect-changelog": "git tag --points-at HEAD | xargs -I{} monorepo-utils-collect-changelog {} | pbcopy",
-    "pretest": "npm-run-all clean build",
     "test": "npm-run-all --parallel lint test:packages",
     "test:all": "npm-run-all test test:examples test:integration test:docs",
     "test:docs": "lerna run test --scope textlint-website",

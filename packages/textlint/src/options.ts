@@ -118,7 +118,7 @@ export const options = optionator({
             type: "Boolean",
             default: "true",
             description: "Disable .textlintrc",
-            example: "--no-textlintrc"
+            example: "textlint --no-textlintrc --rule textlint-no-todo README.md"
         },
         {
             option: "plugin",
@@ -128,18 +128,18 @@ export const options = optionator({
         },
         {
             option: "rule",
-            type: "[path::String]",
+            type: "[String]",
             description: "Set rule package name"
         },
         {
             option: "preset",
-            type: "[path::String]",
+            type: "[String]",
             description: "Set preset package name and load rules from preset package."
         },
         {
             option: "rulesdir",
             type: "[path::String]",
-            description: "Set rules from this directory and set all default rules to off."
+            description: "Use additional rules from this directory"
         },
         {
             heading: "Caching"
