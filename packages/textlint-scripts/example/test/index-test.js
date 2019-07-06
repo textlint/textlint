@@ -13,6 +13,16 @@ tester.run("rule", rule, {
         "OK."
     ],
     invalid: [
+        // inline file
+        {
+            text: "jquery",
+            errors: [
+                {
+                    message: "Found jQuery!",
+                    index: 0
+                }
+            ]
+        },
         // single match
         {
             text: "It is bugs.",

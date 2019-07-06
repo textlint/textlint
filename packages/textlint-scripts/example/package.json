@@ -4,6 +4,9 @@
     "build": "textlint-scripts build",
     "test": "textlint-scripts test"
   },
+  "dependencies": {
+    "prh": "^5.4.3"
+  },
   "devDependencies": {
     "textlint-scripts": "file:../"
   }

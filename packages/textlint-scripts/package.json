@@ -41,6 +41,7 @@
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "@babel/register": "^7.4.4",
+    "babel-plugin-static-fs": "^1.2.0",
     "confirmer": "^1.1.2",
     "cross-spawn": "^6.0.5",
     "mocha": "^6.1.4",
