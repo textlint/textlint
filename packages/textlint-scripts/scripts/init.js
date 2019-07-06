@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
-var path = require("path");
-var confirmer = require("confirmer");
-var pkgToReadme = require("pkg-to-readme");
-var fs = require("fs");
+const fs = require("fs");
+const path = require("path");
+const confirmer = require("confirmer");
+const pkgToReadme = require("pkg-to-readme");
 // Update README.md
-var templatePath = path.resolve(__dirname, "..", "configs", "README.md.template");
+const templatePath = path.resolve(__dirname, "..", "configs", "README.md.template");
 Promise.resolve()
     .then(function() {
         if (!fs.existsSync(path.resolve("README.md"))) {

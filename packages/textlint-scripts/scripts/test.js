@@ -1,12 +1,12 @@
 // LICENSE : MIT
 "use strict";
 process.env.NODE_ENV = "test";
-var spawn = require("cross-spawn");
-var args = process.argv.slice(2);
-var mocha = require.resolve(".bin/mocha");
+const spawn = require("cross-spawn");
+const args = process.argv.slice(2);
+const mocha = require.resolve(".bin/mocha");
 // mocha
-var babelRegisterPath = require.resolve("../configs/babel-register");
-var child = spawn(mocha, ["--require", babelRegisterPath, "--timeout", "5000", "--recursive", "test/"].concat(args));
+const babelRegisterPath = require.resolve("../configs/babel-register");
+const child = spawn(mocha, ["--require", babelRegisterPath, "--timeout", "10000", "--recursive", "test/"].concat(args));
 
 child.stderr.on("data", function(data) {
     process.stderr.write(data);
