@@ -21,5 +21,6 @@ try {
 You should install ts-node and typescript.`);
 }
 require("ts-node").register({
+    pretty: true,
     project: paths.appTsConfig
 });
