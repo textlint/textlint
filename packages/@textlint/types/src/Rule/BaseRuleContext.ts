@@ -42,7 +42,7 @@ export abstract class BaseRuleContext {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string|null} The text representing the AST node.
      */
-    abstract getSource(node: TxtNode, beforeCount?: number, afterCount?: number): string | null;
+    abstract getSource(node: TxtNode, beforeCount?: number, afterCount?: number): string;
 
     /**
      * get config base directory path

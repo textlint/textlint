@@ -20,23 +20,23 @@ export type TextlintSourceCodeArgs = { text: string; ast: AnyTxtNode; ext: strin
 /**
  * This class represent of source code.
  */
-export abstract class TextlintSourceCode {
-    abstract readonly hasBOM: boolean;
-    abstract readonly text: string;
-    abstract readonly ast: AnyTxtNode;
-    abstract readonly filePath: string | undefined;
-    abstract readonly ext: string;
+export interface TextlintSourceCode {
+    readonly hasBOM: boolean;
+    readonly text: string;
+    readonly ast: AnyTxtNode;
+    readonly filePath: string | undefined;
+    readonly ext: string;
 
     /**
      * @returns {ASTNodeTypes}
      */
-    abstract getSyntax(): typeof ASTNodeTypes;
+    getSyntax(): typeof ASTNodeTypes;
 
     /**
      * get filePath
      * @returns {string|undefined}
      */
-    abstract getFilePath(): string | undefined;
+    getFilePath(): string | undefined;
 
     /**
      * Gets the source code for the given node.
@@ -45,30 +45,30 @@ export abstract class TextlintSourceCode {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string} The text representing the AST node.
      */
-    abstract getSource(node?: AnyTxtNode, beforeCount?: number, afterCount?: number): string;
+    getSource(node?: AnyTxtNode, beforeCount?: number, afterCount?: number): string;
 
     // StructuredSource wrapper
     /**
      * @param {TextlintSourceCodeLocation} loc - location indicator.
      * @return {[ number, number ]} range.
      */
-    abstract locationToRange(loc: TextlintSourceCodeLocation): TextlintSourceCodeRange;
+    locationToRange(loc: TextlintSourceCodeLocation): TextlintSourceCodeRange;
 
     /**
      * @param {[ number, number ]} range - pair of indice.
      * @return {TextlintSourceCodeLocation} location.
      */
-    abstract rangeToLocation(range: TextlintSourceCodeRange): TextlintSourceCodeLocation;
+    rangeToLocation(range: TextlintSourceCodeRange): TextlintSourceCodeLocation;
 
     /**
      * @param {Position} pos - position indicator.
      * @return {number} index.
      */
-    abstract positionToIndex(pos: TextlintSourceCodePosition): number;
+    positionToIndex(pos: TextlintSourceCodePosition): number;
 
     /**
      * @param {number} index - index to the source code.
      * @return {Position} position.
      */
-    abstract indexToPosition(index: number): TextlintSourceCodePosition;
+    indexToPosition(index: number): TextlintSourceCodePosition;
 }

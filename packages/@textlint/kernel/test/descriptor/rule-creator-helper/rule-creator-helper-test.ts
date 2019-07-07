@@ -16,14 +16,14 @@ import SimpleModule from "./fixtures/foo";
 
 describe("rule-creator-helper", function() {
     it("#hasLinter", function() {
-        assert(hasLinter(FixerRule));
-        assert(hasLinter(LinterRule));
-        assert(!hasLinter(FixerOnlyRule));
-        assert(!hasLinter(SimpleModule));
+        assert.ok(hasLinter(FixerRule));
+        assert.ok(hasLinter(LinterRule));
+        assert.ok(!hasLinter(FixerOnlyRule));
+        assert.ok(!hasLinter(SimpleModule));
     });
     it("#getLinter", function() {
-        assert(typeof getLinter(FixerRule) === "function");
-        assert(typeof getLinter(LinterRule) === "function");
+        assert.ok(typeof getLinter(FixerRule) === "function");
+        assert.ok(typeof getLinter(LinterRule) === "function");
         assert.throws(() => {
             getLinter(FixerOnlyRule);
         });
@@ -32,13 +32,13 @@ describe("rule-creator-helper", function() {
         });
     });
     it("#hasFixer", function() {
-        assert(hasFixer(FixerRule));
-        assert(!hasFixer(LinterRule));
-        assert(!hasFixer(FixerOnlyRule));
-        assert(!hasFixer(SimpleModule));
+        assert.ok(hasFixer(FixerRule));
+        assert.ok(!hasFixer(LinterRule));
+        assert.ok(!hasFixer(FixerOnlyRule));
+        assert.ok(!hasFixer(SimpleModule));
     });
     it("#getFixer", function() {
-        assert(typeof getFixer(FixerRule) === "function");
+        assert.ok(typeof getFixer(FixerRule) === "function");
         assert.throws(() => {
             getFixer(LinterRule);
         });
@@ -50,10 +50,10 @@ describe("rule-creator-helper", function() {
         });
     });
     it("#isRuleModule", function() {
-        assert(isRuleModule(FixerRule));
-        assert(isRuleModule(LinterRule));
-        assert(!isRuleModule(FixerOnlyRule));
-        assert(!isRuleModule(SimpleModule));
+        assert.ok(isRuleModule(FixerRule));
+        assert.ok(isRuleModule(LinterRule));
+        assert.ok(!isRuleModule(FixerOnlyRule));
+        assert.ok(!isRuleModule(SimpleModule));
     });
     it("#assertRuleShape", function() {
         assertRuleShape(FixerRule);
