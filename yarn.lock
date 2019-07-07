@@ -1604,11 +1604,6 @@
   resolved "https://registry.yarnpkg.com/@types/deep-equal/-/deep-equal-1.0.1.tgz#71cfabb247c22bcc16d536111f50c0ed12476b03"
   integrity sha512-mMUu4nWHLBlHtxXY17Fg6+ucS/MnndyOWyOe7MmwkoMYxvfQU2ajtRaEvqSUv+aVkMqH/C0NCI8UoVfRNQ10yg==
 
-"@types/empower@*":
-  version "1.2.30"
-  resolved "https://registry.yarnpkg.com/@types/empower/-/empower-1.2.30.tgz#c7cfc14b3a61e54c74c674c1fbc91ba2df0d1392"
-  integrity sha1-x8/BSzph5Ux0xnTB+8kbot8NE5I=
-
 "@types/events@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -1647,19 +1642,6 @@
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
-
-"@types/power-assert-formatter@*":
-  version "1.4.28"
-  resolved "https://registry.yarnpkg.com/@types/power-assert-formatter/-/power-assert-formatter-1.4.28.tgz#25b8fddb6322259c6b91c35338d39b0f8e524252"
-  integrity sha1-Jbj922MiJZxrkcNTONObD45SQlI=
-
-"@types/power-assert@^1.4.29":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@types/power-assert/-/power-assert-1.5.0.tgz#4cc43717127cd81901555f905c55f02938120dcb"
-  integrity sha512-KPoeO2vSMGOOL1g8p/d7mvTTz7SCW7RRcpavqxhFwKZoqsDd1nwPGE9QICIt50b348/9MJYuBdwjUK34Y09XJw==
-  dependencies:
-    "@types/empower" "*"
-    "@types/power-assert-formatter" "*"
 
 "@types/q@^1.5.1":
   version "1.5.2"
@@ -8082,13 +8064,6 @@ json5@^0.5.1:
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
   integrity sha1-Hq3nrMASA0rYTiOWdn6tn6VJWCE=
 
-json5@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
-  integrity sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
-  dependencies:
-    minimist "^1.2.0"
-
 json5@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.1.0.tgz#e7a0c62c48285c628d20a10b85c89bb807c32850"
@@ -11094,14 +11069,14 @@ raw-body@~1.1.0:
     bytes "1"
     string_decoder "0.10"
 
-rc-config-loader@^2.0.2:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-2.0.3.tgz#5fbe45784c3301b15350ab6507e023c33007928f"
-  integrity sha512-CN9BmvV9Kcl6c4WEZ8w13JFazLYtKnqxxKGKuiCS8yZpUtJFa/nd7PdjVnRBJJ89U3OZfR6DmqOqMvmZ5ZFNMw==
+rc-config-loader@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-2.0.4.tgz#fe23e26a87e2ec07541b29e7f37bfd75807a4c36"
+  integrity sha512-k06UzRbYDWgF4Mc/YrsZsmzSpDLuHoThJxep+vq5H09hiX8rbA5Ue/Ra0dwWm5MQvWYW4YBXgA186inNxuxidQ==
   dependencies:
-    debug "^3.1.0"
+    debug "^4.1.1"
     js-yaml "^3.12.0"
-    json5 "^1.0.1"
+    json5 "^2.1.0"
     object-assign "^4.1.0"
     object-keys "^1.0.12"
     path-exists "^3.0.0"

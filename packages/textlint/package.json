@@ -74,7 +74,7 @@
     "object-assign": "^4.0.1",
     "optionator": "^0.8.0",
     "path-to-glob-pattern": "^1.0.2",
-    "rc-config-loader": "^2.0.2",
+    "rc-config-loader": "^2.0.4",
     "read-pkg": "^1.1.0",
     "read-pkg-up": "^3.0.0",
     "structured-source": "^3.0.2",
