@@ -36,10 +36,10 @@ describe("plugin-loader", function() {
             it("should return all [availableExtensions]", function() {
                 const availableExtensions = loadAvailableExtensions(["has-processor-4-extensions"], moduleResolver);
                 assert.equal(availableExtensions.length, 4);
-                assert(availableExtensions.indexOf(".test1") !== -1);
-                assert(availableExtensions.indexOf(".test2") !== -1);
-                assert(availableExtensions.indexOf(".test3") !== -1);
-                assert(availableExtensions.indexOf(".test4") !== -1);
+                assert.ok(availableExtensions.indexOf(".test1") !== -1);
+                assert.ok(availableExtensions.indexOf(".test2") !== -1);
+                assert.ok(availableExtensions.indexOf(".test3") !== -1);
+                assert.ok(availableExtensions.indexOf(".test4") !== -1);
             });
             it("should return [availableExtensions]", function() {
                 const availableExtensions = loadAvailableExtensions(["has-processor"], moduleResolver);

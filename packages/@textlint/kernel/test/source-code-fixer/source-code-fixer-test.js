@@ -261,7 +261,7 @@ describe("SourceCodeFixer", function() {
                 assert.equal(result.output, TEST_CODE);
                 assert.equal(result.remainingMessages.length, 1);
                 assert.equal(result.remainingMessages[0].message, "nofix");
-                assert(!result.fixed);
+                assert.ok(!result.fixed);
             });
 
             it("should sort the no fix messages correctly", function() {
@@ -455,7 +455,7 @@ describe("SourceCodeFixer", function() {
                 assert.equal(result.output, `\uFEFF${TEST_CODE}`);
                 assert.equal(result.remainingMessages.length, 1);
                 assert.equal(result.remainingMessages[0].message, "nofix");
-                assert(!result.fixed);
+                assert.ok(!result.fixed);
             });
         });
 

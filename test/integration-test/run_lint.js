@@ -8,8 +8,8 @@ const toPackageList = require("textlintrc-to-pacakge-list");
 const fs = require("fs");
 module.exports = function runLint(projectDirName, sourceTarget) {
     const currentDir = __dirname;
-    assert(projectDirName !== undefined, "projectDirName is not defined");
-    assert(sourceTarget !== undefined, "sourceTarget is not defined");
+    assert.ok(projectDirName !== undefined, "projectDirName is not defined");
+    assert.ok(sourceTarget !== undefined, "sourceTarget is not defined");
     const projectDirPath = path.resolve(currentDir, projectDirName);
     const textlintBin = path.join(__dirname, "node_modules", ".bin", "textlint");
 

@@ -266,7 +266,7 @@ export class Config {
          */
         this.configFile = options.configFile;
         if (this.configFile) {
-            assert(path.isAbsolute(this.configFile), `configFile should be absolute path: ${this.configFile}`);
+            assert.ok(path.isAbsolute(this.configFile), `configFile should be absolute path: ${this.configFile}`);
         }
         this.rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
@@ -382,7 +382,7 @@ export class Config {
         }
         // TODO: --cache-location does not support directory
         // We should defined what is default name.
-        assert(!fileStats.isDirectory(), "--cache-location doesn't support directory");
+        assert.ok(!fileStats.isDirectory(), "--cache-location doesn't support directory");
     }
 
     /* eslint-enable complexity */

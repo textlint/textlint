@@ -11,14 +11,14 @@ describe("config", function() {
         context("when init with command line options", function() {
             it("should has not rules", function() {
                 const config = Config.initWithCLIOptions({});
-                assert(config.rules.length === 0);
-                assert(config.rulePaths.length === 0);
+                assert.ok(config.rules.length === 0);
+                assert.ok(config.rulePaths.length === 0);
             });
         });
         context("when specify --config", function() {
             it("should use the config file", function() {
                 const config = Config.initWithCLIOptions({ config: path.join(__dirname, "fixtures", ".textlintrc") });
-                assert(config.rules.length > 0);
+                assert.ok(config.rules.length > 0);
             });
         });
         context("when specify --no-textlintrc", function() {
@@ -27,7 +27,7 @@ describe("config", function() {
                     textlintrc: false,
                     config: path.join(__dirname, "fixtures", ".textlintrc")
                 });
-                assert(config.rules.length === 0);
+                assert.ok(config.rules.length === 0);
             });
             it("should use the rules", function() {
                 const rules = ["no-todo"];
@@ -50,7 +50,7 @@ describe("config", function() {
         context("when has not configFile", function() {
             it("should return undefined", function() {
                 const config = new Config();
-                assert(config.configFile === undefined);
+                assert.ok(config.configFile === undefined);
             });
         });
         context("when pass config module", function() {
@@ -61,7 +61,7 @@ describe("config", function() {
                     configFile: "@textlint/textlint-config-example",
                     rulesBaseDirectory: baseDir
                 });
-                assert(config.configFile === path.join(baseDir, "@textlint/textlint-config-example", "index.js"));
+                assert.ok(config.configFile === path.join(baseDir, "@textlint/textlint-config-example", "index.js"));
             });
         });
     });

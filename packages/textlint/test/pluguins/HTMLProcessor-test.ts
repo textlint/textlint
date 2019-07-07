@@ -27,8 +27,8 @@ describe("HTMLPlugin", function() {
         it("should report error", function() {
             const fixturePath = path.join(__dirname, "./fixtures/test.html");
             return textlintCore.lintFile(fixturePath).then(results => {
-                assert(results.messages.length > 0);
-                assert(results.filePath === fixturePath);
+                assert.ok(results.messages.length > 0);
+                assert.ok(results.filePath === fixturePath);
             });
         });
     });

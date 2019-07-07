@@ -69,7 +69,7 @@ describe("config-initializer-test", function() {
                 });
                 assert.equal(typeof config.filters, "object");
                 assert.equal(typeof config.rules, "object");
-                assert(Object.keys(config.rules).length === 0);
+                assert.ok(Object.keys(config.rules).length === 0);
             });
         });
         it("should create and show message if verbose:true", function() {

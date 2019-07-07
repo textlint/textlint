@@ -116,5 +116,5 @@ var negate = function(func) {
 
 negate(add1)(5);
 {% validation %}
-assert(negate(add1)(5) === -6);
+assert.ok(negate(add1)(5) === -6);
 {% endexercise %}

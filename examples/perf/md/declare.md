@@ -27,7 +27,7 @@ var triple = function(x) {
     return x * 3;
 }
 {% validation %}
-assert(triple);
-assert(triple(4) === 12);
-assert(triple(10) === 30);
+assert.ok(triple);
+assert.ok(triple(4) === 12);
+assert.ok(triple(10) === 30);
 {% endexercise %}

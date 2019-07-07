@@ -74,11 +74,11 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
      * report function that is called in a rule
      */
     report = (node: TxtNode, ruleError: TextlintRuleError | TextlintRuleReportedObject, _shouldNotUsed?: any) => {
-        assert(
+        assert.ok(
             !(node instanceof TextlintRuleErrorImpl),
             "1st argument should be node. Usage: `report(node, ruleError);`"
         );
-        assert(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
+        assert.ok(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
         if (ruleError instanceof TextlintRuleErrorImpl) {
             // severity come from `.textlintrc` option like `{ "<rule-name>" : { serverity: "warning" } } `
             this._report({ ruleId: this._ruleId, node, severity: this._severityLevel, ruleError });

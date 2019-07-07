@@ -247,7 +247,7 @@ describe("new-style-of-test: invalid testConfig", () => {
             try {
                 tester.run("invalid-testConfig-test", testConfig.config as any, testConfig.case);
             } catch (err) {
-                assert(err instanceof assert.AssertionError);
+                assert.ok(err instanceof assert.AssertionError);
                 assert.equal(err.message, testConfig.expectedErrorMessage);
             }
         });

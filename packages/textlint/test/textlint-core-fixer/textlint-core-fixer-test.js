@@ -16,8 +16,8 @@ describe("textlint-fixer", function() {
             const textlint = new TextLintCore();
             textlint.setupRules({ "fixer-rule-add": ruleAdd, "fixer-rule-replace": ruleReplace });
             return textlint.fixText("This is fix", ".md").then(result => {
-                assert(typeof result.output === "string");
-                assert(result.filePath === "<markdown>");
+                assert.ok(typeof result.output === "string");
+                assert.ok(result.filePath === "<markdown>");
                 assert.equal(result.messages.length, result.applyingMessages.length + result.remainingMessages.length);
                 assert.equal(result.applyingMessages.length, 2);
                 assert.equal(result.remainingMessages.length, 0);
@@ -36,8 +36,8 @@ describe("textlint-fixer", function() {
             textlint.setupRules(rules);
             const expectedOutput = fs.readFileSync(outputFilePath, "utf-8");
             return textlint.fixFile(inputFilePath).then(result => {
-                assert(typeof result.output === "string");
-                assert(result.filePath === inputFilePath);
+                assert.ok(typeof result.output === "string");
+                assert.ok(result.filePath === inputFilePath);
                 assert.equal(result.messages.length, result.applyingMessages.length + result.remainingMessages.length);
                 assert.equal(result.applyingMessages.length, Object.keys(rules).length);
                 assert.equal(result.remainingMessages.length, 0);

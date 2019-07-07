@@ -27,7 +27,7 @@ describe("compute-location", function() {
             const { line, column, fix } = sourceLocation.adjust({ node, ruleError });
             assert.equal(line, 1);
             assert.equal(column, 10);
-            assert(!fix);
+            assert.ok(!fix);
         });
     });
     context("column only", function() {
@@ -45,7 +45,7 @@ describe("compute-location", function() {
             const { line, column, fix } = sourceLocation.adjust({ node, ruleError });
             assert.equal(line, 1);
             assert.equal(column, 15);
-            assert(!fix);
+            assert.ok(!fix);
         });
         context("[textlint-tester] when testing", function() {
             it("should throw error in testing.", function() {
@@ -74,7 +74,7 @@ describe("compute-location", function() {
             const { line, column, fix } = sourceLocation.adjust({ node, ruleError });
             assert.equal(line, 1);
             assert.equal(column, 15);
-            assert(!fix);
+            assert.ok(!fix);
         });
     });
 
@@ -119,7 +119,7 @@ describe("compute-location", function() {
             const { line, column, fix } = sourceLocation.adjust({ node, ruleError });
             assert.equal(line, 2);
             assert.equal(column, 10);
-            assert(!fix);
+            assert.ok(!fix);
         });
     });
 

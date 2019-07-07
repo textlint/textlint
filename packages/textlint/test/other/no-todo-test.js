@@ -13,7 +13,7 @@ describe("no-todo-rule-test", function() {
     context('when "todo:" is come', function() {
         it("should report error", function() {
             return textlint.lintMarkdown("TODO: something").then(result => {
-                assert(result.messages.length === 1);
+                assert.ok(result.messages.length === 1);
                 // TextLintMessage
                 const message = result.messages[0];
                 assert.equal(message.line, 1); // 1-based
@@ -23,7 +23,7 @@ describe("no-todo-rule-test", function() {
         });
         it("should report error", function() {
             return textlint.lintMarkdown("123456789TODO: something").then(result => {
-                assert(result.messages.length === 1);
+                assert.ok(result.messages.length === 1);
                 // TextLintMessage
                 const message = result.messages[0];
                 assert.equal(message.line, 1); // 1-based
@@ -35,21 +35,21 @@ describe("no-todo-rule-test", function() {
     context('when "- [ ] something" is come', function() {
         it("should report error", function() {
             return textlint.lintMarkdown("- [ ] something").then(result => {
-                assert(result.messages.length === 1);
+                assert.ok(result.messages.length === 1);
             });
         });
     });
     context('when "- [link][] something" is come', function() {
         it("should not report error", function() {
             return textlint.lintMarkdown("- [link][] ").then(result => {
-                assert(result.messages.length === 0);
+                assert.ok(result.messages.length === 0);
             });
         });
     });
     context('when "[todo:](http://example.com)" is come', function() {
         it("should not report error", function() {
             return textlint.lintMarkdown("[todo:](http://example.com)").then(result => {
-                assert(result.messages.length === 0);
+                assert.ok(result.messages.length === 0);
             });
         });
     });
