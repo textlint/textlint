@@ -6,7 +6,7 @@ import {
     TextlintSourceCodeRange
 } from "@textlint/types";
 import { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
-import assert from "assert";
+import * as assert from "assert";
 import StructuredSource from "structured-source";
 
 /**
@@ -46,7 +46,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
      */
     constructor({ text = "", ast, ext, filePath }: TextlintSourceCodeArgs) {
         validate(ast);
-        assert(ext || filePath, "should be set either of fileExt or filePath.");
+        assert.ok(ext || filePath, "should be set either of fileExt or filePath.");
         this.hasBOM = text.charCodeAt(0) === 0xfeff;
         this.text = this.hasBOM ? text.slice(1) : text;
         /**
