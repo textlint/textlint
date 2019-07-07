@@ -50,7 +50,7 @@ export default class FixerProcessor {
         filterRules,
         sourceCode
     }: FixerProcessorProcessArgs): Promise<TextlintFixResult> {
-        assert(sourceCode);
+        assert.ok(sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
         let resultFilePath = sourceCode.filePath;

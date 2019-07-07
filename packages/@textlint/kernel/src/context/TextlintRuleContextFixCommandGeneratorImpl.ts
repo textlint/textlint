@@ -10,7 +10,7 @@ import { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } from 
  * @private
  */
 function insertTextAt(index: number, text: string) {
-    assert(text, "text must be string");
+    assert.ok(text, "text must be string");
     return {
         range: [index, index],
         text,
@@ -26,7 +26,7 @@ function insertTextAt(index: number, text: string) {
  * @private
  */
 function insertTextAtAbsolute(index: number, text: string) {
-    assert(text, "text must be string");
+    assert.ok(text, "text must be string");
     return {
         range: [index, index],
         text,

@@ -35,11 +35,11 @@ export function test(node: any) {
         assert.strictEqual(typeof node.value, "string");
     }
     // raw
-    assert(node.raw !== null && node.raw !== undefined);
+    assert.ok(node.raw !== null && node.raw !== undefined);
     assert.strictEqual(typeof node.raw, "string");
     // loc
     const loc = node.loc;
-    assert(loc !== null && loc !== undefined);
+    assert.ok(loc !== null && loc !== undefined);
     assert.strictEqual(typeof loc, "object");
     const start = loc.start;
     const end = loc.end;
@@ -82,11 +82,11 @@ export function test(node: any) {
     }
     // range
     const range = node.range;
-    assert(range !== null && range !== undefined);
+    assert.ok(range !== null && range !== undefined);
     assert.ok(Array.isArray(range));
     range.forEach(function(index: number) {
         assert.strictEqual(typeof index, "number");
         assert.ok(index >= 0);
     });
-    assert(range[0] <= range[1]);
+    assert.ok(range[0] <= range[1]);
 }

@@ -86,7 +86,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     createShouldIgnore(): TextlintFilterRuleShouldIgnoreFunction {
         const shouldIgnore = (args: TextlintFilterRuleShouldIgnoreFunctionArgs) => {
             const { ruleId, range, optional } = args;
-            assert(
+            assert.ok(
                 typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range
             );

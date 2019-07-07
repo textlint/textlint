@@ -134,7 +134,7 @@ export class TextlintKernel {
         debug("use plugin: %s", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
-        assert(
+        assert.ok(
             typeof preProcess === "function" && typeof postProcess === "function",
             "processor should implements {preProcess, postProcess}"
         );
@@ -187,7 +187,7 @@ export class TextlintKernel {
         debug("use plugin: %s", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
-        assert(
+        assert.ok(
             typeof preProcess === "function" && typeof postProcess === "function",
             "processor should implements {preProcess, postProcess}"
         );
