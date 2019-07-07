@@ -3,7 +3,7 @@
 const assert = require("assert");
 const path = require("path");
 import { TextLintCore } from "../../src/index";
-import { TextlintRuleSeverityLevel } from "@textlint/kernel";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 /*
     TODO: rule-context-test has `lintText` and `fixText` test.
@@ -150,7 +150,7 @@ describe("rule-context-test", function() {
                 "rule-key"(context) {
                     const exports = {};
                     exports[context.Syntax.Document] = function(node) {
-                        assert.strictEqual(context.severity, TextlintRuleSeverityLevel.error);
+                        assert.strictEqual(context.severity, TextlintRuleSeverityLevelKeys.error);
                     };
                     return exports;
                 }
