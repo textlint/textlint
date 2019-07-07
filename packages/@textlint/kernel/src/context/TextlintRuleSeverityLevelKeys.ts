@@ -1,5 +1,8 @@
 import { TextlintRuleSeverityLevel } from "@textlint/types";
 
+/**
+ * Keys of TextlintRuleSeverityLevel
+ */
 export const TextlintRuleSeverityLevelKeys: {
     [index: string]: TextlintRuleSeverityLevel;
 } = {
