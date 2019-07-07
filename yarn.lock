@@ -1638,11 +1638,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.10.tgz#51babf9c7deadd5343620055fc8aff7995c8b031"
   integrity sha512-LcsGbPomWsad6wmMNv7nBLw7YYYyfdYcz6xryKYQhx89c3XXan+8Q6AJ43G5XDIaklaVkK3mE4fCb0SBvMiPSQ==
 
-"@types/node@^11.13.8":
-  version "11.13.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.15.tgz#699afb07a91adced2d6183a0ad156bf82542fc7d"
-  integrity sha512-x6ypl5Uzly+j23hbxmMzf12Eb4lOhIEqQz0HuczpTUa1KIx1GpbN/o4E3aAED20UoEsdK0wvyY8QcffuWSLDkw==
-
 "@types/node@^12.0.12":
   version "12.0.12"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.12.tgz#cc791b402360db1eaf7176479072f91ee6c6c7ca"
@@ -12949,10 +12944,10 @@ textlint-filter-rule-comments@^1.2.2:
   resolved "https://registry.yarnpkg.com/textlint-filter-rule-comments/-/textlint-filter-rule-comments-1.2.2.tgz#3a72c494994e068e0e4aaad0f24ea7cfe338503a"
   integrity sha1-OnLElJlOBo4OSqrQ8k6nz+M4UDo=
 
-textlint-plugin-html@^0.1.2, textlint-plugin-html@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/textlint-plugin-html/-/textlint-plugin-html-0.1.7.tgz#acb90a9b8edcc013cf48b491b2a90d60321a23cf"
-  integrity sha512-I2wHH7NhzUbw6sUUNsbHL7I1qzwp1te3Q/rekO/im0osSWi7M3FRrACMcWL8uCZmd7tAoNyBPemjc465gWPqng==
+textlint-plugin-html@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-html/-/textlint-plugin-html-0.2.0.tgz#4203f68122dedf29169782cc4cda4d06d7adfa86"
+  integrity sha512-Gu4WZiY4mB/1A3ig3rNiB+evs/2G5TCKJA4RggY2ug4SR2CzBjcZUwKveXC96Dgmzq2MtAc9OHKwyqpuSxpv2w==
   dependencies:
     hast "0.0.2"
     structured-source "^3.0.2"
@@ -13593,15 +13588,10 @@ typedarray@^0.0.6, typedarray@~0.0.5:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.4.5, typescript@^3.5.2:
+typescript@^3.4.5, typescript@^3.5.2, typescript@~3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.2.tgz#a09e1dc69bc9551cadf17dba10ee42cf55e5d56c"
   integrity sha512-7KxJovlYhTX5RaRbUdkAXN1KUZ8PwWlTzQdHV6xNqvuFOs7+WBo10TQUqT19Q/Jz2hk5v9TQDIhyLhhJY4p5AA==
-
-typescript@~3.4.5:
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
-  integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
 
 uglify-js@^3.1.4:
   version "3.6.0"

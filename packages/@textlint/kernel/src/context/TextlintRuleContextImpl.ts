@@ -10,14 +10,16 @@ import {
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import assert from "assert";
 import { TextlintRuleContextFixCommandGeneratorImpl } from "./TextlintRuleContextFixCommandGeneratorImpl";
+import { TextlintRuleSeverityLevelKeys } from "./TextlintRuleSeverityLevelKeys";
 
 const ruleFixer = new TextlintRuleContextFixCommandGeneratorImpl();
+
 export class TextlintRuleContextImpl implements TextlintRuleContext {
     private _ruleId: string;
     private _sourceCode: TextlintSourceCode;
     private _report: TextlintRuleContextReportFunction;
     private _configBaseDir?: string;
-    private _severityLevel: number;
+    private _severityLevel: TextlintRuleSeverityLevel;
 
     constructor(args: TextlintRuleContextArgs) {
         this._ruleId = args.ruleId;
@@ -39,7 +41,7 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
     /**
      * severity level
      */
-    get severity() {
+    get severity(): TextlintRuleSeverityLevel {
         return this._severityLevel;
     }
 
@@ -79,7 +81,7 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
         } else {
             const ruleReportedObject: TextlintRuleReportedObject = ruleError;
             // severity come from report arguments like `report(node, { severity: 1 })`
-            const level = ruleReportedObject.severity || TextlintRuleSeverityLevel.error;
+            const level = ruleReportedObject.severity || TextlintRuleSeverityLevelKeys.error;
             this._report({ ruleId: this._ruleId, node, severity: level, ruleError: ruleReportedObject });
         }
     };

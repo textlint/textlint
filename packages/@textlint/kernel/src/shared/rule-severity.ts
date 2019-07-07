@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintRuleOptions, TextlintRuleSeverityLevel } from "@textlint/types";
+import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLevelKeys";
 
 const isSeverityLevelValue = (type: any): type is TextlintRuleSeverityLevel => {
     if (type === undefined) {
@@ -19,14 +20,14 @@ const isSeverityLevelValue = (type: any): type is TextlintRuleSeverityLevel => {
  */
 export function getSeverity(ruleConfig?: TextlintRuleOptions): TextlintRuleSeverityLevel {
     if (ruleConfig === undefined) {
-        return TextlintRuleSeverityLevel.error;
+        return TextlintRuleSeverityLevelKeys.error;
     }
     // rule:<true|false>
     if (typeof ruleConfig === "boolean") {
-        return ruleConfig ? TextlintRuleSeverityLevel.error : TextlintRuleSeverityLevel.none;
+        return ruleConfig ? TextlintRuleSeverityLevelKeys.error : TextlintRuleSeverityLevelKeys.none;
     }
     if (ruleConfig.severity) {
-        const severityValue = TextlintRuleSeverityLevel[ruleConfig.severity];
+        const severityValue = TextlintRuleSeverityLevelKeys[ruleConfig.severity];
         if (!isSeverityLevelValue(severityValue)) {
             throw new Error(`Please set following value to severity:
 "rule-key": {
@@ -35,5 +36,5 @@ export function getSeverity(ruleConfig?: TextlintRuleOptions): TextlintRuleSever
         }
         return severityValue;
     }
-    return TextlintRuleSeverityLevel.error;
+    return TextlintRuleSeverityLevelKeys.error;
 }

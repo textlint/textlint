@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "textlint": "^11.2.6",
-    "textlint-plugin-html": "^0.1.7",
+    "textlint-plugin-html": "^0.2.0",
     "textlint-rule-sentence-length": "^2.1.1"
   }
 }

@@ -1,7 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleSeverityLevel, TextlintMessage } from "@textlint/types";
+import { TextlintMessage } from "@textlint/types";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
+import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLevelKeys";
 
 /**
  * Filter messages by their severity.
@@ -10,7 +11,7 @@ import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
  */
 export function filterWarningMessages(messages: TextlintMessage[] = []) {
     return messages.filter(message => {
-        return message.severity === TextlintRuleSeverityLevel.error;
+        return message.severity === TextlintRuleSeverityLevelKeys.error;
     });
 }
 
