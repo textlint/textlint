@@ -58,11 +58,11 @@ describe("formatter:tap", function() {
         it("should return a string with line: x, column: y, severity: warning for warnings", function() {
             code[0].messages[0].severity = 1;
             const result = formatter(code);
-            assert(result.indexOf("line: 5") !== -1);
-            assert(result.indexOf("column: 10") !== -1);
-            assert(result.indexOf("ruleId: foo") !== -1);
-            assert(result.indexOf("severity: warning") !== -1);
-            assert(result.indexOf("1..1") !== -1);
+            assert.ok(result.indexOf("line: 5") !== -1);
+            assert.ok(result.indexOf("column: 10") !== -1);
+            assert.ok(result.indexOf("ruleId: foo") !== -1);
+            assert.ok(result.indexOf("severity: warning") !== -1);
+            assert.ok(result.indexOf("1..1") !== -1);
         });
     });
 
@@ -84,8 +84,8 @@ describe("formatter:tap", function() {
 
         it("should return a an error string", function() {
             const result = formatter(code);
-            assert(result.indexOf("not ok") !== -1);
-            assert(result.indexOf("error") !== -1);
+            assert.ok(result.indexOf("not ok") !== -1);
+            assert.ok(result.indexOf("error") !== -1);
         });
     });
 
@@ -121,17 +121,17 @@ describe("formatter:tap", function() {
 
         it("should return a string with multiple entries", function() {
             const result = formatter(code);
-            assert(result.indexOf("not ok") !== -1);
-            assert(result.indexOf("messages") !== -1);
-            assert(result.indexOf("Unexpected foo.") !== -1);
-            assert(result.indexOf("line: 5") !== -1);
-            assert(result.indexOf("column: 10") !== -1);
-            assert(result.indexOf("Unexpected bar.") !== -1);
-            assert(result.indexOf("line: 6") !== -1);
-            assert(result.indexOf("column: 11") !== -1);
-            assert(result.indexOf("Unexpected baz.") !== -1);
-            assert(result.indexOf("line: 7") !== -1);
-            assert(result.indexOf("column: 12") !== -1);
+            assert.ok(result.indexOf("not ok") !== -1);
+            assert.ok(result.indexOf("messages") !== -1);
+            assert.ok(result.indexOf("Unexpected foo.") !== -1);
+            assert.ok(result.indexOf("line: 5") !== -1);
+            assert.ok(result.indexOf("column: 10") !== -1);
+            assert.ok(result.indexOf("Unexpected bar.") !== -1);
+            assert.ok(result.indexOf("line: 6") !== -1);
+            assert.ok(result.indexOf("column: 11") !== -1);
+            assert.ok(result.indexOf("Unexpected baz.") !== -1);
+            assert.ok(result.indexOf("line: 7") !== -1);
+            assert.ok(result.indexOf("column: 12") !== -1);
         });
     });
 
@@ -165,8 +165,8 @@ describe("formatter:tap", function() {
 
         it("should return a string with multiple entries", function() {
             const result = formatter(code);
-            assert(result.indexOf("not ok 1") !== -1);
-            assert(result.indexOf("not ok 2") !== -1);
+            assert.ok(result.indexOf("not ok 1") !== -1);
+            assert.ok(result.indexOf("not ok 2") !== -1);
         });
     });
 
@@ -185,10 +185,10 @@ describe("formatter:tap", function() {
 
         it("should return a string without line and column", function() {
             const result = formatter(code);
-            assert(result.indexOf("line: 0") !== -1);
-            assert(result.indexOf("column: 0") !== -1);
-            assert(result.indexOf("severity: error") !== -1);
-            assert(result.indexOf("1..1") !== -1);
+            assert.ok(result.indexOf("line: 0") !== -1);
+            assert.ok(result.indexOf("column: 0") !== -1);
+            assert.ok(result.indexOf("severity: error") !== -1);
+            assert.ok(result.indexOf("1..1") !== -1);
         });
     });
 });
