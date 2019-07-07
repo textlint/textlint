@@ -36,7 +36,7 @@ You can write ES2015+ source codes in `src/` folder.
 ### Tests
 
 Run test code in `test` folder.
-Test textlint rule by [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester").
+Test textlint rule by [textlint-tester](https://github.com/textlint/textlint-tester).
 
     npm test
 

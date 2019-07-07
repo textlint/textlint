@@ -17,7 +17,7 @@
     "textlint-scripts": "./bin/cmd.js"
   },
   "scripts": {
-    "test": "bash test/test-example.sh",
+    "test": "node test/test-example.js",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "keywords": [
@@ -34,12 +34,14 @@
   "devDependencies": {
     "husky": "^3.0.0",
     "lint-staged": "^9.0.2",
-    "prettier": "^1.8.1"
+    "prettier": "^1.8.1",
+    "shelljs": "^0.8.3"
   },
   "dependencies": {
     "@babel/cli": "^7.5.0",
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.4.4",
     "babel-plugin-static-fs": "^1.2.0",
     "confirmer": "^1.1.2",

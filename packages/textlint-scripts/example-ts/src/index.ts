@@ -1,9 +1,8 @@
 "use strict";
-import mod from "./module";
+import common from "./common";
+import { TextlintRuleReporter } from "@textlint/types";
 
-const path = require("path");
-const common = require("./common");
-module.exports = function(context, options = {}) {
+const report: TextlintRuleReporter = function(context, options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
@@ -34,3 +33,4 @@ module.exports = function(context, options = {}) {
         }
     };
 };
+export default report;

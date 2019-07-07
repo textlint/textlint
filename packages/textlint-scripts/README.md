@@ -10,7 +10,7 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts "npm-scripts").
+Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts).
 
 ```json
 {
@@ -26,13 +26,26 @@ Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts "npm
 
 Build source codes in `src/` and output to `lib/`.
 
-It is built by [Babel](https://babeljs.io/ "Babel") with [`env` preset](https://babeljs.io/docs/plugins/preset-env/).
+It is built by [Babel](https://babeljs.io/) with [`env` preset](https://babeljs.io/docs/plugins/preset-env/).
+Additionally, build command inline [Node fs calls](https://nodejs.org/api/fs.html) with [babel-plugin-static-fs](https://github.com/Jam3/babel-plugin-static-fs) for browser compatibility. 
 
 ### `textlint-scripts test`
 
-Test test codes in `test/` by [Mocha](http://mochajs.org/ "Mocha").
+Test test codes in `test/` by [Mocha](http://mochajs.org/).
 
-Usually test textlint rule using [textlint-tester](https://github.com/textlint/textlint-tester "textlint-tester"). 
+Usually test textlint rule using [textlint-tester](https://github.com/textlint/textlint-tester). 
+
+**Notes**: register script
+
+textlint-scripts also provide register script for run-time build.
+It will help to run tests from your IDE like WebStorm.
+
+```
+# js
+mocha --require textlint-scripts/register "test/**/*.js"
+# ts
+mocha --require textlint-scripts/register-ts "test/**/*.ts"
+``` 
 
 ## Changelog
 

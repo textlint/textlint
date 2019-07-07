@@ -1,3 +1,6 @@
+const fs = require("fs");
+const paths = require("../configs/paths");
+const useTypeScript = fs.existsSync(paths.appTsConfig);
 module.exports = {
     presets: [
         [
@@ -10,7 +13,7 @@ module.exports = {
                 }
             }
         ]
-    ],
+    ].concat(useTypeScript ? [["@babel/preset-typescript"]] : []),
     plugins: [
         // inline fs content
         "static-fs"

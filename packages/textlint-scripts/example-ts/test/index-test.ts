@@ -1,9 +1,10 @@
 "use strict";
 // See https://github.com/textlint/textlint/tree/master/packages/textlint-tester
-const TextLintTester = require("textlint-tester");
-const tester = new TextLintTester();
+
 // rule
-const rule = require("../src/index");
+import rule from "../src/index";
+import TextLintTester from "textlint-tester";
+const tester = new TextLintTester();
 // ruleName, rule, { valid, invalid }
 tester.run("rule", rule, {
     valid: [
