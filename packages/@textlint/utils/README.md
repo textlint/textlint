@@ -10,7 +10,10 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-- [ ] Write usage instructions
+This utils is internal usage.
+
+- [@textlint/types] has only abstract interface. 
+- [@textlint/utils] has implementation
 
 ## Changelog
 
