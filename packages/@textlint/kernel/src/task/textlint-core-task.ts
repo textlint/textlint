@@ -1,10 +1,6 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
-
-const TraverseController = require("@textlint/ast-traverse").Controller;
-const traverseController = new TraverseController();
-const debug = require("debug")("textlint:core-task");
 import { PromiseEventEmitter } from "./promise-event-emitter";
 import SourceLocation from "../core/source-location";
 import timing from "../util/timing";
@@ -16,17 +12,22 @@ import {
     TextlintFilterRuleContext,
     TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,
+    TextlintFilterRuleShouldIgnoreFunction,
+    TextlintFilterRuleShouldIgnoreFunctionArgs,
+    TextlintMessageFixCommand,
     TextlintRuleContext,
     TextlintRuleContextReportFunction,
     TextlintRuleContextReportFunctionArgs,
     TextlintRuleOptions,
     TextlintRuleReporter,
-    TextlintFilterRuleShouldIgnoreFunction,
-    TextlintFilterRuleShouldIgnoreFunctionArgs,
-    TextlintSourceCode,
-    TextlintMessageFixCommand
+    TextlintSourceCode
 } from "@textlint/types";
 import { normalizeTextlintKeyPath } from "@textlint/utils";
+import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";
+
+const TraverseController = require("@textlint/ast-traverse").Controller;
+const traverseController = new TraverseController();
+const debug = require("debug")("textlint:core-task");
 import Bluebird = require("bluebird");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}
@@ -220,7 +221,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         ruleOptions?: TextlintRuleOptions | TextlintFilterRuleOptions
     ): void {
         const ruleObject =
-            ruleContext instanceof TextlintRuleContext
+            ruleContext instanceof TextlintRuleContextImpl
                 ? this.tryToGetRuleObject(
                       ruleCreator as TextlintRuleReporter,
                       ruleContext as Readonly<TextlintRuleContext>,
