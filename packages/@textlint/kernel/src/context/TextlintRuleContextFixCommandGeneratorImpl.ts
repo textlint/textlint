@@ -1,6 +1,38 @@
+import * as assert from "assert";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintSourceCodeRange } from "../Source/TextlintSourceCode";
-import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
+import { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } from "@textlint/types";
+
+/**
+ * Creates a fix command that inserts text at the specified index in the source text.
+ * @param {number} index The 0-based index at which to insert the new text.
+ * @param {string} text The text to insert.
+ * @returns {IntermediateFixCommand} The fix command.
+ * @private
+ */
+function insertTextAt(index: number, text: string) {
+    assert(text, "text must be string");
+    return {
+        range: [index, index],
+        text,
+        isAbsolute: false
+    };
+}
+
+/**
+ * Creates a fix command that inserts text at the specified index in the source text.
+ * @param {number} index The 0-based index at which to insert the new text.
+ * @param {string} text The text to insert.
+ * @returns {IntermediateFixCommand} The fix command.
+ * @private
+ */
+function insertTextAtAbsolute(index: number, text: string) {
+    assert(text, "text must be string");
+    return {
+        range: [index, index],
+        text,
+        isAbsolute: true
+    };
+}
 
 /**
  * Creates code fixing commands for rules.
@@ -9,7 +41,7 @@ import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
  * See {@link SourceLocation} class for more detail.
  * @constructor
  */
-export abstract class TextlintRuleContextFixCommandGenerator {
+export class TextlintRuleContextFixCommandGeneratorImpl implements TextlintRuleContextFixCommandGenerator {
     /**
      * Creates a fix command that inserts text after the given node or token.
      * The fix is not applied until applyFixes() is called.
@@ -17,7 +49,9 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextAfter(node: TxtNode, text: string): TextlintRuleContextFixCommand;
+    insertTextAfter(node: TxtNode, text: string) {
+        return insertTextAtAbsolute(node.range[1], text);
+    }
 
     /**
      * Creates a fix command that inserts text after the specified range in the source text.
@@ -28,7 +62,9 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextAfterRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
+    insertTextAfterRange(range: TextlintSourceCodeRange, text: string) {
+        return insertTextAt(range[1], text);
+    }
 
     /**
      * Creates a fix command that inserts text before the given node or token.
@@ -37,7 +73,9 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextBefore(node: TxtNode, text: string): TextlintRuleContextFixCommand;
+    insertTextBefore(node: TxtNode, text: string) {
+        return insertTextAtAbsolute(node.range[0], text);
+    }
 
     /**
      * Creates a fix command that inserts text before the specified range in the source text.
@@ -48,7 +86,9 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextBeforeRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
+    insertTextBeforeRange(range: TextlintSourceCodeRange, text: string) {
+        return insertTextAt(range[0], text);
+    }
 
     /**
      * Creates a fix command that replaces text at the node or token.
@@ -57,7 +97,13 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract replaceText(node: TxtNode, text: string): TextlintRuleContextFixCommand;
+    replaceText(node: TxtNode, text: string) {
+        return {
+            range: node.range,
+            text,
+            isAbsolute: true
+        };
+    }
 
     /**
      * Creates a fix command that replaces text at the specified range in the source text.
@@ -68,7 +114,13 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract replaceTextRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
+    replaceTextRange(range: TextlintSourceCodeRange, text: string) {
+        return {
+            range,
+            text,
+            isAbsolute: false
+        };
+    }
 
     /**
      * Creates a fix command that removes the node or token from the source.
@@ -76,7 +128,9 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {TxtNode} node The node or token to remove.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract remove(node: TxtNode): TextlintRuleContextFixCommand;
+    remove(node: TxtNode) {
+        return this.replaceText(node, "");
+    }
 
     /**
      * Creates a fix command that removes the specified range of text from the source.
@@ -86,5 +140,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      *      The `range` should be **relative** value from reported node.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract removeRange(range: TextlintSourceCodeRange): TextlintRuleContextFixCommand;
+    removeRange(range: TextlintSourceCodeRange) {
+        return this.replaceTextRange(range, "");
+    }
 }

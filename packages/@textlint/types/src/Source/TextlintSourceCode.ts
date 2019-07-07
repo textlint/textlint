@@ -1,24 +1,4 @@
-const assert = require("assert");
-
-const StructuredSource = require("structured-source");
 import { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
-
-/**
- * Validates that the given AST has the required information.
- * @param {AnyTxtNode} [ast] The Program node of the AST to check.
- * @throws {Error} If the AST doesn't contain the correct information.
- * @returns {void}
- * @private
- */
-function validate(ast: AnyTxtNode) {
-    if (!ast.loc) {
-        throw new Error("AST is missing location information.");
-    }
-
-    if (!ast.range) {
-        throw new Error("AST is missing range information");
-    }
-}
 
 export interface TextlintSourceCodePosition {
     line: number;
@@ -40,53 +20,23 @@ export type TextlintSourceCodeArgs = { text: string; ast: AnyTxtNode; ext: strin
 /**
  * This class represent of source code.
  */
-export class TextlintSourceCode {
-    hasBOM: boolean;
-    text: string;
-    ast: AnyTxtNode;
-    filePath: string | undefined;
-    ext: string;
-
-    private _structuredSource: any;
-
-    /**
-     * @param {string} text
-     * @param {Object} ast
-     * @param {string} ext
-     * @param {string} [filePath]
-     */
-    constructor({ text = "", ast, ext, filePath }: TextlintSourceCodeArgs) {
-        validate(ast);
-        assert(ext || filePath, "should be set either of fileExt or filePath.");
-        this.hasBOM = text.charCodeAt(0) === 0xfeff;
-        this.text = this.hasBOM ? text.slice(1) : text;
-        /**
-         * @type StructuredSource
-         */
-        this._structuredSource = new StructuredSource(this.text);
-        this.ast = ast;
-        this.filePath = filePath;
-        /**
-         * fileType .md .txt ...
-         * @type {string}
-         */
-        this.ext = ext;
-    }
+export abstract class TextlintSourceCode {
+    abstract readonly hasBOM: boolean;
+    abstract readonly text: string;
+    abstract readonly ast: AnyTxtNode;
+    abstract readonly filePath: string | undefined;
+    abstract readonly ext: string;
 
     /**
      * @returns {ASTNodeTypes}
      */
-    getSyntax() {
-        return ASTNodeTypes;
-    }
+    abstract getSyntax(): typeof ASTNodeTypes;
 
     /**
      * get filePath
      * @returns {string|undefined}
      */
-    getFilePath() {
-        return this.filePath;
-    }
+    abstract getFilePath(): string | undefined;
 
     /**
      * Gets the source code for the given node.
@@ -95,47 +45,30 @@ export class TextlintSourceCode {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string} The text representing the AST node.
      */
-    getSource(node?: AnyTxtNode, beforeCount?: number, afterCount?: number): string {
-        const currentText = this.text;
-        if (node) {
-            const start = Math.max(node.range[0] - (beforeCount || 0), 0);
-            const end = node.range[1] + (afterCount || 0);
-            return currentText.slice(start, end);
-        } else {
-            return currentText;
-        }
-    }
+    abstract getSource(node?: AnyTxtNode, beforeCount?: number, afterCount?: number): string;
 
     // StructuredSource wrapper
     /**
      * @param {TextlintSourceCodeLocation} loc - location indicator.
      * @return {[ number, number ]} range.
      */
-    locationToRange(loc: TextlintSourceCodeLocation): TextlintSourceCodeRange {
-        return this._structuredSource.locationToRange(loc);
-    }
+    abstract locationToRange(loc: TextlintSourceCodeLocation): TextlintSourceCodeRange;
 
     /**
      * @param {[ number, number ]} range - pair of indice.
      * @return {TextlintSourceCodeLocation} location.
      */
-    rangeToLocation(range: TextlintSourceCodeRange): TextlintSourceCodeLocation {
-        return this._structuredSource.rangeToLocation(range);
-    }
+    abstract rangeToLocation(range: TextlintSourceCodeRange): TextlintSourceCodeLocation;
 
     /**
      * @param {Position} pos - position indicator.
      * @return {number} index.
      */
-    positionToIndex(pos: TextlintSourceCodePosition): number {
-        return this._structuredSource.positionToIndex(pos);
-    }
+    abstract positionToIndex(pos: TextlintSourceCodePosition): number;
 
     /**
      * @param {number} index - index to the source code.
      * @return {Position} position.
      */
-    indexToPosition(index: number): TextlintSourceCodePosition {
-        return this._structuredSource.indexToPosition(index);
-    }
+    abstract indexToPosition(index: number): TextlintSourceCodePosition;
 }

@@ -12,9 +12,9 @@ import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
 import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface";
-import { TextlintResult, TextlintFixResult } from "@textlint/types";
+import { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
-import { TextlintSourceCode } from "@textlint/types";
+import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
 
 const debug = require("debug")("textlint:kernel");
 /**
@@ -139,7 +139,7 @@ export class TextlintKernel {
             "processor should implements {preProcess, postProcess}"
         );
         const ast = preProcess(text, filePath);
-        const sourceCode = new TextlintSourceCode({
+        const sourceCode = new TextlintSourceCodeImpl({
             text,
             ast,
             ext,
@@ -192,7 +192,7 @@ export class TextlintKernel {
             "processor should implements {preProcess, postProcess}"
         );
         const ast = preProcess(text, filePath);
-        const sourceCode = new TextlintSourceCode({
+        const sourceCode = new TextlintSourceCodeImpl({
             text,
             ast,
             ext,

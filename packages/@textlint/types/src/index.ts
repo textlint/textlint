@@ -34,6 +34,7 @@ export {
 // Filter Rule
 export {
     TextlintFilterRuleContext,
+    TextlintFilterRuleContextArgs,
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs
 } from "./Rule/TextlintFilterRuleContext";

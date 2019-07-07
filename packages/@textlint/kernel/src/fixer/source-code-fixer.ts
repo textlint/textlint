@@ -1,4 +1,5 @@
-import { TextlintMessageFixCommand, TextlintMessage, TextlintSourceCode } from "@textlint/types";
+import { TextlintMessage, TextlintMessageFixCommand, TextlintSourceCode } from "@textlint/types";
+import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
 
 const debug = require("debug")("textlint:source-code-fixer");
 
@@ -133,7 +134,7 @@ export default class SourceCodeFixer {
         debug("Restore applied fixes");
         let text = sourceCode.text;
         applyingMessages.forEach(message => {
-            const newSource = new TextlintSourceCode({
+            const newSource = new TextlintSourceCodeImpl({
                 text,
                 ast: sourceCode.ast, // it's dummy
                 ext: sourceCode.ext,
