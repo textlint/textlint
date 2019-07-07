@@ -1,6 +1,6 @@
 "use strict";
 import common from "./common";
-import { TextlintRuleReporter } from "@textlint/types";
+import { TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
 const report: TextlintRuleReporter = function(context, options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
@@ -33,4 +33,7 @@ const report: TextlintRuleReporter = function(context, options = {}) {
         }
     };
 };
-export default report;
+export default {
+    linter: report,
+    fixer: report
+} as TextlintRuleModule;
