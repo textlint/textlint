@@ -42,4 +42,9 @@ export interface TextlintRuleContextArgs {
 
 export abstract class TextlintRuleContext extends BaseRuleContext {
     abstract get fixer(): TextlintRuleContextFixCommandGenerator;
+    abstract report: (
+        node: TxtNode,
+        ruleError: TextlintRuleReportedObject | TextlintRuleError,
+        _shouldNotUsed?: any
+    ) => void;
 }

@@ -1,4 +1,4 @@
-import { TextlintRuleError } from "./TextlintRuleError";
+import { TextlintRuleErrorContructor } from "./TextlintRuleError";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
 
@@ -27,7 +27,7 @@ export abstract class BaseRuleContext {
      * CustomError object
      * @type {RuleError}
      */
-    abstract get RuleError(): typeof TextlintRuleError;
+    abstract get RuleError(): TextlintRuleErrorContructor;
 
     /**
      * get file path current processing.

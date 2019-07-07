@@ -28,6 +28,10 @@ export interface TextlintRuleErrorPadding {
     fix?: TextlintRuleContextFixCommand;
 }
 
+export interface TextlintRuleErrorContructor {
+    new (message: string, paddingLocation?: number | TextlintRuleErrorPadding): TextlintRuleError;
+}
+
 export abstract class TextlintRuleError {
     abstract readonly message: string;
     abstract readonly line?: number;
