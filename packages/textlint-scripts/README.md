@@ -27,6 +27,7 @@ Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts).
 Build source codes in `src/` and output to `lib/`.
 
 It is built by [Babel](https://babeljs.io/) with [`env` preset](https://babeljs.io/docs/plugins/preset-env/).
+
 Additionally, build command inline [Node fs calls](https://nodejs.org/api/fs.html) with [babel-plugin-static-fs](https://github.com/Jam3/babel-plugin-static-fs) for browser compatibility. 
 
 ### `textlint-scripts test`

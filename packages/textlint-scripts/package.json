@@ -6,6 +6,7 @@
   "license": "MIT",
   "files": [
     "register.js",
+    "register-ts.js",
     "bin/",
     "scripts/",
     "configs/"
