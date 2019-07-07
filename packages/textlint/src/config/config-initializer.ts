@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintPackageNamePrefix } from "@textlint/types";
+import { TextlintPackageNamePrefix } from "@textlint/utils";
 
 const Promise = require("bluebird");
 const fs = require("fs");

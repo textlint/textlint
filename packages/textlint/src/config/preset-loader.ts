@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import { normalizeTextlintPresetSubRuleKey } from "@textlint/types";
+import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { isPresetRuleKey } from "./config-util";
 
 const interopRequire = require("interop-require");

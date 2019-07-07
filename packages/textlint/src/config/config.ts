@@ -11,7 +11,7 @@ import {
     normalizeTextlintPluginKey,
     normalizeTextlintRuleKey,
     normalizeTextlintRulePresetKey
-} from "@textlint/types";
+} from "@textlint/utils";
 import { Logger } from "../util/logger";
 
 const objectAssign = require("object-assign");

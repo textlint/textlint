@@ -23,9 +23,9 @@ import {
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs,
     TextlintSourceCode,
-    TextlintMessageFixCommand,
-    normalizeTextlintKeyPath
+    TextlintMessageFixCommand
 } from "@textlint/types";
+import { normalizeTextlintKeyPath } from "@textlint/utils";
 import Bluebird = require("bluebird");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}

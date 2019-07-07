@@ -16,7 +16,7 @@ import {
     normalizeTextlintPluginKey,
     normalizeTextlintRuleKey,
     normalizeTextlintRulePresetKey
-} from "@textlint/types";
+} from "@textlint/utils";
 
 export class TextLintModuleLoader extends EventEmitter {
     moduleResolver: TextLintModuleResolver;

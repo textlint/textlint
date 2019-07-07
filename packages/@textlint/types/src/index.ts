@@ -58,13 +58,3 @@ export {
     TextlintMessage,
     TextlintMessageFixCommand
 } from "./Message/TextlintResult";
-// Key Path
-export {
-    normalizeTextlintPresetSubRuleKey,
-    normalizeTextlintRuleKey,
-    normalizeTextlintRulePresetKey,
-    normalizeTextlintPluginKey,
-    normalizeTextlintFilterRuleKey,
-    normalizeTextlintKeyPath
-} from "./KeyPath/TextlintKeyPath";
-export { TextlintPackageNamePrefix } from "./KeyPath/TextlintPackagePrefix";
