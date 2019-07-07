@@ -1,5 +1,7 @@
 // LICENSE : MIT
 "use strict";
+import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
+
 const TraverseController = require("@textlint/ast-traverse").Controller;
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
@@ -17,7 +19,6 @@ import {
     TextlintRuleContext,
     TextlintRuleContextReportFunction,
     TextlintRuleContextReportFunctionArgs,
-    TextlintRuleError,
     TextlintRuleOptions,
     TextlintRuleReporter,
     TextlintFilterRuleShouldIgnoreFunction,
@@ -128,7 +129,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 severity: severity, // it's for compatible ESLint formatter
                 fix: fix !== undefined ? fix : undefined
             };
-            if (!(ruleError instanceof TextlintRuleError)) {
+            if (!(ruleError instanceof TextlintRuleErrorImpl)) {
                 // FIXME: RuleReportedObject should be removed
                 // `error` is a any data.
                 const data = ruleError;

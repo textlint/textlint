@@ -28,14 +28,14 @@ export interface TextlintRuleErrorPadding {
     fix?: TextlintRuleContextFixCommand;
 }
 
-export interface TextlintRuleErrorContructor {
+export interface TextlintRuleErrorConstructor {
     new (message: string, paddingLocation?: number | TextlintRuleErrorPadding): TextlintRuleError;
 }
 
-export abstract class TextlintRuleError {
-    abstract readonly message: string;
-    abstract readonly line?: number;
-    abstract readonly column?: number;
-    abstract readonly index?: number;
-    abstract readonly fix?: TextlintRuleContextFixCommand;
+export interface TextlintRuleError {
+    readonly message: string;
+    readonly line?: number;
+    readonly column?: number;
+    readonly index?: number;
+    readonly fix?: TextlintRuleContextFixCommand;
 }

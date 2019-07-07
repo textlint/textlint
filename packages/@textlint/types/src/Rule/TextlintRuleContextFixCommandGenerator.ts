@@ -9,7 +9,7 @@ import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
  * See {@link SourceLocation} class for more detail.
  * @constructor
  */
-export abstract class TextlintRuleContextFixCommandGenerator {
+export interface TextlintRuleContextFixCommandGenerator {
     /**
      * Creates a fix command that inserts text after the given node or token.
      * The fix is not applied until applyFixes() is called.
@@ -17,7 +17,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextAfter(node: TxtNode, text: string): TextlintRuleContextFixCommand;
+    insertTextAfter(node: TxtNode, text: string): TextlintRuleContextFixCommand;
 
     /**
      * Creates a fix command that inserts text after the specified range in the source text.
@@ -28,7 +28,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextAfterRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
+    insertTextAfterRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
 
     /**
      * Creates a fix command that inserts text before the given node or token.
@@ -37,7 +37,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextBefore(node: TxtNode, text: string): TextlintRuleContextFixCommand;
+    insertTextBefore(node: TxtNode, text: string): TextlintRuleContextFixCommand;
 
     /**
      * Creates a fix command that inserts text before the specified range in the source text.
@@ -48,7 +48,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract insertTextBeforeRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
+    insertTextBeforeRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
 
     /**
      * Creates a fix command that replaces text at the node or token.
@@ -57,7 +57,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract replaceText(node: TxtNode, text: string): TextlintRuleContextFixCommand;
+    replaceText(node: TxtNode, text: string): TextlintRuleContextFixCommand;
 
     /**
      * Creates a fix command that replaces text at the specified range in the source text.
@@ -68,7 +68,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {string} text The text to insert.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract replaceTextRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
+    replaceTextRange(range: TextlintSourceCodeRange, text: string): TextlintRuleContextFixCommand;
 
     /**
      * Creates a fix command that removes the node or token from the source.
@@ -76,7 +76,7 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      * @param {TxtNode} node The node or token to remove.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract remove(node: TxtNode): TextlintRuleContextFixCommand;
+    remove(node: TxtNode): TextlintRuleContextFixCommand;
 
     /**
      * Creates a fix command that removes the specified range of text from the source.
@@ -86,5 +86,5 @@ export abstract class TextlintRuleContextFixCommandGenerator {
      *      The `range` should be **relative** value from reported node.
      * @returns {IntermediateFixCommand} The fix command.
      */
-    abstract removeRange(range: TextlintSourceCodeRange): TextlintRuleContextFixCommand;
+    removeRange(range: TextlintSourceCodeRange): TextlintRuleContextFixCommand;
 }

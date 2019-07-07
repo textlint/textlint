@@ -15,7 +15,12 @@ export {
 // RuleContext
 export { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
 export { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
-export { TextlintRuleError, TextlintRuleErrorPadding, TextlintRuleReportedObject } from "./Rule/TextlintRuleError";
+export {
+    TextlintRuleError,
+    TextlintRuleErrorConstructor,
+    TextlintRuleErrorPadding,
+    TextlintRuleReportedObject
+} from "./Rule/TextlintRuleError";
 export { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
 // Rule
 export {

@@ -1,6 +1,5 @@
 import {
     TextlintFilterRuleShouldIgnoreFunction,
-    TextlintRuleError,
     TextlintRuleSeverityLevel,
     TextlintSourceCode,
     TextlintFilterRuleContextArgs,
@@ -8,6 +7,7 @@ import {
 } from "@textlint/types";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import * as assert from "assert";
+import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
 
 export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext {
     private _ruleId: string;
@@ -50,7 +50,7 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
      * @type {RuleError}
      */
     get RuleError() {
-        return TextlintRuleError;
+        return TextlintRuleErrorImpl;
     }
 
     shouldIgnore = (range: [number, number], optional = {}) => {

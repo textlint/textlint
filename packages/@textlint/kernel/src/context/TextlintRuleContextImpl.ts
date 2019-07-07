@@ -11,6 +11,7 @@ import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import assert from "assert";
 import { TextlintRuleContextFixCommandGeneratorImpl } from "./TextlintRuleContextFixCommandGeneratorImpl";
 import { TextlintRuleSeverityLevelKeys } from "./TextlintRuleSeverityLevelKeys";
+import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
 
 const ruleFixer = new TextlintRuleContextFixCommandGeneratorImpl();
 
@@ -58,7 +59,7 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
      * @type {RuleError}
      */
     get RuleError() {
-        return TextlintRuleError;
+        return TextlintRuleErrorImpl;
     }
 
     /**
@@ -73,9 +74,12 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
      * report function that is called in a rule
      */
     report = (node: TxtNode, ruleError: TextlintRuleError | TextlintRuleReportedObject, _shouldNotUsed?: any) => {
-        assert(!(node instanceof TextlintRuleError), "1st argument should be node. Usage: `report(node, ruleError);`");
+        assert(
+            !(node instanceof TextlintRuleErrorImpl),
+            "1st argument should be node. Usage: `report(node, ruleError);`"
+        );
         assert(_shouldNotUsed === undefined, "3rd argument should not be used. Usage: `report(node, ruleError);`");
-        if (ruleError instanceof TextlintRuleError) {
+        if (ruleError instanceof TextlintRuleErrorImpl) {
             // severity come from `.textlintrc` option like `{ "<rule-name>" : { serverity: "warning" } } `
             this._report({ ruleId: this._ruleId, node, severity: this._severityLevel, ruleError });
         } else {
