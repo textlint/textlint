@@ -46,6 +46,6 @@ export interface TextlintFilterRuleContextArgs {
  * @param ignoreReport shouldIgnore function
  * @constructor
  */
-export abstract class TextlintFilterRuleContext extends BaseRuleContext {
-    abstract shouldIgnore(range: [number, number], optional: {}): void;
+export interface TextlintFilterRuleContext extends BaseRuleContext {
+    shouldIgnore(range: [number, number], optional: {}): void;
 }

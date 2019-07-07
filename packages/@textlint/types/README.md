@@ -22,16 +22,10 @@ By contrasts, textlint's rule module should not depended on `@textlint/kernel`
 - NG: Kernel module <--- Rule module
 - NG: Kernel module ---> Rule module
 
-### Source
+### Abstraction Layer
 
-Source type includes following definition.
-
-- Abstraction layer of source code/text
-
-### Other
-
-This package also includes other utilities for typing.
-It is similar meaning with [@babel/types](https://babeljs.io/docs/en/babel-types).
+`@textlint/types` does not includes implementations.
+In other words, It has only type definition file.
 
 ## Install
 

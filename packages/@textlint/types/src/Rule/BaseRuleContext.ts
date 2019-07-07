@@ -6,34 +6,34 @@ import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
  * This Base class is internal.
  * @internal
  */
-export abstract class BaseRuleContext {
+export interface BaseRuleContext {
     /**
      * Return rule id
      */
-    abstract get id(): string;
+    id: string;
 
     /**
      * Node's type values
      * @type {TextLintNodeType}
      */
-    abstract get Syntax(): typeof ASTNodeTypes;
+    Syntax: typeof ASTNodeTypes;
 
     /**
      * Return rule "severity" level
      */
-    abstract get severity(): TextlintRuleSeverityLevel;
+    severity: TextlintRuleSeverityLevel;
 
     /**
      * CustomError object
      * @type {RuleError}
      */
-    abstract get RuleError(): TextlintRuleErrorConstructor;
+    RuleError: TextlintRuleErrorConstructor;
 
     /**
      * get file path current processing.
      * if process text like stdin, return undefined
      */
-    abstract getFilePath(): string | undefined;
+    getFilePath(): string | undefined;
 
     /**
      * Gets the source code for the given node.
@@ -42,7 +42,7 @@ export abstract class BaseRuleContext {
      * @param {int=} afterCount The number of characters after the node to retrieve.
      * @returns {string|null} The text representing the AST node.
      */
-    abstract getSource(node: TxtNode, beforeCount?: number, afterCount?: number): string;
+    getSource(node: TxtNode, beforeCount?: number, afterCount?: number): string;
 
     /**
      * get config base directory path
@@ -57,5 +57,5 @@ export abstract class BaseRuleContext {
      * You can use it for resolving relative path from config dir.
      * @returns {string|undefined}
      */
-    abstract getConfigBaseDir(): string | undefined;
+    getConfigBaseDir(): string | undefined;
 }
