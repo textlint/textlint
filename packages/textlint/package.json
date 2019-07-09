@@ -57,6 +57,7 @@
     "@textlint/textlint-plugin-markdown": "^5.1.6",
     "@textlint/textlint-plugin-text": "^4.1.6",
     "@textlint/types": "^1.1.5",
+    "@textlint/utils": "^1.0.0",
     "@types/bluebird": "^3.5.18",
     "bluebird": "^3.0.5",
     "debug": "^4.1.1",
@@ -73,7 +74,7 @@
     "object-assign": "^4.0.1",
     "optionator": "^0.8.0",
     "path-to-glob-pattern": "^1.0.2",
-    "rc-config-loader": "^2.0.2",
+    "rc-config-loader": "^2.0.4",
     "read-pkg": "^1.1.0",
     "read-pkg-up": "^3.0.0",
     "structured-source": "^3.0.2",
@@ -82,7 +83,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
-    "@types/node": "^11.13.8",
+    "@types/node": "^12.0.12",
     "clone": "^2.1.2",
     "cpx": "^1.5.0",
     "cross-env": "^5.2.0",
@@ -92,13 +93,13 @@
     "rimraf": "^2.6.3",
     "shelljs": "^0.8.3",
     "source-map-support": "^0.5.0",
-    "textlint-plugin-html": "^0.1.2",
+    "textlint-plugin-html": "^0.2.0",
     "textlint-rule-helper": "^2.0.1",
     "textlint-rule-no-todo": "^2.0.1",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
     "textlint-rule-preset-jtf-style": "^2.3.2",
     "ts-node": "^8.1.0",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "~3.4.5"
+    "typescript": "~3.5.2"
   }
 }

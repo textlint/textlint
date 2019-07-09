@@ -1,8 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const TraverseController = require("@textlint/ast-traverse").Controller;
-const traverseController = new TraverseController();
-const debug = require("debug")("textlint:core-task");
+import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
 import { PromiseEventEmitter } from "./promise-event-emitter";
 import SourceLocation from "../core/source-location";
 import timing from "../util/timing";
@@ -14,18 +12,22 @@ import {
     TextlintFilterRuleContext,
     TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,
+    TextlintFilterRuleShouldIgnoreFunction,
+    TextlintFilterRuleShouldIgnoreFunctionArgs,
+    TextlintMessageFixCommand,
     TextlintRuleContext,
     TextlintRuleContextReportFunction,
     TextlintRuleContextReportFunctionArgs,
-    TextlintRuleError,
     TextlintRuleOptions,
     TextlintRuleReporter,
-    TextlintFilterRuleShouldIgnoreFunction,
-    TextlintFilterRuleShouldIgnoreFunctionArgs,
-    TextlintSourceCode,
-    TextlintMessageFixCommand,
-    normalizeTextlintKeyPath
+    TextlintSourceCode
 } from "@textlint/types";
+import { normalizeTextlintKeyPath } from "@textlint/utils";
+import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";
+
+const TraverseController = require("@textlint/ast-traverse").Controller;
+const traverseController = new TraverseController();
+const debug = require("debug")("textlint:core-task");
 import Bluebird = require("bluebird");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}
@@ -86,7 +88,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     createShouldIgnore(): TextlintFilterRuleShouldIgnoreFunction {
         const shouldIgnore = (args: TextlintFilterRuleShouldIgnoreFunctionArgs) => {
             const { ruleId, range, optional } = args;
-            assert(
+            assert.ok(
                 typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range
             );
@@ -128,7 +130,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 severity: severity, // it's for compatible ESLint formatter
                 fix: fix !== undefined ? fix : undefined
             };
-            if (!(ruleError instanceof TextlintRuleError)) {
+            if (!(ruleError instanceof TextlintRuleErrorImpl)) {
                 // FIXME: RuleReportedObject should be removed
                 // `error` is a any data.
                 const data = ruleError;
@@ -219,7 +221,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         ruleOptions?: TextlintRuleOptions | TextlintFilterRuleOptions
     ): void {
         const ruleObject =
-            ruleContext instanceof TextlintRuleContext
+            ruleContext instanceof TextlintRuleContextImpl
                 ? this.tryToGetRuleObject(
                       ruleCreator as TextlintRuleReporter,
                       ruleContext as Readonly<TextlintRuleContext>,

@@ -89,13 +89,13 @@ describe("cli-test", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const ruleModuleName = "textlint-rule-no-todo";
             cli.execute(`${targetFile} --rule ${ruleModuleName}`).then(result => {
                 assert.equal(result, 0);
-                assert(!isCalled);
+                assert.ok(!isCalled);
                 done();
             });
         });
@@ -103,13 +103,13 @@ describe("cli-test", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const ruleModuleName = "no-todo";
             cli.execute(`${targetFile} --rule ${ruleModuleName}`).then(result => {
                 assert.equal(result, 0);
-                assert(!isCalled);
+                assert.ok(!isCalled);
                 done();
             });
         });
@@ -119,13 +119,13 @@ describe("cli-test", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const ruleModuleName = "textlint-rule-preset-jtf-style";
             cli.execute(`${targetFile} --preset ${ruleModuleName}`).then(result => {
                 assert.equal(result, 0);
-                assert(!isCalled);
+                assert.ok(!isCalled);
                 done();
             });
         });
@@ -133,13 +133,13 @@ describe("cli-test", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const ruleModuleName = "preset-jtf-style";
             cli.execute(`${targetFile} --preset ${ruleModuleName}`).then(result => {
                 assert.equal(result, 0);
-                assert(!isCalled);
+                assert.ok(!isCalled);
                 done();
             });
         });
@@ -147,13 +147,13 @@ describe("cli-test", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/test.md");
             const ruleModuleName = "jtf-style";
             cli.execute(`${targetFile} --preset ${ruleModuleName}`).then(result => {
                 assert.equal(result, 0);
-                assert(!isCalled);
+                assert.ok(!isCalled);
                 done();
             });
         });
@@ -164,28 +164,28 @@ describe("cli-test", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/todo.html");
             const longName = "textlint-plugin-html";
             const ruleModuleName = "no-todo";
             return cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`).then(result => {
                 assert.equal(result, 1);
-                assert(isCalled);
+                assert.ok(isCalled);
             });
         });
         it("should lint the file with long name", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/todo.html");
             const shortName = "html";
             const ruleModuleName = "no-todo";
             return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
                 assert.equal(result, 1);
-                assert(isCalled);
+                assert.ok(isCalled);
             });
         });
 
@@ -193,13 +193,13 @@ describe("cli-test", function() {
             let isCalled = false;
             Logger.log = function mockLog(message) {
                 isCalled = true;
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/todo.html");
             const shortName = "html";
             const ruleModuleName = "no-todo";
             return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
-                assert(isCalled);
+                assert.ok(isCalled);
                 assert.equal(result, 1);
             });
         });
@@ -212,7 +212,7 @@ describe("cli-test", function() {
             const shortName = "html";
             const ruleModuleName = "no-todo";
             return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then(result => {
-                assert(!isCalled);
+                assert.ok(!isCalled);
                 assert.equal(result, 0);
             });
         });
@@ -223,12 +223,12 @@ describe("cli-test", function() {
                 let isCalled = false;
                 Logger.log = function mockLog(message) {
                     isCalled = true;
-                    assert(message.length > 0);
+                    assert.ok(message.length > 0);
                 };
                 const targetFile = path.join(__dirname, "fixtures/test.md");
                 return cli.execute(`${targetFile} --fix`).then(result => {
                     assert.equal(result, 1);
-                    assert(isCalled);
+                    assert.ok(isCalled);
                 });
             });
         });
@@ -252,14 +252,14 @@ describe("cli-test", function() {
             const configFile = path.join(__dirname, "fixtures/quite.textlintrc.json");
             return cli.execute(`${targetFile} -c ${configFile} --quiet ${targetFile}`).then(result => {
                 assert.equal(result, 0);
-                assert(!isCalled);
+                assert.ok(!isCalled);
             });
         });
     });
     context("When no rules found", function() {
         it("show suggestion message from FAQ", function() {
             Logger.log = function mockLog(message) {
-                assert(message.length > 0);
+                assert.ok(message.length > 0);
             };
             const targetFile = path.join(__dirname, "fixtures/test.md");
             return cli.execute(`${targetFile}`).then(result => {

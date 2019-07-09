@@ -47,7 +47,7 @@ describe("textlint-test", function() {
                 textlint.config = new Config({ configFile });
                 const rule = (context, config) => {
                     assertRuleContext(context);
-                    assert(context.config instanceof Config);
+                    assert.ok(context.config instanceof Config);
                     assert.equal(context.config.configFile, configFile);
                     return {};
                 };
@@ -68,8 +68,8 @@ describe("textlint-test", function() {
                 "hoge\n [a](http://example.com) fuga\n" +
                 "------";
             return textlint.lintMarkdown(text).then(result => {
-                assert(result.filePath === "<markdown>");
-                assert(result.messages.length > 0);
+                assert.ok(result.filePath === "<markdown>");
+                assert.ok(result.messages.length > 0);
             });
         });
         it("should has referential transparency", function() {
@@ -86,8 +86,8 @@ describe("textlint-test", function() {
         it("should found error message", function() {
             const text = "It it plain text\n" + "\n" + "Third line.";
             return textlint.lintText(text).then(result => {
-                assert(result.filePath === "<text>");
-                assert(result.messages.length > 0);
+                assert.ok(result.filePath === "<text>");
+                assert.ok(result.messages.length > 0);
             });
         });
     });
@@ -95,7 +95,7 @@ describe("textlint-test", function() {
         it("filePath is loaded file path", function() {
             const filePath = path.join(__dirname, "fixtures/test.md");
             return textlint.lintFile(filePath).then(result => {
-                assert(result.filePath === filePath);
+                assert.ok(result.filePath === filePath);
             });
         });
     });

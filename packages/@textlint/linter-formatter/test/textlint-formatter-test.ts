@@ -11,7 +11,7 @@ describe("@textlint/linter-formatter-test", function() {
             const formatter = createFormatter({
                 formatterName: "stylish"
             });
-            assert(typeof formatter === "function");
+            assert.ok(typeof formatter === "function");
         });
         context("formatter", function() {
             it("should return output text", function() {
@@ -34,7 +34,7 @@ describe("@textlint/linter-formatter-test", function() {
                         ]
                     }
                 ]);
-                assert(output.length > 0);
+                assert.ok(output.length > 0);
             });
         });
         it("run all formatter", function() {
@@ -114,7 +114,7 @@ describe("@textlint/linter-formatter-test", function() {
                         ]
                     }
                 ]);
-                assert(output.length > 0);
+                assert.ok(output.length > 0);
             });
         });
     });

@@ -11,7 +11,7 @@ describe("textlint-core", function() {
             return textlint
                 .lintMarkdown("test")
                 .then(result => {
-                    assert(result.messages.length === 1);
+                    assert.ok(result.messages.length === 1);
                 })
                 .then(() => {
                     const newTextLint = new TextLintCore();
@@ -19,7 +19,7 @@ describe("textlint-core", function() {
                     return newTextLint.lintMarkdown("test");
                 })
                 .then(result => {
-                    assert(result.messages.length === 0);
+                    assert.ok(result.messages.length === 0);
                 });
         });
     });
@@ -31,17 +31,17 @@ describe("textlint-core", function() {
         });
         it("should not throw an exception @ text", function() {
             return textlint.lintText("").then(result => {
-                assert(result.messages.length === 0);
+                assert.ok(result.messages.length === 0);
             });
         });
         it("should not throw an exception @ markdown", function() {
             return textlint.lintMarkdown("").then(result => {
-                assert(result.messages.length === 0);
+                assert.ok(result.messages.length === 0);
             });
         });
         it("should not throw an exception @ file", function() {
             return textlint.lintFile(__dirname + "/fixtures/empty.md").then(result => {
-                assert(result.messages.length === 0);
+                assert.ok(result.messages.length === 0);
             });
         });
     });
@@ -51,10 +51,10 @@ describe("textlint-core", function() {
                 const textlint = new TextLintCore();
                 textlint.setupRules({ "rule-name": exampleRule }, { "rule-name": { severity: "warning" } });
                 return textlint.lintMarkdown("# Test").then(result => {
-                    assert(result.filePath === "<markdown>");
-                    assert(result.messages.length > 0);
+                    assert.ok(result.filePath === "<markdown>");
+                    assert.ok(result.messages.length > 0);
                     const message = result.messages[0];
-                    assert(message.severity === 1);
+                    assert.ok(message.severity === 1);
                 });
             });
         });
@@ -63,20 +63,20 @@ describe("textlint-core", function() {
                 const textlint = new TextLintCore();
                 textlint.setupRules({ "rule-name": exampleRule }, { "rule-name": { foo: "bar" } });
                 return textlint.lintMarkdown("# Test").then(result => {
-                    assert(result.filePath === "<markdown>");
-                    assert(result.messages.length > 0);
+                    assert.ok(result.filePath === "<markdown>");
+                    assert.ok(result.messages.length > 0);
                     const message = result.messages[0];
-                    assert(message.severity === 2);
+                    assert.ok(message.severity === 2);
                 });
             });
             it("message.severity should be error", function() {
                 const textlint = new TextLintCore();
                 textlint.setupRules({ "rule-name": exampleRule }, { "rule-name": { severity: "error" } });
                 return textlint.lintMarkdown("# Test").then(result => {
-                    assert(result.filePath === "<markdown>");
-                    assert(result.messages.length > 0);
+                    assert.ok(result.filePath === "<markdown>");
+                    assert.ok(result.messages.length > 0);
                     const message = result.messages[0];
-                    assert(message.severity === 2);
+                    assert.ok(message.severity === 2);
                 });
             });
         });
@@ -86,10 +86,10 @@ describe("textlint-core", function() {
                 textlint.setupRules({ "rule-name": exampleRule }, { "rule-name": { severity: "xxxxxxxx" } }); // wrong config
                 try {
                     textlint.lintText("test").catch(error => {
-                        assert(error instanceof Error);
+                        assert.ok(error instanceof Error);
                     });
                 } catch (error) {
-                    assert(error instanceof Error);
+                    assert.ok(error instanceof Error);
                 }
             });
         });
@@ -98,9 +98,9 @@ describe("textlint-core", function() {
         it("should reset filterRules", function() {
             const textlint = new TextLintCore();
             textlint.setupFilterRules({ "rule-name": exampleRule });
-            assert(textlint.textlintKernelDescriptor.filterRule.descriptors.length === 1);
+            assert.ok(textlint.textlintKernelDescriptor.filterRule.descriptors.length === 1);
             textlint.resetRules();
-            assert(textlint.textlintKernelDescriptor.filterRule.descriptors.length === 0);
+            assert.ok(textlint.textlintKernelDescriptor.filterRule.descriptors.length === 0);
         });
         it("should reset rules", function() {
             const textlint = new TextLintCore();
@@ -109,7 +109,7 @@ describe("textlint-core", function() {
                 .lintText("wrong", ".md")
                 .then(result => {
                     // should be 0>
-                    assert(result.messages.length > 0);
+                    assert.ok(result.messages.length > 0);
                 })
                 .then(() => {
                     textlint.resetRules();
@@ -117,7 +117,7 @@ describe("textlint-core", function() {
                 .then(() => {
                     // should be 0
                     return textlint.lintText("wrong", ".md").then(result => {
-                        assert(result.messages.length === 0);
+                        assert.ok(result.messages.length === 0);
                     });
                 });
         });

@@ -15,7 +15,12 @@ export {
 // RuleContext
 export { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
 export { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
-export { TextlintRuleError, TextlintRuleErrorPadding, TextlintRuleReportedObject } from "./Rule/TextlintRuleError";
+export {
+    TextlintRuleError,
+    TextlintRuleErrorConstructor,
+    TextlintRuleErrorPadding,
+    TextlintRuleReportedObject
+} from "./Rule/TextlintRuleError";
 export { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
 // Rule
 export {
@@ -34,6 +39,7 @@ export {
 // Filter Rule
 export {
     TextlintFilterRuleContext,
+    TextlintFilterRuleContextArgs,
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs
 } from "./Rule/TextlintFilterRuleContext";
@@ -58,13 +64,3 @@ export {
     TextlintMessage,
     TextlintMessageFixCommand
 } from "./Message/TextlintResult";
-// Key Path
-export {
-    normalizeTextlintPresetSubRuleKey,
-    normalizeTextlintRuleKey,
-    normalizeTextlintRulePresetKey,
-    normalizeTextlintPluginKey,
-    normalizeTextlintFilterRuleKey,
-    normalizeTextlintKeyPath
-} from "./KeyPath/TextlintKeyPath";
-export { TextlintPackageNamePrefix } from "./KeyPath/TextlintPackagePrefix";

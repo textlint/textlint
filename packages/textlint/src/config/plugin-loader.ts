@@ -85,7 +85,7 @@ export function loadAvailableExtensions(pluginNames: string[] = [], moduleResolv
         }
         const Processor = plugin.Processor;
         debug(`${pluginName} has Processor`);
-        assert(
+        assert.ok(
             typeof Processor.availableExtensions === "function",
             "Processor.availableExtensions() should be implemented"
         );

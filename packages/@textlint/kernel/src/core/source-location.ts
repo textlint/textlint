@@ -183,7 +183,7 @@ report(node, new RuleError("message", {
         if (ruleErrorObject.fix === undefined) {
             return {};
         }
-        assert(typeof ruleErrorObject.fix === "object", "fix should be FixCommand object");
+        assert.ok(typeof ruleErrorObject.fix === "object", "fix should be FixCommand object");
         // if absolute position return self
         if (ruleErrorObject.fix.isAbsolute) {
             return {

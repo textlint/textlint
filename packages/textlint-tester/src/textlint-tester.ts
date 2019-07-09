@@ -47,17 +47,17 @@ function assertTestConfig(testConfig: TestConfig): any {
         true,
         "TestConfig is empty"
     );
-    assert(Array.isArray(testConfig.rules), "TestConfig.rules should be an array");
-    assert(testConfig.rules.length > 0, "TestConfig.rules should have at least one rule");
+    assert.ok(Array.isArray(testConfig.rules), "TestConfig.rules should be an array");
+    assert.ok(testConfig.rules.length > 0, "TestConfig.rules should have at least one rule");
     testConfig.rules.forEach(rule => {
-        assert(rule.hasOwnProperty("ruleId"), "ruleId property not found");
-        assert(rule.hasOwnProperty("rule"), "rule property not found");
+        assert.ok(rule.hasOwnProperty("ruleId"), "ruleId property not found");
+        assert.ok(rule.hasOwnProperty("rule"), "rule property not found");
     });
     if (typeof testConfig.plugins !== "undefined") {
-        assert(Array.isArray(testConfig.plugins), "TestConfig.plugins should be an array");
+        assert.ok(Array.isArray(testConfig.plugins), "TestConfig.plugins should be an array");
         testConfig.plugins.forEach(plugin => {
-            assert(plugin.hasOwnProperty("pluginId"), "pluginId property not found");
-            assert(plugin.hasOwnProperty("plugin"), "plugin property not found");
+            assert.ok(plugin.hasOwnProperty("pluginId"), "pluginId property not found");
+            assert.ok(plugin.hasOwnProperty("plugin"), "plugin property not found");
         });
     }
 }
@@ -264,7 +264,7 @@ export class TextLintTester {
             assertTestConfig(param);
             if (valid) {
                 valid.forEach(validCase => {
-                    assert(
+                    assert.ok(
                         !validCase.hasOwnProperty("options"),
                         "Could not specify options property in valid object when TestConfig was passed. Use TestConfig.rules.options."
                     );
@@ -272,7 +272,7 @@ export class TextLintTester {
             }
             if (invalid) {
                 invalid.forEach(invalidCase => {
-                    assert(
+                    assert.ok(
                         !invalidCase.hasOwnProperty("options"),
                         "Could not specify options property in invalid object when TestConfig was passed. Use TestConfig.rules.options."
                     );

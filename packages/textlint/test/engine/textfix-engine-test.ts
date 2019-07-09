@@ -37,12 +37,12 @@ describe("textfix-engine", function() {
             const engine = new TextFixEngine({ rulePaths: [rulesDir] });
             var filePath = inputTextPath;
             return engine.executeOnFiles([filePath]).then(results => {
-                assert(Array.isArray(results));
+                assert.ok(Array.isArray(results));
                 var fileResult = results[0];
-                assert(fileResult.filePath === filePath);
-                assert(Array.isArray(fileResult.applyingMessages));
-                assert(Array.isArray(fileResult.remainingMessages));
-                assert(fileResult.output.length > 0);
+                assert.ok(fileResult.filePath === filePath);
+                assert.ok(Array.isArray(fileResult.applyingMessages));
+                assert.ok(Array.isArray(fileResult.remainingMessages));
+                assert.ok(fileResult.output.length > 0);
             });
         });
         context("when process file that has un-available ext ", function() {
@@ -50,8 +50,8 @@ describe("textfix-engine", function() {
                 const engine = new TextFixEngine();
                 const filePath = path.join(__dirname, "fixtures/test.unknown");
                 return engine.executeOnFiles([filePath]).then(results => {
-                    assert(Array.isArray(results));
-                    assert(results.length === 0);
+                    assert.ok(Array.isArray(results));
+                    assert.ok(results.length === 0);
                 });
             });
         });
@@ -60,38 +60,38 @@ describe("textfix-engine", function() {
         it("should lint a text and return results", function() {
             const engine = new TextFixEngine({ rulePaths: [rulesDir] });
             return engine.executeOnText("text").then(results => {
-                assert(Array.isArray(results));
+                assert.ok(Array.isArray(results));
                 var lintResult = results[0];
-                assert(lintResult.filePath === "<text>");
-                assert(Array.isArray(lintResult.applyingMessages));
-                assert(Array.isArray(lintResult.remainingMessages));
-                assert(lintResult.applyingMessages.length > 0);
-                assert(lintResult.remainingMessages.length === 0);
+                assert.ok(lintResult.filePath === "<text>");
+                assert.ok(Array.isArray(lintResult.applyingMessages));
+                assert.ok(Array.isArray(lintResult.remainingMessages));
+                assert.ok(lintResult.applyingMessages.length > 0);
+                assert.ok(lintResult.remainingMessages.length === 0);
             });
         });
         context("when specify ext", function() {
             it("should lint text as ext", function() {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text", ".md").then(results => {
-                    assert(Array.isArray(results));
+                    assert.ok(Array.isArray(results));
                     const lintResult = results[0];
-                    assert(lintResult.filePath === "<markdown>");
-                    assert(Array.isArray(lintResult.applyingMessages));
-                    assert(Array.isArray(lintResult.remainingMessages));
-                    assert(lintResult.applyingMessages.length > 0);
-                    assert(lintResult.remainingMessages.length === 0);
+                    assert.ok(lintResult.filePath === "<markdown>");
+                    assert.ok(Array.isArray(lintResult.applyingMessages));
+                    assert.ok(Array.isArray(lintResult.remainingMessages));
+                    assert.ok(lintResult.applyingMessages.length > 0);
+                    assert.ok(lintResult.remainingMessages.length === 0);
                 });
             });
             it("should lint text as ext( of path )", function() {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text", "index.md").then(results => {
-                    assert(Array.isArray(results));
+                    assert.ok(Array.isArray(results));
                     const lintResult = results[0];
-                    assert(lintResult.filePath === "<markdown>");
-                    assert(Array.isArray(lintResult.applyingMessages));
-                    assert(Array.isArray(lintResult.remainingMessages));
-                    assert(lintResult.applyingMessages.length > 0);
-                    assert(lintResult.remainingMessages.length === 0);
+                    assert.ok(lintResult.filePath === "<markdown>");
+                    assert.ok(Array.isArray(lintResult.applyingMessages));
+                    assert.ok(Array.isArray(lintResult.remainingMessages));
+                    assert.ok(lintResult.applyingMessages.length > 0);
+                    assert.ok(lintResult.remainingMessages.length === 0);
                 });
             });
         });
@@ -102,8 +102,8 @@ describe("textfix-engine", function() {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 return engine.executeOnText("text").then(results => {
                     var output = engine.formatResults(results);
-                    assert(/<text>/.test(output));
-                    assert(/problem/.test(output));
+                    assert.ok(/<text>/.test(output));
+                    assert.ok(/problem/.test(output));
                 });
             });
         });
@@ -112,8 +112,8 @@ describe("textfix-engine", function() {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir], formatterName: formatterPath });
                 return engine.executeOnText("text").then(results => {
                     const output = engine.formatResults(results);
-                    assert(!/<text>/.test(output));
-                    assert(/example-fixer-formatter/.test(output));
+                    assert.ok(!/<text>/.test(output));
+                    assert.ok(/example-fixer-formatter/.test(output));
                 });
             });
         });

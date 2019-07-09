@@ -1,0 +1,57 @@
+{
+  "name": "@textlint/utils",
+  "version": "1.0.0",
+  "description": "textlint internal utils.",
+  "keywords": [
+    "internal",
+    "utils"
+  ],
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/utils/",
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "clean": "rimraf lib/",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.ts\"",
+    "watch": "tsc -p . --watch"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.0.12",
+    "cross-env": "^5.2.0",
+    "mocha": "^6.1.4",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.3.0",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.5.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

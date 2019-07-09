@@ -42,7 +42,7 @@ describe("config-loader", function() {
                 configFileName: Config.CONFIG_FILE_NAME
             });
             assert.equal(typeof config.rules.config, "object");
-            assert(config.rules.config.key === true);
+            assert.ok(config.rules.config.key === true);
         });
     });
     context("when specify Config module, but not found", function() {
@@ -56,9 +56,9 @@ describe("config-loader", function() {
                 moduleResolver,
                 configFileName: Config.CONFIG_FILE_NAME
             });
-            assert(config.rules, "should have config.rules");
-            assert(config.rules["alt-rule"]);
-            assert(filePath === directTextlintrc);
+            assert.ok(config.rules, "should have config.rules");
+            assert.ok(config.rules["alt-rule"]);
+            assert.ok(filePath === directTextlintrc);
         });
         it("should not load config", function() {
             const baseDir = path.join(__dirname, "fixtures");
@@ -66,7 +66,7 @@ describe("config-loader", function() {
                 rulesBaseDirectory: baseDir
             });
             const result = loadConfig("UNKNOWN", { moduleResolver, configFileName: Config.CONFIG_FILE_NAME });
-            assert(!result.rules);
+            assert.ok(!result.rules);
         });
     });
 });

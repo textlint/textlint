@@ -3,7 +3,7 @@
 const assert = require("assert");
 const path = require("path");
 import { TextLintCore } from "../../src/index";
-import { TextlintRuleSeverityLevel } from "@textlint/kernel";
+import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 /*
     TODO: rule-context-test has `lintText` and `fixText` test.
@@ -40,13 +40,13 @@ describe("rule-context-test", function() {
                 return textlint
                     .lintMarkdown("text")
                     .then(() => {
-                        assert(callCount === 1);
+                        assert.ok(callCount === 1);
                     })
                     .then(() => {
                         return textlint.lintText("text");
                     })
                     .then(() => {
-                        assert(callCount === 2);
+                        assert.ok(callCount === 2);
                     });
             });
         });
@@ -71,13 +71,13 @@ describe("rule-context-test", function() {
                 return textlint
                     .lintMarkdown("text")
                     .then(() => {
-                        assert(callCount === 1);
+                        assert.ok(callCount === 1);
                     })
                     .then(() => {
                         return textlint.lintText("text");
                     })
                     .then(() => {
-                        assert(callCount === 2);
+                        assert.ok(callCount === 2);
                     });
             });
         });
@@ -90,7 +90,7 @@ describe("rule-context-test", function() {
             });
             it("should catch error", function() {
                 return textlint.lintMarkdown("text").catch(error => {
-                    assert(error instanceof Error);
+                    assert.ok(error instanceof Error);
                 });
             });
         });
@@ -104,8 +104,8 @@ describe("rule-context-test", function() {
             it("should catch error including <file path>", function() {
                 const filePath = path.join(__dirname, "fixtures/test.md");
                 return textlint.lintFile(filePath).catch(error => {
-                    assert(error instanceof Error);
-                    assert(error.message.indexOf(filePath) !== -1);
+                    assert.ok(error instanceof Error);
+                    assert.ok(error.message.indexOf(filePath) !== -1);
                 });
             });
         });
@@ -150,7 +150,7 @@ describe("rule-context-test", function() {
                 "rule-key"(context) {
                     const exports = {};
                     exports[context.Syntax.Document] = function(node) {
-                        assert.strictEqual(context.severity, TextlintRuleSeverityLevel.error);
+                        assert.strictEqual(context.severity, TextlintRuleSeverityLevelKeys.error);
                     };
                     return exports;
                 }
@@ -199,7 +199,7 @@ describe("rule-context-test", function() {
                         }
                     });
                     return textlint.lintMarkdown("test").then(result => {
-                        assert(result.messages.length === 1);
+                        assert.ok(result.messages.length === 1);
                         const message = result.messages[0];
                         assert.equal(message.line, 1);
                         assert.equal(message.column, 2);
@@ -220,7 +220,7 @@ describe("rule-context-test", function() {
                 });
                 // catch error
                 return textlint.lintMarkdown("test").catch(error => {
-                    assert(error instanceof Error);
+                    assert.ok(error instanceof Error);
                 });
             });
             it("could has padding location", function() {
@@ -235,7 +235,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 return textlint.lintMarkdown("test`code`test").then(result => {
-                    assert(result.messages.length === 1);
+                    assert.ok(result.messages.length === 1);
                     const message = result.messages[0];
                     assert.equal(message.line, 6);
                     assert.equal(message.column, 5 + 1);
@@ -255,7 +255,7 @@ describe("rule-context-test", function() {
                 }
             });
             return textlint.lintMarkdown("test").then(result => {
-                assert(result.messages.length === 1);
+                assert.ok(result.messages.length === 1);
                 const message = result.messages[0];
                 assert.equal(message.message, expectedData.message);
                 assert.deepEqual(message.data, expectedData);
@@ -294,7 +294,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
-                    assert(result.messages.length === 0);
+                    assert.ok(result.messages.length === 0);
                 });
             });
         });
@@ -319,7 +319,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
-                    assert(result.messages.length === 1);
+                    assert.ok(result.messages.length === 1);
                     const [message] = result.messages;
                     assert.equal(message.type, "lint");
                 });
@@ -348,7 +348,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
-                    assert(result.messages.length === 0);
+                    assert.ok(result.messages.length === 0);
                 });
             });
         });
@@ -374,7 +374,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
-                    assert(result.messages.length === 0);
+                    assert.ok(result.messages.length === 0);
                 });
             });
         });
@@ -399,7 +399,7 @@ describe("rule-context-test", function() {
                     }
                 });
                 return textlint.lintMarkdown("test").then(result => {
-                    assert(result.messages.length === 0);
+                    assert.ok(result.messages.length === 0);
                 });
             });
         });
@@ -423,9 +423,9 @@ describe("rule-context-test", function() {
                     }
                 });
                 return textlint.fixText("test").then(result => {
-                    assert(result.applyingMessages.length === 0);
-                    assert(result.remainingMessages.length === 0);
-                    assert(result.messages.length === 0);
+                    assert.ok(result.applyingMessages.length === 0);
+                    assert.ok(result.remainingMessages.length === 0);
+                    assert.ok(result.messages.length === 0);
                 });
             });
             context("when ignoreMessages that is not specified ruleId", function() {
@@ -455,10 +455,10 @@ describe("rule-context-test", function() {
                         }
                     });
                     return textlint.fixText("test").then(result => {
-                        assert(result.output === "test");
-                        assert(result.applyingMessages.length === 0);
-                        assert(result.remainingMessages.length === 0);
-                        assert(result.messages.length === 0);
+                        assert.ok(result.output === "test");
+                        assert.ok(result.applyingMessages.length === 0);
+                        assert.ok(result.remainingMessages.length === 0);
+                        assert.ok(result.messages.length === 0);
                     });
                 });
             });
@@ -473,7 +473,7 @@ describe("rule-context-test", function() {
                         return {
                             [context.Syntax.Document]() {
                                 const filePath = context.getFilePath();
-                                assert(filePath === undefined);
+                                assert.ok(filePath === undefined);
                             }
                         };
                     }
@@ -506,7 +506,7 @@ describe("rule-context-test", function() {
                         return {
                             [context.Syntax.Document]() {
                                 const baseDir = context.getConfigBaseDir();
-                                assert(baseDir === undefined);
+                                assert.ok(baseDir === undefined);
                             }
                         };
                     }
@@ -524,7 +524,7 @@ describe("rule-context-test", function() {
                         return {
                             [context.Syntax.Document]() {
                                 const baseDir = context.getConfigBaseDir();
-                                assert(baseDir === configBasedir);
+                                assert.ok(baseDir === configBasedir);
                             }
                         };
                     }

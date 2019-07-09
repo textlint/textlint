@@ -41,7 +41,7 @@ or I'll throw an error
 ```
 
 ```js
-assert(true);
+assert.ok(true);
 ```
 
 ---

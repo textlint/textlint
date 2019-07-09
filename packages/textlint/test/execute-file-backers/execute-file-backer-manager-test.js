@@ -73,10 +73,10 @@ describe("execute-file-backer-manager", function() {
             return manager.process(files, executeFile).then(results => {
                 assert.equal(results.length, files.length);
                 const [res1, res2] = results;
-                assert(res1.filePath === files[0]);
-                assert(res1.messages.length === 0);
-                assert(res2.filePath === files[1]);
-                assert(res2.messages.length === 0);
+                assert.ok(res1.filePath === files[0]);
+                assert.ok(res1.messages.length === 0);
+                assert.ok(res2.filePath === files[1]);
+                assert.ok(res2.messages.length === 0);
             });
         });
     });

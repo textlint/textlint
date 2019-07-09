@@ -26,7 +26,7 @@ describe("Broken Rule", function() {
                     throw new Error("WRONG");
                 })
                 .catch(error => {
-                    assert(error.code === "ERR_ASSERTION" || error.name === "AssertionError");
+                    assert.ok(error.code === "ERR_ASSERTION" || error.name === "AssertionError");
                 });
         });
     });

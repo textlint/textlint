@@ -27,7 +27,7 @@ describe("CacheBacker", function() {
             cacheBacker.afterAll();
             // next
             const shouldExecute = cacheBacker.shouldExecute({ filePath: prevResult.filePath });
-            assert(shouldExecute === false);
+            assert.ok(shouldExecute === false);
         });
     });
 
@@ -41,7 +41,7 @@ describe("CacheBacker", function() {
             cacheBacker.afterAll();
             // next
             const shouldExecute = cacheBacker.shouldExecute({ filePath: prevResult.filePath });
-            assert(shouldExecute);
+            assert.ok(shouldExecute);
         });
     });
     context("when specify `cacheLocation` options", function() {
@@ -54,7 +54,7 @@ describe("CacheBacker", function() {
             // prev
             cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();
-            assert(fs.existsSync(cacheFilePath));
+            assert.ok(fs.existsSync(cacheFilePath));
         });
     });
 });

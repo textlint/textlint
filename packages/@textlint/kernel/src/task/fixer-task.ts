@@ -3,8 +3,10 @@
 import CoreTask from "./textlint-core-task";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import { TextlintFilterRuleDescriptors, TextlintFixableRuleDescriptor } from "../descriptor";
-import { TextlintSourceCode, TextlintRuleContext, TextlintFilterRuleContext } from "@textlint/types";
+import { TextlintSourceCode } from "@textlint/types";
 import { getSeverity } from "../shared/rule-severity";
+import { TextlintFilterRuleContextImpl } from "../context/TextlintFilterRuleContextImpl";
+import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";
 
 const debug = require("debug")("textlint:TextLintCoreTask");
 
@@ -50,7 +52,7 @@ export default class TextLintCoreTask extends CoreTask {
         const ignoreReport = this.createShouldIgnore();
         // setup "rules" field by using a single fixerRule
         debug("fixerRule", this.fixableRuleDescriptor);
-        const ruleContext = new TextlintRuleContext({
+        const ruleContext = new TextlintRuleContextImpl({
             ruleId: this.fixableRuleDescriptor.id,
             severityLevel: getSeverity(this.fixableRuleDescriptor.normalizedOptions),
             sourceCode,
@@ -65,7 +67,7 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "filters" field
         debug("filterRules", this.filterRuleDescriptors);
         this.filterRuleDescriptors.descriptors.forEach(filterRuleDescriptor => {
-            const ruleContext = new TextlintFilterRuleContext({
+            const ruleContext = new TextlintFilterRuleContextImpl({
                 ruleId: filterRuleDescriptor.id,
                 severityLevel: getSeverity(filterRuleDescriptor.normalizedOptions),
                 sourceCode,

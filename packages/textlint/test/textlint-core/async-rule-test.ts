@@ -39,8 +39,8 @@ describe("Async", function() {
             } as TextlintRuleModule
         });
         return textlint.lintMarkdown("string").then(result => {
-            assert(result.filePath === "<markdown>");
-            assert(result.messages.length === 2);
+            assert.ok(result.filePath === "<markdown>");
+            assert.ok(result.messages.length === 2);
         });
     });
     it("should promise each messages", function() {
@@ -55,7 +55,7 @@ describe("Async", function() {
         });
         return textlint.lintMarkdown("string").then(result => {
             // filtered duplicated messages => 2 patterns
-            assert(result.messages.length === 2);
+            assert.ok(result.messages.length === 2);
         });
     });
     it("should promise each messages on multiple files", function() {

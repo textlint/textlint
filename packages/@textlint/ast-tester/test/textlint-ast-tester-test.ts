@@ -6,14 +6,14 @@ describe("@textlint/ast-tester", function() {
         it("should not throw", function() {
             const AST = require("./fixtures/markdown-to-ast.json");
             test(AST);
-            assert(isTxtAST(AST));
+            assert.ok(isTxtAST(AST));
         });
     });
     context("when @textlint/text-to-ast", function() {
         it("should not throw", function() {
             const AST = require("./fixtures/text-to-ast.json");
             test(AST);
-            assert(isTxtAST(AST));
+            assert.ok(isTxtAST(AST));
         });
     });
 
@@ -24,7 +24,7 @@ describe("@textlint/ast-tester", function() {
                     type: "string"
                 });
             });
-            assert(!isTxtAST({}));
+            assert.ok(!isTxtAST({}));
         });
     });
 });

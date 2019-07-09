@@ -1,14 +1,14 @@
 // MIT © 2017 azu
 "use strict";
 import { TextlintMessage } from "@textlint/kernel";
-
-const assert = require("assert");
 import { TextlintKernel } from "../src/textlint-kernel";
 import { errorRule } from "./helper/ErrorRule";
 import { createPluginStub, ExampleProcessorOptions } from "./helper/ExamplePlugin";
-import { TextlintRuleSeverityLevel } from "@textlint/types";
 import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
 import { filterRule } from "./helper/FilterRule";
+import { TextlintRuleSeverityLevelKeys } from "../src/context/TextlintRuleSeverityLevelKeys";
+
+import assert from "assert";
 
 /**
  * assert: TextlintMessage must have these properties
@@ -21,9 +21,9 @@ const assertMessage = (message: TextlintMessage) => {
     assert.strictEqual(typeof message.line, "number");
     assert.strictEqual(typeof message.column, "number");
     assert.ok(
-        TextlintRuleSeverityLevel.info === message.severity ||
-            message.severity === TextlintRuleSeverityLevel.warning ||
-            message.severity === TextlintRuleSeverityLevel.error
+        TextlintRuleSeverityLevelKeys.info === message.severity ||
+            message.severity === TextlintRuleSeverityLevelKeys.warning ||
+            message.severity === TextlintRuleSeverityLevelKeys.error
     );
 };
 

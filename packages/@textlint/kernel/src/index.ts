@@ -6,7 +6,7 @@ export * from "./descriptor/index";
 export { TextlintKernelRule, TextlintKernelFilterRule, TextlintKernelPlugin } from "./textlint-kernel-interface";
 
 /**
- * Types of  textlint lint/fix result
+ * Types of textlint lint/fix result
  */
 export { TextlintResult, TextlintFixResult, TextlintMessageFixCommand, TextlintMessage } from "@textlint/types";
 /**
@@ -29,3 +29,5 @@ export {
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
 } from "@textlint/types";
+// TextlintRuleSeverityLevel Key
+export { TextlintRuleSeverityLevelKeys } from "./context/TextlintRuleSeverityLevelKeys";
