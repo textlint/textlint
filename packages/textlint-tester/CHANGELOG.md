@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.8"></a>
+## [5.1.8](https://github.com/textlint/textlint/compare/textlint-tester@5.1.6...textlint-tester@5.1.8) (2019-07-13)
+
+
+### Code Refactoring
+
+* **utils:** move implementation from types to utils ([#611](https://github.com/textlint/textlint/issues/611)) ([cd9adbe](https://github.com/textlint/textlint/commit/cd9adbe))
+
+
+
+
+
 <a name="5.1.7"></a>
 ## [5.1.7](https://github.com/textlint/textlint/compare/textlint-tester@5.1.6...textlint-tester@5.1.7) (2019-07-04)
 

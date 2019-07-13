@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.4"></a>
+## [2.1.4](https://github.com/textlint/textlint/compare/@textlint/ast-traverse@2.1.3...@textlint/ast-traverse@2.1.4) (2019-07-13)
+
+
+### Code Refactoring
+
+* **utils:** move implementation from types to utils ([#611](https://github.com/textlint/textlint/issues/611)) ([cd9adbe](https://github.com/textlint/textlint/commit/cd9adbe))
+
+
+
+
+
 <a name="2.1.3"></a>
 ## [2.1.3](https://github.com/textlint/textlint/compare/@textlint/ast-traverse@2.1.2...@textlint/ast-traverse@2.1.3) (2019-04-30)
 
