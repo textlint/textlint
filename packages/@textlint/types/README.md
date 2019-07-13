@@ -50,6 +50,17 @@ import { TextlintPluginCreator, TextlintPluginOptions, TextlintPluginProcessor, 
 
 ```
 
+## Versioning Policy
+
+`@textlint/types` is not semantic versioning.
+Because, This library provide only TypeScript definition.
+
+It is hard that we follow a semantic versioning.
+
+- patch: fix bugs, maybe includes breaking change
+- minor: add new types,  maybe includes breaking change
+- major: includes breaking change
+
 ## Changelog
 
 See [Releases page](https://github.com/textlint/textlint/releases).
