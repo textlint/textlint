@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/textlint/textlint/compare/@textlint/types@1.1.5...@textlint/types@1.2.0) (2019-07-13)
+
+
+### Code Refactoring
+
+* **utils:** move implementation from types to utils ([#611](https://github.com/textlint/textlint/issues/611)) ([cd9adbe](https://github.com/textlint/textlint/commit/cd9adbe))
+
+
+### Documentation
+
+* **types:** Update [@textlint](https://github.com/textlint)/types README ([da72b09](https://github.com/textlint/textlint/commit/da72b09))
+
+
+### Features
+
+* **types:** add generics parameter to TextlintRuleReporter<T> ([#615](https://github.com/textlint/textlint/issues/615)) ([963324b](https://github.com/textlint/textlint/commit/963324b))
+
+
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/textlint/textlint/compare/@textlint/types@1.1.4...@textlint/types@1.1.5) (2019-04-30)
 
