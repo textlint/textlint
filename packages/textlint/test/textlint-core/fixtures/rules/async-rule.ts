@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
-export default function(context) {
+import { TextlintRuleReporter } from "@textlint/types";
+
+const report: TextlintRuleReporter = function(context) {
     const { Syntax, report, RuleError } = context;
     return {
         [Syntax.Str](node) {
@@ -12,4 +14,5 @@ export default function(context) {
             });
         }
     };
-}
+};
+export default report;

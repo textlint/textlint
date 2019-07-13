@@ -19,15 +19,18 @@ export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxt
 /**
  * Textlint rule reporter function
  */
-export type TextlintRuleReporter = (
+export type TextlintRuleReporter<T extends object = {}> = (
     context: Readonly<TextlintRuleContext>,
-    options?: TextlintRuleOptions
+    options?: TextlintRuleOptions<T>
 ) => TextlintRuleReportHandler;
 /**
  * If Textlint rule has fixer, it should both of { linter, fixer }.
  */
-export type TextlintFixableRuleModule = { linter: TextlintRuleReporter; fixer: TextlintRuleReporter };
+export type TextlintFixableRuleModule<T extends object = {}> = {
+    linter: TextlintRuleReporter<T>;
+    fixer: TextlintRuleReporter<T>;
+};
 /**
  * module.export = reporter | { linter, fixer }
  */
-export type TextlintRuleModule = TextlintRuleReporter | TextlintFixableRuleModule;
+export type TextlintRuleModule<T extends object = {}> = TextlintRuleReporter<T> | TextlintFixableRuleModule<T>;

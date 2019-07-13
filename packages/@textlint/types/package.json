@@ -30,6 +30,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -p .",
+    "test": "tsc -p ./test --noEmit",
     "clean": "rimraf lib/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
