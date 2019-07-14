@@ -49,7 +49,7 @@
     "cross-spawn": "^6.0.5",
     "mocha": "^6.1.4",
     "pkg-to-readme": "^1.1.0",
-    "textlint-tester": "^5.1.7"
+    "textlint-tester": "^5.1.8"
   },
   "prettier": {
     "singleQuote": false,
