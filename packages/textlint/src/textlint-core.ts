@@ -23,7 +23,6 @@ import {
 } from "./util/object-to-kernel-format";
 
 const path = require("path");
-const ObjectAssign = require("object-assign");
 
 const { throwIfTesting } = require("@textlint/feature-flag");
 
@@ -225,7 +224,7 @@ export class TextLintCore {
     private _mergeSetupOptions(options: { ext: string } | { ext: any; filePath: any }) {
         const configFileBaseDir =
             typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
-        return ObjectAssign({}, options, {
+        return Object.assign({}, options, {
             configBaseDir: configFileBaseDir,
             plugins: this.textlintKernelDescriptor.plugin.toKernelPluginsFormat(),
             rules: this.textlintKernelDescriptor.rule.toKernelRulesFormat(),

@@ -5,7 +5,6 @@ import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { isPresetRuleKey } from "./config-util";
 
 const interopRequire = require("interop-require");
-const ObjectAssign = require("object-assign");
 
 /**
  * Convert config of preset to rawRulesConfig flat path format.
@@ -36,7 +35,10 @@ export function createFlatRulesConfigFromRawRulesConfig(rawRulesConfig: any) {
             // <preset>/<rule>
             const presetName = key;
             const presetRuleConfig = rawRulesConfig[key];
-            ObjectAssign(rulesConfig, createFlatPresetRulesConfigFromRawPresetRuleConfig(presetRuleConfig, presetName));
+            Object.assign(
+                rulesConfig,
+                createFlatPresetRulesConfigFromRawPresetRuleConfig(presetRuleConfig, presetName)
+            );
             return;
         }
         rulesConfig[key] = rawRulesConfig[key];
@@ -85,7 +87,7 @@ export function loadRulesConfigFromPresets(presetNames: string[] = [], moduleRes
             throw new Error(`${presetName} has not rulesConfig`);
         }
         // set config of <rule> to "<preset>/<rule>"
-        ObjectAssign(
+        Object.assign(
             presetRulesConfig,
             createFlatPresetRulesConfigFromRawPresetRuleConfig(preset.rulesConfig, presetName)
         );

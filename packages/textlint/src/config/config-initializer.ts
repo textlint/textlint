@@ -5,7 +5,6 @@ import { TextlintPackageNamePrefix } from "@textlint/utils";
 const Promise = require("bluebird");
 const fs = require("fs");
 const path = require("path");
-const ObjectAssign = require("object-assign");
 const isFile = require("is-file");
 const readPkg = require("read-pkg");
 import { Config } from "./config";
@@ -21,7 +20,7 @@ const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
         .then((pkg: any) => {
             const dependencies = pkg.dependencies || {};
             const devDependencies = pkg.devDependencies || {};
-            const mergedDependencies = ObjectAssign({}, dependencies, devDependencies);
+            const mergedDependencies = Object.assign({}, dependencies, devDependencies);
             const pkgNames = Object.keys(mergedDependencies);
             return pkgNames.filter(pkgName => {
                 const ruleOrFilter =
