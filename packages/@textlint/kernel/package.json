@@ -42,7 +42,6 @@
     "debug": "^4.1.1",
     "deep-equal": "^1.0.1",
     "map-like": "^2.0.0",
-    "object-assign": "^4.1.1",
     "structured-source": "^3.0.2"
   },
   "devDependencies": {
