@@ -14,7 +14,6 @@ import {
 } from "@textlint/utils";
 import { Logger } from "../util/logger";
 
-const objectAssign = require("object-assign");
 const md5 = require("md5");
 const fs = require("fs");
 const assert = require("assert");
@@ -214,12 +213,12 @@ export class Config {
         const disabledRules = concat(optionDisabledRules, configRuleNamesObject.disabledRuleNames);
         const filterRules = concat(optionFilterRules, configFilterRuleNamesObject.enabledRuleNames);
         const disabledFilterRules = concat(optionDisabledFilterRules, configFilterRuleNamesObject.disabledRuleNames);
-        const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
-        const filterRulesConfig = objectAssign({}, configFileFilterRulesConfig, optionFilterRulesConfig);
+        const rulesConfig = Object.assign({}, configFileRulesConfig, optionRulesConfig);
+        const filterRulesConfig = Object.assign({}, configFileFilterRulesConfig, optionFilterRulesConfig);
         const plugins = concat(optionPlugins, configFilePlugins);
-        const pluginsConfig = objectAssign({}, configFilePluginConfig, optionPluginsConfig);
+        const pluginsConfig = Object.assign({}, configFilePluginConfig, optionPluginsConfig);
         const presets = concat(optionPresets, configPresetNames);
-        const mergedOptions = objectAssign({}, options, {
+        const mergedOptions = Object.assign({}, options, {
             rules,
             disabledRules,
             rulesConfig,
@@ -336,7 +335,7 @@ export class Config {
         const presetRulesConfig = loadRulesConfigFromPresets(this.presets, moduleResolver);
         this.rulesConfig = applyNormalizerToConfig(
             normalizeTextlintRuleKey,
-            objectAssign({}, presetRulesConfig, options.rulesConfig)
+            Object.assign({}, presetRulesConfig, options.rulesConfig)
         );
         // filterRulesConfig
         this.filterRulesConfig = applyNormalizerToConfig(

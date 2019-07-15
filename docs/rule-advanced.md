@@ -23,7 +23,6 @@ The rule that specify the maximum word count of a **sentence**.
 
 These library are used in the module.
 
-- [object-assign](https://www.npmjs.com/package/object-assign)
 - [sentence-splitter](https://www.npmjs.com/package/sentence-splitter)
 - [textlint-util-to-string](https://www.npmjs.com/package/textlint-util-to-string)
 - [unist-util-map](https://www.npmjs.com/package/unist-util-map)
@@ -106,7 +105,6 @@ Replace `Code` to dummy object that is a single **word** Using [unist-util-map](
 // https://github.com/azu/unist-util-map
 // if you want to filter, use https://github.com/eush77/unist-util-filter
 import map from "unist-util-map";
-import ObjectAssign from "object-assign";
 // Default options
 const defaultOptions = {
     // max count of words >
@@ -126,7 +124,7 @@ export default function(context, options = {}) {
             const filteredNode = map(node, node => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
-                    return ObjectAssign({}, node, {
+                    return Object.assign({}, node, {
                         value: "code"
                     });
                 }
@@ -153,7 +151,6 @@ import map from "unist-util-map";
 // Helper for converting plain text from Syntax-ed text(markdown AST
 // https://github.com/azu/textlint-util-to-string
 import StringSource from "textlint-util-to-string";
-import ObjectAssign from "object-assign";
 // Default options
 const defaultOptions = {
     // max count of words >
@@ -173,7 +170,7 @@ export default function(context, options = {}) {
             const filteredNode = map(node, node => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
-                    return ObjectAssign({}, node, {
+                    return Object.assign({}, node, {
                         value: "code"
                     });
                 }
@@ -203,7 +200,6 @@ import StringSource from "textlint-util-to-string";
 // Helper for splitting text to sentences
 // https://github.com/azu/sentence-splitter
 import { split as splitSentence, Syntax as SplitterSyntax } from "sentence-splitter";
-import ObjectAssign from "object-assign";
 // Default options
 const defaultOptions = {
     // max count of words >
@@ -223,7 +219,7 @@ export default function(context, options = {}) {
             const filteredNode = map(node, node => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
-                    return ObjectAssign({}, node, {
+                    return Object.assign({}, node, {
                         value: "code"
                     });
                 }
@@ -274,7 +270,6 @@ import { split as splitSentence, Syntax as SplitterSyntax } from "sentence-split
 // Helper for splitting text to words
 // https://github.com/timjrobinson/split-string-words
 import splitWord from "split-string-words";
-import ObjectAssign from "object-assign";
 // Default options
 const defaultOptions = {
     // max count of words >
@@ -294,7 +289,7 @@ export default function(context, options = {}) {
             const filteredNode = map(node, node => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
-                    return ObjectAssign({}, node, {
+                    return Object.assign({}, node, {
                         value: "code"
                     });
                 }

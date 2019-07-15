@@ -10,7 +10,6 @@ import { TxtNode } from "@textlint/ast-node-types";
 import { TextlintMessageFixCommand } from "@textlint/kernel";
 
 const assert = require("assert");
-const ObjectAssign = require("object-assign");
 const throwIfTesting = require("@textlint/feature-flag").throwIfTesting;
 
 export interface ReportMessage {
@@ -106,7 +105,7 @@ report(node, new RuleError("message", {
          fix?
          }
          */
-        return ObjectAssign({}, adjustedLoc, adjustedFix);
+        return Object.assign({}, adjustedLoc, adjustedFix);
     }
 
     private toAbsoluteLocation(node: any, padding: TextlintRuleErrorPadding, _paddingIndex?: number) {
