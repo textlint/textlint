@@ -47,6 +47,9 @@
     "test:unit": "mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -p . --watch"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@textlint/ast-node-types": "^4.2.3",
     "@textlint/ast-traverse": "^2.1.4",
