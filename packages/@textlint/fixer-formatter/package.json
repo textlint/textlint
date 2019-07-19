@@ -38,11 +38,11 @@
     "chalk": "^1.1.3",
     "debug": "^4.1.1",
     "diff": "^4.0.1",
-    "interop-require": "^1.0.0",
     "is-file": "^1.0.0",
     "string-width": "^1.0.1",
     "text-table": "^0.2.0",
-    "try-resolve": "^1.0.1"
+    "try-resolve": "^1.0.1",
+    "@textlint/module-interop": "^1.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",

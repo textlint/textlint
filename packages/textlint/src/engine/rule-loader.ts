@@ -1,7 +1,8 @@
 "use strict";
-const interopRequire = require("interop-require");
-const fs = require("fs");
-const path = require("path");
+import { moduleInterop } from "@textlint/module-interop";
+import * as fs from "fs";
+import * as path from "path";
+
 /**
  * Load all rule modules from specified directory.
  * These are filtered by [extname]
@@ -22,7 +23,7 @@ export function loadFromDir(rulesDir: string, extname: string = ".js"): { [index
             return;
         }
         const withoutExt = path.basename(file, extname);
-        rules[withoutExt] = interopRequire(path.join(rulesDirAbsolutePath, file));
+        rules[withoutExt] = moduleInterop(require(path.join(rulesDirAbsolutePath, file)));
     });
     return rules;
 }

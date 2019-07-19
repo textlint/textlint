@@ -1,6 +1,5 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-
-const interopRequire = require("interop-require");
+import { moduleInterop } from "@textlint/module-interop";
 const debug = require("debug")("textlint:plugin-loader");
 const assert = require("assert");
 
@@ -79,7 +78,7 @@ export function loadAvailableExtensions(pluginNames: string[] = [], moduleResolv
     const availableExtensions: string[] = [];
     pluginNames.forEach(pluginName => {
         const pkgPath = moduleResolver.resolvePluginPackageName(pluginName);
-        const plugin = interopRequire(pkgPath);
+        const plugin = moduleInterop(require(pkgPath));
         if (!plugin.hasOwnProperty("Processor")) {
             return;
         }

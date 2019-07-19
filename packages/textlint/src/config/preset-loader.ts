@@ -1,10 +1,9 @@
 // LICENSE : MIT
 "use strict";
+import { moduleInterop } from "@textlint/module-interop";
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { isPresetRuleKey } from "./config-util";
-
-const interopRequire = require("interop-require");
 
 /**
  * Convert config of preset to rawRulesConfig flat path format.
@@ -79,7 +78,7 @@ export function loadRulesConfigFromPresets(presetNames: string[] = [], moduleRes
     const presetRulesConfig = {};
     presetNames.forEach(presetName => {
         const pkgPath = moduleResolver.resolvePresetPackageName(presetName);
-        const preset = interopRequire(pkgPath);
+        const preset = moduleInterop(require(pkgPath));
         if (!preset.hasOwnProperty("rules")) {
             throw new Error(`${presetName} has not rules`);
         }

@@ -45,7 +45,8 @@
     "table": "^3.7.8",
     "text-table": "^0.2.0",
     "try-resolve": "^1.0.1",
-    "xml-escape": "^1.0.0"
+    "xml-escape": "^1.0.0",
+    "@textlint/module-interop": "^1.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
