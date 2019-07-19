@@ -54,6 +54,13 @@ const {moduleInterop} = require("@textlint/module-interop");
 const rule = moduleInterop(require("textlint-rule-example")); // rule implementation
 ```
 
+## Related
+
+- [leebenson/module-interop: ES6 module interop](https://github.com/leebenson/module-interop)
+    - Same purpose, but it has different API
+- [izaakschroeder/interop-require: Require babel ES6 modules from node land.](https://github.com/izaakschroeder/interop-require)
+    - Same function, but it prevent static analyzer
+    - It is just dynamic `require` that prevent static analyzer like [Asset Relocator Loader for Webpack](https://github.com/zeit/webpack-asset-relocator-loader).
 
 ## Changelog
 
