@@ -22,7 +22,7 @@ console.log(value);  // 42
 **Notes**: This library is for common use. 
 This library is not depended on textlint.
 
-## Why is it needed?
+## Why it is needed?
 
 Some rule modules use `export default`.
 
