@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.7"></a>
+## [3.1.7](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.1.5...@textlint/linter-formatter@3.1.7) (2019-07-20)
+
+
+### Code Refactoring
+
+* **utils:** move implementation from types to utils ([#611](https://github.com/textlint/textlint/issues/611)) ([cd9adbe](https://github.com/textlint/textlint/commit/cd9adbe))
+* use [@textlint](https://github.com/textlint)/module-interop instead of interop-require ([10d34a6](https://github.com/textlint/textlint/commit/10d34a6))
+
+
+
+
+
 <a name="3.1.6"></a>
 ## [3.1.6](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.1.5...@textlint/linter-formatter@3.1.6) (2019-07-13)
 

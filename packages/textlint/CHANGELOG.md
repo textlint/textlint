@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.3.1"></a>
+## [11.3.1](https://github.com/textlint/textlint/compare/textlint@11.2.5...textlint@11.3.1) (2019-07-20)
+
+
+### Bug Fixes
+
+* **textlint:** fix --rulesdir description ([#607](https://github.com/textlint/textlint/issues/607)) ([742fe59](https://github.com/textlint/textlint/commit/742fe59))
+* **textlint:** fix crypto's DeprecationWarning ([84cfa43](https://github.com/textlint/textlint/commit/84cfa43))
+
+
+### Chores
+
+* **deps:** update dependencies ([09bca08](https://github.com/textlint/textlint/commit/09bca08))
+* add publishConfig ([682c114](https://github.com/textlint/textlint/commit/682c114))
+
+
+### Code Refactoring
+
+* **test:** fix fixture package ([9dfa0ae](https://github.com/textlint/textlint/commit/9dfa0ae))
+* **textlint:** remove object-assign ([9c6275e](https://github.com/textlint/textlint/commit/9c6275e))
+* **utils:** move implementation from types to utils ([#611](https://github.com/textlint/textlint/issues/611)) ([cd9adbe](https://github.com/textlint/textlint/commit/cd9adbe))
+* use [@textlint](https://github.com/textlint)/module-interop instead of interop-require ([10d34a6](https://github.com/textlint/textlint/commit/10d34a6))
+
+
+### Features
+
+* **types:** add generics parameter to TextlintRuleReporter<T> ([#615](https://github.com/textlint/textlint/issues/615)) ([963324b](https://github.com/textlint/textlint/commit/963324b))
+
+
+
+
+
 <a name="11.3.0"></a>
 # [11.3.0](https://github.com/textlint/textlint/compare/textlint@11.2.5...textlint@11.3.0) (2019-07-13)
 

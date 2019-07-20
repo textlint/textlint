@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.8"></a>
+## [3.1.8](https://github.com/textlint/textlint/compare/@textlint/kernel@3.1.6...@textlint/kernel@3.1.8) (2019-07-20)
+
+
+### Code Refactoring
+
+* **kernel:** remove object-assign ([24eed59](https://github.com/textlint/textlint/commit/24eed59))
+* **utils:** move implementation from types to utils ([#611](https://github.com/textlint/textlint/issues/611)) ([cd9adbe](https://github.com/textlint/textlint/commit/cd9adbe))
+
+
+
+
+
 <a name="3.1.7"></a>
 ## [3.1.7](https://github.com/textlint/textlint/compare/@textlint/kernel@3.1.6...@textlint/kernel@3.1.7) (2019-07-13)
 

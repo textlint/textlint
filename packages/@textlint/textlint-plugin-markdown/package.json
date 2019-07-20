@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-markdown",
-  "version": "5.1.7",
+  "version": "5.1.8",
   "description": "Markdown support for textlint.",
   "keywords": [
     "markdown",
@@ -33,10 +33,10 @@
     "watch": "babel src --out-dir lib --watch --source-maps"
   },
   "dependencies": {
-    "@textlint/markdown-to-ast": "^6.1.4"
+    "@textlint/markdown-to-ast": "^6.1.5"
   },
   "devDependencies": {
-    "@textlint/kernel": "^3.1.7",
+    "@textlint/kernel": "^3.1.8",
     "babel-cli": "^6.5.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^4.0.0",

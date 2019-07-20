@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.9"></a>
+## [2.2.9](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.2.6...textlint-example-use-as-ts-module@2.2.9) (2019-07-20)
+
+
+### Code Refactoring
+
+* **utils:** move implementation from types to utils ([#611](https://github.com/textlint/textlint/issues/611)) ([cd9adbe](https://github.com/textlint/textlint/commit/cd9adbe))
+
+
+
+
+
 <a name="2.2.8"></a>
 ## [2.2.8](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.2.6...textlint-example-use-as-ts-module@2.2.8) (2019-07-13)
 
