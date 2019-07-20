@@ -92,7 +92,7 @@ This text contain `var a = "string";` code.
 How do you handle `Code` node?
 
 1. Ignore `Code`.
-    - [textlint-rule-rousseau](https://github.com/azu/textlint-rule-rousseau "textlint-rule-rousseau") apply ignoring pattern.
+    - [textlint-rule-rousseau](https://github.com/textlint-rule/textlint-rule-rousseau "textlint-rule-rousseau") apply ignoring pattern.
     - [textlint-rule-helper](https://github.com/textlint/textlint-rule-helper "textlint-rule-helper") provide `IgnoreNodeManger` that is useful for ignoring some node.
 2. Replace `Code` to dummy object that is a single **word**.
 

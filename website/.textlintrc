@@ -34,7 +34,8 @@
       "ignoreTypes": [
         "sentence:uppercase",
         "passive",
-        "weasel"
+        "weasel",
+        "readibility"
       ]
     },
     "alex": false,
