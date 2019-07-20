@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import * as crypto from "crypto";
+import crypto from "crypto";
 import { loadConfig } from "./config-loader";
 import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./preset-loader";
 import { getPluginConfig, getPluginNames } from "./plugin-loader";
