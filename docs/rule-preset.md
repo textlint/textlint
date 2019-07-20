@@ -60,7 +60,7 @@ Usage of "textlint-rule-preset-gizmo":
 }
 ```
 
-:memo: Recommended: use [@textlint/module-interop](https://www.npmjs.com/package/@textlint/module-interop) for loading external package.
+**Recommended:** use [@textlint/module-interop](https://www.npmjs.com/package/@textlint/module-interop) for loading external package.
 
 When require external textlint rule package, you should use [@textlint/module-interop](https://www.npmjs.com/package/@textlint/module-interop) instead of `require` function.
 Because, some rule package expose `exports.default` instead of `exports`.
