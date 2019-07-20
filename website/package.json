@@ -23,6 +23,7 @@
     "write-translations": "docusaurus-write-translations"
   },
   "devDependencies": {
+    "conventional-changelog-angular-all": "^1.7.0",
     "docusaurus": "^1.6.2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.2.0",
@@ -33,7 +34,7 @@
     "textlint-rule-eslint": "^3.1.0",
     "textlint-rule-no-dead-link": "^4.4.1",
     "textlint-rule-prh": "^5.2.0",
-    "textlint-rule-rousseau": "^1.4.5",
+    "textlint-rule-rousseau": "^1.4.6",
     "textlint-rule-unexpanded-acronym": "^1.2.3"
   }
 }

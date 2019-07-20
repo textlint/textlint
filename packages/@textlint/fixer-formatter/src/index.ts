@@ -2,10 +2,12 @@
 "use strict";
 import { TextlintFixResult } from "@textlint/types";
 
+import { moduleInterop } from "@textlint/module-interop";
+
 const fs = require("fs");
 const path = require("path");
 const tryResolve = require("try-resolve");
-const interopRequire = require("interop-require");
+
 const isFile = require("is-file");
 const debug = require("debug")("textlint:textfix-formatter");
 
@@ -33,7 +35,7 @@ export function createFormatter(formatterConfig: FormatterConfig) {
         }
     }
     try {
-        formatter = interopRequire(formatterPath);
+        formatter = moduleInterop(require(formatterPath));
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}
 See https://github.com/textlint/textlint/issues/148

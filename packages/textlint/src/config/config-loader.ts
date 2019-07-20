@@ -1,9 +1,7 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
+import { moduleInterop } from "@textlint/module-interop";
 
-// LICENSE : MIT
-"use strict";
 const rcConfigLoader = require("rc-config-loader");
-const interopRequire = require("interop-require");
 
 /**
  * @param {string} configFilePath
@@ -20,7 +18,7 @@ export function loadConfig(
         try {
             const modulePath = moduleResolver.resolveConfigPackageName(configFilePath);
             return {
-                config: interopRequire(modulePath),
+                config: moduleInterop(require(modulePath)),
                 filePath: modulePath
             };
         } catch (error) {
