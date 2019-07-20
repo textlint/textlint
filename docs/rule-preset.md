@@ -81,6 +81,26 @@ module.exports = {
     }
 };
 ```
+ 
+Of course, If you use [Babel](https://babeljs.io/) or [TypeScript](https://www.typescriptlang.org/)(with [`esModuleInterop` option](https://www.typescriptlang.org/docs/handbook/compiler-options.html)), you can just use `import` statement.
+These transpiler wrap `require` function with interop helper function automatically.
+
+```js
+import RuleA from "textlint-rule-external-A";
+// It will be transpiled to `const RuleA = __importDefault(require("textlint-rule-external-A"))`
+import RuleB from "@scope/textlint-rule-extenal-B";
+// It will be transpiled to `const RuleB = __importDefault(require("textlint-rule-external-B"))`
+module.exports = {
+    rules: {
+        ruleA: RuleA,
+        ruleB: RuleB
+    },
+    rulesConfig: {
+        ruleA: true,
+        ruleB: true
+    }
+};
+```
 
 ## Publishing
 
