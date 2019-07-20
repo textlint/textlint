@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.7.9"></a>
+## [10.7.9](https://github.com/textlint/textlint/compare/textlint-website@10.7.6...textlint-website@10.7.9) (2019-07-20)
+
+
+### Documentation
+
+* **website:** fix deps ([f2e0964](https://github.com/textlint/textlint/commit/f2e0964))
+
+
+
+
+
 <a name="10.7.8"></a>
 ## [10.7.8](https://github.com/textlint/textlint/compare/textlint-website@10.7.6...textlint-website@10.7.8) (2019-07-13)
 

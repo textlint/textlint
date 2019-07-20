@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.1.5"></a>
+## [6.1.5](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.1.3...@textlint/markdown-to-ast@6.1.5) (2019-07-20)
+
+**Note:** Version bump only for package @textlint/markdown-to-ast
+
+
+
+
+
 <a name="6.1.4"></a>
 ## [6.1.4](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.1.3...@textlint/markdown-to-ast@6.1.4) (2019-07-13)
 
