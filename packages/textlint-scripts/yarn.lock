@@ -1107,10 +1107,10 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-static-fs@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-static-fs/-/babel-plugin-static-fs-1.2.0.tgz#6e381cf7cb0a40864478a49f449fbf706b5ac418"
-  integrity sha512-7zsDPvDzCBwfbU53WKym5LxTe1PxQHE/dGo+EfIELlBcn08TpU7SlPJILcc6YVAyTrpVUNioQfWiUyMWk1DJVg==
+babel-plugin-static-fs@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-static-fs/-/babel-plugin-static-fs-1.2.1.tgz#2352ef5c1c19d50311e9433dad581c45c55f4952"
+  integrity sha512-dZasA7svnKAsMEB7/6fKhJO+nIZsC2fvJyj3fbuk/xUOwslZOdl+9umXQsB+oqHwOEubZ5WHJ/Zy9dvnVnRvFg==
   dependencies:
     babel-template "^6.3.13"
     babel-types "^6.4.1"
