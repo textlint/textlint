@@ -5,7 +5,7 @@
     "test": "textlint-scripts test"
   },
   "dependencies": {
-    "prh": "^5.4.3"
+    "prh": "^5.4.4"
   },
   "devDependencies": {
     "textlint-scripts": "file:../",
