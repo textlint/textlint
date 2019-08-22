@@ -71,7 +71,7 @@ For rules creator:
 
 ```
 // "very-nice-rule"
-export default function rule(contet, config){
+export default function rule(content, config){
     console.log(config);
     /* { "key" : "value" } */
 }

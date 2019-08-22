@@ -46,7 +46,7 @@ export default class TextProcessor {
     processor(ext) {
         return {
             preProcess(text, filePath) {
-                // parsed result is a AST object
+                // parsed result is an AST object
                 // AST is consist of TxtNode
                 // https://github.com/textlint/textlint/blob/master/docs/txtnode.md
                 return parse(text);
@@ -76,12 +76,12 @@ you should implement `availableExtensions()` method as instance method.
 
 ### `processor(ext)`
 
-`processor()` method should return a object that have `preProcess` and `postProcess` method.
+`processor()` method should return an object that have `preProcess` and `postProcess` method.
 
 #### `preProcess(text, filePath)`
 
 `preProcess` method should return `TxtAST` object.
-`TxtAST` object is a Abstract Syntax Tree(AST) of the text.
+`TxtAST` object is an Abstract Syntax Tree (AST) of the text.
 
 :information_source: For more details about `TxtAST`, see [TxtAST interface documents](txtnode.md).
 
@@ -104,7 +104,7 @@ You can use Processor plugin in the same way a plugin.
 
 ### options 
 
-You can pass a options to your plugin from `.textlintrc`.
+You can pass options to your plugin from `.textlintrc`.
 
 ```
 {

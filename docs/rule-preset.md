@@ -73,7 +73,7 @@ const { moduleInterop } = require("@textlint/module-interop");
 module.exports = {
     rules: {
         ruleA: moduleInterop(require("textlint-rule-external-A")),
-        ruleB: moduleInterop(require("@scope/textlint-rule-extenal-B"))
+        ruleB: moduleInterop(require("@scope/textlint-rule-external-B"))
     },
     rulesConfig: {
         ruleA: true,
@@ -88,7 +88,7 @@ These transpiler wrap `require` function with interop helper function automatica
 ```js
 import RuleA from "textlint-rule-external-A";
 // It will be transpiled to `const RuleA = __importDefault(require("textlint-rule-external-A"))`
-import RuleB from "@scope/textlint-rule-extenal-B";
+import RuleB from "@scope/textlint-rule-external-B";
 // It will be transpiled to `const RuleB = __importDefault(require("textlint-rule-external-B"))`
 module.exports = {
     rules: {

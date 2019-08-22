@@ -17,7 +17,7 @@ Each node of the tree has same interface, is called `TxtNode`.
 
 ### `TxtNode`
 
-`TxtNode` is a abstract node.
+`TxtNode` is an abstract node.
 
 ```typescript
 /**
@@ -83,7 +83,7 @@ type TextNodeRange = [number, number];
 /**
  * Text Node.
  * Text Node has inline value.
- * For example, `Str` Node is an TxtTextNode.
+ * For example, `Str` Node is a TxtTextNode.
  */
 interface TxtTextNode extends TxtNode {
     value: string;
