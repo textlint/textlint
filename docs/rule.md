@@ -8,7 +8,7 @@ textlint's AST(Abstract Syntax Tree) is defined at the page.
 - [txtnode.md](./txtnode.md)
     - If you want to know AST of a text, use [Online Parsing Demo](./txtnode.md#online-parsing-demo)
 
-Each rules are represented by a object with some properties.
+Each rules are represented by an object with some properties.
 The properties are equivalent to AST node types from TxtNode.
 
 The basic source code format for a rule is:
@@ -103,7 +103,7 @@ RuleContext object has following property:
     - This method is a method that reports a message from one of the rules.
     - e.g.) `context.report(node, new context.RuleError("found rule error"));`
 - `getSource(<node>): string`
-    - Thie method is a method gets the source code for the given node.
+    - This method is a method gets the source code for the given node.
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath(): string | undefined`
     - This method return file path that is linting target.
@@ -119,7 +119,7 @@ RuleContext object has following property:
 
 ## RuleError
 
-RuleError is a object like Error.
+RuleError is an object like Error.
 Use it with `report` function.
 
 - `RuleError(<message>, [{ line , column }])`
@@ -159,7 +159,7 @@ const errorWithPaddingIndex = new RuleError("message", {
 
 ## Report error
 
-You will use mainly method is `context.report()`, which publishes a error (defined in each rules).
+You will use mainly method is `context.report()`, which publishes an error (defined in each rules).
 
 For example:
 
@@ -406,7 +406,7 @@ export default function(context) {
 }
 ```
 
-As as result, linting following text with modified rule, a result was no error.
+As a result, linting following text with modified rule, a result was no error.
 
 ```markdown
 [todo:image](http://example.com)
@@ -551,7 +551,7 @@ export default function(context, options) {
 
 The `options` value is `{}` (empty object) by default.
 
-For example, `very-nice-rule`'s option is `true`(enable the rule) in `.textlintrc`
+For example, `very-nice-rule`'s option is `true` (enable the rule) in `.textlintrc`
 
 ```json
 {
@@ -561,7 +561,7 @@ For example, `very-nice-rule`'s option is `true`(enable the rule) in `.textlintr
 }
 ```
 
-`very-nice-rule.js` rule get `{}` (emptry object) as `options`.
+`very-nice-rule.js` rule get `{}` (empty object) as `options`.
 
 ```js
 export default function(context, options) {

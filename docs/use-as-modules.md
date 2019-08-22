@@ -56,7 +56,7 @@ Both engine
 
 - Load configuration from `.textlintrc`.
 - Handle **multiple** files or text string.
-- Return a array of `TextLintResult` or `TextLintFixResult`
+- Return an array of `TextLintResult` or `TextLintFixResult`
     - actually, return a Promise like `Promise<TextLintResult[]>`
 
 ### Core

@@ -105,14 +105,14 @@ const results = [
         // fixed content string
         output: "fixed content",
         // applied fixable messages
-        // messages is a array of `TextLintMessage`
+        // messages is an array of `TextLintMessage`
         applyingMessages: [],
         // not fixable messages
-        // messages is a array of `TextLintMessage`
+        // messages is an array of `TextLintMessage`
         remainingMessages: [],
         // messages is the same one of `TextLintResult`
         // pre-applyingMessages + remainingMessages
-        // messages is a array of `TextLintMessage`
+        // messages is an array of `TextLintMessage`
         messages: []
     }
 ];
