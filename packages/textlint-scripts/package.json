@@ -34,7 +34,7 @@
   "homepage": "https://github.com/textlint/textlint-scripts",
   "devDependencies": {
     "husky": "^3.0.4",
-    "lint-staged": "^9.2.3",
+    "lint-staged": "^9.2.4",
     "prettier": "^1.8.1",
     "shelljs": "^0.8.3"
   },
