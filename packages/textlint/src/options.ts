@@ -173,6 +173,18 @@ export const options = optionator({
             description:
                 "Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.",
             example: 'textlint --rules-base-directory "/path/to/other/project/node_modules/"'
+        },
+        {
+            option: "parallel",
+            type: "Boolean",
+            description: "Lint files in parallel",
+            example: 'textlint --experimental --parallel "*.md"'
+        },
+        {
+            option: "max-concurrency",
+            type: "Number",
+            description: "maxConcurrency for --parallel",
+            example: "textlint --experimental --parallel --maxConcurrency 4"
         }
     ]
 });

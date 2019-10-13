@@ -30,9 +30,9 @@ export class CacheBacker implements AbstractBacker {
         const descriptor = this.fileCache.getFileDescriptor(filePath);
         const meta = descriptor.meta || {};
         // if the config is changed or file is changed, should execute return true
-        const isNotChanged = descriptor.changed || meta.hashOfConfig !== this.config.hash;
+        const isChanged = descriptor.changed || meta.hashOfConfig !== this.config.hash;
         debug(`Skipping file since hasn't changed: ${filePath}`);
-        return isNotChanged;
+        return isChanged;
     }
 
     /**

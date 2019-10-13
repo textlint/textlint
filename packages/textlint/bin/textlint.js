@@ -10,7 +10,7 @@ if (isDebug) {
 }
 // must do this initialization *before* other requires in order to work
 const cli = require("../lib/textlint/src/cli").cli;
-const coreFlags = require("@textlint/feature-flag");
+const { coreFlags } = require("@textlint/feature-flag");
 // it is for --experimental logger
 // update state
 coreFlags.runningCLI = !module.parent;

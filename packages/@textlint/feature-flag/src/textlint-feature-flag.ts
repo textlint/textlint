@@ -1,8 +1,8 @@
 // MIT © 2017 azu
 "use strict";
-const MapLike = require("map-like").MapLike;
-const assert = require("assert");
-const flagMap = new MapLike();
+import { MapLike } from "map-like";
+
+const flagMap = new MapLike<string, boolean>();
 /**
  * IT IS FOR TESTING
  */
@@ -14,7 +14,7 @@ export const resetFlags = () => {
  * @param {string} flagName
  * @param {boolean} status
  */
-export const setFeature = (flagName, status) => {
+export const setFeature = (flagName: string, status: boolean) => {
     flagMap.set(flagName, status);
 };
 /**
@@ -23,7 +23,7 @@ export const setFeature = (flagName, status) => {
  * @param {boolean=false} [loose]
  * @returns {boolean}
  */
-export const isFeatureEnabled = (flagName, { loose = false } = {}) => {
+export const isFeatureEnabled = (flagName: string, { loose = false } = {}): boolean => {
     if (!flagMap.has(flagName)) {
         if (loose) {
             // loose-mode, return false
@@ -33,8 +33,8 @@ export const isFeatureEnabled = (flagName, { loose = false } = {}) => {
         }
     }
     const status = flagMap.get(flagName);
-    if (process.env.NODE_ENV !== "production") {
-        assert(typeof status, `flag should be boolean, but it is :${status}`);
+    if (typeof status !== "boolean") {
+        throw new Error(`flag should be boolean, but it is :${status}`);
     }
     return status;
 };
@@ -55,7 +55,7 @@ export const coreFlags = {
             loose: true
         });
     },
-    set experimental(status) {
+    set experimental(status: boolean) {
         setFeature("core.experimental", status);
     },
     // CLI
@@ -64,7 +64,7 @@ export const coreFlags = {
             loose: true
         });
     },
-    set runningCLI(status) {
+    set runningCLI(status: boolean) {
         setFeature("core.runningCLI", status);
     },
     // textlint-tester
@@ -77,20 +77,22 @@ export const coreFlags = {
         setFeature("core.runningTester", status);
     }
 };
+
 /**
  * if current is not experimental, throw error message.
  * @param message
  */
-export function throwWithoutExperimental(message) {
+export function throwWithoutExperimental(message: string) {
     if (coreFlags.runningCLI && !coreFlags.experimental) {
         throw Error(message);
     }
 }
+
 /**
  * if current is in testing, throw error message.
  * @param {string} message
  */
-export function throwIfTesting(message) {
+export function throwIfTesting(message: string) {
     if (coreFlags.runningTester) {
         throw Error(message);
     }

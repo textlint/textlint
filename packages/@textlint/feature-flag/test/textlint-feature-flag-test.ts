@@ -1,5 +1,5 @@
 "use strict";
-const assert = require("assert");
+import assert from "assert";
 import {
     coreFlags,
     isFeatureEnabled,
@@ -59,7 +59,7 @@ describe("textlint-feature-flag", () => {
             coreFlags.runningCLI = true;
             coreFlags.experimental = false;
             assert.throws(() => {
-                throwWithoutExperimental(new Error("this is not experimental"));
+                throwWithoutExperimental("this is not experimental");
             }, Error);
         });
     });

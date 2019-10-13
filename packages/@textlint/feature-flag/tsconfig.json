@@ -1,21 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@textlint/*": [
-        "./packages/@textlint/*/src"
-      ],
-      "*": [
-        "./packages/*/src"
-      ]
-    },
-    "outDir": "SHOULD_BE_OVERWRITE",
     /* Basic Options */
     "module": "commonjs",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "newLine": "LF",
+    "outDir": "./lib/",
     "target": "es5",
     "sourceMap": true,
     "declaration": true,
@@ -27,13 +17,20 @@
     /* Strict Type-Checking Options */
     "strict": true,
     /* Additional Checks */
-    "noUnusedLocals": true,
     /* Report errors on unused locals. */
-    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     /* Report errors on unused parameters. */
-    "noImplicitReturns": true,
+    "noUnusedParameters": true,
     /* Report error when not all code paths in function return a value. */
-    "noFallthroughCasesInSwitch": true
+    "noImplicitReturns": true,
     /* Report errors for fallthrough cases in switch statement. */
-  }
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ]
 }
