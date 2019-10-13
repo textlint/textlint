@@ -17,6 +17,7 @@
     "src/"
   ],
   "main": "lib/textlint-feature-flag.js",
+  "type": "lib/textlint-feature-flag.d.ts",
   "directories": {
     "test": "test"
   },
@@ -25,24 +26,23 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
+    "build": "cross-env NODE_ENV=production tsc -p .",
     "clean": "rimraf lib/",
     "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "babel src --out-dir lib --watch --source-maps"
+    "test": "mocha \"test/**/*.ts\"",
+    "watch": "tsc -p . --watch"
   },
   "dependencies": {
     "map-like": "^2.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-jsdoc-to-assert": "^4.0.0",
-    "babel-preset-power-assert": "^1.0.0",
-    "babel-register": "^6.24.1",
-    "cross-env": "^5.2.0",
-    "mocha": "^6.1.4",
-    "power-assert": "^1.6.1",
-    "rimraf": "^2.6.3"
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.12",
+    "cross-env": "^6.0.3",
+    "mocha": "^6.2.1",
+    "rimraf": "^2.6.3",
+    "ts-node": "^8.4.1",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.6.4"
   }
 }

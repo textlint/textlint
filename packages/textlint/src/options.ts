@@ -178,13 +178,13 @@ export const options = optionator({
             option: "parallel",
             type: "Boolean",
             description: "Lint files in parallel",
-            example: 'textlint --parallel "*.md"'
+            example: 'textlint --experimental --parallel "*.md"'
         },
         {
             option: "max-concurrency",
             type: "Number",
             description: "maxConcurrency for --parallel",
-            example: "textlint --parallel --maxConcurrency 4"
+            example: "textlint --experimental --parallel --maxConcurrency 4"
         }
     ]
 });

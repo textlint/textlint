@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintFixResult } from "@textlint/kernel";
+import { throwWithoutExperimental } from "@textlint/feature-flag";
 
 const Promise = require("bluebird");
 const fs = require("fs");
@@ -106,6 +107,9 @@ export const cli = {
             debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
             if (currentOptions.parallel) {
                 debug("textlint --parallel");
+                throwWithoutExperimental(
+                    "--parallel is experimental feature. It should be used with --experimental flag"
+                );
                 return this.executeWithParallel(currentOptions, files);
             }
             return this.executeWithOptions(currentOptions, files, text, stdinFilename);
