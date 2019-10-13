@@ -42,7 +42,7 @@ export class TextLintModuleLoader extends EventEmitter {
     loadFromConfig(config: Config) {
         debug("config %O", config);
         // --ruledir
-        if (config.rulePaths) {
+        if (config.rulePaths && this.listenerCount(TextLintModuleLoader.Event.rule) > 0) {
             // load in additional rules
             config.rulePaths.forEach(rulesDir => {
                 debug("Loading rules from %o", rulesDir);
@@ -54,27 +54,27 @@ export class TextLintModuleLoader extends EventEmitter {
             });
         }
         // --rule
-        if (config.rules) {
+        if (config.rules && this.listenerCount(TextLintModuleLoader.Event.rule) > 0) {
             // load in additional rules
             config.rules.forEach((ruleName: string) => {
                 this.loadRule(ruleName);
             });
         }
         // TODO: --filter
-        if (config.filterRules) {
+        if (config.filterRules && this.listenerCount(TextLintModuleLoader.Event.filterRule) > 0) {
             // load in additional filterRules
             config.filterRules.forEach(ruleName => {
                 this.loadFilterRule(ruleName);
             });
         }
         // --preset
-        if (config.presets) {
+        if (config.presets && this.listenerCount(TextLintModuleLoader.Event.rule) > 0) {
             config.presets.forEach(presetName => {
                 this.loadPreset(presetName);
             });
         }
         // --plugin
-        if (config.plugins) {
+        if (config.plugins && this.listenerCount(TextLintModuleLoader.Event.plugin) > 0) {
             // load in additional rules from plugin
             config.plugins.forEach(pluginName => {
                 this.loadPlugin(pluginName);

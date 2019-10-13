@@ -14,6 +14,7 @@ import { Config } from "./config/config";
 import { createConfigFile } from "./config/config-initializer";
 import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
+import { lintParallel } from "./parallel/lint-worker-master";
 
 /*
  cli.js is command line **interface**
@@ -21,6 +22,20 @@ import { Logger } from "./util/logger";
  processing role is cli-engine.js.
  @see cli-engine.js
  */
+
+const showEmptyRuleWarning = () => {
+    Logger.log(`
+== No rules found, textlint hasn’t done anything ==
+
+Possible reasons:
+* Your textlint config file has no rules.
+* You have no config file and you aren’t passing rules via command line.
+* Your textlint config has a syntax error.
+
+=> How to set up rules?
+https://github.com/textlint/textlint/blob/master/docs/configuring.md
+`);
+};
 
 /**
  * Print results of lining text.
@@ -89,10 +104,73 @@ export const cli = {
             const stdinFilename = currentOptions.stdinFilename;
             debug(`textlint --version: ${version}`);
             debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
+            if (currentOptions.parallel) {
+                debug("textlint --parallel");
+                return this.executeWithParallel(currentOptions, files);
+            }
             return this.executeWithOptions(currentOptions, files, text, stdinFilename);
         }
         return Promise.resolve(0);
     },
+
+    /**
+     * execute with cli options
+     * @param {object} cliOptions
+     * @param {string[]} files files are file path list
+     * @returns {Promise<number>} exit status
+     */
+    executeWithParallel(cliOptions: any, files: string[]): Promise<number> {
+        const config = Config.initWithCLIOptions(cliOptions);
+        if (cliOptions.fix) {
+            // --fix
+            const fixEngine = new TextFixEngine(config);
+            if (!fixEngine.hasRuleAtLeastOne()) {
+                showEmptyRuleWarning();
+                return Promise.resolve(1);
+            }
+            const resultsPromise = lintParallel(files, {
+                type: "fix",
+                config: config,
+                concurrency: cliOptions.maxConcurrency
+            });
+            return resultsPromise.then(results => {
+                debug("fix results: %j", results);
+                const fixer = new TextLintFixer();
+                const output = fixEngine.formatResults(results);
+                printResults(output, cliOptions);
+                // --dry-run
+                if (cliOptions.dryRun) {
+                    debug("Enable dry-run mode");
+                    return Promise.resolve(0);
+                }
+                // modify file and return exit status
+                return fixer.write(results as TextlintFixResult[]).then(() => {
+                    return 0;
+                });
+            });
+        }
+        // lint as default
+        const lintEngine = new TextLintEngine(config);
+        if (!lintEngine.hasRuleAtLeastOne()) {
+            showEmptyRuleWarning();
+            return Promise.resolve(1);
+        }
+        const resultsPromise = lintParallel(files, {
+            type: "lint",
+            config: config,
+            concurrency: cliOptions.maxConcurrency
+        });
+        return resultsPromise.then(results => {
+            debug("lint results: %j", results);
+            const output = lintEngine.formatResults(results);
+            if (printResults(output, cliOptions)) {
+                return lintEngine.isErrorResults(results) ? 1 : 0;
+            } else {
+                return 1;
+            }
+        });
+    },
+
     /**
      * execute with cli options
      * @param {object} cliOptions
@@ -103,19 +181,6 @@ export const cli = {
      */
     executeWithOptions(cliOptions: any, files: string[], text?: string, stdinFilename?: string): Promise<number> {
         const config = Config.initWithCLIOptions(cliOptions);
-        const showEmptyRuleWarning = () => {
-            Logger.log(`
-== No rules found, textlint hasn’t done anything ==
-
-Possible reasons:
-* Your textlint config file has no rules.
-* You have no config file and you aren’t passing rules via command line.
-* Your textlint config has a syntax error.
-
-=> How to set up rules?
-https://github.com/textlint/textlint/blob/master/docs/configuring.md
-`);
-        };
         if (cliOptions.fix) {
             // --fix
             const fixEngine = new TextFixEngine(config);

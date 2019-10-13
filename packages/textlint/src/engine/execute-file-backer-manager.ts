@@ -69,7 +69,7 @@ export class ExecuteFileBackerManager {
     /**
      * create fake result object
      */
-    _createFakeResult(filePath: string): Promise<TextlintResult> {
+    private _createFakeResult(filePath: string): Promise<TextlintResult> {
         return Promise.resolve({
             filePath,
             messages: []

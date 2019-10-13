@@ -21,7 +21,7 @@
     "declaration": true,
     "jsx": "preserve",
     "lib": [
-      "es2017",
+      "esnext",
       "dom"
     ],
     /* Strict Type-Checking Options */
