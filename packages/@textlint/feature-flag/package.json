@@ -16,8 +16,8 @@
     "lib/",
     "src/"
   ],
-  "main": "lib/textlint-feature-flag.js",
-  "type": "lib/textlint-feature-flag.d.ts",
+  "main": "lib/index.js",
+  "type": "lib/index.d.ts",
   "directories": {
     "test": "test"
   },
