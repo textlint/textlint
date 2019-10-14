@@ -24,11 +24,11 @@
     "test": "mocha \"test/**/*.{js,ts}\""
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "mocha": "^6.1.4",
-    "rimraf": "^2.6.3",
-    "ts-node": "^8.1.0",
+    "cross-env": "^6.0.3",
+    "mocha": "^6.2.1",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.4.1",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "~3.5.2"
+    "typescript": "~3.6.4"
   }
 }
