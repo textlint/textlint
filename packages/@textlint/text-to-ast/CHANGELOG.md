@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.6"></a>
+## [3.1.6](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.1.5...@textlint/text-to-ast@3.1.6) (2019-10-14)
+
+**Note:** Version bump only for package @textlint/text-to-ast
+
+
+
+
+
 <a name="3.1.5"></a>
 ## [3.1.5](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.1.3...@textlint/text-to-ast@3.1.5) (2019-07-20)
 

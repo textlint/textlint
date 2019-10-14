@@ -1,6 +1,6 @@
 {
   "name": "@textlint/module-interop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ECMAScript module interop library",
   "keywords": [
     "commonjs",

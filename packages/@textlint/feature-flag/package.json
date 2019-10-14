@@ -1,6 +1,6 @@
 {
   "name": "@textlint/feature-flag",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "textlint internal feature flag manager.",
   "keywords": [
     "textlint"
@@ -16,8 +16,8 @@
     "lib/",
     "src/"
   ],
-  "main": "lib/textlint-feature-flag.js",
-  "type": "lib/textlint-feature-flag.d.ts",
+  "main": "lib/index.js",
+  "type": "lib/index.d.ts",
   "directories": {
     "test": "test"
   },

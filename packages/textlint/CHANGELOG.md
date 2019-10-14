@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.4.0"></a>
+# [11.4.0](https://github.com/textlint/textlint/compare/textlint@11.3.1...textlint@11.4.0) (2019-10-14)
+
+
+### Features
+
+* **textlint:** experimental support `--parallel` and `--max-concurrency` ([ef53631](https://github.com/textlint/textlint/commit/ef53631))
+
+
+
+
+
 <a name="11.3.1"></a>
 ## [11.3.1](https://github.com/textlint/textlint/compare/textlint@11.2.5...textlint@11.3.1) (2019-07-20)
 

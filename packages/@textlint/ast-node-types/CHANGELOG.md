@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.5"></a>
+## [4.2.5](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.2.4...@textlint/ast-node-types@4.2.5) (2019-10-14)
+
+
+### Tests
+
+* **ast-node-types:** fix type error ([9a678c5](https://github.com/textlint/textlint/commit/9a678c5))
+
+
+
+
+
 <a name="4.2.4"></a>
 ## [4.2.4](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.2.2...@textlint/ast-node-types@4.2.4) (2019-07-20)
 

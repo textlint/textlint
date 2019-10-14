@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.1.9"></a>
+## [4.1.9](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.1.8...@textlint/textlint-plugin-text@4.1.9) (2019-10-14)
+
+**Note:** Version bump only for package @textlint/textlint-plugin-text
+
+
+
+
+
 <a name="4.1.8"></a>
 ## [4.1.8](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.1.6...@textlint/textlint-plugin-text@4.1.8) (2019-07-20)
 

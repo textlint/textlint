@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/textlint/textlint/compare/textlint-example-html-plugin@2.1.9...textlint-example-html-plugin@2.2.0) (2019-10-14)
+
+
+### Features
+
+* **textlint:** experimental support `--parallel` and `--max-concurrency` ([ef53631](https://github.com/textlint/textlint/commit/ef53631))
+
+
+
+
+
 <a name="2.1.9"></a>
 ## [2.1.9](https://github.com/textlint/textlint/compare/textlint-example-html-plugin@2.1.6...textlint-example-html-plugin@2.1.9) (2019-07-20)
 

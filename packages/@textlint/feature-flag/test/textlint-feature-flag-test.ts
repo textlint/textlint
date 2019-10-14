@@ -7,7 +7,7 @@ import {
     setFeature,
     throwIfTesting,
     throwWithoutExperimental
-} from "../src/textlint-feature-flag";
+} from "../src/index";
 
 describe("textlint-feature-flag", () => {
     beforeEach(() => {
