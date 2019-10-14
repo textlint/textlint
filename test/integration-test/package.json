@@ -33,7 +33,7 @@
     "semver": "^5.3.0"
   },
   "devDependencies": {
-    "json5": "^2.1.0",
+    "json5": "^2.1.1",
     "shelljs": "^0.8.3",
     "textlint": "^11.3.1",
     "textlintrc-to-pacakge-list": "^1.2.0"

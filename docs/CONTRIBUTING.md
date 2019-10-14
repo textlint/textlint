@@ -293,3 +293,44 @@ Once a pull request has been created, it will initiate continuous integration bu
 ### Merging
 
 After all participants on pull request are satisfied to the changes, we will merge your code into the textlint master branch. Yay!
+
+
+## Release Flow
+
+A Maintainer release new version of textlint by following way.
+
+1. Checkout release branch
+
+```
+# checkout release branch like "release-2019-10-10"
+git checkout -b "release-$(date '+%Y-%m-%d')"
+# push current branch 
+git push origin HEAD -u
+```
+
+2. Version up and Update CHANGELOG
+
+```
+# bump vesrion and update changelog
+npm run versionup
+## npm run versionup:{patch,minor,major}
+# bump version and update changelog and update GitHub release notes
+## GH_TOKEN="${GITHUB_TOKEN}" npm run versionup -- --create-release=github
+# push the changes to release branch
+git push
+```
+
+Tips: Copy changelogs from CHANGELOG.md
+
+```
+## Collect changelog in the versionup
+yarn run collect-changelog # pbcopy
+```
+
+3. Create a Pull Request and Review the release
+    - If you need, write blog posts in website/blog
+4. Publish to npm
+
+```
+npm run release
+```
