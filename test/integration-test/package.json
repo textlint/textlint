@@ -1,6 +1,6 @@
 {
   "name": "integration-test",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "private": true,
   "description": "textlint testbot sandbox.",
   "keywords": [
@@ -35,7 +35,7 @@
   "devDependencies": {
     "json5": "^2.1.1",
     "shelljs": "^0.8.3",
-    "textlint": "^11.3.1",
+    "textlint": "^11.4.0",
     "textlintrc-to-pacakge-list": "^1.2.0"
   },
   "email": "azuciao@gmail.com"

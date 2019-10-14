@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.10"></a>
+## [5.1.10](https://github.com/textlint/textlint/compare/textlint-tester@5.1.9...textlint-tester@5.1.10) (2019-10-14)
+
+**Note:** Version bump only for package textlint-tester
+
+
+
+
+
 <a name="5.1.9"></a>
 ## [5.1.9](https://github.com/textlint/textlint/compare/textlint-tester@5.1.6...textlint-tester@5.1.9) (2019-07-20)
 

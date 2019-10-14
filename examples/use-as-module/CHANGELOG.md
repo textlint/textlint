@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.10"></a>
+## [2.1.10](https://github.com/textlint/textlint/compare/textlint-example-use-as-module@2.1.9...textlint-example-use-as-module@2.1.10) (2019-10-14)
+
+**Note:** Version bump only for package textlint-example-use-as-module
+
+
+
+
+
 <a name="2.1.9"></a>
 ## [2.1.9](https://github.com/textlint/textlint/compare/textlint-example-use-as-module@2.1.6...textlint-example-use-as-module@2.1.9) (2019-07-20)
 
