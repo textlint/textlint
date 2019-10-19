@@ -1,6 +1,7 @@
 const fs = require("fs");
 const paths = require("../configs/paths");
 const useTypeScript = fs.existsSync(paths.appTsConfig);
+const NO_INLINE = !!process.env.NO_INLINE;
 module.exports = {
     presets: [
         [
@@ -14,8 +15,10 @@ module.exports = {
             }
         ]
     ].concat(useTypeScript ? [["@babel/preset-typescript"]] : []),
-    plugins: [
-        // inline fs content
-        "static-fs"
-    ]
+    plugins: NO_INLINE
+        ? []
+        : [
+              // inline fs content
+              "static-fs"
+          ]
 };
