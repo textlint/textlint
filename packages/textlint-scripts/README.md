@@ -21,6 +21,11 @@ Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts).
 }
 ```
 
+:memo: **TypeScript**
+
+`textlint-scripts` support TypeScript.
+
+`textlint-script` detect the project is TypeScript by `tsconfig.json` in project root directory.
 
 ### `textlint-scripts build`
 
@@ -29,6 +34,7 @@ Build source codes in `src/` and output to `lib/`.
 It is built by [Babel](https://babeljs.io/) with [`env` preset](https://babeljs.io/docs/plugins/preset-env/).
 
 Additionally, `build` command inline [Node fs calls](https://nodejs.org/api/fs.html) with [babel-plugin-static-fs](https://github.com/Jam3/babel-plugin-static-fs) for browser compatibility. 
+(Web Browser does not support Node.js's `fs` module, this inlining feature improve compatibility between Node.js and Web Browser.)
 
 :memo: Disable inlining by `$ NO_INLINE=1 textlint-scripts build`.
 
