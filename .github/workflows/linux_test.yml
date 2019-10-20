@@ -1,0 +1,48 @@
+name: "Linux test"
+on: [push]
+
+jobs:
+  documentation_test:
+    runs-on: ubuntu-latest
+    steps:
+    # Setup
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    # before_install
+    - run: npm install -g yarn@latest
+
+    # install
+    - run: yarn install --frozen-lockfile
+    - run: yarn run bootstrap
+
+    # script
+    - run: yarn run test:docs
+    - run: yarn run website
+
+  test:
+    strategy:
+      matrix:
+        node: [8.x, 10.x, 12.x]
+
+    runs-on: ubuntu-latest
+    steps:
+    # Setup
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    # before_install
+    - run: npm install -g yarn@latest
+
+    # install
+    - run: yarn install --frozen-lockfile
+    - run: yarn run bootstrap
+
+    # script
+    - run: yarn test
+    - run: yarn test:examples
+    - run: yarn test:integration
