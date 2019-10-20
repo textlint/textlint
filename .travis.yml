@@ -9,38 +9,8 @@ env:
 cache: yarn
 before_install:
 - npm install -g yarn@latest
-install:
-- yarn install --frozen-lockfile
-- yarn run bootstrap
 jobs:
   include:
-    - stage: TEST
-      name: "Documentation Test"
-      node_js: stable
-      install:
-        - yarn install --frozen-lockfile
-        - yarn run bootstrap --scope textlint-website
-      script:
-        - yarn run test:docs
-        - yarn run website
-    - stage: TEST
-      node_js: "8"
-      script:
-        - yarn test
-        - yarn test:examples
-        - yarn test:integration
-    - stage: TEST
-      node_js: "10"
-      script:
-      - yarn test
-      - yarn test:examples
-      - yarn test:integration
-    - stage: TEST
-      node_js: stable
-      script:
-        - yarn test
-        - yarn test:examples
-        - yarn test:integration
     # Deploy Docusaurus
     - stage: deploy
       node_js: stable

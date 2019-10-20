@@ -9,7 +9,7 @@ jobs:
         os: [macOS-10.14, ubuntu-18.04]
         node: [ 8, 10, 12 ]
 
-    name: Unit test(Node ${{ matrix.node }} on ${{ matrix.os }})
+    name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v1
@@ -20,7 +20,7 @@ jobs:
 
     - name: Bootstrap
       run: |
-        npm install -g yarn@latest
+        npm install --global yarn@latest
         yarn install --frozen-lockfile
         yarn run bootstrap
 
@@ -34,7 +34,7 @@ jobs:
       matrix:
         node: [ 12 ]
 
-    name: Documentation(Node ${{ matrix.node }} on ${{ matrix.os }})
+    name: Documentation(Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -45,7 +45,7 @@ jobs:
 
     - name: Bootstrap
       run: |
-        npm install -g yarn@latest
+        npm install --global yarn@latest
         yarn install --frozen-lockfile
         yarn run bootstrap
 
