@@ -1,0 +1,53 @@
+name: "CI"
+on: [push, pull_request]
+
+jobs:
+  unit_test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macOS-10.14, ubuntu-18.04]
+        node: [ 8, 10, 12 ]
+
+    name: Unit test(Node ${{ matrix.node }} on ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v1
+    - run: git submodule update --init --recursive
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+
+    - name: Bootstrap
+      run: |
+        npm install -g yarn@latest
+        yarn install --frozen-lockfile
+        yarn run bootstrap
+
+    - run: yarn test
+    - run: yarn test:examples
+    - run: yarn test:integration
+
+  documentation:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [ 12 ]
+
+    name: Documentation(Node ${{ matrix.node }} on ${{ matrix.os }})
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: git submodule update --init --recursive
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+
+    - name: Bootstrap
+      run: |
+        npm install -g yarn@latest
+        yarn install --frozen-lockfile
+        yarn run bootstrap
+
+    - run: yarn run test:docs
+    - run: yarn run website
