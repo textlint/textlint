@@ -40,9 +40,9 @@ Additionally, `build` command inline [Node fs calls](https://nodejs.org/api/fs.h
 
 ### `textlint-scripts test`
 
-Test test codes in `test/` by [Mocha](http://mochajs.org/).
+Test test codes in `test/` by [Mocha](https://mochajs.org/).
 
-Usually test textlint rule using [textlint-tester](https://github.com/textlint/textlint-tester). 
+Usually test textlint rule using [textlint-tester](https://github.com/textlint/textlint/tree/master/packages/textlint-tester). 
 
 **Notes**: register script
 
