@@ -47,8 +47,21 @@ import { TextlintRuleReporter, TextlintFixableRuleModule, TextlintRuleModule, Te
 import { TextlintFilterRuleContext, TextlintFilterRuleShouldIgnoreFunction, TextlintFilterRuleShouldIgnoreFunctionArgs } from "@textlint/types";
 import { TextlintFilterRuleModule, TextlintFilterRuleOptions, TextlintFilterRuleReporter, TextlintFilterRuleReportHandler } from "@textlint/types";
 import { TextlintPluginCreator, TextlintPluginOptions, TextlintPluginProcessor, TextlintPluginProcessorConstructor } from "@textlint/types";
+```
+
+## FAQ
+
+### Occur incompatible types between `@textlint/types` and other module like `textlint-rule-helper`
+
+You should check if your `@textlint/types` dependencies is duplicated.
+
+`@textlint/types` should be deduped.
 
 ```
+npm ls @textlint/types
+```
+
+If your dependencies is duplicated, you should update modules that are depended on `@textlint/types`.
 
 ## Versioning Policy
 
