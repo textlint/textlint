@@ -15,7 +15,7 @@ export type TextlintFilterRuleOptions = {
  * Rule Reporter Handler object define handler for each TxtNode type.
  */
 export type TextlintFilterRuleReportHandler = {
-    [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any>
+    [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any>;
 } & {
     [index: string]: (node: any) => void | Promise<any>;
 };
