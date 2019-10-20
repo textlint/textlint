@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "azu",
   "scripts": {
-    "test": "expected-exit-status 1 --command \"textlint test.custom-ext\"",
+    "test": "expected-exit-status 1 --command \"textlint -f pretty-error test.custom-ext\"",
     "test:ci": "npm test",
     "textlint": "textlint -f pretty-error test.custom-ext"
   },
