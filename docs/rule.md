@@ -207,17 +207,26 @@ textlint prepare useful generator tool that is [create-textlint-rule](https://gi
 - [textlint/create-textlint-rule: Create textlint rule project with no configuration.](https://github.com/textlint/create-textlint-rule)
 - [textlint/textlint-scripts: textlint npm-run-scripts CLI help to create textlint rule.](https://github.com/textlint/textlint-scripts)
 
-You can setup textlint rule by following steps:
+You can setup textlint rule using [npx](https://github.com/npm/npx) that is included in `npm`:
 
 ```sh
-npm install create-textlint-rule -g
-# Install `create-textlint-rule` command
-create-textlint-rule no-todo
 # Create `textlint-rule-no-todo` project and setup!
-# rm src/index.js test/index-tes.js
+npx create-textlint-rule no-todo
 ```
 
-This generated project contains [textlint-scripts](https://github.com/textlint/textlint-scripts "textlint-scripts") that provide build script and test script.
+Or use `npm install` command:
+
+```sh
+# Install `create-textlint-rule` to global
+npm install --global create-textlint-rule 
+# Create `textlint-rule-no-todo` project and setup!
+create-textlint-rule no-todo
+```
+
+This generated project contains [textlint-scripts](https://github.com/textlint/textlint-scripts) that provide build script and test script.
+
+:memo: If you want to write TypeScript, Pass `--typescript` flag to [create-textlint-rule](https://github.com/textlint/create-textlint-rule).
+For more details, see [create-textlint-rule](https://github.com/textlint/create-textlint-rule)'s README.
 
 #### Build
 
