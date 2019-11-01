@@ -10,6 +10,7 @@ title: Integrating with Editors, Tools, etc..
 - SublimeText
   - [joeybaker/sublimelinter-textlint](https://github.com/joeybaker/sublimelinter-textlint)
 - Vim
+  - [ale](https://github.com/dense-analysis/ale)
   - [vim-textlint](https://github.com/heavenshell/vim-textlint "vim-textlint")
   - [scrooloose/syntastic](https://github.com/vim-syntastic/syntastic "scrooloose/syntastic")
     - See [Markdown](https://github.com/vim-syntastic/syntastic/wiki/Markdown "Markdown"), [Text](https://github.com/vim-syntastic/syntastic/wiki/Text "Text") and [HTML](https://github.com/vim-syntastic/syntastic/wiki/HTML "HTML") of [scrooloose/syntastic Wiki](https://github.com/vim-syntastic/syntastic/wiki/Syntax-Checkers "Syntax Checkers · scrooloose/syntastic Wiki")
