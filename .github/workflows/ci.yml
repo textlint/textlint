@@ -7,7 +7,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [macOS-latest, ubuntu-latest, windows-latest]
-        node: [ 8, 10, 12 ]
+        # Workaround for Window x Node 8
+        # https://github.com/actions/setup-node/issues/27#issuecomment-547638522
+        node: [ ^8.12.x, 10, 12 ]
 
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
