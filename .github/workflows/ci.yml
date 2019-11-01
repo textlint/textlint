@@ -24,7 +24,6 @@ jobs:
       run: |
         npm install --global yarn@latest
         yarn install --frozen-lockfile
-        yarn run bootstrap
 
     - run: yarn test
     - run: yarn test:examples
@@ -49,7 +48,6 @@ jobs:
       run: |
         npm install --global yarn@latest
         yarn install --frozen-lockfile
-        yarn run bootstrap
 
     - run: yarn run test:docs
     - run: yarn run website
