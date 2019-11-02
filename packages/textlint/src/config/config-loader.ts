@@ -28,7 +28,7 @@ export function loadConfig(
     // auto or specify path to config file
     const result = rcConfigLoader(configFileName, {
         configFileName: configFilePath,
-        defaultExtension: [".json", ".js", ".yml"]
+        defaultExtension: [".json", ".js", ".yml"],
         packageJSON: {
             fieldName: "textlint"
         }
