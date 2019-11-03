@@ -8,7 +8,7 @@ const assert = require("assert");
  * @param configFileRaw
  * @returns {Array}
  */
-export function getPluginNames(configFileRaw: { plugins: any }) {
+export function getPluginNames(configFileRaw: { plugins?: any }) {
     const plugins = configFileRaw.plugins;
     if (!plugins) {
         return [];

@@ -40,8 +40,9 @@ describe("config-initializer-test", function() {
                 verbose: false
             }).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                const { config } = loadConfig(configFile, {
+                const { config } = loadConfig({
                     moduleResolver,
+                    configFilePath: configFile,
                     configFileName: Config.CONFIG_FILE_NAME
                 });
                 assert.equal(typeof config.filters, "object");
@@ -63,9 +64,10 @@ describe("config-initializer-test", function() {
                 verbose: false
             }).then(function(exitStatus) {
                 assert.equal(exitStatus, 0);
-                const { config } = loadConfig(configFile, {
+                const { config } = loadConfig({
                     moduleResolver,
-                    configFileName: Config.CONFIG_FILE_NAME
+                    configFileName: Config.CONFIG_FILE_NAME,
+                    configFilePath: configFile
                 });
                 assert.equal(typeof config.filters, "object");
                 assert.equal(typeof config.rules, "object");

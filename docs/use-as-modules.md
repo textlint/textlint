@@ -72,7 +72,7 @@ textlint's core
 
 Lint files using `TextLintEngine`:
 
-See [examples/use-as-module/index.js](../examples/use-as-module/index.js)
+See [examples/use-as-module/index.js](https://github.com/textlint/textlint/blob/master/examples/use-as-module/index.js)
 
 ```js
 // LICENSE : MIT
@@ -80,9 +80,6 @@ See [examples/use-as-module/index.js](../examples/use-as-module/index.js)
 const TextLintEngine = require("textlint").TextLintEngine;
 const path = require("path");
 function lintFile(filePath) {
-    /**
-     * See lib/_typing/textlint.d.ts
-     */
     const options = {
         // load rules from [../rules]
         rules: ["no-todo"],

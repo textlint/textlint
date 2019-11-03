@@ -1,0 +1,17 @@
+{
+  "rules": [
+    "example"
+  ],
+  "presets": [
+    "foo"
+  ],
+  "rulesConfig": {
+    "example": {
+      "option": "option value"
+    },
+    "foo/a": {
+      "key": "value"
+    },
+    "foo/b": true
+  }
+}

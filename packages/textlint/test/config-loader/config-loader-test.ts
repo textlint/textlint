@@ -2,17 +2,20 @@
 "use strict";
 const assert = require("assert");
 const path = require("path");
-import { PackageNamePrefix } from "../../src/config/package-prefix";
 import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 import { loadConfig } from "../../src/config/config-loader";
 import { Config } from "../../src/config/config";
 
+const dummyModuleLoader = new TextLintModuleResolver({
+    rulesBaseDirectory: path.join(__dirname, "fixtures")
+});
 describe("config-loader", function() {
     it("should load config file", function() {
         const configFile = path.join(__dirname, "fixtures", ".textlintrc");
-        const { config } = loadConfig(configFile, {
+        const { config } = loadConfig({
             configFileName: Config.CONFIG_FILE_NAME,
-            configPackagePrefix: PackageNamePrefix.config
+            configFilePath: configFile,
+            moduleResolver: dummyModuleLoader
         });
         assert.equal(typeof config.rules["no-todo"], "object");
         assert.equal(config.rules["no-todo"]["use-task-list"], true);
@@ -24,8 +27,10 @@ describe("config-loader", function() {
             notUTF8Files.forEach(notUTF8File => {
                 const configFile = path.join(__dirname, "fixtures", "shift-jis.js");
                 assert.throws(() => {
-                    loadConfig(configFile, {
-                        configFileName: Config.CONFIG_FILE_NAME
+                    loadConfig({
+                        configFileName: Config.CONFIG_FILE_NAME,
+                        configFilePath: configFile,
+                        moduleResolver: dummyModuleLoader
                     });
                 }, notUTF8File);
             });
@@ -37,11 +42,12 @@ describe("config-loader", function() {
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: baseDir
             });
-            const { config } = loadConfig("@textlint/textlint-config-example", {
+            const { config } = loadConfig({
                 moduleResolver,
+                configFilePath: "@textlint/textlint-config-example",
                 configFileName: Config.CONFIG_FILE_NAME
             });
-            assert.equal(typeof config.rules.config, "object");
+            assert.strictEqual(typeof config.rules.config, "object");
             assert.ok(config.rules.config.key === true);
         });
     });
@@ -52,8 +58,9 @@ describe("config-loader", function() {
                 rulesBaseDirectory: baseDir
             });
             const directTextlintrc = path.join(__dirname, "fixtures", "alt.textlintrc");
-            const { config, filePath } = loadConfig(directTextlintrc, {
+            const { config, filePath } = loadConfig({
                 moduleResolver,
+                configFilePath: directTextlintrc,
                 configFileName: Config.CONFIG_FILE_NAME
             });
             assert.ok(config.rules, "should have config.rules");
@@ -65,8 +72,13 @@ describe("config-loader", function() {
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: baseDir
             });
-            const result = loadConfig("UNKNOWN", { moduleResolver, configFileName: Config.CONFIG_FILE_NAME });
-            assert.ok(!result.rules);
+            const result = loadConfig({
+                moduleResolver,
+                configFilePath: "UNKNOWN",
+                configFileName: Config.CONFIG_FILE_NAME
+            });
+            assert.ok(!result.config.rules);
+            assert.ok(!result.filePath, "filePath should be undefined");
         });
     });
 });
