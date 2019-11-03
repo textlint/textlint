@@ -149,8 +149,8 @@ Can use the following format:
 
 :information_source: Examples
 
-- [examples/config-file](../examples/config-file)
-- [examples/config-in-package-json](../examples/config-in-package-json)
+- [examples/config-file](https://github.com/textlint/textlint/tree/master/examples/config-file)
+- [examples/config-in-package-json](https://github.com/textlint/textlint/tree/master/examples/config-in-package-json)
 
 ## Rule-preset
 
@@ -221,7 +221,7 @@ One more example, `very-nice-rule` is useful, but you want to ignore some report
 }
 ```
 
-:information_source: See [examples/filter](../examples/filter)
+:information_source: See [examples/filter](https://github.com/textlint/textlint/tree/master/examples/filter)
 
 ## Plugin
 
