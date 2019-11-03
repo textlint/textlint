@@ -17,6 +17,8 @@ You can use following file as configuration file:
 
 Put the config of rules into `.textlintrc`
 
+Or a `textlint` field in the `package.json` can be used.
+
 ## Rule
 
 A **rule** provide linting/fixing function.
