@@ -1,18 +1,28 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { moduleInterop } from "@textlint/module-interop";
 
-const rcConfigLoader = require("rc-config-loader");
+import { rcFile } from "rc-config-loader";
 
 /**
- * @param {string} configFilePath
- * @param {string} configFileName
- * @param {TextLintModuleResolver} moduleResolver
- * @returns {{ config: Object, filePath:string}}
+ * @param configFileName "textlint" for .textlinrc
+ * @param cwd current working dir
+ * @param configFilePath it is preferred than configFileName
+ * @param moduleResolver
  */
-export function loadConfig(
-    configFilePath: string,
-    { configFileName, moduleResolver }: { configFileName: string; moduleResolver: TextLintModuleResolver }
-) {
+export function loadConfig({
+    cwd,
+    configFileName,
+    configFilePath,
+    moduleResolver
+}: {
+    cwd?: string;
+    configFileName: string;
+    configFilePath?: string;
+    moduleResolver: TextLintModuleResolver;
+}): {
+    config: { [index: string]: any };
+    filePath: string | undefined;
+} {
     // if specify Config module, use it
     if (configFilePath) {
         try {
@@ -26,12 +36,13 @@ export function loadConfig(
         }
     }
     // auto or specify path to config file
-    const result = rcConfigLoader(configFileName, {
+    const result = rcFile(configFileName, {
         configFileName: configFilePath,
         defaultExtension: [".json", ".js", ".yml"],
         packageJSON: {
             fieldName: "textlint"
-        }
+        },
+        cwd
     });
     if (result === undefined) {
         return {

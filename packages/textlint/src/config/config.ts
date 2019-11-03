@@ -92,6 +92,50 @@ export interface ConfigStatics {
     PLUGIN_NAME_PREFIX: string;
 }
 
+export interface ConfigAutoLoadingOptions {
+    // rule package names
+    rules?: string[];
+    // disabled rule package names
+    // always should start with empty
+    disabledRules?: string[];
+    // rules config object
+    rulesConfig?: { [index: string]: boolean | {} };
+    filterRules?: string[];
+    disabledFilterRules?: string[];
+    filterRulesConfig?: { [index: string]: boolean | {} };
+    // preset package names
+    // e.g.) ["preset-foo"]
+    presets?: string[];
+    // plugin package names
+    plugins?: string[];
+    // plugin config
+    pluginsConfig?: { [index: string]: boolean | {} };
+    // base directory for loading {rule, config, plugin} modules
+    rulesBaseDirectory?: string;
+    // ".textlint" file path
+    configFile?: string;
+    // rule directories
+    rulePaths?: string[];
+    // formatter file name
+    // e.g.) stylish.js => set "stylish"
+    // NOTE: default formatter is defined in Engine,
+    // because There is difference between TextLintEngine and TextFixEngine.
+    formatterName?: string;
+    // --quiet
+    quiet?: boolean;
+    // --no-color
+    color?: boolean;
+    // --no-textlintrc
+    textlintrc?: boolean;
+    // --cache : enable or disable
+    cache?: boolean;
+    // --cache-location: cache file path
+    cacheLocation?: string;
+    // FIXME: current working dir
+    // It does not cover all working dir
+    cwd?: string;
+}
+
 // Priority: CLI > Code options > config file
 export class Config {
     rules: any;
@@ -162,7 +206,7 @@ export class Config {
      * These config is prefer than preset packages's config that is defined by package author.
      * @param options
      */
-    static initWithAutoLoading(options: any = {}) {
+    static initWithAutoLoading(options: ConfigAutoLoadingOptions = {}) {
         // Base directory
         const rulesBaseDirectory = options.rulesBaseDirectory
             ? options.rulesBaseDirectory
@@ -176,9 +220,11 @@ export class Config {
         // => load .textlintrc
         const loadedResult =
             typeof options.textlintrc === "undefined" || options.textlintrc
-                ? loadConfig(options.configFile, {
+                ? loadConfig({
+                      configFileName: this.CONFIG_FILE_NAME,
+                      configFilePath: options.configFile,
                       moduleResolver,
-                      configFileName: this.CONFIG_FILE_NAME
+                      cwd: options.cwd
                   })
                 : {
                       config: {},

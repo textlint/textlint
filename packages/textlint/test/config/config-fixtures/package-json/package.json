@@ -1,0 +1,20 @@
+{
+  "name": "textlint-package-json",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "azu",
+  "main": "index.js",
+  "textlint": {
+    "rules": {
+      "example": {
+        "option": "option value"
+      },
+      "preset-foo": {
+        "textlint-rule-a": {
+          "key": "value"
+        },
+        "textlint-rule-b": true
+      }
+    }
+  }
+}

@@ -147,7 +147,10 @@ Can use the following format:
 }
 ```
 
-:information_source: See [examples/config-file](../examples/config-file)
+:information_source: Examples
+
+- [examples/config-file](../examples/config-file)
+- [examples/config-in-package-json](../examples/config-in-package-json)
 
 ## Rule-preset
 
