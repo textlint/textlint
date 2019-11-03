@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/textlint/textlint/compare/@textlint/types@1.2.2...@textlint/types@1.2.3) (2019-11-03)
+
+
+### Documentation
+
+* **textlint/types:** Add FAQ ([9652c33](https://github.com/textlint/textlint/commit/9652c33))
+
+
+### Styles
+
+* update style ([dc78f87](https://github.com/textlint/textlint/commit/dc78f87))
+
+
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/textlint/textlint/compare/@textlint/types@1.2.1...@textlint/types@1.2.2) (2019-10-14)
 
