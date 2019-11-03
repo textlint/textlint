@@ -80,9 +80,6 @@ See [examples/use-as-module/index.js](https://github.com/textlint/textlint/tree/
 const TextLintEngine = require("textlint").TextLintEngine;
 const path = require("path");
 function lintFile(filePath) {
-    /**
-     * See lib/_typing/textlint.d.ts
-     */
     const options = {
         // load rules from [../rules]
         rules: ["no-todo"],
