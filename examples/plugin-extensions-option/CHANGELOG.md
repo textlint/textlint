@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.11"></a>
+## [2.1.11](https://github.com/textlint/textlint/compare/textlint-example-plugin-extensions-option@2.1.10...textlint-example-plugin-extensions-option@2.1.11) (2019-11-03)
+
+
+### Chores
+
+* **example:** avoid false-positive problem matcher ([dd01114](https://github.com/textlint/textlint/commit/dd01114))
+
+
+
+
+
 <a name="2.1.10"></a>
 ## [2.1.10](https://github.com/textlint/textlint/compare/textlint-example-plugin-extensions-option@2.1.9...textlint-example-plugin-extensions-option@2.1.10) (2019-10-14)
 

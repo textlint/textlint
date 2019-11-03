@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.5"></a>
+## [3.1.5](https://github.com/textlint/textlint/compare/@textlint/feature-flag@3.1.4...@textlint/feature-flag@3.1.5) (2019-11-03)
+
+
+### Bug Fixes
+
+* **@textlint/feature-flag:** fix build config ([308835a](https://github.com/textlint/textlint/commit/308835a))
+
+
+### Tests
+
+* **@textlint/feature-flag:** fix import path ([ec9110a](https://github.com/textlint/textlint/commit/ec9110a))
+
+
+
+
+
 <a name="3.1.4"></a>
 ## [3.1.4](https://github.com/textlint/textlint/compare/@textlint/feature-flag@3.1.3...@textlint/feature-flag@3.1.4) (2019-10-14)
 

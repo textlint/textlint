@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.10"></a>
+## [5.1.10](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.1.9...@textlint/textlint-plugin-markdown@5.1.10) (2019-11-03)
+
+**Note:** Version bump only for package @textlint/textlint-plugin-markdown
+
+
+
+
+
 <a name="5.1.9"></a>
 ## [5.1.9](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.1.8...@textlint/textlint-plugin-markdown@5.1.9) (2019-10-14)
 
