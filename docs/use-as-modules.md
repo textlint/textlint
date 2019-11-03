@@ -72,7 +72,7 @@ textlint's core
 
 Lint files using `TextLintEngine`:
 
-See [examples/use-as-module/index.js](https://github.com/textlint/textlint/tree/master/examples/use-as-module/index.js)
+See [examples/use-as-module/index.js](https://github.com/textlint/textlint/blob/master/examples/use-as-module/index.js)
 
 ```js
 // LICENSE : MIT
