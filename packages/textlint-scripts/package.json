@@ -41,7 +41,7 @@
   "dependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
-    "@babel/preset-env": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
     "@babel/preset-typescript": "^7.7.4",
     "@babel/register": "^7.7.4",
     "babel-plugin-static-fs": "^3.0.0",
