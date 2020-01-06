@@ -10,6 +10,7 @@ import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
+import { isTxtAST } from "@textlint/ast-tester";
 
 const debug = require("debug")("textlint:fixer-processor");
 
@@ -66,9 +67,13 @@ export default class FixerProcessor {
         const fixerProcessList = ruleDescriptors.fixableDescriptors.map(ruleDescriptor => {
             return (sourceText: string): Promise<string> => {
                 // create new SourceCode object
+                const preProcessResult = preProcess(sourceText, sourceCode.filePath);
+                const isPluginReturnAnAST = isTxtAST(preProcessResult);
+                const textForAST = isPluginReturnAnAST ? sourceText : preProcessResult.text;
+                const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
                 const newSourceCode = new TextlintSourceCodeImpl({
-                    text: sourceText,
-                    ast: preProcess(sourceText, sourceCode.filePath),
+                    text: textForAST,
+                    ast,
                     filePath: resultFilePath,
                     ext: sourceCode.ext
                 });

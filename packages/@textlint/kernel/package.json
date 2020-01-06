@@ -32,6 +32,7 @@
     "test": "mocha \"test/**/*.{js,ts}\""
   },
   "dependencies": {
+    "@textlint/ast-tester": "^2.1.6",
     "@textlint/ast-node-types": "^4.2.5",
     "@textlint/ast-traverse": "^2.1.6",
     "@textlint/feature-flag": "^3.1.5",
