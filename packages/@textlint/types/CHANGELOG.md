@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/textlint/textlint/compare/@textlint/types@1.2.2...@textlint/types@1.3.0) (2020-01-07)
+
+
+### Documentation
+
+* **textlint/types:** Add FAQ ([9652c33](https://github.com/textlint/textlint/commit/9652c33))
+
+
+### Features
+
+* **types:** allow plugin's `preProcess` return { text, ast } ([db56bc4](https://github.com/textlint/textlint/commit/db56bc4))
+
+
+### Styles
+
+* update style ([dc78f87](https://github.com/textlint/textlint/commit/dc78f87))
+
+
+
+
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/textlint/textlint/compare/@textlint/types@1.2.2...@textlint/types@1.2.3) (2019-11-03)
 

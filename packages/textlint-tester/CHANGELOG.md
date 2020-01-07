@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.1.12"></a>
+## [5.1.12](https://github.com/textlint/textlint/compare/textlint-tester@5.1.10...textlint-tester@5.1.12) (2020-01-07)
+
+
+### Styles
+
+* update style ([dc78f87](https://github.com/textlint/textlint/commit/dc78f87))
+
+
+
+
+
 <a name="5.1.11"></a>
 ## [5.1.11](https://github.com/textlint/textlint/compare/textlint-tester@5.1.10...textlint-tester@5.1.11) (2019-11-03)
 

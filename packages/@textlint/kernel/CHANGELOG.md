@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/textlint/textlint/compare/@textlint/kernel@3.1.9...@textlint/kernel@3.2.0) (2020-01-07)
+
+
+### Features
+
+* **kernel): support `prePrecess(:** { text, ast }` return value ([16301d7](https://github.com/textlint/textlint/commit/16301d7))
+
+
+### Tests
+
+* **kernel:** update dummyText ([1a88f98](https://github.com/textlint/textlint/commit/1a88f98))
+
+
+
+
+
 <a name="3.1.10"></a>
 ## [3.1.10](https://github.com/textlint/textlint/compare/@textlint/kernel@3.1.9...@textlint/kernel@3.1.10) (2019-11-03)
 

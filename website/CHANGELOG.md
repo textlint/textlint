@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.8.2"></a>
+## [10.8.2](https://github.com/textlint/textlint/compare/textlint-website@10.8.0...textlint-website@10.8.2) (2020-01-07)
+
+
+### Styles
+
+* update style ([dc78f87](https://github.com/textlint/textlint/commit/dc78f87))
+
+
+
+
+
 <a name="10.8.1"></a>
 ## [10.8.1](https://github.com/textlint/textlint/compare/textlint-website@10.8.0...textlint-website@10.8.1) (2019-11-03)
 
