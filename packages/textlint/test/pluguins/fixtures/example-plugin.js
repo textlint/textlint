@@ -14,6 +14,8 @@ export class ExampleProcessor {
                 return {
                     type: "Document",
                     children: [],
+                    value: "",
+                    raw: "",
                     range: [0, 0],
                     loc: {
                         start: {

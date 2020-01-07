@@ -1,9 +1,52 @@
 import { createPluginStub } from "./helper/ExamplePlugin";
 import { errorRule } from "./helper/ErrorRule";
 import { TextlintKernel } from "../src";
+import * as path from "path";
 import * as assert from "assert";
+import { createBinaryPluginStub } from "./helper/BinaryPlugin";
+import { TextlintRuleReporter } from "@textlint/types";
 
 describe("kernel-plugin", () => {
+    describe("binary plugin", () => {
+        it("should get dummyText via context.getSource", () => {
+            const kernel = new TextlintKernel();
+            const expectedSourceText = "This is binary";
+            const binaryFilePath = path.join(__dirname, "fixtures/binary/a.out");
+            const { plugin } = createBinaryPluginStub({
+                // return pseudoText instead of binary content as preProcess result
+                dummyText: expectedSourceText
+            });
+            let isStrCalled = false;
+            const rule: TextlintRuleReporter = context => {
+                const { Syntax, getSource, getFilePath } = context;
+                return {
+                    [Syntax.Str](node) {
+                        const text = getSource(node);
+                        const marginText = getSource(node, -1, -1);
+                        assert.strictEqual(text, expectedSourceText);
+                        assert.strictEqual(marginText, expectedSourceText.slice(1, expectedSourceText.length - 1));
+                        const filePath = getFilePath();
+                        assert.strictEqual(filePath, binaryFilePath);
+                        isStrCalled = true;
+                    }
+                };
+            };
+            const options = {
+                filePath: binaryFilePath,
+                ext: ".out",
+                plugins: [{ pluginId: "binary", plugin: plugin }],
+                rules: [
+                    {
+                        ruleId: "error",
+                        rule: rule
+                    }
+                ]
+            };
+            return kernel.lintText("text", options).then(_result => {
+                assert.ok(isStrCalled);
+            });
+        });
+    });
     describe("#constructor", () => {
         it("should receive {} by default", () => {
             const kernel = new TextlintKernel();
@@ -72,6 +115,21 @@ describe("kernel-plugin", () => {
             const options = {
                 filePath: "/path/to/file.md",
                 ext: ".md",
+                plugins: [{ pluginId: "example", plugin: plugin }],
+                rules: [{ ruleId: "error", rule: errorRule }]
+            };
+            const text = "text";
+            return kernel.lintText(text, options).then(_result => {
+                assert.strictEqual(getPreProcessArgs().text, text);
+                assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+            });
+        });
+        it("preProcess can return {text, ast}", () => {
+            const kernel = new TextlintKernel();
+            const { plugin, getPreProcessArgs } = createBinaryPluginStub();
+            const options = {
+                filePath: path.join(__dirname, "fixtures/binary/a.out"),
+                ext: ".out",
                 plugins: [{ pluginId: "example", plugin: plugin }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };

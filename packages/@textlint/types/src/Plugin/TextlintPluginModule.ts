@@ -1,5 +1,6 @@
 // Plugin
 import { TxtParentNode } from "@textlint/ast-node-types";
+
 /**
  * textlint plugin option values is object or boolean.
  * if this option value is false, disable the plugin.
@@ -32,7 +33,16 @@ export declare class TextlintPluginProcessor {
     processor(
         extension: string
     ): {
-        preProcess(text: string, filePath?: string): TxtParentNode;
+        /**
+         * plugin's `preProcess` return a TxtParentNode or text and AST.
+         * If your plugin use different text for original file, the plugin should return the text and an AST for the text.
+         * For example, a plugin for binary format.
+         * textlint can not handle binary and the plugin should return Pseudo-text for original binary file.
+         * @see https://github.com/textlint/textlint/issues/649
+         * @param text
+         * @param filePath
+         */
+        preProcess(text: string, filePath?: string): TxtParentNode | { text: string; ast: TxtParentNode };
         postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string };
     };
 }

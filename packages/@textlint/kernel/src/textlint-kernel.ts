@@ -15,8 +15,10 @@ import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textl
 import { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
+import { isTxtAST } from "@textlint/ast-tester";
 
 const debug = require("debug")("textlint:kernel");
+
 /**
  * add fileName to trailing of error message
  * @param {string|undefined} fileName
@@ -138,9 +140,12 @@ export class TextlintKernel {
             typeof preProcess === "function" && typeof postProcess === "function",
             "processor should implements {preProcess, postProcess}"
         );
-        const ast = preProcess(text, filePath);
+        const preProcessResult = preProcess(text, filePath);
+        const isPluginReturnAnAST = isTxtAST(preProcessResult);
+        const textForAST = isPluginReturnAnAST ? text : preProcessResult.text;
+        const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
         const sourceCode = new TextlintSourceCodeImpl({
-            text,
+            text: textForAST,
             ast,
             ext,
             filePath
@@ -191,9 +196,12 @@ export class TextlintKernel {
             typeof preProcess === "function" && typeof postProcess === "function",
             "processor should implements {preProcess, postProcess}"
         );
-        const ast = preProcess(text, filePath);
+        const preProcessResult = preProcess(text, filePath);
+        const isPluginReturnAnAST = isTxtAST(preProcessResult);
+        const textForAST = isPluginReturnAnAST ? text : preProcessResult.text;
+        const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
         const sourceCode = new TextlintSourceCodeImpl({
-            text,
+            text: textForAST,
             ast,
             ext,
             filePath

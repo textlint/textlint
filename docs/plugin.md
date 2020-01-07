@@ -78,12 +78,24 @@ you should implement `availableExtensions()` method as instance method.
 
 `processor()` method should return an object that have `preProcess` and `postProcess` method.
 
-#### `preProcess(text, filePath)`
+#### `preProcess(text, filePath): TxtParentNode | { text: string; ast: TxtParentNode; }`
 
-`preProcess` method should return `TxtAST` object.
-`TxtAST` object is an Abstract Syntax Tree (AST) of the text.
+`preProcess` method should return `TxtParentNode` object or `{ text: string, ast: TxtParentNode }` object.
+`TxtParentNode` object is an Abstract Syntax Tree (AST) of the text.
 
-:information_source: For more details about `TxtAST`, see [TxtAST interface documents](txtnode.md).
+:information_source: For more details about `TxtParentNode`, see [TxtAST interface documents](txtnode.md).
+
+> Target file(text format) -> AST(by your plugin) for Target file
+
+If your plugin handle text format, you can just return a `TxtParentNode` object.
+
+> Target file(binary format) -> Intermediate text(by your plugin) -> AST(by your plugin) for Intermediate text
+
+If your plugin handle intermediate text, you should return a `{ text: string, ast: TxtParentNode }` object.
+
+textlint can not handle binary format and your plugin should return intermediate text for your AST.
+
+For more details, see <https://github.com/textlint/textlint/issues/649>
 
 #### `postProcess(messages, filePath)`
 
