@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.12"></a>
+## [2.1.12](https://github.com/textlint/textlint/compare/textlint-example-fix-dry-run@2.1.10...textlint-example-fix-dry-run@2.1.12) (2020-01-07)
+
+**Note:** Version bump only for package textlint-example-fix-dry-run
+
+
+
+
+
 <a name="2.1.11"></a>
 ## [2.1.11](https://github.com/textlint/textlint/compare/textlint-example-fix-dry-run@2.1.10...textlint-example-fix-dry-run@2.1.11) (2019-11-03)
 

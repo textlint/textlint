@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.12"></a>
+## 2.1.12 (2020-01-07)
+
+
+### Tests
+
+* **textlint:** add text for package.json's "textlint" ([#645](https://github.com/textlint/textlint/issues/645)) ([f1a1ca3](https://github.com/textlint/textlint/commit/f1a1ca3))
+
+
+
+
+
 <a name="2.1.11"></a>
 ## 2.1.11 (2019-11-03)
 

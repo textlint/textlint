@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.6.0"></a>
+# [11.6.0](https://github.com/textlint/textlint/compare/textlint@11.4.0...textlint@11.6.0) (2020-01-07)
+
+
+### Features
+
+* **kernel): support `prePrecess(:** { text, ast }` return value ([16301d7](https://github.com/textlint/textlint/commit/16301d7))
+* **textlint:** Add configuration support for "textlint" field in package.json ([#644](https://github.com/textlint/textlint/issues/644)) ([2ca0a37](https://github.com/textlint/textlint/commit/2ca0a37))
+
+
+### Tests
+
+* **textlint:** add text for package.json's "textlint" ([#645](https://github.com/textlint/textlint/issues/645)) ([f1a1ca3](https://github.com/textlint/textlint/commit/f1a1ca3))
+
+
+
+
+
 <a name="11.5.0"></a>
 # [11.5.0](https://github.com/textlint/textlint/compare/textlint@11.4.0...textlint@11.5.0) (2019-11-03)
 
