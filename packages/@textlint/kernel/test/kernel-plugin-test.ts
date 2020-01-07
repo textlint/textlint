@@ -14,7 +14,7 @@ describe("kernel-plugin", () => {
             const binaryFilePath = path.join(__dirname, "fixtures/binary/a.out");
             const { plugin } = createBinaryPluginStub({
                 // return pseudoText instead of binary content as preProcess result
-                pseudoText: expectedSourceText
+                dummyText: expectedSourceText
             });
             let isStrCalled = false;
             const rule: TextlintRuleReporter = context => {

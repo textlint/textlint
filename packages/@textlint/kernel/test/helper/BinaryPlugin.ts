@@ -8,7 +8,11 @@ export interface BinaryPluginProcessorOptions {
 
 export interface CreateBinaryPluginOptions {
     extensions?: string[];
-    pseudoText?: string;
+    /**
+     * Return the text instead of file content.
+     * It simulate intermediate text for a binary,
+     */
+    dummyText?: string;
 }
 
 /**
@@ -64,7 +68,7 @@ export const createBinaryPluginStub = (options?: CreateBinaryPluginOptions) => {
                         return {
                             preProcess(text: string, filePath: string) {
                                 preProcessArgs = { text, filePath };
-                                const dummyText = (options && options.pseudoText) || "this is binary";
+                                const dummyText = (options && options.dummyText) || "this is binary";
                                 const ast = {
                                     type: "Document",
                                     raw: dummyText,
