@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.11"></a>
+## [3.1.11](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.1.10...@textlint/linter-formatter@3.1.11) (2020-01-08)
+
+
+### Bug Fixes
+
+* **linter-formatter:** add missing dependencies ([5501a42](https://github.com/textlint/textlint/commit/5501a42))
+* **linter-formatter:** fix --no-color support ([6cbfb1f](https://github.com/textlint/textlint/commit/6cbfb1f))
+
+
+### Chores
+
+* **deps:** update yarn.lock ([2f6fa9e](https://github.com/textlint/textlint/commit/2f6fa9e))
+* **linter-formatter:** move path ([98ff781](https://github.com/textlint/textlint/commit/98ff781))
+
+
+### Tests
+
+* **liner-formatter:** pass { color: false } ([fe3c2df](https://github.com/textlint/textlint/commit/fe3c2df))
+
+
+
+
+
 <a name="3.1.10"></a>
 ## [3.1.10](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.1.8...@textlint/linter-formatter@3.1.10) (2020-01-07)
 

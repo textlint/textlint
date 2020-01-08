@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.13"></a>
+## [2.1.13](https://github.com/textlint/textlint/compare/integration-test@2.1.12...integration-test@2.1.13) (2020-01-08)
+
+**Note:** Version bump only for package integration-test
+
+
+
+
+
 <a name="2.1.12"></a>
 ## [2.1.12](https://github.com/textlint/textlint/compare/integration-test@2.1.10...integration-test@2.1.12) (2020-01-07)
 

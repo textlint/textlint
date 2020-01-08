@@ -1,6 +1,6 @@
 {
   "name": "@textlint/linter-formatter",
-  "version": "3.1.10",
+  "version": "3.1.11",
   "description": "textlint output formatter",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/linter-formatter",
   "bugs": {
