@@ -6,6 +6,7 @@
 
 "use strict";
 import { TextlintMessage } from "@textlint/types";
+import { FormatterOptions } from "./FormatterOptions";
 
 //------------------------------------------------------------------------------
 // Requirements
@@ -14,7 +15,7 @@ import { TextlintMessage } from "@textlint/types";
 const chalk = require("chalk");
 const table = require("table").default;
 const pluralize = require("pluralize");
-
+const stripAnsi = require("strip-ansi");
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
@@ -24,7 +25,7 @@ const pluralize = require("pluralize");
  * @param {Array<Object>} messages Error messages relating to a specific file.
  * @returns {string} A text table.
  */
-function drawTable(messages: any): string {
+function drawTable(messages: TextlintMessage[]): string {
     let rows: any = [];
 
     if (messages.length === 0) {
@@ -51,7 +52,7 @@ function drawTable(messages: any): string {
         rows.push([message.line || 0, message.column || 0, messageType, message.message, message.ruleId || ""]);
     });
 
-    return table(rows, {
+    const output = table(rows, {
         columns: {
             0: {
                 width: 8,
@@ -79,6 +80,7 @@ function drawTable(messages: any): string {
             return index === 1;
         }
     });
+    return output;
 }
 
 /**
@@ -108,8 +110,10 @@ function drawReport(results: any): string {
 // Public Interface
 //------------------------------------------------------------------------------
 
-function formatter(report: any) {
-    let result = "";
+function formatter(report: any, options: FormatterOptions) {
+    // default: true
+    const useColor = options.color !== undefined ? options.color : true;
+    let output = "";
     let errorCount = 0;
     let warningCount = 0;
 
@@ -119,10 +123,10 @@ function formatter(report: any) {
     });
 
     if (errorCount || warningCount) {
-        result = drawReport(report);
+        output = drawReport(report);
     }
 
-    result +=
+    output +=
         "\n" +
         table(
             [
@@ -142,7 +146,10 @@ function formatter(report: any) {
             }
         );
 
-    return result;
+    if (!useColor) {
+        return stripAnsi(output);
+    }
+    return output;
 }
 
 export default formatter;

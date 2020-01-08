@@ -4,11 +4,7 @@
 // Author : azer
 "use strict";
 import { TextlintMessage, TextlintResult } from "@textlint/types";
-
-export interface TextLintFormatterOption {
-    formatterName: string;
-    color?: boolean;
-}
+import { FormatterOptions } from "./FormatterOptions";
 
 const format = require("@azu/format-text");
 const chalk = require("chalk");
@@ -120,7 +116,7 @@ function prettyError(code: string, filePath: string, message: TextlintMessage): 
  * @param {TextLintFormatterOption} options
  * @returns {string}
  */
-function formatter(results: TextlintResult[], options: TextLintFormatterOption) {
+function formatter(results: TextlintResult[], options: FormatterOptions) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "";

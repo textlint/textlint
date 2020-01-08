@@ -5,11 +5,12 @@
 
 "use strict";
 import { TextlintResult } from "@textlint/types";
+import { FormatterOptions } from "./FormatterOptions";
 
 const chalk = require("chalk");
 const table = require("text-table");
 const widthOfString = require("string-width");
-
+const stripAnsi = require("strip-ansi");
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
@@ -28,7 +29,10 @@ function pluralize(word: string, count: number): string {
 // Public Interface
 //------------------------------------------------------------------------------
 
-function formatter(results: TextlintResult[]) {
+function formatter(results: TextlintResult[], options: FormatterOptions) {
+    // default: true
+    const useColor = options.color !== undefined ? options.color : true;
+
     let output = "\n";
     let total = 0;
     let totalFixable = 0;
@@ -120,7 +124,11 @@ function formatter(results: TextlintResult[]) {
         output += "Try to run: $ " + chalk.underline("textlint --fix [file]") + "\n";
     }
 
-    return total > 0 ? output : "";
+    const finalOutput = total > 0 ? output : "";
+    if (!useColor) {
+        return stripAnsi(finalOutput);
+    }
+    return finalOutput;
 }
 
 export default formatter;

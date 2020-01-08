@@ -11,7 +11,10 @@ const tryResolve = require("try-resolve");
 const isFile = require("is-file");
 const debug = require("debug")("textlint:@textlint/linter-formatter");
 
-export type FormatterConfig = { color?: boolean; formatterName: string };
+export interface FormatterConfig {
+    formatterName: string;
+    color?: boolean;
+}
 
 export function createFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
