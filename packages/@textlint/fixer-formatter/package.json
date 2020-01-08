@@ -42,7 +42,8 @@
     "is-file": "^1.0.0",
     "string-width": "^1.0.1",
     "text-table": "^0.2.0",
-    "try-resolve": "^1.0.1"
+    "try-resolve": "^1.0.1",
+    "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",

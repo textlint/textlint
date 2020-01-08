@@ -1,8 +1,10 @@
 "use strict";
+import { TextlintFixResult } from "@textlint/types";
+
 const chalk = require("chalk");
 const table = require("text-table");
 const widthOfString = require("string-width");
-import { TextlintFixResult } from "@textlint/types";
+const stripAnsi = require("strip-ansi");
 
 /**
  * Given a word and a count, append an s if count is not one.
@@ -16,7 +18,7 @@ function pluralize(word: string, count: number): string {
 
 export default function(results: TextlintFixResult[], options: any) {
     // default: true
-    chalk.enabled = options.color !== undefined ? options.color : true;
+    const useColor = options.color !== undefined ? options.color : true;
     let output = "\n";
     let totalFixed = 0;
     let errors = 0;
@@ -97,5 +99,9 @@ export default function(results: TextlintFixResult[], options: any) {
         );
     }
 
-    return totalFixed > 0 ? output : "";
+    const finalOutput = totalFixed > 0 ? output : "";
+    if (!useColor) {
+        return stripAnsi(finalOutput);
+    }
+    return finalOutput;
 }

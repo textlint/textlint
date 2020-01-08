@@ -9,7 +9,7 @@ describe("formatter:stylish", function() {
     describe("when passed no messages", function() {
         const code = [{ filePath: "foo.js", applyingMessages: [], remainingMessages: [] }];
         it("should not return message", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(result, "");
         });
     });
@@ -24,7 +24,7 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string in the correct format for errors", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 `
@@ -50,7 +50,7 @@ foo.js
         ];
 
         it("should return a string with multiple entries", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 `
@@ -79,7 +79,7 @@ foo.js
         ];
 
         it("should return a string with multiple entries", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 `
@@ -111,7 +111,7 @@ bar.js
         ];
 
         it("should show remaining count", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 `
@@ -138,7 +138,7 @@ foo.js
         ];
 
         it("should show remaining count", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 `

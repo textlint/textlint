@@ -12,7 +12,7 @@ describe("formatter:diff", function() {
         it("should return output", function() {
             const input = path.join(__dirname, "../fixtures", "single.md");
             const code = require("../fixtures/single");
-            const output = formatter(code);
+            const output = formatter(code, { color: false });
             assert.equal(
                 output,
                 `
@@ -32,7 +32,7 @@ ${input}
         it("should return output", function() {
             const input = path.join(__dirname, "../fixtures", "double.md");
             const code = require("../fixtures/double");
-            const output = formatter(code);
+            const output = formatter(code, { color: false });
             assert.equal(
                 output,
                 `
@@ -55,7 +55,7 @@ ${input}
             const singleFile = path.join(__dirname, "../fixtures", "single.md");
             const multiple = path.join(__dirname, "../fixtures", "multiple.md");
             const code = require("../fixtures/multiple");
-            const output = formatter(code);
+            const output = formatter(code, { color: false });
             assert.equal(
                 output,
                 `
@@ -89,7 +89,7 @@ ${multiple}
         it("should return output", function() {
             const input = path.join(__dirname, "../fixtures", "remaining.md");
             const code = require("../fixtures/remaining");
-            const output = formatter(code);
+            const output = formatter(code, { color: false });
             assert.equal(
                 output,
                 `
