@@ -26,7 +26,7 @@ describe("formatter:compact", function() {
         ];
 
         it("should return nothing", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(result, "");
         });
     });
@@ -48,13 +48,13 @@ describe("formatter:compact", function() {
         ];
 
         it("should return a string in the format filename: line x, col y, Error - z for errors", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
         });
 
         it("should return a string in the format filename: line x, col y, Warning - z for warnings", function() {
             code[0].messages[0].severity = 1;
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(result, "foo.js: line 5, col 10, Warning - Unexpected foo. (foo)\n\n1 problem");
         });
     });
@@ -76,7 +76,7 @@ describe("formatter:compact", function() {
         ];
 
         it("should return a string in the format filename: line x, col y, Error - z", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(result, "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\n\n1 problem");
         });
     });
@@ -105,7 +105,7 @@ describe("formatter:compact", function() {
         ];
 
         it("should return a string with multiple entries", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nfoo.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
@@ -142,7 +142,7 @@ describe("formatter:compact", function() {
         ];
 
         it("should return a string with multiple entries", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 "foo.js: line 5, col 10, Error - Unexpected foo. (foo)\nbar.js: line 6, col 11, Warning - Unexpected bar. (bar)\n\n2 problems"
@@ -164,7 +164,7 @@ describe("formatter:compact", function() {
         ];
 
         it("should return a string without line and column", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(result, "foo.js: line 0, col 0, Error - Couldn't find foo.js.\n\n1 problem");
         });
     });

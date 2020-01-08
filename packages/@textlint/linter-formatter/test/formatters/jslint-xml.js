@@ -35,7 +35,7 @@ describe("formatter:jslint-xml", function() {
         ];
 
         it("should return a string in JSLint XML format with 1 issue in 1 file", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 '<?xml version="1.0" encoding="utf-8"?><jslint><file name="foo.js"><issue line="5" char="10" evidence="" reason="Unexpected foo. (foo)" /></file></jslint>'
@@ -61,7 +61,7 @@ describe("formatter:jslint-xml", function() {
         ];
 
         it("should return a string in JSLint XML format with 1 issue in 1 file", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 '<?xml version="1.0" encoding="utf-8"?><jslint><file name="foo.js"><issue line="5" char="10" evidence="" reason="Unexpected foo. (foo)" /></file></jslint>'
@@ -95,7 +95,7 @@ describe("formatter:jslint-xml", function() {
         ];
 
         it("should return a string in JSLint XML format with 2 issues in 1 file", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 '<?xml version="1.0" encoding="utf-8"?><jslint><file name="foo.js"><issue line="5" char="10" evidence="" reason="Unexpected foo. (foo)" /><issue line="6" char="11" evidence="" reason="Unexpected bar. (bar)" /></file></jslint>'
@@ -134,7 +134,7 @@ describe("formatter:jslint-xml", function() {
         ];
 
         it("should return a string in JSLint XML format with 2 issues in 2 files", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 '<?xml version="1.0" encoding="utf-8"?><jslint><file name="foo.js"><issue line="5" char="10" evidence="" reason="Unexpected foo. (foo)" /></file><file name="bar.js"><issue line="6" char="11" evidence="" reason="Unexpected bar. (bar)" /></file></jslint>'
@@ -160,7 +160,7 @@ describe("formatter:jslint-xml", function() {
         ];
 
         it("should return a string in JSLint XML format with 1 issue in 1 file", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 '<?xml version="1.0" encoding="utf-8"?><jslint><file name="foo.js"><issue line="5" char="10" evidence="" reason="Unexpected &lt;&amp;&quot;&#39;&gt; foo. (foo)" /></file></jslint>'
@@ -185,7 +185,7 @@ describe("formatter:jslint-xml", function() {
         ];
 
         it("should return a string in JSLint XML format with 1 issue in 1 file", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 '<?xml version="1.0" encoding="utf-8"?><jslint><file name="foo.js"><issue line="5" char="10" evidence="" reason="Unexpected foo. (foo)" /></file></jslint>'
@@ -208,7 +208,7 @@ describe("formatter:jslint-xml", function() {
         ];
 
         it("should return a string in JSLint XML format with 1 issue in 1 file", function() {
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(
                 result,
                 '<?xml version="1.0" encoding="utf-8"?><jslint><file name="foo.js"><issue line="5" char="10" evidence="" reason="" /></file></jslint>'

@@ -64,10 +64,10 @@ describe("formatter:stylish", function() {
         ];
 
         it("should not return message", function() {
-            const result = formatter(code);
-            assert.equal(result, "");
-            assert.equal(chalkStub.yellow.bold.callCount, 0);
-            assert.equal(chalkStub.red.bold.callCount, 0);
+            const result = formatter(code, { color: false });
+            assert.strictEqual(result, "");
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
+            assert.strictEqual(chalkStub.red.bold.callCount, 0);
         });
     });
 
@@ -88,24 +88,24 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string in the correct format for errors", function() {
-            const result = formatter(code);
-            assert.equal(
+            const result = formatter(code, { color: false });
+            assert.strictEqual(
                 result,
                 "\nfoo.js\n  5:10  error  Unexpected foo  foo\n\n\u2716 1 problem (1 error, 0 warnings)\n"
             );
-            assert.equal(chalkStub.yellow.bold.callCount, 0);
-            assert.equal(chalkStub.red.bold.callCount, 1);
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
+            assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
 
         it("should return a string in the correct format for warnings", function() {
             code[0].messages[0].severity = 1;
-            const result = formatter(code);
-            assert.equal(
+            const result = formatter(code, { color: false });
+            assert.strictEqual(
                 result,
                 "\nfoo.js\n  5:10  warning  Unexpected foo  foo\n\n\u2716 1 problem (0 errors, 1 warning)\n"
             );
-            assert.equal(chalkStub.yellow.bold.callCount, 1);
-            assert.equal(chalkStub.red.bold.callCount, 0);
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 1);
+            assert.strictEqual(chalkStub.red.bold.callCount, 0);
         });
     });
 
@@ -126,13 +126,13 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string in the correct format", function() {
-            const result = formatter(code);
-            assert.equal(
+            const result = formatter(code, { color: false });
+            assert.strictEqual(
                 result,
                 "\nfoo.js\n  5:10  error  Unexpected foo  foo\n\n\u2716 1 problem (1 error, 0 warnings)\n"
             );
-            assert.equal(chalkStub.yellow.bold.callCount, 0);
-            assert.equal(chalkStub.red.bold.callCount, 1);
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
+            assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
     });
 
@@ -160,13 +160,13 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string with multiple entries", function() {
-            const result = formatter(code);
-            assert.equal(
+            const result = formatter(code, { color: false });
+            assert.strictEqual(
                 result,
                 "\nfoo.js\n  5:10  error    Unexpected foo  foo\n  6:11  warning  Unexpected bar  bar\n\n\u2716 2 problems (1 error, 1 warning)\n"
             );
-            assert.equal(chalkStub.yellow.bold.callCount, 0);
-            assert.equal(chalkStub.red.bold.callCount, 1);
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
+            assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
     });
 
@@ -199,13 +199,13 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string with multiple entries", function() {
-            const result = formatter(code);
-            assert.equal(
+            const result = formatter(code, { color: false });
+            assert.strictEqual(
                 result,
                 "\nfoo.js\n  5:10  error  Unexpected foo  foo\n\nbar.js\n  6:11  warning  Unexpected bar  bar\n\n\u2716 2 problems (1 error, 1 warning)\n"
             );
-            assert.equal(chalkStub.yellow.bold.callCount, 0);
-            assert.equal(chalkStub.red.bold.callCount, 1);
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
+            assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
     });
 
@@ -246,8 +246,8 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string with multiple entries", function() {
-            const result = formatter(code);
-            assert.equal(
+            const result = formatter(code, { color: false });
+            assert.strictEqual(
                 result,
                 "\nfoo.js\n  " +
                     "5:10  \u2713 error  Unexpected foo  foo\n\nbar.js\n  " +
@@ -256,8 +256,8 @@ describe("formatter:stylish", function() {
                     "\u2713 2 fixable problems.\n" +
                     "Try to run: $ textlint --fix [file]\n"
             );
-            assert.equal(chalkStub.yellow.bold.callCount, 0);
-            assert.equal(chalkStub.red.bold.callCount, 1);
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
+            assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
     });
     describe("when passed one file not found message", function() {
@@ -274,13 +274,13 @@ describe("formatter:stylish", function() {
         ];
 
         it("should return a string without line and column", function() {
-            const result = formatter(code);
-            assert.equal(
+            const result = formatter(code, { color: false });
+            assert.strictEqual(
                 result,
                 "\nfoo.js\n  0:0  error  Couldn't find foo.js\n\n\u2716 1 problem (1 error, 0 warnings)\n"
             );
-            assert.equal(chalkStub.yellow.bold.callCount, 0);
-            assert.equal(chalkStub.red.bold.callCount, 1);
+            assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
+            assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
     });
 });

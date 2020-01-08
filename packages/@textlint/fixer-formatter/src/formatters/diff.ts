@@ -1,9 +1,10 @@
 "use strict";
+import { TextlintFixResult } from "@textlint/types";
 const fs = require("fs");
 const isFile = require("is-file");
 const jsdiff = require("diff");
 const chalk = require("chalk");
-import { TextlintFixResult } from "@textlint/types";
+const stripAnsi = require("strip-ansi");
 /**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.
@@ -20,6 +21,7 @@ function isModified(part: any) {
     }
     return typeof part === "object" && (part.removed || part.added);
 }
+
 function addMarkEachLine(mark: string, text: any) {
     if (text.length === 0) {
         return "\n";
@@ -35,7 +37,7 @@ function addMarkEachLine(mark: string, text: any) {
 
 export default function(results: TextlintFixResult[], options: any) {
     // default: true
-    chalk.enabled = options.color !== undefined ? options.color : true;
+    const useColor = options.color !== undefined ? options.color : true;
     let output = "\n";
     let totalFixed = 0;
     let errors = 0;
@@ -129,5 +131,9 @@ export default function(results: TextlintFixResult[], options: any) {
         );
     }
 
-    return totalFixed > 0 ? output : "";
+    const finalOutput = totalFixed > 0 ? output : "";
+    if (!useColor) {
+        return stripAnsi(finalOutput);
+    }
+    return finalOutput;
 }

@@ -16,7 +16,8 @@ describe("@textlint/linter-formatter-test", function() {
         context("formatter", function() {
             it("should return output text", function() {
                 const formatter = createFormatter({
-                    formatterName: "stylish"
+                    formatterName: "stylish",
+                    color: false
                 });
                 const output = formatter([
                     {
@@ -50,7 +51,8 @@ describe("@textlint/linter-formatter-test", function() {
             ];
             formatterNames.forEach(function(name) {
                 const formatter = createFormatter({
-                    formatterName: name
+                    formatterName: name,
+                    color: false
                 });
                 const ckjFile = path.join(__dirname, "./fixtures", "ckj.md");
                 const output = formatter([

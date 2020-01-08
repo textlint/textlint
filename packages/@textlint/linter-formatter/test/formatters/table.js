@@ -40,7 +40,7 @@ describe("formatter:table", function() {
 
             expectedOutput = expectedOutput.join("\n");
 
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
 
             assert.equal(result, expectedOutput);
         });
@@ -83,7 +83,7 @@ describe("formatter:table", function() {
 
             expectedOutput = expectedOutput.join("\n");
 
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
 
             assert.equal(result, expectedOutput);
         });
@@ -124,7 +124,7 @@ describe("formatter:table", function() {
 
             expectedOutput = expectedOutput.join("\n");
 
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
             assert.equal(result, expectedOutput);
         });
     });
@@ -166,7 +166,7 @@ describe("formatter:table", function() {
 
             expectedOutput = expectedOutput.join("\n");
 
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
 
             assert.equal(result, expectedOutput);
         });
@@ -217,7 +217,7 @@ describe("formatter:table", function() {
 
             expectedOutput = expectedOutput.join("\n");
 
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
 
             assert.equal(result, expectedOutput);
         });
@@ -280,7 +280,7 @@ describe("formatter:table", function() {
 
             expectedOutput = expectedOutput.join("\n");
 
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
 
             assert.equal(result, expectedOutput);
         });
@@ -320,7 +320,7 @@ describe("formatter:table", function() {
 
             expectedOutput = expectedOutput.join("\n");
 
-            const result = formatter(code);
+            const result = formatter(code, { color: false });
 
             assert.equal(result, expectedOutput);
         });
