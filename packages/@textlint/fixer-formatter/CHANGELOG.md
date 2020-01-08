@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.12"></a>
+## [3.1.12](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.1.11...@textlint/fixer-formatter@3.1.12) (2020-01-08)
+
+
+### Tests
+
+* **fixer-formatter:** use strip-ansi for --no-color ([ddc53b2](https://github.com/textlint/textlint/commit/ddc53b2))
+
+
+
+
+
 <a name="3.1.11"></a>
 ## [3.1.11](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.1.9...@textlint/fixer-formatter@3.1.11) (2020-01-07)
 

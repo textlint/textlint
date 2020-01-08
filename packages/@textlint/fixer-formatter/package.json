@@ -1,6 +1,6 @@
 {
   "name": "@textlint/fixer-formatter",
-  "version": "3.1.11",
+  "version": "3.1.12",
   "description": "textlint output formatter for fixer",
   "keywords": [
     "AST",
@@ -41,9 +41,9 @@
     "diff": "^4.0.1",
     "is-file": "^1.0.0",
     "string-width": "^1.0.1",
+    "strip-ansi": "^6.0.0",
     "text-table": "^0.2.0",
-    "try-resolve": "^1.0.1",
-    "strip-ansi": "^6.0.0"
+    "try-resolve": "^1.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.6",
