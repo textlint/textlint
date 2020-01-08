@@ -5,7 +5,7 @@
 
 "use strict";
 import { TextlintResult } from "@textlint/types";
-import { FormatterOptions } from "./FormatterOptions";
+import { FormatterOptions } from "../FormatterOptions";
 
 const chalk = require("chalk");
 const table = require("text-table");

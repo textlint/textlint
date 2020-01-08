@@ -4,7 +4,7 @@
 // Author : azer
 "use strict";
 import { TextlintMessage, TextlintResult } from "@textlint/types";
-import { FormatterOptions } from "./FormatterOptions";
+import { FormatterOptions } from "../FormatterOptions";
 
 const format = require("@azu/format-text");
 const chalk = require("chalk");
