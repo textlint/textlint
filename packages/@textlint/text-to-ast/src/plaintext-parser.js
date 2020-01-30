@@ -104,7 +104,7 @@ function parse(text) {
     // it should be alternately Str and Break
     let startIndex = 0;
     const lastLineIndex = textLineByLine.length - 1;
-    const isLasEmptytLine = (line, index) => {
+    const isLastEmptyLine = (line, index) => {
         return index === lastLineIndex && line === "";
     };
     const isEmptyLine = (line, index) => {
@@ -112,7 +112,7 @@ function parse(text) {
     };
     const children = textLineByLine.reduce(function(result, currentLine, index) {
         const lineNumber = index + 1;
-        if (isLasEmptytLine(currentLine, index)) {
+        if (isLastEmptyLine(currentLine, index)) {
             return result;
         }
         // \n

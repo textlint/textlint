@@ -5,7 +5,7 @@ module.exports = function computeLocationOfNode(node) {
     if (!(node.start_line && node.start_column && node.raw)) {
         return node;
     }
-    const LINEBREAKE_MARK = "\n";
+    const LINEBREAKE_MARK = /\r?\n/g;
     const lines = node.raw.split(LINEBREAKE_MARK);
     const addingColumn = lines.length - 1;
     const lastLine = lines[addingColumn];
