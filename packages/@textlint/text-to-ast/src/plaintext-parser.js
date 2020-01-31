@@ -164,6 +164,24 @@ function parse(text) {
         return result;
     }, []);
     const lastLine = textLineByLine[textLineByLine.length - 1];
+    if (lastLine === undefined) {
+        return {
+            type: Syntax.Document,
+            raw: "",
+            range: [0, 0],
+            loc: {
+                start: {
+                    line: 1,
+                    column: 0
+                },
+                end: {
+                    line: 1,
+                    column: 0
+                }
+            },
+            children
+        };
+    }
     return {
         type: Syntax.Document,
         raw: text,
