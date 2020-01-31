@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
 const Syntax = require("./plaintext-syntax");
-const matchAll = require("string.prototype.matchall");
 
 function parseLine(lineText, lineNumber, startIndex) {
     // Inline Node have `value`. It it not part of TxtNode.
@@ -100,7 +99,6 @@ function createParagraph(nodes) {
 
 function splitTextByLine(text) {
     const LINEBREAKE_MARK_PATTERN = /\r?\n/g;
-    const matches = matchAll(text, LINEBREAKE_MARK_PATTERN);
     const results = [];
     let match = null;
     let prevMatchIndex = 0;
