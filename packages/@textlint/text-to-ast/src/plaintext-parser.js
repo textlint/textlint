@@ -103,7 +103,7 @@ function splitTextByLine(text) {
     let match = null;
     let prevMatchIndex = 0;
     while ((match = LINEBREAKE_MARK_PATTERN.exec(text)) !== null) {
-        const slicedText = text.slice(prevMatchIndex, prevMatchIndex + match.index);
+        const slicedText = text.slice(prevMatchIndex, match.index);
         results.push({
             text: prevMatchIndex === match.index ? "" : slicedText,
             lineBreak: match[0]
