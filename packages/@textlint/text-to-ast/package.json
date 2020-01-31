@@ -35,7 +35,8 @@
     "watch": "babel src --out-dir lib --watch --source-maps"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^4.2.5"
+    "@textlint/ast-node-types": "^4.2.5",
+    "string.prototype.matchall": "^4.0.2"
   },
   "devDependencies": {
     "@textlint/ast-tester": "^2.1.6",

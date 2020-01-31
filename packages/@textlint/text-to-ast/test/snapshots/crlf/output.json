@@ -1,0 +1,194 @@
+{
+    "type": "Document",
+    "raw": "TEXT\r\nTHIS TEXT IS CRLF line break\r\nCRLF!!!!\r\n",
+    "range": [
+        0,
+        46
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 4,
+            "column": 0
+        }
+    },
+    "children": [
+        {
+            "type": "Paragraph",
+            "raw": "TEXT",
+            "range": [
+                0,
+                4
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 4
+                }
+            },
+            "children": [
+                {
+                    "type": "Str",
+                    "raw": "TEXT",
+                    "value": "TEXT",
+                    "range": [
+                        0,
+                        4
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 4
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Break",
+            "raw": "\r\n",
+            "value": "\r\n",
+            "range": [
+                4,
+                6
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 4
+                },
+                "end": {
+                    "line": 1,
+                    "column": 6
+                }
+            }
+        },
+        {
+            "type": "Paragraph",
+            "raw": "THIS TEXT IS CRLF line break\r\nCRLF",
+            "range": [
+                6,
+                40
+            ],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 34
+                }
+            },
+            "children": [
+                {
+                    "type": "Str",
+                    "raw": "THIS TEXT IS CRLF line break\r\nCRLF",
+                    "value": "THIS TEXT IS CRLF line break\r\nCRLF",
+                    "range": [
+                        6,
+                        40
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 34
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Break",
+            "raw": "\r\n",
+            "value": "\r\n",
+            "range": [
+                40,
+                42
+            ],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 34
+                },
+                "end": {
+                    "line": 2,
+                    "column": 36
+                }
+            }
+        },
+        {
+            "type": "Paragraph",
+            "raw": "CRLF!!!!\r\n",
+            "range": [
+                42,
+                52
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 10
+                }
+            },
+            "children": [
+                {
+                    "type": "Str",
+                    "raw": "CRLF!!!!\r\n",
+                    "value": "CRLF!!!!\r\n",
+                    "range": [
+                        42,
+                        52
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "Break",
+            "raw": "\r\n",
+            "value": "\r\n",
+            "range": [
+                52,
+                54
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 10
+                },
+                "end": {
+                    "line": 3,
+                    "column": 12
+                }
+            }
+        }
+    ]
+}
