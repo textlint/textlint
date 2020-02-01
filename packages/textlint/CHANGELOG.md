@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.6.2"></a>
+## [11.6.2](https://github.com/textlint/textlint/compare/textlint@11.6.1...textlint@11.6.2) (2020-02-01)
+
+**Note:** Version bump only for package textlint
+
+
+
+
+
 <a name="11.6.1"></a>
 ## [11.6.1](https://github.com/textlint/textlint/compare/textlint@11.6.0...textlint@11.6.1) (2020-01-08)
 

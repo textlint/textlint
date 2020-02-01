@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-text",
-  "version": "4.1.11",
+  "version": "4.1.12",
   "description": "plain text plugin for textlint",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text/",
   "bugs": {
@@ -29,7 +29,7 @@
     "watch": "babel src --out-dir lib --watch --source-maps"
   },
   "dependencies": {
-    "@textlint/text-to-ast": "^3.1.6"
+    "@textlint/text-to-ast": "^3.1.7"
   },
   "devDependencies": {
     "@textlint/kernel": "^3.2.0",
