@@ -39,7 +39,7 @@ Please install following development prerequisites. You also need a [GitHub](htt
 
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/) -- we tend to use latest stable Node.js although textlint supports >= 6.0.0
-- [Yarn](https://yarnpkg.com/en/) -- textlint supports [npm](https://www.npmjs.com/get-npm) >= 2.0.0, but for development purpose, we chose Yarn as package manager
+- [Yarn](https://legacy.yarnpkg.com/en/) -- textlint supports [npm](https://www.npmjs.com/get-npm) >= 2.0.0, but for development purpose, we chose Yarn as package manager
 - Text editor
 - Terminal emulator
 

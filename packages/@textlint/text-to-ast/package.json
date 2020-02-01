@@ -31,6 +31,8 @@
     "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
     "clean": "rimraf lib/",
     "prepublish": "npm run --if-present build",
+    "crlf": "eolConverter crlf test/snapshots/crlf/input.txt",
+    "pretest": "npm run crlf",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "babel src --out-dir lib --watch --source-maps"
   },
@@ -45,6 +47,7 @@
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.24.1",
     "cross-env": "^6.0.3",
+    "eol-converter-cli": "^1.0.8",
     "mocha": "^6.2.1",
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.0"
