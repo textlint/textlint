@@ -1,6 +1,6 @@
 {
   "name": "textlint",
-  "version": "11.6.1",
+  "version": "11.6.2",
   "description": "The pluggable linting tool for text and markdown.",
   "keywords": [
     "AST",
@@ -59,7 +59,7 @@
     "@textlint/linter-formatter": "^3.1.11",
     "@textlint/module-interop": "^1.0.2",
     "@textlint/textlint-plugin-markdown": "^5.1.11",
-    "@textlint/textlint-plugin-text": "^4.1.11",
+    "@textlint/textlint-plugin-text": "^4.1.12",
     "@textlint/types": "^1.3.0",
     "@textlint/utils": "^1.0.3",
     "@types/bluebird": "^3.5.18",

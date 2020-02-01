@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.7"></a>
+## [3.1.7](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.1.6...@textlint/text-to-ast@3.1.7) (2020-02-01)
+
+
+### Bug Fixes
+
+* **text-to-ast:** support CRLF line break ([dec1b39](https://github.com/textlint/textlint/commit/dec1b39))
+
+
+### Chores
+
+* **text-to-ast:** force convert to crlf ([14673ed](https://github.com/textlint/textlint/commit/14673ed))
+* remove unused modules ([6c8bb3f](https://github.com/textlint/textlint/commit/6c8bb3f))
+* **deps:** remove string.prototype.matchall ([9aa5de3](https://github.com/textlint/textlint/commit/9aa5de3))
+
+
+### Tests
+
+* **text-to-ast:** add \r\n test case ([c853e6f](https://github.com/textlint/textlint/commit/c853e6f))
+* **text-to-ast:** support empty text ([6195e85](https://github.com/textlint/textlint/commit/6195e85))
+
+
+
+
+
 <a name="3.1.6"></a>
 ## [3.1.6](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.1.5...@textlint/text-to-ast@3.1.6) (2019-10-14)
 
