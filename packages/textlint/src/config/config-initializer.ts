@@ -2,7 +2,6 @@
 "use strict";
 import { TextlintPackageNamePrefix } from "@textlint/utils";
 
-const Promise = require("bluebird");
 const fs = require("fs");
 const path = require("path");
 const isFile = require("is-file");

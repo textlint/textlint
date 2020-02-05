@@ -2,7 +2,6 @@ import { AbstractBacker } from "./execute-file-backers/abstruct-backer";
 import { TextlintResult } from "@textlint/kernel";
 // MIT © 2016 azu
 "use strict";
-const Promise = require("bluebird");
 
 export class ExecuteFileBackerManager {
     _backers: AbstractBacker[];

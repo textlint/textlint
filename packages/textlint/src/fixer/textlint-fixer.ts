@@ -1,9 +1,8 @@
-import Promise = require("bluebird");
 import { TextlintFixResult } from "@textlint/kernel";
 
 const fs = require("fs");
 
-function overWriteResult(result: TextlintFixResult) {
+function overWriteResult(result: TextlintFixResult): Promise<TextlintFixResult> {
     return new Promise((resolve, reject) => {
         const targetFilePath = result.filePath;
         const output = result.output;
