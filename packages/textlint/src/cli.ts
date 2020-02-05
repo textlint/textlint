@@ -3,7 +3,6 @@
 import { TextlintFixResult } from "@textlint/kernel";
 import { throwWithoutExperimental } from "@textlint/feature-flag";
 
-const Promise = require("bluebird");
 const fs = require("fs");
 const path = require("path");
 const debug = require("debug")("textlint:cli");
