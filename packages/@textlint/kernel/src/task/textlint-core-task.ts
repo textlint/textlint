@@ -28,7 +28,6 @@ import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";
 const TraverseController = require("@textlint/ast-traverse").Controller;
 const traverseController = new TraverseController();
 const debug = require("debug")("textlint:core-task");
-import Bluebird = require("bluebird");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}
 
@@ -148,7 +147,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
      */
     startTraverser(sourceCode: TextlintSourceCode) {
         this.emit(TextLintCoreTask.events.start);
-        const promiseQueue: Array<Bluebird<Array<void>>> = [];
+        const promiseQueue: Array<Promise<Array<void>>> = [];
         const ruleTypeEmitter = this.ruleTypeEmitter;
         traverseController.traverse(sourceCode.ast, {
             enter(node: AnyTxtNode, parent?: AnyTxtNode) {
@@ -167,7 +166,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 }
             }
         });
-        Bluebird.all(promiseQueue)
+        Promise.all(promiseQueue)
             .then(() => {
                 this.emit(TextLintCoreTask.events.complete);
             })

@@ -3,7 +3,6 @@
 // https://github.com/59naga/carrack
 "use strict";
 import { EventEmitter } from "events";
-import Bluebird = require("bluebird");
 
 export class PromiseEventEmitter {
     private events: EventEmitter;
@@ -21,13 +20,13 @@ export class PromiseEventEmitter {
         return this.events.on(event, listener);
     }
 
-    emit(event: string, ...args: Array<any>): Bluebird<Array<void>> {
-        const promises: Array<Bluebird<void>> = [];
+    emit(event: string, ...args: Array<any>): Promise<Array<void>> {
+        const promises: Array<Promise<void>> = [];
 
         this.events.listeners(event).forEach(listener => {
             promises.push(listener(...args));
         });
 
-        return Bluebird.all(promises);
+        return Promise.all(promises);
     }
 }
