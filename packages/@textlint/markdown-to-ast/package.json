@@ -25,6 +25,7 @@
     "clean": "rimraf lib/",
     "example:build": "browserify example/js/index.js -o example/app/app.js",
     "prepublish": "npm run --if-present build",
+    "updateSnapshot": "npm run build && node tools/update-fixtures.js",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "babel src --out-dir lib --watch --source-maps"
   },
