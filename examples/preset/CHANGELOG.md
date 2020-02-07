@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.15"></a>
+## [2.1.15](https://github.com/textlint/textlint/compare/textlint-example-preset@2.1.14...textlint-example-preset@2.1.15) (2020-02-07)
+
+**Note:** Version bump only for package textlint-example-preset
+
+
+
+
+
 <a name="2.1.14"></a>
 ## [2.1.14](https://github.com/textlint/textlint/compare/textlint-example-preset@2.1.13...textlint-example-preset@2.1.14) (2020-02-01)
 

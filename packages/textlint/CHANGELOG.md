@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.6.3"></a>
+## [11.6.3](https://github.com/textlint/textlint/compare/textlint@11.6.2...textlint@11.6.3) (2020-02-07)
+
+
+### Code Refactoring
+
+* **textlint:** use promise instead of bluebird ([218ce35](https://github.com/textlint/textlint/commit/218ce35))
+
+
+
+
+
 <a name="11.6.2"></a>
 ## [11.6.2](https://github.com/textlint/textlint/compare/textlint@11.6.1...textlint@11.6.2) (2020-02-01)
 

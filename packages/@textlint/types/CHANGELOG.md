@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/textlint/textlint/compare/@textlint/types@1.3.0...@textlint/types@1.3.1) (2020-02-07)
+
+**Note:** Version bump only for package @textlint/types
+
+
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/textlint/textlint/compare/@textlint/types@1.2.2...@textlint/types@1.3.0) (2020-01-07)
 

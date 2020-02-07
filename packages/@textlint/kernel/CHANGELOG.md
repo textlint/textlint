@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.1"></a>
+## [3.2.1](https://github.com/textlint/textlint/compare/@textlint/kernel@3.2.0...@textlint/kernel@3.2.1) (2020-02-07)
+
+
+### Code Refactoring
+
+* **kernel:** use promise instead of bluebird ([c5eb768](https://github.com/textlint/textlint/commit/c5eb768))
+
+
+
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/textlint/textlint/compare/@textlint/kernel@3.1.9...@textlint/kernel@3.2.0) (2020-01-07)
 

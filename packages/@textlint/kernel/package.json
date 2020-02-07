@@ -1,6 +1,6 @@
 {
   "name": "@textlint/kernel",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "textlint kernel is core logic by pure JavaScript.",
   "keywords": [
     "textlint"
@@ -34,9 +34,9 @@
   "dependencies": {
     "@textlint/ast-node-types": "^4.2.5",
     "@textlint/ast-tester": "^2.1.6",
-    "@textlint/ast-traverse": "^2.1.6",
+    "@textlint/ast-traverse": "^2.1.7",
     "@textlint/feature-flag": "^3.1.6",
-    "@textlint/types": "^1.3.0",
+    "@textlint/types": "^1.3.1",
     "@textlint/utils": "^1.0.3",
     "debug": "^4.1.1",
     "deep-equal": "^1.1.0",
@@ -44,7 +44,7 @@
     "structured-source": "^3.0.2"
   },
   "devDependencies": {
-    "@textlint/markdown-to-ast": "^6.1.6",
+    "@textlint/markdown-to-ast": "^6.1.7",
     "@types/deep-equal": "^1.0.1",
     "@types/mocha": "^5.2.6",
     "@types/node": "^12.7.12",
