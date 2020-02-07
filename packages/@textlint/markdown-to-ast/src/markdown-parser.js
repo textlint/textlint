@@ -34,8 +34,8 @@ function parse(text) {
             if (node.position) {
                 const position = node.position;
                 const positionCompensated = {
-                    start: { line: position.start.line, column: position.start.column - 1 },
-                    end: { line: position.end.line, column: position.end.column - 1 }
+                    start: { line: position.start.line, column: Math.max(position.start.column - 1, 0) },
+                    end: { line: position.end.line, column: Math.max(position.end.column - 1, 0) }
                 };
                 const range = src.locationToRange(positionCompensated);
                 node.loc = positionCompensated;
@@ -53,6 +53,7 @@ function parse(text) {
     });
     return ast;
 }
+
 module.exports = {
     parse,
     Syntax: ASTNodeTypes
