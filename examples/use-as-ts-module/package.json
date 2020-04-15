@@ -7,7 +7,7 @@
   "main": "lib/examples/use-as-ts-module/src/index.js",
   "scripts": {
     "prebuild": "npm-run-all clean",
-    "build": "cross-env NODE_ENV=production tsc -p .",
+    "build": "cross-env NODE_ENV=production tsc -b",
     "clean": "rimraf lib/",
     "pretest": "npm-run-all build",
     "test": "node lib/examples/use-as-ts-module/src/index.js fixtures/success.md",

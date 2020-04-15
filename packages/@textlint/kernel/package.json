@@ -15,8 +15,8 @@
     "bin/",
     "lib/"
   ],
-  "main": "lib/kernel/src/index.js",
-  "typings": "lib/kernel/src/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "directories": {
     "test": "test"
   },
@@ -25,9 +25,8 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "npm-run-all build:src",
-    "build:src": "cross-env NODE_ENV=production tsc -p .",
-    "clean": "rimraf out/ lib/ es_modules/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\""
   },

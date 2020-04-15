@@ -1,4 +1,4 @@
-import { ASTNodeTypes, TxtNode, TxtParentNode, TxtTextNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes, TxtNode, TxtParentNode, TxtTextNode } from "./index";
 /**
  * Return TxtNode type of ASTNodeTypes | string
  *

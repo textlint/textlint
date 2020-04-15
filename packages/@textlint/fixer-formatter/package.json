@@ -21,15 +21,15 @@
     "lib/fixer-formatter",
     "src/"
   ],
-  "main": "lib/fixer-formatter/src/index.js",
-  "types": "lib/fixer-formatter/src/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
-    "clean": "rimraf lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run build",
     "test": "mocha \"test/**/*.{js,ts}\""
   },

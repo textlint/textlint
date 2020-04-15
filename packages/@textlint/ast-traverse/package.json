@@ -15,8 +15,8 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/ast-traverse/src/index.js",
-  "types": "./lib/ast-traverse/src/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "directories": {
     "test": "test/"
   },
@@ -25,11 +25,11 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
-    "clean": "rimraf lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
-    "watch": "tsc -p . --watch"
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.2.5"

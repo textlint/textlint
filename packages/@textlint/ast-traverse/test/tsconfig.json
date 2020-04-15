@@ -6,6 +6,6 @@
     "outDir": "../out"
   },
   "include": [
-    "**/*"
+    "src/**/*"
   ]
 }

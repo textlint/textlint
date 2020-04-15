@@ -20,12 +20,12 @@
   "author": "azu",
   "files": [
     "bin/",
-    "lib/textlint/src",
+    "lib/src",
     "src/",
     "typings/"
   ],
-  "main": "lib/textlint/src/index.js",
-  "types": "lib/textlint/src/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "textlint": "./bin/textlint.js"
   },
@@ -40,12 +40,12 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
-    "clean": "rimraf out/ lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run build",
     "test": "npm-run-all test:unit",
     "test:unit": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "tsc -p . --watch"
+    "watch": "tsc -b --watch"
   },
   "publishConfig": {
     "access": "public"

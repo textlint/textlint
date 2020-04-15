@@ -6,6 +6,6 @@
         "declaration": false
     },
     "include": [
-        "**/*"
+        "src/**/*"
     ]
 }
