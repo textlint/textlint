@@ -32,7 +32,6 @@
     "textlint": "^11.6.3",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-eslint": "^3.2.1",
-    "textlint-rule-no-dead-link": "^4.6.1",
     "textlint-rule-prh": "^5.2.0",
     "textlint-rule-rousseau": "^1.4.6",
     "textlint-rule-unexpanded-acronym": "^1.2.3"
