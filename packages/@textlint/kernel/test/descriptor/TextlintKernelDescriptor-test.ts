@@ -52,7 +52,10 @@ describe("TextlintKernelDescriptor", () => {
             });
             // available extensions
             assert.deepStrictEqual(descriptors.plugin.availableExtensions, [".md"]);
-            assert.deepStrictEqual(descriptors.rule.descriptors.map(rule => rule.id), ["lintable"]);
+            assert.deepStrictEqual(
+                descriptors.rule.descriptors.map((rule) => rule.id),
+                ["lintable"]
+            );
             const mergedDescriptors = descriptors.shallowMerge({
                 plugins: [
                     {
@@ -68,7 +71,10 @@ describe("TextlintKernelDescriptor", () => {
                 ]
             });
             assert.deepStrictEqual(mergedDescriptors.plugin.availableExtensions, [".txt"]);
-            assert.deepStrictEqual(mergedDescriptors.rule.descriptors.map(rule => rule.id), ["fixable"]);
+            assert.deepStrictEqual(
+                mergedDescriptors.rule.descriptors.map((rule) => rule.id),
+                ["fixable"]
+            );
         });
     });
 });

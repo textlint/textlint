@@ -41,7 +41,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let summaryColor = "yellow";
     let greenColor = "green";
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         const messages = result.messages;
 
         if (messages.length === 0) {
@@ -53,7 +53,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
 
         output +=
             table(
-                messages.map(function(message) {
+                messages.map(function (message) {
                     let messageType;
                     // fixable
                     const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
@@ -80,11 +80,11 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                 }),
                 {
                     align: ["", "r", "l"],
-                    stringLength: function(str: string) {
+                    stringLength: function (str: string) {
                         const lines = chalk.stripColor(str).split("\n");
                         return Math.max.apply(
                             null,
-                            lines.map(function(line: string) {
+                            lines.map(function (line: string) {
                                 return widthOfString(line);
                             })
                         );
@@ -92,8 +92,8 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                 }
             )
                 .split("\n")
-                .map(function(el: string) {
-                    return el.replace(/(\d+)\s+(\d+)/, function(_, p1, p2) {
+                .map(function (el: string) {
+                    return el.replace(/(\d+)\s+(\d+)/, function (_, p1, p2) {
                         return chalk.gray(p1 + ":" + p2);
                     });
                 })

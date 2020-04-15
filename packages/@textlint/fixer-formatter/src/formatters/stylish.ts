@@ -16,7 +16,7 @@ function pluralize(word: string, count: number): string {
     return count === 1 ? word : `${word}s`;
 }
 
-export default function(results: TextlintFixResult[], options: any) {
+export default function (results: TextlintFixResult[], options: any) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -25,7 +25,7 @@ export default function(results: TextlintFixResult[], options: any) {
     const summaryColor = "yellow";
     const greenColor = "green";
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         if (!result.applyingMessages || !result.remainingMessages) {
             return;
         }
@@ -39,7 +39,7 @@ export default function(results: TextlintFixResult[], options: any) {
         output += `${chalk.underline(result.filePath)}\n`;
 
         output += `${table(
-            messages.map(function(message) {
+            messages.map(function (message) {
                 // fixable
                 totalFixed++;
                 const messageType = chalk[greenColor].bold("\u2714 ");
@@ -59,7 +59,7 @@ export default function(results: TextlintFixResult[], options: any) {
                     const lines = chalk.stripColor(str).split("\n");
                     return Math.max.apply(
                         null,
-                        lines.map(function(line: string) {
+                        lines.map(function (line: string) {
                             return widthOfString(line);
                         })
                     );
@@ -67,8 +67,8 @@ export default function(results: TextlintFixResult[], options: any) {
             }
         )
             .split("\n")
-            .map(function(el: string) {
-                return el.replace(/(\d+)\s+(\d+)/, function(_m, p1, p2) {
+            .map(function (el: string) {
+                return el.replace(/(\d+)\s+(\d+)/, function (_m, p1, p2) {
                     return chalk.gray(`${p1}:${p2}`);
                 });
             })

@@ -12,14 +12,14 @@ const globalObject: any = global;
 const describe =
     typeof globalObject.describe === "function"
         ? globalObject.describe
-        : function(this: any, _text: string, method: () => any) {
+        : function (this: any, _text: string, method: () => any) {
               return method.apply(this);
           };
 
 const it =
     typeof globalObject.it === "function"
         ? globalObject.it
-        : function(this: any, _text: string, method: () => any) {
+        : function (this: any, _text: string, method: () => any) {
               return method.apply(this);
           };
 
@@ -49,13 +49,13 @@ function assertTestConfig(testConfig: TestConfig): any {
     );
     assert.ok(Array.isArray(testConfig.rules), "TestConfig.rules should be an array");
     assert.ok(testConfig.rules.length > 0, "TestConfig.rules should have at least one rule");
-    testConfig.rules.forEach(rule => {
+    testConfig.rules.forEach((rule) => {
         assert.ok(rule.hasOwnProperty("ruleId"), "ruleId property not found");
         assert.ok(rule.hasOwnProperty("rule"), "rule property not found");
     });
     if (typeof testConfig.plugins !== "undefined") {
         assert.ok(Array.isArray(testConfig.plugins), "TestConfig.plugins should be an array");
-        testConfig.plugins.forEach(plugin => {
+        testConfig.plugins.forEach((plugin) => {
             assert.ok(plugin.hasOwnProperty("pluginId"), "pluginId property not found");
             assert.ok(plugin.hasOwnProperty("plugin"), "plugin property not found");
         });
@@ -127,7 +127,7 @@ function createTestRuleSet(testConfigRules: TestConfigRule[]): TestRuleSet {
         rules: {},
         rulesOptions: {}
     };
-    testConfigRules.forEach(rule => {
+    testConfigRules.forEach((rule) => {
         const ruleName = rule.ruleId;
         const ruleOptions = rule.options;
         testRuleSet.rules[ruleName] = rule.rule;
@@ -141,7 +141,7 @@ function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginS
         plugins: {},
         pluginOptions: {}
     };
-    testConfigPlugins.forEach(plugin => {
+    testConfigPlugins.forEach((plugin) => {
         const pluginName = plugin.pluginId;
         const pluginOptions = plugin.options;
         testPluginSet.plugins[pluginName] = plugin.plugin;
@@ -220,7 +220,7 @@ export class TextLintTester {
         if (invalid.hasOwnProperty("output")) {
             it(`Fixer: ${inputPath || text}`, () => {
                 if (isTestConfig(param)) {
-                    param.rules.forEach(rule => {
+                    param.rules.forEach((rule) => {
                         assertHasFixer(rule.rule, rule.ruleId);
                     });
                 } else {
@@ -234,7 +234,7 @@ export class TextLintTester {
                 } else {
                     throw new Error("Should set `text` or `inputPath`");
                 }
-                return promise.then(result => {
+                return promise.then((result) => {
                     const output = invalid.output;
                     assert.strictEqual(result.output, output);
                 });
@@ -263,7 +263,7 @@ export class TextLintTester {
         if (isTestConfig(param)) {
             assertTestConfig(param);
             if (valid) {
-                valid.forEach(validCase => {
+                valid.forEach((validCase) => {
                     assert.ok(
                         !validCase.hasOwnProperty("options"),
                         "Could not specify options property in valid object when TestConfig was passed. Use TestConfig.rules.options."
@@ -271,7 +271,7 @@ export class TextLintTester {
                 });
             }
             if (invalid) {
-                invalid.forEach(invalidCase => {
+                invalid.forEach((invalidCase) => {
                     assert.ok(
                         !invalidCase.hasOwnProperty("options"),
                         "Could not specify options property in invalid object when TestConfig was passed. Use TestConfig.rules.options."
@@ -281,10 +281,10 @@ export class TextLintTester {
         }
 
         describe(name, () => {
-            invalid.forEach(state => {
+            invalid.forEach((state) => {
                 this.testInvalidPattern(name, param, state);
             });
-            valid.forEach(state => {
+            valid.forEach((state) => {
                 this.testValidPattern(name, param, state);
             });
         });

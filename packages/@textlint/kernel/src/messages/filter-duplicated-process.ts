@@ -21,7 +21,7 @@ const isEqualMessage = (aMessage: TextlintMessage, bMessage: TextlintMessage) =>
 export default function filterDuplicatedMessages(messages: TextlintMessage[] = []) {
     return messages.filter((message, index) => {
         const restMessages = messages.slice(index + 1);
-        return !restMessages.some(restMessage => {
+        return !restMessages.some((restMessage) => {
             return isEqualMessage(message, restMessage);
         });
     });

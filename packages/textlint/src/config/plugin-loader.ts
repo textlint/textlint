@@ -76,7 +76,7 @@ export function getPluginConfig(configFileRaw: { [index: string]: any }): { [ind
 
 export function loadAvailableExtensions(pluginNames: string[] = [], moduleResolver: TextLintModuleResolver) {
     const availableExtensions: string[] = [];
-    pluginNames.forEach(pluginName => {
+    pluginNames.forEach((pluginName) => {
         const pkgPath = moduleResolver.resolvePluginPackageName(pluginName);
         const plugin = moduleInterop(require(pkgPath));
         if (!plugin.hasOwnProperty("Processor")) {

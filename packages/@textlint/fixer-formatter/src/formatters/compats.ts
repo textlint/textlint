@@ -13,11 +13,11 @@ export function format(results: TextlintFixResult[]) {
     let output = "";
     let total = 0;
 
-    results.forEach(result => {
+    results.forEach((result) => {
         const messages = result.applyingMessages;
         total += messages.length;
 
-        messages.forEach(message => {
+        messages.forEach((message) => {
             output += "Fixed✔ ";
             output += `${result.filePath}: `;
             output += `line ${message.line || 0}`;

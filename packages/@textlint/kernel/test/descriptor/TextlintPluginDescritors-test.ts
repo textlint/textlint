@@ -6,16 +6,16 @@ import { createTextlintPluginDescriptors } from "../../src/descriptor/Descriptor
 import { TextlintPluginDescriptor } from "../../src/descriptor/TextlintPluginDescriptor";
 import { createDummyPlugin } from "./helper/dummy-plugin";
 
-describe("TextlintRuleDescriptors", function() {
-    context("when passing undefined", function() {
-        it("should return empty result", function() {
+describe("TextlintRuleDescriptors", function () {
+    context("when passing undefined", function () {
+        it("should return empty result", function () {
             const pluginDescriptors = new TextlintPluginDescriptors();
             assert.deepStrictEqual(pluginDescriptors.descriptors, []);
             assert.deepStrictEqual(pluginDescriptors.allDescriptors, []);
         });
     });
-    context("when passing unavailable rule", function() {
-        it("should return empty result", function() {
+    context("when passing unavailable rule", function () {
+        it("should return empty result", function () {
             const ruleDescriptors = createTextlintPluginDescriptors([
                 {
                     pluginId: "plugin",
@@ -26,8 +26,8 @@ describe("TextlintRuleDescriptors", function() {
             assert.deepStrictEqual(ruleDescriptors.descriptors, []);
         });
     });
-    describe("#wihtouDuplicated", function() {
-        it("should filter duplicated rule and ruleConfig", function() {
+    describe("#wihtouDuplicated", function () {
+        it("should filter duplicated rule and ruleConfig", function () {
             // same instance
             const dummyPlugin = createDummyPlugin();
             const descriptorA = new TextlintPluginDescriptor({
@@ -51,8 +51,8 @@ describe("TextlintRuleDescriptors", function() {
             assert.deepStrictEqual(withoutDuplicatedRuleCreatorSet.descriptors, [descriptorA]);
         });
     });
-    describe("#findPluginDescriptorWithExt", function() {
-        it("should return a descriptor that match forward with extension", function() {
+    describe("#findPluginDescriptorWithExt", function () {
+        it("should return a descriptor that match forward with extension", function () {
             const descriptorA = new TextlintPluginDescriptor({
                 pluginId: "TextPlugin",
                 plugin: createDummyPlugin([".txt"]),

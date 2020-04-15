@@ -20,7 +20,7 @@ export const report: TextlintFilterRuleReporter = (
         [Syntax.Document](_node: TxtNode) {
             const allows = options.allows;
             Array.isArray(allows) &&
-                allows.forEach(allow => {
+                allows.forEach((allow) => {
                     shouldIgnore(allow.range, allow.ruleId);
                 });
         }

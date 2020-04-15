@@ -15,7 +15,7 @@ export class TextlintFilterRuleDescriptors {
      * @returns {Array}
      */
     toKernelFilterRulesFormat(): Array<TextlintKernelFilterRule> {
-        return this.withoutDuplicated().descriptors.map(descriptor => {
+        return this.withoutDuplicated().descriptors.map((descriptor) => {
             return descriptor.toKernel();
         });
     }
@@ -24,7 +24,7 @@ export class TextlintFilterRuleDescriptors {
      * Return enabled descriptors
      */
     get descriptors() {
-        return this.ruleDescriptorList.filter(descriptor => {
+        return this.ruleDescriptorList.filter((descriptor) => {
             return descriptor.enabled;
         });
     }

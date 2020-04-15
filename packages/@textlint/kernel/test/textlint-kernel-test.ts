@@ -42,10 +42,10 @@ describe("textlint-kernel", () => {
                     { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
                 ]
             };
-            return kernel.lintText("text", options).then(result => {
+            return kernel.lintText("text", options).then((result) => {
                 assert.strictEqual(result.filePath, options.filePath);
                 assert.strictEqual(result.messages.length, 1);
-                result.messages.forEach(message => assertMessage(message));
+                result.messages.forEach((message) => assertMessage(message));
             });
         });
         context("when rule has fixer", () => {
@@ -77,7 +77,7 @@ describe("textlint-kernel", () => {
                         }
                     ]
                 };
-                return kernel.lintText("test text", options).then(result => {
+                return kernel.lintText("test text", options).then((result) => {
                     assert.strictEqual(result.filePath, options.filePath);
                     assert.strictEqual(result.messages.length, 1);
                     const [message] = result.messages;
@@ -99,7 +99,7 @@ describe("textlint-kernel", () => {
                 plugins: [{ pluginId: "example", plugin: plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
-            return kernel.lintText("text", options).then(_result => {
+            return kernel.lintText("text", options).then((_result) => {
                 const actualPluginOptions = getOptions();
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
@@ -143,7 +143,7 @@ describe("textlint-kernel", () => {
                         }
                     ]
                 };
-                return kernel.lintText("text", options).then(results => {
+                return kernel.lintText("text", options).then((results) => {
                     assert.strictEqual(results.messages.length, 0);
                 });
             });
@@ -185,7 +185,7 @@ describe("textlint-kernel", () => {
                         }
                     ]
                 };
-                return kernel.lintText("text", options).then(results => {
+                return kernel.lintText("text", options).then((results) => {
                     assert.strictEqual(results.messages.length, 0);
                 });
             });
@@ -229,7 +229,7 @@ describe("textlint-kernel", () => {
                     ]
                 };
 
-                return kernel.lintText("text", options).then(results => {
+                return kernel.lintText("text", options).then((results) => {
                     assert.strictEqual(results.messages.length, 0);
                 });
             });
@@ -237,7 +237,7 @@ describe("textlint-kernel", () => {
         context("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch(error => {
+                return kernel.lintText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch((error) => {
                     assert.ok(error instanceof Error);
                 });
             });
@@ -255,10 +255,10 @@ describe("textlint-kernel", () => {
                     { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
                 ]
             };
-            return kernel.fixText("text", options).then(result => {
+            return kernel.fixText("text", options).then((result) => {
                 assert.strictEqual(typeof result.filePath, "string");
                 assert.strictEqual(result.messages.length, 1);
-                result.messages.forEach(message => assertMessage(message));
+                result.messages.forEach((message) => assertMessage(message));
             });
         });
         it("should pass pluginOptions to plugin", () => {
@@ -271,7 +271,7 @@ describe("textlint-kernel", () => {
                 plugins: [{ pluginId: "example", plugin: plugin, options: expectedPluginOptions }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
-            return kernel.lintText("text", options).then(_result => {
+            return kernel.lintText("text", options).then((_result) => {
                 const actualPluginOptions = getOptions();
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
@@ -279,7 +279,7 @@ describe("textlint-kernel", () => {
         context("when pass invalid options", () => {
             it("should throw validation error", () => {
                 const kernel = new TextlintKernel({});
-                return kernel.fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch(error => {
+                return kernel.fixText("text", { ext: "test", plugins: [{ pluginId: 1 }] } as any).catch((error) => {
                     assert.ok(error instanceof Error);
                 });
             });

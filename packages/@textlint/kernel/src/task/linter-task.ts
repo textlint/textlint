@@ -51,7 +51,7 @@ export default class TextLintCoreTask extends CoreTask {
         // setup "rules" field
         // filter duplicated rules for improving experience
         // see https://github.com/textlint/textlint/issues/219
-        this.ruleDescriptors.lintableDescriptors.forEach(ruleDescriptor => {
+        this.ruleDescriptors.lintableDescriptors.forEach((ruleDescriptor) => {
             const ruleOptions = ruleDescriptor.normalizedOptions;
             const ruleContext = new TextlintRuleContextImpl({
                 ruleId: ruleDescriptor.id,
@@ -63,7 +63,7 @@ export default class TextLintCoreTask extends CoreTask {
             this.tryToAddListenRule(ruleDescriptor.linter, ruleContext, ruleOptions);
         });
         // setup "filters" field
-        this.filterRuleDescriptors.descriptors.forEach(filterDescriptor => {
+        this.filterRuleDescriptors.descriptors.forEach((filterDescriptor) => {
             const ruleContext = new TextlintFilterRuleContextImpl({
                 ruleId: filterDescriptor.id,
                 sourceCode,

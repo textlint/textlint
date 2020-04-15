@@ -29,7 +29,7 @@ function formatter(results: TextlintResult[]) {
     output += '<?xml version="1.0" encoding="utf-8"?>\n';
     output += "<testsuites>\n";
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         const messages = result.messages;
 
         if (messages.length) {
@@ -43,7 +43,7 @@ function formatter(results: TextlintResult[]) {
                 '">\n';
         }
 
-        messages.forEach(function(message) {
+        messages.forEach(function (message) {
             const type = (message as any).fatal ? "error" : "failure";
             output += '<testcase time="0" name="org.eslint.' + (message.ruleId || "unknown") + '">';
             output += "<" + type + ' message="' + lodash.escape(message.message || "") + '">';

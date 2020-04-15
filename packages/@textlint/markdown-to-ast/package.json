@@ -39,12 +39,13 @@
     "unified": "^6.1.6"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "@textlint/ast-tester": "^2.1.6",
-    "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^5.0.0",
     "babel-preset-power-assert": "^3.0.0",
-    "babel-register": "^6.24.1",
     "browserify": "^16.5.1",
     "cross-env": "^7.0.2",
     "mkdirp": "^1.0.4",

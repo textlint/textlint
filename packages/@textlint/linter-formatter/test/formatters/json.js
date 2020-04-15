@@ -17,7 +17,7 @@ import * as assert from "assert";
 // Tests
 //------------------------------------------------------------------------------
 
-describe("formatter:json", function() {
+describe("formatter:json", function () {
     const code = [
         {
             filePath: "foo.js",
@@ -47,7 +47,7 @@ describe("formatter:json", function() {
         }
     ];
 
-    it("should return passed results as a JSON string without any modification", function() {
+    it("should return passed results as a JSON string without any modification", function () {
         const result = JSON.parse(formatter(code, { color: false }));
         assert.deepEqual(result, code);
     });

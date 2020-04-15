@@ -17,7 +17,7 @@ export function test(node: any) {
     assert.strictEqual(typeof node.type, "string");
     assert.ok(node.type.length >= 1);
 
-    assert.doesNotThrow(function() {
+    assert.doesNotThrow(function () {
         JSON.parse(JSON.stringify(node));
     });
 
@@ -79,7 +79,7 @@ export function test(node: any) {
         if (indent !== null && indent !== undefined) {
             assert.ok(Array.isArray(indent));
 
-            indent.forEach(function(indentation: number) {
+            indent.forEach(function (indentation: number) {
                 assert.strictEqual(typeof indentation, "number");
                 assert.ok(indentation >= 0);
             });

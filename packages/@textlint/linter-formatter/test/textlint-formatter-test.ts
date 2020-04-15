@@ -5,16 +5,16 @@ import { createFormatter, getFormatterList } from "@textlint/linter-formatter";
 import * as path from "path";
 import * as assert from "assert";
 
-describe("@textlint/linter-formatter-test", function() {
-    describe("createFormatter", function() {
-        it("should return formatter function", function() {
+describe("@textlint/linter-formatter-test", function () {
+    describe("createFormatter", function () {
+        it("should return formatter function", function () {
             const formatter = createFormatter({
                 formatterName: "stylish"
             });
             assert.ok(typeof formatter === "function");
         });
-        context("formatter", function() {
-            it("should return output text", function() {
+        context("formatter", function () {
+            it("should return output text", function () {
                 const formatter = createFormatter({
                     formatterName: "stylish",
                     color: false
@@ -38,7 +38,7 @@ describe("@textlint/linter-formatter-test", function() {
                 assert.ok(output.length > 0);
             });
         });
-        it("run all formatter", function() {
+        it("run all formatter", function () {
             const formatterNames = [
                 "checkstyle",
                 "compact",
@@ -49,7 +49,7 @@ describe("@textlint/linter-formatter-test", function() {
                 "tap",
                 "json"
             ];
-            formatterNames.forEach(function(name) {
+            formatterNames.forEach(function (name) {
                 const formatter = createFormatter({
                     formatterName: name,
                     color: false
@@ -120,8 +120,8 @@ describe("@textlint/linter-formatter-test", function() {
             });
         });
     });
-    describe("getFormatterList", function() {
-        it("should return list of formatter(s)", function() {
+    describe("getFormatterList", function () {
+        it("should return list of formatter(s)", function () {
             assert.deepEqual(getFormatterList(), [
                 { name: "checkstyle" },
                 { name: "compact" },

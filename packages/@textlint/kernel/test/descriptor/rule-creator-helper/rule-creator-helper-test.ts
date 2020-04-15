@@ -14,14 +14,14 @@ import FixerOnlyRule from "./fixtures/fixer-only-is-bad";
 import LinterRule from "./fixtures/linter";
 import SimpleModule from "./fixtures/foo";
 
-describe("rule-creator-helper", function() {
-    it("#hasLinter", function() {
+describe("rule-creator-helper", function () {
+    it("#hasLinter", function () {
         assert.ok(hasLinter(FixerRule));
         assert.ok(hasLinter(LinterRule));
         assert.ok(!hasLinter(FixerOnlyRule));
         assert.ok(!hasLinter(SimpleModule));
     });
-    it("#getLinter", function() {
+    it("#getLinter", function () {
         assert.ok(typeof getLinter(FixerRule) === "function");
         assert.ok(typeof getLinter(LinterRule) === "function");
         assert.throws(() => {
@@ -31,13 +31,13 @@ describe("rule-creator-helper", function() {
             getLinter(SimpleModule);
         });
     });
-    it("#hasFixer", function() {
+    it("#hasFixer", function () {
         assert.ok(hasFixer(FixerRule));
         assert.ok(!hasFixer(LinterRule));
         assert.ok(!hasFixer(FixerOnlyRule));
         assert.ok(!hasFixer(SimpleModule));
     });
-    it("#getFixer", function() {
+    it("#getFixer", function () {
         assert.ok(typeof getFixer(FixerRule) === "function");
         assert.throws(() => {
             getFixer(LinterRule);
@@ -49,13 +49,13 @@ describe("rule-creator-helper", function() {
             getFixer(SimpleModule);
         });
     });
-    it("#isRuleModule", function() {
+    it("#isRuleModule", function () {
         assert.ok(isRuleModule(FixerRule));
         assert.ok(isRuleModule(LinterRule));
         assert.ok(!isRuleModule(FixerOnlyRule));
         assert.ok(!isRuleModule(SimpleModule));
     });
-    it("#assertRuleShape", function() {
+    it("#assertRuleShape", function () {
         assertRuleShape(FixerRule);
         assertRuleShape(LinterRule);
         assert.throws(() => {

@@ -170,7 +170,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             .then(() => {
                 this.emit(TextLintCoreTask.events.complete);
             })
-            .catch(error => {
+            .catch((error) => {
                 this.emit(TextLintCoreTask.events.error, error);
             });
     }
@@ -232,7 +232,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                       ruleOptions
                   );
         const types = Object.keys(ruleObject);
-        types.forEach(nodeType => {
+        types.forEach((nodeType) => {
             this.ruleTypeEmitter.on(
                 nodeType,
                 timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType] as Function) : ruleObject[nodeType]!

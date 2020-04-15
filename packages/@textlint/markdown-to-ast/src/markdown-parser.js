@@ -8,9 +8,7 @@ const SyntaxMap = require("./mapping/markdown-syntax-map");
 const unified = require("unified");
 const remarkParse = require("remark-parse");
 const frontmatter = require("remark-frontmatter");
-const remark = unified()
-    .use(remarkParse)
-    .use(frontmatter, ["yaml"]);
+const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]);
 /**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
@@ -19,7 +17,7 @@ const remark = unified()
 function parse(text) {
     const ast = remark.parse(text);
     const src = new StructuredSource(text);
-    traverse(ast).forEach(function(node) {
+    traverse(ast).forEach(function (node) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
             if (node.type) {

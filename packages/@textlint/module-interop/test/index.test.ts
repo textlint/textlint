@@ -1,7 +1,7 @@
 import { moduleInterop } from "../src";
 import assert = require("assert");
 
-describe("moduleExports", function() {
+describe("moduleExports", function () {
     it("should interop commonjs", () => {
         const value = moduleInterop(require("./fixtures/cjs"));
         assert.strictEqual(value, 42);

@@ -26,11 +26,11 @@ function formatter(results: TextlintResult[]) {
     let output = "",
         total = 0;
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         const messages = result.messages;
         total += messages.length;
 
-        messages.forEach(function(message) {
+        messages.forEach(function (message) {
             output += result.filePath + ": ";
             output += "line " + (message.line || 0);
             output += ", col " + (message.column || 0);

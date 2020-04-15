@@ -39,23 +39,23 @@ const formatter = proxyquire("../../src/formatters/stylish", { chalk: chalkStub 
 // Tests
 //------------------------------------------------------------------------------
 
-describe("formatter:stylish", function() {
+describe("formatter:stylish", function () {
     let sandbox;
     const colorsEnabled = chalk.enabled;
 
-    beforeEach(function() {
+    beforeEach(function () {
         chalk.enabled = false;
         sandbox = sinon.sandbox.create();
         sandbox.spy(chalkStub.yellow, "bold");
         sandbox.spy(chalkStub.red, "bold");
     });
 
-    afterEach(function() {
+    afterEach(function () {
         sandbox.verifyAndRestore();
         chalk.enabled = colorsEnabled;
     });
 
-    describe("when passed no messages", function() {
+    describe("when passed no messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -63,7 +63,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should not return message", function() {
+        it("should not return message", function () {
             const result = formatter(code, { color: false });
             assert.strictEqual(result, "");
             assert.strictEqual(chalkStub.yellow.bold.callCount, 0);
@@ -71,7 +71,7 @@ describe("formatter:stylish", function() {
         });
     });
 
-    describe("when passed a single message", function() {
+    describe("when passed a single message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -87,7 +87,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should return a string in the correct format for errors", function() {
+        it("should return a string in the correct format for errors", function () {
             const result = formatter(code, { color: false });
             assert.strictEqual(
                 result,
@@ -97,7 +97,7 @@ describe("formatter:stylish", function() {
             assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
 
-        it("should return a string in the correct format for warnings", function() {
+        it("should return a string in the correct format for warnings", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code, { color: false });
             assert.strictEqual(
@@ -109,7 +109,7 @@ describe("formatter:stylish", function() {
         });
     });
 
-    describe("when passed a fatal error message", function() {
+    describe("when passed a fatal error message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -125,7 +125,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should return a string in the correct format", function() {
+        it("should return a string in the correct format", function () {
             const result = formatter(code, { color: false });
             assert.strictEqual(
                 result,
@@ -136,7 +136,7 @@ describe("formatter:stylish", function() {
         });
     });
 
-    describe("when passed multiple messages", function() {
+    describe("when passed multiple messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -159,7 +159,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.strictEqual(
                 result,
@@ -170,7 +170,7 @@ describe("formatter:stylish", function() {
         });
     });
 
-    describe("when passed multiple files with 1 message each", function() {
+    describe("when passed multiple files with 1 message each", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -198,7 +198,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.strictEqual(
                 result,
@@ -209,7 +209,7 @@ describe("formatter:stylish", function() {
         });
     });
 
-    describe("when passed multiple files with 1 message each and fixable", function() {
+    describe("when passed multiple files with 1 message each and fixable", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -245,7 +245,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.strictEqual(
                 result,
@@ -260,7 +260,7 @@ describe("formatter:stylish", function() {
             assert.strictEqual(chalkStub.red.bold.callCount, 1);
         });
     });
-    describe("when passed one file not found message", function() {
+    describe("when passed one file not found message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -273,7 +273,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should return a string without line and column", function() {
+        it("should return a string without line and column", function () {
             const result = formatter(code, { color: false });
             assert.strictEqual(
                 result,

@@ -11,7 +11,7 @@ import { hasFixer } from "./rule-creator-helper";
 import { TextlintFixableRuleDescriptor } from "./TextlintFixableRuleDescriptor";
 
 export const createTextlintRuleDescriptors = (rules: TextlintKernelRule[]) => {
-    const ruleOrFixableRuleDescriptorList = rules.map(rule => {
+    const ruleOrFixableRuleDescriptorList = rules.map((rule) => {
         if (hasFixer(rule.rule)) {
             return new TextlintFixableRuleDescriptor(rule);
         } else {
@@ -22,9 +22,9 @@ export const createTextlintRuleDescriptors = (rules: TextlintKernelRule[]) => {
 };
 
 export const createTextlintFilterRuleDescriptors = (rules: TextlintKernelFilterRule[]) => {
-    return new TextlintFilterRuleDescriptors(rules.map(rule => new TextlintFilterRuleDescriptor(rule)));
+    return new TextlintFilterRuleDescriptors(rules.map((rule) => new TextlintFilterRuleDescriptor(rule)));
 };
 
 export const createTextlintPluginDescriptors = (rules: TextlintKernelPlugin[]) => {
-    return new TextlintPluginDescriptors(rules.map(rule => new TextlintPluginDescriptor(rule)));
+    return new TextlintPluginDescriptors(rules.map((rule) => new TextlintPluginDescriptor(rule)));
 };

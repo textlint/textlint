@@ -16,8 +16,8 @@ import * as assert from "assert";
 // Tests
 //------------------------------------------------------------------------------
 
-describe("formatter:tap", function() {
-    describe("when passed no messages", function() {
+describe("formatter:tap", function () {
+    describe("when passed no messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -25,13 +25,13 @@ describe("formatter:tap", function() {
             }
         ];
 
-        it("should return nothing", function() {
+        it("should return nothing", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "TAP version 13\n1..1\nok 1 - foo.js\n");
         });
     });
 
-    describe("when passed a single message", function() {
+    describe("when passed a single message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -47,7 +47,7 @@ describe("formatter:tap", function() {
             }
         ];
 
-        it("should return a string with YAML severity, line and column", function() {
+        it("should return a string with YAML severity, line and column", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -55,7 +55,7 @@ describe("formatter:tap", function() {
             );
         });
 
-        it("should return a string with line: x, column: y, severity: warning for warnings", function() {
+        it("should return a string with line: x, column: y, severity: warning for warnings", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code, { color: false });
             assert.ok(result.indexOf("line: 5") !== -1);
@@ -66,7 +66,7 @@ describe("formatter:tap", function() {
         });
     });
 
-    describe("when passed a fatal error message", function() {
+    describe("when passed a fatal error message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -82,14 +82,14 @@ describe("formatter:tap", function() {
             }
         ];
 
-        it("should return a an error string", function() {
+        it("should return a an error string", function () {
             const result = formatter(code, { color: false });
             assert.ok(result.indexOf("not ok") !== -1);
             assert.ok(result.indexOf("error") !== -1);
         });
     });
 
-    describe("when passed multiple messages", function() {
+    describe("when passed multiple messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -119,7 +119,7 @@ describe("formatter:tap", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.ok(result.indexOf("not ok") !== -1);
             assert.ok(result.indexOf("messages") !== -1);
@@ -135,7 +135,7 @@ describe("formatter:tap", function() {
         });
     });
 
-    describe("when passed multiple files with 1 message each", function() {
+    describe("when passed multiple files with 1 message each", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -163,14 +163,14 @@ describe("formatter:tap", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.ok(result.indexOf("not ok 1") !== -1);
             assert.ok(result.indexOf("not ok 2") !== -1);
         });
     });
 
-    describe("when passed one file not found message", function() {
+    describe("when passed one file not found message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -183,7 +183,7 @@ describe("formatter:tap", function() {
             }
         ];
 
-        it("should return a string without line and column", function() {
+        it("should return a string without line and column", function () {
             const result = formatter(code, { color: false });
             assert.ok(result.indexOf("line: 0") !== -1);
             assert.ok(result.indexOf("column: 0") !== -1);

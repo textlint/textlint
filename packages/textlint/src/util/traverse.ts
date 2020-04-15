@@ -75,7 +75,7 @@ module.exports = function traverse(
     const files = options.files;
     const exclude = options.exclude;
     const extensions = options.extensions;
-    files.forEach(file => {
+    files.forEach((file) => {
         walk(file, extensions, exclude, callback);
     });
 };

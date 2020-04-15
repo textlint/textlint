@@ -2,14 +2,14 @@
 "use strict";
 import filterMessages from "../../src/messages/filter-ignored-process";
 import * as assert from "assert";
-describe("message-filter", function() {
-    context("when pass empty messages", function() {
-        it("should return empty messages", function() {
+describe("message-filter", function () {
+    context("when pass empty messages", function () {
+        it("should return empty messages", function () {
             assert.equal(filterMessages([]).length, 0);
         });
     });
-    context("when only lint messages", function() {
-        it("should not change messages", function() {
+    context("when only lint messages", function () {
+        it("should not change messages", function () {
             const messages = [
                 { type: "lint", ruleId: "rule", message: "message", index: 1, line: 1, column: 2, severity: 2 }
             ];
@@ -17,15 +17,15 @@ describe("message-filter", function() {
             assert.deepEqual(filterMessages(messages), messages);
         });
     });
-    context("when contain ignore messages", function() {
-        it("should not filtered, if index < ignore's range start ", function() {
+    context("when contain ignore messages", function () {
+        it("should not filtered, if index < ignore's range start ", function () {
             const messages = [
                 { type: "lint", ruleId: "rule", message: "message", index: 0, line: 1, column: 2, severity: 2 },
                 { type: "ignore", ruleId: "rule", range: [1, 2] }
             ];
             assert.equal(filterMessages(messages).length, 1);
         });
-        it("should filtered, if start <= index <= end ", function() {
+        it("should filtered, if start <= index <= end ", function () {
             const messages = [
                 { type: "lint", ruleId: "rule", message: "message", index: 0, line: 1, column: 1, severity: 2 },
                 { type: "lint", ruleId: "rule", message: "message", index: 1, line: 1, column: 2, severity: 2 },
@@ -55,7 +55,7 @@ describe("message-filter", function() {
                 }
             ]);
         });
-        it("should remove ignore message it-self", function() {
+        it("should remove ignore message it-self", function () {
             const messages = [
                 { type: "lint", ruleId: "rule", message: "message", index: 10, line: 1, column: 4, severity: 2 },
                 { type: "ignore", ruleId: "rule", range: [1, 100] },
@@ -64,8 +64,8 @@ describe("message-filter", function() {
             assert.equal(filterMessages(messages).length, 0);
         });
     });
-    context("when the message has ignoringRuleId", function() {
-        it("* match any rule", function() {
+    context("when the message has ignoringRuleId", function () {
+        it("* match any rule", function () {
             const messages = [
                 { type: "lint", ruleId: "rule-a", message: "message", index: 10, line: 1, column: 4, severity: 2 },
                 { type: "lint", ruleId: "rule-b", message: "message", index: 10, line: 1, column: 4, severity: 2 },
@@ -74,7 +74,7 @@ describe("message-filter", function() {
             ]; // filter all rule
             assert.equal(filterMessages(messages).length, 0);
         });
-        it("should only filter messages that are matched the ruleId", function() {
+        it("should only filter messages that are matched the ruleId", function () {
             const messages = [
                 { type: "lint", ruleId: "rule-a", message: "message", index: 10, line: 1, column: 4, severity: 2 },
                 { type: "lint", ruleId: "rule-b", message: "message", index: 10, line: 1, column: 4, severity: 2 },

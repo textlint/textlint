@@ -9,18 +9,18 @@ import { loadFromDir } from "../../src/engine/rule-loader";
 import { Config } from "../../src/config/config";
 
 const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
-describe("textlint-test", function() {
-    beforeEach(function() {
+describe("textlint-test", function () {
+    beforeEach(function () {
         // This rule found `Str` Node then occur error
         textlint.setupRules(rules);
     });
-    afterEach(function() {
+    afterEach(function () {
         textlint.resetRules();
     });
-    describe("#setupRules", function() {
-        context("when pass only rules object", function() {
-            it("should pass RuleContext instance to Rule function", function() {
-                const rule = function(context, config) {
+    describe("#setupRules", function () {
+        context("when pass only rules object", function () {
+            it("should pass RuleContext instance to Rule function", function () {
+                const rule = function (context, config) {
                     assertRuleContext(context);
                     assert.strictEqual(context.id, "rule-name");
                     assert.strictEqual(config, undefined);
@@ -29,10 +29,10 @@ describe("textlint-test", function() {
                 textlint.setupRules({ "rule-name": rule });
             });
         });
-        context("when pass rules object and rules config", function() {
-            it("should pass RuleContext instance and RuleConfig to Rule function", function() {
+        context("when pass rules object and rules config", function () {
+            it("should pass RuleContext instance and RuleConfig to Rule function", function () {
                 const ruleConfig = { key: "value" };
-                const rule = function(context, config) {
+                const rule = function (context, config) {
                     assertRuleContext(context);
                     assert.equal(context.id, "rule-name");
                     assert.deepEqual(config, ruleConfig);
@@ -41,8 +41,8 @@ describe("textlint-test", function() {
                 textlint.setupRules({ "rule-name": rule }, { "rule-name": ruleConfig });
             });
         });
-        context("when pass textlintConfig to setupRules", function() {
-            it("should RuleContext has `config` object", function() {
+        context("when pass textlintConfig to setupRules", function () {
+            it("should RuleContext has `config` object", function () {
                 const configFile = path.join(__dirname, "fixtures", ".textlintrc");
                 textlint.config = new Config({ configFile });
                 const rule = (context, config) => {
@@ -55,8 +55,8 @@ describe("textlint-test", function() {
             });
         });
     });
-    describe("lintMarkdown", function() {
-        it("should found error message", function() {
+    describe("lintMarkdown", function () {
+        it("should found error message", function () {
             const text =
                 "# TEST" +
                 "\n" +
@@ -67,12 +67,12 @@ describe("textlint-test", function() {
                 "\n" +
                 "hoge\n [a](http://example.com) fuga\n" +
                 "------";
-            return textlint.lintMarkdown(text).then(result => {
+            return textlint.lintMarkdown(text).then((result) => {
                 assert.ok(result.filePath === "<markdown>");
                 assert.ok(result.messages.length > 0);
             });
         });
-        it("should has referential transparency", function() {
+        it("should has referential transparency", function () {
             const p1 = textlint.lintMarkdown("text");
             const p2 = textlint.lintMarkdown("text");
             return Promise.all([p1, p2]).then(([r1, r2]) => {
@@ -82,19 +82,19 @@ describe("textlint-test", function() {
             });
         });
     });
-    describe("lintText", function() {
-        it("should found error message", function() {
+    describe("lintText", function () {
+        it("should found error message", function () {
             const text = "It it plain text\n" + "\n" + "Third line.";
-            return textlint.lintText(text).then(result => {
+            return textlint.lintText(text).then((result) => {
                 assert.ok(result.filePath === "<text>");
                 assert.ok(result.messages.length > 0);
             });
         });
     });
-    describe("lintFile", function() {
-        it("filePath is loaded file path", function() {
+    describe("lintFile", function () {
+        it("filePath is loaded file path", function () {
             const filePath = path.join(__dirname, "fixtures/test.md");
-            return textlint.lintFile(filePath).then(result => {
+            return textlint.lintFile(filePath).then((result) => {
                 assert.ok(result.filePath === filePath);
             });
         });

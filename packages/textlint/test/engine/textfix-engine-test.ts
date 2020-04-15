@@ -9,22 +9,22 @@ const rulesDir = path.join(__dirname, "fixtures/textfix-engine/fixer-rules");
 const inputTextPath = path.join(__dirname, "fixtures/textfix-engine/fixer-rules", "input.md");
 const formatterPath = path.join(__dirname, "fixtures/textfix-engine/formatter/example-fixer-formatter.js");
 
-describe("textfix-engine", function() {
-    describe("Constructor", function() {
-        context("when no-args", function() {
-            it("config should be empty", function() {
+describe("textfix-engine", function () {
+    describe("Constructor", function () {
+        context("when no-args", function () {
+            it("config should be empty", function () {
                 const engine = new TextFixEngine();
                 assert.deepEqual((engine as any).config.rulePaths, []);
             });
         });
-        context("when args is object", function() {
-            it("should convert the object and set config", function() {
+        context("when args is object", function () {
+            it("should convert the object and set config", function () {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
                 assert.deepEqual((engine as any).config.rulePaths, [rulesDir]);
             });
         });
-        context("when args is Config object", function() {
-            it("should set directory to config", function() {
+        context("when args is Config object", function () {
+            it("should set directory to config", function () {
                 // Issue : when use Config as argus, have to export `../src/config/config`
                 var config = new Config({ rulePaths: [rulesDir] });
                 const engine = new TextFixEngine(config);
@@ -32,11 +32,11 @@ describe("textfix-engine", function() {
             });
         });
     });
-    describe("executeOnFiles", function() {
-        it("should return FixCommand result", function() {
+    describe("executeOnFiles", function () {
+        it("should return FixCommand result", function () {
             const engine = new TextFixEngine({ rulePaths: [rulesDir] });
             var filePath = inputTextPath;
-            return engine.executeOnFiles([filePath]).then(results => {
+            return engine.executeOnFiles([filePath]).then((results) => {
                 assert.ok(Array.isArray(results));
                 var fileResult = results[0];
                 assert.ok(fileResult.filePath === filePath);
@@ -45,21 +45,21 @@ describe("textfix-engine", function() {
                 assert.ok(fileResult.output.length > 0);
             });
         });
-        context("when process file that has un-available ext ", function() {
-            it("should return empty results ", function() {
+        context("when process file that has un-available ext ", function () {
+            it("should return empty results ", function () {
                 const engine = new TextFixEngine();
                 const filePath = path.join(__dirname, "fixtures/test.unknown");
-                return engine.executeOnFiles([filePath]).then(results => {
+                return engine.executeOnFiles([filePath]).then((results) => {
                     assert.ok(Array.isArray(results));
                     assert.ok(results.length === 0);
                 });
             });
         });
     });
-    describe("executeOnText", function() {
-        it("should lint a text and return results", function() {
+    describe("executeOnText", function () {
+        it("should lint a text and return results", function () {
             const engine = new TextFixEngine({ rulePaths: [rulesDir] });
-            return engine.executeOnText("text").then(results => {
+            return engine.executeOnText("text").then((results) => {
                 assert.ok(Array.isArray(results));
                 var lintResult = results[0];
                 assert.ok(lintResult.filePath === "<text>");
@@ -69,10 +69,10 @@ describe("textfix-engine", function() {
                 assert.ok(lintResult.remainingMessages.length === 0);
             });
         });
-        context("when specify ext", function() {
-            it("should lint text as ext", function() {
+        context("when specify ext", function () {
+            it("should lint text as ext", function () {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
-                return engine.executeOnText("text", ".md").then(results => {
+                return engine.executeOnText("text", ".md").then((results) => {
                     assert.ok(Array.isArray(results));
                     const lintResult = results[0];
                     assert.ok(lintResult.filePath === "<markdown>");
@@ -82,9 +82,9 @@ describe("textfix-engine", function() {
                     assert.ok(lintResult.remainingMessages.length === 0);
                 });
             });
-            it("should lint text as ext( of path )", function() {
+            it("should lint text as ext( of path )", function () {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
-                return engine.executeOnText("text", "index.md").then(results => {
+                return engine.executeOnText("text", "index.md").then((results) => {
                     assert.ok(Array.isArray(results));
                     const lintResult = results[0];
                     assert.ok(lintResult.filePath === "<markdown>");
@@ -96,21 +96,21 @@ describe("textfix-engine", function() {
             });
         });
     });
-    describe("formatResults", function() {
-        context("when use default formatter is compat", function() {
-            it("should format results and return formatted text", function() {
+    describe("formatResults", function () {
+        context("when use default formatter is compat", function () {
+            it("should format results and return formatted text", function () {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
-                return engine.executeOnText("text").then(results => {
+                return engine.executeOnText("text").then((results) => {
                     var output = engine.formatResults(results);
                     assert.ok(/<text>/.test(output));
                     assert.ok(/problem/.test(output));
                 });
             });
         });
-        context("when loaded custom formatter", function() {
-            it("should return custom formatted text", function() {
+        context("when loaded custom formatter", function () {
+            it("should return custom formatted text", function () {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir], formatterName: formatterPath });
-                return engine.executeOnText("text").then(results => {
+                return engine.executeOnText("text").then((results) => {
                     const output = engine.formatResults(results);
                     assert.ok(!/<text>/.test(output));
                     assert.ok(/example-fixer-formatter/.test(output));

@@ -66,7 +66,7 @@ export default class TextLintCoreTask extends CoreTask {
         );
         // setup "filters" field
         debug("filterRules", this.filterRuleDescriptors);
-        this.filterRuleDescriptors.descriptors.forEach(filterRuleDescriptor => {
+        this.filterRuleDescriptors.descriptors.forEach((filterRuleDescriptor) => {
             const ruleContext = new TextlintFilterRuleContextImpl({
                 ruleId: filterRuleDescriptor.id,
                 severityLevel: getSeverity(filterRuleDescriptor.normalizedOptions),

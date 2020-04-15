@@ -9,5 +9,5 @@ export const TextlintPackageNamePrefix = {
     rule: "textlint-rule-",
     filterRule: "textlint-filter-rule-",
     rulePreset: "textlint-rule-preset-",
-    plugin: "textlint-plugin-"
+    plugin: "textlint-plugin-",
 };

@@ -2,9 +2,9 @@
 "use strict";
 import { TextlintRuleReporter, TextlintRuleReportHandler } from "@textlint/types";
 
-const reporter: TextlintRuleReporter = function(context) {
+const reporter: TextlintRuleReporter = function (context) {
     const exports: TextlintRuleReportHandler = {};
-    exports[context.Syntax.Str] = function(node) {
+    exports[context.Syntax.Str] = function (node) {
         context.report(node, new context.RuleError("found error message"));
     };
     return exports;

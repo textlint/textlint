@@ -16,8 +16,8 @@ import * as assert from "assert";
 // Tests
 //------------------------------------------------------------------------------
 
-describe("formatter:checkstyle", function() {
-    describe("when passed a single message", function() {
+describe("formatter:checkstyle", function () {
+    describe("when passed a single message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -33,7 +33,7 @@ describe("formatter:checkstyle", function() {
             }
         ];
 
-        it("should return a string in the format filename: line x, col y, Error - z for errors", function() {
+        it("should return a string in the format filename: line x, col y, Error - z for errors", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -41,7 +41,7 @@ describe("formatter:checkstyle", function() {
             );
         });
 
-        it("should return a string in the format filename: line x, col y, Warning - z for warnings", function() {
+        it("should return a string in the format filename: line x, col y, Warning - z for warnings", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code, { color: false });
             assert.equal(
@@ -51,7 +51,7 @@ describe("formatter:checkstyle", function() {
         });
     });
 
-    describe("when passed a message with XML control characters", function() {
+    describe("when passed a message with XML control characters", function () {
         const code = [
             {
                 filePath: "<>&\"'.js",
@@ -67,7 +67,7 @@ describe("formatter:checkstyle", function() {
             }
         ];
 
-        it("should return a string in the format filename: line x, col y, Error - z", function() {
+        it("should return a string in the format filename: line x, col y, Error - z", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -76,7 +76,7 @@ describe("formatter:checkstyle", function() {
         });
     });
 
-    describe("when passed a fatal error message", function() {
+    describe("when passed a fatal error message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -92,7 +92,7 @@ describe("formatter:checkstyle", function() {
             }
         ];
 
-        it("should return a string in the format filename: line x, col y, Error - z", function() {
+        it("should return a string in the format filename: line x, col y, Error - z", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -101,7 +101,7 @@ describe("formatter:checkstyle", function() {
         });
     });
 
-    describe("when passed multiple messages", function() {
+    describe("when passed multiple messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -124,7 +124,7 @@ describe("formatter:checkstyle", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -133,7 +133,7 @@ describe("formatter:checkstyle", function() {
         });
     });
 
-    describe("when passed multiple files with 1 message each", function() {
+    describe("when passed multiple files with 1 message each", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -161,7 +161,7 @@ describe("formatter:checkstyle", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -170,7 +170,7 @@ describe("formatter:checkstyle", function() {
         });
     });
 
-    describe("when passing single message without rule id", function() {
+    describe("when passing single message without rule id", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -185,7 +185,7 @@ describe("formatter:checkstyle", function() {
             }
         ];
 
-        it("should return a string in the format filename: line x, col y, Error - z for errors", function() {
+        it("should return a string in the format filename: line x, col y, Error - z for errors", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,

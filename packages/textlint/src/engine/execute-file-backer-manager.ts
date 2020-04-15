@@ -37,8 +37,8 @@ export class ExecuteFileBackerManager {
     process(files: string[], executeFile: (filePath: string) => Promise<TextlintResult>): Promise<TextlintResult[]> {
         const unExecutedResults: Array<Promise<TextlintResult>> = [];
         const resultPromises = files
-            .filter(filePath => {
-                const shouldExecute = this._backers.every(backer => {
+            .filter((filePath) => {
+                const shouldExecute = this._backers.every((backer) => {
                     return backer.shouldExecute({ filePath });
                 });
                 // add fake unExecutedResults for un-executed file.
@@ -47,9 +47,9 @@ export class ExecuteFileBackerManager {
                 }
                 return shouldExecute;
             })
-            .map(filePath => {
-                return executeFile(filePath).then(result => {
-                    this._backers.forEach(backer => {
+            .map((filePath) => {
+                return executeFile(filePath).then((result) => {
+                    this._backers.forEach((backer) => {
                         backer.didExecute({ result });
                     });
                     return result;
@@ -57,8 +57,8 @@ export class ExecuteFileBackerManager {
             })
             .concat(unExecutedResults);
         // wait all resolved, and call afterAll
-        return Promise.all(resultPromises).then((results: (TextlintResult)[]) => {
-            this._backers.forEach(backer => {
+        return Promise.all(resultPromises).then((results: TextlintResult[]) => {
+            this._backers.forEach((backer) => {
                 backer.afterAll();
             });
             return results;

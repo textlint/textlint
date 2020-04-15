@@ -124,14 +124,14 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let errors = 0;
     let warnings = 0;
     let totalFixable = 0;
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         const code = require("fs").readFileSync(result.filePath, "utf-8");
         const messages = result.messages;
         if (messages.length === 0) {
             return;
         }
         total += messages.length;
-        messages.forEach(function(message) {
+        messages.forEach(function (message) {
             // fixable
             const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
             if (message.fix) {

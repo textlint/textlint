@@ -11,7 +11,7 @@ const parse = require("../lib/markdown-parser").parse;
 const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures
 const fixtureDir = path.join(testDir, "fixtures");
-fs.readdirSync(fixtureDir).forEach(function(filePath) {
+fs.readdirSync(fixtureDir).forEach(function (filePath) {
     if (filePath.indexOf(".gitkeep") !== -1) {
         return;
     }

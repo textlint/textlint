@@ -4,6 +4,6 @@ export {
     normalizeTextlintRulePresetKey,
     normalizeTextlintPluginKey,
     normalizeTextlintFilterRuleKey,
-    normalizeTextlintKeyPath
+    normalizeTextlintKeyPath,
 } from "./KeyPath/TextlintKeyPath";
 export { TextlintPackageNamePrefix } from "./KeyPath/TextlintPackagePrefix";

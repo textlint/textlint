@@ -36,12 +36,13 @@
     "@textlint/markdown-to-ast": "^6.1.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "@textlint/kernel": "^3.2.1",
-    "babel-cli": "^6.5.1",
-    "babel-preset-env": "^1.4.0",
     "babel-preset-jsdoc-to-assert": "^5.0.0",
     "babel-preset-power-assert": "^3.0.0",
-    "babel-register": "^6.9.0",
     "cross-env": "^7.0.2",
     "mocha": "^7.1.1",
     "power-assert": "^1.6.1",

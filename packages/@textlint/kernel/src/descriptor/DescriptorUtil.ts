@@ -9,8 +9,8 @@ import { Descriptor } from "./Descriptor";
  */
 export const filterDuplicateDescriptor = <T extends Descriptor<any>>(descriptors: T[]) => {
     const newDescriptorList: T[] = [];
-    descriptors.forEach(descriptor => {
-        const existsDescriptor = newDescriptorList.some(existDescriptor => {
+    descriptors.forEach((descriptor) => {
+        const existsDescriptor = newDescriptorList.some((existDescriptor) => {
             return existDescriptor.equals(descriptor);
         });
         if (!existsDescriptor) {

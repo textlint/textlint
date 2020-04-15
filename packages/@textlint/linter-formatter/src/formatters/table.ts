@@ -40,7 +40,7 @@ function drawTable(messages: TextlintMessage[]): string {
         chalk.bold("Rule ID")
     ]);
 
-    messages.forEach(function(message: TextlintMessage) {
+    messages.forEach(function (message: TextlintMessage) {
         let messageType;
 
         if ((message as any).fatal || message.severity === 2) {
@@ -76,7 +76,7 @@ function drawTable(messages: TextlintMessage[]): string {
                 wrapWord: true
             }
         },
-        drawHorizontalLine: function(index: number) {
+        drawHorizontalLine: function (index: number) {
             return index === 1;
         }
     });
@@ -91,7 +91,7 @@ function drawTable(messages: TextlintMessage[]): string {
 function drawReport(results: any): string {
     let files;
 
-    files = results.map(function(result: any) {
+    files = results.map(function (result: any) {
         if (!result.messages.length) {
             return "";
         }
@@ -99,7 +99,7 @@ function drawReport(results: any): string {
         return "\n" + result.filePath + "\n\n" + drawTable(result.messages);
     });
 
-    files = files.filter(function(content: string) {
+    files = files.filter(function (content: string) {
         return content.trim();
     });
 
@@ -117,7 +117,7 @@ function formatter(report: any, options: FormatterOptions) {
     let errorCount = 0;
     let warningCount = 0;
 
-    report.forEach(function(fileReport: any) {
+    report.forEach(function (fileReport: any) {
         errorCount += fileReport.errorCount;
         warningCount += fileReport.warningCount;
     });
@@ -140,7 +140,7 @@ function formatter(report: any, options: FormatterOptions) {
                         wrapWord: true
                     }
                 },
-                drawHorizontalLine: function() {
+                drawHorizontalLine: function () {
                     return true;
                 }
             }
