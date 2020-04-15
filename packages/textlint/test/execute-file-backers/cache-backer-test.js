@@ -8,16 +8,16 @@ const fs = require("fs");
 import { CacheBacker } from "../../src/engine/execute-file-backers/cache-backer";
 import { Config } from "../../src/config/config";
 
-describe("CacheBacker", function() {
+describe("CacheBacker", function () {
     let configDir;
-    before(function() {
+    before(function () {
         configDir = path.join(os.tmpdir(), "textlint-config");
         sh.mkdir("-p", configDir);
     });
-    after(function() {
+    after(function () {
         sh.rm("-r", configDir);
     });
-    context("when previously have success result", function() {
+    context("when previously have success result", function () {
         it("shouldExecute return false", () => {
             const config = new Config({ cache: true, cacheLocation: path.resolve(configDir, ".cache") });
             const cacheBacker = new CacheBacker(config);
@@ -31,7 +31,7 @@ describe("CacheBacker", function() {
         });
     });
 
-    context("when previously have failure result", function() {
+    context("when previously have failure result", function () {
         it("shouldExecute return true", () => {
             const config = new Config({ cache: true, cacheLocation: path.resolve(configDir, ".cache") });
             const cacheBacker = new CacheBacker(config);
@@ -44,7 +44,7 @@ describe("CacheBacker", function() {
             assert.ok(shouldExecute);
         });
     });
-    context("when specify `cacheLocation` options", function() {
+    context("when specify `cacheLocation` options", function () {
         it("should save the specific path", () => {
             const cacheFilePath = path.resolve(configDir, ".cache");
             const config = new Config({ cache: true, cacheLocation: cacheFilePath });

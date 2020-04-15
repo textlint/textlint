@@ -19,7 +19,7 @@ export class TextLintModuleMapper {
      */
     static createEntities(pluginRules: { [index: string]: string }, prefixKey: string): [string, string][] {
         const entities: [string, string][] = [];
-        Object.keys(pluginRules).forEach(ruleId => {
+        Object.keys(pluginRules).forEach((ruleId) => {
             const qualifiedRuleId = prefixKey + RuleSeparator + ruleId;
             const ruleCreator = pluginRules[ruleId];
             entities.push([qualifiedRuleId, ruleCreator]);
@@ -41,7 +41,7 @@ export class TextLintModuleMapper {
         prefixKey: string
     ): { [index: string]: string } {
         const mapped: { [index: string]: string } = {};
-        Object.keys(pluginRules).forEach(key => {
+        Object.keys(pluginRules).forEach((key) => {
             mapped[`${prefixKey}/${key}`] = pluginRules[key];
         });
         return mapped;

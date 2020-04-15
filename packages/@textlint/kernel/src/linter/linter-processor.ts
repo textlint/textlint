@@ -52,7 +52,7 @@ export default class LinterProcessor {
             sourceCode,
             configBaseDir
         });
-        return TaskRunner.process(task).then(messages => {
+        return TaskRunner.process(task).then((messages) => {
             const result = postProcess(messages, sourceCode.filePath);
             result.messages = this.messageProcessManager.process(result.messages);
             if (result.filePath == null) {

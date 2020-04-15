@@ -40,17 +40,18 @@
     "@textlint/ast-node-types": "^4.2.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "@textlint/ast-tester": "^2.1.6",
-    "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-jsdoc-to-assert": "^4.0.0",
-    "babel-preset-power-assert": "^1.0.0",
-    "babel-register": "^6.24.1",
-    "cross-env": "^6.0.3",
+    "babel-preset-jsdoc-to-assert": "^5.0.0",
+    "babel-preset-power-assert": "^3.0.0",
+    "cross-env": "^7.0.2",
     "eol-converter-cli": "^1.0.8",
-    "mocha": "^6.2.1",
+    "mocha": "^7.1.1",
     "power-assert": "^1.6.1",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.2"
   },
   "publishConfig": {
     "access": "public"

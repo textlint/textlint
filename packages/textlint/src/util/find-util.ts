@@ -40,7 +40,7 @@ export function findFiles(patterns: string[], options: { cwd?: string } = {}): s
             files.push(filePath);
         }
     };
-    patterns.forEach(pattern => {
+    patterns.forEach((pattern) => {
         const file = path.resolve(cwd, pattern);
         if (isFile(file)) {
             addFile(fs.realpathSync(file));
@@ -69,7 +69,7 @@ export function separateByAvailability(
     const extensions = options.extensions || [];
     const availableFiles: string[] = [];
     const unAvailableFiles: string[] = [];
-    files.forEach(filePath => {
+    files.forEach((filePath) => {
         const extname = path.extname(filePath);
         if (extensions.indexOf(extname) === -1) {
             unAvailableFiles.push(filePath);

@@ -13,7 +13,7 @@ export class TextlintPluginDescriptors {
      * Return enabled descriptors
      */
     get descriptors() {
-        return this.pluginDescriptorList.filter(descriptor => {
+        return this.pluginDescriptorList.filter((descriptor) => {
             return descriptor.enabled;
         });
     }
@@ -30,12 +30,9 @@ export class TextlintPluginDescriptors {
      * It is not includes disabled plugin's extensions.
      */
     get availableExtensions(): string[] {
-        return this.descriptors.reduce(
-            (extensions, descriptor) => {
-                return extensions.concat(descriptor.availableExtensions);
-            },
-            [] as string[]
-        );
+        return this.descriptors.reduce((extensions, descriptor) => {
+            return extensions.concat(descriptor.availableExtensions);
+        }, [] as string[]);
     }
 
     /**
@@ -43,7 +40,7 @@ export class TextlintPluginDescriptors {
      * This is forward match.
      */
     findPluginDescriptorWithExt(ext: string) {
-        return this.descriptors.find(descriptor => {
+        return this.descriptors.find((descriptor) => {
             return descriptor.availableExtensions.includes(ext);
         });
     }
@@ -61,7 +58,7 @@ export class TextlintPluginDescriptors {
      * @returns {Array}
      */
     toKernelPluginsFormat(): TextlintKernelPlugin[] {
-        return this.descriptors.map(descriptor => {
+        return this.descriptors.map((descriptor) => {
             return descriptor.toKernel();
         });
     }

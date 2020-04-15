@@ -18,7 +18,7 @@ export class TextlintRuleDescriptors {
      * @returns {Array}
      */
     toKernelRulesFormat(): Array<TextlintKernelRule> {
-        return this.withoutDuplicated().lintableDescriptors.map(descriptor => {
+        return this.withoutDuplicated().lintableDescriptors.map((descriptor) => {
             return descriptor.toKernel();
         });
     }
@@ -27,7 +27,7 @@ export class TextlintRuleDescriptors {
      * Return enabled lintable descriptors
      */
     get lintableDescriptors(): TextlintLintableRuleDescriptor[] {
-        return this.descriptors.filter(descriptor => {
+        return this.descriptors.filter((descriptor) => {
             // fixable is also lintable
             return descriptor instanceof TextlintLintableRuleDescriptor;
         });
@@ -37,7 +37,7 @@ export class TextlintRuleDescriptors {
      * Return enabled fixable descriptors
      */
     get fixableDescriptors(): TextlintFixableRuleDescriptor[] {
-        return this.descriptors.filter(descriptor => {
+        return this.descriptors.filter((descriptor) => {
             return descriptor instanceof TextlintFixableRuleDescriptor;
         }) as TextlintFixableRuleDescriptor[];
     }
@@ -46,7 +46,7 @@ export class TextlintRuleDescriptors {
      * Return enabled descriptors
      */
     get descriptors(): TextlintRuleAllRuleDescriptor[] {
-        return this.ruleDescriptorList.filter(descriptor => descriptor.enabled);
+        return this.ruleDescriptorList.filter((descriptor) => descriptor.enabled);
     }
 
     /**

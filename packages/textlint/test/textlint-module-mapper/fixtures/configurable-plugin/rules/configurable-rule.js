@@ -3,9 +3,9 @@
 /**
  * @param {RuleContext} context
  */
-module.exports = function(context, options) {
+module.exports = function (context, options) {
     const exports = {};
-    exports[context.Syntax.Str] = function(node) {
+    exports[context.Syntax.Str] = function (node) {
         const text = context.getSource(node);
         context.report(node, new context.RuleError("found error message"));
     };

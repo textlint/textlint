@@ -6,13 +6,13 @@ import * as fs from "fs";
 import * as path from "path";
 import { Config } from "../../src/config/config";
 /* load config from "./config/" and match expected result */
-describe("config-as-example", function() {
+describe("config-as-example", function () {
     const configList = glob.sync(path.join(__dirname, "/config-fixtures/*/{.textlintrc,package.json}"));
-    configList.forEach(textlintrcPath => {
+    configList.forEach((textlintrcPath) => {
         const projectDir = path.dirname(textlintrcPath);
         const matchedFileName = path.basename(textlintrcPath);
         const dirName = projectDir.split("/").pop();
-        it(`test config: ${dirName}`, function() {
+        it(`test config: ${dirName}`, function () {
             let config;
             try {
                 config = Config.initWithAutoLoading({
@@ -33,7 +33,7 @@ describe("config-as-example", function() {
                 : path.join(projectDir, "expect.js");
             const expect = require(expectedPath);
             const actual = config.toJSON();
-            Object.keys(expect).forEach(key => {
+            Object.keys(expect).forEach((key) => {
                 try {
                     assert.deepStrictEqual(actual[key], expect[key]);
                 } catch (error) {

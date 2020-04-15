@@ -3,9 +3,9 @@
 const parse = require("../src").parse;
 const Syntax = require("../src").Syntax;
 const assert = require("assert");
-describe("plaintext-parser-test", function() {
-    context("Document", function() {
-        it("should return AST", function() {
+describe("plaintext-parser-test", function () {
+    context("Document", function () {
+        it("should return AST", function () {
             const text = "text";
             const ast = parse(text);
             assert(typeof ast === "object");
@@ -18,8 +18,8 @@ describe("plaintext-parser-test", function() {
             assert(ast.children.length > 0);
         });
     });
-    context("Paragraph", function() {
-        it("should contain Str node", function() {
+    context("Paragraph", function () {
+        it("should contain Str node", function () {
             const text = "Hello world";
             const ast = parse(text);
             const expected = {
@@ -48,8 +48,8 @@ describe("plaintext-parser-test", function() {
             assert.deepEqual(ast, expected);
         });
     });
-    context("Paragraph ended with break line", function() {
-        it("should contain Break node", function() {
+    context("Paragraph ended with break line", function () {
+        it("should contain Break node", function () {
             const text = "text\n";
             const ast = parse(text);
             // Paragraph -> Break
@@ -86,8 +86,8 @@ describe("plaintext-parser-test", function() {
             assert.deepEqual(ast, expected);
         });
     });
-    context("Paragraph + BR + Paragraph", function() {
-        it("should equal to P + BR + P", function() {
+    context("Paragraph + BR + Paragraph", function () {
+        it("should equal to P + BR + P", function () {
             const text = "text\ntext";
             const ast = parse(text);
             // Paragraph -> Break -> Paragraph
@@ -139,8 +139,8 @@ describe("plaintext-parser-test", function() {
             assert.deepEqual(ast, expected);
         });
     });
-    context("Paragraph + BR + BR + Paragraph", function() {
-        it("should equal to P + BR + BR + P", function() {
+    context("Paragraph + BR + BR + Paragraph", function () {
+        it("should equal to P + BR + BR + P", function () {
             const text = "text\n" + "\n" + "text";
             const ast = parse(text);
 

@@ -13,7 +13,7 @@ const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures
 const remarkFixtures = path.join(testDir, "markdown_fixtures");
 const fixtureDir = path.join(testDir, "fixtures");
-fs.readdirSync(remarkFixtures).forEach(function(filePath) {
+fs.readdirSync(remarkFixtures).forEach(function (filePath) {
     if (filePath.indexOf(".gitkeep") !== -1) {
         return;
     }

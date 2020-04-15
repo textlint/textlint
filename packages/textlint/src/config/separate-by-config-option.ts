@@ -20,7 +20,7 @@ export function separateEnabledOrDisabled(rulesConfig: any): RuleOf {
     if (!rulesConfig) {
         return ruleOf;
     }
-    Object.keys(rulesConfig).forEach(key => {
+    Object.keys(rulesConfig).forEach((key) => {
         // `<plugin>/<rule-key>` should ignored
         if (isPluginRuleKey(key)) {
             return;

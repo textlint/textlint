@@ -18,12 +18,12 @@ function formatter(results: TextlintResult[]) {
     output += '<?xml version="1.0" encoding="utf-8"?>';
     output += "<jslint>";
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         var messages = result.messages;
 
         output += '<file name="' + result.filePath + '">';
 
-        messages.forEach(function(message) {
+        messages.forEach(function (message) {
             output +=
                 '<issue line="' +
                 message.line +

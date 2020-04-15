@@ -13,24 +13,24 @@ import { Logger } from "../../src/util/logger";
 /*
  config file generate test
  */
-describe("config-initializer-test", function() {
+describe("config-initializer-test", function () {
     let configDir: string;
     const originErrorLog = Logger.error;
 
-    beforeEach(function() {
+    beforeEach(function () {
         configDir = `${os.tmpdir()}/textlint-config`;
         sh.mkdir("-p", configDir);
     });
 
-    afterEach(function() {
+    afterEach(function () {
         sh.rm("-r", configDir);
     });
-    context("when pacakge.json has textlint-rule-* packages", function() {
-        beforeEach(function() {
+    context("when pacakge.json has textlint-rule-* packages", function () {
+        beforeEach(function () {
             const packageFilePath = path.join(__dirname, "fixtures", "package.json");
             sh.cp(packageFilePath, configDir);
         });
-        it("should create new file with packages", function() {
+        it("should create new file with packages", function () {
             const configFile = path.join(configDir, ".textlintrc");
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: configDir
@@ -38,7 +38,7 @@ describe("config-initializer-test", function() {
             return createConfigFile({
                 dir: configDir,
                 verbose: false
-            }).then(function(exitStatus) {
+            }).then(function (exitStatus) {
                 assert.equal(exitStatus, 0);
                 const { config } = loadConfig({
                     moduleResolver,
@@ -52,8 +52,8 @@ describe("config-initializer-test", function() {
             });
         });
     });
-    context("when .textlintrc is not existed", function() {
-        it("should create new file", function() {
+    context("when .textlintrc is not existed", function () {
+        it("should create new file", function () {
             const configFile = path.join(configDir, ".textlintrc");
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: configDir
@@ -62,7 +62,7 @@ describe("config-initializer-test", function() {
             return createConfigFile({
                 dir: configDir,
                 verbose: false
-            }).then(function(exitStatus) {
+            }).then(function (exitStatus) {
                 assert.equal(exitStatus, 0);
                 const { config } = loadConfig({
                     moduleResolver,
@@ -74,29 +74,29 @@ describe("config-initializer-test", function() {
                 assert.ok(Object.keys(config.rules).length === 0);
             });
         });
-        it("should create and show message if verbose:true", function() {
+        it("should create and show message if verbose:true", function () {
             Logger.log = function mockErrorLog(message) {
                 assert.ok(/\.textlintrc is created/.test(message), "should show created message");
             };
             return createConfigFile({
                 dir: configDir,
                 verbose: true
-            }).then(function(exitStatus) {
+            }).then(function (exitStatus) {
                 assert.equal(exitStatus, 0);
             });
         });
     });
-    context("when .textlintrc is existed", function() {
-        beforeEach(function() {
+    context("when .textlintrc is existed", function () {
+        beforeEach(function () {
             // mock console API
             Logger.error = function mockErrorLog() {};
         });
 
-        afterEach(function() {
+        afterEach(function () {
             Logger.error = originErrorLog;
         });
 
-        it("should be an error", function() {
+        it("should be an error", function () {
             Logger.error = function mockErrorLog(message) {
                 assert.equal(message, ".textlintrc is already existed.");
             };
@@ -104,7 +104,7 @@ describe("config-initializer-test", function() {
                 dir: configDir,
                 verbose: false
             })
-                .then(exitStatus => {
+                .then((exitStatus) => {
                     assert.equal(exitStatus, 0);
                     // try to re-create
                     return createConfigFile({
@@ -112,7 +112,7 @@ describe("config-initializer-test", function() {
                         verbose: false
                     });
                 })
-                .then(exitStatus => {
+                .then((exitStatus) => {
                     assert.equal(exitStatus, 1);
                 });
         });

@@ -232,7 +232,7 @@ Minimum(recommended) rules is following code:
 /**
  * @param {RuleContext} context
  */
-export default function(context) {
+export default function (context) {
     const { Syntax } = context;
     // root object
     return {

@@ -53,7 +53,7 @@ export default class SourceCodeFixer {
         const fixes: TextLintMessageFixable[] = [];
         let lastFixPos = text.length + 1;
         let prefix = sourceCode.hasBOM ? BOM : "";
-        cloneMessages.forEach(problem => {
+        cloneMessages.forEach((problem) => {
             if (problem && problem.fix !== undefined) {
                 fixes.push(problem as TextLintMessageFixable);
             } else {
@@ -73,7 +73,7 @@ export default class SourceCodeFixer {
             // split into array of characters for easier manipulation
             const chars = text.split("");
 
-            fixes.forEach(problem => {
+            fixes.forEach((problem) => {
                 // pickup fix range
                 const fix = problem.fix;
                 let start = fix.range[0];
@@ -133,7 +133,7 @@ export default class SourceCodeFixer {
     static sequentiallyApplyFixes(sourceCode: TextlintSourceCode, applyingMessages: TextlintMessage[]) {
         debug("Restore applied fixes");
         let text = sourceCode.text;
-        applyingMessages.forEach(message => {
+        applyingMessages.forEach((message) => {
             const newSource = new TextlintSourceCodeImpl({
                 text,
                 ast: sourceCode.ast, // it's dummy

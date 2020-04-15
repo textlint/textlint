@@ -21,7 +21,7 @@ const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
             const devDependencies = pkg.devDependencies || {};
             const mergedDependencies = Object.assign({}, dependencies, devDependencies);
             const pkgNames = Object.keys(mergedDependencies);
-            return pkgNames.filter(pkgName => {
+            return pkgNames.filter((pkgName) => {
                 const ruleOrFilter =
                     pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1 ||
                     pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1;
@@ -44,7 +44,7 @@ const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
  */
 const arrayToObject = (array: Array<any>, defaultValue: any): object => {
     const object: { [index: string]: string } = {};
-    array.forEach(item => {
+    array.forEach((item) => {
         object[item] = defaultValue;
     });
     return object;
@@ -64,7 +64,7 @@ export interface CreateConfigFileOption {
  */
 export const createConfigFile = (options: CreateConfigFileOption) => {
     const dir = options.dir;
-    return getTextlintDependencyNames(dir).then(pkgNames => {
+    return getTextlintDependencyNames(dir).then((pkgNames) => {
         const rcFile = `.${Config.CONFIG_FILE_NAME}rc`;
         const filePath = path.resolve(dir, rcFile);
         if (isFile(filePath)) {
@@ -72,17 +72,17 @@ export const createConfigFile = (options: CreateConfigFileOption) => {
             return Promise.resolve(1);
         }
         const filters = pkgNames
-            .filter(pkgName => {
+            .filter((pkgName) => {
                 return pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1;
             })
-            .map(filterName => {
+            .map((filterName) => {
                 return filterName.replace(TextlintPackageNamePrefix.filterRule, "");
             });
         const rules = pkgNames
-            .filter(pkgName => {
+            .filter((pkgName) => {
                 return pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1;
             })
-            .map(filterName => {
+            .map((filterName) => {
                 return filterName.replace(TextlintPackageNamePrefix.rule, "");
             });
         const defaultTextlintRc = {

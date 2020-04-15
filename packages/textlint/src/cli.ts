@@ -136,7 +136,7 @@ export const cli = {
                 config: config,
                 concurrency: cliOptions.maxConcurrency
             });
-            return resultsPromise.then(results => {
+            return resultsPromise.then((results) => {
                 debug("fix results: %j", results);
                 const fixer = new TextLintFixer();
                 const output = fixEngine.formatResults(results);
@@ -163,7 +163,7 @@ export const cli = {
             config: config,
             concurrency: cliOptions.maxConcurrency
         });
-        return resultsPromise.then(results => {
+        return resultsPromise.then((results) => {
             debug("lint results: %j", results);
             const output = lintEngine.formatResults(results);
             if (printResults(output, cliOptions)) {
@@ -194,7 +194,7 @@ export const cli = {
             const resultsPromise = text
                 ? fixEngine.executeOnText(text, stdinFilename)
                 : fixEngine.executeOnFiles(files);
-            return resultsPromise.then(results => {
+            return resultsPromise.then((results) => {
                 debug("fix results: %j", results);
                 const fixer = new TextLintFixer();
                 const output = fixEngine.formatResults(results);
@@ -217,7 +217,7 @@ export const cli = {
             return Promise.resolve(1);
         }
         const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
-        return resultsPromise.then(results => {
+        return resultsPromise.then((results) => {
             debug("lint results: %j", results);
             const output = lintEngine.formatResults(results);
             if (printResults(output, cliOptions)) {

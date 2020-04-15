@@ -10,22 +10,22 @@ import { TextlintRuleModule } from "@textlint/kernel";
 import fixtureRule from "./fixtures/rules/example-rule";
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
 
-describe("Async", function() {
+describe("Async", function () {
     beforeEach(() => {
         coreFlags.experimental = true;
     });
     afterEach(() => {
         resetFlags();
     });
-    it("should support async", function() {
+    it("should support async", function () {
         const textlint = new TextLintCore();
         textlint.setupRules({
-            "rule-name": function(context) {
+            "rule-name": function (context) {
                 const { Syntax, report, RuleError } = context;
 
                 return {
                     [Syntax.Str](node) {
-                        return new Promise(resolve => {
+                        return new Promise((resolve) => {
                             setTimeout(() => {
                                 report(node, new RuleError("before"));
                                 resolve();
@@ -38,12 +38,12 @@ describe("Async", function() {
                 };
             } as TextlintRuleModule
         });
-        return textlint.lintMarkdown("string").then(result => {
+        return textlint.lintMarkdown("string").then((result) => {
             assert.ok(result.filePath === "<markdown>");
             assert.ok(result.messages.length === 2);
         });
     });
-    it("should promise each messages", function() {
+    it("should promise each messages", function () {
         const textlint = new TextLintCore();
         // each rule throw 1 error.
         textlint.setupRules({
@@ -53,12 +53,12 @@ describe("Async", function() {
             "example3-rule": fixtureRule,
             "async2-rule": fixtureRuleAsync
         });
-        return textlint.lintMarkdown("string").then(result => {
+        return textlint.lintMarkdown("string").then((result) => {
             // filtered duplicated messages => 2 patterns
             assert.ok(result.messages.length === 2);
         });
     });
-    it("should promise each messages on multiple files", function() {
+    it("should promise each messages on multiple files", function () {
         const rules = ["async-rule", "example-rule"];
         const engine = new TextLintEngine({
             rulesBaseDirectory: path.join(__dirname, "fixtures", "rules"),
@@ -67,9 +67,9 @@ describe("Async", function() {
         const targetFile1 = path.join(__dirname, "fixtures", "test.md");
         const targetFile2 = path.join(__dirname, "fixtures", "test2.md");
         const files = [targetFile1, targetFile2];
-        return engine.executeOnFiles(files).then(results => {
+        return engine.executeOnFiles(files).then((results) => {
             assert.equal(results.length, files.length);
-            results.forEach(result => {
+            results.forEach((result) => {
                 assert.equal(result.messages.length, rules.length);
             });
         });

@@ -20,7 +20,7 @@ export function test(node: any) {
     assert.strictEqual(typeof node.type, "string");
     assert.ok(node.type.length >= 1);
 
-    assert.doesNotThrow(function() {
+    assert.doesNotThrow(function () {
         JSON.parse(JSON.stringify(node));
     });
 
@@ -84,7 +84,7 @@ export function test(node: any) {
     const range = node.range;
     assert.ok(range !== null && range !== undefined);
     assert.ok(Array.isArray(range));
-    range.forEach(function(index: number) {
+    range.forEach(function (index: number) {
         assert.strictEqual(typeof index, "number");
         assert.ok(index >= 0);
     });

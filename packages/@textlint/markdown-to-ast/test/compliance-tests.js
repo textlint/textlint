@@ -4,9 +4,9 @@ const assert = require("assert");
 const test = require("@textlint/ast-tester").test;
 const parse = require("../src/markdown-parser").parse;
 // String -> [String]
-describe("Compliance tests", function() {
-    context("compatible for Unist", function() {
-        it("should have position", function() {
+describe("Compliance tests", function () {
+    context("compatible for Unist", function () {
+        it("should have position", function () {
             const AST = parse("text");
             test(AST);
             assert(typeof AST.position === "object");

@@ -338,7 +338,7 @@ import { TextLintEngine } from "textlint";
 const engine = new TextLintEngine({
     rulePaths: ["path/to/rule-dir"]
 });
-engine.executeOnFiles(["README.md"]).then(results => {
+engine.executeOnFiles(["README.md"]).then((results) => {
     console.log(results[0].filePath); // => "README.md"
     // messages are `TextLintMessage` array.
     console.log(results[0].messages);
@@ -367,13 +367,13 @@ textlint.setupRules({
     // rule-key : rule function(see docs/rule.md)
     "rule-key"(context) {
         const exports = {};
-        exports[context.Syntax.Str] = function(node) {
+        exports[context.Syntax.Str] = function (node) {
             context.report(node, new context.RuleError("error message"));
         };
         return exports;
     }
 });
-textlint.lintMarkdown("# title").then(results => {
+textlint.lintMarkdown("# title").then((results) => {
     console.log(results[0].filePath); // => "README.md"
     console.log(results[0].messages); // => [{message:"lint message"}]
 });

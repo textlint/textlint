@@ -77,7 +77,7 @@ invalid : [
     } else {
         throw new Error("Should set `text` or `inputPath`");
     }
-    return promise.then(lintResult => {
+    return promise.then((lintResult) => {
         assert.strictEqual(
             lintResult.messages.length,
             errorLength,
@@ -160,7 +160,7 @@ export function testValid({ textlint, inputPath, text, ext }: ValidPattern) {
     } else {
         throw new Error("Should set `text` or `inputPath`");
     }
-    return promise.then(results => {
+    return promise.then((results) => {
         assert.strictEqual(
             results.messages.length,
             0,

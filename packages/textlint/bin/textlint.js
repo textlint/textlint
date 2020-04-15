@@ -28,30 +28,30 @@ function showError(error) {
 
 // Always start as promise
 Promise.resolve()
-    .then(function() {
+    .then(function () {
         if (useStdIn) {
-            return getStdin().then(function(text) {
+            return getStdin().then(function (text) {
                 return cli.execute(process.argv, text);
             });
         }
         return cli.execute(process.argv);
     })
-    .then(function(exitStatus) {
+    .then(function (exitStatus) {
         if (typeof exitStatus === "number") {
             process.exitCode = exitStatus;
         }
     })
-    .catch(function(error) {
+    .catch(function (error) {
         showError(error);
         process.exit(1);
     });
 
 // Catch throw error
-process.on("uncaughtException", function(error) {
+process.on("uncaughtException", function (error) {
     showError(error);
     process.exit(1);
 });
-process.on("unhandledRejection", function(error) {
+process.on("unhandledRejection", function (error) {
     showError(error);
     process.exit(1);
 });

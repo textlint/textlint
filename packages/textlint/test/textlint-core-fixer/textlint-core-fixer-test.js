@@ -10,12 +10,12 @@ import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";
 const inputFilePath = path.join(__dirname, "/fixtures/fixer-rules/input.md");
 const outputFilePath = path.join(__dirname, "/fixtures/fixer-rules/output.md");
 
-describe("textlint-fixer", function() {
-    context("#fixText", function() {
-        it("should return text added and replaced", function() {
+describe("textlint-fixer", function () {
+    context("#fixText", function () {
+        it("should return text added and replaced", function () {
             const textlint = new TextLintCore();
             textlint.setupRules({ "fixer-rule-add": ruleAdd, "fixer-rule-replace": ruleReplace });
-            return textlint.fixText("This is fix", ".md").then(result => {
+            return textlint.fixText("This is fix", ".md").then((result) => {
                 assert.ok(typeof result.output === "string");
                 assert.ok(result.filePath === "<markdown>");
                 assert.equal(result.messages.length, result.applyingMessages.length + result.remainingMessages.length);
@@ -25,8 +25,8 @@ describe("textlint-fixer", function() {
             });
         });
     });
-    context("#fixFile", function() {
-        it("should return text added and replaced", function() {
+    context("#fixFile", function () {
+        it("should return text added and replaced", function () {
             const textlint = new TextLintCore();
             const rules = {
                 "fixer-rule-remove": ruleRemove,
@@ -35,7 +35,7 @@ describe("textlint-fixer", function() {
             };
             textlint.setupRules(rules);
             const expectedOutput = fs.readFileSync(outputFilePath, "utf-8");
-            return textlint.fixFile(inputFilePath).then(result => {
+            return textlint.fixFile(inputFilePath).then((result) => {
                 assert.ok(typeof result.output === "string");
                 assert.ok(result.filePath === inputFilePath);
                 assert.equal(result.messages.length, result.applyingMessages.length + result.remainingMessages.length);

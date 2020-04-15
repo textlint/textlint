@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
-module.exports = function(results) {
+module.exports = function (results) {
     return `example-formatter\n${results
-        .map(function(result) {
-            return result.messages.map(function(message) {
+        .map(function (result) {
+            return result.messages.map(function (message) {
                 return "xxx";
             });
         })

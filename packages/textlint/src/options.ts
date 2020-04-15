@@ -7,7 +7,7 @@ const optionator = require("optionator");
 
 const concatFormatterList = (formatterList: FormatterDetail[] | FixerFormatterDetail[]) => {
     return formatterList
-        .map(formatter => {
+        .map((formatter) => {
             return formatter.name;
         })
         .join(", ");

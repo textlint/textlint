@@ -18,17 +18,17 @@ import * as assert from "assert";
 // Tests
 //------------------------------------------------------------------------------
 
-describe("formatter:junit", function() {
-    describe("when there are no problems", function() {
+describe("formatter:junit", function () {
+    describe("when there are no problems", function () {
         const code = [];
 
-        it("should not complain about anything", function() {
+        it("should not complain about anything", function () {
             const result = formatter(code, { color: false });
             assert.equal(result.replace(/\n/g, ""), '<?xml version="1.0" encoding="utf-8"?><testsuites></testsuites>');
         });
     });
 
-    describe("when passed a single message", function() {
+    describe("when passed a single message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -44,7 +44,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should return a single <testcase> with a message and the line and col number in the body (error)", function() {
+        it("should return a single <testcase> with a message and the line and col number in the body (error)", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),
@@ -52,7 +52,7 @@ describe("formatter:junit", function() {
             );
         });
 
-        it("should return a single <testcase> with a message and the line and col number in the body (warning)", function() {
+        it("should return a single <testcase> with a message and the line and col number in the body (warning)", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code, { color: false });
             assert.equal(
@@ -62,7 +62,7 @@ describe("formatter:junit", function() {
         });
     });
 
-    describe("when passed a fatal error message", function() {
+    describe("when passed a fatal error message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -78,7 +78,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should return a single <testcase> and an <error>", function() {
+        it("should return a single <testcase> and an <error>", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),
@@ -87,7 +87,7 @@ describe("formatter:junit", function() {
         });
     });
 
-    describe("when passed a fatal error message with no line or column", function() {
+    describe("when passed a fatal error message with no line or column", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -100,7 +100,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should return a single <testcase> and an <error>", function() {
+        it("should return a single <testcase> and an <error>", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),
@@ -109,7 +109,7 @@ describe("formatter:junit", function() {
         });
     });
 
-    describe("when passed a fatal error message with no line, column, or message text", function() {
+    describe("when passed a fatal error message with no line, column, or message text", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -121,7 +121,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should return a single <testcase> and an <error>", function() {
+        it("should return a single <testcase> and an <error>", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),
@@ -130,7 +130,7 @@ describe("formatter:junit", function() {
         });
     });
 
-    describe("when passed multiple messages", function() {
+    describe("when passed multiple messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -153,7 +153,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should return a multiple <testcase>'s", function() {
+        it("should return a multiple <testcase>'s", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),
@@ -162,7 +162,7 @@ describe("formatter:junit", function() {
         });
     });
 
-    describe("when passed special characters", function() {
+    describe("when passed special characters", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -178,7 +178,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should make them go away", function() {
+        it("should make them go away", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),
@@ -187,7 +187,7 @@ describe("formatter:junit", function() {
         });
     });
 
-    describe("when passed multiple files with 1 message each", function() {
+    describe("when passed multiple files with 1 message each", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -215,7 +215,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should return 2 <testsuite>'s", function() {
+        it("should return 2 <testsuite>'s", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),
@@ -224,7 +224,7 @@ describe("formatter:junit", function() {
         });
     });
 
-    describe("when passed multiple files with total 1 failure", function() {
+    describe("when passed multiple files with total 1 failure", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -244,7 +244,7 @@ describe("formatter:junit", function() {
             }
         ];
 
-        it("should return 1 <testsuite>", function() {
+        it("should return 1 <testsuite>", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result.replace(/\n/g, ""),

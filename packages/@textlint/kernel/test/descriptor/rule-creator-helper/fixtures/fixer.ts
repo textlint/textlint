@@ -2,7 +2,7 @@
 "use strict";
 import { TextlintRuleModule } from "@textlint/kernel";
 
-const reporter: TextlintRuleModule = context => {
+const reporter: TextlintRuleModule = (context) => {
     const { Syntax, fixer, report, getSource } = context;
     return {
         [Syntax.Str](node) {

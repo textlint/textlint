@@ -19,15 +19,15 @@ const isContainedRange = (index: number, range: [number, number]) => {
  * @returns {Object[]} filtered messages
  */
 export default function filterMessages(messages: ReadonlyArray<LintReportedMessage | IgnoreReportedMessage> = []) {
-    const lintingMessages = messages.filter(message => {
+    const lintingMessages = messages.filter((message) => {
         return message.type === MessageType.lint;
     }) as LintReportedMessage[];
-    const ignoreMessages = messages.filter(message => {
+    const ignoreMessages = messages.filter((message) => {
         return message.type === MessageType.ignore;
     }) as IgnoreReportedMessage[];
     // if match, reject the message
-    return lintingMessages.filter(message => {
-        return !ignoreMessages.some(ignoreMessage => {
+    return lintingMessages.filter((message) => {
+        return !ignoreMessages.some((ignoreMessage) => {
             const isInIgnoringRange = isContainedRange(message.index, ignoreMessage.range);
             if (isInIgnoringRange && ignoreMessage.ignoringRuleId) {
                 // "*" is wildcard that match any rule

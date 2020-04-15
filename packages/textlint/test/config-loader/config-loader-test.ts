@@ -9,8 +9,8 @@ import { Config } from "../../src/config/config";
 const dummyModuleLoader = new TextLintModuleResolver({
     rulesBaseDirectory: path.join(__dirname, "fixtures")
 });
-describe("config-loader", function() {
-    it("should load config file", function() {
+describe("config-loader", function () {
+    it("should load config file", function () {
         const configFile = path.join(__dirname, "fixtures", ".textlintrc");
         const { config } = loadConfig({
             configFileName: Config.CONFIG_FILE_NAME,
@@ -24,7 +24,7 @@ describe("config-loader", function() {
         // FIXME: https://github.com/textlint/textlint/issues/298
         it.skip("should throw an Error", () => {
             const notUTF8Files = ["shift-jis.js", "euc-jp.json"];
-            notUTF8Files.forEach(notUTF8File => {
+            notUTF8Files.forEach((notUTF8File) => {
                 const configFile = path.join(__dirname, "fixtures", "shift-jis.js");
                 assert.throws(() => {
                     loadConfig({
@@ -36,8 +36,8 @@ describe("config-loader", function() {
             });
         });
     });
-    context("when specify Config module, found it", function() {
-        it("should load from Config module", function() {
+    context("when specify Config module, found it", function () {
+        it("should load from Config module", function () {
             const baseDir = path.join(__dirname, "fixtures");
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: baseDir
@@ -51,8 +51,8 @@ describe("config-loader", function() {
             assert.ok(config.rules.config.key === true);
         });
     });
-    context("when specify Config module, but not found", function() {
-        it("should load same name of module", function() {
+    context("when specify Config module, but not found", function () {
+        it("should load same name of module", function () {
             const baseDir = path.join(__dirname, "fixtures");
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: baseDir
@@ -67,7 +67,7 @@ describe("config-loader", function() {
             assert.ok(config.rules["alt-rule"]);
             assert.ok(filePath === directTextlintrc);
         });
-        it("should not load config", function() {
+        it("should not load config", function () {
             const baseDir = path.join(__dirname, "fixtures");
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: baseDir

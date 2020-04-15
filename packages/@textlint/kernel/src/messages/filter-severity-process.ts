@@ -10,7 +10,7 @@ import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLe
  * @returns {TextlintMessage[]} filtered messages
  */
 export function filterWarningMessages(messages: TextlintMessage[] = []) {
-    return messages.filter(message => {
+    return messages.filter((message) => {
         return message.severity === TextlintRuleSeverityLevelKeys.error;
     });
 }

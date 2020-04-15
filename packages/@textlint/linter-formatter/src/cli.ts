@@ -4,7 +4,7 @@ import * as fs from "fs";
 import { createFormatter, getFormatterList } from "./index";
 
 module.exports = function run(argv: string[], text: string) {
-    return new Promise(function(resolve) {
+    return new Promise(function (resolve) {
         let format;
         const optionator = require("optionator")({
             prepend: "Usage: textlint-formatter [options]",

@@ -43,7 +43,7 @@ export function createFormatter(formatterConfig: FormatterConfig) {
         throw new Error(`Could not find formatter ${formatterName}
 ${ex}`);
     }
-    return function(results: TextlintResult[]) {
+    return function (results: TextlintResult[]) {
         return formatter(results, formatterConfig);
     };
 }

@@ -39,27 +39,27 @@
     "textlint": "^11.6.3"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^12.7.12",
-    "analyze-desumasu-dearu": "^3.1.0",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.1",
+    "analyze-desumasu-dearu": "^4.0.0",
     "babel-cli": "^6.10.1",
     "babel-preset-env": "^1.4.0",
-    "babel-preset-jsdoc-to-assert": "^4.0.0",
-    "babel-preset-power-assert": "^1.0.0",
+    "babel-preset-jsdoc-to-assert": "^5.0.0",
+    "babel-preset-power-assert": "^3.0.0",
     "babel-register": "^6.9.0",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.2",
     "match-index": "^1.0.3",
-    "mocha": "^6.2.1",
+    "mocha": "^7.1.1",
     "power-assert": "^1.6.1",
-    "rimraf": "^3.0.0",
+    "rimraf": "^3.0.2",
     "textlint": "^11.1.0",
     "textlint-plugin-html": "^0.2.0",
     "textlint-rule-helper": "^2.0.1",
     "textlint-rule-max-number-of-lines": "^1.0.2",
     "textlint-rule-no-todo": "^2.0.1",
-    "ts-node": "^8.4.1",
+    "ts-node": "^8.8.2",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "~3.6.4"
+    "typescript": "~3.8.3"
   },
   "email": "azuciao@gmail.com"
 }

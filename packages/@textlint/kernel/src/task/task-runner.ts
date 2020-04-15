@@ -15,10 +15,10 @@ export default class TaskRunner {
     static process(task: TextLintCoreTask): Promise<Array<LintReportedMessage | IgnoreReportedMessage>> {
         return new Promise((resolve, reject) => {
             const messages: Array<LintReportedMessage | IgnoreReportedMessage> = [];
-            task.on(CoreTask.events.message, message => {
+            task.on(CoreTask.events.message, (message) => {
                 messages.push(message);
             });
-            task.on(CoreTask.events.error, error => {
+            task.on(CoreTask.events.error, (error) => {
                 reject(error);
             });
             task.on(CoreTask.events.complete, () => {

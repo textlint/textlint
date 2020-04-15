@@ -1,6 +1,6 @@
 {
   "presets": [
-    "env"
+    "@babel/preset-env"
   ],
   "env": {
     "development": {
@@ -10,7 +10,7 @@
       ]
     }
   },
-  "ignore":[
+  "ignore": [
     "lib",
     "node_modules"
   ]

@@ -38,17 +38,6 @@
         "readibility"
       ]
     },
-    "alex": false,
-    "no-dead-link": {
-      "checkRelative": true,
-      "ignore": [
-        "https://help.github.com/**",
-        "https://github.com/textlint/textlint/issues/new",
-        "https://git-scm.com/book/gr/v2/Customizing-Git-Git-Hooks"
-      ],
-      "preferGET": [
-        "https://www.npmjs.com"
-      ]
-    }
+    "alex": false
   }
 }

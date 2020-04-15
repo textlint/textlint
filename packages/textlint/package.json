@@ -82,24 +82,24 @@
     "unique-concat": "^0.2.2"
   },
   "devDependencies": {
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^12.7.12",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.1",
     "clone": "^2.1.2",
     "cpx": "^1.5.0",
-    "cross-env": "^6.0.3",
-    "mocha": "^6.2.1",
+    "cross-env": "^7.0.2",
+    "mocha": "^7.1.1",
     "npm-run-all": "^4.1.5",
     "power-assert": "^1.6.1",
-    "rimraf": "^3.0.0",
+    "rimraf": "^3.0.2",
     "shelljs": "^0.8.3",
-    "source-map-support": "^0.5.0",
+    "source-map-support": "^0.5.16",
     "textlint-plugin-html": "^0.2.0",
     "textlint-rule-helper": "^2.0.1",
     "textlint-rule-no-todo": "^2.0.1",
     "textlint-rule-preset-ja-spacing": "^2.0.0",
-    "textlint-rule-preset-jtf-style": "^2.3.2",
-    "ts-node": "^8.4.1",
+    "textlint-rule-preset-jtf-style": "^2.3.4",
+    "ts-node": "^8.8.2",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "~3.6.4"
+    "typescript": "~3.8.3"
   }
 }

@@ -60,12 +60,12 @@ export const lintParallel = <T extends "lint" | "fix">(
                 };
                 const worker: Worker = new Worker(workerPath, { workerData });
                 const startDate = Date.now();
-                worker.on("message", results => {
+                worker.on("message", (results) => {
                     debug("Worker(%s) taken time: %s(ms)", worker.threadId, Date.now() - startDate);
                     resolve(results);
                 });
                 worker.on("error", reject);
-                worker.on("exit", exitCode => {
+                worker.on("exit", (exitCode) => {
                     if (exitCode) {
                         reject(new Error(`Worker(${worker.threadId}) stopped with exit code ${exitCode}`));
                     } else {
@@ -76,7 +76,7 @@ export const lintParallel = <T extends "lint" | "fix">(
         );
     }
     debug("Worker count: %s", promises.length);
-    return Promise.all(promises).then(resultsInList => {
+    return Promise.all(promises).then((resultsInList) => {
         return resultsInList.flat();
     }) as Promise<LintWorkerResults<typeof options["type"]>>;
 };

@@ -8,15 +8,15 @@ import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";
 
 const sourceCode = createDummySourceCode();
-describe("compute-location", function() {
-    beforeEach(function() {
+describe("compute-location", function () {
+    beforeEach(function () {
         coreFlags.runningTester = true;
     });
-    afterEach(function() {
+    afterEach(function () {
         resetFlags();
     });
-    context("message only", function() {
-        it("should return node's start location", function() {
+    context("message only", function () {
+        it("should return node's start location", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -30,8 +30,8 @@ describe("compute-location", function() {
             assert.ok(!fix);
         });
     });
-    context("column only", function() {
-        context("[Backward Compatible] should handle column as index", function() {
+    context("column only", function () {
+        context("[Backward Compatible] should handle column as index", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -47,8 +47,8 @@ describe("compute-location", function() {
             assert.equal(column, 15);
             assert.ok(!fix);
         });
-        context("[textlint-tester] when testing", function() {
-            it("should throw error in testing.", function() {
+        context("[textlint-tester] when testing", function () {
+            it("should throw error in testing.", function () {
                 const sourceLocation = new SourceLocation(sourceCode);
                 const node = {
                     type: "String",
@@ -62,8 +62,8 @@ describe("compute-location", function() {
             });
         });
     });
-    context("index only", function() {
-        it("should return column, line", function() {
+    context("index only", function () {
+        it("should return column, line", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -78,8 +78,8 @@ describe("compute-location", function() {
         });
     });
 
-    context("index and column", function() {
-        it("should throw error", function() {
+    context("index and column", function () {
+        it("should throw error", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -92,7 +92,7 @@ describe("compute-location", function() {
                 sourceLocation.adjust({ node, ruleError });
             });
         });
-        it("should throw error with RuleName", function() {
+        it("should throw error with RuleName", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -106,8 +106,8 @@ describe("compute-location", function() {
             }, /\[RULE_NAME\]/);
         });
     });
-    context("line only", function() {
-        it("should throw error", function() {
+    context("line only", function () {
+        it("should throw error", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -123,8 +123,8 @@ describe("compute-location", function() {
         });
     });
 
-    context("paddingObject is plain object", function() {
-        it("should accept this that same as RuleError", function() {
+    context("paddingObject is plain object", function () {
+        it("should accept this that same as RuleError", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -138,8 +138,8 @@ describe("compute-location", function() {
             assert.deepEqual(fix.range, [11, 15]);
         });
     });
-    context("fix only", function() {
-        it("range should be absolute of value", function() {
+    context("fix only", function () {
+        it("range should be absolute of value", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -151,8 +151,8 @@ describe("compute-location", function() {
             assert.deepEqual(fix.range, [11, 15]);
         });
     });
-    context("full set", function() {
-        it("should return {line, column, fix}", function() {
+    context("full set", function () {
+        it("should return {line, column, fix}", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -170,8 +170,8 @@ describe("compute-location", function() {
         });
     });
 
-    context("When fix command for node", function() {
-        it("is not adjust fix command range - because it is absolute position", function() {
+    context("When fix command for node", function () {
+        it("is not adjust fix command range - because it is absolute position", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "Str",
@@ -185,7 +185,7 @@ describe("compute-location", function() {
             assert.deepEqual(fix.range, [20, 20]);
             assert.deepEqual(fix.text, ".");
         });
-        it("is not adjust fix command range - because it is absolute position", function() {
+        it("is not adjust fix command range - because it is absolute position", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "Str",

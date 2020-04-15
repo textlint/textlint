@@ -27,7 +27,7 @@ export const splitKeyToPresetSubRule = (name: string): { preset: string | null; 
     // @org/rule or rule
     return {
         preset: null,
-        rule: name
+        rule: name,
     };
 };
 

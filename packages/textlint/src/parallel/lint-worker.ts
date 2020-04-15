@@ -25,13 +25,13 @@ if (isMainThread) {
 const engine = type === "lint" ? new TextLintEngine(config) : new TextFixEngine(config);
 engine
     .executeOnFiles(files)
-    .then(results => {
+    .then((results) => {
         debug("Worker(%s) Done", threadId);
         if (parentPort) {
             parentPort.postMessage(results);
         }
     })
-    .catch(error => {
+    .catch((error) => {
         debug("Worker(%s) Error", error.stack);
         process.exitCode = 1;
     });

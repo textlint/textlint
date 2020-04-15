@@ -50,7 +50,7 @@ function outputDiagnostics(diagnostic: any): string {
 function formatter(results: TextlintResult[]) {
     let output = "TAP version 13\n1.." + results.length + "\n";
 
-    results.forEach(function(result, id) {
+    results.forEach(function (result, id) {
         const messages = result.messages;
         let testResult = "ok";
         let diagnostics: any = {};
@@ -58,7 +58,7 @@ function formatter(results: TextlintResult[]) {
         if (messages.length > 0) {
             testResult = "not ok";
 
-            messages.forEach(function(message) {
+            messages.forEach(function (message) {
                 const diagnostic = {
                     message: message.message,
                     severity: getMessageType(message),

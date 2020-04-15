@@ -31,7 +31,7 @@ function getMessageType(message: any): string {
  * @private
  */
 function xmlEscape(s: any): string {
-    return ("" + s).replace(/[<>&"']/g, function(c) {
+    return ("" + s).replace(/[<>&"']/g, function (c) {
         switch (c) {
             case "<":
                 return "&lt;";
@@ -59,12 +59,12 @@ function formatter(results: TextlintResult[]) {
     output += '<?xml version="1.0" encoding="utf-8"?>';
     output += '<checkstyle version="4.3">';
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         const messages = result.messages;
 
         output += '<file name="' + xmlEscape(result.filePath) + '">';
 
-        messages.forEach(function(message) {
+        messages.forEach(function (message) {
             output +=
                 '<error line="' +
                 xmlEscape(message.line) +

@@ -17,8 +17,8 @@ import * as assert from "assert";
 // Tests
 //------------------------------------------------------------------------------
 
-describe("formatter:compact", function() {
-    describe("when passed no messages", function() {
+describe("formatter:compact", function () {
+    describe("when passed no messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -26,13 +26,13 @@ describe("formatter:compact", function() {
             }
         ];
 
-        it("should return nothing", function() {
+        it("should return nothing", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "");
         });
     });
 
-    describe("when passed a single message", function() {
+    describe("when passed a single message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -48,19 +48,19 @@ describe("formatter:compact", function() {
             }
         ];
 
-        it("should return a string in the format filename:line:column: error [Error/rule_id]", function() {
+        it("should return a string in the format filename:line:column: error [Error/rule_id]", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "foo.js:5:10: Unexpected foo. [Error/foo]\n\n1 problem");
         });
 
-        it("should return a string in the format filename:line:column: warning [Warning/rule_id]", function() {
+        it("should return a string in the format filename:line:column: warning [Warning/rule_id]", function () {
             code[0].messages[0].severity = 1;
             const result = formatter(code, { color: false });
             assert.equal(result, "foo.js:5:10: Unexpected foo. [Warning/foo]\n\n1 problem");
         });
     });
 
-    describe("when passed a fatal error message", function() {
+    describe("when passed a fatal error message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -76,13 +76,13 @@ describe("formatter:compact", function() {
             }
         ];
 
-        it("should return a string in the format filename:line:column: error [Error/rule_id]", function() {
+        it("should return a string in the format filename:line:column: error [Error/rule_id]", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "foo.js:5:10: Unexpected foo. [Error/foo]\n\n1 problem");
         });
     });
 
-    describe("when passed multiple messages", function() {
+    describe("when passed multiple messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -105,7 +105,7 @@ describe("formatter:compact", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -114,7 +114,7 @@ describe("formatter:compact", function() {
         });
     });
 
-    describe("when passed multiple files with 1 message each", function() {
+    describe("when passed multiple files with 1 message each", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -142,7 +142,7 @@ describe("formatter:compact", function() {
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -151,7 +151,7 @@ describe("formatter:compact", function() {
         });
     });
 
-    describe("when passed one file not found message", function() {
+    describe("when passed one file not found message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -164,7 +164,7 @@ describe("formatter:compact", function() {
             }
         ];
 
-        it("should return a string without line and column", function() {
+        it("should return a string without line and column", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "foo.js:0:0: Couldn't find foo.js. [Error]\n\n1 problem");
         });

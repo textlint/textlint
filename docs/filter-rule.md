@@ -57,9 +57,9 @@ The rule `<name>` can be accept following patterns:
 Filter all `BlockQuote` node.
 
 ```js
-module.exports = function(context) {
+module.exports = function (context) {
     const exports = {};
-    exports[context.Syntax.BlockQuote] = function(node) {
+    exports[context.Syntax.BlockQuote] = function (node) {
         context.shouldIgnore(node.range);
         /* === 
         context.shouldIgnore(node.range, {
@@ -74,9 +74,9 @@ module.exports = function(context) {
 Filter messages which is reported by `no-todo` rule.
 
 ```js
-module.exports = function(context) {
+module.exports = function (context) {
     const exports = {};
-    exports[context.Syntax.Str] = function(node) {
+    exports[context.Syntax.Str] = function (node) {
         context.shouldIgnore(node.range, {
             ruleId: "no-todo"
         });

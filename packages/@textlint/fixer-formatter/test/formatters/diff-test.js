@@ -4,12 +4,12 @@ const assert = require("assert");
 const path = require("path");
 import diff from "../../src/formatters/diff";
 
-const formatter = code => {
+const formatter = (code) => {
     return diff(code, { color: false });
 };
-describe("formatter:diff", function() {
-    context("when single modified", function() {
-        it("should return output", function() {
+describe("formatter:diff", function () {
+    context("when single modified", function () {
+        it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "single.md");
             const code = require("../fixtures/single");
             const output = formatter(code, { color: false });
@@ -28,8 +28,8 @@ ${input}
             );
         });
     });
-    context("when double modified", function() {
-        it("should return output", function() {
+    context("when double modified", function () {
+        it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "double.md");
             const code = require("../fixtures/double");
             const output = formatter(code, { color: false });
@@ -50,8 +50,8 @@ ${input}
             );
         });
     });
-    context("when multiple files results", function() {
-        it("should return output", function() {
+    context("when multiple files results", function () {
+        it("should return output", function () {
             const singleFile = path.join(__dirname, "../fixtures", "single.md");
             const multiple = path.join(__dirname, "../fixtures", "multiple.md");
             const code = require("../fixtures/multiple");
@@ -85,8 +85,8 @@ ${multiple}
         });
     });
 
-    context("when remaining messages", function() {
-        it("should return output", function() {
+    context("when remaining messages", function () {
+        it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "remaining.md");
             const code = require("../fixtures/remaining");
             const output = formatter(code, { color: false });

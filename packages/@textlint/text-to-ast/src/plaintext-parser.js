@@ -78,7 +78,7 @@ function createParagraph(nodes) {
     return {
         type: Syntax.Paragraph,
         raw: nodes
-            .map(function(node) {
+            .map(function (node) {
                 return node.raw;
             })
             .join(""),
@@ -135,7 +135,7 @@ function parse(text) {
     const isEmptyLine = (line, index) => {
         return index !== lastLineIndex && line.text === "";
     };
-    const children = textLineByLine.reduce(function(result, currentLine, index) {
+    const children = textLineByLine.reduce(function (result, currentLine, index) {
         const lineNumber = index + 1;
         if (isLastEmptyLine(currentLine, index)) {
             return result;

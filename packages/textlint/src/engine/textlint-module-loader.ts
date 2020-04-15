@@ -44,10 +44,10 @@ export class TextLintModuleLoader extends EventEmitter {
         // --ruledir
         if (config.rulePaths && this.listenerCount(TextLintModuleLoader.Event.rule) > 0) {
             // load in additional rules
-            config.rulePaths.forEach(rulesDir => {
+            config.rulePaths.forEach((rulesDir) => {
                 debug("Loading rules from %o", rulesDir);
                 const rules = loadFromDir(rulesDir);
-                Object.keys(rules).forEach(ruleName => {
+                Object.keys(rules).forEach((ruleName) => {
                     const entry = [ruleName, rules[ruleName]];
                     this.emit(TextLintModuleLoader.Event.rule, entry);
                 });
@@ -63,20 +63,20 @@ export class TextLintModuleLoader extends EventEmitter {
         // TODO: --filter
         if (config.filterRules && this.listenerCount(TextLintModuleLoader.Event.filterRule) > 0) {
             // load in additional filterRules
-            config.filterRules.forEach(ruleName => {
+            config.filterRules.forEach((ruleName) => {
                 this.loadFilterRule(ruleName);
             });
         }
         // --preset
         if (config.presets && this.listenerCount(TextLintModuleLoader.Event.rule) > 0) {
-            config.presets.forEach(presetName => {
+            config.presets.forEach((presetName) => {
                 this.loadPreset(presetName);
             });
         }
         // --plugin
         if (config.plugins && this.listenerCount(TextLintModuleLoader.Event.plugin) > 0) {
             // load in additional rules from plugin
-            config.plugins.forEach(pluginName => {
+            config.plugins.forEach((pluginName) => {
                 this.loadPlugin(pluginName);
             });
         }
@@ -133,7 +133,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         debug("Loading rules from preset: %s", pkgPath);
         const preset = moduleInterop(require(pkgPath));
         const entities = TextLintModuleMapper.createEntities(preset.rules, presetRuleNameWithoutPrefix);
-        entities.forEach(entry => {
+        entities.forEach((entry) => {
             this.emit(TextLintModuleLoader.Event.rule, entry);
         });
     }

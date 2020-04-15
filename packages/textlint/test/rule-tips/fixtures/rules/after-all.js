@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 "use strict";
-const callAsync = text => {
+const callAsync = (text) => {
     // do something by async
     return Promise.resolve(text);
 };
@@ -8,8 +8,8 @@ const callAsync = text => {
  * @param {Array} array
  * @returns {function(*)}
  */
-export const createAfterAllRule = array => {
-    return context => {
+export const createAfterAllRule = (array) => {
+    return (context) => {
         const { Syntax, getSource } = context;
         const promiseQueue = [];
         return {

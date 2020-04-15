@@ -4,21 +4,21 @@ const assert = require("assert");
 import { ExecuteFileBackerManager } from "../../src/engine/execute-file-backer-manager";
 import { AbstractBacker } from "../../src/engine/execute-file-backers/abstruct-backer";
 
-describe("execute-file-backer-manager", function() {
-    context("when no backer", function() {
-        it("should process all files", function() {
+describe("execute-file-backer-manager", function () {
+    context("when no backer", function () {
+        it("should process all files", function () {
             const manager = new ExecuteFileBackerManager();
-            const executeFile = filePath => {
+            const executeFile = (filePath) => {
                 return Promise.resolve({ filePath, messages: [] });
             };
             const files = ["/file1.md", "/file2.md"];
-            return manager.process(files, executeFile).then(results => {
+            return manager.process(files, executeFile).then((results) => {
                 assert.equal(results.length, files.length);
             });
         });
     });
-    context("when has backer", function() {
-        it("call each backer lifecycle", function() {
+    context("when has backer", function () {
+        it("call each backer lifecycle", function () {
             const manager = new ExecuteFileBackerManager();
             const callStack = [];
 
@@ -38,7 +38,7 @@ describe("execute-file-backer-manager", function() {
             }
 
             manager.add(new ExampleBacker());
-            const executeFile = filePath => {
+            const executeFile = (filePath) => {
                 return Promise.resolve({ filePath, messages: [] });
             };
             const files = ["/file1.md", "/file2.md"];
@@ -53,8 +53,8 @@ describe("execute-file-backer-manager", function() {
             });
         });
     });
-    context("when shouldExecute:false backer", function() {
-        it("should return dummy result instead of actual result", function() {
+    context("when shouldExecute:false backer", function () {
+        it("should return dummy result instead of actual result", function () {
             class ShouldNotExecuteBacker extends AbstractBacker {
                 shouldExecute() {
                     return false;
@@ -70,7 +70,7 @@ describe("execute-file-backer-manager", function() {
                 throw new Error("not called");
             };
             const files = ["/file1.md", "/file2.md"];
-            return manager.process(files, executeFile).then(results => {
+            return manager.process(files, executeFile).then((results) => {
                 assert.equal(results.length, files.length);
                 const [res1, res2] = results;
                 assert.ok(res1.filePath === files[0]);

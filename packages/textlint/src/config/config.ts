@@ -22,20 +22,17 @@ const path = require("path");
 const pkgConf = require("read-pkg-up");
 
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
-    return names.map(name => {
+    return names.map((name) => {
         return normalizer(name);
     });
 }
 
 function applyNormalizerToConfig(normalizer: (name: string) => string, config: { [index: string]: string }) {
-    return Object.keys(config).reduce(
-        (results, key) => {
-            const shortPluginName = normalizer(key);
-            results[shortPluginName] = config[key];
-            return results;
-        },
-        {} as { [index: string]: any }
-    );
+    return Object.keys(config).reduce((results, key) => {
+        const shortPluginName = normalizer(key);
+        results[shortPluginName] = config[key];
+        return results;
+    }, {} as { [index: string]: any });
 }
 
 /**
@@ -335,7 +332,7 @@ export class Config {
         this.rules = applyNormalizerToList(
             normalizeTextlintRuleKey,
             options.rules ? options.rules : defaultOptions.rules
-        ).filter(ruleName => {
+        ).filter((ruleName) => {
             return !this.disabledRules.includes(ruleName);
         });
 
@@ -354,7 +351,7 @@ export class Config {
         this.filterRules = applyNormalizerToList(
             normalizeTextlintFilterRuleKey,
             options.filterRules ? options.filterRules : defaultOptions.filterRules
-        ).filter(ruleName => {
+        ).filter((ruleName) => {
             return !this.disabledFilterRules.includes(ruleName);
         });
         /**
@@ -434,7 +431,7 @@ export class Config {
 
     toJSON() {
         const r = Object.create(null);
-        Object.keys(this).forEach(key => {
+        Object.keys(this).forEach((key) => {
             if (!this.hasOwnProperty(key)) {
                 return;
             }

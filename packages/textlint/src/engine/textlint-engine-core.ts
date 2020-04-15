@@ -296,7 +296,7 @@ new TextLintEngine({
      * @returns {Boolean} Whether or not the results contain error message.
      */
     isErrorResults(results: TextlintResult[]): boolean {
-        return results.some(result => {
+        return results.some((result) => {
             return result.messages.some(this.isErrorMessage);
         });
     }

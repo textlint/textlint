@@ -31,7 +31,7 @@ describe("textlint-package-name-util", () => {
                 prefix: "textlint-rule-preset-"
             }
         ];
-        patterns.forEach(pattern => {
+        patterns.forEach((pattern) => {
             it(`${pattern.before} -> ${pattern.after}`, () => {
                 assert.strictEqual(removePrefixFromPackageName([pattern.prefix], pattern.before), pattern.after);
             });

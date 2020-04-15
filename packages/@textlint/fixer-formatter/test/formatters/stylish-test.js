@@ -2,19 +2,19 @@
 import stylish from "../../src/formatters/stylish";
 
 const assert = require("assert");
-const formatter = code => {
+const formatter = (code) => {
     return stylish(code, { color: false });
 };
-describe("formatter:stylish", function() {
-    describe("when passed no messages", function() {
+describe("formatter:stylish", function () {
+    describe("when passed no messages", function () {
         const code = [{ filePath: "foo.js", applyingMessages: [], remainingMessages: [] }];
-        it("should not return message", function() {
+        it("should not return message", function () {
             const result = formatter(code, { color: false });
             assert.equal(result, "");
         });
     });
 
-    describe("when passed a single message", function() {
+    describe("when passed a single message", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -23,7 +23,7 @@ describe("formatter:stylish", function() {
             }
         ];
 
-        it("should return a string in the correct format for errors", function() {
+        it("should return a string in the correct format for errors", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -37,7 +37,7 @@ foo.js
         });
     });
 
-    describe("when passed multiple messages", function() {
+    describe("when passed multiple messages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -49,7 +49,7 @@ foo.js
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -64,7 +64,7 @@ foo.js
         });
     });
 
-    describe("when passed multiple files with 1 message each", function() {
+    describe("when passed multiple files with 1 message each", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -78,7 +78,7 @@ foo.js
             }
         ];
 
-        it("should return a string with multiple entries", function() {
+        it("should return a string with multiple entries", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -95,7 +95,7 @@ bar.js
         });
     });
 
-    describe("when passed remainingMessages", function() {
+    describe("when passed remainingMessages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -110,7 +110,7 @@ bar.js
             }
         ];
 
-        it("should show remaining count", function() {
+        it("should show remaining count", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
@@ -125,7 +125,7 @@ foo.js
             );
         });
     });
-    describe("when passed one remainingMessages", function() {
+    describe("when passed one remainingMessages", function () {
         const code = [
             {
                 filePath: "foo.js",
@@ -137,7 +137,7 @@ foo.js
             }
         ];
 
-        it("should show remaining count", function() {
+        it("should show remaining count", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,

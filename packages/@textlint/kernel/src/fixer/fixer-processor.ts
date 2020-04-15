@@ -64,7 +64,7 @@ export default class FixerProcessor {
         // original means original for applyingMessages and remainingMessages
         // pre-applyingMessages + remainingMessages
         const originalMessages: TextlintMessage[] = [];
-        const fixerProcessList = ruleDescriptors.fixableDescriptors.map(ruleDescriptor => {
+        const fixerProcessList = ruleDescriptors.fixableDescriptors.map((ruleDescriptor) => {
             return (sourceText: string): Promise<string> => {
                 // create new SourceCode object
                 const preProcessResult = preProcess(sourceText, sourceCode.filePath);
@@ -86,7 +86,7 @@ export default class FixerProcessor {
                     configBaseDir
                 });
 
-                return TaskRunner.process(task).then(messages => {
+                return TaskRunner.process(task).then((messages) => {
                     const result = postProcess(messages, sourceCode.filePath);
                     const filteredResult = {
                         messages: this.messageProcessManager.process(result.messages),
@@ -110,12 +110,12 @@ export default class FixerProcessor {
         });
 
         const promiseTask = fixerProcessList.reduce((promise, fixerProcess) => {
-            return promise.then(sourceText => {
+            return promise.then((sourceText) => {
                 return fixerProcess(sourceText);
             });
         }, Promise.resolve(sourceCode.text));
 
-        return promiseTask.then(output => {
+        return promiseTask.then((output) => {
             debug(`Finish Processing: ${resultFilePath}`);
             debug(`applyingMessages: ${applyingMessages.length}`);
             debug(`remainingMessages: ${remainingMessages.length}`);

@@ -4,7 +4,7 @@ import { RuleHelper } from "textlint-rule-helper";
 /**
  * @param {RuleContext} context
  */
-export default function(context) {
+export default function (context) {
     const helper = new RuleHelper(context);
     const { Syntax, getSource, RuleError, report } = context;
     return {

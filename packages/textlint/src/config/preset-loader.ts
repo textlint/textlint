@@ -29,7 +29,7 @@ export function createFlatRulesConfigFromRawRulesConfig(rawRulesConfig: any) {
         return {};
     }
     const rulesConfig: { [index: string]: any } = {};
-    Object.keys(rawRulesConfig).forEach(key => {
+    Object.keys(rawRulesConfig).forEach((key) => {
         if (isPresetRuleKey(key)) {
             // <preset>/<rule>
             const presetName = key;
@@ -60,7 +60,7 @@ export function createFlatPresetRulesConfigFromRawPresetRuleConfig(
     if (rulesConfig === undefined || typeof rulesConfig !== "object") {
         return mapped;
     }
-    Object.keys(rulesConfig).forEach(ruleName => {
+    Object.keys(rulesConfig).forEach((ruleName) => {
         const normalizedKey = normalizeTextlintPresetSubRuleKey({ preset: presetName, rule: ruleName });
         mapped[normalizedKey] = rulesConfig[ruleName];
     });
@@ -76,7 +76,7 @@ export function createFlatPresetRulesConfigFromRawPresetRuleConfig(
  */
 export function loadRulesConfigFromPresets(presetNames: string[] = [], moduleResolver: TextLintModuleResolver): {} {
     const presetRulesConfig = {};
-    presetNames.forEach(presetName => {
+    presetNames.forEach((presetName) => {
         const pkgPath = moduleResolver.resolvePresetPackageName(presetName);
         const preset = moduleInterop(require(pkgPath));
         if (!preset.hasOwnProperty("rules")) {

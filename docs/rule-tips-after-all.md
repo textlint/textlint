@@ -10,12 +10,12 @@ But you can write following:
 
 ```js
 // Async Task return a promise.
-const callAsync = text => {
+const callAsync = (text) => {
     // do something by async
     return Promise.resolve(text);
 };
 
-module.exports = context => {
+module.exports = (context) => {
     const { Syntax, getSource } = context;
     const promiseQueue = [];
     return {

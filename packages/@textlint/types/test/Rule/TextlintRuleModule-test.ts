@@ -10,7 +10,7 @@ const report0: TextlintRuleReporter = (context, options = {}) => {
     return {
         [Syntax.Str]() {
             return;
-        }
+        },
     };
 };
 // test TextlintRuleReporter
@@ -23,7 +23,7 @@ const report1: TextlintRuleReporter<Report1Options> = (context, options = {}) =>
     return {
         [Syntax.Str]() {
             return;
-        }
+        },
     };
 };
 
@@ -37,7 +37,7 @@ const report2: TextlintRuleReporter = (context, options: TextlintRuleOptions<Rep
     return {
         [Syntax.Str]() {
             return;
-        }
+        },
     };
 };
 
@@ -51,7 +51,7 @@ const report3: TextlintRuleReporter = (context, options = {}) => {
     return {
         [Syntax.Str]() {
             return;
-        }
+        },
     };
 };
 const report3Module = { linter: report3, fixer: report3 } as TextlintRuleModule<Report3options>;

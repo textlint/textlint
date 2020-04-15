@@ -56,7 +56,7 @@ const defaultOptions = {
  * @param {TextLintRuleContext} context
  * @param {Object} options
  */
-export default function(context, options = {}) {
+export default function (context, options = {}) {
     const { Syntax, getSource, RuleError, report } = context;
     const maxWordCount = options.max ? options.max : defaultOptions.max;
     return {
@@ -114,14 +114,14 @@ const defaultOptions = {
  * @param {TextLintRuleContext} context
  * @param {Object} options
  */
-export default function(context, options = {}) {
+export default function (context, options = {}) {
     const { Syntax, getSource, RuleError, report } = context;
     const maxWordCount = options.max ? options.max : defaultOptions.max;
     return {
         [Syntax.Paragraph](node) {
             // replace code with dummy code
             // if you want to filter(remove) code, use https://github.com/eush77/unist-util-filter
-            const filteredNode = map(node, node => {
+            const filteredNode = map(node, (node) => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
                     return Object.assign({}, node, {
@@ -160,14 +160,14 @@ const defaultOptions = {
  * @param {TextLintRuleContext} context
  * @param {Object} options
  */
-export default function(context, options = {}) {
+export default function (context, options = {}) {
     const { Syntax, getSource, RuleError, report } = context;
     const maxWordCount = options.max ? options.max : defaultOptions.max;
     return {
         [Syntax.Paragraph](node) {
             // replace code with dummy code
             // if you want to filter(remove) code, use https://github.com/eush77/unist-util-filter
-            const filteredNode = map(node, node => {
+            const filteredNode = map(node, (node) => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
                     return Object.assign({}, node, {
@@ -209,14 +209,14 @@ const defaultOptions = {
  * @param {TextLintRuleContext} context
  * @param {Object} options
  */
-export default function(context, options = {}) {
+export default function (context, options = {}) {
     const { Syntax, getSource, RuleError, report } = context;
     const maxWordCount = options.max ? options.max : defaultOptions.max;
     return {
         [Syntax.Paragraph](node) {
             // replace code with dummy code
             // if you want to filter(remove) code, use https://github.com/eush77/unist-util-filter
-            const filteredNode = map(node, node => {
+            const filteredNode = map(node, (node) => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
                     return Object.assign({}, node, {
@@ -229,12 +229,12 @@ export default function(context, options = {}) {
             // text in a paragraph
             const text = source.toString();
             // get sentences from Paragraph
-            const sentences = splitSentence(text).filter(node => {
+            const sentences = splitSentence(text).filter((node) => {
                 // ignore break line
                 return node.type === SplitterSyntax.Sentence;
             });
             // text in a sentence
-            sentences.forEach(sentence => {
+            sentences.forEach((sentence) => {
                 /* sentence object is a node
                 {
                     type: "Sentence",
@@ -279,14 +279,14 @@ const defaultOptions = {
  * @param {TextLintRuleContext} context
  * @param {Object} options
  */
-export default function(context, options = {}) {
+export default function (context, options = {}) {
     const { Syntax, getSource, RuleError, report } = context;
     const maxWordCount = options.max ? options.max : defaultOptions.max;
     return {
         [Syntax.Paragraph](node) {
             // replace code with dummy code
             // if you want to filter(remove) code, use https://github.com/eush77/unist-util-filter
-            const filteredNode = map(node, node => {
+            const filteredNode = map(node, (node) => {
                 if (node.type === Syntax.Code) {
                     // only change `value` to dummy
                     return Object.assign({}, node, {
@@ -299,12 +299,12 @@ export default function(context, options = {}) {
             // text in a paragraph
             const text = source.toString();
             // get sentences from Paragraph
-            const sentences = splitSentence(text).filter(node => {
+            const sentences = splitSentence(text).filter((node) => {
                 // ignore break line
                 return node.type === SplitterSyntax.Sentence;
             });
             // text in a sentence
-            sentences.forEach(sentence => {
+            sentences.forEach((sentence) => {
                 /* sentence object is a node
                 {
                     type: "Sentence",

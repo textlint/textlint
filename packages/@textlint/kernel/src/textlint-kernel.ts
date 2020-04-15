@@ -159,7 +159,7 @@ export class TextlintKernel {
                 sourceCode,
                 configBaseDir
             })
-            .catch(error => {
+            .catch((error) => {
                 error.message = addingAtFileNameToError(filePath, error.message);
                 return Promise.reject(error);
             });
@@ -215,7 +215,7 @@ export class TextlintKernel {
                 sourceCode,
                 configBaseDir
             })
-            .catch(error => {
+            .catch((error) => {
                 error.message = addingAtFileNameToError(filePath, error.message);
                 return Promise.reject(error);
             });

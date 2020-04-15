@@ -35,7 +35,7 @@ function addMarkEachLine(mark: string, text: any) {
     return `${markedLines.join("\n")}\n`;
 }
 
-export default function(results: TextlintFixResult[], options: any) {
+export default function (results: TextlintFixResult[], options: any) {
     // default: true
     const useColor = options.color !== undefined ? options.color : true;
     let output = "\n";
@@ -44,7 +44,7 @@ export default function(results: TextlintFixResult[], options: any) {
     const summaryColor = "yellow";
     const greenColor = "green";
 
-    results.forEach(function(result) {
+    results.forEach(function (result) {
         const filePath = result.filePath;
         const messages = result.applyingMessages;
         // still error count
@@ -62,7 +62,7 @@ export default function(results: TextlintFixResult[], options: any) {
         const originalContent = fs.readFileSync(filePath, "utf-8");
         const diff = jsdiff.diffLines(originalContent, result.output);
 
-        diff.forEach(function(part: any, index: number) {
+        diff.forEach(function (part: any, index: number) {
             const prevLine = diff[index - 1];
             const nextLine = diff[index + 1];
             if (!isModified(part) && part.count > 1) {

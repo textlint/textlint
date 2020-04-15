@@ -5,13 +5,13 @@ var run = require("../lib/linter-formatter/src/cli");
 var useStdIn = process.argv.indexOf("--stdin") > -1;
 if (useStdIn) {
     process.stdin.pipe(
-        concat({ encoding: "string" }, function(text) {
+        concat({ encoding: "string" }, function (text) {
             run(process.argv, text).then(
-                function(result) {
+                function (result) {
                     console.log(result);
                     process.exit(0);
                 },
-                function(error) {
+                function (error) {
                     console.error(error.message);
                     console.error(error.stack);
                     process.exit(1);
@@ -21,11 +21,11 @@ if (useStdIn) {
     );
 } else {
     run(process.argv).then(
-        function(result) {
+        function (result) {
             console.log(result);
             process.exit(0);
         },
-        function(error) {
+        function (error) {
             console.error(error.message);
             console.error(error.stack);
             process.exit(1);
