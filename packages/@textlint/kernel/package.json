@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -b",
+    "test:build": "tsc -b test",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\""
