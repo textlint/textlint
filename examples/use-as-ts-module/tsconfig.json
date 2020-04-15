@@ -1,10 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-        "rootDir": "src",
+    "rootDir": "src",
     "outDir": "lib"
-
   },
+  "references": [
+    { "path": "../../packages/textlint" }
+  ],
   "include": [
     "src/**/*"
   ],

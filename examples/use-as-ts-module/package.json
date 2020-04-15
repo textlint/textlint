@@ -4,13 +4,13 @@
   "private": true,
   "license": "MIT",
   "author": "0x6b",
-  "main": "lib/examples/use-as-ts-module/src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prebuild": "npm-run-all clean",
     "build": "cross-env NODE_ENV=production tsc -b",
-    "clean": "rimraf lib/",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "pretest": "npm-run-all build",
-    "test": "node lib/examples/use-as-ts-module/src/index.js fixtures/success.md",
+    "test": "node lib/index.js fixtures/success.md",
     "test:ci": "npm test"
   },
   "dependencies": {
