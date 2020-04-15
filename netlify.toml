@@ -2,6 +2,6 @@
   publish = "website/build/textlint"
   command = "yarn run website"
 [build.environment]
-  NODE_VERSION = "8"
-  YARN_VERSION = "1.3.2"
+  NODE_VERSION = "12"
+  YARN_VERSION = "1.21.1"
   YARN_FLAGS = "--pure-lockfile"
