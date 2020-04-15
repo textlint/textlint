@@ -41,7 +41,7 @@ The fixer object has the following methods:
 
 ```js
 // TODO: more reasonable example
-const reporter = context => {
+const reporter = (context) => {
     // `context.fixer`
     const { Syntax, RuleError, fixer, report, getSource } = context;
     return {

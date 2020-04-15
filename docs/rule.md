@@ -17,7 +17,7 @@ The basic source code format for a rule is:
 /**
  * @param {RuleContext} context
  */
-export default function(context) {
+export default function (context) {
     // rule object
     return {
         [context.Syntax.Document](node) {},
@@ -41,7 +41,7 @@ If your rule wants to know when an `Str` node is found in the AST, then add a me
 
 ```js
 // ES6
-export default function(context) {
+export default function (context) {
     return {
         [context.Syntax.Str](node) {
             // this method is called
@@ -49,9 +49,9 @@ export default function(context) {
     };
 }
 // or ES5
-module.exports = function(context) {
+module.exports = function (context) {
     const exports = {};
-    exports[context.Syntax.Str] = function(node) {
+    exports[context.Syntax.Str] = function (node) {
         // this method is called
     };
     return exports;
@@ -63,7 +63,7 @@ By default, the method matching a node name is called during the traversal when 
 You can also specify to visit the node on the other side of the traversal, as it comes back up the tree(This is called **Leave**), but adding `Exit` to the end of the node type, such as:
 
 ```js
-export default function(context) {
+export default function (context) {
     return {
         // Str:exit
         [context.Syntax.StrExit](node) {
@@ -164,7 +164,7 @@ You will use mainly method is `context.report()`, which publishes an error (defi
 For example:
 
 ```js
-export default function(context) {
+export default function (context) {
     return {
         [context.Syntax.Str](node) {
             // get source code of this `node`
@@ -183,7 +183,7 @@ export default function(context) {
 Return Promise object in the node function and the rule work asynchronously.
 
 ```js
-export default function(context) {
+export default function (context) {
     const { Syntax } = context;
     return {
         [Syntax.Str](node) {
@@ -251,7 +251,7 @@ File Name: `no-todo.js`
 /**
  * @param {RuleContext} context
  */
-export default function(context) {
+export default function (context) {
     const helper = new RuleHelper(context);
     const { Syntax, getSource, RuleError, report } = context;
     return {
@@ -356,11 +356,11 @@ function getParents(node) {
  */
 function isNodeWrapped(node, types) {
     const parents = getParents(node);
-    const parentsTypes = parents.map(function(parent) {
+    const parentsTypes = parents.map(function (parent) {
         return parent.type;
     });
-    return types.some(function(type) {
-        return parentsTypes.some(function(parentType) {
+    return types.some(function (type) {
+        return parentsTypes.some(function (parentType) {
             return parentType === type;
         });
     });
@@ -368,7 +368,7 @@ function isNodeWrapped(node, types) {
 /**
  * @param {RuleContext} context
  */
-export default function(context) {
+export default function (context) {
     const { Syntax, getSource, RuleError, report } = context;
     return {
         /*
@@ -548,7 +548,7 @@ For example, `very-nice-rule`'s option is `{ "key": "value" }` in `.textlintrc`
 `very-nice-rule.js` rule get the options defined by the config file.
 
 ```js
-export default function(context, options) {
+export default function (context, options) {
     console.log(options);
     /*
         {
@@ -573,7 +573,7 @@ For example, `very-nice-rule`'s option is `true` (enable the rule) in `.textlint
 `very-nice-rule.js` rule get `{}` (empty object) as `options`.
 
 ```js
-export default function(context, options) {
+export default function (context, options) {
     console.log(options); // {}
 }
 ```
