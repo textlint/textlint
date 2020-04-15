@@ -73,8 +73,13 @@ After getting your clone, you can start playing with textlint.
     $ yarn install
     ```
 
+3. Install all of textlint packages' dependencies:
 
-3. Building website:
+    ```sh
+    $ yarn bootstrap
+    ```
+
+4. Building website:
 
     ```sh
     $ yarn build:website
