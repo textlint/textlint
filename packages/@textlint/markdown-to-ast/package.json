@@ -6,6 +6,10 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
   "license": "MIT",
   "author": "azu",
   "files": [
@@ -13,21 +17,18 @@
     "src/"
   ],
   "main": "lib/markdown-parser.js",
+  "types": "lib/markdown-parser.d.ts",
   "directories": {
     "test": "test/"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "clean": "rimraf lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "example:build": "browserify example/js/index.js -o example/app/app.js",
     "prepublish": "npm run --if-present build",
-    "updateSnapshot": "npm run build && node tools/update-fixtures.js",
     "test": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "babel src --out-dir lib --watch --source-maps"
+    "updateSnapshot": "npm run build && node tools/update-fixtures.js",
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.2.5",
@@ -39,19 +40,20 @@
     "unified": "^6.1.6"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/register": "^7.0.0",
     "@textlint/ast-tester": "^2.1.6",
-    "babel-preset-jsdoc-to-assert": "^5.0.0",
-    "babel-preset-power-assert": "^3.0.0",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.1",
+    "@types/traverse": "^0.6.32",
+    "@types/structured-source": "^3.0.0",
     "browserify": "^16.5.1",
     "cross-env": "^7.0.2",
     "mkdirp": "^1.0.4",
     "mocha": "^7.1.1",
     "power-assert": "^1.6.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.8.2",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.8.3"
   },
   "publishConfig": {
     "access": "public"

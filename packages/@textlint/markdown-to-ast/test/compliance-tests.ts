@@ -1,8 +1,6 @@
-// LICENSE : MIT
-"use strict";
-const assert = require("assert");
-const test = require("@textlint/ast-tester").test;
-const parse = require("../src/markdown-parser").parse;
+import assert from "assert";
+import { test } from "@textlint/ast-tester";
+import { parse } from "../src/markdown-parser";
 // String -> [String]
 describe("Compliance tests", function () {
     context("compatible for Unist", function () {

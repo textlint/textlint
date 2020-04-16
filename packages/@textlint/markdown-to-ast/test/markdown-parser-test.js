@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
+const assert = require("assert");
 const parse = require("../src/markdown-parser").parse;
 const Syntax = require("../src/markdown-parser").Syntax;
 const inspect = (obj) => JSON.stringify(obj, null, 4);

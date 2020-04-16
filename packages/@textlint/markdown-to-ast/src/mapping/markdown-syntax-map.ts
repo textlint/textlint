@@ -1,7 +1,8 @@
 // LICENSE : MIT
 "use strict";
-const { ASTNodeTypes } = require("@textlint/ast-node-types");
-const exports = {
+import { ASTNodeTypes } from "@textlint/ast-node-types";
+
+export const SyntaxMap = {
     root: ASTNodeTypes.Document,
     paragraph: ASTNodeTypes.Paragraph,
     blockquote: ASTNodeTypes.BlockQuote,
@@ -33,4 +34,3 @@ const exports = {
     imageReference: "imageReference",
     definition: "Definition"
 };
-module.exports = exports;
