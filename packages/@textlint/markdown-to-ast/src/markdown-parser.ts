@@ -20,7 +20,7 @@ export { ASTNodeTypes as Syntax };
  * @param {string} text
  * @returns {TxtNode}
  */
-export function parse(text: string) {
+export function parse<T extends TxtNode>(text: string): T {
     const ast = remark.parse(text);
     const src = new StructuredSource(text);
     traverse(ast).forEach(function (node: TxtNode) {
