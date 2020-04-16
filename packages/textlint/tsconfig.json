@@ -1,13 +1,17 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "./lib/"
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    ".git",
-    "node_modules"
+  "compilerOptions": { "rootDir": "src", "outDir": "lib" },
+  "include": ["src/**/*"],
+  "exclude": [".git", "node_modules"],
+  "references": [
+    { "path": "../@textlint/ast-node-types" },
+    { "path": "../@textlint/ast-traverse" },
+    { "path": "../@textlint/feature-flag" },
+    { "path": "../@textlint/fixer-formatter" },
+    { "path": "../@textlint/kernel" },
+    { "path": "../@textlint/linter-formatter" },
+    { "path": "../@textlint/module-interop" },
+    { "path": "../@textlint/types" },
+    { "path": "../@textlint/utils" }
   ]
 }

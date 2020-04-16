@@ -110,6 +110,24 @@ $ git checkout -b your-new-feature
 
 You have your feature branch with working textlint then it's time to start making changes! Edit codes with text editor of your choice and add commits as you work on. Please don't forget to add or modify test cases and documents according to your changes.
 
+### Note: TypeScript's Project References
+
+This monorepo use [Project References](https://www.typescriptlang.org/docs/handbook/project-references.html) for faster building.
+
+- [What is a Project Reference?](https://www.typescriptlang.org/docs/handbook/project-references.html#what-is-a-project-reference)
+
+You can update Project References from `package.json`'s dependencies.
+
+```
+yarn run update:projectReferences
+```
+
+Also, You can check Project References if it is correct.
+
+```
+yarn run test:projectReferences
+```
+
 #### Coding Guideline
 
 ##### Languages

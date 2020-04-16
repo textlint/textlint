@@ -1,5 +1,5 @@
-import { TextlintRuleReporter } from "../../src/Rule/TextlintRuleModule";
-import { TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
+import { TextlintRuleReporter } from "../../src";
+import { TextlintRuleModule, TextlintRuleOptions } from "../../src";
 
 const noop = (..._args: any[]) => {};
 

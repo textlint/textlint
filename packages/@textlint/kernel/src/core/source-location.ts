@@ -1,13 +1,13 @@
 // LICENSE : MIT
 "use strict";
 import {
+    TextlintMessageFixCommand,
     TextlintRuleContextReportFunctionArgs,
     TextlintRuleError,
     TextlintRuleErrorPadding,
     TextlintSourceCode
 } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintMessageFixCommand } from "@textlint/kernel";
 
 const assert = require("assert");
 const throwIfTesting = require("@textlint/feature-flag").throwIfTesting;

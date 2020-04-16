@@ -1,10 +1,9 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out",
-    "allowJs": true,
-    "declaration": false,
-    "sourceMap": true
+    "rootDir": "../",
+    "composite": false,
+    "noEmit": true
   },
   "include": [
     "../src/**/*",

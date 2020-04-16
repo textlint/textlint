@@ -22,19 +22,19 @@
     "bin/",
     "lib/"
   ],
-  "main": "lib/types/src/index.js",
-  "types": "lib/types/src/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
-    "test": "tsc -p ./test --noEmit",
-    "clean": "rimraf lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "test": "tsc -b test",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
-    "watch": "tsc -p . --watch"
+    "watch": "tsc -b --watch"
   },
   "prettier": {
     "printWidth": 120,

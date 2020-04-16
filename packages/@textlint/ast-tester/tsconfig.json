@@ -1,13 +1,7 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "./lib/"
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    ".git",
-    "node_modules"
-  ]
+  "compilerOptions": { "rootDir": "src", "outDir": "lib" },
+  "include": ["src/**/*"],
+  "exclude": [".git", "node_modules"],
+  "references": [{ "path": "../ast-node-types" }]
 }

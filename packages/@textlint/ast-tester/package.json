@@ -23,17 +23,17 @@
     "src/",
     "lib/"
   ],
-  "main": "lib/ast-tester/src/index.js",
-  "types": "lib/ast-tester/src/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
-    "clean": "rimraf lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "tsc -p . --watch"
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.2.5"

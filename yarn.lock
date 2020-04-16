@@ -7,6 +7,14 @@
   resolved "https://registry.yarnpkg.com/@azu/format-text/-/format-text-1.0.1.tgz#6967350a94640f6b02855169bd897ce54d6cebe2"
   integrity sha1-aWc1CpRkD2sChVFpvYl85U1s6+I=
 
+"@azu/lerna-to-typescript-project-references@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@azu/lerna-to-typescript-project-references/-/lerna-to-typescript-project-references-1.0.3.tgz#0aeed220857c270877ac2c1045d5992dd7b154b3"
+  integrity sha512-tc2ZUTrMLQlciCcSiZL/28BEPdxRk+XI+DO5KTW5pcONdCT5oRYDngYUW1QDW1nVnStsGg3R1NPHm/IQfxXLHQ==
+  dependencies:
+    arg "^4.1.0"
+    prettier "^1.0.0"
+
 "@azu/style-format@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@azu/style-format/-/style-format-1.0.0.tgz#e70187f8a862e191b1bce6c0268f13acd3a56b20"
@@ -11003,7 +11011,7 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^1.17.0:
+prettier@^1.0.0, prettier@^1.17.0:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==

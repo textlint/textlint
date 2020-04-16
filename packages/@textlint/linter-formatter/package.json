@@ -12,8 +12,8 @@
     "lib/",
     "bin/"
   ],
-  "main": "lib/linter-formatter/src/index.js",
-  "types": "lib/linter-formatter/src/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "textlint-formatter": "bin/cmd.js"
   },
@@ -25,8 +25,8 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -p .",
-    "clean": "rimraf lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run build",
     "test": "mocha \"test/**/*.{js,ts}\""
   },
