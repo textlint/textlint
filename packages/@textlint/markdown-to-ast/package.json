@@ -17,13 +17,13 @@
     "src/"
   ],
   "main": "lib/markdown-parser.js",
-  "types": "lib/markdown-to-ast.d.ts",
+  "types": "lib/markdown-parser.d.ts",
   "directories": {
     "test": "test/"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc -b",
-    "clean": "rimraf lib/",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "example:build": "browserify example/js/index.js -o example/app/app.js",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
