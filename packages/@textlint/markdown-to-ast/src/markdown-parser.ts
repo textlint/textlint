@@ -2,11 +2,10 @@
 "use strict";
 import { SyntaxMap } from "./mapping/markdown-syntax-map";
 import { TxtNode } from "@textlint/ast-node-types";
-
 import traverse from "traverse";
-
+import StructuredSource from "structured-source";
 const { ASTNodeTypes } = require("@textlint/ast-node-types");
-const StructuredSource = require("structured-source");
+
 const debug = require("debug")("@textlint/markdown-to-ast");
 const unified = require("unified");
 const remarkParse = require("remark-parse");

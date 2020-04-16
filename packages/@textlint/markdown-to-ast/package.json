@@ -44,6 +44,7 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.1",
     "@types/traverse": "^0.6.32",
+    "@types/structured-source": "^3.0.0",
     "browserify": "^16.5.1",
     "cross-env": "^7.0.2",
     "mkdirp": "^1.0.4",
