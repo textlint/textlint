@@ -82,7 +82,7 @@ After getting your clone, you can start playing with textlint.
 4. Building website:
 
     ```sh
-    $ yarn build:website
+    $ yarn website
     ```
 
 Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple packages:
@@ -96,7 +96,7 @@ Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple 
 
 If you are new to Lerna, it seems to add another layer of complexity but it's simpler than you think; you can edit codes, run tests, commit changes, etc. as usual in most cases.
 
-Note that `yarn install` also builds a codebase, you can manually build by running `yarn build`. We have separate task `yarn build:website` since code and documentation have different life cycle.
+Note that `yarn install` also builds a codebase, you can manually build by running `yarn build`. We have separate task `yarn website` since code and documentation have different life cycle.
 
 ### Creating a Branch for Your Work
 
