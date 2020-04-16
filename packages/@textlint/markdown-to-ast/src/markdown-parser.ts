@@ -1,27 +1,33 @@
 // LICENSE : MIT
 "use strict";
-const traverse = require("traverse");
+import { SyntaxMap } from "./mapping/markdown-syntax-map";
+import { TxtNode } from "@textlint/ast-node-types";
+
+import traverse from "traverse";
+
 const { ASTNodeTypes } = require("@textlint/ast-node-types");
 const StructuredSource = require("structured-source");
 const debug = require("debug")("@textlint/markdown-to-ast");
-const SyntaxMap = require("./mapping/markdown-syntax-map");
 const unified = require("unified");
 const remarkParse = require("remark-parse");
 const frontmatter = require("remark-frontmatter");
 const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]);
+
+export { ASTNodeTypes as Syntax };
+
 /**
  * parse markdown text and return ast mapped location info.
  * @param {string} text
  * @returns {TxtNode}
  */
-function parse(text) {
+export function parse(text: string) {
     const ast = remark.parse(text);
     const src = new StructuredSource(text);
-    traverse(ast).forEach(function (node) {
+    traverse(ast).forEach(function (node: TxtNode) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
             if (node.type) {
-                const replacedType = SyntaxMap[node.type];
+                const replacedType = SyntaxMap[node.type as keyof typeof SyntaxMap];
                 if (!replacedType) {
                     debug(`replacedType : ${replacedType} , node.type: ${node.type}`);
                 } else {
@@ -51,8 +57,3 @@ function parse(text) {
     });
     return ast;
 }
-
-module.exports = {
-    parse,
-    Syntax: ASTNodeTypes
-};
