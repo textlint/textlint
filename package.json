@@ -32,7 +32,7 @@
     "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)"
   },
   "devDependencies": {
-    "@azu/lerna-to-typescript-project-references": "^1.0.2",
+    "@azu/lerna-to-typescript-project-references": "^1.0.3",
     "@azu/travis-scripts": "^3.0.3",
     "@monorepo-utils/collect-changelog": "^2.1.1",
     "conventional-changelog-angular-all": "^1.7.0",
