@@ -1,8 +1,7 @@
 // LICENSE : MIT
 "use strict";
-const parse = require("../src").parse;
-const Syntax = require("../src").Syntax;
-const assert = require("assert");
+import { parse, Syntax } from "../src";
+import assert from "assert";
 describe("plaintext-parser-test", function () {
     context("Document", function () {
         it("should return AST", function () {
