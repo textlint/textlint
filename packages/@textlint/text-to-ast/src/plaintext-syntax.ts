@@ -2,7 +2,7 @@
 "use strict";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 
-export default {
+export const Syntax = {
     Document: ASTNodeTypes.Document, // must
     Paragraph: ASTNodeTypes.Paragraph,
     // inline

@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import Syntax from "./plaintext-syntax";
+import { Syntax } from "./plaintext-syntax";
 import { TxtNode } from "@textlint/ast-node-types";
 
 function parseLine(lineText: string, lineNumber: number, startIndex: number): TxtNode {
