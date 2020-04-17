@@ -1,8 +1,8 @@
-const fs = require("fs");
-const path = require("path");
-const assert = require("assert");
+import { parse } from "../src";
+import fs from "fs";
+import path from "path";
+import assert from "assert";
 const fixturesDir = path.join(__dirname, "snapshots");
-const parse = require("../src/index").parse;
 
 describe("Snapshot testing", () => {
     fs.readdirSync(fixturesDir).map((caseName) => {
