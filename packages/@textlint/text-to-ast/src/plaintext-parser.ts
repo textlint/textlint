@@ -70,10 +70,10 @@ function createBRNode(lineNumber: number, startIndex: number) {
 
 /**
  * create paragraph node from TxtNodes
- * @param {[TxtNode]} nodes
+ * @param {TxtNode[]} nodes
  * @returns {TxtNode} Paragraph node
  */
-function createParagraph(nodes: [TxtNode]): TxtNode {
+function createParagraph(nodes: TxtNode[]): TxtNode {
     const firstNode = nodes[0];
     const lastNode = nodes[nodes.length - 1];
     return {
