@@ -19,6 +19,7 @@
     "src/"
   ],
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "example": "example",
     "test": "test"
@@ -28,30 +29,26 @@
     "url": "https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps",
-    "clean": "rimraf lib/",
+    "build": "cross-env NODE_ENV=production tsc -b",
+    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "crlf": "eolConverter crlf test/snapshots/crlf/input.txt",
     "pretest": "npm run crlf",
     "test": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "babel src --out-dir lib --watch --source-maps"
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@textlint/ast-node-types": "^4.2.5"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/register": "^7.0.0",
     "@textlint/ast-tester": "^2.1.6",
-    "babel-preset-jsdoc-to-assert": "^5.0.0",
-    "babel-preset-power-assert": "^3.0.0",
     "cross-env": "^7.0.2",
     "eol-converter-cli": "^1.0.8",
     "mocha": "^7.1.1",
     "power-assert": "^1.6.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.8.3"
   },
   "publishConfig": {
     "access": "public"

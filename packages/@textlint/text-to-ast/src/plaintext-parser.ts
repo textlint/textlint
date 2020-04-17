@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const Syntax = require("./plaintext-syntax");
+import Syntax from "./plaintext-syntax";
+import { TxtNode } from "@textlint/ast-node-types";
 
-function parseLine(lineText, lineNumber, startIndex) {
+function parseLine(lineText: string, lineNumber: number, startIndex: number): TxtNode {
     // Inline Node have `value`. It it not part of TxtNode.
     // TODO: https://github.com/textlint/textlint/issues/141
     return {
@@ -27,7 +28,7 @@ function parseLine(lineText, lineNumber, startIndex) {
  * create BreakNode next to StrNode
  * @param {TxtNode} prevNode previous node from BreakNode
  */
-function createEndedBRNode(prevNode, lineBreakText) {
+function createEndedBRNode(prevNode: TxtNode, lineBreakText: string) {
     return {
         type: Syntax.Break,
         raw: lineBreakText,
@@ -49,7 +50,7 @@ function createEndedBRNode(prevNode, lineBreakText) {
 /**
  * create BreakNode next to StrNode
  */
-function createBRNode(lineNumber, startIndex) {
+function createBRNode(lineNumber: number, startIndex: number) {
     return {
         type: Syntax.Break,
         raw: "\n",
@@ -72,7 +73,7 @@ function createBRNode(lineNumber, startIndex) {
  * @param {[TxtNode]} nodes
  * @returns {TxtNode} Paragraph node
  */
-function createParagraph(nodes) {
+function createParagraph(nodes: [TxtNode]): TxtNode {
     const firstNode = nodes[0];
     const lastNode = nodes[nodes.length - 1];
     return {
@@ -97,7 +98,7 @@ function createParagraph(nodes) {
     };
 }
 
-function splitTextByLine(text) {
+function splitTextByLine(text: string) {
     const LINEBREAKE_MARK_PATTERN = /\r?\n/g;
     const results = [];
     let match = null;
@@ -124,18 +125,24 @@ function splitTextByLine(text) {
  * @param {string} text
  * @returns {TxtNode}
  */
-function parse(text) {
+export function parse(text: string): TxtNode {
     const textLineByLine = splitTextByLine(text);
     // it should be alternately Str and Break
     let startIndex = 0;
     const lastLineIndex = textLineByLine.length - 1;
-    const isLastEmptyLine = (line, index) => {
+    const isLastEmptyLine = (
+        line: { text: string; lineBreak: string } | { text: string; lineBreak: null },
+        index: number
+    ) => {
         return index === lastLineIndex && line.text === "";
     };
-    const isEmptyLine = (line, index) => {
+    const isEmptyLine = (
+        line: { text: string; lineBreak: string } | { text: string; lineBreak: null },
+        index: number
+    ) => {
         return index !== lastLineIndex && line.text === "";
     };
-    const children = textLineByLine.reduce(function (result, currentLine, index) {
+    const children = textLineByLine.reduce<any[]>(function (result, currentLine, index) {
         const lineNumber = index + 1;
         if (isLastEmptyLine(currentLine, index)) {
             return result;
@@ -206,5 +213,3 @@ function parse(text) {
         children
     };
 }
-
-module.exports = parse;
