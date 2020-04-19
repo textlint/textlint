@@ -2,7 +2,7 @@
 "use strict";
 import assert from "assert";
 import fs from "fs";
-import { TextPlugin } from "../src/index";
+import TextPlugin from "../src/index";
 import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
 import path from "path";
 
