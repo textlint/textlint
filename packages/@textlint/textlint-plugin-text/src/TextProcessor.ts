@@ -3,7 +3,7 @@
 "use strict";
 import { parse } from "@textlint/text-to-ast";
 import { TextlintPluginProcessor, TextlintPluginOptions } from "@textlint/types";
-import { TxtParentNode } from "@textlint/ast-node-types/src";
+import { TxtNode } from "@textlint/ast-node-types";
 
 export class TextProcessor implements TextlintPluginProcessor {
     config: TextlintPluginOptions;
@@ -20,9 +20,8 @@ export class TextProcessor implements TextlintPluginProcessor {
 
     processor(_ext: string) {
         return {
-            preProcess(text: string, _filePath?: string): TxtParentNode | { text: string; ast: TxtParentNode } {
-                // FIXME: remove any
-                return parse(text) as any;
+            preProcess(text: string, _filePath?: string): TxtNode | { text: string; ast: TxtNode } {
+                return parse(text);
             },
             postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string } {
                 return {
