@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
 import { TextProcessor } from "./TextProcessor";
-export const textPlugin = {
+export const TextPlugin = {
     Processor: TextProcessor
 };

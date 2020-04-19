@@ -2,7 +2,7 @@
 "use strict";
 import assert from "assert";
 import fs from "fs";
-import { textPlugin } from "../src/index";
+import { TextPlugin } from "../src/index";
 import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
 import path from "path";
 
@@ -15,7 +15,7 @@ const lintFile = (filePath: string, options: boolean | TextlintPluginOptions | u
         plugins: [
             {
                 pluginId: "text",
-                plugin: textPlugin,
+                plugin: TextPlugin,
                 options
             }
         ],
@@ -30,7 +30,7 @@ const lintText = (text: string, options: boolean | TextlintPluginOptions | undef
         plugins: [
             {
                 pluginId: "text",
-                plugin: textPlugin,
+                plugin: TextPlugin,
                 options
             }
         ],
