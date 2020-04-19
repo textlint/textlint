@@ -2,8 +2,12 @@
 // LICENSE : MIT
 "use strict";
 import { parse } from "@textlint/text-to-ast";
+import { TextlintPluginProcessor, TextlintPluginOptions } from "@textlint/types";
+import { TxtNode } from "@textlint/ast-node-types";
 
-export class TextProcessor {
+export class TextProcessor implements TextlintPluginProcessor {
+    config: TextlintPluginOptions;
+    extensions: Array<string>;
     constructor(config = {}) {
         this.config = config;
         // support "extension" option
@@ -14,12 +18,12 @@ export class TextProcessor {
         return [".txt", ".text"].concat(this.extensions);
     }
 
-    processor(ext) {
+    processor(_ext: string) {
         return {
-            preProcess(text, filePath) {
+            preProcess(text: string, _filePath?: string): TxtNode | { text: string; ast: TxtNode } {
                 return parse(text);
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string } {
                 return {
                     messages,
                     filePath: filePath ? filePath : "<text>"

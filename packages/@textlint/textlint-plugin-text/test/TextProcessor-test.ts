@@ -3,10 +3,10 @@
 import assert from "assert";
 import fs from "fs";
 import TextPlugin from "../src/index";
-import { TextlintKernel } from "@textlint/kernel";
+import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
 import path from "path";
 
-const lintFile = (filePath, options = true) => {
+const lintFile = (filePath: string, options: boolean | TextlintPluginOptions | undefined = true) => {
     const kernel = new TextlintKernel();
     const text = fs.readFileSync(filePath, "utf-8");
     return kernel.lintText(text, {
@@ -23,7 +23,7 @@ const lintFile = (filePath, options = true) => {
     });
 };
 
-const lintText = (text, options = true) => {
+const lintText = (text: string, options: boolean | TextlintPluginOptions | undefined = true) => {
     const kernel = new TextlintKernel();
     return kernel.lintText(text, {
         ext: ".txt",
@@ -61,7 +61,7 @@ describe("TextProcessor", function () {
     });
     context("when target is text", function () {
         it("should report error", function () {
-            return lintText("TODO: this is todo", ".txt").then((results) => {
+            return lintText("TODO: this is todo").then((results) => {
                 assert(results.messages.length === 1);
                 assert(results.filePath === "<text>");
             });

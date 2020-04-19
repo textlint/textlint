@@ -1,5 +1,5 @@
 // Plugin
-import { TxtParentNode } from "@textlint/ast-node-types";
+import { TxtNode } from "@textlint/ast-node-types";
 
 /**
  * textlint plugin option values is object or boolean.
@@ -42,7 +42,7 @@ export declare class TextlintPluginProcessor {
          * @param text
          * @param filePath
          */
-        preProcess(text: string, filePath?: string): TxtParentNode | { text: string; ast: TxtParentNode };
+        preProcess(text: string, filePath?: string): TxtNode | { text: string; ast: TxtNode };
         postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string };
     };
 }
