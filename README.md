@@ -581,4 +581,10 @@ via [Natural Language Checking with Program Checking Tools](https://www.slidesha
 
 Thanks to [ESLint](https://eslint.org/ "ESLint").
 
+textlint website is powered by [Netlify](https://www.netlify.com).
+
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-light.svg"/>
+</a>
+
 <!-- textlint-enable -->
