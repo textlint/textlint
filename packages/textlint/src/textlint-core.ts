@@ -21,13 +21,13 @@ import {
     pluginsObjectToKernelRule,
     rulesObjectToKernelRule
 } from "./util/object-to-kernel-format";
+import textPlugin from "@textlint/textlint-plugin-text";
 
 const path = require("path");
 
 const { throwIfTesting } = require("@textlint/feature-flag");
 
 const markdownPlugin = require("@textlint/textlint-plugin-markdown");
-const textPlugin = require("@textlint/textlint-plugin-text");
 
 /**
  * @class {TextLintCore}
