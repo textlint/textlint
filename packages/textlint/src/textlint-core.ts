@@ -22,12 +22,11 @@ import {
     rulesObjectToKernelRule
 } from "./util/object-to-kernel-format";
 import textPlugin from "@textlint/textlint-plugin-text";
+import markdownPlugin from "@textlint/textlint-plugin-markdown";
 
 const path = require("path");
 
 const { throwIfTesting } = require("@textlint/feature-flag");
-
-const markdownPlugin = require("@textlint/textlint-plugin-markdown");
 
 /**
  * @class {TextLintCore}

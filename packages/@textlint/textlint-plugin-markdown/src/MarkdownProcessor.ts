@@ -2,23 +2,26 @@
 // LICENSE : MIT
 "use strict";
 import { parse } from "@textlint/markdown-to-ast";
+import { TextlintPluginOptions } from "@textlint/types";
 
 export class MarkdownProcessor {
+    config: TextlintPluginOptions;
+    extensions: Array<string>;
     constructor(config = {}) {
         this.config = config;
-        this.extensions = config.extensions ? config.extensions : [];
+        this.extensions = this.config.extensions ? this.config.extensions : [];
     }
 
     availableExtensions() {
         return [".md", ".markdown", ".mdown", ".mkdn", ".mkd", ".mdwn", ".mkdown", ".ron"].concat(this.extensions);
     }
 
-    processor(ext) {
+    processor(_ext: string) {
         return {
-            preProcess(text, filePath) {
+            preProcess(text: string, _filePath?: string) {
                 return parse(text);
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: any[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath ? filePath : "<markdown>"
