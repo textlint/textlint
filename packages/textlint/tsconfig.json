@@ -11,6 +11,7 @@
     { "path": "../@textlint/kernel" },
     { "path": "../@textlint/linter-formatter" },
     { "path": "../@textlint/module-interop" },
+    { "path": "../@textlint/textlint-plugin-markdown" },
     { "path": "../@textlint/textlint-plugin-text" },
     { "path": "../@textlint/types" },
     { "path": "../@textlint/utils" }

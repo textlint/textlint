@@ -2,6 +2,6 @@
 "use strict";
 import { MarkdownProcessor } from "./MarkdownProcessor";
 
-module.exports = {
+export default {
     Processor: MarkdownProcessor
 };
