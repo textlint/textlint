@@ -1,13 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import assert from "power-assert";
-import { TextlintKernel } from "@textlint/kernel";
+import assert from "assert";
+import { TextlintKernel, TextlintPluginOptions } from "@textlint/kernel";
 import fs from "fs";
 import path from "path";
+import MarkdownPlugin from "../src";
 
-const MarkdownPlugin = require("../src/index");
-
-const lintFile = (filePath, options = true) => {
+const lintFile = (filePath: string, options: TextlintPluginOptions | boolean | undefined = true) => {
     const kernel = new TextlintKernel();
     const text = fs.readFileSync(filePath, "utf-8");
     return kernel.lintText(text, {
@@ -23,7 +22,7 @@ const lintFile = (filePath, options = true) => {
         rules: [{ ruleId: "no-todo", rule: require("textlint-rule-no-todo").default }]
     });
 };
-const lintText = (text, options = true) => {
+const lintText = (text: string, options = true) => {
     const kernel = new TextlintKernel();
     return kernel.lintText(text, {
         ext: ".md",
