@@ -20,7 +20,7 @@ Following config is set by default.
 ```
 {
     "plugins": {
-        "@textlint/markdown": true
+        "@textlint/text": true
     }
 }
 ```
@@ -28,7 +28,7 @@ Following config is set by default.
 ## Options
 
 - `extensions`: `string[]`
-    - Additional file extensions for markdown
+    - Additional file extensions for plain text
     
 For example, if you want to treat `.custom-ext` as text, put following config to `.textlintrc`    
 
