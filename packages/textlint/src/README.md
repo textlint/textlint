@@ -23,9 +23,9 @@ textlint apply [Separation of Concern](http://weblogs.asp.net/arturtrosin/separa
 
 ## CLI
 
-- [options.js](./options.js)
+- [options.ts](./options.ts)
     - Parse cli options
-- [cli.js](./cli.js)
+- [cli.ts](./cli.ts)
     - create config
     - run engine
     - output result
