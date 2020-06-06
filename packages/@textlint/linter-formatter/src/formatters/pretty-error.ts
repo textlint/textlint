@@ -8,7 +8,6 @@ import { FormatterOptions } from "../FormatterOptions";
 
 const format = require("@azu/format-text");
 const chalk = require("chalk");
-const padStart = require("string.prototype.padstart");
 const style = require("@azu/style-format");
 const stripAnsi = require("strip-ansi");
 const pluralize = require("pluralize");
@@ -96,15 +95,15 @@ function prettyError(code: string, filePath: string, message: TextlintMessage): 
         title: message.message,
         filename: filePath + ":" + message.line + ":" + message.column,
         previousLine: parsed[0].code ? parsed[0].code : "",
-        previousLineNo: padStart(previousLineNo, linumlen),
+        previousLineNo: previousLineNo.padStart(linumlen),
         previousColNo: parsed[0].col,
         failingLine: parsed[1].code,
-        failingLineNo: padStart(failingLineNo, linumlen),
+        failingLineNo: failingLineNo.padStart(linumlen),
         failingColNo: parsed[1].col,
         nextLine: parsed[2].code ? parsed[2].code : "",
-        nextLineNo: padStart(nextLineNo, linumlen),
+        nextLineNo: nextLineNo.padStart(linumlen),
         nextColNo: parsed[2].col,
-        paddingForLineNo: padStart("", linumlen),
+        paddingForLineNo: "".padStart(linumlen),
         "^": showColumn(parsed, "^"),
         v: showColumn(parsed, "v")
     });
