@@ -1,3 +1,0 @@
---require ts-node-test-register
---no-colors
---timeout 10000
