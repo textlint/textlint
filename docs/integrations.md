@@ -20,6 +20,8 @@ title: Integrating with Editors, Tools, etc..
   - [hidaruma/micro-textlint-plugin](https://github.com/hidaruma/micro-textlint-plugin "hidaruma/micro-textlint-plugin: textlint plugin for micro-editor")
 - NetBeans
   - [netbeans-textlint-plugin](https://github.com/junichi11/netbeans-textlint-plugin "netbeans-textlint-plugin")
+- Emacs
+  - [flycheck/flycheck](https://www.flycheck.org/en/latest/languages.html#syntax-checker-textlint "emacs-flycheck-package")
 
 ## App
 
