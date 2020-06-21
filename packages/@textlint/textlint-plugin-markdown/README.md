@@ -28,13 +28,13 @@ Following config is set by default.
 - `extensions`: `string[]`
     - Additional file extensions for markdown
     
-For example, if you want to treat `.hown` as markdown, put following config to `.textlintrc`    
+For example, if you want to treat [MDX](https://github.com/mdx-js/mdx) as markdown, put following config to `.textlintrc`    
 
 ```json5
 {
     "plugins": {
         "@textlint/markdown": {
-            "extensions": [".hown"]
+            "extensions": [".mdx"]
         }
     }
 }
