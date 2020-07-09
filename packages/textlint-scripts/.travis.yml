@@ -1,9 +1,0 @@
-sudo: false
-language: node_js
-node_js: "node"
-# https://travis-ci.community/t/timeout-after-build-finished-and-succeeded/1336
-env:
-  - YARN_GPG=no
-os:
-  - linux
-  - windows
