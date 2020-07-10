@@ -9,8 +9,7 @@ module.exports = {
         node: true,
         mocha: true
     },
-    plugins: ["prettier"],
-    extends: ["eslint:recommended", "prettier"],
+    extends: ["eslint:recommended", "plugin:prettier/recommended"],
     rules: {
         "no-console": "warn",
         "no-undef": "error",
@@ -23,7 +22,20 @@ module.exports = {
         "prefer-template": "error",
         semi: "error",
         "no-extra-semi": "off",
-        "no-mixed-spaces-and-tabs": "off",
-        "prettier/prettier": ["error", require("./package.json").prettier]
-    }
+        "no-mixed-spaces-and-tabs": "off"
+    },
+    overrides: [
+        {
+            files: ["*.ts"],
+            parserOptions: {
+                tsconfigRootDir: __dirname,
+                project: ["./tsconfig.base.json", "./packages/*/tsconfig.json"]
+            },
+            extends: [
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@typescript-eslint/recommended-requiring-type-checking",
+                "prettier/@typescript-eslint"
+            ]
+        }
+    ]
 };
