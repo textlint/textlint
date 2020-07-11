@@ -18,9 +18,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install
-        run: |
-          npm install --global yarn@latest
-          yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
       - name: Bootstrap
         run: yarn run bootstrap
       - name: Test
@@ -48,9 +46,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install
-        run: |
-          npm install --global yarn@latest
-          yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
       - name: Bootstrap
         run: yarn run bootstrap
       - run: yarn run test:docs
