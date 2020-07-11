@@ -2,53 +2,56 @@ name: "CI"
 on: [push, pull_request]
 
 jobs:
-  unit_test:
+  test:
     strategy:
-      fail-fast: false
       matrix:
-        os: [macOS-latest, ubuntu-18.04]
-        node: [ 10, 12 ]
+        os: [macOS-latest, ubuntu-latest, windows-latest]
+        node: [ 10, 12, 14 ]
 
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v1
-    - run: git submodule update --init --recursive
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
-
-    - name: Bootstrap
-      run: |
-        npm install --global yarn@latest
-        yarn install --frozen-lockfile
-        yarn run bootstrap
-    - name: Test
-      run: |
-        yarn test
-        yarn test:examples
-        yarn test:integration
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install
+        run: |
+          npm install --global yarn@latest
+          yarn install --frozen-lockfile
+      - name: Bootstrap
+        run: yarn run bootstrap
+      - name: Test
+        run: |
+          yarn test
+          yarn test:examples
+      - name: Integraion Tests
+        # Some E2E does not work on Windows
+        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
+        run: yarn test:integration
 
   documentation:
     strategy:
-      fail-fast: false
       matrix:
         node: [ 12 ]
 
     name: Documentation(Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - run: git submodule update --init --recursive
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
-    - name: Bootstrap
-      run: |
-        npm install --global yarn@latest
-        yarn install --frozen-lockfile
-        yarn run bootstrap
-
-    - run: yarn run test:docs
-    - run: yarn run website
+      - name: Install
+        run: |
+          npm install --global yarn@latest
+          yarn install --frozen-lockfile
+      - name: Bootstrap
+        run: yarn run bootstrap
+      - run: yarn run test:docs
+      - run: yarn run website

@@ -28,7 +28,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -b",
+    "build": "tsc -b",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
