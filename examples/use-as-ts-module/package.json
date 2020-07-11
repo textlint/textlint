@@ -7,7 +7,7 @@
   "main": "lib/index.js",
   "scripts": {
     "prebuild": "npm-run-all clean",
-    "build": "cross-env NODE_ENV=production tsc -b",
+    "build": "tsc -b",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "pretest": "npm-run-all build",
     "test": "node lib/index.js fixtures/success.md",

@@ -28,7 +28,7 @@
     "url": "git+https://github.com/textlint/textlint.git"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -b",
+    "build": "tsc -b",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run build",
     "test": "mocha \"test/**/*.{js,ts}\""

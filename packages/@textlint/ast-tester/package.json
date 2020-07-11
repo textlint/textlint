@@ -29,7 +29,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production tsc -b",
+    "build": "tsc -b",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
