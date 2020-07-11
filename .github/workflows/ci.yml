@@ -25,11 +25,12 @@ jobs:
             node_modules
             */*/node_modules
           key: cache-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
-      - name: Bootstrap
+      - name: Install
         run: |
           npm install --global yarn@latest
           yarn install --frozen-lockfile
-          yarn run bootstrap
+      - name: Bootstrap
+        run: yarn run bootstrap
       - name: Test
         run: |
           yarn test
@@ -54,11 +55,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Bootstrap
+      - name: Install
         run: |
           npm install --global yarn@latest
           yarn install --frozen-lockfile
-          yarn run bootstrap
-
+      - name: Bootstrap
+        run: yarn run bootstrap
       - run: yarn run test:docs
       - run: yarn run website
