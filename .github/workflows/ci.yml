@@ -17,14 +17,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      # restore cache
-      - name: restore lerna
-        uses: actions/cache@v2
-        with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: cache-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Install
         run: |
           npm install --global yarn@latest
