@@ -42,7 +42,7 @@
     "@textlint/types": "^1.4.1",
     "@textlint/utils": "^1.1.1",
     "debug": "^4.1.1",
-    "deep-equal": "^2.0.3",
+    "deep-equal": "^1.1.1",
     "map-like": "^2.0.0",
     "structured-source": "^3.0.2"
   },
