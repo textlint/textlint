@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.4.4"></a>
+## [1.4.4](https://github.com/textlint/textlint/compare/@textlint/types@1.4.3...@textlint/types@1.4.4) (2020-07-24)
+
+
+### Chores
+
+* **@textlint/types:** module build is not needed ([a4c6e70](https://github.com/textlint/textlint/commit/a4c6e70))
+
+
+
+
+
 <a name="1.4.3"></a>
 ## [1.4.3](https://github.com/textlint/textlint/compare/@textlint/types@1.4.2...@textlint/types@1.4.3) (2020-07-24)
 

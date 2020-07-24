@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/textlint/textlint/compare/@textlint/module-interop@1.1.2...@textlint/module-interop@1.1.3) (2020-07-24)
+
+
+### Bug Fixes
+
+* "clean" command should remove tsconfig.module.tsbuildinfo ([76ac72a](https://github.com/textlint/textlint/commit/76ac72a))
+
+
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/textlint/textlint/compare/@textlint/module-interop@1.1.1...@textlint/module-interop@1.1.2) (2020-07-24)
 
