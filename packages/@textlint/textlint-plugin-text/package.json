@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-text",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "plain text plugin for textlint",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text/",
   "bugs": {
@@ -35,7 +35,7 @@
     "@textlint/text-to-ast": "^3.2.1"
   },
   "devDependencies": {
-    "@textlint/kernel": "^3.3.1",
+    "@textlint/kernel": "^3.3.2",
     "@types/mocha": "7.0.2",
     "cross-env": "^7.0.2",
     "mocha": "^7.1.1",
