@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.2.3"></a>
+## [5.2.3](https://github.com/textlint/textlint/compare/textlint-tester@5.2.2...textlint-tester@5.2.3) (2020-07-24)
+
+
+### Bug Fixes
+
+* **textlint-tester:** fix "main" and "types" ([a7b473f](https://github.com/textlint/textlint/commit/a7b473f))
+
+
+
+
+
 <a name="5.2.2"></a>
 ## [5.2.2](https://github.com/textlint/textlint/compare/textlint-tester@5.2.1...textlint-tester@5.2.2) (2020-07-24)
 

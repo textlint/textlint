@@ -1,6 +1,6 @@
 {
   "name": "@textlint/markdown-to-ast",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "description": "Parse Markdown to AST with location info.",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/",
   "bugs": {

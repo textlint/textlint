@@ -1,6 +1,6 @@
 {
   "name": "textlint-website",
-  "version": "10.9.2",
+  "version": "10.9.3",
   "private": true,
   "homepage": "https://github.com/textlint/textlint/",
   "bugs": {
@@ -29,7 +29,7 @@
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",
     "npm-run-all": "^4.1.5",
-    "textlint": "^11.7.2",
+    "textlint": "^11.7.3",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-eslint": "^3.2.1",
     "textlint-rule-prh": "^5.2.0",

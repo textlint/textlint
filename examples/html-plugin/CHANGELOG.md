@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.3"></a>
+## [2.3.3](https://github.com/textlint/textlint/compare/textlint-example-html-plugin@2.3.2...textlint-example-html-plugin@2.3.3) (2020-07-24)
+
+**Note:** Version bump only for package textlint-example-html-plugin
+
+
+
+
+
 <a name="2.3.2"></a>
 ## [2.3.2](https://github.com/textlint/textlint/compare/textlint-example-html-plugin@2.3.1...textlint-example-html-plugin@2.3.2) (2020-07-24)
 

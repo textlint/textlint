@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-fix-dry-run",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "textlint-fix": "textlint --fix --dry-run README.md"
   },
   "devDependencies": {
-    "textlint": "^11.7.2",
+    "textlint": "^11.7.3",
     "textlint-rule-prh": "^5.2.0"
   },
   "files": [

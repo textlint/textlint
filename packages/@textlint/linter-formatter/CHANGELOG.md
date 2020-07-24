@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.2"></a>
+## [3.2.2](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.2.1...@textlint/linter-formatter@3.2.2) (2020-07-24)
+
+**Note:** Version bump only for package @textlint/linter-formatter
+
+
+
+
+
 <a name="3.2.1"></a>
 ## [3.2.1](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.2.0...@textlint/linter-formatter@3.2.1) (2020-07-24)
 
