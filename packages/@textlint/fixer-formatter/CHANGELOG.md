@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.5"></a>
+## [3.2.5](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.2.4...@textlint/fixer-formatter@3.2.5) (2020-07-24)
+
+
+### Bug Fixes
+
+* improve "module" supports ([5ba5182](https://github.com/textlint/textlint/commit/5ba5182))
+
+
+
+
+
 <a name="3.2.4"></a>
 ## [3.2.4](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.2.3...@textlint/fixer-formatter@3.2.4) (2020-07-24)
 

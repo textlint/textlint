@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.6"></a>
+## [2.3.6](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.3.5...textlint-example-use-as-ts-module@2.3.6) (2020-07-24)
+
+
+### Bug Fixes
+
+* improve "module" supports ([5ba5182](https://github.com/textlint/textlint/commit/5ba5182))
+
+
+
+
+
 <a name="2.3.5"></a>
 ## [2.3.5](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.3.4...textlint-example-use-as-ts-module@2.3.5) (2020-07-24)
 

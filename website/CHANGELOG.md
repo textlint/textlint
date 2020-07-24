@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.9.6"></a>
+## [10.9.6](https://github.com/textlint/textlint/compare/textlint-website@10.9.5...textlint-website@10.9.6) (2020-07-24)
+
+
+### Chores
+
+* **eslint:** add typescript support ([#684](https://github.com/textlint/textlint/issues/684)) ([e15dfcd](https://github.com/textlint/textlint/commit/e15dfcd))
+
+
+
+
+
 <a name="10.9.5"></a>
 ## [10.9.5](https://github.com/textlint/textlint/compare/textlint-website@10.9.4...textlint-website@10.9.5) (2020-07-24)
 
