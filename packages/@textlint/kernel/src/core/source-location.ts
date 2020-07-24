@@ -102,8 +102,11 @@ report(node, new RuleError("message", {
          fix?
          }
          */
-        // @ts-expect-error
-        return Object.assign({}, adjustedLoc, adjustedFix);
+        return Object.assign({}, adjustedLoc, adjustedFix) as {
+            line: number;
+            column: number;
+            fix?: TextlintMessageFixCommand;
+        };
     }
 
     private toAbsoluteLocation(node: any, padding: TextlintRuleErrorPadding, _paddingIndex?: number) {
