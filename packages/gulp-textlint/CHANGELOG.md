@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.2.1"></a>
+## [5.2.1](https://github.com/textlint/textlint/compare/gulp-textlint@5.2.0...gulp-textlint@5.2.1) (2020-07-24)
+
+
+### Bug Fixes
+
+* include module ([2de05f7](https://github.com/textlint/textlint/commit/2de05f7))
+
+
+
+
+
 <a name="5.2.0"></a>
 # [5.2.0](https://github.com/textlint/textlint/compare/gulp-textlint@5.1.16...gulp-textlint@5.2.0) (2020-07-24)
 
