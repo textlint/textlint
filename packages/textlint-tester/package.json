@@ -19,8 +19,8 @@
     "module/",
     "src/"
   ],
-  "main": "lib/textlint-tester/src/index.js",
-  "types": "lib/textlint-tester/src/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "test": "test"
   },
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf lib/ out/",
+    "clean": "rimraf lib/ out/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -b --watch"
