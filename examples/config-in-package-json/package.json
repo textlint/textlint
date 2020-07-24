@@ -23,7 +23,7 @@
   "files": [
     "bin/",
     "lib/",
-    "modules/",
+    "module/",
     "src/"
   ]
 }

@@ -15,7 +15,7 @@
   "files": [
     "bin/",
     "lib/",
-    "modules/",
+    "module/",
     "src/"
   ],
   "main": "./run_test.js",

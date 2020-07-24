@@ -16,7 +16,7 @@
   "files": [
     "bin/",
     "lib/",
-    "modules/",
+    "module/",
     "src/"
   ],
   "main": "lib/textlint-tester/src/index.js",

@@ -11,7 +11,7 @@
   "files": [
     "bin/",
     "lib/",
-    "modules/",
+    "module/",
     "src/"
   ],
   "main": "index.js",
