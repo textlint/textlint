@@ -12,9 +12,9 @@
   },
   "license": "MIT",
   "author": "azu",
-  "main": "lib/markdown-parser.js",
+  "main": "lib/index.js",
   "module": "./module/index.js",
-  "types": "lib/markdown-parser.d.ts",
+  "types": "lib/index.d.ts",
   "directories": {
     "test": "test/"
   },
