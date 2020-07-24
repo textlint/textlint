@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.2.3"></a>
+## [6.2.3](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.2.2...@textlint/markdown-to-ast@6.2.3) (2020-07-24)
+
+
+### Bug Fixes
+
+* **@textlint/kernel:** fix export only type definition ([1234930](https://github.com/textlint/textlint/commit/1234930))
+
+
+
+
+
 <a name="6.2.2"></a>
 ## [6.2.2](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.2.1...@textlint/markdown-to-ast@6.2.2) (2020-07-24)
 

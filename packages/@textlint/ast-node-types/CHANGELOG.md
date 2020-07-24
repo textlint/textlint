@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.3.2"></a>
+## [4.3.2](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.3.1...@textlint/ast-node-types@4.3.2) (2020-07-24)
+
+
+### Bug Fixes
+
+* **@textlint/kernel:** fix export only type definition ([1234930](https://github.com/textlint/textlint/commit/1234930))
+
+
+
+
+
 <a name="4.3.1"></a>
 ## [4.3.1](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.3.0...@textlint/ast-node-types@4.3.1) (2020-07-24)
 

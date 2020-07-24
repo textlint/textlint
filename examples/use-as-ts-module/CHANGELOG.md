@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.4"></a>
+## [2.3.4](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.3.3...textlint-example-use-as-ts-module@2.3.4) (2020-07-24)
+
+
+### Bug Fixes
+
+* **@textlint/kernel:** fix export only type definition ([1234930](https://github.com/textlint/textlint/commit/1234930))
+
+
+
+
+
 <a name="2.3.3"></a>
 ## [2.3.3](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.3.2...textlint-example-use-as-ts-module@2.3.3) (2020-07-24)
 
