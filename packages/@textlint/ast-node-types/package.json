@@ -15,6 +15,7 @@
   "module": "./module/index.js",
   "types": "./lib/index.d.ts",
   "files": [
+    "bin/",
     "lib/",
     "modules/",
     "src/"

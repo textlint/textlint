@@ -14,5 +14,11 @@
   "devDependencies": {
     "textlint": "^11.6.3",
     "textlint-rule-preset-jtf-style": "^2.3.2"
-  }
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ]
 }

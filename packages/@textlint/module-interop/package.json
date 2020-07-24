@@ -27,6 +27,7 @@
     "test": "test"
   },
   "files": [
+    "bin/",
     "lib/",
     "modules/",
     "src/"

@@ -14,5 +14,11 @@
   "devDependencies": {
     "textlint": "^11.6.3",
     "textlint-rule-no-todo": "^2.0.1"
-  }
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ]
 }

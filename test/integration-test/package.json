@@ -13,10 +13,10 @@
   "license": "MIT",
   "author": "azu",
   "files": [
-    "src/",
+    "bin/",
     "lib/",
-    "run_lint.js",
-    "test.js"
+    "modules/",
+    "src/"
   ],
   "main": "./run_test.js",
   "directories": {
