@@ -5,11 +5,11 @@ import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import traverse from "traverse";
 import StructuredSource from "structured-source";
 import debug0 from "debug";
-// @ts-expect-error
+// @ts-ignore
 import unified from "unified";
-// @ts-expect-error
+// @ts-ignore
 import remarkParse from "remark-parse";
-// @ts-expect-error
+// @ts-ignore
 import frontmatter from "remark-frontmatter";
 const debug = debug0("@textlint/markdown-to-ast");
 const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]);
