@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.1.12...@textlint/textlint-plugin-markdown@5.2.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+
+
+### Code Refactoring
+
+* **textlint-plugin-markdown:** convert to typescript ([24f3f44](https://github.com/textlint/textlint/commit/24f3f44))
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+* **textlint-plugin-markdown:** convert to typescript ([5358e99](https://github.com/textlint/textlint/commit/5358e99))
+
+
+
+
+
 <a name="5.1.12"></a>
 ## [5.1.12](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.1.11...@textlint/textlint-plugin-markdown@5.1.12) (2020-02-07)
 

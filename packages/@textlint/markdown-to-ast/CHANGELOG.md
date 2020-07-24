@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.1.7...@textlint/markdown-to-ast@6.2.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+
+
+### Code Refactoring
+
+* **markdown-to-ast:** Convert to TypScript ([#671](https://github.com/textlint/textlint/issues/671)) ([b879a09](https://github.com/textlint/textlint/commit/b879a09))
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+
+
+
+
+
 <a name="6.1.7"></a>
 ## [6.1.7](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.1.6...@textlint/markdown-to-ast@6.1.7) (2020-02-07)
 

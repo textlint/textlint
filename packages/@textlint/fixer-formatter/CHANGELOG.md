@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.1.13...@textlint/fixer-formatter@3.2.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+
+
+### Code Refactoring
+
+* **typescript:** Use TypeScript Project References ([#668](https://github.com/textlint/textlint/issues/668)) ([bbffd43](https://github.com/textlint/textlint/commit/bbffd43))
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+
+
+
+
+
 <a name="3.1.13"></a>
 ## [3.1.13](https://github.com/textlint/textlint/compare/@textlint/fixer-formatter@3.1.12...@textlint/fixer-formatter@3.1.13) (2020-02-07)
 

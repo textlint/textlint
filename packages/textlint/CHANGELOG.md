@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="11.7.0"></a>
+# [11.7.0](https://github.com/textlint/textlint/compare/textlint@11.6.3...textlint@11.7.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+* **textlint:** Change require [@textlint](https://github.com/textlint)/textlint-plugin-text to import ([e26a747](https://github.com/textlint/textlint/commit/e26a747))
+* **textlint-plugin-markdown:** change require to import ([a1646b9](https://github.com/textlint/textlint/commit/a1646b9))
+* **textlint-plugin-text:** Fix typescript project references ([5db0790](https://github.com/textlint/textlint/commit/5db0790))
+
+
+### Code Refactoring
+
+* **textlint:** Fix import default to named ([d8f3432](https://github.com/textlint/textlint/commit/d8f3432))
+* **textlint-plugin-markdown:** convert to typescript ([24f3f44](https://github.com/textlint/textlint/commit/24f3f44))
+* **typescript:** Use TypeScript Project References ([#668](https://github.com/textlint/textlint/issues/668)) ([bbffd43](https://github.com/textlint/textlint/commit/bbffd43))
+
+
+### Documentation
+
+* **textlint:** fix broken link ([7824aef](https://github.com/textlint/textlint/commit/7824aef))
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+
+
+
+
+
 <a name="11.6.3"></a>
 ## [11.6.3](https://github.com/textlint/textlint/compare/textlint@11.6.2...textlint@11.6.3) (2020-02-07)
 

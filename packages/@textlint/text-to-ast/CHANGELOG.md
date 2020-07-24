@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.1.7...@textlint/text-to-ast@3.2.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+
+
+### Code Refactoring
+
+* **text-to-ast:** convert to typescript  ([#673](https://github.com/textlint/textlint/issues/673)) ([953eb03](https://github.com/textlint/textlint/commit/953eb03)), closes [#669](https://github.com/textlint/textlint/issues/669) [#669](https://github.com/textlint/textlint/issues/669)
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+
+
+
+
+
 <a name="3.1.7"></a>
 ## [3.1.7](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.1.6...@textlint/text-to-ast@3.1.7) (2020-02-01)
 

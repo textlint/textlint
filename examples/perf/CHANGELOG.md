@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/textlint/textlint/compare/textlint-perf-test@2.1.15...textlint-perf-test@2.2.0) (2020-07-24)
+
+**Note:** Version bump only for package textlint-perf-test
+
+
+
+
+
 <a name="2.1.15"></a>
 ## [2.1.15](https://github.com/textlint/textlint/compare/textlint-perf-test@2.1.14...textlint-perf-test@2.1.15) (2020-02-07)
 

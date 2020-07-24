@@ -1,6 +1,6 @@
 {
   "name": "@textlint/markdown-to-ast",
-  "version": "6.1.7",
+  "version": "6.2.0",
   "description": "Parse Markdown to AST with location info.",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/",
   "bugs": {
@@ -34,7 +34,7 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^4.2.5",
+    "@textlint/ast-node-types": "^4.3.0",
     "debug": "^4.1.1",
     "remark-frontmatter": "^1.2.0",
     "remark-parse": "^5.0.0",
@@ -43,7 +43,7 @@
     "unified": "^6.1.6"
   },
   "devDependencies": {
-    "@textlint/ast-tester": "^2.1.6",
+    "@textlint/ast-tester": "^2.2.0",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.1",
     "@types/structured-source": "^3.0.0",

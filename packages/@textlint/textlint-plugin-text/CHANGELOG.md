@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.1.13...@textlint/textlint-plugin-text@4.2.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+* **textlint-plugin-text:** Add missing 'type' property to package.json ([1560b48](https://github.com/textlint/textlint/commit/1560b48))
+* **textlint-plugin-text:** Change default exports to named exports ([31e0f92](https://github.com/textlint/textlint/commit/31e0f92))
+* **textlint-plugin-text:** Fix export module name ([32bcad1](https://github.com/textlint/textlint/commit/32bcad1))
+* **textlint-plugin-text:** Fix TextlintPluginProcessor.preProcess type ([7880037](https://github.com/textlint/textlint/commit/7880037))
+* **textlint-plugin-text:** Fix typescript project references ([5db0790](https://github.com/textlint/textlint/commit/5db0790))
+
+
+### Code Refactoring
+
+* **textlint-plugin-text:** Convert to TypeScript ([803558d](https://github.com/textlint/textlint/commit/803558d))
+
+
+### Documentation
+
+* **textlint-plugin-text:** Fix typo "markdown" to "text" ([bb2406c](https://github.com/textlint/textlint/commit/bb2406c))
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+* **textlint-plugin-text:** Convert to TypeScript ([28261c1](https://github.com/textlint/textlint/commit/28261c1))
+
+
+
+
+
 <a name="4.1.13"></a>
 ## [4.1.13](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.1.12...@textlint/textlint-plugin-text@4.1.13) (2020-02-07)
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/textlint/textlint/compare/gulp-textlint@5.1.16...gulp-textlint@5.2.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+
+
+
+
+
 <a name="5.1.16"></a>
 ## [5.1.16](https://github.com/textlint/textlint/compare/gulp-textlint@5.1.15...gulp-textlint@5.1.16) (2020-02-07)
 

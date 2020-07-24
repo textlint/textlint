@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.2.5...@textlint/ast-node-types@4.3.0) (2020-07-24)
+
+
+### Chores
+
+* **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+
+
+### Code Refactoring
+
+* **typescript:** Use TypeScript Project References ([#668](https://github.com/textlint/textlint/issues/668)) ([bbffd43](https://github.com/textlint/textlint/commit/bbffd43))
+
+
+### Tests
+
+* migrate mocha.opts to .mocharc.json ([#682](https://github.com/textlint/textlint/issues/682)) ([332ae5e](https://github.com/textlint/textlint/commit/332ae5e))
+
+
+
+
+
 <a name="4.2.5"></a>
 ## [4.2.5](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.2.4...@textlint/ast-node-types@4.2.5) (2019-10-14)
 
