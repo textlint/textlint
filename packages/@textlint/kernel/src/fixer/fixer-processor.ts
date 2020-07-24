@@ -11,8 +11,9 @@ import MessageProcessManager from "../messages/MessageProcessManager";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
 import { isTxtAST } from "@textlint/ast-tester";
+import _debug from "debug";
 
-const debug = require("debug")("textlint:fixer-processor");
+const debug = _debug("textlint:fixer-processor");
 
 export interface FixerProcessorProcessArgs {
     config: TextlintKernelConstructorOptions;

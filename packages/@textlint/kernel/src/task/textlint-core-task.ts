@@ -7,7 +7,7 @@ import timing from "../util/timing";
 import MessageType from "../shared/type/MessageType";
 import { EventEmitter } from "events";
 import * as assert from "assert";
-import { AnyTxtNode } from "@textlint/ast-node-types";
+import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import {
     TextlintFilterRuleContext,
     TextlintFilterRuleOptions,
@@ -24,10 +24,11 @@ import {
 } from "@textlint/types";
 import { normalizeTextlintKeyPath } from "@textlint/utils";
 import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";
+import _debug from "debug";
+import { Controller as TraverseController } from "@textlint/ast-traverse";
 
-const TraverseController = require("@textlint/ast-traverse").Controller;
 const traverseController = new TraverseController();
-const debug = require("debug")("textlint:core-task");
+const debug = _debug("textlint:core-task");
 
 class RuleTypeEmitter extends PromiseEventEmitter {}
 
@@ -149,7 +150,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         this.emit(TextLintCoreTask.events.start);
         const promiseQueue: Array<Promise<Array<void>>> = [];
         const ruleTypeEmitter = this.ruleTypeEmitter;
-        traverseController.traverse(sourceCode.ast, {
+        traverseController.traverse(sourceCode.ast as TxtParentNode, {
             enter(node: AnyTxtNode, parent?: AnyTxtNode) {
                 const type = node.type;
                 Object.defineProperty(node, "parent", { value: parent });

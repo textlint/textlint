@@ -4,7 +4,7 @@ import { getFilter } from "./rule-creator-helper";
 import { TextlintKernelFilterRule } from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
 import { TextlintFilterRuleOptions, TextlintFilterRuleReporter } from "@textlint/types";
-import deepEqual = require("deep-equal");
+import deepEqual from "deep-equal";
 
 /**
  * Textlint Rule Descriptor.

@@ -3,7 +3,7 @@
 import { TextlintKernelRule } from "../textlint-kernel-interface";
 import { assertRuleShape, getLinter } from "./rule-creator-helper";
 import { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "@textlint/types";
-import deepEqual = require("deep-equal");
+import deepEqual from "deep-equal";
 
 /**
  * Textlint Rule Descriptor.

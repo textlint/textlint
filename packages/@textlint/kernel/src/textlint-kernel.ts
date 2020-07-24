@@ -16,8 +16,9 @@ import { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
 import { isTxtAST } from "@textlint/ast-tester";
+import _debug from "debug";
 
-const debug = require("debug")("textlint:kernel");
+const debug = _debug("textlint:kernel");
 
 /**
  * add fileName to trailing of error message

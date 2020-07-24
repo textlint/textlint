@@ -1,3 +1,4 @@
-# Build cache
-es_modules
-out
+# Build files
+out/
+lib/
+module/
