@@ -27,11 +27,10 @@
   "files": [
     "bin/",
     "lib/",
-    "module/",
     "src/"
   ],
   "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
+    "build": "tsc -b",
     "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
