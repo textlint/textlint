@@ -6,13 +6,14 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
   "license": "MIT",
   "author": "azu",
-  "files": [
-    "lib/",
-    "bin/"
-  ],
   "main": "lib/index.js",
+  "module": "./module/index.js",
   "types": "lib/index.d.ts",
   "bin": {
     "textlint-formatter": "bin/cmd.js"
@@ -20,12 +21,13 @@
   "directories": {
     "test": "test/"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
+  "files": [
+    "lib/",
+    "modules/",
+    "src/"
+  ],
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run build",
     "test": "mocha \"test/**/*.{js,ts}\""

@@ -86,7 +86,10 @@ crashlytics-build.properties
 /.eslintcache
 # lerna
 packages/*/lib/
+packages/*/module/
 packages/@textlint/*/lib/
+packages/@textlint/*/module/
+
 packages/**/yarn.lock
 test/**/yarn.lock
 

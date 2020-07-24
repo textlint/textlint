@@ -11,28 +11,29 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
   "license": "MIT",
   "author": "azu",
-  "files": [
-    "bin/",
-    "lib/",
-    "src/"
-  ],
   "main": "lib/index.js",
+  "module": "./module/index.js",
   "types": "lib/index.d.ts",
   "directories": {
     "example": "example",
     "test": "test"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
+  "files": [
+    "lib/",
+    "modules/",
+    "src/"
+  ],
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
-    "prepublish": "npm run --if-present build",
     "crlf": "eolConverter crlf test/snapshots/crlf/input.txt",
+    "prepublish": "npm run --if-present build",
     "pretest": "npm run crlf",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -b --watch"

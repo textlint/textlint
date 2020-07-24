@@ -3,9 +3,10 @@
  * @author Nicholas C. Zakas
  */
 "use strict";
-const fs = require("fs");
-const path = require("path");
-const debug = require("debug")("textlint:traverse");
+import fs from "fs";
+import path from "path";
+import debug0 from "debug";
+const debug = debug0("textlint:traverse");
 /**
  * Walks a path recursively calling the callback on each file.
  * @param {string} name The file or directory path.

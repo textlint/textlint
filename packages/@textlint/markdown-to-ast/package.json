@@ -12,17 +12,19 @@
   },
   "license": "MIT",
   "author": "azu",
-  "files": [
-    "lib/",
-    "src/"
-  ],
   "main": "lib/markdown-parser.js",
+  "module": "./module/index.js",
   "types": "lib/markdown-parser.d.ts",
   "directories": {
     "test": "test/"
   },
+  "files": [
+    "lib/",
+    "modules/",
+    "src/"
+  ],
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "example:build": "browserify example/js/index.js -o example/app/app.js",
     "prepublish": "npm run --if-present build",
@@ -43,8 +45,8 @@
     "@textlint/ast-tester": "^2.1.6",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.1",
-    "@types/traverse": "^0.6.32",
     "@types/structured-source": "^3.0.0",
+    "@types/traverse": "^0.6.32",
     "browserify": "^16.5.1",
     "cross-env": "^7.0.2",
     "mkdirp": "^1.0.4",
