@@ -4,8 +4,7 @@ import * as assert from "assert";
 import { testInvalid, testValid } from "./test-util";
 import { TextLintCore } from "textlint";
 import { TextlintFixResult, TextlintPluginCreator, TextlintRuleModule } from "@textlint/kernel";
-
-const { coreFlags } = require("@textlint/feature-flag");
+import { coreFlags } from "@textlint/feature-flag";
 
 /* eslint-disable no-invalid-this */
 const globalObject: any = global;

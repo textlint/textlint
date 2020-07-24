@@ -50,7 +50,7 @@
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.2",
     "ts-node-test-register": "^8.0.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.7"
   },
   "publishConfig": {
     "access": "public"

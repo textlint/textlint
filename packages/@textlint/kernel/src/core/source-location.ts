@@ -102,6 +102,7 @@ report(node, new RuleError("message", {
          fix?
          }
          */
+        // @ts-expect-error
         return Object.assign({}, adjustedLoc, adjustedFix);
     }
 
@@ -195,7 +196,10 @@ report(node, new RuleError("message", {
         return {
             // fix(command) is relative from node's range
             fix: {
-                range: [nodeRange[0] + ruleErrorObject.fix.range[0], nodeRange[0] + ruleErrorObject.fix.range[1]],
+                range: [
+                    nodeRange[0] + ruleErrorObject.fix.range[0],
+                    nodeRange[0] + ruleErrorObject.fix.range[1]
+                ] as const,
                 text: ruleErrorObject.fix.text
             }
         };
