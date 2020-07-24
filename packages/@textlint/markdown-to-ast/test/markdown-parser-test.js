@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-const parse = require("../src/markdown-parser").parse;
-const Syntax = require("../src/markdown-parser").Syntax;
+const parse = require("../src/index").parse;
+const Syntax = require("../src/index").Syntax;
 const inspect = (obj) => JSON.stringify(obj, null, 4);
 const traverse = require("traverse");
 function findFirstTypedNode(node, type, value) {

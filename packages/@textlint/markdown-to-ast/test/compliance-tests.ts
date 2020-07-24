@@ -1,6 +1,6 @@
 import assert from "assert";
 import { test } from "@textlint/ast-tester";
-import { parse } from "../src/markdown-parser";
+import { parse } from "../src/index";
 // String -> [String]
 describe("Compliance tests", function () {
     context("compatible for Unist", function () {
