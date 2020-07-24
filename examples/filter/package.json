@@ -15,5 +15,11 @@
     "textlint": "^11.6.3",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-no-todo": "^2.0.1"
-  }
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ]
 }

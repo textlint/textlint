@@ -18,22 +18,25 @@
   },
   "license": "MIT",
   "author": "azu",
-  "files": [
-    "bin/",
-    "lib/"
-  ],
   "main": "lib/index.js",
+  "module": "./module/index.js",
   "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ],
   "scripts": {
-    "build": "tsc -b",
-    "test": "tsc -b test",
+    "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
+    "test": "tsc -b test",
     "watch": "tsc -b --watch"
   },
   "prettier": {

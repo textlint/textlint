@@ -14,8 +14,10 @@
   "license": "MIT",
   "author": "azu",
   "files": [
-    "lib",
-    "src"
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
   ],
   "main": "lib/textlint-tester/src/index.js",
   "types": "lib/textlint-tester/src/index.d.ts",

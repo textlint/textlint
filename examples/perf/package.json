@@ -16,5 +16,11 @@
     "textlint-rule-no-start-duplicated-conjunction": "^2.0.2",
     "textlint-rule-prh": "^5.2.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0"
-  }
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ]
 }

@@ -1,7 +1,8 @@
 import { TextlintMessage, TextlintMessageFixCommand, TextlintSourceCode } from "@textlint/types";
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
+import _debug from "debug";
 
-const debug = require("debug")("textlint:source-code-fixer");
+const debug = _debug("textlint:source-code-fixer");
 
 const BOM = "\uFEFF";
 

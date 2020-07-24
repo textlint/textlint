@@ -8,9 +8,8 @@ import {
     TextlintSourceCode
 } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
-
-const assert = require("assert");
-const throwIfTesting = require("@textlint/feature-flag").throwIfTesting;
+import assert from "assert";
+import { throwIfTesting } from "@textlint/feature-flag";
 
 export interface ReportMessage {
     ruleId: string;

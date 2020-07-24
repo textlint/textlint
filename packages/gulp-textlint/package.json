@@ -9,7 +9,10 @@
   "license": "MIT",
   "author": "nakajmg",
   "files": [
-    "index.js"
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
   ],
   "main": "index.js",
   "repository": {

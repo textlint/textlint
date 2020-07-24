@@ -41,7 +41,7 @@ export const isFeatureEnabled = (flagName: string, { loose = false } = {}): bool
 
 // == CORE Flags
 // if run textlint --experimental, set experimental true by default
-if (process && Array.isArray(process.argv) && process.argv.indexOf("--experimental") !== -1) {
+if (typeof process !== "undefined" && Array.isArray(process.argv) && process.argv.indexOf("--experimental") !== -1) {
     setFeature("core.experimental", true);
 }
 /**

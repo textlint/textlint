@@ -13,5 +13,11 @@
   },
   "devDependencies": {
     "textlint": "^11.6.3"
-  }
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ]
 }

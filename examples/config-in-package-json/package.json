@@ -19,5 +19,11 @@
     "rules": {
       "no-todo": true
     }
-  }
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ]
 }

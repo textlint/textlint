@@ -15,5 +15,11 @@
   "devDependencies": {
     "textlint": "^11.6.3",
     "textlint-rule-prh": "^5.2.0"
-  }
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ]
 }

@@ -7,8 +7,9 @@ import { TextlintSourceCode } from "@textlint/types";
 import { getSeverity } from "../shared/rule-severity";
 import { TextlintFilterRuleContextImpl } from "../context/TextlintFilterRuleContextImpl";
 import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";
+import _debug from "debug";
 
-const debug = require("debug")("textlint:TextLintCoreTask");
+const debug = _debug("textlint:TextLintCoreTask");
 
 export interface TextLintCoreTaskArgs {
     config: TextlintKernelConstructorOptions;

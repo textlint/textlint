@@ -86,7 +86,10 @@ crashlytics-build.properties
 /.eslintcache
 # lerna
 packages/*/lib/
+packages/*/module/
 packages/@textlint/*/lib/
+packages/@textlint/*/module/
+
 packages/**/yarn.lock
 test/**/yarn.lock
 
@@ -97,3 +100,4 @@ website/i18n/*
 !website/i18n/en.json
 # TypeScript
 tsconfig.tsbuildinfo
+tsconfig.*.tsbuildinfo

@@ -2,7 +2,7 @@
 import { TextlintKernelPlugin } from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
 import { TextlintPluginOptions, TextlintPluginProcessor, TextlintPluginProcessorConstructor } from "@textlint/types";
-import deepEqual = require("deep-equal");
+import deepEqual from "deep-equal";
 
 /**
  * Get instance/static `availableExtensions()` from TextlintPluginProcessor

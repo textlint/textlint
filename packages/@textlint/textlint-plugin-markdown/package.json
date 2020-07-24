@@ -11,23 +11,26 @@
   "bugs": {
     "url": "https://github.com/textlint/textlint/issues"
   },
-  "license": "MIT",
-  "author": "azu",
-  "files": [
-    "lib",
-    "src"
-  ],
-  "main": "lib/index.js",
-  "type": "lib/index.d.ts",
-  "directories": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/textlint/textlint.git"
   },
+  "license": "MIT",
+  "author": "azu",
+  "type": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "module": "./module/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "modules/",
+    "src/"
+  ],
   "scripts": {
-    "build": "tsc -b",
+    "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
@@ -46,8 +49,8 @@
     "ts-node-test-register": "^8.0.1",
     "typescript": "^3.8.3"
   },
-  "email": "azuciao@gmail.com",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "email": "azuciao@gmail.com"
 }
