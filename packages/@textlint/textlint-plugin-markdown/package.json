@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
+    "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -b --watch"

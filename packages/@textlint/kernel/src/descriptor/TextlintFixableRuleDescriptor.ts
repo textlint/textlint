@@ -2,7 +2,7 @@
 "use strict";
 import { getFixer } from "./rule-creator-helper";
 import { TextlintLintableRuleDescriptor } from "./TextlintLintableRuleDescriptor";
-import { TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleReporter } from "@textlint/types";
 
 /**
  * Textlint Fixable Rule Descriptor.

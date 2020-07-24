@@ -5,7 +5,7 @@
  */
 
 // SourceCode
-export {
+export type {
     TextlintSourceCode,
     TextlintSourceCodeArgs,
     TextlintSourceCodeLocation,
@@ -13,44 +13,44 @@ export {
     TextlintSourceCodeRange,
 } from "./Source/TextlintSourceCode";
 // RuleContext
-export { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
-export { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
-export {
+export type { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
+export type { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
+export type {
     TextlintRuleError,
     TextlintRuleErrorConstructor,
     TextlintRuleErrorPadding,
     TextlintRuleReportedObject,
 } from "./Rule/TextlintRuleError";
-export { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
+export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
 // Rule
-export {
+export type {
     TextlintRuleContext,
     TextlintRuleContextArgs,
     TextlintRuleContextReportFunction,
     TextlintRuleContextReportFunctionArgs,
 } from "./Rule/TextlintRuleContext";
-export { TextlintRuleOptions } from "./Rule/TextlintRuleOptions";
-export {
+export type { TextlintRuleOptions } from "./Rule/TextlintRuleOptions";
+export type {
     TextlintRuleReporter,
     TextlintFixableRuleModule,
     TextlintRuleModule,
     TextlintRuleReportHandler,
 } from "./Rule/TextlintRuleModule";
 // Filter Rule
-export {
+export type {
     TextlintFilterRuleContext,
     TextlintFilterRuleContextArgs,
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs,
 } from "./Rule/TextlintFilterRuleContext";
-export {
+export type {
     TextlintFilterRuleModule,
     TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,
     TextlintFilterRuleReportHandler,
 } from "./Rule/TextlintFilterRuleModule";
 // Plugin
-export {
+export type {
     TextlintPluginCreator,
     TextlintPluginOptions,
     TextlintPluginProcessor,
@@ -58,7 +58,7 @@ export {
 } from "./Plugin/TextlintPluginModule";
 // Output message from textlint
 // This types is come from output of textlint lint results
-export {
+export type {
     TextlintResult,
     TextlintFixResult,
     TextlintMessage,

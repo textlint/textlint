@@ -1,7 +1,7 @@
 // MIT © 2017 azu
 
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintFilterRuleContext, TextlintFilterRuleReporter } from "@textlint/types";
+import type { TextlintFilterRuleContext, TextlintFilterRuleReporter } from "@textlint/types";
 
 export interface FilterOptions {
     allows: {

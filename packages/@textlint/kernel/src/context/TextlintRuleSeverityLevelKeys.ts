@@ -1,4 +1,4 @@
-import { TextlintRuleSeverityLevel } from "@textlint/types";
+import type { TextlintRuleSeverityLevel } from "@textlint/types";
 
 /**
  * Keys of TextlintRuleSeverityLevel

@@ -1,4 +1,4 @@
-import { TextlintFilterRuleReporter, TextlintRuleReporter } from "@textlint/types";
+import type { TextlintFilterRuleReporter, TextlintRuleReporter } from "@textlint/types";
 
 /**
  * detect that ruleCreator has linter function

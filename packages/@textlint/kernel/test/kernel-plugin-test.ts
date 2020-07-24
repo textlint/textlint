@@ -4,7 +4,7 @@ import { TextlintKernel } from "../src";
 import * as path from "path";
 import * as assert from "assert";
 import { createBinaryPluginStub } from "./helper/BinaryPlugin";
-import { TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleReporter } from "@textlint/types";
 
 describe("kernel-plugin", () => {
     describe("binary plugin", () => {

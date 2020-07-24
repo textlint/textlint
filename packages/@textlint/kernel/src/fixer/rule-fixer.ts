@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintSourceCodeRange } from "@textlint/types";
+import type { TextlintSourceCodeRange } from "@textlint/types";
 
 /**
  * Fix Command object has `range` and `text`.

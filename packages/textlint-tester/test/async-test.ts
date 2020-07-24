@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import TextLintTester = require("../src/index");
-import { TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleReporter } from "@textlint/types";
 
 const tester = new TextLintTester();
 

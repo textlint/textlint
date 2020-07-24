@@ -1,6 +1,4 @@
-// LICENSE : MIT
-"use strict";
-import {
+import type {
     TextlintMessageFixCommand,
     TextlintRuleContextReportFunctionArgs,
     TextlintRuleError,

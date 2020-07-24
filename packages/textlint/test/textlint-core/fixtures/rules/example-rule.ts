@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleReporter, TextlintRuleReportHandler } from "@textlint/types";
+import type { TextlintRuleReporter, TextlintRuleReportHandler } from "@textlint/types";
 
 const reporter: TextlintRuleReporter = function (context) {
     const exports: TextlintRuleReportHandler = {};

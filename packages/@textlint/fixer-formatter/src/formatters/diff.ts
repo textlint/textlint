@@ -1,5 +1,5 @@
 "use strict";
-import { TextlintFixResult } from "@textlint/types";
+import type { TextlintFixResult } from "@textlint/types";
 const fs = require("fs");
 const isFile = require("is-file");
 const jsdiff = require("diff");

@@ -3,7 +3,7 @@
  * @author Jamund Ferguson
  */
 "use strict";
-import { TextlintResult } from "@textlint/types";
+import type { TextlintResult } from "@textlint/types";
 
 const lodash = require("lodash");
 

@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 
-import { TextlintRuleContextFixCommand, TextlintRuleErrorPadding, TextlintRuleError } from "@textlint/types";
+import type { TextlintRuleContextFixCommand, TextlintRuleErrorPadding, TextlintRuleError } from "@textlint/types";
 
 export class TextlintRuleErrorImpl implements TextlintRuleError {
     public message: string;

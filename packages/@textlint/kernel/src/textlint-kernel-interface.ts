@@ -1,5 +1,5 @@
 // rule config
-import {
+import type {
     TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,
     TextlintPluginCreator,

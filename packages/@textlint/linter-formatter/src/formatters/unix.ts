@@ -5,7 +5,7 @@
  */
 
 "use strict";
-import { TextlintResult } from "@textlint/types";
+import type { TextlintResult } from "@textlint/types";
 
 //------------------------------------------------------------------------------
 // Helper Functions

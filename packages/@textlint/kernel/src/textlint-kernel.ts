@@ -12,7 +12,7 @@ import filterDuplicatedProcess from "./messages/filter-duplicated-process";
 import filterSeverityProcess from "./messages/filter-severity-process";
 import sortMessageProcess from "./messages/sort-messages-process";
 import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textlint-kernel-interface";
-import { TextlintFixResult, TextlintResult } from "@textlint/types";
+import type { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
 import { isTxtAST } from "@textlint/ast-tester";

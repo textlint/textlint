@@ -2,7 +2,7 @@
 // LICENSE : MIT
 "use strict";
 import { parse } from "@textlint/text-to-ast";
-import { TextlintPluginProcessor, TextlintPluginOptions } from "@textlint/types";
+import type { TextlintPluginProcessor, TextlintPluginOptions } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
 
 export class TextProcessor implements TextlintPluginProcessor {

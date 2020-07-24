@@ -3,7 +3,7 @@
 import CoreTask from "./textlint-core-task";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import { TextlintFilterRuleDescriptors, TextlintFixableRuleDescriptor } from "../descriptor";
-import { TextlintSourceCode } from "@textlint/types";
+import type { TextlintSourceCode } from "@textlint/types";
 import { getSeverity } from "../shared/rule-severity";
 import { TextlintFilterRuleContextImpl } from "../context/TextlintFilterRuleContextImpl";
 import { TextlintRuleContextImpl } from "../context/TextlintRuleContextImpl";

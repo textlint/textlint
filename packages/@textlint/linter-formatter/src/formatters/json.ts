@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintResult } from "@textlint/types";
+import type { TextlintResult } from "@textlint/types";
 
 function formatter(results: TextlintResult[]) {
     return JSON.stringify(results);

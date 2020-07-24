@@ -1,5 +1,5 @@
 "use strict";
-import { TextlintFixResult } from "@textlint/types";
+import type { TextlintFixResult } from "@textlint/types";
 
 const chalk = require("chalk");
 const table = require("text-table");

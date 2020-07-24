@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 
-import { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
+import type { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
 import * as assert from "assert";
 import FixerTask from "../task/fixer-task";
 import SourceCodeFixer from "./source-code-fixer";

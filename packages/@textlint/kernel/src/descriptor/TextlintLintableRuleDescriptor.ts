@@ -2,7 +2,7 @@
 "use strict";
 import { TextlintKernelRule } from "../textlint-kernel-interface";
 import { assertRuleShape, getLinter } from "./rule-creator-helper";
-import { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "@textlint/types";
+import type { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "@textlint/types";
 import deepEqual from "deep-equal";
 
 /**

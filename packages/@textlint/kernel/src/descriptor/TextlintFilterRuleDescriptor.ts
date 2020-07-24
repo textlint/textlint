@@ -3,7 +3,7 @@
 import { getFilter } from "./rule-creator-helper";
 import { TextlintKernelFilterRule } from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
-import { TextlintFilterRuleOptions, TextlintFilterRuleReporter } from "@textlint/types";
+import type { TextlintFilterRuleOptions, TextlintFilterRuleReporter } from "@textlint/types";
 import deepEqual from "deep-equal";
 
 /**

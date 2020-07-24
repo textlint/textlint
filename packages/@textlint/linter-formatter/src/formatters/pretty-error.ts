@@ -3,7 +3,7 @@
 // Original code is https://github.com/azer/prettify-error
 // Author : azer
 "use strict";
-import { TextlintMessage, TextlintResult } from "@textlint/types";
+import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions";
 
 const format = require("@azu/format-text");

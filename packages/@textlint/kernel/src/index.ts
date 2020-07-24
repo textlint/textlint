@@ -8,13 +8,13 @@ export { TextlintKernelRule, TextlintKernelFilterRule, TextlintKernelPlugin } fr
 /**
  * Types of textlint lint/fix result
  */
-export { TextlintResult, TextlintFixResult, TextlintMessageFixCommand, TextlintMessage } from "@textlint/types";
+export type { TextlintResult, TextlintFixResult, TextlintMessageFixCommand, TextlintMessage } from "@textlint/types";
 /**
  * @deprecated These types will removed in the future. Use @textlint/types instead of it
  * If you use these types in your rule, you should use @textlint/types for your rule.
  * Related changes: https://github.com/textlint/textlint/pull/562
  */
-export {
+export type {
     // textlint rule interface
     TextlintRuleReporter,
     TextlintRuleModule,

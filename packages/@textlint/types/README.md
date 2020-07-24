@@ -36,17 +36,17 @@ Install with [npm](https://www.npmjs.com/):
 ## Usage
 
 ```ts
-import { TextlintSourceCode, TextlintSourceCodeArgs, TextlintSourceCodeLocation, TextlintSourceCodePosition, TextlintSourceCodeRange } from "@textlint/types";
-import { TextlintRuleContextFixCommand } from "@textlint/types";
-import { TextlintRuleContextFixCommandGenerator } from "@textlint/types";
-import { TextlintRuleError, TextlintRuleErrorPadding, TextlintRuleReportedObject } from "@textlint/types";
-import { TextlintRuleSeverityLevel } from "@textlint/types";
-import { TextlintRuleContext, TextlintRuleContextArgs, TextlintRuleContextReportFunction, TextlintRuleContextReportFunctionArgs } from "@textlint/types";
-import { TextlintRuleOptions } from "@textlint/types";
-import { TextlintRuleReporter, TextlintFixableRuleModule, TextlintRuleModule, TextlintRuleReportHandler } from "@textlint/types";
-import { TextlintFilterRuleContext, TextlintFilterRuleShouldIgnoreFunction, TextlintFilterRuleShouldIgnoreFunctionArgs } from "@textlint/types";
-import { TextlintFilterRuleModule, TextlintFilterRuleOptions, TextlintFilterRuleReporter, TextlintFilterRuleReportHandler } from "@textlint/types";
-import { TextlintPluginCreator, TextlintPluginOptions, TextlintPluginProcessor, TextlintPluginProcessorConstructor } from "@textlint/types";
+import type { TextlintSourceCode, TextlintSourceCodeArgs, TextlintSourceCodeLocation, TextlintSourceCodePosition, TextlintSourceCodeRange } from "@textlint/types";
+import type { TextlintRuleContextFixCommand } from "@textlint/types";
+import type { TextlintRuleContextFixCommandGenerator } from "@textlint/types";
+import type { TextlintRuleError, TextlintRuleErrorPadding, TextlintRuleReportedObject } from "@textlint/types";
+import type { TextlintRuleSeverityLevel } from "@textlint/types";
+import type { TextlintRuleContext, TextlintRuleContextArgs, TextlintRuleContextReportFunction, TextlintRuleContextReportFunctionArgs } from "@textlint/types";
+import type { TextlintRuleOptions } from "@textlint/types";
+import type { TextlintRuleReporter, TextlintFixableRuleModule, TextlintRuleModule, TextlintRuleReportHandler } from "@textlint/types";
+import type { TextlintFilterRuleContext, TextlintFilterRuleShouldIgnoreFunction, TextlintFilterRuleShouldIgnoreFunctionArgs } from "@textlint/types";
+import type { TextlintFilterRuleModule, TextlintFilterRuleOptions, TextlintFilterRuleReporter, TextlintFilterRuleReportHandler } from "@textlint/types";
+import type { TextlintPluginCreator, TextlintPluginOptions, TextlintPluginProcessor, TextlintPluginProcessorConstructor } from "@textlint/types";
 ```
 
 ## FAQ

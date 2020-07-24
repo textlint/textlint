@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 import { TextlintMessage } from "@textlint/kernel";
-import { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
+import type { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
 
 export interface BinaryPluginProcessorOptions {
     testOption: string;

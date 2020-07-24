@@ -2,7 +2,7 @@
 // LICENSE : MIT
 "use strict";
 import { parse } from "@textlint/markdown-to-ast";
-import { TextlintPluginOptions } from "@textlint/types";
+import type { TextlintPluginOptions } from "@textlint/types";
 
 export class MarkdownProcessor {
     config: TextlintPluginOptions;

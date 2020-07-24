@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintFixResult } from "@textlint/types";
+import type { TextlintFixResult } from "@textlint/types";
 
 import { moduleInterop } from "@textlint/module-interop";
 

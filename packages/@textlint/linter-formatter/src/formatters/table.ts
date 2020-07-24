@@ -5,7 +5,7 @@
  */
 
 "use strict";
-import { TextlintMessage } from "@textlint/types";
+import type { TextlintMessage } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions";
 
 //------------------------------------------------------------------------------

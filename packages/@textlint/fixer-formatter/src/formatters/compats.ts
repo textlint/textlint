@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintFixResult } from "@textlint/types";
+import type { TextlintFixResult } from "@textlint/types";
 function getMessageType(message: any) {
     if (message.fatal || message.severity === 2) {
         return "Error";

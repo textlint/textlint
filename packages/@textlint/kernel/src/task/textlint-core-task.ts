@@ -8,7 +8,7 @@ import MessageType from "../shared/type/MessageType";
 import { EventEmitter } from "events";
 import * as assert from "assert";
 import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
-import {
+import type {
     TextlintFilterRuleContext,
     TextlintFilterRuleOptions,
     TextlintFilterRuleReporter,

@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ tsconfig.tsbuildinfo",
+    "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo",
     "crlf": "eolConverter crlf test/snapshots/crlf/input.txt",
     "prepublish": "npm run --if-present build",
     "pretest": "npm run crlf",

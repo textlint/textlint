@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } from "@textlint/types";
+import type { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } from "@textlint/types";
 
 /**
  * Creates a fix command that inserts text at the specified index in the source text.

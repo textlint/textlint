@@ -1,4 +1,4 @@
-import { TextlintMessage, TextlintMessageFixCommand, TextlintSourceCode } from "@textlint/types";
+import type { TextlintMessage, TextlintMessageFixCommand, TextlintSourceCode } from "@textlint/types";
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
 import _debug from "debug";
 

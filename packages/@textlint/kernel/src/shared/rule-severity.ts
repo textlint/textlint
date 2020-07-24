@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintRuleOptions, TextlintRuleSeverityLevel } from "@textlint/types";
+import type { TextlintRuleOptions, TextlintRuleSeverityLevel } from "@textlint/types";
 import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLevelKeys";
 
 const isSeverityLevelValue = (type: any): type is TextlintRuleSeverityLevel => {

@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintMessage } from "@textlint/types";
+import type { TextlintMessage } from "@textlint/types";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import { TextlintRuleSeverityLevelKeys } from "../context/TextlintRuleSeverityLevelKeys";
 
