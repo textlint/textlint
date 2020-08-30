@@ -1,11 +1,25 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": { "rootDir": "src", "outDir": "lib" },
-  "include": ["src/**/*"],
-  "exclude": [".git", "node_modules"],
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ],
   "references": [
-    { "path": "../@textlint/feature-flag" },
-    { "path": "../@textlint/kernel" },
-    { "path": "../textlint" }
+    {
+      "path": "../@textlint/feature-flag"
+    },
+    {
+      "path": "../@textlint/kernel"
+    },
+    {
+      "path": "../textlint"
+    }
   ]
 }

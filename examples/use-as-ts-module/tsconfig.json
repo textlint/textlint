@@ -5,7 +5,9 @@
     "outDir": "lib"
   },
   "references": [
-    { "path": "../../packages/textlint" }
+    {
+      "path": "../../packages/textlint"
+    }
   ],
   "include": [
     "src/**/*"
