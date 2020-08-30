@@ -1,7 +1,22 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "compilerOptions": { "rootDir": "src", "outDir": "lib" },
-  "include": ["src/**/*"],
-  "exclude": [".git", "node_modules"],
-  "references": [{ "path": "../module-interop" }, { "path": "../types" }]
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "../module-interop"
+    },
+    {
+      "path": "../types"
+    }
+  ]
 }
