@@ -39,8 +39,8 @@
     "shelljs": "^0.8.4"
   },
   "dependencies": {
-    "@babel/cli": "^7.11.5",
-    "@babel/core": "^7.11.5",
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/register": "^7.11.5",
