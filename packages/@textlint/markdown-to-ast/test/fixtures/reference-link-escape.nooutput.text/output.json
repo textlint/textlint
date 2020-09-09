@@ -319,7 +319,7 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "b\\*r*",
                     "referenceType": "full",
                     "alt": "foo",
@@ -359,7 +359,7 @@
                     "raw": ", "
                 },
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "b\\*r*",
                     "referenceType": "collapsed",
                     "alt": "b*r*",
@@ -399,7 +399,7 @@
                     "raw": ", "
                 },
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "b\\*r*",
                     "referenceType": "shortcut",
                     "alt": "b*r*",

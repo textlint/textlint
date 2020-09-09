@@ -12,7 +12,6 @@ export const SyntaxMap = {
     heading: ASTNodeTypes.Header,
     code: ASTNodeTypes.CodeBlock,
     HtmlBlock: ASTNodeTypes.HtmlBlock,
-    ReferenceDef: ASTNodeTypes.ReferenceDef,
     thematicBreak: ASTNodeTypes.HorizontalRule,
     // inline block
     text: ASTNodeTypes.Str,
@@ -31,6 +30,10 @@ export const SyntaxMap = {
     tableRow: "TableRow",
     tableCell: "TableCell",
     linkReference: "LinkReference",
-    imageReference: "imageReference",
-    definition: "Definition"
+    imageReference: "ImageReference",
+    definition: "Definition",
+    /**
+     * @deprecated
+     */
+    ReferenceDef: ASTNodeTypes.ReferenceDef
 };

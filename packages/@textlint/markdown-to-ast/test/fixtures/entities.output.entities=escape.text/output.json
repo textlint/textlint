@@ -1951,7 +1951,7 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "favicon",
                     "referenceType": "full",
                     "alt": "AT&T with entity",
@@ -1991,7 +1991,7 @@
                     "raw": ", "
                 },
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "favicon",
                     "referenceType": "full",
                     "alt": "AT&T with numeric entity",
@@ -2031,7 +2031,7 @@
                     "raw": ", "
                 },
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "favicon",
                     "referenceType": "full",
                     "alt": "AT&T without entity",

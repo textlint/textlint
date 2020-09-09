@@ -32,11 +32,11 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         ? TxtParentNode
         : T extends ASTNodeTypes.HeaderExit
         ? TxtParentNode
-        : /* ```
-         * code
-         * ```
-         */
-        T extends ASTNodeTypes.CodeBlock
+          /* ```
+           * code
+           * ```
+           */
+        : T extends ASTNodeTypes.CodeBlock
         ? TxtParentNode
         : T extends ASTNodeTypes.CodeBlockExit
         ? TxtParentNode // <div>\n</div>
@@ -47,10 +47,6 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         : T extends ASTNodeTypes.Link
         ? TxtParentNode
         : T extends ASTNodeTypes.LinkExit
-        ? TxtParentNode // [link][]
-        : T extends ASTNodeTypes.ReferenceDef
-        ? TxtParentNode
-        : T extends ASTNodeTypes.ReferenceDefExit
         ? TxtParentNode // ~~Str~~
         : T extends ASTNodeTypes.Delete
         ? TxtParentNode

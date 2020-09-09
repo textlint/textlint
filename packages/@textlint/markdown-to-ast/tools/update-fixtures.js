@@ -7,7 +7,7 @@
  */
 const fs = require("fs");
 const path = require("path");
-const parse = require("../lib/markdown-parser").parse;
+const parse = require("../lib/index").parse;
 const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures
 const fixtureDir = path.join(testDir, "fixtures");
