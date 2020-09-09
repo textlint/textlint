@@ -158,8 +158,6 @@ These types are defined in `@textlint/ast-node-types`.
 | ASTNodeTypes.HtmlBlockExit      | TxtParentNode |                                      |
 | ASTNodeTypes.Link               | TxtParentNode | Link Node                            |
 | ASTNodeTypes.LinkExit           | TxtParentNode |                                      |
-| ASTNodeTypes.ReferenceDef       | TxtParentNode | Link Reference Node(`[link][]`)      |
-| ASTNodeTypes.ReferenceDefExit   | TxtParentNode |                                      |
 | ASTNodeTypes.Delete             | TxtParentNode | Delete Node(`~Str~`)                 |
 | ASTNodeTypes.DeleteExit         | TxtParentNode |                                      |
 | ASTNodeTypes.Emphasis           | TxtParentNode | Emphasis(`*Str*`)                    |

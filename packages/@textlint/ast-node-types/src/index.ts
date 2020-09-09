@@ -25,12 +25,18 @@ export enum ASTNodeTypes {
     CodeBlockExit = "CodeBlock:exit",
     HtmlBlock = "HtmlBlock",
     HtmlBlockExit = "HtmlBlock:exit",
-    ReferenceDef = "ReferenceDef",
-    ReferenceDefExit = "ReferenceDef:exit",
     HorizontalRule = "HorizontalRule",
     HorizontalRuleExit = "HorizontalRule:exit",
     Comment = "Comment",
     CommentExit = "Comment:exit",
+    /**
+     * @deprecated
+     */
+    ReferenceDef = "ReferenceDef",
+    /**
+     * @deprecated
+     */
+    ReferenceDefExit = "ReferenceDef:exit",
     // inline
     Str = "Str",
     StrExit = "Str:exit",
