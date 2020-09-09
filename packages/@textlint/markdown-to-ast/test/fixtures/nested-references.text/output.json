@@ -49,7 +49,7 @@
                     "referenceType": "full",
                     "children": [
                         {
-                            "type": "imageReference",
+                            "type": "ImageReference",
                             "identifier": "bar",
                             "referenceType": "full",
                             "alt": "Foo",

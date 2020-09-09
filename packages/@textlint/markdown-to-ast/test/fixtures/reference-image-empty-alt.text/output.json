@@ -5,7 +5,7 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "1",
                     "referenceType": "full",
                     "alt": null,

@@ -793,7 +793,7 @@
                             "raw": "Or in "
                         },
                         {
-                            "type": "imageReference",
+                            "type": "ImageReference",
                             "identifier": "12",
                             "referenceType": "full",
                             "alt": "\n  l©nks\n",

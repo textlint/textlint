@@ -365,7 +365,7 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "world",
                     "referenceType": "shortcut",
                     "alt": "World",

@@ -165,7 +165,7 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "imageReference",
+                    "type": "ImageReference",
                     "identifier": "hello",
                     "referenceType": "shortcut",
                     "alt": "Hello",
