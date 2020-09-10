@@ -9,7 +9,7 @@
   "author": "azu",
   "license": "MIT",
   "dependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-textlint": "file:..",
     "textlint-rule-no-todo": "^1.0.3",
     "textlint-rule-prh": "^2.2.0"

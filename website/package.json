@@ -31,7 +31,7 @@
     "textlint-rule-eslint": "^3.2.1",
     "textlint-rule-prh": "^5.2.0",
     "textlint-rule-rousseau": "^1.4.6",
-    "textlint-rule-unexpanded-acronym": "^1.2.3"
+    "textlint-rule-unexpanded-acronym": "^1.2.4"
   },
   "files": [
     "bin/",
