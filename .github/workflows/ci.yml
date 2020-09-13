@@ -7,6 +7,10 @@ jobs:
       matrix:
         os: [macOS-latest, ubuntu-latest, windows-latest]
         node: [ 10, 12, 14 ]
+        exclude:
+          # only one macOs
+          - os: macos-latest
+            node: [10, 12]
 
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
