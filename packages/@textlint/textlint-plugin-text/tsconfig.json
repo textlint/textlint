@@ -14,6 +14,9 @@
   "references": [
     {
       "path": "../text-to-ast"
+    },
+    {
+      "path": "../kernel"
     }
   ]
 }
