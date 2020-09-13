@@ -1,7 +1,5 @@
 import { AbstractBacker } from "./execute-file-backers/abstruct-backer";
 import { TextlintResult } from "@textlint/kernel";
-// MIT © 2016 azu
-"use strict";
 
 export class ExecuteFileBackerManager {
     _backers: AbstractBacker[];
