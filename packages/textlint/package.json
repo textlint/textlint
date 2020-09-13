@@ -91,7 +91,7 @@
     "textlint-rule-helper": "^2.0.1",
     "textlint-rule-no-todo": "^2.0.1",
     "textlint-rule-preset-ja-spacing": "^2.0.2",
-    "textlint-rule-preset-jtf-style": "^2.3.4",
+    "textlint-rule-preset-jtf-style": "^2.3.5",
     "ts-node": "^8.10.2",
     "ts-node-test-register": "^8.0.1",
     "typescript": "~3.9.7"
