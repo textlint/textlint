@@ -13445,7 +13445,14 @@ try-resolve@^1.0.1:
   resolved "https://registry.yarnpkg.com/try-resolve/-/try-resolve-1.0.1.tgz#cfde6fabd72d63e5797cfaab873abbe8e700e912"
   integrity sha1-z95vq9ctY+V5fPqrhzq76OcA6RI=
 
-ts-node-test-register@8.0.1, ts-node-test-register@^8.0.1:
+ts-node-test-register@9.0.0, ts-node-test-register@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ts-node-test-register/-/ts-node-test-register-9.0.0.tgz#11800cc4d3ec6732a063d7db191957cf8a0ac84e"
+  integrity sha512-VKHg3/J11/fbdUFh9BsOgpEnifx5GqJcHLmrnKON18sUQl03Btzs52sWzCOY/k5LKQCeYkRJABVQ+lP53Iktag==
+  dependencies:
+    read-pkg "^5.2.0"
+
+ts-node-test-register@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/ts-node-test-register/-/ts-node-test-register-8.0.1.tgz#457c5284c2632d8e04f82378db4cb54cd6fd7901"
   integrity sha512-5QPI7WRfm7zVnMnq7PCNO4KINYefcipesYGvr01PoYXM1/AWfcVQbMrCXbwDXKjSL8jm8UZpFiVR9neGeiM+uA==
@@ -13456,6 +13463,17 @@ ts-node@8.10.2, ts-node@^8.10.2:
   version "8.10.2"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.10.2.tgz#eee03764633b1234ddd37f8db9ec10b75ec7fb8d"
   integrity sha512-ISJJGgkIpDdBhWVu3jufsWpK3Rzo7bdiIXJjQc0ynKxVOVcg2oIrf2H2cejminGrptVc6q6/uynAHNCuWGbpVA==
+  dependencies:
+    arg "^4.1.0"
+    diff "^4.0.1"
+    make-error "^1.1.1"
+    source-map-support "^0.5.17"
+    yn "3.1.1"
+
+ts-node@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.0.0.tgz#e7699d2a110cc8c0d3b831715e417688683460b3"
+  integrity sha512-/TqB4SnererCDR/vb4S/QvSZvzQMJN8daAslg7MeaiHvD8rDZsSfXmNeNumyZZzMned72Xoq/isQljYSt8Ynfg==
   dependencies:
     arg "^4.1.0"
     diff "^4.0.1"
@@ -13569,7 +13587,12 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.9.7, typescript@^3.9.7, typescript@~3.9.7:
+typescript@4.0.2, typescript@^4.0.2, typescript@~4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.2.tgz#7ea7c88777c723c681e33bf7988be5d008d05ac2"
+  integrity sha512-e4ERvRV2wb+rRZ/IQeb3jm2VxBsirQLpQhdxplZ2MEzGvDkkMmPglecnNDfSUBivMjP93vRbngYYDQqQ/78bcQ==
+
+typescript@~3.9.7:
   version "3.9.7"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
   integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
