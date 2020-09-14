@@ -12826,7 +12826,7 @@ textlint-rule-eslint@^3.2.1:
   dependencies:
     structured-source "^3.0.2"
 
-textlint-rule-helper@^1.1.2, textlint-rule-helper@^1.1.3, textlint-rule-helper@^1.1.5:
+textlint-rule-helper@^1.1.2, textlint-rule-helper@^1.1.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-1.2.0.tgz#be68d47a5146b16dd116278c9aeb7bd35631ccda"
   integrity sha1-vmjUelFGsW3RFieMmut701YxzNo=
@@ -12918,12 +12918,13 @@ textlint-rule-max-ten@^2.0.3:
     textlint-rule-helper "^2.0.0"
 
 textlint-rule-no-exclamation-question-mark@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/textlint-rule-no-exclamation-question-mark/-/textlint-rule-no-exclamation-question-mark-1.0.2.tgz#f3d812cfbaddc8224ca497d9b38b70dac554891c"
-  integrity sha1-89gSz7rdyCJMpJfZs4tw2sVUiRw=
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-exclamation-question-mark/-/textlint-rule-no-exclamation-question-mark-1.1.0.tgz#5d6cf9bba6111c9619da91a3fff7c080847420b0"
+  integrity sha512-FcBH3uH2qp5VG7I9LKwolUCcPigONcsdam1JhAFPcu10YZNYX0r1l2y9Hzg+E4+1fXLgtGyiObWwfsfelTx8Bw==
   dependencies:
-    match-index "^1.0.1"
-    textlint-rule-helper "^1.1.5"
+    "@textlint/regexp-string-matcher" "^1.1.0"
+    match-index "^1.0.3"
+    textlint-rule-helper "^2.1.1"
 
 textlint-rule-no-mix-dearu-desumasu@^3.0.3:
   version "3.0.3"
