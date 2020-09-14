@@ -98,9 +98,9 @@ describe("textlint-core", function () {
         it("should reset filterRules", function () {
             const textlint = new TextLintCore();
             textlint.setupFilterRules({ "rule-name": exampleRule });
-            assert.ok(textlint.textlintKernelDescriptor.filterRule.descriptors.length === 1);
+            assert.strictEqual(textlint.textlintKernelDescriptor.filterRule.descriptors.length, 1);
             textlint.resetRules();
-            assert.ok(textlint.textlintKernelDescriptor.filterRule.descriptors.length === 0);
+            assert.strictEqual(textlint.textlintKernelDescriptor.filterRule.descriptors.length, 0);
         });
         it("should reset rules", function () {
             const textlint = new TextLintCore();
