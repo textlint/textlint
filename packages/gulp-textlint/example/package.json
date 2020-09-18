@@ -12,6 +12,6 @@
     "gulp": "^3.9.1",
     "gulp-textlint": "file:..",
     "textlint-rule-no-todo": "^1.0.3",
-    "textlint-rule-prh": "^2.2.0"
+    "textlint-rule-prh": "^2.4.1"
   }
 }
