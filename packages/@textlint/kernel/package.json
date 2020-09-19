@@ -41,7 +41,7 @@
     "@textlint/feature-flag": "^3.2.4",
     "@textlint/types": "^1.4.5",
     "@textlint/utils": "^1.1.4",
-    "debug": "^4.1.1",
+    "debug": "^4.2.0",
     "deep-equal": "^1.1.1",
     "map-like": "^2.0.0",
     "structured-source": "^3.0.2"
