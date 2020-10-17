@@ -46,7 +46,7 @@
     "@textlint/ast-tester": "^2.2.4",
     "cross-env": "^7.0.2",
     "eol-converter-cli": "^1.0.8",
-    "mocha": "^8.1.3",
+    "mocha": "^8.2.0",
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.2",
     "ts-node-test-register": "^9.0.0",
