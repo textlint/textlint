@@ -5,8 +5,11 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [macOS-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest]
         node: [ 10, 12, 14 ]
+        include:
+          - node: 14
+            os: macos-latest
 
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
