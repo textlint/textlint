@@ -38,7 +38,7 @@
     "@textlint/kernel": "^3.3.6",
     "@types/mocha": "8.0.3",
     "cross-env": "^7.0.2",
-    "mocha": "^8.2.0",
+    "mocha": "^8.2.1",
     "rimraf": "^3.0.2",
     "textlint-rule-no-todo": "^2.0.1",
     "ts-node": "9.0.0",
