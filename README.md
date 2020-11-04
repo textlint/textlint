@@ -569,13 +569,7 @@ Download from [textlint/media](https://github.com/textlint/media "textlint/media
 
 <!-- textlint-disable -->
 
-[SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint") is similar project.
-
-[SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint")'s place is equal to my `textlint`(Fortuitously, project's name is the same too!).
-
-![concept](https://monosnap.com/image/Gr9CGbkSjl1FXEL0LIWzNDAj3c24JT.png)
-
-via [Natural Language Checking with Program Checking Tools](https://www.slideshare.net/renggli/text-lint "Natural Language Checking with Program Checking Tools")
+- [SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint")
 
 ## Acknowledgements
 
