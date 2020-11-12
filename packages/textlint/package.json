@@ -76,7 +76,7 @@
     "unique-concat": "^0.2.2"
   },
   "devDependencies": {
-    "@types/mocha": "^8.0.3",
+    "@types/mocha": "^8.0.4",
     "@types/node": "^14.14.7",
     "clone": "^2.1.2",
     "cpx": "^1.5.0",
