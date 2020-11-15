@@ -1,7 +1,7 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
-        "outDir": "../out",
+        "noEmit": true,
         "allowJs": true,
         "declaration": false
     },

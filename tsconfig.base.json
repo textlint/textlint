@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "<**SHOULD_BE_OVERWRITE##!??**>",
     /* Basic Options */
+    "incremental": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
