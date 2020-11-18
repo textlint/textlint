@@ -1998,7 +1998,7 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
-"@typescript-eslint/eslint-plugin@^4.7.0":
+"@typescript-eslint/eslint-plugin@^4.8.1":
   version "4.8.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.8.1.tgz#b362abe0ee478a6c6d06c14552a6497f0b480769"
   integrity sha512-d7LeQ7dbUrIv5YVFNzGgaW3IQKMmnmKFneRWagRlGYOSfLJVaRbj/FrBNOBC1a3tVO+TgNq1GbHvRtg1kwL0FQ==
@@ -2023,7 +2023,7 @@
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
-"@typescript-eslint/parser@^4.7.0":
+"@typescript-eslint/parser@^4.8.1":
   version "4.8.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.8.1.tgz#4fe2fbdbb67485bafc4320b3ae91e34efe1219d1"
   integrity sha512-QND8XSVetATHK9y2Ltc/XBl5Ro7Y62YuZKnPEwnNPB8E379fDsvzJ1dMJ46fg/VOmk0hXhatc+GXs5MaXuL5Uw==
