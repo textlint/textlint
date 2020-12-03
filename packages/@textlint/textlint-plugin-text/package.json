@@ -37,7 +37,7 @@
   "devDependencies": {
     "@textlint/kernel": "^3.3.6",
     "@types/mocha": "8.0.4",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "mocha": "^8.2.1",
     "rimraf": "^3.0.2",
     "textlint-rule-no-todo": "^2.0.1",

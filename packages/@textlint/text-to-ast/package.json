@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@textlint/ast-tester": "^2.2.4",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "eol-converter-cli": "^1.0.8",
     "mocha": "^8.2.1",
     "power-assert": "^1.6.1",

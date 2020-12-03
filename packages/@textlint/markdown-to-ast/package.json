@@ -49,7 +49,7 @@
     "@types/structured-source": "^3.0.0",
     "@types/traverse": "^0.6.32",
     "browserify": "^16.5.2",
-    "cross-env": "^7.0.2",
+    "cross-env": "^7.0.3",
     "mkdirp": "^1.0.4",
     "mocha": "^8.2.1",
     "power-assert": "^1.6.1",

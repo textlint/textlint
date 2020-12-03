@@ -4262,7 +4262,7 @@ create-require@^1.1.0:
   resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
   integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
 
-cross-env@^7.0.2:
+cross-env@^7.0.2, cross-env@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
   integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
@@ -13639,7 +13639,7 @@ unist-util-remove-position@^1.0.0:
   dependencies:
     unist-util-visit "^1.1.0"
 
-unist-util-select@^3.0.2:
+unist-util-select@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/unist-util-select/-/unist-util-select-3.0.3.tgz#8ef3ca40b3ef17c4bab5cfbf4fdad533302a7f23"
   integrity sha512-DnbjRvotPiDGsUaw9knEvprwD6conwGtaArUn5niG9yBQvWQyHMmUJ4p/vXXzLBm+8XyiTr3pcuw9n3TlF6SYg==
