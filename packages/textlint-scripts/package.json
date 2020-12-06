@@ -33,8 +33,8 @@
   },
   "homepage": "https://github.com/textlint/textlint-scripts",
   "devDependencies": {
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.2",
+    "husky": "^4.3.4",
+    "lint-staged": "^10.5.3",
     "prettier": "^2.0.5",
     "shelljs": "^0.8.4"
   },
