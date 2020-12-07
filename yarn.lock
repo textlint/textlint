@@ -8310,7 +8310,7 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lint-staged@^10.5.2:
+lint-staged@^10.5.3:
   version "10.5.3"
   resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.5.3.tgz#c682838b3eadd4c864d1022da05daa0912fb1da5"
   integrity sha512-TanwFfuqUBLufxCc3RUtFEkFraSPNR3WzWcGF39R3f2J7S9+iF9W0KTVLfSy09lYGmZS5NDCxjNvhGMSJyFCWg==
@@ -13321,14 +13321,7 @@ try-resolve@^1.0.1:
   resolved "https://registry.yarnpkg.com/try-resolve/-/try-resolve-1.0.1.tgz#cfde6fabd72d63e5797cfaab873abbe8e700e912"
   integrity sha1-z95vq9ctY+V5fPqrhzq76OcA6RI=
 
-ts-node-test-register@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/ts-node-test-register/-/ts-node-test-register-9.0.0.tgz#11800cc4d3ec6732a063d7db191957cf8a0ac84e"
-  integrity sha512-VKHg3/J11/fbdUFh9BsOgpEnifx5GqJcHLmrnKON18sUQl03Btzs52sWzCOY/k5LKQCeYkRJABVQ+lP53Iktag==
-  dependencies:
-    read-pkg "^5.2.0"
-
-ts-node-test-register@^9.0.0:
+ts-node-test-register@9.0.1, ts-node-test-register@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/ts-node-test-register/-/ts-node-test-register-9.0.1.tgz#84bdf287bdc29f64de33d3b5f04d73395233dcd8"
   integrity sha512-J8xmFFH6HcFFxe09qcVsooDgiTa+cUDsNj3l+I0JPPl0hcIvw7RcJPU4qmkj+55JVlFsEql6Nl7xSkCt36RFtw==

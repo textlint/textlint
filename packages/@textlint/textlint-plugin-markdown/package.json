@@ -46,7 +46,7 @@
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.2",
     "textlint-rule-no-todo": "^2.0.1",
-    "ts-node-test-register": "^9.0.0",
+    "ts-node-test-register": "^9.0.1",
     "typescript": "^4.0.2"
   },
   "publishConfig": {
