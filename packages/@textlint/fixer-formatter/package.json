@@ -48,7 +48,7 @@
     "try-resolve": "^1.0.1"
   },
   "devDependencies": {
-    "@types/mocha": "^8.0.4",
+    "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.10",
     "cross-env": "^7.0.3",
     "mocha": "^8.2.1",
