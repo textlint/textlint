@@ -1708,9 +1708,9 @@ ejs@^2.4.1:
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
 electron-to-chromium@^1.3.621:
-  version "1.3.623"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.623.tgz#b61ba1d94b27031554ea2768bb9b823501a918a0"
-  integrity sha512-CgbWTyPmJ4f9pqtqR+HPL3O0ay6BRhnpFD52TqBB2K8kTAcmAar2e93Vo1q651E4vnCHuTDuZDdbj0sTMP2QQw==
+  version "1.3.624"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.624.tgz#0ed5d2930ab37c4ec977ab58def2cda9c446e1c3"
+  integrity sha512-o7j+CRwsXXj3180EeT6fnOOCyhdeBCmcjQLfe0ObpSH1N0PSylrQ3ibBfAZ39Y28YQ+gKKmU2xSSggdARpjuDg==
 
 emoji-regex@^7.0.1:
   version "7.0.3"
