@@ -45,7 +45,7 @@
   "devDependencies": {
     "@textlint/ast-tester": "^2.2.4",
     "@types/mocha": "^8.2.0",
-    "@types/node": "^14.14.12",
+    "@types/node": "^14.14.13",
     "@types/structured-source": "^3.0.0",
     "@types/traverse": "^0.6.32",
     "browserify": "^16.5.2",

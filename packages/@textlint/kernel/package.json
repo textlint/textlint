@@ -51,7 +51,7 @@
     "@types/debug": "^4.1.5",
     "@types/deep-equal": "^1.0.1",
     "@types/mocha": "^8.2.0",
-    "@types/node": "^14.14.12",
+    "@types/node": "^14.14.13",
     "@types/structured-source": "^3.0.0",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
