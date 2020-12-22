@@ -232,11 +232,10 @@ describe("SourceCodeFixer", function () {
                 assert.ok(result.fixed);
             });
 
-            it("should apply one fix when the end of one range is the same as the start of a previous range overlap", function () {
+            it("should apply all fixes when the end of one range is the same as the start of a previous range", function () {
                 const result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_START, REPLACE_ID]);
-                assert.equal(result.output, TEST_CODE.replace("answer", "foo"));
-                assert.equal(result.remainingMessages.length, 1);
-                assert.equal(result.remainingMessages[0].message, "removestart");
+                assert.equal(result.output, TEST_CODE.replace("answer", "foo").replace("var ", ""));
+                assert.equal(result.remainingMessages.length, 0);
                 assert.ok(result.fixed);
             });
 
@@ -431,11 +430,10 @@ describe("SourceCodeFixer", function () {
                 assert.ok(result.fixed);
             });
 
-            it("should apply one fix when the end of one range is the same as the start of a previous range overlap", function () {
+            it("should apply all fixes when the end of one range is the same as the start of a previous range", function () {
                 const result = SourceCodeFixer.applyFixes(sourceCode, [REMOVE_START, REPLACE_ID]);
-                assert.equal(result.output, `\uFEFF${TEST_CODE.replace("answer", "foo")}`);
-                assert.equal(result.remainingMessages.length, 1);
-                assert.equal(result.remainingMessages[0].message, "removestart");
+                assert.equal(result.output, `\uFEFF${TEST_CODE.replace("answer", "foo").replace("var ", "")}`);
+                assert.equal(result.remainingMessages.length, 0);
                 assert.ok(result.fixed);
             });
 

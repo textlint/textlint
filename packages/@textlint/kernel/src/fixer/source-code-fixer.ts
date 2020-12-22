@@ -52,7 +52,7 @@ export default class SourceCodeFixer {
         const applyingMessages: TextlintMessage[] = [];
         const cloneMessages = messages.slice();
         const fixes: TextLintMessageFixable[] = [];
-        let lastFixPos = text.length + 1;
+        let lastFixPos = text.length;
         let prefix = sourceCode.hasBOM ? BOM : "";
         cloneMessages.forEach((problem) => {
             if (problem && problem.fix !== undefined) {
@@ -81,7 +81,7 @@ export default class SourceCodeFixer {
                 const end = fix.range[1];
                 let insertionText = fix.text;
 
-                if (end < lastFixPos) {
+                if (end <= lastFixPos) {
                     if (start < 0) {
                         // Remove BOM.
                         prefix = "";
