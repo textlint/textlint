@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-use-as-module",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -10,7 +10,7 @@
     "test:ci": "npm test"
   },
   "dependencies": {
-    "textlint": "^11.7.6",
+    "textlint": "^11.7.7",
     "textlint-rule-no-todo": "^2.0.1"
   },
   "files": [

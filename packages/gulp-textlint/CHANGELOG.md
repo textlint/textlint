@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.2.7"></a>
+## [5.2.7](https://github.com/textlint/textlint/compare/gulp-textlint@5.2.6...gulp-textlint@5.2.7) (2020-12-22)
+
+
+### Chores
+
+* **deps:** update dependency eslint-plugin-prettier to ^3.3.0 ([13d3821](https://github.com/textlint/textlint/commit/13d3821))
+* **deps:** update minor updates ([7ef0be6](https://github.com/textlint/textlint/commit/7ef0be6))
+* **deps:** update minor updates ([2f3dcb6](https://github.com/textlint/textlint/commit/2f3dcb6))
+* **deps:** update minor updates ([7a53517](https://github.com/textlint/textlint/commit/7a53517))
+* **deps:** update patch updates ([4f4c206](https://github.com/textlint/textlint/commit/4f4c206))
+* **deps:** update patch updates ([9157dda](https://github.com/textlint/textlint/commit/9157dda))
+* **deps:** update TypeScript deps ([#705](https://github.com/textlint/textlint/issues/705)) ([1baa72a](https://github.com/textlint/textlint/commit/1baa72a))
+
+
+
+
+
 <a name="5.2.6"></a>
 ## [5.2.6](https://github.com/textlint/textlint/compare/gulp-textlint@5.2.5...gulp-textlint@5.2.6) (2020-07-24)
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.9.7"></a>
+## [10.9.7](https://github.com/textlint/textlint/compare/textlint-website@10.9.6...textlint-website@10.9.7) (2020-12-22)
+
+
+### Chores
+
+* **deps:** update minor updates ([7a53517](https://github.com/textlint/textlint/commit/7a53517))
+* **deps:** update patch updates ([9157dda](https://github.com/textlint/textlint/commit/9157dda))
+
+
+
+
+
 <a name="10.9.6"></a>
 ## [10.9.6](https://github.com/textlint/textlint/compare/textlint-website@10.9.5...textlint-website@10.9.6) (2020-07-24)
 
