@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.2.7"></a>
+## [5.2.7](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.2.6...@textlint/textlint-plugin-markdown@5.2.7) (2020-12-22)
+
+
+### Bug Fixes
+
+* fix tsconfig ([a722a6f](https://github.com/textlint/textlint/commit/a722a6f))
+
+
+### Chores
+
+* **deps:** update minor updates ([2f3dcb6](https://github.com/textlint/textlint/commit/2f3dcb6))
+* **deps:** update patch updates ([fe2ad4f](https://github.com/textlint/textlint/commit/fe2ad4f))
+* **deps:** update patch updates ([e438ff2](https://github.com/textlint/textlint/commit/e438ff2))
+* **deps:** update patch updates ([4f4c206](https://github.com/textlint/textlint/commit/4f4c206))
+* **deps:** update TypeScript deps ([#705](https://github.com/textlint/textlint/issues/705)) ([1baa72a](https://github.com/textlint/textlint/commit/1baa72a))
+* use [@monorepo-utils](https://github.com/monorepo-utils)/workspaces-to-typescript-project-references ([#699](https://github.com/textlint/textlint/issues/699)) ([eff1943](https://github.com/textlint/textlint/commit/eff1943))
+
+
+
+
+
 <a name="5.2.6"></a>
 ## [5.2.6](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.2.5...@textlint/textlint-plugin-markdown@5.2.6) (2020-07-24)
 

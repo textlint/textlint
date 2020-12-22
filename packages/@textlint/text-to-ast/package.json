@@ -1,6 +1,6 @@
 {
   "name": "@textlint/text-to-ast",
-  "version": "3.2.4",
+  "version": "3.2.5",
   "description": "Parse plain text to AST with location info.",
   "keywords": [
     "ast",
@@ -40,10 +40,10 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^4.3.4"
+    "@textlint/ast-node-types": "^4.3.5"
   },
   "devDependencies": {
-    "@textlint/ast-tester": "^2.2.4",
+    "@textlint/ast-tester": "^2.2.5",
     "cross-env": "^7.0.3",
     "eol-converter-cli": "^1.0.8",
     "mocha": "^8.2.1",

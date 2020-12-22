@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.3.7"></a>
+## [2.3.7](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.3.6...textlint-example-use-as-ts-module@2.3.7) (2020-12-22)
+
+
+### Chores
+
+* **deps:** update TypeScript deps ([#705](https://github.com/textlint/textlint/issues/705)) ([1baa72a](https://github.com/textlint/textlint/commit/1baa72a))
+* use [@monorepo-utils](https://github.com/monorepo-utils)/workspaces-to-typescript-project-references ([#699](https://github.com/textlint/textlint/issues/699)) ([eff1943](https://github.com/textlint/textlint/commit/eff1943))
+
+
+
+
+
 <a name="2.3.6"></a>
 ## [2.3.6](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.3.5...textlint-example-use-as-ts-module@2.3.6) (2020-07-24)
 

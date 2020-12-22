@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="6.2.6"></a>
+## [6.2.6](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.2.5...@textlint/markdown-to-ast@6.2.6) (2020-12-22)
+
+
+### Bug Fixes
+
+* **@textlint/markdown-to-ast:** fix [@ts-expect-error](https://github.com/ts-expect-error) issue ([d47f3ec](https://github.com/textlint/textlint/commit/d47f3ec))
+* **ast-node-types:** deprecated "ReferenceDef" type ([#701](https://github.com/textlint/textlint/issues/701)) ([a088520](https://github.com/textlint/textlint/commit/a088520))
+* **deps:** update dependency debug to ^4.2.0 ([6db0ba9](https://github.com/textlint/textlint/commit/6db0ba9))
+* **deps:** update dependency debug to ^4.3.0 ([9dea96a](https://github.com/textlint/textlint/commit/9dea96a))
+* fix tsconfig ([a722a6f](https://github.com/textlint/textlint/commit/a722a6f))
+
+
+### Chores
+
+* **deps:** update dependency [@types](https://github.com/types)/mocha to v8.0.4 ([fd60f20](https://github.com/textlint/textlint/commit/fd60f20))
+* **deps:** update dependency [@types](https://github.com/types)/mocha to v8.2.0 ([5ced72d](https://github.com/textlint/textlint/commit/5ced72d))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.11.2 ([6ac372a](https://github.com/textlint/textlint/commit/6ac372a))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.11.5 ([b0e73f5](https://github.com/textlint/textlint/commit/b0e73f5))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.11.8 ([33679af](https://github.com/textlint/textlint/commit/33679af))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.10 ([96ba315](https://github.com/textlint/textlint/commit/96ba315))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.12 ([f62f2e3](https://github.com/textlint/textlint/commit/f62f2e3))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.13 ([608afd4](https://github.com/textlint/textlint/commit/608afd4))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.14 ([8417f8a](https://github.com/textlint/textlint/commit/8417f8a))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.5 ([1ed7006](https://github.com/textlint/textlint/commit/1ed7006))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.6 ([507a41b](https://github.com/textlint/textlint/commit/507a41b))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.7 ([64f97eb](https://github.com/textlint/textlint/commit/64f97eb))
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.8 ([8de7d16](https://github.com/textlint/textlint/commit/8de7d16))
+* **deps:** update minor updates ([7ef0be6](https://github.com/textlint/textlint/commit/7ef0be6))
+* **deps:** update minor updates ([2f3dcb6](https://github.com/textlint/textlint/commit/2f3dcb6))
+* **deps:** update minor updates ([7a53517](https://github.com/textlint/textlint/commit/7a53517))
+* **deps:** update minor updates ([#712](https://github.com/textlint/textlint/issues/712)) ([8c42a19](https://github.com/textlint/textlint/commit/8c42a19))
+* **deps:** update patch updates ([3d9660b](https://github.com/textlint/textlint/commit/3d9660b))
+* **deps:** update patch updates ([fe2ad4f](https://github.com/textlint/textlint/commit/fe2ad4f))
+* **deps:** update patch updates ([e438ff2](https://github.com/textlint/textlint/commit/e438ff2))
+* **deps:** update patch updates ([9df50df](https://github.com/textlint/textlint/commit/9df50df))
+* **deps:** update patch updates ([4f4c206](https://github.com/textlint/textlint/commit/4f4c206))
+* **deps:** update patch updates ([1a0e41f](https://github.com/textlint/textlint/commit/1a0e41f))
+* **deps:** update patch updates ([9157dda](https://github.com/textlint/textlint/commit/9157dda))
+* **deps:** update TypeScript deps ([#705](https://github.com/textlint/textlint/issues/705)) ([1baa72a](https://github.com/textlint/textlint/commit/1baa72a))
+* use [@monorepo-utils](https://github.com/monorepo-utils)/workspaces-to-typescript-project-references ([#699](https://github.com/textlint/textlint/issues/699)) ([eff1943](https://github.com/textlint/textlint/commit/eff1943))
+
+
+
+
+
 <a name="6.2.5"></a>
 ## [6.2.5](https://github.com/textlint/textlint/compare/@textlint/markdown-to-ast@6.2.4...@textlint/markdown-to-ast@6.2.5) (2020-07-24)
 

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.2.7"></a>
+## [4.2.7](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.2.6...@textlint/textlint-plugin-text@4.2.7) (2020-12-22)
+
+
+### Bug Fixes
+
+* fix tsconfig ([a722a6f](https://github.com/textlint/textlint/commit/a722a6f))
+
+
+### Chores
+
+* **deps:** update dependency [@types](https://github.com/types)/mocha to v8.0.4 ([fd60f20](https://github.com/textlint/textlint/commit/fd60f20))
+* **deps:** update dependency [@types](https://github.com/types)/mocha to v8.2.0 ([5ced72d](https://github.com/textlint/textlint/commit/5ced72d))
+* **deps:** update minor updates ([7ef0be6](https://github.com/textlint/textlint/commit/7ef0be6))
+* **deps:** update minor updates ([2f3dcb6](https://github.com/textlint/textlint/commit/2f3dcb6))
+* **deps:** update patch updates ([3d9660b](https://github.com/textlint/textlint/commit/3d9660b))
+* **deps:** update patch updates ([fe2ad4f](https://github.com/textlint/textlint/commit/fe2ad4f))
+* **deps:** update patch updates ([e438ff2](https://github.com/textlint/textlint/commit/e438ff2))
+* enable TypeScript incremental ([#716](https://github.com/textlint/textlint/issues/716)) ([199da5c](https://github.com/textlint/textlint/commit/199da5c))
+* **deps:** update patch updates ([4f4c206](https://github.com/textlint/textlint/commit/4f4c206))
+* **deps:** update TypeScript deps ([#705](https://github.com/textlint/textlint/issues/705)) ([1baa72a](https://github.com/textlint/textlint/commit/1baa72a))
+* use [@monorepo-utils](https://github.com/monorepo-utils)/workspaces-to-typescript-project-references ([#699](https://github.com/textlint/textlint/issues/699)) ([eff1943](https://github.com/textlint/textlint/commit/eff1943))
+
+
+
+
+
 <a name="4.2.6"></a>
 ## [4.2.6](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.2.5...@textlint/textlint-plugin-text@4.2.6) (2020-07-24)
 
