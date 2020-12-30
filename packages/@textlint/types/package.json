@@ -48,7 +48,7 @@
   "devDependencies": {
     "@textlint/markdown-to-ast": "^6.2.6",
     "@types/mocha": "^8.2.0",
-    "@types/node": "^14.14.16",
+    "@types/node": "^14.14.17",
     "cross-env": "^7.0.3",
     "mocha": "^8.2.1",
     "prettier": "^2.1.1",
