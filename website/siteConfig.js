@@ -28,6 +28,12 @@ const users = [
         image: "https://raw.githubusercontent.com/gis-oer/gis-oer/master/img/logo/logo_gis-oer_01_256px.png",
         infoLink: "https://github.com/gis-oer/gis-oer",
         pinned: true
+    },
+    {
+        caption: "株式会社ソラコム",
+        image: "/img/soracom.png",
+        infoLink: "https://soracom.jp",
+        pinned: true
     }
 ];
 
