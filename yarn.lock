@@ -1722,15 +1722,25 @@
     load-json-file "^6.2.0"
     upath "^2.0.0"
 
-"@monorepo-utils/workspaces-to-typescript-project-references@^2.4.3":
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.4.3.tgz#5e42360720ebcb5676965c6e73277f64e23c8c3e"
-  integrity sha512-JRjF/nMLM/nVdQ5yBCu9/Xgv/xJSdYhrKv1fs62DRXqPj/DF09IYls8EH2ODKYvqqL98AOmPDi1IlwqetCAErQ==
+"@monorepo-utils/package-utils@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/package-utils/-/package-utils-2.4.4.tgz#bffae7fc234d4bbef32f1622518f04b84dff2265"
+  integrity sha512-suU7Dhx6713O+K5MHliGWVFzjjNscAbHac+rgqsbHpxISrMBdFFwlTmX5Wj1e+2ttn8zdoreloE9VYA0Z6nT7w==
   dependencies:
-    "@monorepo-utils/package-utils" "^2.2.1"
+    globby "^11.0.1"
+    load-json-file "^6.2.0"
+    upath "^2.0.1"
+
+"@monorepo-utils/workspaces-to-typescript-project-references@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.4.4.tgz#13b0856b600a5239cd24c0e0a644c140cf563139"
+  integrity sha512-JrrcgAi+IrR8EfZRq1u4cY/o533TFlAt6oIJ3jlbwWywtB8vyyCRRQvjja96YezvCbdgmDyRRiYaKD5uifx52A==
+  dependencies:
+    "@monorepo-utils/package-utils" "^2.4.4"
     comment-json "^3.0.3"
     meow "^7.1.1"
-    upath "^2.0.0"
+    semver-match "0.1.1"
+    upath "^2.0.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -11785,6 +11795,13 @@ semver-greatest-satisfied-range@^1.1.0:
   dependencies:
     sver-compat "^1.5.0"
 
+semver-match@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/semver-match/-/semver-match-0.1.1.tgz#e7ccb31f83fd4a0e377d66387afd8ca3a329b5fc"
+  integrity sha1-58yzH4P9Sg43fWY4ev2Mo6Mptfw=
+  dependencies:
+    semver "^5.1.0"
+
 semver-regex@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/semver-regex/-/semver-regex-2.0.0.tgz#a93c2c5844539a770233379107b38c7b4ac9d338"
@@ -11802,7 +11819,7 @@ semver-truncate@^1.1.2:
   dependencies:
     semver "^5.3.0"
 
-"semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0, semver@^5.7.0, semver@^5.7.1:
+"semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0, semver@^5.7.0, semver@^5.7.1:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
@@ -13749,7 +13766,7 @@ upath@^1.1.1, upath@^1.2.0:
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.2.0.tgz#8f66dbcd55a883acdae4408af8b035a5044c1894"
   integrity sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==
 
-upath@^2.0.0:
+upath@^2.0.0, upath@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/upath/-/upath-2.0.1.tgz#50c73dea68d6f6b990f51d279ce6081665d61a8b"
   integrity sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==
