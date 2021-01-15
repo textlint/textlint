@@ -1701,26 +1701,17 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@monorepo-utils/collect-changelog@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/collect-changelog/-/collect-changelog-2.3.1.tgz#aacef7833500ffb4c71580f21ea8f055ec69c0a5"
-  integrity sha512-kJILE0JisLbBkJyZOB4RNPDlCAuzBPLhCxT6pp2SJwlm5uRERzq26GsYNqe8P8JbQGNU6NbENdtBA3HvWcEcwA==
+"@monorepo-utils/collect-changelog@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/collect-changelog/-/collect-changelog-2.4.4.tgz#b5835e91efb29f95ef2d9701c7c54f8bddb04028"
+  integrity sha512-+/gRmaQqJiKopSLJznZ4UGifLm8InhOi8Cvpv8MF0JAE0cjzVjQPB909VsC6v9Rvn2xoVxZW+oySqZVpRLvBPA==
   dependencies:
-    "@monorepo-utils/package-utils" "^2.2.1"
+    "@monorepo-utils/package-utils" "^2.4.4"
     cclog-parser "^1.1.1"
     changelog-parser "^2.6.0"
     handlebars "^4.0.12"
     meow "^7.1.1"
-    upath "^2.0.0"
-
-"@monorepo-utils/package-utils@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/package-utils/-/package-utils-2.2.1.tgz#7a3cd086006aa996cfbbf4ab2a08a7b61f6e3f8c"
-  integrity sha512-s4HcKRL2aF0sLeTTOXOqlbUc7WBEGvyCM34TCfU9uYo2HxcAEEOuUzSZDE7WaDZoUpaTu8jAc6LTA8on9ggpHA==
-  dependencies:
-    globby "^11.0.1"
-    load-json-file "^6.2.0"
-    upath "^2.0.0"
+    upath "^2.0.1"
 
 "@monorepo-utils/package-utils@^2.4.4":
   version "2.4.4"
@@ -13766,7 +13757,7 @@ upath@^1.1.1, upath@^1.2.0:
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.2.0.tgz#8f66dbcd55a883acdae4408af8b035a5044c1894"
   integrity sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==
 
-upath@^2.0.0, upath@^2.0.1:
+upath@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/upath/-/upath-2.0.1.tgz#50c73dea68d6f6b990f51d279ce6081665d61a8b"
   integrity sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==
