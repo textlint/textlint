@@ -2,9 +2,9 @@
 
 Apply @textlint/kernel lint result to text.
 
-Almost user just user `@textlint/kernel`'s `fixText` API instead of This package.
+Almost user just use `@textlint/kernel`'s `fixText` API instead of This package.
 
-this package provide primitive functions for @textlint/kernel.
+This package provide primitive functions for @textlint/kernel.
 
 ## Install
 
