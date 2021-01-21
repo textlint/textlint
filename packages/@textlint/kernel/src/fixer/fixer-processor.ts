@@ -4,7 +4,6 @@
 import type { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
 import * as assert from "assert";
 import FixerTask from "../task/fixer-task";
-import SourceCodeFixer from "./source-code-fixer";
 import TaskRunner from "../task/task-runner";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 import MessageProcessManager from "../messages/MessageProcessManager";
@@ -12,6 +11,7 @@ import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descr
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
 import { isTxtAST } from "@textlint/ast-tester";
 import _debug from "debug";
+import { applyFixesToSourceCode } from "@textlint/source-code-fixer";
 
 const debug = _debug("textlint:fixer-processor");
 
@@ -95,7 +95,7 @@ export default class FixerProcessor {
                     };
                     // TODO: should be removed resultFilePath
                     resultFilePath = filteredResult.filePath;
-                    const applied = SourceCodeFixer.applyFixes(newSourceCode, filteredResult.messages);
+                    const applied = applyFixesToSourceCode(newSourceCode, filteredResult.messages);
                     // add messages
                     Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
                     Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
