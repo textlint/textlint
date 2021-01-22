@@ -1733,6 +1733,17 @@
     semver-match "0.1.1"
     upath "^2.0.1"
 
+"@monorepo-utils/workspaces-to-typescript-project-references@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.5.1.tgz#402c273512af798d5296e87d10497bcef5053ce2"
+  integrity sha512-DO2zYt3Juv64lgm1b8O/Fl1P+CjUMgLwpZcBb6O9rm+NvE3WeDzQ0+gwJ39x7RpqYWEFVvesFcz5+dE5NEbIUQ==
+  dependencies:
+    "@monorepo-utils/package-utils" "^2.4.4"
+    comment-json "^3.0.3"
+    meow "^7.1.1"
+    semver-match "0.1.1"
+    upath "^2.0.1"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
