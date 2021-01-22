@@ -27,7 +27,8 @@
   "files": [
     "bin/",
     "lib/",
-    "module"
+    "module/",
+    "src/"
   ],
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
