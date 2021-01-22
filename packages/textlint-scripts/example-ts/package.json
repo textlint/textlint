@@ -11,6 +11,6 @@
     "textlint-scripts": "file:../",
     "typescript": "^3.5.2",
     "ts-node": "^9.1.1",
-    "@textlint/types": "^1.4.6"
+    "@textlint/types": "^1.5.1"
   }
 }
