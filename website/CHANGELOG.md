@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.9.9"></a>
+## [10.9.9](https://github.com/textlint/textlint/compare/textlint-website@10.9.6...textlint-website@10.9.9) (2021-01-22)
+
+
+### Chores
+
+* **deps:** update minor updates ([7a53517](https://github.com/textlint/textlint/commit/7a53517))
+* **deps:** update patch updates ([9157dda](https://github.com/textlint/textlint/commit/9157dda))
+
+
+### Documentation
+
+* **website:** add Soracom as one of users ([#734](https://github.com/textlint/textlint/issues/734)) ([f4f71ba](https://github.com/textlint/textlint/commit/f4f71ba))
+
+
+
+
+
 <a name="10.9.8"></a>
 ## [10.9.8](https://github.com/textlint/textlint/compare/textlint-website@10.9.6...textlint-website@10.9.8) (2021-01-22)
 

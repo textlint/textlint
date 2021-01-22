@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.3.1"></a>
+## [4.3.1](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.2.6...@textlint/textlint-plugin-text@4.3.1) (2021-01-22)
+
+
+### Bug Fixes
+
+* fix tsconfig ([a722a6f](https://github.com/textlint/textlint/commit/a722a6f))
+
+
+### Chores
+
+* **deps:** update dependency [@types](https://github.com/types)/mocha to v8.0.4 ([fd60f20](https://github.com/textlint/textlint/commit/fd60f20))
+* **deps:** update dependency [@types](https://github.com/types)/mocha to v8.2.0 ([5ced72d](https://github.com/textlint/textlint/commit/5ced72d))
+* **deps:** update minor updates ([7ef0be6](https://github.com/textlint/textlint/commit/7ef0be6))
+* **deps:** update minor updates ([2f3dcb6](https://github.com/textlint/textlint/commit/2f3dcb6))
+* **deps:** update patch updates ([3d9660b](https://github.com/textlint/textlint/commit/3d9660b))
+* **deps:** update patch updates ([fe2ad4f](https://github.com/textlint/textlint/commit/fe2ad4f))
+* **deps:** update patch updates ([e438ff2](https://github.com/textlint/textlint/commit/e438ff2))
+* enable TypeScript incremental ([#716](https://github.com/textlint/textlint/issues/716)) ([199da5c](https://github.com/textlint/textlint/commit/199da5c))
+* **deps:** update patch updates ([4f4c206](https://github.com/textlint/textlint/commit/4f4c206))
+* **deps:** update TypeScript deps ([#705](https://github.com/textlint/textlint/issues/705)) ([1baa72a](https://github.com/textlint/textlint/commit/1baa72a))
+* use [@monorepo-utils](https://github.com/monorepo-utils)/workspaces-to-typescript-project-references ([#699](https://github.com/textlint/textlint/issues/699)) ([eff1943](https://github.com/textlint/textlint/commit/eff1943))
+
+
+### Features
+
+* **source-code-fixer:** add `[@textlint](https://github.com/textlint)/source-code-fixer` ([#736](https://github.com/textlint/textlint/issues/736)) ([bf7235a](https://github.com/textlint/textlint/commit/bf7235a))
+
+
+
+
+
 <a name="4.3.0"></a>
 # [4.3.0](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.2.6...@textlint/textlint-plugin-text@4.3.0) (2021-01-22)
 
