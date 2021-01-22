@@ -1,6 +1,6 @@
 {
   "name": "textlint-tester",
-  "version": "5.2.7",
+  "version": "5.3.0",
   "description": "testing tool for textlint rule.",
   "keywords": [
     "test",
@@ -36,9 +36,9 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@textlint/feature-flag": "^3.2.5",
-    "@textlint/kernel": "^3.3.7",
-    "textlint": "^11.7.7"
+    "@textlint/feature-flag": "^3.3.0",
+    "@textlint/kernel": "^3.4.0",
+    "textlint": "^11.8.0"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.0",
