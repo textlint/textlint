@@ -1,5 +1,4 @@
-// MIT © 2017 azu
-"use strict";
+// MIT © 2017- azu
 import * as assert from "assert";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
@@ -47,8 +46,8 @@ at ${fileName}`;
  *
  */
 export class TextlintKernel {
-    private config: TextlintKernelConstructorOptions;
-    private messageProcessManager: MessageProcessManager;
+    private readonly config: TextlintKernelConstructorOptions;
+    private readonly messageProcessManager: MessageProcessManager;
 
     /**
      * @param config

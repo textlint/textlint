@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib"
@@ -13,13 +13,7 @@
   ],
   "references": [
     {
-      "path": "../@textlint/feature-flag"
-    },
-    {
-      "path": "../@textlint/kernel"
-    },
-    {
-      "path": "../textlint"
+      "path": "../types"
     }
   ]
 }
