@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.5.2"></a>
+## [1.5.2](https://github.com/textlint/textlint/compare/@textlint/types@1.5.1...@textlint/types@1.5.2) (2021-02-06)
+
+
+### Chores
+
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.25 ([cc5c800](https://github.com/textlint/textlint/commit/cc5c800))
+
+
+
+
+
 <a name="1.5.1"></a>
 ## [1.5.1](https://github.com/textlint/textlint/compare/@textlint/types@1.4.5...@textlint/types@1.5.1) (2021-01-22)
 

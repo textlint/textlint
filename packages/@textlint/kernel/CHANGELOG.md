@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.4.2"></a>
+## [3.4.2](https://github.com/textlint/textlint/compare/@textlint/kernel@3.4.1...@textlint/kernel@3.4.2) (2021-02-06)
+
+
+### Bug Fixes
+
+* **kernel:** fix `configBaseDir()` return correct base dir ([#742](https://github.com/textlint/textlint/issues/742)) ([8ae2dc1](https://github.com/textlint/textlint/commit/8ae2dc1))
+
+
+### Chores
+
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.25 ([cc5c800](https://github.com/textlint/textlint/commit/cc5c800))
+
+
+
+
+
 <a name="3.4.1"></a>
 ## [3.4.1](https://github.com/textlint/textlint/compare/@textlint/kernel@3.3.6...@textlint/kernel@3.4.1) (2021-01-22)
 

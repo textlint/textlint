@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.3.2"></a>
+## [3.3.2](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.3.1...@textlint/linter-formatter@3.3.2) (2021-02-06)
+
+
+### Chores
+
+* **deps:** update dependency [@types](https://github.com/types)/node to ^14.14.25 ([cc5c800](https://github.com/textlint/textlint/commit/cc5c800))
+* **deps:** update dependency chai to ^4.3.0 ([13ac978](https://github.com/textlint/textlint/commit/13ac978))
+
+
+
+
+
 <a name="3.3.1"></a>
 ## [3.3.1](https://github.com/textlint/textlint/compare/@textlint/linter-formatter@3.2.5...@textlint/linter-formatter@3.3.1) (2021-01-22)
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.4.2"></a>
+## [2.4.2](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.4.1...textlint-example-use-as-ts-module@2.4.2) (2021-02-06)
+
+**Note:** Version bump only for package textlint-example-use-as-ts-module
+
+
+
+
+
 <a name="2.4.1"></a>
 ## [2.4.1](https://github.com/textlint/textlint/compare/textlint-example-use-as-ts-module@2.3.6...textlint-example-use-as-ts-module@2.4.1) (2021-01-22)
 
