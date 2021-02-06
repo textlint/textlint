@@ -72,7 +72,8 @@ export default class TextLintCoreTask extends CoreTask {
                 ruleId: filterRuleDescriptor.id,
                 severityLevel: getSeverity(filterRuleDescriptor.normalizedOptions),
                 sourceCode,
-                ignoreReport
+                ignoreReport,
+                configBaseDir: this.configBaseDir
             });
             this.tryToAddListenRule(filterRuleDescriptor.filter, ruleContext, filterRuleDescriptor.normalizedOptions);
         });
