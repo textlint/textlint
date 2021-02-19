@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^8.2.1",
-    "@types/node": "^14.14.29",
+    "@types/node": "^14.14.30",
     "cross-env": "^7.0.3",
     "mocha": "^8.3.0",
     "rimraf": "^3.0.2",
