@@ -39,11 +39,11 @@
     "shelljs": "^0.8.4"
   },
   "dependencies": {
-    "@babel/cli": "^7.12.17",
-    "@babel/core": "^7.12.17",
-    "@babel/preset-env": "^7.12.17",
-    "@babel/preset-typescript": "^7.12.17",
-    "@babel/register": "^7.12.13",
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.0",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/register": "^7.13.0",
     "babel-plugin-static-fs": "^3.0.0",
     "confirmer": "^1.1.2",
     "cross-spawn": "^7.0.3",
