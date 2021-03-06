@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "mocha": "^8.3.0",
+    "mocha": "^8.3.1",
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
     "ts-node-test-register": "^9.0.1",
