@@ -13649,10 +13649,10 @@ textlint-rule-preset-jtf-style@^2.3.2:
     textlint-rule-helper "^2.0.0"
     textlint-rule-prh "^5.2.1"
 
-textlint-rule-preset-jtf-style@^2.3.7:
-  version "2.3.7"
-  resolved "https://registry.yarnpkg.com/textlint-rule-preset-jtf-style/-/textlint-rule-preset-jtf-style-2.3.7.tgz#80faa6f8f7790685a1d5b7558c49d4741cfa60bc"
-  integrity sha512-hbXbXmlCylKMQQrQne4ymjraL/p5llP2FLTSQfHXuLjCKWBh8yeO5YFQeTf+sTrGOG3AHdgVsHSt5sWlPmf0RQ==
+textlint-rule-preset-jtf-style@^2.3.8:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/textlint-rule-preset-jtf-style/-/textlint-rule-preset-jtf-style-2.3.8.tgz#0fa50f0a41e347e04552b1ca5e588a5a06df02dd"
+  integrity sha512-zysw3LxrnPyaJz25H6Qs715E91RpKSQ/4hjXg23UNAtTPii1a+RMHlbWlcpuxzF17Km0/X6iVQFFTvzMBhAxkg==
   dependencies:
     analyze-desumasu-dearu "^2.1.2"
     japanese-numerals-to-number "^1.0.2"
