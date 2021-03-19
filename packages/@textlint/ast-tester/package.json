@@ -1,6 +1,6 @@
 {
   "name": "@textlint/ast-tester",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Compliance tests for textlint's AST(Abstract Syntax Tree).",
   "keywords": [
     "ast",
@@ -39,7 +39,7 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@textlint/ast-node-types": "^4.4.1"
+    "@textlint/ast-node-types": "^4.4.2"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.1",

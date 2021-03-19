@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.3.3"></a>
+## [4.3.3](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.3.2...@textlint/textlint-plugin-text@4.3.3) (2021-03-19)
+
+
+### Chores
+
+* **deps:** update dependency [@types](https://github.com/types)/mocha to v8.2.1 ([da2d6e7](https://github.com/textlint/textlint/commit/da2d6e7))
+* **deps:** update dependency mocha to ^8.3.0 ([0464adb](https://github.com/textlint/textlint/commit/0464adb))
+* **deps:** update dependency mocha to ^8.3.1 ([cc509ed](https://github.com/textlint/textlint/commit/cc509ed))
+* **deps:** update patch updates ([183eb8d](https://github.com/textlint/textlint/commit/183eb8d))
+
+
+
+
+
 <a name="4.3.2"></a>
 ## [4.3.2](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-text@4.3.1...@textlint/textlint-plugin-text@4.3.2) (2021-02-06)
 

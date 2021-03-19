@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.11"></a>
+## [2.2.11](https://github.com/textlint/textlint/compare/textlint-example-config-in-package-json@2.2.10...textlint-example-config-in-package-json@2.2.11) (2021-03-19)
+
+**Note:** Version bump only for package textlint-example-config-in-package-json
+
+
+
+
+
 <a name="2.2.10"></a>
 ## [2.2.10](https://github.com/textlint/textlint/compare/textlint-example-config-in-package-json@2.2.9...textlint-example-config-in-package-json@2.2.10) (2021-02-06)
 

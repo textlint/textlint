@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="10.9.11"></a>
+## [10.9.11](https://github.com/textlint/textlint/compare/textlint-website@10.9.10...textlint-website@10.9.11) (2021-03-19)
+
+
+### Chores
+
+* **deps:** update dependency docusaurus to ^1.14.7 ([2cc58bc](https://github.com/textlint/textlint/commit/2cc58bc))
+
+
+
+
+
 <a name="10.9.10"></a>
 ## [10.9.10](https://github.com/textlint/textlint/compare/textlint-website@10.9.9...textlint-website@10.9.10) (2021-02-06)
 

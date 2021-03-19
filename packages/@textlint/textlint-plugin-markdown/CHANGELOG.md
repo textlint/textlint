@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="5.3.3"></a>
+## [5.3.3](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.3.2...@textlint/textlint-plugin-markdown@5.3.3) (2021-03-19)
+
+
+### Chores
+
+* **deps:** update dependency mocha to ^8.3.0 ([0464adb](https://github.com/textlint/textlint/commit/0464adb))
+* **deps:** update dependency mocha to ^8.3.1 ([cc509ed](https://github.com/textlint/textlint/commit/cc509ed))
+* **deps:** update patch updates ([183eb8d](https://github.com/textlint/textlint/commit/183eb8d))
+
+
+
+
+
 <a name="5.3.2"></a>
 ## [5.3.2](https://github.com/textlint/textlint/compare/@textlint/textlint-plugin-markdown@5.3.1...@textlint/textlint-plugin-markdown@5.3.2) (2021-02-06)
 

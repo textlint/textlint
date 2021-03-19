@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="4.4.2"></a>
+## [4.4.2](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.4.1...@textlint/ast-node-types@4.4.2) (2021-03-19)
+
+
+### Chores
+
+* **deps:** update dependency mocha to ^8.3.0 ([0464adb](https://github.com/textlint/textlint/commit/0464adb))
+* **deps:** update dependency mocha to ^8.3.1 ([cc509ed](https://github.com/textlint/textlint/commit/cc509ed))
+* **deps:** update patch updates ([183eb8d](https://github.com/textlint/textlint/commit/183eb8d))
+
+
+
+
+
 <a name="4.4.1"></a>
 ## [4.4.1](https://github.com/textlint/textlint/compare/@textlint/ast-node-types@4.3.4...@textlint/ast-node-types@4.4.1) (2021-01-22)
 
