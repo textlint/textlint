@@ -61,7 +61,7 @@ describe("formatter:checkstyle", function () {
                         message: "Unexpected <>&\"'.",
                         line: "<",
                         column: ">",
-                        ruleId: "foo"
+                        ruleId: "foo>"
                     }
                 ]
             }
@@ -71,7 +71,7 @@ describe("formatter:checkstyle", function () {
             const result = formatter(code, { color: false });
             assert.equal(
                 result,
-                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="&lt;&gt;&amp;&quot;&apos;.js"><error line="&lt;" column="&gt;" severity="error" message="Unexpected &lt;&gt;&amp;&quot;&apos;. (foo)" source="eslint.rules.foo" /></file></checkstyle>'
+                '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"><file name="&lt;&gt;&amp;&quot;&apos;.js"><error line="&lt;" column="&gt;" severity="error" message="Unexpected &lt;&gt;&amp;&quot;&apos;. (foo&gt;)" source="eslint.rules.foo&gt;" /></file></checkstyle>'
             );
         });
     });
