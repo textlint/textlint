@@ -77,7 +77,7 @@ function formatter(results: TextlintResult[]) {
                 '" ' +
                 'message="' +
                 xmlEscape(message.message) +
-                (message.ruleId ? " (" + message.ruleId + ")" : "") +
+                (message.ruleId ? " (" + xmlEscape(message.ruleId) + ")" : "") +
                 '" ' +
                 'source="' +
                 (message.ruleId ? xmlEscape("eslint.rules." + message.ruleId) : "") +
