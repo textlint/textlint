@@ -33,6 +33,13 @@ export const options = optionator({
             example: "--config /path/to/.textlintrc"
         },
         {
+            option: "ignore-path",
+            type: "path::String",
+            description: "Specify path to a file containing patterns that describes files to ignore.",
+            default: ".textlintignore",
+            example: "--ignore-path /path/to/.textlintignore"
+        },
+        {
             option: "init",
             type: "Boolean",
             default: "false",

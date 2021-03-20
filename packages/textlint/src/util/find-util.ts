@@ -4,6 +4,18 @@ const pathToGlob = require("path-to-glob-pattern");
 const glob = require("glob");
 const path = require("path");
 const fs = require("fs");
+const debug = require("debug")("textlint:find-util");
+const DEFAULT_IGNORE_PATTERNS = Object.freeze(["**/.git/**", "**/node_modules/**"]);
+export type FindFilesOptions = {
+    cwd?: string;
+    ignoreFilePath?: string;
+};
+const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
+    if (ignore.startsWith("!")) {
+        return "!" + path.posix.join(base, ignore.slice(1));
+    }
+    return path.posix.join(base, ignore);
+};
 const isFile = (filePath: string) => {
     try {
         return fs.statSync(filePath).isFile();
@@ -29,11 +41,29 @@ export function pathsToGlobPatterns(
 /**
  * found files by glob pattern
  * @param {string[]} patterns
- * @param {{cwd?: string }} options
+ * @param {FindFilesOptions} options
  * @returns {string[]} file path list
  */
-export function findFiles(patterns: string[], options: { cwd?: string } = {}): string[] {
+export function findFiles(patterns: string[], options: FindFilesOptions = {}): string[] {
     const cwd = options.cwd || process.cwd();
+    const ignoredPatterns: string[] = [];
+    ignoredPatterns.push(...DEFAULT_IGNORE_PATTERNS);
+    if (options.ignoreFilePath) {
+        const baseDir = path.resolve(cwd, path.dirname(options.ignoreFilePath));
+        const normalizeIgnoreFilePath = path.resolve(cwd, options.ignoreFilePath);
+        debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", baseDir, normalizeIgnoreFilePath);
+        if (fs.existsSync(normalizeIgnoreFilePath)) {
+            const ignored = fs
+                .readFileSync(normalizeIgnoreFilePath, "utf-8")
+                .split(/\r?\n/)
+                .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line))
+                .map(mapGitIgnorePatternTo(baseDir));
+            debug("ignored: %o", ignored);
+            ignoredPatterns.push(...ignored);
+        }
+    }
+    debug("search patterns: %o", patterns);
+    debug("search ignore patterns: %o", ignoredPatterns);
     const files: string[] = [];
     const addFile = (filePath: string) => {
         if (files.indexOf(filePath) === -1) {
@@ -47,11 +77,13 @@ export function findFiles(patterns: string[], options: { cwd?: string } = {}): s
         } else {
             glob.sync(pattern, {
                 cwd,
-                nodir: true
+                absolute: true,
+                nodir: true,
+                ignore: ignoredPatterns
             }).forEach((filePath: string) => {
                 // workaround for windows
                 // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
-                addFile(path.resolve(cwd, filePath));
+                addFile(path.resolve(filePath));
             });
         }
     });

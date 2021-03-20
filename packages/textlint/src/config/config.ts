@@ -78,7 +78,9 @@ const defaultOptions = Object.freeze({
     // --cache : enable or disable
     cache: false,
     // --cache-location: cache file path
-    cacheLocation: path.resolve(process.cwd(), ".textlintcache")
+    cacheLocation: path.resolve(process.cwd(), ".textlintcache"),
+    // --ignore-path: ".textlintignore" file path
+    ignoreFile: path.resolve(process.cwd(), ".textlintignore")
 });
 
 export interface ConfigStatics {
@@ -131,6 +133,8 @@ export interface ConfigAutoLoadingOptions {
     // FIXME: current working dir
     // It does not cover all working dir
     cwd?: string;
+    // ".textlintignore" file path
+    ignoreFile?: string | undefined;
 }
 
 // Priority: CLI > Code options > config file
@@ -152,6 +156,7 @@ export class Config {
     color: boolean;
     cache: boolean;
     cacheLocation: string;
+    ignoreFile: string | undefined;
 
     /**
      * @return {string} rc config filename
@@ -193,6 +198,11 @@ export class Config {
                 : defaultOptions.cacheLocation;
         // --rules-base-directory "other/node_modules"
         options.rulesBaseDirectory = cliOptions.rulesBaseDirectory || defaultOptions.rulesBaseDirectory;
+        // --ignore-path="path/to/file"
+        options.ignoreFile =
+            cliOptions.ignorePath !== undefined
+                ? path.resolve(process.cwd(), cliOptions.ignorePath)
+                : defaultOptions.ignoreFile;
         return this.initWithAutoLoading(options);
     }
 
@@ -410,6 +420,10 @@ export class Config {
          */
         this.cacheLocation = options.cacheLocation !== undefined ? options.cacheLocation : defaultOptions.cacheLocation;
         this._assertCacheLocation(this.cacheLocation);
+        /**
+         * @type {string}
+         */
+        this.ignoreFile = options.ignoreFile !== undefined ? options.ignoreFile : defaultOptions.ignoreFile;
     }
 
     private _assertCacheLocation(locationPath: string) {
