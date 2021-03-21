@@ -7,6 +7,7 @@ title: Documentation
 
 - [Getting Started](./getting-started.md)
 - [Configuring](./configuring.md)
+- [Ignoring Text](./ignore.md)
 
 ## Developer Guide
 

@@ -26,6 +26,9 @@
       "getting-started": {
         "title": "Getting Started with textlint"
       },
+      "ignore": {
+        "title": "Ignoring Text"
+      },
       "integrations": {
         "title": "Integrating with Editors, Tools, etc.."
       },

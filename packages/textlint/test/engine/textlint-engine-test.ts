@@ -290,6 +290,22 @@ describe("textlint-engine-test", function () {
                 });
             });
         });
+        context("when specify `ignoreFile` option", function () {
+            it("should ignore file described in the ignore file", function () {
+                const ignoreFilePath = path.join(__dirname, "fixtures/.textlintignore");
+                const engine = new TextLintEngine({ rulePaths: [rulesDir], ignoreFile: ignoreFilePath });
+                const filePath = path.join(__dirname, "fixtures/*.md");
+                return engine.executeOnFiles([filePath]).then((results) => {
+                    assert.ok(Array.isArray(results));
+                    assert.ok(results.length > 0);
+                    assert.ok(
+                        results.every((result) => {
+                            return result.filePath !== path.join(__dirname, "fixtures/ignored.md");
+                        })
+                    );
+                });
+            });
+        });
     });
     describe("executeOnText", function () {
         it("should lint a text and return results", function () {

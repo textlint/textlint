@@ -44,7 +44,7 @@ export const lintParallel = <T extends "lint" | "fix">(
     const patterns = pathsToGlobPatterns(files, {
         extensions: descriptor.availableExtensions
     });
-    const targetFiles = findFiles(patterns);
+    const targetFiles = findFiles(patterns, { ignoreFilePath: options.config.ignoreFile });
     const concurrency = options.concurrency !== undefined ? options.concurrency : os.cpus().length;
     const chunkSize = Math.min(MAX_CHUNK_SIZE, Math.ceil(targetFiles.length / concurrency));
     const promises: Promise<LintWorkerResults<typeof options["type"]>>[] = [];
