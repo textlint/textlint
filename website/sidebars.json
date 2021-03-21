@@ -3,6 +3,7 @@
     "User Manual": [
       "getting-started",
       "configuring",
+      "ignore",
       "integrations"
     ],
     "Developer Guide": [
