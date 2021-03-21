@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.10.0](https://github.com/textlint/textlint/compare/textlint-website@10.9.11...textlint-website@10.10.0) (2021-03-21)
+
+
+### Features
+
+* **textlint:** Add .textlintignore support ([#748](https://github.com/textlint/textlint/issues/748)) ([637e9a5](https://github.com/textlint/textlint/commit/637e9a5ccc5cc82a40cc9f36636d78273bc74b90))
+
+
+
+
+
 <a name="10.9.11"></a>
 ## [10.9.11](https://github.com/textlint/textlint/compare/textlint-website@10.9.10...textlint-website@10.9.11) (2021-03-19)
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/textlint/textlint/compare/@textlint/module-interop@1.2.3...@textlint/module-interop@1.2.4) (2021-03-21)
+
+**Note:** Version bump only for package @textlint/module-interop
+
+
+
+
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/textlint/textlint/compare/@textlint/module-interop@1.2.2...@textlint/module-interop@1.2.3) (2021-03-19)
 

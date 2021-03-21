@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-rulesdir",
-  "version": "2.2.11",
+  "version": "2.2.12",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "textlint": "textlint --rulesdir ./rules README.md"
   },
   "devDependencies": {
-    "textlint": "^11.8.3"
+    "textlint": "^11.9.0"
   },
   "files": [
     "bin/",

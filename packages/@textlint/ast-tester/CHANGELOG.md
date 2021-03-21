@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/textlint/textlint/compare/@textlint/ast-tester@2.3.3...@textlint/ast-tester@2.3.4) (2021-03-21)
+
+**Note:** Version bump only for package @textlint/ast-tester
+
+
+
+
+
 <a name="2.3.3"></a>
 ## [2.3.3](https://github.com/textlint/textlint/compare/@textlint/ast-tester@2.3.2...@textlint/ast-tester@2.3.3) (2021-03-19)
 
