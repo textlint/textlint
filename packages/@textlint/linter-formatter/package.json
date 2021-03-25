@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^8.2.2",
-    "@types/node": "^14.14.35",
+    "@types/node": "^14.14.36",
     "chai": "^4.3.4",
     "cross-env": "^7.0.3",
     "mocha": "^8.3.2",
