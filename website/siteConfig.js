@@ -1,8 +1,8 @@
 const users = [
     {
-        caption: "JavaScriptの入門書",
+        caption: "JavaScript Primer",
         image: "https://78.media.tumblr.com/avatar_c63524fcb991_128.png",
-        infoLink: "https://asciidwango.github.io/js-primer/ ",
+        infoLink: "https://jsprimer.net",
         pinned: true
     },
     {
