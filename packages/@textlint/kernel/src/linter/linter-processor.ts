@@ -65,4 +65,36 @@ export default class LinterProcessor {
             return result;
         });
     }
+
+    /**
+     * Run linter process
+     */
+    processSync({
+        config,
+        configBaseDir,
+        ruleDescriptors,
+        filterRuleDescriptors,
+        sourceCode
+    }: LinterProcessorArgs): TextlintResult {
+        const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
+        assert.ok(
+            typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implement {preProcess, postProcess}"
+        );
+        const task = new LinterTask({
+            config,
+            ruleDescriptors: ruleDescriptors,
+            filterRuleDescriptors: filterRuleDescriptors,
+            sourceCode,
+            configBaseDir
+        });
+        const messages = TaskRunner.processSync(task);
+        const result = postProcess(messages, sourceCode.filePath);
+        result.messages = this.messageProcessManager.process(result.messages);
+        if (result.filePath == null) {
+            result.filePath = `<Unkown${sourceCode.ext}>`;
+        }
+        assert.ok(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+        return result;
+    }
 }

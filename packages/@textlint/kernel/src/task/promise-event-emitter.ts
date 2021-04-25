@@ -29,4 +29,13 @@ export class PromiseEventEmitter {
 
         return Promise.all(promises);
     }
+
+    emitSync(event: string, ...args: Array<any>): void {
+        this.events.listeners(event).forEach((listener) => {
+            const result = listener(...args);
+            if (result instanceof Promise) {
+                throw new Error("listener should not return `Promise` in sync mode");
+            }
+        });
+    }
 }

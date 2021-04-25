@@ -16,7 +16,7 @@ describe("kernel-plugin", () => {
                 // return pseudoText instead of binary content as preProcess result
                 dummyText: expectedSourceText
             });
-            let isStrCalled = false;
+            let strCalledNum = 0;
             const rule: TextlintRuleReporter = (context) => {
                 const { Syntax, getSource, getFilePath } = context;
                 return {
@@ -27,7 +27,7 @@ describe("kernel-plugin", () => {
                         assert.strictEqual(marginText, expectedSourceText.slice(1, expectedSourceText.length - 1));
                         const filePath = getFilePath();
                         assert.strictEqual(filePath, binaryFilePath);
-                        isStrCalled = true;
+                        strCalledNum++;
                     }
                 };
             };
@@ -42,8 +42,12 @@ describe("kernel-plugin", () => {
                     }
                 ]
             };
+
+            kernel.lintTextSync("text", options);
+            assert.strictEqual(strCalledNum, 1);
+
             return kernel.lintText("text", options).then((_result) => {
-                assert.ok(isStrCalled);
+                assert.strictEqual(strCalledNum, 2);
             });
         });
     });
@@ -58,6 +62,10 @@ describe("kernel-plugin", () => {
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
+
+            kernel.lintTextSync("text", options);
+            assert.deepStrictEqual(getOptions(), {});
+
             return kernel.lintText(text, options).then((_result) => {
                 assert.deepStrictEqual(getOptions(), {});
             });
@@ -72,6 +80,10 @@ describe("kernel-plugin", () => {
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
+
+            kernel.lintTextSync("text", options);
+            assert.deepStrictEqual(getOptions(), {});
+
             return kernel.lintText(text, options).then((_result) => {
                 assert.deepStrictEqual(getOptions(), {});
             });
@@ -86,6 +98,10 @@ describe("kernel-plugin", () => {
                 plugins: [{ pluginId: "example", plugin: plugin, options: PASS_OPTIONS }],
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
+
+            kernel.lintTextSync("text", options);
+            assert.deepStrictEqual(getOptions(), PASS_OPTIONS);
+
             const text = "text";
             return kernel.lintText(text, options).then((_result) => {
                 assert.deepStrictEqual(getOptions(), PASS_OPTIONS);
@@ -103,6 +119,10 @@ describe("kernel-plugin", () => {
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
+
+            kernel.lintTextSync("text", options);
+            assert.strictEqual(getProcessorArgs().extension, options.ext);
+
             return kernel.lintText(text, options).then((_result) => {
                 assert.strictEqual(getProcessorArgs().extension, options.ext);
             });
@@ -119,6 +139,11 @@ describe("kernel-plugin", () => {
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
+
+            kernel.lintTextSync("text", options);
+            assert.strictEqual(getPreProcessArgs().text, text);
+            assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+
             return kernel.lintText(text, options).then((_result) => {
                 assert.strictEqual(getPreProcessArgs().text, text);
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
@@ -134,6 +159,11 @@ describe("kernel-plugin", () => {
                 rules: [{ ruleId: "error", rule: errorRule }]
             };
             const text = "text";
+
+            kernel.lintTextSync("text", options);
+            assert.strictEqual(getPreProcessArgs().text, text);
+            assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+
             return kernel.lintText(text, options).then((_result) => {
                 assert.strictEqual(getPreProcessArgs().text, text);
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
@@ -164,6 +194,11 @@ describe("kernel-plugin", () => {
                 ]
             };
             const text = "text";
+
+            kernel.lintTextSync("text", options);
+            assert.strictEqual(getPostProcessArgs().messages.length, options.rules[0].options.errors.length);
+            assert.strictEqual(getPostProcessArgs().filePath, options.filePath);
+
             return kernel.lintText(text, options).then((_result) => {
                 assert.strictEqual(getPostProcessArgs().messages.length, options.rules[0].options.errors.length);
                 assert.strictEqual(getPostProcessArgs().filePath, options.filePath);

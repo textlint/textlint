@@ -89,6 +89,26 @@ export class TextlintKernel {
     }
 
     /**
+     * lint text by registered rules.
+     * The result contains target filePath and error messages.
+     * @param {string} text
+     * @param {Object} options linting options
+     * @returns {TextlintResult}
+     */
+    lintTextSync(text: string, options: TextlintKernelOptions): TextlintResult {
+        const descriptor = new TextlintKernelDescriptor({
+            rules: options.rules || [],
+            filterRules: options.filterRules || [],
+            plugins: options.plugins || []
+        });
+        return this._parallelProcessSync({
+            descriptor,
+            text,
+            options
+        });
+    }
+
+    /**
      * fix texts and return fix result object
      * @param {string} text
      * @param {Object} options lint options
@@ -106,6 +126,25 @@ export class TextlintKernel {
                 options,
                 text
             });
+        });
+    }
+
+    /**
+     * fix texts and return fix result object
+     * @param {string} text
+     * @param {Object} options lint options
+     * @returns {Promise.<TextlintFixResult>}
+     */
+    fixTextSync(text: string, options: TextlintKernelOptions): TextlintFixResult {
+        const descriptor = new TextlintKernelDescriptor({
+            rules: options.rules || [],
+            filterRules: options.filterRules || [],
+            plugins: options.plugins || []
+        });
+        return this._sequenceProcessSync({
+            descriptor,
+            options,
+            text
         });
     }
 
@@ -166,6 +205,62 @@ export class TextlintKernel {
     }
 
     /**
+     * process text in parallel for Rules and return {Promise.<TextLintResult>}
+     * In other word, parallel flow process.
+     * @param {*} processor
+     * @param {string} text
+     * @param {Object} options
+     * @returns {TextlintResult}
+     * @private
+     */
+    private _parallelProcessSync({
+        descriptor,
+        text,
+        options
+    }: {
+        descriptor: TextlintKernelDescriptor;
+        text: string;
+        options: TextlintKernelOptions;
+    }) {
+        const { ext, filePath, configBaseDir } = options;
+        const plugin = descriptor.findPluginDescriptorWithExt(ext);
+        debug("available extensions: %o", descriptor.availableExtensions);
+        if (plugin === undefined) {
+            throw new Error(`Not found available plugin for ${ext}`);
+        }
+        debug("use plugin: %s", plugin.id);
+        const processor = plugin.processor;
+        const { preProcess, postProcess } = processor.processor(ext);
+        assert.ok(
+            typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implements {preProcess, postProcess}"
+        );
+        const preProcessResult = preProcess(text, filePath);
+        const isPluginReturnAnAST = isTxtAST(preProcessResult);
+        const textForAST = isPluginReturnAnAST ? text : preProcessResult.text;
+        const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
+        const sourceCode = new TextlintSourceCodeImpl({
+            text: textForAST,
+            ast,
+            ext,
+            filePath
+        });
+        const linterProcessor = new LinterProcessor(processor, this.messageProcessManager);
+        try {
+            return linterProcessor.processSync({
+                config: this.config,
+                ruleDescriptors: descriptor.rule,
+                filterRuleDescriptors: descriptor.filterRule,
+                sourceCode,
+                configBaseDir
+            });
+        } catch (error) {
+            error.message = addingAtFileNameToError(filePath, error.message);
+            throw error;
+        }
+    }
+
+    /**
      * process text in series for Rules and return {Promise.<TextlintFixResult>}
      * In other word, sequence flow process.
      * @param {*} processor
@@ -219,5 +314,61 @@ export class TextlintKernel {
                 error.message = addingAtFileNameToError(filePath, error.message);
                 return Promise.reject(error);
             });
+    }
+
+    /**
+     * process text in series for Rules and return {Promise.<TextlintFixResult>}
+     * In other word, sequence flow process.
+     * @param {*} processor
+     * @param {string} text
+     * @param {TextlintKernelOptions} options
+     * @returns {TextlintFixResult}
+     * @private
+     */
+    private _sequenceProcessSync({
+        descriptor,
+        text,
+        options
+    }: {
+        descriptor: TextlintKernelDescriptor;
+        text: string;
+        options: TextlintKernelOptions;
+    }): TextlintFixResult {
+        const { ext, filePath, configBaseDir } = options;
+        const plugin = descriptor.findPluginDescriptorWithExt(ext);
+        debug("available extensions: %o", descriptor.availableExtensions);
+        if (plugin === undefined) {
+            throw new Error(`Not found available plugin for ${ext}`);
+        }
+        debug("use plugin: %s", plugin.id);
+        const processor = plugin.processor;
+        const { preProcess, postProcess } = processor.processor(ext);
+        assert.ok(
+            typeof preProcess === "function" && typeof postProcess === "function",
+            "processor should implements {preProcess, postProcess}"
+        );
+        const preProcessResult = preProcess(text, filePath);
+        const isPluginReturnAnAST = isTxtAST(preProcessResult);
+        const textForAST = isPluginReturnAnAST ? text : preProcessResult.text;
+        const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
+        const sourceCode = new TextlintSourceCodeImpl({
+            text: textForAST,
+            ast,
+            ext,
+            filePath
+        });
+        const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
+        try {
+            return fixerProcessor.processSync({
+                config: this.config,
+                ruleDescriptors: descriptor.rule,
+                filterRules: descriptor.filterRule,
+                sourceCode,
+                configBaseDir
+            });
+        } catch (error) {
+            error.message = addingAtFileNameToError(filePath, error.message);
+            throw error;
+        }
     }
 }

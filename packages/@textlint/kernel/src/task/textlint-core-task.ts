@@ -84,6 +84,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     }
 
     abstract start(): void;
+    abstract startSync(): void;
 
     createShouldIgnore(): TextlintFilterRuleShouldIgnoreFunction {
         const shouldIgnore = (args: TextlintFilterRuleShouldIgnoreFunctionArgs) => {
@@ -174,6 +175,36 @@ export default abstract class TextLintCoreTask extends EventEmitter {
             .catch((error) => {
                 this.emit(TextLintCoreTask.events.error, error);
             });
+    }
+
+    /**
+     * start process and emitting events.
+     * You can listen message by `task.on("message", message => {})`
+     * @param {SourceCode} sourceCode
+     */
+    startTraverserSync(sourceCode: TextlintSourceCode) {
+        this.emit(TextLintCoreTask.events.start);
+        const ruleTypeEmitter = this.ruleTypeEmitter;
+        try {
+            traverseController.traverse(sourceCode.ast as TxtParentNode, {
+                enter(node: AnyTxtNode, parent?: AnyTxtNode) {
+                    const type = node.type;
+                    Object.defineProperty(node, "parent", { value: parent });
+                    if (ruleTypeEmitter.listenerCount(type) > 0) {
+                        ruleTypeEmitter.emitSync(type, node);
+                    }
+                },
+                leave(node: AnyTxtNode) {
+                    const type = `${node.type}:exit`;
+                    if (ruleTypeEmitter.listenerCount(type) > 0) {
+                        ruleTypeEmitter.emitSync(type, node);
+                    }
+                }
+            });
+            this.emit(TextLintCoreTask.events.complete);
+        } catch (error) {
+            this.emit(TextLintCoreTask.events.error, error);
+        }
     }
 
     /**

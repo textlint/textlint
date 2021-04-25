@@ -14,7 +14,7 @@ import {
     TextlintPluginProcessorConstructor,
     TextlintResult
 } from "@textlint/kernel";
-import { readFile } from "./util/fs-promise";
+import { readFile, readFileSync } from "./util/fs";
 import { Config } from "./config/config";
 import {
     filterRulesObjectToKernelRule,
@@ -157,6 +157,20 @@ export class TextLintCore {
     }
 
     /**
+     * lint text by registered rules.
+     * The result contains target filePath and error messages.
+     * @param {string} text
+     * @param {string} ext ext is extension. default: .txt
+     * @returns {TextlintResult}
+     */
+    lintTextSync(text: string, ext: string = ".txt"): TextlintResult {
+        const options = this._mergeSetupOptions({
+            ext
+        });
+        return this.kernel.lintTextSync(text, options);
+    }
+
+    /**
      * lint markdown text by registered rules.
      * The result contains target filePath and error messages.
      * @param {string} text markdown format text
@@ -168,6 +182,20 @@ export class TextLintCore {
             ext
         });
         return this.kernel.lintText(text, options);
+    }
+
+    /**
+     * lint markdown text by registered rules.
+     * The result contains target filePath and error messages.
+     * @param {string} text markdown format text
+     * @returns {TextlintResult}
+     */
+    lintMarkdownSync(text: string): TextlintResult {
+        const ext = ".md";
+        const options = this._mergeSetupOptions({
+            ext
+        });
+        return this.kernel.lintTextSync(text, options);
     }
 
     /**
@@ -188,6 +216,22 @@ export class TextLintCore {
     }
 
     /**
+     * lint file and return result object
+     * @param {string} filePath
+     * @returns {TextlintResult} result
+     */
+    lintFileSync(filePath: string): TextlintResult {
+        const absoluteFilePath = path.resolve(process.cwd(), filePath);
+        const ext = path.extname(absoluteFilePath);
+        const options = this._mergeSetupOptions({
+            ext,
+            filePath: absoluteFilePath
+        });
+        const text = readFileSync(absoluteFilePath);
+        return this.kernel.lintTextSync(text, options);
+    }
+
+    /**
      * fix file and return fix result object
      * @param {string} filePath
      * @returns {Promise.<TextlintFixResult>}
@@ -205,6 +249,22 @@ export class TextLintCore {
     }
 
     /**
+     * fix file and return fix result object
+     * @param {string} filePath
+     * @returns {TextlintFixResult}
+     */
+    fixFileSync(filePath: string): TextlintFixResult {
+        const absoluteFilePath = path.resolve(process.cwd(), filePath);
+        const ext = path.extname(absoluteFilePath);
+        const options = this._mergeSetupOptions({
+            ext,
+            filePath: absoluteFilePath
+        });
+        const text = readFileSync(absoluteFilePath);
+        return this.kernel.fixTextSync(text, options);
+    }
+
+    /**
      * fix texts and return fix result object
      * @param {string} text
      * @param {string} ext
@@ -215,6 +275,19 @@ export class TextLintCore {
             ext
         });
         return this.kernel.fixText(text, options);
+    }
+
+    /**
+     * fix texts and return fix result object
+     * @param {string} text
+     * @param {string} ext
+     * @returns {TextlintFixResult}
+     */
+    fixTextSync(text: string, ext: string = ".txt"): TextlintFixResult {
+        const options = this._mergeSetupOptions({
+            ext
+        });
+        return this.kernel.fixTextSync(text, options);
     }
 
     /**

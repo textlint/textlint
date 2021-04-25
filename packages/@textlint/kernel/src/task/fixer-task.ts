@@ -46,6 +46,10 @@ export default class TextLintCoreTask extends CoreTask {
         this.startTraverser(this.sourceCode);
     }
 
+    startSync() {
+        this.startTraverserSync(this.sourceCode);
+    }
+
     private _setupRules() {
         // rule
         const sourceCode = this.sourceCode;

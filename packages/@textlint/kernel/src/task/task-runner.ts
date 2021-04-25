@@ -28,4 +28,32 @@ export default class TaskRunner {
             task.start();
         });
     }
+
+    /**
+     * Task and return messages
+     * @param {TextLintCoreTask} task
+     * @returns messages
+     */
+    static processSync(task: TextLintCoreTask): Array<LintReportedMessage | IgnoreReportedMessage> {
+        const messages: Array<LintReportedMessage | IgnoreReportedMessage> = [];
+
+        let taskError: Error | undefined;
+
+        task.on(CoreTask.events.message, (message) => {
+            messages.push(message);
+        });
+        task.on(CoreTask.events.error, (error) => {
+            taskError = error;
+        });
+        task.on(CoreTask.events.complete, () => {
+            task.removeAllListeners();
+        });
+        task.startSync();
+
+        if (taskError) {
+            throw taskError;
+        }
+
+        return messages;
+    }
 }

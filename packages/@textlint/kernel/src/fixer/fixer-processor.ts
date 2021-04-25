@@ -129,4 +129,91 @@ export default class FixerProcessor {
             };
         });
     }
+
+    /**
+     * Run fixer process
+     * @param {Config} config
+     * @param {string} [configBaseDir]
+     * @param {TextlintKernelRule[]} [rules]
+     * @param {TextlintKernelFilterRule[]} [filterRules]
+     * @param {SourceCode} sourceCode
+     * @returns {TextlintFixResult}
+     */
+    processSync({
+        config,
+        configBaseDir,
+        ruleDescriptors,
+        filterRules,
+        sourceCode
+    }: FixerProcessorProcessArgs): TextlintFixResult {
+        assert.ok(sourceCode);
+        const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
+        // messages
+        let resultFilePath = sourceCode.filePath;
+        // applied fixing messages
+        // Revert = Sequentially apply applied message to applied output
+        // SourceCodeFixer.sequentiallyApplyFixes(fixedOutput, result.applyingMessages);
+        const applyingMessages: TextlintMessage[] = [];
+        // not applied fixing messages
+        const remainingMessages: TextlintMessage[] = [];
+        // original means original for applyingMessages and remainingMessages
+        // pre-applyingMessages + remainingMessages
+        const originalMessages: TextlintMessage[] = [];
+        const fixerProcessList = ruleDescriptors.fixableDescriptors.map((ruleDescriptor) => {
+            return (sourceText: string): string => {
+                // create new SourceCode object
+                const preProcessResult = preProcess(sourceText, sourceCode.filePath);
+                const isPluginReturnAnAST = isTxtAST(preProcessResult);
+                const textForAST = isPluginReturnAnAST ? sourceText : preProcessResult.text;
+                const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
+                const newSourceCode = new TextlintSourceCodeImpl({
+                    text: textForAST,
+                    ast,
+                    filePath: resultFilePath,
+                    ext: sourceCode.ext
+                });
+                // create new Task
+                const task = new FixerTask({
+                    config,
+                    fixableRuleDescriptor: ruleDescriptor,
+                    filterRuleDescriptors: filterRules,
+                    sourceCode: newSourceCode,
+                    configBaseDir
+                });
+
+                const messages = TaskRunner.processSync(task);
+                const result = postProcess(messages, sourceCode.filePath);
+                const filteredResult = {
+                    messages: this.messageProcessManager.process(result.messages),
+                    filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
+                };
+                // TODO: should be removed resultFilePath
+                resultFilePath = filteredResult.filePath;
+                const applied = applyFixesToSourceCode(newSourceCode, filteredResult.messages);
+                // add messages
+                Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
+                Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
+                Array.prototype.push.apply(originalMessages, applied.messages);
+                // if not fixed, still use current sourceText
+                if (!applied.fixed) {
+                    return sourceText;
+                }
+                // if fixed, use fixed text at next
+                return applied.output;
+            };
+        });
+
+        const output = fixerProcessList.reduce((sourceText, fixerProcess) => fixerProcess(sourceText), sourceCode.text);
+
+        debug(`Finish Processing: ${resultFilePath}`);
+        debug(`applyingMessages: ${applyingMessages.length}`);
+        debug(`remainingMessages: ${remainingMessages.length}`);
+        return {
+            filePath: resultFilePath ? resultFilePath : `<Unkown${sourceCode.ext}>`,
+            output,
+            messages: originalMessages,
+            applyingMessages,
+            remainingMessages
+        };
+    }
 }
