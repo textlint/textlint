@@ -60,7 +60,7 @@
     "deep-equal": "^1.1.1",
     "file-entry-cache": "^5.0.1",
     "get-stdin": "^5.0.1",
-    "glob": "^7.1.6",
+    "glob": "^7.1.7",
     "is-file": "^1.0.0",
     "log-symbols": "^1.0.2",
     "map-like": "^2.0.0",
@@ -91,7 +91,7 @@
     "textlint-rule-helper": "^2.1.1",
     "textlint-rule-no-todo": "^2.0.1",
     "textlint-rule-preset-ja-spacing": "^2.1.1",
-    "textlint-rule-preset-jtf-style": "^2.3.8",
+    "textlint-rule-preset-jtf-style": "^2.3.9",
     "ts-node": "^9.1.1",
     "ts-node-test-register": "^9.0.1",
     "typescript": "~4.0.2"

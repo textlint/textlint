@@ -7012,6 +7012,18 @@ glob@7.1.6, glob@^7.0.0, glob@^7.0.5, glob@^7.1.0, glob@^7.1.1, glob@^7.1.2, glo
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+glob@^7.1.7:
+  version "7.1.7"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.7.tgz#3b193e9233f01d42d0b3f78294bbeeb418f94a90"
+  integrity sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
 global-modules@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/global-modules/-/global-modules-2.0.0.tgz#997605ad2345f27f51539bea26574421215c7780"
@@ -13649,10 +13661,10 @@ textlint-rule-preset-jtf-style@^2.3.2:
     textlint-rule-helper "^2.0.0"
     textlint-rule-prh "^5.2.1"
 
-textlint-rule-preset-jtf-style@^2.3.8:
-  version "2.3.8"
-  resolved "https://registry.yarnpkg.com/textlint-rule-preset-jtf-style/-/textlint-rule-preset-jtf-style-2.3.8.tgz#0fa50f0a41e347e04552b1ca5e588a5a06df02dd"
-  integrity sha512-zysw3LxrnPyaJz25H6Qs715E91RpKSQ/4hjXg23UNAtTPii1a+RMHlbWlcpuxzF17Km0/X6iVQFFTvzMBhAxkg==
+textlint-rule-preset-jtf-style@^2.3.9:
+  version "2.3.9"
+  resolved "https://registry.yarnpkg.com/textlint-rule-preset-jtf-style/-/textlint-rule-preset-jtf-style-2.3.9.tgz#740b256dfe6cb737b2ae71ba34f89efd0decf333"
+  integrity sha512-GIUHwOK3ndhD+2MMkqcaDS4Xh0ZMuLY/UZgzKz8+KodRpQ3MM/+AbPACdJ219z2wF6hhIIdeUKBxuBr2uumeQQ==
   dependencies:
     analyze-desumasu-dearu "^2.1.2"
     japanese-numerals-to-number "^1.0.2"
