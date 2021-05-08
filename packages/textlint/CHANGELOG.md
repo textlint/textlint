@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [11.9.1](https://github.com/textlint/textlint/compare/textlint@11.9.0...textlint@11.9.1) (2021-05-08)
+
+
+### Bug Fixes
+
+* **deps:** update patch updates ([#761](https://github.com/textlint/textlint/issues/761)) ([73e81f9](https://github.com/textlint/textlint/commit/73e81f9b8e980f62b4107fb1a27ca6e3f050bb84))
+
+
+
+
+
 # [11.9.0](https://github.com/textlint/textlint/compare/textlint@11.8.3...textlint@11.9.0) (2021-03-21)
 
 

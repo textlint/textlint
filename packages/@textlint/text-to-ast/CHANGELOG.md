@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.5](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.3.4...@textlint/text-to-ast@3.3.5) (2021-05-08)
+
+
+### Bug Fixes
+
+* **text-to-ast:** correct to parse CRLF empty line ([#763](https://github.com/textlint/textlint/issues/763)) ([a3288e0](https://github.com/textlint/textlint/commit/a3288e0c49bd122ff97e159d3d82bd5a4012f5ea))
+
+
+
+
+
 ## [3.3.4](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.3.3...@textlint/text-to-ast@3.3.4) (2021-03-21)
 
 **Note:** Version bump only for package @textlint/text-to-ast

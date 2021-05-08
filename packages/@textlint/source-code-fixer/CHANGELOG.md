@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.5](https://github.com/textlint/textlint/compare/@textlint/source-code-fixer@3.4.4...@textlint/source-code-fixer@3.4.5) (2021-05-08)
+
+**Note:** Version bump only for package @textlint/source-code-fixer
+
+
+
+
+
 ## [3.4.4](https://github.com/textlint/textlint/compare/@textlint/source-code-fixer@3.4.3...@textlint/source-code-fixer@3.4.4) (2021-03-21)
 
 **Note:** Version bump only for package @textlint/source-code-fixer

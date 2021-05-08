@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.5](https://github.com/textlint/textlint/compare/@textlint/ast-traverse@2.3.4...@textlint/ast-traverse@2.3.5) (2021-05-08)
+
+**Note:** Version bump only for package @textlint/ast-traverse
+
+
+
+
+
 ## [2.3.4](https://github.com/textlint/textlint/compare/@textlint/ast-traverse@2.3.3...@textlint/ast-traverse@2.3.4) (2021-03-21)
 
 **Note:** Version bump only for package @textlint/ast-traverse

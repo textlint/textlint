@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [10.10.1](https://github.com/textlint/textlint/compare/textlint-website@10.10.0...textlint-website@10.10.1) (2021-05-08)
+
+**Note:** Version bump only for package textlint-website
+
+
+
+
+
 # [10.10.0](https://github.com/textlint/textlint/compare/textlint-website@10.9.11...textlint-website@10.10.0) (2021-03-21)
 
 
