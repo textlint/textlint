@@ -1,9 +1,9 @@
 {
     "type": "Document",
-    "raw": "TEXT\r\nTHIS TEXT IS CRLF line break\r\nCRLF!!!!\r\n",
+    "raw": "TEXT\r\n\r\nCRLF!!!!\r\n",
     "range": [
         0,
-        46
+        18
     ],
     "loc": {
         "start": {
@@ -74,11 +74,11 @@
             }
         },
         {
-            "type": "Paragraph",
-            "raw": "THIS TEXT IS CRLF line break",
+            "type": "Break",
+            "raw": "\r\n",
             "range": [
                 6,
-                34
+                8
             ],
             "loc": {
                 "start": {
@@ -87,46 +87,7 @@
                 },
                 "end": {
                     "line": 2,
-                    "column": 28
-                }
-            },
-            "children": [
-                {
-                    "type": "Str",
-                    "raw": "THIS TEXT IS CRLF line break",
-                    "value": "THIS TEXT IS CRLF line break",
-                    "range": [
-                        6,
-                        34
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 28
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "type": "Break",
-            "raw": "\r\n",
-            "range": [
-                34,
-                36
-            ],
-            "loc": {
-                "start": {
-                    "line": 2,
-                    "column": 28
-                },
-                "end": {
-                    "line": 2,
-                    "column": 30
+                    "column": 2
                 }
             }
         },
@@ -134,8 +95,8 @@
             "type": "Paragraph",
             "raw": "CRLF!!!!",
             "range": [
-                36,
-                44
+                8,
+                16
             ],
             "loc": {
                 "start": {
@@ -153,8 +114,8 @@
                     "raw": "CRLF!!!!",
                     "value": "CRLF!!!!",
                     "range": [
-                        36,
-                        44
+                        8,
+                        16
                     ],
                     "loc": {
                         "start": {
@@ -173,8 +134,8 @@
             "type": "Break",
             "raw": "\r\n",
             "range": [
-                44,
-                46
+                16,
+                18
             ],
             "loc": {
                 "start": {

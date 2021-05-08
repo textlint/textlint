@@ -27,12 +27,12 @@ function parseLine(lineText: string, lineNumber: number, startIndex: number): Tx
 /**
  * create BreakNode next to StrNode
  * @param {TxtNode} prevNode previous node from BreakNode
+ * @param lineBreakText
  */
-function createEndedBRNode(prevNode: TxtNode, lineBreakText: string) {
+function createEndedBRNode({ prevNode, lineBreakText }: { prevNode: TxtNode; lineBreakText: string }): TxtNode {
     return {
         type: Syntax.Break,
         raw: lineBreakText,
-        value: lineBreakText,
         range: [prevNode.range[1], prevNode.range[1] + lineBreakText.length],
         loc: {
             start: {
@@ -50,11 +50,19 @@ function createEndedBRNode(prevNode: TxtNode, lineBreakText: string) {
 /**
  * create BreakNode next to StrNode
  */
-function createBRNode(lineNumber: number, startIndex: number) {
+function createBRNode({
+    lineBreak,
+    lineNumber,
+    startIndex
+}: {
+    lineBreak: string;
+    lineNumber: number;
+    startIndex: number;
+}): TxtNode {
     return {
         type: Syntax.Break,
-        raw: "\n",
-        range: [startIndex, startIndex + 1],
+        raw: lineBreak,
+        range: [startIndex, startIndex + lineBreak.length],
         loc: {
             start: {
                 line: lineNumber,
@@ -62,7 +70,7 @@ function createBRNode(lineNumber: number, startIndex: number) {
             },
             end: {
                 line: lineNumber,
-                column: 1
+                column: lineBreak.length
             }
         }
     };
@@ -99,11 +107,11 @@ function createParagraph(nodes: TxtNode[]): TxtNode {
 }
 
 function splitTextByLine(text: string) {
-    const LINEBREAKE_MARK_PATTERN = /\r?\n/g;
+    const LINEBREAK_MARK_PATTERN = /\r?\n/g;
     const results = [];
     let match = null;
     let prevMatchIndex = 0;
-    while ((match = LINEBREAKE_MARK_PATTERN.exec(text)) !== null) {
+    while ((match = LINEBREAK_MARK_PATTERN.exec(text)) !== null) {
         const slicedText = text.slice(prevMatchIndex, match.index);
         results.push({
             text: prevMatchIndex === match.index ? "" : slicedText,
@@ -120,6 +128,10 @@ function splitTextByLine(text: string) {
     return results;
 }
 
+type EmptyLine = { text: ""; lineBreak: string };
+type LastLine = { text: string; lineBreak: null };
+type LineWithBreak = { text: string; lineBreak: string };
+
 /**
  * parse text and return ast mapped location info.
  * @param {string} text
@@ -130,26 +142,24 @@ export function parse(text: string): TxtNode {
     // it should be alternately Str and Break
     let startIndex = 0;
     const lastLineIndex = textLineByLine.length - 1;
-    const isLastEmptyLine = (
-        line: { text: string; lineBreak: string } | { text: string; lineBreak: null },
-        index: number
-    ) => {
+    const isLastEmptyLine = (line: LineWithBreak | LastLine | EmptyLine, index: number): line is EmptyLine => {
         return index === lastLineIndex && line.text === "";
     };
-    const isEmptyLine = (
-        line: { text: string; lineBreak: string } | { text: string; lineBreak: null },
-        index: number
-    ) => {
+    const isEmptyLine = (line: LineWithBreak | LastLine | EmptyLine, index: number): line is EmptyLine => {
         return index !== lastLineIndex && line.text === "";
     };
-    const children = textLineByLine.reduce<any[]>(function (result, currentLine, index) {
+    const children = textLineByLine.reduce(function (result, currentLine, index) {
         const lineNumber = index + 1;
         if (isLastEmptyLine(currentLine, index)) {
             return result;
         }
         // \n
         if (isEmptyLine(currentLine, index)) {
-            const emptyBreakNode = createBRNode(lineNumber, startIndex);
+            const emptyBreakNode = createBRNode({
+                lineBreak: currentLine.lineBreak,
+                lineNumber,
+                startIndex
+            });
             startIndex += emptyBreakNode.raw.length;
             result.push(emptyBreakNode);
             return result;
@@ -164,12 +174,12 @@ export function parse(text: string): TxtNode {
         // It should support CRLF
         // https://github.com/textlint/textlint/issues/656
         if (currentLine.lineBreak !== null) {
-            const breakNode = createEndedBRNode(paragraph, currentLine.lineBreak);
+            const breakNode = createEndedBRNode({ prevNode: paragraph, lineBreakText: currentLine.lineBreak });
             startIndex += breakNode.raw.length;
             result.push(breakNode);
         }
         return result;
-    }, []);
+    }, [] as TxtNode[]);
     const lastLine = textLineByLine[textLineByLine.length - 1];
     if (lastLine === undefined) {
         return {
