@@ -58,7 +58,6 @@
         {
             "type": "Break",
             "raw": "\n",
-            "value": "\n",
             "range": [
                 3,
                 4
@@ -116,7 +115,6 @@
         {
             "type": "Break",
             "raw": "\n",
-            "value": "\n",
             "range": [
                 7,
                 8
@@ -174,7 +172,6 @@
         {
             "type": "Break",
             "raw": "\n",
-            "value": "\n",
             "range": [
                 11,
                 12
