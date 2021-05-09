@@ -25,7 +25,7 @@ Use `textlint-scripts` as [npm-scripts](https://docs.npmjs.com/misc/scripts).
 
 `textlint-scripts` support TypeScript.
 
-`textlint-script` detect the project is TypeScript by `tsconfig.json` in project root directory.
+`textlint-scripts` detect the project is TypeScript by `tsconfig.json` in project root directory.
 
 ### `textlint-scripts build`
 
