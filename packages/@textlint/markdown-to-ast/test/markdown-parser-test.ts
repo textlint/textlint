@@ -1,12 +1,14 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const parse = require("../src/index").parse;
-const Syntax = require("../src/index").Syntax;
-const inspect = (obj) => JSON.stringify(obj, null, 4);
-const traverse = require("traverse");
-function findFirstTypedNode(node, type, value) {
-    let result = null;
+import { TxtNode } from "@textlint/ast-node-types";
+import { parse, Syntax } from "../src/index";
+import assert from "assert";
+import traverse from "traverse";
+
+const inspect = (obj: Record<string, unknown>) => JSON.stringify(obj, null, 4);
+
+function findFirstTypedNode(node: TxtNode, type: string, value?: string): TxtNode {
+    let result: TxtNode | null = null;
     traverse(node).forEach(function (x) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
@@ -21,18 +23,18 @@ function findFirstTypedNode(node, type, value) {
     });
     if (result == null) {
         /* eslint-disable no-console */
-        console.log(`Not Found type:${type}`);
         console.log(inspect(node));
+        throw new Error(`Not Found type:${type}`);
         /* eslint-enable no-console */
     }
     return result;
 }
 
-function shouldHaveImplementTxtNode(node, rawValue) {
+function shouldHaveImplementTxtNode(node: TxtNode, rawValue: string) {
     const lines = rawValue.split("\n");
     const lastLine = lines[lines.length - 1];
-    assert.equal(node.raw, rawValue);
-    assert.deepEqual(node.loc, {
+    assert.strictEqual(node.raw, rawValue);
+    assert.deepStrictEqual(node.loc, {
         start: {
             line: 1,
             column: 0
@@ -42,12 +44,13 @@ function shouldHaveImplementTxtNode(node, rawValue) {
             column: lastLine.length
         }
     });
-    assert.deepEqual(node.range, [0, rawValue.length]);
+    assert.deepStrictEqual(node.range, [0, rawValue.length]);
 }
-function shouldHaveImplementInlineTxtNode(node, text, allText) {
-    assert.equal(node.raw, text);
+
+function shouldHaveImplementInlineTxtNode(node: TxtNode, text: string, allText: string) {
+    assert.strictEqual(node.raw, text);
     const startColumn = allText.indexOf(text);
-    assert.deepEqual(node.loc, {
+    assert.deepStrictEqual(node.loc, {
         start: {
             line: 1,
             column: startColumn
@@ -57,8 +60,9 @@ function shouldHaveImplementInlineTxtNode(node, text, allText) {
             column: startColumn + text.length
         }
     });
-    assert.deepEqual(node.range, [startColumn, startColumn + text.length]);
+    assert.deepStrictEqual(node.range, [startColumn, startColumn + text.length]);
 }
+
 /*
     NOTE:
         `line` start with 1
@@ -69,18 +73,18 @@ describe("markdown-parser", function () {
     context("Node type is Document", function () {
         it("should has implemented TxtNode", function () {
             const RootDocument = parse("");
-            assert.equal(RootDocument.type, Syntax.Document);
-            assert.equal(RootDocument.raw, "");
-            assert.deepEqual(RootDocument.loc, { start: { line: 1, column: 0 }, end: { line: 1, column: 0 } });
-            assert.deepEqual(RootDocument.range, [0, 0]);
+            assert.strictEqual(RootDocument.type, Syntax.Document);
+            assert.strictEqual(RootDocument.raw, "");
+            assert.deepStrictEqual(RootDocument.loc, { start: { line: 1, column: 0 }, end: { line: 1, column: 0 } });
+            assert.deepStrictEqual(RootDocument.range, [0, 0]);
         });
         it("should has range and loc on whole text", function () {
             const text = "# Header\n\n" + "- list\n\n" + "text Str.";
             const lines = text.split("\n");
             const RootDocument = parse(text);
-            assert.equal(RootDocument.type, Syntax.Document);
-            assert.equal(RootDocument.raw, text);
-            assert.deepEqual(RootDocument.loc, {
+            assert.strictEqual(RootDocument.type, Syntax.Document);
+            assert.strictEqual(RootDocument.raw, text);
+            assert.deepStrictEqual(RootDocument.loc, {
                 start: {
                     line: 1,
                     column: 0
@@ -90,15 +94,15 @@ describe("markdown-parser", function () {
                     column: lines[lines.length - 1].length
                 }
             });
-            assert.deepEqual(RootDocument.range, [0, text.length]);
+            assert.deepStrictEqual(RootDocument.range, [0, text.length]);
         });
         it("should has range and loc on whole text", function () {
             const text = "# Header\n" + "\n" + "text";
             const lines = text.split("\n");
             const RootDocument = parse(text);
-            assert.equal(RootDocument.type, Syntax.Document);
-            assert.equal(RootDocument.raw, text);
-            assert.deepEqual(RootDocument.loc, {
+            assert.strictEqual(RootDocument.type, Syntax.Document);
+            assert.strictEqual(RootDocument.raw, text);
+            assert.deepStrictEqual(RootDocument.loc, {
                 start: {
                     line: 1,
                     column: 0
@@ -108,15 +112,15 @@ describe("markdown-parser", function () {
                     column: lines[lines.length - 1].length
                 }
             });
-            const slicedText = text.slice(RootDocument.range);
-            assert.deepEqual(slicedText, text);
+            const slicedText = text.slice(RootDocument.range[0], RootDocument.range[1]);
+            assert.deepStrictEqual(slicedText, text);
         });
     });
     /*
         Paragraph > Str
      */
     context("Node type is Paragraph", function () {
-        let AST, rawValue;
+        let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "string";
             AST = parse(rawValue);
@@ -143,7 +147,7 @@ describe("markdown-parser", function () {
          * =====
          **/
         context("SetextHeader", function () {
-            let AST, text, header;
+            let AST: TxtNode, text: string, header: string;
             beforeEach(function () {
                 text = "string";
                 header = `${text}\n======`;
@@ -166,7 +170,7 @@ describe("markdown-parser", function () {
          * # text
          * */
         context("ATXHeader", function () {
-            let AST, text, header;
+            let AST: TxtNode, text: string, header: string;
             beforeEach(function () {
                 text = "string";
                 header = `# ${text}`;
@@ -187,7 +191,7 @@ describe("markdown-parser", function () {
         });
     });
     context("Node type is Link", function () {
-        let AST, rawValue, labelText;
+        let AST: TxtNode, rawValue: string, labelText: string;
         beforeEach(function () {
             labelText = "text";
             rawValue = `[${labelText}](http://example.com)`;
@@ -214,7 +218,7 @@ describe("markdown-parser", function () {
     });
     context("Node type is ListItem", function () {
         it("should same the bullet_char", function () {
-            let node, AST;
+            let node: TxtNode, AST: TxtNode;
             AST = parse("- item");
             node = findFirstTypedNode(AST, Syntax.ListItem);
             assert(/^-/.test(node.raw));
@@ -226,7 +230,7 @@ describe("markdown-parser", function () {
             const AST = parse("- item\n" + "   - item2"); // second line should has offset
             const node = findFirstTypedNode(AST, Syntax.ListItem, " - item2");
             assert(node);
-            assert.equal(node.raw, " - item2");
+            assert.strictEqual(node.raw, " - item2");
         });
         it("should has implemented TxtNode", function () {
             const text = "text",
@@ -249,7 +253,7 @@ describe("markdown-parser", function () {
         > BlockQuote
     */
     context("Node type is BlockQuote", function () {
-        let AST, rawValue, text;
+        let AST: TxtNode, rawValue: string, text: string;
         beforeEach(function () {
             text = "text";
             rawValue = `> ${text}`;
@@ -257,7 +261,7 @@ describe("markdown-parser", function () {
         });
         it("should has implemented TxtNode", function () {
             const node = findFirstTypedNode(AST, Syntax.BlockQuote);
-            assert.deepEqual(node.range, [0, rawValue.length]);
+            assert.deepStrictEqual(node.range, [0, rawValue.length]);
         });
     });
     /*
@@ -267,7 +271,7 @@ describe("markdown-parser", function () {
     */
     context("Node type is CodeBlock", function () {
         context("IndentCodeBlock", function () {
-            let AST, rawValue, code;
+            let AST: TxtNode, rawValue: string, code: string;
             beforeEach(function () {
                 code = "var code;";
                 rawValue = `${"    \n" + "    "}${code}\n\n`;
@@ -277,11 +281,11 @@ describe("markdown-parser", function () {
                 const node = findFirstTypedNode(AST, Syntax.CodeBlock);
                 assert(node.raw.indexOf(code) !== -1);
                 const slicedCode = rawValue.slice(node.range[0], node.range[1]);
-                assert.equal(slicedCode.trim(), code);
+                assert.strictEqual(slicedCode.trim(), code);
             });
         });
         context("FencedCode", function () {
-            let AST, rawValue, code;
+            let AST: TxtNode, rawValue: string, code: string;
             beforeEach(function () {
                 code = "var code;";
                 rawValue = `\`\`\`\n${code}\n\`\`\``;
@@ -290,9 +294,9 @@ describe("markdown-parser", function () {
             it("should has implemented TxtNode", function () {
                 const node = findFirstTypedNode(AST, Syntax.CodeBlock);
                 const codeBlockRaw = rawValue;
-                assert.equal(node.raw, codeBlockRaw);
+                assert.strictEqual(node.raw, codeBlockRaw);
                 const slicedCode = rawValue.slice(node.range[0], node.range[1]);
-                assert.equal(slicedCode, codeBlockRaw);
+                assert.strictEqual(slicedCode, codeBlockRaw);
             });
         });
     });
@@ -300,7 +304,7 @@ describe("markdown-parser", function () {
         `code`
      */
     context("Node type is Code", function () {
-        let AST, rawValue;
+        let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "`code`";
             AST = parse(rawValue);
@@ -314,7 +318,7 @@ describe("markdown-parser", function () {
         __Strong__
      */
     context("Node type is Strong", function () {
-        let AST, rawValue, text;
+        let AST: TxtNode, rawValue: string, text: string;
         beforeEach(function () {
             text = "text";
             rawValue = `__${text}__`;
@@ -336,7 +340,7 @@ describe("markdown-parser", function () {
         ![text](http://example.com/a.png)
      */
     context("Node type is Image", function () {
-        let AST, rawValue, labelText;
+        let AST: TxtNode, rawValue: string, labelText: string;
         beforeEach(function () {
             labelText = "text";
             rawValue = `![${labelText}](http://example.com/a.png)`;
@@ -351,7 +355,7 @@ describe("markdown-parser", function () {
      *text*
      */
     context("Node type is Emphasis", function () {
-        let AST, rawValue, text;
+        let AST: TxtNode, rawValue: string, text: string;
         beforeEach(function () {
             text = "text";
             rawValue = `*${text}*`;
@@ -372,7 +376,7 @@ describe("markdown-parser", function () {
     ----
     */
     context("Node type is HorizontalRule", function () {
-        let AST, rawValue;
+        let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "----";
             AST = parse(rawValue);
@@ -386,7 +390,7 @@ describe("markdown-parser", function () {
         <html>
      */
     context("Node type is Html", function () {
-        let AST, rawValue;
+        let AST: TxtNode, rawValue: string;
         beforeEach(function () {
             rawValue = "<p>text</p>";
             AST = parse(rawValue);
