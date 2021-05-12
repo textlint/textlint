@@ -1,16 +1,15 @@
-// LICENSE : MIT
-"use strict";
 import { SyntaxMap } from "./mapping/markdown-syntax-map";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import traverse from "traverse";
 import StructuredSource from "structured-source";
 import debug0 from "debug";
-// @ts-ignore
+// @ts-expect-error: no types
 import unified from "unified";
-// @ts-ignore
+// @ts-expect-error: no types
 import remarkParse from "remark-parse";
-// @ts-ignore
+// @ts-expect-error: no types
 import frontmatter from "remark-frontmatter";
+
 const debug = debug0("@textlint/markdown-to-ast");
 const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]);
 
@@ -56,5 +55,5 @@ export function parse<T extends TxtNode>(text: string): T {
             }
         }
     });
-    return ast;
+    return ast as T;
 }
