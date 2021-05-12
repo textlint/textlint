@@ -3,11 +3,11 @@ import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import traverse from "traverse";
 import StructuredSource from "structured-source";
 import debug0 from "debug";
-// @ts-expect-error: no types
+// @ts-ignore: no types
 import unified from "unified";
-// @ts-expect-error: no types
+// @ts-ignore: no types
 import remarkParse from "remark-parse";
-// @ts-expect-error: no types
+// @ts-ignore: no types
 import frontmatter from "remark-frontmatter";
 
 const debug = debug0("@textlint/markdown-to-ast");
