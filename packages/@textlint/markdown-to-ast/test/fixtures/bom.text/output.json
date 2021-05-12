@@ -22,7 +22,7 @@
                         2,
                         18
                     ],
-                    "raw": " Hello from a BO"
+                    "raw": "Hello from a BOM"
                 }
             ],
             "loc": {
@@ -39,7 +39,7 @@
                 0,
                 18
             ],
-            "raw": "﻿# Hello from a BO"
+            "raw": "# Hello from a BOM"
         },
         {
             "type": "Paragraph",
@@ -61,7 +61,7 @@
                         20,
                         54
                     ],
-                    "raw": "\nBe careful when editing this file"
+                    "raw": "Be careful when editing this file!"
                 }
             ],
             "loc": {
@@ -78,7 +78,7 @@
                 20,
                 54
             ],
-            "raw": "\nBe careful when editing this file"
+            "raw": "Be careful when editing this file!"
         }
     ],
     "loc": {
@@ -95,5 +95,5 @@
         0,
         55
     ],
-    "raw": "﻿# Hello from a BOM\n\nBe careful when editing this file!"
+    "raw": "# Hello from a BOM\n\nBe careful when editing this file!\n"
 }

@@ -21,7 +21,15 @@ export { ASTNodeTypes as Syntax };
  * @returns {TxtNode}
  */
 export function parse<T extends TxtNode>(text: string): T {
-    const ast = remark.parse(text);
+    // remark-parse's AST does not consider BOM
+    // AST's position does not +1 by BOM
+    // So, just trim BOM and parse it for `raw` property
+    // textlint's SourceCode also take same approach - trim BOM and check the position
+    // This means that the loading side need to consider BOM position - for example fs.readFile and text slice script.
+    // https://github.com/micromark/micromark/blob/0f19c1ac25964872a160d8b536878b125ddfe393/lib/preprocess.mjs#L29-L31
+    const hasBOM = text.charCodeAt(0) === 0xfeff;
+    const textWithoutBOM = hasBOM ? text.slice(1) : text;
+    const ast = remark.parse(textWithoutBOM);
     traverse(ast).forEach(function (node: TxtNode) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
@@ -43,7 +51,7 @@ export function parse<T extends TxtNode>(text: string): T {
                 const range = [position.start.offset, position.end.offset] as [number, number];
                 node.loc = positionCompensated;
                 node.range = range;
-                node.raw = text.slice(range[0], range[1]);
+                node.raw = textWithoutBOM.slice(range[0], range[1]);
                 // Compatible for https://github.com/wooorm/unist, but hidden
                 Object.defineProperty(node, "position", {
                     enumerable: false,
