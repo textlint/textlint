@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This example checks that [^the generated] IDs do not overwrite the user's IDs[^1].",
+                    "value": "This example checks that [^the generated] IDs do not overwrite the user's IDs",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,14 +14,53 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 82
+                            "column": 77
                         }
                     },
                     "range": [
                         0,
+                        77
+                    ],
+                    "raw": "This example checks that [^the generated] IDs do not overwrite the user's IDs"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "1",
+                    "label": "1",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 77
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 81
+                        }
+                    },
+                    "range": [
+                        77,
+                        81
+                    ],
+                    "raw": "[^1]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 81
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 82
+                        }
+                    },
+                    "range": [
+                        81,
                         82
                     ],
-                    "raw": "This example checks that [^the generated] IDs do not overwrite the user's IDs[^1]."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -41,53 +80,75 @@
             "raw": "This example checks that [^the generated] IDs do not overwrite the user's IDs[^1]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "1",
+            "label": "1",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^1]: Old behavior would, for \"generated\", generate a footnote with an ID set to ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 0
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Old behavior would, for \"generated\", generate a footnote with an ID set to ",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 81
+                                }
+                            },
+                            "range": [
+                                90,
+                                165
+                            ],
+                            "raw": "Old behavior would, for \"generated\", generate a footnote with an ID set to "
                         },
-                        "end": {
-                            "line": 3,
-                            "column": 81
-                        }
-                    },
-                    "range": [
-                        84,
-                        165
-                    ],
-                    "raw": "[^1]: Old behavior would, for \"generated\", generate a footnote with an ID set to "
-                },
-                {
-                    "type": "Code",
-                    "value": "1",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 81
+                        {
+                            "type": "Code",
+                            "value": "1",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 81
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 84
+                                }
+                            },
+                            "range": [
+                                165,
+                                168
+                            ],
+                            "raw": "`1`"
                         },
-                        "end": {
-                            "line": 3,
-                            "column": 84
+                        {
+                            "type": "Str",
+                            "value": ", thus overwriting this footnote.",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 84
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 117
+                                }
+                            },
+                            "range": [
+                                168,
+                                201
+                            ],
+                            "raw": ", thus overwriting this footnote."
                         }
-                    },
-                    "range": [
-                        165,
-                        168
                     ],
-                    "raw": "`1`"
-                },
-                {
-                    "type": "Str",
-                    "value": ", thus overwriting this footnote.",
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 84
+                            "column": 6
                         },
                         "end": {
                             "line": 3,
@@ -95,10 +156,10 @@
                         }
                     },
                     "range": [
-                        168,
+                        90,
                         201
                     ],
-                    "raw": ", thus overwriting this footnote."
+                    "raw": "Old behavior would, for \"generated\", generate a footnote with an ID set to `1`, thus overwriting this footnote."
                 }
             ],
             "loc": {

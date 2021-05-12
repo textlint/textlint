@@ -7,9 +7,10 @@ import unified from "unified";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import frontmatter from "remark-frontmatter";
+import footnotes from "remark-footnotes";
 
 const debug = debug0("@textlint/markdown-to-ast");
-const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]).use(remarkGfm);
+const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]).use(remarkGfm).use(footnotes);
 
 export { ASTNodeTypes as Syntax };
 

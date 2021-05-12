@@ -36,6 +36,7 @@
   "dependencies": {
     "@textlint/ast-node-types": "^4.4.3",
     "debug": "^4.3.1",
+    "remark-footnotes": "^3.0.0",
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",

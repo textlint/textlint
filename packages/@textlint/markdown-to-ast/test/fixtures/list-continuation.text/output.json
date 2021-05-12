@@ -247,8 +247,9 @@
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "Str",
-                                    "value": "[^foo]",
+                                    "type": "footnoteReference",
+                                    "identifier": "foo",
+                                    "label": "foo",
                                     "loc": {
                                         "start": {
                                             "line": 9,
@@ -317,15 +318,37 @@
             "raw": "1. [^foo]"
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "foo",
+            "label": "foo",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^foo]: bar baz.",
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "bar baz.",
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                69,
+                                77
+                            ],
+                            "raw": "bar baz."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 10,
-                            "column": 0
+                            "column": 8
                         },
                         "end": {
                             "line": 10,
@@ -333,10 +356,10 @@
                         }
                     },
                     "range": [
-                        61,
+                        69,
                         77
                     ],
-                    "raw": "[^foo]: bar baz."
+                    "raw": "bar baz."
                 }
             ],
             "loc": {

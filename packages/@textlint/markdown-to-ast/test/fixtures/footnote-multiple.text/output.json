@@ -7,7 +7,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "International Radiotelephony Spelling Alphabet[^wiki]",
+                    "value": "International Radiotelephony Spelling Alphabet",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -15,14 +15,34 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 55
+                            "column": 48
                         }
                     },
                     "range": [
                         2,
+                        48
+                    ],
+                    "raw": "International Radiotelephony Spelling Alphabet"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "wiki",
+                    "label": "wiki",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 48
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        48,
                         55
                     ],
-                    "raw": "International Radiotelephony Spelling Alphabet[^wiki]"
+                    "raw": "[^wiki]"
                 }
             ],
             "loc": {
@@ -46,7 +66,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Here's the NATO phonetic alphabet[^wiki]: Alfa, Bravo, Charlie, Delta, Echo, Foxtrot, Golf, Hotel, India, Juliet, Kilo, Lima, Mike, November, Oscar, Papa, Quebec, Romeo, Sierra, Tango, Uniform, Victor, Whiskey, X-ray, Yankee, and Zulu.",
+                    "value": "Here's the NATO phonetic alphabet",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -54,14 +74,53 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 235
+                            "column": 33
                         }
                     },
                     "range": [
                         57,
+                        90
+                    ],
+                    "raw": "Here's the NATO phonetic alphabet"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "wiki",
+                    "label": "wiki",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 33
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 40
+                        }
+                    },
+                    "range": [
+                        90,
+                        97
+                    ],
+                    "raw": "[^wiki]"
+                },
+                {
+                    "type": "Str",
+                    "value": ": Alfa, Bravo, Charlie, Delta, Echo, Foxtrot, Golf, Hotel, India, Juliet, Kilo, Lima, Mike, November, Oscar, Papa, Quebec, Romeo, Sierra, Tango, Uniform, Victor, Whiskey, X-ray, Yankee, and Zulu.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 40
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 235
+                        }
+                    },
+                    "range": [
+                        97,
                         292
                     ],
-                    "raw": "Here's the NATO phonetic alphabet[^wiki]: Alfa, Bravo, Charlie, Delta, Echo, Foxtrot, Golf, Hotel, India, Juliet, Kilo, Lima, Mike, November, Oscar, Papa, Quebec, Romeo, Sierra, Tango, Uniform, Victor, Whiskey, X-ray, Yankee, and Zulu."
+                    "raw": ": Alfa, Bravo, Charlie, Delta, Echo, Foxtrot, Golf, Hotel, India, Juliet, Kilo, Lima, Mike, November, Oscar, Papa, Quebec, Romeo, Sierra, Tango, Uniform, Victor, Whiskey, X-ray, Yankee, and Zulu."
                 }
             ],
             "loc": {
@@ -120,75 +179,97 @@
             "raw": "And here's some more text."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "wiki",
+            "label": "wiki",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^wiki]: Read more about it on wikipedia: ",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 7,
-                            "column": 42
-                        }
-                    },
-                    "range": [
-                        322,
-                        364
-                    ],
-                    "raw": "[^wiki]: Read more about it on wikipedia: "
-                },
-                {
-                    "type": "Link",
-                    "title": null,
-                    "url": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                            "value": "Read more about it on wikipedia: ",
                             "loc": {
                                 "start": {
                                     "line": 7,
-                                    "column": 43
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 7,
-                                    "column": 94
+                                    "column": 42
                                 }
                             },
                             "range": [
-                                365,
-                                416
+                                331,
+                                364
                             ],
-                            "raw": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 42
+                            "raw": "Read more about it on wikipedia: "
                         },
-                        "end": {
-                            "line": 7,
-                            "column": 95
+                        {
+                            "type": "Link",
+                            "title": null,
+                            "url": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 43
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 94
+                                        }
+                                    },
+                                    "range": [
+                                        365,
+                                        416
+                                    ],
+                                    "raw": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 42
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 95
+                                }
+                            },
+                            "range": [
+                                364,
+                                417
+                            ],
+                            "raw": "<http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>"
+                        },
+                        {
+                            "type": "Str",
+                            "value": ".",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 95
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 96
+                                }
+                            },
+                            "range": [
+                                417,
+                                418
+                            ],
+                            "raw": "."
                         }
-                    },
-                    "range": [
-                        364,
-                        417
                     ],
-                    "raw": "<http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
                     "loc": {
                         "start": {
                             "line": 7,
-                            "column": 95
+                            "column": 9
                         },
                         "end": {
                             "line": 7,
@@ -196,10 +277,10 @@
                         }
                     },
                     "range": [
-                        417,
+                        331,
                         418
                     ],
-                    "raw": "."
+                    "raw": "Read more about it on wikipedia: <http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>."
                 }
             ],
             "loc": {

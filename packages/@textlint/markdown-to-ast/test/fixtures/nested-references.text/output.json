@@ -332,8 +332,9 @@
                     "type": "LinkReference",
                     "children": [
                         {
-                            "type": "Str",
-                            "value": "[^foo]",
+                            "type": "footnoteReference",
+                            "identifier": "foo",
+                            "label": "foo",
                             "loc": {
                                 "start": {
                                     "line": 11,
@@ -432,15 +433,37 @@
             "raw": "[baz]: https://baz.com \"baz\""
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "foo",
+            "label": "foo",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^foo]: A footnote.",
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "A footnote.",
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 19
+                                }
+                            },
+                            "range": [
+                                220,
+                                231
+                            ],
+                            "raw": "A footnote."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 16,
-                            "column": 0
+                            "column": 8
                         },
                         "end": {
                             "line": 16,
@@ -448,10 +471,10 @@
                         }
                     },
                     "range": [
-                        212,
+                        220,
                         231
                     ],
-                    "raw": "[^foo]: A footnote."
+                    "raw": "A footnote."
                 }
             ],
             "loc": {

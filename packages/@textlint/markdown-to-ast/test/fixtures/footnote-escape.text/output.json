@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "The NATO phonetic alphabet[^wi-ki].",
+                    "value": "The NATO phonetic alphabet",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,14 +14,53 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 36
+                            "column": 26
                         }
                     },
                     "range": [
                         0,
+                        26
+                    ],
+                    "raw": "The NATO phonetic alphabet"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "wi\\-ki",
+                    "label": "wi-ki",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 26
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 35
+                        }
+                    },
+                    "range": [
+                        26,
+                        35
+                    ],
+                    "raw": "[^wi\\-ki]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 35
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        35,
                         36
                     ],
-                    "raw": "The NATO phonetic alphabet[^wi\\-ki]."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -41,15 +80,37 @@
             "raw": "The NATO phonetic alphabet[^wi\\-ki]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "wi\\-ki",
+            "label": "wi-ki",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^wi-ki]: Read more about it somewhere else.",
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Read more about it somewhere else.",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 45
+                                }
+                            },
+                            "range": [
+                                49,
+                                83
+                            ],
+                            "raw": "Read more about it somewhere else."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 0
+                            "column": 11
                         },
                         "end": {
                             "line": 3,
@@ -57,10 +118,10 @@
                         }
                     },
                     "range": [
-                        38,
+                        49,
                         83
                     ],
-                    "raw": "[^wi\\-ki]: Read more about it somewhere else."
+                    "raw": "Read more about it somewhere else."
                 }
             ],
             "loc": {

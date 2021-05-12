@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "A footnote[^1].",
+                    "value": "A footnote",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,14 +14,53 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 15
+                            "column": 10
                         }
                     },
                     "range": [
                         0,
+                        10
+                    ],
+                    "raw": "A footnote"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "1",
+                    "label": "1",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        10,
+                        14
+                    ],
+                    "raw": "[^1]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 14
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        14,
                         15
                     ],
-                    "raw": "A footnote[^1]."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -41,73 +80,95 @@
             "raw": "A footnote[^1]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "1",
+            "label": "1",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^1]: Including [^another ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 26
-                        }
-                    },
-                    "range": [
-                        17,
-                        43
-                    ],
-                    "raw": "[^1]: Including [^another "
-                },
-                {
-                    "type": "Strong",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "footnote",
+                            "value": "Including [^another ",
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 28
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 36
+                                    "column": 26
                                 }
                             },
                             "range": [
-                                45,
-                                53
+                                23,
+                                43
                             ],
-                            "raw": "footnote"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 26
+                            "raw": "Including [^another "
                         },
-                        "end": {
-                            "line": 3,
-                            "column": 38
+                        {
+                            "type": "Strong",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "footnote",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 28
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 36
+                                        }
+                                    },
+                                    "range": [
+                                        45,
+                                        53
+                                    ],
+                                    "raw": "footnote"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 26
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 38
+                                }
+                            },
+                            "range": [
+                                43,
+                                55
+                            ],
+                            "raw": "**footnote**"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "]",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 38
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 39
+                                }
+                            },
+                            "range": [
+                                55,
+                                56
+                            ],
+                            "raw": "]"
                         }
-                    },
-                    "range": [
-                        43,
-                        55
                     ],
-                    "raw": "**footnote**"
-                },
-                {
-                    "type": "Str",
-                    "value": "]",
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 38
+                            "column": 6
                         },
                         "end": {
                             "line": 3,
@@ -115,10 +176,10 @@
                         }
                     },
                     "range": [
-                        55,
+                        23,
                         56
                     ],
-                    "raw": "]"
+                    "raw": "Including [^another **footnote**]"
                 }
             ],
             "loc": {

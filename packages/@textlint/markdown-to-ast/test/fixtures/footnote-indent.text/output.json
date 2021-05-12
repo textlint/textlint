@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "The NATO phonetic alphabet[^wiki].",
+                    "value": "The NATO phonetic alphabet",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,14 +14,53 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 34
+                            "column": 26
                         }
                     },
                     "range": [
                         0,
+                        26
+                    ],
+                    "raw": "The NATO phonetic alphabet"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "wiki",
+                    "label": "wiki",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 26
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 33
+                        }
+                    },
+                    "range": [
+                        26,
+                        33
+                    ],
+                    "raw": "[^wiki]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 33
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        33,
                         34
                     ],
-                    "raw": "The NATO phonetic alphabet[^wiki]."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -41,15 +80,37 @@
             "raw": "The NATO phonetic alphabet[^wiki]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "wiki",
+            "label": "wiki",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^wiki]: Read more about it somewhere else.",
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Read more about it somewhere else.",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 11
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 45
+                                }
+                            },
+                            "range": [
+                                47,
+                                81
+                            ],
+                            "raw": "Read more about it somewhere else."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 2
+                            "column": 11
                         },
                         "end": {
                             "line": 3,
@@ -57,10 +118,10 @@
                         }
                     },
                     "range": [
-                        38,
+                        47,
                         81
                     ],
-                    "raw": "[^wiki]: Read more about it somewhere else."
+                    "raw": "Read more about it somewhere else."
                 }
             ],
             "loc": {

@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Here is some text containing a footnote[^somesamplefootnote]. You can then continue your thought...",
+                    "value": "Here is some text containing a footnote",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,14 +14,53 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 99
+                            "column": 39
                         }
                     },
                     "range": [
                         0,
+                        39
+                    ],
+                    "raw": "Here is some text containing a footnote"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "somesamplefootnote",
+                    "label": "somesamplefootnote",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 39
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 60
+                        }
+                    },
+                    "range": [
+                        39,
+                        60
+                    ],
+                    "raw": "[^somesamplefootnote]"
+                },
+                {
+                    "type": "Str",
+                    "value": ". You can then continue your thought...",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 60
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 99
+                        }
+                    },
+                    "range": [
+                        60,
                         99
                     ],
-                    "raw": "Here is some text containing a footnote[^somesamplefootnote]. You can then continue your thought..."
+                    "raw": ". You can then continue your thought..."
                 }
             ],
             "loc": {
@@ -41,15 +80,37 @@
             "raw": "Here is some text containing a footnote[^somesamplefootnote]. You can then continue your thought..."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "somesamplefootnote",
+            "label": "somesamplefootnote",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^somesamplefootnote]: Here is the text of the footnote itself.",
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Here is the text of the footnote itself.",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 23
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 63
+                                }
+                            },
+                            "range": [
+                                124,
+                                164
+                            ],
+                            "raw": "Here is the text of the footnote itself."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 0
+                            "column": 23
                         },
                         "end": {
                             "line": 3,
@@ -57,10 +118,10 @@
                         }
                     },
                     "range": [
-                        101,
+                        124,
                         164
                     ],
-                    "raw": "[^somesamplefootnote]: Here is the text of the footnote itself."
+                    "raw": "Here is the text of the footnote itself."
                 }
             ],
             "loc": {
@@ -145,7 +206,7 @@
                 },
                 {
                     "type": "Str",
-                    "value": " and the footnotes will go to the bottom of the document[^documentdetails].",
+                    "value": " and the footnotes will go to the bottom of the document",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -153,14 +214,53 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 103
+                            "column": 84
                         }
                     },
                     "range": [
                         194,
+                        250
+                    ],
+                    "raw": " and the footnotes will go to the bottom of the document"
+                },
+                {
+                    "type": "footnoteReference",
+                    "identifier": "documentdetails",
+                    "label": "documentdetails",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 84
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 102
+                        }
+                    },
+                    "range": [
+                        250,
+                        268
+                    ],
+                    "raw": "[^documentdetails]"
+                },
+                {
+                    "type": "Str",
+                    "value": ".",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 102
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 103
+                        }
+                    },
+                    "range": [
+                        268,
                         269
                     ],
-                    "raw": " and the footnotes will go to the bottom of the document[^documentdetails]."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -180,73 +280,95 @@
             "raw": "Even go to a new [paragraph] and the footnotes will go to the bottom of the document[^documentdetails]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "documentdetails",
+            "label": "documentdetails",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "[^documentdetails]: Depending on the ",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 7,
-                            "column": 37
-                        }
-                    },
-                    "range": [
-                        271,
-                        308
-                    ],
-                    "raw": "[^documentdetails]: Depending on the "
-                },
-                {
-                    "type": "Strong",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "final",
+                            "value": "Depending on the ",
                             "loc": {
                                 "start": {
                                     "line": 7,
-                                    "column": 39
+                                    "column": 20
                                 },
                                 "end": {
                                     "line": 7,
-                                    "column": 44
+                                    "column": 37
                                 }
                             },
                             "range": [
-                                310,
-                                315
+                                291,
+                                308
                             ],
-                            "raw": "final"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 37
+                            "raw": "Depending on the "
                         },
-                        "end": {
-                            "line": 7,
-                            "column": 46
+                        {
+                            "type": "Strong",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "final",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 39
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 44
+                                        }
+                                    },
+                                    "range": [
+                                        310,
+                                        315
+                                    ],
+                                    "raw": "final"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 37
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 46
+                                }
+                            },
+                            "range": [
+                                308,
+                                317
+                            ],
+                            "raw": "**final**"
+                        },
+                        {
+                            "type": "Str",
+                            "value": " form of your document, of course. See the documentation and experiment.",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 46
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 118
+                                }
+                            },
+                            "range": [
+                                317,
+                                389
+                            ],
+                            "raw": " form of your document, of course. See the documentation and experiment."
                         }
-                    },
-                    "range": [
-                        308,
-                        317
                     ],
-                    "raw": "**final**"
-                },
-                {
-                    "type": "Str",
-                    "value": " form of your document, of course. See the documentation and experiment.",
                     "loc": {
                         "start": {
                             "line": 7,
-                            "column": 46
+                            "column": 20
                         },
                         "end": {
                             "line": 7,
@@ -254,36 +376,115 @@
                         }
                     },
                     "range": [
-                        317,
+                        291,
                         389
                     ],
-                    "raw": " form of your document, of course. See the documentation and experiment."
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 7,
-                    "column": 0
+                    "raw": "Depending on the **final** form of your document, of course. See the documentation and experiment."
                 },
-                "end": {
-                    "line": 7,
-                    "column": 118
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "This footnote has a second ",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 31
+                                }
+                            },
+                            "range": [
+                                395,
+                                422
+                            ],
+                            "raw": "This footnote has a second "
+                        },
+                        {
+                            "type": "LinkReference",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "paragraph",
+                                    "loc": {
+                                        "start": {
+                                            "line": 9,
+                                            "column": 32
+                                        },
+                                        "end": {
+                                            "line": 9,
+                                            "column": 41
+                                        }
+                                    },
+                                    "range": [
+                                        423,
+                                        432
+                                    ],
+                                    "raw": "paragraph"
+                                }
+                            ],
+                            "identifier": "paragraph",
+                            "label": "paragraph",
+                            "referenceType": "shortcut",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 31
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 42
+                                }
+                            },
+                            "range": [
+                                422,
+                                433
+                            ],
+                            "raw": "[paragraph]"
+                        },
+                        {
+                            "type": "Str",
+                            "value": ".",
+                            "loc": {
+                                "start": {
+                                    "line": 9,
+                                    "column": 42
+                                },
+                                "end": {
+                                    "line": 9,
+                                    "column": 43
+                                }
+                            },
+                            "range": [
+                                433,
+                                434
+                            ],
+                            "raw": "."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 4
+                        },
+                        "end": {
+                            "line": 9,
+                            "column": 43
+                        }
+                    },
+                    "range": [
+                        395,
+                        434
+                    ],
+                    "raw": "This footnote has a second [paragraph]."
                 }
-            },
-            "range": [
-                271,
-                389
             ],
-            "raw": "[^documentdetails]: Depending on the **final** form of your document, of course. See the documentation and experiment."
-        },
-        {
-            "type": "CodeBlock",
-            "lang": null,
-            "meta": null,
-            "value": "This footnote has a second [paragraph].",
             "loc": {
                 "start": {
-                    "line": 9,
+                    "line": 7,
                     "column": 0
                 },
                 "end": {
@@ -292,10 +493,10 @@
                 }
             },
             "range": [
-                391,
+                271,
                 434
             ],
-            "raw": "    This footnote has a second [paragraph]."
+            "raw": "[^documentdetails]: Depending on the **final** form of your document, of course. See the documentation and experiment.\n\n    This footnote has a second [paragraph]."
         },
         {
             "type": "Definition",
