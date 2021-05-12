@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "foo",
+                    "value": "foo[^abc] bar. foo",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,79 +14,17 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 3
-                        }
-                    },
-                    "range": [
-                        0,
-                        3
-                    ],
-                    "raw": "foo"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^abc",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^abc",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 4
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 8
-                                }
-                            },
-                            "range": [
-                                4,
-                                8
-                            ],
-                            "raw": "^abc"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 3
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 9
-                        }
-                    },
-                    "range": [
-                        3,
-                        9
-                    ],
-                    "raw": "[^abc]"
-                },
-                {
-                    "type": "Str",
-                    "value": " bar. foo",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 9
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 18
                         }
                     },
                     "range": [
-                        9,
+                        0,
                         18
                     ],
-                    "raw": " bar. foo"
+                    "raw": "foo[^abc] bar. foo"
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "^xyz",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -108,6 +46,9 @@
                             "raw": "^xyz"
                         }
                     ],
+                    "identifier": "^xyz",
+                    "label": "^xyz",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -164,30 +105,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^abc",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^abc",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 5
-                                }
-                            },
-                            "range": [
-                                31,
-                                35
-                            ],
-                            "raw": "^abc"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^abc]: Baz baz",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -195,33 +114,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        30,
-                        36
-                    ],
-                    "raw": "[^abc]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Baz baz",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 15
                         }
                     },
                     "range": [
-                        36,
+                        30,
                         45
                     ],
-                    "raw": ": Baz baz"
+                    "raw": "[^abc]: Baz baz"
                 }
             ],
             "loc": {
@@ -243,6 +143,7 @@
         {
             "type": "Definition",
             "identifier": "^xyz",
+            "label": "^xyz",
             "title": null,
             "url": "Baz",
             "loc": {

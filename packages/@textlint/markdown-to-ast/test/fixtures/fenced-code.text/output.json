@@ -4,6 +4,7 @@
         {
             "type": "CodeBlock",
             "lang": "js",
+            "meta": null,
             "value": "var a = 'hello';\nconsole.log(a + ' world');",
             "loc": {
                 "start": {
@@ -24,6 +25,7 @@
         {
             "type": "CodeBlock",
             "lang": "bash",
+            "meta": null,
             "value": "echo \"hello, ${WORLD}\"",
             "loc": {
                 "start": {
@@ -44,6 +46,7 @@
         {
             "type": "CodeBlock",
             "lang": "longfence",
+            "meta": null,
             "value": "Q: What do you call a tall person who sells stolen goods?",
             "loc": {
                 "start": {
@@ -64,6 +67,7 @@
         {
             "type": "CodeBlock",
             "lang": "ManyTildes",
+            "meta": null,
             "value": "A longfence!",
             "loc": {
                 "start": {

@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "A footnote",
+                    "value": "A footnote[^toString] and [^",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,222 +14,61 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 10
+                            "column": 28
                         }
                     },
                     "range": [
                         0,
-                        10
+                        28
                     ],
-                    "raw": "A footnote"
+                    "raw": "A footnote[^toString] and [^"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^tostring",
-                    "referenceType": "shortcut",
+                    "type": "Strong",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^toString",
+                            "value": "proto",
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 11
+                                    "column": 30
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 20
+                                    "column": 35
                                 }
                             },
                             "range": [
-                                11,
-                                20
+                                30,
+                                35
                             ],
-                            "raw": "^toString"
+                            "raw": "proto"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 1,
-                            "column": 10
+                            "column": 28
                         },
                         "end": {
                             "line": 1,
-                            "column": 21
+                            "column": 37
                         }
                     },
                     "range": [
-                        10,
-                        21
+                        28,
+                        37
                     ],
-                    "raw": "[^toString]"
+                    "raw": "__proto__"
                 },
                 {
                     "type": "Str",
-                    "value": " and ",
+                    "value": "] and [^constructor].",
                     "loc": {
                         "start": {
                             "line": 1,
-                            "column": 21
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 26
-                        }
-                    },
-                    "range": [
-                        21,
-                        26
-                    ],
-                    "raw": " and "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^__proto__",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 27
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 28
-                                }
-                            },
-                            "range": [
-                                27,
-                                28
-                            ],
-                            "raw": "^"
-                        },
-                        {
-                            "type": "Strong",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "proto",
-                                    "loc": {
-                                        "start": {
-                                            "line": 1,
-                                            "column": 30
-                                        },
-                                        "end": {
-                                            "line": 1,
-                                            "column": 35
-                                        }
-                                    },
-                                    "range": [
-                                        30,
-                                        35
-                                    ],
-                                    "raw": "proto"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 28
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 37
-                                }
-                            },
-                            "range": [
-                                28,
-                                37
-                            ],
-                            "raw": "__proto__"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 26
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 38
-                        }
-                    },
-                    "range": [
-                        26,
-                        38
-                    ],
-                    "raw": "[^__proto__]"
-                },
-                {
-                    "type": "Str",
-                    "value": " and ",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 38
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 43
-                        }
-                    },
-                    "range": [
-                        38,
-                        43
-                    ],
-                    "raw": " and "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^constructor",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^constructor",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 44
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 56
-                                }
-                            },
-                            "range": [
-                                44,
-                                56
-                            ],
-                            "raw": "^constructor"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 43
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 57
-                        }
-                    },
-                    "range": [
-                        43,
-                        57
-                    ],
-                    "raw": "[^constructor]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 57
+                            "column": 37
                         },
                         "end": {
                             "line": 1,
@@ -237,10 +76,10 @@
                         }
                     },
                     "range": [
-                        57,
+                        37,
                         58
                     ],
-                    "raw": "."
+                    "raw": "] and [^constructor]."
                 }
             ],
             "loc": {
@@ -263,30 +102,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^tostring",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^toString",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 10
-                                }
-                            },
-                            "range": [
-                                61,
-                                70
-                            ],
-                            "raw": "^toString"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^toString]: See ",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -294,33 +111,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        60,
-                        71
-                    ],
-                    "raw": "[^toString]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": See ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 11
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 17
                         }
                     },
                     "range": [
-                        71,
+                        60,
                         77
                     ],
-                    "raw": ": See "
+                    "raw": "[^toString]: See "
                 },
                 {
                     "type": "Code",
@@ -343,7 +141,7 @@
                 },
                 {
                     "type": "Str",
-                    "value": ".\n",
+                    "value": ".\n[^constructor]: See ",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -351,74 +149,14 @@
                         },
                         "end": {
                             "line": 4,
-                            "column": 0
-                        }
-                    },
-                    "range": [
-                        106,
-                        108
-                    ],
-                    "raw": ".\n"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^constructor",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^constructor",
-                            "loc": {
-                                "start": {
-                                    "line": 4,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 4,
-                                    "column": 13
-                                }
-                            },
-                            "range": [
-                                109,
-                                121
-                            ],
-                            "raw": "^constructor"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 4,
-                            "column": 14
-                        }
-                    },
-                    "range": [
-                        108,
-                        122
-                    ],
-                    "raw": "[^constructor]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": See ",
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 14
-                        },
-                        "end": {
-                            "line": 4,
                             "column": 20
                         }
                     },
                     "range": [
-                        122,
+                        106,
                         128
                     ],
-                    "raw": ": See "
+                    "raw": ".\n[^constructor]: See "
                 },
                 {
                     "type": "Code",
@@ -441,7 +179,7 @@
                 },
                 {
                     "type": "Str",
-                    "value": ".\n",
+                    "value": ".\n[^",
                     "loc": {
                         "start": {
                             "line": 4,
@@ -449,102 +187,61 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 0
+                            "column": 2
                         }
                     },
                     "range": [
                         156,
-                        158
+                        160
                     ],
-                    "raw": ".\n"
+                    "raw": ".\n[^"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^__proto__",
-                    "referenceType": "shortcut",
+                    "type": "Strong",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^",
+                            "value": "proto",
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 1
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 2
+                                    "column": 9
                                 }
                             },
                             "range": [
-                                159,
-                                160
+                                162,
+                                167
                             ],
-                            "raw": "^"
-                        },
-                        {
-                            "type": "Strong",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "proto",
-                                    "loc": {
-                                        "start": {
-                                            "line": 5,
-                                            "column": 4
-                                        },
-                                        "end": {
-                                            "line": 5,
-                                            "column": 9
-                                        }
-                                    },
-                                    "range": [
-                                        162,
-                                        167
-                                    ],
-                                    "raw": "proto"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 5,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 5,
-                                    "column": 11
-                                }
-                            },
-                            "range": [
-                                160,
-                                169
-                            ],
-                            "raw": "__proto__"
+                            "raw": "proto"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 0
+                            "column": 2
                         },
                         "end": {
                             "line": 5,
-                            "column": 12
+                            "column": 11
                         }
                     },
                     "range": [
-                        158,
-                        170
+                        160,
+                        169
                     ],
-                    "raw": "[^__proto__]"
+                    "raw": "__proto__"
                 },
                 {
                     "type": "Str",
-                    "value": ": See ",
+                    "value": "]: See ",
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 12
+                            "column": 11
                         },
                         "end": {
                             "line": 5,
@@ -552,10 +249,10 @@
                         }
                     },
                     "range": [
-                        170,
+                        169,
                         176
                     ],
-                    "raw": ": See "
+                    "raw": "]: See "
                 },
                 {
                     "type": "Code",

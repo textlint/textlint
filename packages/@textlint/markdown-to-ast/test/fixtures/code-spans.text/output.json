@@ -256,7 +256,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Additionally, empty code spans are also supported: ",
+                    "value": "Additionally, empty code spans are also supported: ``.",
                     "loc": {
                         "start": {
                             "line": 7,
@@ -264,52 +264,14 @@
                         },
                         "end": {
                             "line": 7,
-                            "column": 51
-                        }
-                    },
-                    "range": [
-                        167,
-                        218
-                    ],
-                    "raw": "Additionally, empty code spans are also supported: "
-                },
-                {
-                    "type": "Code",
-                    "value": "",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 51
-                        },
-                        "end": {
-                            "line": 7,
-                            "column": 53
-                        }
-                    },
-                    "range": [
-                        218,
-                        220
-                    ],
-                    "raw": "``"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 53
-                        },
-                        "end": {
-                            "line": 7,
                             "column": 54
                         }
                     },
                     "range": [
-                        220,
+                        167,
                         221
                     ],
-                    "raw": "."
+                    "raw": "Additionally, empty code spans are also supported: ``."
                 }
             ],
             "loc": {
@@ -352,7 +314,7 @@
                 },
                 {
                     "type": "Code",
-                    "value": "foo ` bar",
+                    "value": "foo ` bar ",
                     "loc": {
                         "start": {
                             "line": 9,

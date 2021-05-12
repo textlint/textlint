@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "The NATO phonetic alphabet",
+                    "value": "The NATO phonetic alphabet[^wi-ki].",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,112 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 26
-                        }
-                    },
-                    "range": [
-                        0,
-                        26
-                    ],
-                    "raw": "The NATO phonetic alphabet"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^wi\\-ki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wi",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 27
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 30
-                                }
-                            },
-                            "range": [
-                                27,
-                                30
-                            ],
-                            "raw": "^wi"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "-",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 30
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 32
-                                }
-                            },
-                            "range": [
-                                30,
-                                32
-                            ],
-                            "raw": "\\-"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "ki",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 32
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 34
-                                }
-                            },
-                            "range": [
-                                32,
-                                34
-                            ],
-                            "raw": "ki"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 26
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 35
-                        }
-                    },
-                    "range": [
-                        26,
-                        35
-                    ],
-                    "raw": "[^wi\\-ki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 35
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 36
                         }
                     },
                     "range": [
-                        35,
+                        0,
                         36
                     ],
-                    "raw": "."
+                    "raw": "The NATO phonetic alphabet[^wi\\-ki]."
                 }
             ],
             "loc": {
@@ -142,68 +44,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wi\\-ki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wi",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                39,
-                                42
-                            ],
-                            "raw": "^wi"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "-",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 4
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                42,
-                                44
-                            ],
-                            "raw": "\\-"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "ki",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 6
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 8
-                                }
-                            },
-                            "range": [
-                                44,
-                                46
-                            ],
-                            "raw": "ki"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^wi-ki]: Read more about it somewhere else.",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -211,33 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 9
-                        }
-                    },
-                    "range": [
-                        38,
-                        47
-                    ],
-                    "raw": "[^wi\\-ki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Read more about it somewhere else.",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 9
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 45
                         }
                     },
                     "range": [
-                        47,
+                        38,
                         83
                     ],
-                    "raw": ": Read more about it somewhere else."
+                    "raw": "[^wi\\-ki]: Read more about it somewhere else."
                 }
             ],
             "loc": {

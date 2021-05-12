@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This is an example of an inline footnote.",
+                    "value": "This is an example of an inline footnote.[^This is the ",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,102 +14,61 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 41
+                            "column": 55
                         }
                     },
                     "range": [
                         0,
-                        41
+                        55
                     ],
-                    "raw": "This is an example of an inline footnote."
+                    "raw": "This is an example of an inline footnote.[^This is the "
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^this is the _actual_ footnote.",
-                    "referenceType": "shortcut",
+                    "type": "Emphasis",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^This is the ",
+                            "value": "actual",
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 42
+                                    "column": 56
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 55
+                                    "column": 62
                                 }
                             },
                             "range": [
-                                42,
-                                55
+                                56,
+                                62
                             ],
-                            "raw": "^This is the "
-                        },
-                        {
-                            "type": "Emphasis",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "actual",
-                                    "loc": {
-                                        "start": {
-                                            "line": 1,
-                                            "column": 56
-                                        },
-                                        "end": {
-                                            "line": 1,
-                                            "column": 62
-                                        }
-                                    },
-                                    "range": [
-                                        56,
-                                        62
-                                    ],
-                                    "raw": "actual"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 55
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 63
-                                }
-                            },
-                            "range": [
-                                55,
-                                63
-                            ],
-                            "raw": "_actual_"
-                        },
-                        {
-                            "type": "Str",
-                            "value": " footnote.",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 63
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 73
-                                }
-                            },
-                            "range": [
-                                63,
-                                73
-                            ],
-                            "raw": " footnote."
+                            "raw": "actual"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 1,
-                            "column": 41
+                            "column": 55
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 63
+                        }
+                    },
+                    "range": [
+                        55,
+                        63
+                    ],
+                    "raw": "_actual_"
+                },
+                {
+                    "type": "Str",
+                    "value": " footnote.]",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 63
                         },
                         "end": {
                             "line": 1,
@@ -117,10 +76,10 @@
                         }
                     },
                     "range": [
-                        41,
+                        63,
                         74
                     ],
-                    "raw": "[^This is the _actual_ footnote.]"
+                    "raw": " footnote.]"
                 }
             ],
             "loc": {

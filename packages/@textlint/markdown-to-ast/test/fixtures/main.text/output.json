@@ -4,6 +4,7 @@
         {
             "type": "Definition",
             "identifier": "test",
+            "label": "test",
             "title": "Google",
             "url": "http://google.com/",
             "loc": {
@@ -86,8 +87,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "test",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -109,6 +108,9 @@
                             "raw": "inconsistent"
                         }
                     ],
+                    "identifier": "test",
+                    "label": "test",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 7,
@@ -223,11 +225,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -276,19 +278,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 15,
-                            "column": 0
+                            "line": 14,
+                            "column": 13
                         }
                     },
                     "range": [
                         415,
-                        429
+                        428
                     ],
-                    "raw": "* List Item 1\n"
+                    "raw": "* List Item 1"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -334,11 +336,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -399,7 +401,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -407,7 +409,7 @@
                                             "children": [
                                                 {
                                                     "type": "Str",
-                                                    "value": "New List Item 2\nAnother item\n    Code goes here.\n    Lots of it...",
+                                                    "value": "New List Item 2\nAnother item\nCode goes here.\nLots of it...",
                                                     "loc": {
                                                         "start": {
                                                             "line": 19,
@@ -460,7 +462,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -543,19 +545,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 25,
-                            "column": 0
+                            "line": 24,
+                            "column": 17
                         }
                     },
                     "range": [
                         430,
-                        614
+                        613
                     ],
-                    "raw": "* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n"
+                    "raw": "* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -563,22 +565,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "List Item 3\nThe final item.",
+                                    "value": "List Item 3",
                                     "loc": {
                                         "start": {
                                             "line": 26,
                                             "column": 2
                                         },
                                         "end": {
-                                            "line": 27,
-                                            "column": 15
+                                            "line": 26,
+                                            "column": 13
                                         }
                                     },
                                     "range": [
                                         617,
-                                        644
+                                        628
                                     ],
-                                    "raw": "List Item 3\nThe final item."
+                                    "raw": "List Item 3"
                                 }
                             ],
                             "loc": {
@@ -587,15 +589,15 @@
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 27,
-                                    "column": 15
+                                    "line": 26,
+                                    "column": 13
                                 }
                             },
                             "range": [
                                 617,
-                                644
+                                628
                             ],
-                            "raw": "List Item 3\nThe final item."
+                            "raw": "List Item 3"
                         }
                     ],
                     "loc": {
@@ -604,76 +606,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 28,
-                            "column": 0
+                            "line": 26,
+                            "column": 13
                         }
                     },
                     "range": [
                         615,
-                        645
+                        628
                     ],
-                    "raw": "* List Item 3\nThe final item.\n"
-                },
-                {
-                    "type": "ListItem",
-                    "loose": false,
-                    "checked": null,
-                    "children": [
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "List Item 4\nThe real final item.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 29,
-                                            "column": 2
-                                        },
-                                        "end": {
-                                            "line": 30,
-                                            "column": 20
-                                        }
-                                    },
-                                    "range": [
-                                        648,
-                                        680
-                                    ],
-                                    "raw": "List Item 4\nThe real final item."
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 29,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 30,
-                                    "column": 20
-                                }
-                            },
-                            "range": [
-                                648,
-                                680
-                            ],
-                            "raw": "List Item 4\nThe real final item."
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 29,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 30,
-                            "column": 20
-                        }
-                    },
-                    "range": [
-                        646,
-                        680
-                    ],
-                    "raw": "* List Item 4\nThe real final item."
+                    "raw": "* List Item 3"
                 }
             ],
             "loc": {
@@ -682,15 +623,177 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 26,
+                    "column": 13
+                }
+            },
+            "range": [
+                415,
+                628
+            ],
+            "raw": "* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "The final item.",
+                    "loc": {
+                        "start": {
+                            "line": 27,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 27,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        629,
+                        644
+                    ],
+                    "raw": "The final item."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 15
+                }
+            },
+            "range": [
+                629,
+                644
+            ],
+            "raw": "The final item."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "spread": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "List Item 4",
+                                    "loc": {
+                                        "start": {
+                                            "line": 29,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 29,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        648,
+                                        659
+                                    ],
+                                    "raw": "List Item 4"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 29,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 29,
+                                    "column": 13
+                                }
+                            },
+                            "range": [
+                                648,
+                                659
+                            ],
+                            "raw": "List Item 4"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 29,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 29,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        646,
+                        659
+                    ],
+                    "raw": "* List Item 4"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 29,
+                    "column": 0
+                },
+                "end": {
+                    "line": 29,
+                    "column": 13
+                }
+            },
+            "range": [
+                646,
+                659
+            ],
+            "raw": "* List Item 4"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "The real final item.",
+                    "loc": {
+                        "start": {
+                            "line": 30,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 30,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        660,
+                        680
+                    ],
+                    "raw": "The real final item."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 30,
+                    "column": 0
+                },
+                "end": {
                     "line": 30,
                     "column": 20
                 }
             },
             "range": [
-                415,
+                660,
                 680
             ],
-            "raw": "* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3\nThe final item.\n\n* List Item 4\nThe real final item."
+            "raw": "The real final item."
         },
         {
             "type": "Paragraph",
@@ -738,11 +841,11 @@
                     "type": "List",
                     "ordered": false,
                     "start": null,
-                    "loose": false,
+                    "spread": false,
                     "children": [
                         {
                             "type": "ListItem",
-                            "loose": false,
+                            "spread": false,
                             "checked": null,
                             "children": [
                                 {
@@ -803,7 +906,7 @@
                         },
                         {
                             "type": "ListItem",
-                            "loose": false,
+                            "spread": false,
                             "checked": null,
                             "children": [
                                 {
@@ -849,11 +952,11 @@
                                     "type": "List",
                                     "ordered": false,
                                     "start": null,
-                                    "loose": false,
+                                    "spread": false,
                                     "children": [
                                         {
                                             "type": "ListItem",
-                                            "loose": false,
+                                            "spread": false,
                                             "checked": null,
                                             "children": [
                                                 {
@@ -914,7 +1017,7 @@
                                         },
                                         {
                                             "type": "ListItem",
-                                            "loose": false,
+                                            "spread": false,
                                             "checked": null,
                                             "children": [
                                                 {
@@ -922,22 +1025,22 @@
                                                     "children": [
                                                         {
                                                             "type": "Str",
-                                                            "value": "New bq Item 2\nText here",
+                                                            "value": "New bq Item 2",
                                                             "loc": {
                                                                 "start": {
                                                                     "line": 37,
                                                                     "column": 6
                                                                 },
                                                                 "end": {
-                                                                    "line": 38,
-                                                                    "column": 13
+                                                                    "line": 37,
+                                                                    "column": 19
                                                                 }
                                                             },
                                                             "range": [
                                                                 748,
-                                                                775
+                                                                761
                                                             ],
-                                                            "raw": "New bq Item 2\n>   Text here"
+                                                            "raw": "New bq Item 2"
                                                         }
                                                     ],
                                                     "loc": {
@@ -946,15 +1049,15 @@
                                                             "column": 6
                                                         },
                                                         "end": {
-                                                            "line": 38,
-                                                            "column": 13
+                                                            "line": 37,
+                                                            "column": 19
                                                         }
                                                     },
                                                     "range": [
                                                         748,
-                                                        775
+                                                        761
                                                     ],
-                                                    "raw": "New bq Item 2\n>   Text here"
+                                                    "raw": "New bq Item 2"
                                                 }
                                             ],
                                             "loc": {
@@ -963,15 +1066,15 @@
                                                     "column": 4
                                                 },
                                                 "end": {
-                                                    "line": 38,
-                                                    "column": 13
+                                                    "line": 37,
+                                                    "column": 19
                                                 }
                                             },
                                             "range": [
                                                 746,
-                                                775
+                                                761
                                             ],
-                                            "raw": "* New bq Item 2\n>   Text here"
+                                            "raw": "* New bq Item 2"
                                         }
                                     ],
                                     "loc": {
@@ -980,15 +1083,54 @@
                                             "column": 4
                                         },
                                         "end": {
+                                            "line": 37,
+                                            "column": 19
+                                        }
+                                    },
+                                    "range": [
+                                        726,
+                                        761
+                                    ],
+                                    "raw": "* New bq Item 1\n>   * New bq Item 2"
+                                },
+                                {
+                                    "type": "Paragraph",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "Text here",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 38,
+                                                    "column": 4
+                                                },
+                                                "end": {
+                                                    "line": 38,
+                                                    "column": 13
+                                                }
+                                            },
+                                            "range": [
+                                                766,
+                                                775
+                                            ],
+                                            "raw": "Text here"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 38,
+                                            "column": 4
+                                        },
+                                        "end": {
                                             "line": 38,
                                             "column": 13
                                         }
                                     },
                                     "range": [
-                                        726,
+                                        766,
                                         775
                                     ],
-                                    "raw": "* New bq Item 1\n>   * New bq Item 2\n>   Text here"
+                                    "raw": "Text here"
                                 }
                             ],
                             "loc": {
@@ -1342,7 +1484,7 @@
                     "type": "Image",
                     "title": null,
                     "url": "src",
-                    "alt": null,
+                    "alt": "",
                     "loc": {
                         "start": {
                             "line": 53,
@@ -1398,6 +1540,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Code goes here.\nLots of it...",
             "loc": {
                 "start": {

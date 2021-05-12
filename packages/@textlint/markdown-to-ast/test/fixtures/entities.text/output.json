@@ -6,505 +6,11 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Lots of entities are supported in mdast: ",
+                    "value": "Lots of entities are supported in mdast:  , &, ©, Æ,\nĎ, ¾, ℋ, ⅆ,\n∲, &c.  Even some entities with a missing\nterminal semicolon are parsed correctly (as per the HTML5 spec):\n&yuml, &aacute, &copy, and &amp.",
                     "loc": {
                         "start": {
                             "line": 1,
                             "column": 0
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 41
-                        }
-                    },
-                    "range": [
-                        0,
-                        41
-                    ],
-                    "raw": "Lots of entities are supported in mdast: "
-                },
-                {
-                    "type": "Str",
-                    "value": " ",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 41
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 47
-                        }
-                    },
-                    "range": [
-                        41,
-                        47
-                    ],
-                    "raw": "&nbsp;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 47
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 49
-                        }
-                    },
-                    "range": [
-                        47,
-                        49
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "&",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 49
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 54
-                        }
-                    },
-                    "range": [
-                        49,
-                        54
-                    ],
-                    "raw": "&amp;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 54
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 56
-                        }
-                    },
-                    "range": [
-                        54,
-                        56
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "©",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 56
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 62
-                        }
-                    },
-                    "range": [
-                        56,
-                        62
-                    ],
-                    "raw": "&copy;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 62
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 64
-                        }
-                    },
-                    "range": [
-                        62,
-                        64
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "Æ",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 64
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 71
-                        }
-                    },
-                    "range": [
-                        64,
-                        71
-                    ],
-                    "raw": "&AElig;"
-                },
-                {
-                    "type": "Str",
-                    "value": ",\n",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 71
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 0
-                        }
-                    },
-                    "range": [
-                        71,
-                        73
-                    ],
-                    "raw": ",\n"
-                },
-                {
-                    "type": "Str",
-                    "value": "Ď",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 8
-                        }
-                    },
-                    "range": [
-                        73,
-                        81
-                    ],
-                    "raw": "&Dcaron;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 8
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 10
-                        }
-                    },
-                    "range": [
-                        81,
-                        83
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "¾",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 10
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 18
-                        }
-                    },
-                    "range": [
-                        83,
-                        91
-                    ],
-                    "raw": "&frac34;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 18
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 20
-                        }
-                    },
-                    "range": [
-                        91,
-                        93
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "ℋ",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 20
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 34
-                        }
-                    },
-                    "range": [
-                        93,
-                        107
-                    ],
-                    "raw": "&HilbertSpace;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 34
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 36
-                        }
-                    },
-                    "range": [
-                        107,
-                        109
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "ⅆ",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 36
-                        },
-                        "end": {
-                            "line": 2,
-                            "column": 51
-                        }
-                    },
-                    "range": [
-                        109,
-                        124
-                    ],
-                    "raw": "&DifferentialD;"
-                },
-                {
-                    "type": "Str",
-                    "value": ",\n",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 51
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 0
-                        }
-                    },
-                    "range": [
-                        124,
-                        126
-                    ],
-                    "raw": ",\n"
-                },
-                {
-                    "type": "Str",
-                    "value": "∲",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 26
-                        }
-                    },
-                    "range": [
-                        126,
-                        152
-                    ],
-                    "raw": "&ClockwiseContourIntegral;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", &c.  Even some entities with a missing\nterminal semicolon are parsed correctly (as per the HTML5 spec):\n",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 26
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 0
-                        }
-                    },
-                    "range": [
-                        152,
-                        258
-                    ],
-                    "raw": ", &c.  Even some entities with a missing\nterminal semicolon are parsed correctly (as per the HTML5 spec):\n"
-                },
-                {
-                    "type": "Str",
-                    "value": "ÿ",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        258,
-                        263
-                    ],
-                    "raw": "&yuml"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        263,
-                        265
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "á",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 14
-                        }
-                    },
-                    "range": [
-                        265,
-                        272
-                    ],
-                    "raw": "&aacute"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 14
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 16
-                        }
-                    },
-                    "range": [
-                        272,
-                        274
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "Str",
-                    "value": "©",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 16
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 21
-                        }
-                    },
-                    "range": [
-                        274,
-                        279
-                    ],
-                    "raw": "&copy"
-                },
-                {
-                    "type": "Str",
-                    "value": ", and ",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 21
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 27
-                        }
-                    },
-                    "range": [
-                        279,
-                        285
-                    ],
-                    "raw": ", and "
-                },
-                {
-                    "type": "Str",
-                    "value": "&",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 27
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 31
-                        }
-                    },
-                    "range": [
-                        285,
-                        289
-                    ],
-                    "raw": "&amp"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 31
                         },
                         "end": {
                             "line": 5,
@@ -512,10 +18,10 @@
                         }
                     },
                     "range": [
-                        289,
+                        0,
                         290
                     ],
-                    "raw": "."
+                    "raw": "Lots of entities are supported in mdast: &nbsp;, &amp;, &copy;, &AElig;,\n&Dcaron;, &frac34;, &HilbertSpace;, &DifferentialD;,\n&ClockwiseContourIntegral;, &c.  Even some entities with a missing\nterminal semicolon are parsed correctly (as per the HTML5 spec):\n&yuml, &aacute, &copy, and &amp."
                 }
             ],
             "loc": {
@@ -615,6 +121,7 @@
         {
             "type": "CodeBlock",
             "lang": "some—language",
+            "meta": null,
             "value": "alert('Hello');",
             "loc": {
                 "start": {
@@ -661,7 +168,7 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "l",
+                            "value": "línks",
                             "loc": {
                                 "start": {
                                     "line": 15,
@@ -669,52 +176,14 @@
                                 },
                                 "end": {
                                     "line": 15,
-                                    "column": 8
-                                }
-                            },
-                            "range": [
-                                460,
-                                461
-                            ],
-                            "raw": "l"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "í",
-                            "loc": {
-                                "start": {
-                                    "line": 15,
-                                    "column": 8
-                                },
-                                "end": {
-                                    "line": 15,
-                                    "column": 16
-                                }
-                            },
-                            "range": [
-                                461,
-                                469
-                            ],
-                            "raw": "&iacute;"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "nks",
-                            "loc": {
-                                "start": {
-                                    "line": 15,
-                                    "column": 16
-                                },
-                                "end": {
-                                    "line": 15,
                                     "column": 19
                                 }
                             },
                             "range": [
-                                469,
+                                460,
                                 472
                             ],
-                            "raw": "nks"
+                            "raw": "l&iacute;nks"
                         }
                     ],
                     "loc": {
@@ -774,7 +243,7 @@
                 },
                 {
                     "type": "Image",
-                    "title": "© Someone",
+                    "title": "&copy Someone",
                     "url": "~/an–image.png",
                     "alt": "ímages",
                     "loc": {
@@ -890,6 +359,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "C&Ouml;DE block.",
             "loc": {
                 "start": {

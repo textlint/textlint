@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -50,6 +50,45 @@
                                 23
                             ],
                             "raw": "This is a list item"
+                        },
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "This is code",
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        30,
+                                        42
+                                    ],
+                                    "raw": "This is code"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                30,
+                                42
+                            ],
+                            "raw": "This is code"
                         }
                     ],
                     "loc": {
@@ -58,40 +97,20 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 1,
-                            "column": 23
+                            "line": 4,
+                            "column": 16
                         }
                     },
                     "range": [
                         0,
-                        23
+                        42
                     ],
-                    "raw": "*   This is a list item"
+                    "raw": "*   This is a list item\n\n\n    This is code"
                 }
             ],
             "loc": {
                 "start": {
                     "line": 1,
-                    "column": 0
-                },
-                "end": {
-                    "line": 1,
-                    "column": 23
-                }
-            },
-            "range": [
-                0,
-                23
-            ],
-            "raw": "*   This is a list item"
-        },
-        {
-            "type": "CodeBlock",
-            "lang": null,
-            "value": "This is code",
-            "loc": {
-                "start": {
-                    "line": 4,
                     "column": 0
                 },
                 "end": {
@@ -100,10 +119,10 @@
                 }
             },
             "range": [
-                26,
+                0,
                 42
             ],
-            "raw": "    This is code"
+            "raw": "*   This is a list item\n\n\n    This is code"
         }
     ],
     "loc": {

@@ -46,6 +46,7 @@
                 {
                     "type": "CodeBlock",
                     "lang": null,
+                    "meta": null,
                     "value": "sub status {\n    print \"working\";\n}",
                     "loc": {
                         "start": {
@@ -105,6 +106,7 @@
                 {
                     "type": "CodeBlock",
                     "lang": null,
+                    "meta": null,
                     "value": "sub status {\n    return \"working\";\n}",
                     "loc": {
                         "start": {

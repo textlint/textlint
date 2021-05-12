@@ -204,7 +204,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "So should this: ",
+                    "value": "So should this: mailto:",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -212,14 +212,14 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 16
+                            "column": 23
                         }
                     },
                     "range": [
                         143,
-                        159
+                        166
                     ],
-                    "raw": "So should this: "
+                    "raw": "So should this: mailto:"
                 },
                 {
                     "type": "Link",
@@ -232,24 +232,24 @@
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 16
+                                    "column": 23
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 27
+                                    "column": 34
                                 }
                             },
                             "range": [
-                                159,
-                                170
+                                166,
+                                177
                             ],
-                            "raw": "mailto:foo@"
+                            "raw": "foo@bar.com"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 16
+                            "column": 23
                         },
                         "end": {
                             "line": 5,
@@ -257,10 +257,10 @@
                         }
                     },
                     "range": [
-                        159,
+                        166,
                         177
                     ],
-                    "raw": "mailto:foo@bar.com"
+                    "raw": "foo@bar.com"
                 },
                 {
                     "type": "Str",

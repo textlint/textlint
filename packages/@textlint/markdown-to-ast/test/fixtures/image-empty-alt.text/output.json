@@ -8,7 +8,7 @@
                     "type": "Image",
                     "title": null,
                     "url": "/xyz.png",
-                    "alt": null,
+                    "alt": "",
                     "loc": {
                         "start": {
                             "line": 1,

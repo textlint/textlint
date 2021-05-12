@@ -81,14 +81,181 @@
             "raw": "Tight:"
         },
         {
-            "type": "Paragraph",
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "spread": false,
             "children": [
                 {
-                    "type": "Str",
-                    "value": "1)\tFirst\n2)\tSecond\n3)\tThird",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "First",
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        23,
+                                        28
+                                    ],
+                                    "raw": "First"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                23,
+                                28
+                            ],
+                            "raw": "First"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        20,
+                        28
+                    ],
+                    "raw": "1)\tFirst"
+                },
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Second",
+                                    "loc": {
+                                        "start": {
+                                            "line": 6,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 6,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        32,
+                                        38
+                                    ],
+                                    "raw": "Second"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 6,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                32,
+                                38
+                            ],
+                            "raw": "Second"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 9
+                        }
+                    },
+                    "range": [
+                        29,
+                        38
+                    ],
+                    "raw": "2)\tSecond"
+                },
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Third",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        42,
+                                        47
+                                    ],
+                                    "raw": "Third"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                42,
+                                47
+                            ],
+                            "raw": "Third"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 7,
                             "column": 0
                         },
                         "end": {
@@ -97,10 +264,10 @@
                         }
                     },
                     "range": [
-                        20,
+                        39,
                         47
                     ],
-                    "raw": "1)\tFirst\n2)\tSecond\n3)\tThird"
+                    "raw": "3)\tThird"
                 }
             ],
             "loc": {
@@ -159,14 +326,181 @@
             "raw": "and:"
         },
         {
-            "type": "Paragraph",
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "spread": false,
             "children": [
                 {
-                    "type": "Str",
-                    "value": "1) One\n2) Two\n3) Three",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "One",
+                                    "loc": {
+                                        "start": {
+                                            "line": 11,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 11,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        58,
+                                        61
+                                    ],
+                                    "raw": "One"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 11,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 11,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                58,
+                                61
+                            ],
+                            "raw": "One"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 11,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        55,
+                        61
+                    ],
+                    "raw": "1) One"
+                },
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Two",
+                                    "loc": {
+                                        "start": {
+                                            "line": 12,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 12,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        65,
+                                        68
+                                    ],
+                                    "raw": "Two"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 12,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 12,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                65,
+                                68
+                            ],
+                            "raw": "Two"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 12,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 12,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        62,
+                        68
+                    ],
+                    "raw": "2) Two"
+                },
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Three",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        72,
+                                        77
+                                    ],
+                                    "raw": "Three"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                72,
+                                77
+                            ],
+                            "raw": "Three"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 13,
                             "column": 0
                         },
                         "end": {
@@ -175,10 +509,10 @@
                         }
                     },
                     "range": [
-                        55,
+                        69,
                         77
                     ],
-                    "raw": "1) One\n2) Two\n3) Three"
+                    "raw": "3) Three"
                 }
             ],
             "loc": {
@@ -237,11 +571,56 @@
             "raw": "Loose using tabs:"
         },
         {
-            "type": "Paragraph",
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "spread": true,
             "children": [
                 {
-                    "type": "Str",
-                    "value": "1)\tFirst",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "First",
+                                    "loc": {
+                                        "start": {
+                                            "line": 17,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 17,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        101,
+                                        106
+                                    ],
+                                    "raw": "First"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 17,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 17,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                101,
+                                106
+                            ],
+                            "raw": "First"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 17,
@@ -257,30 +636,52 @@
                         106
                     ],
                     "raw": "1)\tFirst"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 17,
-                    "column": 0
                 },
-                "end": {
-                    "line": 17,
-                    "column": 8
-                }
-            },
-            "range": [
-                98,
-                106
-            ],
-            "raw": "1)\tFirst"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
                 {
-                    "type": "Str",
-                    "value": "2)\tSecond",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Second",
+                                    "loc": {
+                                        "start": {
+                                            "line": 19,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 19,
+                                            "column": 9
+                                        }
+                                    },
+                                    "range": [
+                                        111,
+                                        117
+                                    ],
+                                    "raw": "Second"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 19,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 19,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                111,
+                                117
+                            ],
+                            "raw": "Second"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 19,
@@ -296,30 +697,52 @@
                         117
                     ],
                     "raw": "2)\tSecond"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 19,
-                    "column": 0
                 },
-                "end": {
-                    "line": 19,
-                    "column": 9
-                }
-            },
-            "range": [
-                108,
-                117
-            ],
-            "raw": "2)\tSecond"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
                 {
-                    "type": "Str",
-                    "value": "3)\tThird",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Third",
+                                    "loc": {
+                                        "start": {
+                                            "line": 21,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 21,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        122,
+                                        127
+                                    ],
+                                    "raw": "Third"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 21,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 21,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                122,
+                                127
+                            ],
+                            "raw": "Third"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 21,
@@ -339,7 +762,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 21,
+                    "line": 17,
                     "column": 0
                 },
                 "end": {
@@ -348,10 +771,10 @@
                 }
             },
             "range": [
-                119,
+                98,
                 127
             ],
-            "raw": "3)\tThird"
+            "raw": "1)\tFirst\n\n2)\tSecond\n\n3)\tThird"
         },
         {
             "type": "Paragraph",
@@ -393,11 +816,56 @@
             "raw": "and using spaces:"
         },
         {
-            "type": "Paragraph",
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "spread": true,
             "children": [
                 {
-                    "type": "Str",
-                    "value": "1) One",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "One",
+                                    "loc": {
+                                        "start": {
+                                            "line": 25,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 25,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        151,
+                                        154
+                                    ],
+                                    "raw": "One"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 25,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 25,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                151,
+                                154
+                            ],
+                            "raw": "One"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 25,
@@ -413,30 +881,52 @@
                         154
                     ],
                     "raw": "1) One"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 25,
-                    "column": 0
                 },
-                "end": {
-                    "line": 25,
-                    "column": 6
-                }
-            },
-            "range": [
-                148,
-                154
-            ],
-            "raw": "1) One"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
                 {
-                    "type": "Str",
-                    "value": "2) Two",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Two",
+                                    "loc": {
+                                        "start": {
+                                            "line": 27,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 27,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        159,
+                                        162
+                                    ],
+                                    "raw": "Two"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 27,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 27,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                159,
+                                162
+                            ],
+                            "raw": "Two"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 27,
@@ -452,30 +942,52 @@
                         162
                     ],
                     "raw": "2) Two"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 27,
-                    "column": 0
                 },
-                "end": {
-                    "line": 27,
-                    "column": 6
-                }
-            },
-            "range": [
-                156,
-                162
-            ],
-            "raw": "2) Two"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
                 {
-                    "type": "Str",
-                    "value": "3) Three",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Three",
+                                    "loc": {
+                                        "start": {
+                                            "line": 29,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 29,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        167,
+                                        172
+                                    ],
+                                    "raw": "Three"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 29,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 29,
+                                    "column": 8
+                                }
+                            },
+                            "range": [
+                                167,
+                                172
+                            ],
+                            "raw": "Three"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 29,
@@ -495,7 +1007,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 29,
+                    "line": 25,
                     "column": 0
                 },
                 "end": {
@@ -504,10 +1016,10 @@
                 }
             },
             "range": [
-                164,
+                148,
                 172
             ],
-            "raw": "3) Three"
+            "raw": "1) One\n\n2) Two\n\n3) Three"
         },
         {
             "type": "Paragraph",
@@ -549,70 +1061,156 @@
             "raw": "Multiple paragraphs:"
         },
         {
-            "type": "Paragraph",
+            "type": "List",
+            "ordered": true,
+            "start": 1,
+            "spread": true,
             "children": [
                 {
-                    "type": "Str",
-                    "value": "1)\tItem 1, graf one.",
+                    "type": "ListItem",
+                    "spread": true,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Item 1, graf one.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 33,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 33,
+                                            "column": 20
+                                        }
+                                    },
+                                    "range": [
+                                        199,
+                                        216
+                                    ],
+                                    "raw": "Item 1, graf one."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 33,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 33,
+                                    "column": 20
+                                }
+                            },
+                            "range": [
+                                199,
+                                216
+                            ],
+                            "raw": "Item 1, graf one."
+                        },
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Item 2. graf two. The quick brown fox jumped over the lazy dog's\nback.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 35,
+                                            "column": 1
+                                        },
+                                        "end": {
+                                            "line": 36,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        219,
+                                        290
+                                    ],
+                                    "raw": "Item 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 35,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 36,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                219,
+                                290
+                            ],
+                            "raw": "Item 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 33,
                             "column": 0
                         },
                         "end": {
-                            "line": 33,
-                            "column": 20
+                            "line": 36,
+                            "column": 6
                         }
                     },
                     "range": [
                         196,
-                        216
+                        290
                     ],
-                    "raw": "1)\tItem 1, graf one."
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 33,
-                    "column": 0
+                    "raw": "1)\tItem 1, graf one.\n\n\tItem 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback."
                 },
-                "end": {
-                    "line": 33,
-                    "column": 20
-                }
-            },
-            "range": [
-                196,
-                216
-            ],
-            "raw": "1)\tItem 1, graf one."
-        },
-        {
-            "type": "CodeBlock",
-            "lang": null,
-            "value": "Item 2. graf two. The quick brown fox jumped over the lazy dog's\nback.",
-            "loc": {
-                "start": {
-                    "line": 35,
-                    "column": 0
-                },
-                "end": {
-                    "line": 37,
-                    "column": 1
-                }
-            },
-            "range": [
-                218,
-                292
-            ],
-            "raw": "\tItem 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback.\n\t"
-        },
-        {
-            "type": "Paragraph",
-            "children": [
                 {
-                    "type": "Str",
-                    "value": "2)\tItem 2.",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Item 2.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 38,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 38,
+                                            "column": 10
+                                        }
+                                    },
+                                    "range": [
+                                        296,
+                                        303
+                                    ],
+                                    "raw": "Item 2."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 38,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 38,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                296,
+                                303
+                            ],
+                            "raw": "Item 2."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 38,
@@ -628,30 +1226,52 @@
                         303
                     ],
                     "raw": "2)\tItem 2."
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 38,
-                    "column": 0
                 },
-                "end": {
-                    "line": 38,
-                    "column": 10
-                }
-            },
-            "range": [
-                293,
-                303
-            ],
-            "raw": "2)\tItem 2."
-        },
-        {
-            "type": "Paragraph",
-            "children": [
                 {
-                    "type": "Str",
-                    "value": "3)\tItem 3.",
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Item 3.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 40,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 40,
+                                            "column": 10
+                                        }
+                                    },
+                                    "range": [
+                                        308,
+                                        315
+                                    ],
+                                    "raw": "Item 3."
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 40,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 40,
+                                    "column": 10
+                                }
+                            },
+                            "range": [
+                                308,
+                                315
+                            ],
+                            "raw": "Item 3."
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 40,
@@ -671,7 +1291,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 40,
+                    "line": 33,
                     "column": 0
                 },
                 "end": {
@@ -680,10 +1300,10 @@
                 }
             },
             "range": [
-                305,
+                196,
                 315
             ],
-            "raw": "3)\tItem 3."
+            "raw": "1)\tItem 1, graf one.\n\n\tItem 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback.\n\t\n2)\tItem 2.\n\n3)\tItem 3."
         }
     ],
     "loc": {

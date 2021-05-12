@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "*bar",
+                    "value": "*bar*",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,33 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        0,
-                        4
-                    ],
-                    "raw": "*bar"
-                },
-                {
-                    "type": "Str",
-                    "value": "*",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 6
                         }
                     },
                     "range": [
-                        4,
+                        0,
                         6
                     ],
-                    "raw": "\\*"
+                    "raw": "*bar\\*"
                 }
             ],
             "loc": {
@@ -64,7 +45,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "**bar",
+                    "value": "*",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -72,41 +53,42 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 5
+                            "column": 1
                         }
                     },
                     "range": [
                         8,
-                        13
+                        9
                     ],
-                    "raw": "**bar"
+                    "raw": "*"
                 },
                 {
-                    "type": "Str",
-                    "value": "*",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 7
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "bar*",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                10,
+                                15
+                            ],
+                            "raw": "bar\\*"
                         }
-                    },
-                    "range": [
-                        13,
-                        15
                     ],
-                    "raw": "\\*"
-                },
-                {
-                    "type": "Str",
-                    "value": "*",
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 7
+                            "column": 1
                         },
                         "end": {
                             "line": 3,
@@ -114,10 +96,10 @@
                         }
                     },
                     "range": [
-                        15,
+                        9,
                         16
                     ],
-                    "raw": "*"
+                    "raw": "*bar\\**"
                 }
             ],
             "loc": {
@@ -141,7 +123,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "_bar",
+                    "value": "_bar_",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -149,33 +131,14 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        18,
-                        22
-                    ],
-                    "raw": "_bar"
-                },
-                {
-                    "type": "Str",
-                    "value": "_",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 5,
                             "column": 6
                         }
                     },
                     "range": [
-                        22,
+                        18,
                         24
                     ],
-                    "raw": "\\_"
+                    "raw": "_bar\\_"
                 }
             ],
             "loc": {
@@ -199,7 +162,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "__bar",
+                    "value": "_",
                     "loc": {
                         "start": {
                             "line": 7,
@@ -207,41 +170,42 @@
                         },
                         "end": {
                             "line": 7,
-                            "column": 5
+                            "column": 1
                         }
                     },
                     "range": [
                         26,
-                        31
+                        27
                     ],
-                    "raw": "__bar"
+                    "raw": "_"
                 },
                 {
-                    "type": "Str",
-                    "value": "_",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 7,
-                            "column": 7
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "bar_",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                28,
+                                33
+                            ],
+                            "raw": "bar\\_"
                         }
-                    },
-                    "range": [
-                        31,
-                        33
                     ],
-                    "raw": "\\_"
-                },
-                {
-                    "type": "Str",
-                    "value": "_",
                     "loc": {
                         "start": {
                             "line": 7,
-                            "column": 7
+                            "column": 1
                         },
                         "end": {
                             "line": 7,
@@ -249,10 +213,10 @@
                         }
                     },
                     "range": [
-                        33,
+                        27,
                         34
                     ],
-                    "raw": "_"
+                    "raw": "_bar\\__"
                 }
             ],
             "loc": {

@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Link",
-                    "title": "Hello \\'World\\' Hello!",
+                    "title": "Hello 'World' Hello!",
                     "url": "./world.html",
                     "children": [
                         {
@@ -86,7 +86,7 @@
             "children": [
                 {
                     "type": "Link",
-                    "title": "Hello \\'World\\' Hello!",
+                    "title": "Hello 'World' Hello!",
                     "url": "./world.html",
                     "children": [
                         {
@@ -166,7 +166,7 @@
             "children": [
                 {
                     "type": "Image",
-                    "title": "Hello \\'World\\' Hello!",
+                    "title": "Hello 'World' Hello!",
                     "url": "./world.html",
                     "alt": "Hello",
                     "loc": {
@@ -226,7 +226,7 @@
             "children": [
                 {
                     "type": "Image",
-                    "title": "Hello \\'World\\' Hello!",
+                    "title": "Hello 'World' Hello!",
                     "url": "./world.html",
                     "alt": "Hello",
                     "loc": {

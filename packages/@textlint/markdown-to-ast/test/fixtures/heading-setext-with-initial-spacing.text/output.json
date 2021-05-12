@@ -28,7 +28,7 @@
             "loc": {
                 "start": {
                     "line": 1,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 2,
@@ -36,10 +36,10 @@
                 }
             },
             "range": [
-                0,
+                2,
                 21
             ],
-            "raw": "  Heading 1\n========="
+            "raw": "Heading 1\n========="
         },
         {
             "type": "Header",
@@ -68,7 +68,7 @@
             "loc": {
                 "start": {
                     "line": 4,
-                    "column": 0
+                    "column": 3
                 },
                 "end": {
                     "line": 5,
@@ -76,10 +76,10 @@
                 }
             },
             "range": [
-                23,
+                26,
                 45
             ],
-            "raw": "   Heading 2\n---------"
+            "raw": "Heading 2\n---------"
         },
         {
             "type": "Paragraph",

@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -78,22 +78,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "bar\n3) baz",
+                                    "value": "bar",
                                     "loc": {
                                         "start": {
                                             "line": 2,
                                             "column": 3
                                         },
                                         "end": {
-                                            "line": 3,
+                                            "line": 2,
                                             "column": 6
                                         }
                                     },
                                     "range": [
                                         10,
-                                        20
+                                        13
                                     ],
-                                    "raw": "bar\n3) baz"
+                                    "raw": "bar"
                                 }
                             ],
                             "loc": {
@@ -102,15 +102,15 @@
                                     "column": 3
                                 },
                                 "end": {
-                                    "line": 3,
+                                    "line": 2,
                                     "column": 6
                                 }
                             },
                             "range": [
                                 10,
-                                20
+                                13
                             ],
-                            "raw": "bar\n3) baz"
+                            "raw": "bar"
                         }
                     ],
                     "loc": {
@@ -119,15 +119,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 3,
+                            "line": 2,
                             "column": 6
                         }
                     },
                     "range": [
                         7,
-                        20
+                        13
                     ],
-                    "raw": "2. bar\n3) baz"
+                    "raw": "2. bar"
                 }
             ],
             "loc": {
@@ -136,15 +136,99 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 3,
+                    "line": 2,
                     "column": 6
                 }
             },
             "range": [
                 0,
+                13
+            ],
+            "raw": "1. foo\n2. bar"
+        },
+        {
+            "type": "List",
+            "ordered": true,
+            "start": 3,
+            "spread": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "baz",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        17,
+                                        20
+                                    ],
+                                    "raw": "baz"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                17,
+                                20
+                            ],
+                            "raw": "baz"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        14,
+                        20
+                    ],
+                    "raw": "3) baz"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 6
+                }
+            },
+            "range": [
+                14,
                 20
             ],
-            "raw": "1. foo\n2. bar\n3) baz"
+            "raw": "3) baz"
         }
     ],
     "loc": {

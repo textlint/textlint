@@ -5,30 +5,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "bar",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                1,
-                                4
-                            ],
-                            "raw": "bar"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[bar][bar",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -36,33 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        0,
-                        6
-                    ],
-                    "raw": "[bar]["
-                },
-                {
-                    "type": "Str",
-                    "value": "bar",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 9
                         }
                     },
                     "range": [
-                        6,
+                        0,
                         9
                     ],
-                    "raw": "bar"
+                    "raw": "[bar][bar"
                 }
             ],
             "loc": {
@@ -85,30 +44,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "bar",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                12,
-                                15
-                            ],
-                            "raw": "bar"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[bar][",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -146,30 +83,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "bar",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 5,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 5,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                20,
-                                23
-                            ],
-                            "raw": "bar"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[bar]",
                     "loc": {
                         "start": {
                             "line": 5,

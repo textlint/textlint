@@ -5,30 +5,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "baz",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "baz",
-                            "loc": {
-                                "start": {
-                                    "line": 2,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 2,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                2,
-                                5
-                            ],
-                            "raw": "baz"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[baz]: /url (there",
                     "loc": {
                         "start": {
                             "line": 2,
@@ -36,33 +14,14 @@
                         },
                         "end": {
                             "line": 2,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        1,
-                        6
-                    ],
-                    "raw": "[baz]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": /url (there",
-                    "loc": {
-                        "start": {
-                            "line": 2,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 2,
                             "column": 18
                         }
                     },
                     "range": [
-                        6,
+                        1,
                         19
                     ],
-                    "raw": ": /url (there"
+                    "raw": "[baz]: /url (there"
                 }
             ],
             "loc": {
@@ -85,30 +44,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "foo",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "foo",
-                            "loc": {
-                                "start": {
-                                    "line": 4,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 4,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                22,
-                                25
-                            ],
-                            "raw": "foo"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[foo]: /url \"there",
                     "loc": {
                         "start": {
                             "line": 4,
@@ -116,33 +53,14 @@
                         },
                         "end": {
                             "line": 4,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        21,
-                        26
-                    ],
-                    "raw": "[foo]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": /url \"there",
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 4,
                             "column": 18
                         }
                     },
                     "range": [
-                        26,
+                        21,
                         39
                     ],
-                    "raw": ": /url \"there"
+                    "raw": "[foo]: /url \"there"
                 }
             ],
             "loc": {
@@ -165,30 +83,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "bar",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 6,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 6,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                42,
-                                45
-                            ],
-                            "raw": "bar"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[bar]: /url 'there",
                     "loc": {
                         "start": {
                             "line": 6,
@@ -196,33 +92,14 @@
                         },
                         "end": {
                             "line": 6,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        41,
-                        46
-                    ],
-                    "raw": "[bar]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": /url 'there",
-                    "loc": {
-                        "start": {
-                            "line": 6,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 6,
                             "column": 18
                         }
                     },
                     "range": [
-                        46,
+                        41,
                         59
                     ],
-                    "raw": ": /url 'there"
+                    "raw": "[bar]: /url 'there"
                 }
             ],
             "loc": {
@@ -245,30 +122,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "baz",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "baz",
-                            "loc": {
-                                "start": {
-                                    "line": 8,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 8,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                62,
-                                65
-                            ],
-                            "raw": "baz"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[baz]: url (",
                     "loc": {
                         "start": {
                             "line": 8,
@@ -276,33 +131,14 @@
                         },
                         "end": {
                             "line": 8,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        61,
-                        66
-                    ],
-                    "raw": "[baz]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": url (",
-                    "loc": {
-                        "start": {
-                            "line": 8,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 8,
                             "column": 12
                         }
                     },
                     "range": [
-                        66,
+                        61,
                         73
                     ],
-                    "raw": ": url ("
+                    "raw": "[baz]: url ("
                 }
             ],
             "loc": {
@@ -325,30 +161,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "foo",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "foo",
-                            "loc": {
-                                "start": {
-                                    "line": 10,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 10,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                76,
-                                79
-                            ],
-                            "raw": "foo"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[foo]: url \"",
                     "loc": {
                         "start": {
                             "line": 10,
@@ -356,33 +170,14 @@
                         },
                         "end": {
                             "line": 10,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        75,
-                        80
-                    ],
-                    "raw": "[foo]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": url \"",
-                    "loc": {
-                        "start": {
-                            "line": 10,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 10,
                             "column": 12
                         }
                     },
                     "range": [
-                        80,
+                        75,
                         87
                     ],
-                    "raw": ": url \""
+                    "raw": "[foo]: url \""
                 }
             ],
             "loc": {
@@ -405,30 +200,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "bar",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 12,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 12,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                90,
-                                93
-                            ],
-                            "raw": "bar"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[bar]: /url '",
                     "loc": {
                         "start": {
                             "line": 12,
@@ -436,33 +209,14 @@
                         },
                         "end": {
                             "line": 12,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        89,
-                        94
-                    ],
-                    "raw": "[bar]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": /url '",
-                    "loc": {
-                        "start": {
-                            "line": 12,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 12,
                             "column": 13
                         }
                     },
                     "range": [
-                        94,
+                        89,
                         102
                     ],
-                    "raw": ": /url '"
+                    "raw": "[bar]: /url '"
                 }
             ],
             "loc": {
@@ -485,30 +239,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "baz",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "baz",
-                            "loc": {
-                                "start": {
-                                    "line": 14,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 14,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                105,
-                                108
-                            ],
-                            "raw": "baz"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[baz]: ",
                     "loc": {
                         "start": {
                             "line": 14,
@@ -516,33 +248,14 @@
                         },
                         "end": {
                             "line": 14,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        104,
-                        109
-                    ],
-                    "raw": "[baz]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": ",
-                    "loc": {
-                        "start": {
-                            "line": 14,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 14,
                             "column": 7
                         }
                     },
                     "range": [
-                        109,
+                        104,
                         111
                     ],
-                    "raw": ": "
+                    "raw": "[baz]: "
                 },
                 {
                     "type": "Html",
@@ -603,30 +316,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "foo",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "foo",
-                            "loc": {
-                                "start": {
-                                    "line": 16,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 16,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                120,
-                                123
-                            ],
-                            "raw": "foo"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[foo]: ",
                     "loc": {
                         "start": {
                             "line": 16,
@@ -634,33 +325,14 @@
                         },
                         "end": {
                             "line": 16,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        119,
-                        124
-                    ],
-                    "raw": "[foo]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": ",
-                    "loc": {
-                        "start": {
-                            "line": 16,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 16,
                             "column": 7
                         }
                     },
                     "range": [
-                        124,
+                        119,
                         126
                     ],
-                    "raw": ": "
+                    "raw": "[foo]: "
                 },
                 {
                     "type": "Html",
@@ -721,30 +393,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "bar",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 18,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 18,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                135,
-                                138
-                            ],
-                            "raw": "bar"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[bar]: ",
                     "loc": {
                         "start": {
                             "line": 18,
@@ -752,33 +402,14 @@
                         },
                         "end": {
                             "line": 18,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        134,
-                        139
-                    ],
-                    "raw": "[bar]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": ",
-                    "loc": {
-                        "start": {
-                            "line": 18,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 18,
                             "column": 7
                         }
                     },
                     "range": [
-                        139,
+                        134,
                         141
                     ],
-                    "raw": ": "
+                    "raw": "[bar]: "
                 },
                 {
                     "type": "Html",

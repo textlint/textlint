@@ -128,7 +128,7 @@
                     "type": "Image",
                     "title": null,
                     "url": "./hello-world.html",
-                    "alt": null,
+                    "alt": "",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -188,7 +188,7 @@
                     "type": "Image",
                     "title": null,
                     "url": "./hello-world.html",
-                    "alt": null,
+                    "alt": "",
                     "loc": {
                         "start": {
                             "line": 7,

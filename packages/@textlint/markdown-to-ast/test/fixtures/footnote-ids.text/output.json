@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This example checks that ",
+                    "value": "This example checks that [^the generated] IDs do not overwrite the user's IDs[^1].",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,134 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 25
-                        }
-                    },
-                    "range": [
-                        0,
-                        25
-                    ],
-                    "raw": "This example checks that "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^the generated",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^the generated",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 26
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 40
-                                }
-                            },
-                            "range": [
-                                26,
-                                40
-                            ],
-                            "raw": "^the generated"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 25
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 41
-                        }
-                    },
-                    "range": [
-                        25,
-                        41
-                    ],
-                    "raw": "[^the generated]"
-                },
-                {
-                    "type": "Str",
-                    "value": " IDs do not overwrite the user's IDs",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 41
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 77
-                        }
-                    },
-                    "range": [
-                        41,
-                        77
-                    ],
-                    "raw": " IDs do not overwrite the user's IDs"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^1",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^1",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 78
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 80
-                                }
-                            },
-                            "range": [
-                                78,
-                                80
-                            ],
-                            "raw": "^1"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 77
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 81
-                        }
-                    },
-                    "range": [
-                        77,
-                        81
-                    ],
-                    "raw": "[^1]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 81
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 82
                         }
                     },
                     "range": [
-                        81,
+                        0,
                         82
                     ],
-                    "raw": "."
+                    "raw": "This example checks that [^the generated] IDs do not overwrite the user's IDs[^1]."
                 }
             ],
             "loc": {
@@ -164,30 +44,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^1",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^1",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 3
-                                }
-                            },
-                            "range": [
-                                85,
-                                87
-                            ],
-                            "raw": "^1"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^1]: Old behavior would, for \"generated\", generate a footnote with an ID set to ",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -195,33 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        84,
-                        88
-                    ],
-                    "raw": "[^1]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Old behavior would, for \"generated\", generate a footnote with an ID set to ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 81
                         }
                     },
                     "range": [
-                        88,
+                        84,
                         165
                     ],
-                    "raw": ": Old behavior would, for \"generated\", generate a footnote with an ID set to "
+                    "raw": "[^1]: Old behavior would, for \"generated\", generate a footnote with an ID set to "
                 },
                 {
                     "type": "Code",

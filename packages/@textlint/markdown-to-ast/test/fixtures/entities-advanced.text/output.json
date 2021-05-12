@@ -42,7 +42,27 @@
                         53
                     ],
                     "raw": "However, &MadeUpEntities; are kept in the document."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
                 },
+                "end": {
+                    "line": 1,
+                    "column": 53
+                }
+            },
+            "range": [
+                0,
+                53
+            ],
+            "raw": "> However, &MadeUpEntities; are kept in the document."
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Paragraph",
                     "children": [
@@ -81,10 +101,31 @@
                         119
                     ],
                     "raw": "Entities even work in the language flag of fenced code blocks:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
                 },
+                "end": {
+                    "line": 3,
+                    "column": 64
+                }
+            },
+            "range": [
+                55,
+                119
+            ],
+            "raw": "> Entities even work in the language flag of fenced code blocks:"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "CodeBlock",
-                    "lang": "some©language",
+                    "lang": "some&copylanguage",
+                    "meta": null,
                     "value": "alert('Hello');",
                     "loc": {
                         "start": {
@@ -101,7 +142,27 @@
                         167
                     ],
                     "raw": "```some&copylanguage\n> alert('Hello');\n> ```"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
                 },
+                "end": {
+                    "line": 7,
+                    "column": 5
+                }
+            },
+            "range": [
+                121,
+                167
+            ],
+            "raw": "> ```some&copylanguage\n> alert('Hello');\n> ```"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Paragraph",
                     "children": [
@@ -167,7 +228,7 @@
                         },
                         {
                             "type": "Str",
-                            "value": "\nxample",
+                            "value": "\nxample&copyxample.com>",
                             "loc": {
                                 "start": {
                                     "line": 9,
@@ -175,52 +236,14 @@
                                 },
                                 "end": {
                                     "line": 10,
-                                    "column": 8
-                                }
-                            },
-                            "range": [
-                                201,
-                                210
-                            ],
-                            "raw": "\n> xample"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "©",
-                            "loc": {
-                                "start": {
-                                    "line": 10,
-                                    "column": 8
-                                },
-                                "end": {
-                                    "line": 10,
-                                    "column": 13
-                                }
-                            },
-                            "range": [
-                                210,
-                                215
-                            ],
-                            "raw": "&copy"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "xample.com>",
-                            "loc": {
-                                "start": {
-                                    "line": 10,
-                                    "column": 13
-                                },
-                                "end": {
-                                    "line": 10,
                                     "column": 24
                                 }
                             },
                             "range": [
-                                215,
+                                201,
                                 226
                             ],
-                            "raw": "xample.com>"
+                            "raw": "\n> xample&copyxample.com>"
                         }
                     ],
                     "loc": {
@@ -238,7 +261,27 @@
                         226
                     ],
                     "raw": "And in an auto-link: <http://e\n> xample&copyxample.com>"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
                 },
+                "end": {
+                    "line": 10,
+                    "column": 24
+                }
+            },
+            "range": [
+                169,
+                226
+            ],
+            "raw": "> And in an auto-link: <http://e\n> xample&copyxample.com>"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Paragraph",
                     "children": [
@@ -268,7 +311,7 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "http://example",
+                                    "value": "http://example&copyxample.com",
                                     "loc": {
                                         "start": {
                                             "line": 12,
@@ -276,52 +319,14 @@
                                         },
                                         "end": {
                                             "line": 12,
-                                            "column": 32
-                                        }
-                                    },
-                                    "range": [
-                                        246,
-                                        260
-                                    ],
-                                    "raw": "http://example"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "©",
-                                    "loc": {
-                                        "start": {
-                                            "line": 12,
-                                            "column": 32
-                                        },
-                                        "end": {
-                                            "line": 12,
-                                            "column": 37
-                                        }
-                                    },
-                                    "range": [
-                                        260,
-                                        265
-                                    ],
-                                    "raw": "&copy"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "xample.com",
-                                    "loc": {
-                                        "start": {
-                                            "line": 12,
-                                            "column": 37
-                                        },
-                                        "end": {
-                                            "line": 12,
                                             "column": 47
                                         }
                                     },
                                     "range": [
-                                        265,
+                                        246,
                                         275
                                     ],
-                                    "raw": "xample.com"
+                                    "raw": "http://example&copyxample.com"
                                 }
                             ],
                             "loc": {
@@ -375,7 +380,27 @@
                         284
                     ],
                     "raw": "Foo and bar and http://example&copyxample.com and baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 12,
+                    "column": 0
                 },
+                "end": {
+                    "line": 12,
+                    "column": 56
+                }
+            },
+            "range": [
+                228,
+                284
+            ],
+            "raw": "> Foo and bar and http://example&copyxample.com and baz."
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Paragraph",
                     "children": [
@@ -400,12 +425,12 @@
                         },
                         {
                             "type": "Link",
-                            "title": "in some pl©ce",
+                            "title": "in some pl&copyce",
                             "url": "~/some&copyfile",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "l",
+                                    "value": "l&copynks",
                                     "loc": {
                                         "start": {
                                             "line": 14,
@@ -413,52 +438,14 @@
                                         },
                                         "end": {
                                             "line": 14,
-                                            "column": 10
-                                        }
-                                    },
-                                    "range": [
-                                        295,
-                                        296
-                                    ],
-                                    "raw": "l"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "©",
-                                    "loc": {
-                                        "start": {
-                                            "line": 14,
-                                            "column": 10
-                                        },
-                                        "end": {
-                                            "line": 14,
-                                            "column": 15
-                                        }
-                                    },
-                                    "range": [
-                                        296,
-                                        301
-                                    ],
-                                    "raw": "&copy"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "nks",
-                                    "loc": {
-                                        "start": {
-                                            "line": 14,
-                                            "column": 15
-                                        },
-                                        "end": {
-                                            "line": 14,
                                             "column": 18
                                         }
                                     },
                                     "range": [
-                                        301,
+                                        295,
                                         304
                                     ],
-                                    "raw": "nks"
+                                    "raw": "l&copynks"
                                 }
                             ],
                             "loc": {
@@ -493,7 +480,27 @@
                         347
                     ],
                     "raw": "Or in [l&copynks](\n>   ~/some&copyfile \"in some pl&copyce\")"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
                 },
+                "end": {
+                    "line": 15,
+                    "column": 40
+                }
+            },
+            "range": [
+                286,
+                347
+            ],
+            "raw": "> Or in [l&copynks](\n>   ~/some&copyfile \"in some pl&copyce\")"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Paragraph",
                     "children": [
@@ -518,12 +525,12 @@
                         },
                         {
                             "type": "Link",
-                            "title": "in some pl©ce",
+                            "title": "in some pl&copyce",
                             "url": "~/some&copyfile",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "l",
+                                    "value": "l&copylnks",
                                     "loc": {
                                         "start": {
                                             "line": 17,
@@ -531,52 +538,14 @@
                                         },
                                         "end": {
                                             "line": 17,
-                                            "column": 10
-                                        }
-                                    },
-                                    "range": [
-                                        358,
-                                        359
-                                    ],
-                                    "raw": "l"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "©",
-                                    "loc": {
-                                        "start": {
-                                            "line": 17,
-                                            "column": 10
-                                        },
-                                        "end": {
-                                            "line": 17,
-                                            "column": 15
-                                        }
-                                    },
-                                    "range": [
-                                        359,
-                                        364
-                                    ],
-                                    "raw": "&copy"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "lnks",
-                                    "loc": {
-                                        "start": {
-                                            "line": 17,
-                                            "column": 15
-                                        },
-                                        "end": {
-                                            "line": 17,
                                             "column": 19
                                         }
                                     },
                                     "range": [
-                                        364,
+                                        358,
                                         368
                                     ],
-                                    "raw": "lnks"
+                                    "raw": "l&copylnks"
                                 }
                             ],
                             "loc": {
@@ -611,7 +580,27 @@
                         417
                     ],
                     "raw": "Or in [l&copylnks](\n>   <~/some&copyfile>\n>   \"in some pl&copyce\")"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 17,
+                    "column": 0
                 },
+                "end": {
+                    "line": 19,
+                    "column": 24
+                }
+            },
+            "range": [
+                349,
+                417
+            ],
+            "raw": "> Or in [l&copylnks](\n>   <~/some&copyfile>\n>   \"in some pl&copyce\")"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Paragraph",
                     "children": [
@@ -636,9 +625,9 @@
                         },
                         {
                             "type": "Image",
-                            "title": "in some pl©ce",
+                            "title": "in some pl&copyce",
                             "url": "~/some&copyfile",
-                            "alt": "\n  l©nks\n",
+                            "alt": "\nl&copynks\n",
                             "loc": {
                                 "start": {
                                     "line": 21,
@@ -675,7 +664,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 1,
+                    "line": 21,
                     "column": 0
                 },
                 "end": {
@@ -684,10 +673,10 @@
                 }
             },
             "range": [
-                0,
+                419,
                 489
             ],
-            "raw": "> However, &MadeUpEntities; are kept in the document.\n\n> Entities even work in the language flag of fenced code blocks:\n\n> ```some&copylanguage\n> alert('Hello');\n> ```\n\n> And in an auto-link: <http://e\n> xample&copyxample.com>\n\n> Foo and bar and http://example&copyxample.com and baz.\n\n> Or in [l&copynks](\n>   ~/some&copyfile \"in some pl&copyce\")\n\n> Or in [l&copylnks](\n>   <~/some&copyfile>\n>   \"in some pl&copyce\")\n\n> Or in ![\n>   l&copynks\n> ](\n>   ~/some&copyfile \"in some pl&copyce\")"
+            "raw": "> Or in ![\n>   l&copynks\n> ](\n>   ~/some&copyfile \"in some pl&copyce\")"
         },
         {
             "type": "HorizontalRule",
@@ -734,9 +723,9 @@
                         },
                         {
                             "type": "Image",
-                            "title": "in some pl©ce",
+                            "title": "in some pl&copyce",
                             "url": "~/some&copyfile",
-                            "alt": "l©lnks",
+                            "alt": "l&copylnks",
                             "loc": {
                                 "start": {
                                     "line": 28,
@@ -769,38 +758,37 @@
                         565
                     ],
                     "raw": "Or in ![l&copylnks](\n>   <~/some&copyfile>\n>   \"in some pl&copyce\")"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 28,
+                    "column": 0
                 },
+                "end": {
+                    "line": 30,
+                    "column": 24
+                }
+            },
+            "range": [
+                496,
+                565
+            ],
+            "raw": "> Or in ![l&copylnks](\n>   <~/some&copyfile>\n>   \"in some pl&copyce\")"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Or in ",
+                            "value": "Or in ![\nl&copynks\n][12]",
                             "loc": {
                                 "start": {
                                     "line": 32,
                                     "column": 2
-                                },
-                                "end": {
-                                    "line": 32,
-                                    "column": 8
-                                }
-                            },
-                            "range": [
-                                569,
-                                575
-                            ],
-                            "raw": "Or in "
-                        },
-                        {
-                            "type": "ImageReference",
-                            "identifier": "12",
-                            "referenceType": "full",
-                            "alt": "\n  l©nks\n",
-                            "loc": {
-                                "start": {
-                                    "line": 32,
-                                    "column": 8
                                 },
                                 "end": {
                                     "line": 34,
@@ -808,10 +796,10 @@
                                 }
                             },
                             "range": [
-                                575,
+                                569,
                                 599
                             ],
-                            "raw": "![\n>   l&copynks\n> ][12]"
+                            "raw": "Or in ![\n>   l&copynks\n> ][12]"
                         }
                     ],
                     "loc": {
@@ -829,207 +817,33 @@
                         599
                     ],
                     "raw": "Or in ![\n>   l&copynks\n> ][12]"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 32,
+                    "column": 0
                 },
+                "end": {
+                    "line": 34,
+                    "column": 7
+                }
+            },
+            "range": [
+                567,
+                599
+            ],
+            "raw": "> Or in ![\n>   l&copynks\n> ][12]"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
-                    "type": "Paragraph",
-                    "children": [
-                        {
-                            "type": "LinkReference",
-                            "identifier": "1",
-                            "referenceType": "shortcut",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "1",
-                                    "loc": {
-                                        "start": {
-                                            "line": 36,
-                                            "column": 3
-                                        },
-                                        "end": {
-                                            "line": 36,
-                                            "column": 4
-                                        }
-                                    },
-                                    "range": [
-                                        604,
-                                        605
-                                    ],
-                                    "raw": "1"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 36,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 36,
-                                    "column": 5
-                                }
-                            },
-                            "range": [
-                                603,
-                                606
-                            ],
-                            "raw": "[1]"
-                        },
-                        {
-                            "type": "Str",
-                            "value": ": ",
-                            "loc": {
-                                "start": {
-                                    "line": 36,
-                                    "column": 5
-                                },
-                                "end": {
-                                    "line": 36,
-                                    "column": 7
-                                }
-                            },
-                            "range": [
-                                606,
-                                608
-                            ],
-                            "raw": ": "
-                        },
-                        {
-                            "type": "Link",
-                            "title": null,
-                            "url": "http://example&copyxample.com",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "http://example",
-                                    "loc": {
-                                        "start": {
-                                            "line": 36,
-                                            "column": 7
-                                        },
-                                        "end": {
-                                            "line": 36,
-                                            "column": 21
-                                        }
-                                    },
-                                    "range": [
-                                        608,
-                                        622
-                                    ],
-                                    "raw": "http://example"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "©",
-                                    "loc": {
-                                        "start": {
-                                            "line": 36,
-                                            "column": 21
-                                        },
-                                        "end": {
-                                            "line": 36,
-                                            "column": 26
-                                        }
-                                    },
-                                    "range": [
-                                        622,
-                                        627
-                                    ],
-                                    "raw": "&copy"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "xample.com",
-                                    "loc": {
-                                        "start": {
-                                            "line": 36,
-                                            "column": 26
-                                        },
-                                        "end": {
-                                            "line": 36,
-                                            "column": 36
-                                        }
-                                    },
-                                    "range": [
-                                        627,
-                                        637
-                                    ],
-                                    "raw": "xample.com"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 36,
-                                    "column": 7
-                                },
-                                "end": {
-                                    "line": 36,
-                                    "column": 36
-                                }
-                            },
-                            "range": [
-                                608,
-                                637
-                            ],
-                            "raw": "http://example&copyxample.com"
-                        },
-                        {
-                            "type": "Str",
-                            "value": " \"in some\npl",
-                            "loc": {
-                                "start": {
-                                    "line": 36,
-                                    "column": 36
-                                },
-                                "end": {
-                                    "line": 37,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                637,
-                                651
-                            ],
-                            "raw": " \"in some\n> pl"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "©",
-                            "loc": {
-                                "start": {
-                                    "line": 37,
-                                    "column": 4
-                                },
-                                "end": {
-                                    "line": 37,
-                                    "column": 9
-                                }
-                            },
-                            "range": [
-                                651,
-                                656
-                            ],
-                            "raw": "&copy"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "ce\"",
-                            "loc": {
-                                "start": {
-                                    "line": 37,
-                                    "column": 9
-                                },
-                                "end": {
-                                    "line": 37,
-                                    "column": 12
-                                }
-                            },
-                            "range": [
-                                656,
-                                659
-                            ],
-                            "raw": "ce\""
-                        }
-                    ],
+                    "type": "Definition",
+                    "identifier": "1",
+                    "label": "1",
+                    "title": "in some\npl&copyce",
+                    "url": "http://example&copyxample.com",
                     "loc": {
                         "start": {
                             "line": 36,
@@ -1045,207 +859,33 @@
                         659
                     ],
                     "raw": "[1]: http://example&copyxample.com \"in some\n> pl&copyce\""
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 36,
+                    "column": 0
                 },
+                "end": {
+                    "line": 37,
+                    "column": 12
+                }
+            },
+            "range": [
+                601,
+                659
+            ],
+            "raw": "> [1]: http://example&copyxample.com \"in some\n> pl&copyce\""
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
-                    "type": "Paragraph",
-                    "children": [
-                        {
-                            "type": "LinkReference",
-                            "identifier": " 1 ",
-                            "referenceType": "shortcut",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "\n  1\n",
-                                    "loc": {
-                                        "start": {
-                                            "line": 39,
-                                            "column": 3
-                                        },
-                                        "end": {
-                                            "line": 41,
-                                            "column": 2
-                                        }
-                                    },
-                                    "range": [
-                                        664,
-                                        673
-                                    ],
-                                    "raw": "\n>   1\n> "
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 39,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 41,
-                                    "column": 3
-                                }
-                            },
-                            "range": [
-                                663,
-                                674
-                            ],
-                            "raw": "[\n>   1\n> ]"
-                        },
-                        {
-                            "type": "Str",
-                            "value": ": ",
-                            "loc": {
-                                "start": {
-                                    "line": 41,
-                                    "column": 3
-                                },
-                                "end": {
-                                    "line": 41,
-                                    "column": 5
-                                }
-                            },
-                            "range": [
-                                674,
-                                676
-                            ],
-                            "raw": ": "
-                        },
-                        {
-                            "type": "Link",
-                            "title": null,
-                            "url": "http://example&copyxample.com",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "http://example",
-                                    "loc": {
-                                        "start": {
-                                            "line": 41,
-                                            "column": 5
-                                        },
-                                        "end": {
-                                            "line": 41,
-                                            "column": 19
-                                        }
-                                    },
-                                    "range": [
-                                        676,
-                                        690
-                                    ],
-                                    "raw": "http://example"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "©",
-                                    "loc": {
-                                        "start": {
-                                            "line": 41,
-                                            "column": 19
-                                        },
-                                        "end": {
-                                            "line": 41,
-                                            "column": 24
-                                        }
-                                    },
-                                    "range": [
-                                        690,
-                                        695
-                                    ],
-                                    "raw": "&copy"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "xample.com",
-                                    "loc": {
-                                        "start": {
-                                            "line": 41,
-                                            "column": 24
-                                        },
-                                        "end": {
-                                            "line": 41,
-                                            "column": 34
-                                        }
-                                    },
-                                    "range": [
-                                        695,
-                                        705
-                                    ],
-                                    "raw": "xample.com"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 41,
-                                    "column": 5
-                                },
-                                "end": {
-                                    "line": 41,
-                                    "column": 34
-                                }
-                            },
-                            "range": [
-                                676,
-                                705
-                            ],
-                            "raw": "http://example&copyxample.com"
-                        },
-                        {
-                            "type": "Str",
-                            "value": " \"in some\npl",
-                            "loc": {
-                                "start": {
-                                    "line": 41,
-                                    "column": 34
-                                },
-                                "end": {
-                                    "line": 42,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                705,
-                                719
-                            ],
-                            "raw": " \"in some\n> pl"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "©",
-                            "loc": {
-                                "start": {
-                                    "line": 42,
-                                    "column": 4
-                                },
-                                "end": {
-                                    "line": 42,
-                                    "column": 9
-                                }
-                            },
-                            "range": [
-                                719,
-                                724
-                            ],
-                            "raw": "&copy"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "ce\"",
-                            "loc": {
-                                "start": {
-                                    "line": 42,
-                                    "column": 9
-                                },
-                                "end": {
-                                    "line": 42,
-                                    "column": 12
-                                }
-                            },
-                            "range": [
-                                724,
-                                727
-                            ],
-                            "raw": "ce\""
-                        }
-                    ],
+                    "type": "Definition",
+                    "identifier": "1",
+                    "label": "\n  1\n",
+                    "title": "in some\npl&copyce",
+                    "url": "http://example&copyxample.com",
                     "loc": {
                         "start": {
                             "line": 39,
@@ -1265,7 +905,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 28,
+                    "line": 39,
                     "column": 0
                 },
                 "end": {
@@ -1274,10 +914,10 @@
                 }
             },
             "range": [
-                496,
+                661,
                 727
             ],
-            "raw": "> Or in ![l&copylnks](\n>   <~/some&copyfile>\n>   \"in some pl&copyce\")\n\n> Or in ![\n>   l&copynks\n> ][12]\n\n> [1]: http://example&copyxample.com \"in some\n> pl&copyce\"\n\n> [\n>   1\n> ]: http://example&copyxample.com \"in some\n> pl&copyce\""
+            "raw": "> [\n>   1\n> ]: http://example&copyxample.com \"in some\n> pl&copyce\""
         },
         {
             "type": "HorizontalRule",
@@ -1376,10 +1016,31 @@
                         812
                     ],
                     "raw": "But, entities are not interpreted in `inline c&oumlde`, or in\n> code blocks:"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 46,
+                    "column": 0
                 },
+                "end": {
+                    "line": 47,
+                    "column": 14
+                }
+            },
+            "range": [
+                734,
+                812
+            ],
+            "raw": "> But, entities are not interpreted in `inline c&oumlde`, or in\n> code blocks:"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "CodeBlock",
                     "lang": null,
+                    "meta": null,
                     "value": "C&OumlDE block.",
                     "loc": {
                         "start": {
@@ -1400,7 +1061,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 46,
+                    "line": 49,
                     "column": 0
                 },
                 "end": {
@@ -1409,10 +1070,10 @@
                 }
             },
             "range": [
-                734,
+                814,
                 835
             ],
-            "raw": "> But, entities are not interpreted in `inline c&oumlde`, or in\n> code blocks:\n\n>     C&OumlDE block."
+            "raw": ">     C&OumlDE block."
         }
     ],
     "loc": {

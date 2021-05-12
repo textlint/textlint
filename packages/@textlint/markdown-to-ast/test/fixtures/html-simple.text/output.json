@@ -101,6 +101,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<div>\n\tfoo\n</div>",
             "loc": {
                 "start": {
@@ -160,6 +161,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<div>foo</div>",
             "loc": {
                 "start": {
@@ -393,6 +395,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<!-- Comment -->",
             "loc": {
                 "start": {
@@ -510,6 +513,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<hr>",
             "loc": {
                 "start": {
@@ -517,15 +521,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 49,
-                    "column": 1
+                    "line": 48,
+                    "column": 5
                 }
             },
             "range": [
                 403,
-                410
+                408
             ],
-            "raw": "\t<hr>\n\t"
+            "raw": "\t<hr>"
         },
         {
             "type": "Paragraph",

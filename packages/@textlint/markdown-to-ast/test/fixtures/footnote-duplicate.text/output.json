@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "The NATO phonetic alphabet",
+                    "value": "The NATO phonetic alphabet[^wiki].",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,74 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 26
-                        }
-                    },
-                    "range": [
-                        0,
-                        26
-                    ],
-                    "raw": "The NATO phonetic alphabet"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 27
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 32
-                                }
-                            },
-                            "range": [
-                                27,
-                                32
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 26
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 33
-                        }
-                    },
-                    "range": [
-                        26,
-                        33
-                    ],
-                    "raw": "[^wiki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 33
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 34
                         }
                     },
                     "range": [
-                        33,
+                        0,
                         34
                     ],
-                    "raw": "."
+                    "raw": "The NATO phonetic alphabet[^wiki]."
                 }
             ],
             "loc": {
@@ -104,30 +44,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                37,
-                                42
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^wiki]: Read more about it on wikipedia: ",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -135,33 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        36,
-                        43
-                    ],
-                    "raw": "[^wiki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Read more about it on wikipedia: ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 42
                         }
                     },
                     "range": [
-                        43,
+                        36,
                         78
                     ],
-                    "raw": ": Read more about it on wikipedia: "
+                    "raw": "[^wiki]: Read more about it on wikipedia: "
                 },
                 {
                     "type": "Link",
@@ -206,7 +105,7 @@
                 },
                 {
                     "type": "Str",
-                    "value": ".\n",
+                    "value": ".\n[^wiki]: Not to be confused with: ",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -214,74 +113,14 @@
                         },
                         "end": {
                             "line": 4,
-                            "column": 0
-                        }
-                    },
-                    "range": [
-                        131,
-                        133
-                    ],
-                    "raw": ".\n"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 4,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 4,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                134,
-                                139
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 4,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        133,
-                        140
-                    ],
-                    "raw": "[^wiki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Not to be confused with: ",
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 4,
                             "column": 34
                         }
                     },
                     "range": [
-                        140,
+                        131,
                         167
                     ],
-                    "raw": ": Not to be confused with: "
+                    "raw": ".\n[^wiki]: Not to be confused with: "
                 },
                 {
                     "type": "Link",

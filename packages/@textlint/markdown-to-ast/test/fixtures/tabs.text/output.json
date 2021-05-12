@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -58,19 +58,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 3,
-                            "column": 0
+                            "line": 2,
+                            "column": 19
                         }
                     },
                     "range": [
                         0,
-                        42
+                        41
                     ],
-                    "raw": "+\tthis is a list item\n\tindented with tabs\n"
+                    "raw": "+\tthis is a list item\n\tindented with tabs"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -188,6 +188,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "this code block is indented by one tab",
             "loc": {
                 "start": {
@@ -247,6 +248,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "\tthis code block is indented by two tabs",
             "loc": {
                 "start": {
@@ -306,6 +308,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "+\tthis is an example list item\n\tindented with tabs\n\n+   this is an example list item\n    indented with spaces",
             "loc": {
                 "start": {

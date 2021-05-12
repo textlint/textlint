@@ -7,6 +7,7 @@
                 {
                     "type": "CodeBlock",
                     "lang": null,
+                    "meta": null,
                     "value": "aNormalCodeBlockInABlockqoute();",
                     "loc": {
                         "start": {
@@ -86,22 +87,23 @@
                 {
                     "type": "CodeBlock",
                     "lang": null,
-                    "value": "thisIsAlsoSomeCodeInABlockquote();",
+                    "meta": null,
+                    "value": "",
                     "loc": {
                         "start": {
                             "line": 7,
                             "column": 2
                         },
                         "end": {
-                            "line": 9,
-                            "column": 5
+                            "line": 8,
+                            "column": 0
                         }
                     },
                     "range": [
                         64,
-                        108
+                        68
                     ],
-                    "raw": "```\nthisIsAlsoSomeCodeInABlockquote();\n> ```"
+                    "raw": "```\n"
                 }
             ],
             "loc": {
@@ -110,15 +112,95 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 9,
-                    "column": 5
+                    "line": 8,
+                    "column": 0
                 }
             },
             "range": [
                 62,
-                108
+                68
             ],
-            "raw": "> ```\nthisIsAlsoSomeCodeInABlockquote();\n> ```"
+            "raw": "> ```\n"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "thisIsAlsoSomeCodeInABlockquote();",
+                    "loc": {
+                        "start": {
+                            "line": 8,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 8,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        68,
+                        102
+                    ],
+                    "raw": "thisIsAlsoSomeCodeInABlockquote();"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 8,
+                    "column": 0
+                },
+                "end": {
+                    "line": 8,
+                    "column": 34
+                }
+            },
+            "range": [
+                68,
+                102
+            ],
+            "raw": "thisIsAlsoSomeCodeInABlockquote();"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "CodeBlock",
+                    "lang": null,
+                    "meta": null,
+                    "value": "",
+                    "loc": {
+                        "start": {
+                            "line": 9,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        105,
+                        109
+                    ],
+                    "raw": "```\n"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 10,
+                    "column": 0
+                }
+            },
+            "range": [
+                103,
+                109
+            ],
+            "raw": "> ```\n"
         },
         {
             "type": "Paragraph",
@@ -165,81 +247,23 @@
                 {
                     "type": "CodeBlock",
                     "lang": null,
-                    "value": "aNonTerminatedCodeBlockInABlockquote();",
+                    "meta": null,
+                    "value": "",
                     "loc": {
                         "start": {
                             "line": 13,
                             "column": 2
                         },
                         "end": {
-                            "line": 15,
-                            "column": 3
+                            "line": 14,
+                            "column": 0
                         }
                     },
                     "range": [
                         126,
-                        173
+                        130
                     ],
-                    "raw": "```\naNonTerminatedCodeBlockInABlockquote();\n```"
-                },
-                {
-                    "type": "Paragraph",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "aNewCodeBlockFollowingTheBlockQuote();",
-                            "loc": {
-                                "start": {
-                                    "line": 16,
-                                    "column": 0
-                                },
-                                "end": {
-                                    "line": 16,
-                                    "column": 38
-                                }
-                            },
-                            "range": [
-                                174,
-                                212
-                            ],
-                            "raw": "aNewCodeBlockFollowingTheBlockQuote();"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 16,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 16,
-                            "column": 38
-                        }
-                    },
-                    "range": [
-                        174,
-                        212
-                    ],
-                    "raw": "aNewCodeBlockFollowingTheBlockQuote();"
-                },
-                {
-                    "type": "CodeBlock",
-                    "lang": null,
-                    "value": "",
-                    "loc": {
-                        "start": {
-                            "line": 17,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 17,
-                            "column": 3
-                        }
-                    },
-                    "range": [
-                        213,
-                        216
-                    ],
-                    "raw": "```"
+                    "raw": "```\n"
                 }
             ],
             "loc": {
@@ -248,15 +272,75 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 14,
+                    "column": 0
+                }
+            },
+            "range": [
+                124,
+                130
+            ],
+            "raw": "> ```\n"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "aNonTerminatedCodeBlockInABlockquote();",
+                    "loc": {
+                        "start": {
+                            "line": 14,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 14,
+                            "column": 39
+                        }
+                    },
+                    "range": [
+                        130,
+                        169
+                    ],
+                    "raw": "aNonTerminatedCodeBlockInABlockquote();"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 14,
+                    "column": 0
+                },
+                "end": {
+                    "line": 14,
+                    "column": 39
+                }
+            },
+            "range": [
+                130,
+                169
+            ],
+            "raw": "aNonTerminatedCodeBlockInABlockquote();"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "meta": null,
+            "value": "aNewCodeBlockFollowingTheBlockQuote();",
+            "loc": {
+                "start": {
+                    "line": 15,
+                    "column": 0
+                },
+                "end": {
                     "line": 17,
                     "column": 3
                 }
             },
             "range": [
-                124,
+                170,
                 216
             ],
-            "raw": "> ```\naNonTerminatedCodeBlockInABlockquote();\n```\naNewCodeBlockFollowingTheBlockQuote();\n```"
+            "raw": "```\naNewCodeBlockFollowingTheBlockQuote();\n```"
         },
         {
             "type": "Paragraph",
@@ -338,26 +422,6 @@
                         260
                     ],
                     "raw": "Something in a blockquote."
-                },
-                {
-                    "type": "CodeBlock",
-                    "lang": null,
-                    "value": "aNewCodeBlock();",
-                    "loc": {
-                        "start": {
-                            "line": 22,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 24,
-                            "column": 3
-                        }
-                    },
-                    "range": [
-                        261,
-                        285
-                    ],
-                    "raw": "```\naNewCodeBlock();\n```"
                 }
             ],
             "loc": {
@@ -366,15 +430,36 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 21,
+                    "column": 28
+                }
+            },
+            "range": [
+                232,
+                260
+            ],
+            "raw": "> Something in a blockquote."
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "meta": null,
+            "value": "aNewCodeBlock();",
+            "loc": {
+                "start": {
+                    "line": 22,
+                    "column": 0
+                },
+                "end": {
                     "line": 24,
                     "column": 3
                 }
             },
             "range": [
-                232,
+                261,
                 285
             ],
-            "raw": "> Something in a blockquote.\n```\naNewCodeBlock();\n```"
+            "raw": "```\naNewCodeBlock();\n```"
         }
     ],
     "loc": {

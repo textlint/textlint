@@ -6,8 +6,6 @@
             "children": [
                 {
                     "type": "LinkReference",
-                    "identifier": "hi",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -29,6 +27,9 @@
                             "raw": "hi"
                         }
                     ],
+                    "identifier": "hi",
+                    "label": "hi",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -65,6 +66,7 @@
         {
             "type": "Definition",
             "identifier": "hi",
+            "label": "HI",
             "title": null,
             "url": "/url",
             "loc": {

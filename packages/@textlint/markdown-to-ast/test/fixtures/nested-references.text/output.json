@@ -45,14 +45,13 @@
             "children": [
                 {
                     "type": "LinkReference",
-                    "identifier": "baz",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "ImageReference",
-                            "identifier": "bar",
-                            "referenceType": "full",
                             "alt": "Foo",
+                            "identifier": "bar",
+                            "label": "bar",
+                            "referenceType": "full",
                             "loc": {
                                 "start": {
                                     "line": 3,
@@ -70,6 +69,9 @@
                             "raw": "![Foo][bar]"
                         }
                     ],
+                    "identifier": "baz",
+                    "label": "baz",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -146,30 +148,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "baz",
-                    "referenceType": "full",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "[Foo][bar]",
-                            "loc": {
-                                "start": {
-                                    "line": 7,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 7,
-                                    "column": 11
-                                }
-                            },
-                            "range": [
-                                88,
-                                98
-                            ],
-                            "raw": "[Foo][bar]"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[",
                     "loc": {
                         "start": {
                             "line": 7,
@@ -177,14 +157,117 @@
                         },
                         "end": {
                             "line": 7,
-                            "column": 17
+                            "column": 1
                         }
                     },
                     "range": [
                         87,
+                        88
+                    ],
+                    "raw": "["
+                },
+                {
+                    "type": "LinkReference",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Foo",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 5
+                                }
+                            },
+                            "range": [
+                                89,
+                                92
+                            ],
+                            "raw": "Foo"
+                        }
+                    ],
+                    "identifier": "bar",
+                    "label": "bar",
+                    "referenceType": "full",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        88,
+                        98
+                    ],
+                    "raw": "[Foo][bar]"
+                },
+                {
+                    "type": "Str",
+                    "value": "]",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        98,
+                        99
+                    ],
+                    "raw": "]"
+                },
+                {
+                    "type": "LinkReference",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "baz",
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                100,
+                                103
+                            ],
+                            "raw": "baz"
+                        }
+                    ],
+                    "identifier": "baz",
+                    "label": "baz",
+                    "referenceType": "shortcut",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 17
+                        }
+                    },
+                    "range": [
+                        99,
                         104
                     ],
-                    "raw": "[[Foo][bar]][baz]"
+                    "raw": "[baz]"
                 }
             ],
             "loc": {
@@ -247,8 +330,6 @@
             "children": [
                 {
                     "type": "LinkReference",
-                    "identifier": "baz",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -270,6 +351,9 @@
                             "raw": "[^foo]"
                         }
                     ],
+                    "identifier": "baz",
+                    "label": "baz",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 11,
@@ -306,6 +390,7 @@
         {
             "type": "Definition",
             "identifier": "bar",
+            "label": "bar",
             "title": "bar",
             "url": "https://bar.com",
             "loc": {
@@ -327,6 +412,7 @@
         {
             "type": "Definition",
             "identifier": "baz",
+            "label": "baz",
             "title": "baz",
             "url": "https://baz.com",
             "loc": {
@@ -349,30 +435,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^foo",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^foo",
-                            "loc": {
-                                "start": {
-                                    "line": 16,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 16,
-                                    "column": 5
-                                }
-                            },
-                            "range": [
-                                213,
-                                217
-                            ],
-                            "raw": "^foo"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^foo]: A footnote.",
                     "loc": {
                         "start": {
                             "line": 16,
@@ -380,33 +444,14 @@
                         },
                         "end": {
                             "line": 16,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        212,
-                        218
-                    ],
-                    "raw": "[^foo]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": A footnote.",
-                    "loc": {
-                        "start": {
-                            "line": 16,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 16,
                             "column": 19
                         }
                     },
                     "range": [
-                        218,
+                        212,
                         231
                     ],
-                    "raw": ": A footnote."
+                    "raw": "[^foo]: A footnote."
                 }
             ],
             "loc": {

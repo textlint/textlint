@@ -6,9 +6,10 @@
             "children": [
                 {
                     "type": "ImageReference",
+                    "alt": "",
                     "identifier": "1",
+                    "label": "1",
                     "referenceType": "full",
-                    "alt": null,
                     "loc": {
                         "start": {
                             "line": 1,
@@ -45,6 +46,7 @@
         {
             "type": "Definition",
             "identifier": "1",
+            "label": "1",
             "title": null,
             "url": "/xyz.png",
             "loc": {

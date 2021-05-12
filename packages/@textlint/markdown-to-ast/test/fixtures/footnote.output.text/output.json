@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Lorem ipsum dolor sit amet",
+                    "value": "Lorem ipsum dolor sit amet[^1].",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,74 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 26
-                        }
-                    },
-                    "range": [
-                        0,
-                        26
-                    ],
-                    "raw": "Lorem ipsum dolor sit amet"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^1",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^1",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 27
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 29
-                                }
-                            },
-                            "range": [
-                                27,
-                                29
-                            ],
-                            "raw": "^1"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 26
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 30
-                        }
-                    },
-                    "range": [
-                        26,
-                        30
-                    ],
-                    "raw": "[^1]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 30
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 31
                         }
                     },
                     "range": [
-                        30,
+                        0,
                         31
                     ],
-                    "raw": "."
+                    "raw": "Lorem ipsum dolor sit amet[^1]."
                 }
             ],
             "loc": {
@@ -105,7 +45,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Nulla finibus",
+                    "value": "Nulla finibus[^2] neque et diam rhoncus convallis.",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -113,74 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        33,
-                        46
-                    ],
-                    "raw": "Nulla finibus"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^2",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^2",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 14
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 16
-                                }
-                            },
-                            "range": [
-                                47,
-                                49
-                            ],
-                            "raw": "^2"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 13
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 17
-                        }
-                    },
-                    "range": [
-                        46,
-                        50
-                    ],
-                    "raw": "[^2]"
-                },
-                {
-                    "type": "Str",
-                    "value": " neque et diam rhoncus convallis.",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 17
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 50
                         }
                     },
                     "range": [
-                        50,
+                        33,
                         83
                     ],
-                    "raw": " neque et diam rhoncus convallis."
+                    "raw": "Nulla finibus[^2] neque et diam rhoncus convallis."
                 }
             ],
             "loc": {
@@ -203,30 +83,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^1",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^1",
-                            "loc": {
-                                "start": {
-                                    "line": 5,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 5,
-                                    "column": 3
-                                }
-                            },
-                            "range": [
-                                86,
-                                88
-                            ],
-                            "raw": "^1"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^1]: Consectetur ",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -234,33 +92,14 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        85,
-                        89
-                    ],
-                    "raw": "[^1]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Consectetur ",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 5,
                             "column": 18
                         }
                     },
                     "range": [
-                        89,
+                        85,
                         103
                     ],
-                    "raw": ": Consectetur "
+                    "raw": "[^1]: Consectetur "
                 },
                 {
                     "type": "Strong",
@@ -303,7 +142,7 @@
                 },
                 {
                     "type": "Str",
-                    "value": " elit. Praesent dictum purus ullamcorper ligula semper pellentesque",
+                    "value": " elit. Praesent dictum purus ullamcorper ligula semper pellentesque[^3].",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -311,74 +150,14 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 99
-                        }
-                    },
-                    "range": [
-                        117,
-                        184
-                    ],
-                    "raw": " elit. Praesent dictum purus ullamcorper ligula semper pellentesque"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^3",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^3",
-                            "loc": {
-                                "start": {
-                                    "line": 5,
-                                    "column": 100
-                                },
-                                "end": {
-                                    "line": 5,
-                                    "column": 102
-                                }
-                            },
-                            "range": [
-                                185,
-                                187
-                            ],
-                            "raw": "^3"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 99
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 103
-                        }
-                    },
-                    "range": [
-                        184,
-                        188
-                    ],
-                    "raw": "[^3]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 103
-                        },
-                        "end": {
-                            "line": 5,
                             "column": 104
                         }
                     },
                     "range": [
-                        188,
+                        117,
                         189
                     ],
-                    "raw": "."
+                    "raw": " elit. Praesent dictum purus ullamcorper ligula semper pellentesque[^3]."
                 }
             ],
             "loc": {
@@ -400,6 +179,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "-   Containing a list.",
             "loc": {
                 "start": {
@@ -421,30 +201,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^2",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^2",
-                            "loc": {
-                                "start": {
-                                    "line": 9,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 9,
-                                    "column": 3
-                                }
-                            },
-                            "range": [
-                                220,
-                                222
-                            ],
-                            "raw": "^2"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^2]: Nam dictum sapien nec sem ultrices fermentum. Nulla ",
                     "loc": {
                         "start": {
                             "line": 9,
@@ -452,33 +210,14 @@
                         },
                         "end": {
                             "line": 9,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        219,
-                        223
-                    ],
-                    "raw": "[^2]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Nam dictum sapien nec sem ultrices fermentum. Nulla ",
-                    "loc": {
-                        "start": {
-                            "line": 9,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 9,
                             "column": 58
                         }
                     },
                     "range": [
-                        223,
+                        219,
                         277
                     ],
-                    "raw": ": Nam dictum sapien nec sem ultrices fermentum. Nulla "
+                    "raw": "[^2]: Nam dictum sapien nec sem ultrices fermentum. Nulla "
                 },
                 {
                     "type": "Strong",
@@ -559,30 +298,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^3",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^3",
-                            "loc": {
-                                "start": {
-                                    "line": 11,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 11,
-                                    "column": 3
-                                }
-                            },
-                            "range": [
-                                314,
-                                316
-                            ],
-                            "raw": "^3"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^3]: Nunc dapibus ipsum ut mi ",
                     "loc": {
                         "start": {
                             "line": 11,
@@ -590,33 +307,14 @@
                         },
                         "end": {
                             "line": 11,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        313,
-                        317
-                    ],
-                    "raw": "[^3]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Nunc dapibus ipsum ut mi ",
-                    "loc": {
-                        "start": {
-                            "line": 11,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 11,
                             "column": 31
                         }
                     },
                     "range": [
-                        317,
+                        313,
                         344
                     ],
-                    "raw": ": Nunc dapibus ipsum ut mi "
+                    "raw": "[^3]: Nunc dapibus ipsum ut mi "
                 },
                 {
                     "type": "Emphasis",

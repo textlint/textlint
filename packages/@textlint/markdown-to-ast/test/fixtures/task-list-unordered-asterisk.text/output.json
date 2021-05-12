@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -131,7 +131,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -177,11 +177,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": true,
                                     "children": [
                                         {
@@ -227,7 +227,7 @@
                                     "loc": {
                                         "start": {
                                             "line": 4,
-                                            "column": 2
+                                            "column": 4
                                         },
                                         "end": {
                                             "line": 4,
@@ -235,16 +235,16 @@
                                         }
                                     },
                                     "range": [
-                                        63,
+                                        65,
                                         76
                                     ],
-                                    "raw": "  * [x] Moon."
+                                    "raw": "* [x] Moon."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 2
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 4,
@@ -252,10 +252,10 @@
                                 }
                             },
                             "range": [
-                                63,
+                                65,
                                 76
                             ],
-                            "raw": "  * [x] Moon."
+                            "raw": "* [x] Moon."
                         }
                     ],
                     "loc": {
@@ -276,7 +276,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -337,7 +337,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {

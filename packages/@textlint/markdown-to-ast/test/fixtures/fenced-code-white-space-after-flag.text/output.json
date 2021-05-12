@@ -4,6 +4,7 @@
         {
             "type": "CodeBlock",
             "lang": "js",
+            "meta": null,
             "value": "foo();",
             "loc": {
                 "start": {
@@ -24,6 +25,7 @@
         {
             "type": "CodeBlock",
             "lang": "bash",
+            "meta": null,
             "value": "echo \"hello, ${WORLD}\"",
             "loc": {
                 "start": {

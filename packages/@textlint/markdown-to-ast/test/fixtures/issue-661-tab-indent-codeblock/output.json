@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -52,13 +52,252 @@
                             "raw": "Below are the two types of parameters expected:"
                         },
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "\t* Type `String` called `code`\n\t* Type `boolean` called `accepted`",
+                            "type": "List",
+                            "ordered": false,
+                            "start": null,
+                            "spread": false,
+                            "children": [
+                                {
+                                    "type": "ListItem",
+                                    "spread": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "Type ",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 3,
+                                                            "column": 3
+                                                        },
+                                                        "end": {
+                                                            "line": 3,
+                                                            "column": 8
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        54,
+                                                        59
+                                                    ],
+                                                    "raw": "Type "
+                                                },
+                                                {
+                                                    "type": "Code",
+                                                    "value": "String",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 3,
+                                                            "column": 8
+                                                        },
+                                                        "end": {
+                                                            "line": 3,
+                                                            "column": 16
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        59,
+                                                        67
+                                                    ],
+                                                    "raw": "`String`"
+                                                },
+                                                {
+                                                    "type": "Str",
+                                                    "value": " called ",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 3,
+                                                            "column": 16
+                                                        },
+                                                        "end": {
+                                                            "line": 3,
+                                                            "column": 24
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        67,
+                                                        75
+                                                    ],
+                                                    "raw": " called "
+                                                },
+                                                {
+                                                    "type": "Code",
+                                                    "value": "code",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 3,
+                                                            "column": 24
+                                                        },
+                                                        "end": {
+                                                            "line": 3,
+                                                            "column": 30
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        75,
+                                                        81
+                                                    ],
+                                                    "raw": "`code`"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 3,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 3,
+                                                    "column": 30
+                                                }
+                                            },
+                                            "range": [
+                                                54,
+                                                81
+                                            ],
+                                            "raw": "Type `String` called `code`"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 1
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 30
+                                        }
+                                    },
+                                    "range": [
+                                        52,
+                                        81
+                                    ],
+                                    "raw": "* Type `String` called `code`"
+                                },
+                                {
+                                    "type": "ListItem",
+                                    "spread": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "Type ",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 4,
+                                                            "column": 3
+                                                        },
+                                                        "end": {
+                                                            "line": 4,
+                                                            "column": 8
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        85,
+                                                        90
+                                                    ],
+                                                    "raw": "Type "
+                                                },
+                                                {
+                                                    "type": "Code",
+                                                    "value": "boolean",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 4,
+                                                            "column": 8
+                                                        },
+                                                        "end": {
+                                                            "line": 4,
+                                                            "column": 17
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        90,
+                                                        99
+                                                    ],
+                                                    "raw": "`boolean`"
+                                                },
+                                                {
+                                                    "type": "Str",
+                                                    "value": " called ",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 4,
+                                                            "column": 17
+                                                        },
+                                                        "end": {
+                                                            "line": 4,
+                                                            "column": 25
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        99,
+                                                        107
+                                                    ],
+                                                    "raw": " called "
+                                                },
+                                                {
+                                                    "type": "Code",
+                                                    "value": "accepted",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 4,
+                                                            "column": 25
+                                                        },
+                                                        "end": {
+                                                            "line": 4,
+                                                            "column": 35
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        107,
+                                                        117
+                                                    ],
+                                                    "raw": "`accepted`"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 4,
+                                                    "column": 3
+                                                },
+                                                "end": {
+                                                    "line": 4,
+                                                    "column": 35
+                                                }
+                                            },
+                                            "range": [
+                                                85,
+                                                117
+                                            ],
+                                            "raw": "Type `boolean` called `accepted`"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 1
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 35
+                                        }
+                                    },
+                                    "range": [
+                                        83,
+                                        117
+                                    ],
+                                    "raw": "* Type `boolean` called `accepted`"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 0
+                                    "column": 1
                                 },
                                 "end": {
                                     "line": 4,
@@ -66,10 +305,10 @@
                                 }
                             },
                             "range": [
-                                51,
+                                52,
                                 117
                             ],
-                            "raw": "\t* Type `String` called `code`\n\t* Type `boolean` called `accepted`"
+                            "raw": "* Type `String` called `code`\n\t* Type `boolean` called `accepted`"
                         }
                     ],
                     "loc": {

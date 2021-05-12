@@ -4,6 +4,7 @@
         {
             "type": "CodeBlock",
             "lang": "js",
+            "meta": null,
             "value": "foo();\n```bash",
             "loc": {
                 "start": {

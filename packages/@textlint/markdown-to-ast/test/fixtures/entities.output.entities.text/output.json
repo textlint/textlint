@@ -46,7 +46,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Plain",
+                    "value": "Plain text:",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -54,52 +54,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        12,
-                        17
-                    ],
-                    "raw": "Plain"
-                },
-                {
-                    "type": "Str",
-                    "value": " ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 5
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        17,
-                        23
-                    ],
-                    "raw": "&nbsp;"
-                },
-                {
-                    "type": "Str",
-                    "value": "text:",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 11
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 16
                         }
                     },
                     "range": [
-                        23,
+                        12,
                         28
                     ],
-                    "raw": "text:"
+                    "raw": "Plain&nbsp;text:"
                 }
             ],
             "loc": {
@@ -123,7 +85,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "AT",
+                    "value": "AT&T with entity, AT&T with numeric entity, AT&T without entity.",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -131,128 +93,14 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 2
-                        }
-                    },
-                    "range": [
-                        30,
-                        32
-                    ],
-                    "raw": "AT"
-                },
-                {
-                    "type": "Str",
-                    "value": "&",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        32,
-                        37
-                    ],
-                    "raw": "&amp;"
-                },
-                {
-                    "type": "Str",
-                    "value": "T with entity, AT",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 24
-                        }
-                    },
-                    "range": [
-                        37,
-                        54
-                    ],
-                    "raw": "T with entity, AT"
-                },
-                {
-                    "type": "Str",
-                    "value": "&",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 24
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 29
-                        }
-                    },
-                    "range": [
-                        54,
-                        59
-                    ],
-                    "raw": "&amp;"
-                },
-                {
-                    "type": "Str",
-                    "value": "T with numeric entity, AT",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 29
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 54
-                        }
-                    },
-                    "range": [
-                        59,
-                        84
-                    ],
-                    "raw": "T with numeric entity, AT"
-                },
-                {
-                    "type": "Str",
-                    "value": "&",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 54
-                        },
-                        "end": {
-                            "line": 5,
-                            "column": 59
-                        }
-                    },
-                    "range": [
-                        84,
-                        89
-                    ],
-                    "raw": "&amp;"
-                },
-                {
-                    "type": "Str",
-                    "value": "T without entity.",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 59
-                        },
-                        "end": {
-                            "line": 5,
                             "column": 76
                         }
                     },
                     "range": [
-                        89,
+                        30,
                         106
                     ],
-                    "raw": "T without entity."
+                    "raw": "AT&amp;T with entity, AT&amp;T with numeric entity, AT&amp;T without entity."
                 }
             ],
             "loc": {
@@ -313,6 +161,7 @@
         {
             "type": "CodeBlock",
             "lang": "AT&T",
+            "meta": null,
             "value": "Something in the AT&amp;T language",
             "loc": {
                 "start": {
@@ -333,6 +182,7 @@
         {
             "type": "CodeBlock",
             "lang": "AT&T",
+            "meta": null,
             "value": "Something in the AT&#x26;T language",
             "loc": {
                 "start": {
@@ -395,11 +245,11 @@
                 {
                     "type": "Link",
                     "title": null,
-                    "url": "http://at&t.com",
+                    "url": "http://at&amp;t.com",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "http://at",
+                            "value": "http://at&amp;t.com",
                             "loc": {
                                 "start": {
                                     "line": 19,
@@ -407,52 +257,14 @@
                                 },
                                 "end": {
                                     "line": 19,
-                                    "column": 10
-                                }
-                            },
-                            "range": [
-                                261,
-                                270
-                            ],
-                            "raw": "http://at"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "&",
-                            "loc": {
-                                "start": {
-                                    "line": 19,
-                                    "column": 10
-                                },
-                                "end": {
-                                    "line": 19,
-                                    "column": 15
-                                }
-                            },
-                            "range": [
-                                270,
-                                275
-                            ],
-                            "raw": "&amp;"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "t.com",
-                            "loc": {
-                                "start": {
-                                    "line": 19,
-                                    "column": 15
-                                },
-                                "end": {
-                                    "line": 19,
                                     "column": 20
                                 }
                             },
                             "range": [
-                                275,
+                                261,
                                 280
                             ],
-                            "raw": "t.com"
+                            "raw": "http://at&amp;t.com"
                         }
                     ],
                     "loc": {
@@ -493,11 +305,11 @@
                 {
                     "type": "Link",
                     "title": null,
-                    "url": "http://at&t.com",
+                    "url": "http://at&amp;t.com",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "http://at",
+                            "value": "http://at&amp;t.com",
                             "loc": {
                                 "start": {
                                     "line": 19,
@@ -505,52 +317,14 @@
                                 },
                                 "end": {
                                     "line": 19,
-                                    "column": 33
-                                }
-                            },
-                            "range": [
-                                284,
-                                293
-                            ],
-                            "raw": "http://at"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "&",
-                            "loc": {
-                                "start": {
-                                    "line": 19,
-                                    "column": 33
-                                },
-                                "end": {
-                                    "line": 19,
-                                    "column": 38
-                                }
-                            },
-                            "range": [
-                                293,
-                                298
-                            ],
-                            "raw": "&amp;"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "t.com",
-                            "loc": {
-                                "start": {
-                                    "line": 19,
-                                    "column": 38
-                                },
-                                "end": {
-                                    "line": 19,
                                     "column": 43
                                 }
                             },
                             "range": [
-                                298,
+                                284,
                                 303
                             ],
-                            "raw": "t.com"
+                            "raw": "http://at&amp;t.com"
                         }
                     ],
                     "loc": {
@@ -591,11 +365,11 @@
                 {
                     "type": "Link",
                     "title": null,
-                    "url": "http://at&t.com",
+                    "url": "http://at&amp;t.com",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "http://at",
+                            "value": "http://at&amp;t.com",
                             "loc": {
                                 "start": {
                                     "line": 19,
@@ -603,52 +377,14 @@
                                 },
                                 "end": {
                                     "line": 19,
-                                    "column": 60
-                                }
-                            },
-                            "range": [
-                                311,
-                                320
-                            ],
-                            "raw": "http://at"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "&",
-                            "loc": {
-                                "start": {
-                                    "line": 19,
-                                    "column": 60
-                                },
-                                "end": {
-                                    "line": 19,
-                                    "column": 65
-                                }
-                            },
-                            "range": [
-                                320,
-                                325
-                            ],
-                            "raw": "&amp;"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "t.com",
-                            "loc": {
-                                "start": {
-                                    "line": 19,
-                                    "column": 65
-                                },
-                                "end": {
-                                    "line": 19,
                                     "column": 70
                                 }
                             },
                             "range": [
-                                325,
+                                311,
                                 330
                             ],
-                            "raw": "t.com"
+                            "raw": "http://at&amp;t.com"
                         }
                     ],
                     "loc": {
@@ -1990,9 +1726,10 @@
             "children": [
                 {
                     "type": "ImageReference",
-                    "identifier": "favicon",
-                    "referenceType": "full",
                     "alt": "AT&T with entity",
+                    "identifier": "favicon",
+                    "label": "favicon",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 43,
@@ -2030,9 +1767,10 @@
                 },
                 {
                     "type": "ImageReference",
-                    "identifier": "favicon",
-                    "referenceType": "full",
                     "alt": "AT&T with numeric entity",
+                    "identifier": "favicon",
+                    "label": "favicon",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 43,
@@ -2070,9 +1808,10 @@
                 },
                 {
                     "type": "ImageReference",
-                    "identifier": "favicon",
-                    "referenceType": "full",
                     "alt": "AT&T without entity",
+                    "identifier": "favicon",
+                    "label": "favicon",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 43,
@@ -2128,6 +1867,7 @@
         {
             "type": "Definition",
             "identifier": "favicon",
+            "label": "favicon",
             "title": "ATT favicon",
             "url": "http://att.com/fav.ico",
             "loc": {
@@ -2190,8 +1930,6 @@
             "children": [
                 {
                     "type": "LinkReference",
-                    "identifier": "foo&bar",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -2213,6 +1951,9 @@
                             "raw": "foo&bar"
                         }
                     ],
+                    "identifier": "foo&bar",
+                    "label": "foo&bar",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 49,
@@ -2250,8 +1991,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "foo&bar",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
@@ -2273,6 +2012,9 @@
                             "raw": "foo&bar"
                         }
                     ],
+                    "identifier": "foo&bar",
+                    "label": "foo&bar",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 49,
@@ -2310,12 +2052,10 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "foo&amp;bar",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "foo",
+                            "value": "foo&bar",
                             "loc": {
                                 "start": {
                                     "line": 49,
@@ -2323,54 +2063,19 @@
                                 },
                                 "end": {
                                     "line": 49,
-                                    "column": 28
-                                }
-                            },
-                            "range": [
-                                1368,
-                                1371
-                            ],
-                            "raw": "foo"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "&",
-                            "loc": {
-                                "start": {
-                                    "line": 49,
-                                    "column": 28
-                                },
-                                "end": {
-                                    "line": 49,
-                                    "column": 33
-                                }
-                            },
-                            "range": [
-                                1371,
-                                1376
-                            ],
-                            "raw": "&amp;"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 49,
-                                    "column": 33
-                                },
-                                "end": {
-                                    "line": 49,
                                     "column": 36
                                 }
                             },
                             "range": [
-                                1376,
+                                1368,
                                 1379
                             ],
-                            "raw": "bar"
+                            "raw": "foo&amp;bar"
                         }
                     ],
+                    "identifier": "foo&amp;bar",
+                    "label": "foo&bar",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 49,
@@ -2408,12 +2113,10 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "foo&amp;bar",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "foo",
+                            "value": "foo&bar",
                             "loc": {
                                 "start": {
                                     "line": 49,
@@ -2421,54 +2124,19 @@
                                 },
                                 "end": {
                                     "line": 49,
-                                    "column": 43
-                                }
-                            },
-                            "range": [
-                                1383,
-                                1386
-                            ],
-                            "raw": "foo"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "&",
-                            "loc": {
-                                "start": {
-                                    "line": 49,
-                                    "column": 43
-                                },
-                                "end": {
-                                    "line": 49,
-                                    "column": 48
-                                }
-                            },
-                            "range": [
-                                1386,
-                                1391
-                            ],
-                            "raw": "&amp;"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "bar",
-                            "loc": {
-                                "start": {
-                                    "line": 49,
-                                    "column": 48
-                                },
-                                "end": {
-                                    "line": 49,
                                     "column": 51
                                 }
                             },
                             "range": [
-                                1391,
+                                1383,
                                 1394
                             ],
-                            "raw": "bar"
+                            "raw": "foo&amp;bar"
                         }
                     ],
+                    "identifier": "foo&amp;bar",
+                    "label": "foo&bar",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 49,
@@ -2524,6 +2192,7 @@
         {
             "type": "Definition",
             "identifier": "foo&bar",
+            "label": "foo&bar",
             "title": null,
             "url": "http://example.com",
             "loc": {
@@ -2545,6 +2214,7 @@
         {
             "type": "Definition",
             "identifier": "foo&amp;bar",
+            "label": "foo&bar",
             "title": null,
             "url": "http://example.com",
             "loc": {

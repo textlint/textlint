@@ -4,6 +4,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "code block on the first line",
             "loc": {
                 "start": {
@@ -11,15 +12,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 2,
-                    "column": 1
+                    "line": 1,
+                    "column": 29
                 }
             },
             "range": [
                 0,
-                31
+                29
             ],
-            "raw": "\tcode block on the first line\n\t"
+            "raw": "\tcode block on the first line"
         },
         {
             "type": "Paragraph",
@@ -63,6 +64,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "code block indented by spaces",
             "loc": {
                 "start": {
@@ -122,6 +124,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "the lines in this block  \nall contain trailing spaces  ",
             "loc": {
                 "start": {
@@ -181,6 +184,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "code block on the last line",
             "loc": {
                 "start": {

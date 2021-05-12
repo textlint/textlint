@@ -45,11 +45,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -57,7 +57,7 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "Very long\n\t\t\tparagraph",
+                                    "value": "Very long\nparagraph",
                                     "loc": {
                                         "start": {
                                             "line": 3,
@@ -129,11 +129,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -141,7 +141,7 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "Very long\n\tparagraph",
+                                    "value": "Very long\nparagraph",
                                     "loc": {
                                         "start": {
                                             "line": 6,
@@ -213,11 +213,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -225,7 +225,7 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "Very long\n\tparagraph",
+                                    "value": "Very long\nparagraph",
                                     "loc": {
                                         "start": {
                                             "line": 9,
@@ -297,11 +297,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -309,7 +309,7 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "Very long\n\tparagraph",
+                                    "value": "Very long\nparagraph",
                                     "loc": {
                                         "start": {
                                             "line": 12,

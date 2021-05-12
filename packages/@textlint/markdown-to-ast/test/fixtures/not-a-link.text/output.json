@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "[",
+                    "value": "[test](not a link)",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,33 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 2
-                        }
-                    },
-                    "range": [
-                        0,
-                        2
-                    ],
-                    "raw": "\\["
-                },
-                {
-                    "type": "Str",
-                    "value": "test](not a link)",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 19
                         }
                     },
                     "range": [
-                        2,
+                        0,
                         19
                     ],
-                    "raw": "test](not a link)"
+                    "raw": "\\[test](not a link)"
                 }
             ],
             "loc": {

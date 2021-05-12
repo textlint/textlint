@@ -5,10 +5,10 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Strong",
+                    "type": "Emphasis",
                     "children": [
                         {
-                            "type": "Emphasis",
+                            "type": "Strong",
                             "children": [
                                 {
                                     "type": "Str",
@@ -33,18 +33,18 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 2
+                                    "column": 1
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 26
+                                    "column": 27
                                 }
                             },
                             "range": [
-                                2,
-                                26
+                                1,
+                                27
                             ],
-                            "raw": "*This is strong and em.*"
+                            "raw": "**This is strong and em.**"
                         }
                     ],
                     "loc": {
@@ -103,10 +103,10 @@
                     "raw": "So is "
                 },
                 {
-                    "type": "Strong",
+                    "type": "Emphasis",
                     "children": [
                         {
-                            "type": "Emphasis",
+                            "type": "Strong",
                             "children": [
                                 {
                                     "type": "Str",
@@ -131,18 +131,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 8
+                                    "column": 7
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 14
+                                    "column": 15
                                 }
                             },
                             "range": [
-                                38,
-                                44
+                                37,
+                                45
                             ],
-                            "raw": "*this*"
+                            "raw": "**this**"
                         }
                     ],
                     "loc": {
@@ -201,10 +201,10 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Strong",
+                    "type": "Emphasis",
                     "children": [
                         {
-                            "type": "Emphasis",
+                            "type": "Strong",
                             "children": [
                                 {
                                     "type": "Str",
@@ -229,18 +229,18 @@
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 2
+                                    "column": 1
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 26
+                                    "column": 27
                                 }
                             },
                             "range": [
-                                56,
-                                80
+                                55,
+                                81
                             ],
-                            "raw": "_This is strong and em._"
+                            "raw": "__This is strong and em.__"
                         }
                     ],
                     "loc": {
@@ -299,10 +299,10 @@
                     "raw": "So is "
                 },
                 {
-                    "type": "Strong",
+                    "type": "Emphasis",
                     "children": [
                         {
-                            "type": "Emphasis",
+                            "type": "Strong",
                             "children": [
                                 {
                                     "type": "Str",
@@ -327,18 +327,18 @@
                             "loc": {
                                 "start": {
                                     "line": 7,
-                                    "column": 8
+                                    "column": 7
                                 },
                                 "end": {
                                     "line": 7,
-                                    "column": 14
+                                    "column": 15
                                 }
                             },
                             "range": [
-                                92,
-                                98
+                                91,
+                                99
                             ],
-                            "raw": "_this_"
+                            "raw": "__this__"
                         }
                     ],
                     "loc": {

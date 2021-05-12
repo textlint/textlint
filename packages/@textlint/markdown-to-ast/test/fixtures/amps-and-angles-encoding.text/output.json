@@ -45,7 +45,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "AT",
+                    "value": "AT&T is another way to write it.",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -53,52 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 2
-                        }
-                    },
-                    "range": [
-                        38,
-                        40
-                    ],
-                    "raw": "AT"
-                },
-                {
-                    "type": "Str",
-                    "value": "&",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        40,
-                        45
-                    ],
-                    "raw": "&amp;"
-                },
-                {
-                    "type": "Str",
-                    "value": "T is another way to write it.",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 36
                         }
                     },
                     "range": [
-                        45,
+                        38,
                         74
                     ],
-                    "raw": "T is another way to write it."
+                    "raw": "AT&amp;T is another way to write it."
                 }
             ],
             "loc": {
@@ -239,7 +201,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Here's a ",
+                    "value": "Here's a [link] ",
                     "loc": {
                         "start": {
                             "line": 11,
@@ -247,44 +209,45 @@
                         },
                         "end": {
                             "line": 11,
-                            "column": 9
+                            "column": 16
                         }
                     },
                     "range": [
                         106,
-                        115
+                        122
                     ],
-                    "raw": "Here's a "
+                    "raw": "Here's a [link] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "1",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "link",
+                            "value": "1",
                             "loc": {
                                 "start": {
                                     "line": 11,
-                                    "column": 10
+                                    "column": 17
                                 },
                                 "end": {
                                     "line": 11,
-                                    "column": 14
+                                    "column": 18
                                 }
                             },
                             "range": [
-                                116,
-                                120
+                                123,
+                                124
                             ],
-                            "raw": "link"
+                            "raw": "1"
                         }
                     ],
+                    "identifier": "1",
+                    "label": "1",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 11,
-                            "column": 9
+                            "column": 16
                         },
                         "end": {
                             "line": 11,
@@ -292,10 +255,10 @@
                         }
                     },
                     "range": [
-                        115,
+                        122,
                         125
                     ],
-                    "raw": "[link] [1]"
+                    "raw": "[1]"
                 },
                 {
                     "type": "Str",
@@ -338,7 +301,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Here's a link with an amersand in the link text: ",
+                    "value": "Here's a link with an amersand in the link text: [AT&T] ",
                     "loc": {
                         "start": {
                             "line": 13,
@@ -346,44 +309,45 @@
                         },
                         "end": {
                             "line": 13,
-                            "column": 49
+                            "column": 56
                         }
                     },
                     "range": [
                         157,
-                        206
+                        213
                     ],
-                    "raw": "Here's a link with an amersand in the link text: "
+                    "raw": "Here's a link with an amersand in the link text: [AT&T] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "2",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "AT&T",
+                            "value": "2",
                             "loc": {
                                 "start": {
                                     "line": 13,
-                                    "column": 50
+                                    "column": 57
                                 },
                                 "end": {
                                     "line": 13,
-                                    "column": 54
+                                    "column": 58
                                 }
                             },
                             "range": [
-                                207,
-                                211
+                                214,
+                                215
                             ],
-                            "raw": "AT&T"
+                            "raw": "2"
                         }
                     ],
+                    "identifier": "2",
+                    "label": "2",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 13,
-                            "column": 49
+                            "column": 56
                         },
                         "end": {
                             "line": 13,
@@ -391,10 +355,10 @@
                         }
                     },
                     "range": [
-                        206,
+                        213,
                         216
                     ],
-                    "raw": "[AT&T] [2]"
+                    "raw": "[2]"
                 },
                 {
                     "type": "Str",
@@ -633,6 +597,7 @@
         {
             "type": "Definition",
             "identifier": "1",
+            "label": "1",
             "title": null,
             "url": "http://example.com/?foo=1&bar=2",
             "loc": {
@@ -654,6 +619,7 @@
         {
             "type": "Definition",
             "identifier": "2",
+            "label": "2",
             "title": "AT&T",
             "url": "http://att.com/",
             "loc": {

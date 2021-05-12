@@ -128,30 +128,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Link",
-                    "title": "An example",
-                    "url": "http://example.com",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "[](http://example.com \"An example\")",
-                            "loc": {
-                                "start": {
-                                    "line": 5,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 5,
-                                    "column": 36
-                                }
-                            },
-                            "range": [
-                                131,
-                                166
-                            ],
-                            "raw": "[](http://example.com \"An example\")"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -159,14 +137,114 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 70
+                            "column": 1
                         }
                     },
                     "range": [
                         130,
+                        131
+                    ],
+                    "raw": "["
+                },
+                {
+                    "type": "Link",
+                    "title": "An example",
+                    "url": "http://example.com",
+                    "children": [],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 36
+                        }
+                    },
+                    "range": [
+                        131,
+                        166
+                    ],
+                    "raw": "[](http://example.com \"An example\")"
+                },
+                {
+                    "type": "Str",
+                    "value": "](",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 36
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 38
+                        }
+                    },
+                    "range": [
+                        166,
+                        168
+                    ],
+                    "raw": "]("
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 38
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 56
+                                }
+                            },
+                            "range": [
+                                168,
+                                186
+                            ],
+                            "raw": "http://example.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 38
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 56
+                        }
+                    },
+                    "range": [
+                        168,
+                        186
+                    ],
+                    "raw": "http://example.com"
+                },
+                {
+                    "type": "Str",
+                    "value": " \"An example\")",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 56
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 70
+                        }
+                    },
+                    "range": [
+                        186,
                         200
                     ],
-                    "raw": "[[](http://example.com \"An example\")](http://example.com \"An example\")"
+                    "raw": " \"An example\")"
                 }
             ],
             "loc": {
