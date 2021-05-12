@@ -40,7 +40,6 @@
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",
-    "structured-source": "^3.0.2",
     "traverse": "^0.6.6",
     "unified": "^9.2.1"
   },
@@ -48,7 +47,6 @@
     "@textlint/ast-tester": "^2.3.5",
     "@types/mocha": "^8.2.2",
     "@types/node": "^14.17.0",
-    "@types/structured-source": "^3.0.0",
     "@types/traverse": "^0.6.32",
     "browserify": "^16.5.2",
     "cross-env": "^7.0.3",

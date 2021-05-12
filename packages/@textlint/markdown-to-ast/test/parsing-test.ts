@@ -2,7 +2,7 @@
 import assert from "assert";
 import fs from "fs";
 import path from "path";
-import { isTxtAST } from "@textlint/ast-tester";
+import { test } from "@textlint/ast-tester";
 import { parse } from "../src/index";
 
 describe("parsing", function () {
@@ -12,7 +12,7 @@ describe("parsing", function () {
         it(`${dirName} match AST`, function () {
             const input = fs.readFileSync(path.join(fixtureDir, filePath, "input.md"), "utf-8");
             const AST = parse(input);
-            assert(isTxtAST(AST), "AST Should be valid AST");
+            test(AST);
             const output = JSON.parse(fs.readFileSync(path.join(fixtureDir, filePath, "output.json"), "utf-8"));
             assert.deepStrictEqual(AST, output);
         });

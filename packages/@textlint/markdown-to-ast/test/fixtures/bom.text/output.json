@@ -58,10 +58,10 @@
                         }
                     },
                     "range": [
-                        21,
-                        55
+                        20,
+                        54
                     ],
-                    "raw": "Be careful when editing this file!"
+                    "raw": "\nBe careful when editing this file"
                 }
             ],
             "loc": {
@@ -75,10 +75,10 @@
                 }
             },
             "range": [
-                21,
-                55
+                20,
+                54
             ],
-            "raw": "Be careful when editing this file!"
+            "raw": "\nBe careful when editing this file"
         }
     ],
     "loc": {
@@ -93,7 +93,7 @@
     },
     "range": [
         0,
-        56
+        55
     ],
-    "raw": "﻿# Hello from a BOM\n\nBe careful when editing this file!\n"
+    "raw": "﻿# Hello from a BOM\n\nBe careful when editing this file!"
 }

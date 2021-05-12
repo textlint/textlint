@@ -1,7 +1,6 @@
 import { SyntaxMap } from "./mapping/markdown-syntax-map";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import traverse from "traverse";
-import StructuredSource from "structured-source";
 import debug0 from "debug";
 import unified from "unified";
 import remarkGfm from "remark-gfm";
@@ -10,7 +9,9 @@ import frontmatter from "remark-frontmatter";
 import footnotes from "remark-footnotes";
 
 const debug = debug0("@textlint/markdown-to-ast");
-const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]).use(remarkGfm).use(footnotes);
+const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]).use(remarkGfm).use(footnotes, {
+    inlineNotes: true
+});
 
 export { ASTNodeTypes as Syntax };
 
@@ -21,7 +22,6 @@ export { ASTNodeTypes as Syntax };
  */
 export function parse<T extends TxtNode>(text: string): T {
     const ast = remark.parse(text);
-    const src = new StructuredSource(text);
     traverse(ast).forEach(function (node: TxtNode) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
@@ -40,7 +40,7 @@ export function parse<T extends TxtNode>(text: string): T {
                     start: { line: position.start.line, column: Math.max(position.start.column - 1, 0) },
                     end: { line: position.end.line, column: Math.max(position.end.column - 1, 0) }
                 };
-                const range = src.locationToRange(positionCompensated);
+                const range = [position.start.offset, position.end.offset] as [number, number];
                 node.loc = positionCompensated;
                 node.range = range;
                 node.raw = text.slice(range[0], range[1]);
