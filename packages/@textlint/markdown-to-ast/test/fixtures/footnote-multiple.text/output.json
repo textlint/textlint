@@ -25,7 +25,7 @@
                     "raw": "International Radiotelephony Spelling Alphabet"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "wiki",
                     "label": "wiki",
                     "loc": {
@@ -84,7 +84,7 @@
                     "raw": "Here's the NATO phonetic alphabet"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "wiki",
                     "label": "wiki",
                     "loc": {

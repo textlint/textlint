@@ -247,7 +247,7 @@
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "footnoteReference",
+                                    "type": "FootnoteReference",
                                     "identifier": "foo",
                                     "label": "foo",
                                     "loc": {

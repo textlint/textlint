@@ -24,7 +24,7 @@
                     "raw": "Lorem ipsum dolor sit amet"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "1",
                     "label": "1",
                     "loc": {
@@ -102,7 +102,7 @@
                     "raw": "Nulla finibus"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "2",
                     "label": "2",
                     "loc": {
@@ -243,7 +243,7 @@
                             "raw": " elit. Praesent dictum purus ullamcorper ligula semper pellentesque"
                         },
                         {
-                            "type": "footnoteReference",
+                            "type": "FootnoteReference",
                             "identifier": "3",
                             "label": "3",
                             "loc": {

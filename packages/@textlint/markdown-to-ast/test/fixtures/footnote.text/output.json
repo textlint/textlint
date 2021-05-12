@@ -24,7 +24,7 @@
                     "raw": "Here is some text containing a footnote"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "somesamplefootnote",
                     "label": "somesamplefootnote",
                     "loc": {
@@ -224,7 +224,7 @@
                     "raw": " and the footnotes will go to the bottom of the document"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "documentdetails",
                     "label": "documentdetails",
                     "loc": {

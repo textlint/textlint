@@ -24,7 +24,7 @@
                     "raw": "The NATO phonetic alphabet"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "wiki",
                     "label": "wiki",
                     "loc": {

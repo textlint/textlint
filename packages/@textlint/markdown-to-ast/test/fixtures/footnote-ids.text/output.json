@@ -24,7 +24,7 @@
                     "raw": "This example checks that [^the generated] IDs do not overwrite the user's IDs"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "1",
                     "label": "1",
                     "loc": {

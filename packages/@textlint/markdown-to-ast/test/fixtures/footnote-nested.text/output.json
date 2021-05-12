@@ -24,7 +24,7 @@
                     "raw": "A footnote"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "1",
                     "label": "1",
                     "loc": {

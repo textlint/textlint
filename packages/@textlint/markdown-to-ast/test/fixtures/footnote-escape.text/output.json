@@ -24,7 +24,7 @@
                     "raw": "The NATO phonetic alphabet"
                 },
                 {
-                    "type": "footnoteReference",
+                    "type": "FootnoteReference",
                     "identifier": "wi\\-ki",
                     "label": "wi-ki",
                     "loc": {

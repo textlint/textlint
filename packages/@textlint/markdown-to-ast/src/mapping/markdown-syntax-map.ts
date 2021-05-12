@@ -31,6 +31,7 @@ export const SyntaxMap = {
     tableCell: "TableCell",
     linkReference: "LinkReference",
     imageReference: "ImageReference",
+    footnoteReference: "FootnoteReference", // textlint@12+
     definition: "Definition",
     /**
      * @deprecated
