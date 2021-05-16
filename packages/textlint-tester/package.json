@@ -49,7 +49,7 @@
     "mocha": "^8.4.0",
     "rimraf": "^3.0.2",
     "textlint-plugin-html": "^0.2.0",
-    "textlint-rule-helper": "^2.1.1",
+    "textlint-rule-helper": "^2.2.0",
     "textlint-rule-max-number-of-lines": "^1.0.3",
     "textlint-rule-no-todo": "^2.0.1",
     "ts-node": "^9.1.1",
