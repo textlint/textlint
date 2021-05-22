@@ -3,7 +3,7 @@ import assert from "assert";
 import fs from "fs";
 import path from "path";
 import { test } from "@textlint/ast-tester";
-import { parse } from "../src/index";
+import { parse } from "../src";
 
 describe("parsing", function () {
     const fixtureDir = path.join(__dirname, "fixtures");
