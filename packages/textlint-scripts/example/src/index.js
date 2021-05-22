@@ -17,7 +17,7 @@ module.exports = function (context, options = {}) {
             const result = common(text);
             if (result.diffs.length > 0) {
                 result.diffs.forEach((diff) => {
-                    const ruleError = new RuleError("Found " + diff.expected + "!", {
+                    const ruleError = new RuleError(`Found ${diff.expected}!`, {
                         index: diff.index // padding of index
                     });
                     report(node, ruleError);
