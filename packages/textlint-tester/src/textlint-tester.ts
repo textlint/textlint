@@ -5,6 +5,7 @@ import { testInvalid, testValid } from "./test-util";
 import { TextLintCore } from "textlint";
 import { TextlintFixResult, TextlintPluginCreator, TextlintRuleModule } from "@textlint/kernel";
 import { coreFlags } from "@textlint/feature-flag";
+import type { TxtParentNode } from "@textlint/ast-node-types";
 
 /* eslint-disable no-invalid-this */
 const globalObject: any = global;
@@ -121,10 +122,24 @@ export type TestPluginSet = {
     pluginOptions: any;
 };
 
-function createTestRuleSet(testConfigRules: TestConfigRule[]): TestRuleSet {
+function createTestRuleSet(testConfigRules: TestConfigRule[]) {
+    const targetAST = {} as { before: TxtParentNode; after: TxtParentNode };
     const testRuleSet: TestRuleSet = {
-        rules: {},
-        rulesOptions: {}
+        rules: {
+            "textlint-tester/validate-ast": (context) => {
+                return {
+                    [context.Syntax.Document](node) {
+                        targetAST.before = deepCloneWithoutParent(node);
+                    },
+                    [context.Syntax.DocumentExit](node) {
+                        targetAST.after = node;
+                    }
+                };
+            }
+        },
+        rulesOptions: {
+            "textlint-tester/validate-ast": true
+        }
     };
     testConfigRules.forEach((rule) => {
         const ruleName = rule.ruleId;
@@ -132,7 +147,56 @@ function createTestRuleSet(testConfigRules: TestConfigRule[]): TestRuleSet {
         testRuleSet.rules[ruleName] = rule.rule;
         testRuleSet.rulesOptions[ruleName] = ruleOptions;
     });
-    return testRuleSet;
+    return {
+        targetAST,
+        testRuleSet
+    };
+}
+
+/**
+ * Clones a given value deeply without `parent` property.
+ */
+function deepCloneWithoutParent(x: any): any {
+    if (typeof x === "object" && x !== null) {
+        if (Array.isArray(x)) {
+            return x.map((item) => deepCloneWithoutParent(item));
+        }
+        const o: Record<string, any> = {};
+        Object.keys(x).forEach((key) => {
+            if (key !== "parent") {
+                o[key] = deepCloneWithoutParent(x[key]);
+            }
+        });
+        return o;
+    }
+    return x;
+}
+
+function createSingleRuleSet({ name, rule, options }: { name: string; rule: TextlintRuleModule; options: any }) {
+    const targetAST = {} as { before: TxtParentNode; after: TxtParentNode };
+    const testRuleSet: TestRuleSet = {
+        rules: {
+            "textlint-tester/validate-ast": (context) => {
+                return {
+                    [context.Syntax.Document](node) {
+                        targetAST.before = deepCloneWithoutParent(node);
+                    },
+                    [context.Syntax.DocumentExit](node) {
+                        targetAST.after = node;
+                    }
+                };
+            },
+            [name]: rule
+        },
+        rulesOptions: {
+            "textlint-tester/validate-ast": true,
+            [name]: options
+        }
+    };
+    return {
+        targetAST,
+        testRuleSet
+    };
 }
 
 function createTestPluginSet(testConfigPlugins: TestConfigPlugin[]): TestPluginSet {
@@ -161,30 +225,38 @@ export class TextLintTester {
         const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
         const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
         const textlint = new TextLintCore();
-        if (isTestConfig(param)) {
-            const testRuleSet = createTestRuleSet(param.rules);
-            textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
-            if (param.plugins !== undefined) {
-                const testPluginSet = createTestPluginSet(param.plugins);
-                textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
-            }
-        } else {
-            const options =
-                typeof valid === "object"
-                    ? valid.options
-                    : // just enable
-                      true;
-            textlint.setupRules(
-                {
-                    [name]: param
-                },
-                {
-                    [name]: options
+        const targetAST = (() => {
+            if (isTestConfig(param)) {
+                const { testRuleSet, targetAST } = createTestRuleSet(param.rules);
+                textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
+                if (param.plugins !== undefined) {
+                    const testPluginSet = createTestPluginSet(param.plugins);
+                    textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
                 }
-            );
-        }
+                return targetAST;
+            } else {
+                const options =
+                    typeof valid === "object"
+                        ? valid.options
+                        : // just enable
+                          true;
+                const { testRuleSet, targetAST } = createSingleRuleSet({
+                    name,
+                    rule: param,
+                    options
+                });
+                textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
+                return targetAST;
+            }
+        })();
         it(inputPath || text, () => {
-            return testValid({ textlint, inputPath, text, ext });
+            return testValid({
+                textlint,
+                inputPath,
+                text,
+                ext,
+                targetAST
+            });
         });
     }
 
@@ -194,26 +266,35 @@ export class TextLintTester {
         const text = invalid.text;
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
         const textlint = new TextLintCore();
-        if (isTestConfig(param)) {
-            const testRuleSet = createTestRuleSet(param.rules);
-            textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
-            if (Array.isArray(param.plugins)) {
-                const testPluginSet = createTestPluginSet(param.plugins);
-                textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
-            }
-        } else {
-            const options = invalid.options;
-            textlint.setupRules(
-                {
-                    [name]: param
-                },
-                {
-                    [name]: options
+        const targetAST = (() => {
+            if (isTestConfig(param)) {
+                const { testRuleSet, targetAST } = createTestRuleSet(param.rules);
+                textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
+                if (Array.isArray(param.plugins)) {
+                    const testPluginSet = createTestPluginSet(param.plugins);
+                    textlint.setupPlugins(testPluginSet.plugins, testPluginSet.pluginOptions);
                 }
-            );
-        }
+                return targetAST;
+            } else {
+                const options = invalid.options;
+                const { testRuleSet, targetAST } = createSingleRuleSet({
+                    name,
+                    rule: param,
+                    options
+                });
+                textlint.setupRules(testRuleSet.rules, testRuleSet.rulesOptions);
+                return targetAST;
+            }
+        })();
         it(inputPath || text, () => {
-            return testInvalid({ textlint, inputPath, text, ext, errors });
+            return testInvalid({
+                textlint,
+                inputPath,
+                text,
+                ext,
+                errors,
+                targetAST
+            });
         });
         // --fix
         if (invalid.hasOwnProperty("output")) {
