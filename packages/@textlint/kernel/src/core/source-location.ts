@@ -26,9 +26,11 @@ export default class SourceLocation {
     /**
      * adjust node's location with error's padding location.
      */
-    adjust(
-        reportArgs: TextlintRuleContextReportFunctionArgs
-    ): { line: number; column: number; fix?: TextlintMessageFixCommand } {
+    adjust(reportArgs: TextlintRuleContextReportFunctionArgs): {
+        line: number;
+        column: number;
+        fix?: TextlintMessageFixCommand;
+    } {
         const { node, ruleError, ruleId } = reportArgs;
         const errorPrefix = `[${ruleId}]` || "";
         const padding = ruleError;

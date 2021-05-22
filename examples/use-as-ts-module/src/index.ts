@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import {argv, cwd, exit} from "process";
-import {resolve} from "path";
-import {TextLintEngine} from "textlint";
-import {TextlintResult} from "@textlint/kernel";
+import { argv, cwd, exit } from "process";
+import { resolve } from "path";
+import { TextLintEngine } from "textlint";
+import { TextlintResult } from "@textlint/kernel";
 
-const [, , filename] = argv
+const [, , filename] = argv;
 
 function lintFile(filePath: string) {
     const filePathList = [resolve(cwd(), filePath)];

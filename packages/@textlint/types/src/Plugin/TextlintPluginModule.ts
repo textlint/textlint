@@ -30,9 +30,7 @@ export declare class TextlintPluginProcessor {
      */
     availableExtensions(): Array<string>;
 
-    processor(
-        extension: string
-    ): {
+    processor(extension: string): {
         /**
          * plugin's `preProcess` return a TxtParentNode or text and AST.
          * If your plugin use different text for original file, the plugin should return the text and an AST for the text.

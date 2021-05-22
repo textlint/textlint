@@ -24,11 +24,11 @@ function getParents(node) {
  */
 function isNodeWrapped(node, types) {
     var parents = getParents(node);
-    var parentsTypes = parents.map(function(parent) {
+    var parentsTypes = parents.map(function (parent) {
         return parent.type;
     });
-    return types.some(function(type) {
-        return parentsTypes.some(function(parentType) {
+    return types.some(function (type) {
+        return parentsTypes.some(function (parentType) {
             return parentType === type;
         });
     });
@@ -36,7 +36,7 @@ function isNodeWrapped(node, types) {
 /**
  * @param {RuleContext} context
  */
-module.exports = function(context) {
+module.exports = function (context) {
     var exports = {};
     // When `Node`'s type is `Str` come, call this callback.
     /*
@@ -49,7 +49,7 @@ module.exports = function(context) {
     */
     // "This is Str." and "Todo: quick fix this." are `Str` type.
     // This callback function is called twice.
-    exports[context.Syntax.Str] = function(node) {
+    exports[context.Syntax.Str] = function (node) {
         var Syntax = context.Syntax;
         if (isNodeWrapped(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
             return;
@@ -70,7 +70,7 @@ module.exports = function(context) {
         - [ ] todo
     */
     // `List` is "- list 1" and - [ ] todo", so called this callback twice.
-    exports[context.Syntax.ListItem] = function(node) {
+    exports[context.Syntax.ListItem] = function (node) {
         var text = context.getSource(node);
         if (/\[\s+\]\s/i.test(text)) {
             context.report(node, new context.RuleError("found TODO: '" + text + "'"));

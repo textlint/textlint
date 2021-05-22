@@ -22,7 +22,7 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     function mapRuleWithVersion(pkg, packageList) {
         const deps = pkg.dependencies || {};
         const devDeps = pkg.devDependencies || {};
-        return packageList.map(rulePackageName => {
+        return packageList.map((rulePackageName) => {
             const version = deps[rulePackageName] || devDeps[rulePackageName];
             return `${rulePackageName}@${version}`;
         });
