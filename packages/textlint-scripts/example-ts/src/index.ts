@@ -2,7 +2,7 @@
 import common from "./common";
 import { TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
-const report: TextlintRuleReporter = function(context, options = {}) {
+const report: TextlintRuleReporter = function (context, options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
@@ -15,7 +15,7 @@ const report: TextlintRuleReporter = function(context, options = {}) {
             // check prh
             const result = common(text);
             if (result.diffs.length > 0) {
-                result.diffs.forEach(diff => {
+                result.diffs.forEach((diff) => {
                     const ruleError = new RuleError("Found " + diff.expected + "!", {
                         index: diff.index // padding of index
                     });

@@ -3,7 +3,7 @@ import mod from "./module";
 
 const path = require("path");
 const common = require("./common");
-module.exports = function(context, options = {}) {
+module.exports = function (context, options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
@@ -16,7 +16,7 @@ module.exports = function(context, options = {}) {
             // check prh
             const result = common(text);
             if (result.diffs.length > 0) {
-                result.diffs.forEach(diff => {
+                result.diffs.forEach((diff) => {
                     const ruleError = new RuleError("Found " + diff.expected + "!", {
                         index: diff.index // padding of index
                     });
