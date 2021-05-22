@@ -6,7 +6,7 @@ const report: TextlintRuleReporter = function (context) {
     const { Syntax, report, RuleError } = context;
     return {
         [Syntax.Str](node) {
-            return new Promise((resolve) => {
+            return new Promise<void>((resolve) => {
                 setTimeout(() => {
                     report(node, new RuleError("async error"));
                     resolve();
