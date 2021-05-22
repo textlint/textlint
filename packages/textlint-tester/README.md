@@ -9,6 +9,33 @@
 ## Usage
 
 1. Write tests by using `textlint-tester`
+   
+```js
+import TextLintTester from "textlint-tester";
+// a rule for testing
+import rule from "textlint-rule-no-todo";
+const tester = new TextLintTester();
+// ruleName, rule, { valid, invalid }
+tester.run("no-todo", rule, {
+    valid: [
+        "This is ok",
+    ],
+    invalid: [
+        // line, column
+        {
+            text: "- [ ] string",
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] string'",
+                    line: 1,
+                    column: 3
+                }
+            ]
+        }
+    ]
+});
+```
+
 2. Run tests by [Mocha](http://mochajs.org/ "Mocha")
 
 ```sh
@@ -127,7 +154,7 @@ export declare type TesterValid = string | {
         - `{object[]} errors`: an array of error objects which should be raised against the text.
         - `{object} options`: options to be passed to the rule. Will throw assertion error if `testConfig` is specified
 
-TypeScript declaration is as follows:
+TypeScript's declaration is as follows:
 
 ```typescript
 export declare type TesterInvalid = {
@@ -171,10 +198,10 @@ export declare type TesterInvalid = {
 `test/example-test.js`:
 
 ```js
-const TextLintTester = require("textlint-tester");
+import TextLintTester from "textlint-tester";
+// a rule for testing
+import rule from "textlint-rule-no-todo";
 const tester = new TextLintTester();
-// rule
-const rule = require("textlint-rule-no-todo").default;
 // ruleName, rule, { valid, invalid }
 tester.run("no-todo", rule, {
     valid: [
