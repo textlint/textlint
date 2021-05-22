@@ -38,7 +38,7 @@ Button.defaultProps = {
     target: "_self"
 };
 
-const SplashContainer = props => (
+const SplashContainer = (props) => (
     <div className="homeContainer">
         <div className="homeSplashFade">
             <div className="wrapper homeWrapper">{props.children}</div>
@@ -46,20 +46,20 @@ const SplashContainer = props => (
     </div>
 );
 
-const Logo = props => (
+const Logo = (props) => (
     <div className="projectLogo">
         <img src={props.img_src} />
     </div>
 );
 
-const ProjectTitle = props => (
+const ProjectTitle = (props) => (
     <h2 className="ProjectTitle">
         {siteConfig.title}
         <small className={"ProjectTitle-copy"}>{siteConfig.tagline}</small>
     </h2>
 );
 
-const PromoSection = props => (
+const PromoSection = (props) => (
     <div className="section promoSection">
         <div className="promoRow">
             <div className="pluginRowBlock">{props.children}</div>
@@ -85,13 +85,13 @@ class HomeSplash extends React.Component {
     }
 }
 
-const Block = props => (
+const Block = (props) => (
     <Container padding={["bottom", "top"]} id={props.id} background={props.background}>
         <GridBlock align="center" contents={props.children} layout={props.layout} />
     </Container>
 );
 
-const FeatureCallout = props => (
+const FeatureCallout = (props) => (
     <Container padding={["bottom", "top"]} id={props.id} background={props.background}>
         <div className="productShowcaseSection paddingBottom TextlintFeature">
             <MarkdownBlock>{`
@@ -130,8 +130,8 @@ HTML and other formats are offered by custom plugins`
 );
 
 const bash = (...args) => `~~~bash\n${String.raw(...args)}\n~~~`;
-const json = object => `~~~json\n${JSON.stringify(object, null, 2)}\n~~~`;
-const GetStartedSection = props => {
+const json = (object) => `~~~json\n${JSON.stringify(object, null, 2)}\n~~~`;
+const GetStartedSection = (props) => {
     return (
         <div className="GettingStarted productShowcaseSection">
             <Container>
@@ -250,7 +250,7 @@ Create .textlintrc`}
     );
 };
 
-const Playground = props => {
+const Playground = (props) => {
     return (
         <Container adding={["bottom", "top"]}>
             <div className="productShowcaseSection paddingBottom paddingTop Playground">
@@ -280,12 +280,12 @@ const Playground = props => {
     );
 };
 
-const Showcase = props => {
+const Showcase = (props) => {
     if ((siteConfig.users || []).length === 0) {
         return null;
     }
     const showcase = siteConfig.users
-        .filter(user => {
+        .filter((user) => {
             return user.pinned;
         })
         .map((user, i) => {

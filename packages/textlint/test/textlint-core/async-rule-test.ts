@@ -25,7 +25,7 @@ describe("Async", function () {
 
                 return {
                     [Syntax.Str](node) {
-                        return new Promise((resolve) => {
+                        return new Promise<void>((resolve) => {
                             setTimeout(() => {
                                 report(node, new RuleError("before"));
                                 resolve();

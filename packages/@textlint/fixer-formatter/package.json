@@ -21,8 +21,8 @@
   },
   "license": "MIT",
   "author": "azu",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
   "files": [
     "bin/",
     "lib/",
@@ -31,9 +31,9 @@
   ],
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo tsconfig.module.tsbuildinfo",
+    "clean": "rimraf lib/ module/",
     "prepublish": "npm run build",
-    "test": "mocha \"test/**/*.{js,ts}\""
+    "test": "mocha \"test/**/*-test.{js,ts}\""
   },
   "dependencies": {
     "@textlint/module-interop": "^1.2.5",
@@ -55,7 +55,7 @@
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
     "ts-node-test-register": "^9.0.1",
-    "typescript": "~4.0.2"
+    "typescript": "~4.2.4"
   },
   "publishConfig": {
     "access": "public"

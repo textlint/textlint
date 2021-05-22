@@ -24,7 +24,7 @@ const testList = [
         path: "chapter-01/ chapter-02/ chapter-03/ chapter-04/ chapter-05/",
         version: "6.0.0"
     }
-].filter(testTarget => {
+].filter((testTarget) => {
     const version = process.version;
     if (testTarget.version === undefined) {
         return true;
@@ -32,6 +32,6 @@ const testList = [
     return semver.gte(version, testTarget.version);
 });
 
-testList.forEach(test => {
+testList.forEach((test) => {
     runLint(test.name, test.path);
 });

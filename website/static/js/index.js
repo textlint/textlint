@@ -3,11 +3,11 @@
 
 function debounce(func, wait, immediate) {
     var timeout;
-    return function() {
+    return function () {
         var context = this;
         var args = arguments;
         clearTimeout(timeout);
-        timeout = setTimeout(function() {
+        timeout = setTimeout(function () {
             timeout = null;
             if (!immediate) {
                 func.apply(context, args);
@@ -59,13 +59,13 @@ function onLoad() {
     var npmButton = document.querySelector(".showNpmButton");
     var getStartedSection = document.querySelector(".getStartedSection");
 
-    npmButton.addEventListener("click", function(event) {
+    npmButton.addEventListener("click", function (event) {
         event.preventDefault();
         npmButton.classList.add("active");
         yarnButton.classList.remove("active");
         getStartedSection.classList.add("getStartedSection--npm");
     });
-    yarnButton.addEventListener("click", function(event) {
+    yarnButton.addEventListener("click", function (event) {
         event.preventDefault();
         yarnButton.classList.add("active");
         npmButton.classList.remove("active");

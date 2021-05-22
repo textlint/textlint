@@ -1,7 +1,6 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "../",
     "allowJs": true,
     "composite": false,
     "noEmit": true

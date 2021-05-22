@@ -19,9 +19,9 @@
   },
   "license": "MIT",
   "author": "azu",
-  "main": "lib/index.js",
-  "module": "./module/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "module": "module/src/index.js",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo tsconfig.module.tsbuildinfo",
+    "clean": "rimraf lib/ module/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
@@ -50,11 +50,11 @@
     "@types/node": "^14.17.0",
     "cross-env": "^7.0.3",
     "mocha": "^8.4.0",
-    "prettier": "^2.1.1",
+    "prettier": "^2.3.0",
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
     "ts-node-test-register": "^9.0.1",
-    "typescript": "^4.0.2"
+    "typescript": "^4.2.4"
   },
   "publishConfig": {
     "access": "public"

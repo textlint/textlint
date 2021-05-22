@@ -19,8 +19,8 @@
     "module/",
     "src/"
   ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "test": "test"
   },
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf lib/ out/ tsconfig.tsbuildinfo",
+    "clean": "rimraf lib/ out/",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -b --watch"
@@ -54,7 +54,7 @@
     "textlint-rule-no-todo": "^2.0.1",
     "ts-node": "^9.1.1",
     "ts-node-test-register": "^9.0.1",
-    "typescript": "~4.0.2"
+    "typescript": "~4.2.4"
   },
   "email": "azuciao@gmail.com"
 }
