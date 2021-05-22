@@ -5,6 +5,7 @@
     "composite": false
   },
   "include": [
-    "src/**/*"
-  ]
+    "../src/**/*",
+    "**/*"
+  ],
 }

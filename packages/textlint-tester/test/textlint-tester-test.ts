@@ -1,11 +1,10 @@
-// LICENSE : MIT
-"use strict";
 import * as path from "path";
+import TextLintTester from "../src/index";
+// @ts-expect-error: no types
+import noTodo from "textlint-rule-no-todo";
+// @ts-expect-error: no types
+import maxNumberOfLine from "textlint-rule-max-number-of-lines";
 
-import TextLintTester = require("../src/index");
-
-const noTodo = require("textlint-rule-no-todo").default;
-const maxNumberOfLine = require("textlint-rule-max-number-of-lines");
 const tester = new TextLintTester();
 tester.run("no-todo", noTodo, {
     valid: [

@@ -1,11 +1,10 @@
-// LICENSE : MIT
-"use strict";
-
 import * as assert from "assert";
-
-const htmlPlugin = require("textlint-plugin-html");
-const noTodoRule = require("textlint-rule-no-todo").default;
-const maxNumberOfLineRule = require("textlint-rule-max-number-of-lines");
+// @ts-expect-error: no types
+import htmlPlugin from "textlint-plugin-html";
+// @ts-expect-error: no types
+import noTodoRule from "textlint-rule-no-todo";
+// @ts-expect-error: no types
+import maxNumberOfLineRule from "textlint-rule-max-number-of-lines";
 import { TextLintTester } from "../src/textlint-tester";
 
 const tester = new TextLintTester();

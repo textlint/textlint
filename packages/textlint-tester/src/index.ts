@@ -1,3 +1,3 @@
 import { TextLintTester } from "./textlint-tester";
 
-export = TextLintTester;
+export default TextLintTester;
