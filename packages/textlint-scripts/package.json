@@ -13,26 +13,25 @@
   ],
   "name": "textlint-scripts",
   "version": "3.0.0",
-  "description": "textlint npm-run-scripts CLI help to create textlint rule.",
+  "description": "textlint scripts help you to create textlint rule.",
   "bin": {
     "textlint-scripts": "./bin/cmd.js"
   },
   "scripts": {
     "test": "node test/test-example.js",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks"
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
   "keywords": [
     "textlint"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/textlint/textlint-scripts.git"
+    "url": "https://github.com/textlint/textlint.git"
   },
   "bugs": {
-    "url": "https://github.com/textlint/textlint-scripts/issues"
+    "url": "https://github.com/textlint/textlint/issues"
   },
-  "homepage": "https://github.com/textlint/textlint-scripts",
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts",
   "devDependencies": {
     "lint-staged": "^11.0.0",
     "prettier": "^2.2.1",

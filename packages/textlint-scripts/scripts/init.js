@@ -7,23 +7,23 @@ const pkgToReadme = require("pkg-to-readme");
 // Update README.md
 const templatePath = path.resolve(__dirname, "..", "configs", "README.md.template");
 Promise.resolve()
-    .then(function() {
+    .then(function () {
         if (!fs.existsSync(path.resolve("README.md"))) {
             return;
         }
-        return confirmer("Would you overwrite README.md? (y/n)").then(function(result) {
+        return confirmer("Would you overwrite README.md? (y/n)").then(function (result) {
             return result ? Promise.resolve() : Promise.reject(new Error("Not overwrite"));
         });
     })
-    .then(function() {
+    .then(function () {
         return pkgToReadme({
             template: templatePath
         });
     })
-    .then(function() {
+    .then(function () {
         console.log("Generated README.md");
     })
-    .catch(error => {
+    .catch((error) => {
         console.error(error.message);
         process.exit(1);
     });
