@@ -33,7 +33,7 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo tsconfig.module.tsbuildinfo",
     "prepublish": "npm run build",
-    "test": "mocha \"test/**/*.{js,ts}\""
+    "test": "mocha \"test/**/*-test.{js,ts}\""
   },
   "dependencies": {
     "@textlint/module-interop": "^1.2.5",

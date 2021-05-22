@@ -1,7 +1,7 @@
 "use strict";
 import stylish from "../../src/formatters/stylish";
+import assert from "assert";
 
-const assert = require("assert");
 const formatter = (code) => {
     return stylish(code, { color: false });
 };

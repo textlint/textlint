@@ -1,5 +1,5 @@
+import assert from "assert";
 import { moduleInterop } from "../src";
-import assert = require("assert");
 
 describe("moduleExports", function () {
     it("should interop commonjs", () => {

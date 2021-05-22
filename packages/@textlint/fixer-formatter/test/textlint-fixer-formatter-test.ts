@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import { getFixerFormatterList } from "@textlint/fixer-formatter";
 import assert from "assert";
+import { getFixerFormatterList } from "../src";
 
 describe("@textlint/fixer-formatter-test", function () {
     describe("getFormatterList", function () {

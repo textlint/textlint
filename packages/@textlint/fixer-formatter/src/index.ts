@@ -1,13 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
-
 import { moduleInterop } from "@textlint/module-interop";
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 const tryResolve = require("try-resolve");
-
 const isFile = require("is-file");
 const debug = require("debug")("textlint:textfix-formatter");
 
@@ -55,9 +52,10 @@ export function getFixerFormatterList(): FixerFormatterDetail[] {
     return fs
         .readdirSync(path.join(__dirname, "formatters"))
         .filter((file: string) => {
-            return path.extname(file) === ".js";
+            const fileName = path.extname(file);
+            return fileName === ".js" || fileName === ".ts";
         })
         .map((file: string) => {
-            return { name: path.basename(file, ".js") };
+            return { name: path.basename(file, path.extname(file)) };
         });
 }
