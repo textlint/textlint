@@ -1,0 +1,464 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Link: ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        0,
+                        6
+                    ],
+                    "raw": "Link: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://example.com/",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "http://example.com/",
+                            "loc": {
+                                "start": {
+                                    "line": 1,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 1,
+                                    "column": 25
+                                }
+                            },
+                            "range": [
+                                6,
+                                25
+                            ],
+                            "raw": "http://example.com/"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        6,
+                        25
+                    ],
+                    "raw": "http://example.com/"
+                },
+                {
+                    "type": "Str",
+                    "value": "\nLink: ",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 6
+                        }
+                    },
+                    "range": [
+                        25,
+                        32
+                    ],
+                    "raw": "\nLink: "
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "http://www.example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "www.example.com",
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 6
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 21
+                                }
+                            },
+                            "range": [
+                                32,
+                                47
+                            ],
+                            "raw": "www.example.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 21
+                        }
+                    },
+                    "range": [
+                        32,
+                        47
+                    ],
+                    "raw": "www.example.com"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 2,
+                    "column": 21
+                }
+            },
+            "range": [
+                0,
+                47
+            ],
+            "raw": "Link: http://example.com/\nLink: www.example.com"
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "spread": false,
+            "children": [
+                {
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "Link: ",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 8
+                                        }
+                                    },
+                                    "range": [
+                                        50,
+                                        56
+                                    ],
+                                    "raw": "Link: "
+                                },
+                                {
+                                    "type": "Link",
+                                    "title": null,
+                                    "url": "http://example.com/",
+                                    "children": [
+                                        {
+                                            "type": "Str",
+                                            "value": "http://example.com/",
+                                            "loc": {
+                                                "start": {
+                                                    "line": 3,
+                                                    "column": 8
+                                                },
+                                                "end": {
+                                                    "line": 3,
+                                                    "column": 27
+                                                }
+                                            },
+                                            "range": [
+                                                56,
+                                                75
+                                            ],
+                                            "raw": "http://example.com/"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 8
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 27
+                                        }
+                                    },
+                                    "range": [
+                                        56,
+                                        75
+                                    ],
+                                    "raw": "http://example.com/"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 27
+                                }
+                            },
+                            "range": [
+                                50,
+                                75
+                            ],
+                            "raw": "Link: http://example.com/"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 27
+                        }
+                    },
+                    "range": [
+                        48,
+                        75
+                    ],
+                    "raw": "* Link: http://example.com/"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 27
+                }
+            },
+            "range": [
+                48,
+                75
+            ],
+            "raw": "* Link: http://example.com/"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Blockquoted: ",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 15
+                                }
+                            },
+                            "range": [
+                                79,
+                                92
+                            ],
+                            "raw": "Blockquoted: "
+                        },
+                        {
+                            "type": "Link",
+                            "title": null,
+                            "url": "http://example.com/",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "http://example.com/",
+                                    "loc": {
+                                        "start": {
+                                            "line": 5,
+                                            "column": 15
+                                        },
+                                        "end": {
+                                            "line": 5,
+                                            "column": 34
+                                        }
+                                    },
+                                    "range": [
+                                        92,
+                                        111
+                                    ],
+                                    "raw": "http://example.com/"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 15
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 34
+                                }
+                            },
+                            "range": [
+                                92,
+                                111
+                            ],
+                            "raw": "http://example.com/"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        79,
+                        111
+                    ],
+                    "raw": "Blockquoted: http://example.com/"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 5,
+                    "column": 34
+                }
+            },
+            "range": [
+                77,
+                111
+            ],
+            "raw": "> Blockquoted: http://example.com/"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Auto-links should not occur here: ",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 34
+                        }
+                    },
+                    "range": [
+                        113,
+                        147
+                    ],
+                    "raw": "Auto-links should not occur here: "
+                },
+                {
+                    "type": "Code",
+                    "value": "http://example.com/",
+                    "loc": {
+                        "start": {
+                            "line": 7,
+                            "column": 34
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 55
+                        }
+                    },
+                    "range": [
+                        147,
+                        168
+                    ],
+                    "raw": "`http://example.com/`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 55
+                }
+            },
+            "range": [
+                113,
+                168
+            ],
+            "raw": "Auto-links should not occur here: `http://example.com/`"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "meta": null,
+            "value": "or here: http://example.com/",
+            "loc": {
+                "start": {
+                    "line": 9,
+                    "column": 0
+                },
+                "end": {
+                    "line": 9,
+                    "column": 29
+                }
+            },
+            "range": [
+                170,
+                199
+            ],
+            "raw": "\tor here: http://example.com/"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 10,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        200
+    ],
+    "raw": "Link: http://example.com/\nLink: www.example.com\n* Link: http://example.com/\n\n> Blockquoted: http://example.com/\n\nAuto-links should not occur here: `http://example.com/`\n\n\tor here: http://example.com/\n"
+}

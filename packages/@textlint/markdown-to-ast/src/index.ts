@@ -2,16 +2,9 @@ import { SyntaxMap } from "./mapping/markdown-syntax-map";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import traverse from "traverse";
 import debug0 from "debug";
-import unified from "unified";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import frontmatter from "remark-frontmatter";
-import footnotes from "remark-footnotes";
+import { parseMarkdown } from "./parse-markdown";
 
 const debug = debug0("@textlint/markdown-to-ast");
-const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]).use(remarkGfm).use(footnotes, {
-    inlineNotes: true
-});
 
 export { ASTNodeTypes as Syntax };
 
@@ -29,7 +22,7 @@ export function parse<T extends TxtNode>(text: string): T {
     // https://github.com/micromark/micromark/blob/0f19c1ac25964872a160d8b536878b125ddfe393/lib/preprocess.mjs#L29-L31
     const hasBOM = text.charCodeAt(0) === 0xfeff;
     const textWithoutBOM = hasBOM ? text.slice(1) : text;
-    const ast = remark.parse(textWithoutBOM);
+    const ast = parseMarkdown(textWithoutBOM);
     traverse(ast).forEach(function (node: TxtNode) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
@@ -52,7 +45,7 @@ export function parse<T extends TxtNode>(text: string): T {
                 node.loc = positionCompensated;
                 node.range = range;
                 node.raw = textWithoutBOM.slice(range[0], range[1]);
-                // Compatible for https://github.com/wooorm/unist, but hidden
+                // Compatible for https://github.com/syntax-tree/unist, but it is hidden
                 Object.defineProperty(node, "position", {
                     enumerable: false,
                     configurable: false,

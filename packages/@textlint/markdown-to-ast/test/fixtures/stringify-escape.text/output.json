@@ -1391,7 +1391,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "http://user:password@host:port/path?key=value#fragment"
+                                    "value": "http://user:password@host:port/path?key=value#fragment",
+                                    "loc": {
+                                        "start": {
+                                            "line": 50,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 50,
+                                            "column": 59
+                                        }
+                                    },
+                                    "range": [
+                                        881,
+                                        936
+                                    ],
+                                    "raw": "http\\://user:password@host:port/path?key=value#fragment"
                                 }
                             ],
                             "loc": {
@@ -1437,7 +1452,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "https://user:password@host:port/path?key=value#fragment"
+                                    "value": "https://user:password@host:port/path?key=value#fragment",
+                                    "loc": {
+                                        "start": {
+                                            "line": 51,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 51,
+                                            "column": 60
+                                        }
+                                    },
+                                    "range": [
+                                        941,
+                                        997
+                                    ],
+                                    "raw": "https\\://user:password@host:port/path?key=value#fragment"
                                 }
                             ],
                             "loc": {
@@ -1483,7 +1513,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "http://user:password@host:port/path?key=value#fragment"
+                                    "value": "http://user:password@host:port/path?key=value#fragment",
+                                    "loc": {
+                                        "start": {
+                                            "line": 52,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 52,
+                                            "column": 64
+                                        }
+                                    },
+                                    "range": [
+                                        1002,
+                                        1062
+                                    ],
+                                    "raw": "http&colon;//user:password@host:port/path?key=value#fragment"
                                 }
                             ],
                             "loc": {
@@ -1529,7 +1574,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "https://user:password@host:port/path?key=value#fragment"
+                                    "value": "https://user:password@host:port/path?key=value#fragment",
+                                    "loc": {
+                                        "start": {
+                                            "line": 53,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 53,
+                                            "column": 65
+                                        }
+                                    },
+                                    "range": [
+                                        1067,
+                                        1128
+                                    ],
+                                    "raw": "https&colon;//user:password@host:port/path?key=value#fragment"
                                 }
                             ],
                             "loc": {

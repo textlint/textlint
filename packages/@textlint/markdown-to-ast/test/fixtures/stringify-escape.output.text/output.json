@@ -1272,7 +1272,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "http://user:password@host:port/path?key=value#fragment"
+                                    "value": "http://user:password@host:port/path?key=value#fragment",
+                                    "loc": {
+                                        "start": {
+                                            "line": 48,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 48,
+                                            "column": 63
+                                        }
+                                    },
+                                    "range": [
+                                        829,
+                                        888
+                                    ],
+                                    "raw": "http&#x3A;//user:password@host:port/path?key=value#fragment"
                                 }
                             ],
                             "loc": {
@@ -1318,7 +1333,22 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "https://user:password@host:port/path?key=value#fragment"
+                                    "value": "https://user:password@host:port/path?key=value#fragment",
+                                    "loc": {
+                                        "start": {
+                                            "line": 49,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 49,
+                                            "column": 64
+                                        }
+                                    },
+                                    "range": [
+                                        893,
+                                        953
+                                    ],
+                                    "raw": "https&#x3A;//user:password@host:port/path?key=value#fragment"
                                 }
                             ],
                             "loc": {

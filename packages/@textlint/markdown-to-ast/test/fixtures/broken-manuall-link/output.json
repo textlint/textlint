@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This is broken: http://example.com/path?key=value#fragment",
+                    "value": "This is broken url <http://example.com/path?key=value#fragment> but it is link",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,14 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 63
+                            "column": 83
                         }
                     },
                     "range": [
                         0,
-                        63
+                        83
                     ],
-                    "raw": "This is broken: http&#x3A;//example.com/path?key=value#fragment"
+                    "raw": "This is broken url <http&#x3A;//example.com/path?key=value#fragment> but it is link"
                 }
             ],
             "loc": {
@@ -31,14 +31,14 @@
                 },
                 "end": {
                     "line": 1,
-                    "column": 63
+                    "column": 83
                 }
             },
             "range": [
                 0,
-                63
+                83
             ],
-            "raw": "This is broken: http&#x3A;//example.com/path?key=value#fragment"
+            "raw": "This is broken url <http&#x3A;//example.com/path?key=value#fragment> but it is link"
         }
     ],
     "loc": {
@@ -53,7 +53,7 @@
     },
     "range": [
         0,
-        64
+        84
     ],
-    "raw": "This is broken: http&#x3A;//example.com/path?key=value#fragment\n"
+    "raw": "This is broken url <http&#x3A;//example.com/path?key=value#fragment> but it is link\n"
 }
