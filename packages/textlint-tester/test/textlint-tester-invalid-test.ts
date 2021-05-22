@@ -17,7 +17,13 @@ describe("Broken Rule", function () {
                 textlint,
                 text: "text",
                 ext: ".md",
-                errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }]
+                errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }],
+                targetAST: {
+                    // @ts-expect-error: no use
+                    before: {},
+                    // @ts-expect-error: no use
+                    after: {}
+                }
             })
                 .then(() => {
                     throw new Error("WRONG");
