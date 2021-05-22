@@ -28,7 +28,7 @@
     "src/"
   ],
   "scripts": {
-    "build": "tsc -b --explainFiles && tsc -b tsconfig.module.json",
+    "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
