@@ -78,18 +78,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 6
+                                    "column": 8
                                 }
                             },
                             "range": [
-                                9,
-                                13
+                                7,
+                                15
                             ],
-                            "raw": "Name"
+                            "raw": "| Name |"
                         },
                         {
                             "type": "TableCell",
@@ -117,18 +117,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 9
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 15
+                                    "column": 17
                                 }
                             },
                             "range": [
-                                16,
-                                22
+                                15,
+                                24
                             ],
-                            "raw": "GitHub"
+                            "raw": " GitHub |"
                         },
                         {
                             "type": "TableCell",
@@ -156,18 +156,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 18
+                                    "column": 17
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 25
+                                    "column": 27
                                 }
                             },
                             "range": [
-                                25,
-                                32
+                                24,
+                                34
                             ],
-                            "raw": "Twitter"
+                            "raw": " Twitter |"
                         }
                     ],
                     "loc": {

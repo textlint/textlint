@@ -24,30 +24,9 @@
                     "raw": "The NATO phonetic alphabet"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 27
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 32
-                                }
-                            },
-                            "range": [
-                                27,
-                                32
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
+                    "type": "FootnoteReference",
+                    "identifier": "wiki",
+                    "label": "wiki",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -101,75 +80,37 @@
             "raw": "The NATO phonetic alphabet[^wiki]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "wiki",
+            "label": "wiki",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "  ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 2
-                        }
-                    },
-                    "range": [
-                        36,
-                        38
-                    ],
-                    "raw": "  "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^wiki",
+                            "value": "Read more about it somewhere else.",
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 3
+                                    "column": 11
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 8
+                                    "column": 45
                                 }
                             },
                             "range": [
-                                39,
-                                44
+                                47,
+                                81
                             ],
-                            "raw": "^wiki"
+                            "raw": "Read more about it somewhere else."
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 9
-                        }
-                    },
-                    "range": [
-                        38,
-                        45
-                    ],
-                    "raw": "[^wiki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Read more about it somewhere else.",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 9
+                            "column": 11
                         },
                         "end": {
                             "line": 3,
@@ -177,16 +118,16 @@
                         }
                     },
                     "range": [
-                        45,
+                        47,
                         81
                     ],
-                    "raw": ": Read more about it somewhere else."
+                    "raw": "Read more about it somewhere else."
                 }
             ],
             "loc": {
                 "start": {
                     "line": 3,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 3,
@@ -194,10 +135,10 @@
                 }
             },
             "range": [
-                36,
+                38,
                 81
             ],
-            "raw": "  [^wiki]: Read more about it somewhere else."
+            "raw": "[^wiki]: Read more about it somewhere else."
         }
     ],
     "loc": {

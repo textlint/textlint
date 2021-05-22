@@ -5,30 +5,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "hello",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "Hello",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                1,
-                                6
-                            ],
-                            "raw": "Hello"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[Hello](",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -36,33 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        0,
-                        7
-                    ],
-                    "raw": "[Hello]"
-                },
-                {
-                    "type": "Str",
-                    "value": "(",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 8
                         }
                     },
                     "range": [
-                        7,
+                        0,
                         8
                     ],
-                    "raw": "("
+                    "raw": "[Hello]("
                 }
             ],
             "loc": {
@@ -85,30 +44,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "world",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "World",
-                            "loc": {
-                                "start": {
-                                    "line": 4,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 4,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                12,
-                                17
-                            ],
-                            "raw": "World"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[World](<",
                     "loc": {
                         "start": {
                             "line": 4,
@@ -116,33 +53,14 @@
                         },
                         "end": {
                             "line": 4,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        11,
-                        18
-                    ],
-                    "raw": "[World]"
-                },
-                {
-                    "type": "Str",
-                    "value": "(<",
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 4,
                             "column": 9
                         }
                     },
                     "range": [
-                        18,
+                        11,
                         20
                     ],
-                    "raw": "(<"
+                    "raw": "[World](<"
                 }
             ],
             "loc": {
@@ -165,10 +83,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "ImageReference",
-                    "identifier": "hello",
-                    "referenceType": "shortcut",
-                    "alt": "Hello",
+                    "type": "Str",
+                    "value": "![Hello](",
                     "loc": {
                         "start": {
                             "line": 7,
@@ -176,33 +92,14 @@
                         },
                         "end": {
                             "line": 7,
-                            "column": 8
-                        }
-                    },
-                    "range": [
-                        23,
-                        31
-                    ],
-                    "raw": "![Hello]"
-                },
-                {
-                    "type": "Str",
-                    "value": "(",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 8
-                        },
-                        "end": {
-                            "line": 7,
                             "column": 9
                         }
                     },
                     "range": [
-                        31,
+                        23,
                         32
                     ],
-                    "raw": "("
+                    "raw": "![Hello]("
                 }
             ],
             "loc": {
@@ -225,10 +122,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "ImageReference",
-                    "identifier": "world",
-                    "referenceType": "shortcut",
-                    "alt": "World",
+                    "type": "Str",
+                    "value": "![World](<",
                     "loc": {
                         "start": {
                             "line": 10,
@@ -236,33 +131,14 @@
                         },
                         "end": {
                             "line": 10,
-                            "column": 8
-                        }
-                    },
-                    "range": [
-                        35,
-                        43
-                    ],
-                    "raw": "![World]"
-                },
-                {
-                    "type": "Str",
-                    "value": "(<",
-                    "loc": {
-                        "start": {
-                            "line": 10,
-                            "column": 8
-                        },
-                        "end": {
-                            "line": 10,
                             "column": 10
                         }
                     },
                     "range": [
-                        43,
+                        35,
                         45
                     ],
-                    "raw": "(<"
+                    "raw": "![World](<"
                 }
             ],
             "loc": {

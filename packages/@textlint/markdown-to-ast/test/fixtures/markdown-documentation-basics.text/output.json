@@ -105,7 +105,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This page offers a brief overview of what it's like to use Markdown.\nThe ",
+                    "value": "This page offers a brief overview of what it's like to use Markdown.\nThe [syntax page] ",
                     "loc": {
                         "start": {
                             "line": 16,
@@ -113,44 +113,45 @@
                         },
                         "end": {
                             "line": 17,
-                            "column": 4
+                            "column": 18
                         }
                     },
                     "range": [
                         610,
-                        683
+                        697
                     ],
-                    "raw": "This page offers a brief overview of what it's like to use Markdown.\nThe "
+                    "raw": "This page offers a brief overview of what it's like to use Markdown.\nThe [syntax page] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "s",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "syntax page",
+                            "value": "s",
                             "loc": {
                                 "start": {
                                     "line": 17,
-                                    "column": 5
+                                    "column": 19
                                 },
                                 "end": {
                                     "line": 17,
-                                    "column": 16
+                                    "column": 20
                                 }
                             },
                             "range": [
-                                684,
-                                695
+                                698,
+                                699
                             ],
-                            "raw": "syntax page"
+                            "raw": "s"
                         }
                     ],
+                    "identifier": "s",
+                    "label": "s",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 17,
-                            "column": 4
+                            "column": 18
                         },
                         "end": {
                             "line": 17,
@@ -158,10 +159,10 @@
                         }
                     },
                     "range": [
-                        683,
+                        697,
                         700
                     ],
-                    "raw": "[syntax page] [s]"
+                    "raw": "[s]"
                 },
                 {
                     "type": "Str",
@@ -204,7 +205,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "It's also helpful to simply try Markdown out; the ",
+                    "value": "It's also helpful to simply try Markdown out; the [Dingus] ",
                     "loc": {
                         "start": {
                             "line": 23,
@@ -212,44 +213,45 @@
                         },
                         "end": {
                             "line": 23,
-                            "column": 50
+                            "column": 59
                         }
                     },
                     "range": [
                         988,
-                        1038
+                        1047
                     ],
-                    "raw": "It's also helpful to simply try Markdown out; the "
+                    "raw": "It's also helpful to simply try Markdown out; the [Dingus] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "d",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Dingus",
+                            "value": "d",
                             "loc": {
                                 "start": {
                                     "line": 23,
-                                    "column": 51
+                                    "column": 60
                                 },
                                 "end": {
                                     "line": 23,
-                                    "column": 57
+                                    "column": 61
                                 }
                             },
                             "range": [
-                                1039,
-                                1045
+                                1048,
+                                1049
                             ],
-                            "raw": "Dingus"
+                            "raw": "d"
                         }
                     ],
+                    "identifier": "d",
+                    "label": "d",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 23,
-                            "column": 50
+                            "column": 59
                         },
                         "end": {
                             "line": 23,
@@ -257,10 +259,10 @@
                         }
                     },
                     "range": [
-                        1038,
+                        1047,
                         1050
                     ],
-                    "raw": "[Dingus] [d]"
+                    "raw": "[d]"
                 },
                 {
                     "type": "Str",
@@ -342,7 +344,7 @@
                 },
                 {
                     "type": "Str",
-                    "value": " This document is itself written using Markdown; you\ncan ",
+                    "value": " This document is itself written using Markdown; you\ncan [see the source for it by adding '.text' to the URL] ",
                     "loc": {
                         "start": {
                             "line": 27,
@@ -350,44 +352,45 @@
                         },
                         "end": {
                             "line": 28,
-                            "column": 4
+                            "column": 57
                         }
                     },
                     "range": [
                         1163,
-                        1220
+                        1273
                     ],
-                    "raw": " This document is itself written using Markdown; you\ncan "
+                    "raw": " This document is itself written using Markdown; you\ncan [see the source for it by adding '.text' to the URL] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "src",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "see the source for it by adding '.text' to the URL",
+                            "value": "src",
                             "loc": {
                                 "start": {
                                     "line": 28,
-                                    "column": 5
+                                    "column": 58
                                 },
                                 "end": {
                                     "line": 28,
-                                    "column": 55
+                                    "column": 61
                                 }
                             },
                             "range": [
-                                1221,
-                                1271
+                                1274,
+                                1277
                             ],
-                            "raw": "see the source for it by adding '.text' to the URL"
+                            "raw": "src"
                         }
                     ],
+                    "identifier": "src",
+                    "label": "src",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 28,
-                            "column": 4
+                            "column": 57
                         },
                         "end": {
                             "line": 28,
@@ -395,10 +398,10 @@
                         }
                     },
                     "range": [
-                        1220,
+                        1273,
                         1278
                     ],
-                    "raw": "[see the source for it by adding '.text' to the URL] [src]"
+                    "raw": "[src]"
                 },
                 {
                     "type": "Str",
@@ -439,12 +442,13 @@
         {
             "type": "Definition",
             "identifier": "s",
+            "label": "s",
             "title": "Markdown Syntax",
             "url": "/projects/markdown/syntax",
             "loc": {
                 "start": {
                     "line": 30,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 30,
@@ -452,20 +456,21 @@
                 }
             },
             "range": [
-                1281,
+                1283,
                 1332
             ],
-            "raw": "  [s]: /projects/markdown/syntax  \"Markdown Syntax\""
+            "raw": "[s]: /projects/markdown/syntax  \"Markdown Syntax\""
         },
         {
             "type": "Definition",
             "identifier": "d",
+            "label": "d",
             "title": "Markdown Dingus",
             "url": "/projects/markdown/dingus",
             "loc": {
                 "start": {
                     "line": 31,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 31,
@@ -473,20 +478,21 @@
                 }
             },
             "range": [
-                1333,
+                1335,
                 1384
             ],
-            "raw": "  [d]: /projects/markdown/dingus  \"Markdown Dingus\""
+            "raw": "[d]: /projects/markdown/dingus  \"Markdown Dingus\""
         },
         {
             "type": "Definition",
             "identifier": "src",
+            "label": "src",
             "title": null,
             "url": "/projects/markdown/basics.text",
             "loc": {
                 "start": {
                     "line": 32,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 32,
@@ -494,10 +500,10 @@
                 }
             },
             "range": [
-                1385,
+                1387,
                 1424
             ],
-            "raw": "  [src]: /projects/markdown/basics.text"
+            "raw": "[src]: /projects/markdown/basics.text"
         },
         {
             "type": "Header",
@@ -1042,6 +1048,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "A First Level Header\n====================\n\nA Second Level Header\n---------------------\n\nNow is the time for all good men to come to\nthe aid of their country. This is just a\nregular paragraph.\n\nThe quick brown fox jumped over the lazy\ndog's back.\n\n### Header 3\n\n> This is a blockquote.\n> \n> This is the second paragraph in the blockquote.\n>\n> ## This is an H2 in a blockquote",
             "loc": {
                 "start": {
@@ -1101,6 +1108,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<h1>A First Level Header</h1>\n\n<h2>A Second Level Header</h2>\n\n<p>Now is the time for all good men to come to\nthe aid of their country. This is just a\nregular paragraph.</p>\n\n<p>The quick brown fox jumped over the lazy\ndog's back.</p>\n\n<h3>Header 3</h3>\n\n<blockquote>\n    <p>This is a blockquote.</p>\n    \n    <p>This is the second paragraph in the blockquote.</p>\n    \n    <h2>This is an H2 in a blockquote</h2>\n</blockquote>",
             "loc": {
                 "start": {
@@ -1239,6 +1247,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Some of these words *are emphasized*.\nSome of these words _are emphasized also_.\n\nUse two asterisks for **strong emphasis**.\nOr, if you prefer, __use two underscores instead__.",
             "loc": {
                 "start": {
@@ -1298,6 +1307,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>Some of these words <em>are emphasized</em>.\nSome of these words <em>are emphasized also</em>.</p>\n\n<p>Use two asterisks for <strong>strong emphasis</strong>.\nOr, if you prefer, <strong>use two underscores instead</strong>.</p>",
             "loc": {
                 "start": {
@@ -1511,6 +1521,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   Candy.\n*   Gum.\n*   Booze.",
             "loc": {
                 "start": {
@@ -1570,6 +1581,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "+   Candy.\n+   Gum.\n+   Booze.",
             "loc": {
                 "start": {
@@ -1629,6 +1641,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "-   Candy.\n-   Gum.\n-   Booze.",
             "loc": {
                 "start": {
@@ -1688,6 +1701,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<ul>\n<li>Candy.</li>\n<li>Gum.</li>\n<li>Booze.</li>\n</ul>",
             "loc": {
                 "start": {
@@ -1747,6 +1761,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "1.  Red\n2.  Green\n3.  Blue",
             "loc": {
                 "start": {
@@ -1806,6 +1821,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<ol>\n<li>Red</li>\n<li>Green</li>\n<li>Blue</li>\n</ol>",
             "loc": {
                 "start": {
@@ -1903,6 +1919,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   A list item.\n\n    With multiple paragraphs.\n\n*   Another item in the list.",
             "loc": {
                 "start": {
@@ -1962,6 +1979,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<ul>\n<li><p>A list item.</p>\n<p>With multiple paragraphs.</p></li>\n<li><p>Another item in the list.</p></li>\n</ul>",
             "loc": {
                 "start": {
@@ -1969,15 +1987,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 184,
-                    "column": 4
+                    "line": 183,
+                    "column": 9
                 }
             },
             "range": [
                 4612,
-                4751
+                4746
             ],
-            "raw": "    <ul>\n    <li><p>A list item.</p>\n    <p>With multiple paragraphs.</p></li>\n    <li><p>Another item in the list.</p></li>\n    </ul>\n    "
+            "raw": "    <ul>\n    <li><p>A list item.</p>\n    <p>With multiple paragraphs.</p></li>\n    <li><p>Another item in the list.</p></li>\n    </ul>"
         },
         {
             "type": "Header",
@@ -2216,6 +2234,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is an [example link](http://example.com/).",
             "loc": {
                 "start": {
@@ -2275,6 +2294,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>This is an <a href=\"http://example.com/\">\nexample link</a>.</p>",
             "loc": {
                 "start": {
@@ -2334,6 +2354,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is an [example link](http://example.com/ \"With a Title\").",
             "loc": {
                 "start": {
@@ -2393,6 +2414,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>This is an <a href=\"http://example.com/\" title=\"With a Title\">\nexample link</a>.</p>",
             "loc": {
                 "start": {
@@ -2452,6 +2474,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "I get 10 times more traffic from [Google][1] than from\n[Yahoo][2] or [MSN][3].\n\n[1]: http://google.com/        \"Google\"\n[2]: http://search.yahoo.com/  \"Yahoo Search\"\n[3]: http://search.msn.com/    \"MSN Search\"",
             "loc": {
                 "start": {
@@ -2511,6 +2534,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>I get 10 times more traffic from <a href=\"http://google.com/\"\ntitle=\"Google\">Google</a> than from <a href=\"http://search.yahoo.com/\"\ntitle=\"Yahoo Search\">Yahoo</a> or <a href=\"http://search.msn.com/\"\ntitle=\"MSN Search\">MSN</a>.</p>",
             "loc": {
                 "start": {
@@ -2628,6 +2652,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "I start my morning with a cup of coffee and\n[The New York Times][NY Times].\n\n[ny times]: http://www.nytimes.com/",
             "loc": {
                 "start": {
@@ -2687,6 +2712,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>I start my morning with a cup of coffee and\n<a href=\"http://www.nytimes.com/\">The New York Times</a>.</p>",
             "loc": {
                 "start": {
@@ -2825,6 +2851,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "![alt text](/path/to/img.jpg \"Title\")",
             "loc": {
                 "start": {
@@ -2884,6 +2911,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "![alt text][id]\n\n[id]: /path/to/img.jpg \"Title\"",
             "loc": {
                 "start": {
@@ -2943,6 +2971,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<img src=\"/path/to/img.jpg\" alt=\"alt text\" title=\"Title\" />",
             "loc": {
                 "start": {
@@ -3156,6 +3185,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "I strongly recommend against using any `<blink>` tags.\n\nI wish SmartyPants used named entities like `&mdash;`\ninstead of decimal-encoded entites like `&#8212;`.",
             "loc": {
                 "start": {
@@ -3215,6 +3245,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>I strongly recommend against using any\n<code>&lt;blink&gt;</code> tags.</p>\n\n<p>I wish SmartyPants used named entities like\n<code>&amp;mdash;</code> instead of decimal-encoded\nentites like <code>&amp;#8212;</code>.</p>",
             "loc": {
                 "start": {
@@ -3427,6 +3458,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "If you want your page to validate under XHTML 1.0 Strict,\nyou've got to put paragraph tags in your blockquotes:\n\n    <blockquote>\n        <p>For example.</p>\n    </blockquote>",
             "loc": {
                 "start": {
@@ -3486,6 +3518,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>If you want your page to validate under XHTML 1.0 Strict,\nyou've got to put paragraph tags in your blockquotes:</p>\n\n<pre><code>&lt;blockquote&gt;\n    &lt;p&gt;For example.&lt;/p&gt;\n&lt;/blockquote&gt;\n</code></pre>",
             "loc": {
                 "start": {

@@ -165,9 +165,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "world",
-                    "referenceType": "shortcut",
+                    "type": "Link",
+                    "title": "World!",
+                    "url": "",
                     "children": [
                         {
                             "type": "Str",
@@ -196,22 +196,22 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 7
+                            "column": 20
                         }
                     },
                     "range": [
                         41,
-                        48
+                        61
                     ],
-                    "raw": "[World]"
+                    "raw": "[World](<> (World!))"
                 },
                 {
                     "type": "Str",
-                    "value": "(<> (World!)).",
+                    "value": ".",
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 7
+                            "column": 20
                         },
                         "end": {
                             "line": 5,
@@ -219,10 +219,10 @@
                         }
                     },
                     "range": [
-                        48,
+                        61,
                         62
                     ],
-                    "raw": "(<> (World!))."
+                    "raw": "."
                 }
             ],
             "loc": {
@@ -365,9 +365,9 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "ImageReference",
-                    "identifier": "world",
-                    "referenceType": "shortcut",
+                    "type": "Image",
+                    "title": "World!",
+                    "url": "",
                     "alt": "World",
                     "loc": {
                         "start": {
@@ -376,22 +376,22 @@
                         },
                         "end": {
                             "line": 11,
-                            "column": 8
+                            "column": 21
                         }
                     },
                     "range": [
                         107,
-                        115
+                        128
                     ],
-                    "raw": "![World]"
+                    "raw": "![World](<> (World!))"
                 },
                 {
                     "type": "Str",
-                    "value": "(<> (World!)).",
+                    "value": ".",
                     "loc": {
                         "start": {
                             "line": 11,
-                            "column": 8
+                            "column": 21
                         },
                         "end": {
                             "line": 11,
@@ -399,10 +399,10 @@
                         }
                     },
                     "range": [
-                        115,
+                        128,
                         129
                     ],
-                    "raw": "(<> (World!))."
+                    "raw": "."
                 }
             ],
             "loc": {

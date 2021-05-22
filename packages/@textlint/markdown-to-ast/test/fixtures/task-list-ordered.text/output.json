@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -131,7 +131,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -177,11 +177,11 @@
                             "type": "List",
                             "ordered": true,
                             "start": 1,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": true,
                                     "children": [
                                         {
@@ -276,7 +276,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -337,7 +337,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {

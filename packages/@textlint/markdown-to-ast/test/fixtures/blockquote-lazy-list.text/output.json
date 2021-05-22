@@ -42,41 +42,41 @@
                         23
                     ],
                     "raw": "This is a blockquote."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
                 },
+                "end": {
+                    "line": 1,
+                    "column": 23
+                }
+            },
+            "range": [
+                0,
+                23
+            ],
+            "raw": "> This is a blockquote."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "spread": false,
+            "children": [
                 {
-                    "type": "List",
-                    "ordered": false,
-                    "start": null,
-                    "loose": false,
+                    "type": "ListItem",
+                    "spread": false,
+                    "checked": null,
                     "children": [
                         {
-                            "type": "ListItem",
-                            "loose": false,
-                            "checked": null,
+                            "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "Paragraph",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "And in normal mode this is an internal list, but in commonmark this is a top level list.",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 2,
-                                                    "column": 2
-                                                },
-                                                "end": {
-                                                    "line": 2,
-                                                    "column": 90
-                                                }
-                                            },
-                                            "range": [
-                                                26,
-                                                114
-                                            ],
-                                            "raw": "And in normal mode this is an internal list, but in commonmark this is a top level list."
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "And in normal mode this is an internal list, but in commonmark this is a top level list.",
                                     "loc": {
                                         "start": {
                                             "line": 2,
@@ -97,7 +97,7 @@
                             "loc": {
                                 "start": {
                                     "line": 2,
-                                    "column": 0
+                                    "column": 2
                                 },
                                 "end": {
                                     "line": 2,
@@ -105,10 +105,10 @@
                                 }
                             },
                             "range": [
-                                24,
+                                26,
                                 114
                             ],
-                            "raw": "- And in normal mode this is an internal list, but in commonmark this is a top level list."
+                            "raw": "And in normal mode this is an internal list, but in commonmark this is a top level list."
                         }
                     ],
                     "loc": {
@@ -130,7 +130,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 1,
+                    "line": 2,
                     "column": 0
                 },
                 "end": {
@@ -139,10 +139,10 @@
                 }
             },
             "range": [
-                0,
+                24,
                 114
             ],
-            "raw": "> This is a blockquote.\n- And in normal mode this is an internal list, but in commonmark this is a top level list."
+            "raw": "- And in normal mode this is an internal list, but in commonmark this is a top level list."
         }
     ],
     "loc": {

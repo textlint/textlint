@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -67,33 +67,10 @@
                         75
                     ],
                     "raw": "*   Different lists should receive two newline characters\n    between them."
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 0
                 },
-                "end": {
-                    "line": 2,
-                    "column": 17
-                }
-            },
-            "range": [
-                0,
-                75
-            ],
-            "raw": "*   Different lists should receive two newline characters\n    between them."
-        },
-        {
-            "type": "List",
-            "ordered": false,
-            "start": null,
-            "loose": false,
-            "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -155,7 +132,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 5,
+                    "line": 1,
                     "column": 0
                 },
                 "end": {
@@ -164,10 +141,10 @@
                 }
             },
             "range": [
-                78,
+                0,
                 103
             ],
-            "raw": "*   This is another list."
+            "raw": "*   Different lists should receive two newline characters\n    between them.\n\n\n*   This is another list."
         },
         {
             "type": "BlockQuote",
@@ -176,11 +153,11 @@
                     "type": "List",
                     "ordered": false,
                     "start": null,
-                    "loose": false,
+                    "spread": true,
                     "children": [
                         {
                             "type": "ListItem",
-                            "loose": false,
+                            "spread": false,
                             "checked": null,
                             "children": [
                                 {
@@ -226,7 +203,7 @@
                             "loc": {
                                 "start": {
                                     "line": 7,
-                                    "column": 2
+                                    "column": 3
                                 },
                                 "end": {
                                     "line": 7,
@@ -234,37 +211,14 @@
                                 }
                             },
                             "range": [
-                                107,
+                                108,
                                 152
                             ],
-                            "raw": " *   The same goes for lists in block quotes."
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 2
+                            "raw": "*   The same goes for lists in block quotes."
                         },
-                        "end": {
-                            "line": 7,
-                            "column": 47
-                        }
-                    },
-                    "range": [
-                        107,
-                        152
-                    ],
-                    "raw": " *   The same goes for lists in block quotes."
-                },
-                {
-                    "type": "List",
-                    "ordered": false,
-                    "start": null,
-                    "loose": false,
-                    "children": [
                         {
                             "type": "ListItem",
-                            "loose": false,
+                            "spread": false,
                             "checked": null,
                             "children": [
                                 {
@@ -310,7 +264,7 @@
                             "loc": {
                                 "start": {
                                     "line": 10,
-                                    "column": 2
+                                    "column": 3
                                 },
                                 "end": {
                                     "line": 10,
@@ -318,16 +272,16 @@
                                 }
                             },
                             "range": [
-                                159,
+                                160,
                                 185
                             ],
-                            "raw": " *   This is another list."
+                            "raw": "*   This is another list."
                         }
                     ],
                     "loc": {
                         "start": {
-                            "line": 10,
-                            "column": 2
+                            "line": 7,
+                            "column": 3
                         },
                         "end": {
                             "line": 10,
@@ -335,10 +289,10 @@
                         }
                     },
                     "range": [
-                        159,
+                        108,
                         185
                     ],
-                    "raw": " *   This is another list."
+                    "raw": "*   The same goes for lists in block quotes.\n>\n>\n>  *   This is another list."
                 }
             ],
             "loc": {
@@ -361,11 +315,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -411,11 +365,11 @@
                             "type": "List",
                             "ordered": true,
                             "start": 1,
-                            "loose": false,
+                            "spread": true,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -473,6 +427,67 @@
                                         239
                                     ],
                                     "raw": "1.   First sublist."
+                                },
+                                {
+                                    "type": "ListItem",
+                                    "spread": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "Second sublist.",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 17,
+                                                            "column": 9
+                                                        },
+                                                        "end": {
+                                                            "line": 17,
+                                                            "column": 24
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        251,
+                                                        266
+                                                    ],
+                                                    "raw": "Second sublist."
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 17,
+                                                    "column": 9
+                                                },
+                                                "end": {
+                                                    "line": 17,
+                                                    "column": 24
+                                                }
+                                            },
+                                            "range": [
+                                                251,
+                                                266
+                                            ],
+                                            "raw": "Second sublist."
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 17,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 17,
+                                            "column": 24
+                                        }
+                                    },
+                                    "range": [
+                                        246,
+                                        266
+                                    ],
+                                    "raw": "1.   Second sublist."
                                 }
                             ],
                             "loc": {
@@ -481,15 +496,15 @@
                                     "column": 4
                                 },
                                 "end": {
-                                    "line": 14,
-                                    "column": 23
+                                    "line": 17,
+                                    "column": 24
                                 }
                             },
                             "range": [
                                 220,
-                                239
+                                266
                             ],
-                            "raw": "1.   First sublist."
+                            "raw": "1.   First sublist.\n\n\n    1.   Second sublist."
                         }
                     ],
                     "loc": {
@@ -498,15 +513,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 14,
-                            "column": 23
+                            "line": 17,
+                            "column": 24
                         }
                     },
                     "range": [
                         187,
-                        239
+                        266
                     ],
-                    "raw": "*   And for lists in lists:\n\n    1.   First sublist."
+                    "raw": "*   And for lists in lists:\n\n    1.   First sublist.\n\n\n    1.   Second sublist."
                 }
             ],
             "loc": {
@@ -515,35 +530,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 14,
-                    "column": 23
-                }
-            },
-            "range": [
-                187,
-                239
-            ],
-            "raw": "*   And for lists in lists:\n\n    1.   First sublist."
-        },
-        {
-            "type": "CodeBlock",
-            "lang": null,
-            "value": "1.   Second sublist.",
-            "loc": {
-                "start": {
-                    "line": 17,
-                    "column": 0
-                },
-                "end": {
                     "line": 17,
                     "column": 24
                 }
             },
             "range": [
-                242,
+                187,
                 266
             ],
-            "raw": "    1.   Second sublist."
+            "raw": "*   And for lists in lists:\n\n    1.   First sublist.\n\n\n    1.   Second sublist."
         },
         {
             "type": "Paragraph",
@@ -588,11 +583,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -633,6 +628,45 @@
                                 350
                             ],
                             "raw": "This is a paragraph in a list"
+                        },
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "And this is code();",
+                                    "loc": {
+                                        "start": {
+                                            "line": 24,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 24,
+                                            "column": 23
+                                        }
+                                    },
+                                    "range": [
+                                        357,
+                                        376
+                                    ],
+                                    "raw": "And this is code();"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 24,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 24,
+                                    "column": 23
+                                }
+                            },
+                            "range": [
+                                357,
+                                376
+                            ],
+                            "raw": "And this is code();"
                         }
                     ],
                     "loc": {
@@ -641,40 +675,20 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 21,
-                            "column": 33
+                            "line": 24,
+                            "column": 23
                         }
                     },
                     "range": [
                         317,
-                        350
+                        376
                     ],
-                    "raw": "*   This is a paragraph in a list"
+                    "raw": "*   This is a paragraph in a list\n\n\n    And this is code();"
                 }
             ],
             "loc": {
                 "start": {
                     "line": 21,
-                    "column": 0
-                },
-                "end": {
-                    "line": 21,
-                    "column": 33
-                }
-            },
-            "range": [
-                317,
-                350
-            ],
-            "raw": "*   This is a paragraph in a list"
-        },
-        {
-            "type": "CodeBlock",
-            "lang": null,
-            "value": "And this is code();",
-            "loc": {
-                "start": {
-                    "line": 24,
                     "column": 0
                 },
                 "end": {
@@ -683,10 +697,10 @@
                 }
             },
             "range": [
-                353,
+                317,
                 376
             ],
-            "raw": "    And this is code();"
+            "raw": "*   This is a paragraph in a list\n\n\n    And this is code();"
         }
     ],
     "loc": {

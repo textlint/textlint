@@ -1,17 +1,10 @@
 import { SyntaxMap } from "./mapping/markdown-syntax-map";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import traverse from "traverse";
-import StructuredSource from "structured-source";
 import debug0 from "debug";
-// @ts-ignore: no types
-import unified from "unified";
-// @ts-ignore: no types
-import remarkParse from "remark-parse";
-// @ts-ignore: no types
-import frontmatter from "remark-frontmatter";
+import { parseMarkdown } from "./parse-markdown";
 
 const debug = debug0("@textlint/markdown-to-ast");
-const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]);
 
 export { ASTNodeTypes as Syntax };
 
@@ -21,8 +14,15 @@ export { ASTNodeTypes as Syntax };
  * @returns {TxtNode}
  */
 export function parse<T extends TxtNode>(text: string): T {
-    const ast = remark.parse(text);
-    const src = new StructuredSource(text);
+    // remark-parse's AST does not consider BOM
+    // AST's position does not +1 by BOM
+    // So, just trim BOM and parse it for `raw` property
+    // textlint's SourceCode also take same approach - trim BOM and check the position
+    // This means that the loading side need to consider BOM position - for example fs.readFile and text slice script.
+    // https://github.com/micromark/micromark/blob/0f19c1ac25964872a160d8b536878b125ddfe393/lib/preprocess.mjs#L29-L31
+    const hasBOM = text.charCodeAt(0) === 0xfeff;
+    const textWithoutBOM = hasBOM ? text.slice(1) : text;
+    const ast = parseMarkdown(textWithoutBOM);
     traverse(ast).forEach(function (node: TxtNode) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
@@ -41,11 +41,11 @@ export function parse<T extends TxtNode>(text: string): T {
                     start: { line: position.start.line, column: Math.max(position.start.column - 1, 0) },
                     end: { line: position.end.line, column: Math.max(position.end.column - 1, 0) }
                 };
-                const range = src.locationToRange(positionCompensated);
+                const range = [position.start.offset, position.end.offset] as [number, number];
                 node.loc = positionCompensated;
                 node.range = range;
-                node.raw = text.slice(range[0], range[1]);
-                // Compatible for https://github.com/wooorm/unist, but hidden
+                node.raw = textWithoutBOM.slice(range[0], range[1]);
+                // Compatible for https://github.com/syntax-tree/unist, but it is hidden
                 Object.defineProperty(node, "position", {
                     enumerable: false,
                     configurable: false,

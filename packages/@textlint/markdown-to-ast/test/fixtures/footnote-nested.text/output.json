@@ -24,30 +24,9 @@
                     "raw": "A footnote"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^1",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^1",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 11
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 13
-                                }
-                            },
-                            "range": [
-                                11,
-                                13
-                            ],
-                            "raw": "^1"
-                        }
-                    ],
+                    "type": "FootnoteReference",
+                    "identifier": "1",
+                    "label": "1",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -101,80 +80,20 @@
             "raw": "A footnote[^1]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "1",
+            "label": "1",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^1",
-                    "referenceType": "shortcut",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^1",
+                            "value": "Including [^another ",
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 3
-                                }
-                            },
-                            "range": [
-                                18,
-                                20
-                            ],
-                            "raw": "^1"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        17,
-                        21
-                    ],
-                    "raw": "[^1]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Including ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 16
-                        }
-                    },
-                    "range": [
-                        21,
-                        33
-                    ],
-                    "raw": ": Including "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^another **footnote**",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^another ",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 17
+                                    "column": 6
                                 },
                                 "end": {
                                     "line": 3,
@@ -182,10 +101,10 @@
                                 }
                             },
                             "range": [
-                                34,
+                                23,
                                 43
                             ],
-                            "raw": "^another "
+                            "raw": "Including [^another "
                         },
                         {
                             "type": "Strong",
@@ -225,12 +144,31 @@
                                 55
                             ],
                             "raw": "**footnote**"
+                        },
+                        {
+                            "type": "Str",
+                            "value": "]",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 38
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 39
+                                }
+                            },
+                            "range": [
+                                55,
+                                56
+                            ],
+                            "raw": "]"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 16
+                            "column": 6
                         },
                         "end": {
                             "line": 3,
@@ -238,10 +176,10 @@
                         }
                     },
                     "range": [
-                        33,
+                        23,
                         56
                     ],
-                    "raw": "[^another **footnote**]"
+                    "raw": "Including [^another **footnote**]"
                 }
             ],
             "loc": {

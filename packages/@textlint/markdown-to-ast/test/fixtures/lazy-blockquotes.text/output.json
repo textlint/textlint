@@ -9,22 +9,22 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "hi there\nbud",
+                            "value": "hi there",
                             "loc": {
                                 "start": {
                                     "line": 1,
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 2,
-                                    "column": 3
+                                    "line": 1,
+                                    "column": 10
                                 }
                             },
                             "range": [
                                 2,
-                                14
+                                10
                             ],
-                            "raw": "hi there\nbud"
+                            "raw": "hi there"
                         }
                     ],
                     "loc": {
@@ -33,15 +33,15 @@
                             "column": 2
                         },
                         "end": {
-                            "line": 2,
-                            "column": 3
+                            "line": 1,
+                            "column": 10
                         }
                     },
                     "range": [
                         2,
-                        14
+                        10
                     ],
-                    "raw": "hi there\nbud"
+                    "raw": "hi there"
                 }
             ],
             "loc": {
@@ -50,15 +50,54 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 1,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                10
+            ],
+            "raw": "> hi there"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "bud",
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        11,
+                        14
+                    ],
+                    "raw": "bud"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 0
+                },
+                "end": {
                     "line": 2,
                     "column": 3
                 }
             },
             "range": [
-                0,
+                11,
                 14
             ],
-            "raw": "> hi there\nbud"
+            "raw": "bud"
         }
     ],
     "loc": {

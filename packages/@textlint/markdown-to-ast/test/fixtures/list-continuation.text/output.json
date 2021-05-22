@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -107,11 +107,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -119,8 +119,6 @@
                             "children": [
                                 {
                                     "type": "LinkReference",
-                                    "identifier": "foo",
-                                    "referenceType": "collapsed",
                                     "children": [
                                         {
                                             "type": "Str",
@@ -142,6 +140,9 @@
                                             "raw": "foo"
                                         }
                                     ],
+                                    "identifier": "foo",
+                                    "label": "foo",
+                                    "referenceType": "collapsed",
                                     "loc": {
                                         "start": {
                                             "line": 5,
@@ -212,6 +213,7 @@
         {
             "type": "Definition",
             "identifier": "foo",
+            "label": "foo",
             "title": null,
             "url": "http://google.com",
             "loc": {
@@ -234,75 +236,35 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": "^foo",
-                                    "referenceType": "full",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "^foo",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 9,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 9,
-                                                    "column": 8
-                                                }
-                                            },
-                                            "range": [
-                                                55,
-                                                59
-                                            ],
-                                            "raw": "^foo"
-                                        }
-                                    ],
+                                    "type": "FootnoteReference",
+                                    "identifier": "foo",
+                                    "label": "foo",
                                     "loc": {
                                         "start": {
                                             "line": 9,
                                             "column": 3
                                         },
                                         "end": {
-                                            "line": 10,
-                                            "column": 6
+                                            "line": 9,
+                                            "column": 9
                                         }
                                     },
                                     "range": [
                                         54,
-                                        67
+                                        60
                                     ],
-                                    "raw": "[^foo]\n[^foo]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": ": bar baz.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 10,
-                                            "column": 6
-                                        },
-                                        "end": {
-                                            "line": 10,
-                                            "column": 16
-                                        }
-                                    },
-                                    "range": [
-                                        67,
-                                        77
-                                    ],
-                                    "raw": ": bar baz."
+                                    "raw": "[^foo]"
                                 }
                             ],
                             "loc": {
@@ -311,15 +273,15 @@
                                     "column": 3
                                 },
                                 "end": {
-                                    "line": 10,
-                                    "column": 16
+                                    "line": 9,
+                                    "column": 9
                                 }
                             },
                             "range": [
                                 54,
-                                77
+                                60
                             ],
-                            "raw": "[^foo]\n[^foo]: bar baz."
+                            "raw": "[^foo]"
                         }
                     ],
                     "loc": {
@@ -328,15 +290,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 10,
-                            "column": 16
+                            "line": 9,
+                            "column": 9
                         }
                     },
                     "range": [
                         51,
-                        77
+                        60
                     ],
-                    "raw": "1. [^foo]\n[^foo]: bar baz."
+                    "raw": "1. [^foo]"
                 }
             ],
             "loc": {
@@ -345,15 +307,76 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 9,
+                    "column": 9
+                }
+            },
+            "range": [
+                51,
+                60
+            ],
+            "raw": "1. [^foo]"
+        },
+        {
+            "type": "footnoteDefinition",
+            "identifier": "foo",
+            "label": "foo",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "bar baz.",
+                            "loc": {
+                                "start": {
+                                    "line": 10,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 10,
+                                    "column": 16
+                                }
+                            },
+                            "range": [
+                                69,
+                                77
+                            ],
+                            "raw": "bar baz."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 10,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 10,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        69,
+                        77
+                    ],
+                    "raw": "bar baz."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 10,
+                    "column": 0
+                },
+                "end": {
                     "line": 10,
                     "column": 16
                 }
             },
             "range": [
-                51,
+                61,
                 77
             ],
-            "raw": "1. [^foo]\n[^foo]: bar baz."
+            "raw": "[^foo]: bar baz."
         }
     ],
     "loc": {

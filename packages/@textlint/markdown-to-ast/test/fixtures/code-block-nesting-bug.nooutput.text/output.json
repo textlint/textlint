@@ -82,6 +82,7 @@
         {
             "type": "CodeBlock",
             "lang": "foo",
+            "meta": null,
             "value": "```bar\nbaz\n```",
             "loc": {
                 "start": {
@@ -141,6 +142,7 @@
         {
             "type": "CodeBlock",
             "lang": "foo",
+            "meta": null,
             "value": "~~~bar\nbaz\n~~~",
             "loc": {
                 "start": {
@@ -200,6 +202,7 @@
         {
             "type": "CodeBlock",
             "lang": "foo",
+            "meta": null,
             "value": "~~~bar\nbaz\n~~~",
             "loc": {
                 "start": {
@@ -220,6 +223,7 @@
         {
             "type": "CodeBlock",
             "lang": "foo",
+            "meta": null,
             "value": "```bar\nbaz\n```",
             "loc": {
                 "start": {

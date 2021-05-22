@@ -2,11 +2,50 @@
     "type": "Document",
     "children": [
         {
-            "type": "Yaml",
-            "value": "title: post",
+            "type": "HorizontalRule",
             "loc": {
                 "start": {
                     "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 3
+                }
+            },
+            "range": [
+                2,
+                5
+            ],
+            "raw": "---"
+        },
+        {
+            "type": "Header",
+            "depth": 2,
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "title: post",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        6,
+                        17
+                    ],
+                    "raw": "title: post"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
                     "column": 0
                 },
                 "end": {
@@ -15,10 +54,10 @@
                 }
             },
             "range": [
-                2,
+                6,
                 21
             ],
-            "raw": "---\ntitle: post\n---"
+            "raw": "title: post\n---"
         },
         {
             "type": "Header",

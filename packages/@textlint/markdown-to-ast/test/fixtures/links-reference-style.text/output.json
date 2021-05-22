@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Foo ",
+                    "value": "Foo [bar] ",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,44 +14,45 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 4
+                            "column": 10
                         }
                     },
                     "range": [
                         0,
-                        4
+                        10
                     ],
-                    "raw": "Foo "
+                    "raw": "Foo [bar] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "1",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "bar",
+                            "value": "1",
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 5
+                                    "column": 11
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 8
+                                    "column": 12
                                 }
                             },
                             "range": [
-                                5,
-                                8
+                                11,
+                                12
                             ],
-                            "raw": "bar"
+                            "raw": "1"
                         }
                     ],
+                    "identifier": "1",
+                    "label": "1",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 1,
-                            "column": 4
+                            "column": 10
                         },
                         "end": {
                             "line": 1,
@@ -59,10 +60,10 @@
                         }
                     },
                     "range": [
-                        4,
+                        10,
                         13
                     ],
-                    "raw": "[bar] [1]"
+                    "raw": "[1]"
                 },
                 {
                     "type": "Str",
@@ -124,8 +125,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "1",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -147,6 +146,9 @@
                             "raw": "bar"
                         }
                     ],
+                    "identifier": "1",
+                    "label": "1",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -204,52 +206,53 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Foo ",
+                    "value": "Foo [bar]\n",
                     "loc": {
                         "start": {
                             "line": 5,
                             "column": 0
                         },
                         "end": {
-                            "line": 5,
-                            "column": 4
+                            "line": 6,
+                            "column": 0
                         }
                     },
                     "range": [
                         31,
-                        35
+                        41
                     ],
-                    "raw": "Foo "
+                    "raw": "Foo [bar]\n"
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "1",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "bar",
+                            "value": "1",
                             "loc": {
                                 "start": {
-                                    "line": 5,
-                                    "column": 5
+                                    "line": 6,
+                                    "column": 1
                                 },
                                 "end": {
-                                    "line": 5,
-                                    "column": 8
+                                    "line": 6,
+                                    "column": 2
                                 }
                             },
                             "range": [
-                                36,
-                                39
+                                42,
+                                43
                             ],
-                            "raw": "bar"
+                            "raw": "1"
                         }
                     ],
+                    "identifier": "1",
+                    "label": "1",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
-                            "line": 5,
-                            "column": 4
+                            "line": 6,
+                            "column": 0
                         },
                         "end": {
                             "line": 6,
@@ -257,10 +260,10 @@
                         }
                     },
                     "range": [
-                        35,
+                        41,
                         44
                     ],
-                    "raw": "[bar]\n[1]"
+                    "raw": "[1]"
                 },
                 {
                     "type": "Str",
@@ -301,6 +304,7 @@
         {
             "type": "Definition",
             "identifier": "1",
+            "label": "1",
             "title": "Title",
             "url": "/url/",
             "loc": {
@@ -324,7 +328,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "With ",
+                    "value": "With [embedded [brackets]] ",
                     "loc": {
                         "start": {
                             "line": 11,
@@ -332,101 +336,45 @@
                         },
                         "end": {
                             "line": 11,
-                            "column": 5
+                            "column": 29
                         }
                     },
                     "range": [
                         69,
-                        74
+                        98
                     ],
-                    "raw": "With "
+                    "raw": "With [embedded \\[brackets\\]] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "b",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "embedded ",
+                            "value": "b",
                             "loc": {
                                 "start": {
                                     "line": 11,
-                                    "column": 6
+                                    "column": 30
                                 },
                                 "end": {
                                     "line": 11,
-                                    "column": 15
+                                    "column": 31
                                 }
                             },
                             "range": [
-                                75,
-                                84
+                                99,
+                                100
                             ],
-                            "raw": "embedded "
-                        },
-                        {
-                            "type": "Str",
-                            "value": "[",
-                            "loc": {
-                                "start": {
-                                    "line": 11,
-                                    "column": 15
-                                },
-                                "end": {
-                                    "line": 11,
-                                    "column": 17
-                                }
-                            },
-                            "range": [
-                                84,
-                                86
-                            ],
-                            "raw": "\\["
-                        },
-                        {
-                            "type": "Str",
-                            "value": "brackets",
-                            "loc": {
-                                "start": {
-                                    "line": 11,
-                                    "column": 17
-                                },
-                                "end": {
-                                    "line": 11,
-                                    "column": 25
-                                }
-                            },
-                            "range": [
-                                86,
-                                94
-                            ],
-                            "raw": "brackets"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "]",
-                            "loc": {
-                                "start": {
-                                    "line": 11,
-                                    "column": 25
-                                },
-                                "end": {
-                                    "line": 11,
-                                    "column": 27
-                                }
-                            },
-                            "range": [
-                                94,
-                                96
-                            ],
-                            "raw": "\\]"
+                            "raw": "b"
                         }
                     ],
+                    "identifier": "b",
+                    "label": "b",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 11,
-                            "column": 5
+                            "column": 29
                         },
                         "end": {
                             "line": 11,
@@ -434,10 +382,10 @@
                         }
                     },
                     "range": [
-                        74,
+                        98,
                         101
                     ],
-                    "raw": "[embedded \\[brackets\\]] [b]"
+                    "raw": "[b]"
                 },
                 {
                     "type": "Str",
@@ -499,8 +447,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "once",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
@@ -522,6 +468,9 @@
                             "raw": "once"
                         }
                     ],
+                    "identifier": "once",
+                    "label": "once",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 14,
@@ -598,8 +547,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "twice",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
@@ -621,6 +568,9 @@
                             "raw": "twice"
                         }
                     ],
+                    "identifier": "twice",
+                    "label": "twice",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 16,
@@ -697,8 +647,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "thrice",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
@@ -720,6 +668,9 @@
                             "raw": "thrice"
                         }
                     ],
+                    "identifier": "thrice",
+                    "label": "thrice",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 18,
@@ -777,7 +728,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Indented ",
+                    "value": "Indented [four][] times.",
                     "loc": {
                         "start": {
                             "line": 20,
@@ -785,74 +736,14 @@
                         },
                         "end": {
                             "line": 20,
-                            "column": 9
-                        }
-                    },
-                    "range": [
-                        168,
-                        177
-                    ],
-                    "raw": "Indented "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "four",
-                    "referenceType": "collapsed",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "four",
-                            "loc": {
-                                "start": {
-                                    "line": 20,
-                                    "column": 10
-                                },
-                                "end": {
-                                    "line": 20,
-                                    "column": 14
-                                }
-                            },
-                            "range": [
-                                178,
-                                182
-                            ],
-                            "raw": "four"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 20,
-                            "column": 9
-                        },
-                        "end": {
-                            "line": 20,
-                            "column": 17
-                        }
-                    },
-                    "range": [
-                        177,
-                        185
-                    ],
-                    "raw": "[four][]"
-                },
-                {
-                    "type": "Str",
-                    "value": " times.",
-                    "loc": {
-                        "start": {
-                            "line": 20,
-                            "column": 17
-                        },
-                        "end": {
-                            "line": 20,
                             "column": 24
                         }
                     },
                     "range": [
-                        185,
+                        168,
                         192
                     ],
-                    "raw": " times."
+                    "raw": "Indented [four][] times."
                 }
             ],
             "loc": {
@@ -874,12 +765,13 @@
         {
             "type": "Definition",
             "identifier": "once",
+            "label": "once",
             "title": null,
             "url": "/url",
             "loc": {
                 "start": {
                     "line": 22,
-                    "column": 0
+                    "column": 1
                 },
                 "end": {
                     "line": 22,
@@ -887,20 +779,21 @@
                 }
             },
             "range": [
-                194,
+                195,
                 207
             ],
-            "raw": " [once]: /url"
+            "raw": "[once]: /url"
         },
         {
             "type": "Definition",
             "identifier": "twice",
+            "label": "twice",
             "title": null,
             "url": "/url",
             "loc": {
                 "start": {
                     "line": 24,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 24,
@@ -908,20 +801,21 @@
                 }
             },
             "range": [
-                209,
+                211,
                 224
             ],
-            "raw": "  [twice]: /url"
+            "raw": "[twice]: /url"
         },
         {
             "type": "Definition",
             "identifier": "thrice",
+            "label": "thrice",
             "title": null,
             "url": "/url",
             "loc": {
                 "start": {
                     "line": 26,
-                    "column": 0
+                    "column": 3
                 },
                 "end": {
                     "line": 26,
@@ -929,14 +823,15 @@
                 }
             },
             "range": [
-                226,
+                229,
                 243
             ],
-            "raw": "   [thrice]: /url"
+            "raw": "[thrice]: /url"
         },
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[four]: /url",
             "loc": {
                 "start": {
@@ -957,6 +852,7 @@
         {
             "type": "Definition",
             "identifier": "b",
+            "label": "b",
             "title": null,
             "url": "/url/",
             "loc": {
@@ -998,8 +894,6 @@
             "children": [
                 {
                     "type": "LinkReference",
-                    "identifier": "this",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -1021,6 +915,9 @@
                             "raw": "this"
                         }
                     ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 35,
@@ -1028,14 +925,75 @@
                         },
                         "end": {
                             "line": 35,
-                            "column": 13
+                            "column": 6
                         }
                     },
                     "range": [
                         283,
+                        289
+                    ],
+                    "raw": "[this]"
+                },
+                {
+                    "type": "Str",
+                    "value": " ",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 6
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 7
+                        }
+                    },
+                    "range": [
+                        289,
+                        290
+                    ],
+                    "raw": " "
+                },
+                {
+                    "type": "LinkReference",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "this",
+                            "loc": {
+                                "start": {
+                                    "line": 35,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 35,
+                                    "column": 12
+                                }
+                            },
+                            "range": [
+                                291,
+                                295
+                            ],
+                            "raw": "this"
+                        }
+                    ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "shortcut",
+                    "loc": {
+                        "start": {
+                            "line": 35,
+                            "column": 7
+                        },
+                        "end": {
+                            "line": 35,
+                            "column": 13
+                        }
+                    },
+                    "range": [
+                        290,
                         296
                     ],
-                    "raw": "[this] [this]"
+                    "raw": "[this]"
                 },
                 {
                     "type": "Str",
@@ -1097,8 +1055,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "this",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -1120,6 +1076,9 @@
                             "raw": "this"
                         }
                     ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 37,
@@ -1196,8 +1155,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "this",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
@@ -1219,6 +1176,9 @@
                             "raw": "this"
                         }
                     ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 39,
@@ -1226,22 +1186,22 @@
                         },
                         "end": {
                             "line": 39,
-                            "column": 13
+                            "column": 10
                         }
                     },
                     "range": [
                         339,
-                        348
+                        345
                     ],
-                    "raw": "[this] []"
+                    "raw": "[this]"
                 },
                 {
                     "type": "Str",
-                    "value": ".",
+                    "value": " [].",
                     "loc": {
                         "start": {
                             "line": 39,
-                            "column": 13
+                            "column": 10
                         },
                         "end": {
                             "line": 39,
@@ -1249,10 +1209,10 @@
                         }
                     },
                     "range": [
-                        348,
+                        345,
                         349
                     ],
-                    "raw": "."
+                    "raw": " []."
                 }
             ],
             "loc": {
@@ -1295,8 +1255,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "this",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
@@ -1318,6 +1276,9 @@
                             "raw": "this"
                         }
                     ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 41,
@@ -1394,8 +1355,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "this",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -1417,6 +1376,9 @@
                             "raw": "this"
                         }
                     ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 43,
@@ -1474,7 +1436,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "But not ",
+                    "value": "But not [that] [].",
                     "loc": {
                         "start": {
                             "line": 45,
@@ -1482,74 +1444,14 @@
                         },
                         "end": {
                             "line": 45,
-                            "column": 8
-                        }
-                    },
-                    "range": [
-                        379,
-                        387
-                    ],
-                    "raw": "But not "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "that",
-                    "referenceType": "collapsed",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "that",
-                            "loc": {
-                                "start": {
-                                    "line": 45,
-                                    "column": 9
-                                },
-                                "end": {
-                                    "line": 45,
-                                    "column": 13
-                                }
-                            },
-                            "range": [
-                                388,
-                                392
-                            ],
-                            "raw": "that"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 45,
-                            "column": 8
-                        },
-                        "end": {
-                            "line": 45,
-                            "column": 17
-                        }
-                    },
-                    "range": [
-                        387,
-                        396
-                    ],
-                    "raw": "[that] []"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 45,
-                            "column": 17
-                        },
-                        "end": {
-                            "line": 45,
                             "column": 18
                         }
                     },
                     "range": [
-                        396,
+                        379,
                         397
                     ],
-                    "raw": "."
+                    "raw": "But not [that] []."
                 }
             ],
             "loc": {
@@ -1573,7 +1475,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Nor ",
+                    "value": "Nor [that][].",
                     "loc": {
                         "start": {
                             "line": 47,
@@ -1581,74 +1483,14 @@
                         },
                         "end": {
                             "line": 47,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        399,
-                        403
-                    ],
-                    "raw": "Nor "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "that",
-                    "referenceType": "collapsed",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "that",
-                            "loc": {
-                                "start": {
-                                    "line": 47,
-                                    "column": 5
-                                },
-                                "end": {
-                                    "line": 47,
-                                    "column": 9
-                                }
-                            },
-                            "range": [
-                                404,
-                                408
-                            ],
-                            "raw": "that"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 47,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 47,
-                            "column": 12
-                        }
-                    },
-                    "range": [
-                        403,
-                        411
-                    ],
-                    "raw": "[that][]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 47,
-                            "column": 12
-                        },
-                        "end": {
-                            "line": 47,
                             "column": 13
                         }
                     },
                     "range": [
-                        411,
+                        399,
                         412
                     ],
-                    "raw": "."
+                    "raw": "Nor [that][]."
                 }
             ],
             "loc": {
@@ -1672,7 +1514,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Nor ",
+                    "value": "Nor [that].",
                     "loc": {
                         "start": {
                             "line": 49,
@@ -1680,74 +1522,14 @@
                         },
                         "end": {
                             "line": 49,
-                            "column": 4
-                        }
-                    },
-                    "range": [
-                        414,
-                        418
-                    ],
-                    "raw": "Nor "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "that",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "that",
-                            "loc": {
-                                "start": {
-                                    "line": 49,
-                                    "column": 5
-                                },
-                                "end": {
-                                    "line": 49,
-                                    "column": 9
-                                }
-                            },
-                            "range": [
-                                419,
-                                423
-                            ],
-                            "raw": "that"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 49,
-                            "column": 4
-                        },
-                        "end": {
-                            "line": 49,
-                            "column": 10
-                        }
-                    },
-                    "range": [
-                        418,
-                        424
-                    ],
-                    "raw": "[that]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 49,
-                            "column": 10
-                        },
-                        "end": {
-                            "line": 49,
                             "column": 11
                         }
                     },
                     "range": [
-                        424,
+                        414,
                         425
                     ],
-                    "raw": "."
+                    "raw": "Nor [that]."
                 }
             ],
             "loc": {
@@ -1790,8 +1572,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "this",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
@@ -1813,6 +1593,9 @@
                             "raw": "this"
                         }
                     ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 51,
@@ -1889,8 +1672,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "this",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -1912,6 +1693,9 @@
                             "raw": "this"
                         }
                     ],
+                    "identifier": "this",
+                    "label": "this",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 53,
@@ -2068,7 +1852,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Backslashing should suppress ",
+                    "value": "Backslashing should suppress [this] and [this].",
                     "loc": {
                         "start": {
                             "line": 57,
@@ -2076,90 +1860,14 @@
                         },
                         "end": {
                             "line": 57,
-                            "column": 29
-                        }
-                    },
-                    "range": [
-                        564,
-                        593
-                    ],
-                    "raw": "Backslashing should suppress "
-                },
-                {
-                    "type": "Str",
-                    "value": "[",
-                    "loc": {
-                        "start": {
-                            "line": 57,
-                            "column": 29
-                        },
-                        "end": {
-                            "line": 57,
-                            "column": 31
-                        }
-                    },
-                    "range": [
-                        593,
-                        595
-                    ],
-                    "raw": "\\["
-                },
-                {
-                    "type": "Str",
-                    "value": "this] and [this",
-                    "loc": {
-                        "start": {
-                            "line": 57,
-                            "column": 31
-                        },
-                        "end": {
-                            "line": 57,
-                            "column": 46
-                        }
-                    },
-                    "range": [
-                        595,
-                        610
-                    ],
-                    "raw": "this] and [this"
-                },
-                {
-                    "type": "Str",
-                    "value": "]",
-                    "loc": {
-                        "start": {
-                            "line": 57,
-                            "column": 46
-                        },
-                        "end": {
-                            "line": 57,
-                            "column": 48
-                        }
-                    },
-                    "range": [
-                        610,
-                        612
-                    ],
-                    "raw": "\\]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 57,
-                            "column": 48
-                        },
-                        "end": {
-                            "line": 57,
                             "column": 49
                         }
                     },
                     "range": [
-                        612,
+                        564,
                         613
                     ],
-                    "raw": "."
+                    "raw": "Backslashing should suppress \\[this] and [this\\]."
                 }
             ],
             "loc": {
@@ -2181,6 +1889,7 @@
         {
             "type": "Definition",
             "identifier": "this",
+            "label": "this",
             "title": null,
             "url": "foo",
             "loc": {
@@ -2241,8 +1950,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "link breaks",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
@@ -2264,6 +1971,9 @@
                             "raw": "link\nbreaks"
                         }
                     ],
+                    "identifier": "link breaks",
+                    "label": "link\nbreaks",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 64,
@@ -2340,12 +2050,10 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "link breaks",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "link \nbreaks",
+                            "value": "link\nbreaks",
                             "loc": {
                                 "start": {
                                     "line": 67,
@@ -2363,6 +2071,9 @@
                             "raw": "link \nbreaks"
                         }
                     ],
+                    "identifier": "link breaks",
+                    "label": "link\nbreaks",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 67,
@@ -2418,6 +2129,7 @@
         {
             "type": "Definition",
             "identifier": "link breaks",
+            "label": "link breaks",
             "title": null,
             "url": "/url/",
             "loc": {

@@ -43,6 +43,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "    This is a code block...\n        \n    ...which is not exdented.",
             "loc": {
                 "start": {
@@ -102,11 +103,12 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "  This one...\n      \n  ...is.",
             "loc": {
                 "start": {
                     "line": 13,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 17,
@@ -114,10 +116,10 @@
                 }
             },
             "range": [
-                252,
+                254,
                 299
             ],
-            "raw": "  ```\n    This one...\n        \n    ...is.\n  ```"
+            "raw": "```\n    This one...\n        \n    ...is.\n  ```"
         },
         {
             "type": "Paragraph",
@@ -161,11 +163,12 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "So is this...\n      \n  ...one.",
             "loc": {
                 "start": {
                     "line": 21,
-                    "column": 0
+                    "column": 1
                 },
                 "end": {
                     "line": 25,
@@ -173,10 +176,10 @@
                 }
             },
             "range": [
-                309,
+                310,
                 351
             ],
-            "raw": " ```\nSo is this...\n       \n   ...one.\n ```"
+            "raw": "```\nSo is this...\n       \n   ...one.\n ```"
         }
     ],
     "loc": {

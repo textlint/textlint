@@ -86,11 +86,11 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "  Block-quotes",
+                            "value": "Block-quotes",
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 2
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 4,
@@ -98,16 +98,16 @@
                                 }
                             },
                             "range": [
-                                79,
+                                81,
                                 93
                             ],
-                            "raw": "  Block-quotes"
+                            "raw": "Block-quotes"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 4,
-                            "column": 2
+                            "column": 4
                         },
                         "end": {
                             "line": 4,
@@ -115,20 +115,20 @@
                         }
                     },
                     "range": [
-                        79,
+                        81,
                         93
                     ],
-                    "raw": "  Block-quotes"
+                    "raw": "Block-quotes"
                 },
                 {
                     "type": "List",
                     "ordered": false,
                     "start": null,
-                    "loose": false,
+                    "spread": false,
                     "children": [
                         {
                             "type": "ListItem",
-                            "loose": false,
+                            "spread": false,
                             "checked": null,
                             "children": [
                                 {
@@ -174,7 +174,7 @@
                             "loc": {
                                 "start": {
                                     "line": 6,
-                                    "column": 2
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 6,
@@ -182,16 +182,16 @@
                                 }
                             },
                             "range": [
-                                98,
+                                100,
                                 120
                             ],
-                            "raw": "  *   With list items."
+                            "raw": "*   With list items."
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 6,
-                            "column": 2
+                            "column": 4
                         },
                         "end": {
                             "line": 6,
@@ -199,10 +199,10 @@
                         }
                     },
                     "range": [
-                        98,
+                        100,
                         120
                     ],
-                    "raw": "  *   With list items."
+                    "raw": "*   With list items."
                 }
             ],
             "loc": {
@@ -267,11 +267,11 @@
                     "type": "List",
                     "ordered": true,
                     "start": 1,
-                    "loose": false,
+                    "spread": false,
                     "children": [
                         {
                             "type": "ListItem",
-                            "loose": false,
+                            "spread": false,
                             "checked": null,
                             "children": [
                                 {
@@ -317,7 +317,7 @@
                             "loc": {
                                 "start": {
                                     "line": 10,
-                                    "column": 2
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 10,
@@ -325,16 +325,16 @@
                                 }
                             },
                             "range": [
-                                146,
+                                148,
                                 169
                             ],
-                            "raw": "  1.  And another list."
+                            "raw": "1.  And another list."
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 10,
-                            "column": 2
+                            "column": 4
                         },
                         "end": {
                             "line": 10,
@@ -342,10 +342,10 @@
                         }
                     },
                     "range": [
-                        146,
+                        148,
                         169
                     ],
-                    "raw": "  1.  And another list."
+                    "raw": "1.  And another list."
                 }
             ],
             "loc": {
@@ -527,7 +527,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "An entity: ",
+                    "value": "An entity: ©, and an warning entity: &copy.",
                     "loc": {
                         "start": {
                             "line": 14,
@@ -535,90 +535,14 @@
                         },
                         "end": {
                             "line": 14,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        228,
-                        239
-                    ],
-                    "raw": "An entity: "
-                },
-                {
-                    "type": "Str",
-                    "value": "©",
-                    "loc": {
-                        "start": {
-                            "line": 14,
-                            "column": 11
-                        },
-                        "end": {
-                            "line": 14,
-                            "column": 17
-                        }
-                    },
-                    "range": [
-                        239,
-                        245
-                    ],
-                    "raw": "&copy;"
-                },
-                {
-                    "type": "Str",
-                    "value": ", and an warning entity: ",
-                    "loc": {
-                        "start": {
-                            "line": 14,
-                            "column": 17
-                        },
-                        "end": {
-                            "line": 14,
-                            "column": 42
-                        }
-                    },
-                    "range": [
-                        245,
-                        270
-                    ],
-                    "raw": ", and an warning entity: "
-                },
-                {
-                    "type": "Str",
-                    "value": "©",
-                    "loc": {
-                        "start": {
-                            "line": 14,
-                            "column": 42
-                        },
-                        "end": {
-                            "line": 14,
-                            "column": 47
-                        }
-                    },
-                    "range": [
-                        270,
-                        275
-                    ],
-                    "raw": "&copy"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 14,
-                            "column": 47
-                        },
-                        "end": {
-                            "line": 14,
                             "column": 48
                         }
                     },
                     "range": [
-                        275,
+                        228,
                         276
                     ],
-                    "raw": "."
+                    "raw": "An entity: &copy;, and an warning entity: &copy."
                 }
             ],
             "loc": {

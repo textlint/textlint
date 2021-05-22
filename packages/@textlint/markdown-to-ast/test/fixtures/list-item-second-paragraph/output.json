@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -55,289 +55,22 @@
                                 },
                                 {
                                     "type": "Str",
-                                    "value": " and type is Paragraph\n    - have ",
+                                    "value": " and type is Paragraph",
                                     "loc": {
                                         "start": {
                                             "line": 1,
                                             "column": 32
                                         },
                                         "end": {
-                                            "line": 2,
-                                            "column": 11
+                                            "line": 1,
+                                            "column": 54
                                         }
                                     },
                                     "range": [
                                         32,
-                                        66
+                                        54
                                     ],
-                                    "raw": " and type is Paragraph\n    - have "
-                                },
-                                {
-                                    "type": "Code",
-                                    "value": "children",
-                                    "loc": {
-                                        "start": {
-                                            "line": 2,
-                                            "column": 11
-                                        },
-                                        "end": {
-                                            "line": 2,
-                                            "column": 21
-                                        }
-                                    },
-                                    "range": [
-                                        66,
-                                        76
-                                    ],
-                                    "raw": "`children`"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": ", but not have ",
-                                    "loc": {
-                                        "start": {
-                                            "line": 2,
-                                            "column": 21
-                                        },
-                                        "end": {
-                                            "line": 2,
-                                            "column": 36
-                                        }
-                                    },
-                                    "range": [
-                                        76,
-                                        91
-                                    ],
-                                    "raw": ", but not have "
-                                },
-                                {
-                                    "type": "Code",
-                                    "value": "value",
-                                    "loc": {
-                                        "start": {
-                                            "line": 2,
-                                            "column": 36
-                                        },
-                                        "end": {
-                                            "line": 2,
-                                            "column": 43
-                                        }
-                                    },
-                                    "range": [
-                                        91,
-                                        98
-                                    ],
-                                    "raw": "`value`"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "\n",
-                                    "loc": {
-                                        "start": {
-                                            "line": 2,
-                                            "column": 43
-                                        },
-                                        "end": {
-                                            "line": 3,
-                                            "column": 0
-                                        }
-                                    },
-                                    "range": [
-                                        98,
-                                        99
-                                    ],
-                                    "raw": "\n"
-                                },
-                                {
-                                    "type": "Emphasis",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "Emphasis",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 3,
-                                                    "column": 1
-                                                },
-                                                "end": {
-                                                    "line": 3,
-                                                    "column": 9
-                                                }
-                                            },
-                                            "range": [
-                                                100,
-                                                108
-                                            ],
-                                            "raw": "Emphasis"
-                                        }
-                                    ],
-                                    "loc": {
-                                        "start": {
-                                            "line": 3,
-                                            "column": 0
-                                        },
-                                        "end": {
-                                            "line": 3,
-                                            "column": 10
-                                        }
-                                    },
-                                    "range": [
-                                        99,
-                                        109
-                                    ],
-                                    "raw": "*Emphasis*"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " is a ",
-                                    "loc": {
-                                        "start": {
-                                            "line": 3,
-                                            "column": 10
-                                        },
-                                        "end": {
-                                            "line": 3,
-                                            "column": 16
-                                        }
-                                    },
-                                    "range": [
-                                        109,
-                                        115
-                                    ],
-                                    "raw": " is a "
-                                },
-                                {
-                                    "type": "Code",
-                                    "value": "TxtTextNode",
-                                    "loc": {
-                                        "start": {
-                                            "line": 3,
-                                            "column": 16
-                                        },
-                                        "end": {
-                                            "line": 3,
-                                            "column": 29
-                                        }
-                                    },
-                                    "range": [
-                                        115,
-                                        128
-                                    ],
-                                    "raw": "`TxtTextNode`"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " and type is Emphasis\n    - have ",
-                                    "loc": {
-                                        "start": {
-                                            "line": 3,
-                                            "column": 29
-                                        },
-                                        "end": {
-                                            "line": 4,
-                                            "column": 11
-                                        }
-                                    },
-                                    "range": [
-                                        128,
-                                        161
-                                    ],
-                                    "raw": " and type is Emphasis\n    - have "
-                                },
-                                {
-                                    "type": "Code",
-                                    "value": "value",
-                                    "loc": {
-                                        "start": {
-                                            "line": 4,
-                                            "column": 11
-                                        },
-                                        "end": {
-                                            "line": 4,
-                                            "column": 18
-                                        }
-                                    },
-                                    "range": [
-                                        161,
-                                        168
-                                    ],
-                                    "raw": "`value`"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "\n\"text\" is a ",
-                                    "loc": {
-                                        "start": {
-                                            "line": 4,
-                                            "column": 18
-                                        },
-                                        "end": {
-                                            "line": 5,
-                                            "column": 12
-                                        }
-                                    },
-                                    "range": [
-                                        168,
-                                        181
-                                    ],
-                                    "raw": "\n\"text\" is a "
-                                },
-                                {
-                                    "type": "Code",
-                                    "value": "TxtTextNode",
-                                    "loc": {
-                                        "start": {
-                                            "line": 5,
-                                            "column": 12
-                                        },
-                                        "end": {
-                                            "line": 5,
-                                            "column": 25
-                                        }
-                                    },
-                                    "range": [
-                                        181,
-                                        194
-                                    ],
-                                    "raw": "`TxtTextNode`"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " and type is Str\n    - have ",
-                                    "loc": {
-                                        "start": {
-                                            "line": 5,
-                                            "column": 25
-                                        },
-                                        "end": {
-                                            "line": 6,
-                                            "column": 11
-                                        }
-                                    },
-                                    "range": [
-                                        194,
-                                        222
-                                    ],
-                                    "raw": " and type is Str\n    - have "
-                                },
-                                {
-                                    "type": "Code",
-                                    "value": "value",
-                                    "loc": {
-                                        "start": {
-                                            "line": 6,
-                                            "column": 11
-                                        },
-                                        "end": {
-                                            "line": 6,
-                                            "column": 18
-                                        }
-                                    },
-                                    "range": [
-                                        222,
-                                        229
-                                    ],
-                                    "raw": "`value`"
+                                    "raw": " and type is Paragraph"
                                 }
                             ],
                             "loc": {
@@ -346,15 +79,156 @@
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 6,
-                                    "column": 18
+                                    "line": 1,
+                                    "column": 54
                                 }
                             },
                             "range": [
                                 2,
-                                229
+                                54
                             ],
-                            "raw": "Paragraph is a `TxtParentNode` and type is Paragraph\n    - have `children`, but not have `value`\n*Emphasis* is a `TxtTextNode` and type is Emphasis\n    - have `value`\n\"text\" is a `TxtTextNode` and type is Str\n    - have `value`"
+                            "raw": "Paragraph is a `TxtParentNode` and type is Paragraph"
+                        },
+                        {
+                            "type": "List",
+                            "ordered": false,
+                            "start": null,
+                            "spread": false,
+                            "children": [
+                                {
+                                    "type": "ListItem",
+                                    "spread": false,
+                                    "checked": null,
+                                    "children": [
+                                        {
+                                            "type": "Paragraph",
+                                            "children": [
+                                                {
+                                                    "type": "Str",
+                                                    "value": "have ",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 2,
+                                                            "column": 6
+                                                        },
+                                                        "end": {
+                                                            "line": 2,
+                                                            "column": 11
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        61,
+                                                        66
+                                                    ],
+                                                    "raw": "have "
+                                                },
+                                                {
+                                                    "type": "Code",
+                                                    "value": "children",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 2,
+                                                            "column": 11
+                                                        },
+                                                        "end": {
+                                                            "line": 2,
+                                                            "column": 21
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        66,
+                                                        76
+                                                    ],
+                                                    "raw": "`children`"
+                                                },
+                                                {
+                                                    "type": "Str",
+                                                    "value": ", but not have ",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 2,
+                                                            "column": 21
+                                                        },
+                                                        "end": {
+                                                            "line": 2,
+                                                            "column": 36
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        76,
+                                                        91
+                                                    ],
+                                                    "raw": ", but not have "
+                                                },
+                                                {
+                                                    "type": "Code",
+                                                    "value": "value",
+                                                    "loc": {
+                                                        "start": {
+                                                            "line": 2,
+                                                            "column": 36
+                                                        },
+                                                        "end": {
+                                                            "line": 2,
+                                                            "column": 43
+                                                        }
+                                                    },
+                                                    "range": [
+                                                        91,
+                                                        98
+                                                    ],
+                                                    "raw": "`value`"
+                                                }
+                                            ],
+                                            "loc": {
+                                                "start": {
+                                                    "line": 2,
+                                                    "column": 6
+                                                },
+                                                "end": {
+                                                    "line": 2,
+                                                    "column": 43
+                                                }
+                                            },
+                                            "range": [
+                                                61,
+                                                98
+                                            ],
+                                            "raw": "have `children`, but not have `value`"
+                                        }
+                                    ],
+                                    "loc": {
+                                        "start": {
+                                            "line": 2,
+                                            "column": 4
+                                        },
+                                        "end": {
+                                            "line": 2,
+                                            "column": 43
+                                        }
+                                    },
+                                    "range": [
+                                        59,
+                                        98
+                                    ],
+                                    "raw": "- have `children`, but not have `value`"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 2,
+                                    "column": 4
+                                },
+                                "end": {
+                                    "line": 2,
+                                    "column": 43
+                                }
+                            },
+                            "range": [
+                                59,
+                                98
+                            ],
+                            "raw": "- have `children`, but not have `value`"
                         }
                     ],
                     "loc": {
@@ -363,15 +237,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 6,
-                            "column": 18
+                            "line": 2,
+                            "column": 43
                         }
                     },
                     "range": [
                         0,
-                        229
+                        98
                     ],
-                    "raw": "- Paragraph is a `TxtParentNode` and type is Paragraph\n    - have `children`, but not have `value`\n*Emphasis* is a `TxtTextNode` and type is Emphasis\n    - have `value`\n\"text\" is a `TxtTextNode` and type is Str\n    - have `value`"
+                    "raw": "- Paragraph is a `TxtParentNode` and type is Paragraph\n    - have `children`, but not have `value`"
                 }
             ],
             "loc": {
@@ -380,15 +254,226 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 2,
+                    "column": 43
+                }
+            },
+            "range": [
+                0,
+                98
+            ],
+            "raw": "- Paragraph is a `TxtParentNode` and type is Paragraph\n    - have `children`, but not have `value`"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Emphasis",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Emphasis",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 9
+                                }
+                            },
+                            "range": [
+                                100,
+                                108
+                            ],
+                            "raw": "Emphasis"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        99,
+                        109
+                    ],
+                    "raw": "*Emphasis*"
+                },
+                {
+                    "type": "Str",
+                    "value": " is a ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 16
+                        }
+                    },
+                    "range": [
+                        109,
+                        115
+                    ],
+                    "raw": " is a "
+                },
+                {
+                    "type": "Code",
+                    "value": "TxtTextNode",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 16
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 29
+                        }
+                    },
+                    "range": [
+                        115,
+                        128
+                    ],
+                    "raw": "`TxtTextNode`"
+                },
+                {
+                    "type": "Str",
+                    "value": " and type is Emphasis\n- have ",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 29
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        128,
+                        161
+                    ],
+                    "raw": " and type is Emphasis\n    - have "
+                },
+                {
+                    "type": "Code",
+                    "value": "value",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        161,
+                        168
+                    ],
+                    "raw": "`value`"
+                },
+                {
+                    "type": "Str",
+                    "value": "\n\"text\" is a ",
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 18
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        168,
+                        181
+                    ],
+                    "raw": "\n\"text\" is a "
+                },
+                {
+                    "type": "Code",
+                    "value": "TxtTextNode",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 12
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 25
+                        }
+                    },
+                    "range": [
+                        181,
+                        194
+                    ],
+                    "raw": "`TxtTextNode`"
+                },
+                {
+                    "type": "Str",
+                    "value": " and type is Str\n- have ",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 25
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        194,
+                        222
+                    ],
+                    "raw": " and type is Str\n    - have "
+                },
+                {
+                    "type": "Code",
+                    "value": "value",
+                    "loc": {
+                        "start": {
+                            "line": 6,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 6,
+                            "column": 18
+                        }
+                    },
+                    "range": [
+                        222,
+                        229
+                    ],
+                    "raw": "`value`"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
                     "line": 6,
                     "column": 18
                 }
             },
             "range": [
-                0,
+                99,
                 229
             ],
-            "raw": "- Paragraph is a `TxtParentNode` and type is Paragraph\n    - have `children`, but not have `value`\n*Emphasis* is a `TxtTextNode` and type is Emphasis\n    - have `value`\n\"text\" is a `TxtTextNode` and type is Str\n    - have `value`"
+            "raw": "*Emphasis* is a `TxtTextNode` and type is Emphasis\n    - have `value`\n\"text\" is a `TxtTextNode` and type is Str\n    - have `value`"
         }
     ],
     "loc": {

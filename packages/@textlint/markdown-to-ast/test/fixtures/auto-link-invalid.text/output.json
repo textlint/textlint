@@ -45,7 +45,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "<https:/ ",
+                    "value": "<https:/",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -53,14 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 9
+                            "column": 8
                         }
                     },
                     "range": [
                         9,
-                        18
+                        17
                     ],
-                    "raw": "<https:/ "
+                    "raw": "<https:/"
                 }
             ],
             "loc": {
@@ -83,8 +83,30 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "Str",
-                    "value": "<mailto:foobarbaz>",
+                    "type": "Link",
+                    "title": null,
+                    "url": "mailto:foobarbaz",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "mailto:foobarbaz",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 1
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 17
+                                }
+                            },
+                            "range": [
+                                21,
+                                37
+                            ],
+                            "raw": "mailto:foobarbaz"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 5,

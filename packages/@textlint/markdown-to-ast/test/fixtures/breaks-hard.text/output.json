@@ -503,10 +503,84 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Look at the\\\npretty line\\\nbreaks.",
+                    "value": "Look at the",
                     "loc": {
                         "start": {
                             "line": 15,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 15,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        349,
+                        360
+                    ],
+                    "raw": "Look at the"
+                },
+                {
+                    "type": "Break",
+                    "loc": {
+                        "start": {
+                            "line": 15,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        360,
+                        362
+                    ],
+                    "raw": "\\\n"
+                },
+                {
+                    "type": "Str",
+                    "value": "pretty line",
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 16,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        362,
+                        373
+                    ],
+                    "raw": "pretty line"
+                },
+                {
+                    "type": "Break",
+                    "loc": {
+                        "start": {
+                            "line": 16,
+                            "column": 11
+                        },
+                        "end": {
+                            "line": 17,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        373,
+                        375
+                    ],
+                    "raw": "\\\n"
+                },
+                {
+                    "type": "Str",
+                    "value": "breaks.",
+                    "loc": {
+                        "start": {
+                            "line": 17,
                             "column": 0
                         },
                         "end": {
@@ -515,10 +589,10 @@
                         }
                     },
                     "range": [
-                        349,
+                        375,
                         382
                     ],
-                    "raw": "Look at the\\\npretty line\\\nbreaks."
+                    "raw": "breaks."
                 }
             ],
             "loc": {

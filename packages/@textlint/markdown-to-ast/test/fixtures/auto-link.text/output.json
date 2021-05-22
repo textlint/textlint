@@ -228,11 +228,11 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "somename@example.com",
+                            "value": "mailto:somename@example.com",
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 26
+                                    "column": 19
                                 },
                                 "end": {
                                     "line": 5,
@@ -240,10 +240,10 @@
                                 }
                             },
                             "range": [
-                                99,
+                                92,
                                 119
                             ],
-                            "raw": "somename@example.com"
+                            "raw": "mailto:somename@example.com"
                         }
                     ],
                     "loc": {
@@ -382,11 +382,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -447,7 +447,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -530,7 +530,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -767,6 +767,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "or here: <http://example.com/>",
             "loc": {
                 "start": {

@@ -45,41 +45,19 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": " ",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 4,
-                                                    "column": 3
-                                                },
-                                                "end": {
-                                                    "line": 4,
-                                                    "column": 4
-                                                }
-                                            },
-                                            "range": [
-                                                28,
-                                                29
-                                            ],
-                                            "raw": " "
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[ ]",
                                     "loc": {
                                         "start": {
                                             "line": 4,
@@ -132,37 +110,15 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "\t",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 5,
-                                                    "column": 3
-                                                },
-                                                "end": {
-                                                    "line": 5,
-                                                    "column": 4
-                                                }
-                                            },
-                                            "range": [
-                                                34,
-                                                35
-                                            ],
-                                            "raw": "\t"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[\t]",
                                     "loc": {
                                         "start": {
                                             "line": 5,
@@ -234,41 +190,19 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": "x",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "x",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 7,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 7,
-                                                    "column": 5
-                                                }
-                                            },
-                                            "range": [
-                                                42,
-                                                43
-                                            ],
-                                            "raw": "x"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[x]",
                                     "loc": {
                                         "start": {
                                             "line": 7,
@@ -321,37 +255,15 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": "x",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "X",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 8,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 8,
-                                                    "column": 5
-                                                }
-                                            },
-                                            "range": [
-                                                49,
-                                                50
-                                            ],
-                                            "raw": "X"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[X]",
                                     "loc": {
                                         "start": {
                                             "line": 8,
@@ -463,13 +375,53 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": false,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[ ]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 13,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 13,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        82,
+                                        85
+                                    ],
+                                    "raw": "[ ]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 13,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 13,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                82,
+                                86
+                            ],
+                            "raw": "[ ] "
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 13,
@@ -488,9 +440,49 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": false,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[\t]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 14,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 14,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        89,
+                                        92
+                                    ],
+                                    "raw": "[\t]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 14,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 14,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                89,
+                                93
+                            ],
+                            "raw": "[\t] "
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 14,
@@ -528,13 +520,53 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": true,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[x]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 16,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 16,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        98,
+                                        101
+                                    ],
+                                    "raw": "[x]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 16,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 16,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                98,
+                                102
+                            ],
+                            "raw": "[x] "
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 16,
@@ -553,9 +585,49 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": true,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[X]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 17,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 17,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        106,
+                                        109
+                                    ],
+                                    "raw": "[X]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 17,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 17,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                106,
+                                110
+                            ],
+                            "raw": "[X] "
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 17,
@@ -633,13 +705,53 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": false,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[ ]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 22,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 22,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        123,
+                                        126
+                                    ],
+                                    "raw": "[ ]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 22,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 22,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                123,
+                                127
+                            ],
+                            "raw": "[ ]\t"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 22,
@@ -658,9 +770,49 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": false,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[\t]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 23,
+                                            "column": 2
+                                        },
+                                        "end": {
+                                            "line": 23,
+                                            "column": 5
+                                        }
+                                    },
+                                    "range": [
+                                        130,
+                                        133
+                                    ],
+                                    "raw": "[\t]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 23,
+                                    "column": 2
+                                },
+                                "end": {
+                                    "line": 23,
+                                    "column": 6
+                                }
+                            },
+                            "range": [
+                                130,
+                                134
+                            ],
+                            "raw": "[\t]\t"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 23,
@@ -698,13 +850,53 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": true,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[x]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 25,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 25,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        139,
+                                        142
+                                    ],
+                                    "raw": "[x]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 25,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 25,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                139,
+                                143
+                            ],
+                            "raw": "[x]\t"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 25,
@@ -723,9 +915,49 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
-                    "checked": true,
-                    "children": [],
+                    "spread": false,
+                    "checked": null,
+                    "children": [
+                        {
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "[X]",
+                                    "loc": {
+                                        "start": {
+                                            "line": 26,
+                                            "column": 3
+                                        },
+                                        "end": {
+                                            "line": 26,
+                                            "column": 6
+                                        }
+                                    },
+                                    "range": [
+                                        147,
+                                        150
+                                    ],
+                                    "raw": "[X]"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 26,
+                                    "column": 3
+                                },
+                                "end": {
+                                    "line": 26,
+                                    "column": 7
+                                }
+                            },
+                            "range": [
+                                147,
+                                151
+                            ],
+                            "raw": "[X]\t"
+                        }
+                    ],
                     "loc": {
                         "start": {
                             "line": 26,
@@ -803,41 +1035,19 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": " ",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 31,
-                                                    "column": 3
-                                                },
-                                                "end": {
-                                                    "line": 31,
-                                                    "column": 4
-                                                }
-                                            },
-                                            "range": [
-                                                213,
-                                                214
-                                            ],
-                                            "raw": " "
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[ ]Hello;",
                                     "loc": {
                                         "start": {
                                             "line": 31,
@@ -845,33 +1055,14 @@
                                         },
                                         "end": {
                                             "line": 31,
-                                            "column": 5
-                                        }
-                                    },
-                                    "range": [
-                                        212,
-                                        215
-                                    ],
-                                    "raw": "[ ]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "Hello;",
-                                    "loc": {
-                                        "start": {
-                                            "line": 31,
-                                            "column": 5
-                                        },
-                                        "end": {
-                                            "line": 31,
                                             "column": 11
                                         }
                                     },
                                     "range": [
-                                        215,
+                                        212,
                                         221
                                     ],
-                                    "raw": "Hello;"
+                                    "raw": "[ ]Hello;"
                                 }
                             ],
                             "loc": {
@@ -909,37 +1100,15 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "\t",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 32,
-                                                    "column": 3
-                                                },
-                                                "end": {
-                                                    "line": 32,
-                                                    "column": 4
-                                                }
-                                            },
-                                            "range": [
-                                                225,
-                                                226
-                                            ],
-                                            "raw": "\t"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[\t]World;",
                                     "loc": {
                                         "start": {
                                             "line": 32,
@@ -947,33 +1116,14 @@
                                         },
                                         "end": {
                                             "line": 32,
-                                            "column": 5
-                                        }
-                                    },
-                                    "range": [
-                                        224,
-                                        227
-                                    ],
-                                    "raw": "[\t]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "World;",
-                                    "loc": {
-                                        "start": {
-                                            "line": 32,
-                                            "column": 5
-                                        },
-                                        "end": {
-                                            "line": 32,
                                             "column": 11
                                         }
                                     },
                                     "range": [
-                                        227,
+                                        224,
                                         233
                                     ],
-                                    "raw": "World;"
+                                    "raw": "[\t]World;"
                                 }
                             ],
                             "loc": {
@@ -1030,41 +1180,19 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": "x",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "x",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 34,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 34,
-                                                    "column": 5
-                                                }
-                                            },
-                                            "range": [
-                                                239,
-                                                240
-                                            ],
-                                            "raw": "x"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[x]Foo.",
                                     "loc": {
                                         "start": {
                                             "line": 34,
@@ -1072,33 +1200,14 @@
                                         },
                                         "end": {
                                             "line": 34,
-                                            "column": 6
-                                        }
-                                    },
-                                    "range": [
-                                        238,
-                                        241
-                                    ],
-                                    "raw": "[x]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "Foo.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 34,
-                                            "column": 6
-                                        },
-                                        "end": {
-                                            "line": 34,
                                             "column": 10
                                         }
                                     },
                                     "range": [
-                                        241,
+                                        238,
                                         245
                                     ],
-                                    "raw": "Foo."
+                                    "raw": "[x]Foo."
                                 }
                             ],
                             "loc": {
@@ -1136,37 +1245,15 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": "x",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "X",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 35,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 35,
-                                                    "column": 5
-                                                }
-                                            },
-                                            "range": [
-                                                250,
-                                                251
-                                            ],
-                                            "raw": "X"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[X]Bar",
                                     "loc": {
                                         "start": {
                                             "line": 35,
@@ -1174,33 +1261,14 @@
                                         },
                                         "end": {
                                             "line": 35,
-                                            "column": 6
-                                        }
-                                    },
-                                    "range": [
-                                        249,
-                                        252
-                                    ],
-                                    "raw": "[X]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "Bar",
-                                    "loc": {
-                                        "start": {
-                                            "line": 35,
-                                            "column": 6
-                                        },
-                                        "end": {
-                                            "line": 35,
                                             "column": 9
                                         }
                                     },
                                     "range": [
-                                        252,
+                                        249,
                                         255
                                     ],
-                                    "raw": "Bar"
+                                    "raw": "[X]Bar"
                                 }
                             ],
                             "loc": {
@@ -1297,11 +1365,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -1362,7 +1430,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -1442,11 +1510,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -1507,7 +1575,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -1627,11 +1695,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -1692,7 +1760,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -1772,11 +1840,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -1837,7 +1905,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -1957,17 +2025,36 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "Hello;",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "    Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 58,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 58,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        534,
+                                        544
+                                    ],
+                                    "raw": "    Hello;"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 58,
@@ -2003,13 +2090,32 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "World;",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "    World;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 59,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 59,
+                                            "column": 16
+                                        }
+                                    },
+                                    "range": [
+                                        551,
+                                        561
+                                    ],
+                                    "raw": "    World;"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 59,
@@ -2064,11 +2170,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -2129,7 +2235,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -2249,17 +2355,36 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "Hello;",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "\tHello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 67,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 67,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        655,
+                                        662
+                                    ],
+                                    "raw": "\tHello;"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 67,
@@ -2295,13 +2420,32 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "World;",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "\tWorld;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 68,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 68,
+                                            "column": 13
+                                        }
+                                    },
+                                    "range": [
+                                        669,
+                                        676
+                                    ],
+                                    "raw": "\tWorld;"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 68,
@@ -2356,17 +2500,36 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "Foo.",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "\tFoo.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 70,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 70,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        685,
+                                        690
+                                    ],
+                                    "raw": "\tFoo."
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 70,
@@ -2402,13 +2565,32 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "Bar.",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "\tBar.",
+                                    "loc": {
+                                        "start": {
+                                            "line": 71,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 71,
+                                            "column": 12
+                                        }
+                                    },
+                                    "range": [
+                                        698,
+                                        703
+                                    ],
+                                    "raw": "\tBar."
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 71,
@@ -2503,17 +2685,36 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "    Hello;",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "\t    Hello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 76,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 76,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        756,
+                                        767
+                                    ],
+                                    "raw": "\t    Hello;"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 76,
@@ -2568,17 +2769,36 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "World;",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "    World;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 78,
+                                            "column": 7
+                                        },
+                                        "end": {
+                                            "line": 78,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        776,
+                                        786
+                                    ],
+                                    "raw": "    World;"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 78,
@@ -2633,17 +2853,36 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
-                            "type": "CodeBlock",
-                            "lang": null,
-                            "value": "\tHello;",
+                            "type": "Paragraph",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "    \tHello;",
+                                    "loc": {
+                                        "start": {
+                                            "line": 80,
+                                            "column": 6
+                                        },
+                                        "end": {
+                                            "line": 80,
+                                            "column": 17
+                                        }
+                                    },
+                                    "range": [
+                                        794,
+                                        805
+                                    ],
+                                    "raw": "    \tHello;"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 80,
@@ -2679,7 +2918,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": false,
                     "children": [
                         {
@@ -2759,11 +2998,11 @@
             "type": "List",
             "ordered": true,
             "start": 2,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": true,
                     "children": [
                         {
@@ -2883,75 +3122,34 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "\n",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 88,
-                                                    "column": 3
-                                                },
-                                                "end": {
-                                                    "line": 89,
-                                                    "column": 0
-                                                }
-                                            },
-                                            "range": [
-                                                867,
-                                                868
-                                            ],
-                                            "raw": "\n"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[",
                                     "loc": {
                                         "start": {
                                             "line": 88,
                                             "column": 2
                                         },
                                         "end": {
-                                            "line": 89,
-                                            "column": 1
+                                            "line": 88,
+                                            "column": 3
                                         }
                                     },
                                     "range": [
                                         866,
-                                        869
+                                        867
                                     ],
-                                    "raw": "[\n]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " Hello;",
-                                    "loc": {
-                                        "start": {
-                                            "line": 89,
-                                            "column": 1
-                                        },
-                                        "end": {
-                                            "line": 89,
-                                            "column": 8
-                                        }
-                                    },
-                                    "range": [
-                                        869,
-                                        876
-                                    ],
-                                    "raw": " Hello;"
+                                    "raw": "["
                                 }
                             ],
                             "loc": {
@@ -2960,15 +3158,15 @@
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 89,
-                                    "column": 8
+                                    "line": 88,
+                                    "column": 3
                                 }
                             },
                             "range": [
                                 866,
-                                876
+                                867
                             ],
-                            "raw": "[\n] Hello;"
+                            "raw": "["
                         }
                     ],
                     "loc": {
@@ -2977,15 +3175,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 89,
-                            "column": 8
+                            "line": 88,
+                            "column": 3
                         }
                     },
                     "range": [
                         864,
-                        876
+                        867
                     ],
-                    "raw": "* [\n] Hello;"
+                    "raw": "* ["
                 }
             ],
             "loc": {
@@ -2994,89 +3192,87 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 88,
+                    "column": 3
+                }
+            },
+            "range": [
+                864,
+                867
+            ],
+            "raw": "* ["
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "] Hello;",
+                    "loc": {
+                        "start": {
+                            "line": 89,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 89,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        868,
+                        876
+                    ],
+                    "raw": "] Hello;"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 89,
+                    "column": 0
+                },
+                "end": {
                     "line": 89,
                     "column": 8
                 }
             },
             "range": [
-                864,
+                868,
                 876
             ],
-            "raw": "* [\n] Hello;"
+            "raw": "] Hello;"
         },
         {
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "\n",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 91,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 92,
-                                                    "column": 0
-                                                }
-                                            },
-                                            "range": [
-                                                882,
-                                                883
-                                            ],
-                                            "raw": "\n"
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[",
                                     "loc": {
                                         "start": {
                                             "line": 91,
                                             "column": 3
                                         },
                                         "end": {
-                                            "line": 92,
-                                            "column": 1
+                                            "line": 91,
+                                            "column": 4
                                         }
                                     },
                                     "range": [
                                         881,
-                                        884
+                                        882
                                     ],
-                                    "raw": "[\n]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " Hello;",
-                                    "loc": {
-                                        "start": {
-                                            "line": 92,
-                                            "column": 1
-                                        },
-                                        "end": {
-                                            "line": 92,
-                                            "column": 8
-                                        }
-                                    },
-                                    "range": [
-                                        884,
-                                        891
-                                    ],
-                                    "raw": " Hello;"
+                                    "raw": "["
                                 }
                             ],
                             "loc": {
@@ -3085,15 +3281,15 @@
                                     "column": 3
                                 },
                                 "end": {
-                                    "line": 92,
-                                    "column": 8
+                                    "line": 91,
+                                    "column": 4
                                 }
                             },
                             "range": [
                                 881,
-                                891
+                                882
                             ],
-                            "raw": "[\n] Hello;"
+                            "raw": "["
                         }
                     ],
                     "loc": {
@@ -3102,15 +3298,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 92,
-                            "column": 8
+                            "line": 91,
+                            "column": 4
                         }
                     },
                     "range": [
                         878,
-                        891
+                        882
                     ],
-                    "raw": "1. [\n] Hello;"
+                    "raw": "1. ["
                 }
             ],
             "loc": {
@@ -3119,15 +3315,54 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 91,
+                    "column": 4
+                }
+            },
+            "range": [
+                878,
+                882
+            ],
+            "raw": "1. ["
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "] Hello;",
+                    "loc": {
+                        "start": {
+                            "line": 92,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 92,
+                            "column": 8
+                        }
+                    },
+                    "range": [
+                        883,
+                        891
+                    ],
+                    "raw": "] Hello;"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 92,
+                    "column": 0
+                },
+                "end": {
                     "line": 92,
                     "column": 8
                 }
             },
             "range": [
-                878,
+                883,
                 891
             ],
-            "raw": "1. [\n] Hello;"
+            "raw": "] Hello;"
         },
         {
             "type": "Header",
@@ -3173,41 +3408,19 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "  ",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 97,
-                                                    "column": 3
-                                                },
-                                                "end": {
-                                                    "line": 97,
-                                                    "column": 5
-                                                }
-                                            },
-                                            "range": [
-                                                959,
-                                                961
-                                            ],
-                                            "raw": "  "
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[  ] Hello;",
                                     "loc": {
                                         "start": {
                                             "line": 97,
@@ -3215,33 +3428,14 @@
                                         },
                                         "end": {
                                             "line": 97,
-                                            "column": 6
-                                        }
-                                    },
-                                    "range": [
-                                        958,
-                                        962
-                                    ],
-                                    "raw": "[  ]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " Hello;",
-                                    "loc": {
-                                        "start": {
-                                            "line": 97,
-                                            "column": 6
-                                        },
-                                        "end": {
-                                            "line": 97,
                                             "column": 13
                                         }
                                     },
                                     "range": [
-                                        962,
+                                        958,
                                         969
                                     ],
-                                    "raw": " Hello;"
+                                    "raw": "[  ] Hello;"
                                 }
                             ],
                             "loc": {
@@ -3298,75 +3492,34 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "Paragraph",
                             "children": [
                                 {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": " \n",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 99,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 100,
-                                                    "column": 1
-                                                }
-                                            },
-                                            "range": [
-                                                975,
-                                                978
-                                            ],
-                                            "raw": " \n "
-                                        }
-                                    ],
+                                    "type": "Str",
+                                    "value": "[",
                                     "loc": {
                                         "start": {
                                             "line": 99,
                                             "column": 3
                                         },
                                         "end": {
-                                            "line": 100,
-                                            "column": 2
+                                            "line": 99,
+                                            "column": 4
                                         }
                                     },
                                     "range": [
                                         974,
-                                        979
+                                        975
                                     ],
-                                    "raw": "[ \n ]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " World;",
-                                    "loc": {
-                                        "start": {
-                                            "line": 100,
-                                            "column": 2
-                                        },
-                                        "end": {
-                                            "line": 100,
-                                            "column": 9
-                                        }
-                                    },
-                                    "range": [
-                                        979,
-                                        986
-                                    ],
-                                    "raw": " World;"
+                                    "raw": "["
                                 }
                             ],
                             "loc": {
@@ -3375,15 +3528,15 @@
                                     "column": 3
                                 },
                                 "end": {
-                                    "line": 100,
-                                    "column": 9
+                                    "line": 99,
+                                    "column": 5
                                 }
                             },
                             "range": [
                                 974,
-                                986
+                                976
                             ],
-                            "raw": "[ \n ] World;"
+                            "raw": "[ "
                         }
                     ],
                     "loc": {
@@ -3392,219 +3545,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 100,
-                            "column": 9
+                            "line": 99,
+                            "column": 5
                         }
                     },
                     "range": [
                         971,
-                        986
+                        976
                     ],
-                    "raw": "1. [ \n ] World;"
-                },
-                {
-                    "type": "ListItem",
-                    "loose": false,
-                    "checked": null,
-                    "children": [
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "\t\t",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 101,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 101,
-                                                    "column": 6
-                                                }
-                                            },
-                                            "range": [
-                                                991,
-                                                993
-                                            ],
-                                            "raw": "\t\t"
-                                        }
-                                    ],
-                                    "loc": {
-                                        "start": {
-                                            "line": 101,
-                                            "column": 3
-                                        },
-                                        "end": {
-                                            "line": 101,
-                                            "column": 7
-                                        }
-                                    },
-                                    "range": [
-                                        990,
-                                        994
-                                    ],
-                                    "raw": "[\t\t]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " Hello;",
-                                    "loc": {
-                                        "start": {
-                                            "line": 101,
-                                            "column": 7
-                                        },
-                                        "end": {
-                                            "line": 101,
-                                            "column": 14
-                                        }
-                                    },
-                                    "range": [
-                                        994,
-                                        1001
-                                    ],
-                                    "raw": " Hello;"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 101,
-                                    "column": 3
-                                },
-                                "end": {
-                                    "line": 101,
-                                    "column": 14
-                                }
-                            },
-                            "range": [
-                                990,
-                                1001
-                            ],
-                            "raw": "[\t\t] Hello;"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 101,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 101,
-                            "column": 14
-                        }
-                    },
-                    "range": [
-                        987,
-                        1001
-                    ],
-                    "raw": "2. [\t\t] Hello;"
-                },
-                {
-                    "type": "ListItem",
-                    "loose": false,
-                    "checked": null,
-                    "children": [
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "LinkReference",
-                                    "identifier": " ",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": " \t ",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 102,
-                                                    "column": 4
-                                                },
-                                                "end": {
-                                                    "line": 102,
-                                                    "column": 7
-                                                }
-                                            },
-                                            "range": [
-                                                1006,
-                                                1009
-                                            ],
-                                            "raw": " \t "
-                                        }
-                                    ],
-                                    "loc": {
-                                        "start": {
-                                            "line": 102,
-                                            "column": 3
-                                        },
-                                        "end": {
-                                            "line": 102,
-                                            "column": 8
-                                        }
-                                    },
-                                    "range": [
-                                        1005,
-                                        1010
-                                    ],
-                                    "raw": "[ \t ]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " World.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 102,
-                                            "column": 8
-                                        },
-                                        "end": {
-                                            "line": 102,
-                                            "column": 15
-                                        }
-                                    },
-                                    "range": [
-                                        1010,
-                                        1017
-                                    ],
-                                    "raw": " World."
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 102,
-                                    "column": 3
-                                },
-                                "end": {
-                                    "line": 102,
-                                    "column": 15
-                                }
-                            },
-                            "range": [
-                                1005,
-                                1017
-                            ],
-                            "raw": "[ \t ] World."
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 102,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 102,
-                            "column": 15
-                        }
-                    },
-                    "range": [
-                        1002,
-                        1017
-                    ],
-                    "raw": "3. [ \t ] World."
+                    "raw": "1. [ "
                 }
             ],
             "loc": {
@@ -3613,15 +3562,54 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 99,
+                    "column": 5
+                }
+            },
+            "range": [
+                971,
+                976
+            ],
+            "raw": "1. [ "
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "] World;\n2. [\t\t] Hello;\n3. [ \t ] World.",
+                    "loc": {
+                        "start": {
+                            "line": 100,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 102,
+                            "column": 15
+                        }
+                    },
+                    "range": [
+                        978,
+                        1017
+                    ],
+                    "raw": "] World;\n2. [\t\t] Hello;\n3. [ \t ] World."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 100,
+                    "column": 1
+                },
+                "end": {
                     "line": 102,
                     "column": 15
                 }
             },
             "range": [
-                971,
+                978,
                 1017
             ],
-            "raw": "1. [ \n ] World;\n2. [\t\t] Hello;\n3. [ \t ] World."
+            "raw": "] World;\n2. [\t\t] Hello;\n3. [ \t ] World."
         }
     ],
     "loc": {

@@ -43,6 +43,7 @@
         {
             "type": "CodeBlock",
             "lang": "js",
+            "meta": null,
             "value": "",
             "loc": {
                 "start": {
@@ -102,6 +103,7 @@
         {
             "type": "CodeBlock",
             "lang": "bash",
+            "meta": null,
             "value": "",
             "loc": {
                 "start": {
@@ -161,6 +163,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "",
             "loc": {
                 "start": {
@@ -220,6 +223,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "",
             "loc": {
                 "start": {

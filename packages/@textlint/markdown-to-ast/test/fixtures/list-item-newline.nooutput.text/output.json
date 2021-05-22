@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -78,11 +78,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "   Bar",
+                                    "value": "Bar",
                                     "loc": {
                                         "start": {
                                             "line": 3,
-                                            "column": 1
+                                            "column": 4
                                         },
                                         "end": {
                                             "line": 3,
@@ -90,16 +90,16 @@
                                         }
                                     },
                                     "range": [
-                                        11,
+                                        14,
                                         17
                                     ],
-                                    "raw": "   Bar"
+                                    "raw": "Bar"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 1
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 3,
@@ -107,10 +107,10 @@
                                 }
                             },
                             "range": [
-                                11,
+                                14,
                                 17
                             ],
-                            "raw": "   Bar"
+                            "raw": "Bar"
                         }
                     ],
                     "loc": {

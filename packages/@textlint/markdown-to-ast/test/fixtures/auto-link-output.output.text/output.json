@@ -129,11 +129,11 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "somename@example.com",
+                            "value": "mailto:somename@example.com",
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 26
+                                    "column": 19
                                 },
                                 "end": {
                                     "line": 3,
@@ -141,10 +141,10 @@
                                 }
                             },
                             "range": [
-                                56,
+                                49,
                                 76
                             ],
-                            "raw": "somename@example.com"
+                            "raw": "mailto:somename@example.com"
                         }
                     ],
                     "loc": {

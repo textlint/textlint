@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -50,45 +50,6 @@
                                 10
                             ],
                             "raw": "Hello 1a"
-                        },
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "World 1a.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 3,
-                                            "column": 1
-                                        },
-                                        "end": {
-                                            "line": 3,
-                                            "column": 10
-                                        }
-                                    },
-                                    "range": [
-                                        13,
-                                        22
-                                    ],
-                                    "raw": "World 1a."
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 10
-                                }
-                            },
-                            "range": [
-                                13,
-                                22
-                            ],
-                            "raw": "World 1a."
                         }
                     ],
                     "loc": {
@@ -97,19 +58,81 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 4,
-                            "column": 0
+                            "line": 1,
+                            "column": 10
                         }
                     },
                     "range": [
                         0,
-                        23
+                        10
                     ],
-                    "raw": "- Hello 1a\n\n World 1a.\n"
+                    "raw": "- Hello 1a"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
                 },
+                "end": {
+                    "line": 1,
+                    "column": 10
+                }
+            },
+            "range": [
+                0,
+                10
+            ],
+            "raw": "- Hello 1a"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "World 1a.",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 1
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        13,
+                        22
+                    ],
+                    "raw": "World 1a."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 1
+                },
+                "end": {
+                    "line": 3,
+                    "column": 10
+                }
+            },
+            "range": [
+                13,
+                22
+            ],
+            "raw": "World 1a."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "spread": true,
+            "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -197,19 +220,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 8,
-                            "column": 0
+                            "line": 7,
+                            "column": 11
                         }
                     },
                     "range": [
                         24,
-                        48
+                        47
                     ],
-                    "raw": "- Hello 1b\n\n  World 1b.\n"
+                    "raw": "- Hello 1b\n\n  World 1b."
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -250,45 +273,6 @@
                                 60
                             ],
                             "raw": "Hello 2a"
-                        },
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "World 2a.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 11,
-                                            "column": 2
-                                        },
-                                        "end": {
-                                            "line": 11,
-                                            "column": 11
-                                        }
-                                    },
-                                    "range": [
-                                        64,
-                                        73
-                                    ],
-                                    "raw": "World 2a."
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 11,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 11,
-                                    "column": 11
-                                }
-                            },
-                            "range": [
-                                64,
-                                73
-                            ],
-                            "raw": "World 2a."
                         }
                     ],
                     "loc": {
@@ -297,19 +281,81 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 12,
-                            "column": 0
+                            "line": 9,
+                            "column": 11
                         }
                     },
                     "range": [
                         49,
-                        74
+                        60
                     ],
-                    "raw": "-  Hello 2a\n\n  World 2a.\n"
+                    "raw": "-  Hello 2a"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
                 },
+                "end": {
+                    "line": 9,
+                    "column": 11
+                }
+            },
+            "range": [
+                24,
+                60
+            ],
+            "raw": "- Hello 1b\n\n  World 1b.\n\n-  Hello 2a"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "World 2a.",
+                    "loc": {
+                        "start": {
+                            "line": 11,
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 11,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        64,
+                        73
+                    ],
+                    "raw": "World 2a."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 11,
+                    "column": 2
+                },
+                "end": {
+                    "line": 11,
+                    "column": 11
+                }
+            },
+            "range": [
+                64,
+                73
+            ],
+            "raw": "World 2a."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "spread": true,
+            "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -397,19 +443,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 16,
-                            "column": 0
+                            "line": 15,
+                            "column": 12
                         }
                     },
                     "range": [
                         75,
-                        101
+                        100
                     ],
-                    "raw": "-  Hello 2b\n\n   World 2b.\n"
+                    "raw": "-  Hello 2b\n\n   World 2b."
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -450,45 +496,6 @@
                                 114
                             ],
                             "raw": "Hello 3a"
-                        },
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "World 3a.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 19,
-                                            "column": 3
-                                        },
-                                        "end": {
-                                            "line": 19,
-                                            "column": 12
-                                        }
-                                    },
-                                    "range": [
-                                        119,
-                                        128
-                                    ],
-                                    "raw": "World 3a."
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 19,
-                                    "column": 3
-                                },
-                                "end": {
-                                    "line": 19,
-                                    "column": 12
-                                }
-                            },
-                            "range": [
-                                119,
-                                128
-                            ],
-                            "raw": "World 3a."
                         }
                     ],
                     "loc": {
@@ -497,19 +504,81 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 20,
-                            "column": 0
+                            "line": 17,
+                            "column": 12
                         }
                     },
                     "range": [
                         102,
-                        129
+                        114
                     ],
-                    "raw": "-   Hello 3a\n\n   World 3a.\n"
+                    "raw": "-   Hello 3a"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
                 },
+                "end": {
+                    "line": 17,
+                    "column": 12
+                }
+            },
+            "range": [
+                75,
+                114
+            ],
+            "raw": "-  Hello 2b\n\n   World 2b.\n\n-   Hello 3a"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "World 3a.",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 3
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 12
+                        }
+                    },
+                    "range": [
+                        119,
+                        128
+                    ],
+                    "raw": "World 3a."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 3
+                },
+                "end": {
+                    "line": 19,
+                    "column": 12
+                }
+            },
+            "range": [
+                119,
+                128
+            ],
+            "raw": "World 3a."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "spread": true,
+            "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -597,19 +666,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 24,
-                            "column": 0
+                            "line": 23,
+                            "column": 13
                         }
                     },
                     "range": [
                         130,
-                        158
+                        157
                     ],
-                    "raw": "-   Hello 3b\n\n    World 3b.\n"
+                    "raw": "-   Hello 3b\n\n    World 3b."
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -650,45 +719,6 @@
                                 172
                             ],
                             "raw": "Hello 4a"
-                        },
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "World 4a.",
-                                    "loc": {
-                                        "start": {
-                                            "line": 27,
-                                            "column": 4
-                                        },
-                                        "end": {
-                                            "line": 27,
-                                            "column": 13
-                                        }
-                                    },
-                                    "range": [
-                                        178,
-                                        187
-                                    ],
-                                    "raw": "World 4a."
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 27,
-                                    "column": 4
-                                },
-                                "end": {
-                                    "line": 27,
-                                    "column": 13
-                                }
-                            },
-                            "range": [
-                                178,
-                                187
-                            ],
-                            "raw": "World 4a."
                         }
                     ],
                     "loc": {
@@ -697,19 +727,63 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 28,
-                            "column": 0
+                            "line": 25,
+                            "column": 13
                         }
                     },
                     "range": [
                         159,
-                        188
+                        172
                     ],
-                    "raw": "-    Hello 4a\n\n    World 4a.\n"
+                    "raw": "-    Hello 4a"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 21,
+                    "column": 0
                 },
+                "end": {
+                    "line": 25,
+                    "column": 13
+                }
+            },
+            "range": [
+                130,
+                172
+            ],
+            "raw": "-   Hello 3b\n\n    World 3b.\n\n-    Hello 4a"
+        },
+        {
+            "type": "CodeBlock",
+            "lang": null,
+            "meta": null,
+            "value": "World 4a.",
+            "loc": {
+                "start": {
+                    "line": 27,
+                    "column": 0
+                },
+                "end": {
+                    "line": 27,
+                    "column": 13
+                }
+            },
+            "range": [
+                174,
+                187
+            ],
+            "raw": "    World 4a."
+        },
+        {
+            "type": "List",
+            "ordered": false,
+            "start": null,
+            "spread": true,
+            "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -797,24 +871,25 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 32,
-                            "column": 0
+                            "line": 31,
+                            "column": 14
                         }
                     },
                     "range": [
                         189,
-                        219
+                        218
                     ],
-                    "raw": "-    Hello 4b\n\n     World 4b.\n"
+                    "raw": "-    Hello 4b\n\n     World 4b."
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
                             "type": "CodeBlock",
                             "lang": null,
+                            "meta": null,
                             "value": "Hello 5a",
                             "loc": {
                                 "start": {
@@ -837,11 +912,11 @@
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "   World 5a.",
+                                    "value": "World 5a.",
                                     "loc": {
                                         "start": {
                                             "line": 35,
-                                            "column": 2
+                                            "column": 5
                                         },
                                         "end": {
                                             "line": 35,
@@ -849,16 +924,16 @@
                                         }
                                     },
                                     "range": [
-                                        238,
+                                        241,
                                         250
                                     ],
-                                    "raw": "   World 5a."
+                                    "raw": "World 5a."
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 35,
-                                    "column": 2
+                                    "column": 5
                                 },
                                 "end": {
                                     "line": 35,
@@ -866,10 +941,10 @@
                                 }
                             },
                             "range": [
-                                238,
+                                241,
                                 250
                             ],
-                            "raw": "   World 5a."
+                            "raw": "World 5a."
                         }
                     ],
                     "loc": {
@@ -878,24 +953,25 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 36,
-                            "column": 0
+                            "line": 35,
+                            "column": 14
                         }
                     },
                     "range": [
                         220,
-                        251
+                        250
                     ],
-                    "raw": "-     Hello 5a\n\n     World 5a.\n"
+                    "raw": "-     Hello 5a\n\n     World 5a."
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "CodeBlock",
                             "lang": null,
+                            "meta": null,
                             "value": "Hello 5b\n\nWorld 5b.",
                             "loc": {
                                 "start": {
@@ -933,7 +1009,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 1,
+                    "line": 29,
                     "column": 0
                 },
                 "end": {
@@ -942,10 +1018,10 @@
                 }
             },
             "range": [
-                0,
+                189,
                 283
             ],
-            "raw": "- Hello 1a\n\n World 1a.\n\n- Hello 1b\n\n  World 1b.\n\n-  Hello 2a\n\n  World 2a.\n\n-  Hello 2b\n\n   World 2b.\n\n-   Hello 3a\n\n   World 3a.\n\n-   Hello 3b\n\n    World 3b.\n\n-    Hello 4a\n\n    World 4a.\n\n-    Hello 4b\n\n     World 4b.\n\n-     Hello 5a\n\n     World 5a.\n\n-     Hello 5b\n\n      World 5b."
+            "raw": "-    Hello 4b\n\n     World 4b.\n\n-     Hello 5a\n\n     World 5a.\n\n-     Hello 5b\n\n      World 5b."
         }
     ],
     "loc": {

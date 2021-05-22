@@ -43,6 +43,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "alert('Hello World!');",
             "loc": {
                 "start": {

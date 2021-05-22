@@ -46,7 +46,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This is a paragraph\n    and this is further text",
+                    "value": "This is a paragraph\nand this is further text",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -85,7 +85,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This is a paragraph\n   and this is further text",
+                    "value": "This is a paragraph\nand this is further text",
                     "loc": {
                         "start": {
                             "line": 6,
@@ -124,47 +124,27 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This is a paragraph with some asterisks",
+                    "value": "This is a paragraph with some asterisks\n***",
                     "loc": {
                         "start": {
                             "line": 9,
                             "column": 0
                         },
                         "end": {
-                            "line": 9,
-                            "column": 39
+                            "line": 10,
+                            "column": 7
                         }
                     },
                     "range": [
                         117,
-                        156
+                        164
                     ],
-                    "raw": "This is a paragraph with some asterisks"
+                    "raw": "This is a paragraph with some asterisks\n    ***"
                 }
             ],
             "loc": {
                 "start": {
                     "line": 9,
-                    "column": 0
-                },
-                "end": {
-                    "line": 9,
-                    "column": 39
-                }
-            },
-            "range": [
-                117,
-                156
-            ],
-            "raw": "This is a paragraph with some asterisks"
-        },
-        {
-            "type": "CodeBlock",
-            "lang": null,
-            "value": "***",
-            "loc": {
-                "start": {
-                    "line": 10,
                     "column": 0
                 },
                 "end": {
@@ -173,10 +153,10 @@
                 }
             },
             "range": [
-                157,
+                117,
                 164
             ],
-            "raw": "    ***"
+            "raw": "This is a paragraph with some asterisks\n    ***"
         },
         {
             "type": "Paragraph",
@@ -222,7 +202,7 @@
             "loc": {
                 "start": {
                     "line": 13,
-                    "column": 0
+                    "column": 3
                 },
                 "end": {
                     "line": 13,
@@ -230,10 +210,10 @@
                 }
             },
             "range": [
-                216,
+                219,
                 222
             ],
-            "raw": "   ***"
+            "raw": "***"
         },
         {
             "type": "Header",
@@ -317,6 +297,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "and this is code",
             "loc": {
                 "start": {
@@ -378,11 +359,11 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "   and this is a new paragraph",
+                    "value": "and this is a new paragraph",
                     "loc": {
                         "start": {
                             "line": 23,
-                            "column": 0
+                            "column": 3
                         },
                         "end": {
                             "line": 23,
@@ -390,16 +371,16 @@
                         }
                     },
                     "range": [
-                        303,
+                        306,
                         333
                     ],
-                    "raw": "   and this is a new paragraph"
+                    "raw": "and this is a new paragraph"
                 }
             ],
             "loc": {
                 "start": {
                     "line": 23,
-                    "column": 0
+                    "column": 3
                 },
                 "end": {
                     "line": 23,
@@ -407,10 +388,10 @@
                 }
             },
             "range": [
-                303,
+                306,
                 333
             ],
-            "raw": "   and this is a new paragraph"
+            "raw": "and this is a new paragraph"
         },
         {
             "type": "Paragraph",
@@ -454,6 +435,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "***",
             "loc": {
                 "start": {
@@ -515,7 +497,7 @@
             "loc": {
                 "start": {
                     "line": 31,
-                    "column": 0
+                    "column": 3
                 },
                 "end": {
                     "line": 31,
@@ -523,10 +505,10 @@
                 }
             },
             "range": [
-                452,
+                455,
                 458
             ],
-            "raw": "   ***"
+            "raw": "***"
         }
     ],
     "loc": {

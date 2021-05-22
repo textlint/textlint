@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -246,11 +246,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -311,7 +311,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -372,7 +372,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -392,45 +392,6 @@
                                 142
                             ],
                             "raw": "* * *"
-                        },
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "you today?",
-                                    "loc": {
-                                        "start": {
-                                            "line": 13,
-                                            "column": 0
-                                        },
-                                        "end": {
-                                            "line": 13,
-                                            "column": 10
-                                        }
-                                    },
-                                    "range": [
-                                        143,
-                                        153
-                                    ],
-                                    "raw": "you today?"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 13,
-                                    "column": 0
-                                },
-                                "end": {
-                                    "line": 13,
-                                    "column": 10
-                                }
-                            },
-                            "range": [
-                                143,
-                                153
-                            ],
-                            "raw": "you today?"
                         }
                     ],
                     "loc": {
@@ -439,15 +400,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 13,
-                            "column": 10
+                            "line": 12,
+                            "column": 7
                         }
                     },
                     "range": [
                         135,
-                        153
+                        142
                     ],
-                    "raw": "- * * *\nyou today?"
+                    "raw": "- * * *"
                 }
             ],
             "loc": {
@@ -456,25 +417,64 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 12,
+                    "column": 7
+                }
+            },
+            "range": [
+                111,
+                142
+            ],
+            "raw": "- hello world\n- how are\n- * * *"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "you today?",
+                    "loc": {
+                        "start": {
+                            "line": 13,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 13,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        143,
+                        153
+                    ],
+                    "raw": "you today?"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 13,
+                    "column": 0
+                },
+                "end": {
                     "line": 13,
                     "column": 10
                 }
             },
             "range": [
-                111,
+                143,
                 153
             ],
-            "raw": "- hello world\n- how are\n- * * *\nyou today?"
+            "raw": "you today?"
         },
         {
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -535,7 +535,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -596,41 +596,46 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
-                                            "type": "Paragraph",
+                                            "type": "List",
+                                            "ordered": false,
+                                            "start": null,
+                                            "spread": false,
                                             "children": [
                                                 {
-                                                    "type": "Str",
-                                                    "value": "*\nyou today?",
+                                                    "type": "ListItem",
+                                                    "spread": false,
+                                                    "checked": null,
+                                                    "children": [],
                                                     "loc": {
                                                         "start": {
                                                             "line": 18,
                                                             "column": 4
                                                         },
                                                         "end": {
-                                                            "line": 19,
-                                                            "column": 10
+                                                            "line": 18,
+                                                            "column": 5
                                                         }
                                                     },
                                                     "range": [
                                                         189,
-                                                        201
+                                                        190
                                                     ],
-                                                    "raw": "*\nyou today?"
+                                                    "raw": "*"
                                                 }
                                             ],
                                             "loc": {
@@ -639,15 +644,15 @@
                                                     "column": 4
                                                 },
                                                 "end": {
-                                                    "line": 19,
-                                                    "column": 10
+                                                    "line": 18,
+                                                    "column": 5
                                                 }
                                             },
                                             "range": [
                                                 189,
-                                                201
+                                                190
                                             ],
-                                            "raw": "*\nyou today?"
+                                            "raw": "*"
                                         }
                                     ],
                                     "loc": {
@@ -656,15 +661,15 @@
                                             "column": 2
                                         },
                                         "end": {
-                                            "line": 19,
-                                            "column": 10
+                                            "line": 18,
+                                            "column": 5
                                         }
                                     },
                                     "range": [
                                         187,
-                                        201
+                                        190
                                     ],
-                                    "raw": "* *\nyou today?"
+                                    "raw": "* *"
                                 }
                             ],
                             "loc": {
@@ -673,15 +678,15 @@
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 19,
-                                    "column": 10
+                                    "line": 18,
+                                    "column": 5
                                 }
                             },
                             "range": [
                                 187,
-                                201
+                                190
                             ],
-                            "raw": "* *\nyou today?"
+                            "raw": "* *"
                         }
                     ],
                     "loc": {
@@ -690,15 +695,15 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 19,
-                            "column": 10
+                            "line": 18,
+                            "column": 5
                         }
                     },
                     "range": [
                         185,
-                        201
+                        190
                     ],
-                    "raw": "+ * *\nyou today?"
+                    "raw": "+ * *"
                 }
             ],
             "loc": {
@@ -707,25 +712,64 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 18,
+                    "column": 5
+                }
+            },
+            "range": [
+                156,
+                190
+            ],
+            "raw": "+ Neither do these\n+ how are\n+ * *"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "you today?",
+                    "loc": {
+                        "start": {
+                            "line": 19,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 19,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        191,
+                        201
+                    ],
+                    "raw": "you today?"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 19,
+                    "column": 0
+                },
+                "end": {
                     "line": 19,
                     "column": 10
                 }
             },
             "range": [
-                156,
+                191,
                 201
             ],
-            "raw": "+ Neither do these\n+ how are\n+ * *\nyou today?"
+            "raw": "you today?"
         },
         {
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -786,7 +830,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {

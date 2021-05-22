@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "This one isn't even ",
+                    "value": "This one isn't even [defined][^foo].",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -14,74 +14,14 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 20
-                        }
-                    },
-                    "range": [
-                        0,
-                        20
-                    ],
-                    "raw": "This one isn't even "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^foo",
-                    "referenceType": "full",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "defined",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 21
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 28
-                                }
-                            },
-                            "range": [
-                                21,
-                                28
-                            ],
-                            "raw": "defined"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 20
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 35
-                        }
-                    },
-                    "range": [
-                        20,
-                        35
-                    ],
-                    "raw": "[defined][^foo]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 35
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 36
                         }
                     },
                     "range": [
-                        35,
+                        0,
                         36
                     ],
-                    "raw": "."
+                    "raw": "This one isn't even [defined][^foo]."
                 }
             ],
             "loc": {
@@ -104,30 +44,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "invalid",
-                    "referenceType": "full",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^both",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                39,
-                                44
-                            ],
-                            "raw": "^both"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[^both][invalid], [^this too][].",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -135,93 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 16
-                        }
-                    },
-                    "range": [
-                        38,
-                        54
-                    ],
-                    "raw": "[^both][invalid]"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 16
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 18
-                        }
-                    },
-                    "range": [
-                        54,
-                        56
-                    ],
-                    "raw": ", "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^this too",
-                    "referenceType": "collapsed",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^this too",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 19
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 28
-                                }
-                            },
-                            "range": [
-                                57,
-                                66
-                            ],
-                            "raw": "^this too"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 18
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 31
-                        }
-                    },
-                    "range": [
-                        56,
-                        69
-                    ],
-                    "raw": "[^this too][]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 31
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 32
                         }
                     },
                     "range": [
-                        69,
+                        38,
                         70
                     ],
-                    "raw": "."
+                    "raw": "[^both][invalid], [^this too][]."
                 }
             ],
             "loc": {

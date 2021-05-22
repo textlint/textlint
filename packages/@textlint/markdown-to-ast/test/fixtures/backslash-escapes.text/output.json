@@ -45,7 +45,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Backslash: ",
+                    "value": "Backslash: \\",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -53,33 +53,14 @@
                         },
                         "end": {
                             "line": 3,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        31,
-                        42
-                    ],
-                    "raw": "Backslash: "
-                },
-                {
-                    "type": "Str",
-                    "value": "\\",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 11
-                        },
-                        "end": {
-                            "line": 3,
                             "column": 13
                         }
                     },
                     "range": [
-                        42,
+                        31,
                         44
                     ],
-                    "raw": "\\\\"
+                    "raw": "Backslash: \\\\"
                 }
             ],
             "loc": {
@@ -103,7 +84,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Backtick: ",
+                    "value": "Backtick: `",
                     "loc": {
                         "start": {
                             "line": 5,
@@ -111,33 +92,14 @@
                         },
                         "end": {
                             "line": 5,
-                            "column": 10
-                        }
-                    },
-                    "range": [
-                        46,
-                        56
-                    ],
-                    "raw": "Backtick: "
-                },
-                {
-                    "type": "Str",
-                    "value": "`",
-                    "loc": {
-                        "start": {
-                            "line": 5,
-                            "column": 10
-                        },
-                        "end": {
-                            "line": 5,
                             "column": 12
                         }
                     },
                     "range": [
-                        56,
+                        46,
                         58
                     ],
-                    "raw": "\\`"
+                    "raw": "Backtick: \\`"
                 }
             ],
             "loc": {
@@ -161,7 +123,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Asterisk: ",
+                    "value": "Asterisk: *",
                     "loc": {
                         "start": {
                             "line": 7,
@@ -169,33 +131,14 @@
                         },
                         "end": {
                             "line": 7,
-                            "column": 10
-                        }
-                    },
-                    "range": [
-                        60,
-                        70
-                    ],
-                    "raw": "Asterisk: "
-                },
-                {
-                    "type": "Str",
-                    "value": "*",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 10
-                        },
-                        "end": {
-                            "line": 7,
                             "column": 12
                         }
                     },
                     "range": [
-                        70,
+                        60,
                         72
                     ],
-                    "raw": "\\*"
+                    "raw": "Asterisk: \\*"
                 }
             ],
             "loc": {
@@ -219,7 +162,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Underscore: ",
+                    "value": "Underscore: _",
                     "loc": {
                         "start": {
                             "line": 9,
@@ -227,33 +170,14 @@
                         },
                         "end": {
                             "line": 9,
-                            "column": 12
-                        }
-                    },
-                    "range": [
-                        74,
-                        86
-                    ],
-                    "raw": "Underscore: "
-                },
-                {
-                    "type": "Str",
-                    "value": "_",
-                    "loc": {
-                        "start": {
-                            "line": 9,
-                            "column": 12
-                        },
-                        "end": {
-                            "line": 9,
                             "column": 14
                         }
                     },
                     "range": [
-                        86,
+                        74,
                         88
                     ],
-                    "raw": "\\_"
+                    "raw": "Underscore: \\_"
                 }
             ],
             "loc": {
@@ -277,7 +201,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Left brace: ",
+                    "value": "Left brace: {",
                     "loc": {
                         "start": {
                             "line": 11,
@@ -285,33 +209,14 @@
                         },
                         "end": {
                             "line": 11,
-                            "column": 12
-                        }
-                    },
-                    "range": [
-                        90,
-                        102
-                    ],
-                    "raw": "Left brace: "
-                },
-                {
-                    "type": "Str",
-                    "value": "{",
-                    "loc": {
-                        "start": {
-                            "line": 11,
-                            "column": 12
-                        },
-                        "end": {
-                            "line": 11,
                             "column": 14
                         }
                     },
                     "range": [
-                        102,
+                        90,
                         104
                     ],
-                    "raw": "\\{"
+                    "raw": "Left brace: \\{"
                 }
             ],
             "loc": {
@@ -335,7 +240,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Right brace: ",
+                    "value": "Right brace: }",
                     "loc": {
                         "start": {
                             "line": 13,
@@ -343,33 +248,14 @@
                         },
                         "end": {
                             "line": 13,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        106,
-                        119
-                    ],
-                    "raw": "Right brace: "
-                },
-                {
-                    "type": "Str",
-                    "value": "}",
-                    "loc": {
-                        "start": {
-                            "line": 13,
-                            "column": 13
-                        },
-                        "end": {
-                            "line": 13,
                             "column": 15
                         }
                     },
                     "range": [
-                        119,
+                        106,
                         121
                     ],
-                    "raw": "\\}"
+                    "raw": "Right brace: \\}"
                 }
             ],
             "loc": {
@@ -393,7 +279,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Left bracket: ",
+                    "value": "Left bracket: [",
                     "loc": {
                         "start": {
                             "line": 15,
@@ -401,33 +287,14 @@
                         },
                         "end": {
                             "line": 15,
-                            "column": 14
-                        }
-                    },
-                    "range": [
-                        123,
-                        137
-                    ],
-                    "raw": "Left bracket: "
-                },
-                {
-                    "type": "Str",
-                    "value": "[",
-                    "loc": {
-                        "start": {
-                            "line": 15,
-                            "column": 14
-                        },
-                        "end": {
-                            "line": 15,
                             "column": 16
                         }
                     },
                     "range": [
-                        137,
+                        123,
                         139
                     ],
-                    "raw": "\\["
+                    "raw": "Left bracket: \\["
                 }
             ],
             "loc": {
@@ -451,7 +318,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Right bracket: ",
+                    "value": "Right bracket: ]",
                     "loc": {
                         "start": {
                             "line": 17,
@@ -459,33 +326,14 @@
                         },
                         "end": {
                             "line": 17,
-                            "column": 15
-                        }
-                    },
-                    "range": [
-                        141,
-                        156
-                    ],
-                    "raw": "Right bracket: "
-                },
-                {
-                    "type": "Str",
-                    "value": "]",
-                    "loc": {
-                        "start": {
-                            "line": 17,
-                            "column": 15
-                        },
-                        "end": {
-                            "line": 17,
                             "column": 17
                         }
                     },
                     "range": [
-                        156,
+                        141,
                         158
                     ],
-                    "raw": "\\]"
+                    "raw": "Right bracket: \\]"
                 }
             ],
             "loc": {
@@ -509,7 +357,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Left paren: ",
+                    "value": "Left paren: (",
                     "loc": {
                         "start": {
                             "line": 19,
@@ -517,33 +365,14 @@
                         },
                         "end": {
                             "line": 19,
-                            "column": 12
-                        }
-                    },
-                    "range": [
-                        160,
-                        172
-                    ],
-                    "raw": "Left paren: "
-                },
-                {
-                    "type": "Str",
-                    "value": "(",
-                    "loc": {
-                        "start": {
-                            "line": 19,
-                            "column": 12
-                        },
-                        "end": {
-                            "line": 19,
                             "column": 14
                         }
                     },
                     "range": [
-                        172,
+                        160,
                         174
                     ],
-                    "raw": "\\("
+                    "raw": "Left paren: \\("
                 }
             ],
             "loc": {
@@ -567,7 +396,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Right paren: ",
+                    "value": "Right paren: )",
                     "loc": {
                         "start": {
                             "line": 21,
@@ -575,33 +404,14 @@
                         },
                         "end": {
                             "line": 21,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        176,
-                        189
-                    ],
-                    "raw": "Right paren: "
-                },
-                {
-                    "type": "Str",
-                    "value": ")",
-                    "loc": {
-                        "start": {
-                            "line": 21,
-                            "column": 13
-                        },
-                        "end": {
-                            "line": 21,
                             "column": 15
                         }
                     },
                     "range": [
-                        189,
+                        176,
                         191
                     ],
-                    "raw": "\\)"
+                    "raw": "Right paren: \\)"
                 }
             ],
             "loc": {
@@ -625,7 +435,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Greater-than: ",
+                    "value": "Greater-than: >",
                     "loc": {
                         "start": {
                             "line": 23,
@@ -633,33 +443,14 @@
                         },
                         "end": {
                             "line": 23,
-                            "column": 14
-                        }
-                    },
-                    "range": [
-                        193,
-                        207
-                    ],
-                    "raw": "Greater-than: "
-                },
-                {
-                    "type": "Str",
-                    "value": ">",
-                    "loc": {
-                        "start": {
-                            "line": 23,
-                            "column": 14
-                        },
-                        "end": {
-                            "line": 23,
                             "column": 16
                         }
                     },
                     "range": [
-                        207,
+                        193,
                         209
                     ],
-                    "raw": "\\>"
+                    "raw": "Greater-than: \\>"
                 }
             ],
             "loc": {
@@ -683,7 +474,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Hash: ",
+                    "value": "Hash: #",
                     "loc": {
                         "start": {
                             "line": 25,
@@ -691,33 +482,14 @@
                         },
                         "end": {
                             "line": 25,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        211,
-                        217
-                    ],
-                    "raw": "Hash: "
-                },
-                {
-                    "type": "Str",
-                    "value": "#",
-                    "loc": {
-                        "start": {
-                            "line": 25,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 25,
                             "column": 8
                         }
                     },
                     "range": [
-                        217,
+                        211,
                         219
                     ],
-                    "raw": "\\#"
+                    "raw": "Hash: \\#"
                 }
             ],
             "loc": {
@@ -741,7 +513,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Period: ",
+                    "value": "Period: .",
                     "loc": {
                         "start": {
                             "line": 27,
@@ -749,33 +521,14 @@
                         },
                         "end": {
                             "line": 27,
-                            "column": 8
-                        }
-                    },
-                    "range": [
-                        221,
-                        229
-                    ],
-                    "raw": "Period: "
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 27,
-                            "column": 8
-                        },
-                        "end": {
-                            "line": 27,
                             "column": 10
                         }
                     },
                     "range": [
-                        229,
+                        221,
                         231
                     ],
-                    "raw": "\\."
+                    "raw": "Period: \\."
                 }
             ],
             "loc": {
@@ -799,7 +552,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Bang: ",
+                    "value": "Bang: !",
                     "loc": {
                         "start": {
                             "line": 29,
@@ -807,33 +560,14 @@
                         },
                         "end": {
                             "line": 29,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        233,
-                        239
-                    ],
-                    "raw": "Bang: "
-                },
-                {
-                    "type": "Str",
-                    "value": "!",
-                    "loc": {
-                        "start": {
-                            "line": 29,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 29,
                             "column": 8
                         }
                     },
                     "range": [
-                        239,
+                        233,
                         241
                     ],
-                    "raw": "\\!"
+                    "raw": "Bang: \\!"
                 }
             ],
             "loc": {
@@ -857,7 +591,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Plus: ",
+                    "value": "Plus: +",
                     "loc": {
                         "start": {
                             "line": 31,
@@ -865,33 +599,14 @@
                         },
                         "end": {
                             "line": 31,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        243,
-                        249
-                    ],
-                    "raw": "Plus: "
-                },
-                {
-                    "type": "Str",
-                    "value": "+",
-                    "loc": {
-                        "start": {
-                            "line": 31,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 31,
                             "column": 8
                         }
                     },
                     "range": [
-                        249,
+                        243,
                         251
                     ],
-                    "raw": "\\+"
+                    "raw": "Plus: \\+"
                 }
             ],
             "loc": {
@@ -915,7 +630,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Minus: ",
+                    "value": "Minus: -",
                     "loc": {
                         "start": {
                             "line": 33,
@@ -923,33 +638,14 @@
                         },
                         "end": {
                             "line": 33,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        253,
-                        260
-                    ],
-                    "raw": "Minus: "
-                },
-                {
-                    "type": "Str",
-                    "value": "-",
-                    "loc": {
-                        "start": {
-                            "line": 33,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 33,
                             "column": 9
                         }
                     },
                     "range": [
-                        260,
+                        253,
                         262
                     ],
-                    "raw": "\\-"
+                    "raw": "Minus: \\-"
                 }
             ],
             "loc": {
@@ -1032,7 +728,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Pipe: ",
+                    "value": "Pipe: |",
                     "loc": {
                         "start": {
                             "line": 37,
@@ -1040,33 +736,14 @@
                         },
                         "end": {
                             "line": 37,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        274,
-                        280
-                    ],
-                    "raw": "Pipe: "
-                },
-                {
-                    "type": "Str",
-                    "value": "|",
-                    "loc": {
-                        "start": {
-                            "line": 37,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 37,
                             "column": 8
                         }
                     },
                     "range": [
-                        280,
+                        274,
                         282
                     ],
-                    "raw": "\\|"
+                    "raw": "Pipe: \\|"
                 }
             ],
             "loc": {
@@ -1090,7 +767,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Tilde: ",
+                    "value": "Tilde: ~",
                     "loc": {
                         "start": {
                             "line": 39,
@@ -1098,33 +775,14 @@
                         },
                         "end": {
                             "line": 39,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        284,
-                        291
-                    ],
-                    "raw": "Tilde: "
-                },
-                {
-                    "type": "Str",
-                    "value": "~",
-                    "loc": {
-                        "start": {
-                            "line": 39,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 39,
                             "column": 9
                         }
                     },
                     "range": [
-                        291,
+                        284,
                         293
                     ],
-                    "raw": "\\~"
+                    "raw": "Tilde: \\~"
                 }
             ],
             "loc": {
@@ -1207,7 +865,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Quote: \\\"",
+                    "value": "Quote: \"",
                     "loc": {
                         "start": {
                             "line": 43,
@@ -1246,7 +904,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Dollar: \\$",
+                    "value": "Dollar: $",
                     "loc": {
                         "start": {
                             "line": 45,
@@ -1285,7 +943,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Percentage: \\%",
+                    "value": "Percentage: %",
                     "loc": {
                         "start": {
                             "line": 47,
@@ -1324,7 +982,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Ampersand: \\&",
+                    "value": "Ampersand: &",
                     "loc": {
                         "start": {
                             "line": 49,
@@ -1363,7 +1021,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Single quote: \\'",
+                    "value": "Single quote: '",
                     "loc": {
                         "start": {
                             "line": 51,
@@ -1402,7 +1060,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Comma: \\,",
+                    "value": "Comma: ,",
                     "loc": {
                         "start": {
                             "line": 53,
@@ -1441,7 +1099,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Forward slash: \\/",
+                    "value": "Forward slash: /",
                     "loc": {
                         "start": {
                             "line": 55,
@@ -1480,7 +1138,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Colon: \\:",
+                    "value": "Colon: :",
                     "loc": {
                         "start": {
                             "line": 57,
@@ -1519,7 +1177,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Semicolon: \\;",
+                    "value": "Semicolon: ;",
                     "loc": {
                         "start": {
                             "line": 59,
@@ -1558,7 +1216,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Less-than: \\<",
+                    "value": "Less-than: <",
                     "loc": {
                         "start": {
                             "line": 61,
@@ -1597,7 +1255,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Equals: \\=",
+                    "value": "Equals: =",
                     "loc": {
                         "start": {
                             "line": 63,
@@ -1636,7 +1294,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Question mark: \\?",
+                    "value": "Question mark: ?",
                     "loc": {
                         "start": {
                             "line": 65,
@@ -1675,7 +1333,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "At-sign: \\@",
+                    "value": "At-sign: @",
                     "loc": {
                         "start": {
                             "line": 67,
@@ -1714,7 +1372,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Caret: \\^",
+                    "value": "Caret: ^",
                     "loc": {
                         "start": {
                             "line": 69,
@@ -1753,10 +1411,47 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "New line: \\\nonly works in paragraphs.",
+                    "value": "New line: ",
                     "loc": {
                         "start": {
                             "line": 71,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 71,
+                            "column": 10
+                        }
+                    },
+                    "range": [
+                        510,
+                        520
+                    ],
+                    "raw": "New line: "
+                },
+                {
+                    "type": "Break",
+                    "loc": {
+                        "start": {
+                            "line": 71,
+                            "column": 10
+                        },
+                        "end": {
+                            "line": 72,
+                            "column": 0
+                        }
+                    },
+                    "range": [
+                        520,
+                        522
+                    ],
+                    "raw": "\\\n"
+                },
+                {
+                    "type": "Str",
+                    "value": "only works in paragraphs.",
+                    "loc": {
+                        "start": {
+                            "line": 72,
                             "column": 0
                         },
                         "end": {
@@ -1765,10 +1460,10 @@
                         }
                     },
                     "range": [
-                        510,
+                        522,
                         547
                     ],
-                    "raw": "New line: \\\nonly works in paragraphs."
+                    "raw": "only works in paragraphs."
                 }
             ],
             "loc": {
@@ -1829,6 +1524,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Backslash: \\\\\n\nBacktick: \\`\n\nAsterisk: \\*\n\nUnderscore: \\_\n\nLeft brace: \\{\n\nRight brace: \\}\n\nLeft bracket: \\[\n\nRight bracket: \\]\n\nLeft paren: \\(\n\nRight paren: \\)\n\nGreater-than: \\>\n\nHash: \\#\n\nPeriod: \\.\n\nBang: \\!\n\nPlus: \\+\n\nMinus: \\-",
             "loc": {
                 "start": {
@@ -1908,6 +1604,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Pipe: \\|\n\nTilde: \\~",
             "loc": {
                 "start": {
@@ -1987,6 +1684,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Quote: \\\"\n\nDollar: \\$\n\nPercentage: \\%\n\nAmpersand: \\&\n\nSingle quote: \\'\n\nComma: \\,\n\nForward slash: \\/\n\nColon: \\:\n\nSemicolon: \\;\n\nLess-than: \\<\n\nEquals: \\=\n\nQuestion mark: \\?\n\nAt-sign: \\@\n\nCaret: \\^\n\nNew line: \\\nonly works in paragraphs.",
             "loc": {
                 "start": {
@@ -4041,7 +3739,7 @@
                 },
                 {
                     "type": "Code",
-                    "value": "\\",
+                    "value": "\\\n",
                     "loc": {
                         "start": {
                             "line": 218,
@@ -4138,7 +3836,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "*",
+                    "value": "*asterisks*",
                     "loc": {
                         "start": {
                             "line": 224,
@@ -4146,52 +3844,14 @@
                         },
                         "end": {
                             "line": 224,
-                            "column": 2
-                        }
-                    },
-                    "range": [
-                        1889,
-                        1891
-                    ],
-                    "raw": "\\*"
-                },
-                {
-                    "type": "Str",
-                    "value": "asterisks",
-                    "loc": {
-                        "start": {
-                            "line": 224,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 224,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        1891,
-                        1900
-                    ],
-                    "raw": "asterisks"
-                },
-                {
-                    "type": "Str",
-                    "value": "*",
-                    "loc": {
-                        "start": {
-                            "line": 224,
-                            "column": 11
-                        },
-                        "end": {
-                            "line": 224,
                             "column": 13
                         }
                     },
                     "range": [
-                        1900,
+                        1889,
                         1902
                     ],
-                    "raw": "\\*"
+                    "raw": "\\*asterisks\\*"
                 }
             ],
             "loc": {
@@ -4215,7 +3875,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "_",
+                    "value": "_underscores_",
                     "loc": {
                         "start": {
                             "line": 226,
@@ -4223,52 +3883,14 @@
                         },
                         "end": {
                             "line": 226,
-                            "column": 2
-                        }
-                    },
-                    "range": [
-                        1904,
-                        1906
-                    ],
-                    "raw": "\\_"
-                },
-                {
-                    "type": "Str",
-                    "value": "underscores",
-                    "loc": {
-                        "start": {
-                            "line": 226,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 226,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        1906,
-                        1917
-                    ],
-                    "raw": "underscores"
-                },
-                {
-                    "type": "Str",
-                    "value": "_",
-                    "loc": {
-                        "start": {
-                            "line": 226,
-                            "column": 13
-                        },
-                        "end": {
-                            "line": 226,
                             "column": 15
                         }
                     },
                     "range": [
-                        1917,
+                        1904,
                         1919
                     ],
-                    "raw": "\\_"
+                    "raw": "\\_underscores\\_"
                 }
             ],
             "loc": {
@@ -4292,7 +3914,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "`",
+                    "value": "`backticks`",
                     "loc": {
                         "start": {
                             "line": 228,
@@ -4300,52 +3922,14 @@
                         },
                         "end": {
                             "line": 228,
-                            "column": 2
-                        }
-                    },
-                    "range": [
-                        1921,
-                        1923
-                    ],
-                    "raw": "\\`"
-                },
-                {
-                    "type": "Str",
-                    "value": "backticks",
-                    "loc": {
-                        "start": {
-                            "line": 228,
-                            "column": 2
-                        },
-                        "end": {
-                            "line": 228,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        1923,
-                        1932
-                    ],
-                    "raw": "backticks"
-                },
-                {
-                    "type": "Str",
-                    "value": "`",
-                    "loc": {
-                        "start": {
-                            "line": 228,
-                            "column": 11
-                        },
-                        "end": {
-                            "line": 228,
                             "column": 13
                         }
                     },
                     "range": [
-                        1932,
+                        1921,
                         1934
                     ],
-                    "raw": "\\`"
+                    "raw": "\\`backticks\\`"
                 }
             ],
             "loc": {

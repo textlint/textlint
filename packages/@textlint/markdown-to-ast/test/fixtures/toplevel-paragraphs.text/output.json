@@ -6,7 +6,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "hello world\n    how are you\n    how are you",
+                    "value": "hello world\nhow are you\nhow are you",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -82,6 +82,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "how are you",
             "loc": {
                 "start": {
@@ -236,54 +237,15 @@
             "raw": "# how are you"
         },
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "hello world",
-                    "loc": {
-                        "start": {
-                            "line": 16,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 16,
-                            "column": 11
-                        }
-                    },
-                    "range": [
-                        124,
-                        135
-                    ],
-                    "raw": "hello world"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 16,
-                    "column": 0
-                },
-                "end": {
-                    "line": 16,
-                    "column": 11
-                }
-            },
-            "range": [
-                124,
-                135
-            ],
-            "raw": "hello world"
-        },
-        {
             "type": "Header",
             "depth": 1,
             "children": [
                 {
                     "type": "Str",
-                    "value": "how are you",
+                    "value": "hello world\nhow are you",
                     "loc": {
                         "start": {
-                            "line": 17,
+                            "line": 16,
                             "column": 0
                         },
                         "end": {
@@ -292,15 +254,15 @@
                         }
                     },
                     "range": [
-                        136,
+                        124,
                         147
                     ],
-                    "raw": "how are you"
+                    "raw": "hello world\nhow are you"
                 }
             ],
             "loc": {
                 "start": {
-                    "line": 17,
+                    "line": 16,
                     "column": 0
                 },
                 "end": {
@@ -309,10 +271,10 @@
                 }
             },
             "range": [
-                136,
+                124,
                 159
             ],
-            "raw": "how are you\n==========="
+            "raw": "hello world\nhow are you\n==========="
         },
         {
             "type": "Paragraph",
@@ -455,11 +417,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -694,89 +656,27 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "hello ",
+                    "value": "hello [world][how]\n[how]: /are/you",
                     "loc": {
                         "start": {
                             "line": 32,
                             "column": 0
                         },
                         "end": {
-                            "line": 32,
-                            "column": 6
+                            "line": 33,
+                            "column": 15
                         }
                     },
                     "range": [
                         289,
-                        295
+                        323
                     ],
-                    "raw": "hello "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "how",
-                    "referenceType": "full",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "world",
-                            "loc": {
-                                "start": {
-                                    "line": 32,
-                                    "column": 7
-                                },
-                                "end": {
-                                    "line": 32,
-                                    "column": 12
-                                }
-                            },
-                            "range": [
-                                296,
-                                301
-                            ],
-                            "raw": "world"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 32,
-                            "column": 6
-                        },
-                        "end": {
-                            "line": 32,
-                            "column": 18
-                        }
-                    },
-                    "range": [
-                        295,
-                        307
-                    ],
-                    "raw": "[world][how]"
+                    "raw": "hello [world][how]\n[how]: /are/you"
                 }
             ],
             "loc": {
                 "start": {
                     "line": 32,
-                    "column": 0
-                },
-                "end": {
-                    "line": 32,
-                    "column": 18
-                }
-            },
-            "range": [
-                289,
-                307
-            ],
-            "raw": "hello [world][how]"
-        },
-        {
-            "type": "Definition",
-            "identifier": "how",
-            "title": null,
-            "url": "/are/you",
-            "loc": {
-                "start": {
-                    "line": 33,
                     "column": 0
                 },
                 "end": {
@@ -785,10 +685,10 @@
                 }
             },
             "range": [
-                308,
+                289,
                 323
             ],
-            "raw": "[how]: /are/you"
+            "raw": "hello [world][how]\n[how]: /are/you"
         },
         {
             "type": "Html",

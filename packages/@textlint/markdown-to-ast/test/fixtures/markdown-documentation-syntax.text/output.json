@@ -64,11 +64,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -136,11 +136,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -223,7 +223,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -306,7 +306,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -423,7 +423,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -491,11 +491,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -578,7 +578,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -661,7 +661,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -744,7 +744,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -827,7 +827,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -910,7 +910,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1027,7 +1027,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1095,11 +1095,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1182,7 +1182,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1265,7 +1265,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1348,7 +1348,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1465,7 +1465,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1533,11 +1533,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1620,7 +1620,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1815,8 +1815,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "src",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -1838,6 +1836,9 @@
                             "raw": "see the source for it by adding '.text' to the URL"
                         }
                     ],
+                    "identifier": "src",
+                    "label": "src",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 35,
@@ -1893,12 +1894,13 @@
         {
             "type": "Definition",
             "identifier": "src",
+            "label": "src",
             "title": null,
             "url": "/projects/markdown/syntax.text",
             "loc": {
                 "start": {
                     "line": 37,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 37,
@@ -1906,10 +1908,10 @@
                 }
             },
             "range": [
-                1235,
+                1237,
                 1274
             ],
-            "raw": "  [src]: /projects/markdown/syntax.text"
+            "raw": "[src]: /projects/markdown/syntax.text"
         },
         {
             "type": "HorizontalRule",
@@ -2011,7 +2013,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Readability, however, is emphasized above all else. A Markdown-formatted\ndocument should be publishable as-is, as plain text, without looking\nlike it's been marked up with tags or formatting instructions. While\nMarkdown's syntax has been influenced by several existing text-to-HTML\nfilters -- including ",
+                    "value": "Readability, however, is emphasized above all else. A Markdown-formatted\ndocument should be publishable as-is, as plain text, without looking\nlike it's been marked up with tags or formatting instructions. While\nMarkdown's syntax has been influenced by several existing text-to-HTML\nfilters -- including [Setext] ",
                     "loc": {
                         "start": {
                             "line": 47,
@@ -2019,44 +2021,45 @@
                         },
                         "end": {
                             "line": 51,
-                            "column": 21
+                            "column": 30
                         }
                     },
                     "range": [
                         1431,
-                        1734
+                        1743
                     ],
-                    "raw": "Readability, however, is emphasized above all else. A Markdown-formatted\ndocument should be publishable as-is, as plain text, without looking\nlike it's been marked up with tags or formatting instructions. While\nMarkdown's syntax has been influenced by several existing text-to-HTML\nfilters -- including "
+                    "raw": "Readability, however, is emphasized above all else. A Markdown-formatted\ndocument should be publishable as-is, as plain text, without looking\nlike it's been marked up with tags or formatting instructions. While\nMarkdown's syntax has been influenced by several existing text-to-HTML\nfilters -- including [Setext] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "1",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Setext",
+                            "value": "1",
                             "loc": {
                                 "start": {
                                     "line": 51,
-                                    "column": 22
+                                    "column": 31
                                 },
                                 "end": {
                                     "line": 51,
-                                    "column": 28
+                                    "column": 32
                                 }
                             },
                             "range": [
-                                1735,
-                                1741
+                                1744,
+                                1745
                             ],
-                            "raw": "Setext"
+                            "raw": "1"
                         }
                     ],
+                    "identifier": "1",
+                    "label": "1",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 51,
-                            "column": 21
+                            "column": 30
                         },
                         "end": {
                             "line": 51,
@@ -2064,14 +2067,14 @@
                         }
                     },
                     "range": [
-                        1734,
+                        1743,
                         1746
                     ],
-                    "raw": "[Setext] [1]"
+                    "raw": "[1]"
                 },
                 {
                     "type": "Str",
-                    "value": ", ",
+                    "value": ", [atx] ",
                     "loc": {
                         "start": {
                             "line": 51,
@@ -2079,44 +2082,45 @@
                         },
                         "end": {
                             "line": 51,
-                            "column": 35
+                            "column": 41
                         }
                     },
                     "range": [
                         1746,
-                        1748
+                        1754
                     ],
-                    "raw": ", "
+                    "raw": ", [atx] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "2",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "atx",
+                            "value": "2",
                             "loc": {
                                 "start": {
                                     "line": 51,
-                                    "column": 36
+                                    "column": 42
                                 },
                                 "end": {
                                     "line": 51,
-                                    "column": 39
+                                    "column": 43
                                 }
                             },
                             "range": [
-                                1749,
-                                1752
+                                1755,
+                                1756
                             ],
-                            "raw": "atx"
+                            "raw": "2"
                         }
                     ],
+                    "identifier": "2",
+                    "label": "2",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 51,
-                            "column": 35
+                            "column": 41
                         },
                         "end": {
                             "line": 51,
@@ -2124,14 +2128,14 @@
                         }
                     },
                     "range": [
-                        1748,
+                        1754,
                         1757
                     ],
-                    "raw": "[atx] [2]"
+                    "raw": "[2]"
                 },
                 {
                     "type": "Str",
-                    "value": ", ",
+                    "value": ", [Textile] ",
                     "loc": {
                         "start": {
                             "line": 51,
@@ -2139,44 +2143,45 @@
                         },
                         "end": {
                             "line": 51,
-                            "column": 46
+                            "column": 56
                         }
                     },
                     "range": [
                         1757,
-                        1759
+                        1769
                     ],
-                    "raw": ", "
+                    "raw": ", [Textile] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "3",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Textile",
+                            "value": "3",
                             "loc": {
                                 "start": {
                                     "line": 51,
-                                    "column": 47
+                                    "column": 57
                                 },
                                 "end": {
                                     "line": 51,
-                                    "column": 54
+                                    "column": 58
                                 }
                             },
                             "range": [
-                                1760,
-                                1767
+                                1770,
+                                1771
                             ],
-                            "raw": "Textile"
+                            "raw": "3"
                         }
                     ],
+                    "identifier": "3",
+                    "label": "3",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 51,
-                            "column": 46
+                            "column": 56
                         },
                         "end": {
                             "line": 51,
@@ -2184,14 +2189,14 @@
                         }
                     },
                     "range": [
-                        1759,
+                        1769,
                         1772
                     ],
-                    "raw": "[Textile] [3]"
+                    "raw": "[3]"
                 },
                 {
                     "type": "Str",
-                    "value": ", ",
+                    "value": ", [reStructuredText] ",
                     "loc": {
                         "start": {
                             "line": 51,
@@ -2199,44 +2204,45 @@
                         },
                         "end": {
                             "line": 51,
-                            "column": 61
+                            "column": 80
                         }
                     },
                     "range": [
                         1772,
-                        1774
+                        1793
                     ],
-                    "raw": ", "
+                    "raw": ", [reStructuredText] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "4",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "reStructuredText",
+                            "value": "4",
                             "loc": {
                                 "start": {
                                     "line": 51,
-                                    "column": 62
+                                    "column": 81
                                 },
                                 "end": {
                                     "line": 51,
-                                    "column": 78
+                                    "column": 82
                                 }
                             },
                             "range": [
-                                1775,
-                                1791
+                                1794,
+                                1795
                             ],
-                            "raw": "reStructuredText"
+                            "raw": "4"
                         }
                     ],
+                    "identifier": "4",
+                    "label": "4",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 51,
-                            "column": 61
+                            "column": 80
                         },
                         "end": {
                             "line": 51,
@@ -2244,14 +2250,14 @@
                         }
                     },
                     "range": [
-                        1774,
+                        1793,
                         1796
                     ],
-                    "raw": "[reStructuredText] [4]"
+                    "raw": "[4]"
                 },
                 {
                     "type": "Str",
-                    "value": ",\n",
+                    "value": ",\n[Grutatext] ",
                     "loc": {
                         "start": {
                             "line": 51,
@@ -2259,44 +2265,45 @@
                         },
                         "end": {
                             "line": 52,
-                            "column": 0
+                            "column": 12
                         }
                     },
                     "range": [
                         1796,
-                        1798
+                        1810
                     ],
-                    "raw": ",\n"
+                    "raw": ",\n[Grutatext] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "5",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Grutatext",
+                            "value": "5",
                             "loc": {
                                 "start": {
                                     "line": 52,
-                                    "column": 1
+                                    "column": 13
                                 },
                                 "end": {
                                     "line": 52,
-                                    "column": 10
+                                    "column": 14
                                 }
                             },
                             "range": [
-                                1799,
-                                1808
+                                1811,
+                                1812
                             ],
-                            "raw": "Grutatext"
+                            "raw": "5"
                         }
                     ],
+                    "identifier": "5",
+                    "label": "5",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 52,
-                            "column": 0
+                            "column": 12
                         },
                         "end": {
                             "line": 52,
@@ -2304,14 +2311,14 @@
                         }
                     },
                     "range": [
-                        1798,
+                        1810,
                         1813
                     ],
-                    "raw": "[Grutatext] [5]"
+                    "raw": "[5]"
                 },
                 {
                     "type": "Str",
-                    "value": ", and ",
+                    "value": ", and [EtText] ",
                     "loc": {
                         "start": {
                             "line": 52,
@@ -2319,44 +2326,45 @@
                         },
                         "end": {
                             "line": 52,
-                            "column": 21
+                            "column": 30
                         }
                     },
                     "range": [
                         1813,
-                        1819
+                        1828
                     ],
-                    "raw": ", and "
+                    "raw": ", and [EtText] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "6",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "EtText",
+                            "value": "6",
                             "loc": {
                                 "start": {
                                     "line": 52,
-                                    "column": 22
+                                    "column": 31
                                 },
                                 "end": {
                                     "line": 52,
-                                    "column": 28
+                                    "column": 32
                                 }
                             },
                             "range": [
-                                1820,
-                                1826
+                                1829,
+                                1830
                             ],
-                            "raw": "EtText"
+                            "raw": "6"
                         }
                     ],
+                    "identifier": "6",
+                    "label": "6",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 52,
-                            "column": 21
+                            "column": 30
                         },
                         "end": {
                             "line": 52,
@@ -2364,10 +2372,10 @@
                         }
                     },
                     "range": [
-                        1819,
+                        1828,
                         1831
                     ],
-                    "raw": "[EtText] [6]"
+                    "raw": "[6]"
                 },
                 {
                     "type": "Str",
@@ -2408,12 +2416,13 @@
         {
             "type": "Definition",
             "identifier": "1",
+            "label": "1",
             "title": null,
             "url": "http://docutils.sourceforge.net/mirror/setext.html",
             "loc": {
                 "start": {
                     "line": 55,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 55,
@@ -2421,20 +2430,21 @@
                 }
             },
             "range": [
-                1934,
+                1936,
                 1991
             ],
-            "raw": "  [1]: http://docutils.sourceforge.net/mirror/setext.html"
+            "raw": "[1]: http://docutils.sourceforge.net/mirror/setext.html"
         },
         {
             "type": "Definition",
             "identifier": "2",
+            "label": "2",
             "title": null,
             "url": "http://www.aaronsw.com/2002/atx/",
             "loc": {
                 "start": {
                     "line": 56,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 56,
@@ -2442,20 +2452,21 @@
                 }
             },
             "range": [
-                1992,
+                1994,
                 2031
             ],
-            "raw": "  [2]: http://www.aaronsw.com/2002/atx/"
+            "raw": "[2]: http://www.aaronsw.com/2002/atx/"
         },
         {
             "type": "Definition",
             "identifier": "3",
+            "label": "3",
             "title": null,
             "url": "http://textism.com/tools/textile/",
             "loc": {
                 "start": {
                     "line": 57,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 57,
@@ -2463,20 +2474,21 @@
                 }
             },
             "range": [
-                2032,
+                2034,
                 2072
             ],
-            "raw": "  [3]: http://textism.com/tools/textile/"
+            "raw": "[3]: http://textism.com/tools/textile/"
         },
         {
             "type": "Definition",
             "identifier": "4",
+            "label": "4",
             "title": null,
             "url": "http://docutils.sourceforge.net/rst.html",
             "loc": {
                 "start": {
                     "line": 58,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 58,
@@ -2484,20 +2496,21 @@
                 }
             },
             "range": [
-                2073,
+                2075,
                 2120
             ],
-            "raw": "  [4]: http://docutils.sourceforge.net/rst.html"
+            "raw": "[4]: http://docutils.sourceforge.net/rst.html"
         },
         {
             "type": "Definition",
             "identifier": "5",
+            "label": "5",
             "title": null,
             "url": "http://www.triptico.com/software/grutatxt.html",
             "loc": {
                 "start": {
                     "line": 59,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 59,
@@ -2505,20 +2518,21 @@
                 }
             },
             "range": [
-                2121,
+                2123,
                 2174
             ],
-            "raw": "  [5]: http://www.triptico.com/software/grutatxt.html"
+            "raw": "[5]: http://www.triptico.com/software/grutatxt.html"
         },
         {
             "type": "Definition",
             "identifier": "6",
+            "label": "6",
             "title": null,
             "url": "http://ettext.taint.org/doc/",
             "loc": {
                 "start": {
                     "line": 60,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 60,
@@ -2526,97 +2540,21 @@
                 }
             },
             "range": [
-                2175,
+                2177,
                 2210
             ],
-            "raw": "  [6]: http://ettext.taint.org/doc/"
+            "raw": "[6]: http://ettext.taint.org/doc/"
         },
         {
             "type": "Paragraph",
             "children": [
                 {
                     "type": "Str",
-                    "value": "To this end, Markdown's syntax is comprised entirely of punctuation\ncharacters, which punctuation characters have been carefully chosen so\nas to look like what they mean. E.g., asterisks around a word actually\nlook like ",
+                    "value": "To this end, Markdown's syntax is comprised entirely of punctuation\ncharacters, which punctuation characters have been carefully chosen so\nas to look like what they mean. E.g., asterisks around a word actually\nlook like *emphasis*. Markdown lists look like, well, lists. Even\nblockquotes look like quoted passages of text, assuming you've ever\nused email.",
                     "loc": {
                         "start": {
                             "line": 62,
                             "column": 0
-                        },
-                        "end": {
-                            "line": 65,
-                            "column": 10
-                        }
-                    },
-                    "range": [
-                        2212,
-                        2432
-                    ],
-                    "raw": "To this end, Markdown's syntax is comprised entirely of punctuation\ncharacters, which punctuation characters have been carefully chosen so\nas to look like what they mean. E.g., asterisks around a word actually\nlook like "
-                },
-                {
-                    "type": "Str",
-                    "value": "*",
-                    "loc": {
-                        "start": {
-                            "line": 65,
-                            "column": 10
-                        },
-                        "end": {
-                            "line": 65,
-                            "column": 12
-                        }
-                    },
-                    "range": [
-                        2432,
-                        2434
-                    ],
-                    "raw": "\\*"
-                },
-                {
-                    "type": "Str",
-                    "value": "emphasis",
-                    "loc": {
-                        "start": {
-                            "line": 65,
-                            "column": 12
-                        },
-                        "end": {
-                            "line": 65,
-                            "column": 20
-                        }
-                    },
-                    "range": [
-                        2434,
-                        2442
-                    ],
-                    "raw": "emphasis"
-                },
-                {
-                    "type": "Str",
-                    "value": "*",
-                    "loc": {
-                        "start": {
-                            "line": 65,
-                            "column": 20
-                        },
-                        "end": {
-                            "line": 65,
-                            "column": 22
-                        }
-                    },
-                    "range": [
-                        2442,
-                        2444
-                    ],
-                    "raw": "\\*"
-                },
-                {
-                    "type": "Str",
-                    "value": ". Markdown lists look like, well, lists. Even\nblockquotes look like quoted passages of text, assuming you've ever\nused email.",
-                    "loc": {
-                        "start": {
-                            "line": 65,
-                            "column": 22
                         },
                         "end": {
                             "line": 67,
@@ -2624,10 +2562,10 @@
                         }
                     },
                     "range": [
-                        2444,
+                        2212,
                         2569
                     ],
-                    "raw": ". Markdown lists look like, well, lists. Even\nblockquotes look like quoted passages of text, assuming you've ever\nused email."
+                    "raw": "To this end, Markdown's syntax is comprised entirely of punctuation\ncharacters, which punctuation characters have been carefully chosen so\nas to look like what they mean. E.g., asterisks around a word actually\nlook like \\*emphasis\\*. Markdown lists look like, well, lists. Even\nblockquotes look like quoted passages of text, assuming you've ever\nused email."
                 }
             ],
             "loc": {
@@ -3285,6 +3223,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is a regular paragraph.\n\n<table>\n    <tr>\n        <td>Foo</td>\n    </tr>\n</table>\n\nThis is another regular paragraph.",
             "loc": {
                 "start": {
@@ -3995,6 +3934,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "http://images.google.com/images?num=30&q=larry+bird",
             "loc": {
                 "start": {
@@ -4054,6 +3994,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "http://images.google.com/images?num=30&amp;q=larry+bird",
             "loc": {
                 "start": {
@@ -4267,6 +4208,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "&copy;",
             "loc": {
                 "start": {
@@ -4326,6 +4268,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "AT&T",
             "loc": {
                 "start": {
@@ -4385,6 +4328,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "AT&amp;T",
             "loc": {
                 "start": {
@@ -4504,6 +4448,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "4 < 5",
             "loc": {
                 "start": {
@@ -4563,6 +4508,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "4 &lt; 5",
             "loc": {
                 "start": {
@@ -5160,8 +5106,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "bq",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -5183,6 +5127,9 @@
                             "raw": "blockquoting"
                         }
                     ],
+                    "identifier": "bq",
+                    "label": "bq",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 201,
@@ -5220,8 +5167,6 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "l",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
@@ -5243,6 +5188,9 @@
                             "raw": "list items"
                         }
                     ],
+                    "identifier": "l",
+                    "label": "l",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 201,
@@ -5298,12 +5246,13 @@
         {
             "type": "Definition",
             "identifier": "bq",
+            "label": "bq",
             "title": null,
             "url": "#blockquote",
             "loc": {
                 "start": {
                     "line": 204,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 204,
@@ -5311,20 +5260,21 @@
                 }
             },
             "range": [
-                7526,
+                7528,
                 7545
             ],
-            "raw": "  [bq]: #blockquote"
+            "raw": "[bq]: #blockquote"
         },
         {
             "type": "Definition",
             "identifier": "l",
+            "label": "l",
             "title": null,
             "url": "#list",
             "loc": {
                 "start": {
                     "line": 205,
-                    "column": 0
+                    "column": 2
                 },
                 "end": {
                     "line": 205,
@@ -5332,10 +5282,10 @@
                 }
             },
             "range": [
-                7546,
+                7548,
                 7559
             ],
-            "raw": "  [l]:  #list"
+            "raw": "[l]:  #list"
         },
         {
             "type": "Html",
@@ -5361,7 +5311,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "Markdown supports two styles of headers, ",
+                    "value": "Markdown supports two styles of headers, [Setext] ",
                     "loc": {
                         "start": {
                             "line": 211,
@@ -5369,44 +5319,45 @@
                         },
                         "end": {
                             "line": 211,
-                            "column": 41
+                            "column": 50
                         }
                     },
                     "range": [
                         7593,
-                        7634
+                        7643
                     ],
-                    "raw": "Markdown supports two styles of headers, "
+                    "raw": "Markdown supports two styles of headers, [Setext] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "1",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Setext",
+                            "value": "1",
                             "loc": {
                                 "start": {
                                     "line": 211,
-                                    "column": 42
+                                    "column": 51
                                 },
                                 "end": {
                                     "line": 211,
-                                    "column": 48
+                                    "column": 52
                                 }
                             },
                             "range": [
-                                7635,
-                                7641
+                                7644,
+                                7645
                             ],
-                            "raw": "Setext"
+                            "raw": "1"
                         }
                     ],
+                    "identifier": "1",
+                    "label": "1",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 211,
-                            "column": 41
+                            "column": 50
                         },
                         "end": {
                             "line": 211,
@@ -5414,14 +5365,14 @@
                         }
                     },
                     "range": [
-                        7634,
+                        7643,
                         7646
                     ],
-                    "raw": "[Setext] [1]"
+                    "raw": "[1]"
                 },
                 {
                     "type": "Str",
-                    "value": " and ",
+                    "value": " and [atx] ",
                     "loc": {
                         "start": {
                             "line": 211,
@@ -5429,44 +5380,45 @@
                         },
                         "end": {
                             "line": 211,
-                            "column": 58
+                            "column": 64
                         }
                     },
                     "range": [
                         7646,
-                        7651
+                        7657
                     ],
-                    "raw": " and "
+                    "raw": " and [atx] "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "2",
-                    "referenceType": "full",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "atx",
+                            "value": "2",
                             "loc": {
                                 "start": {
                                     "line": 211,
-                                    "column": 59
+                                    "column": 65
                                 },
                                 "end": {
                                     "line": 211,
-                                    "column": 62
+                                    "column": 66
                                 }
                             },
                             "range": [
-                                7652,
-                                7655
+                                7658,
+                                7659
                             ],
-                            "raw": "atx"
+                            "raw": "2"
                         }
                     ],
+                    "identifier": "2",
+                    "label": "2",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 211,
-                            "column": 58
+                            "column": 64
                         },
                         "end": {
                             "line": 211,
@@ -5474,10 +5426,10 @@
                         }
                     },
                     "range": [
-                        7651,
+                        7657,
                         7660
                     ],
-                    "raw": "[atx] [2]"
+                    "raw": "[2]"
                 },
                 {
                     "type": "Str",
@@ -5557,6 +5509,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is an H1\n=============\n\nThis is an H2\n-------------",
             "loc": {
                 "start": {
@@ -5731,6 +5684,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "# This is an H1\n\n## This is an H2\n\n###### This is an H6",
             "loc": {
                 "start": {
@@ -5790,6 +5744,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "# This is an H1 #\n\n## This is an H2 ##\n\n### This is an H3 ######",
             "loc": {
                 "start": {
@@ -5944,6 +5899,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,\n> consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.\n> Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.\n> \n> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse\n> id sem consectetuer libero luctus adipiscing.",
             "loc": {
                 "start": {
@@ -6041,6 +5997,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "> This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,\nconsectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.\nVestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.\n\n> Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse\nid sem consectetuer libero luctus adipiscing.",
             "loc": {
                 "start": {
@@ -6138,6 +6095,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "> This is the first level of quoting.\n>\n> > This is nested blockquote.\n>\n> Back to the first level.",
             "loc": {
                 "start": {
@@ -6197,6 +6155,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "> ## This is a header.\n> \n> 1.   This is the first list item.\n> 2.   This is the second list item.\n> \n> Here's some example code:\n> \n>     return shell_exec(\"echo $input | $markdown_script\");",
             "loc": {
                 "start": {
@@ -6353,6 +6312,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   Red\n*   Green\n*   Blue",
             "loc": {
                 "start": {
@@ -6412,6 +6372,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "+   Red\n+   Green\n+   Blue",
             "loc": {
                 "start": {
@@ -6471,6 +6432,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "-   Red\n-   Green\n-   Blue",
             "loc": {
                 "start": {
@@ -6530,6 +6492,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "1.  Bird\n2.  McHale\n3.  Parish",
             "loc": {
                 "start": {
@@ -6589,6 +6552,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<ol>\n<li>Bird</li>\n<li>McHale</li>\n<li>Parish</li>\n</ol>",
             "loc": {
                 "start": {
@@ -6648,6 +6612,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "1.  Bird\n1.  McHale\n1.  Parish",
             "loc": {
                 "start": {
@@ -6707,6 +6672,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "3. Bird\n1. McHale\n8. Parish",
             "loc": {
                 "start": {
@@ -6883,6 +6849,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n    Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,\n    viverra nec, fringilla in, laoreet vitae, risus.\n*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.\n    Suspendisse id sem consectetuer libero luctus adipiscing.",
             "loc": {
                 "start": {
@@ -6942,6 +6909,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\nAliquam hendrerit mi posuere lectus. Vestibulum enim wisi,\nviverra nec, fringilla in, laoreet vitae, risus.\n*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.\nSuspendisse id sem consectetuer libero luctus adipiscing.",
             "loc": {
                 "start": {
@@ -7039,6 +7007,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   Bird\n*   Magic",
             "loc": {
                 "start": {
@@ -7098,6 +7067,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<ul>\n<li>Bird</li>\n<li>Magic</li>\n</ul>",
             "loc": {
                 "start": {
@@ -7157,6 +7127,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   Bird\n\n*   Magic",
             "loc": {
                 "start": {
@@ -7216,6 +7187,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<ul>\n<li><p>Bird</p></li>\n<li><p>Magic</p></li>\n</ul>",
             "loc": {
                 "start": {
@@ -7275,6 +7247,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "1.  This is a list item with two paragraphs. Lorem ipsum dolor\n    sit amet, consectetuer adipiscing elit. Aliquam hendrerit\n    mi posuere lectus.\n\n    Vestibulum enim wisi, viverra nec, fringilla in, laoreet\n    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum\n    sit amet velit.\n\n2.  Suspendisse id sem consectetuer libero luctus adipiscing.",
             "loc": {
                 "start": {
@@ -7334,6 +7307,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   This is a list item with two paragraphs.\n\n    This is the second paragraph in the list item. You're\nonly required to indent the first line. Lorem ipsum dolor\nsit amet, consectetuer adipiscing elit.\n\n*   Another item in the same list.",
             "loc": {
                 "start": {
@@ -7431,6 +7405,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   A list item with a blockquote:\n\n    > This is a blockquote\n    > inside a list item.",
             "loc": {
                 "start": {
@@ -7548,6 +7523,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*   A list item with a code block:\n\n        <code goes here>",
             "loc": {
                 "start": {
@@ -7607,6 +7583,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "1986. What a great season.",
             "loc": {
                 "start": {
@@ -7724,6 +7701,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "1986\\. What a great season.",
             "loc": {
                 "start": {
@@ -7917,6 +7895,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is a normal paragraph:\n\n    This is a code block.",
             "loc": {
                 "start": {
@@ -7976,6 +7955,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>This is a normal paragraph:</p>\n\n<pre><code>This is a code block.\n</code></pre>",
             "loc": {
                 "start": {
@@ -8035,6 +8015,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Here is an example of AppleScript:\n\n    tell application \"Foo\"\n        beep\n    end tell",
             "loc": {
                 "start": {
@@ -8094,6 +8075,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>Here is an example of AppleScript:</p>\n\n<pre><code>tell application \"Foo\"\n    beep\nend tell\n</code></pre>",
             "loc": {
                 "start": {
@@ -8306,6 +8288,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "    <div class=\"footer\">\n        &copy; 2004 Foo Corporation\n    </div>",
             "loc": {
                 "start": {
@@ -8365,6 +8348,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<pre><code>&lt;div class=\"footer\"&gt;\n    &amp;copy; 2004 Foo Corporation\n&lt;/div&gt;\n</code></pre>",
             "loc": {
                 "start": {
@@ -8520,6 +8504,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "* * *\n\n***\n\n*****\n\n- - -\n\n---------------------------------------\n\n_ _ _",
             "loc": {
                 "start": {
@@ -8753,7 +8738,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "In both styles, the link text is delimited by ",
+                    "value": "In both styles, the link text is delimited by [square brackets].",
                     "loc": {
                         "start": {
                             "line": 549,
@@ -8761,74 +8746,14 @@
                         },
                         "end": {
                             "line": 549,
-                            "column": 46
-                        }
-                    },
-                    "range": [
-                        16752,
-                        16798
-                    ],
-                    "raw": "In both styles, the link text is delimited by "
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "square brackets",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "square brackets",
-                            "loc": {
-                                "start": {
-                                    "line": 549,
-                                    "column": 47
-                                },
-                                "end": {
-                                    "line": 549,
-                                    "column": 62
-                                }
-                            },
-                            "range": [
-                                16799,
-                                16814
-                            ],
-                            "raw": "square brackets"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 549,
-                            "column": 46
-                        },
-                        "end": {
-                            "line": 549,
-                            "column": 63
-                        }
-                    },
-                    "range": [
-                        16798,
-                        16815
-                    ],
-                    "raw": "[square brackets]"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 549,
-                            "column": 63
-                        },
-                        "end": {
-                            "line": 549,
                             "column": 64
                         }
                     },
                     "range": [
-                        16815,
+                        16752,
                         16816
                     ],
-                    "raw": "."
+                    "raw": "In both styles, the link text is delimited by [square brackets]."
                 }
             ],
             "loc": {
@@ -8947,6 +8872,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is [an example](http://example.com/ \"Title\") inline link.\n\n[This link](http://example.net/) has no title attribute.",
             "loc": {
                 "start": {
@@ -9006,6 +8932,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>This is <a href=\"http://example.com/\" title=\"Title\">\nan example</a> inline link.</p>\n\n<p><a href=\"http://example.net/\">This link</a> has no\ntitle attribute.</p>",
             "loc": {
                 "start": {
@@ -9065,6 +8992,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "See my [About](/about/) page for details.",
             "loc": {
                 "start": {
@@ -9124,6 +9052,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is [an example][id] reference-style link.",
             "loc": {
                 "start": {
@@ -9183,6 +9112,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "This is [an example] [id] reference-style link.",
             "loc": {
                 "start": {
@@ -9242,6 +9172,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[id]: http://example.com/  \"Optional Title Here\"",
             "loc": {
                 "start": {
@@ -9302,11 +9233,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -9367,7 +9298,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -9428,7 +9359,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -9489,7 +9420,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -9550,7 +9481,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -9668,6 +9599,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[id]: <http://example.com/>  \"Optional Title Here\"",
             "loc": {
                 "start": {
@@ -9727,6 +9659,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[id]: http://example.com/longish/path/to/resource/here\n    \"Optional Title Here\"",
             "loc": {
                 "start": {
@@ -9883,6 +9816,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[link text][a]\n[link text][A]",
             "loc": {
                 "start": {
@@ -10039,6 +9973,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[Google][]",
             "loc": {
                 "start": {
@@ -10098,6 +10033,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[Google]: http://google.com/",
             "loc": {
                 "start": {
@@ -10157,6 +10093,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Visit [Daring Fireball][] for more information.",
             "loc": {
                 "start": {
@@ -10216,6 +10153,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[Daring Fireball]: http://daringfireball.net/",
             "loc": {
                 "start": {
@@ -10314,6 +10252,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "I get 10 times more traffic from [Google] [1] than from\n[Yahoo] [2] or [MSN] [3].\n\n  [1]: http://google.com/        \"Google\"\n  [2]: http://search.yahoo.com/  \"Yahoo Search\"\n  [3]: http://search.msn.com/    \"MSN Search\"",
             "loc": {
                 "start": {
@@ -10373,6 +10312,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "I get 10 times more traffic from [Google][] than from\n[Yahoo][] or [MSN][].\n\n  [google]: http://google.com/        \"Google\"\n  [yahoo]:  http://search.yahoo.com/  \"Yahoo Search\"\n  [msn]:    http://search.msn.com/    \"MSN Search\"",
             "loc": {
                 "start": {
@@ -10432,6 +10372,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>I get 10 times more traffic from <a href=\"http://google.com/\"\ntitle=\"Google\">Google</a> than from\n<a href=\"http://search.yahoo.com/\" title=\"Yahoo Search\">Yahoo</a>\nor <a href=\"http://search.msn.com/\" title=\"MSN Search\">MSN</a>.</p>",
             "loc": {
                 "start": {
@@ -10491,6 +10432,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "I get 10 times more traffic from [Google](http://google.com/ \"Google\")\nthan from [Yahoo](http://search.yahoo.com/ \"Yahoo Search\") or\n[MSN](http://search.msn.com/ \"MSN Search\").",
             "loc": {
                 "start": {
@@ -10951,6 +10893,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "*single asterisks*\n\n_single underscores_\n\n**double asterisks**\n\n__double underscores__",
             "loc": {
                 "start": {
@@ -11010,6 +10953,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<em>single asterisks</em>\n\n<em>single underscores</em>\n\n<strong>double asterisks</strong>\n\n<strong>double underscores</strong>",
             "loc": {
                 "start": {
@@ -11108,6 +11052,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "un*fucking*believable",
             "loc": {
                 "start": {
@@ -11282,6 +11227,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "\\*this text is surrounded by literal asterisks\\*",
             "loc": {
                 "start": {
@@ -11398,6 +11344,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Use the `printf()` function.",
             "loc": {
                 "start": {
@@ -11457,6 +11404,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>Use the <code>printf()</code> function.</p>",
             "loc": {
                 "start": {
@@ -11516,6 +11464,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "``There is a literal backtick (`) here.``",
             "loc": {
                 "start": {
@@ -11575,6 +11524,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p><code>There is a literal backtick (`) here.</code></p>",
             "loc": {
                 "start": {
@@ -11634,6 +11584,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "A single backtick in a code span: `` ` ``\n\nA backtick-delimited string in a code span: `` `foo` ``",
             "loc": {
                 "start": {
@@ -11693,6 +11644,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>A single backtick in a code span: <code>`</code></p>\n\n<p>A backtick-delimited string in a code span: <code>`foo`</code></p>",
             "loc": {
                 "start": {
@@ -11752,6 +11704,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "Please don't use any `<blink>` tags.",
             "loc": {
                 "start": {
@@ -11811,6 +11764,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p>Please don't use any <code>&lt;blink&gt;</code> tags.</p>",
             "loc": {
                 "start": {
@@ -11870,6 +11824,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "`&#8212;` is the decimal-encoded equivalent of `&mdash;`.",
             "loc": {
                 "start": {
@@ -11929,6 +11884,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<p><code>&amp;#8212;</code> is the decimal-encoded\nequivalent of <code>&amp;mdash;</code>.</p>",
             "loc": {
                 "start": {
@@ -12201,6 +12157,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "![Alt text](/path/to/img.jpg)\n\n![Alt text](/path/to/img.jpg \"Optional title\")",
             "loc": {
                 "start": {
@@ -12261,11 +12218,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -12364,7 +12321,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -12463,7 +12420,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -12619,6 +12576,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "![Alt text][id]",
             "loc": {
                 "start": {
@@ -12678,6 +12636,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "[id]: url/to/image  \"Optional title attribute\"",
             "loc": {
                 "start": {
@@ -12870,6 +12829,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<http://example.com/>",
             "loc": {
                 "start": {
@@ -12877,15 +12837,15 @@
                     "column": 0
                 },
                 "end": {
-                    "line": 835,
-                    "column": 4
+                    "line": 834,
+                    "column": 25
                 }
             },
             "range": [
                 25744,
-                25774
+                25769
             ],
-            "raw": "    <http://example.com/>\n    "
+            "raw": "    <http://example.com/>"
         },
         {
             "type": "Paragraph",
@@ -12929,6 +12889,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<a href=\"http://example.com/\">http://example.com/</a>",
             "loc": {
                 "start": {
@@ -12988,6 +12949,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<address@example.com>",
             "loc": {
                 "start": {
@@ -13047,6 +13009,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "<a href=\"&#x6D;&#x61;i&#x6C;&#x74;&#x6F;:&#x61;&#x64;&#x64;&#x72;&#x65;\n&#115;&#115;&#64;&#101;&#120;&#x61;&#109;&#x70;&#x6C;e&#x2E;&#99;&#111;\n&#109;\">&#x61;&#x64;&#x64;&#x72;&#x65;&#115;&#115;&#64;&#101;&#120;&#x61;\n&#109;&#x70;&#x6C;e&#x2E;&#99;&#111;&#109;</a>",
             "loc": {
                 "start": {
@@ -13069,7 +13032,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "which will render in a browser as a clickable link to \"address@example.com\".",
+                    "value": "which will render in a browser as a clickable link to \"",
                     "loc": {
                         "start": {
                             "line": 854,
@@ -13077,14 +13040,74 @@
                         },
                         "end": {
                             "line": 854,
-                            "column": 76
+                            "column": 55
                         }
                     },
                     "range": [
                         26446,
+                        26501
+                    ],
+                    "raw": "which will render in a browser as a clickable link to \""
+                },
+                {
+                    "type": "Link",
+                    "title": null,
+                    "url": "mailto:address@example.com",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "address@example.com",
+                            "loc": {
+                                "start": {
+                                    "line": 854,
+                                    "column": 55
+                                },
+                                "end": {
+                                    "line": 854,
+                                    "column": 74
+                                }
+                            },
+                            "range": [
+                                26501,
+                                26520
+                            ],
+                            "raw": "address@example.com"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 854,
+                            "column": 55
+                        },
+                        "end": {
+                            "line": 854,
+                            "column": 74
+                        }
+                    },
+                    "range": [
+                        26501,
+                        26520
+                    ],
+                    "raw": "address@example.com"
+                },
+                {
+                    "type": "Str",
+                    "value": "\".",
+                    "loc": {
+                        "start": {
+                            "line": 854,
+                            "column": 74
+                        },
+                        "end": {
+                            "line": 854,
+                            "column": 76
+                        }
+                    },
+                    "range": [
+                        26520,
                         26522
                     ],
-                    "raw": "which will render in a browser as a clickable link to \"address@example.com\"."
+                    "raw": "\"."
                 }
             ],
             "loc": {
@@ -13241,6 +13264,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "\\*literal asterisks\\*",
             "loc": {
                 "start": {
@@ -13300,6 +13324,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "\\   backslash\n`   backtick\n*   asterisk\n_   underscore\n{}  curly braces\n[]  square brackets\n()  parentheses\n#   hash mark\n+\tplus sign\n-\tminus sign (hyphen)\n.   dot\n!   exclamation mark",
             "loc": {
                 "start": {

@@ -288,18 +288,18 @@
                             "loc": {
                                 "start": {
                                     "line": 21,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 21,
-                                    "column": 3
+                                    "column": 5
                                 }
                             },
                             "range": [
-                                208,
-                                209
+                                206,
+                                211
                             ],
-                            "raw": "a"
+                            "raw": "| a |"
                         }
                     ],
                     "loc": {
@@ -347,18 +347,18 @@
                             "loc": {
                                 "start": {
                                     "line": 23,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 23,
-                                    "column": 3
+                                    "column": 5
                                 }
                             },
                             "range": [
-                                220,
-                                221
+                                218,
+                                223
                             ],
-                            "raw": "d"
+                            "raw": "| d |"
                         }
                     ],
                     "loc": {

@@ -796,7 +796,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "</span  ",
+                    "value": "</span",
                     "loc": {
                         "start": {
                             "line": 95,
@@ -804,14 +804,14 @@
                         },
                         "end": {
                             "line": 95,
-                            "column": 8
+                            "column": 6
                         }
                     },
                     "range": [
                         408,
-                        416
+                        414
                     ],
-                    "raw": "</span  "
+                    "raw": "</span"
                 }
             ],
             "loc": {
@@ -952,7 +952,7 @@
             "children": [
                 {
                     "type": "Str",
-                    "value": "<span foo=bar ",
+                    "value": "<span foo=bar",
                     "loc": {
                         "start": {
                             "line": 107,
@@ -960,14 +960,14 @@
                         },
                         "end": {
                             "line": 107,
-                            "column": 14
+                            "column": 13
                         }
                     },
                     "range": [
                         466,
-                        480
+                        479
                     ],
-                    "raw": "<span foo=bar "
+                    "raw": "<span foo=bar"
                 }
             ],
             "loc": {

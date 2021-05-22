@@ -38,18 +38,18 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 7
+                                    "column": 9
                                 }
                             },
                             "range": [
-                                2,
-                                7
+                                0,
+                                9
                             ],
-                            "raw": "First"
+                            "raw": "| First |"
                         },
                         {
                             "type": "TableCell",
@@ -77,18 +77,18 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 16
+                                    "column": 18
                                 }
                             },
                             "range": [
-                                10,
-                                16
+                                9,
+                                18
                             ],
-                            "raw": "Second"
+                            "raw": " Second |"
                         },
                         {
                             "type": "TableCell",
@@ -116,18 +116,18 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 19
+                                    "column": 18
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 24
+                                    "column": 26
                                 }
                             },
                             "range": [
-                                19,
-                                24
+                                18,
+                                26
                             ],
-                            "raw": "third"
+                            "raw": " third |"
                         }
                     ],
                     "loc": {
@@ -175,18 +175,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 7
+                                    "column": 9
                                 }
                             },
                             "range": [
-                                56,
-                                61
+                                54,
+                                63
                             ],
-                            "raw": "first"
+                            "raw": "| first |"
                         },
                         {
                             "type": "TableCell",
@@ -214,18 +214,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 16
+                                    "column": 18
                                 }
                             },
                             "range": [
-                                64,
-                                70
+                                63,
+                                72
                             ],
-                            "raw": "second"
+                            "raw": " second |"
                         },
                         {
                             "type": "TableCell",
@@ -253,18 +253,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 19
+                                    "column": 18
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 24
+                                    "column": 26
                                 }
                             },
                             "range": [
-                                73,
-                                78
+                                72,
+                                80
                             ],
-                            "raw": "third"
+                            "raw": " third |"
                         }
                     ],
                     "loc": {
@@ -312,25 +312,25 @@
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 4,
-                                    "column": 7
+                                    "column": 9
                                 }
                             },
                             "range": [
-                                83,
-                                88
+                                81,
+                                90
                             ],
-                            "raw": "first"
+                            "raw": "| first |"
                         },
                         {
                             "type": "TableCell",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "second ",
+                                    "value": "second | second",
                                     "loc": {
                                         "start": {
                                             "line": 4,
@@ -338,76 +338,38 @@
                                         },
                                         "end": {
                                             "line": 4,
-                                            "column": 17
-                                        }
-                                    },
-                                    "range": [
-                                        91,
-                                        98
-                                    ],
-                                    "raw": "second "
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "|",
-                                    "loc": {
-                                        "start": {
-                                            "line": 4,
-                                            "column": 17
-                                        },
-                                        "end": {
-                                            "line": 4,
-                                            "column": 19
-                                        }
-                                    },
-                                    "range": [
-                                        98,
-                                        100
-                                    ],
-                                    "raw": "\\|"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " second",
-                                    "loc": {
-                                        "start": {
-                                            "line": 4,
-                                            "column": 19
-                                        },
-                                        "end": {
-                                            "line": 4,
                                             "column": 26
                                         }
                                     },
                                     "range": [
-                                        100,
+                                        91,
                                         107
                                     ],
-                                    "raw": " second"
+                                    "raw": "second \\| second"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 4,
-                                    "column": 26
+                                    "column": 28
                                 }
                             },
                             "range": [
-                                91,
-                                107
+                                90,
+                                109
                             ],
-                            "raw": "second \\| second"
+                            "raw": " second \\| second |"
                         },
                         {
                             "type": "TableCell",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "third ",
+                                    "value": "third |",
                                     "loc": {
                                         "start": {
                                             "line": 4,
@@ -415,39 +377,20 @@
                                         },
                                         "end": {
                                             "line": 4,
-                                            "column": 35
-                                        }
-                                    },
-                                    "range": [
-                                        110,
-                                        116
-                                    ],
-                                    "raw": "third "
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "|",
-                                    "loc": {
-                                        "start": {
-                                            "line": 4,
-                                            "column": 35
-                                        },
-                                        "end": {
-                                            "line": 4,
                                             "column": 37
                                         }
                                     },
                                     "range": [
-                                        116,
+                                        110,
                                         118
                                     ],
-                                    "raw": "\\|"
+                                    "raw": "third \\|"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 29
+                                    "column": 28
                                 },
                                 "end": {
                                     "line": 4,
@@ -455,10 +398,10 @@
                                 }
                             },
                             "range": [
-                                110,
+                                109,
                                 118
                             ],
-                            "raw": "third \\|"
+                            "raw": " third \\|"
                         }
                     ],
                     "loc": {
@@ -506,25 +449,25 @@
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 7
+                                    "column": 9
                                 }
                             },
                             "range": [
-                                121,
-                                126
+                                119,
+                                128
                             ],
-                            "raw": "first"
+                            "raw": "| first |"
                         },
                         {
                             "type": "TableCell",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "second ",
+                                    "value": "second \\",
                                     "loc": {
                                         "start": {
                                             "line": 5,
@@ -532,57 +475,38 @@
                                         },
                                         "end": {
                                             "line": 5,
-                                            "column": 17
-                                        }
-                                    },
-                                    "range": [
-                                        129,
-                                        136
-                                    ],
-                                    "raw": "second "
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "\\",
-                                    "loc": {
-                                        "start": {
-                                            "line": 5,
-                                            "column": 17
-                                        },
-                                        "end": {
-                                            "line": 5,
                                             "column": 19
                                         }
                                     },
                                     "range": [
-                                        136,
+                                        129,
                                         138
                                     ],
-                                    "raw": "\\\\"
+                                    "raw": "second \\\\"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 19
+                                    "column": 20
                                 }
                             },
                             "range": [
-                                129,
-                                138
+                                128,
+                                139
                             ],
-                            "raw": "second \\\\"
+                            "raw": " second \\\\|"
                         },
                         {
                             "type": "TableCell",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "third ",
+                                    "value": "third \\",
                                     "loc": {
                                         "start": {
                                             "line": 5,
@@ -590,50 +514,31 @@
                                         },
                                         "end": {
                                             "line": 5,
-                                            "column": 27
-                                        }
-                                    },
-                                    "range": [
-                                        140,
-                                        146
-                                    ],
-                                    "raw": "third "
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "\\",
-                                    "loc": {
-                                        "start": {
-                                            "line": 5,
-                                            "column": 27
-                                        },
-                                        "end": {
-                                            "line": 5,
                                             "column": 29
                                         }
                                     },
                                     "range": [
-                                        146,
+                                        140,
                                         148
                                     ],
-                                    "raw": "\\\\"
+                                    "raw": "third \\\\"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 5,
-                                    "column": 21
+                                    "column": 20
                                 },
                                 "end": {
                                     "line": 5,
-                                    "column": 29
+                                    "column": 30
                                 }
                             },
                             "range": [
-                                140,
-                                148
+                                139,
+                                149
                             ],
-                            "raw": "third \\\\"
+                            "raw": " third \\\\|"
                         }
                     ],
                     "loc": {
@@ -681,25 +586,25 @@
                             "loc": {
                                 "start": {
                                     "line": 6,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 6,
-                                    "column": 7
+                                    "column": 9
                                 }
                             },
                             "range": [
-                                152,
-                                157
+                                150,
+                                159
                             ],
-                            "raw": "first"
+                            "raw": "| first |"
                         },
                         {
                             "type": "TableCell",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "second ",
+                                    "value": "second \\| second",
                                     "loc": {
                                         "start": {
                                             "line": 6,
@@ -707,95 +612,38 @@
                                         },
                                         "end": {
                                             "line": 6,
-                                            "column": 17
-                                        }
-                                    },
-                                    "range": [
-                                        160,
-                                        167
-                                    ],
-                                    "raw": "second "
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "\\",
-                                    "loc": {
-                                        "start": {
-                                            "line": 6,
-                                            "column": 17
-                                        },
-                                        "end": {
-                                            "line": 6,
-                                            "column": 19
-                                        }
-                                    },
-                                    "range": [
-                                        167,
-                                        169
-                                    ],
-                                    "raw": "\\\\"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "|",
-                                    "loc": {
-                                        "start": {
-                                            "line": 6,
-                                            "column": 19
-                                        },
-                                        "end": {
-                                            "line": 6,
-                                            "column": 21
-                                        }
-                                    },
-                                    "range": [
-                                        169,
-                                        171
-                                    ],
-                                    "raw": "\\|"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": " second",
-                                    "loc": {
-                                        "start": {
-                                            "line": 6,
-                                            "column": 21
-                                        },
-                                        "end": {
-                                            "line": 6,
                                             "column": 28
                                         }
                                     },
                                     "range": [
-                                        171,
+                                        160,
                                         178
                                     ],
-                                    "raw": " second"
+                                    "raw": "second \\\\\\| second"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 6,
-                                    "column": 10
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 6,
-                                    "column": 28
+                                    "column": 30
                                 }
                             },
                             "range": [
-                                160,
-                                178
+                                159,
+                                180
                             ],
-                            "raw": "second \\\\\\| second"
+                            "raw": " second \\\\\\| second |"
                         },
                         {
                             "type": "TableCell",
                             "children": [
                                 {
                                     "type": "Str",
-                                    "value": "third ",
+                                    "value": "third \\|",
                                     "loc": {
                                         "start": {
                                             "line": 6,
@@ -803,58 +651,20 @@
                                         },
                                         "end": {
                                             "line": 6,
-                                            "column": 37
-                                        }
-                                    },
-                                    "range": [
-                                        181,
-                                        187
-                                    ],
-                                    "raw": "third "
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "\\",
-                                    "loc": {
-                                        "start": {
-                                            "line": 6,
-                                            "column": 37
-                                        },
-                                        "end": {
-                                            "line": 6,
-                                            "column": 39
-                                        }
-                                    },
-                                    "range": [
-                                        187,
-                                        189
-                                    ],
-                                    "raw": "\\\\"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": "|",
-                                    "loc": {
-                                        "start": {
-                                            "line": 6,
-                                            "column": 39
-                                        },
-                                        "end": {
-                                            "line": 6,
                                             "column": 41
                                         }
                                     },
                                     "range": [
-                                        189,
+                                        181,
                                         191
                                     ],
-                                    "raw": "\\|"
+                                    "raw": "third \\\\\\|"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 6,
-                                    "column": 31
+                                    "column": 30
                                 },
                                 "end": {
                                     "line": 6,
@@ -862,10 +672,10 @@
                                 }
                             },
                             "range": [
-                                181,
+                                180,
                                 191
                             ],
-                            "raw": "third \\\\\\|"
+                            "raw": " third \\\\\\|"
                         }
                     ],
                     "loc": {

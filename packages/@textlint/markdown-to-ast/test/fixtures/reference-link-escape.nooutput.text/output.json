@@ -5,68 +5,8 @@
             "type": "Paragraph",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "b\\-r",
-                    "referenceType": "full",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "b",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 2
-                                }
-                            },
-                            "range": [
-                                1,
-                                2
-                            ],
-                            "raw": "b"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "*",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 4
-                                }
-                            },
-                            "range": [
-                                2,
-                                4
-                            ],
-                            "raw": "\\*"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "r*",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 4
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                4,
-                                6
-                            ],
-                            "raw": "r*"
-                        }
-                    ],
+                    "type": "Str",
+                    "value": "[b*r*][b-r], ",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -74,42 +14,21 @@
                         },
                         "end": {
                             "line": 1,
-                            "column": 13
-                        }
-                    },
-                    "range": [
-                        0,
-                        13
-                    ],
-                    "raw": "[b\\*r*][b\\-r]"
-                },
-                {
-                    "type": "Str",
-                    "value": ", ",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 13
-                        },
-                        "end": {
-                            "line": 1,
                             "column": 15
                         }
                     },
                     "range": [
-                        13,
+                        0,
                         15
                     ],
-                    "raw": ", "
+                    "raw": "[b\\*r*][b\\-r], "
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "b\\*r*",
-                    "referenceType": "collapsed",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "b",
+                            "value": "b*r*",
                             "loc": {
                                 "start": {
                                     "line": 1,
@@ -117,54 +36,19 @@
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 17
-                                }
-                            },
-                            "range": [
-                                16,
-                                17
-                            ],
-                            "raw": "b"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "*",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 17
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 19
-                                }
-                            },
-                            "range": [
-                                17,
-                                19
-                            ],
-                            "raw": "\\*"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "r*",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 19
-                                },
-                                "end": {
-                                    "line": 1,
                                     "column": 21
                                 }
                             },
                             "range": [
-                                19,
+                                16,
                                 21
                             ],
-                            "raw": "r*"
+                            "raw": "b\\*r*"
                         }
                     ],
+                    "identifier": "b\\*r*",
+                    "label": "b*r*",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -202,12 +86,10 @@
                 },
                 {
                     "type": "LinkReference",
-                    "identifier": "b\\*r*",
-                    "referenceType": "shortcut",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "b",
+                            "value": "b*r*",
                             "loc": {
                                 "start": {
                                     "line": 1,
@@ -215,54 +97,19 @@
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 28
-                                }
-                            },
-                            "range": [
-                                27,
-                                28
-                            ],
-                            "raw": "b"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "*",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 28
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 30
-                                }
-                            },
-                            "range": [
-                                28,
-                                30
-                            ],
-                            "raw": "\\*"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "r*",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 30
-                                },
-                                "end": {
-                                    "line": 1,
                                     "column": 32
                                 }
                             },
                             "range": [
-                                30,
+                                27,
                                 32
                             ],
-                            "raw": "r*"
+                            "raw": "b\\*r*"
                         }
                     ],
+                    "identifier": "b\\*r*",
+                    "label": "b*r*",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -320,9 +167,10 @@
             "children": [
                 {
                     "type": "ImageReference",
-                    "identifier": "b\\*r*",
-                    "referenceType": "full",
                     "alt": "foo",
+                    "identifier": "b\\*r*",
+                    "label": "b*r*",
+                    "referenceType": "full",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -360,9 +208,10 @@
                 },
                 {
                     "type": "ImageReference",
-                    "identifier": "b\\*r*",
-                    "referenceType": "collapsed",
                     "alt": "b*r*",
+                    "identifier": "b\\*r*",
+                    "label": "b*r*",
+                    "referenceType": "collapsed",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -400,9 +249,10 @@
                 },
                 {
                     "type": "ImageReference",
-                    "identifier": "b\\*r*",
-                    "referenceType": "shortcut",
                     "alt": "b*r*",
+                    "identifier": "b\\*r*",
+                    "label": "b*r*",
+                    "referenceType": "shortcut",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -458,6 +308,7 @@
         {
             "type": "Definition",
             "identifier": "b\\*r*",
+            "label": "b*r*",
             "title": null,
             "url": "http://google.com",
             "loc": {

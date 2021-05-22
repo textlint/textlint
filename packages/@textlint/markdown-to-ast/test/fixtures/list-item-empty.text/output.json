@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -70,7 +70,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [],
                     "loc": {
@@ -91,7 +91,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -140,19 +140,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 4,
-                            "column": 0
+                            "line": 3,
+                            "column": 7
                         }
                     },
                     "range": [
                         10,
-                        18
+                        17
                     ],
-                    "raw": "-   bar\n"
+                    "raw": "-   bar"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -198,7 +198,7 @@
                     "loc": {
                         "start": {
                             "line": 5,
-                            "column": 0
+                            "column": 2
                         },
                         "end": {
                             "line": 5,
@@ -206,20 +206,20 @@
                         }
                     },
                     "range": [
-                        19,
+                        21,
                         28
                     ],
-                    "raw": "  -   foo"
+                    "raw": "-   foo"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [],
                     "loc": {
                         "start": {
                             "line": 6,
-                            "column": 0
+                            "column": 2
                         },
                         "end": {
                             "line": 6,
@@ -227,14 +227,14 @@
                         }
                     },
                     "range": [
-                        29,
+                        31,
                         32
                     ],
-                    "raw": "  -"
+                    "raw": "-"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -280,7 +280,7 @@
                     "loc": {
                         "start": {
                             "line": 7,
-                            "column": 0
+                            "column": 2
                         },
                         "end": {
                             "line": 7,
@@ -288,10 +288,10 @@
                         }
                     },
                     "range": [
-                        33,
+                        35,
                         42
                     ],
-                    "raw": "  -   bar"
+                    "raw": "-   bar"
                 }
             ],
             "loc": {

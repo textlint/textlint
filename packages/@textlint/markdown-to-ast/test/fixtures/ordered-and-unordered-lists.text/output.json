@@ -84,11 +84,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -149,7 +149,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -210,7 +210,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -329,11 +329,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -382,19 +382,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 13,
-                            "column": 0
+                            "line": 12,
+                            "column": 12
                         }
                     },
                     "range": [
                         91,
-                        104
+                        103
                     ],
-                    "raw": "*\tasterisk 1\n"
+                    "raw": "*\tasterisk 1"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -443,19 +443,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 15,
-                            "column": 0
+                            "line": 14,
+                            "column": 12
                         }
                     },
                     "range": [
                         105,
-                        118
+                        117
                     ],
-                    "raw": "*\tasterisk 2\n"
+                    "raw": "*\tasterisk 2"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -592,11 +592,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -657,7 +657,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -718,7 +718,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -837,11 +837,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -890,19 +890,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 30,
-                            "column": 0
+                            "line": 29,
+                            "column": 8
                         }
                     },
                     "range": [
                         199,
-                        208
+                        207
                     ],
-                    "raw": "+\tPlus 1\n"
+                    "raw": "+\tPlus 1"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -951,19 +951,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 32,
-                            "column": 0
+                            "line": 31,
+                            "column": 8
                         }
                     },
                     "range": [
                         209,
-                        218
+                        217
                     ],
-                    "raw": "+\tPlus 2\n"
+                    "raw": "+\tPlus 2"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1100,11 +1100,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1165,7 +1165,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1226,7 +1226,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1345,11 +1345,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1398,19 +1398,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 48,
-                            "column": 0
+                            "line": 47,
+                            "column": 9
                         }
                     },
                     "range": [
                         301,
-                        311
+                        310
                     ],
-                    "raw": "-\tMinus 1\n"
+                    "raw": "-\tMinus 1"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1459,19 +1459,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 50,
-                            "column": 0
+                            "line": 49,
+                            "column": 9
                         }
                     },
                     "range": [
                         312,
-                        322
+                        321
                     ],
-                    "raw": "-\tMinus 2\n"
+                    "raw": "-\tMinus 2"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1630,11 +1630,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1695,7 +1695,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1756,7 +1756,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1875,11 +1875,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -1940,7 +1940,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2001,7 +2001,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2120,11 +2120,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2173,19 +2173,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 72,
-                            "column": 0
+                            "line": 71,
+                            "column": 8
                         }
                     },
                     "range": [
                         434,
-                        443
+                        442
                     ],
-                    "raw": "1.\tFirst\n"
+                    "raw": "1.\tFirst"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2234,19 +2234,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 74,
-                            "column": 0
+                            "line": 73,
+                            "column": 9
                         }
                     },
                     "range": [
                         444,
-                        454
+                        453
                     ],
-                    "raw": "2.\tSecond\n"
+                    "raw": "2.\tSecond"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2365,11 +2365,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2418,19 +2418,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 80,
-                            "column": 0
+                            "line": 79,
+                            "column": 6
                         }
                     },
                     "range": [
                         484,
-                        491
+                        490
                     ],
-                    "raw": "1. One\n"
+                    "raw": "1. One"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2479,19 +2479,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 82,
-                            "column": 0
+                            "line": 81,
+                            "column": 6
                         }
                     },
                     "range": [
                         492,
-                        499
+                        498
                     ],
-                    "raw": "2. Two\n"
+                    "raw": "2. Two"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2610,11 +2610,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -2702,19 +2702,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 91,
-                            "column": 1
+                            "line": 90,
+                            "column": 6
                         }
                     },
                     "range": [
                         532,
-                        628
+                        626
                     ],
-                    "raw": "1.\tItem 1, graf one.\n\n\tItem 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback.\n\t"
+                    "raw": "1.\tItem 1, graf one.\n\n\tItem 2. graf two. The quick brown fox jumped over the lazy dog's\n\tback."
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2763,19 +2763,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 93,
-                            "column": 0
+                            "line": 92,
+                            "column": 10
                         }
                     },
                     "range": [
                         629,
-                        640
+                        639
                     ],
-                    "raw": "2.\tItem 2.\n"
+                    "raw": "2.\tItem 2."
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2895,11 +2895,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -2945,11 +2945,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -2995,11 +2995,11 @@
                                             "type": "List",
                                             "ordered": false,
                                             "start": null,
-                                            "loose": false,
+                                            "spread": false,
                                             "children": [
                                                 {
                                                     "type": "ListItem",
-                                                    "loose": false,
+                                                    "spread": false,
                                                     "checked": null,
                                                     "children": [
                                                         {
@@ -3186,11 +3186,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": false,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -3251,7 +3251,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -3297,11 +3297,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -3362,7 +3362,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -3423,7 +3423,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -3518,7 +3518,7 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -3637,11 +3637,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -3690,19 +3690,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 116,
-                            "column": 0
+                            "line": 115,
+                            "column": 8
                         }
                     },
                     "range": [
                         789,
-                        798
+                        797
                     ],
-                    "raw": "1. First\n"
+                    "raw": "1. First"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -3748,11 +3748,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -3813,7 +3813,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -3874,7 +3874,7 @@
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -3957,19 +3957,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 121,
-                            "column": 0
+                            "line": 120,
+                            "column": 6
                         }
                     },
                     "range": [
                         799,
-                        831
+                        830
                     ],
-                    "raw": "2. Second:\n\t* Fee\n\t* Fie\n\t* Foe\n"
+                    "raw": "2. Second:\n\t* Fee\n\t* Fie\n\t* Foe"
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -4088,11 +4088,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -4138,11 +4138,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {

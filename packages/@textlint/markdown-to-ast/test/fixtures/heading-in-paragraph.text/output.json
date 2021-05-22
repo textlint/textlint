@@ -2,54 +2,15 @@
     "type": "Document",
     "children": [
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Str",
-                    "value": "Hello",
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 5
-                        }
-                    },
-                    "range": [
-                        0,
-                        5
-                    ],
-                    "raw": "Hello"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 1,
-                    "column": 0
-                },
-                "end": {
-                    "line": 1,
-                    "column": 5
-                }
-            },
-            "range": [
-                0,
-                5
-            ],
-            "raw": "Hello"
-        },
-        {
             "type": "Header",
             "depth": 1,
             "children": [
                 {
                     "type": "Str",
-                    "value": "World",
+                    "value": "Hello\nWorld",
                     "loc": {
                         "start": {
-                            "line": 2,
+                            "line": 1,
                             "column": 0
                         },
                         "end": {
@@ -58,15 +19,15 @@
                         }
                     },
                     "range": [
-                        6,
+                        0,
                         11
                     ],
-                    "raw": "World"
+                    "raw": "Hello\nWorld"
                 }
             ],
             "loc": {
                 "start": {
-                    "line": 2,
+                    "line": 1,
                     "column": 0
                 },
                 "end": {
@@ -75,10 +36,10 @@
                 }
             },
             "range": [
-                6,
+                0,
                 15
             ],
-            "raw": "World\n==="
+            "raw": "Hello\nWorld\n==="
         }
     ],
     "loc": {

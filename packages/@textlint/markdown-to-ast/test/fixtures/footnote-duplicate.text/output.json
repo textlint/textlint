@@ -24,30 +24,9 @@
                     "raw": "The NATO phonetic alphabet"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 27
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 32
-                                }
-                            },
-                            "range": [
-                                27,
-                                32
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
+                    "type": "FootnoteReference",
+                    "identifier": "wiki",
+                    "label": "wiki",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -101,247 +80,108 @@
             "raw": "The NATO phonetic alphabet[^wiki]."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "wiki",
+            "label": "wiki",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^wiki",
+                            "value": "Read more about it on wikipedia: ",
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 1
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 6
+                                    "column": 42
                                 }
                             },
                             "range": [
-                                37,
-                                42
+                                45,
+                                78
                             ],
-                            "raw": "^wiki"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 0
+                            "raw": "Read more about it on wikipedia: "
                         },
-                        "end": {
-                            "line": 3,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        36,
-                        43
-                    ],
-                    "raw": "[^wiki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Read more about it on wikipedia: ",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 42
-                        }
-                    },
-                    "range": [
-                        43,
-                        78
-                    ],
-                    "raw": ": Read more about it on wikipedia: "
-                },
-                {
-                    "type": "Link",
-                    "title": null,
-                    "url": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
-                    "children": [
                         {
-                            "type": "Str",
-                            "value": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                            "type": "Link",
+                            "title": null,
+                            "url": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                                    "loc": {
+                                        "start": {
+                                            "line": 3,
+                                            "column": 43
+                                        },
+                                        "end": {
+                                            "line": 3,
+                                            "column": 94
+                                        }
+                                    },
+                                    "range": [
+                                        79,
+                                        130
+                                    ],
+                                    "raw": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet"
+                                }
+                            ],
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 43
+                                    "column": 42
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 94
-                                }
-                            },
-                            "range": [
-                                79,
-                                130
-                            ],
-                            "raw": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 42
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 95
-                        }
-                    },
-                    "range": [
-                        78,
-                        131
-                    ],
-                    "raw": "<http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>"
-                },
-                {
-                    "type": "Str",
-                    "value": ".\n",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 95
-                        },
-                        "end": {
-                            "line": 4,
-                            "column": 0
-                        }
-                    },
-                    "range": [
-                        131,
-                        133
-                    ],
-                    "raw": ".\n"
-                },
-                {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 4,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 4,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                134,
-                                139
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 4,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        133,
-                        140
-                    ],
-                    "raw": "[^wiki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Not to be confused with: ",
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 7
-                        },
-                        "end": {
-                            "line": 4,
-                            "column": 34
-                        }
-                    },
-                    "range": [
-                        140,
-                        167
-                    ],
-                    "raw": ": Not to be confused with: "
-                },
-                {
-                    "type": "Link",
-                    "title": null,
-                    "url": "http://en.wikipedia.org/wiki/International_Phonetic_Alphabet",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "http://en.wikipedia.org/wiki/International_Phonetic_Alphabet",
-                            "loc": {
-                                "start": {
-                                    "line": 4,
-                                    "column": 35
-                                },
-                                "end": {
-                                    "line": 4,
                                     "column": 95
                                 }
                             },
                             "range": [
-                                168,
-                                228
+                                78,
+                                131
                             ],
-                            "raw": "http://en.wikipedia.org/wiki/International_Phonetic_Alphabet"
+                            "raw": "<http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>"
+                        },
+                        {
+                            "type": "Str",
+                            "value": ".",
+                            "loc": {
+                                "start": {
+                                    "line": 3,
+                                    "column": 95
+                                },
+                                "end": {
+                                    "line": 3,
+                                    "column": 96
+                                }
+                            },
+                            "range": [
+                                131,
+                                132
+                            ],
+                            "raw": "."
                         }
                     ],
                     "loc": {
                         "start": {
-                            "line": 4,
-                            "column": 34
+                            "line": 3,
+                            "column": 9
                         },
                         "end": {
-                            "line": 4,
+                            "line": 3,
                             "column": 96
                         }
                     },
                     "range": [
-                        167,
-                        229
+                        45,
+                        132
                     ],
-                    "raw": "<http://en.wikipedia.org/wiki/International_Phonetic_Alphabet>"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 4,
-                            "column": 96
-                        },
-                        "end": {
-                            "line": 4,
-                            "column": 97
-                        }
-                    },
-                    "range": [
-                        229,
-                        230
-                    ],
-                    "raw": "."
+                    "raw": "Read more about it on wikipedia: <http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>."
                 }
             ],
             "loc": {
@@ -350,15 +190,136 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 3,
+                    "column": 96
+                }
+            },
+            "range": [
+                36,
+                132
+            ],
+            "raw": "[^wiki]: Read more about it on wikipedia: <http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>."
+        },
+        {
+            "type": "footnoteDefinition",
+            "identifier": "wiki",
+            "label": "wiki",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Not to be confused with: ",
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 9
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 34
+                                }
+                            },
+                            "range": [
+                                142,
+                                167
+                            ],
+                            "raw": "Not to be confused with: "
+                        },
+                        {
+                            "type": "Link",
+                            "title": null,
+                            "url": "http://en.wikipedia.org/wiki/International_Phonetic_Alphabet",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "http://en.wikipedia.org/wiki/International_Phonetic_Alphabet",
+                                    "loc": {
+                                        "start": {
+                                            "line": 4,
+                                            "column": 35
+                                        },
+                                        "end": {
+                                            "line": 4,
+                                            "column": 95
+                                        }
+                                    },
+                                    "range": [
+                                        168,
+                                        228
+                                    ],
+                                    "raw": "http://en.wikipedia.org/wiki/International_Phonetic_Alphabet"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 34
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 96
+                                }
+                            },
+                            "range": [
+                                167,
+                                229
+                            ],
+                            "raw": "<http://en.wikipedia.org/wiki/International_Phonetic_Alphabet>"
+                        },
+                        {
+                            "type": "Str",
+                            "value": ".",
+                            "loc": {
+                                "start": {
+                                    "line": 4,
+                                    "column": 96
+                                },
+                                "end": {
+                                    "line": 4,
+                                    "column": 97
+                                }
+                            },
+                            "range": [
+                                229,
+                                230
+                            ],
+                            "raw": "."
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 4,
+                            "column": 9
+                        },
+                        "end": {
+                            "line": 4,
+                            "column": 97
+                        }
+                    },
+                    "range": [
+                        142,
+                        230
+                    ],
+                    "raw": "Not to be confused with: <http://en.wikipedia.org/wiki/International_Phonetic_Alphabet>."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 0
+                },
+                "end": {
                     "line": 4,
                     "column": 97
                 }
             },
             "range": [
-                36,
+                133,
                 230
             ],
-            "raw": "[^wiki]: Read more about it on wikipedia: <http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>.\n[^wiki]: Not to be confused with: <http://en.wikipedia.org/wiki/International_Phonetic_Alphabet>."
+            "raw": "[^wiki]: Not to be confused with: <http://en.wikipedia.org/wiki/International_Phonetic_Alphabet>."
         }
     ],
     "loc": {

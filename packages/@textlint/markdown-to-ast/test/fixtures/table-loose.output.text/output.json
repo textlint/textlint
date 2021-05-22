@@ -37,18 +37,18 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 10
+                                    "column": 12
                                 }
                             },
                             "range": [
-                                2,
-                                10
+                                0,
+                                12
                             ],
-                            "raw": "Header 1"
+                            "raw": "| Header 1 |"
                         },
                         {
                             "type": "TableCell",
@@ -76,18 +76,18 @@
                             "loc": {
                                 "start": {
                                     "line": 1,
-                                    "column": 13
+                                    "column": 12
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 21
+                                    "column": 23
                                 }
                             },
                             "range": [
-                                13,
-                                21
+                                12,
+                                23
                             ],
-                            "raw": "Header 2"
+                            "raw": " Header 2 |"
                         }
                     ],
                     "loc": {
@@ -135,18 +135,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 10
+                                    "column": 12
                                 }
                             },
                             "range": [
-                                50,
-                                58
+                                48,
+                                60
                             ],
-                            "raw": "Cell 1  "
+                            "raw": "| Cell 1   |"
                         },
                         {
                             "type": "TableCell",
@@ -174,18 +174,18 @@
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 13
+                                    "column": 12
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 21
+                                    "column": 23
                                 }
                             },
                             "range": [
-                                61,
-                                69
+                                60,
+                                71
                             ],
-                            "raw": "Cell 2  "
+                            "raw": " Cell 2   |"
                         }
                     ],
                     "loc": {
@@ -233,18 +233,18 @@
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 2
+                                    "column": 0
                                 },
                                 "end": {
                                     "line": 4,
-                                    "column": 10
+                                    "column": 12
                                 }
                             },
                             "range": [
-                                74,
-                                82
+                                72,
+                                84
                             ],
-                            "raw": "Cell 3  "
+                            "raw": "| Cell 3   |"
                         },
                         {
                             "type": "TableCell",
@@ -272,18 +272,18 @@
                             "loc": {
                                 "start": {
                                     "line": 4,
-                                    "column": 13
+                                    "column": 12
                                 },
                                 "end": {
                                     "line": 4,
-                                    "column": 21
+                                    "column": 23
                                 }
                             },
                             "range": [
-                                85,
-                                93
+                                84,
+                                95
                             ],
-                            "raw": "Cell 4  "
+                            "raw": " Cell 4   |"
                         }
                     ],
                     "loc": {

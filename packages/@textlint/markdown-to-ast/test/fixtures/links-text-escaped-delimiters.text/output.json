@@ -11,7 +11,7 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Hello ",
+                            "value": "Hello [world]!",
                             "loc": {
                                 "start": {
                                     "line": 1,
@@ -19,90 +19,14 @@
                                 },
                                 "end": {
                                     "line": 1,
-                                    "column": 7
-                                }
-                            },
-                            "range": [
-                                1,
-                                7
-                            ],
-                            "raw": "Hello "
-                        },
-                        {
-                            "type": "Str",
-                            "value": "[",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 7
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 9
-                                }
-                            },
-                            "range": [
-                                7,
-                                9
-                            ],
-                            "raw": "\\["
-                        },
-                        {
-                            "type": "Str",
-                            "value": "world",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 9
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 14
-                                }
-                            },
-                            "range": [
-                                9,
-                                14
-                            ],
-                            "raw": "world"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "]",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 14
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 16
-                                }
-                            },
-                            "range": [
-                                14,
-                                16
-                            ],
-                            "raw": "\\]"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "!",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 16
-                                },
-                                "end": {
-                                    "line": 1,
                                     "column": 17
                                 }
                             },
                             "range": [
-                                16,
+                                1,
                                 17
                             ],
-                            "raw": "!"
+                            "raw": "Hello \\[world\\]!"
                         }
                     ],
                     "loc": {
@@ -167,7 +91,7 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "Hello ",
+                            "value": "Hello [world]!",
                             "loc": {
                                 "start": {
                                     "line": 3,
@@ -175,90 +99,14 @@
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 7
-                                }
-                            },
-                            "range": [
-                                42,
-                                48
-                            ],
-                            "raw": "Hello "
-                        },
-                        {
-                            "type": "Str",
-                            "value": "[",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 7
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 9
-                                }
-                            },
-                            "range": [
-                                48,
-                                50
-                            ],
-                            "raw": "\\["
-                        },
-                        {
-                            "type": "Str",
-                            "value": "world",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 9
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 14
-                                }
-                            },
-                            "range": [
-                                50,
-                                55
-                            ],
-                            "raw": "world"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "]",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 14
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 16
-                                }
-                            },
-                            "range": [
-                                55,
-                                57
-                            ],
-                            "raw": "\\]"
-                        },
-                        {
-                            "type": "Str",
-                            "value": "!",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 16
-                                },
-                                "end": {
-                                    "line": 3,
                                     "column": 17
                                 }
                             },
                             "range": [
-                                57,
+                                42,
                                 58
                             ],
-                            "raw": "!"
+                            "raw": "Hello \\[world\\]!"
                         }
                     ],
                     "loc": {

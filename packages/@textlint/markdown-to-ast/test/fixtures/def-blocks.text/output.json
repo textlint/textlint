@@ -9,47 +9,25 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "hello",
+                            "value": "hello\n",
                             "loc": {
                                 "start": {
                                     "line": 1,
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 1,
-                                    "column": 7
+                                    "line": 2,
+                                    "column": 0
                                 }
                             },
                             "range": [
                                 2,
-                                7
+                                8
                             ],
-                            "raw": "hello"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 2
+                            "raw": "hello\n"
                         },
-                        "end": {
-                            "line": 1,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        2,
-                        7
-                    ],
-                    "raw": "hello"
-                },
-                {
-                    "type": "Paragraph",
-                    "children": [
                         {
                             "type": "LinkReference",
-                            "identifier": "1",
-                            "referenceType": "shortcut",
                             "children": [
                                 {
                                     "type": "Str",
@@ -71,6 +49,9 @@
                                     "raw": "1"
                                 }
                             ],
+                            "identifier": "1",
+                            "label": "1",
+                            "referenceType": "shortcut",
                             "loc": {
                                 "start": {
                                     "line": 2,
@@ -109,7 +90,7 @@
                     ],
                     "loc": {
                         "start": {
-                            "line": 2,
+                            "line": 1,
                             "column": 2
                         },
                         "end": {
@@ -118,10 +99,10 @@
                         }
                     },
                     "range": [
-                        10,
+                        2,
                         20
                     ],
-                    "raw": "[1]: hello"
+                    "raw": "hello\n> [1]: hello"
                 }
             ],
             "loc": {
@@ -220,6 +201,7 @@
         {
             "type": "Definition",
             "identifier": "2",
+            "label": "2",
             "title": null,
             "url": "hello",
             "loc": {
@@ -242,11 +224,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": false,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -307,73 +289,15 @@
                 },
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "LinkReference",
-                                    "identifier": "3",
-                                    "referenceType": "shortcut",
-                                    "children": [
-                                        {
-                                            "type": "Str",
-                                            "value": "3",
-                                            "loc": {
-                                                "start": {
-                                                    "line": 11,
-                                                    "column": 3
-                                                },
-                                                "end": {
-                                                    "line": 11,
-                                                    "column": 4
-                                                }
-                                            },
-                                            "range": [
-                                                61,
-                                                62
-                                            ],
-                                            "raw": "3"
-                                        }
-                                    ],
-                                    "loc": {
-                                        "start": {
-                                            "line": 11,
-                                            "column": 2
-                                        },
-                                        "end": {
-                                            "line": 11,
-                                            "column": 5
-                                        }
-                                    },
-                                    "range": [
-                                        60,
-                                        63
-                                    ],
-                                    "raw": "[3]"
-                                },
-                                {
-                                    "type": "Str",
-                                    "value": ": hello",
-                                    "loc": {
-                                        "start": {
-                                            "line": 11,
-                                            "column": 5
-                                        },
-                                        "end": {
-                                            "line": 11,
-                                            "column": 12
-                                        }
-                                    },
-                                    "range": [
-                                        63,
-                                        70
-                                    ],
-                                    "raw": ": hello"
-                                }
-                            ],
+                            "type": "Definition",
+                            "identifier": "3",
+                            "label": "3",
+                            "title": null,
+                            "url": "hello",
                             "loc": {
                                 "start": {
                                     "line": 11,
@@ -406,33 +330,10 @@
                         70
                     ],
                     "raw": "* [3]: hello"
-                }
-            ],
-            "loc": {
-                "start": {
-                    "line": 10,
-                    "column": 0
                 },
-                "end": {
-                    "line": 11,
-                    "column": 12
-                }
-            },
-            "range": [
-                50,
-                70
-            ],
-            "raw": "* hello\n* [3]: hello"
-        },
-        {
-            "type": "List",
-            "ordered": false,
-            "start": null,
-            "loose": false,
-            "children": [
                 {
                     "type": "ListItem",
-                    "loose": false,
+                    "spread": false,
                     "checked": null,
                     "children": [
                         {
@@ -494,7 +395,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 14,
+                    "line": 10,
                     "column": 0
                 },
                 "end": {
@@ -503,14 +404,15 @@
                 }
             },
             "range": [
-                73,
+                50,
                 80
             ],
-            "raw": "* hello"
+            "raw": "* hello\n* [3]: hello\n\n\n* hello"
         },
         {
             "type": "Definition",
             "identifier": "4",
+            "label": "4",
             "title": null,
             "url": "hello",
             "loc": {
@@ -591,6 +493,7 @@
         {
             "type": "Definition",
             "identifier": "1",
+            "label": "1",
             "title": null,
             "url": "foo",
             "loc": {

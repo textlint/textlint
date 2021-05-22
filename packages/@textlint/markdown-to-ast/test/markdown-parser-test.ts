@@ -228,9 +228,9 @@ describe("markdown-parser", function () {
         });
         it("should have marker_offser of each items", function () {
             const AST = parse("- item\n" + "   - item2"); // second line should has offset
-            const node = findFirstTypedNode(AST, Syntax.ListItem, " - item2");
+            const node = findFirstTypedNode(AST, Syntax.ListItem, "- item2");
             assert(node);
-            assert.strictEqual(node.raw, " - item2");
+            assert.strictEqual(node.raw, "- item2");
         });
         it("should has implemented TxtNode", function () {
             const text = "text",

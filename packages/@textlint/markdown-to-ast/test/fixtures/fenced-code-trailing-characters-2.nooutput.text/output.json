@@ -4,6 +4,7 @@
         {
             "type": "CodeBlock",
             "lang": null,
+            "meta": null,
             "value": "``` aaa",
             "loc": {
                 "start": {

@@ -45,11 +45,11 @@
             "type": "List",
             "ordered": true,
             "start": 1,
-            "loose": true,
+            "spread": true,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -98,11 +98,11 @@
                                     "type": "List",
                                     "ordered": false,
                                     "start": null,
-                                    "loose": false,
+                                    "spread": false,
                                     "children": [
                                         {
                                             "type": "ListItem",
-                                            "loose": false,
+                                            "spread": false,
                                             "checked": null,
                                             "children": [
                                                 {
@@ -143,296 +143,6 @@
                                                         28
                                                     ],
                                                     "raw": "one"
-                                                },
-                                                {
-                                                    "type": "List",
-                                                    "ordered": false,
-                                                    "start": null,
-                                                    "loose": false,
-                                                    "children": [
-                                                        {
-                                                            "type": "ListItem",
-                                                            "loose": false,
-                                                            "checked": null,
-                                                            "children": [
-                                                                {
-                                                                    "type": "Paragraph",
-                                                                    "children": [
-                                                                        {
-                                                                            "type": "Str",
-                                                                            "value": "two",
-                                                                            "loc": {
-                                                                                "start": {
-                                                                                    "line": 6,
-                                                                                    "column": 10
-                                                                                },
-                                                                                "end": {
-                                                                                    "line": 6,
-                                                                                    "column": 13
-                                                                                }
-                                                                            },
-                                                                            "range": [
-                                                                                39,
-                                                                                42
-                                                                            ],
-                                                                            "raw": "two"
-                                                                        }
-                                                                    ],
-                                                                    "loc": {
-                                                                        "start": {
-                                                                            "line": 6,
-                                                                            "column": 10
-                                                                        },
-                                                                        "end": {
-                                                                            "line": 6,
-                                                                            "column": 13
-                                                                        }
-                                                                    },
-                                                                    "range": [
-                                                                        39,
-                                                                        42
-                                                                    ],
-                                                                    "raw": "two"
-                                                                },
-                                                                {
-                                                                    "type": "List",
-                                                                    "ordered": false,
-                                                                    "start": null,
-                                                                    "loose": false,
-                                                                    "children": [
-                                                                        {
-                                                                            "type": "ListItem",
-                                                                            "loose": false,
-                                                                            "checked": null,
-                                                                            "children": [
-                                                                                {
-                                                                                    "type": "Paragraph",
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "type": "Str",
-                                                                                            "value": "three",
-                                                                                            "loc": {
-                                                                                                "start": {
-                                                                                                    "line": 7,
-                                                                                                    "column": 14
-                                                                                                },
-                                                                                                "end": {
-                                                                                                    "line": 7,
-                                                                                                    "column": 19
-                                                                                                }
-                                                                                            },
-                                                                                            "range": [
-                                                                                                57,
-                                                                                                62
-                                                                                            ],
-                                                                                            "raw": "three"
-                                                                                        }
-                                                                                    ],
-                                                                                    "loc": {
-                                                                                        "start": {
-                                                                                            "line": 7,
-                                                                                            "column": 14
-                                                                                        },
-                                                                                        "end": {
-                                                                                            "line": 7,
-                                                                                            "column": 19
-                                                                                        }
-                                                                                    },
-                                                                                    "range": [
-                                                                                        57,
-                                                                                        62
-                                                                                    ],
-                                                                                    "raw": "three"
-                                                                                }
-                                                                            ],
-                                                                            "loc": {
-                                                                                "start": {
-                                                                                    "line": 7,
-                                                                                    "column": 10
-                                                                                },
-                                                                                "end": {
-                                                                                    "line": 7,
-                                                                                    "column": 19
-                                                                                }
-                                                                            },
-                                                                            "range": [
-                                                                                53,
-                                                                                62
-                                                                            ],
-                                                                            "raw": "  - three"
-                                                                        },
-                                                                        {
-                                                                            "type": "ListItem",
-                                                                            "loose": false,
-                                                                            "checked": null,
-                                                                            "children": [
-                                                                                {
-                                                                                    "type": "Paragraph",
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "type": "Str",
-                                                                                            "value": "four",
-                                                                                            "loc": {
-                                                                                                "start": {
-                                                                                                    "line": 8,
-                                                                                                    "column": 14
-                                                                                                },
-                                                                                                "end": {
-                                                                                                    "line": 8,
-                                                                                                    "column": 18
-                                                                                                }
-                                                                                            },
-                                                                                            "range": [
-                                                                                                77,
-                                                                                                81
-                                                                                            ],
-                                                                                            "raw": "four"
-                                                                                        }
-                                                                                    ],
-                                                                                    "loc": {
-                                                                                        "start": {
-                                                                                            "line": 8,
-                                                                                            "column": 14
-                                                                                        },
-                                                                                        "end": {
-                                                                                            "line": 8,
-                                                                                            "column": 18
-                                                                                        }
-                                                                                    },
-                                                                                    "range": [
-                                                                                        77,
-                                                                                        81
-                                                                                    ],
-                                                                                    "raw": "four"
-                                                                                }
-                                                                            ],
-                                                                            "loc": {
-                                                                                "start": {
-                                                                                    "line": 8,
-                                                                                    "column": 10
-                                                                                },
-                                                                                "end": {
-                                                                                    "line": 8,
-                                                                                    "column": 18
-                                                                                }
-                                                                            },
-                                                                            "range": [
-                                                                                73,
-                                                                                81
-                                                                            ],
-                                                                            "raw": "  - four"
-                                                                        },
-                                                                        {
-                                                                            "type": "ListItem",
-                                                                            "loose": false,
-                                                                            "checked": null,
-                                                                            "children": [
-                                                                                {
-                                                                                    "type": "Paragraph",
-                                                                                    "children": [
-                                                                                        {
-                                                                                            "type": "Str",
-                                                                                            "value": "five",
-                                                                                            "loc": {
-                                                                                                "start": {
-                                                                                                    "line": 9,
-                                                                                                    "column": 14
-                                                                                                },
-                                                                                                "end": {
-                                                                                                    "line": 9,
-                                                                                                    "column": 18
-                                                                                                }
-                                                                                            },
-                                                                                            "range": [
-                                                                                                96,
-                                                                                                100
-                                                                                            ],
-                                                                                            "raw": "five"
-                                                                                        }
-                                                                                    ],
-                                                                                    "loc": {
-                                                                                        "start": {
-                                                                                            "line": 9,
-                                                                                            "column": 14
-                                                                                        },
-                                                                                        "end": {
-                                                                                            "line": 9,
-                                                                                            "column": 18
-                                                                                        }
-                                                                                    },
-                                                                                    "range": [
-                                                                                        96,
-                                                                                        100
-                                                                                    ],
-                                                                                    "raw": "five"
-                                                                                }
-                                                                            ],
-                                                                            "loc": {
-                                                                                "start": {
-                                                                                    "line": 9,
-                                                                                    "column": 10
-                                                                                },
-                                                                                "end": {
-                                                                                    "line": 9,
-                                                                                    "column": 18
-                                                                                }
-                                                                            },
-                                                                            "range": [
-                                                                                92,
-                                                                                100
-                                                                            ],
-                                                                            "raw": "  - five"
-                                                                        }
-                                                                    ],
-                                                                    "loc": {
-                                                                        "start": {
-                                                                            "line": 7,
-                                                                            "column": 10
-                                                                        },
-                                                                        "end": {
-                                                                            "line": 9,
-                                                                            "column": 18
-                                                                        }
-                                                                    },
-                                                                    "range": [
-                                                                        53,
-                                                                        100
-                                                                    ],
-                                                                    "raw": "  - three\n            - four\n            - five"
-                                                                }
-                                                            ],
-                                                            "loc": {
-                                                                "start": {
-                                                                    "line": 6,
-                                                                    "column": 6
-                                                                },
-                                                                "end": {
-                                                                    "line": 9,
-                                                                    "column": 18
-                                                                }
-                                                            },
-                                                            "range": [
-                                                                35,
-                                                                100
-                                                            ],
-                                                            "raw": "  - two\n            - three\n            - four\n            - five"
-                                                        }
-                                                    ],
-                                                    "loc": {
-                                                        "start": {
-                                                            "line": 6,
-                                                            "column": 6
-                                                        },
-                                                        "end": {
-                                                            "line": 9,
-                                                            "column": 18
-                                                        }
-                                                    },
-                                                    "range": [
-                                                        35,
-                                                        100
-                                                    ],
-                                                    "raw": "  - two\n            - three\n            - four\n            - five"
                                                 }
                                             ],
                                             "loc": {
@@ -441,15 +151,15 @@
                                                     "column": 6
                                                 },
                                                 "end": {
-                                                    "line": 9,
-                                                    "column": 18
+                                                    "line": 5,
+                                                    "column": 11
                                                 }
                                             },
                                             "range": [
                                                 23,
-                                                100
+                                                28
                                             ],
-                                            "raw": "- one\n        - two\n            - three\n            - four\n            - five"
+                                            "raw": "- one"
                                         }
                                     ],
                                     "loc": {
@@ -458,15 +168,15 @@
                                             "column": 6
                                         },
                                         "end": {
-                                            "line": 9,
-                                            "column": 18
+                                            "line": 5,
+                                            "column": 11
                                         }
                                     },
                                     "range": [
                                         23,
-                                        100
+                                        28
                                     ],
-                                    "raw": "- one\n        - two\n            - three\n            - four\n            - five"
+                                    "raw": "- one"
                                 }
                             ],
                             "loc": {
@@ -475,15 +185,36 @@
                                     "column": 4
                                 },
                                 "end": {
+                                    "line": 5,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                21,
+                                28
+                            ],
+                            "raw": "> - one"
+                        },
+                        {
+                            "type": "CodeBlock",
+                            "lang": null,
+                            "meta": null,
+                            "value": " - two\n     - three\n     - four\n     - five",
+                            "loc": {
+                                "start": {
+                                    "line": 6,
+                                    "column": 3
+                                },
+                                "end": {
                                     "line": 9,
                                     "column": 18
                                 }
                             },
                             "range": [
-                                21,
+                                32,
                                 100
                             ],
-                            "raw": "> - one\n        - two\n            - three\n            - four\n            - five"
+                            "raw": "     - two\n            - three\n            - four\n            - five"
                         }
                     ],
                     "loc": {
@@ -492,19 +223,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 10,
-                            "column": 0
+                            "line": 9,
+                            "column": 18
                         }
                     },
                     "range": [
                         8,
-                        101
+                        100
                     ],
-                    "raw": "1. bar:\n\n    > - one\n        - two\n            - three\n            - four\n            - five\n"
+                    "raw": "1. bar:\n\n    > - one\n        - two\n            - three\n            - four\n            - five"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -549,6 +280,7 @@
                         {
                             "type": "CodeBlock",
                             "lang": null,
+                            "meta": null,
                             "value": "line 1\nline 2",
                             "loc": {
                                 "start": {
@@ -573,19 +305,19 @@
                             "column": 0
                         },
                         "end": {
-                            "line": 17,
-                            "column": 0
+                            "line": 16,
+                            "column": 7
                         }
                     },
                     "range": [
                         102,
-                        149
+                        148
                     ],
-                    "raw": "1. foo:\n\n    ```\n    line 1\n    line 2\n    ```\n"
+                    "raw": "1. foo:\n\n    ```\n    line 1\n    line 2\n    ```"
                 },
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -631,11 +363,11 @@
                             "type": "List",
                             "ordered": true,
                             "start": 1,
-                            "loose": true,
+                            "spread": true,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": true,
+                                    "spread": true,
                                     "checked": null,
                                     "children": [
                                         {
@@ -718,6 +450,7 @@
                                         {
                                             "type": "CodeBlock",
                                             "lang": "erb",
+                                            "meta": null,
                                             "value": "some code here",
                                             "loc": {
                                                 "start": {
@@ -742,19 +475,19 @@
                                             "column": 4
                                         },
                                         "end": {
-                                            "line": 25,
-                                            "column": 0
+                                            "line": 24,
+                                            "column": 11
                                         }
                                     },
                                     "range": [
                                         163,
-                                        233
+                                        232
                                     ],
-                                    "raw": "1. foo `bar` bar:\n\n        ``` erb\n        some code here\n        ```\n"
+                                    "raw": "1. foo `bar` bar:\n\n        ``` erb\n        some code here\n        ```"
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": true,
+                                    "spread": true,
                                     "checked": null,
                                     "children": [
                                         {
@@ -837,6 +570,7 @@
                                         {
                                             "type": "CodeBlock",
                                             "lang": "erb",
+                                            "meta": null,
                                             "value": "foo\n---\nbar\n---\nfoo\nbar",
                                             "loc": {
                                                 "start": {
@@ -861,19 +595,19 @@
                                             "column": 4
                                         },
                                         "end": {
-                                            "line": 36,
-                                            "column": 0
+                                            "line": 35,
+                                            "column": 11
                                         }
                                     },
                                     "range": [
                                         238,
-                                        357
+                                        356
                                     ],
-                                    "raw": "2. foo `bar` bar:\n\n        ``` erb\n        foo\n        ---\n        bar\n        ---\n        foo\n        bar\n        ```\n"
+                                    "raw": "2. foo `bar` bar:\n\n        ``` erb\n        foo\n        ---\n        bar\n        ---\n        foo\n        bar\n        ```"
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": true,
+                                    "spread": true,
                                     "checked": null,
                                     "children": [
                                         {
@@ -956,6 +690,7 @@
                                         {
                                             "type": "CodeBlock",
                                             "lang": "html",
+                                            "meta": null,
                                             "value": "---\nfoo\nfoo\n---\nbar",
                                             "loc": {
                                                 "start": {
@@ -980,19 +715,19 @@
                                             "column": 4
                                         },
                                         "end": {
-                                            "line": 46,
-                                            "column": 0
+                                            "line": 45,
+                                            "column": 11
                                         }
                                     },
                                     "range": [
                                         362,
-                                        470
+                                        469
                                     ],
-                                    "raw": "3. foo `bar` bar:\n\n        ``` html\n        ---\n        foo\n        foo\n        ---\n        bar\n        ```\n"
+                                    "raw": "3. foo `bar` bar:\n\n        ``` html\n        ---\n        foo\n        foo\n        ---\n        bar\n        ```"
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": true,
+                                    "spread": true,
                                     "checked": null,
                                     "children": [
                                         {
@@ -1075,11 +810,12 @@
                                         {
                                             "type": "CodeBlock",
                                             "lang": null,
-                                            "value": "foo\n---\nbar",
+                                            "meta": null,
+                                            "value": " foo\n ---\n bar",
                                             "loc": {
                                                 "start": {
                                                     "line": 49,
-                                                    "column": 8
+                                                    "column": 7
                                                 },
                                                 "end": {
                                                     "line": 51,
@@ -1087,10 +823,10 @@
                                                 }
                                             },
                                             "range": [
-                                                502,
+                                                501,
                                                 541
                                             ],
-                                            "raw": "    foo\n            ---\n            bar"
+                                            "raw": "     foo\n            ---\n            bar"
                                         }
                                     ],
                                     "loc": {
@@ -1099,19 +835,19 @@
                                             "column": 4
                                         },
                                         "end": {
-                                            "line": 52,
-                                            "column": 0
+                                            "line": 51,
+                                            "column": 15
                                         }
                                     },
                                     "range": [
                                         475,
-                                        542
+                                        541
                                     ],
-                                    "raw": "4. foo `bar` bar:\n\n            foo\n            ---\n            bar\n"
+                                    "raw": "4. foo `bar` bar:\n\n            foo\n            ---\n            bar"
                                 },
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {

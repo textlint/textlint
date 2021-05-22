@@ -25,30 +25,9 @@
                     "raw": "International Radiotelephony Spelling Alphabet"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 49
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 54
-                                }
-                            },
-                            "range": [
-                                49,
-                                54
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
+                    "type": "FootnoteReference",
+                    "identifier": "wiki",
+                    "label": "wiki",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -105,30 +84,9 @@
                     "raw": "Here's the NATO phonetic alphabet"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^wiki",
-                            "loc": {
-                                "start": {
-                                    "line": 3,
-                                    "column": 34
-                                },
-                                "end": {
-                                    "line": 3,
-                                    "column": 39
-                                }
-                            },
-                            "range": [
-                                91,
-                                96
-                            ],
-                            "raw": "^wiki"
-                        }
-                    ],
+                    "type": "FootnoteReference",
+                    "identifier": "wiki",
+                    "label": "wiki",
                     "loc": {
                         "start": {
                             "line": 3,
@@ -221,116 +179,97 @@
             "raw": "And here's some more text."
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "wiki",
+            "label": "wiki",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^wiki",
-                    "referenceType": "shortcut",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^wiki",
+                            "value": "Read more about it on wikipedia: ",
                             "loc": {
                                 "start": {
                                     "line": 7,
-                                    "column": 1
+                                    "column": 9
                                 },
                                 "end": {
                                     "line": 7,
-                                    "column": 6
+                                    "column": 42
                                 }
                             },
                             "range": [
-                                323,
-                                328
+                                331,
+                                364
                             ],
-                            "raw": "^wiki"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 0
+                            "raw": "Read more about it on wikipedia: "
                         },
-                        "end": {
-                            "line": 7,
-                            "column": 7
-                        }
-                    },
-                    "range": [
-                        322,
-                        329
-                    ],
-                    "raw": "[^wiki]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Read more about it on wikipedia: ",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 7
+                        {
+                            "type": "Link",
+                            "title": null,
+                            "url": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                            "children": [
+                                {
+                                    "type": "Str",
+                                    "value": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                                    "loc": {
+                                        "start": {
+                                            "line": 7,
+                                            "column": 43
+                                        },
+                                        "end": {
+                                            "line": 7,
+                                            "column": 94
+                                        }
+                                    },
+                                    "range": [
+                                        365,
+                                        416
+                                    ],
+                                    "raw": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet"
+                                }
+                            ],
+                            "loc": {
+                                "start": {
+                                    "line": 7,
+                                    "column": 42
+                                },
+                                "end": {
+                                    "line": 7,
+                                    "column": 95
+                                }
+                            },
+                            "range": [
+                                364,
+                                417
+                            ],
+                            "raw": "<http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>"
                         },
-                        "end": {
-                            "line": 7,
-                            "column": 42
-                        }
-                    },
-                    "range": [
-                        329,
-                        364
-                    ],
-                    "raw": ": Read more about it on wikipedia: "
-                },
-                {
-                    "type": "Link",
-                    "title": null,
-                    "url": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
-                    "children": [
                         {
                             "type": "Str",
-                            "value": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet",
+                            "value": ".",
                             "loc": {
                                 "start": {
                                     "line": 7,
-                                    "column": 43
+                                    "column": 95
                                 },
                                 "end": {
                                     "line": 7,
-                                    "column": 94
+                                    "column": 96
                                 }
                             },
                             "range": [
-                                365,
-                                416
+                                417,
+                                418
                             ],
-                            "raw": "http://en.wikipedia.org/wiki/NATO_phonetic_alphabet"
+                            "raw": "."
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 7,
-                            "column": 42
-                        },
-                        "end": {
-                            "line": 7,
-                            "column": 95
-                        }
-                    },
-                    "range": [
-                        364,
-                        417
-                    ],
-                    "raw": "<http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>"
-                },
-                {
-                    "type": "Str",
-                    "value": ".",
-                    "loc": {
-                        "start": {
-                            "line": 7,
-                            "column": 95
+                            "column": 9
                         },
                         "end": {
                             "line": 7,
@@ -338,10 +277,10 @@
                         }
                     },
                     "range": [
-                        417,
+                        331,
                         418
                     ],
-                    "raw": "."
+                    "raw": "Read more about it on wikipedia: <http://en.wikipedia.org/wiki/NATO_phonetic_alphabet>."
                 }
             ],
             "loc": {

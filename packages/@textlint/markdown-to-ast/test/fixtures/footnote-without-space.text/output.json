@@ -24,30 +24,9 @@
                     "raw": "foo"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^abc",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^abc",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 4
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 8
-                                }
-                            },
-                            "range": [
-                                4,
-                                8
-                            ],
-                            "raw": "^abc"
-                        }
-                    ],
+                    "type": "FootnoteReference",
+                    "identifier": "abc",
+                    "label": "abc",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -84,30 +63,9 @@
                     "raw": " bar. foo"
                 },
                 {
-                    "type": "LinkReference",
-                    "identifier": "^xyz",
-                    "referenceType": "shortcut",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "^xyz",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 19
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 23
-                                }
-                            },
-                            "range": [
-                                19,
-                                23
-                            ],
-                            "raw": "^xyz"
-                        }
-                    ],
+                    "type": "FootnoteReference",
+                    "identifier": "xyz",
+                    "label": "xyz",
                     "loc": {
                         "start": {
                             "line": 1,
@@ -161,56 +119,37 @@
             "raw": "foo[^abc] bar. foo[^xyz] bar"
         },
         {
-            "type": "Paragraph",
+            "type": "footnoteDefinition",
+            "identifier": "abc",
+            "label": "abc",
             "children": [
                 {
-                    "type": "LinkReference",
-                    "identifier": "^abc",
-                    "referenceType": "shortcut",
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
-                            "value": "^abc",
+                            "value": "Baz baz",
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 1
+                                    "column": 8
                                 },
                                 "end": {
                                     "line": 3,
-                                    "column": 5
+                                    "column": 15
                                 }
                             },
                             "range": [
-                                31,
-                                35
+                                38,
+                                45
                             ],
-                            "raw": "^abc"
+                            "raw": "Baz baz"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 3,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 3,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        30,
-                        36
-                    ],
-                    "raw": "[^abc]"
-                },
-                {
-                    "type": "Str",
-                    "value": ": Baz baz",
-                    "loc": {
-                        "start": {
-                            "line": 3,
-                            "column": 6
+                            "column": 8
                         },
                         "end": {
                             "line": 3,
@@ -218,10 +157,10 @@
                         }
                     },
                     "range": [
-                        36,
+                        38,
                         45
                     ],
-                    "raw": ": Baz baz"
+                    "raw": "Baz baz"
                 }
             ],
             "loc": {
@@ -241,10 +180,50 @@
             "raw": "[^abc]: Baz baz"
         },
         {
-            "type": "Definition",
-            "identifier": "^xyz",
-            "title": null,
-            "url": "Baz",
+            "type": "footnoteDefinition",
+            "identifier": "xyz",
+            "label": "xyz",
+            "children": [
+                {
+                    "type": "Paragraph",
+                    "children": [
+                        {
+                            "type": "Str",
+                            "value": "Baz",
+                            "loc": {
+                                "start": {
+                                    "line": 5,
+                                    "column": 8
+                                },
+                                "end": {
+                                    "line": 5,
+                                    "column": 11
+                                }
+                            },
+                            "range": [
+                                55,
+                                58
+                            ],
+                            "raw": "Baz"
+                        }
+                    ],
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 8
+                        },
+                        "end": {
+                            "line": 5,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        55,
+                        58
+                    ],
+                    "raw": "Baz"
+                }
+            ],
             "loc": {
                 "start": {
                     "line": 5,

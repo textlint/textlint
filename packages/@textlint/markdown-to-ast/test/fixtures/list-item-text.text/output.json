@@ -5,11 +5,11 @@
             "type": "List",
             "ordered": false,
             "start": null,
-            "loose": true,
+            "spread": false,
             "children": [
                 {
                     "type": "ListItem",
-                    "loose": true,
+                    "spread": true,
                     "checked": null,
                     "children": [
                         {
@@ -55,11 +55,11 @@
                             "type": "List",
                             "ordered": false,
                             "start": null,
-                            "loose": false,
+                            "spread": false,
                             "children": [
                                 {
                                     "type": "ListItem",
-                                    "loose": false,
+                                    "spread": false,
                                     "checked": null,
                                     "children": [
                                         {
@@ -105,7 +105,7 @@
                                     "loc": {
                                         "start": {
                                             "line": 3,
-                                            "column": 2
+                                            "column": 4
                                         },
                                         "end": {
                                             "line": 3,
@@ -113,16 +113,16 @@
                                         }
                                     },
                                     "range": [
-                                        13,
+                                        15,
                                         22
                                     ],
-                                    "raw": "  * item2"
+                                    "raw": "* item2"
                                 }
                             ],
                             "loc": {
                                 "start": {
                                     "line": 3,
-                                    "column": 2
+                                    "column": 4
                                 },
                                 "end": {
                                     "line": 3,
@@ -130,55 +130,55 @@
                                 }
                             },
                             "range": [
-                                13,
+                                15,
                                 22
                             ],
-                            "raw": "  * item2"
-                        },
-                        {
-                            "type": "Paragraph",
-                            "children": [
-                                {
-                                    "type": "Str",
-                                    "value": "text",
-                                    "loc": {
-                                        "start": {
-                                            "line": 5,
-                                            "column": 2
-                                        },
-                                        "end": {
-                                            "line": 5,
-                                            "column": 6
-                                        }
-                                    },
-                                    "range": [
-                                        26,
-                                        30
-                                    ],
-                                    "raw": "text"
-                                }
-                            ],
-                            "loc": {
-                                "start": {
-                                    "line": 5,
-                                    "column": 2
-                                },
-                                "end": {
-                                    "line": 5,
-                                    "column": 6
-                                }
-                            },
-                            "range": [
-                                26,
-                                30
-                            ],
-                            "raw": "text"
+                            "raw": "* item2"
                         }
                     ],
                     "loc": {
                         "start": {
                             "line": 1,
-                            "column": 0
+                            "column": 2
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 11
+                        }
+                    },
+                    "range": [
+                        2,
+                        22
+                    ],
+                    "raw": "* item1\n\n    * item2"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 2
+                },
+                "end": {
+                    "line": 3,
+                    "column": 11
+                }
+            },
+            "range": [
+                2,
+                22
+            ],
+            "raw": "* item1\n\n    * item2"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "text",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 2
                         },
                         "end": {
                             "line": 5,
@@ -186,16 +186,16 @@
                         }
                     },
                     "range": [
-                        0,
+                        26,
                         30
                     ],
-                    "raw": "  * item1\n\n    * item2\n\n  text"
+                    "raw": "text"
                 }
             ],
             "loc": {
                 "start": {
-                    "line": 1,
-                    "column": 0
+                    "line": 5,
+                    "column": 2
                 },
                 "end": {
                     "line": 5,
@@ -203,10 +203,10 @@
                 }
             },
             "range": [
-                0,
+                26,
                 30
             ],
-            "raw": "  * item1\n\n    * item2\n\n  text"
+            "raw": "text"
         }
     ],
     "loc": {

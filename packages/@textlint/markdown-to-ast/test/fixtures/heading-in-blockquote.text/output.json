@@ -9,22 +9,22 @@
                     "children": [
                         {
                             "type": "Str",
-                            "value": "A blockquote\nwith some more text.",
+                            "value": "A blockquote",
                             "loc": {
                                 "start": {
                                     "line": 1,
                                     "column": 2
                                 },
                                 "end": {
-                                    "line": 2,
-                                    "column": 20
+                                    "line": 1,
+                                    "column": 14
                                 }
                             },
                             "range": [
                                 2,
-                                35
+                                14
                             ],
-                            "raw": "A blockquote\nwith some more text."
+                            "raw": "A blockquote"
                         }
                     ],
                     "loc": {
@@ -33,15 +33,15 @@
                             "column": 2
                         },
                         "end": {
-                            "line": 2,
-                            "column": 20
+                            "line": 1,
+                            "column": 14
                         }
                     },
                     "range": [
                         2,
-                        35
+                        14
                     ],
-                    "raw": "A blockquote\nwith some more text."
+                    "raw": "A blockquote"
                 }
             ],
             "loc": {
@@ -50,15 +50,54 @@
                     "column": 0
                 },
                 "end": {
+                    "line": 1,
+                    "column": 14
+                }
+            },
+            "range": [
+                0,
+                14
+            ],
+            "raw": "> A blockquote"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "with some more text.",
+                    "loc": {
+                        "start": {
+                            "line": 2,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 2,
+                            "column": 20
+                        }
+                    },
+                    "range": [
+                        15,
+                        35
+                    ],
+                    "raw": "with some more text."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 0
+                },
+                "end": {
                     "line": 2,
                     "column": 20
                 }
             },
             "range": [
-                0,
+                15,
                 35
             ],
-            "raw": "> A blockquote\nwith some more text."
+            "raw": "with some more text."
         },
         {
             "type": "Paragraph",
@@ -103,8 +142,7 @@
             "type": "BlockQuote",
             "children": [
                 {
-                    "type": "Header",
-                    "depth": 2,
+                    "type": "Paragraph",
                     "children": [
                         {
                             "type": "Str",
@@ -132,16 +170,54 @@
                             "column": 2
                         },
                         "end": {
-                            "line": 7,
-                            "column": 3
+                            "line": 6,
+                            "column": 61
                         }
                     },
                     "range": [
                         60,
-                        123
+                        119
                     ],
-                    "raw": "A blockquote followed by a horizontal rule (in CommonMark).\n---"
+                    "raw": "A blockquote followed by a horizontal rule (in CommonMark)."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 6,
+                    "column": 0
                 },
+                "end": {
+                    "line": 6,
+                    "column": 61
+                }
+            },
+            "range": [
+                58,
+                119
+            ],
+            "raw": "> A blockquote followed by a horizontal rule (in CommonMark)."
+        },
+        {
+            "type": "HorizontalRule",
+            "loc": {
+                "start": {
+                    "line": 7,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 3
+                }
+            },
+            "range": [
+                120,
+                123
+            ],
+            "raw": "---"
+        },
+        {
+            "type": "BlockQuote",
+            "children": [
                 {
                     "type": "Header",
                     "depth": 2,
@@ -185,7 +261,7 @@
             ],
             "loc": {
                 "start": {
-                    "line": 6,
+                    "line": 9,
                     "column": 0
                 },
                 "end": {
@@ -194,10 +270,10 @@
                 }
             },
             "range": [
-                58,
+                125,
                 158
             ],
-            "raw": "> A blockquote followed by a horizontal rule (in CommonMark).\n---\n\n> A heading in a blockquote\n> ---"
+            "raw": "> A heading in a blockquote\n> ---"
         }
     ],
     "loc": {
