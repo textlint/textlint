@@ -17,9 +17,9 @@
   },
   "license": "MIT",
   "author": "azu",
-  "main": "lib/index.js",
-  "module": "./module/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "module": "module/src/index.js",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "example": "example",
     "test": "test"
@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo tsconfig.module.tsbuildinfo",
+    "clean": "rimraf lib/ module/",
     "crlf": "eolConverter crlf test/snapshots/crlf/input.txt && eolConverter crlf test/snapshots/crlf-empty-line/input.txt",
     "prepublish": "npm run --if-present build",
     "pretest": "npm run crlf",

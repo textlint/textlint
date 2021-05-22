@@ -18,8 +18,8 @@
   },
   "license": "MIT",
   "author": "azu",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo",
+    "clean": "rimraf lib/ module/",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepublish": "npm run --if-present build",
     "test": "tsc -b test",

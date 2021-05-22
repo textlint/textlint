@@ -1,13 +1,12 @@
 {
-    "extends": "../tsconfig.json",
-    "compilerOptions": {
-        "rootDir": "../",
-        "composite": false,
-        "noEmit": true,
-        "allowJs": true
-    },
-    "include": [
-        "../src/**/*",
-        "./**/*"
-    ]
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": true,
+    "allowJs": true
+  },
+  "include": [
+    "../src/**/*",
+    "./**/*"
+  ]
 }

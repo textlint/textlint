@@ -4,7 +4,6 @@
     "noEmit": true,
     "allowJs": true,
     "declaration": false,
-    "sourceMap": true
   },
   "include": [
     "../src/**/*",

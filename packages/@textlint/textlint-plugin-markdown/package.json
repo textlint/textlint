@@ -17,9 +17,9 @@
   },
   "license": "MIT",
   "author": "azu",
-  "type": "lib/index.d.ts",
-  "main": "lib/index.js",
-  "module": "./module/index.js",
+  "types": "lib/src/index.d.ts",
+  "main": "lib/src/index.js",
+  "module": "module/src/index.js",
   "directories": {
     "test": "test"
   },
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/ tsconfig.tsbuildinfo tsconfig.module.tsbuildinfo",
+    "clean": "rimraf lib/ module/",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -b --watch"
