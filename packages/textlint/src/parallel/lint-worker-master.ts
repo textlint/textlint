@@ -52,7 +52,7 @@ export const lintParallel = <T extends "lint" | "fix">(
     debug("Worker concurrency: %s, chunk size: %s, target files", concurrency, chunkSize, targetFiles.length);
     for (let i = 0; i < targetFiles.length; i += chunkSize) {
         promises.push(
-            new Promise((resolve, reject) => {
+            new Promise<void | any>((resolve, reject) => {
                 const workerData: LintWorkerData = {
                     config: options.config,
                     type: options.type,
@@ -69,7 +69,7 @@ export const lintParallel = <T extends "lint" | "fix">(
                     if (exitCode) {
                         reject(new Error(`Worker(${worker.threadId}) stopped with exit code ${exitCode}`));
                     } else {
-                        resolve();
+                        resolve(undefined); // it will be flatten
                     }
                 });
             })
