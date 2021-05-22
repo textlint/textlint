@@ -16,3 +16,4 @@ const report: TextlintRuleReporter = function (context) {
     };
 };
 export default report;
+async - test.ts;

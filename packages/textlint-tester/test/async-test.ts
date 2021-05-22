@@ -12,7 +12,7 @@ const report: TextlintRuleReporter = (context) => {
             throw new Error("DO NOT CALL");
         },
         [Syntax.Document](node) {
-            return new Promise((resolve) => {
+            return new Promise<void>((resolve) => {
                 setTimeout(() => {
                     report(node, new RuleError("error"));
                     resolve();
