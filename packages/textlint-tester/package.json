@@ -32,7 +32,7 @@
     "build": "tsc -b",
     "clean": "rimraf lib/ out/",
     "prepublish": "npm run --if-present build",
-    "test": "mocha \"test/**/*.{js,ts}\"",
+    "test": "mocha \"test/**/*-test.{js,ts}\"",
     "watch": "tsc -b --watch"
   },
   "dependencies": {

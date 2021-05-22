@@ -1,11 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-
 import * as fs from "fs";
-
 import * as path from "path";
-
 import { TextLintCore } from "textlint";
 import { testInvalid } from "../src/test-util";
 
