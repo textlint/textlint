@@ -16,9 +16,14 @@ describe("@textlint/ast-tester", function () {
             assert.ok(isTxtAST(AST));
         });
     });
-
     context("when invalid case", function () {
-        it("should not throw", function () {
+        it("should throw with details", () => {
+            const AST = require("./fixtures/invalid-ast.json");
+            assert.throws(() => {
+                test(AST);
+            }, /invalid range/);
+        });
+        it("should  throw", function () {
             assert.throws(function () {
                 test({
                     type: "string"

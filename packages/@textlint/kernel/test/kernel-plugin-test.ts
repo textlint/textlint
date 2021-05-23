@@ -139,6 +139,24 @@ describe("kernel-plugin", () => {
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
             });
         });
+        it("preProcess[ can return {text, ast} --fix", () => {
+            const kernel = new TextlintKernel();
+            const dummyText = "dummy text";
+            const { plugin, getPreProcessArgs } = createBinaryPluginStub({
+                dummyText
+            });
+            const options = {
+                filePath: path.join(__dirname, "fixtures/binary/a.out"),
+                ext: ".out",
+                plugins: [{ pluginId: "example", plugin: plugin }],
+                rules: [{ ruleId: "error", rule: errorRule }]
+            };
+            const text = "text";
+            return kernel.fixText(text, options).then((_result) => {
+                assert.strictEqual(getPreProcessArgs().text, dummyText);
+                assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+            });
+        });
     });
     describe("#postProcess", () => {
         it("preProcess should be called with messages and filePath", () => {
