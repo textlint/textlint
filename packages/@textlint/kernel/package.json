@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@textlint/ast-node-types": "^12.0.0-beta.1",
+    "@textlint/ast-tester": "^12.0.0-beta.1",
     "@textlint/ast-traverse": "^12.0.0-beta.1",
     "@textlint/feature-flag": "^12.0.0-beta.1",
     "@textlint/source-code-fixer": "^12.0.0-beta.1",

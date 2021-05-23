@@ -14,8 +14,10 @@ import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textl
 import type { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
-import _debug from "debug";
 import { isPluginParsedObject } from "./util/isPluginParsedObject";
+import { coreFlags } from "@textlint/feature-flag";
+import { isTxtAST } from "@textlint/ast-tester";
+import _debug from "debug";
 
 const debug = _debug("textlint:kernel");
 
@@ -147,6 +149,16 @@ export class TextlintKernel {
         const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
         assert.ok(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
         assert.ok(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
+        if (coreFlags.runningTester) {
+            assert.ok(
+                isTxtAST(ast),
+                `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
+            
+You can check the validation result with "DEBUG=textlint*" env
+
+See https://textlint.github.io/docs/plugin.html`
+            );
+        }
         const sourceCode = new TextlintSourceCodeImpl({
             text: textForAST,
             ast,
@@ -206,6 +218,16 @@ export class TextlintKernel {
         const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
         assert.ok(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
         assert.ok(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
+        if (coreFlags.runningTester) {
+            assert.ok(
+                isTxtAST(ast),
+                `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
+            
+You can check the validation result with "DEBUG=textlint*" env
+
+See https://textlint.github.io/docs/plugin.html`
+            );
+        }
         const sourceCode = new TextlintSourceCodeImpl({
             text: textForAST,
             ast,
