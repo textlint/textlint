@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "textlint-scripts build",
+    "test": "textlint-scripts test"
+  },
+  "dependencies": {
+    "prh": "^5.4.4"
+  },
+  "devDependencies": {
+    "textlint-scripts": "file:../"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "directories": {
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "register.js",
+    "register-ts.js",
+    "bin/",
+    "scripts/",
+    "configs/"
+  ],
+  "name": "textlint-scripts",
+  "version": "3.0.0",
+  "description": "textlint scripts help you to create textlint rule.",
+  "bin": {
+    "textlint-scripts": "./bin/cmd.js"
+  },
+  "scripts": {
+    "test": "node test/test-example.js",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
+  },
+  "keywords": [
+    "textlint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/textlint/textlint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/textlint/textlint/issues"
+  },
+  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts",
+  "devDependencies": {
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.2.1",
+    "shelljs": "^0.8.4"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/register": "^7.13.16",
+    "babel-plugin-static-fs": "^3.0.0",
+    "confirmer": "^1.1.2",
+    "cross-spawn": "^7.0.3",
+    "mocha": "^8.4.0",
+    "pkg-to-readme": "^1.1.0",
+    "textlint-tester": "^5.3.5"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4,
+    "trailingComma": "none"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write"
+    ]
+  }
+}

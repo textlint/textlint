@@ -1,0 +1,45 @@
+# <%= name %>
+
+<%= description %>
+
+## Install
+
+Install with [npm](https://www.npmjs.com/):
+
+    npm install <%= name %>
+
+## Usage
+
+Via `.textlintrc`(Recommended)
+
+```json
+{
+    "rules": {
+        "<%= name.replace("textlint-rule-", "") %>": true
+    }
+}
+```
+
+Via CLI
+
+```
+textlint --rule <%= name.replace("textlint-rule-", "") %> README.md
+```
+
+### Build
+
+Builds source codes for publish to the `lib` folder.
+You can write ES2015+ source codes in `src/` folder.
+
+    npm run build
+
+### Tests
+
+Run test code in `test` folder.
+Test textlint rule by [textlint-tester](https://github.com/textlint/textlint-tester).
+
+    npm test
+
+## License
+
+<%= license || licenses.join(', ') %> © <%= author.name %>
