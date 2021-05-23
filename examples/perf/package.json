@@ -21,6 +21,7 @@
     "bin/",
     "lib/",
     "module/",
-    "src/"
+    "src/",
+    "!*.tsbuildinfo"
   ]
 }
