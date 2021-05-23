@@ -14,8 +14,8 @@ import { TextlintKernelConstructorOptions, TextlintKernelOptions } from "./textl
 import type { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
-import { isTxtAST } from "@textlint/ast-tester";
 import _debug from "debug";
+import { isPluginParsedObject } from "./util/isPluginParsedObject";
 
 const debug = _debug("textlint:kernel");
 
@@ -138,12 +138,15 @@ export class TextlintKernel {
         const { preProcess, postProcess } = processor.processor(ext);
         assert.ok(
             typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implements {preProcess, postProcess}"
+            `${plugin.id} processor should implements {preProcess, postProcess}`
         );
         const preProcessResult = preProcess(text, filePath);
-        const isPluginReturnAnAST = isTxtAST(preProcessResult);
-        const textForAST = isPluginReturnAnAST ? text : preProcessResult.text;
-        const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
+        // { text, ast } or ast
+        const isParsedObject = isPluginParsedObject(preProcessResult);
+        const textForAST = isParsedObject ? preProcessResult.text : text;
+        const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
+        assert.ok(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
+        assert.ok(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
         const sourceCode = new TextlintSourceCodeImpl({
             text: textForAST,
             ast,
@@ -194,12 +197,15 @@ export class TextlintKernel {
         const { preProcess, postProcess } = processor.processor(ext);
         assert.ok(
             typeof preProcess === "function" && typeof postProcess === "function",
-            "processor should implements {preProcess, postProcess}"
+            `${plugin.id} processor should implements {preProcess, postProcess}`
         );
         const preProcessResult = preProcess(text, filePath);
-        const isPluginReturnAnAST = isTxtAST(preProcessResult);
-        const textForAST = isPluginReturnAnAST ? text : preProcessResult.text;
-        const ast = isPluginReturnAnAST ? preProcessResult : preProcessResult.ast;
+        // { text, ast } or ast
+        const isParsedObject = isPluginParsedObject(preProcessResult);
+        const textForAST = isParsedObject ? preProcessResult.text : text;
+        const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
+        assert.ok(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
+        assert.ok(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
         const sourceCode = new TextlintSourceCodeImpl({
             text: textForAST,
             ast,

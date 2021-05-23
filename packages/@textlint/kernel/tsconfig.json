@@ -15,22 +15,19 @@
       "path": "../ast-node-types"
     },
     {
-      "path": "../ast-tester"
-    },
-    {
       "path": "../ast-traverse"
     },
     {
       "path": "../feature-flag"
     },
     {
+      "path": "../source-code-fixer"
+    },
+    {
       "path": "../types"
     },
     {
       "path": "../utils"
-    },
-    {
-      "path": "../source-code-fixer"
     },
     {
       "path": "../markdown-to-ast"
