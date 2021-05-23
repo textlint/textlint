@@ -62,7 +62,7 @@ export default class TextProcessor {
 }
 ```
 
-`Processor` class should implement these method.
+`Processor` class should implement these methods.
 
 ### `availableExtensions(): string[]`
 
@@ -83,17 +83,84 @@ you should implement `availableExtensions()` method as instance method.
 `preProcess` method should return `TxtParentNode` object or `{ text: string, ast: TxtParentNode }` object.
 `TxtParentNode` object is an Abstract Syntax Tree (AST) of the text.
 
-:information_source: For more details about `TxtParentNode`, see [TxtAST interface documents](txtnode.md).
+You should check the AST using [@textlint/ast-tester](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester "@textlint/ast-tester").
+
+- [textlint/@textlint/ast-tester: Compliance tests for textlint's AST](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester)
+
+```js
+import { test, isTextlintAST } from "@textlint/ast-tester";
+// your implement
+import yourParse from "your-parser";
+// recommenced: test much pattern test
+const AST = yourParse("This is text");
+
+// Validate AST
+test(AST); // if the AST is invalid, then throw Error
+
+isTextlintAST(AST); // true or false
+```
+
+If you want know `TxtParentNode`, see [TxtAST interface documents](txtnode.md).
+
+##### text format
 
 > Target file(text format) -> AST(by your plugin) for Target file
 
 If your plugin handle text format, you can just return a `TxtParentNode` object.
 
+```js
+class ExampleProcessor {
+    availableExtensions() {
+        return [".example"];
+    }
+
+    processor() {
+        return {
+            preProcess() {
+                return AST_OBJECT;
+            },
+            postProcess(messages, filePath) {
+                return {
+                    filePath: filePath ?? "<example>",
+                    messages
+                };
+            }
+        };
+    }
+}
+```
+
+##### binary format
+
 > Target file(binary format) -> Intermediate text(by your plugin) -> AST(by your plugin) for Intermediate text
 
 If your plugin handle intermediate text, you should return a `{ text: string, ast: TxtParentNode }` object.
+textlint can not handle a binary format, and your plugin should return intermediate text for your AST.
 
-textlint can not handle binary format and your plugin should return intermediate text for your AST.
+```js
+class BinaryExampleProcessor {
+    availableExtensions() {
+        return [".binary-example"];
+    }
+
+    processor() {
+        return {
+            preProcess() {
+                return {
+                    text: PASUDUE_TEXT,
+                    ast: AST_OBJECT
+                };
+            },
+            postProcess(messages, filePath) {
+                return {
+                    filePath: filePath ?? "<example>",
+                    messages
+                };
+            }
+        };
+    }
+}
+```
 
 For more details, see <https://github.com/textlint/textlint/issues/649>
 

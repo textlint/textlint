@@ -154,7 +154,9 @@ export class TextlintKernel {
                 isTxtAST(ast),
                 `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
             
-You can check the validation result, using textlint --debug flag.`
+You can check the validation result with "DEBUG=textlint*" env
+
+See https://textlint.github.io/docs/plugin.html`
             );
         }
         const sourceCode = new TextlintSourceCodeImpl({
@@ -221,7 +223,9 @@ You can check the validation result, using textlint --debug flag.`
                 isTxtAST(ast),
                 `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
             
-You can check the validation result, using textlint --debug flag.`
+You can check the validation result with "DEBUG=textlint*" env
+
+See https://textlint.github.io/docs/plugin.html`
             );
         }
         const sourceCode = new TextlintSourceCodeImpl({
