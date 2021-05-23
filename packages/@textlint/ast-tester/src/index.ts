@@ -173,7 +173,7 @@ export function test(node: any) {
             typeof index,
             "number",
             createMessage({
-                message: `invalid index: index >= 0`,
+                message: `invalid index: index should be number`,
                 node
             })
         );
