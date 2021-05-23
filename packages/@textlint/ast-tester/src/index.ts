@@ -188,7 +188,7 @@ export function test(node: any) {
     assert.ok(
         range[0] <= range[1],
         createMessage({
-            message: `invalid range: range[0] <= range[1]`,
+            message: `invalid range: range[0] should be less than range[1]`,
             node
         })
     );
