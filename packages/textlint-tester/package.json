@@ -17,7 +17,8 @@
     "bin/",
     "lib/",
     "module/",
-    "src/"
+    "src/",
+    "!*.tsbuildinfo"
   ],
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
