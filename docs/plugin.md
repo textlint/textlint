@@ -100,7 +100,7 @@ test(AST); // if the AST is invalid, then throw Error
 isTextlintAST(AST); // true or false
 ```
 
-If you want know `TxtParentNode`, see [TxtAST interface documents](txtnode.md).
+If you want to know `TxtParentNode`, see [TxtAST interface documents](txtnode.md).
 
 ##### text format
 
