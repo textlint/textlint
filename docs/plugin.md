@@ -135,6 +135,7 @@ class ExampleProcessor {
 > Target file(binary format) -> Intermediate text(by your plugin) -> AST(by your plugin) for Intermediate text
 
 If your plugin handle intermediate text, you should return a `{ text: string, ast: TxtParentNode }` object.
+
 textlint can not handle a binary format, and your plugin should return intermediate text for your AST.
 
 ```js
