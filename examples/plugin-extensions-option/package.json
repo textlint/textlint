@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-plugin-extensions-option",
-  "version": "12.0.0-beta.0",
+  "version": "12.0.0-beta.1",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "expected-exit-status": "^1.0.2",
-    "textlint": "^12.0.0-beta.0",
+    "textlint": "^12.0.0-beta.1",
     "textlint-rule-no-todo": "^2.0.1"
   },
   "files": [
