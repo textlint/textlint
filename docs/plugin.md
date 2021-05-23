@@ -121,7 +121,7 @@ class ExampleProcessor {
             },
             postProcess(messages, filePath) {
                 return {
-                    filePath: filePath ?? "<example>",
+                    filePath: filePath || "<example>",
                     messages
                 };
             }
@@ -153,7 +153,7 @@ class BinaryExampleProcessor {
             },
             postProcess(messages, filePath) {
                 return {
-                    filePath: filePath ?? "<example>",
+                    filePath: filePath || "<example>",
                     messages
                 };
             }
