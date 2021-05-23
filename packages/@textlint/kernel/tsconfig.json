@@ -15,6 +15,9 @@
       "path": "../ast-node-types"
     },
     {
+      "path": "../ast-tester"
+    },
+    {
       "path": "../ast-traverse"
     },
     {

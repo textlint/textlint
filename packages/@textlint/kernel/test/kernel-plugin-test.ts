@@ -1,10 +1,13 @@
 import { createPluginStub } from "./helper/ExamplePlugin";
 import { errorRule } from "./helper/ErrorRule";
-import { TextlintKernel } from "../src";
+import { TextlintKernel, TextlintPluginCreator } from "../src";
 import * as path from "path";
 import * as assert from "assert";
 import { createBinaryPluginStub } from "./helper/BinaryPlugin";
 import type { TextlintRuleReporter } from "@textlint/types";
+import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
+import { TxtNode } from "@textlint/ast-node-types";
+import { coreFlags, resetFlags } from "@textlint/feature-flag";
 
 describe("kernel-plugin", () => {
     describe("binary plugin", () => {
@@ -139,7 +142,7 @@ describe("kernel-plugin", () => {
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
             });
         });
-        it("preProcess[ can return {text, ast} --fix", () => {
+        it("preProcess can return {text, ast} --fix", () => {
             const kernel = new TextlintKernel();
             const dummyText = "dummy text";
             const { plugin, getPreProcessArgs } = createBinaryPluginStub({
@@ -156,6 +159,55 @@ describe("kernel-plugin", () => {
                 assert.strictEqual(getPreProcessArgs().text, dummyText);
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
             });
+        });
+        it("should throw error when preProcess invalid AST and runningTesting mode", () => {
+            coreFlags.runningTester = true;
+            const kernel = new TextlintKernel();
+
+            class InvalidASTProcessor {
+                availableExtensions() {
+                    return [".out"];
+                }
+
+                processor() {
+                    return {
+                        preProcess() {
+                            // THIS IS FOR TESTING
+                            return {
+                                invalid: "THIS IS NOT TxtAST"
+                            } as any as TxtNode;
+                        },
+                        postProcess(messages: Array<any>, filePath?: string) {
+                            return {
+                                filePath: filePath ?? "<invalid>",
+                                messages
+                            };
+                        }
+                    };
+                }
+            }
+
+            const InvalidPlugin: TextlintPluginCreator = {
+                Processor: InvalidASTProcessor
+            };
+            const options: TextlintKernelOptions = {
+                filePath: path.join(__dirname, "fixtures/binary/a.out"),
+                ext: ".out",
+                plugins: [
+                    {
+                        pluginId: "example",
+                        plugin: InvalidPlugin
+                    }
+                ],
+                rules: [{ ruleId: "error", rule: errorRule }]
+            };
+            return assert
+                .rejects(() => {
+                    return kernel.fixText("text", options);
+                }, /invalid AST/)
+                .finally(() => {
+                    resetFlags();
+                });
         });
     });
     describe("#postProcess", () => {
