@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-config-in-package-json",
-  "version": "12.0.0-beta.2",
+  "version": "12.0.0-beta.3",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "textlint": "textlint -f pretty-error README.md"
   },
   "devDependencies": {
-    "textlint": "^12.0.0-beta.2",
+    "textlint": "^12.0.0-beta.3",
     "textlint-rule-no-todo": "^2.0.1"
   },
   "textlint": {
