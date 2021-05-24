@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/textlint/textlint/compare/v12.0.0-beta.1...v12.0.0) (2021-05-24)
+
+
+### Features
+
+* **ast-tester:** improve error message ([#783](https://github.com/textlint/textlint/issues/783)) ([e1062c2](https://github.com/textlint/textlint/commit/e1062c2d2a491b808f5c25daec98942acbc41f43))
+
+
+
+
+
 ## [2.3.5](https://github.com/textlint/textlint/compare/@textlint/ast-tester@2.3.4...@textlint/ast-tester@2.3.5) (2021-05-08)
 
 **Note:** Version bump only for package @textlint/ast-tester
