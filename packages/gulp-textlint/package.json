@@ -12,7 +12,8 @@
     "bin/",
     "lib/",
     "module/",
-    "src/"
+    "src/",
+    "!*.tsbuildinfo"
   ],
   "main": "index.js",
   "repository": {

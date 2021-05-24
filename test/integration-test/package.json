@@ -16,7 +16,8 @@
     "bin/",
     "lib/",
     "module/",
-    "src/"
+    "src/",
+    "!*.tsbuildinfo"
   ],
   "main": "./run_test.js",
   "directories": {

@@ -27,7 +27,8 @@
   "files": [
     "bin/",
     "lib/",
-    "src/"
+    "src/",
+    "!*.tsbuildinfo"
   ],
   "scripts": {
     "build": "tsc -b",
