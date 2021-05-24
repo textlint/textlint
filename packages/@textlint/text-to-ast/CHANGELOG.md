@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/textlint/textlint/compare/v12.0.0-beta.1...v12.0.0) (2021-05-24)
+
+**Note:** Version bump only for package @textlint/text-to-ast
+
+
+
+
+
 ## [3.3.5](https://github.com/textlint/textlint/compare/@textlint/text-to-ast@3.3.4...@textlint/text-to-ast@3.3.5) (2021-05-08)
 
 
