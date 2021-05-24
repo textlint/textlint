@@ -5,15 +5,15 @@ const exampleDir = path.join(__dirname, "../example");
 const exampleTsDir = path.join(__dirname, "../example-ts");
 
 const exec = (command) => {
-    // eslint-ignore-next-line
-    console.log(command);
+    // eslint-disable-next-line no-console
+    console.log(`$ ${command}`);
     if (shell.exec(command).code !== 0) {
         shell.exit(1);
     }
 };
 const cd = (command) => {
-    // eslint-ignore-next-line
-    console.log(command);
+    // eslint-disable-next-line no-console
+    console.log(`$ ${command}`);
     if (shell.cd(exampleDir).code !== 0) {
         shell.exit(1);
     }
