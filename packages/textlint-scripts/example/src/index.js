@@ -1,9 +1,5 @@
-"use strict";
-import mod from "./module";
-
-const path = require("path");
-const common = require("./common");
-module.exports = function (context, options = {}) {
+import common from "./common";
+export default function (context, options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
@@ -33,4 +29,4 @@ module.exports = function (context, options = {}) {
             }
         }
     };
-};
+}
