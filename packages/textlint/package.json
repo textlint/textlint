@@ -64,7 +64,6 @@
     "glob": "^7.1.7",
     "is-file": "^1.0.0",
     "log-symbols": "^1.0.2",
-    "map-like": "^2.0.0",
     "md5": "^2.3.0",
     "mkdirp": "^0.5.0",
     "optionator": "^0.9.1",

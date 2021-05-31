@@ -1,11 +1,10 @@
 // LICENSE : MIT
 "use strict";
-import { MapLike } from "map-like";
 
 /**
  * @typedef {{key: Function}} RulesObject
  */
-export class RuleMap extends MapLike<string, Function> {
+export class RuleMap extends Map<string, Function> {
     /**
      * has rule at least one > 0
      * @returns {boolean}
