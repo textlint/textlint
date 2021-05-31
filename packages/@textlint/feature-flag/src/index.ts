@@ -1,8 +1,7 @@
 // MIT © 2017 azu
 "use strict";
-import { MapLike } from "map-like";
 
-const flagMap = new MapLike<string, boolean>();
+const flagMap = new Map<string, boolean>();
 /**
  * IT IS FOR TESTING
  */

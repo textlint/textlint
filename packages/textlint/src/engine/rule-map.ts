@@ -1,17 +1,16 @@
 // LICENSE : MIT
 "use strict";
-import { MapLike } from "map-like";
 
 /**
  * @typedef {{key: Function}} RulesObject
  */
-export class RuleMap extends MapLike<string, Function> {
+export class RuleMap extends Map<string, Function> {
     /**
      * has rule at least one > 0
      * @returns {boolean}
      */
     hasRuleAtLeastOne() {
-        return this.keys().length > 0;
+        return this.size > 0;
     }
 
     getAllRuleNames() {
@@ -37,7 +36,7 @@ export class RuleMap extends MapLike<string, Function> {
      * @param {string} ruleKey
      * @param ruleHandler
      */
-    defineRule(ruleKey: string, ruleHandler: Function | undefined) {
+    defineRule(ruleKey: string, ruleHandler: Function) {
         this.set(ruleKey, ruleHandler);
     }
 
