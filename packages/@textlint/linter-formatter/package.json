@@ -50,7 +50,7 @@
     "xml-escape": "^1.1.0"
   },
   "devDependencies": {
-    "@types/mocha": "^8.2.2",
+    "@types/mocha": "^8.2.3",
     "@types/node": "^14.17.4",
     "chai": "^4.3.4",
     "cross-env": "^7.0.3",
