@@ -13,7 +13,7 @@ import { FormatterOptions } from "../FormatterOptions";
 //------------------------------------------------------------------------------
 
 const chalk = require("chalk");
-const table = require("table").default;
+import { table } from "table";
 const pluralize = require("pluralize");
 const stripAnsi = require("strip-ansi");
 //------------------------------------------------------------------------------
