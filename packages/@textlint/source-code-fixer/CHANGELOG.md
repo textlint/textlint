@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.2](https://github.com/textlint/textlint/compare/v12.0.1...v12.0.2) (2021-07-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency debug to ^4.3.2 ([8cb5498](https://github.com/textlint/textlint/commit/8cb54988199209b820149c32aa3a6d0367689c4d))
+
+
+
+
+
 # [12.0.0](https://github.com/textlint/textlint/compare/v12.0.0-beta.1...v12.0.0) (2021-05-24)
 
 **Note:** Version bump only for package @textlint/source-code-fixer

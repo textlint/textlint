@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-config-file",
-  "version": "12.0.0",
+  "version": "12.0.2",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "textlint": "textlint -f pretty-error README.md"
   },
   "devDependencies": {
-    "textlint": "^12.0.0",
+    "textlint": "^12.0.2",
     "textlint-rule-no-todo": "^2.0.1"
   },
   "files": [
