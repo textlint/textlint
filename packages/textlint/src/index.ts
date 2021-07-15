@@ -26,3 +26,6 @@ export { TextFixEngine } from "./textfix-engine";
 
 // Core API for linting a **single** text or file.
 export { TextLintCore } from "./textlint-core";
+
+// Config API for loading textlint config
+export { Config } from "./config/config";
