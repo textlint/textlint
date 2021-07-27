@@ -34,6 +34,12 @@ const users = [
         image: "/img/soracom.png",
         infoLink: "https://soracom.jp",
         pinned: true
+    },
+    {
+        caption: "校正さん",
+        image: "https://kohsei-san.b-hood.site/favicon.png",
+        infoLink: "https://kohsei-san.b-hood.site/lp/",
+        pinned: true
     }
 ];
 
