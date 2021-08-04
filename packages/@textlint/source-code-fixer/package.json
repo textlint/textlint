@@ -52,7 +52,7 @@
   "devDependencies": {
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.6.2",
     "@types/mocha": "^8.2.3",
-    "@types/node": "^14.17.7",
+    "@types/node": "^14.17.9",
     "mocha": "^8.4.0",
     "prettier": "^2.3.0",
     "rimraf": "^3.0.2",
