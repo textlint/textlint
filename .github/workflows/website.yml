@@ -19,7 +19,9 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
       - name: Build
-        run: yarn run bootstrap --scope textlint-website
+        run: |
+          yarn run bootstrap --scope textlint-website
+          yarn run website
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
