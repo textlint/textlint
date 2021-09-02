@@ -19,10 +19,10 @@
   resolved "https://registry.yarnpkg.com/@azu/travis-scripts/-/travis-scripts-3.0.3.tgz#789bbf1013a89f1b5cff6d9d0727d74d803cd889"
   integrity sha512-nyqoZ52PLdpYkBpmg+YroQ3q6Qi9njQup+bHqNSBEtR5qhK0UYWL+3NlqsvHV2Ve4zynSUq7AonciTx1XyMiAw==
 
-"@babel/cli@^7.14.8":
-  version "7.14.8"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.14.8.tgz#fac73c0e2328a8af9fd3560c06b096bfa3730933"
-  integrity sha512-lcy6Lymft9Rpfqmrqdd4oTDdUx9ZwaAhAfywVrHG4771Pa6PPT0danJ1kDHBXYqh4HHSmIdA+nlmfxfxSDPtBg==
+"@babel/cli@^7.15.4":
+  version "7.15.4"
+  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.15.4.tgz#00e21e192b738dec7900c8bb36270e377217c0a4"
+  integrity sha512-9RhhQ7tgKRcSO/jI3rNLxalLSk30cHqeM8bb+nGOJTyYBDpkoXw/A9QHZ2SYjlslAt4tr90pZQGIEobwWHSIDw==
   dependencies:
     commander "^4.0.1"
     convert-source-map "^1.1.0"
