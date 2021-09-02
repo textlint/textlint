@@ -40,8 +40,8 @@
   },
   "dependencies": {
     "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/core": "^7.15.4",
+    "@babel/preset-env": "^7.15.4",
     "@babel/preset-typescript": "^7.15.0",
     "@babel/register": "^7.15.3",
     "babel-plugin-static-fs": "^3.0.0",
