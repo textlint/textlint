@@ -141,7 +141,7 @@ We are migrating entire codes to TypeScript.
 
 ##### Linting and Style
 
-This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Prettier](https://prettier.io/) for code formatter. We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [`husky`](https://www.npmjs.com/package/husky) to make coding style consistent before commit, but if you have your own [Git hooks](https://git-scm.com/book/gr/v2/Customizing-Git-Git-Hooks) locally, these setup doesn't work. In such case, please run ESLint and Prettier manually as below after making changes.
+This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Prettier](https://prettier.io/) for code formatter. We use [`lint-staged`](https://www.npmjs.com/package/lint-staged) and [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) to make coding style consistent before commit, but if you have your own Git hooks locally, these setup doesn't work. In such case, please run ESLint and Prettier manually as below after making changes.
 
 - Run ESLint:
 
@@ -158,7 +158,7 @@ This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Pr
 - Run Prettier to reformat code:
 
     ```sh
-    $ yarn prettier
+    $ yarn format
     ```
 
 ##### Commit Message Format
