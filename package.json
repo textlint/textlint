@@ -63,11 +63,5 @@
     "packages/@textlint/*",
     "test/integration-test",
     "website"
-  ],
-  "husky": {
-    "hooks": {
-      "post-commit": "git reset",
-      "pre-commit": "lint-staged"
-    }
-  }
+  ]
 }
