@@ -61,7 +61,7 @@
     "deep-equal": "^1.1.1",
     "file-entry-cache": "^5.0.1",
     "get-stdin": "^5.0.1",
-    "glob": "^7.1.7",
+    "glob": "^7.2.0",
     "is-file": "^1.0.0",
     "log-symbols": "^1.0.2",
     "md5": "^2.3.0",
