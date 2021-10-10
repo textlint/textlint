@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts",
   "devDependencies": {
-    "lint-staged": "^11.2.2",
+    "lint-staged": "^11.2.3",
     "prettier": "^2.2.1",
     "shelljs": "^0.8.4"
   },
