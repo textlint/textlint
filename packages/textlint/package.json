@@ -77,7 +77,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^8.2.3",
-    "@types/node": "^14.17.26",
+    "@types/node": "^14.17.27",
     "clone": "^2.1.2",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
