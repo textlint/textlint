@@ -1,0 +1,62 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "references": [
+    {
+      "path": "packages/textlint"
+    },
+    {
+      "path": "packages/textlint-tester"
+    },
+    {
+      "path": "examples/use-as-ts-module"
+    },
+    {
+      "path": "packages/@textlint/ast-node-types"
+    },
+    {
+      "path": "packages/@textlint/ast-tester"
+    },
+    {
+      "path": "packages/@textlint/ast-traverse"
+    },
+    {
+      "path": "packages/@textlint/feature-flag"
+    },
+    {
+      "path": "packages/@textlint/fixer-formatter"
+    },
+    {
+      "path": "packages/@textlint/kernel"
+    },
+    {
+      "path": "packages/@textlint/linter-formatter"
+    },
+    {
+      "path": "packages/@textlint/markdown-to-ast"
+    },
+    {
+      "path": "packages/@textlint/module-interop"
+    },
+    {
+      "path": "packages/@textlint/source-code-fixer"
+    },
+    {
+      "path": "packages/@textlint/text-to-ast"
+    },
+    {
+      "path": "packages/@textlint/textlint-plugin-markdown"
+    },
+    {
+      "path": "packages/@textlint/textlint-plugin-text"
+    },
+    {
+      "path": "packages/@textlint/types"
+    },
+    {
+      "path": "packages/@textlint/utils"
+    }
+  ]
+}

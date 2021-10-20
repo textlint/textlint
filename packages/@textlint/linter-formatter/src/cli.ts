@@ -56,7 +56,7 @@ module.exports = function run(argv: string[], text: string) {
         try {
             jsonContent = JSON.parse(content);
         } catch (error) {
-            return new Error("Content should be json. " + error.message);
+            return new Error("Content should be json. " + String(error));
         }
         if (options.formatter) {
             format = createFormatter({

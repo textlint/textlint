@@ -26,16 +26,17 @@
     "test:examples": "lerna run test:ci --scope textlint-example-*",
     "test:integration": "lerna run test --scope integration-test",
     "test:packages": "lerna run test --ignore integration-test --ignore textlint-example-* --ignore textlint-script-* --ignore textlint-website",
-    "test:projectReferences": "workspaces-to-typescript-project-references --check",
-    "update:projectReferences": "workspaces-to-typescript-project-references",
+    "test:projectReferences": "workspaces-to-typescript-project-references --includesRoot --check",
+    "update:projectReferences": "workspaces-to-typescript-project-references --includesRoot ",
+    "type-check": "tsc -b .",
     "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks"
   },
   "devDependencies": {
     "@azu/travis-scripts": "^3.0.3",
-    "@monorepo-utils/collect-changelog": "^2.4.4",
-    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.6.3",
+    "@monorepo-utils/collect-changelog": "^2.7.0",
+    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.9.0",
@@ -44,7 +45,8 @@
     "lerna": "^4.0.0",
     "lint-staged": "^11.2.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.0",
+    "typescript": "^4.4.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [

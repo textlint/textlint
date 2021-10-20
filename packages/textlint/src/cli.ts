@@ -86,7 +86,7 @@ export const cli = {
         try {
             currentOptions = options.parse(args);
         } catch (error) {
-            Logger.error(error.message);
+            Logger.error(error);
             return Promise.resolve(1);
         }
         const files = currentOptions._;
