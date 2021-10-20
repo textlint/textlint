@@ -2,11 +2,11 @@
 import common from "./common";
 import { TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
 
-const report: TextlintRuleReporter = function (context, options = {}) {
+const report: TextlintRuleReporter = function (context, _options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
-        async [Syntax.Code](node) {
+        async [Syntax.Code]() {
             return null;
         },
         [Syntax.Str](node) {

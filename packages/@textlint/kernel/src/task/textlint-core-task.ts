@@ -187,7 +187,9 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         try {
             return ruleCreator(ruleContext, ruleOptions);
         } catch (error) {
-            error.message = `Error while loading rule '${ruleContext.id}': ${error.message}`;
+            if (error instanceof Error) {
+                error.message = `Error while loading rule '${ruleContext.id}': ${error.message}`;
+            }
             throw error;
         }
     }
@@ -203,7 +205,9 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         try {
             return ruleCreator(ruleContext, ruleOptions);
         } catch (error) {
-            error.message = `Error while loading filter rule '${ruleContext.id}': ${error.message}`;
+            if (error instanceof Error) {
+                error.message = `Error while loading filter rule '${ruleContext.id}': ${error.message}`;
+            }
             throw error;
         }
     }
