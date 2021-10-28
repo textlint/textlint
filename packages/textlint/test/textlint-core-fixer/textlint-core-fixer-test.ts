@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
+import assert from "assert";
+import path from "path";
 import * as fs from "fs";
 import { TextLintCore } from "../../src/textlint-core";
 import ruleAdd from "./fixtures/fixer-rules/fixer-rule-add";
@@ -11,9 +11,11 @@ const inputFilePath = path.join(__dirname, "/fixtures/fixer-rules/input.md");
 const outputFilePath = path.join(__dirname, "/fixtures/fixer-rules/output.md");
 
 describe("textlint-fixer", function () {
+    let textlint: TextLintCore;
+
     context("#fixText", function () {
         it("should return text added and replaced", function () {
-            const textlint = new TextLintCore();
+            textlint = new TextLintCore();
             textlint.setupRules({ "fixer-rule-add": ruleAdd, "fixer-rule-replace": ruleReplace });
             return textlint.fixText("This is fix", ".md").then((result) => {
                 assert.ok(typeof result.output === "string");
@@ -27,7 +29,7 @@ describe("textlint-fixer", function () {
     });
     context("#fixFile", function () {
         it("should return text added and replaced", function () {
-            const textlint = new TextLintCore();
+            textlint = new TextLintCore();
             const rules = {
                 "fixer-rule-remove": ruleRemove,
                 "fixer-rule-replace": ruleReplace,
