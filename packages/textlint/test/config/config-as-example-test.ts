@@ -13,6 +13,7 @@ describe("config-as-example", function () {
         const matchedFileName = path.basename(textlintrcPath);
         const dirName = projectDir.split("/").pop();
         it(`test config: ${dirName}`, function () {
+            assert.ok(dirName != undefined);
             let config;
             try {
                 config = Config.initWithAutoLoading({

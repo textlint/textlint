@@ -77,6 +77,7 @@
   },
   "devDependencies": {
     "@types/clone": "^2.1.1",
+    "@types/glob": "^7.2.0",
     "@types/mocha": "^8.2.3",
     "@types/node": "^14.17.34",
     "clone": "^2.1.2",

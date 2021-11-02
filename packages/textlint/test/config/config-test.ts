@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
+import assert from "assert";
+import path from "path";
 import { Config } from "../../src/config/config";
 /*
     config file test reference to config-as-example.js
@@ -61,7 +61,7 @@ describe("config", function () {
                     configFile: "@textlint/textlint-config-example",
                     rulesBaseDirectory: baseDir
                 });
-                assert.ok(config.configFile === path.join(baseDir, "@textlint/textlint-config-example", "index.js"));
+                assert.ok(config.configFile === path.join(baseDir, "@textlint/textlint-config-example", "index.ts"));
             });
         });
     });
