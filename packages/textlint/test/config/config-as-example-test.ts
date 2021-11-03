@@ -5,6 +5,7 @@ import * as glob from "glob";
 import * as fs from "fs";
 import * as path from "path";
 import { Config } from "../../src/config/config";
+import { moduleInterop } from "@textlint/module-interop";
 /* load config from "./config/" and match expected result */
 describe("config-as-example", function () {
     const configList = glob.sync(path.join(__dirname, "/config-fixtures/*/{.textlintrc,package.json}"));
@@ -31,8 +32,10 @@ describe("config-as-example", function () {
             }
             const expectedPath = fs.existsSync(path.join(projectDir, "expect.json"))
                 ? path.join(projectDir, "expect.json")
-                : path.join(projectDir, "expect.js");
-            const expect = require(expectedPath);
+                : path.join(projectDir, "expect.ts");
+            const expect =
+                expectedPath.split(".").pop() == "json" ? require(expectedPath) : moduleInterop(require(expectedPath));
+            console.log(expect);
             const actual = config.toJSON();
             Object.keys(expect).forEach((key) => {
                 try {

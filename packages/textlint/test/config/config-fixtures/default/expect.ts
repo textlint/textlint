@@ -1,5 +1,6 @@
-const path = require("path");
-module.exports = {
+import path from "path";
+
+export default {
     disabledRules: [],
     plugins: [],
     rulePaths: [],
