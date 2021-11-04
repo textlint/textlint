@@ -9,7 +9,7 @@ import { loadFromDir } from "../../src/engine/rule-loader";
 import { Config } from "../../src/config/config";
 import { TextlintRuleContext, TextlintRuleOptions } from "@textlint/types";
 
-const rules = loadFromDir(path.join(__dirname, "fixtures/rules"), ".ts");
+const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
 describe("textlint-test", function () {
     beforeEach(function () {
         // This rule found `Str` Node then occur error
