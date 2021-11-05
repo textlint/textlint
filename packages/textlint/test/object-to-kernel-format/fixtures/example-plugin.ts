@@ -1,19 +1,23 @@
+import { TxtNode } from "@textlint/ast-node-types";
+import { TextlintPluginProcessorConstructor } from "@textlint/kernel";
+
 class ExampleProcessor {
     static availableExtensions() {
         return [".example"];
     }
 
-    constructor(options) {
-        this.options = options;
+    availableExtensions() {
+        return [".example"];
     }
 
-    processor(_extension) {
+    processor(_extension: string) {
         return {
-            preProcess(text, _filePath) {
+            preProcess(_text: string, _filePath: string): TxtNode {
                 return {
                     type: "Document",
                     children: [],
                     range: [0, 0],
+                    raw: "",
                     loc: {
                         start: {
                             line: 0,
@@ -26,7 +30,7 @@ class ExampleProcessor {
                     }
                 };
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: any[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath || "unknown"
@@ -36,6 +40,6 @@ class ExampleProcessor {
     }
 }
 
-module.exports = {
-    Processor: ExampleProcessor
+export default {
+    Processor: ExampleProcessor as TextlintPluginProcessorConstructor
 };

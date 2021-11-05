@@ -4,10 +4,10 @@ import {
     rulesObjectToKernelRule
 } from "../../src/util/object-to-kernel-format";
 import * as assert from "assert";
+import exampleRule from "./fixtures/example-rule";
+import exampleFilterRule from "./fixtures/example-filter-rule";
+import examplePlugin from "./fixtures/example-plugin";
 
-const exampleRule = require("./fixtures/example-rule.js");
-const exampleFilterRule = require("./fixtures/example-filter-rule.js");
-const examplePlugin = require("./fixtures/example-plugin.js");
 describe("object-to-kernel-format", () => {
     describe("rulesObjectToKernelRule", () => {
         it("should return kernel format with true", () => {
