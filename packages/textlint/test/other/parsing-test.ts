@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
+import assert from "assert";
+import path from "path";
 import { cli } from "../../src/";
+
 describe("parsing", function () {
     it("should lint all files without error", function () {
         const ruleDir = `--rulesdir ${path.join(__dirname, "fixtures/no-error-rules")}`;

@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
+import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 import { RuleHelper } from "textlint-rule-helper";
 /**
  * @param {RuleContext} context
  */
-export default function (context) {
+export default function (context: TextlintRuleContext): TextlintRuleReportHandler {
     const helper = new RuleHelper(context);
     const { Syntax, getSource, RuleError, report } = context;
     return {
