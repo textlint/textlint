@@ -2,15 +2,15 @@
 "use strict";
 class TestProcessor {
     static availableExtensions() {
-        return [".test1", ".test2", ".test3", ".test4"];
+        return [".test"];
     }
 
-    processor(ext) {
+    processor(_ext: string) {
         return {
-            preProcess(text, filePath) {
+            preProcess(text: string, _filePath: string) {
                 return text;
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: string, filePath: string) {
                 return {
                     messages,
                     filePath
@@ -19,6 +19,6 @@ class TestProcessor {
         };
     }
 }
-module.exports = {
+export default {
     Processor: TestProcessor
 };

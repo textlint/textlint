@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-module.exports = {
+export default {
     rules: {
         a() {}
     },

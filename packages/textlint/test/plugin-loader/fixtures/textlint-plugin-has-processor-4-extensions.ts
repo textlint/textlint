@@ -1,16 +1,17 @@
 // LICENSE : MIT
 "use strict";
+
 class TestProcessor {
     static availableExtensions() {
-        return [".test"];
+        return [".test1", ".test2", ".test3", ".test4"];
     }
 
-    processor(ext) {
+    processor(_ext: string) {
         return {
-            preProcess(text, filePath) {
+            preProcess(text: string, _filePath?: string) {
                 return text;
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: any[], filePath: string) {
                 return {
                     messages,
                     filePath
@@ -19,6 +20,6 @@ class TestProcessor {
         };
     }
 }
-module.exports = {
+export default {
     Processor: TestProcessor
 };

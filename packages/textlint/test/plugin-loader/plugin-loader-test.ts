@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
+import assert from "assert";
+import path from "path";
 import { loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
 import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
 
