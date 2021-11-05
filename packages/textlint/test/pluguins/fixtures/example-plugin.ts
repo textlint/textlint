@@ -1,16 +1,19 @@
+import { TxtNode } from "@textlint/ast-node-types";
+import { TextlintPluginCreator, TextlintPluginOptions } from "@textlint/types";
+
 // MIT © 2017 azu
 export class ExampleProcessor {
     static availableExtensions() {
         return [".example"];
     }
 
-    constructor(options) {
-        this.options = options;
+    availableExtensions() {
+        return [".example"];
     }
 
-    processor(_extension) {
+    processor(_extension: string) {
         return {
-            preProcess(text, _filePath) {
+            preProcess(_text: string, _filePath: string): TxtNode {
                 return {
                     type: "Document",
                     children: [],
@@ -29,7 +32,7 @@ export class ExampleProcessor {
                     }
                 };
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: any[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath || "unknown"
@@ -40,16 +43,16 @@ export class ExampleProcessor {
 }
 
 export const createPluginStub = () => {
-    let assignedOptions;
+    let assignedOptions: TextlintPluginOptions | undefined;
     return {
         getOptions() {
             return assignedOptions;
         },
-        get plugin() {
+        get plugin(): TextlintPluginCreator {
             return {
                 Processor: class MockProcessor extends ExampleProcessor {
-                    constructor(options) {
-                        super(options);
+                    constructor(options?: TextlintPluginOptions) {
+                        super();
                         assignedOptions = options;
                     }
                 }
