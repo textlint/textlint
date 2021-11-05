@@ -6,13 +6,9 @@ export class ExampleProcessor {
         return [".example"];
     }
 
-    constructor(options) {
-        this.options = options;
-    }
-
-    processor(_extension) {
+    processor(_extension: string) {
         return {
-            preProcess(text, _filePath) {
+            preProcess(_text: string, _filePath: string) {
                 return {
                     type: "Document",
                     children: [],
@@ -29,7 +25,7 @@ export class ExampleProcessor {
                     }
                 };
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: any[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath || "unknown"

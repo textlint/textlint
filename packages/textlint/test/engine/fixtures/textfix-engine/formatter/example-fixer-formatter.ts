@@ -1,9 +1,12 @@
 // LICENSE : MIT
 "use strict";
-module.exports = function (results) {
+
+import { TextlintFixResult } from "@textlint/types";
+
+module.exports = function (results: TextlintFixResult[]) {
     return `example-fixer-formatter\n${results
         .map(function (result) {
-            return result.applyingMessages.map(function (message) {
+            return result.applyingMessages.map(function (_message) {
                 return "xxx";
             });
         })

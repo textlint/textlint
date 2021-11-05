@@ -1,6 +1,7 @@
 // MIT © 2016 azu
 "use strict";
-const assert = require("assert");
+import { TextlintResult } from "@textlint/types";
+import assert from "assert";
 import { ExecuteFileBackerManager } from "../../src/engine/execute-file-backer-manager";
 import { AbstractBacker } from "../../src/engine/execute-file-backers/abstruct-backer";
 
@@ -8,7 +9,7 @@ describe("execute-file-backer-manager", function () {
     context("when no backer", function () {
         it("should process all files", function () {
             const manager = new ExecuteFileBackerManager();
-            const executeFile = (filePath) => {
+            const executeFile = (filePath: string) => {
                 return Promise.resolve({ filePath, messages: [] });
             };
             const files = ["/file1.md", "/file2.md"];
@@ -20,15 +21,15 @@ describe("execute-file-backer-manager", function () {
     context("when has backer", function () {
         it("call each backer lifecycle", function () {
             const manager = new ExecuteFileBackerManager();
-            const callStack = [];
+            const callStack: string[] = [];
 
             class ExampleBacker extends AbstractBacker {
-                shouldExecute({ filePath }) {
+                shouldExecute({ filePath }: { filePath: string }) {
                     callStack.push(`shouldExecute:${filePath}`);
                     return true;
                 }
 
-                didExecute({ result }) {
+                didExecute({ result }: { result: TextlintResult }) {
                     callStack.push(`didExecute:${result.filePath}`);
                 }
 
@@ -38,7 +39,7 @@ describe("execute-file-backer-manager", function () {
             }
 
             manager.add(new ExampleBacker());
-            const executeFile = (filePath) => {
+            const executeFile = (filePath: string) => {
                 return Promise.resolve({ filePath, messages: [] });
             };
             const files = ["/file1.md", "/file2.md"];

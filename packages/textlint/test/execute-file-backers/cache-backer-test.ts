@@ -1,15 +1,16 @@
 // MIT © 2016 azu
 "use strict";
-const assert = require("assert");
-const path = require("path");
-const os = require("os");
-const sh = require("shelljs");
-const fs = require("fs");
+import assert from "assert";
+import path from "path";
+import os from "os";
+import sh from "shelljs";
+import fs from "fs";
 import { CacheBacker } from "../../src/engine/execute-file-backers/cache-backer";
 import { Config } from "../../src/config/config";
+import { TextlintMessage } from "@textlint/types";
 
 describe("CacheBacker", function () {
-    let configDir;
+    let configDir: string;
     before(function () {
         configDir = path.join(os.tmpdir(), "textlint-config");
         sh.mkdir("-p", configDir);
@@ -35,8 +36,11 @@ describe("CacheBacker", function () {
         it("shouldExecute return true", () => {
             const config = new Config({ cache: true, cacheLocation: path.resolve(configDir, ".cache") });
             const cacheBacker = new CacheBacker(config);
-            const prevResult = { filePath: path.join(__dirname, "fixtures/test.md"), messages: [{}, {}] };
-            // prev
+            const prevResult = {
+                filePath: path.join(__dirname, "fixtures/test.md"),
+                messages: [{} as TextlintMessage, {} as TextlintMessage]
+            };
+            // prevTextlintMessage
             cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();
             // next
@@ -50,7 +54,10 @@ describe("CacheBacker", function () {
             const config = new Config({ cache: true, cacheLocation: cacheFilePath });
             const cacheBacker = new CacheBacker(config);
             const filePath = path.join(__dirname, "fixtures/test.md");
-            const prevResult = { filePath, messages: [{}, {}] }; // has errors
+            const prevResult = {
+                filePath,
+                messages: [{} as TextlintMessage, {} as TextlintMessage]
+            }; // has errors
             // prev
             cacheBacker.didExecute({ result: prevResult });
             cacheBacker.afterAll();

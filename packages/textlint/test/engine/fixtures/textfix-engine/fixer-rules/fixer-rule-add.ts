@@ -1,6 +1,9 @@
 // LICENSE : MIT
 "use strict";
-const reporter = (context) => {
+
+import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
+
+const reporter = (context: TextlintRuleContext): TextlintRuleReportHandler => {
     const { Syntax, fixer, report, getSource } = context;
     return {
         [Syntax.Str](node) {
