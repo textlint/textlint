@@ -3,12 +3,13 @@
 import { TextLintCore } from "../../src/index";
 import * as assert from "assert";
 import { assertRuleContext } from "./assert-rule-context";
+import { TextlintRuleContext, TextlintRuleOptions } from "@textlint/types";
 
 describe("Fixer Rule", function () {
     it("should context and receive options", function () {
         const textlint = new TextLintCore();
         const expectedOptions = { key: "value", str: "string", on: true };
-        const assertReporter = (context, options) => {
+        const assertReporter = (context: TextlintRuleContext, options: TextlintRuleOptions) => {
             assertRuleContext(context);
             assert.deepEqual(options, expectedOptions);
             return {};
