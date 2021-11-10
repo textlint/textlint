@@ -1,6 +1,8 @@
 // LICENSE : MIT
 "use strict";
 import { TextLintModuleMapper } from "../../src/engine/textlint-module-mapper";
+import configurablePlugin from "./fixtures/configurable-plugin";
+import configurableRule from "./fixtures/configurable-plugin/rules/configurable-rule";
 const assert = require("assert");
 describe("textlint-module-mapper-test", function () {
     describe("#createRuleEntities", function () {
@@ -23,9 +25,8 @@ describe("textlint-module-mapper-test", function () {
         });
         it("should define rules of plugin", function () {
             const pluginName = "configurable-plugin";
-            const rules = require("./fixtures/configurable-plugin/index").rules;
+            const rules = configurablePlugin.rules;
             const entities = TextLintModuleMapper.createEntities(rules, pluginName);
-            const configurableRule = require("./fixtures/configurable-plugin/rules/configurable-rule");
             assert.deepEqual(entities, [
                 [`${pluginName}/configurable-rule`, configurableRule],
                 [`${pluginName}/overwrited-rule`, configurableRule]

@@ -1,9 +1,11 @@
 // LICENSE : MIT
 "use strict";
-module.exports = {
+import configurableRule from "./rules/configurable-rule";
+
+export default {
     rules: {
-        "configurable-rule": require("./rules/configurable-rule"),
-        "overwrited-rule": require("./rules/configurable-rule")
+        "configurable-rule": configurableRule,
+        "overwrited-rule": configurableRule
     },
     rulesConfig: {
         "configurable-rule": {
