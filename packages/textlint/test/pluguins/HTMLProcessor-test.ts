@@ -3,6 +3,7 @@
 import * as assert from "assert";
 import { TextLintCore } from "../../src/index";
 import * as path from "path";
+import exampleRule from "./fixtures/example-rule";
 
 const htmlPlugin = require("textlint-plugin-html");
 
@@ -12,7 +13,7 @@ describe("HTMLPlugin", function () {
         beforeEach(function () {
             textlintCore = new TextLintCore();
             textlintCore.setupPlugins({ html: htmlPlugin });
-            textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
+            textlintCore.setupRules({ "example-rule": exampleRule });
         });
         it("should have default + additional processors", function () {
             const descriptors = textlintCore.textlintKernelDescriptor.plugin.descriptors;

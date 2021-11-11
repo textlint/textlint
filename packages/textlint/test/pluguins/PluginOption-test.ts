@@ -3,6 +3,7 @@
 import assert from "assert";
 import { TextLintCore } from "../../src/index";
 import { createPluginStub } from "./fixtures/example-plugin";
+import exampleRule from "./fixtures/example-rule";
 
 describe("plugin-option", () => {
     it("should load plugin options if match ext", () => {
@@ -10,7 +11,7 @@ describe("plugin-option", () => {
         const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
         textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });
-        textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
+        textlintCore.setupRules({ "example-rule": exampleRule });
         return textlintCore.lintText("test", ".example").then(() => {
             const actualOptions = getOptions();
             assert.deepStrictEqual(actualOptions, expectedOptions);
@@ -21,7 +22,7 @@ describe("plugin-option", () => {
         const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
         textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });
-        textlintCore.setupRules({ "example-rule": require("./fixtures/example-rule") });
+        textlintCore.setupRules({ "example-rule": exampleRule });
         // .md is built-in
         return textlintCore.lintText("test", ".md").then(() => {
             const actualOptions = getOptions();
