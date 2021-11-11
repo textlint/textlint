@@ -2,7 +2,7 @@
   "name": "@textlint/textlint-rule-scoped-rule",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
   },
   "author": "azu",

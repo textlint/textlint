@@ -1,9 +1,12 @@
 // LICENSE : MIT
 "use strict";
+import a from "./rules/textlint-rule-a";
+import b from "./rules/textlint-rule-b";
+
 module.exports = {
     rules: {
-        a: require("./rules/textlint-rule-a"),
-        b: require("./rules/textlint-rule-b")
+        a,
+        b
     },
     rulesConfig: {
         a: true,

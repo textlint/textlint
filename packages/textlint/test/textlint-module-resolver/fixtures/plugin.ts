@@ -1,20 +1,21 @@
 // LICENSE : MIT
 "use strict";
+
 class Processor {
-    constructor(config) {
-        this.config = config;
+    static availableExtensions() {
+        return [".x"];
     }
 
-    static availableExtensions() {
+    availableExtensions() {
         return [".x"];
     }
 
     processor() {
         return {
-            preProcess(text) {
+            preProcess(text: string) {
                 return text;
             },
-            postProcess(messages, filePath) {
+            postProcess(messages: any[], filePath?: string) {
                 return {
                     messages,
                     filePath: filePath ? filePath : "<x>"
