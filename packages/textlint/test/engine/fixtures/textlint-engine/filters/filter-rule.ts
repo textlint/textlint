@@ -6,12 +6,12 @@ import { TextlintFilterRuleContext, TextlintRuleReportHandler } from "@textlint/
 /**
  * @param {TextLintFilterRuleContext} context
  */
-export default function (context: TextlintFilterRuleContext) {
-    const exports: TextlintRuleReportHandler = {};
-    exports[context.Syntax.Str] = function (node) {
-        context.shouldIgnore(node.range, {
-            ruleId: "*"
-        });
+export default function (context: TextlintFilterRuleContext): TextlintRuleReportHandler {
+    return {
+        [context.Syntax.Str](node) {
+            context.shouldIgnore(node.range, {
+                ruleId: "*"
+            });
+        }
     };
-    return exports;
 }

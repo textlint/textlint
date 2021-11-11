@@ -1,9 +1,9 @@
 import { TextlintFilterRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 
-export default function (context: TextlintFilterRuleContext) {
-    const exports: TextlintRuleReportHandler = {};
-    exports[context.Syntax.Str] = function (node) {
-        context.shouldIgnore(node.range, {});
+export default function (context: TextlintFilterRuleContext): TextlintRuleReportHandler {
+    return {
+        [context.Syntax.Str](node) {
+            context.shouldIgnore(node.range, {});
+        }
     };
-    return exports;
 }
