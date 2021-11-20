@@ -330,8 +330,8 @@ describe("textlint-engine-test", function () {
         context("when set rule and filter", function () {
             it("should lint a text, result is filtered", function () {
                 const engine = new TextLintEngine();
-                engine.loadRule(path.join(rulesDir, "example-rule.js"));
-                engine.loadFilerRule(path.join(filterRulesDir, "filter-rule.js"));
+                engine.loadRule(path.join(rulesDir, "example-rule.ts"));
+                engine.loadFilerRule(path.join(filterRulesDir, "filter-rule.ts"));
                 return engine.executeOnText("String is error,but it is filtered").then((results) => {
                     const [result] = results;
                     assert.equal(result.messages.length, 0);
@@ -376,7 +376,7 @@ describe("textlint-engine-test", function () {
             it("should return custom formatted text", function () {
                 const engine = new TextLintEngine({
                     rulePaths: [rulesDir],
-                    formatterName: path.join(__dirname, "fixtures/textlint-engine/formatter/example-formatter.js")
+                    formatterName: path.join(__dirname, "fixtures/textlint-engine/formatter/example-formatter.ts")
                 });
                 return engine.executeOnText("text").then((results) => {
                     const output = engine.formatResults(results);

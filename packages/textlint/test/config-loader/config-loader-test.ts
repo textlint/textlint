@@ -23,9 +23,9 @@ describe("config-loader", function () {
     context("when config file is not encoded in UTF8", () => {
         // FIXME: https://github.com/textlint/textlint/issues/298
         it.skip("should throw an Error", () => {
-            const notUTF8Files = ["shift-jis.js", "euc-jp.json"];
+            const notUTF8Files = ["shift-jis.ts", "euc-jp.json"];
             notUTF8Files.forEach((notUTF8File) => {
-                const configFile = path.join(__dirname, "fixtures", "shift-jis.js");
+                const configFile = path.join(__dirname, "fixtures", "shift-jis.ts");
                 assert.throws(() => {
                     loadConfig({
                         configFileName: Config.CONFIG_FILE_NAME,

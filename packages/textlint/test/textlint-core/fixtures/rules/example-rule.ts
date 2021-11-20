@@ -1,12 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import type { TextlintRuleReporter, TextlintRuleReportHandler } from "@textlint/types";
+import type { TextlintRuleReporter } from "@textlint/types";
 
 const reporter: TextlintRuleReporter = function (context) {
-    const exports: TextlintRuleReportHandler = {};
-    exports[context.Syntax.Str] = function (node) {
-        context.report(node, new context.RuleError("found error message"));
+    return {
+        [context.Syntax.Str](node) {
+            context.report(node, new context.RuleError("found error message"));
+        }
     };
-    return exports;
 };
 export default reporter;

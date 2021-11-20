@@ -8,6 +8,7 @@
 const RuleSeparator = "/";
 
 export class TextLintModuleMapper {
+    // TODO: Why does this return strings.  See module loader loadPreset
     /**
      * create entities from rules/rulesConfig and prefix
      * entities is a array which contain [key, value]
@@ -15,10 +16,10 @@ export class TextLintModuleMapper {
      * see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
      * @param {Object} pluginRules an object is like "rules" or "rulesConfig" of plugin
      * @param {string} prefixKey prefix key is plugin name or preset name
-     * @returns {[string, string][]}
+     * @returns {[string, any][]}
      */
-    static createEntities(pluginRules: { [index: string]: string }, prefixKey: string): [string, string][] {
-        const entities: [string, string][] = [];
+    static createEntities(pluginRules: { [index: string]: any }, prefixKey: string): [string, any][] {
+        const entities: [string, any][] = [];
         Object.keys(pluginRules).forEach((ruleId) => {
             const qualifiedRuleId = prefixKey + RuleSeparator + ruleId;
             const ruleCreator = pluginRules[ruleId];
@@ -27,6 +28,7 @@ export class TextLintModuleMapper {
         return entities;
     }
 
+    // TODO: Why does this return strings.  See module loader loadPreset
     /**
      * create an object from rules/rulesConfig and prefix
      * the object shape is { key: value, key2: value }
@@ -36,11 +38,8 @@ export class TextLintModuleMapper {
      * @param {string} prefixKey prefix key is plugin name or preset name
      * @returns {Object}
      */
-    static createMappedObject(
-        pluginRules: { [index: string]: string },
-        prefixKey: string
-    ): { [index: string]: string } {
-        const mapped: { [index: string]: string } = {};
+    static createMappedObject(pluginRules: { [index: string]: any }, prefixKey: string): { [index: string]: any } {
+        const mapped: { [index: string]: any } = {};
         Object.keys(pluginRules).forEach((key) => {
             mapped[`${prefixKey}/${key}`] = pluginRules[key];
         });
