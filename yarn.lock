@@ -2710,10 +2710,10 @@
     load-json-file "^6.2.0"
     upath "^2.0.1"
 
-"@monorepo-utils/workspaces-to-typescript-project-references@^2.7.2":
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.7.2.tgz#dc4fb216da9449e261b15426971af87d48aa5f83"
-  integrity sha512-qczLb8nxqoPWkkfxAUCe66Jebcmdo+LrAhY5aAGL6aXt7yJQOlMbssZqOoQ+JVR+mPPemqCkFxSFMCOoKINHfw==
+"@monorepo-utils/workspaces-to-typescript-project-references@^2.7.4":
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.7.4.tgz#ea381ba604bd7f022e4fff05407c28a7ab475e27"
+  integrity sha512-498gbT/G5xRMqj52SJXhddZo/JjT3kY8X62g06AC7BxbP/0A+gCmA8BHXLbAwTC78TkHunGZxsOFPTAMQ7C2AA==
   dependencies:
     "@monorepo-utils/package-utils" "^2.7.0"
     comment-json "^3.0.3"
@@ -5888,6 +5888,13 @@ debug@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
   integrity sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
+  dependencies:
+    ms "2.1.2"
+
+debug@^4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
+  integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
   dependencies:
     ms "2.1.2"
 

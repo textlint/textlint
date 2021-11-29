@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@textlint/ast-node-types": "^12.0.0",
-    "debug": "^4.3.2"
+    "debug": "^4.3.3"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.3",
