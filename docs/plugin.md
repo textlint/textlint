@@ -88,7 +88,7 @@ You should check the AST using [@textlint/ast-tester](https://github.com/textlin
 - [textlint/@textlint/ast-tester: Compliance tests for textlint's AST](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester)
 
 ```js
-import { test, isTextlintAST } from "@textlint/ast-tester";
+import { test, isTxtAST } from "@textlint/ast-tester";
 // your implement
 import yourParse from "your-parser";
 // recommenced: test much pattern test
@@ -97,7 +97,7 @@ const AST = yourParse("This is text");
 // Validate AST
 test(AST); // if the AST is invalid, then throw Error
 
-isTextlintAST(AST); // true or false
+isTxtAST(AST); // true or false
 ```
 
 If you want to know `TxtParentNode`, see [TxtAST interface documents](txtnode.md).
