@@ -40,7 +40,10 @@ export declare class TextlintPluginProcessor {
          * @param text
          * @param filePath
          */
-        preProcess(text: string, filePath?: string): TxtNode | { text: string; ast: TxtNode };
+        preProcess(
+            text: string,
+            filePath?: string
+        ): TxtNode | { text: string; ast: TxtNode } | Promise<TxtNode> | Promise<{ text: string; ast: TxtNode }>;
         postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string };
     };
 }
