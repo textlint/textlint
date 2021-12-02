@@ -9,6 +9,8 @@ export declare type TextlintPluginOptions = {
     [index: string]: any;
 };
 
+export type TextlintPluginPreProcessResult = TxtNode | { text: string; ast: TxtNode };
+
 export interface TextlintPluginProcessorConstructor extends Function {
     new (options?: TextlintPluginOptions): TextlintPluginProcessor;
 
@@ -43,7 +45,7 @@ export declare class TextlintPluginProcessor {
         preProcess(
             text: string,
             filePath?: string
-        ): TxtNode | { text: string; ast: TxtNode } | Promise<TxtNode> | Promise<{ text: string; ast: TxtNode }>;
+        ): TextlintPluginPreProcessResult | Promise<TextlintPluginPreProcessResult>;
         postProcess(messages: Array<any>, filePath?: string): { messages: Array<any>; filePath: string };
     };
 }
