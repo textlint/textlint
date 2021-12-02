@@ -62,7 +62,7 @@ export const createAsyncPluginStub = (options?: CreateAsyncPluginOptions) => {
                                 preProcessArgs = { text, filePath };
                                 return parse(text);
                             },
-                            postProcess(messages: TextlintMessage[], filePath: string) {
+                            async postProcess(messages: TextlintMessage[], filePath: string) {
                                 postProcessArgs = { messages, filePath };
                                 return {
                                     messages,

@@ -172,7 +172,21 @@ describe("kernel-plugin", () => {
             };
             const text = "text";
             return kernel.lintText(text, options).then((_result) => {
-                console.log(_result);
+                assert.strictEqual(getPreProcessArgs().text, text);
+                assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+            });
+        });
+        it("preProcess can return Promise<{text, ast}> --fix", () => {
+            const kernel = new TextlintKernel();
+            const { plugin, getPreProcessArgs } = createAsyncPluginStub();
+            const options = {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [{ pluginId: "example", plugin: plugin }],
+                rules: [{ ruleId: "error", rule: errorRule }]
+            };
+            const text = "text";
+            return kernel.fixText(text, options).then((_result) => {
                 assert.strictEqual(getPreProcessArgs().text, text);
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
             });
@@ -228,7 +242,7 @@ describe("kernel-plugin", () => {
         });
     });
     describe("#postProcess", () => {
-        it("preProcess should be called with messages and filePath", () => {
+        it("postProcess should be called with messages and filePath", () => {
             const kernel = new TextlintKernel();
             const { plugin, getPostProcessArgs } = createPluginStub();
             const options = {
