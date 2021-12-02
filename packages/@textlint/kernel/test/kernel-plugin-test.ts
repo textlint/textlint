@@ -4,6 +4,7 @@ import { TextlintKernel, TextlintPluginCreator } from "../src";
 import * as path from "path";
 import * as assert from "assert";
 import { createBinaryPluginStub } from "./helper/BinaryPlugin";
+import { createAsyncPluginStub } from "./helper/AsyncPlugin";
 import type { TextlintRuleReporter } from "@textlint/types";
 import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
 import { TxtNode } from "@textlint/ast-node-types";
@@ -157,6 +158,22 @@ describe("kernel-plugin", () => {
             const text = "text";
             return kernel.fixText(text, options).then((_result) => {
                 assert.strictEqual(getPreProcessArgs().text, dummyText);
+                assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+            });
+        });
+        it("preProcess can return Promise<{text, ast}>", () => {
+            const kernel = new TextlintKernel();
+            const { plugin, getPreProcessArgs } = createAsyncPluginStub();
+            const options = {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [{ pluginId: "example", plugin: plugin }],
+                rules: [{ ruleId: "error", rule: errorRule }]
+            };
+            const text = "text";
+            return kernel.lintText(text, options).then((_result) => {
+                console.log(_result);
+                assert.strictEqual(getPreProcessArgs().text, text);
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
             });
         });
