@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://github.com/textlint/textlint/compare/v12.0.2...v12.1.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency unified to ^9.2.2 ([1ca5596](https://github.com/textlint/textlint/commit/1ca55965992422f840fefd1fd7e1ead125647627))
+
+
+
+
+
 ## [12.0.2](https://github.com/textlint/textlint/compare/v12.0.1...v12.0.2) (2021-07-09)
 
 

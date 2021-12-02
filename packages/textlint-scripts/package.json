@@ -13,7 +13,7 @@
     "!*.tsbuildinfo"
   ],
   "name": "textlint-scripts",
-  "version": "12.0.2",
+  "version": "12.1.0",
   "description": "textlint scripts help you to create textlint rule.",
   "bin": {
     "textlint-scripts": "./bin/cmd.js"
@@ -49,7 +49,7 @@
     "cross-spawn": "^7.0.3",
     "mocha": "^8.4.0",
     "pkg-to-readme": "^1.1.0",
-    "textlint-tester": "^12.0.2"
+    "textlint-tester": "^12.1.0"
   },
   "prettier": {
     "singleQuote": false,

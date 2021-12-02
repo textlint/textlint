@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://github.com/textlint/textlint/compare/v12.0.2...v12.1.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency strip-ansi to ^6.0.1 ([129af22](https://github.com/textlint/textlint/commit/129af222823b68271aa3eeffac935a308b1754d0))
+* **deps:** update dependency table to ^6.7.3 ([ba82895](https://github.com/textlint/textlint/commit/ba82895787dcfa6fc93e585b3d6b79b30229b07e))
+
+
+
+
+
 ## [12.0.2](https://github.com/textlint/textlint/compare/v12.0.1...v12.0.2) (2021-07-09)
 
 

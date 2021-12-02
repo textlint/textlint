@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://github.com/textlint/textlint/compare/v12.0.2...v12.1.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency glob to ^7.2.0 ([b4af236](https://github.com/textlint/textlint/commit/b4af2361ef942dedad6b32bcbed7d81131c855ad))
+* **TextLintModuleMapper:** broaden types for rules mappers ([1f33ae3](https://github.com/textlint/textlint/commit/1f33ae3134442502ac6d8c3c171f580c9112ab28))
+
+
+### Features
+
+* **loadFromDir:** load js and ts by default ([3a12798](https://github.com/textlint/textlint/commit/3a127980b1fe164c346bbf7a1f88966b757f962a))
+
+
+
+
+
 ## [12.0.2](https://github.com/textlint/textlint/compare/v12.0.1...v12.0.2) (2021-07-09)
 
 

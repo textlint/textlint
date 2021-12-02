@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.1.0](https://github.com/textlint/textlint/compare/v12.0.2...v12.1.0) (2021-12-02)
+
+
+### Features
+
+* **kernel:** allow textlint plugin to return Promise on pre/postProcess ([#832](https://github.com/textlint/textlint/issues/832)) ([ae89004](https://github.com/textlint/textlint/commit/ae8900485daf2564e738bd14c00e6edc62e2d32e))
+
+
+
+
+
 ## [12.0.2](https://github.com/textlint/textlint/compare/v12.0.1...v12.0.2) (2021-07-09)
 
 
