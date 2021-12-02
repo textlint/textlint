@@ -81,6 +81,8 @@ you should implement `availableExtensions()` method as instance method.
 #### `preProcess(text, filePath): TxtParentNode | { text: string; ast: TxtParentNode; }`
 
 `preProcess` method should return `TxtParentNode` object or `{ text: string, ast: TxtParentNode }` object.
+Also, `preProcess` method can return `Promise<TxtParentNode> | Promise<{ text: string, ast: TxtParentNode }>`.
+
 `TxtParentNode` object is an Abstract Syntax Tree (AST) of the text.
 
 You should check the AST using [@textlint/ast-tester](https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester "@textlint/ast-tester").
@@ -168,6 +170,8 @@ For more details, see <https://github.com/textlint/textlint/issues/649>
 #### `postProcess(messages, filePath)`
 
 `postProcess` method should return `{ messages, filePath }`.
+Also, `postProcess` method can return `Promise<{ messages, filePath }>`.
+
 `filePath` argument may be undefined when text was input from stdin. 
 
 ## Plugin configuration
