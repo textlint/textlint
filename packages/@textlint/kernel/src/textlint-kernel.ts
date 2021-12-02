@@ -120,7 +120,7 @@ export class TextlintKernel {
      * @returns {Promise.<TextlintResult>}
      * @private
      */
-    private _parallelProcess({
+    private async _parallelProcess({
         descriptor,
         text,
         options
@@ -142,7 +142,7 @@ export class TextlintKernel {
             typeof preProcess === "function" && typeof postProcess === "function",
             `${plugin.id} processor should implements {preProcess, postProcess}`
         );
-        const preProcessResult = preProcess(text, filePath);
+        const preProcessResult = await Promise.resolve(preProcess(text, filePath));
         // { text, ast } or ast
         const isParsedObject = isPluginParsedObject(preProcessResult);
         const textForAST = isParsedObject ? preProcessResult.text : text;
@@ -166,7 +166,7 @@ See https://textlint.github.io/docs/plugin.html`
             filePath
         });
         const linterProcessor = new LinterProcessor(processor, this.messageProcessManager);
-        return linterProcessor
+        return await linterProcessor
             .process({
                 config: this.config,
                 ruleDescriptors: descriptor.rule,
@@ -189,7 +189,7 @@ See https://textlint.github.io/docs/plugin.html`
      * @returns {Promise.<TextlintFixResult>}
      * @private
      */
-    private _sequenceProcess({
+    private async _sequenceProcess({
         descriptor,
         text,
         options
@@ -211,7 +211,7 @@ See https://textlint.github.io/docs/plugin.html`
             typeof preProcess === "function" && typeof postProcess === "function",
             `${plugin.id} processor should implements {preProcess, postProcess}`
         );
-        const preProcessResult = preProcess(text, filePath);
+        const preProcessResult = await Promise.resolve(preProcess(text, filePath));
         // { text, ast } or ast
         const isParsedObject = isPluginParsedObject(preProcessResult);
         const textForAST = isParsedObject ? preProcessResult.text : text;
@@ -235,7 +235,7 @@ See https://textlint.github.io/docs/plugin.html`
             filePath
         });
         const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
-        return fixerProcessor
+        return await fixerProcessor
             .process({
                 config: this.config,
                 ruleDescriptors: descriptor.rule,

@@ -66,9 +66,9 @@ export default class FixerProcessor {
         // pre-applyingMessages + remainingMessages
         const originalMessages: TextlintMessage[] = [];
         const fixerProcessList = ruleDescriptors.fixableDescriptors.map((ruleDescriptor) => {
-            return (sourceText: string): Promise<string> => {
+            return async (sourceText: string): Promise<string> => {
                 // create new SourceCode object
-                const preProcessResult = preProcess(sourceText, sourceCode.filePath);
+                const preProcessResult = await Promise.resolve(preProcess(sourceText, sourceCode.filePath));
                 const isParsedObject = isPluginParsedObject(preProcessResult);
                 const textForAST = isParsedObject ? preProcessResult.text : sourceText;
                 const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
@@ -87,8 +87,8 @@ export default class FixerProcessor {
                     configBaseDir
                 });
 
-                return TaskRunner.process(task).then((messages) => {
-                    const result = postProcess(messages, sourceCode.filePath);
+                return await TaskRunner.process(task).then(async (messages) => {
+                    const result = await Promise.resolve(postProcess(messages, sourceCode.filePath));
                     const filteredResult = {
                         messages: this.messageProcessManager.process(result.messages),
                         filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`

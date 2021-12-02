@@ -4,6 +4,7 @@ import { TextlintKernel, TextlintPluginCreator } from "../src";
 import * as path from "path";
 import * as assert from "assert";
 import { createBinaryPluginStub } from "./helper/BinaryPlugin";
+import { createAsyncPluginStub } from "./helper/AsyncPlugin";
 import type { TextlintRuleReporter } from "@textlint/types";
 import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
 import { TxtNode } from "@textlint/ast-node-types";
@@ -160,6 +161,36 @@ describe("kernel-plugin", () => {
                 assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
             });
         });
+        it("preProcess can return Promise<{text, ast}>", () => {
+            const kernel = new TextlintKernel();
+            const { plugin, getPreProcessArgs } = createAsyncPluginStub();
+            const options = {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [{ pluginId: "example", plugin: plugin }],
+                rules: [{ ruleId: "error", rule: errorRule }]
+            };
+            const text = "text";
+            return kernel.lintText(text, options).then((_result) => {
+                assert.strictEqual(getPreProcessArgs().text, text);
+                assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+            });
+        });
+        it("preProcess can return Promise<{text, ast}> --fix", () => {
+            const kernel = new TextlintKernel();
+            const { plugin, getPreProcessArgs } = createAsyncPluginStub();
+            const options = {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [{ pluginId: "example", plugin: plugin }],
+                rules: [{ ruleId: "error", rule: errorRule }]
+            };
+            const text = "text";
+            return kernel.fixText(text, options).then((_result) => {
+                assert.strictEqual(getPreProcessArgs().text, text);
+                assert.strictEqual(getPreProcessArgs().filePath, options.filePath);
+            });
+        });
         it("should throw error when preProcess invalid AST and runningTesting mode", () => {
             coreFlags.runningTester = true;
             const kernel = new TextlintKernel();
@@ -211,7 +242,7 @@ describe("kernel-plugin", () => {
         });
     });
     describe("#postProcess", () => {
-        it("preProcess should be called with messages and filePath", () => {
+        it("postProcess should be called with messages and filePath", () => {
             const kernel = new TextlintKernel();
             const { plugin, getPostProcessArgs } = createPluginStub();
             const options = {

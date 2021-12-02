@@ -52,8 +52,8 @@ export default class LinterProcessor {
             sourceCode,
             configBaseDir
         });
-        return TaskRunner.process(task).then((messages) => {
-            const result = postProcess(messages, sourceCode.filePath);
+        return TaskRunner.process(task).then(async (messages) => {
+            const result = await Promise.resolve(postProcess(messages, sourceCode.filePath));
             result.messages = this.messageProcessManager.process(result.messages);
             if (result.filePath == null) {
                 result.filePath = `<Unkown${sourceCode.ext}>`;
