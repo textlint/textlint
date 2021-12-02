@@ -87,8 +87,8 @@ export default class FixerProcessor {
                     configBaseDir
                 });
 
-                return await TaskRunner.process(task).then((messages) => {
-                    const result = postProcess(messages, sourceCode.filePath);
+                return await TaskRunner.process(task).then(async (messages) => {
+                    const result = await Promise.resolve(postProcess(messages, sourceCode.filePath));
                     const filteredResult = {
                         messages: this.messageProcessManager.process(result.messages),
                         filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
