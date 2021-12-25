@@ -89,6 +89,17 @@ report(node, new RuleError("message", {
 });
 `);
     }
+
+    // NaN check
+    if (padding.line !== undefined && Number.isNaN(padding.line)) {
+        throw new Error("reported { line } is NaN");
+    }
+    if (padding.column !== undefined && Number.isNaN(padding.column)) {
+        throw new Error("reported { column } is NaN");
+    }
+    if (padding.index !== undefined && Number.isNaN(padding.index)) {
+        throw new Error("reported { index } is NaN");
+    }
 };
 
 const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddingIR => {
