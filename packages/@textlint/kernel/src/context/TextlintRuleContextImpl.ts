@@ -1,8 +1,8 @@
 import {
     TextlintRuleContext,
-    TextlintRuleContextArgs,
     TextlintRuleContextReportFunction,
     TextlintRuleError,
+    TextlintRuleLocator,
     TextlintRuleReportedObject,
     TextlintRuleSeverityLevel,
     TextlintSourceCode
@@ -12,8 +12,26 @@ import assert from "assert";
 import { TextlintRuleContextFixCommandGeneratorImpl } from "./TextlintRuleContextFixCommandGeneratorImpl";
 import { TextlintRuleSeverityLevelKeys } from "./TextlintRuleSeverityLevelKeys";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
+import { createLocator } from "./TextlintRuleLocator";
 
 const ruleFixer = new TextlintRuleContextFixCommandGeneratorImpl();
+
+/**
+ * Rule context object is passed to each rule as `context`
+ * @param {string} ruleId
+ * @param {TextlintSourceCode} sourceCode
+ * @param {ReportCallback} report
+ * @param {Object|boolean|undefined} ruleOptions
+ * @param {string} [configBaseDir]
+ * @constructor
+ */
+export interface TextlintRuleContextArgs {
+    ruleId: string;
+    sourceCode: TextlintSourceCode;
+    report: TextlintRuleContextReportFunction;
+    configBaseDir?: string;
+    severityLevel: TextlintRuleSeverityLevel;
+}
 
 export class TextlintRuleContextImpl implements TextlintRuleContext {
     private _ruleId: string;
@@ -21,11 +39,13 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
     private _report: TextlintRuleContextReportFunction;
     private _configBaseDir?: string;
     private _severityLevel: TextlintRuleSeverityLevel;
+    public locator: TextlintRuleLocator;
 
     constructor(args: TextlintRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._report = args.report;
+        this.locator = createLocator(args.sourceCode);
         this._configBaseDir = args.configBaseDir;
         this._severityLevel = args.severityLevel;
         Object.freeze(this);

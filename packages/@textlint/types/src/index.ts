@@ -13,19 +13,20 @@ export type {
     TextlintSourceCodeRange,
 } from "./Source/TextlintSourceCode";
 // RuleContext
+export type { TextlintRuleLocator } from "./Rule/TextlintRuleLocator";
 export type { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
 export type { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
 export type {
     TextlintRuleError,
     TextlintRuleErrorConstructor,
     TextlintRuleErrorPadding,
+    TextlintRuleErrorLocation,
     TextlintRuleReportedObject,
 } from "./Rule/TextlintRuleError";
 export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
 // Rule
 export type {
     TextlintRuleContext,
-    TextlintRuleContextArgs,
     TextlintRuleContextReportFunction,
     TextlintRuleContextReportFunctionArgs,
 } from "./Rule/TextlintRuleContext";
@@ -39,7 +40,6 @@ export type {
 // Filter Rule
 export type {
     TextlintFilterRuleContext,
-    TextlintFilterRuleContextArgs,
     TextlintFilterRuleShouldIgnoreFunction,
     TextlintFilterRuleShouldIgnoreFunctionArgs,
 } from "./Rule/TextlintFilterRuleContext";

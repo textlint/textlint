@@ -1,12 +1,12 @@
 import * as assert from "assert";
-import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import { TxtNode } from "@textlint/ast-node-types";
 import { TextlintSourceCodeImpl } from "../../../src/context/TextlintSourceCodeImpl";
+import { parse } from "@textlint/markdown-to-ast";
+import select from "unist-util-select";
 
-const select = require("unist-util-select");
-const { parse } = require("@textlint/markdown-to-ast");
 const TEST_TEXT = "This is **strong**.";
 const TEST_AST = parse(TEST_TEXT);
-const createSourceCode = (text: string, ast: TxtParentNode) => {
+const createSourceCode = (text: string, ast: TxtNode) => {
     return new TextlintSourceCodeImpl({
         text: text,
         ast: ast,
@@ -36,7 +36,7 @@ describe("SourceCode", () => {
         });
         it("should retrieve all text for Strong node", () => {
             const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const StrongNode: TxtNode = select.select("Strong", TEST_AST);
+            const StrongNode = select.select("Strong", TEST_AST) as TxtNode;
             const text = sourceCode.getSource(StrongNode);
             assert.strictEqual(text, "**strong**");
             assert.strictEqual(text, StrongNode.raw);
@@ -44,14 +44,14 @@ describe("SourceCode", () => {
 
         it("should retrieve retrieve all text +1 character after for  bold node", () => {
             const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const StrongNode: TxtNode = select.select("Strong", TEST_AST);
+            const StrongNode = select.select("Strong", TEST_AST) as TxtNode;
             const text = sourceCode.getSource(StrongNode, 0, 1);
             assert.strictEqual(text, "**strong**.");
         });
 
         it("should retrieve retrieve all text +1 character before for  bold node", () => {
             const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const StrongNode: TxtNode = select.select("Strong", TEST_AST);
+            const StrongNode = select.select("Strong", TEST_AST) as TxtNode;
             const text = sourceCode.getSource(StrongNode, 1, 0);
             assert.strictEqual(text, " **strong**");
         });

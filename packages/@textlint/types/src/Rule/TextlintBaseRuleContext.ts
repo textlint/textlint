@@ -1,12 +1,13 @@
 import { TextlintRuleErrorConstructor } from "./TextlintRuleError";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
+import { TextlintRuleLocator } from "./TextlintRuleLocator";
 
 /**
  * This Base class is internal.
  * @internal
  */
-export interface BaseRuleContext {
+export interface TextlintBaseRuleContext {
     /**
      * Return rule id
      */
@@ -58,4 +59,16 @@ export interface BaseRuleContext {
      * @returns {string|undefined}
      */
     getConfigBaseDir(): string | undefined;
+
+    /**
+     * locator provide utility methods for calculating error location.
+     * pass the return value of `locator.*` to `loc` option in RuleError.
+     *
+     * ```
+     * report(node, new RuleError(message, {
+     *     loc: locator.range([startIndex, endIndex])
+     * });
+     * ```
+     */
+    locator: TextlintRuleLocator;
 }
