@@ -61,7 +61,7 @@ export type SourceLocationPaddingIR =
 // `);
 // };
 
-const assertReportArgs = (reportArgs: TextlintRuleContextReportFunctionArgs) => {
+const assertReportArgs = (reportArgs: Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">) => {
     const { ruleError, ruleId } = reportArgs;
     const errorPrefix = `[${ruleId}]` || "";
     const padding = ruleError;
@@ -245,7 +245,7 @@ export default class SourceLocation {
     /**
      * adjust node's location with error's padding location.
      */
-    adjust(reportArgs: TextlintRuleContextReportFunctionArgs): {
+    adjust(reportArgs: Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">): {
         line: number;
         column: number;
         fix?: TextlintMessageFixCommand;
