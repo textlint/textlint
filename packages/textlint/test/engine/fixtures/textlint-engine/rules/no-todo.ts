@@ -6,6 +6,7 @@ import { RuleHelper } from "textlint-rule-helper";
  * @param {RuleContext} context
  */
 export default function (context: TextlintRuleContext): TextlintRuleReportHandler {
+    // @ts-ignore
     const helper = new RuleHelper(context);
     const { Syntax, getSource, RuleError, report } = context;
     return {

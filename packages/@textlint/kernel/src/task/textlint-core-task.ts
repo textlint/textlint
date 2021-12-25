@@ -2,7 +2,7 @@
 "use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
 import { PromiseEventEmitter } from "./promise-event-emitter";
-import SourceLocation, { toAbsoluteFixCommand } from "../core/source-location";
+import { resolveLocation, toAbsoluteFixCommand } from "../core/source-location";
 import timing from "../util/timing";
 import MessageType from "../shared/type/MessageType";
 import { EventEmitter } from "events";
@@ -54,6 +54,17 @@ export interface LintReportedMessage {
     // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
     line: number; // start with 1(1-based line number)
     column: number; // start with 1(1-based column number)
+    range: [number, number];
+    loc: {
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
+    };
     severity: number; // it's for compatible ESLint formatter
     fix?: TextlintMessageFixCommand;
 }
@@ -108,7 +119,6 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     }
 
     createReporter(sourceCode: TextlintSourceCode): TextlintRuleContextReportFunction {
-        const sourceLocation = new SourceLocation(sourceCode);
         /**
          * push new RuleError to results
          * @param {ReportMessage} reportArgs
@@ -116,21 +126,27 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         const reportFunction = (reportArgs: TextlintRuleContextReportFunctionArgs) => {
             const { ruleId, node, severity, ruleError } = reportArgs;
             debug("%s pushReport %s", ruleId, ruleError);
-            const { line, column } = sourceLocation.adjust(reportArgs);
+            const { loc, range } = resolveLocation({
+                source: sourceCode,
+                ruleId,
+                node,
+                ruleError
+            });
             const { fix } = toAbsoluteFixCommand({
                 node,
                 ruleError
             });
-            const index = sourceCode.positionToIndex({ line, column });
             // add TextLintMessage
             const message: LintReportedMessage = {
                 type: MessageType.lint,
                 ruleId: ruleId,
                 message: ruleError.message,
-                index,
+                index: range[0],
                 // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-                line: line, // start with 1(1-based line number)
-                column: column + 1, // start with 1(1-based column number)
+                line: loc.start.line, // start with 1(1-based line number)
+                column: loc.start.column + 1, // start with 1(1-based column number)
+                range,
+                loc,
                 severity: severity, // it's for compatible ESLint formatter
                 fix: fix !== undefined ? fix : undefined
             };

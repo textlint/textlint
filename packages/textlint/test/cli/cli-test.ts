@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { cli } from "../../src/index";
+import { cli } from "../../src";
 import * as path from "path";
 import * as childProcess from "child_process";
 import { Logger } from "../../src/util/logger";
@@ -70,6 +70,17 @@ describe("cli-test", function () {
                                 column: 3,
                                 index: 17,
                                 line: 3,
+                                loc: {
+                                    end: {
+                                        column: 2,
+                                        line: 4
+                                    },
+                                    start: {
+                                        column: 2,
+                                        line: 3
+                                    }
+                                },
+                                range: [17, 28],
                                 message: "Found TODO: '- [ ] TODO'",
                                 ruleId: "no-todo",
                                 severity: 1,

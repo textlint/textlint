@@ -224,6 +224,21 @@ export const toAbsoluteLocation = ({
     };
 };
 
+export const resolveLocation = (
+    args: {
+        source: TextlintSourceCode;
+    } & Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">
+) => {
+    const { node, ruleError } = args;
+    assertReportArgs(args);
+    const paddingIR = createPaddingIR(ruleError);
+    return toAbsoluteLocation({
+        source: args.source,
+        node,
+        paddingIR
+    });
+};
+
 export default class SourceLocation {
     private source: TextlintSourceCode;
 
@@ -238,14 +253,6 @@ export default class SourceLocation {
         line: number;
         column: number;
     } {
-        const { node, ruleError } = reportArgs;
-        const padding = ruleError;
-        assertReportArgs(reportArgs);
-        const paddingIR = createPaddingIR(padding);
-        return toAbsoluteLocation({
-            source: this.source,
-            node,
-            paddingIR
-        }).loc.start;
+        return resolveLocation({ source: this.source, ...reportArgs }).loc.start;
     }
 }
