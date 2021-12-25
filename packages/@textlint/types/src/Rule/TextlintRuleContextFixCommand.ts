@@ -4,6 +4,6 @@
  */
 export interface TextlintRuleContextFixCommand {
     text: string;
-    range: number[];
+    range: [number, number];
     isAbsolute: boolean;
 }

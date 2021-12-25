@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import SourceLocation from "../../src/core/source-location";
+import SourceLocation, { toAbsoluteFixCommand } from "../../src/core/source-location";
 import RuleFixer from "../../src/fixer/rule-fixer";
 import createDummySourceCode from "./../util/dummy-source-code";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
@@ -26,10 +26,9 @@ describe("source-location", function () {
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
             const ruleError = new TextlintRuleErrorImpl("message");
-            const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { line, column } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
             assert.strictEqual(line, 1);
             assert.strictEqual(column, 10);
-            assert.ok(!fix);
         });
     });
     context("column only", function () {
@@ -46,10 +45,9 @@ describe("source-location", function () {
                 column: 5,
                 message: "error message"
             };
-            const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { line, column } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
             assert.strictEqual(line, 1);
             assert.strictEqual(column, 15);
-            assert.ok(!fix);
         });
         context("[textlint-tester] when testing", function () {
             it("should throw error in testing.", function () {
@@ -77,10 +75,9 @@ describe("source-location", function () {
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
             const ruleError = { index: 5, message: "error message" };
-            const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { line, column } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
             assert.strictEqual(line, 1);
             assert.strictEqual(column, 15);
-            assert.ok(!fix);
         });
     });
 
@@ -125,10 +122,9 @@ describe("source-location", function () {
             };
             const ruleError = { line: 1, message: "error message" };
 
-            const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { line, column } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
             assert.strictEqual(line, 2);
             assert.strictEqual(column, 10);
-            assert.ok(!fix);
         });
     });
 
@@ -147,15 +143,45 @@ describe("source-location", function () {
                 column: 5,
                 fix: { isAbsolute: false, range: [1, 5], text: "replace" }
             };
-            const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { line, column } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
             assert.strictEqual(line, 1);
             assert.strictEqual(column, 15);
+        });
+        it("fix should accept this that same as RuleError", function () {
+            const node = {
+                type: "String",
+                range: [10, 20] as [number, number],
+                raw: "1234567890",
+                loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
+            };
+            const ruleError = {
+                message: "message",
+                line: 0,
+                column: 5,
+                fix: { isAbsolute: false, range: [1, 5], text: "replace" }
+            };
+            const { fix } = toAbsoluteFixCommand({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [11, 15]);
         });
     });
-    context("fix only", function () {
+    describe("toAbsoluteFixCommand", function () {
+        it("should return {line, column, fix}", function () {
+            const node = {
+                type: "String",
+                range: [10, 20] as [number, number],
+                raw: "1234567890",
+                loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
+            };
+            const fixer = new RuleFixer();
+            const ruleError = new TextlintRuleErrorImpl("message", {
+                line: 1,
+                column: 1,
+                fix: fixer.replaceTextRange([1, 5], "replace")
+            });
+            const { fix } = toAbsoluteFixCommand({ node, ruleError });
+            assert.deepStrictEqual(fix?.range, [11, 15]);
+        });
         it("range should be absolute of value", function () {
-            const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
                 range: [10, 20] as [number, number],
@@ -169,33 +195,10 @@ describe("source-location", function () {
                     text: "replace"
                 }
             });
-            const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { fix } = toAbsoluteFixCommand({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [11, 15]);
         });
-    });
-    context("full set", function () {
-        it("should return {line, column, fix}", function () {
-            const sourceLocation = new SourceLocation(sourceCode);
-            const node = {
-                type: "String",
-                range: [10, 20] as [number, number],
-                raw: "1234567890",
-                loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
-            };
-            const fixer = new RuleFixer();
-            const ruleError = new TextlintRuleErrorImpl("message", {
-                line: 1,
-                column: 1,
-                fix: fixer.replaceTextRange([1, 5], "replace")
-            });
-            const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.deepStrictEqual(fix?.range, [11, 15]);
-        });
-    });
-
-    context("When fix command for node", function () {
         it("is not adjust fix command range - because it is absolute position", function () {
-            const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "Str",
                 range: [10, 20] as [number, number],
@@ -206,12 +209,11 @@ describe("source-location", function () {
             const ruleError = new TextlintRuleErrorImpl("message", {
                 fix: fixer.insertTextAfter(node, ".")
             });
-            const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { fix } = toAbsoluteFixCommand({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [20, 20]);
             assert.deepStrictEqual(fix?.text, ".");
         });
         it("is not adjust fix command range - because it is absolute position", function () {
-            const sourceLocation = new SourceLocation(sourceCode);
             const node: TxtNode = {
                 type: "Str",
                 range: [10, 20],
@@ -220,7 +222,7 @@ describe("source-location", function () {
             };
             const fixer = new RuleFixer();
             const ruleError = new TextlintRuleErrorImpl("message", { fix: fixer.remove(node) });
-            const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
+            const { fix } = toAbsoluteFixCommand({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [10, 20]);
             assert.deepStrictEqual(fix?.text, "");
         });

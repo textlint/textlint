@@ -1,5 +1,4 @@
 import type {
-    TextlintMessageFixCommand,
     TextlintRuleContextReportFunctionArgs,
     TextlintRuleError,
     TextlintRuleErrorPadding,
@@ -145,21 +144,21 @@ const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddi
  * Adjust `fix` command range
  * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
  */
-export const toAbsoluteFixCommand = (node: TxtNode, ruleErrorObject: TextlintRuleError) => {
+export const toAbsoluteFixCommand = ({ node, ruleError }: { node: TxtNode; ruleError: TextlintRuleError }) => {
     const nodeRange = node.range;
     // if not found `fix`, return empty object
-    if (ruleErrorObject.fix === undefined) {
+    if (ruleError.fix === undefined) {
         return {}; // TODO: it should be undefined?
     }
-    assert.ok(typeof ruleErrorObject.fix === "object", "fix should be FixCommand object");
+    assert.ok(typeof ruleError.fix === "object", "fix should be FixCommand object");
     // if absolute position return self
-    if (ruleErrorObject.fix.isAbsolute) {
+    if (ruleError.fix.isAbsolute) {
         return {
             // remove other property that is not related `fix`
             // the return object will be merged by `Object.assign`
             fix: {
-                range: ruleErrorObject.fix.range,
-                text: ruleErrorObject.fix.text
+                range: ruleError.fix.range,
+                text: ruleError.fix.text
             }
         };
     }
@@ -167,8 +166,8 @@ export const toAbsoluteFixCommand = (node: TxtNode, ruleErrorObject: TextlintRul
     return {
         // fix(command) is relative from node's range
         fix: {
-            range: [nodeRange[0] + ruleErrorObject.fix.range[0], nodeRange[0] + ruleErrorObject.fix.range[1]] as const,
-            text: ruleErrorObject.fix.text
+            range: [nodeRange[0] + ruleError.fix.range[0], nodeRange[0] + ruleError.fix.range[1]] as [number, number],
+            text: ruleError.fix.text
         }
     };
 };
@@ -214,22 +213,15 @@ export default class SourceLocation {
     adjust(reportArgs: Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">): {
         line: number;
         column: number;
-        fix?: TextlintMessageFixCommand;
     } {
         const { node, ruleError } = reportArgs;
         const padding = ruleError;
         assertReportArgs(reportArgs);
         const paddingIR = createPaddingIR(padding);
-        const adjustedLoc = toAbsoluteLocation({
+        return toAbsoluteLocation({
             source: this.source,
             node,
             paddingIR
         });
-        const adjustedFix = toAbsoluteFixCommand(node, padding);
-        return Object.assign({}, adjustedLoc, adjustedFix) as {
-            line: number;
-            column: number;
-            fix?: TextlintMessageFixCommand;
-        };
     }
 }
