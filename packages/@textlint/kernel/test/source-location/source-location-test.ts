@@ -32,7 +32,8 @@ describe("source-location", function () {
         });
     });
     context("column only", function () {
-        context("[Backward Compatible] should handle column as index", function () {
+        it("[Backward Compatible] should handle column as index", function () {
+            coreFlags.runningTester = false;
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -111,8 +112,8 @@ describe("source-location", function () {
             }, /\[RULE_NAME\]/);
         });
     });
-    context("line only", function () {
-        it("should throw error", function () {
+    context("when line only", function () {
+        it("should add line to the node.start", function () {
             const sourceLocation = new SourceLocation(sourceCode);
             const node = {
                 type: "String",
@@ -141,7 +142,7 @@ describe("source-location", function () {
                 message: "message",
                 line: 0,
                 column: 5,
-                fix: { isAbsolute: false, range: [1, 5], text: "replace" }
+                fix: { isAbsolute: false, range: [1, 5] as [number, number], text: "replace" }
             };
             const { line, column } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
             assert.strictEqual(line, 1);
@@ -158,7 +159,7 @@ describe("source-location", function () {
                 message: "message",
                 line: 0,
                 column: 5,
-                fix: { isAbsolute: false, range: [1, 5], text: "replace" }
+                fix: { isAbsolute: false, range: [1, 5] as [number, number], text: "replace" }
             };
             const { fix } = toAbsoluteFixCommand({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [11, 15]);

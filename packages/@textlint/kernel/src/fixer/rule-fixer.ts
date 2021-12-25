@@ -38,7 +38,7 @@ function insertTextAt(index: number, text: string) {
 function insertTextAtAbsolute(index: number, text: string) {
     assert.ok(text, "text must be string");
     return {
-        range: [index, index],
+        range: [index, index] as [number, number],
         text,
         isAbsolute: true
     };
