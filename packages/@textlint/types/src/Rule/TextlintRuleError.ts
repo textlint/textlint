@@ -3,8 +3,8 @@
 import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
 
 export type TextlintRuleErrorLocation = {
+    isAbsolute: boolean; // TODO: currently always relative from node position
     range: [startIndex: number, endIndex: number];
-    isAbsolute: false; // TODO: currently always relative from node position
 };
 
 /**

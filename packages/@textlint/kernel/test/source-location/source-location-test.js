@@ -8,7 +8,7 @@ import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";
 
 const sourceCode = createDummySourceCode();
-describe("compute-location", function () {
+describe("source-location", function () {
     beforeEach(function () {
         coreFlags.runningTester = true;
     });
