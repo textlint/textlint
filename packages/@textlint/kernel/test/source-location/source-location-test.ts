@@ -27,8 +27,8 @@ describe("source-location", function () {
             };
             const ruleError = new TextlintRuleErrorImpl("message");
             const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.equal(line, 1);
-            assert.equal(column, 10);
+            assert.strictEqual(line, 1);
+            assert.strictEqual(column, 10);
             assert.ok(!fix);
         });
     });
@@ -47,8 +47,8 @@ describe("source-location", function () {
                 message: "error message"
             };
             const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.equal(line, 1);
-            assert.equal(column, 15);
+            assert.strictEqual(line, 1);
+            assert.strictEqual(column, 15);
             assert.ok(!fix);
         });
         context("[textlint-tester] when testing", function () {
@@ -78,8 +78,8 @@ describe("source-location", function () {
             };
             const ruleError = { index: 5, message: "error message" };
             const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.equal(line, 1);
-            assert.equal(column, 15);
+            assert.strictEqual(line, 1);
+            assert.strictEqual(column, 15);
             assert.ok(!fix);
         });
     });
@@ -126,8 +126,8 @@ describe("source-location", function () {
             const ruleError = { line: 1, message: "error message" };
 
             const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.equal(line, 2);
-            assert.equal(column, 10);
+            assert.strictEqual(line, 2);
+            assert.strictEqual(column, 10);
             assert.ok(!fix);
         });
     });
@@ -148,9 +148,9 @@ describe("source-location", function () {
                 fix: { isAbsolute: false, range: [1, 5], text: "replace" }
             };
             const { line, column, fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.equal(line, 1);
-            assert.equal(column, 15);
-            assert.deepEqual(fix?.range, [11, 15]);
+            assert.strictEqual(line, 1);
+            assert.strictEqual(column, 15);
+            assert.deepStrictEqual(fix?.range, [11, 15]);
         });
     });
     context("fix only", function () {
@@ -170,7 +170,7 @@ describe("source-location", function () {
                 }
             });
             const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.deepEqual(fix?.range, [11, 15]);
+            assert.deepStrictEqual(fix?.range, [11, 15]);
         });
     });
     context("full set", function () {
@@ -189,7 +189,7 @@ describe("source-location", function () {
                 fix: fixer.replaceTextRange([1, 5], "replace")
             });
             const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.deepEqual(fix?.range, [11, 15]);
+            assert.deepStrictEqual(fix?.range, [11, 15]);
         });
     });
 
@@ -207,8 +207,8 @@ describe("source-location", function () {
                 fix: fixer.insertTextAfter(node, ".")
             });
             const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.deepEqual(fix?.range, [20, 20]);
-            assert.deepEqual(fix?.text, ".");
+            assert.deepStrictEqual(fix?.range, [20, 20]);
+            assert.deepStrictEqual(fix?.text, ".");
         });
         it("is not adjust fix command range - because it is absolute position", function () {
             const sourceLocation = new SourceLocation(sourceCode);
@@ -221,8 +221,8 @@ describe("source-location", function () {
             const fixer = new RuleFixer();
             const ruleError = new TextlintRuleErrorImpl("message", { fix: fixer.remove(node) });
             const { fix } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
-            assert.deepEqual(fix?.range, [10, 20]);
-            assert.deepEqual(fix?.text, "");
+            assert.deepStrictEqual(fix?.range, [10, 20]);
+            assert.deepStrictEqual(fix?.text, "");
         });
     });
 });
