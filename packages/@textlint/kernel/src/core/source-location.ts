@@ -27,40 +27,6 @@ export type SourceLocationPaddingIR =
           column: number;
       };
 
-// const convertSourceLocationIR = (arg: ({ index: number } | { column: number; line: number }) & { source: TextlintSourceCode }): SourceLocationIR => {
-//     if ("index" in arg) {
-//         return {
-//             isAbsolute: true,
-//             range: [arg.index, arg.index + 1]
-//         };
-//     }
-//     if ("column" in arg && "line" in arg) {
-//         const index = arg.source.positionToIndex({
-//             line: arg.line,
-//             column: arg.column
-//         });
-//         return {
-//             isAbsolute: true,
-//             range: [index, index + 1]
-//         };
-//     }
-//     throw new Error(`Invalid RuleError position. missing { index } or { column, line }.
-//
-// See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/line-column-or-index.md
-//
-// report(node, new RuleError("message", {
-//     line,
-//     column
-// });
-//
-// or
-//
-// report(node, new RuleError("message", {
-//     index
-// });
-// `);
-// };
-
 const assertReportArgs = (reportArgs: Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">) => {
     const { ruleError, ruleId } = reportArgs;
     const errorPrefix = `[${ruleId}]` || "";
