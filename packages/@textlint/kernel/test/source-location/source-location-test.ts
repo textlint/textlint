@@ -114,18 +114,13 @@ describe("source-location", function () {
     });
     context("when line only", function () {
         it("should add line to the node.start", function () {
-            const sourceLocation = new SourceLocation(sourceCode);
-            const node = {
-                type: "String",
-                range: [10, 20] as [number, number],
-                raw: "1234567890",
-                loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
-            };
+            const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
+            const sourceLocation = new SourceLocation(source);
+            const node = source.ast.children[0].children[0];
             const ruleError = { line: 1, message: "error message" };
-
             const { line, column } = sourceLocation.adjust({ ruleId: "test", node, ruleError });
             assert.strictEqual(line, 2);
-            assert.strictEqual(column, 10);
+            assert.strictEqual(column, 0);
         });
     });
 

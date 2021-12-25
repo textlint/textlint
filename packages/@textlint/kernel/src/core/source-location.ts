@@ -185,18 +185,42 @@ export const toAbsoluteLocation = ({
     const column = node.loc.start.column;
     // When { line, column } padding
     if ("line" in paddingIR && "column" in paddingIR) {
-        return {
+        const absoluteStartPosition = {
             line: line + paddingIR.line,
             column: column + paddingIR.column
+        };
+        const absoluteIndex = source.positionToIndex(absoluteStartPosition);
+        if (Number.isNaN(absoluteIndex)) {
+            throw new Error("absoluteIndex is NaN in { line, column }");
+        }
+        const absoluteRange = [absoluteIndex, absoluteIndex + 1] as [number, number];
+        const absoluteLocation = source.rangeToLocation(absoluteRange);
+        if (Number.isNaN(absoluteLocation)) {
+            throw new Error("absoluteLocation is NaN in { line, column }");
+        }
+        return {
+            range: absoluteRange,
+            loc: absoluteLocation
         };
     }
     // When { range } padding
     if ("range" in paddingIR) {
-        return source.rangeToLocation([nodeRange[0] + paddingIR.range[0], nodeRange[1] + paddingIR.range[1]]).start;
+        const absoluteRange = [nodeRange[0] + paddingIR.range[0], nodeRange[1] + paddingIR.range[1]] as [
+            number,
+            number
+        ];
+        const absoluteLocation = source.rangeToLocation(absoluteRange);
+        if (Number.isNaN(absoluteLocation)) {
+            throw new Error("absoluteLocation is NaN in { range }");
+        }
+        return {
+            range: absoluteRange,
+            loc: absoluteLocation
+        };
     }
     return {
-        column,
-        line
+        range: node.range,
+        loc: node.loc
     };
 };
 
@@ -222,6 +246,6 @@ export default class SourceLocation {
             source: this.source,
             node,
             paddingIR
-        });
+        }).loc.start;
     }
 }
