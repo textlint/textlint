@@ -71,7 +71,7 @@ const assertReportArgs = (reportArgs: TextlintRuleContextReportFunctionArgs) => 
          new RuleError("message", index);
          */
     if (typeof padding === "number") {
-        throwIfTesting(`${errorPrefix} This is un-document way:
+        throw new Error(`${errorPrefix} This is un-document way:
 report(node, new RuleError("message", index);
 
 Please use { index }: 
