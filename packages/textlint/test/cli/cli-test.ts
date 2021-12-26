@@ -72,15 +72,15 @@ describe("cli-test", function () {
                                 line: 3,
                                 loc: {
                                     end: {
-                                        column: 2,
-                                        line: 4
+                                        column: 3,
+                                        line: 3
                                     },
                                     start: {
                                         column: 2,
                                         line: 3
                                     }
                                 },
-                                range: [17, 28],
+                                range: [17, 18],
                                 message: "Found TODO: '- [ ] TODO'",
                                 ruleId: "no-todo",
                                 severity: 1,
