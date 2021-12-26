@@ -3,10 +3,39 @@
 import * as assert from "assert";
 import { cli } from "../../src";
 import * as path from "path";
-import * as childProcess from "child_process";
 import { Logger } from "../../src/util/logger";
 
+type RunContext = {
+    getLogs(): string[];
+    assertMatchLog(pattern: RegExp): unknown;
+    assertNotHasLog(): unknown;
+    assertHasLog(): unknown;
+};
 const originLog = Logger.log;
+const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unknown> => {
+    const originLog = Logger.log;
+    const messages: string[] = [];
+    Logger.log = function mockLog(message) {
+        messages.push(message);
+    };
+    const context = {
+        getLogs() {
+            return messages;
+        },
+        assertMatchLog(pattern: RegExp) {
+            assert.match(messages[0], pattern);
+        },
+        assertHasLog() {
+            assert.ok(messages.length > 0, "should have logs");
+        },
+        assertNotHasLog() {
+            assert.ok(messages.length === 0, "should not have logs");
+        }
+    };
+    await cb(context);
+    Logger.log = originLog;
+    return;
+};
 describe("cli-test", function () {
     beforeEach(function () {
         Logger.log = function mockLog() {
@@ -18,49 +47,56 @@ describe("cli-test", function () {
     });
     context("when pass linting", function () {
         it("should output checkstyle xml if the results length is 0", function () {
-            let isCalled = false;
-            const messages: any[] = [];
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                messages.push(message);
-            };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            const ruleModuleName = "textlint-rule-no-todo";
-            return cli.execute(`-f checkstyle --rule ${ruleModuleName} ${targetFile}`).then(() => {
-                assert.ok(isCalled, "checkstyle should always output xml");
-                assert.ok(messages.length > 0, "should output if empty results");
+            return runWithMockLog(({ getLogs }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "textlint-rule-no-todo";
+                return cli.execute(`-f checkstyle --rule ${ruleModuleName} ${targetFile}`).then(() => {
+                    assert.ok(
+                        getLogs().length > 0,
+                        "should output unless empty results because checkstyle is always xml"
+                    );
+                });
             });
         });
     });
     context("when fail linting", function () {
         it("should return error when text with incorrect quotes is passed as argument", function () {
-            const ruleDir = path.join(__dirname, "fixtures/rules");
-            return cli.execute(`--rulesdir ${ruleDir}`, "text").then((result) => {
-                assert.equal(result, 1);
+            return runWithMockLog(async () => {
+                const ruleDir = path.join(__dirname, "fixtures/rules");
+                const result = await cli.execute(`--rulesdir ${ruleDir}`, "text");
+                assert.strictEqual(result, 1);
             });
         });
         it("should return error", function () {
-            const ruleDir = path.join(__dirname, "fixtures/rules");
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            return cli.execute(`--rulesdir ${ruleDir} ${targetFile}`).then((result) => {
-                assert.equal(result, 1);
+            return runWithMockLog(async () => {
+                const ruleDir = path.join(__dirname, "fixtures/rules");
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const result = await cli.execute(`--rulesdir ${ruleDir} ${targetFile}`);
+                assert.strictEqual(result, 1);
             });
         });
-        it("should return an error when use no-todo rules is specified", function () {
-            cli.execute("", "text").then((result) => {
-                assert.equal(result, 1);
+        it("should return an error because No rules found", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const result = await cli.execute("", "text");
+                assert.strictEqual(result, 1);
+                assert.match(getLogs()[0], /No rules found/);
             });
         });
-        it("should return 1 (error)", function () {
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            return cli.execute(`${targetFile}`).then((result) => {
-                assert.equal(result, 1);
+        it("should return an error because No rules found", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const result = await cli.execute(`${targetFile}`);
+                assert.strictEqual(result, 1);
+                assert.match(getLogs()[0], /No rules found/);
             });
         });
         it("should report lint warning and error by using stylish reporter", function () {
-            const targetFile = path.join(__dirname, "fixtures/todo.md");
-            const configFile = path.join(__dirname, "fixtures/.textlintrc.json");
-            Logger.log = function mockLog(message) {
+            return runWithMockLog(async ({ getLogs }) => {
+                const targetFile = path.join(__dirname, "fixtures/todo.md");
+                const configFile = path.join(__dirname, "fixtures/.textlintrc.json");
+                const result = await cli.execute(`${targetFile} -f json --config ${configFile}`);
+                assert.strictEqual(result, 0);
+                const [message] = getLogs();
                 const json = JSON.parse(message);
                 assert.deepStrictEqual(json, [
                     {
@@ -89,226 +125,162 @@ describe("cli-test", function () {
                         ]
                     }
                 ]);
-            };
-            return cli.execute(`${targetFile} -f json --config ${configFile}`).then((result) => {
-                assert.equal(result, 0);
             });
         });
     });
     context("When run with --rule", function () {
-        it("should lint the file with long name", function (done) {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            const ruleModuleName = "textlint-rule-no-todo";
-            cli.execute(`${targetFile} --rule ${ruleModuleName}`).then((result) => {
-                assert.equal(result, 0);
-                assert.ok(!isCalled);
-                done();
+        it("should lint the file with long name", function () {
+            return runWithMockLog(async ({ assertNotHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "textlint-rule-no-todo";
+                const result = await cli.execute(`${targetFile} --rule ${ruleModuleName}`);
+                assert.strictEqual(result, 0);
+                assertNotHasLog();
             });
         });
-        it("should lint the file with short name", function (done) {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            const ruleModuleName = "no-todo";
-            cli.execute(`${targetFile} --rule ${ruleModuleName}`).then((result) => {
-                assert.equal(result, 0);
-                assert.ok(!isCalled);
-                done();
+        it("should lint the file with short name", function () {
+            return runWithMockLog(async ({ assertNotHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "no-todo";
+                const result = await cli.execute(`${targetFile} --rule ${ruleModuleName}`);
+                assert.strictEqual(result, 0);
+                assertNotHasLog();
             });
         });
     });
     context("When run with --preset", function () {
-        it("should lint the file with long name", function (done) {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            const ruleModuleName = "textlint-rule-preset-jtf-style";
-            cli.execute(`${targetFile} --preset ${ruleModuleName}`).then((result) => {
-                assert.equal(result, 0);
-                assert.ok(!isCalled);
-                done();
+        it("should lint the file with full name", function () {
+            return runWithMockLog(async ({ assertNotHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "textlint-rule-preset-jtf-style";
+                const result = await cli.execute(`${targetFile} --preset ${ruleModuleName}`);
+                assert.strictEqual(result, 0);
+                assertNotHasLog();
             });
         });
-        it("should lint the file with middle name", function (done) {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            const ruleModuleName = "preset-jtf-style";
-            cli.execute(`${targetFile} --preset ${ruleModuleName}`).then((result) => {
-                assert.equal(result, 0);
-                assert.ok(!isCalled);
-                done();
+        it("should lint the file with preset-prefix name", function () {
+            return runWithMockLog(async ({ assertNotHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "preset-jtf-style";
+                const result = await cli.execute(`${targetFile} --preset ${ruleModuleName}`);
+                assert.strictEqual(result, 0);
+                assertNotHasLog();
             });
         });
-        it("should lint the file with long name", function (done) {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            const ruleModuleName = "jtf-style";
-            cli.execute(`${targetFile} --preset ${ruleModuleName}`).then((result) => {
-                assert.equal(result, 0);
-                assert.ok(!isCalled);
-                done();
+        it("should lint the file with without prefix name", function () {
+            return runWithMockLog(async ({ assertNotHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "jtf-style";
+                const result = await cli.execute(`${targetFile} --preset ${ruleModuleName}`);
+                assert.strictEqual(result, 0);
+                assertNotHasLog();
             });
         });
     });
 
     context("When run with --plugin", function () {
-        it("should lint the file with long name", function () {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/todo.html");
-            const longName = "textlint-plugin-html";
-            const ruleModuleName = "no-todo";
-            return cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`).then((result) => {
-                assert.equal(result, 1);
-                assert.ok(isCalled);
+        it("should lint the file with full name", function () {
+            return runWithMockLog(async ({ assertHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/todo.html");
+                const longName = "textlint-plugin-html";
+                const ruleModuleName = "no-todo";
+                const result = await cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`);
+                assert.strictEqual(result, 1);
+                assertHasLog();
             });
         });
-        it("should lint the file with long name", function () {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/todo.html");
-            const shortName = "html";
-            const ruleModuleName = "no-todo";
-            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then((result) => {
-                assert.equal(result, 1);
-                assert.ok(isCalled);
+        it("should lint the file with without-prefix name", function () {
+            return runWithMockLog(async ({ assertHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/todo.html");
+                const longName = "html";
+                const ruleModuleName = "no-todo";
+                const result = await cli.execute(`${targetFile} --plugin ${longName} --rule ${ruleModuleName}`);
+                assert.strictEqual(result, 1);
+                assertHasLog();
             });
         });
-
         it("should lint and correct error", function () {
-            let isCalled = false;
-            Logger.log = function mockLog(message) {
-                isCalled = true;
-                assert.ok(message.length > 0);
-            };
-            const targetFile = path.join(__dirname, "fixtures/todo.html");
-            const shortName = "html";
-            const ruleModuleName = "no-todo";
-            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then((result) => {
-                assert.ok(isCalled);
-                assert.equal(result, 1);
+            return runWithMockLog(async ({ assertMatchLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/todo.html");
+                const longName = "textlint-plugin-html";
+                const ruleModuleName = "no-todo";
+                const result = await cli.execute(
+                    `${targetFile} --plugin ${longName} --rule ${ruleModuleName} --format json`
+                );
+                assert.strictEqual(result, 1);
+                assertMatchLog(/Found TODO/);
             });
         });
-        it("when not error, status is 0", function () {
-            let isCalled = false;
-            Logger.log = function mockLog() {
-                isCalled = true;
-            };
-            const targetFile = path.join(__dirname, "fixtures/pass.html");
-            const shortName = "html";
-            const ruleModuleName = "no-todo";
-            return cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`).then((result) => {
-                assert.ok(!isCalled);
-                assert.equal(result, 0);
+        it("when has not error, status should be 0", function () {
+            return runWithMockLog(async ({ assertNotHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/pass.html");
+                const shortName = "html";
+                const ruleModuleName = "no-todo";
+                const result = await cli.execute(`${targetFile} --plugin ${shortName} --rule ${ruleModuleName}`);
+                assert.strictEqual(result, 0);
+                assertNotHasLog();
             });
         });
     });
     context("When run with --fix", function () {
-        context("when not rules found", function () {
+        context("when no rules found", function () {
             it("show suggestion message from FAQ", function () {
-                let isCalled = false;
-                Logger.log = function mockLog(message) {
-                    isCalled = true;
-                    assert.ok(message.length > 0);
-                };
-                const targetFile = path.join(__dirname, "fixtures/test.md");
-                return cli.execute(`${targetFile} --fix`).then((result) => {
-                    assert.equal(result, 1);
-                    assert.ok(isCalled);
+                return runWithMockLog(async ({ assertMatchLog }) => {
+                    const targetFile = path.join(__dirname, "fixtures/test.md");
+                    const result = await cli.execute(`${targetFile} --fix`);
+                    assert.strictEqual(result, 1);
+                    assertMatchLog(/No rules found/);
                 });
             });
         });
         context("when has rule", function () {
             it("should execute fixer", function () {
-                const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
-                const targetFile = path.join(__dirname, "fixtures/test.md");
-                return cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`).then((result) => {
-                    assert.equal(result, 0);
+                return runWithMockLog(async ({ assertNotHasLog }) => {
+                    const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                    const targetFile = path.join(__dirname, "fixtures/test.md");
+                    const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`);
+                    assert.strictEqual(result, 0);
+                    assertNotHasLog();
                 });
             });
         });
     });
     context("When run with --quiet", function () {
-        it("shows only errors, not warnings", function () {
-            let isCalled = false;
-            Logger.log = function mockLog() {
-                isCalled = true;
-            };
-            const targetFile = path.join(__dirname, "fixtures/todo.html");
-            const configFile = path.join(__dirname, "fixtures/quite.textlintrc.json");
-            return cli.execute(`${targetFile} -c ${configFile} --quiet ${targetFile}`).then((result) => {
-                assert.equal(result, 0);
-                assert.ok(!isCalled);
+        it("shows only errors, not warnings. as a result, it will be no error", function () {
+            return runWithMockLog(async ({ assertNotHasLog }) => {
+                const targetFile = path.join(__dirname, "fixtures/todo.html");
+                const configFile = path.join(__dirname, "fixtures/quite.textlintrc.json");
+                const result = await cli.execute(`${targetFile} -c ${configFile} --quiet ${targetFile}`);
+                assert.strictEqual(result, 0);
+                assertNotHasLog();
             });
         });
     });
-    context("When no rules found", function () {
-        it("show suggestion message from FAQ", function () {
-            Logger.log = function mockLog(message) {
-                assert.ok(message.length > 0);
-            };
+    it("should show suggestion message from FAQ when no rules found", function () {
+        return runWithMockLog(async ({ assertMatchLog }) => {
             const targetFile = path.join(__dirname, "fixtures/test.md");
-            return cli.execute(`${targetFile}`).then((result) => {
-                assert.equal(result, 1);
-            });
+            const result = await cli.execute(`${targetFile}`);
+            assert.strictEqual(result, 1);
+            assertMatchLog(/No rules found/);
         });
     });
     describe("--version", function () {
         it("should output current textlint version", function () {
             const pkg = require("../../package");
-            Logger.log = function mockLog(message) {
-                assert.equal(message, `v${pkg.version}`);
-            };
-            return cli.execute("--version").then((exitCode) => {
-                assert.strictEqual(exitCode, 0);
+            return runWithMockLog(async ({ getLogs }) => {
+                const result = await cli.execute("--version");
+                assert.strictEqual(result, 0);
+                assert.strictEqual(getLogs()[0], `v${pkg.version}`);
             });
         });
     });
     describe("--help", function () {
         it("should output expected help message", function () {
-            Logger.log = function mockLog(message) {
-                assert.notEqual(message.indexOf("Show help"), -1);
-            };
-            return cli.execute("--help").then((exitCode) => {
-                assert.strictEqual(exitCode, 0);
+            return runWithMockLog(async ({ assertHasLog }) => {
+                const result = await cli.execute("--help");
+                assert.strictEqual(result, 0);
+                assertHasLog();
             });
-        });
-    });
-    // Regression testing
-    // (node) warning: possible EventEmitter memory leak detected. 11 Str listeners added. Use emitter.setMaxListeners() to increase limit.
-    describe("EventEmitter memory leak detected", function () {
-        xit("should not show in console", function () {
-            // testing stderr https://github.com/nodejs/node/blob/082cc8d6d8f5c7c797e58cefeb475b783c730635/test/parallel/test-util-internal.js#L53-L59
-            const targetFile = path.join(__dirname, "fixtures/test.md");
-            const bin = path.join(__dirname, "../../bin/textlint.js");
-            const args = ["--preset", "textlint-rule-preset-jtf-style", `${targetFile}`];
-            const result = childProcess.spawnSync(`${bin}`, args, { encoding: "utf8" });
-            assert.strictEqual(result.stderr.indexOf("memory leak detected"), -1);
         });
     });
 });
