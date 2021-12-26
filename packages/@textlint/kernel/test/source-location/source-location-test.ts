@@ -128,6 +128,18 @@ describe("source-location", function () {
         });
     });
     context("when pass loc property", function () {
+        it("should throw error if pass invalid loc", function () {
+            const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
+            const node = source.ast;
+            const InvalidLocObject = [1, 2] as any;
+            const ruleError = {
+                loc: InvalidLocObject,
+                message: "error message"
+            };
+            assert.throws(() => {
+                resolveLocation({ source, ruleId: "test", node, ruleError });
+            }, /invalid/);
+        });
         it("at() should return { range, loc } object", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
             const node = source.ast;
@@ -226,7 +238,7 @@ describe("source-location", function () {
     });
 
     describe("resolveFixCommandLocation", function () {
-        it("should return {line, column, fix}", function () {
+        it("should return {fix}", function () {
             const node = {
                 type: "String",
                 range: [10, 20] as [number, number],
@@ -259,7 +271,7 @@ describe("source-location", function () {
             const { fix } = resolveFixCommandLocation({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [11, 15]);
         });
-        it("is not adjust fix command range - because it is absolute position", function () {
+        it("should not adjust fix command range - because it is absolute position", function () {
             const node = {
                 type: "Str",
                 range: [10, 20] as [number, number],

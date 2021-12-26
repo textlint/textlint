@@ -4,10 +4,12 @@ import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
 
 export type TextlintRuleErrorLocation =
     | {
+          type: "TextlintRuleErrorLocation";
           isAbsolute: boolean; // TODO: currently always relative from node position
           range: [startIndex: number, endIndex: number];
       }
     | {
+          type: "TextlintRuleErrorLocation";
           isAbsolute: boolean; // TODO: currently always relative from node position
           loc: {
               start: {
@@ -26,7 +28,7 @@ export type TextlintRuleErrorPadding = {
      * @deprecated use `loc` property
      * ```
      * report(node, new RuleError(message, {
-     *   range: locator.loc({
+     *   loc: locator.loc({
      *       start: {
      *           line: 1,
      *           column: 1
@@ -44,7 +46,7 @@ export type TextlintRuleErrorPadding = {
      * @deprecated use `loc` property
      * ```
      * report(node, new RuleError(message, {
-     *   range: locator.loc({
+     *   loc: locator.loc({
      *       start: {
      *           line: 1,
      *           column: 1
@@ -62,7 +64,7 @@ export type TextlintRuleErrorPadding = {
      * @deprecated use `loc` property
      * ```
      * report(node, new RuleError(message, {
-     *   range: locator.range([index, index + 1])
+     *   loc: locator.range([index, index + 1])
      * }
      * ```
      */
@@ -75,15 +77,15 @@ export type TextlintRuleErrorPadding = {
      * const { report, RuleError, locator } = context;
      * // at = range([index, index + 1]);
      * report(node, new RuleError(message, {
-     *   range: locator.at(index)
+     *   loc: locator.at(index)
      * });
      * // range
      * report(node, new RuleError(message, {
-     *   range: locator.range([startIndex, endIndex])
+     *   loc: locator.range([startIndex, endIndex])
      * });
      * // loc = line and column
      * report(node, new RuleError(message, {
-     *  range: locator.loc({
+     *   loc: locator.loc({
      *       start: {
      *           line: 1,
      *           column: 1

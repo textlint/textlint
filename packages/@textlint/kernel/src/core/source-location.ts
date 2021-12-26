@@ -8,6 +8,7 @@ import type {
 import { TxtNode } from "@textlint/ast-node-types";
 import assert from "assert";
 import { throwIfTesting } from "@textlint/feature-flag";
+import { isTextlintRuleErrorLocation } from "../context/TextlintRuleLocator";
 
 export interface ReportMessage {
     ruleId: string;
@@ -99,6 +100,10 @@ report(node, new RuleError("message", {
     if (padding.index !== undefined && Number.isNaN(padding.index)) {
         throw new Error("reported { index } is NaN");
     }
+    // invalid loc check
+    if (padding.loc !== undefined) {
+        assert.ok(isTextlintRuleErrorLocation(padding.loc), "reported { loc } is invalid format.");
+    }
 };
 
 /**
@@ -116,6 +121,7 @@ const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddi
     if (padding.index !== undefined) {
         const paddingIndex = padding.index;
         return {
+            type: "TextlintRuleErrorLocation",
             isAbsolute: false,
             range: [paddingIndex, paddingIndex + 1]
         };
