@@ -36,7 +36,16 @@ describe("TextlintLocator", () => {
                 }),
                 {
                     isAbsolute: false,
-                    range: [21, 25]
+                    loc: {
+                        start: {
+                            line: 2,
+                            column: 1
+                        },
+                        end: {
+                            line: 2,
+                            column: 5
+                        }
+                    }
                 }
             );
         });
