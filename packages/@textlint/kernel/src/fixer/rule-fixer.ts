@@ -48,7 +48,7 @@ function insertTextAtAbsolute(index: number, text: string) {
  * Creates code fixing commands for rules.
  * It create command for fixing texts.
  * The `range` arguments of these command is should be **relative** value from reported node.
- * See {@link SourceLocation} class for more detail.
+ * See {@link resolveLocation} class for more detail.
  * @constructor
  */
 export default class RuleFixer {

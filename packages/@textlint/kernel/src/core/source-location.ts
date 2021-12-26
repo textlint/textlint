@@ -1,6 +1,7 @@
 import type {
     TextlintRuleContextReportFunctionArgs,
     TextlintRuleError,
+    TextlintRuleErrorLocation,
     TextlintRuleErrorPadding,
     TextlintSourceCode
 } from "@textlint/types";
@@ -17,9 +18,7 @@ export interface ReportMessage {
 
 // relative padding location info
 export type SourceLocationPaddingIR =
-    | {
-          range: [startIndex: number, endIndex: number];
-      }
+    | TextlintRuleErrorLocation
     | {
           // if no padding, line and column will be 0
           line: number;
@@ -102,6 +101,13 @@ report(node, new RuleError("message", {
     }
 };
 
+/**
+ * Create intermidiate represent to resolve location
+ * `loc` property is pass threw
+ * Convert `index` to IR
+ * Convert `column` and `line` to IR
+ * @param padding
+ */
 const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddingIR => {
     if ("loc" in padding && typeof padding.loc === "object") {
         return padding.loc;
@@ -110,6 +116,7 @@ const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddi
     if (padding.index !== undefined) {
         const paddingIndex = padding.index;
         return {
+            isAbsolute: false,
             range: [paddingIndex, paddingIndex + 1]
         };
     }
@@ -151,38 +158,7 @@ const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddi
         column: 0
     };
 };
-/**
- * Adjust `fix` command range
- * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
- */
-export const toAbsoluteFixCommand = ({ node, ruleError }: { node: TxtNode; ruleError: TextlintRuleError }) => {
-    const nodeRange = node.range;
-    // if not found `fix`, return empty object
-    if (ruleError.fix === undefined) {
-        return {}; // TODO: it should be undefined?
-    }
-    assert.ok(typeof ruleError.fix === "object", "fix should be FixCommand object");
-    // if absolute position return self
-    if (ruleError.fix.isAbsolute) {
-        return {
-            // remove other property that is not related `fix`
-            // the return object will be merged by `Object.assign`
-            fix: {
-                range: ruleError.fix.range,
-                text: ruleError.fix.text
-            }
-        };
-    }
-    // if relative position return adjusted position
-    return {
-        // fix(command) is relative from node's range
-        fix: {
-            range: [nodeRange[0] + ruleError.fix.range[0], nodeRange[0] + ruleError.fix.range[1]] as [number, number],
-            text: ruleError.fix.text
-        }
-    };
-};
-export const toAbsoluteLocation = ({
+const toAbsoluteLocation = ({
     source,
     node,
     paddingIR
@@ -216,7 +192,7 @@ export const toAbsoluteLocation = ({
     }
     // When { range } padding
     if ("range" in paddingIR) {
-        const absoluteRange = [nodeRange[0] + paddingIR.range[0], nodeRange[1] + paddingIR.range[1]] as [
+        const absoluteRange = [nodeRange[0] + paddingIR.range[0], nodeRange[0] + paddingIR.range[1]] as [
             number,
             number
         ];
@@ -229,17 +205,99 @@ export const toAbsoluteLocation = ({
             loc: absoluteLocation
         };
     }
+    // When { loc } padding
+    if ("loc" in paddingIR) {
+        // relative from node start position
+        const absoluteStartPosition = {
+            line: line + paddingIR.loc.start.line,
+            column: column + paddingIR.loc.start.column
+        };
+        const absoluteEndPosition = {
+            line: line + paddingIR.loc.end.line,
+            column: column + paddingIR.loc.end.column
+        };
+        const absoluteLocation = source.locationToRange({
+            start: absoluteStartPosition,
+            end: absoluteEndPosition
+        });
+        const absoluteRange = absoluteLocation;
+        if (Number.isNaN(absoluteRange[0]) || Number.isNaN(absoluteRange[1])) {
+            throw new Error("absoluteLocation is NaN in { loc }");
+        }
+        return {
+            range: absoluteRange,
+            loc: {
+                start: {
+                    line: absoluteStartPosition.line,
+                    column: absoluteStartPosition.column
+                },
+                end: {
+                    line: absoluteEndPosition.line,
+                    column: absoluteEndPosition.column
+                }
+            }
+        };
+    }
     return {
         range: node.range,
         loc: node.loc
     };
 };
 
+/**
+ * Adjust `fix` command range
+ * if `fix.isAbsolute` is not absolute position, adjust the position from the `node`.
+ */
+export const resolveFixCommandLocation = ({ node, ruleError }: { node: TxtNode; ruleError: TextlintRuleError }) => {
+    const nodeRange = node.range;
+    // if not found `fix`, return empty object
+    if (ruleError.fix === undefined) {
+        return {}; // TODO: it should be undefined?
+    }
+    assert.ok(typeof ruleError.fix === "object", "fix should be FixCommand object");
+    // if absolute position return self
+    if (ruleError.fix.isAbsolute) {
+        return {
+            // remove other property that is not related `fix`
+            // the return object will be merged by `Object.assign`
+            fix: {
+                range: ruleError.fix.range,
+                text: ruleError.fix.text
+            }
+        };
+    }
+    // if relative position return adjusted position
+    return {
+        // fix(command) is relative from node's range
+        fix: {
+            range: [nodeRange[0] + ruleError.fix.range[0], nodeRange[0] + ruleError.fix.range[1]] as [number, number],
+            text: ruleError.fix.text
+        }
+    };
+};
+
+export type ResolveLocationResult = {
+    range: [number, number];
+    loc: {
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
+    };
+};
+/**
+ * resolve `loc`(includes deprecated `index`, `column`, `line`) to absolute location
+ * @param args
+ */
 export const resolveLocation = (
     args: {
         source: TextlintSourceCode;
     } & Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">
-) => {
+): ResolveLocationResult => {
     const { node, ruleError } = args;
     assertReportArgs(args);
     const paddingIR = createPaddingIR(ruleError);
@@ -249,21 +307,3 @@ export const resolveLocation = (
         paddingIR
     });
 };
-
-export default class SourceLocation {
-    private source: TextlintSourceCode;
-
-    constructor(source: TextlintSourceCode) {
-        this.source = source;
-    }
-
-    /**
-     * adjust node's location with error's padding location.
-     */
-    adjust(reportArgs: Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">): {
-        line: number;
-        column: number;
-    } {
-        return resolveLocation({ source: this.source, ...reportArgs }).loc.start;
-    }
-}

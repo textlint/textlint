@@ -2,7 +2,7 @@
 "use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
 import { PromiseEventEmitter } from "./promise-event-emitter";
-import { resolveLocation, toAbsoluteFixCommand } from "../core/source-location";
+import { resolveLocation, resolveFixCommandLocation } from "../core/source-location";
 import timing from "../util/timing";
 import MessageType from "../shared/type/MessageType";
 import { EventEmitter } from "events";
@@ -125,17 +125,17 @@ export default abstract class TextLintCoreTask extends EventEmitter {
          */
         const reportFunction = (reportArgs: TextlintRuleContextReportFunctionArgs) => {
             const { ruleId, node, severity, ruleError } = reportArgs;
-            debug("%s pushReport %s", ruleId, ruleError);
             const { loc, range } = resolveLocation({
                 source: sourceCode,
                 ruleId,
                 node,
                 ruleError
             });
-            const { fix } = toAbsoluteFixCommand({
+            const { fix } = resolveFixCommandLocation({
                 node,
                 ruleError
             });
+            debug("%s report %s", ruleId, ruleError);
             // add TextLintMessage
             const message: LintReportedMessage = {
                 type: MessageType.lint,

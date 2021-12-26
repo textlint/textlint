@@ -2,9 +2,101 @@
 "use strict";
 import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
 
-export type TextlintRuleErrorLocation = {
-    isAbsolute: boolean; // TODO: currently always relative from node position
-    range: [startIndex: number, endIndex: number];
+export type TextlintRuleErrorLocation =
+    | {
+          isAbsolute: boolean; // TODO: currently always relative from node position
+          range: [startIndex: number, endIndex: number];
+      }
+    | {
+          isAbsolute: boolean; // TODO: currently always relative from node position
+          loc: {
+              start: {
+                  line: number;
+                  column: number;
+              };
+              end: {
+                  line: number;
+                  column: number;
+              };
+          };
+      };
+
+export type TextlintRuleErrorPadding = {
+    /**
+     * @deprecated use `loc` property
+     * ```
+     * report(node, new RuleError(message, {
+     *   range: locator.loc({
+     *       start: {
+     *           line: 1,
+     *           column: 1
+     *       },
+     *       end: {
+     *           line: 1,
+     *           column: 2
+     *       }
+     *   })
+     * });
+     * ```
+     */
+    line?: number;
+    /**
+     * @deprecated use `loc` property
+     * ```
+     * report(node, new RuleError(message, {
+     *   range: locator.loc({
+     *       start: {
+     *           line: 1,
+     *           column: 1
+     *       },
+     *       end: {
+     *           line: 1,
+     *           column: 2
+     *       }
+     *   })
+     * });
+     * ```
+     */
+    column?: number;
+    /**
+     * @deprecated use `loc` property
+     * ```
+     * report(node, new RuleError(message, {
+     *   range: locator.range([index, index + 1])
+     * }
+     * ```
+     */
+    index?: number;
+    /**
+     * Pass the range for start and end of the reported error.
+     * textlint rule's context provide `locator` object as helper.
+     *
+     * ```
+     * const { report, RuleError, locator } = context;
+     * // at = range([index, index + 1]);
+     * report(node, new RuleError(message, {
+     *   range: locator.at(index)
+     * });
+     * // range
+     * report(node, new RuleError(message, {
+     *   range: locator.range([startIndex, endIndex])
+     * });
+     * // loc = line and column
+     * report(node, new RuleError(message, {
+     *  range: locator.loc({
+     *       start: {
+     *           line: 1,
+     *           column: 1
+     *       },
+     *       end: {
+     *           line: 1,
+     *           column: 2
+     *       }
+     *   })
+     * });
+     */
+    loc?: TextlintRuleErrorLocation;
+    fix?: TextlintRuleContextFixCommand;
 };
 
 /**
@@ -15,43 +107,10 @@ export type TextlintRuleErrorLocation = {
  *   message: ""
  * })
  */
-export interface TextlintRuleReportedObject {
-    /**
-     * @deprecated use `loc` property
-     */
-    line?: number;
-    /**
-     * @deprecated use `loc` property
-     */
-    column?: number;
-    /**
-     * @deprecated use `loc` property
-     */
-    index?: number;
-    loc?: TextlintRuleErrorLocation;
-    fix?: TextlintRuleContextFixCommand;
+export type TextlintRuleReportedObject = TextlintRuleErrorPadding & {
     message: string;
-    severity?: number;
-
     [index: string]: any;
-}
-
-export interface TextlintRuleErrorPadding {
-    /**
-     * @deprecated use `loc` property
-     */
-    line?: number;
-    /**
-     * @deprecated use `loc` property
-     */
-    column?: number;
-    /**
-     * @deprecated use `loc` property
-     */
-    index?: number;
-    loc?: TextlintRuleErrorLocation;
-    fix?: TextlintRuleContextFixCommand;
-}
+};
 
 export interface TextlintRuleErrorConstructor {
     new (message: string, paddingLocation?: number | TextlintRuleErrorPadding): TextlintRuleError;

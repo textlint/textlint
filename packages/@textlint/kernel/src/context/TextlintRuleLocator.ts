@@ -1,6 +1,6 @@
-import { TextlintRuleLocator, TextlintSourceCode } from "@textlint/types";
+import { TextlintRuleLocator } from "@textlint/types";
 
-export const createLocator = (sourceCode: TextlintSourceCode): TextlintRuleLocator => {
+export const createLocator = (): TextlintRuleLocator => {
     return {
         at(index: number) {
             return {
@@ -17,7 +17,7 @@ export const createLocator = (sourceCode: TextlintSourceCode): TextlintRuleLocat
         loc(location) {
             return {
                 isAbsolute: false,
-                range: sourceCode.locationToRange(location)
+                loc: location
             };
         }
     };

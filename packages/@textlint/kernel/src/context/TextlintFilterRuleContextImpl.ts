@@ -39,7 +39,7 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._ignoreReport = args.ignoreReport;
-        this.locator = createLocator(args.sourceCode);
+        this.locator = createLocator();
         this._configBaseDir = args.configBaseDir;
         this._severityLevel = args.severityLevel;
         Object.freeze(this);

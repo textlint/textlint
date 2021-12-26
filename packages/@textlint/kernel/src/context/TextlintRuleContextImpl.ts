@@ -45,7 +45,7 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._report = args.report;
-        this.locator = createLocator(args.sourceCode);
+        this.locator = createLocator();
         this._configBaseDir = args.configBaseDir;
         this._severityLevel = args.severityLevel;
         Object.freeze(this);
