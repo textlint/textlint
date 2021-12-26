@@ -17,8 +17,7 @@ const createSourceCode = (text: string, ast: TxtNode) => {
 describe("TextlintLocator", () => {
     describe("at(index)", function () {
         it("should return Location object", () => {
-            const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const locator = createLocator(sourceCode);
+            const locator = createLocator();
             assert.deepStrictEqual(locator.at(0), {
                 isAbsolute: false,
                 range: [0, 1]
@@ -27,8 +26,7 @@ describe("TextlintLocator", () => {
     });
     describe("range([start, end])", function () {
         it("should return Location object", () => {
-            const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const locator = createLocator(sourceCode);
+            const locator = createLocator();
             assert.deepStrictEqual(locator.range([0, 5]), {
                 isAbsolute: false,
                 range: [0, 5]
@@ -37,8 +35,7 @@ describe("TextlintLocator", () => {
     });
     describe("loc(location)", function () {
         it("should return Location object", () => {
-            const sourceCode = createSourceCode(TEST_TEXT, TEST_AST);
-            const locator = createLocator(sourceCode);
+            const locator = createLocator();
             assert.deepStrictEqual(
                 locator.loc({
                     start: {
