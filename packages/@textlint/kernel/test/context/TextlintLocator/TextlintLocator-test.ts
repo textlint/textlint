@@ -6,6 +6,7 @@ describe("TextlintLocator", () => {
         it("should return Location object", () => {
             const locator = createLocator();
             assert.deepStrictEqual(locator.at(0), {
+                type: "TextlintRuleErrorLocation",
                 isAbsolute: false,
                 range: [0, 1]
             });
@@ -15,6 +16,7 @@ describe("TextlintLocator", () => {
         it("should return Location object", () => {
             const locator = createLocator();
             assert.deepStrictEqual(locator.range([0, 5]), {
+                type: "TextlintRuleErrorLocation",
                 isAbsolute: false,
                 range: [0, 5]
             });
@@ -35,6 +37,7 @@ describe("TextlintLocator", () => {
                     }
                 }),
                 {
+                    type: "TextlintRuleErrorLocation",
                     isAbsolute: false,
                     loc: {
                         start: {
