@@ -1,19 +1,6 @@
-import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintSourceCodeImpl } from "../../../src/context/TextlintSourceCodeImpl";
-
-import { parse } from "@textlint/markdown-to-ast";
 import { createLocator } from "../../../src/context/TextlintRuleLocator";
 import * as assert from "assert";
 
-const TEST_TEXT = "This is **strong**.\n2nd line.";
-const TEST_AST = parse(TEST_TEXT);
-const createSourceCode = (text: string, ast: TxtNode) => {
-    return new TextlintSourceCodeImpl({
-        text: text,
-        ast: ast,
-        ext: ".md"
-    });
-};
 describe("TextlintLocator", () => {
     describe("at(index)", function () {
         it("should return Location object", () => {
