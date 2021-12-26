@@ -200,7 +200,7 @@ describe("cli-test", function () {
             });
         });
         it("should lint and correct error", function () {
-            return runWithMockLog(async ({ assertMatchLog }) => {
+            return runWithMockLog(async ({ getLogs }) => {
                 const targetFile = path.join(__dirname, "fixtures/todo.html");
                 const longName = "textlint-plugin-html";
                 const ruleModuleName = "no-todo";
@@ -208,7 +208,35 @@ describe("cli-test", function () {
                     `${targetFile} --plugin ${longName} --rule ${ruleModuleName} --format json`
                 );
                 assert.strictEqual(result, 1);
-                assertMatchLog(/Found TODO/);
+                const [message] = getLogs();
+                const json = JSON.parse(message);
+                assert.deepStrictEqual(json, [
+                    {
+                        filePath: targetFile,
+                        messages: [
+                            {
+                                column: 4,
+                                index: 110,
+                                line: 8,
+                                loc: {
+                                    end: {
+                                        column: 4,
+                                        line: 8
+                                    },
+                                    start: {
+                                        column: 3,
+                                        line: 8
+                                    }
+                                },
+                                message: "Found TODO: 'TODO: THIS IS TODO'",
+                                range: [110, 111],
+                                ruleId: "no-todo",
+                                severity: 2,
+                                type: "lint"
+                            }
+                        ]
+                    }
+                ]);
             });
         });
         it("when has not error, status should be 0", function () {
