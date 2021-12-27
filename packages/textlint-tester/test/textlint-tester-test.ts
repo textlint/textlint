@@ -77,7 +77,26 @@ tester.run("no-todo", noTodo, {
             errors: [
                 {
                     message: "Found TODO: '- [ ] This is NG'",
-                    index: 2
+                    range: [2, 6]
+                }
+            ]
+        },
+        // loc
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] This is NG'",
+                    loc: {
+                        start: {
+                            line: 1,
+                            column: 3
+                        },
+                        end: {
+                            line: 1,
+                            column: 7
+                        }
+                    }
                 }
             ]
         }

@@ -1,7 +1,8 @@
 import { TextlintRuleReporter } from "@textlint/types";
 import { RuleHelper } from "textlint-rule-helper";
+
 const reporter: TextlintRuleReporter = (context) => {
-    const { Syntax, fixer, report, getSource } = context;
+    const { Syntax, fixer, report, getSource, locator } = context;
     const helper = new RuleHelper(context);
     return {
         [Syntax.Str](node) {
@@ -16,7 +17,7 @@ const reporter: TextlintRuleReporter = (context) => {
             const add = fixer.insertTextAfter(node, ".");
             report(node, {
                 message: "Please add . to end of a sentence.",
-                index,
+                loc: locator.at(index),
                 fix: add
             });
         }

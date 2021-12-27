@@ -90,7 +90,7 @@ ${actualText}
 ${JSON.stringify(lintResult, null, 4)}`
         );
         errors.forEach((error, errorIndex) => {
-            const { ruleId, message, line, column, index } = error;
+            const { ruleId, message, line, column, index, range, loc } = error;
             const resultMessageObject = lintResult.messages[errorIndex];
             // check
             assert.ok(
@@ -133,9 +133,13 @@ The result's column number should be less than ${columnText.length + 1}`
                 const resultIndex = resultMessageObject.index;
                 assert.strictEqual(resultIndex, index, `"index should be ${index}`);
             }
-            if (index !== undefined) {
-                const resultIndex = resultMessageObject.index;
-                assert.strictEqual(resultIndex, index, `"index should be ${index}`);
+            if (range !== undefined) {
+                const resultRange = resultMessageObject.range;
+                assert.deepStrictEqual(resultRange, range, `"range should be ${JSON.stringify(range, null, 4)}`);
+            }
+            if (loc !== undefined) {
+                const resultLoc = resultMessageObject.loc;
+                assert.deepStrictEqual(resultLoc, loc, `"loc should be ${JSON.stringify(loc, null, 4)}`);
             }
         });
     });
