@@ -2,11 +2,11 @@
 
 import { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintRuleContext, TextlintRuleModule, TextlintRuleReporter } from "@textlint/types";
+import * as assert from "assert";
 
 export interface ReportOptions {
     errors?: {
-        index: number;
-        range: [number, number];
+        range: readonly [number, number];
         message: string;
         output: string;
     }[];
@@ -17,15 +17,16 @@ export const report: TextlintRuleReporter = (
     options: ReportOptions | any = {}
 ) => {
     const errors = options.errors || [];
-    const { Syntax, RuleError, report, fixer } = context;
+    const { Syntax, RuleError, report, fixer, locator } = context;
     return {
         [Syntax.Document](node: TxtNode) {
             errors.forEach((error: any) => {
-                if (error.range && error.output) {
+                assert.ok(Array.isArray(error.range), "range should be an array");
+                if (error.output) {
                     report(
                         node,
                         new RuleError(error.message, {
-                            index: error.index,
+                            loc: locator.range(error.range),
                             fix: fixer.replaceTextRange(error.range, error.output)
                         })
                     );
@@ -33,7 +34,7 @@ export const report: TextlintRuleReporter = (
                     report(
                         node,
                         new RuleError(error.message, {
-                            index: error.index
+                            loc: locator.range(error.range)
                         })
                     );
                 }

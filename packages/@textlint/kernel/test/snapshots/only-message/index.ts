@@ -1,29 +1,12 @@
 import { TextlintRuleReporter } from "@textlint/types";
 
+// disallow to write CodeBlock
 const report: TextlintRuleReporter = (context) => {
-    const { Syntax, locator, report, RuleError, getSource } = context;
+    const { Syntax, report, RuleError } = context;
     return {
-        [Syntax.Str](node) {
-            const text = getSource(node);
-            const lines = text.split(/\n/);
-            const [firstLine, secondLine] = lines;
-            if (firstLine === `Next line should not start with "!"` && secondLine.startsWith("!")) {
-                report(node, new RuleError("This line should not start with !", {
-                    loc: locator.loc({
-                        // relative padding
-                        start: {
-                            line: 1,
-                            column: 0
-                        },
-                        end: {
-                            line: 2,
-                            column: 0
-                        }
-                    })
-                }));
-            }
+        [Syntax.CodeBlock](node) {
+            report(node, new RuleError("DO NOT WRITE CODE"));
         }
     };
 };
-
 export default report;

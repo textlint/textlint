@@ -33,6 +33,7 @@
     "clean": "rimraf lib/ module/",
     "prepublish": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
+    "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
     "test:build": "tsc -b test"
   },
   "dependencies": {

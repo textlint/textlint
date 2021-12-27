@@ -3,26 +3,49 @@
         {
             "type": "lint",
             "ruleId": "rule",
-            "message": "This line should not start with !",
-            "index": 36,
-            "line": 2,
+            "message": "DO NOT WRITE CODE",
+            "index": 15,
+            "line": 3,
             "column": 1,
             "range": [
-                36,
-                55
+                15,
+                43
             ],
             "loc": {
                 "start": {
-                    "line": 2,
+                    "line": 3,
                     "column": 0
                 },
                 "end": {
-                    "line": 3,
+                    "line": 5,
+                    "column": 3
+                }
+            },
+            "severity": 2
+        },
+        {
+            "type": "lint",
+            "ruleId": "rule",
+            "message": "DO NOT WRITE CODE",
+            "index": 60,
+            "line": 9,
+            "column": 1,
+            "range": [
+                60,
+                113
+            ],
+            "loc": {
+                "start": {
+                    "line": 9,
                     "column": 0
+                },
+                "end": {
+                    "line": 12,
+                    "column": 3
                 }
             },
             "severity": 2
         }
     ],
-    "filePath": "<root>/locator-loc/input.md"
+    "filePath": "<root>/only-message/input.md"
 }

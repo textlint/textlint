@@ -41,7 +41,7 @@ export function parse<T extends TxtNode>(text: string): T {
                     start: { line: position.start.line, column: Math.max(position.start.column - 1, 0) },
                     end: { line: position.end.line, column: Math.max(position.end.column - 1, 0) }
                 };
-                const range = [position.start.offset, position.end.offset] as [number, number];
+                const range = [position.start.offset, position.end.offset] as const;
                 node.loc = positionCompensated;
                 node.range = range;
                 node.raw = textWithoutBOM.slice(range[0], range[1]);

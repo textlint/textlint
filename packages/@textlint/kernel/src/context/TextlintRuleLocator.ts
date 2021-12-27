@@ -1,7 +1,13 @@
 import { TextlintRuleErrorLocation, TextlintRuleLocator } from "@textlint/types";
 
 export const isTextlintRuleErrorLocation = (o: any): o is TextlintRuleErrorLocation => {
-    return typeof o === "object" && o !== null && "type" in o && o.type === "TextlintRuleErrorLocation";
+    return (
+        typeof o === "object" &&
+        o !== null &&
+        "type" in o &&
+        o.type === "TextlintRuleErrorLocation" &&
+        (Array.isArray(o.range) || typeof o.loc === "object")
+    );
 };
 export const createLocator = (): TextlintRuleLocator => {
     return {

@@ -131,7 +131,6 @@ Use it with `report` function.
 ```js
 // No padding information
 const error = new RuleError("message");
-//
 // OR
 // add location-based padding
 const paddingLine = 1;
@@ -141,7 +140,6 @@ const errorWithPadding = new RuleError("message", {
     column: paddingColumn // padding column number from node.loc.start.column. default: 0
 });
 // context.report(node, errorWithPadding);
-//
 // OR
 // add index-based padding
 const paddingIndex = 1;
@@ -252,8 +250,7 @@ File Name: `no-todo.js`
  * @param {RuleContext} context
  */
 export default function (context) {
-    const helper = new RuleHelper(context);
-    const { Syntax, getSource, RuleError, report } = context;
+    const { Syntax, getSource, RuleError, report, locator } = context;
     return {
         /*
             # Header
@@ -270,7 +267,7 @@ export default function (context) {
                 report(
                     node,
                     new RuleError(`Found TODO: '${text}'`, {
-                        index: match.index
+                        loc: locator.range([match.index, match.index + text.length])
                     })
                 );
             }
@@ -288,7 +285,7 @@ export default function (context) {
                 report(
                     node,
                     new context.RuleError(`Found TODO: '${text}'`, {
-                        index: match.index
+                        loc: locator.range([match.index, match.index + text.length])
                     })
                 );
             }

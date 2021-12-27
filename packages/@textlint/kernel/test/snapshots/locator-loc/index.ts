@@ -5,15 +5,25 @@ const report: TextlintRuleReporter = (context) => {
     return {
         [Syntax.Str](node) {
             const text = getSource(node);
-            const bugMatches = text.matchAll(/bug/ig);
-            for (const bugMatch of bugMatches) {
-                if (bugMatch.index === undefined) {
-                    continue;
-                }
-                const bugRange = [bugMatch.index, bugMatch.index + bugMatch[0].length] as const;
-                report(node, new RuleError("Found a bug", {
-                    loc: locator.range(bugRange)
-                }));
+            const lines = text.split(/\n/);
+            const [firstLine, secondLine] = lines;
+            if (firstLine === `Next line should not start with "!"` && secondLine.startsWith("!")) {
+                report(
+                    node,
+                    new RuleError("This line should not start with !", {
+                        loc: locator.loc({
+                            // relative padding
+                            start: {
+                                line: 1,
+                                column: 0
+                            },
+                            end: {
+                                line: 2,
+                                column: 0
+                            }
+                        })
+                    })
+                );
             }
         }
     };

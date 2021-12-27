@@ -107,13 +107,13 @@ report(node, new RuleError("message", {
 };
 
 /**
- * Create intermidiate represent to resolve location
+ * Create intermediate represent to resolve location
  * `loc` property is pass threw
  * Convert `index` to IR
  * Convert `column` and `line` to IR
  * @param padding
  */
-const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddingIR => {
+const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddingIR | null => {
     if ("loc" in padding && typeof padding.loc === "object") {
         return padding.loc;
     }
@@ -159,10 +159,7 @@ const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddi
         };
     }
     // No Padding
-    return {
-        line: 0,
-        column: 0
-    };
+    return null;
 };
 const toAbsoluteLocation = ({
     source,
@@ -171,8 +168,14 @@ const toAbsoluteLocation = ({
 }: {
     source: TextlintSourceCode;
     node: TxtNode;
-    paddingIR: SourceLocationPaddingIR;
+    paddingIR: SourceLocationPaddingIR | null;
 }) => {
+    if (!paddingIR) {
+        return {
+            range: node.range,
+            loc: node.loc
+        };
+    }
     const nodeRange = node.range;
     const line = node.loc.start.line;
     const column = node.loc.start.column;
