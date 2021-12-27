@@ -17,7 +17,8 @@ export interface TextlintMessage {
     data?: any;
     // FixCommand
     fix?: TextlintMessageFixCommand;
-    /* start line number where the issue is located.
+    /**
+     * start line number where the issue is located.
      * start with 1
      * @deprecated use `loc`
      */

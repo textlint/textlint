@@ -1,10 +1,7 @@
-// LICENSE : MIT
-"use strict";
-
-const RuleHelper = require("textlint-rule-helper").RuleHelper;
-
-function reporter(context) {
-    const { Syntax, RuleError, fixer, report, getSource } = context;
+import { TextlintRuleReporter } from "@textlint/types";
+import { RuleHelper } from "textlint-rule-helper";
+const reporter: TextlintRuleReporter = (context) => {
+    const { Syntax, fixer, report, getSource } = context;
     const helper = new RuleHelper(context);
     return {
         [Syntax.Str](node) {
@@ -24,9 +21,9 @@ function reporter(context) {
             });
         }
     };
-}
+};
 
-module.exports = {
+export default {
     linter: reporter,
     fixer: reporter
 };

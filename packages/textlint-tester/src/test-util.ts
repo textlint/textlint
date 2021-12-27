@@ -4,6 +4,7 @@ import * as assert from "assert";
 import * as fs from "fs";
 import { TextLintCore } from "textlint";
 import { TextlintResult } from "@textlint/kernel";
+import { TesterErrorDefinition } from "./textlint-tester";
 
 /**
  *
@@ -26,7 +27,7 @@ export type InvalidPattern = {
     inputPath?: string;
     text?: string;
     ext?: string;
-    errors: any[];
+    errors: TesterErrorDefinition[];
 };
 
 /**
@@ -127,6 +128,10 @@ The result's column number should be less than ${columnText.length + 1}`
             if (column !== undefined) {
                 const resultColumn = resultMessageObject.column;
                 assert.strictEqual(resultColumn, column, `"column should be ${column}`);
+            }
+            if (index !== undefined) {
+                const resultIndex = resultMessageObject.index;
+                assert.strictEqual(resultIndex, index, `"index should be ${index}`);
             }
             if (index !== undefined) {
                 const resultIndex = resultMessageObject.index;

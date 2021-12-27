@@ -95,20 +95,40 @@ export type TesterValid =
           options?: any;
       };
 
+export type TesterErrorDefinition = {
+    ruleId?: string;
+    range?: readonly [startIndex: number, endIndex: number];
+    loc?: {
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
+    };
+    /**
+     * @deprecated use `range` option
+     */
+    index?: number;
+    /**
+     * @deprecated use `loc` option
+     */
+    line?: number;
+    /**
+     * @deprecated use `loc` option
+     */
+    column?: number;
+    message?: string;
+};
 export type TesterInvalid = {
     text?: string;
     output?: string;
     ext?: string;
     inputPath?: string;
     options?: any;
-    errors: {
-        ruleId?: string;
-        index?: number;
-        line?: number;
-        column?: number;
-        message?: string;
-        [index: string]: any;
-    }[];
+    errors: TesterErrorDefinition[];
 };
 
 export type TestRuleSet = {

@@ -2,7 +2,7 @@
 "use strict";
 import TextLintTester from "../src/index";
 import path from "path";
-const fixerRule = require("./fixtures/rule/fixer-rule-add");
+import fixerRule from "./fixtures/rule/fixer-rule-add";
 const tester = new TextLintTester();
 tester.run("fixer-rule-add", fixerRule, {
     valid: ["string.", "- [ ] list item"],

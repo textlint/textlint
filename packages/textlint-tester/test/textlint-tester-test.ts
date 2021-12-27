@@ -1,7 +1,6 @@
 import * as path from "path";
 import TextLintTester from "../src/index";
-// @ts-expect-error: no types
-import noTodo from "textlint-rule-no-todo";
+import noTodo from "./fixtures/rule/no-todo";
 // @ts-expect-error: no types
 import maxNumberOfLine from "textlint-rule-max-number-of-lines";
 
@@ -21,7 +20,7 @@ tester.run("no-todo", noTodo, {
         }
     ],
     invalid: [
-        // line, column
+        // [deprecated] line, column
         {
             text: "- [ ] string",
             errors: [
@@ -32,7 +31,7 @@ tester.run("no-todo", noTodo, {
                 }
             ]
         },
-        // index
+        // [deprecated] index
         {
             text: "- [ ] string",
             errors: [
@@ -57,12 +56,22 @@ tester.run("no-todo", noTodo, {
             ext: ".txt",
             errors: [
                 {
-                    message: "Found TODO: 'TODO: this text is parsed as plain text.'",
+                    message: "Found TODO: '- [ ] TODO: this text is parsed as plain text.'",
                     line: 1,
                     column: 7
                 }
             ]
         },
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] This is NG'",
+                    index: 2
+                }
+            ]
+        },
+        // range
         {
             inputPath: path.join(__dirname, "fixtures/text/ng.md"),
             errors: [
