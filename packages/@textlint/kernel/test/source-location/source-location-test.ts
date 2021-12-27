@@ -33,7 +33,7 @@ describe("source-location", function () {
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
             const { line, column } = result.loc.start;
             assert.strictEqual(line, 1);
-            assert.strictEqual(column, 10);
+            assert.strictEqual(column, 11);
         });
     });
     context("[deprecated] column only", function () {
@@ -54,7 +54,7 @@ describe("source-location", function () {
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
             const { line, column } = result.loc.start;
             assert.strictEqual(line, 1);
-            assert.strictEqual(column, 15);
+            assert.strictEqual(column, 16);
         });
         context("[textlint-tester] when testing", function () {
             it("should throw error in testing.", function () {
@@ -83,7 +83,7 @@ describe("source-location", function () {
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
             const { line, column } = result.loc.start;
             assert.strictEqual(line, 1);
-            assert.strictEqual(column, 15);
+            assert.strictEqual(column, 16);
         });
     });
 
@@ -118,13 +118,13 @@ describe("source-location", function () {
     context("[deprecated] when line only", function () {
         it("should add line to the node.start", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
-
             const node = source.ast.children[0].children[0];
             const ruleError = { line: 1, message: "error message" };
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
-            const { line, column } = result.loc.start;
-            assert.strictEqual(line, 2);
-            assert.strictEqual(column, 0);
+            assert.deepStrictEqual(result, {
+                range: [11, 12],
+                loc: { start: { line: 2, column: 1 }, end: { line: 3, column: 1 } }
+            });
         });
     });
     context("when pass loc property", function () {
@@ -148,8 +148,8 @@ describe("source-location", function () {
             assertDeepStrictEqualAsJSON(result, {
                 range: [0, 1],
                 loc: {
-                    start: { line: 1, column: 0 },
-                    end: { line: 1, column: 1 }
+                    start: { line: 1, column: 1 },
+                    end: { line: 1, column: 2 }
                 }
             });
         });
@@ -161,8 +161,8 @@ describe("source-location", function () {
             assertDeepStrictEqualAsJSON(result, {
                 range: [5, 10],
                 loc: {
-                    start: { line: 1, column: 5 },
-                    end: { line: 1, column: 10 }
+                    start: { line: 1, column: 6 },
+                    end: { line: 1, column: 11 }
                 }
             });
         });
@@ -187,11 +187,11 @@ describe("source-location", function () {
                 range: [12, 24],
                 loc: {
                     start: {
-                        column: 1,
+                        column: 2,
                         line: 2
                     },
                     end: {
-                        column: 2,
+                        column: 3,
                         line: 3
                     }
                 }
@@ -215,9 +215,19 @@ describe("source-location", function () {
                 fix: { isAbsolute: false, range: [1, 5] as const, text: "replace" }
             };
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
-            const { line, column } = result.loc.start;
-            assert.strictEqual(line, 1);
-            assert.strictEqual(column, 15);
+            assert.deepStrictEqual(result, {
+                loc: {
+                    end: {
+                        column: 17,
+                        line: 1
+                    },
+                    start: {
+                        column: 16,
+                        line: 1
+                    }
+                },
+                range: [15, 16]
+            });
         });
         it("fix should accept this that same as RuleError", function () {
             const node = {

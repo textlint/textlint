@@ -51,10 +51,13 @@ export interface LintReportedMessage {
     ruleId: string;
     message: string;
     index: number;
-    // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
     line: number; // start with 1(1-based line number)
     column: number; // start with 1(1-based column number)
+    // range is 0-based values
     range: readonly [startIndex: number, endIndex: number];
+    // loc is 1-based values
+    // line start with 1
+    // column start with 1
     loc: {
         start: {
             line: number;
@@ -142,9 +145,8 @@ export default abstract class TextLintCoreTask extends EventEmitter {
                 ruleId: ruleId,
                 message: ruleError.message,
                 index: range[0],
-                // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
-                line: loc.start.line, // start with 1(1-based line number)
-                column: loc.start.column + 1, // start with 1(1-based column number)
+                line: loc.start.line,
+                column: loc.start.column,
                 range,
                 loc,
                 severity: severity, // it's for compatible ESLint formatter

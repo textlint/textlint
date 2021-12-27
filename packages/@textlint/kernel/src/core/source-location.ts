@@ -169,11 +169,20 @@ const toAbsoluteLocation = ({
     source: TextlintSourceCode;
     node: TxtNode;
     paddingIR: SourceLocationPaddingIR | null;
-}) => {
+}): PublicOutputLocationResult => {
     if (!paddingIR) {
         return {
             range: node.range,
-            loc: node.loc
+            loc: {
+                start: {
+                    line: node.loc.start.line,
+                    column: node.loc.start.column + 1
+                },
+                end: {
+                    line: node.loc.end.line,
+                    column: node.loc.end.column + 1
+                }
+            }
         };
     }
     const nodeRange = node.range;
@@ -196,7 +205,16 @@ const toAbsoluteLocation = ({
         }
         return {
             range: absoluteRange,
-            loc: absoluteLocation
+            loc: {
+                start: {
+                    line: absoluteLocation.start.line,
+                    column: absoluteLocation.start.column + 1
+                },
+                end: {
+                    line: absoluteLocation.end.line,
+                    column: absoluteLocation.end.column + 1
+                }
+            }
         };
     }
     // When { range } padding
@@ -211,7 +229,16 @@ const toAbsoluteLocation = ({
         }
         return {
             range: absoluteRange,
-            loc: absoluteLocation
+            loc: {
+                start: {
+                    line: absoluteLocation.start.line,
+                    column: absoluteLocation.start.column + 1
+                },
+                end: {
+                    line: absoluteLocation.end.line,
+                    column: absoluteLocation.end.column + 1
+                }
+            }
         };
     }
     // When { loc } padding
@@ -238,11 +265,11 @@ const toAbsoluteLocation = ({
             loc: {
                 start: {
                     line: absoluteStartPosition.line,
-                    column: absoluteStartPosition.column
+                    column: absoluteStartPosition.column + 1
                 },
                 end: {
                     line: absoluteEndPosition.line,
-                    column: absoluteEndPosition.column
+                    column: absoluteEndPosition.column + 1
                 }
             }
         };
@@ -285,28 +312,36 @@ export const resolveFixCommandLocation = ({ node, ruleError }: { node: TxtNode; 
     };
 };
 
-export type ResolveLocationResult = {
+/**
+ * Resolved Location's loc is 1-based line and column
+ * It aims to compat to output of textlint.
+ * Internally, textlint use 0-based column value, but output is 1-based column.
+ */
+export type PublicOutputLocationResult = {
+    // 0-based
     range: readonly [startIndex: number, endIndex: number];
     loc: {
         start: {
-            line: number;
-            column: number;
+            line: number; // 1-based
+            column: number; // 1-based
         };
         end: {
-            line: number;
-            column: number;
+            line: number; // 1-based
+            column: number; // 1-based
         };
     };
 };
 /**
  * resolve `loc`(includes deprecated `index`, `column`, `line`) to absolute location
+ * padding + node's start position
+ * also, line and column in loc will be 1-based index values
  * @param args
  */
 export const resolveLocation = (
     args: {
         source: TextlintSourceCode;
     } & Pick<TextlintRuleContextReportFunctionArgs, "node" | "ruleError" | "ruleId">
-): ResolveLocationResult => {
+): PublicOutputLocationResult => {
     const { node, ruleError } = args;
     assertReportArgs(args);
     const paddingIR = createPaddingIR(ruleError);

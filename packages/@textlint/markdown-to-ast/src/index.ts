@@ -37,6 +37,8 @@ export function parse<T extends TxtNode>(text: string): T {
             // map `range`, `loc` and `raw` to node
             if (node.position) {
                 const position = node.position;
+                // line start with 1
+                // column start with 0
                 const positionCompensated = {
                     start: { line: position.start.line, column: Math.max(position.start.column - 1, 0) },
                     end: { line: position.end.line, column: Math.max(position.end.column - 1, 0) }

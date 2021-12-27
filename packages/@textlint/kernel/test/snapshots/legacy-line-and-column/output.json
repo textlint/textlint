@@ -14,11 +14,11 @@
             "loc": {
                 "start": {
                     "line": 2,
-                    "column": 8
+                    "column": 9
                 },
                 "end": {
                     "line": 2,
-                    "column": 9
+                    "column": 10
                 }
             },
             "severity": 2

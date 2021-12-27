@@ -36,7 +36,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
     filePath: string | undefined;
     ext: string;
 
-    private _structuredSource: any;
+    private _structuredSource: StructuredSource;
 
     /**
      * @param {string} text
@@ -96,6 +96,8 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
     }
 
     // StructuredSource wrapper
+    // line is 1-based
+    // column is 1-based
     /**
      * @param {TextlintSourceCodeLocation} loc - location indicator.
      * @return {[ number, number ]} range.
@@ -109,7 +111,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
      * @return {TextlintSourceCodeLocation} location.
      */
     rangeToLocation(range: TextlintSourceCodeRange): TextlintSourceCodeLocation {
-        const rangeToLocation = this._structuredSource.rangeToLocation(range);
+        const rangeToLocation = this._structuredSource.rangeToLocation([range[0], range[1]]);
         return {
             start: {
                 line: rangeToLocation.start.line,
