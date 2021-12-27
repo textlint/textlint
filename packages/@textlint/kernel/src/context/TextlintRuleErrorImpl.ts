@@ -2,13 +2,28 @@
 "use strict";
 
 import type { TextlintRuleContextFixCommand, TextlintRuleErrorPadding, TextlintRuleError } from "@textlint/types";
+import { TextlintRuleErrorLocation } from "@textlint/types";
 
 export class TextlintRuleErrorImpl implements TextlintRuleError {
     public message: string;
-    public line?: number;
-    public column?: number;
-    public index?: number;
-    public fix?: TextlintRuleContextFixCommand;
+    /**
+     * @deprecated use `loc` property
+     */
+    public readonly line?: number;
+    /**
+     * @deprecated use `loc` property
+     */
+    public readonly column?: number;
+    /**
+     * @deprecated use `loc` property
+     */
+    public readonly index?: number;
+    /**
+     * padding location object
+     * You can create loc value using locator
+     */
+    public readonly loc?: TextlintRuleErrorLocation;
+    public readonly fix?: TextlintRuleContextFixCommand;
 
     /**
      * RuleError is like Error object.
@@ -40,6 +55,10 @@ export class TextlintRuleErrorImpl implements TextlintRuleError {
              * @type {TextlintRuleContextFixCommand}
              */
             this.fix = paddingLocation.fix;
+            /**
+             * padding location object
+             */
+            this.loc = paddingLocation.loc;
         } else if (typeof paddingLocation === "number") {
             // this is deprecated
             // should pass padding as object.

@@ -1,4 +1,6 @@
 // "range" will be replaced by "text"
+import { TextlintRuleSeverityLevel } from "../Rule/TextlintRuleSeverityLevel";
+
 export interface TextlintMessageFixCommand {
     text: string;
     range: [number, number];
@@ -56,7 +58,7 @@ export interface TextlintMessage {
     };
     // Severity Level
     // See src/shared/type/SeverityLevel.js
-    severity: number;
+    severity: TextlintRuleSeverityLevel;
 }
 
 // Linting result

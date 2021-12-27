@@ -3,7 +3,7 @@
 import * as assert from "assert";
 import { resolveFixCommandLocation, resolveLocation } from "../../src/core/source-location";
 import RuleFixer from "../../src/fixer/rule-fixer";
-import createDummySourceCode from "./../util/dummy-source-code";
+import createDummySourceCode from "../util/dummy-source-code";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";
 import { TxtNode } from "@textlint/ast-node-types";

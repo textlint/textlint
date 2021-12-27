@@ -158,7 +158,7 @@ const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddi
             column: Math.max(padding.column, 0)
         };
     }
-
+    // No Padding
     return {
         line: 0,
         column: 0
