@@ -247,14 +247,14 @@ describe("rule-context-test", function () {
                     assert.strictEqual(message.line, 2);
                     assert.strictEqual(message.column, 2);
                     assert.deepStrictEqual(message.range, [6, 7]);
-                    assert.deepStrictEqual(JSON.parse(JSON.stringify(message.loc)), {
+                    assert.deepStrictEqual(message.loc, {
                         start: {
                             line: 2,
-                            column: 1
+                            column: 2
                         },
                         end: {
                             line: 2,
-                            column: 2
+                            column: 3
                         }
                     });
                 });
