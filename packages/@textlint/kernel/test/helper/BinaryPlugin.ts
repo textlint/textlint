@@ -72,7 +72,7 @@ export const createBinaryPluginStub = (options?: CreateBinaryPluginOptions) => {
                                 const ast = {
                                     type: "Document",
                                     raw: dummyText,
-                                    range: [0, dummyText.length] as [number, number],
+                                    range: [0, dummyText.length] as const,
                                     loc: {
                                         start: {
                                             line: 1,
@@ -88,7 +88,7 @@ export const createBinaryPluginStub = (options?: CreateBinaryPluginOptions) => {
                                             type: "Str",
                                             value: dummyText,
                                             raw: dummyText,
-                                            range: [0, dummyText.length] as [number, number],
+                                            range: [0, dummyText.length] as const,
                                             loc: {
                                                 start: {
                                                     line: 1,

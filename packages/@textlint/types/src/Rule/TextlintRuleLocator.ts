@@ -11,7 +11,7 @@ export type TextlintRuleLocator = {
      * range's index is 0-based value
      * @param range relative range from node's start position
      */
-    range(range: [startIndex: number, endIndex: number]): TextlintRuleErrorLocation;
+    range(range: readonly [startIndex: number, endIndex: number]): TextlintRuleErrorLocation;
     /**
      * line is relative padding value from node's start position
      * column is relative padding value from node's start position

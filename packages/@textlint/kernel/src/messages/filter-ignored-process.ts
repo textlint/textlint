@@ -9,7 +9,13 @@ import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-cor
  * @param {Number[]} range
  * @returns {boolean}
  */
-const isContainedRange = ({ range, ignoredRange }: { range: [number, number]; ignoredRange: [number, number] }) => {
+const isContainedRange = ({
+    range,
+    ignoredRange
+}: {
+    range: readonly [number, number];
+    ignoredRange: readonly [number, number];
+}) => {
     const [start, end] = ignoredRange;
     return start <= range[0] && range[1] <= end;
 };

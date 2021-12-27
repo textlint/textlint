@@ -3,7 +3,7 @@ import { TextlintRuleSeverityLevel } from "../Rule/TextlintRuleSeverityLevel";
 
 export interface TextlintMessageFixCommand {
     text: string;
-    range: [number, number];
+    range: readonly [startIndex: number, endIndex: number];
 }
 
 export interface TextlintMessage {
@@ -39,7 +39,7 @@ export interface TextlintMessage {
      * range start with 0
      * Note: `range` represent same info to `loc`
      */
-    range: [startIndex: number, endIndex: number];
+    range: readonly [startIndex: number, endIndex: number];
     /**
      * the location info where the issue is located.
      * line start with 1

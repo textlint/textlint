@@ -41,7 +41,7 @@ export interface IgnoreReportedMessage {
     // column: number;// start with 1
     // // indexed-location
     // index: number;// start with 0
-    range: [number, number];
+    range: readonly [startIndex: number, endIndex: number];
 
     ignoringRuleId: string;
 }
@@ -54,7 +54,7 @@ export interface LintReportedMessage {
     // See https://github.com/textlint/textlint/blob/master/typing/textlint.d.ts
     line: number; // start with 1(1-based line number)
     column: number; // start with 1(1-based column number)
-    range: [number, number];
+    range: readonly [startIndex: number, endIndex: number];
     loc: {
         start: {
             line: number;

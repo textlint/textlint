@@ -12,7 +12,7 @@ import { TextlintBaseRuleContext } from "./TextlintBaseRuleContext";
  */
 export interface TextlintFilterRuleShouldIgnoreFunctionArgs {
     ruleId: string;
-    range: [number, number];
+    range: readonly [startIndex: number, endIndex: number];
     optional: {
         ruleId?: string;
     };
@@ -28,5 +28,5 @@ export declare type TextlintFilterRuleShouldIgnoreFunction = (args: TextlintFilt
  * @constructor
  */
 export interface TextlintFilterRuleContext extends TextlintBaseRuleContext {
-    shouldIgnore(range: [number, number], optional: {}): void;
+    shouldIgnore(range: readonly [startIndex: number, endIndex: number], optional: {}): void;
 }

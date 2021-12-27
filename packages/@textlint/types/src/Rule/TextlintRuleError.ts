@@ -6,7 +6,7 @@ export type TextlintRuleErrorLocation =
     | {
           type: "TextlintRuleErrorLocation";
           isAbsolute: boolean; // TODO: currently always relative from node position
-          range: [startIndex: number, endIndex: number];
+          range: readonly [startIndex: number, endIndex: number];
       }
     | {
           type: "TextlintRuleErrorLocation";

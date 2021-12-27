@@ -186,7 +186,7 @@ const toAbsoluteLocation = ({
         if (Number.isNaN(absoluteIndex)) {
             throw new Error("absoluteIndex is NaN in { line, column }");
         }
-        const absoluteRange = [absoluteIndex, absoluteIndex + 1] as [number, number];
+        const absoluteRange = [absoluteIndex, absoluteIndex + 1] as const;
         const absoluteLocation = source.rangeToLocation(absoluteRange);
         if (Number.isNaN(absoluteLocation)) {
             throw new Error("absoluteLocation is NaN in { line, column }");
@@ -276,14 +276,14 @@ export const resolveFixCommandLocation = ({ node, ruleError }: { node: TxtNode; 
     return {
         // fix(command) is relative from node's range
         fix: {
-            range: [nodeRange[0] + ruleError.fix.range[0], nodeRange[0] + ruleError.fix.range[1]] as [number, number],
+            range: [nodeRange[0] + ruleError.fix.range[0], nodeRange[0] + ruleError.fix.range[1]] as const,
             text: ruleError.fix.text
         }
     };
 };
 
 export type ResolveLocationResult = {
-    range: [number, number];
+    range: readonly [startIndex: number, endIndex: number];
     loc: {
         start: {
             line: number;

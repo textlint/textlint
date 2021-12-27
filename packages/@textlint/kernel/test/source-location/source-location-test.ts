@@ -25,7 +25,7 @@ describe("source-location", function () {
         it("should return node's start location", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -42,7 +42,7 @@ describe("source-location", function () {
 
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -60,7 +60,7 @@ describe("source-location", function () {
             it("should throw error in testing.", function () {
                 const node = {
                     type: "String",
-                    range: [10, 20] as [number, number],
+                    range: [10, 20] as const,
                     raw: "1234567890",
                     loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
                 };
@@ -75,7 +75,7 @@ describe("source-location", function () {
         it("should return column, line", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -91,7 +91,7 @@ describe("source-location", function () {
         it("should throw error", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -104,7 +104,7 @@ describe("source-location", function () {
         it("should throw error with RuleName", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -204,7 +204,7 @@ describe("source-location", function () {
         it("should accept this that same as RuleError", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -212,7 +212,7 @@ describe("source-location", function () {
                 message: "message",
                 line: 0,
                 column: 5,
-                fix: { isAbsolute: false, range: [1, 5] as [number, number], text: "replace" }
+                fix: { isAbsolute: false, range: [1, 5] as const, text: "replace" }
             };
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
             const { line, column } = result.loc.start;
@@ -222,7 +222,7 @@ describe("source-location", function () {
         it("fix should accept this that same as RuleError", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -230,7 +230,7 @@ describe("source-location", function () {
                 message: "message",
                 line: 0,
                 column: 5,
-                fix: { isAbsolute: false, range: [1, 5] as [number, number], text: "replace" }
+                fix: { isAbsolute: false, range: [1, 5] as const, text: "replace" }
             };
             const { fix } = resolveFixCommandLocation({ node, ruleError });
             assert.deepStrictEqual(fix?.range, [11, 15]);
@@ -241,7 +241,7 @@ describe("source-location", function () {
         it("should return {fix}", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -257,7 +257,7 @@ describe("source-location", function () {
         it("range should be absolute of value", function () {
             const node = {
                 type: "String",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };
@@ -274,7 +274,7 @@ describe("source-location", function () {
         it("should not adjust fix command range - because it is absolute position", function () {
             const node = {
                 type: "Str",
-                range: [10, 20] as [number, number],
+                range: [10, 20] as const,
                 raw: "dummy",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
             };

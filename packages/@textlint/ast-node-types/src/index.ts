@@ -114,7 +114,7 @@ export interface TxtNodePosition {
 /**
  * Range starts with 0
  */
-export type TextNodeRange = [number, number];
+export type TextNodeRange = readonly [startIndex: number, endIndex: number];
 
 /**
  * Text Node.
