@@ -1,0 +1,28 @@
+{
+    "messages": [
+        {
+            "type": "lint",
+            "ruleId": "rule",
+            "message": "This line should not start with !",
+            "index": 36,
+            "line": 2,
+            "column": 1,
+            "range": [
+                36,
+                55
+            ],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 0
+                }
+            },
+            "severity": 2
+        }
+    ],
+    "filePath": "<root>/locator-loc/input.md"
+}
