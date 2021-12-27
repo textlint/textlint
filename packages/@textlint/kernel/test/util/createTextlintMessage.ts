@@ -2,7 +2,7 @@ import { TextlintMessage } from "@textlint/kernel";
 import createDummySourceCode from "./dummy-source-code";
 import { resolveLocation } from "../../src/core/source-location";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";
-import { createLocator } from "../../src/context/TextlintRuleLocator";
+import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator";
 import { IgnoreReportedMessage } from "../../src/task/textlint-core-task";
 
 /**
@@ -20,7 +20,7 @@ export const createTextlintMessage = (
         node: source.ast,
         ruleId: message.ruleId,
         ruleError: new TextlintRuleErrorImpl(message.message, {
-            loc: createLocator().range(message.range)
+            padding: createPaddingLocator().range(message.range)
         })
     });
     return {

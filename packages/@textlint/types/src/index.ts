@@ -13,14 +13,14 @@ export type {
     TextlintSourceCodeRange,
 } from "./Source/TextlintSourceCode";
 // RuleContext
-export type { TextlintRuleLocator } from "./Rule/TextlintRuleLocator";
+export type { TextlintRulePaddingLocator } from "./Rule/TextlintRulePaddingLocator";
 export type { TextlintRuleContextFixCommand } from "./Rule/TextlintRuleContextFixCommand";
 export type { TextlintRuleContextFixCommandGenerator } from "./Rule/TextlintRuleContextFixCommandGenerator";
 export type {
     TextlintRuleError,
     TextlintRuleErrorConstructor,
-    TextlintRuleErrorPadding,
-    TextlintRuleErrorLocation,
+    TextlintRuleErrorDetails,
+    TextlintRuleErrorPaddingLocation,
     TextlintRuleReportedObject,
 } from "./Rule/TextlintRuleError";
 export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";

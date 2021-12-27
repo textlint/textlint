@@ -1,33 +1,33 @@
-import { TextlintRuleErrorLocation, TextlintRuleLocator } from "@textlint/types";
+import { TextlintRuleErrorPaddingLocation, TextlintRulePaddingLocator } from "@textlint/types";
 
-export const isTextlintRuleErrorLocation = (o: any): o is TextlintRuleErrorLocation => {
+export const isTextlintRuleErrorPaddingLocation = (o: any): o is TextlintRuleErrorPaddingLocation => {
     return (
         typeof o === "object" &&
         o !== null &&
         "type" in o &&
-        o.type === "TextlintRuleErrorLocation" &&
+        o.type === "TextlintRuleErrorPaddingLocation" &&
         (Array.isArray(o.range) || typeof o.loc === "object")
     );
 };
-export const createLocator = (): TextlintRuleLocator => {
+export const createPaddingLocator = (): TextlintRulePaddingLocator => {
     return {
         at(index: number) {
             return {
-                type: "TextlintRuleErrorLocation",
+                type: "TextlintRuleErrorPaddingLocation",
                 isAbsolute: false,
                 range: [index, index + 1]
             };
         },
         range(aRange) {
             return {
-                type: "TextlintRuleErrorLocation",
+                type: "TextlintRuleErrorPaddingLocation",
                 isAbsolute: false,
                 range: aRange
             };
         },
         loc(location) {
             return {
-                type: "TextlintRuleErrorLocation",
+                type: "TextlintRuleErrorPaddingLocation",
                 isAbsolute: false,
                 loc: location
             };

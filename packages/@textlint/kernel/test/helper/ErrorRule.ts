@@ -26,7 +26,7 @@ export const report: TextlintRuleReporter = (
                     report(
                         node,
                         new RuleError(error.message, {
-                            loc: locator.range(error.range),
+                            padding: locator.range(error.range),
                             fix: fixer.replaceTextRange(error.range, error.output)
                         })
                     );
@@ -34,7 +34,7 @@ export const report: TextlintRuleReporter = (
                     report(
                         node,
                         new RuleError(error.message, {
-                            loc: locator.range(error.range)
+                            padding: locator.range(error.range)
                         })
                     );
                 }

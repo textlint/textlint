@@ -2,7 +2,7 @@ import {
     TextlintRuleContext,
     TextlintRuleContextReportFunction,
     TextlintRuleError,
-    TextlintRuleLocator,
+    TextlintRulePaddingLocator,
     TextlintRuleReportedObject,
     TextlintRuleSeverityLevel,
     TextlintSourceCode
@@ -12,7 +12,7 @@ import assert from "assert";
 import { TextlintRuleContextFixCommandGeneratorImpl } from "./TextlintRuleContextFixCommandGeneratorImpl";
 import { TextlintRuleSeverityLevelKeys } from "./TextlintRuleSeverityLevelKeys";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
-import { createLocator } from "./TextlintRuleLocator";
+import { createPaddingLocator } from "./TextlintRulePaddingLocator";
 
 const ruleFixer = new TextlintRuleContextFixCommandGeneratorImpl();
 
@@ -39,13 +39,13 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
     private _report: TextlintRuleContextReportFunction;
     private _configBaseDir?: string;
     private _severityLevel: TextlintRuleSeverityLevel;
-    public locator: TextlintRuleLocator;
+    public locator: TextlintRulePaddingLocator;
 
     constructor(args: TextlintRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._report = args.report;
-        this.locator = createLocator();
+        this.locator = createPaddingLocator();
         this._configBaseDir = args.configBaseDir;
         this._severityLevel = args.severityLevel;
         Object.freeze(this);

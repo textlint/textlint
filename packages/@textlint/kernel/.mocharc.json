@@ -7,6 +7,6 @@
     "ts-node-test-register"
   ],
   "spec": [
-    "test/**.{js,tsx}"
+    "test/**.{js,ts}"
   ]
 }

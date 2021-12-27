@@ -247,15 +247,17 @@ export default function (context) {
 `loc` is location info object.
 
 ```json
-"loc": {
+{
+  "loc": {
     "start": {
-        "line": 2,
-        "column": 4
+      "line": 2,
+      "column": 4
     },
     "end": {
-        "line": 2,
-        "column": 10
+      "line": 2,
+      "column": 10
     }
+  }
 }
 ```
 

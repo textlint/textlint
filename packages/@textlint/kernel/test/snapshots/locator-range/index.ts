@@ -14,7 +14,7 @@ const report: TextlintRuleReporter = (context) => {
                 report(
                     node,
                     new RuleError("Found a bug", {
-                        loc: locator.range(bugRange)
+                        padding: locator.range(bugRange)
                     })
                 );
             }

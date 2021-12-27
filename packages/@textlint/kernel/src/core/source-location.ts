@@ -1,14 +1,14 @@
 import type {
     TextlintRuleContextReportFunctionArgs,
     TextlintRuleError,
-    TextlintRuleErrorLocation,
-    TextlintRuleErrorPadding,
-    TextlintSourceCode
+    TextlintRuleErrorPaddingLocation,
+    TextlintSourceCode,
+    TextlintRuleErrorDetails
 } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
 import assert from "assert";
 import { throwIfTesting } from "@textlint/feature-flag";
-import { isTextlintRuleErrorLocation } from "../context/TextlintRuleLocator";
+import { isTextlintRuleErrorPaddingLocation } from "../context/TextlintRulePaddingLocator";
 
 export interface ReportMessage {
     ruleId: string;
@@ -19,7 +19,7 @@ export interface ReportMessage {
 
 // relative padding location info
 export type SourceLocationPaddingIR =
-    | TextlintRuleErrorLocation
+    | TextlintRuleErrorPaddingLocation
     | {
           // if no padding, line and column will be 0
           line: number;
@@ -100,45 +100,45 @@ report(node, new RuleError("message", {
     if (padding.index !== undefined && Number.isNaN(padding.index)) {
         throw new Error("reported { index } is NaN");
     }
-    // invalid loc check
-    if (padding.loc !== undefined) {
-        assert.ok(isTextlintRuleErrorLocation(padding.loc), "reported { loc } is invalid format.");
+    // invalid padding check
+    if (padding.padding !== undefined) {
+        assert.ok(isTextlintRuleErrorPaddingLocation(padding.padding), "reported { padding } is invalid format.");
     }
 };
 
 /**
  * Create intermediate represent to resolve location
- * `loc` property is pass threw
+ * `padding` property is pass threw
  * Convert `index` to IR
  * Convert `column` and `line` to IR
- * @param padding
+ * @param errorDetails
  */
-const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddingIR | null => {
-    if ("loc" in padding && typeof padding.loc === "object") {
-        return padding.loc;
+const createPaddingIR = (errorDetails: TextlintRuleErrorDetails): SourceLocationPaddingIR | null => {
+    if ("padding" in errorDetails && typeof errorDetails.padding === "object") {
+        return errorDetails.padding;
     }
     // when use {index}
-    if (padding.index !== undefined) {
-        const paddingIndex = padding.index;
+    if (errorDetails.index !== undefined) {
+        const paddingIndex = errorDetails.index;
         return {
-            type: "TextlintRuleErrorLocation",
+            type: "TextlintRuleErrorPaddingLocation",
             isAbsolute: false,
             range: [paddingIndex, paddingIndex + 1]
         };
     }
     // when use {line, column}
-    if (padding.line !== undefined && padding.column !== undefined) {
+    if (errorDetails.line !== undefined && errorDetails.column !== undefined) {
         // when report with padding {line, column}, message.column should be 0 + padding.column.
         // In other word, padding line > 0 and message.column start with 0.
         return {
-            line: Math.max(padding.line, 0),
-            column: Math.max(padding.column, 0)
+            line: Math.max(errorDetails.line, 0),
+            column: Math.max(errorDetails.column, 0)
         };
     }
     // when use { line } only
-    if (padding.line !== undefined && padding.line > 0) {
+    if (errorDetails.line !== undefined && errorDetails.line > 0) {
         return {
-            line: Math.max(padding.line, 0),
+            line: Math.max(errorDetails.line, 0),
             column: 0
         };
     }
@@ -152,10 +152,10 @@ const createPaddingIR = (padding: TextlintRuleErrorPadding): SourceLocationPaddi
      });
      ```
      */
-    if (padding.column !== undefined && padding.column > 0) {
+    if (errorDetails.column !== undefined && errorDetails.column > 0) {
         return {
             line: 0,
-            column: Math.max(padding.column, 0)
+            column: Math.max(errorDetails.column, 0)
         };
     }
     // No Padding
@@ -332,7 +332,7 @@ export type PublicOutputLocationResult = {
     };
 };
 /**
- * resolve `loc`(includes deprecated `index`, `column`, `line`) to absolute location
+ * resolve `padding`(includes deprecated `index`, `column`, `line`) to absolute location
  * padding + node's start position
  * also, line and column in loc will be 1-based index values
  * @param args

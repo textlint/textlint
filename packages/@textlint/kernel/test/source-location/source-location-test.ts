@@ -7,7 +7,8 @@ import createDummySourceCode from "../util/dummy-source-code";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import { TextlintRuleErrorImpl } from "../../src/context/TextlintRuleErrorImpl";
 import { TxtNode } from "@textlint/ast-node-types";
-import { createLocator } from "../../src/context/TextlintRuleLocator";
+import { createPaddingLocator } from "../../src/context/TextlintRulePaddingLocator";
+import { TextlintRuleError } from "@textlint/types";
 
 // Workaround for structured-source serialization
 const assertDeepStrictEqualAsJSON = (a: unknown, b: unknown, message?: string) => {
@@ -127,13 +128,13 @@ describe("source-location", function () {
             });
         });
     });
-    context("when pass loc property", function () {
+    context("when pass padding property", function () {
         it("should throw error if pass invalid loc", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
             const node = source.ast;
             const InvalidLocObject = [1, 2] as any;
             const ruleError = {
-                loc: InvalidLocObject,
+                padding: InvalidLocObject,
                 message: "error message"
             };
             assert.throws(() => {
@@ -143,7 +144,7 @@ describe("source-location", function () {
         it("at() should return { range, loc } object", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
             const node = source.ast;
-            const ruleError = { loc: createLocator().at(0), message: "error message" };
+            const ruleError: TextlintRuleError = { padding: createPaddingLocator().at(0), message: "error message" };
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
             assertDeepStrictEqualAsJSON(result, {
                 range: [0, 1],
@@ -156,7 +157,10 @@ describe("source-location", function () {
         it("range() should return { range, loc } object", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
             const node = source.ast;
-            const ruleError = { loc: createLocator().range([5, 10]), message: "error message" };
+            const ruleError: TextlintRuleError = {
+                padding: createPaddingLocator().range([5, 10]),
+                message: "error message"
+            };
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });
             assertDeepStrictEqualAsJSON(result, {
                 range: [5, 10],
@@ -169,8 +173,8 @@ describe("source-location", function () {
         it("loc() should return { range, loc } object", function () {
             const source = createDummySourceCode("1234567890\n1234567890\n1234567890", "test.md");
             const node = source.ast;
-            const ruleError = {
-                loc: createLocator().loc({
+            const ruleError: TextlintRuleError = {
+                padding: createPaddingLocator().loc({
                     start: {
                         line: 1,
                         column: 1

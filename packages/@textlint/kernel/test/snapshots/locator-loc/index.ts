@@ -11,7 +11,7 @@ const report: TextlintRuleReporter = (context) => {
                 report(
                     node,
                     new RuleError("This line should not start with !", {
-                        loc: locator.loc({
+                        padding: locator.loc({
                             // relative padding
                             start: {
                                 line: 1,

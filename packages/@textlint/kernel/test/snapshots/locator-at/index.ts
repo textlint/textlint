@@ -13,7 +13,7 @@ const report: TextlintRuleReporter = (context) => {
                 report(
                     node,
                     new RuleError("Found a bug", {
-                        loc: locator.at(bugMatch.index)
+                        padding: locator.at(bugMatch.index)
                     })
                 );
             }

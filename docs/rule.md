@@ -267,7 +267,7 @@ export default function (context) {
                 report(
                     node,
                     new RuleError(`Found TODO: '${text}'`, {
-                        loc: locator.range([match.index, match.index + text.length])
+                        padding: locator.range([match.index, match.index + text.length])
                     })
                 );
             }
@@ -285,7 +285,7 @@ export default function (context) {
                 report(
                     node,
                     new context.RuleError(`Found TODO: '${text}'`, {
-                        loc: locator.range([match.index, match.index + text.length])
+                        padding: locator.range([match.index, match.index + text.length])
                     })
                 );
             }

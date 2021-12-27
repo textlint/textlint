@@ -1,12 +1,12 @@
-import { createLocator } from "../../../src/context/TextlintRuleLocator";
+import { createPaddingLocator } from "../../../src/context/TextlintRulePaddingLocator";
 import * as assert from "assert";
 
 describe("TextlintLocator", () => {
     describe("at(index)", function () {
         it("should return Location object", () => {
-            const locator = createLocator();
+            const locator = createPaddingLocator();
             assert.deepStrictEqual(locator.at(0), {
-                type: "TextlintRuleErrorLocation",
+                type: "TextlintRuleErrorPaddingLocation",
                 isAbsolute: false,
                 range: [0, 1]
             });
@@ -14,9 +14,9 @@ describe("TextlintLocator", () => {
     });
     describe("range([start, end])", function () {
         it("should return Location object", () => {
-            const locator = createLocator();
+            const locator = createPaddingLocator();
             assert.deepStrictEqual(locator.range([0, 5]), {
-                type: "TextlintRuleErrorLocation",
+                type: "TextlintRuleErrorPaddingLocation",
                 isAbsolute: false,
                 range: [0, 5]
             });
@@ -24,7 +24,7 @@ describe("TextlintLocator", () => {
     });
     describe("loc(location)", function () {
         it("should return Location object", () => {
-            const locator = createLocator();
+            const locator = createPaddingLocator();
             assert.deepStrictEqual(
                 locator.loc({
                     start: {
@@ -37,7 +37,7 @@ describe("TextlintLocator", () => {
                     }
                 }),
                 {
-                    type: "TextlintRuleErrorLocation",
+                    type: "TextlintRuleErrorPaddingLocation",
                     isAbsolute: false,
                     loc: {
                         start: {

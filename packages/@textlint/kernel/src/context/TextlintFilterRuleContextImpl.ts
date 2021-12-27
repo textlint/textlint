@@ -1,14 +1,14 @@
 import type {
     TextlintFilterRuleContext,
     TextlintFilterRuleShouldIgnoreFunction,
-    TextlintRuleLocator,
+    TextlintRulePaddingLocator,
     TextlintRuleSeverityLevel,
     TextlintSourceCode
 } from "@textlint/types";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import * as assert from "assert";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
-import { createLocator } from "./TextlintRuleLocator";
+import { createPaddingLocator } from "./TextlintRulePaddingLocator";
 
 /**
  * Rule context object is passed to each rule as `context`
@@ -33,13 +33,13 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
     private _sourceCode: TextlintSourceCode;
     private _configBaseDir?: string;
     private _severityLevel: TextlintRuleSeverityLevel;
-    public locator: TextlintRuleLocator;
+    public locator: TextlintRulePaddingLocator;
 
     constructor(args: TextlintFilterRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._ignoreReport = args.ignoreReport;
-        this.locator = createLocator();
+        this.locator = createPaddingLocator();
         this._configBaseDir = args.configBaseDir;
         this._severityLevel = args.severityLevel;
         Object.freeze(this);

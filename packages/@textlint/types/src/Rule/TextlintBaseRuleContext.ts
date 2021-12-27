@@ -1,7 +1,7 @@
 import { TextlintRuleErrorConstructor } from "./TextlintRuleError";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
-import { TextlintRuleLocator } from "./TextlintRuleLocator";
+import { TextlintRulePaddingLocator } from "./TextlintRulePaddingLocator";
 
 /**
  * This Base class is internal.
@@ -66,9 +66,9 @@ export interface TextlintBaseRuleContext {
      *
      * ```
      * report(node, new RuleError(message, {
-     *     loc: locator.range([startIndex, endIndex])
+     *     padding: locator.range([startIndex, endIndex])
      * });
      * ```
      */
-    locator: TextlintRuleLocator;
+    locator: TextlintRulePaddingLocator;
 }
