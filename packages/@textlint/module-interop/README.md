@@ -30,7 +30,7 @@ If you creating rule preset for textlint, you should wrap the required result.
 
 ```js
 const rule = require("textlint-rule-es-export-default-example");
-console.log(rule); // { default: ruleImplantation } 
+console.log(rule); // { default: ruleImplementation } 
 ```
 
 This library resolve this issue by `moduleInterop` function.
@@ -38,7 +38,7 @@ This library resolve this issue by `moduleInterop` function.
 ```js
 const {moduleInterop} = require("@textlint/module-interop");
 const rule = moduleInterop(require("textlint-rule-es-export-default-example"));
-console.log(rule); // ruleImplantation
+console.log(rule); // ruleImplementation
 ``````
 
 ## Install
