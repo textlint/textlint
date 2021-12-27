@@ -1,0 +1,28 @@
+{
+    "messages": [
+        {
+            "type": "lint",
+            "ruleId": "rule",
+            "message": "Found a 🐛",
+            "index": 18,
+            "line": 2,
+            "column": 9,
+            "range": [
+                18,
+                19
+            ],
+            "loc": {
+                "start": {
+                    "line": 2,
+                    "column": 8
+                },
+                "end": {
+                    "line": 2,
+                    "column": 9
+                }
+            },
+            "severity": 2
+        }
+    ],
+    "filePath": "<root>/legacy-line-and-column/input.md"
+}
