@@ -107,12 +107,12 @@ describe("cli-test", function () {
                                 index: 17,
                                 line: 3,
                                 loc: {
-                                    end: {
+                                    start: {
                                         column: 3,
                                         line: 3
                                     },
-                                    start: {
-                                        column: 2,
+                                    end: {
+                                        column: 4,
                                         line: 3
                                     }
                                 },
@@ -220,11 +220,11 @@ describe("cli-test", function () {
                                 line: 8,
                                 loc: {
                                     end: {
-                                        column: 4,
+                                        column: 5,
                                         line: 8
                                     },
                                     start: {
-                                        column: 3,
+                                        column: 4,
                                         line: 8
                                     }
                                 },
