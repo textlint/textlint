@@ -14837,6 +14837,15 @@ textlint-plugin-html@^0.2.0:
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
+textlint-plugin-html@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/textlint-plugin-html/-/textlint-plugin-html-0.3.0.tgz#07925ac7fdaf2784cea595e0ecff36efa421b70a"
+  integrity sha512-Nw86WyKlosl4C5RBnxGqGx57Y+tOIZOucTHX7fS6wGh7JpNOgri/LMxKOO9mlcAE0sI8WbwzN8BatqVT1aWJxw==
+  dependencies:
+    hast "0.0.2"
+    structured-source "^3.0.2"
+    traverse "^0.6.6"
+
 textlint-plugin-jtf-style@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/textlint-plugin-jtf-style/-/textlint-plugin-jtf-style-1.0.1.tgz#e7939a673ec1c81fb69b6059de9897ac14c076ad"
