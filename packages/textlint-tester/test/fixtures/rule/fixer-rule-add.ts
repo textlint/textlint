@@ -17,7 +17,7 @@ const reporter: TextlintRuleReporter = (context) => {
             const add = fixer.insertTextAfter(node, ".");
             report(node, {
                 message: "Please add . to end of a sentence.",
-                loc: locator.at(index),
+                padding: locator.at(index),
                 fix: add
             });
         }

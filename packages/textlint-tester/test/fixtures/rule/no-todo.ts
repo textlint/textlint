@@ -21,7 +21,7 @@ export default function (context: TextlintRuleContext): TextlintRuleReportHandle
                 report(
                     node,
                     new RuleError(`Found TODO: '${text}'`, {
-                        loc: locator.range([match.index, match.index + match[0].length])
+                        padding: locator.range([match.index, match.index + match[0].length])
                     })
                 );
             }
@@ -37,7 +37,7 @@ export default function (context: TextlintRuleContext): TextlintRuleReportHandle
                 report(
                     node,
                     new context.RuleError(`Found TODO: '${text}'`, {
-                        loc: locator.range([match.index, match.index + match[0].length])
+                        padding: locator.range([match.index, match.index + match[0].length])
                     })
                 );
             }
