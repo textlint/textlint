@@ -310,7 +310,7 @@ const errorWithPadding = new RuleError("message", {
             line: 1, // padding line number from node.loc.start.line. default: 0
             column: 1 // padding column number from node.loc.start.column. default: 0
         },
-        start: {
+        end: {
             line: 1, // padding line number from node.loc.start.line. default: 0
             column: 2 // padding column number from node.loc.start.column. default: 0
         }
@@ -540,51 +540,50 @@ function isNodeWrapped(node, types) {
         });
     });
 }
-export default function(context) {
-  const { Syntax, getSource, RuleError, report, locator } = context;
-  return {
-    /*
+export default function (context) {
+    const { Syntax, getSource, RuleError, report, locator } = context;
+    return {
+        /*
         Todo: quick fix this.
     */
-    [Syntax.Str](node) {
-      // Ignore the node if the node is child of some Node types
-      if (isNodeWrapped(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
-        return;
-      }
-      // get text from node
-      const text = getSource(node);
-      // Does the text contain "todo:"?
-      const matches = text.matchAll(/todo:/ig);
-      for (const match of matches) {
-        const index = match.index ?? 0;
-        const length = match[0].length;
-        report(
-          node,
-          new RuleError(`Found TODO: '${text}'`, {
-            padding: locator.range([index, index + length])
-          })
-        );
-      }
-    },
-    /*
+        [Syntax.Str](node) {
+            // Ignore the node if the node is child of some Node types
+            if (isNodeWrapped(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
+                return;
+            }
+            // get text from node
+            const text = getSource(node);
+            // Does the text contain "todo:"?
+            const matches = text.matchAll(/todo:/gi);
+            for (const match of matches) {
+                const index = match.index ?? 0;
+                const length = match[0].length;
+                report(
+                    node,
+                    new RuleError(`Found TODO: '${text}'`, {
+                        padding: locator.range([index, index + length])
+                    })
+                );
+            }
+        },
+        /*
         - [ ] Todo
     */
-    [Syntax.ListItem](node) {
-      const text = context.getSource(node);
-      // Does the ListItem's text starts with `- [ ]`
-      const match = text.match(/^-\s\[\s+]\s/i);
-      if (match && match.index !== undefined) {
-        report(
-          node,
-          new context.RuleError(`Found TODO: '${text}'`, {
-            padding: locator.range([match.index, match.index + match[0].length])
-          })
-        );
-      }
-    }
-  };
+        [Syntax.ListItem](node) {
+            const text = context.getSource(node);
+            // Does the ListItem's text starts with `- [ ]`
+            const match = text.match(/^-\s\[\s+]\s/i);
+            if (match && match.index !== undefined) {
+                report(
+                    node,
+                    new context.RuleError(`Found TODO: '${text}'`, {
+                        padding: locator.range([match.index, match.index + match[0].length])
+                    })
+                );
+            }
+        }
+    };
 }
-
 ```
 
 As a result, linting following text with modified rule, a result was no error.
