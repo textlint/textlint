@@ -30,8 +30,8 @@
     "through2": "^2.0.5"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
-    "eslint-plugin-prettier": "^3.4.1",
+    "eslint": "^8.6.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "gulp": "^4.0.2",
     "mocha": "^8.4.0",
     "npm-run-all": "^4.1.5",

@@ -8,7 +8,7 @@ textlint's AST(Abstract Syntax Tree) is defined at the page.
 - [txtnode.md](./txtnode.md)
     - If you want to know AST of a text, use [Online Parsing Demo](./txtnode.md#online-parsing-demo)
 
-Each rules are represented by an object with some properties.
+Each rule are represented by an object with some properties.
 The properties are equivalent to AST node types from TxtNode.
 
 The basic source code format for a rule is:
@@ -147,7 +147,7 @@ This is typo.
 
 ```js
 export default function (context) {
-    const { Syntax, report, RuleError, getSource } = context; 
+    const { Syntax, report, RuleError, getSource } = context;
     return {
         [Syntax.Str](node) {
             // get source code of this `node`
@@ -172,7 +172,7 @@ This is typo.
 
 ```js
 export default function (context) {
-    const { Syntax, report, RuleError, getSource, locator } = context; 
+    const { Syntax, report, RuleError, getSource, locator } = context;
     return {
         [Syntax.Str](node) {
             // get source code of this `node`
@@ -182,9 +182,12 @@ export default function (context) {
                 // report error with padding
                 // node's start + padding's range
                 // As a result, report the error that is [node.range[0] + typo.index, node.range[1] + typo.index + type.length]
-                report(node, new RuleError("Found a typo", {
-                    padding: locator.range([match.index, match.index + match[0].length])
-                }));
+                report(
+                    node,
+                    new RuleError("Found a typo", {
+                        padding: locator.range([match.index, match.index + match[0].length])
+                    })
+                );
             }
         }
     };
@@ -258,6 +261,14 @@ report(node, new RuleError(message, {
 }));
 ```
 
+:memo: `padding` option and `locator` object are introduced in textlint v12.2.0+.
+You can declare your dependency on textlint in `package.json` using the [peerDependencies](https://docs.npmjs.com/files/package.json#peerdependencies) field.
+
+```json5
+  "peerDependencies": {
+    "textlint": ">= 12.2.0"
+  }
+```
 
 <details>
 <summary>Deprecated: { line, column } and { index } properties</summary>
@@ -296,12 +307,12 @@ const error = new RuleError("message");
 const errorWithPadding = new RuleError("message", {
     padding: locator.loc({
         start: {
-          line: 1, // padding line number from node.loc.start.line. default: 0
-          column: 1 // padding column number from node.loc.start.column. default: 0
+            line: 1, // padding line number from node.loc.start.line. default: 0
+            column: 1 // padding column number from node.loc.start.column. default: 0
         },
         start: {
-          line: 1, // padding line number from node.loc.start.line. default: 0
-          column: 2 // padding column number from node.loc.start.column. default: 0
+            line: 1, // padding line number from node.loc.start.line. default: 0
+            column: 2 // padding column number from node.loc.start.column. default: 0
         }
     })
 });
@@ -496,7 +507,6 @@ When linting following text with above `no-todo` rule, a result was error.
 You want to ignore this case, and write the following:
 
 ```js
-import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 /**
  * Get parents of node.
  * The parent nodes are returned in order from the closest parent to the outer ones.
@@ -530,7 +540,7 @@ function isNodeWrapped(node, types) {
         });
     });
 }
-export default function(context: TextlintRuleContext): TextlintRuleReportHandler {
+export default function(context) {
   const { Syntax, getSource, RuleError, report, locator } = context;
   return {
     /*

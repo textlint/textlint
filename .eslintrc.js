@@ -30,12 +30,7 @@ module.exports = {
             parserOptions: {
                 tsconfigRootDir: __dirname,
                 project: ["./tsconfig.base.json", "./packages/*/tsconfig.json"]
-            },
-            extends: [
-                // "plugin:@typescript-eslint/recommended",
-                // "plugin:@typescript-eslint/recommended-requiring-type-checking",
-                "prettier/@typescript-eslint"
-            ]
+            }
         }
     ]
 };
