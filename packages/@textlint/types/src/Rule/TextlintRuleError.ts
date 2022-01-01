@@ -38,7 +38,7 @@ export type TextlintRuleErrorDetails = {
      *           column: 2
      *       }
      *   })
-     * });
+     * }));
      * ```
      */
     line?: number;
@@ -56,7 +56,7 @@ export type TextlintRuleErrorDetails = {
      *           column: 2
      *       }
      *   })
-     * });
+     * }));
      * ```
      */
     column?: number;
@@ -65,7 +65,7 @@ export type TextlintRuleErrorDetails = {
      * ```
      * report(node, new RuleError(message, {
      *   padding: locator.range([index, index + 1])
-     * }
+     * }))
      * ```
      */
     index?: number;
@@ -78,7 +78,7 @@ export type TextlintRuleErrorDetails = {
      * // at = range([index, index + 1]);
      * report(node, new RuleError(message, {
      *   padding: locator.at(index)
-     * });
+     * }));
      * // range
      * report(node, new RuleError(message, {
      *   padding: locator.range([startIndex, endIndex])
@@ -95,7 +95,7 @@ export type TextlintRuleErrorDetails = {
      *           column: 2
      *       }
      *   })
-     * });
+     * }));
      */
     padding?: TextlintRuleErrorPaddingLocation;
     fix?: TextlintRuleContextFixCommand;

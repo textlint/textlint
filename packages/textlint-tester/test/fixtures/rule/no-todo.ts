@@ -15,13 +15,15 @@ export default function (context: TextlintRuleContext): TextlintRuleReportHandle
             }
             // get text from node
             const text = getSource(node);
-            // does text contain "todo:"?
-            const match = text.match(/todo:/i);
-            if (match && match.index !== undefined) {
+            // Does the text contain "todo:"?
+            const matches = text.matchAll(/todo:/gi);
+            for (const match of matches) {
+                const index = match.index ?? 0;
+                const length = match[0].length;
                 report(
                     node,
                     new RuleError(`Found TODO: '${text}'`, {
-                        padding: locator.range([match.index, match.index + match[0].length])
+                        padding: locator.range([index, index + length])
                     })
                 );
             }
@@ -32,7 +34,8 @@ export default function (context: TextlintRuleContext): TextlintRuleReportHandle
         */
         [Syntax.ListItem](node) {
             const text = context.getSource(node);
-            const match = text.match(/\[\s+\]\s/i);
+            // Does the ListItem's text starts with `- [ ]`
+            const match = text.match(/^-\s\[\s+]\s/i);
             if (match && match.index !== undefined) {
                 report(
                     node,
