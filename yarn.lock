@@ -14984,11 +14984,12 @@ textlint-plugin-jtf-style@^1.0.1:
     textlint-rule-helper "^1.1.3"
     textlint-rule-prh "^2.0.0"
 
-textlint-rule-eslint@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/textlint-rule-eslint/-/textlint-rule-eslint-3.2.1.tgz#7d91296664842de7f323ea36530142d847c583e8"
-  integrity sha512-HM6OpjC0cVNu1LLa7GsUnFZufVtMZ8eCA9FiBD/vaKo811l+2LDdt9ilxnDLRQiUOjF4NIUZ3c7yAuU4sMa0eA==
+textlint-rule-eslint@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-eslint/-/textlint-rule-eslint-4.0.0.tgz#9c374d067ea00bfe12931abb746b8c7abf1c0932"
+  integrity sha512-ytaeV41i9XXfo4+OQjNHADult4f3mrKnrv2LAFZ0aYu1Uk8tkNEDx65OLjBPwpyHan4H/vBWS3Yb9zoyJrS+qA==
   dependencies:
+    "@textlint/types" "^12.1.0"
     structured-source "^3.0.2"
 
 textlint-rule-helper@^1.1.2, textlint-rule-helper@^1.1.3:
