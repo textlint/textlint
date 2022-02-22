@@ -52,7 +52,7 @@
     "browserify": "^16.5.2",
     "cross-env": "^7.0.3",
     "mkdirp": "^1.0.4",
-    "mocha": "^8.4.0",
+    "mocha": "^9.2.1",
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.5.0",
