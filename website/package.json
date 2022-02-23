@@ -1,6 +1,6 @@
 {
   "name": "textlint-website",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "private": true,
   "homepage": "https://github.com/textlint/textlint/",
   "bugs": {
@@ -26,7 +26,7 @@
     "conventional-changelog-angular-all": "^1.7.0",
     "docusaurus": "^1.14.7",
     "npm-run-all": "^4.1.5",
-    "textlint": "^12.1.0",
+    "textlint": "^12.1.1",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-eslint": "^4.0.0",
     "textlint-rule-prh": "^5.3.0",

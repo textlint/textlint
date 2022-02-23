@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.1.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.1.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* **deps:** update babel monorepo ([c9f1957](https://github.com/textlint/textlint/commit/c9f195786a6a3f21b5d009425fb92e33126ab849))
+* **deps:** update babel monorepo to ^7.16.5 ([#834](https://github.com/textlint/textlint/issues/834)) ([dcbc196](https://github.com/textlint/textlint/commit/dcbc1965d4039b4000b4d99b3d55e851ddd7b31c))
+* **deps:** update babel monorepo to ^7.16.7 ([e8c10aa](https://github.com/textlint/textlint/commit/e8c10aa9458e35e82c6ff835e4f398dbf5fb617e))
+* **deps:** Update chalk ([#842](https://github.com/textlint/textlint/issues/842)) ([56ba52c](https://github.com/textlint/textlint/commit/56ba52c007553f3e72adcf32cc191f6b7ca5d799))
+* **deps:** update dependency table to ^6.7.5 ([fdfcce6](https://github.com/textlint/textlint/commit/fdfcce68a37f1d1bee11de2757815fcc2bf749f4))
+* **deps:** update dependency table to ^6.8.0 ([5e1aa18](https://github.com/textlint/textlint/commit/5e1aa18a1d4d7ed8f87c07965c949afa9ddaa194))
+* **deps:** Update packages that depend on ansi-regex ([#841](https://github.com/textlint/textlint/issues/841)) ([17c03cd](https://github.com/textlint/textlint/commit/17c03cd1327cba41eba5db97332ffed4583b32a4))
+* **deps:** Update string-width ([#844](https://github.com/textlint/textlint/issues/844)) ([675bc93](https://github.com/textlint/textlint/commit/675bc9345caaa78343f27addb004dc7bd04e4938))
+* **textlint:** remove log-symbols  ([#845](https://github.com/textlint/textlint/issues/845)) ([000d07a](https://github.com/textlint/textlint/commit/000d07ac87449651bff8dd6f85fabd021d18a2e0))
+
+
+
+
+
 # [12.1.0](https://github.com/azu/textlint/compare/v12.0.2...v12.1.0) (2021-12-02)
 
 
