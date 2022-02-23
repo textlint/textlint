@@ -11,7 +11,7 @@
     "lint": "npm-run-all eslint",
     "lint:fix": "npm-run-all eslint:fix",
     "perf": "cd ./examples/perf && npm run test:ci",
-    "prepublishOnly": "npm-run-all clean build",
+    "prepack": "npm-run-all clean build",
     "versionup": "lerna version --conventional-commits",
     "versionup:patch": "lerna version patch --conventional-commits",
     "versionup:minor": "lerna version minor --conventional-commits",

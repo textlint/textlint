@@ -29,7 +29,7 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "example:build": "browserify example/js/index.js -o example/app/app.js",
-    "prepublish": "npm run --if-present build",
+    "prepack": "npm run --if-present build",
     "test": "mocha \"test/**/*.ts\"",
     "updateSnapshot": "npm run build && node tools/update-fixtures.js",
     "watch": "tsc -b --watch"
