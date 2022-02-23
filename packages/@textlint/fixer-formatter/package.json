@@ -39,7 +39,7 @@
   "dependencies": {
     "@textlint/module-interop": "^12.1.0",
     "@textlint/types": "^12.1.0",
-    "chalk": "^1.1.3",
+    "chalk": "^4.1.2",
     "debug": "^4.3.3",
     "diff": "^4.0.2",
     "is-file": "^1.0.0",

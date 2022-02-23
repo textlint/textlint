@@ -81,7 +81,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
                 {
                     align: ["", "r", "l"],
                     stringLength: function (str: string) {
-                        const lines = chalk.stripColor(str).split("\n");
+                        const lines = stripAnsi(str).split("\n");
                         return Math.max.apply(
                             null,
                             lines.map(function (line: string) {
