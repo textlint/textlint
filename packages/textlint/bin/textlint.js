@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 "use strict";
 const getStdin = require("get-stdin");
-const logSymbols = require("log-symbols");
 const useStdIn = process.argv.indexOf("--stdin") > -1;
 const isDebug = process.argv.indexOf("--debug") > -1;
 if (isDebug) {
@@ -20,9 +19,9 @@ coreFlags.runningCLI = !module.parent;
  * @param {Error} error
  */
 function showError(error) {
-    console.error(logSymbols.error, "Error");
+    console.error("Error");
     console.error(`${error.message}\n`);
-    console.error(logSymbols.error, "Stack trace");
+    console.error("Stack trace");
     console.error(error.stack);
 }
 
