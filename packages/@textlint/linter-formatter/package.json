@@ -42,7 +42,7 @@
     "js-yaml": "^3.14.1",
     "optionator": "^0.9.1",
     "pluralize": "^2.0.0",
-    "string-width": "^1.0.2",
+    "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
     "table": "^6.8.0",
     "text-table": "^0.2.0",
