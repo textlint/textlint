@@ -22,6 +22,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
+          cache: 'yarn'
       - name: Install
         run: yarn install --frozen-lockfile
       - name: Bootstrap
@@ -49,7 +50,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-
+          cache: 'yarn'
       - name: Install
         run: yarn install --frozen-lockfile
       - name: Bootstrap
