@@ -35,7 +35,7 @@
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
     "crlf": "eolConverter crlf test/snapshots/crlf/input.txt && eolConverter crlf test/snapshots/crlf-empty-line/input.txt",
-    "prepublish": "npm run --if-present build",
+    "prepack": "npm run --if-present build",
     "pretest": "npm run crlf",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",

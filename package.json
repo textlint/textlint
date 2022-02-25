@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "npm run build",
     "build": "lerna run build --ignore textlint-website",
     "website": "lerna run build --scope textlint-website",
     "clean": "lerna run clean",
@@ -11,7 +11,7 @@
     "lint": "npm-run-all eslint",
     "lint:fix": "npm-run-all eslint:fix",
     "perf": "cd ./examples/perf && npm run test:ci",
-    "prepublish": "npm-run-all clean build",
+    "prepack": "npm-run-all clean build",
     "versionup": "lerna version --conventional-commits",
     "versionup:patch": "lerna version patch --conventional-commits",
     "versionup:minor": "lerna version minor --conventional-commits",
