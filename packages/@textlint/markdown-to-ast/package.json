@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@textlint/ast-node-types": "^12.1.1",
-    "debug": "^4.3.3",
+    "debug": "^4.3.4",
     "remark-footnotes": "^3.0.0",
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
@@ -52,7 +52,7 @@
     "browserify": "^16.5.2",
     "cross-env": "^7.0.3",
     "mkdirp": "^1.0.4",
-    "mocha": "^9.2.1",
+    "mocha": "^9.2.2",
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.7.0",
