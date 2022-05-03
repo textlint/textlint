@@ -2245,10 +2245,15 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.19.tgz#726171367f404bfbe8512ba608a09ebad810c7e6"
   integrity sha512-PfeQhvcMR4cPFVuYfBN4ifG7p9c+Dlh3yUZR6k+5yQK7wX3gDgVxBly4/WkBRs9x4dmcy1TVl08SY67wwtEvmA==
 
-"@types/node@^14.10.1", "@types/node@^14.18.12":
+"@types/node@^14.10.1":
   version "14.18.12"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.12.tgz#0d4557fd3b94497d793efd4e7d92df2f83b4ef24"
   integrity sha512-q4jlIR71hUpWTnGhXWcakgkZeHa3CCjcQcnuzU8M891BAWA2jHiziiWEPEkdS5pFsz7H9HJiy8BrK7tBRNrY7A==
+
+"@types/node@^14.18.16":
+  version "14.18.16"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.16.tgz#878f670ba3f00482bf859b6550b6010610fc54b5"
+  integrity sha512-X3bUMdK/VmvrWdoTkz+VCn6nwKwrKCFTHtqwBIaQJNx4RUIBBUFXM00bqPz/DsDd+Icjmzm6/tyYZzeGVqb6/Q==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -11235,10 +11240,10 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-pkg-to-readme@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/pkg-to-readme/-/pkg-to-readme-1.1.1.tgz#6d1cf00d3e894f5680337dd3160d389e00053da7"
-  integrity sha512-Eunr6sPGpaEekuxWlMjEseVbN9clSYMdLm1Qbik80keJtgFSS77jmOtuPzOlpTFnOtZNeriqtyjEctKY0Dt6Ag==
+pkg-to-readme@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/pkg-to-readme/-/pkg-to-readme-1.1.2.tgz#63014b7d4c6898db5f33fddddc4fa989515bc403"
+  integrity sha512-b1MY/4v0Nkb0MfiP0PbM1h9PmpSmVLKN04Z3B0jgSBPZkGuxT0bT9Iht/2g+jdcS7Lfk2w1MvYjX1h0MR72gjQ==
   dependencies:
     ejs "^3.1.6"
     meow "^8.1.2"
@@ -14031,14 +14036,14 @@ textlint-rule-prh@^5.2.0, textlint-rule-prh@^5.2.1, textlint-rule-prh@^5.3.0:
     textlint-rule-helper "^2.1.1"
     untildify "^3.0.3"
 
-textlint-rule-rousseau@^1.4.6:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/textlint-rule-rousseau/-/textlint-rule-rousseau-1.4.6.tgz#cfa36a2d3467eacdd1e986286a6be02bde382c64"
-  integrity sha512-OUvtF5aB5X322MTKspOPFf10Cwjyphrl7G/vOEdG1SB8tH5kdb/rlQyekApT/1g7sZ5N4vOWVs3QQEqI9O8//A==
+textlint-rule-rousseau@^1.4.7:
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/textlint-rule-rousseau/-/textlint-rule-rousseau-1.4.7.tgz#d360fd5d87393d1a837592bcfde8bd94cbf68dc9"
+  integrity sha512-zUI/2sTSlFeSGbhTE0ENZtLxzWabXUrxD4hjO2OUfZ9pVOpRkR28O9cvQY4pCQ72Uy0dSA7APsyV+6zUSR8fgw==
   dependencies:
     rousseau "^1.0.0"
-    textlint-rule-helper "^2.0.0"
-    textlint-util-to-string "^2.1.1"
+    textlint-rule-helper "^2.2.1"
+    textlint-util-to-string "^3.1.1"
     unist-util-map "^1.0.2"
 
 textlint-rule-sentence-length@^2.1.2:
@@ -14067,15 +14072,7 @@ textlint-rule-unexpanded-acronym@^1.2.4:
     array-includes "^3.0.3"
     is-capitalized "^1.0.0"
 
-textlint-util-to-string@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/textlint-util-to-string/-/textlint-util-to-string-2.1.1.tgz#7e456f16a2abc07e473cb9591acf19f110def2d1"
-  integrity sha512-PW6rXqLNGL3xZ6d5/INrX+pt8qbffmeDPLcvkBOlfNpDRFhVvNNjFmZXH86ZQjrOz9t/nNZDBXqnzqJuioJbSQ==
-  dependencies:
-    object-assign "^4.0.1"
-    structured-source "^3.0.2"
-
-textlint-util-to-string@^3.0.0:
+textlint-util-to-string@^3.0.0, textlint-util-to-string@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/textlint-util-to-string/-/textlint-util-to-string-3.1.1.tgz#666c8b0f2e00a92b29c8b168b453a9b8aeb48381"
   integrity sha512-mHE7/pDw/Hk+Q6YdSMNRrZPl5bCuWnFLbF+bxW+MsWQ64dw+Ia9irkammYbH5I0hVMMcfwb0MQc5nbsjqgWeyQ==
