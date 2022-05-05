@@ -32,9 +32,9 @@ textlint support `.txt` and `.md` by default. These are implemented as `Processo
 import { parse } from "txt-to-ast";
 export default class TextProcessor {
     constructor(options = {}) {
-       this.options = options;
+        this.options = options;
         // support "extension" option
-       this.extensions = options.extensions ? options.extensions : [];
+        this.extensions = options.extensions ? options.extensions : [];
     }
     // available ".ext" list
     // user can add own custom extension as "extensions" option
