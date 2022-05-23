@@ -35,8 +35,8 @@
   },
   "devDependencies": {
     "@azu/travis-scripts": "^3.0.3",
-    "@monorepo-utils/collect-changelog": "^2.7.0",
-    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.7.6",
+    "@monorepo-utils/collect-changelog": "^2.8.1",
+    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.8.1",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "eslint": "^8.9.0",
