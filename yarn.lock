@@ -1945,33 +1945,33 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@monorepo-utils/collect-changelog@^2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/collect-changelog/-/collect-changelog-2.7.0.tgz#55cb9db4bbdc76c0d5233c87ad82d004f198b2ca"
-  integrity sha512-oAhSeKfMVmZGI6/kj5e+CrZvVy1FiRsnHxhHI4PUVo8PDzoVrQ+meyAwZQSvfGrg/FLi8rGaJIvKkMIk3N/aiw==
+"@monorepo-utils/collect-changelog@^2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/collect-changelog/-/collect-changelog-2.8.1.tgz#7bc7f75ccdf423677d6895e752a781cb69d155d7"
+  integrity sha512-JqvE+y+2BB7spJDS1KMUeeJ2pEgwYCWHPO2oI+rzPGvMjVO6bA04OLtjTQjuYqEd0U1IZSTm7dB1c0lNaPoiFA==
   dependencies:
-    "@monorepo-utils/package-utils" "^2.7.0"
+    "@monorepo-utils/package-utils" "^2.8.1"
     cclog-parser "^1.1.1"
     changelog-parser "^2.6.0"
     handlebars "^4.0.12"
     meow "^7.1.1"
     upath "^2.0.1"
 
-"@monorepo-utils/package-utils@^2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/package-utils/-/package-utils-2.7.0.tgz#f4723beba177e5a278dd46791a5ab43b37e1ce20"
-  integrity sha512-MvcsDLNdBsb5/zkDJk64o6wr/GTdv5UnF8R36h/xE4v81vwe6binMa5Rs0YI6Pof+Hu9TzGsd39jXzcEvnKytw==
+"@monorepo-utils/package-utils@^2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/package-utils/-/package-utils-2.8.1.tgz#e345bfd2e132b4eef260db4b6e13d09f875dadc0"
+  integrity sha512-D6YCDuSFOoBvJw4NvUyR1EDU7MuywV43m/kOJ+sjIVUCYmH9mxMD+JDaITHGnQ7wYR51JK/Vyp7xkI+eff+xyw==
   dependencies:
     globby "^11.0.1"
     load-json-file "^6.2.0"
     upath "^2.0.1"
 
-"@monorepo-utils/workspaces-to-typescript-project-references@^2.7.6":
-  version "2.7.6"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.7.6.tgz#01b907919956afd97ee33d2df86052e5fd7229c6"
-  integrity sha512-+iwWDJlf8zEfis5gottc0g6bsM1jLGPFn8aJvPqRhVYv7oqgNZPpDMdy+pllf1gtJQQu33GaSecqWUz9Pe2sbA==
+"@monorepo-utils/workspaces-to-typescript-project-references@^2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.8.1.tgz#dbe89720953ae34e1aaf5aca75f0268b9ecfd45b"
+  integrity sha512-mkvJBX0urSdjEY0HOvWHNPz4PT8WfXrzXsB7+UUm2pJb4l2p7fhp7pdawl+CNGo95F+Pz7f9fA+FXOEnycBteg==
   dependencies:
-    "@monorepo-utils/package-utils" "^2.7.0"
+    "@monorepo-utils/package-utils" "^2.8.1"
     comment-json "^3.0.3"
     meow "^7.1.1"
     semver-match "0.1.1"
