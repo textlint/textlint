@@ -2413,10 +2413,10 @@
     load-json-file "^6.2.0"
     upath "^2.0.1"
 
-"@monorepo-utils/workspaces-to-typescript-project-references@^2.8.1":
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.8.1.tgz#dbe89720953ae34e1aaf5aca75f0268b9ecfd45b"
-  integrity sha512-mkvJBX0urSdjEY0HOvWHNPz4PT8WfXrzXsB7+UUm2pJb4l2p7fhp7pdawl+CNGo95F+Pz7f9fA+FXOEnycBteg==
+"@monorepo-utils/workspaces-to-typescript-project-references@^2.8.2":
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/@monorepo-utils/workspaces-to-typescript-project-references/-/workspaces-to-typescript-project-references-2.8.2.tgz#6768b3967822177156e62757d52cfd7fe83688c8"
+  integrity sha512-ZhJX2VtTmFv/CnabQ7KhnPamV1bjGEx5I3gHm7+Flv3fOfvjFkLkWVDZWk1CvAQyQKgiaoIKAPc0SrWeneKBcw==
   dependencies:
     "@monorepo-utils/package-utils" "^2.8.1"
     comment-json "^3.0.3"
@@ -2755,10 +2755,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.12.tgz#0d4557fd3b94497d793efd4e7d92df2f83b4ef24"
   integrity sha512-q4jlIR71hUpWTnGhXWcakgkZeHa3CCjcQcnuzU8M891BAWA2jHiziiWEPEkdS5pFsz7H9HJiy8BrK7tBRNrY7A==
 
-"@types/node@^14.18.18":
-  version "14.18.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.18.tgz#5c9503030df484ccffcbb935ea9a9e1d6fad1a20"
-  integrity sha512-B9EoJFjhqcQ9OmQrNorItO+OwEOORNn3S31WuiHvZY/dm9ajkB7AKD/8toessEtHHNL+58jofbq7hMMY9v4yig==
+"@types/node@^14.18.21":
+  version "14.18.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.21.tgz#0155ee46f6be28b2ff0342ca1a9b9fd4468bef41"
+  integrity sha512-x5W9s+8P4XteaxT/jKF0PSb7XEvo5VmqEWgsMlyeY4ZlLK8I6aH6g5TPPyDlLAep+GYf4kefb7HFyc7PAO3m+Q==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
