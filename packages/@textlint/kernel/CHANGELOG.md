@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.0) (2022-06-25)
+
+
+### Bug Fixes
+
+* **deps:** Update packages that depend on ansi-regex ([#841](https://github.com/textlint/textlint/issues/841)) ([17c03cd](https://github.com/textlint/textlint/commit/17c03cd1327cba41eba5db97332ffed4583b32a4))
+
+
+### Features
+
+* **textlint:** add `padding` property and `locator`  ([#836](https://github.com/textlint/textlint/issues/836)) ([f94d5f8](https://github.com/textlint/textlint/commit/f94d5f8a421357648ab7c2f3755b93a1bf3e793c))
+
+
+
+
+
 ## [12.1.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.1.1) (2022-02-23)
 
 

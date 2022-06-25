@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.0) (2022-06-25)
+
+
+### Features
+
+* **textlint:** add `padding` property and `locator`  ([#836](https://github.com/textlint/textlint/issues/836)) ([f94d5f8](https://github.com/textlint/textlint/commit/f94d5f8a421357648ab7c2f3755b93a1bf3e793c))
+
+
+
+
+
 ## [12.1.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.1.1) (2022-02-23)
 
 **Note:** Version bump only for package textlint-example-preset
