@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.0) (2022-06-25)
+
+
+### Bug Fixes
+
+* **textlint:** remove log-symbols  ([#845](https://github.com/textlint/textlint/issues/845)) ([000d07a](https://github.com/textlint/textlint/commit/000d07ac87449651bff8dd6f85fabd021d18a2e0))
+
+
+
+
+
 ## [12.1.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.1.1) (2022-02-23)
 
 

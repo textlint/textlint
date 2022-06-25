@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.0) (2022-06-25)
+
+
+### Bug Fixes
+
+* **deps:** Update chalk ([#842](https://github.com/textlint/textlint/issues/842)) ([56ba52c](https://github.com/textlint/textlint/commit/56ba52c007553f3e72adcf32cc191f6b7ca5d799))
+* **deps:** update dependency table to ^6.7.5 ([fdfcce6](https://github.com/textlint/textlint/commit/fdfcce68a37f1d1bee11de2757815fcc2bf749f4))
+* **deps:** update dependency table to ^6.8.0 ([5e1aa18](https://github.com/textlint/textlint/commit/5e1aa18a1d4d7ed8f87c07965c949afa9ddaa194))
+* **deps:** Update packages that depend on ansi-regex ([#841](https://github.com/textlint/textlint/issues/841)) ([17c03cd](https://github.com/textlint/textlint/commit/17c03cd1327cba41eba5db97332ffed4583b32a4))
+* **deps:** Update string-width ([#844](https://github.com/textlint/textlint/issues/844)) ([675bc93](https://github.com/textlint/textlint/commit/675bc9345caaa78343f27addb004dc7bd04e4938))
+
+
+### Features
+
+* **textlint:** add `padding` property and `locator`  ([#836](https://github.com/textlint/textlint/issues/836)) ([f94d5f8](https://github.com/textlint/textlint/commit/f94d5f8a421357648ab7c2f3755b93a1bf3e793c))
+
+
+
+
+
 ## [12.1.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.1.1) (2022-02-23)
 
 

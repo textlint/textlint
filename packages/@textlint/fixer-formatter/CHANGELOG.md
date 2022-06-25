@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.0) (2022-06-25)
+
+
+### Bug Fixes
+
+* **deps:** Update chalk ([#842](https://github.com/textlint/textlint/issues/842)) ([56ba52c](https://github.com/textlint/textlint/commit/56ba52c007553f3e72adcf32cc191f6b7ca5d799))
+* **deps:** Update packages that depend on ansi-regex ([#841](https://github.com/textlint/textlint/issues/841)) ([17c03cd](https://github.com/textlint/textlint/commit/17c03cd1327cba41eba5db97332ffed4583b32a4))
+* **deps:** Update string-width ([#844](https://github.com/textlint/textlint/issues/844)) ([675bc93](https://github.com/textlint/textlint/commit/675bc9345caaa78343f27addb004dc7bd04e4938))
+
+
+
+
+
 ## [12.1.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.1.1) (2022-02-23)
 
 

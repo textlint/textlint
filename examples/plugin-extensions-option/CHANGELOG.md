@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.2.0](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.0) (2022-06-25)
+
+**Note:** Version bump only for package textlint-example-plugin-extensions-option
+
+
+
+
+
 ## [12.1.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.1.1) (2022-02-23)
 
 **Note:** Version bump only for package textlint-example-plugin-extensions-option
