@@ -9,7 +9,7 @@ const fixer = new RuleFixer();
 describe("RuleFixer", function () {
     describe("insertTextBefore", function () {
         it("should return an object with the correct information when called", function () {
-            const result = fixer.insertTextBefore({ range: [0, 1] } as TxtNode, "Hi");
+            const result = fixer.insertTextBefore({ range: [0, 1] } as unknown as TxtNode, "Hi");
             assert.deepEqual(result, { range: [0, 0], text: "Hi", isAbsolute: true });
         });
     });
@@ -21,7 +21,7 @@ describe("RuleFixer", function () {
     });
     describe("insertTextAfter", function () {
         it("should return an object with the correct information when called", function () {
-            const result = fixer.insertTextAfter({ range: [0, 1] } as TxtNode, "Hi");
+            const result = fixer.insertTextAfter({ range: [0, 1] } as unknown as TxtNode, "Hi");
             assert.deepEqual(result, { range: [1, 1], text: "Hi", isAbsolute: true });
         });
     });
@@ -33,7 +33,7 @@ describe("RuleFixer", function () {
     });
     describe("removeAfter", function () {
         it("should return an object with the correct information when called", function () {
-            const result = fixer.remove({ range: [0, 1] } as TxtNode);
+            const result = fixer.remove({ range: [0, 1] } as unknown as TxtNode);
             assert.deepEqual(result, { range: [0, 1], text: "", isAbsolute: true });
         });
     });
@@ -45,7 +45,7 @@ describe("RuleFixer", function () {
     });
     describe("replaceText", function () {
         it("should return an object with the correct information when called", function () {
-            const result = fixer.replaceText({ range: [0, 1] } as TxtNode, "Hi");
+            const result = fixer.replaceText({ range: [0, 1] } as unknown as TxtNode, "Hi");
             assert.deepEqual(result, { range: [0, 1], text: "Hi", isAbsolute: true });
         });
     });

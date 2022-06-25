@@ -1,10 +1,8 @@
-// LICENSE : MIT
-"use strict";
+import { TextlintRuleReporter } from "@textlint/types";
+import { RuleHelper } from "textlint-rule-helper";
 
-const RuleHelper = require("textlint-rule-helper").RuleHelper;
-
-function reporter(context) {
-    const { Syntax, RuleError, fixer, report, getSource } = context;
+const reporter: TextlintRuleReporter = (context) => {
+    const { Syntax, fixer, report, getSource, locator } = context;
     const helper = new RuleHelper(context);
     return {
         [Syntax.Str](node) {
@@ -19,14 +17,14 @@ function reporter(context) {
             const add = fixer.insertTextAfter(node, ".");
             report(node, {
                 message: "Please add . to end of a sentence.",
-                index,
+                padding: locator.at(index),
                 fix: add
             });
         }
     };
-}
+};
 
-module.exports = {
+export default {
     linter: reporter,
     fixer: reporter
 };

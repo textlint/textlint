@@ -1,5 +1,12 @@
 {
+  "extension": [
+    ".ts",
+    ".js"
+  ],
   "require": [
     "ts-node-test-register"
+  ],
+  "spec": [
+    "test/**.{js,ts}"
   ]
 }

@@ -32,7 +32,7 @@ test/
 │   ├── cli-test.js
 │   └── fixtures/
 └── util
-    ├── dummy-source-code.js
+    ├── dummy-source-code.ts
     └── fixtures
 ```
 

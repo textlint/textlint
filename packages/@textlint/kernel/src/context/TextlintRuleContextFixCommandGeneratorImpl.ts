@@ -12,7 +12,7 @@ import type { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } 
 function insertTextAt(index: number, text: string) {
     assert.ok(text, "text must be string");
     return {
-        range: [index, index],
+        range: [index, index] as const,
         text,
         isAbsolute: false
     };
@@ -28,7 +28,7 @@ function insertTextAt(index: number, text: string) {
 function insertTextAtAbsolute(index: number, text: string) {
     assert.ok(text, "text must be string");
     return {
-        range: [index, index],
+        range: [index, index] as const,
         text,
         isAbsolute: true
     };
@@ -36,9 +36,9 @@ function insertTextAtAbsolute(index: number, text: string) {
 
 /**
  * Creates code fixing commands for rules.
- * It create command for fixing texts.
- * The `range` arguments of these command is should be **relative** value from reported node.
- * See {@link SourceLocation} class for more detail.
+ * It creates command for fixing texts.
+ * The `range` arguments of these command it should be **relative** value from reported node.
+ * See {@link resolveLocation} class for more detail.
  * @constructor
  */
 export class TextlintRuleContextFixCommandGeneratorImpl implements TextlintRuleContextFixCommandGenerator {

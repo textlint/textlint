@@ -4,6 +4,7 @@ import * as assert from "assert";
 import * as fs from "fs";
 import { TextLintCore } from "textlint";
 import { TextlintResult } from "@textlint/kernel";
+import { TesterErrorDefinition } from "./textlint-tester";
 
 /**
  *
@@ -26,7 +27,7 @@ export type InvalidPattern = {
     inputPath?: string;
     text?: string;
     ext?: string;
-    errors: any[];
+    errors: TesterErrorDefinition[];
 };
 
 /**
@@ -89,7 +90,7 @@ ${actualText}
 ${JSON.stringify(lintResult, null, 4)}`
         );
         errors.forEach((error, errorIndex) => {
-            const { ruleId, message, line, column, index } = error;
+            const { ruleId, message, line, column, index, range, loc } = error;
             const resultMessageObject = lintResult.messages[errorIndex];
             // check
             assert.ok(
@@ -131,6 +132,14 @@ The result's column number should be less than ${columnText.length + 1}`
             if (index !== undefined) {
                 const resultIndex = resultMessageObject.index;
                 assert.strictEqual(resultIndex, index, `"index should be ${index}`);
+            }
+            if (range !== undefined) {
+                const resultRange = resultMessageObject.range;
+                assert.deepStrictEqual(resultRange, range, `"range should be ${JSON.stringify(range, null, 4)}`);
+            }
+            if (loc !== undefined) {
+                const resultLoc = resultMessageObject.loc;
+                assert.deepStrictEqual(resultLoc, loc, `"loc should be ${JSON.stringify(loc, null, 4)}`);
             }
         });
     });

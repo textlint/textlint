@@ -39,7 +39,11 @@ describe("textlint-kernel", () => {
                 ext: ".md",
                 plugins: [{ pluginId: "markdown", plugin: plugin }],
                 rules: [
-                    { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
+                    {
+                        ruleId: "error",
+                        rule: errorRule,
+                        options: { errors: [{ message: "error message", range: [0, 1] }] }
+                    }
                 ]
             };
             return kernel.lintText("text", options).then((result) => {
@@ -68,7 +72,6 @@ describe("textlint-kernel", () => {
                                 errors: [
                                     {
                                         message: "error message",
-                                        index: 0,
                                         range: expectedFixObject.range,
                                         output: expectedFixObject.text
                                     }
@@ -108,7 +111,7 @@ describe("textlint-kernel", () => {
             it("should not report these error", () => {
                 const kernel = new TextlintKernel();
                 const { plugin } = createPluginStub();
-                const errorIndex = 5;
+                const errorRange = [5, 6];
                 const ignoreRange = [0, 6];
                 const options: TextlintKernelOptions = {
                     filePath: "/path/to/file.md",
@@ -122,7 +125,7 @@ describe("textlint-kernel", () => {
                                 errors: [
                                     {
                                         message: "error message",
-                                        index: errorIndex
+                                        range: errorRange
                                     }
                                 ]
                             }
@@ -150,7 +153,7 @@ describe("textlint-kernel", () => {
             it("ignoreRuleId should be normalized", () => {
                 const kernel = new TextlintKernel();
                 const { plugin } = createPluginStub();
-                const errorIndex = 5;
+                const errorRange = [4, 5];
                 const ignoreRange = [0, 5];
                 const options: TextlintKernelOptions = {
                     filePath: "/path/to/file.md",
@@ -164,7 +167,7 @@ describe("textlint-kernel", () => {
                                 errors: [
                                     {
                                         message: "error message",
-                                        index: errorIndex
+                                        range: errorRange
                                     }
                                 ]
                             }
@@ -194,7 +197,7 @@ describe("textlint-kernel", () => {
             it("should not report these error", () => {
                 const kernel = new TextlintKernel();
                 const { plugin } = createPluginStub();
-                const errorIndex = 5;
+                const errorRange = [4, 5];
                 const ignoreRange = [0, 5];
                 const options: TextlintKernelOptions = {
                     filePath: "/path/to/file.md",
@@ -208,7 +211,7 @@ describe("textlint-kernel", () => {
                                 errors: [
                                     {
                                         message: "error message",
-                                        index: errorIndex
+                                        range: errorRange
                                     }
                                 ]
                             }
@@ -252,7 +255,11 @@ describe("textlint-kernel", () => {
                 ext: ".md",
                 plugins: [{ pluginId: "markdown", plugin: plugin }],
                 rules: [
-                    { ruleId: "error", rule: errorRule, options: { errors: [{ message: "error message", index: 0 }] } }
+                    {
+                        ruleId: "error",
+                        rule: errorRule,
+                        options: { errors: [{ message: "error message", range: [0, 1] }] }
+                    }
                 ]
             };
             return kernel.fixText("text", options).then((result) => {

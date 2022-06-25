@@ -1,14 +1,13 @@
 import * as path from "path";
 import TextLintTester from "../src/index";
-// @ts-expect-error: no types
-import noTodo from "textlint-rule-no-todo";
+import noTodo from "./fixtures/rule/no-todo";
 // @ts-expect-error: no types
 import maxNumberOfLine from "textlint-rule-max-number-of-lines";
 
 const tester = new TextLintTester();
 tester.run("no-todo", noTodo, {
     valid: [
-        "string, test desu",
+        "string test",
         {
             text: "日本語 is Japanese."
         },
@@ -21,24 +20,24 @@ tester.run("no-todo", noTodo, {
         }
     ],
     invalid: [
-        // line, column
+        // [deprecated] line, column
         {
             text: "- [ ] string",
             errors: [
                 {
                     message: "Found TODO: '- [ ] string'",
                     line: 1,
-                    column: 3
+                    column: 1
                 }
             ]
         },
-        // index
+        // [deprecated] index
         {
             text: "- [ ] string",
             errors: [
                 {
                     message: "Found TODO: '- [ ] string'",
-                    index: 2
+                    index: 0
                 }
             ]
         },
@@ -57,7 +56,7 @@ tester.run("no-todo", noTodo, {
             ext: ".txt",
             errors: [
                 {
-                    message: "Found TODO: 'TODO: this text is parsed as plain text.'",
+                    message: "Found TODO: '- [ ] TODO: this text is parsed as plain text.'",
                     line: 1,
                     column: 7
                 }
@@ -68,7 +67,63 @@ tester.run("no-todo", noTodo, {
             errors: [
                 {
                     message: "Found TODO: '- [ ] This is NG'",
-                    index: 2
+                    index: 0
+                }
+            ]
+        },
+        // range
+        {
+            text: "- [ ] string",
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] string'",
+                    range: [0, 6]
+                }
+            ]
+        },
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] This is NG'",
+                    range: [0, 6]
+                }
+            ]
+        },
+        // loc
+        {
+            text: "- [ ] string",
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] string'",
+                    loc: {
+                        start: {
+                            line: 1,
+                            column: 1
+                        },
+                        end: {
+                            line: 1,
+                            column: 7
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] This is NG'",
+                    loc: {
+                        start: {
+                            line: 1,
+                            column: 1
+                        },
+                        end: {
+                            line: 1,
+                            column: 7
+                        }
+                    }
                 }
             ]
         }

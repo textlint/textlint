@@ -1,12 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
-
-const assert = require("assert");
-const path = require("path");
 import { TextLintEngine } from "../../src/";
 import { Config } from "../../src/config/config";
-
+import assert from "assert";
+import path from "path";
 const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");
 const filterRulesDir = path.join(__dirname, "fixtures/textlint-engine/filters");
 const pluginsDir = path.join(__dirname, "fixtures/textlint-engine/plugins");

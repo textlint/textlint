@@ -23,7 +23,8 @@ describe("Broken Rule", function () {
                     throw new Error("WRONG");
                 })
                 .catch((error) => {
-                    assert.ok(error.code === "ERR_ASSERTION" || error.name === "AssertionError");
+                    console.log(error);
+                    assert.ok(error.message !== "WRONG", `${error.name} is unexpected error`);
                 });
         });
     });

@@ -256,7 +256,7 @@ describe("kernel-plugin", () => {
                         options: {
                             errors: [
                                 {
-                                    index: 0,
+                                    range: [0, 1],
                                     message: "ERROR"
                                 }
                             ]

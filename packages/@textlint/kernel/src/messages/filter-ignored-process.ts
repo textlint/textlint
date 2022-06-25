@@ -9,9 +9,15 @@ import { IgnoreReportedMessage, LintReportedMessage } from "../task/textlint-cor
  * @param {Number[]} range
  * @returns {boolean}
  */
-const isContainedRange = (index: number, range: [number, number]) => {
-    const [start, end] = range;
-    return start <= index && index <= end;
+const isContainedRange = ({
+    range,
+    ignoredRange
+}: {
+    range: readonly [number, number];
+    ignoredRange: readonly [number, number];
+}) => {
+    const [start, end] = ignoredRange;
+    return start <= range[0] && range[1] <= end;
 };
 /**
  * filter messages by ignore messages
@@ -28,7 +34,7 @@ export default function filterMessages(messages: ReadonlyArray<LintReportedMessa
     // if match, reject the message
     return lintingMessages.filter((message) => {
         return !ignoreMessages.some((ignoreMessage) => {
-            const isInIgnoringRange = isContainedRange(message.index, ignoreMessage.range);
+            const isInIgnoringRange = isContainedRange({ range: message.range, ignoredRange: ignoreMessage.range });
             if (isInIgnoringRange && ignoreMessage.ignoringRuleId) {
                 // "*" is wildcard that match any rule
                 if (ignoreMessage.ignoringRuleId === "*") {

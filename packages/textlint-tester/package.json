@@ -49,10 +49,9 @@
     "match-index": "^1.0.3",
     "mocha": "^9.2.2",
     "rimraf": "^3.0.2",
-    "textlint-plugin-html": "^0.3.0",
+    "textlint-plugin-html": "^0.2.0",
     "textlint-rule-helper": "^2.2.1",
     "textlint-rule-max-number-of-lines": "^1.0.3",
-    "textlint-rule-no-todo": "^2.0.1",
     "ts-node": "^10.8.1",
     "ts-node-test-register": "^10.0.0",
     "typescript": "~4.4.4"

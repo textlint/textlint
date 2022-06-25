@@ -14,7 +14,7 @@ export interface TextlintSourceCodeLocation {
     end: TextlintSourceCodePosition;
 }
 
-export type TextlintSourceCodeRange = [number, number];
+export type TextlintSourceCodeRange = readonly [startIndex: number, endIndex: number];
 export type TextlintSourceCodeArgs = { text: string; ast: AnyTxtNode; ext: string; filePath?: string };
 
 /**

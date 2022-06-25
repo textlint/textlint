@@ -1,6 +1,10 @@
 module.exports = {
+    root: true,
+    globals: {
+        globalThis: true
+    },
     parserOptions: {
-        ecmaVersion: 2017,
+        ecmaVersion: 2022,
         sourceType: "module"
     },
     env: {
@@ -9,7 +13,7 @@ module.exports = {
         node: true,
         mocha: true
     },
-    extends: ["eslint:recommended", "plugin:prettier/recommended"],
+    extends: ["eslint:recommended"],
     rules: {
         "no-console": "warn",
         "no-undef": "error",
@@ -27,15 +31,11 @@ module.exports = {
     overrides: [
         {
             files: ["*.ts"],
+            parser: "@typescript-eslint/parser",
             parserOptions: {
                 tsconfigRootDir: __dirname,
                 project: ["./tsconfig.base.json", "./packages/*/tsconfig.json"]
-            },
-            extends: [
-                // "plugin:@typescript-eslint/recommended",
-                // "plugin:@typescript-eslint/recommended-requiring-type-checking",
-                "prettier/@typescript-eslint"
-            ]
+            }
         }
     ]
 };

@@ -8,7 +8,8 @@ import type { TextlintMessage } from "@textlint/types";
  */
 const isEqualMessage = (aMessage: TextlintMessage, bMessage: TextlintMessage) => {
     return (
-        aMessage.index === bMessage.index &&
+        aMessage.range[0] === bMessage.range[0] &&
+        aMessage.range[1] === bMessage.range[1] &&
         aMessage.severity === bMessage.severity &&
         aMessage.message === bMessage.message
     );

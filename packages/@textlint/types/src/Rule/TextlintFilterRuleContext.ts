@@ -1,8 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextlintSourceCode } from "../Source/TextlintSourceCode";
-import { BaseRuleContext } from "./BaseRuleContext";
-import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
+import { TextlintBaseRuleContext } from "./TextlintBaseRuleContext";
 
 /**
  * Message of ignoring
@@ -14,7 +12,7 @@ import { TextlintRuleSeverityLevel } from "./TextlintRuleSeverityLevel";
  */
 export interface TextlintFilterRuleShouldIgnoreFunctionArgs {
     ruleId: string;
-    range: [number, number];
+    range: readonly [startIndex: number, endIndex: number];
     optional: {
         ruleId?: string;
     };
@@ -24,28 +22,11 @@ export declare type TextlintFilterRuleShouldIgnoreFunction = (args: TextlintFilt
 
 /**
  * Rule context object is passed to each rule as `context`
- * @param {string} ruleId
- * @param {TextlintSourceCode} sourceCode
- * @param {ReportCallback} report
- * @param {Object|boolean|undefined} ruleOptions
- * @param {string} [configBaseDir]
- * @constructor
- */
-export interface TextlintFilterRuleContextArgs {
-    ruleId: string;
-    ignoreReport: TextlintFilterRuleShouldIgnoreFunction;
-    sourceCode: TextlintSourceCode;
-    configBaseDir?: string;
-    severityLevel: TextlintRuleSeverityLevel;
-}
-
-/**
- * Rule context object is passed to each rule as `context`
  * @param ruleId
  * @param sourceCode
  * @param ignoreReport shouldIgnore function
  * @constructor
  */
-export interface TextlintFilterRuleContext extends BaseRuleContext {
-    shouldIgnore(range: [number, number], optional: {}): void;
+export interface TextlintFilterRuleContext extends TextlintBaseRuleContext {
+    shouldIgnore(range: readonly [startIndex: number, endIndex: number], optional: {}): void;
 }

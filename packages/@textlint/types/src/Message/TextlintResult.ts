@@ -1,7 +1,9 @@
 // "range" will be replaced by "text"
+import { TextlintRuleSeverityLevel } from "../Rule/TextlintRuleSeverityLevel";
+
 export interface TextlintMessageFixCommand {
     text: string;
-    range: [number, number];
+    range: readonly [startIndex: number, endIndex: number];
 }
 
 export interface TextlintMessage {
@@ -15,15 +17,49 @@ export interface TextlintMessage {
     data?: any;
     // FixCommand
     fix?: TextlintMessageFixCommand;
-    // location info
-    // Text -> AST TxtNode(0-based columns) -> textlint -> TextlintMessage(**1-based columns**)
-    line: number; // start with 1
-    column: number; // start with 1
-    // indexed-location
-    index: number; // start with 0
+    /**
+     * start line number where the issue is located.
+     * start with 1
+     * @deprecated use `loc`
+     */
+    line: number;
+    /**
+     * start column number where the issue is located.
+     * start with 1
+     * @deprecated use `loc`
+     */
+    column: number;
+    /**
+     * start index where the issue is located.
+     * start with 0
+     * @deprecated use `range`
+     */
+    index: number;
+    /**
+     * the range info where the issue is located.
+     * range start with 0
+     * Note: `range` represent same info to `loc`
+     */
+    range: readonly [startIndex: number, endIndex: number];
+    /**
+     * the location info where the issue is located.
+     * line start with 1
+     * column start with 1
+     * Note: `loc` represent same info to `range`
+     */
+    loc: {
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
+    };
     // Severity Level
     // See src/shared/type/SeverityLevel.js
-    severity: number;
+    severity: TextlintRuleSeverityLevel;
 }
 
 // Linting result

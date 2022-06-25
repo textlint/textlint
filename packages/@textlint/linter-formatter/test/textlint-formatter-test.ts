@@ -29,6 +29,17 @@ describe("@textlint/linter-formatter-test", function () {
                                 line: 1,
                                 column: 23,
                                 index: 0,
+                                range: [0, 1],
+                                loc: {
+                                    start: {
+                                        line: 1,
+                                        column: 23
+                                    },
+                                    end: {
+                                        line: 1,
+                                        column: 24
+                                    }
+                                },
                                 message: "Expected a semicolon.",
                                 severity: 2
                             }
@@ -65,6 +76,17 @@ describe("@textlint/linter-formatter-test", function () {
                                 line: 1,
                                 column: 1,
                                 index: 0,
+                                range: [0, 1],
+                                loc: {
+                                    start: {
+                                        line: 1,
+                                        column: 1
+                                    },
+                                    end: {
+                                        line: 1,
+                                        column: 2
+                                    }
+                                },
                                 message: "0 pattern.",
                                 severity: 2
                             },
@@ -74,6 +96,17 @@ describe("@textlint/linter-formatter-test", function () {
                                 line: 2,
                                 column: 26,
                                 index: 0,
+                                range: [0, 1],
+                                loc: {
+                                    start: {
+                                        line: 2,
+                                        column: 26
+                                    },
+                                    end: {
+                                        line: 2,
+                                        column: 27
+                                    }
+                                },
                                 message: "Expected a semicolon.",
                                 severity: 2
                             },
@@ -83,6 +116,17 @@ describe("@textlint/linter-formatter-test", function () {
                                 line: 1,
                                 column: 21,
                                 index: 0,
+                                range: [0, 1],
+                                loc: {
+                                    start: {
+                                        line: 1,
+                                        column: 21
+                                    },
+                                    end: {
+                                        line: 1,
+                                        column: 22
+                                    }
+                                },
                                 message: "Expected a semicolon.",
                                 severity: 2
                             },
@@ -92,6 +136,17 @@ describe("@textlint/linter-formatter-test", function () {
                                 line: 2,
                                 column: 26,
                                 index: 0,
+                                range: [0, 1],
+                                loc: {
+                                    start: {
+                                        line: 1,
+                                        column: 26
+                                    },
+                                    end: {
+                                        line: 1,
+                                        column: 27
+                                    }
+                                },
                                 message: "Expected a semicolon.",
                                 severity: 2
                             }
@@ -107,6 +162,17 @@ describe("@textlint/linter-formatter-test", function () {
                                 line: 2,
                                 column: 16,
                                 index: 0,
+                                range: [0, 1],
+                                loc: {
+                                    start: {
+                                        line: 2,
+                                        column: 16
+                                    },
+                                    end: {
+                                        line: 2,
+                                        column: 17
+                                    }
+                                },
                                 ruleId: "foo",
                                 fix: {
                                     range: [40, 45],

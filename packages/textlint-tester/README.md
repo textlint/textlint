@@ -1,6 +1,7 @@
 # textlint-tester
 
-[Mocha](http://mochajs.org/ "Mocha") test helper library for [textlint](https://github.com/textlint/textlint "textlint") [rule](https://textlint.github.io/docs/rule.html).
+[Mocha](http://mochajs.org/ "Mocha") test helper library
+for [textlint](https://github.com/textlint/textlint "textlint") [rule](https://textlint.github.io/docs/rule.html).
 
 ## Installation
 
@@ -9,14 +10,15 @@
 ## Usage
 
 1. Write tests by using `textlint-tester`
-   
+
 ```js
 import TextLintTester from "textlint-tester";
 // a rule for testing
 import rule from "textlint-rule-no-todo";
+
 const tester = new TextLintTester();
 // ruleName, rule, { valid, invalid }
-tester.run("no-todo", rule, {
+tester.run("rule name", rule, {
     valid: [
         "This is ok",
     ],
@@ -27,8 +29,7 @@ tester.run("no-todo", rule, {
             errors: [
                 {
                     message: "Found TODO: '- [ ] string'",
-                    line: 1,
-                    column: 3
+                    range: [2, 6]
                 }
             ]
         }
@@ -47,7 +48,8 @@ $(npm bin)/mocha test/
 `TextLintTester#run` has two signatures.
 
 - If you want to test single rule, use first method (`TextLintTester#run(ruleName, rule, {valid=[], invalid=[]})`)
-- If you want to test multiple rules and/or plugins, use second method (`TextLintTester#run(testName, testConfig, {valid=[], invalid=[]})`)
+- If you want to test multiple rules and/or plugins, use second
+  method (`TextLintTester#run(testName, testConfig, {valid=[], invalid=[]})`)
 
 #### TextLintTester#run(ruleName, rule, {valid=[], invalid=[]})
 
@@ -81,7 +83,7 @@ export declare type TestConfig = {
 `testConfig` object example:
 
 ```js
-{
+tester.run("rule name", {
     plugins: [
         {
             pluginId: "html",
@@ -101,7 +103,7 @@ export declare type TestConfig = {
             }
         }
     ]
-}
+}, { ... })
 ```
 
 ##### valid object
@@ -127,20 +129,22 @@ export declare type TesterValid = string | {
 `valid` object example:
 
 ```js
-[
-    "text",
-    { text : "text" },
-    {
-        text: "text",
-        options: {
-            "key": "value",
+test.run("test name", rule, {
+    valid: [
+        "text",
+        { text: "text" },
+        {
+            text: "text",
+            options: {
+                "key": "value",
+            },
         },
-    },
-    {
-        text: "<p>this sentence is parsed as HTML document.</p>",
-        ext: ".html",
-    },
-]
+        {
+            text: "<p>this sentence is parsed as HTML document.</p>",
+            ext: ".html",
+        },
+    ]
+});
 ```
 
 ##### invalid object
@@ -165,9 +169,28 @@ export declare type TesterInvalid = {
     options?: any;
     errors: {
         ruleId?: string;
+        range?: readonly [startIndex: number, endIndex: number];
+        loc?: {
+            start: {
+                line: number;
+                column: number;
+            };
+            end: {
+                line: number;
+                column: number;
+            };
+        };
+        /**
+         * @deprecated use `range` option
+         */
         index?: number;
+        /**
+         * @deprecated use `loc` option
+         */
         line?: number;
-        column?: number;
+        /**
+         * @deprecated use `loc` option
+         */
         message?: string;
         [index: string]: any;
     }[];
@@ -177,20 +200,23 @@ export declare type TesterInvalid = {
 `invalid` object example:
 
 ```js
-[
-    {
-        text: "text",
-        output: "text",
-        ext: ".txt",
-        errors: [
+test.run("rule name", rule, {
+    invalid:
+        [
             {
-                messages: "expected message",
-                line: 1,
-                column: 1
+                text: "text",
+                output: "text",
+                ext: ".txt",
+                errors: [
+                    {
+                        messages: "expected message",
+                        line: 1,
+                        column: 1
+                    }
+                ]
             }
         ]
-    }
-]
+})
 ```
 
 ### Example
@@ -201,6 +227,7 @@ export declare type TesterInvalid = {
 import TextLintTester from "textlint-tester";
 // a rule for testing
 import rule from "textlint-rule-no-todo";
+
 const tester = new TextLintTester();
 // ruleName, rule, { valid, invalid }
 tester.run("no-todo", rule, {
@@ -215,6 +242,36 @@ tester.run("no-todo", rule, {
         }
     ],
     invalid: [
+        // range
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] This is NG'",
+                    range: [2, 6]
+                }
+            ]
+        },
+        // loc
+        {
+            inputPath: path.join(__dirname, "fixtures/text/ng.md"),
+            errors: [
+                {
+                    message: "Found TODO: '- [ ] This is NG'",
+                    loc: {
+                        start: {
+                            line: 1,
+                            column: 2
+                        },
+                        end: {
+                            line: 1,
+                            column: 6
+                        }
+                    }
+                }
+            ]
+        },
+        // Depreacted way
         // line, column
         {
             text: "- [ ] string",
@@ -238,7 +295,7 @@ tester.run("no-todo", rule, {
         },
         {
             text: "TODO: string",
-            options: {"key": "value"},
+            options: { "key": "value" },
             errors: [
                 {
                     message: "found TODO: 'TODO: string'",
@@ -248,22 +305,22 @@ tester.run("no-todo", rule, {
             ]
         },
         {
-         text: "TODO: string",
-         output: "string", // <= fixed output
-         errors: [
-             {
-                 message: "found TODO: 'TODO: string'",
-                 line: 1,
-                 column: 1
-             }
-         ]
+            text: "TODO: string",
+            output: "string", // <= fixed output
+            errors: [
+                {
+                    message: "found TODO: 'TODO: string'",
+                    line: 1,
+                    column: 1
+                }
+            ]
         }
     ]
 });
 ```
 
-See [`textlint-tester-test.ts`](./test/textlint-tester-test.ts) or [`textlint-tester-plugin.ts`](./test/textlint-tester-plugin.ts) for concrete examples.
-
+See [`textlint-tester-test.ts`](./test/textlint-tester-test.ts)
+or [`textlint-tester-plugin.ts`](./test/textlint-tester-plugin.ts) for concrete examples.
 
 ## Contributing
 

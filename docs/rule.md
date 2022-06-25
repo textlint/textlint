@@ -8,7 +8,7 @@ textlint's AST(Abstract Syntax Tree) is defined at the page.
 - [txtnode.md](./txtnode.md)
     - If you want to know AST of a text, use [Online Parsing Demo](./txtnode.md#online-parsing-demo)
 
-Each rules are represented by an object with some properties.
+Each rule are represented by an object with some properties.
 The properties are equivalent to AST node types from TxtNode.
 
 The basic source code format for a rule is:
@@ -40,10 +40,11 @@ export default function (context) {
 If your rule wants to know when an `Str` node is found in the AST, then add a method called `context.Syntax.Str`, such as:
 
 ```js
-// ES6
+// ES2015+
 export default function (context) {
+    const { Syntax } = context;
     return {
-        [context.Syntax.Str](node) {
+        [Syntax.Str](node) {
             // this method is called
         }
     };
@@ -108,48 +109,222 @@ RuleContext object has following property:
 - `getFilePath(): string | undefined`
     - This method return file path that is linting target.
     - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
-- `getConfigBaseDir(): string | undefined` (New in [9.0.0](https://github.com/textlint/textlint/releases/tag/textlint%409.0.0 "9.0.0"))
+- `getConfigBaseDir(): string | undefined`
+    - New in [9.0.0](https://github.com/textlint/textlint/releases/tag/textlint%409.0.0 "9.0.0")
     - Available [@textlint/get-config-base-dir](https://github.com/textlint/get-config-base-dir "@textlint/get-config-base-dir") polyfill for backward compatibility
     - This method return config base directory path that is the place of `.textlintrc`
     - e.g.) `/path/to/dir/.textlintrc`
     - `getConfigBaseDir()` return `"/path/to/dir/"`.
 - `fixer`
     - This is creator object of fix command.
-    - See [How to create Fixable Rule?](./rule-fixable.md) for details
+    - See [How to create Fixable Rule?](./rule-fixable.md) for more details
+- `locator`
+    - New in [12.2.0](https://github.com/textlint/textlint/releases/tag/v12.2.0)
+    - This utility provide range methods for `padding` property to `RuleError`
+    - See [RuleError](#RuleError) for more details
 
 ## RuleError
 
-RuleError is an object like Error.
+`RuleError` is an Error object for reporting.
 Use it with `report` function.
 
-- `RuleError(<message>, [{ line , column }])`
-    - e.g.) `new context.RuleError("Found rule error");`
-    - e.g.) `new context.RuleError("Found rule error", { line: paddingLine, column: paddingColumn});`
-- `RuleError(<message>, [{ index }])`
-    - e.g.) `new context.RuleError("Found rule error", { index: paddingIndex });`
+- `report(node, new RuleError(<message>))`
+  - report new error
+  - textlint show the `<mesage>` against `node`'s range. 
+- `report(node, new RuleError(<message>, { padding }))`
+  - report new error with `padding`.
+  - textlint show the `<mesage>` against `node`'s range + `padding`.
+  - You can control correct error range by `padding` property of `RuleError`
+
+Example: report the `Str` node that is typo.
+
+```
+This is typo.
+^^^^^^^^^^^^^
+      |
+  Found a typo.
+```
 
 ```js
-// No padding information
+export default function (context) {
+    const { Syntax, report, RuleError, getSource } = context;
+    return {
+        [Syntax.Str](node) {
+            // get source code of this `node`
+            const text = getSource(node);
+            if (/typo/.test(text)) {
+                // report error
+                report(node, new RuleError("Found a typo"));
+            }
+        }
+    };
+}
+```
+
+Example: report `typo` string that is typo using `padding`
+
+```
+This is typo.
+        ^^^^
+          |
+        Found a typo.
+```
+
+```js
+export default function (context) {
+    const { Syntax, report, RuleError, getSource, locator } = context;
+    return {
+        [Syntax.Str](node) {
+            // get source code of this `node`
+            const text = getSource(node);
+            const match = text.match(/typo/);
+            if (match) {
+                // report error with padding
+                // node's start + padding's range
+                // As a result, report the error that is [node.range[0] + typo.index, node.range[1] + typo.index + type.length]
+                report(
+                    node,
+                    new RuleError("Found a typo", {
+                        padding: locator.range([match.index, match.index + match[0].length])
+                    })
+                );
+            }
+        }
+    };
+}
+```
+
+The `context.locator` object has the following methods:
+
+-`locator.at(index)` - return padding value that is relative index from node's start index.
+  - The `index` value is 0-based value
+  - This method is alias to `locator.range([index, index + 1])`
+-`locator.range([startIndex, endIndex])` - return padding value that is relative range from node's start index
+  - Each `index` value is 0-based value
+-`locator.loc({ start: { line, column }, end: { line, column })` - return padding value that is relative location from node's start loc
+  - :memo: This `line` and `column` is relative value. It is not absolute value. So, These are 0-based value.
+  
+```ts
+export type TextlintRulePaddingLocator = {
+    /**
+     * at's index is 0-based value.
+     * It is alias to `range([index, index + 1])`
+     * @param index relative index from node's start position
+     */
+    at(index: number): TextlintRuleErrorPaddingLocation;
+    /**
+     * range's index is 0-based value
+     * @param range relative range from node's start position
+     */
+    range(range: readonly [startIndex: number, endIndex: number]): TextlintRuleErrorPaddingLocation;
+    /**
+     * line is relative padding value from node's start position
+     * column is relative padding value from node's start position
+     * @param location relative location from node's start position
+     */
+    loc(location: {
+        start: {
+            line: number;
+            column: number;
+        };
+        end: {
+            line: number;
+            column: number;
+        };
+    }): TextlintRuleErrorPaddingLocation;
+};
+```
+
+Examples
+
+```ts
+// locator.at
+report(node, new RuleError(message, {
+  padding: locator.at(11)
+}));
+// locator.range
+report(node, new RuleError(message, {
+  padding: locator.range([5, 10])
+}));
+// locator.loc
+report(node, new RuleError(message, {
+  padding: locator.loc({
+      start: {
+          line: 1,
+          column: 1
+      },
+      end: {
+          line: 2,
+          column: 2
+      }
+  })
+}));
+```
+
+:memo: `padding` option and `locator` object are introduced in textlint v12.2.0+.
+You can declare your dependency on textlint in `package.json` using the [peerDependencies](https://docs.npmjs.com/files/package.json#peerdependencies) field.
+
+```json5
+  "peerDependencies": {
+    "textlint": ">= 12.2.0"
+  }
+```
+
+<details>
+<summary>Deprecated: { line, column } and { index } properties</summary>
+
+`{ line, column }` and `{ index }` properties are deprecated.
+Instead of these, textlint v12.2.0 introduce `padding` property and `locator` object.
+
+Deprecated way:
+
+```js
+// report without padding
 const error = new RuleError("message");
-//
 // OR
-// add location-based padding
+// report with location-based padding
 const paddingLine = 1;
 const paddingColumn = 1;
 const errorWithPadding = new RuleError("message", {
     line: paddingLine, // padding line number from node.loc.start.line. default: 0
     column: paddingColumn // padding column number from node.loc.start.column. default: 0
 });
-// context.report(node, errorWithPadding);
-//
 // OR
-// add index-based padding
+// report with index-based padding
 const paddingIndex = 1;
 const errorWithPaddingIndex = new RuleError("message", {
     index: paddingIndex // padding index value from `node.range[0]`. default: 0
 });
-// context.report(node, errorWithPaddingIndex);
 ```
+
+Current way:
+
+```js
+// No padding information
+// It means, this error point out the whole node
+const error = new RuleError("message");
+// OR
+const errorWithPadding = new RuleError("message", {
+    padding: locator.loc({
+        start: {
+            line: 1, // padding line number from node.loc.start.line. default: 0
+            column: 1 // padding column number from node.loc.start.column. default: 0
+        },
+        end: {
+            line: 1, // padding line number from node.loc.start.line. default: 0
+            column: 2 // padding column number from node.loc.start.column. default: 0
+        }
+    })
+});
+// OR
+const paddingIndex = 1;
+const errorWithPaddingIndex = new RuleError("message", {
+    // padding [startIndex, endIndex] from node's start index.
+    padding: locator.range([1, 2])
+});
+```
+
+</details>
 
 ### :warning: Caution :warning:
 
@@ -165,13 +340,14 @@ For example:
 
 ```js
 export default function (context) {
+    const { Syntax, report, RuleError } = context;
     return {
-        [context.Syntax.Str](node) {
+        [Syntax.Str](node) {
             // get source code of this `node`
             const text = context.getSource(node);
             if (/found wrong use-case/.test(text)) {
                 // report error
-                context.report(node, new context.RuleError("Found wrong"));
+                report(node, new RuleError("Found wrong"));
             }
         }
     };
@@ -252,8 +428,7 @@ File Name: `no-todo.js`
  * @param {RuleContext} context
  */
 export default function (context) {
-    const helper = new RuleHelper(context);
-    const { Syntax, getSource, RuleError, report } = context;
+    const { Syntax, getSource, RuleError, report, locator } = context;
     return {
         /*
             # Header
@@ -270,7 +445,7 @@ export default function (context) {
                 report(
                     node,
                     new RuleError(`Found TODO: '${text}'`, {
-                        index: match.index
+                        padding: locator.range([match.index, match.index + text.length])
                     })
                 );
             }
@@ -288,7 +463,7 @@ export default function (context) {
                 report(
                     node,
                     new context.RuleError(`Found TODO: '${text}'`, {
-                        index: match.index
+                        padding: locator.range([match.index, match.index + text.length])
                     })
                 );
             }
@@ -365,48 +540,44 @@ function isNodeWrapped(node, types) {
         });
     });
 }
-/**
- * @param {RuleContext} context
- */
 export default function (context) {
-    const { Syntax, getSource, RuleError, report } = context;
+    const { Syntax, getSource, RuleError, report, locator } = context;
     return {
         /*
-            # Header
-            Todo: quick fix this.
-        */
+        Todo: quick fix this.
+    */
         [Syntax.Str](node) {
-            // not apply this rule to the node that is child of `Link`, `Image` or `BlockQuote` Node.
+            // Ignore the node if the node is child of some Node types
             if (isNodeWrapped(node, [Syntax.Link, Syntax.Image, Syntax.BlockQuote])) {
                 return;
             }
             // get text from node
             const text = getSource(node);
-            // does text contain "todo:"?
-            const match = text.match(/todo:/i);
-            if (match) {
-                const todoText = text.substring(match.index);
+            // Does the text contain "todo:"?
+            const matches = text.matchAll(/todo:/gi);
+            for (const match of matches) {
+                const index = match.index ?? 0;
+                const length = match[0].length;
                 report(
                     node,
-                    new RuleError(`Found TODO: '${todoText}'`, {
-                        // correct position
-                        index: match.index
+                    new RuleError(`Found TODO: '${text}'`, {
+                        padding: locator.range([index, index + length])
                     })
                 );
             }
         },
         /*
-            # Header
-            - [ ] Todo
-        */
+        - [ ] Todo
+    */
         [Syntax.ListItem](node) {
             const text = context.getSource(node);
-            const match = text.match(/\[\s+\]\s/i);
-            if (match) {
+            // Does the ListItem's text starts with `- [ ]`
+            const match = text.match(/^-\s\[\s+]\s/i);
+            if (match && match.index !== undefined) {
                 report(
                     node,
                     new context.RuleError(`Found TODO: '${text}'`, {
-                        index: match.index
+                        padding: locator.range([match.index, match.index + match[0].length])
                     })
                 );
             }
@@ -449,7 +620,7 @@ This test script use [textlint-tester](https://www.npmjs.com/package/textlint-te
 `test/textlint-rule-no-todo-test.js`:
 
 ```js
-const TextLintTester = require("textlint-tester");
+import TextLintTester from "textlint-tester";
 const tester = new TextLintTester();
 // rule
 import rule from "../src/no-todo";
@@ -466,54 +637,34 @@ tester.run("no-todo", rule, {
         "> TODO: this is todo"
     ],
     invalid: [
-        // single match
+        // range
         {
-            text: "TODO: this is TODO",
+            text: "- [ ] string",
+            //     ^^^^^^
             errors: [
                 {
-                    message: "Found TODO: 'TODO: this is TODO'",
-                    line: 1,
-                    column: 1
+                    message: "Found TODO: '- [ ] string'",
+                    range: [0, 6]
                 }
             ]
         },
-        // multiple match in multiple lines
+        // loc
         {
-            text: `TODO: this is TODO
-            
-- [ ] TODO`,
+            text: "- [ ] string",
+            //     ^^^^^^
             errors: [
                 {
-                    message: "Found TODO: 'TODO: this is TODO'",
-                    line: 1,
-                    column: 1
-                },
-                {
-                    message: "Found TODO: '- [ ] TODO'",
-                    line: 3,
-                    column: 3
-                }
-            ]
-        },
-        // multiple hit items in a line
-        {
-            text: "TODO: A TODO: B",
-            errors: [
-                {
-                    message: "Found TODO: 'TODO: A TODO: B'",
-                    line: 1,
-                    column: 1
-                }
-            ]
-        },
-        // exact match or empty
-        {
-            text: "THIS IS TODO:",
-            errors: [
-                {
-                    message: "Found TODO: 'TODO:'",
-                    line: 1,
-                    column: 9
+                    message: "Found TODO: '- [ ] string'",
+                    loc: {
+                        start: {
+                            line: 1,
+                            column: 1
+                        },
+                        end: {
+                            line: 1,
+                            column: 7
+                        }
+                    }
                 }
             ]
         }
@@ -527,7 +678,7 @@ Run the tests:
     # or
     $(npm bin)/mocha test/
 
-:information_source: Please see [azu/textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo "azu/textlint-rule-no-todo") for details.
+:information_source: Please see [textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo) for details.
 
 ### Rule options
 
@@ -539,7 +690,7 @@ For example, `very-nice-rule`'s option is `{ "key": "value" }` in `.textlintrc`
 {
   "rules": {
     "very-nice-rule": {
-        "key": "value"
+      "key": "value"
     }
   }
 }
@@ -652,7 +803,7 @@ You should add `textlintrule` to npm's `keywords`
 {
   "name": "textlint-rule-no-todo",
   "description": "Your custom rules description",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "homepage": "https://github.com/textlint/textlint-custom-rules/",
   "keywords": [
     "textlintrule"
@@ -662,13 +813,19 @@ You should add `textlintrule` to npm's `keywords`
 
 ### FAQ: Publishing
 
-#### Q. `textlint @ 5.5.x` has new feature. My rule package want to use it.
+#### Q. `textlint @ x.y.z` has new feature. My rule package require it
 
-A. You should
+A. You should add `textlint >= x.y.z` to `peerDependencies` in `package.json`
 
-- Add `textlint >= 5.5` to `peerDependencies`
-    - See example: [textlint-rule-no-todo/package.json](https://github.com/textlint-rule/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json)
-- Release the rule package as *major* because it has breaking change.
+The recommended way to declare a dependency for future-proof compatibility is with the `">="` range syntax, using the lowest required eslint version. For example:
+
+```json5
+  "peerDependencies": {
+    "textlint": ">= 5.5.0"
+  }
+```
+
+See example: [textlint-rule-no-todo/package.json](https://github.com/textlint-rule/textlint-rule-no-todo/blob/50880b4e1c13782874a43714ee69900fc54a5348/package.json)
 
 #### Q. `textlint` does major update. Do my rule package major update?
 

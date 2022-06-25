@@ -1,13 +1,31 @@
 import type {
+    TextlintFilterRuleContext,
     TextlintFilterRuleShouldIgnoreFunction,
+    TextlintRulePaddingLocator,
     TextlintRuleSeverityLevel,
-    TextlintSourceCode,
-    TextlintFilterRuleContextArgs,
-    TextlintFilterRuleContext
+    TextlintSourceCode
 } from "@textlint/types";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
 import * as assert from "assert";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
+import { createPaddingLocator } from "./TextlintRulePaddingLocator";
+
+/**
+ * Rule context object is passed to each rule as `context`
+ * @param {string} ruleId
+ * @param {TextlintSourceCode} sourceCode
+ * @param {ReportCallback} report
+ * @param {Object|boolean|undefined} ruleOptions
+ * @param {string} [configBaseDir]
+ * @constructor
+ */
+export interface TextlintFilterRuleContextArgs {
+    ruleId: string;
+    ignoreReport: TextlintFilterRuleShouldIgnoreFunction;
+    sourceCode: TextlintSourceCode;
+    configBaseDir?: string;
+    severityLevel: TextlintRuleSeverityLevel;
+}
 
 export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext {
     private _ruleId: string;
@@ -15,11 +33,13 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
     private _sourceCode: TextlintSourceCode;
     private _configBaseDir?: string;
     private _severityLevel: TextlintRuleSeverityLevel;
+    public locator: TextlintRulePaddingLocator;
 
     constructor(args: TextlintFilterRuleContextArgs) {
         this._ruleId = args.ruleId;
         this._sourceCode = args.sourceCode;
         this._ignoreReport = args.ignoreReport;
+        this.locator = createPaddingLocator();
         this._configBaseDir = args.configBaseDir;
         this._severityLevel = args.severityLevel;
         Object.freeze(this);
@@ -53,7 +73,7 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
         return TextlintRuleErrorImpl;
     }
 
-    shouldIgnore = (range: [number, number], optional = {}) => {
+    shouldIgnore = (range: [startIndex: number, endIndex: number], optional = {}) => {
         assert.ok(
             Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
             "shouldIgnore([number, number]); accept range."

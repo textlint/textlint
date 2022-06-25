@@ -234,18 +234,29 @@ describe("rule-context-test", function () {
                 textlint.setupRules({
                     "rule-key"(context: TextlintRuleContext): TextlintRuleReportHandler {
                         return {
-                            [context.Syntax.Code](node) {
-                                const ruleError = new context.RuleError("error", { line: 5, column: 5 }); // if line >=1 // then start with 0 + column
+                            [context.Syntax.Paragraph](node) {
+                                const ruleError = new context.RuleError("error", { line: 1, column: 1 }); // if line >=1 // then start with 0 + column
                                 context.report(node, ruleError);
                             }
                         };
                     }
                 });
-                return textlint.lintMarkdown("test`code`test").then((result) => {
-                    assert.ok(result.messages.length === 1);
+                return textlint.lintMarkdown("test\ntest\ntest\ntest").then((result) => {
+                    assert.strictEqual(result.messages.length, 1);
                     const message = result.messages[0];
-                    assert.equal(message.line, 6);
-                    assert.equal(message.column, 5 + 1);
+                    assert.strictEqual(message.line, 2);
+                    assert.strictEqual(message.column, 2);
+                    assert.deepStrictEqual(message.range, [6, 7]);
+                    assert.deepStrictEqual(message.loc, {
+                        start: {
+                            line: 2,
+                            column: 2
+                        },
+                        end: {
+                            line: 2,
+                            column: 3
+                        }
+                    });
                 });
             });
         });

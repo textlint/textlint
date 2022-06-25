@@ -1,13 +1,9 @@
-// LICENSE : MIT
-"use strict";
 import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types";
 import { RuleHelper } from "textlint-rule-helper";
-/**
- * @param {RuleContext} context
- */
+
 export default function (context: TextlintRuleContext): TextlintRuleReportHandler {
     const helper = new RuleHelper(context);
-    const { Syntax, getSource, RuleError, report } = context;
+    const { Syntax, getSource, RuleError, report, locator } = context;
     return {
         /*
             # Header
@@ -19,13 +15,15 @@ export default function (context: TextlintRuleContext): TextlintRuleReportHandle
             }
             // get text from node
             const text = getSource(node);
-            // does text contain "todo:"?
-            const match = text.match(/todo:/i);
-            if (match) {
+            // Does the text contain "todo:"?
+            const matches = text.matchAll(/todo:/gi);
+            for (const match of matches) {
+                const index = match.index ?? 0;
+                const length = match[0].length;
                 report(
                     node,
                     new RuleError(`Found TODO: '${text}'`, {
-                        index: match.index
+                        padding: locator.range([index, index + length])
                     })
                 );
             }
@@ -36,12 +34,13 @@ export default function (context: TextlintRuleContext): TextlintRuleReportHandle
         */
         [Syntax.ListItem](node) {
             const text = context.getSource(node);
-            const match = text.match(/\[\s+\]\s/i);
-            if (match) {
+            // Does the ListItem's text starts with `- [ ]`
+            const match = text.match(/^-\s\[\s+]\s/i);
+            if (match && match.index !== undefined) {
                 report(
                     node,
                     new context.RuleError(`Found TODO: '${text}'`, {
-                        index: match.index
+                        padding: locator.range([match.index, match.index + match[0].length])
                     })
                 );
             }
