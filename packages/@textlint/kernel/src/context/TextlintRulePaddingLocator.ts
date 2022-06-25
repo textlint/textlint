@@ -29,7 +29,7 @@ export const isTextlintRuleErrorPaddingLocation = (o: any): o is TextlintRuleErr
         o !== null &&
         "type" in o &&
         o.type === "TextlintRuleErrorPaddingLocation" &&
-        (isTextlintRuleErrorPaddingLocRange(o.range) || isTextlintRuleErrorPaddingLocObject(o.loc()))
+        (isTextlintRuleErrorPaddingLocRange(o.range) || isTextlintRuleErrorPaddingLocObject(o.loc))
     );
 };
 export const createPaddingLocator = (): TextlintRulePaddingLocator => {
