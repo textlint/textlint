@@ -16,12 +16,13 @@ jobs:
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          cache: 'yarn'
       - name: Install
         run: yarn install --frozen-lockfile
       - name: Bootstrap
@@ -43,13 +44,13 @@ jobs:
     name: Documentation(Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-
+          cache: 'yarn'
       - name: Install
         run: yarn install --frozen-lockfile
       - name: Bootstrap

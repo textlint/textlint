@@ -1,6 +1,6 @@
 {
   "name": "@textlint/ast-node-types",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "textlint AST node type definition.",
   "keywords": [
     "textlint"
@@ -24,14 +24,14 @@
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
-    "prepublish": "npm run build",
+    "prepack": "npm run build",
     "test": "mocha \"test/**/*.{js,ts}\""
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "mocha": "^8.4.0",
+    "mocha": "^9.2.2",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.8.1",
     "ts-node-test-register": "^10.0.0",
     "typescript": "~4.4.4"
   }

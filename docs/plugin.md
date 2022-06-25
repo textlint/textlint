@@ -34,7 +34,7 @@ export default class TextProcessor {
     constructor(options = {}) {
         this.options = options;
         // support "extension" option
-        this.extensions = this.config.extensions ? this.config.extensions : [];
+        this.extensions = options.extensions ? options.extensions : [];
     }
     // available ".ext" list
     // user can add own custom extension as "extensions" option

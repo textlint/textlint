@@ -4,7 +4,7 @@
   "devDependencies": {
     "textlint": "^7.0.1",
     "textlint-filter-rule-comments": "^1.2.1",
-    "textlint-rule-eslint": "^1.1.1",
+    "textlint-rule-eslint": "^4.0.0",
     "textlint-rule-preset-ja-technical-writing": "^0.1.1",
     "textlint-rule-prh": "^3.0.1"
   }

@@ -13,7 +13,7 @@
     "!*.tsbuildinfo"
   ],
   "name": "textlint-scripts",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "textlint scripts help you to create textlint rule.",
   "bin": {
     "textlint-scripts": "./bin/cmd.js"
@@ -36,20 +36,20 @@
   "devDependencies": {
     "lint-staged": "^11.2.6",
     "prettier": "^2.2.1",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.5"
   },
   "dependencies": {
-    "@babel/cli": "^7.16.0",
-    "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "@babel/preset-typescript": "^7.16.5",
-    "@babel/register": "^7.16.5",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-typescript": "^7.17.12",
+    "@babel/register": "^7.17.7",
     "babel-plugin-static-fs": "^3.0.0",
     "confirmer": "^1.1.2",
     "cross-spawn": "^7.0.3",
-    "mocha": "^8.4.0",
-    "pkg-to-readme": "^1.1.0",
-    "textlint-tester": "^12.1.0"
+    "mocha": "^9.2.2",
+    "pkg-to-readme": "^1.1.2",
+    "textlint-tester": "^12.1.1"
   },
   "prettier": {
     "singleQuote": false,

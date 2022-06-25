@@ -1,6 +1,6 @@
 {
   "name": "textlint-tester",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "testing tool for textlint rule.",
   "keywords": [
     "test",
@@ -32,27 +32,27 @@
   "scripts": {
     "build": "tsc -b",
     "clean": "rimraf lib/ out/",
-    "prepublish": "npm run --if-present build",
+    "prepack": "npm run --if-present build",
     "test": "mocha \"test/**/*-test.{js,ts}\"",
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@textlint/feature-flag": "^12.1.0",
-    "@textlint/kernel": "^12.1.0",
-    "textlint": "^12.1.0"
+    "@textlint/feature-flag": "^12.1.1",
+    "@textlint/kernel": "^12.1.1",
+    "textlint": "^12.1.1"
   },
   "devDependencies": {
     "@types/mocha": "^8.2.3",
-    "@types/node": "^14.18.0",
+    "@types/node": "^14.18.21",
     "analyze-desumasu-dearu": "^4.0.1",
     "cross-env": "^7.0.3",
     "match-index": "^1.0.3",
-    "mocha": "^8.4.0",
+    "mocha": "^9.2.2",
     "rimraf": "^3.0.2",
     "textlint-plugin-html": "^0.2.0",
     "textlint-rule-helper": "^2.2.1",
     "textlint-rule-max-number-of-lines": "^1.0.3",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.8.1",
     "ts-node-test-register": "^10.0.0",
     "typescript": "~4.4.4"
   },

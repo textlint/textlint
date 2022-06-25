@@ -1,6 +1,6 @@
 {
   "name": "@textlint/textlint-plugin-text",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "plain text plugin for textlint",
   "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text/",
   "bugs": {
@@ -28,21 +28,21 @@
   "scripts": {
     "build": "tsc -b && tsc -b tsconfig.module.json",
     "clean": "rimraf lib/ module/",
-    "prepublish": "npm run --if-present build",
+    "prepack": "npm run --if-present build",
     "test": "mocha \"test/**/*.{js,ts}\"",
     "watch": "tsc -b --watch"
   },
   "dependencies": {
-    "@textlint/text-to-ast": "^12.1.0"
+    "@textlint/text-to-ast": "^12.1.1"
   },
   "devDependencies": {
-    "@textlint/kernel": "^12.1.0",
+    "@textlint/kernel": "^12.1.1",
     "@types/mocha": "8.2.3",
     "cross-env": "^7.0.3",
-    "mocha": "^8.4.0",
+    "mocha": "^9.2.2",
     "rimraf": "^3.0.2",
     "textlint-rule-no-todo": "^2.0.1",
-    "ts-node": "10.4.0",
+    "ts-node": "10.8.1",
     "ts-node-test-register": "10.0.0",
     "typescript": "4.4.4"
   },
