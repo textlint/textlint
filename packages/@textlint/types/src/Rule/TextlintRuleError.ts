@@ -2,25 +2,27 @@
 "use strict";
 import { TextlintRuleContextFixCommand } from "./TextlintRuleContextFixCommand";
 
+export type TextlintRuleErrorPaddingLocationLoc = {
+    start: {
+        line: number;
+        column: number;
+    };
+    end: {
+        line: number;
+        column: number;
+    };
+};
+export type TextlintRuleErrorPaddingLocationRange = readonly [startIndex: number, endIndex: number];
 export type TextlintRuleErrorPaddingLocation =
     | {
           type: "TextlintRuleErrorPaddingLocation";
           isAbsolute: boolean; // TODO: currently always relative from node position
-          range: readonly [startIndex: number, endIndex: number];
+          range: TextlintRuleErrorPaddingLocationRange;
       }
     | {
           type: "TextlintRuleErrorPaddingLocation";
           isAbsolute: boolean; // TODO: currently always relative from node position
-          loc: {
-              start: {
-                  line: number;
-                  column: number;
-              };
-              end: {
-                  line: number;
-                  column: number;
-              };
-          };
+          loc: TextlintRuleErrorPaddingLocationLoc;
       };
 
 export type TextlintRuleErrorDetails = {

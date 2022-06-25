@@ -21,6 +21,8 @@ export type {
     TextlintRuleErrorConstructor,
     TextlintRuleErrorDetails,
     TextlintRuleErrorPaddingLocation,
+    TextlintRuleErrorPaddingLocationRange,
+    TextlintRuleErrorPaddingLocationLoc,
     TextlintRuleReportedObject,
 } from "./Rule/TextlintRuleError";
 export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";

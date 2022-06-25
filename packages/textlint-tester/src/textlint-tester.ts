@@ -204,7 +204,8 @@ export class TextLintTester {
                 }
             );
         }
-        it(inputPath || text, () => {
+        const textCaseName = `${inputPath || text}`;
+        it(textCaseName, () => {
             return testValid({ textlint, inputPath, text, ext });
         });
     }

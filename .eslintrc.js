@@ -13,7 +13,7 @@ module.exports = {
         node: true,
         mocha: true
     },
-    extends: ["eslint:recommended", "plugin:prettier/recommended"],
+    extends: ["eslint:recommended"],
     rules: {
         "no-console": "warn",
         "no-undef": "error",
