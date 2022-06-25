@@ -18,7 +18,7 @@ import rule from "textlint-rule-no-todo";
 
 const tester = new TextLintTester();
 // ruleName, rule, { valid, invalid }
-tester.run("no-todo", rule, {
+tester.run("rule name", rule, {
     valid: [
         "This is ok",
     ],
@@ -83,16 +83,14 @@ export declare type TestConfig = {
 `testConfig` object example:
 
 ```js
-{
+tester.run("rule name", {
     plugins: [
         {
             pluginId: "html",
             plugin: htmlPlugin // = require("textlint-plugin-html")
         }
     ],
-        rules
-:
-    [
+    rules: [
         {
             ruleId: "no-todo",
             rule: noTodoRule // = require("textlint-rule-no-todo").default
@@ -105,7 +103,7 @@ export declare type TestConfig = {
             }
         }
     ]
-}
+}, { ... })
 ```
 
 ##### valid object
@@ -131,20 +129,22 @@ export declare type TesterValid = string | {
 `valid` object example:
 
 ```js
-[
-    "text",
-    { text: "text" },
-    {
-        text: "text",
-        options: {
-            "key": "value",
+test.run("test name", rule, {
+    valid: [
+        "text",
+        { text: "text" },
+        {
+            text: "text",
+            options: {
+                "key": "value",
+            },
         },
-    },
-    {
-        text: "<p>this sentence is parsed as HTML document.</p>",
-        ext: ".html",
-    },
-]
+        {
+            text: "<p>this sentence is parsed as HTML document.</p>",
+            ext: ".html",
+        },
+    ]
+});
 ```
 
 ##### invalid object
@@ -200,20 +200,23 @@ export declare type TesterInvalid = {
 `invalid` object example:
 
 ```js
-[
-    {
-        text: "text",
-        output: "text",
-        ext: ".txt",
-        errors: [
+test.run("rule name", rule, {
+    invalid:
+        [
             {
-                messages: "expected message",
-                line: 1,
-                column: 1
+                text: "text",
+                output: "text",
+                ext: ".txt",
+                errors: [
+                    {
+                        messages: "expected message",
+                        line: 1,
+                        column: 1
+                    }
+                ]
             }
         ]
-    }
-]
+})
 ```
 
 ### Example
