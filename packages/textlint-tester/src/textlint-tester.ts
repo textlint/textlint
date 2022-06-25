@@ -6,8 +6,9 @@ import { TextLintCore } from "textlint";
 import { TextlintFixResult, TextlintPluginCreator, TextlintRuleModule } from "@textlint/kernel";
 import { coreFlags } from "@textlint/feature-flag";
 
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+const globalObject = globalThis;
 /* eslint-disable no-invalid-this */
-const globalObject: any = global;
 const describe =
     typeof globalObject.describe === "function"
         ? globalObject.describe
@@ -49,14 +50,14 @@ function assertTestConfig(testConfig: TestConfig): any {
     assert.ok(Array.isArray(testConfig.rules), "TestConfig.rules should be an array");
     assert.ok(testConfig.rules.length > 0, "TestConfig.rules should have at least one rule");
     testConfig.rules.forEach((rule) => {
-        assert.ok(rule.hasOwnProperty("ruleId"), "ruleId property not found");
-        assert.ok(rule.hasOwnProperty("rule"), "rule property not found");
+        assert.ok(hasOwnProperty.call(rule, "ruleId"), "ruleId property not found");
+        assert.ok(hasOwnProperty.call(rule, "rule"), "rule property not found");
     });
     if (typeof testConfig.plugins !== "undefined") {
         assert.ok(Array.isArray(testConfig.plugins), "TestConfig.plugins should be an array");
         testConfig.plugins.forEach((plugin) => {
-            assert.ok(plugin.hasOwnProperty("pluginId"), "pluginId property not found");
-            assert.ok(plugin.hasOwnProperty("plugin"), "plugin property not found");
+            assert.ok(hasOwnProperty.call(plugin, "pluginId"), "pluginId property not found");
+            assert.ok(hasOwnProperty.call(plugin, "plugin"), "plugin property not found");
         });
     }
 }
@@ -77,7 +78,7 @@ export type TestConfig = {
 };
 
 function isTestConfig(arg: any): arg is TestConfig {
-    if (arg.hasOwnProperty("rules")) {
+    if (hasOwnProperty.call(arg, "rules")) {
         return true;
     }
     if (typeof arg.fixer === "function" || typeof arg === "function") {
@@ -232,12 +233,13 @@ export class TextLintTester {
                 }
             );
         }
-        it(inputPath || text, () => {
+        const testCaseName = `${inputPath || text}`;
+        it(testCaseName, () => {
             return testInvalid({ textlint, inputPath, text, ext, errors });
         });
         // --fix
-        if (invalid.hasOwnProperty("output")) {
-            it(`Fixer: ${inputPath || text}`, () => {
+        if (hasOwnProperty.call(invalid, "output")) {
+            it(`Fixer: ${testCaseName}`, () => {
                 if (isTestConfig(param)) {
                     param.rules.forEach((rule) => {
                         assertHasFixer(rule.rule, rule.ruleId);
@@ -284,7 +286,7 @@ export class TextLintTester {
             if (valid) {
                 valid.forEach((validCase) => {
                     assert.ok(
-                        !validCase.hasOwnProperty("options"),
+                        !hasOwnProperty.call(validCase, "options"),
                         "Could not specify options property in valid object when TestConfig was passed. Use TestConfig.rules.options."
                     );
                 });
@@ -292,7 +294,7 @@ export class TextLintTester {
             if (invalid) {
                 invalid.forEach((invalidCase) => {
                     assert.ok(
-                        !invalidCase.hasOwnProperty("options"),
+                        !hasOwnProperty.call(invalidCase, "options"),
                         "Could not specify options property in invalid object when TestConfig was passed. Use TestConfig.rules.options."
                     );
                 });

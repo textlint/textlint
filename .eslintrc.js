@@ -1,4 +1,8 @@
 module.exports = {
+    root: true,
+    globals: {
+        globalThis: true
+    },
     parserOptions: {
         ecmaVersion: 2022,
         sourceType: "module"
@@ -27,6 +31,7 @@ module.exports = {
     overrides: [
         {
             files: ["*.ts"],
+            parser: "@typescript-eslint/parser",
             parserOptions: {
                 tsconfigRootDir: __dirname,
                 project: ["./tsconfig.base.json", "./packages/*/tsconfig.json"]
