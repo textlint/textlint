@@ -196,12 +196,12 @@ export default function (context) {
 
 The `context.locator` object has the following methods:
 
--`locator.at(index)` - return padding value that is relative index from node's start index.
+- `locator.at(index)` - return padding value that is relative index from node's start index.
   - The `index` value is 0-based value
   - This method is alias to `locator.range([index, index + 1])`
--`locator.range([startIndex, endIndex])` - return padding value that is relative range from node's start index
+- `locator.range([startIndex, endIndex])` - return padding value that is relative range from node's start index
   - Each `index` value is 0-based value
--`locator.loc({ start: { line, column }, end: { line, column })` - return padding value that is relative location from node's start loc
+- `locator.loc({ start: { line, column }, end: { line, column })` - return padding value that is relative location from node's start loc
   - :memo: This `line` and `column` is relative value. It is not absolute value. So, These are 0-based value.
 
 :memo: `context.locator` object in introduced in [v12.2.0](https://github.com/textlint/textlint/releases/tag/v12.2.0).
