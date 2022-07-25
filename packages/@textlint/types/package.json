@@ -54,7 +54,7 @@
     "mocha": "^9.2.2",
     "prettier": "^2.3.0",
     "rimraf": "^3.0.2",
-    "ts-node": "^10.8.2",
+    "ts-node": "^10.9.1",
     "ts-node-test-register": "^10.0.0",
     "typescript": "^4.4.4",
     "unist-util-select": "^3.0.4"
