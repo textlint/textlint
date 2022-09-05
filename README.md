@@ -2,7 +2,7 @@
 
 [![textlint logo](https://textlint.github.io/media/logo/spaced/textlint-logo.png)](https://textlint.github.io/)
 
-> The pluggable linting tool for text and markdown.  
+> The pluggable linting tool for text and markdown.
 textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use with natural language.
 
 <!-- textlint-disable -->
@@ -38,7 +38,7 @@ For a quick tour of textlint, checkout our [Getting Started](./docs/getting-star
 You can install the `textlint` command using npm:
 
 ```
-$ npm install textlint --global
+$ npm install textlint --save-dev
 ```
 
 **Requirements**:
@@ -71,7 +71,7 @@ You can run textlint with the `--rule` or `--rulesdir` flag to specify rules, or
 
 ```sh
 # Install textlint's rule
-npm install --global textlint-rule-no-todo
+npm install --save-dev textlint-rule-no-todo
 ```
 
 Use with `textlint-rule-no-todo` rule.
@@ -90,7 +90,6 @@ Run `textlint -h` for information on how to use the CLI.
 
 ```
 $ textlint [options] file.md [file|dir|glob*]
-  
   Options:
     -h, --help                  Show help.
     -c, --config path::String   Use configuration from this file or sharable config.
