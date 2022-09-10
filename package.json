@@ -37,16 +37,16 @@
   "devDependencies": {
     "@monorepo-utils/collect-changelog": "^2.8.1",
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.8.2",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
-    "@typescript-eslint/parser": "^5.29.0",
-    "eslint": "^8.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "lerna": "^4.0.0",
-    "lint-staged": "^11.2.6",
+    "lint-staged": "^13.0.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.3.0",
-    "typescript": "^4.4.4"
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.3"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
@@ -65,5 +65,6 @@
     "packages/@textlint/*",
     "test/integration-test",
     "website"
-  ]
+  ],
+  "packageManager": "yarn@1.22.18"
 }

@@ -37,14 +37,14 @@
   },
   "devDependencies": {
     "@textlint/kernel": "^12.2.1",
-    "@types/mocha": "8.2.3",
+    "@types/mocha": "9.1.1",
     "cross-env": "^7.0.3",
-    "mocha": "^9.2.2",
+    "mocha": "^10.0.0",
     "rimraf": "^3.0.2",
     "textlint-rule-no-todo": "^2.0.1",
     "ts-node": "10.9.1",
     "ts-node-test-register": "10.0.0",
-    "typescript": "4.4.4"
+    "typescript": "4.8.3"
   },
   "publishConfig": {
     "access": "public"
