@@ -65,5 +65,6 @@
     "packages/@textlint/*",
     "test/integration-test",
     "website"
-  ]
+  ],
+  "packageManager": "yarn@1.22.18"
 }
