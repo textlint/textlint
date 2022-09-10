@@ -12,9 +12,9 @@ import { ExecuteFileBackerManager } from "./execute-file-backer-manager";
 import { CacheBacker } from "./execute-file-backers/cache-backer";
 import { SeverityLevel } from "../shared/type/SeverityLevel";
 import { TextlintMessage, TextlintResult } from "@textlint/kernel";
-
-const path = require("path");
-const debug = require("debug")("textlint:engine-core");
+import path from "path";
+import debug0 from "debug";
+const debug = debug0("textlint:engine-core");
 
 /**
  * Core of TextLintEngine.
@@ -130,50 +130,6 @@ new TextLintEngine({
  rulesBaseDirectory: directory
 })
         `);
-    }
-
-    /**
-     * load plugin manually
-     * Note: it high cost, please use config
-     * @param {string} pluginName
-     * @deprecated use Constructor(config) insteadof it
-     */
-    loadPlugin(pluginName: string) {
-        this.moduleLoader.loadPlugin(pluginName);
-        this._setupRules();
-    }
-
-    /**
-     * load plugin manually
-     * Note: it high cost, please use config
-     * @param {string} presetName
-     * @deprecated use Constructor(config) insteadof it
-     */
-    loadPreset(presetName: string) {
-        this.moduleLoader.loadPreset(presetName);
-        this._setupRules();
-    }
-
-    /**
-     * load rule manually
-     * Note: it high cost, please use config
-     * @param {string} ruleName
-     * @deprecated use Constructor(config) insteadof it
-     */
-    loadRule(ruleName: string) {
-        this.moduleLoader.loadRule(ruleName);
-        this._setupRules();
-    }
-
-    /**
-     * load filter rule manually
-     * Note: it high cost, please use config
-     * @param {string} ruleName
-     * @deprecated use Constructor(config) insteadof it
-     */
-    loadFilerRule(ruleName: string) {
-        this.moduleLoader.loadFilterRule(ruleName);
-        this._setupRules();
     }
 
     /**
