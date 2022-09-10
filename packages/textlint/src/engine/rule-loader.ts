@@ -10,7 +10,10 @@ import * as path from "path";
  * @param {String | String[]} [extnames] extension names
  * @returns {Object} Loaded rule modules by rule ids (file names).
  */
-export function loadFromDir(rulesDir: string, extnames: string[] | string = [".js", ".ts"]): { [index: string]: any } {
+export async function loadFromDir(
+    rulesDir: string,
+    extnames: string[] | string = [".js", ".ts"]
+): Promise<{ [index: string]: any }> {
     let rulesDirAbsolutePath: string;
     if (!rulesDir) {
         rulesDirAbsolutePath = path.join(__dirname, "rules");
@@ -18,18 +21,20 @@ export function loadFromDir(rulesDir: string, extnames: string[] | string = [".j
         rulesDirAbsolutePath = path.resolve(process.cwd(), rulesDir);
     }
     const rules = Object.create(null);
-    fs.readdirSync(rulesDirAbsolutePath).forEach((file: string) => {
+    const dirs = await fs.promises.readdir(rulesDirAbsolutePath);
+    for (const file of dirs) {
         if (Array.isArray(extnames)) {
             if (!extnames.includes(path.extname(file))) {
-                return;
+                continue;
             }
         } else {
             if (path.extname(file) !== extnames) {
-                return;
+                continue;
             }
         }
         const withoutExt = path.basename(file, path.extname(file));
-        rules[withoutExt] = moduleInterop(require(path.join(rulesDirAbsolutePath, file)));
-    });
+        const filePath = path.join(rulesDirAbsolutePath, file);
+        rules[withoutExt] = moduleInterop(await import(filePath));
+    }
     return rules;
 }

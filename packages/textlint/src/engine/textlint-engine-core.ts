@@ -14,6 +14,8 @@ import { SeverityLevel } from "../shared/type/SeverityLevel";
 import { TextlintMessage, TextlintResult } from "@textlint/kernel";
 import path from "path";
 import debug0 from "debug";
+import { Logger } from "../util/logger";
+
 const debug = debug0("textlint:engine-core");
 
 /**
@@ -36,6 +38,7 @@ export abstract class AbstractTextLintEngine<LintResult extends TextlintResult> 
     private executeFileBackerManger: ExecuteFileBackerManager;
     private textlint: TextLintCore;
     private config: Config;
+    private loadingPromise: Promise<void>;
     // abstract interface
     // Each engines should be implemented these
     /**
@@ -116,20 +119,21 @@ export abstract class AbstractTextLintEngine<LintResult extends TextlintResult> 
             this.pluginMap.set(pluginName, plugin);
         });
         // load rule/plugin/processor
-        this.moduleLoader.loadFromConfig(this.config);
-        // set settings to textlint core
-        this._setupRules();
-    }
-
-    /**
-     * @deprecated remove this method
-     */
-    setRulesBaseDirectory() {
-        throw new Error(`Should not use setRulesBaseDirectory(), insteadof use         
-new TextLintEngine({
- rulesBaseDirectory: directory
-})
-        `);
+        this.loadingPromise = this.moduleLoader
+            .loadFromConfig(this.config)
+            .then(() => {
+                // FIXME: availableExtensions will be broken because setup is deplayed,
+                // set settings to textlint core
+                this._setupRules();
+            })
+            .catch((error) => {
+                Logger.error(
+                    new Error(`textlint engine loading error: ${error.message}`, {
+                        cause: error
+                    })
+                );
+                return Promise.reject(error);
+            });
     }
 
     /**
@@ -146,24 +150,38 @@ new TextLintEngine({
     }
 
     /**
-     * Remove all registered rule and clear messages.
-     * @private
+     * Return available extensions of plugins that include built-in plugins
+     * @example
+     * ```
+     * engine.availableExtensions; // => [".txt", ".md"]
+     * ```
+     * @deprecated use `await engine.getAvailableExtensions()` instead of it.
      */
-    resetRules() {
-        this.textlint.resetRules();
-        this.ruleMap.resetRules();
-        this.filterRuleMap.resetRules();
+    get availableExtensions(): string[] {
+        // IT WILL BE BROKEN before loading is completed.
+        return this.textlint.textlintKernelDescriptor.availableExtensions;
     }
 
     /**
      * Return available extensions of plugins that include built-in plugins
      * @example
      * ```
-     * engine.availableExtensions; // => [".txt", ".md"]
+     * await engine.getAvailableExtensions(); // => [".txt", ".md"]
      * ```
      */
-    get availableExtensions(): string[] {
+    async getAvailableExtensions(): Promise<string[]> {
+        await this.loadingPromise; // wait for loading rules
         return this.textlint.textlintKernelDescriptor.availableExtensions;
+    }
+
+    /**
+     * If some rule is loaded, return true.
+     * If No rule, return false
+     * @returns {boolean}
+     */
+    async hasRuleAtLeastOne() {
+        await this.loadingPromise;
+        return this.ruleMap.hasRuleAtLeastOne();
     }
 
     /**
@@ -171,8 +189,10 @@ new TextLintEngine({
      *
      * WARNING: This is experimental getter method.
      * It will be renamed.
+     * @internal
      */
-    get textlintrcDescriptor(): TextlintKernelDescriptor {
+    async getInternalTextlintrcDescriptor(): Promise<TextlintKernelDescriptor> {
+        await this.loadingPromise;
         return this.textlint.textlintKernelDescriptor;
     }
 
@@ -181,10 +201,12 @@ new TextLintEngine({
      * @param {String[]}  files An array of file and directory names.
      * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
      */
-    executeOnFiles(files: string[]): Promise<LintResult[]> {
+    async executeOnFiles(files: string[]): Promise<LintResult[]> {
+        await this.loadingPromise; // wait for loading rules
         const execFile = this.onFile(this.textlint);
+        const availableExtensions = await this.getAvailableExtensions();
         const patterns = pathsToGlobPatterns(files, {
-            extensions: this.textlintrcDescriptor.availableExtensions
+            extensions: availableExtensions
         });
         const targetFiles = findFiles(patterns, { ignoreFilePath: this.config.ignoreFile });
         // Maybe, unAvailableFilePath should be warning.
@@ -192,7 +214,7 @@ new TextLintEngine({
         // pathsToGlobPatterns not modified that pattern.
         // So, unAvailableFilePath should be ignored silently.
         const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
-            extensions: this.textlintrcDescriptor.availableExtensions
+            extensions: availableExtensions
         });
         debug("Process files", availableFiles);
         debug("No Process files that are un-support extensions:", unAvailableFiles);
@@ -207,7 +229,8 @@ new TextLintEngine({
      * @param {string} ext ext is a type for linting. default: ".txt"
      * @returns {Promise<TextlintResult[]>}
      */
-    executeOnText(text: string, ext: string = ".txt"): Promise<LintResult[]> {
+    async executeOnText(text: string, ext: string = ".txt"): Promise<LintResult[]> {
+        await this.loadingPromise; // wait for loading rules
         const textlint = this.textlint;
         const execText = this.onText(textlint);
         // filePath or ext
@@ -227,7 +250,8 @@ new TextLintEngine({
      * @example
      *  console.log(formatResults(results));
      */
-    formatResults(results: LintResult[]): string {
+    async formatResults(results: LintResult[]): Promise<string> {
+        await this.loadingPromise; // wait for loading rules
         // default formatter: "stylish"
         const formatter = this.onFormat({
             formatterName: this.config.formatterName || "stylish",
@@ -255,12 +279,5 @@ new TextLintEngine({
         return results.some((result) => {
             return result.messages.some(this.isErrorMessage);
         });
-    }
-
-    /**
-     * @returns {boolean}
-     */
-    hasRuleAtLeastOne() {
-        return this.ruleMap.hasRuleAtLeastOne();
     }
 }

@@ -7,8 +7,8 @@ import { TextlintLintableRuleDescriptor } from "@textlint/kernel";
 
 const fixtureDir = path.join(__dirname, "fixtures", "rule-loader");
 describe("engine/rule-loader", function () {
-    it("should return object", function () {
-        const rules = loadFromDir(fixtureDir);
+    it("should return object", async function () {
+        const rules = await loadFromDir(fixtureDir);
         assert.equal(typeof rules, "object");
         const keys = Object.keys(rules);
         assert.deepEqual(keys.sort(), ["foo", "bar"].sort());
@@ -20,8 +20,8 @@ describe("engine/rule-loader", function () {
             assert.strictEqual(descriptor.id, key);
         });
     });
-    it("should filter by extension", function () {
-        const rules = loadFromDir(fixtureDir, ".unknown");
-        assert.deepEqual(rules, {});
+    it("should filter by extension", async function () {
+        const rules = await loadFromDir(fixtureDir, ".unknown");
+        assert.deepStrictEqual(Object.keys(rules).length, 0);
     });
 });

@@ -9,10 +9,10 @@ import { loadFromDir } from "../../src/engine/rule-loader";
 import { Config } from "../../src/config/config";
 import { TextlintRuleContext, TextlintRuleOptions } from "@textlint/types";
 
-const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
 describe("textlint-test", function () {
-    beforeEach(function () {
+    beforeEach(async function () {
         // This rule found `Str` Node then occur error
+        const rules = await loadFromDir(path.join(__dirname, "fixtures/rules"));
         textlint.setupRules(rules);
     });
     afterEach(function () {
@@ -61,7 +61,7 @@ describe("textlint-test", function () {
         });
     });
     describe("lintMarkdown", function () {
-        it("should found error message", function () {
+        it("should found error message", async function () {
             const text =
                 "# TEST" +
                 "\n" +
@@ -72,10 +72,9 @@ describe("textlint-test", function () {
                 "\n" +
                 "hoge\n [a](http://example.com) fuga\n" +
                 "------";
-            return textlint.lintMarkdown(text).then((result) => {
-                assert.ok(result.filePath === "<markdown>");
-                assert.ok(result.messages.length > 0);
-            });
+            const result = await textlint.lintMarkdown(text);
+            assert.strictEqual(result.filePath, "<markdown>");
+            assert.ok(result.messages.length > 0);
         });
         it("should has referential transparency", function () {
             const p1 = textlint.lintMarkdown("text");

@@ -94,32 +94,4 @@ describe("textlint-core", function () {
             });
         });
     });
-    describe("#resetRules", function () {
-        it("should reset filterRules", function () {
-            const textlint = new TextLintCore();
-            textlint.setupFilterRules({ "rule-name": exampleRule });
-            assert.strictEqual(textlint.textlintKernelDescriptor.filterRule.descriptors.length, 1);
-            textlint.resetRules();
-            assert.strictEqual(textlint.textlintKernelDescriptor.filterRule.descriptors.length, 0);
-        });
-        it("should reset rules", function () {
-            const textlint = new TextLintCore();
-            textlint.setupRules({ "rule-name": exampleRule });
-            return textlint
-                .lintText("wrong", ".md")
-                .then((result) => {
-                    // should be 0>
-                    assert.ok(result.messages.length > 0);
-                })
-                .then(() => {
-                    textlint.resetRules();
-                })
-                .then(() => {
-                    // should be 0
-                    return textlint.lintText("wrong", ".md").then((result) => {
-                        assert.ok(result.messages.length === 0);
-                    });
-                });
-        });
-    });
 });

@@ -78,7 +78,7 @@ export const cli = {
      * @param {string} [text] The text to lint (used for TTY).
      * @returns {Promise<number>} The exit code for the operation.
      */
-    execute(args: string | Array<any> | object, text?: string): Promise<number> {
+    async execute(args: string | Array<any> | object, text?: string): Promise<number> {
         let currentOptions;
         // version from package.json
         const pkgConf = require("read-pkg-up");
@@ -122,56 +122,54 @@ export const cli = {
      * @param {string[]} files files are file path list
      * @returns {Promise<number>} exit status
      */
-    executeWithParallel(cliOptions: any, files: string[]): Promise<number> {
+    async executeWithParallel(cliOptions: any, files: string[]): Promise<number> {
         const config = Config.initWithCLIOptions(cliOptions);
         if (cliOptions.fix) {
             // --fix
             const fixEngine = new TextFixEngine(config);
-            if (!fixEngine.hasRuleAtLeastOne()) {
+            const hasRule = await fixEngine.hasRuleAtLeastOne();
+            if (!hasRule) {
                 showEmptyRuleWarning();
                 return Promise.resolve(1);
             }
-            const resultsPromise = lintParallel(files, {
+            const results = await lintParallel(files, {
                 type: "fix",
-                config: config,
+                config,
                 concurrency: cliOptions.maxConcurrency
             });
-            return resultsPromise.then((results) => {
-                debug("fix results: %j", results);
-                const fixer = new TextLintFixer();
-                const output = fixEngine.formatResults(results);
-                printResults(output, cliOptions);
-                // --dry-run
-                if (cliOptions.dryRun) {
-                    debug("Enable dry-run mode");
-                    return Promise.resolve(0);
-                }
-                // modify file and return exit status
-                return fixer.write(results as TextlintFixResult[]).then(() => {
-                    return 0;
-                });
+            debug("fix results: %j", results);
+            const fixer = new TextLintFixer();
+            const output = await fixEngine.formatResults(results);
+            printResults(output, cliOptions);
+            // --dry-run
+            if (cliOptions.dryRun) {
+                debug("Enable dry-run mode");
+                return Promise.resolve(0);
+            }
+            // modify file and return exit status
+            return fixer.write(results as TextlintFixResult[]).then(() => {
+                return 0;
             });
         }
         // lint as default
         const lintEngine = new TextLintEngine(config);
-        if (!lintEngine.hasRuleAtLeastOne()) {
+        const hasRule = await lintEngine.hasRuleAtLeastOne();
+        if (!hasRule) {
             showEmptyRuleWarning();
             return Promise.resolve(1);
         }
-        const resultsPromise = lintParallel(files, {
+        const results = await lintParallel(files, {
             type: "lint",
-            config: config,
+            config,
             concurrency: cliOptions.maxConcurrency
         });
-        return resultsPromise.then((results) => {
-            debug("lint results: %j", results);
-            const output = lintEngine.formatResults(results);
-            if (printResults(output, cliOptions)) {
-                return lintEngine.isErrorResults(results) ? 1 : 0;
-            } else {
-                return 1;
-            }
-        });
+        debug("lint results: %j", results);
+        const output = await lintEngine.formatResults(results);
+        if (printResults(output, cliOptions)) {
+            return lintEngine.isErrorResults(results) ? 1 : 0;
+        } else {
+            return 1;
+        }
     },
 
     /**
@@ -182,49 +180,47 @@ export const cli = {
      * @param {string} [stdinFilename]
      * @returns {Promise<number>} exit status
      */
-    executeWithOptions(cliOptions: any, files: string[], text?: string, stdinFilename?: string): Promise<number> {
+    async executeWithOptions(cliOptions: any, files: string[], text?: string, stdinFilename?: string): Promise<number> {
         const config = Config.initWithCLIOptions(cliOptions);
         if (cliOptions.fix) {
             // --fix
             const fixEngine = new TextFixEngine(config);
-            if (!fixEngine.hasRuleAtLeastOne()) {
+            const hasRule = await fixEngine.hasRuleAtLeastOne();
+            if (!hasRule) {
                 showEmptyRuleWarning();
                 return Promise.resolve(1);
             }
-            const resultsPromise = text
+            const results = await (text
                 ? fixEngine.executeOnText(text, stdinFilename)
-                : fixEngine.executeOnFiles(files);
-            return resultsPromise.then((results) => {
-                debug("fix results: %j", results);
-                const fixer = new TextLintFixer();
-                const output = fixEngine.formatResults(results);
-                printResults(output, cliOptions);
-                // --dry-run
-                if (cliOptions.dryRun) {
-                    debug("Enable dry-run mode");
-                    return Promise.resolve(0);
-                }
-                // modify file and return exit status
-                return fixer.write(results as TextlintFixResult[]).then(() => {
-                    return 0;
-                });
+                : fixEngine.executeOnFiles(files));
+            debug("fix results: %j", results);
+            const fixer = new TextLintFixer();
+            const output = await fixEngine.formatResults(results);
+            printResults(output, cliOptions);
+            // --dry-run
+            if (cliOptions.dryRun) {
+                debug("Enable dry-run mode");
+                return Promise.resolve(0);
+            }
+            // modify file and return exit status
+            return fixer.write(results as TextlintFixResult[]).then(() => {
+                return 0;
             });
         }
         // lint as default
         const lintEngine = new TextLintEngine(config);
-        if (!lintEngine.hasRuleAtLeastOne()) {
+        const hasRule = await lintEngine.hasRuleAtLeastOne();
+        if (!hasRule) {
             showEmptyRuleWarning();
             return Promise.resolve(1);
         }
-        const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
-        return resultsPromise.then((results) => {
-            debug("lint results: %j", results);
-            const output = lintEngine.formatResults(results);
-            if (printResults(output, cliOptions)) {
-                return lintEngine.isErrorResults(results) ? 1 : 0;
-            } else {
-                return 1;
-            }
-        });
+        const results = await (text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files));
+        debug("lint results: %j", results);
+        const output = await lintEngine.formatResults(results);
+        if (printResults(output, cliOptions)) {
+            return lintEngine.isErrorResults(results) ? 1 : 0;
+        } else {
+            return 1;
+        }
     }
 };

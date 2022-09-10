@@ -98,23 +98,21 @@ describe("textfix-engine", function () {
     });
     describe("formatResults", function () {
         context("when use default formatter is compat", function () {
-            it("should format results and return formatted text", function () {
+            it("should format results and return formatted text", async function () {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir] });
-                return engine.executeOnText("text").then((results) => {
-                    var output = engine.formatResults(results);
-                    assert.ok(/<text>/.test(output));
-                    assert.ok(/problem/.test(output));
-                });
+                const results = await engine.executeOnText("text");
+                const output = await engine.formatResults(results);
+                assert.ok(/<text>/.test(output));
+                assert.ok(/problem/.test(output));
             });
         });
         context("when loaded custom formatter", function () {
-            it("should return custom formatted text", function () {
+            it("should return custom formatted text", async function () {
                 const engine = new TextFixEngine({ rulePaths: [rulesDir], formatterName: formatterPath });
-                return engine.executeOnText("text").then((results) => {
-                    const output = engine.formatResults(results);
-                    assert.ok(!/<text>/.test(output));
-                    assert.ok(/example-fixer-formatter/.test(output));
-                });
+                const results = await engine.executeOnText("text");
+                const output = await engine.formatResults(results);
+                assert.ok(!/<text>/.test(output));
+                assert.ok(/example-fixer-formatter/.test(output));
             });
         });
     });
