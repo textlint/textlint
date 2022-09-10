@@ -76,14 +76,14 @@
   },
   "devDependencies": {
     "@types/clone": "^2.1.1",
-    "@types/glob": "^7.2.0",
-    "@types/mocha": "^8.2.3",
-    "@types/node": "^14.18.23",
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.7.16",
     "@types/shelljs": "^0.8.11",
     "clone": "^2.1.2",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
-    "mocha": "^9.2.2",
+    "mocha": "^10.0.0",
     "npm-run-all": "^4.1.5",
     "power-assert": "^1.6.1",
     "rimraf": "^3.0.2",
@@ -96,7 +96,7 @@
     "textlint-rule-preset-jtf-style": "^2.3.13",
     "ts-node": "^10.9.1",
     "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.4.4"
+    "typescript": "~4.8.3"
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
