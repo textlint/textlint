@@ -175,13 +175,13 @@ const GetStartedSection = (props) => {
                             <li>
                                 Create .textlintrc file:
                                 <div className="getStartedStep">
-                                    <MarkdownBlock>{bash`./node_modules/.bin/textlint --init`}</MarkdownBlock>
+                                    <MarkdownBlock>{bash`npx textlint --init`}</MarkdownBlock>
                                 </div>
                             </li>
                             <li>
                                 Run textlint:
                                 <div className="getStartedStep">
-                                    <MarkdownBlock>{bash`./node_modules/.bin/textlint README.md`}</MarkdownBlock>
+                                    <MarkdownBlock>{bash`npx textlint README.md`}</MarkdownBlock>
                                 </div>
                             </li>
                         </ol>
@@ -223,7 +223,7 @@ added 239 packages in 10.23s`}
                             <li>
                                 <img
                                     src={imgUrl("get-started-steps/4.png")}
-                                    alt={`$ ./node_modules/.bin/textlint --init
+                                    alt={`$ npx textlint --init
 
 Create .textlintrc`}
                                 />
@@ -231,7 +231,7 @@ Create .textlintrc`}
                             <li>
                                 <img
                                     src={imgUrl("get-started-steps/5.png")}
-                                    alt={`$./node_modules/.bin/textlint README.md
+                                    alt={`$npx textlint README.md
 
 ~/textlint-demo/README.md
   1:3  error  Found TODO: '- [ ] Write usage'  no-todo
