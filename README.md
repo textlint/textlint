@@ -43,8 +43,8 @@ $ npm install textlint --save-dev
 
 **Requirements**:
 
-- Node.js 6.0.0+
-- npm 2.0.0+
+- Node.js 12+
+- npm 6+
 
 If you're not sure what version of Node you're running, you can run `node -v` in your console to find out.
 
@@ -70,7 +70,7 @@ textlint has no default rules!!
 You can run textlint with the `--rule` or `--rulesdir` flag to specify rules, or you can just use a `.textlintrc` config file.
 
 ```sh
-# Install textlint's rule
+# Install textlint's rule into local directory
 npm install --save-dev textlint-rule-no-todo
 ```
 
@@ -78,7 +78,7 @@ Use with `textlint-rule-no-todo` rule.
 (Allow to short `textlint-rule-no-todo` to `no-todo`)
 
 ```sh
-textlint --rule no-todo README.md
+npx textlint --rule no-todo README.md
 ```
 
 :memo: We recommended using `.textlintrc` to specify rules instead of `--rule` or `--rulesdir` flags.
@@ -86,7 +86,7 @@ Your `.textlintrc` is a great way to maintain your rules.
 
 ## CLI
 
-Run `textlint -h` for information on how to use the CLI.
+Run `npx textlint -h` for information on how to use the CLI.
 
 ```
 $ textlint [options] file.md [file|dir|glob*]
@@ -134,13 +134,12 @@ $ textlint [options] file.md [file|dir|glob*]
 When running texlint, you can target files to lint using the glob patterns. Make sure that you enclose any glob parameter you pass in quotes.
 
 ```sh
-$ textlint "docs/**"
+$ npx textlint "docs/**"
 ```
 
 Example:
 
 - :information_source: See [examples/cli](examples/cli)
-
 
 ## .textlintrc
 
@@ -149,7 +148,7 @@ Example:
 Running textlint with the following arguments
 
 ```
-$ textlint --rule no-todo --rule very-nice-rule README.md
+$ npx textlint --rule no-todo --rule very-nice-rule README.md
 ```
 
 is equivalent to running `textlint README.md` in a directory with a `.textlintrc` containing the following json
@@ -232,7 +231,7 @@ Install **Processor Plugin** and add new file format support.
 
 For example, if you want to lint HTML, use [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html") as a plugin.
 
-    npm install textlint-plugin-html
+    npm install textlint-plugin-html --save-dev
 
 Add `"html"` to `.textlintrc`
 
@@ -283,7 +282,7 @@ If you create a new rule, and add it to the wiki :)
 Some rules are fixable using the `--fix` command line flag.
 
 ``` sh
-$ textlint --fix README.md
+$ npx textlint --fix README.md
 # As a possible, textlint fix the content.
 ```
 
@@ -292,7 +291,7 @@ $ textlint --fix README.md
 Also, support [dry run](https://en.wikipedia.org/wiki/Dry_run_(testing) "dry run") mode.
 
 ```
-$ textlint --fix --dry-run --format diff README.md
+$ npx textlint --fix --dry-run --format diff README.md
 # show the difference between fixed content and original content.
 ```
 
@@ -320,7 +319,7 @@ Use the following formatters:
 e.g. use `pretty-error` formatter:
 
 ```
-$ textlint -f pretty-error file.md
+$ npx textlint -f pretty-error file.md
 ```
 
 More details in [@textlint/linter-formatter](./packages/@textlint/linter-formatter "@textlint/linter-formatter").
