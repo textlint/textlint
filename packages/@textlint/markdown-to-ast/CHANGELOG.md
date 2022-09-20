@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.2](https://github.com/textlint/textlint/compare/v12.2.1...v12.2.2) (2022-09-20)
+
+
+### Bug Fixes
+
+* **markdown-to-ast:** add `mdast-util-gfm-autolink-literal` to explicit deps ([#904](https://github.com/textlint/textlint/issues/904)) ([d2888a5](https://github.com/textlint/textlint/commit/d2888a53e655b2d8f9310aba57306abf0352edbe))
+
+
+
+
+
 ## [12.2.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.1) (2022-06-25)
 
 

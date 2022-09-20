@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.2](https://github.com/textlint/textlint/compare/v12.2.1...v12.2.2) (2022-09-20)
+
+
+### Bug Fixes
+
+* **deps:** update babel monorepo to ^7.18.10 ([dc0c555](https://github.com/textlint/textlint/commit/dc0c5556bbd8f1bfb5b649b26536b6095c3ea0b3))
+* **deps:** update babel monorepo to ^7.18.6 ([d8e30ae](https://github.com/textlint/textlint/commit/d8e30aeea1f047af3d6658e62d9e3761b873866c))
+* **deps:** update babel monorepo to ^7.18.6 ([0f1b0fb](https://github.com/textlint/textlint/commit/0f1b0fb8a500423e96fe5e69a081ed04bae64457))
+* **deps:** update babel monorepo to ^7.18.9 ([558b4ee](https://github.com/textlint/textlint/commit/558b4ee517e901f203cfe61e80cc2aa3f8873294))
+* **deps:** update dependency @babel/core to ^7.18.13 ([5c3ac1b](https://github.com/textlint/textlint/commit/5c3ac1bcad430de42f588a2cf94325eb89371447))
+* **deps:** update dependency @babel/core to ^7.18.5 ([17ab0d4](https://github.com/textlint/textlint/commit/17ab0d46b9f89499428dd49f631f222870022107))
+
+
+
+
+
 ## [12.2.1](https://github.com/textlint/textlint/compare/v12.1.0...v12.2.1) (2022-06-25)
 
 
