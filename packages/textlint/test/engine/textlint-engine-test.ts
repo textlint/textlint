@@ -7,6 +7,7 @@ import assert from "assert";
 import path from "path";
 
 const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");
+const esmRulesDir = path.join(__dirname, "fixtures/esm-rules");
 const pluginsDir = path.join(__dirname, "fixtures/textlint-engine/plugins");
 const presetsDir = path.join(__dirname, "fixtures/textlint-engine/presets");
 
@@ -203,6 +204,17 @@ describe("textlint-engine-test", function () {
                     assert.ok(Array.isArray(lintResult.messages));
                     assert.ok(lintResult.messages.length > 0);
                 });
+            });
+        });
+        context("esm rule", () => {
+            it("should lint a text and return results", async function () {
+                const engine = new TextLintEngine({ rulePaths: [esmRulesDir] });
+                const results = await engine.executeOnText("esm");
+                assert.ok(Array.isArray(results));
+                const lintResult = results[0];
+                assert.strictEqual(lintResult.filePath, "<text>");
+                assert.ok(Array.isArray(lintResult.messages));
+                assert.ok(lintResult.messages.length > 0);
             });
         });
     });

@@ -91,7 +91,7 @@ export class TextLintModuleLoader extends EventEmitter {
     async loadPlugin(pluginName: string) {
         const pkgPath = this.moduleResolver.resolvePluginPackageName(pluginName);
         debug("Loading rules from plugin: %s", pkgPath);
-        const plugin = moduleInterop(await import(pkgPath));
+        const plugin = moduleInterop(await import(pkgPath)).default;
         const pluginNameWithoutPrefix = normalizeTextlintPluginKey(pluginName);
         // Notes: plugins not support "rules" and "rulesConfig"
         // https://github.com/textlint/textlint/issues/291
@@ -132,7 +132,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
 
         const pkgPath = this.moduleResolver.resolvePresetPackageName(presetName);
         debug("Loading rules from preset: %s", pkgPath);
-        const preset = moduleInterop(await import(pkgPath));
+        const preset = moduleInterop(await import(pkgPath)).default;
         const entities = TextLintModuleMapper.createEntities(preset.rules, presetRuleNameWithoutPrefix);
         entities.forEach((entry) => {
             this.emit(TextLintModuleLoader.Event.rule, entry);
@@ -155,7 +155,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         */
         // ruleName is filePath
         if (isFile(ruleName)) {
-            const ruleCreator = moduleInterop(await import(ruleName));
+            const ruleCreator = moduleInterop(await import(ruleName)).default;
             const ruleEntry = [ruleName, ruleCreator];
             this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
             return;
@@ -170,7 +170,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         }
         const pkgPath = this.moduleResolver.resolveRulePackageName(ruleName);
         debug("Loading rules from %s", pkgPath);
-        const ruleCreator = moduleInterop(await import(pkgPath));
+        const ruleCreator = moduleInterop(await import(pkgPath)).default;
         const ruleEntry = [definedRuleName, ruleCreator];
         this.emit(TextLintModuleLoader.Event.rule, ruleEntry);
     }
@@ -192,7 +192,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         // ignore already defined rule
         // ignore rules from rulePaths because avoid ReferenceError is that try to require.
         if (isFile(ruleName)) {
-            const ruleCreator = moduleInterop(await import(ruleName));
+            const ruleCreator = moduleInterop(await import(ruleName)).default;
             const ruleEntry = [ruleName, ruleCreator];
             this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
             return;
@@ -205,7 +205,7 @@ For more details. See https://github.com/textlint/textlint/blob/master/docs/plug
         }
         const pkgPath = this.moduleResolver.resolveFilterRulePackageName(ruleName);
         debug("Loading filter rules from %s", pkgPath);
-        const ruleCreator = moduleInterop(await import(pkgPath));
+        const ruleCreator = moduleInterop(await import(pkgPath)).default;
         const ruleEntry = [definedRuleName, ruleCreator];
         this.emit(TextLintModuleLoader.Event.filterRule, ruleEntry);
     }

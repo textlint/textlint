@@ -1,5 +1,6 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { moduleInterop } from "@textlint/module-interop";
+
 const debug = require("debug")("textlint:plugin-loader");
 const assert = require("assert");
 
@@ -74,13 +75,16 @@ export function getPluginConfig(configFileRaw: { [index: string]: any }): { [ind
     return plugins;
 }
 
-export function loadAvailableExtensions(pluginNames: string[] = [], moduleResolver: TextLintModuleResolver) {
+export async function loadAvailableExtensions(
+    pluginNames: string[] = [],
+    moduleResolver: TextLintModuleResolver
+): Promise<string[]> {
     const availableExtensions: string[] = [];
-    pluginNames.forEach((pluginName) => {
+    for (const pluginName of pluginNames) {
         const pkgPath = moduleResolver.resolvePluginPackageName(pluginName);
-        const plugin = moduleInterop(require(pkgPath));
+        const plugin = moduleInterop(await import(pkgPath));
         if (!plugin.hasOwnProperty("Processor")) {
-            return;
+            continue;
         }
         const Processor = plugin.Processor;
         debug(`${pluginName} has Processor`);
@@ -89,6 +93,6 @@ export function loadAvailableExtensions(pluginNames: string[] = [], moduleResolv
             "Processor.availableExtensions() should be implemented"
         );
         availableExtensions.push(...Processor.availableExtensions());
-    });
+    }
     return availableExtensions;
 }

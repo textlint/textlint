@@ -2,7 +2,11 @@
 import { moduleInterop } from "@textlint/module-interop";
 import * as fs from "fs";
 import * as path from "path";
+import * as url from "url";
 
+const convertToFileUrl = (filePath: string) => {
+    return url.pathToFileURL(filePath).href;
+};
 /**
  * Load all rule modules from specified directory.
  * These are filtered by [extname]
@@ -34,7 +38,8 @@ export async function loadFromDir(
         }
         const withoutExt = path.basename(file, path.extname(file));
         const filePath = path.join(rulesDirAbsolutePath, file);
-        rules[withoutExt] = moduleInterop(await import(filePath));
+        const moduleExports = await import(convertToFileUrl(filePath));
+        rules[withoutExt] = moduleInterop(moduleExports).default;
     }
     return rules;
 }
