@@ -41,6 +41,7 @@
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",
+    "mdast-util-gfm-autolink-literal": "^0.1.0",
     "traverse": "^0.6.6",
     "unified": "^9.2.2"
   },
