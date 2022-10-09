@@ -37,8 +37,8 @@ const users = [
     },
     {
         caption: "校正さん",
-        image: "https://kohsei-san.b-hood.site/favicon.png",
-        infoLink: "https://kohsei-san.b-hood.site/lp/",
+        image: "https://kohsei-san.hata6502.com/favicon.png",
+        infoLink: "https://kohsei-san.hata6502.com/lp/",
         pinned: true
     }
 ];
