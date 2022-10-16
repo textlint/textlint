@@ -30,7 +30,7 @@ const assertTextlintRuleErrorDetail = (details: TextlintRuleErrorDetails) => {
     if ([useIndex, useLineColumn, usePadding].filter(Boolean).length > 1) {
         throwIfTesting(`RuleError details can not mixed usage: ${JSON.stringify(details)}
 
-You have set { index, line, column, padding } at same time.        
+You can not set { index, line, column, padding } at same time.        
 `);
     }
     // legacy usage
