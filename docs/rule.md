@@ -264,11 +264,16 @@ report(node, new RuleError(message, {
 ```
 
 :memo: `padding` option and `locator` object are introduced in textlint v12.2.0+.
-You can declare your dependency on textlint in `package.json` using the [peerDependencies](https://docs.npmjs.com/files/package.json#peerdependencies) field.
+You can declare your dependency on textlint in `package.json` using the [peerDependencies](https://docs.npmjs.com/files/package.json#peerdependencies) and [peerDependenciesMeta](https://docs.npmjs.com/cli/v8/configuring-npm/package-json#peerdependenciesmeta) fields.
 
 ```json5
   "peerDependencies": {
     "textlint": ">= 12.2.0"
+  },
+  "peerDependenciesMeta": {
+    "textlint": {
+      "optional": true
+    }
   }
 ```
 
