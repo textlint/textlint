@@ -78,7 +78,7 @@
     "@types/clone": "^2.1.1",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.7.16",
+    "@types/node": "^18.7.23",
     "@types/shelljs": "^0.8.11",
     "clone": "^2.1.2",
     "cpx": "^1.5.0",
