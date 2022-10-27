@@ -57,6 +57,8 @@ export type {
     TextlintPluginOptions,
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor,
+    TextlintPluginPreProcessResult,
+    TextlintPluginPostProcessResult,
 } from "./Plugin/TextlintPluginModule";
 // Output message from textlint
 // This types is come from output of textlint lint results
