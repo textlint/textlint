@@ -8,7 +8,6 @@ textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use w
 <!-- textlint-disable -->
 
 [![GitHub Actions Build Status](https://github.com/textlint/textlint/workflows/CI/badge.svg)](https://github.com/textlint/textlint/actions?workflow=CI)
-[![Build status](https://ci.appveyor.com/api/projects/status/4kwh41gxpc4h0obt?svg=true)](https://ci.appveyor.com/project/azu/textlint)
 
 <!-- textlint-enable -->
 
