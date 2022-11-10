@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.3](https://github.com/textlint/textlint/compare/v12.2.2...v12.2.3) (2022-11-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency traverse to ^0.6.7 ([fc0ea91](https://github.com/textlint/textlint/commit/fc0ea9161e42fc4c6e55afc7b1438bb3373cd172))
+
+
+
+
+
 ## [12.2.2](https://github.com/textlint/textlint/compare/v12.2.1...v12.2.2) (2022-09-20)
 
 

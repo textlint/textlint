@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.3](https://github.com/textlint/textlint/compare/v12.2.2...v12.2.3) (2022-11-10)
+
+
+### Bug Fixes
+
+* **deps:** update babel monorepo to ^7.19.1 ([6a0dbb8](https://github.com/textlint/textlint/commit/6a0dbb8d8b109de91c41057aefa6e91fa941dda2))
+* **deps:** update babel monorepo to ^7.19.3 ([e5c80eb](https://github.com/textlint/textlint/commit/e5c80ebb5416b6b13071583320e144b056345287))
+* **deps:** update dependency @babel/core to ^7.19.6 ([3ba99ea](https://github.com/textlint/textlint/commit/3ba99eafe4a80478966f0ab2622b7a2d18cdd513))
+* **deps:** update dependency @babel/preset-env to ^7.19.4 ([d1049bd](https://github.com/textlint/textlint/commit/d1049bd916cabd79d088b0596a72026198ecc0b3))
+* **deps:** update dependency table to ^6.8.1 ([abcb864](https://github.com/textlint/textlint/commit/abcb86445f0532f31209043af91e4e00942be77c))
+* **deps:** update dependency traverse to ^0.6.7 ([fc0ea91](https://github.com/textlint/textlint/commit/fc0ea9161e42fc4c6e55afc7b1438bb3373cd172))
+* **linter-formatter:** added lodash to dependencies ([#934](https://github.com/textlint/textlint/issues/934)) ([e97efb8](https://github.com/textlint/textlint/commit/e97efb83c6364a864dba108434446d30d203545c))
+* **types:**  expose TextlintPluginPreProcessResult/TextlintPluginPostProcessResult type [#920](https://github.com/textlint/textlint/issues/920)  ([49d990a](https://github.com/textlint/textlint/commit/49d990af70c157612f2a39a3a04959c5de999b65))
+
+
+
+
+
 ## [12.2.2](https://github.com/textlint/textlint/compare/v12.2.1...v12.2.2) (2022-09-20)
 
 

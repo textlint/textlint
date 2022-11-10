@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.3](https://github.com/textlint/textlint/compare/v12.2.2...v12.2.3) (2022-11-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency table to ^6.8.1 ([abcb864](https://github.com/textlint/textlint/commit/abcb86445f0532f31209043af91e4e00942be77c))
+* **linter-formatter:** added lodash to dependencies ([#934](https://github.com/textlint/textlint/issues/934)) ([e97efb8](https://github.com/textlint/textlint/commit/e97efb83c6364a864dba108434446d30d203545c))
+
+
+
+
+
 ## [12.2.2](https://github.com/textlint/textlint/compare/v12.2.1...v12.2.2) (2022-09-20)
 
 **Note:** Version bump only for package @textlint/linter-formatter
