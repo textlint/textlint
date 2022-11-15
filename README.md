@@ -415,7 +415,7 @@ Please see docs/
 
 You can use filter rule like [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments "textlint-filter-rule-comments").
 
-Please see [docs/configuring.md](docs/configuring.md) for more details.
+Please see [Ignoring Text · textlint](https://textlint.github.io/docs/ignore.html) for more details.
 
 ## Integrations
 
