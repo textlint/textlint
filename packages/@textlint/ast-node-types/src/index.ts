@@ -84,10 +84,11 @@ export interface TxtNode {
     raw: string;
     range: TextNodeRange;
     loc: TxtNodeLineLocation;
-    // parent is runtime information
+    // parent and children is runtime information
     // Not need in AST
     // For example, top Root Node like `Document` has not parent.
     parent?: TxtNode;
+    children?: TxtNode;
 
     [index: string]: any;
 }
