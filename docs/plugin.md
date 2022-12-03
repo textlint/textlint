@@ -78,10 +78,11 @@ you should implement `availableExtensions()` method as instance method.
 
 `processor()` method should return an object that have `preProcess` and `postProcess` method.
 
-#### `preProcess(text, filePath): TxtParentNode | { text: string; ast: TxtParentNode; }`
+#### `preProcess(text, filePath)`
 
 `preProcess` method should return `TxtParentNode` object or `{ text: string, ast: TxtParentNode }` object.
 Also, `preProcess` method can return `Promise<TxtParentNode> | Promise<{ text: string, ast: TxtParentNode }>`.
+If you want to parse text asynchronous, please return an Promise object.
 
 `TxtParentNode` object is an Abstract Syntax Tree (AST) of the text.
 
