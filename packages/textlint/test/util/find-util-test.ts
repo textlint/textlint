@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import path from "path";
-import { findFiles } from "../../src/util/find-util";
+import { findFiles, separateByAvailability } from "../../src/util/find-util";
 
 describe("find-util", () => {
     describe("findFiles", () => {
@@ -16,6 +16,16 @@ describe("find-util", () => {
             ]);
         });
         it("should find files with absolute path pattern", () => {
+            const patterns = [path.resolve(cwd, "dir/**/*.md")];
+            const files = findFiles(patterns, { cwd });
+            files.sort();
+            assert.deepStrictEqual(files, [
+                path.resolve(cwd, "dir/ignored.md"),
+                path.resolve(cwd, "dir/subdir/test.md"),
+                path.resolve(cwd, "dir/test.md")
+            ]);
+        });
+        it("should find dot files", () => {
             const patterns = [path.resolve(cwd, "dir/**/*.md")];
             const files = findFiles(patterns, { cwd });
             files.sort();
@@ -62,6 +72,20 @@ describe("find-util", () => {
                     path.resolve(cwd, "dir/test.md")
                 ]);
             });
+        });
+    });
+
+    describe("separateByAvailability", () => {
+        it("should find dot files", () => {
+            const files = [".foo"];
+            const {
+                availableFiles,
+                unAvailableFiles
+            } = separateByAvailability(files, { extensions: [".foo"] });
+            assert.deepStrictEqual(availableFiles, [
+                ".foo"
+            ]);
+            assert.deepStrictEqual(unAvailableFiles, []);
         });
     });
 });

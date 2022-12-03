@@ -103,7 +103,7 @@ export function separateByAvailability(
     const availableFiles: string[] = [];
     const unAvailableFiles: string[] = [];
     files.forEach((filePath) => {
-        const extname = path.extname(filePath);
+        const extname = path.extname(filePath) || path.basename(filePath);
         if (extensions.indexOf(extname) === -1) {
             unAvailableFiles.push(filePath);
         } else {
