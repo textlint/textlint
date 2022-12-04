@@ -1,6 +1,6 @@
 {
   "name": "textlint-tester",
-  "version": "12.2.3",
+  "version": "12.2.4",
   "description": "testing tool for textlint rule.",
   "keywords": [
     "test",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@textlint/feature-flag": "^12.2.3",
     "@textlint/kernel": "^12.2.3",
-    "textlint": "^12.2.3"
+    "textlint": "^12.2.4"
   },
   "devDependencies": {
     "@types/mocha": "^9.1.1",

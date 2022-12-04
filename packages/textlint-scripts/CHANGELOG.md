@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.2.4](https://github.com/textlint/textlint/compare/v12.2.3...v12.2.4) (2022-12-04)
+
+
+### Bug Fixes
+
+* **deps:** update babel monorepo to ^7.20.2 ([4f0364a](https://github.com/textlint/textlint/commit/4f0364a371d1f2ab4a89ce073f8ce45aa9c07d41))
+* **deps:** update dependency @babel/cli to ^7.19.3 ([c7124c6](https://github.com/textlint/textlint/commit/c7124c69cfcd1f9544b77bc815d9046b387551e7))
+
+
+
+
+
 ## [12.2.3](https://github.com/textlint/textlint/compare/v12.2.2...v12.2.3) (2022-11-10)
 
 
