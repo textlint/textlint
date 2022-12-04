@@ -1,6 +1,7 @@
 import * as assert from "assert";
 import { TextLintCore } from "../../src";
 import exampleRule from "./fixtures/rules/example-rule";
+import { createPluginStub } from "../pluguins/fixtures/example-plugin";
 
 describe("textlint-core", function () {
     // Test: https://github.com/textlint/textlint/issues/30
@@ -41,6 +42,26 @@ describe("textlint-core", function () {
         });
         it("should not throw an exception @ file", function () {
             return textlint.lintFile(__dirname + "/fixtures/empty.md").then((result) => {
+                assert.ok(result.messages.length === 0);
+            });
+        });
+    });
+    context("when a linting a dot file", function () {
+        const file = __dirname + "/fixtures/.example";
+        let textlint: TextLintCore;
+        beforeEach(function () {
+            textlint = new TextLintCore();
+            textlint.setupRules({ "example-rule": exampleRule });
+            const { plugin } = createPluginStub();
+            textlint.setupPlugins({ example: plugin });
+        });
+        it.only("should not throw an exception @ file", function () {
+            return textlint.lintFile(file).then((result) => {
+                assert.ok(result.messages.length === 0);
+            });
+        });
+        it("should not throw an exception @ fix", function () {
+            return textlint.fixFile(file).then((result) => {
                 assert.ok(result.messages.length === 0);
             });
         });

@@ -177,7 +177,7 @@ export class TextLintCore {
      */
     lintFile(filePath: string): Promise<TextlintResult> {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
-        const ext = path.extname(absoluteFilePath);
+        const ext = path.extname(absoluteFilePath) || path.basename(absoluteFilePath);
         const options = this._mergeSetupOptions({
             ext,
             filePath: absoluteFilePath
@@ -194,7 +194,7 @@ export class TextLintCore {
      */
     fixFile(filePath: string): Promise<TextlintFixResult> {
         const absoluteFilePath = path.resolve(process.cwd(), filePath);
-        const ext = path.extname(absoluteFilePath);
+        const ext = path.extname(absoluteFilePath) || path.basename(absoluteFilePath);
         const options = this._mergeSetupOptions({
             ext,
             filePath: absoluteFilePath
