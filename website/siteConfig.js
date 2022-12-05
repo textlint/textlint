@@ -68,6 +68,8 @@ const siteConfig = {
     headerIcon: "img/textlint-icon_256x256.png",
     footerIcon: "img/textlint-icon_256x256.png",
     favicon: "img/textlint-icon_256x256.png",
+    twitterImage: 'img/textlint-icon_256x256.png',
+    ogImage: 'img/textlint-icon_256x256.png',
     /* colors for website */
     colors: {
         primaryColor: "#259eac",
