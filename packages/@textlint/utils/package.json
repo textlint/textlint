@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.11.10",
     "cross-env": "^7.0.3",
     "mocha": "^10.1.0",
     "prettier": "^2.7.1",
