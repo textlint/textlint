@@ -35,8 +35,8 @@
     "prepare": "git config --local core.hooksPath .githooks"
   },
   "devDependencies": {
-    "@monorepo-utils/collect-changelog": "^2.8.1",
-    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.8.2",
+    "@monorepo-utils/collect-changelog": "^2.9.0",
+    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.23.0",
