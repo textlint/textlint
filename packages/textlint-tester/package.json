@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.11",
+    "@types/node": "^18.11.13",
     "analyze-desumasu-dearu": "^4.0.1",
     "cross-env": "^7.0.3",
     "match-index": "^1.0.3",
