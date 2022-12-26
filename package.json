@@ -37,8 +37,8 @@
   "devDependencies": {
     "@monorepo-utils/collect-changelog": "^2.9.0",
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.9.0",
-    "@typescript-eslint/eslint-plugin": "^5.46.1",
-    "@typescript-eslint/parser": "^5.46.1",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
