@@ -73,16 +73,16 @@ After getting your clone, you can start playing with textlint.
     $ yarn install
     ```
 
-3. Install all of textlint packages' dependencies:
+3. Build textlint:
 
     ```sh
-    $ yarn bootstrap
+    $ yarn run build
     ```
 
-4. Building website:
+4. Building website if you needed:
 
     ```sh
-    $ yarn website
+    $ yarn run website
     ```
 
 Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple packages:
@@ -96,7 +96,7 @@ Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple 
 
 If you are new to Lerna, it seems to add another layer of complexity but it's simpler than you think; you can edit codes, run tests, commit changes, etc. as usual in most cases.
 
-Note that `yarn install` also builds a codebase, you can manually build by running `yarn build`. We have separate task `yarn website` since code and documentation have different life cycle.
+Note that `yarn install` also builds a codebase, you can manually build by running `yarn run build`. We have separate task `yarn run website` since code and documentation have different life cycle.
 
 ### Creating a Branch for Your Work
 
@@ -202,7 +202,7 @@ issues          Ref. #8454
     - Wrap texts at 72 characters
     - Explain _what_ and _why_, not _how_
     - [GitHub flavored Markdown](https://github.github.com/gfm/) is ok to use
-    - Start with `BREAKING CHANGE: ` when you made significant change in the commit (see versioning section below).
+    - Start with `BREAKING CHANGE:` when you made significant change in the commit (see versioning section below).
 
 Example commit message:
 
@@ -216,7 +216,7 @@ test(textlint-formatter): check types while testing
 Closes #448.
 ```
 
-Please see [Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular) and [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for detail.
+Please see [Commit Message Format](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-angular) and [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for detail.
 
 ##### Versioning
 
