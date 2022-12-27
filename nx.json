@@ -25,6 +25,9 @@
       ]
     },
     "test": {
+      "dependsOn": [
+        "^build"
+      ],
       "outputs": [
         "{projectRoot}/snapshots"
       ]
