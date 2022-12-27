@@ -8,7 +8,7 @@
 const fs = require("fs");
 const path = require("path");
 const mkdirp = require("mkdirp");
-const parse = require("../lib/index").parse;
+const parse = require("../lib/src/index").parse;
 const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures
 const remarkFixtures = path.join(testDir, "markdown_fixtures");

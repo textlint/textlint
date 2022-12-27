@@ -8,19 +8,19 @@ permissions:
   contents: read
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
           cache: "yarn"
       - name: Install
         run: yarn install --frozen-lockfile
       - name: Build
         run: |
-          yarn run bootstrap --scope textlint-website
+          yarn run build --scope textlint-website
           yarn run website
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

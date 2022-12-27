@@ -22,13 +22,11 @@ jobs:
           cache: 'yarn'
       - name: Install
         run: yarn install --frozen-lockfile
-      - name: Bootstrap
-        run: yarn run bootstrap
       - name: Test
         run: |
           yarn test
           yarn test:examples
-      - name: Integraion Tests
+      - name: Integration Tests
         # Some E2E does not work on Windows
         if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
         run: yarn test:integration
@@ -36,7 +34,7 @@ jobs:
   documentation:
     strategy:
       matrix:
-        node: [ 14 ]
+        node: [ 16 ]
 
     name: Documentation(Node ${{ matrix.node }}
     runs-on: ubuntu-latest
@@ -50,7 +48,5 @@ jobs:
           cache: 'yarn'
       - name: Install
         run: yarn install --frozen-lockfile
-      - name: Bootstrap
-        run: yarn run bootstrap
       - run: yarn run test:docs
       - run: yarn run website

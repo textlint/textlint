@@ -1,0 +1,42 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "test",
+          "build",
+          "test:unit",
+          "test:build"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/lib",
+        "{projectRoot}/module",
+        "{projectRoot}/out",
+        "{projectRoot}/build"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/snapshots"
+      ]
+    },
+    "test:build": {
+      "outputs": [
+        "{projectRoot}/lib",
+        "{projectRoot}/module"
+      ]
+    }
+  }
+}
