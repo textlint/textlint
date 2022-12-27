@@ -22,8 +22,6 @@ jobs:
           cache: 'yarn'
       - name: Install
         run: yarn install --frozen-lockfile
-      - name: Bootstrap
-        run: yarn run bootstrap
       - name: Test
         run: |
           yarn test

@@ -2,7 +2,6 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "bootstrap": "npm run build",
     "build": "lerna run build",
     "website": "lerna run build --scope textlint-website",
     "clean": "lerna run clean",
