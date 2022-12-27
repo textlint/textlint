@@ -7,7 +7,7 @@
  */
 const fs = require("fs");
 const path = require("path");
-const parse = require("../lib/index").parse;
+const parse = require("../lib/src/index").parse;
 const testDir = path.join(__dirname, "..", "test");
 // remark_fixtures to fixtures
 const fixtureDir = path.join(testDir, "fixtures");
@@ -17,8 +17,13 @@ fs.readdirSync(fixtureDir).forEach(function (filePath) {
     }
     const originalPath = path.join(fixtureDir, filePath);
     const inputFilePath = path.join(originalPath, "input.md");
-    const input = fs.readFileSync(inputFilePath, "utf-8");
-    const AST = parse(input);
-    const outputJSON = path.join(originalPath, "output.json");
-    fs.writeFileSync(outputJSON, JSON.stringify(AST, null, 4), "utf-8");
+    try {
+        const input = fs.readFileSync(inputFilePath, "utf-8");
+        const AST = parse(input);
+        const outputJSON = path.join(originalPath, "output.json");
+        fs.writeFileSync(outputJSON, JSON.stringify(AST, null, 4), "utf-8");
+    } catch (error) {
+        console.log("Error: ", inputFilePath);
+        throw error;
+    }
 });
