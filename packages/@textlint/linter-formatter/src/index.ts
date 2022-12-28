@@ -41,7 +41,7 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         }
     }
     try {
-        formatter = moduleInterop(await import(formatterPath));
+        formatter = moduleInterop((await import(formatterPath)).default);
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}
 ${ex}`);

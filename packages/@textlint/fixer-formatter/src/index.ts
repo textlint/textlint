@@ -36,7 +36,8 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         }
     }
     try {
-        formatter = moduleInterop(await import(formatterPath));
+        const moduleExports = (await import(formatterPath)).default;
+        formatter = moduleInterop(moduleExports);
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}
 See https://github.com/textlint/textlint/issues/148
