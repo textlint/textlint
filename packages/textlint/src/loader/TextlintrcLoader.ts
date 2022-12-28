@@ -4,6 +4,7 @@ import path from "node:path";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
 import debug_ from "debug";
+
 const debug = debug_("textlint:loader:TextlintrcLoader");
 export type LoadTextlintrcOptions = {
     configFilePath?: string;
@@ -12,40 +13,27 @@ export type LoadTextlintrcOptions = {
 export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: LoadTextlintrcOptions) => {
     const result = await loadConfig({
         configFilePath,
-        node_moduleDir: rulesBaseDirectory,
-        preLoadingPackage: (packageOptions) => {
-            // Add text and markdown by default
-            // if user defined text or markdown, it is preferred than default
-            packageOptions.rawConfig.plugins = Array.isArray(packageOptions.rawConfig?.plugins)
-                ? ["@textlint/textlint-plugin-text", "@textlint/textlint-plugin-markdown"].concat(
-                      packageOptions.rawConfig?.plugins ?? []
-                  )
-                : {
-                      "@textlint/textlint-plugin-text": true,
-                      "@textlint/textlint-plugin-markdown": true,
-                      ...packageOptions.rawConfig?.plugins
-                  };
-            return packageOptions;
-        }
+        node_moduleDir: rulesBaseDirectory
     });
+    // Built-in plugins should be loaded from same directory with textlint package
+    const builtInPlugins: TextlintKernelPlugin[] = [
+        {
+            pluginId: "@textlint/textlint-plugin-text",
+            plugin: textPlugin,
+            options: true
+        },
+        {
+            pluginId: "@textlint/textlint-plugin-markdown",
+            plugin: markdownPlugin,
+            options: true
+        }
+    ];
     if (!result.ok) {
         debug("loadPackagesFromRawConfig failed: %o", result);
-        const defaultPlugins: TextlintKernelPlugin[] = [
-            {
-                pluginId: "@textlint/textlint-plugin-text",
-                plugin: textPlugin,
-                options: true
-            },
-            {
-                pluginId: "@textlint/textlint-plugin-markdown",
-                plugin: markdownPlugin,
-                options: true
-            }
-        ];
         return new TextlintKernelDescriptor({
             rules: [],
             filterRules: [],
-            plugins: defaultPlugins
+            plugins: builtInPlugins
         });
         // throw new Error("Failed to load textlintrc", {
         //     cause: result.error
@@ -54,7 +42,7 @@ export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: Loa
     const { rules, plugins, filterRules } = result.config;
     return new TextlintKernelDescriptor({
         rules,
-        plugins,
+        plugins: [...builtInPlugins, ...plugins],
         filterRules,
         configBaseDir: path.dirname(result.configFilePath)
     });
