@@ -36,10 +36,7 @@ export class CacheBacker implements AbstractBacker {
         return isChanged;
     }
 
-    /**
-     * @param {TextlintResult} result
-     */
-    didExecute({ result }: { result: TextlintResult }) {
+    didExecute<R extends TextlintResult>({ result }: { result: R }) {
         if (!this.isEnabled) {
             return;
         }
