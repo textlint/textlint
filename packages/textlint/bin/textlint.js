@@ -8,7 +8,9 @@ if (isDebug) {
     debug.enable("textlint*");
 }
 // must do this initialization *before* other requires in order to work
-const cli = require("../lib/src/cli").cli;
+const cliOld = require("../lib/src/cli").cli;
+const cliNew = require("../lib/src/cli-new").cli;
+const cli = process.env.TEXTLINT_USE_NEW_CLI ? cliNew : cliOld;
 const { coreFlags } = require("@textlint/feature-flag");
 // it is for --experimental logger
 // update state

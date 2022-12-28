@@ -1,0 +1,58 @@
+name: "CI NEW CLI"
+on: [push, pull_request]
+
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [ 14, 16, 18 ]
+
+    name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --frozen-lockfile
+      - name: Test
+        run: |
+          yarn test
+          yarn test:examples
+        env:
+          TEXTLINT_USE_NEW_CLI: true
+      - name: Integration Tests
+        # Some E2E does not work on Windows
+        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
+        run: yarn test:integration
+        env:
+          TEXTLINT_USE_NEW_CLI: true
+
+  documentation:
+    strategy:
+      matrix:
+        node: [ 16 ]
+
+    name: Documentation(Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --frozen-lockfile
+      - run: yarn run test:docs
+        env:
+          TEXTLINT_USE_NEW_CLI: true
+      - run: yarn run website
