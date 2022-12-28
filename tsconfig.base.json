@@ -3,8 +3,8 @@
     "outDir": "<**SHOULD_BE_OVERWRITE##!??**>",
     /* Basic Options */
     "incremental": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "newLine": "LF",
