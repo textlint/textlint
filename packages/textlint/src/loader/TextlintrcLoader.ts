@@ -3,7 +3,8 @@ import { TextlintKernelDescriptor, TextlintKernelPlugin } from "@textlint/kernel
 import path from "node:path";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
-
+import debug_ from "debug";
+const debug = debug_("textlint:loader:TextlintrcLoader");
 export type LoadTextlintrcOptions = {
     configFilePath?: string;
     rulesBaseDirectory?: string;
@@ -26,6 +27,7 @@ export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: Loa
         }
     });
     if (!result.ok) {
+        debug("loadPackagesFromRawConfig failed: %o", result);
         const defaultPlugins: TextlintKernelPlugin[] = [
             {
                 pluginId: "@textlint/text",

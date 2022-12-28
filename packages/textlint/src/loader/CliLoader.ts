@@ -34,6 +34,7 @@ export const loadCliDescriptor = async (cliOptions: CliOptions) => {
         }
     });
     if (!result.ok) {
+        debug("loadPackagesFromRawConfig failed: %o", result);
         throw new Error("Failed to load packages", {
             cause: result.error
         });
