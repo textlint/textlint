@@ -65,6 +65,8 @@ export interface TextlintKernelRule {
     // rule options
     // Often rule option is written in .textlintrc
     options?: TextlintRuleOptions | boolean;
+
+    toJSON(): object;
 }
 
 export interface TextlintKernelFilterRule {

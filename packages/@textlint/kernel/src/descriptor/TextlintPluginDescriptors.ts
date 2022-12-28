@@ -62,4 +62,10 @@ export class TextlintPluginDescriptors {
             return descriptor.toKernel();
         });
     }
+
+    toJSON() {
+        return this.descriptors.map((descriptor) => {
+            return descriptor.toJSON();
+        });
+    }
 }

@@ -44,4 +44,10 @@ export class TextlintFilterRuleDescriptors {
         const newDescriptorList = filterDuplicateDescriptor(this.ruleDescriptorList);
         return new TextlintFilterRuleDescriptors(newDescriptorList);
     }
+
+    toJSON() {
+        return this.descriptors.map((descriptor) => {
+            return descriptor.toJSON();
+        });
+    }
 }

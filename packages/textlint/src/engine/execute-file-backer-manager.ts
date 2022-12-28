@@ -32,7 +32,7 @@ export class ExecuteFileBackerManager {
     /**
      * process `messages` with registered processes
      */
-    process(files: string[], executeFile: (filePath: string) => Promise<TextlintResult>): Promise<TextlintResult[]> {
+    process<R>(files: string[], executeFile: (filePath: string) => Promise<R>): Promise<R[]> {
         const unExecutedResults: Array<Promise<TextlintResult>> = [];
         const resultPromises = files
             .filter((filePath) => {

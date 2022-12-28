@@ -3,15 +3,16 @@
 const fileEntryCache = require("file-entry-cache");
 const debug = require("debug")("textlint:CacheBacker");
 import { AbstractBacker } from "./abstruct-backer";
-import { Config } from "../../config/config";
 import { TextlintResult } from "@textlint/kernel";
+
 export class CacheBacker implements AbstractBacker {
-    fileCache: any;
-    isEnabled: boolean;
+    private fileCache: any;
+    private isEnabled: boolean;
+
     /**
      * @param {Config} config
      */
-    constructor(public config: Config) {
+    constructor(private config: { cache: boolean; cacheLocation: string; hash: string }) {
         /**
          * @type {boolean}
          */

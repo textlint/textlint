@@ -63,4 +63,10 @@ export class TextlintRuleDescriptors {
         const newDescriptorList = filterDuplicateDescriptor(this.ruleDescriptorList);
         return new TextlintRuleDescriptors(newDescriptorList);
     }
+
+    toJSON() {
+        return this.toKernelRulesFormat().map((descriptor) => {
+            return descriptor.toJSON();
+        });
+    }
 }

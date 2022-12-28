@@ -23,6 +23,7 @@ import {
 } from "./util/object-to-kernel-format";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
+import type { TextlintKernelOptions } from "@textlint/kernel";
 
 const path = require("path");
 
@@ -84,7 +85,7 @@ export class TextLintCore {
         this.textlintKernelDescriptor = this.textlintKernelDescriptor.shallowMerge({
             plugins: [
                 {
-                    pluginId: "`${Processor.name}@deprecated`",
+                    pluginId: `${Processor.name}@deprecated`,
                     plugin: { Processor }
                 }
             ].concat(this.defaultPlugins)
@@ -220,14 +221,15 @@ export class TextLintCore {
     /**
      * @private
      */
-    private _mergeSetupOptions(options: { ext: string } | { ext: any; filePath: any }) {
+    private _mergeSetupOptions(options: { ext: string } | { ext: any; filePath: any }): TextlintKernelOptions {
         const configFileBaseDir =
             typeof this.config.configFile === "string" ? path.dirname(this.config.configFile) : undefined;
-        return Object.assign({}, options, {
+        return {
+            ...options,
             configBaseDir: configFileBaseDir,
             plugins: this.textlintKernelDescriptor.plugin.toKernelPluginsFormat(),
             rules: this.textlintKernelDescriptor.rule.toKernelRulesFormat(),
             filterRules: this.textlintKernelDescriptor.filterRule.toKernelFilterRulesFormat()
-        });
+        };
     }
 }

@@ -10,6 +10,8 @@ import {
 import { TextlintPluginDescriptor } from "./TextlintPluginDescriptor";
 
 export interface TextlintKernelDescriptorArgs {
+    // config base directory
+    configBaseDir?: string;
     rules: TextlintKernelRule[];
     filterRules: TextlintKernelFilterRule[];
     plugins: TextlintKernelPlugin[];
@@ -19,11 +21,13 @@ export class TextlintKernelDescriptor {
     rule: TextlintRuleDescriptors;
     filterRule: TextlintFilterRuleDescriptors;
     plugin: TextlintPluginDescriptors;
+    configBaseDir?: string;
 
     constructor(private args: TextlintKernelDescriptorArgs) {
         this.rule = createTextlintRuleDescriptors(args.rules);
         this.filterRule = createTextlintFilterRuleDescriptors(args.filterRules);
         this.plugin = createTextlintPluginDescriptors(args.plugins);
+        this.configBaseDir = args.configBaseDir;
     }
 
     /**
@@ -57,5 +61,14 @@ export class TextlintKernelDescriptor {
      */
     findPluginDescriptorWithExt(ext: string): TextlintPluginDescriptor | undefined {
         return this.plugin.findPluginDescriptorWithExt(ext);
+    }
+
+    toJSON() {
+        return {
+            rule: this.rule.toJSON(),
+            filterRule: this.filterRule.toJSON(),
+            plugin: this.plugin.toJSON(),
+            configBaseDir: this.configBaseDir
+        };
     }
 }
