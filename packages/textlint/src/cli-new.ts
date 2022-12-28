@@ -20,13 +20,13 @@ type StdinExecuteOption = {
     text: string;
     stdinFilename: string;
 };
-type UteWithOptions =
+type ExceutOtptions =
     | {
           cliOptions: CliOptions;
           files: string[];
       }
     | StdinExecuteOption;
-const isStdinExecution = (executeOptions: UteWithOptions): executeOptions is StdinExecuteOption => {
+const isStdinExecution = (executeOptions: ExceutOtptions): executeOptions is StdinExecuteOption => {
     return "text" in executeOptions;
 };
 
@@ -67,7 +67,10 @@ export const cli = {
             const stdinFilename = currentOptions.stdinFilename;
             debug(`textlint --version: ${version}`);
             debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
-            if (text && stdinFilename) {
+            if (text) {
+                if (!stdinFilename) {
+                    throw new Error("Please specify --stdin-filename option");
+                }
                 return this.executeWithOptions({
                     cliOptions: currentOptions,
                     text,
@@ -87,19 +90,23 @@ export const cli = {
      * execute with cli options
      * @returns {Promise<number>} exit status
      */
-    async executeWithOptions(executeOptions: UteWithOptions): Promise<number> {
+    async executeWithOptions(executeOptions: ExceutOtptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
-        const textlintrcDescriptor = await loadTextlintrc();
+        const textlintrcDescriptor = await loadTextlintrc({
+            configFilePath: cliOptions.config,
+            rulesBaseDirectory: cliOptions.rulesBaseDirectory
+        });
         const cliDescriptor = await loadCliDescriptor(cliOptions);
         const descriptor = mergeDescriptors(textlintrcDescriptor, cliDescriptor);
-        const hasRuleAtLeatOne = descriptor.rule.lintableDescriptors.length > 0;
-        if (!hasRuleAtLeatOne) {
+        const hasRuleAtLeastOne = descriptor.rule.lintableDescriptors.length > 0;
+        if (!hasRuleAtLeastOne) {
             showEmptyRuleWarning();
             return Promise.resolve(1);
         }
         const linter = createLinter({
             cache: cliOptions.cache,
             cacheLocation: cliOptions.cacheLocation,
+            quiet: cliOptions.quiet,
             descriptor
         });
         if (cliOptions.fix) {
@@ -123,7 +130,7 @@ export const cli = {
             await fixer.write(results);
             if (printResults(output, cliOptions)) {
                 const hasErrorMessage = results.some((result) => {
-                    result.messages.some((message) => message.severity === SeverityLevel.error);
+                    return result.messages.some((message) => message.severity === SeverityLevel.error);
                 });
                 return hasErrorMessage ? 1 : 0;
             } else {
@@ -143,7 +150,7 @@ export const cli = {
             printResults(output, cliOptions);
             if (printResults(output, cliOptions)) {
                 const hasErrorMessage = results.some((result) => {
-                    result.messages.some((message) => message.severity === SeverityLevel.error);
+                    return result.messages.some((message) => message.severity === SeverityLevel.error);
                 });
                 return hasErrorMessage ? 1 : 0;
             } else {

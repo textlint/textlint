@@ -14,16 +14,21 @@ import fs from "fs/promises";
 import { Logger } from "./util/logger";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
+
 const debug = debug0("textlint:engine-core");
 export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): TextlintKernelDescriptor => {
     if (descriptors.length <= 1) {
         return descriptors[0];
     }
     return descriptors.reduce((prev, current) => {
-        return prev.shallowMerge({
-            rules: current.rule.toKernelRulesFormat(),
-            filterRules: current.filterRule.toKernelFilterRulesFormat(),
-            plugins: current.plugin.toKernelPluginsFormat()
+        return new TextlintKernelDescriptor({
+            configBaseDir: current.configBaseDir ?? prev.configBaseDir,
+            // FIXME: merge correctly
+            rules: prev.rule.toKernelRulesFormat().concat(current.rule.toKernelRulesFormat()),
+            filterRules: prev.filterRule
+                .toKernelFilterRulesFormat()
+                .concat(current.filterRule.toKernelFilterRulesFormat()),
+            plugins: prev.plugin.toKernelPluginsFormat().concat(current.plugin.toKernelPluginsFormat())
         });
     });
 };

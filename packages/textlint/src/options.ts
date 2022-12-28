@@ -16,11 +16,11 @@ const concatFormatterList = (formatterList: FormatterDetail[] | FixerFormatterDe
 
 export type CliOptions = {
     // for loading
-    rule?: string;
-    preset?: string;
-    plugin?: string;
+    rule?: string[];
+    preset?: string[];
+    plugin?: string[];
     config?: string;
-    rulesdir?: string;
+    rulesdir?: string[];
     format: string;
     quiet: boolean;
     color: boolean;

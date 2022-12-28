@@ -10,6 +10,7 @@
     "newLine": "LF",
     "target": "ES2015",
     "sourceMap": true,
+    "declarationMap": true,
     "declaration": true,
     "jsx": "preserve",
     "lib": [
