@@ -46,6 +46,7 @@
     "watch": "tsc -b --watch"
   },
   "dependencies": {
+    "@textlint/config-loader": "^12.2.2",
     "@textlint/ast-node-types": "^12.2.2",
     "@textlint/ast-traverse": "^12.2.3",
     "@textlint/feature-flag": "^12.2.3",

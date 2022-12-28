@@ -6396,7 +6396,7 @@ debug@4.3.1:
   dependencies:
     ms "2.1.2"
 
-debug@4.3.4, debug@^4.3.3, debug@^4.3.4:
+debug@4.3.4, debug@^4.3.1, debug@^4.3.3, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -13966,6 +13966,16 @@ rc-config-loader@^3.0.0:
     json5 "^2.1.1"
     require-from-string "^2.0.2"
 
+rc-config-loader@^4.0.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/rc-config-loader/-/rc-config-loader-4.1.1.tgz#64a00fdcae976e20062e13b156e361d24186fe23"
+  integrity sha512-S10o85x/szboh7FOxUyU+KuED+gr9V7SEnUBOzSn+vd1K8J2MtkP1RCPWg8Sw5kkuZKr7976bFzacCM6QtAApQ==
+  dependencies:
+    debug "^4.3.4"
+    js-yaml "^4.1.0"
+    json5 "^2.2.1"
+    require-from-string "^2.0.2"
+
 react-dev-utils@^11.0.1:
   version "11.0.4"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.4.tgz#a7ccb60257a1ca2e0efe7a83e38e6700d17aa37a"
@@ -16297,14 +16307,14 @@ try-resolve@^1.0.1:
   resolved "https://registry.yarnpkg.com/try-resolve/-/try-resolve-1.0.1.tgz#cfde6fabd72d63e5797cfaab873abbe8e700e912"
   integrity sha1-z95vq9ctY+V5fPqrhzq76OcA6RI=
 
-ts-node-test-register@10.0.0, ts-node-test-register@^10.0.0:
+ts-node-test-register@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/ts-node-test-register/-/ts-node-test-register-10.0.0.tgz#eb8cbe40954331f2f70c8e5fb83c677965ac14f9"
   integrity sha512-W8yzvufsG7/ulT65G1D218HMPf6uduojDXuSrGAaakkZlUtuLC+3pxphDktBe/N9w5Gi7teAxKCaTpBH5p6fkQ==
   dependencies:
     read-pkg "^5.2.0"
 
-ts-node@10.9.1, ts-node@^10.9.1:
+ts-node@^10.9.1:
   version "10.9.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.1.tgz#e73de9102958af9e1f0b168a6ff320e25adcff4b"
   integrity sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==

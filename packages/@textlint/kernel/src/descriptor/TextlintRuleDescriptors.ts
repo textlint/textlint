@@ -66,7 +66,10 @@ export class TextlintRuleDescriptors {
 
     toJSON() {
         return this.toKernelRulesFormat().map((descriptor) => {
-            return descriptor.toJSON();
+            return {
+                ruleId: descriptor.ruleId,
+                options: descriptor.options
+            };
         });
     }
 }

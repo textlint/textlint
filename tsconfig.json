@@ -23,6 +23,9 @@
       "path": "packages/@textlint/ast-traverse"
     },
     {
+      "path": "packages/@textlint/config-loader"
+    },
+    {
       "path": "packages/@textlint/feature-flag"
     },
     {

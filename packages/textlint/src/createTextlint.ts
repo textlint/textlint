@@ -12,16 +12,12 @@ import md5 from "md5";
 import pkgConf from "read-pkg-up";
 import fs from "fs/promises";
 import { Logger } from "./util/logger";
-import { TextlintKernelOptions } from "@textlint/kernel/lib/src/textlint-kernel-interface";
+import type { TextlintKernelOptions } from "@textlint/kernel";
 import { TextlintFixResult } from "@textlint/types";
+import debug0 from "debug";
+import { loadTextlintrc } from "./loader/TextlintrcLoader";
 
-const debug = require("debug")("textlint:engine-core");
-
-export type TextlintConfig = {};
-
-export type TextlintConfigLoader = () => TextlintConfig;
-export const createCliLoader = (): Promise<TextlintKernelDescriptor> => {};
-export const createTextlintrc = (): Promise<{ configBaseDir: string; descriptor: TextlintKernelDescriptor }> => {};
+const debug = debug0("textlint:engine-core");
 export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): TextlintKernelDescriptor => {
     if (descriptors.length <= 1) {
         return descriptors[0];
@@ -35,6 +31,14 @@ export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): Te
     });
 };
 
+export const _main = async () => {
+    const linter = createLinter({
+        cache: false,
+        cacheLocation: "",
+        descriptor: await loadTextlintrc()
+    });
+    return linter.lintFiles(["./README.md"]);
+};
 export type CreateLinterOptions = {
     descriptor: TextlintKernelDescriptor; // available rules and plugins
     ignoreFile?: string;
@@ -132,8 +136,8 @@ export const createLinter = (options: CreateLinterOptions) => {
     };
 };
 
-export const loadFormatter = (formatterName: string) => {
-    const formatter = loadFormatterByName(formatterName);
+export const loadFormatter = (_formatterName: string) => {
+    // const formatter = loadFormatterByName(formatterName);
     return {
         // format results
     };

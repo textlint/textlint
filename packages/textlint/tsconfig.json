@@ -12,6 +12,9 @@
   ],
   "references": [
     {
+      "path": "../@textlint/config-loader"
+    },
+    {
       "path": "../@textlint/ast-node-types"
     },
     {
