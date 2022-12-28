@@ -34,7 +34,7 @@ jobs:
         run: yarn test:integration
         env:
           TEXTLINT_USE_NEW_CLI: true
-          DEBUG: "textlint:*"
+          DEBUG: "*"
 
   documentation:
     strategy:
