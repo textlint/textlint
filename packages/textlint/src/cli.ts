@@ -74,11 +74,11 @@ function printResults(output: string, options: any): boolean {
 export const cli = {
     /**
      * Executes the CLI based on an array of arguments that is passed in.
-     * @param {string|Array|Object} args The arguments to process.
+     * @param {string|string[]} args The arguments to process.
      * @param {string} [text] The text to lint (used for TTY).
      * @returns {Promise<number>} The exit code for the operation.
      */
-    execute(args: string | Array<any> | object, text?: string): Promise<number> {
+    execute(args: string | Array<string>, text?: string): Promise<number> {
         let currentOptions;
         // version from package.json
         const pkgConf = require("read-pkg-up");

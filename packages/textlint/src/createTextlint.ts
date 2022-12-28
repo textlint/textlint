@@ -16,6 +16,8 @@ import type { TextlintKernelOptions } from "@textlint/kernel";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 import { loadTextlintrc } from "./loader/TextlintrcLoader";
+import { loadCliDescriptor } from "./loader/CliLoader";
+import { CliOptions } from "./options";
 
 const debug = debug0("textlint:engine-core");
 export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): TextlintKernelDescriptor => {
@@ -31,11 +33,13 @@ export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): Te
     });
 };
 
-export const _main = async () => {
+export const _main = async (cliOptions: CliOptions) => {
+    const textlintrcDescriptor = await loadTextlintrc();
+    const cliDescriptor = await loadCliDescriptor(cliOptions);
     const linter = createLinter({
-        cache: false,
-        cacheLocation: "",
-        descriptor: await loadTextlintrc()
+        cache: cliOptions.cache,
+        cacheLocation: cliOptions.cacheLocation,
+        descriptor: mergeDescriptors(textlintrcDescriptor, cliDescriptor)
     });
     return linter.lintFiles(["./README.md"]);
 };

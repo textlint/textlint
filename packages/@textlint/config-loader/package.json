@@ -16,9 +16,9 @@
   "license": "MIT",
   "author": "azu",
   "sideEffects": false,
-  "main": "lib/index.js",
-  "module": "module/index.js",
-  "types": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "module": "module/src/index.js",
+  "types": "lib/src/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "test"
