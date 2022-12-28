@@ -1,27 +1,19 @@
 import { TextlintFixResult } from "@textlint/kernel";
+import fs from "fs/promises";
 
-const fs = require("fs");
-
-function overWriteResult(result: TextlintFixResult): Promise<TextlintFixResult> {
-    return new Promise((resolve, reject) => {
-        const targetFilePath = result.filePath;
-        const output = result.output;
-        fs.writeFile(targetFilePath, output, (error: any, result: TextlintFixResult) => {
-            if (error) {
-                return reject(error);
-            }
-            resolve(result);
-        });
-    });
+function overWriteResult(result: TextlintFixResult): Promise<void> {
+    const targetFilePath = result.filePath;
+    const output = result.output;
+    return fs.writeFile(targetFilePath, output);
 }
 
 export class TextLintFixer {
     /**
-     * write output to each files and return promise
+     * write output to each file and return promise
      * @param textFixMessages
      * @returns {Promise}
      */
-    write(textFixMessages: TextlintFixResult[]) {
+    write(textFixMessages: TextlintFixResult[]): Promise<void[]> {
         const promises = textFixMessages.map(overWriteResult);
         return Promise.all(promises);
     }

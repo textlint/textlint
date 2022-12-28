@@ -43,8 +43,10 @@ See https://github.com/textlint/textlint/issues/148
 ${ex}`);
     }
     debug(`use formatter: ${formatterPath}`);
-    return function (results: TextlintFixResult[]) {
-        return formatter(results, formatterConfig);
+    return {
+        format(results: TextlintFixResult[]) {
+            return formatter(results, formatterConfig);
+        }
     };
 }
 

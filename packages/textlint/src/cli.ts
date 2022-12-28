@@ -2,11 +2,7 @@
 "use strict";
 import { TextlintFixResult } from "@textlint/kernel";
 import { throwWithoutExperimental } from "@textlint/feature-flag";
-
-const fs = require("fs");
-const path = require("path");
-const debug = require("debug")("textlint:cli");
-const mkdirp = require("mkdirp");
+import debug0 from "debug";
 import { options } from "./options";
 import { TextLintEngine } from "./textlint-engine";
 import { TextFixEngine } from "./textfix-engine";
@@ -15,6 +11,9 @@ import { createConfigFile } from "./config/config-initializer";
 import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
 import { lintParallel } from "./parallel/lint-worker-master";
+import { printResults, showEmptyRuleWarning } from "./cli-util";
+
+const debug = debug0("textlint:cli");
 
 /*
  cli.js is command line **interface**
@@ -22,50 +21,6 @@ import { lintParallel } from "./parallel/lint-worker-master";
  processing role is cli-engine.js.
  @see cli-engine.js
  */
-
-const showEmptyRuleWarning = () => {
-    Logger.log(`
-== No rules found, textlint hasn’t done anything ==
-
-Possible reasons:
-* Your textlint config file has no rules.
-* You have no config file and you aren’t passing rules via command line.
-* Your textlint config has a syntax error.
-
-=> How to set up rules?
-https://github.com/textlint/textlint/blob/master/docs/configuring.md
-`);
-};
-
-/**
- * Print results of lining text.
- * @param {string} output the output text which is formatted by {@link TextLintEngine.formatResults}
- * @param {object} options cli option object {@lint ./options.js}
- * @returns {boolean} does print result success?
- */
-function printResults(output: string, options: any): boolean {
-    if (!output) {
-        return true;
-    }
-    const outputFile = options.outputFile;
-    if (outputFile) {
-        const filePath = path.resolve(process.cwd(), outputFile);
-        if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
-            Logger.error("Cannot write to output file path, it is a directory: %s", outputFile);
-            return false;
-        }
-        try {
-            mkdirp.sync(path.dirname(filePath));
-            fs.writeFileSync(filePath, output);
-        } catch (ex) {
-            Logger.error("There was a problem writing the output file:\n%s", ex);
-            return false;
-        }
-    } else {
-        Logger.log(output);
-    }
-    return true;
-}
 
 /**
  * Encapsulates all CLI behavior for eslint. Makes it easier to test as well as

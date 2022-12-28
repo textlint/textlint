@@ -46,8 +46,10 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         throw new Error(`Could not find formatter ${formatterName}
 ${ex}`);
     }
-    return function (results: TextlintResult[]) {
-        return formatter(results, formatterConfig);
+    return {
+        format(results: TextlintResult[]) {
+            return formatter(results, formatterConfig);
+        }
     };
 }
 

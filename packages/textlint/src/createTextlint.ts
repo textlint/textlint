@@ -1,5 +1,6 @@
 // LICENSE : MIT
 "use strict";
+import type { TextlintKernelOptions } from "@textlint/kernel";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
 import { findFiles, pathsToGlobPatterns, separateByAvailability } from "./util/find-util";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager";
@@ -8,17 +9,11 @@ import path from "path";
 import crypto from "crypto";
 // @ts-expect-error no types
 import md5 from "md5";
-// @ts-expect-error no types
 import pkgConf from "read-pkg-up";
 import fs from "fs/promises";
 import { Logger } from "./util/logger";
-import type { TextlintKernelOptions } from "@textlint/kernel";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
-import { loadTextlintrc } from "./loader/TextlintrcLoader";
-import { loadCliDescriptor } from "./loader/CliLoader";
-import { CliOptions } from "./options";
-
 const debug = debug0("textlint:engine-core");
 export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): TextlintKernelDescriptor => {
     if (descriptors.length <= 1) {
@@ -31,17 +26,6 @@ export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): Te
             plugins: current.plugin.toKernelPluginsFormat()
         });
     });
-};
-
-export const _main = async (cliOptions: CliOptions) => {
-    const textlintrcDescriptor = await loadTextlintrc();
-    const cliDescriptor = await loadCliDescriptor(cliOptions);
-    const linter = createLinter({
-        cache: cliOptions.cache,
-        cacheLocation: cliOptions.cacheLocation,
-        descriptor: mergeDescriptors(textlintrcDescriptor, cliDescriptor)
-    });
-    return linter.lintFiles(["./README.md"]);
 };
 export type CreateLinterOptions = {
     descriptor: TextlintKernelDescriptor; // available rules and plugins
@@ -64,10 +48,9 @@ const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string =
 };
 export const createLinter = (options: CreateLinterOptions) => {
     const executeFileBackerManger = new ExecuteFileBackerManager();
-    const cacheLocation = options.cacheLocation || path.join(process.cwd(), ".textlintcache");
     const cacheBaker = new CacheBacker({
         cache: options.cache,
-        cacheLocation,
+        cacheLocation: options.cacheLocation,
         hash: createHashForDescriptor(options.descriptor)
     });
     if (options.cache) {
@@ -113,6 +96,14 @@ export const createLinter = (options: CreateLinterOptions) => {
                 return kernel.lintText(fileContent, kernelOptions);
             });
         },
+        async lintText(text: string, filePath: string): Promise<TextlintResult> {
+            const kernelOptions = {
+                ext: path.extname(filePath),
+                filePath,
+                ...baseOptions
+            };
+            return kernel.lintText(text, kernelOptions);
+        },
         // fix files
         async fixFiles(files: string[]): Promise<TextlintFixResult[]> {
             const patterns = pathsToGlobPatterns(files, {
@@ -136,13 +127,14 @@ export const createLinter = (options: CreateLinterOptions) => {
                 };
                 return kernel.fixText(fileContent, kernelOptions);
             });
+        },
+        async fixText(text: string, filePath: string): Promise<TextlintFixResult> {
+            const kernelOptions = {
+                ext: path.extname(filePath),
+                filePath,
+                ...baseOptions
+            };
+            return kernel.fixText(text, kernelOptions);
         }
-    };
-};
-
-export const loadFormatter = (_formatterName: string) => {
-    // const formatter = loadFormatterByName(formatterName);
-    return {
-        // format results
     };
 };
