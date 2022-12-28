@@ -11,16 +11,18 @@ export type LoadTextlintrcOptions = {
 };
 export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: LoadTextlintrcOptions) => {
     const result = await loadConfig({
-        configFilePath: configFilePath,
+        configFilePath,
         node_moduleDir: rulesBaseDirectory,
         preLoadingPackage: (packageOptions) => {
             // Add text and markdown by default
             // if user defined text or markdown, it is preferred than default
             packageOptions.rawConfig.plugins = Array.isArray(packageOptions.rawConfig?.plugins)
-                ? ["@textlint/text", "@textlint/markdown"].concat(packageOptions.rawConfig?.plugins ?? [])
+                ? ["@textlint/textlint-plugin-text", "@textlint/textlint-plugin-markdown"].concat(
+                      packageOptions.rawConfig?.plugins ?? []
+                  )
                 : {
-                      "@textlint/text": true,
-                      "@textlint/markdown": true,
+                      "@textlint/textlint-plugin-text": true,
+                      "@textlint/textlint-plugin-markdown": true,
                       ...packageOptions.rawConfig?.plugins
                   };
             return packageOptions;
@@ -30,12 +32,12 @@ export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: Loa
         debug("loadPackagesFromRawConfig failed: %o", result);
         const defaultPlugins: TextlintKernelPlugin[] = [
             {
-                pluginId: "@textlint/text",
+                pluginId: "@textlint/textlint-plugin-text",
                 plugin: textPlugin,
                 options: true
             },
             {
-                pluginId: "@textlint/markdown",
+                pluginId: "@textlint/textlint-plugin-markdown",
                 plugin: markdownPlugin,
                 options: true
             }
