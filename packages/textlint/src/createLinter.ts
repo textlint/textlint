@@ -14,11 +14,12 @@ import debug0 from "debug";
 
 const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {
-    descriptor: TextlintKernelDescriptor; // available rules and plugins
+    // You can get config descriptor from `loadTextlintrc()`
+    descriptor: TextlintKernelDescriptor;
     ignoreFile?: string;
     quiet?: boolean;
-    cache: boolean;
-    cacheLocation: string;
+    cache?: boolean;
+    cacheLocation?: string;
 };
 const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string => {
     try {
@@ -36,8 +37,8 @@ const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string =
 export const createLinter = (options: CreateLinterOptions) => {
     const executeFileBackerManger = new ExecuteFileBackerManager();
     const cacheBaker = new CacheBacker({
-        cache: options.cache,
-        cacheLocation: options.cacheLocation,
+        cache: options.cache ?? false,
+        cacheLocation: options.cacheLocation ?? path.resolve(process.cwd(), ".textlintcache"),
         hash: createHashForDescriptor(options.descriptor)
     });
     if (options.cache) {

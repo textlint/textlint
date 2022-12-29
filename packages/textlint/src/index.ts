@@ -49,6 +49,6 @@ export { TextLintCore } from "./textlint-core";
  *  console.log(output);
  *  ```
  */
-export { createLinter, CreateLinterOptions } from "./createTextlint";
+export { createLinter, CreateLinterOptions } from "./createLinter";
 export { loadTextlintrc, LoadTextlintrcOptions } from "./loader/TextlintrcLoader";
 export { loadLinterFormatter, loadFixerFormatter } from "./formatter";

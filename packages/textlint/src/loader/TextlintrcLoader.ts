@@ -17,7 +17,10 @@ export type LoadTextlintrcOptions = {
      */
     node_modulesDir?: string;
 };
-export const loadTextlintrc = async ({ configFilePath, node_modulesDir }: LoadTextlintrcOptions) => {
+export const loadTextlintrc = async ({
+    configFilePath,
+    node_modulesDir
+}: LoadTextlintrcOptions): Promise<TextlintKernelDescriptor> => {
     const result = await loadConfig({
         configFilePath,
         node_modulesDir
