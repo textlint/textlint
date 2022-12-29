@@ -48,8 +48,8 @@
         "@textlint/module-interop": "^12.3.0",
         "@textlint/types": "^12.3.0",
         "@textlint/utils": "^12.3.0",
-        "debug": "^4.3.1",
-        "rc-config-loader": "^4.0.0",
+        "debug": "^4.3.4",
+        "rc-config-loader": "^4.1.1",
         "try-resolve": "^1.0.1"
     },
     "devDependencies": {
