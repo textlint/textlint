@@ -77,4 +77,67 @@ describe("TextlintKernelDescriptor", () => {
             );
         });
     });
+    describe("#concat", () => {
+        it("should concat descriptor", () => {
+            const descriptorA = new TextlintKernelDescriptor({
+                configBaseDir: "/path/a/.textlintrc.json",
+                plugins: [
+                    {
+                        pluginId: "markdownA",
+                        plugin: createDummyPlugin([".md"]),
+                        options: true
+                    }
+                ],
+                rules: [
+                    {
+                        ruleId: "lintable",
+                        rule: exampleRule,
+                        options: false
+                    }
+                ],
+                filterRules: []
+            });
+            const descriptorB = new TextlintKernelDescriptor({
+                configBaseDir: "/path/b/.textlintrc.json",
+                plugins: [
+                    {
+                        pluginId: "markdownB",
+                        plugin: createDummyPlugin([".md"]),
+                        options: true
+                    }
+                ],
+                rules: [
+                    {
+                        ruleId: "lintable",
+                        rule: exampleRule,
+                        options: true
+                    }
+                ],
+                filterRules: []
+            });
+
+            // available extensions
+            const newDescriptor = descriptorA.concat(descriptorB);
+            assert.deepStrictEqual(newDescriptor.toJSON(), {
+                configBaseDir: "/path/b/.textlintrc.json",
+                filterRule: [],
+                plugin: [
+                    {
+                        id: "markdownA",
+                        rawOptions: true
+                    },
+                    {
+                        id: "markdownB",
+                        rawOptions: true
+                    }
+                ],
+                rule: [
+                    {
+                        options: true,
+                        ruleId: "lintable"
+                    }
+                ]
+            });
+        });
+    });
 });

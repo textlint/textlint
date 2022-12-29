@@ -13,22 +13,6 @@ import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 
 const debug = debug0("textlint:createTextlint");
-export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): TextlintKernelDescriptor => {
-    if (descriptors.length <= 1) {
-        return descriptors[0];
-    }
-    return descriptors.reduce((prev, current) => {
-        return new TextlintKernelDescriptor({
-            configBaseDir: current.configBaseDir ?? prev.configBaseDir,
-            // FIXME: merge correctly
-            rules: prev.rule.toKernelRulesFormat().concat(current.rule.toKernelRulesFormat()),
-            filterRules: prev.filterRule
-                .toKernelFilterRulesFormat()
-                .concat(current.filterRule.toKernelFilterRulesFormat()),
-            plugins: prev.plugin.toKernelPluginsFormat().concat(current.plugin.toKernelPluginsFormat())
-        });
-    });
-};
 export type CreateLinterOptions = {
     descriptor: TextlintKernelDescriptor; // available rules and plugins
     ignoreFile?: string;

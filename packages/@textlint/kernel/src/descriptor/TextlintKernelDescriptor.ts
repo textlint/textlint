@@ -45,12 +45,29 @@ export class TextlintKernelDescriptor {
     /**
      * Merge constructor args and partialArgs
      * It shallow merge partialArgs.
-     * It means that overwrite root properties by partialArgs.
+     * It means that overwrite own properties by partialArgs.
      */
     shallowMerge(partialArgs: Partial<TextlintKernelDescriptorArgs>) {
         return new TextlintKernelDescriptor({
             ...this.args,
             ...partialArgs
+        });
+    }
+
+    /**
+     * Concat descriptors
+     * If A.concat(B), A is base, B is added
+     * Note: withoutDuplicated pick A from [A, B] If A and B have same ruleId.
+     * @param other
+     */
+    concat(other: TextlintKernelDescriptor) {
+        return new TextlintKernelDescriptor({
+            configBaseDir: other.configBaseDir ?? this.configBaseDir,
+            rules: this.rule.toKernelRulesFormat().concat(other.rule.toKernelRulesFormat()),
+            filterRules: this.filterRule
+                .toKernelFilterRulesFormat()
+                .concat(other.filterRule.toKernelFilterRulesFormat()),
+            plugins: this.plugin.toKernelPluginsFormat().concat(other.plugin.toKernelPluginsFormat())
         });
     }
 

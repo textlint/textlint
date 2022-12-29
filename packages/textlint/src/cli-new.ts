@@ -8,7 +8,7 @@ import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
 import { loadTextlintrc } from "./loader/TextlintrcLoader";
 import { loadCliDescriptor } from "./loader/CliLoader";
-import { createLinter, mergeDescriptors } from "./createTextlint";
+import { createLinter } from "./createTextlint";
 import { loadFormatter as loadFixerFormatter } from "@textlint/fixer-formatter";
 import { loadFormatter as loadLinterFormatter } from "@textlint/linter-formatter";
 import { SeverityLevel } from "./shared/type/SeverityLevel";
@@ -92,12 +92,14 @@ export const cli = {
      */
     async executeWithOptions(executeOptions: ExceutOtptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
+        const cliDescriptor = await loadCliDescriptor(cliOptions);
         const textlintrcDescriptor = await loadTextlintrc({
             configFilePath: cliOptions.config,
             rulesBaseDirectory: cliOptions.rulesBaseDirectory
         });
-        const cliDescriptor = await loadCliDescriptor(cliOptions);
-        const descriptor = mergeDescriptors(textlintrcDescriptor, cliDescriptor);
+        // cli > textlintrc
+        // if cli and textlintrc have same option, cli option is prior.
+        const descriptor = cliDescriptor.concat(textlintrcDescriptor);
         const hasRuleAtLeastOne = descriptor.rule.lintableDescriptors.length > 0;
         if (!hasRuleAtLeastOne) {
             showEmptyRuleWarning();
@@ -129,12 +131,16 @@ export const cli = {
             // modify file and return exit status
             await fixer.write(results);
             if (printResults(output, cliOptions)) {
+                if (cliOptions.outputFile) {
+                    return 0; // if --output-file option is specified, exit status is always 0
+                }
+                // --fix result has remaining errors, return 1
                 const hasErrorMessage = results.some((result) => {
-                    return result.messages.some((message) => message.severity === SeverityLevel.error);
+                    return result.remainingMessages.some((message) => message.severity === SeverityLevel.error);
                 });
                 return hasErrorMessage ? 1 : 0;
             } else {
-                return 1;
+                return 2;
             }
         } else {
             // lint as default
@@ -147,14 +153,16 @@ export const cli = {
                 color: cliOptions.color
             });
             const output = formatter.format(results);
-            printResults(output, cliOptions);
             if (printResults(output, cliOptions)) {
+                if (cliOptions.outputFile) {
+                    return 0; // if --output-file option is specified, exit status is always 0
+                }
                 const hasErrorMessage = results.some((result) => {
                     return result.messages.some((message) => message.severity === SeverityLevel.error);
                 });
                 return hasErrorMessage ? 1 : 0;
             } else {
-                return 1;
+                return 2;
             }
         }
     }
