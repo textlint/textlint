@@ -68,6 +68,19 @@ $ textlint [options] file.md [file|dir|glob*]
 
 ```
 
+## Cache
+
+textlint supports caching for performance.
+The cache is disabled by default.
+You can enable it with the `--cache` option.
+
+```bash
+$ textlint --cache README.md
+```
+
+If you want to clear the cache, you can use the `--no-cache` option or just remove `--cache` option.
+
+
 ## Exit Code
 
 :memo: This status is defined in textlint v14.0.0 or later.
