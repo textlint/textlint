@@ -8,7 +8,7 @@ import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
 import { loadTextlintrc } from "./loader/TextlintrcLoader";
 import { loadCliDescriptor } from "./loader/CliLoader";
-import { createLinter } from "./createTextlint";
+import { createLinter } from "./createLinter";
 import { SeverityLevel } from "./shared/type/SeverityLevel";
 import { printResults, showEmptyRuleWarning } from "./cli-util";
 import { loadFixerFormatter, loadLinterFormatter } from "./formatter";
