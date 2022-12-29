@@ -7,8 +7,7 @@ title: Use as Node Modules
 
 ![overview](assets/architecture.png)
 
-`textlint` module expose these header
-at [index.js](https://github.com/textlint/textlint/blob/master/packages/textlint/src/index.ts)
+`textlint` module expose these header at [index.js](https://github.com/textlint/textlint/blob/master/packages/textlint/src/index.ts)
 
 ```js
 // Level of abstraction(descending order)
@@ -109,14 +108,14 @@ lintFile(`${__dirname}/README.md`).catch(function(error) {
 textlint v12.3.0 introduce new APIs.
 textlint will drop support old APIs(`textlint`, `TextLintEngine`, `TextFixEngine`, and `TextLintCore`) in the future.
 
-:memo: old APIs can not support ESM modules, new APIs support ESM modules.
+:memo: old APIs can not support ECMAScript modules, new APIs support ECMAScript modules.
 
 - `createLinter`: create linter instance
-  - `lintFiles(files)`: lint files and return linter messages
-  - `lintText(text, filePath)` lint text with virtual filePath and return linter messages
-  - `fixFiles(files` lint text and return fixer messages
-  - `fixText(text, filePath)` lint text with virtual filePath and return fixer messages
-     - `fixFiles` and `fixText` does not modify files
+    - `lintFiles(files)`: lint files and return linter messages
+    - `lintText(text, filePath)` lint text with virtual filePath and return linter messages
+    - `fixFiles(files` lint text and return fixer messages
+    - `fixText(text, filePath)` lint text with virtual filePath and return fixer messages
+        - `fixFiles` and `fixText` does not modify files
 - `loadTextlintrc`: load `.textlintrc` config file and return a descriptor object
 - `loadLinerFormatter` and `loadFixerFormatter`: load formatter
 
@@ -183,8 +182,7 @@ console.log(result);
 
 ## Testing
 
-You can use [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester") for testing your custom
-rule.
+You can use [textlint-tester](https://www.npmjs.com/package/textlint-tester) for testing your custom rule.
 
 - [rule.md](./rule.md)
 - [textlint-tester](https://www.npmjs.com/package/textlint-tester "textlint-tester")
