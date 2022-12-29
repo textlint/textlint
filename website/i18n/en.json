@@ -5,6 +5,9 @@
     "previous": "Previous",
     "tagline": "The pluggable linting tool for text and markdown",
     "docs": {
+      "cli": {
+        "title": "Command Line Interface"
+      },
       "configuring": {
         "title": "Configuring textlint"
       },
