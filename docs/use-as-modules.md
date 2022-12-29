@@ -155,18 +155,19 @@ Add custom rules and plugins.
 ```ts
 import { createLinter, loadTextlintrc } from "textlint";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
+import { moduleInterop } from "@textlint/module-interop";
 // Create a descriptor for custom rules and plugins
 const customDescriptor = new TextlintKernelDescriptor({
     rules: [
         {
             ruleId: "custom-rule",
-            rule: (await import("./custom-plugin")).default
+            rule: moduleInterop((await import("./custom-plugin")).default)
         }
     ],
     plugins: [
         {
             pluginId: "custom-plugin",
-            plugin: (await import("./custom-plugin")).default
+            plugin: moduleInterop((await import("./custom-plugin")).default)
         }
     ]
 });
