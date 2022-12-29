@@ -23,7 +23,7 @@ $ npx textlint docs/
 
 ## Options
 
-You can view all the CLI options by running `textlint --help` .
+You can view all the CLI options by running `textlint --help`.
 
 ```sh
 $ textlint [options] file.md [file|dir|glob*]
