@@ -1,0 +1,22 @@
+{
+    "ok": true,
+    "config": {
+        "rules": [
+            {
+                "ruleId": "a",
+                "options": true,
+                "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-a"
+            }
+        ],
+        "plugins": [
+            {
+                "pluginId": "custom",
+                "plugin": {},
+                "filePath": "<MODULES_DIR>/textlint-plugin-custom/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-plugin-custom"
+            }
+        ],
+        "filterRules": []
+    }
+}

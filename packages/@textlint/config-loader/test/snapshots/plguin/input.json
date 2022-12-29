@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    "custom"
+  ],
+  "rules": {
+    "a": true
+  }
+}

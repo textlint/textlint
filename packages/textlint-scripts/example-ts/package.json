@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "textlint-scripts": "file:../",
-    "typescript": "^4.2.4",
+    "typescript": "~4.9.4",
     "ts-node": "^9.1.1",
     "@textlint/types": "^12.2.3"
   }

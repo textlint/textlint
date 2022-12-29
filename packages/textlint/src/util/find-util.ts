@@ -23,6 +23,7 @@ const isFile = (filePath: string) => {
         return false;
     }
 };
+
 /**
  * filter files by config
  * @param {string[]} patterns glob patterns
@@ -38,6 +39,7 @@ export function pathsToGlobPatterns(
     });
     return patterns.map(processPatterns);
 }
+
 /**
  * found files by glob pattern
  * @param {string[]} patterns
@@ -91,6 +93,11 @@ export function findFiles(patterns: string[], options: FindFilesOptions = {}): s
 }
 
 /**
+ * classify files by extname
+ * unAvailableFilePath will be used for warning.
+ * If The user can use glob pattern like `src/*.js` as arguments, It will be expanded by shell.
+ * pathsToGlobPatterns not modified that pattern.
+ * So, unAvailableFilePath should be ignored silently.
  * @param {string[]} files
  * @param {{extensions?: string[]}} [options]
  * @returns {{availableFiles: string[], unAvailableFiles: string[]}}

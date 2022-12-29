@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "html"
+  ],
+  "rules": {
+    "no-todo": {
+      "severity": "warning"
+    }
+  }
+}

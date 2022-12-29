@@ -25,7 +25,8 @@ describe("textlint-kernel-snapshots", () => {
             const actualFilePath = path.join(fixtureDir, "input.md");
             const actualContent = fs.readFileSync(actualFilePath, "utf-8");
             const actualOptionFilePath = path.join(fixtureDir, "options.ts");
-            const actualOptions: TextlintKernelOptions = await import(actualOptionFilePath).then((m) => m.options);
+            // FIXME: import() does not transpile .ts
+            const actualOptions: TextlintKernelOptions = require(actualOptionFilePath).options;
             const kernel = new TextlintKernel();
             const actualResults = normalizeJSON(
                 await kernel.lintText(actualContent, actualOptions),

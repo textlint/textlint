@@ -130,11 +130,16 @@ $ textlint [options] file.md [file|dir|glob*]
 
 ```
 
-When running texlint, you can target files to lint using the glob patterns. Make sure that you enclose any glob parameter you pass in quotes.
+When running texlint, you can target files to lint using the glob patterns.
+Make sure that you enclose any glob parameter you pass in quotes.
 
 ```sh
 $ npx textlint "docs/**"
 ```
+
+For more details, see [CLI](./docs/cli.md) documentation.
+
+- Documentation: [CLI](./docs/cli.md)
 
 Example:
 

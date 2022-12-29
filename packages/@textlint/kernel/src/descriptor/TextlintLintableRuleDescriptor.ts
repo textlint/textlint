@@ -73,4 +73,11 @@ export class TextlintLintableRuleDescriptor {
     toKernel(): TextlintKernelRule {
         return this.textlintKernelRule;
     }
+
+    toJSON() {
+        return {
+            id: this.id,
+            rawOptions: this.rawOptions
+        };
+    }
 }

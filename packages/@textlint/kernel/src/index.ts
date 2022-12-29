@@ -3,7 +3,12 @@ export { TextlintKernel } from "./textlint-kernel";
 // Kernel Descriptor
 export * from "./descriptor/index";
 // Kernel rule/filter/plugin format
-export { TextlintKernelRule, TextlintKernelFilterRule, TextlintKernelPlugin } from "./textlint-kernel-interface";
+export {
+    TextlintKernelRule,
+    TextlintKernelFilterRule,
+    TextlintKernelPlugin,
+    TextlintKernelOptions
+} from "./textlint-kernel-interface";
 
 /**
  * Types of textlint lint/fix result

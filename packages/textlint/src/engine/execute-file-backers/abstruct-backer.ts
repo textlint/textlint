@@ -1,7 +1,8 @@
 // MIT © 2016 azu
 "use strict";
-import { TextlintResult } from "@textlint/kernel";
 /* eslint-disable */
+import type { TextlintResult } from "@textlint/kernel";
+
 export abstract class AbstractBacker {
     /**
      * @param {string} filePath
@@ -10,10 +11,9 @@ export abstract class AbstractBacker {
     abstract shouldExecute({ filePath }: { filePath: string }): boolean;
 
     /**
-     * @param {TextlintResult} result
      * @returns {boolean}
      */
-    abstract didExecute({ result }: { result: TextlintResult }): void;
+    abstract didExecute<R extends TextlintResult>({ result }: { result: R }): void;
 
     /**
      * call when after all execution is completed

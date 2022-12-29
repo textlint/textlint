@@ -4,18 +4,59 @@ import type { TextlintResult } from "@textlint/types";
 
 import { moduleInterop } from "@textlint/module-interop";
 
-const fs = require("fs");
-const path = require("path");
-const tryResolve = require("try-resolve");
+import fs from "fs";
+import path from "path";
+// @ts-expect-error
+import tryResolve from "try-resolve";
+// @ts-expect-error
+import isFile from "is-file";
+import debug0 from "debug";
 
-const isFile = require("is-file");
-const debug = require("debug")("textlint:@textlint/linter-formatter");
+const debug = debug0("textlint:@textlint/linter-formatter");
 
 export interface FormatterConfig {
     formatterName: string;
     color?: boolean;
 }
 
+export async function loadFormatter(formatterConfig: FormatterConfig) {
+    const formatterName = formatterConfig.formatterName;
+    debug(`formatterName: ${formatterName}`);
+    let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;
+    let formatterPath;
+    if (fs.existsSync(formatterName)) {
+        formatterPath = formatterName;
+    } else if (fs.existsSync(path.resolve(process.cwd(), formatterName))) {
+        formatterPath = path.resolve(process.cwd(), formatterName);
+    } else {
+        if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.js`)) {
+            formatterPath = `${path.join(__dirname, "formatters/", formatterName)}.js`;
+        } else if (isFile(`${path.join(__dirname, "formatters/", formatterName)}.ts`)) {
+            formatterPath = `${path.join(__dirname, "formatters/", formatterName)}.ts`;
+        } else {
+            const pkgPath = tryResolve(`textlint-formatter-${formatterName}`) || tryResolve(formatterName);
+            if (pkgPath) {
+                formatterPath = pkgPath;
+            }
+        }
+    }
+    try {
+        formatter = moduleInterop((await import(formatterPath)).default);
+    } catch (ex) {
+        throw new Error(`Could not find formatter ${formatterName}
+${ex}`);
+    }
+    return {
+        format(results: TextlintResult[]) {
+            return formatter(results, formatterConfig);
+        }
+    };
+}
+
+/**
+ * @deprecated use loadFormatter
+ * @param formatterConfig
+ */
 export function createFormatter(formatterConfig: FormatterConfig) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);

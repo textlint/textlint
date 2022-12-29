@@ -67,7 +67,8 @@ export function createFlatPresetRulesConfigFromRawPresetRuleConfig(
     return mapped;
 }
 
-// load rulesConfig from plugins
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+
 /**
  *
  * @param presetNames
@@ -79,10 +80,10 @@ export function loadRulesConfigFromPresets(presetNames: string[] = [], moduleRes
     presetNames.forEach((presetName) => {
         const pkgPath = moduleResolver.resolvePresetPackageName(presetName);
         const preset = moduleInterop(require(pkgPath));
-        if (!preset.hasOwnProperty("rules")) {
+        if (!hasOwnProperty.call(preset, "rules")) {
             throw new Error(`${presetName} has not rules`);
         }
-        if (!preset.hasOwnProperty("rulesConfig")) {
+        if (!hasOwnProperty.call(preset, "rulesConfig")) {
             throw new Error(`${presetName} has not rulesConfig`);
         }
         // set config of <rule> to "<preset>/<rule>"

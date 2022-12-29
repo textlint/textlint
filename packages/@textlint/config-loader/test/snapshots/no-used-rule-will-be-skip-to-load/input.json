@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "a": true,
+    "b": {
+      "key": "value"
+    },
+    "preset-c": {
+      "c-sub1": true,
+      "c-sub2": false
+    }
+  }
+}

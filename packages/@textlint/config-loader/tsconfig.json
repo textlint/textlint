@@ -1,0 +1,27 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib/"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "../kernel"
+    },
+    {
+      "path": "../module-interop"
+    },
+    {
+      "path": "../types"
+    },
+    {
+      "path": "../utils"
+    }
+  ]
+}

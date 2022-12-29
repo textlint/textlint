@@ -8,6 +8,7 @@ import { TextlintResult } from "@textlint/kernel";
 /**
  * TextLintEngine a adapter for TextLintEngineCore.
  * It aim to pull the whole look together. (TextLintEngine and TextFixEngine)
+ * @deprecated use new APIs https://textlint.github.io/docs/use-as-modules.html#new-apis
  */
 export class TextLintEngine extends AbstractTextLintEngine<TextlintResult> {
     /**

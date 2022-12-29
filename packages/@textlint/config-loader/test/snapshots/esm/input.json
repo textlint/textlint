@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "esm": true
+  },
+  "rules": {
+    "preset-esm": false
+  }
+}

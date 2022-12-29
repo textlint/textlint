@@ -1,17 +1,21 @@
 // MIT © 2016 azu
 "use strict";
-const fileEntryCache = require("file-entry-cache");
-const debug = require("debug")("textlint:CacheBacker");
+// @ts-expect-error
+import fileEntryCache from "file-entry-cache";
+import debug0 from "debug";
 import { AbstractBacker } from "./abstruct-backer";
-import { Config } from "../../config/config";
+const debug = debug0("textlint:CacheBacker");
+
 import { TextlintResult } from "@textlint/kernel";
+
 export class CacheBacker implements AbstractBacker {
-    fileCache: any;
-    isEnabled: boolean;
+    private fileCache: any;
+    private isEnabled: boolean;
+
     /**
      * @param {Config} config
      */
-    constructor(public config: Config) {
+    constructor(private config: { cache: boolean; cacheLocation: string; hash: string }) {
         /**
          * @type {boolean}
          */
@@ -35,10 +39,7 @@ export class CacheBacker implements AbstractBacker {
         return isChanged;
     }
 
-    /**
-     * @param {TextlintResult} result
-     */
-    didExecute({ result }: { result: TextlintResult }) {
+    didExecute<R extends TextlintResult>({ result }: { result: R }) {
         if (!this.isEnabled) {
             return;
         }

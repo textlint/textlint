@@ -2,8 +2,9 @@
 "use strict";
 import { getFormatterList, FormatterDetail } from "@textlint/linter-formatter";
 import { getFixerFormatterList, FixerFormatterDetail } from "@textlint/fixer-formatter";
-
-const optionator = require("optionator");
+import path from "path";
+// @ts-expect-error: no type definition
+import optionator from "optionator";
 
 const concatFormatterList = (formatterList: FormatterDetail[] | FixerFormatterDetail[]) => {
     return formatterList
@@ -13,6 +14,38 @@ const concatFormatterList = (formatterList: FormatterDetail[] | FixerFormatterDe
         .join(", ");
 };
 
+export type CliOptions = {
+    // for loading
+    rule?: string[];
+    preset?: string[];
+    plugin?: string[];
+    config?: string;
+    rulesdir?: string[];
+    format: string;
+    quiet: boolean;
+    color: boolean;
+    textlintrc: boolean;
+    cache: boolean;
+    cacheLocation: string;
+    // custom node_module directory
+    // textlint load modules(rules/presets/plugins) from the base directory.
+    rulesBaseDirectory?: string;
+    ignorePath: string;
+    // for command
+    help: boolean;
+    init: boolean;
+    fix: boolean;
+    dryRun: boolean;
+    debug: boolean;
+    stdin: boolean;
+    stdinFilename?: string;
+    version: boolean;
+    outputFile: string;
+    experimental: boolean;
+    parallel: boolean;
+    maxConcurrency: number;
+    _: string[];
+};
 export const options = optionator({
     prepend: "textlint [options] file.md [file|dir|glob*]",
     concatRepeatedArrays: true,
@@ -36,7 +69,7 @@ export const options = optionator({
             option: "ignore-path",
             type: "path::String",
             description: "Specify path to a file containing patterns that describes files to ignore.",
-            default: ".textlintignore",
+            default: path.resolve(process.cwd(), ".textlintignore"),
             example: "--ignore-path /path/to/.textlintignore"
         },
         {
@@ -99,6 +132,7 @@ export const options = optionator({
             option: "format",
             alias: "f",
             type: "String",
+            default: "stylish",
             description: `Use a specific output format.
                              Available formatter          : ${concatFormatterList(getFormatterList())}
                              Available formatter for --fix: ${concatFormatterList(getFixerFormatterList())}`,
@@ -161,6 +195,7 @@ export const options = optionator({
         {
             option: "cache-location",
             type: "path::String",
+            default: path.resolve(process.cwd(), ".textlintcache"),
             description: "Path to the cache file or directory",
             example: 'textlint --cache --cache-location "/Users/user/.textlintcache" docs/'
         },
@@ -194,4 +229,7 @@ export const options = optionator({
             example: "textlint --experimental --parallel --maxConcurrency 4"
         }
     ]
-});
+}) as {
+    generateHelp(): string;
+    parse(argv: string | Array<string>): CliOptions;
+};
