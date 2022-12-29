@@ -73,7 +73,7 @@ $ textlint [options] file.md [file|dir|glob*]
 textlint supports piping from other commands.
 
 ```sh
-$ cat README.md | textlint --stdin --stdin-filename "README.md"
+$ cat README.md | npx textlint --stdin --stdin-filename "README.md"
 ```
 
 Note: 
