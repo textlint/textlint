@@ -102,7 +102,7 @@ If you want to clear the cache, you can use the `--no-cache` option or just remo
 
 ## Exit Code
 
-:memo: This status is defined in textlint v14.0.0 or later.
+📝 This status is defined in textlint v13.0.0 or later.
 
 `0`: No Error
 
