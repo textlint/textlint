@@ -9,10 +9,9 @@ import { Logger } from "./util/logger";
 import { loadTextlintrc } from "./loader/TextlintrcLoader";
 import { loadCliDescriptor } from "./loader/CliLoader";
 import { createLinter } from "./createTextlint";
-import { loadFormatter as loadFixerFormatter } from "@textlint/fixer-formatter";
-import { loadFormatter as loadLinterFormatter } from "@textlint/linter-formatter";
 import { SeverityLevel } from "./shared/type/SeverityLevel";
 import { printResults, showEmptyRuleWarning } from "./cli-util";
+import { loadFixerFormatter, loadLinterFormatter } from "./formatter";
 
 const debug = debug0("textlint:cli");
 type StdinExecuteOption = {
@@ -95,7 +94,7 @@ export const cli = {
         const cliDescriptor = await loadCliDescriptor(cliOptions);
         const textlintrcDescriptor = await loadTextlintrc({
             configFilePath: cliOptions.config,
-            rulesBaseDirectory: cliOptions.rulesBaseDirectory
+            node_modulesDir: cliOptions.rulesBaseDirectory
         });
         // cli > textlintrc
         // if cli and textlintrc have same option, cli option is prior.

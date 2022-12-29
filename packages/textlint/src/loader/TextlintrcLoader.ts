@@ -7,15 +7,22 @@ import debug_ from "debug";
 
 const debug = debug_("textlint:loader:TextlintrcLoader");
 export type LoadTextlintrcOptions = {
+    /**
+     * config file path
+     * /path/to/.textlintrc
+     */
     configFilePath?: string;
-    rulesBaseDirectory?: string;
+    /**
+     * custom node_modules directory
+     */
+    node_modulesDir?: string;
 };
-export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: LoadTextlintrcOptions) => {
+export const loadTextlintrc = async ({ configFilePath, node_modulesDir }: LoadTextlintrcOptions) => {
     const result = await loadConfig({
         configFilePath,
-        node_moduleDir: rulesBaseDirectory
+        node_modulesDir
     });
-    // Built-in plugins should be loaded from same directory with firetextlint package
+    // Built-in plugins should be loaded from same directory with `textlint` package
     const builtInPlugins: TextlintKernelPlugin[] = [
         {
             pluginId: "@textlint/textlint-plugin-text",
@@ -29,15 +36,12 @@ export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: Loa
         }
     ];
     if (!result.ok) {
-        debug("loadPackagesFromRawConfig failed: %o", result);
+        debug("loadTextlintrc failed: %o", result);
         return new TextlintKernelDescriptor({
             rules: [],
             filterRules: [],
             plugins: builtInPlugins
         });
-        // throw new Error("Failed to load textlintrc", {
-        //     cause: result.error
-        // });
     }
     const { rules, plugins, filterRules } = result.config;
     return new TextlintKernelDescriptor({

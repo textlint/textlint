@@ -20,7 +20,7 @@ describe("@textlint/config-loader", () => {
             // const actualContent = JSON.parse(fs.readFileSync(actualFilePath, "utf-8"));
             const configResult = await loadRawConfig({
                 configFilePath: actualFilePath,
-                node_moduleDir: modulesDir
+                node_modulesDir: modulesDir
             });
             assert.ok(configResult.ok);
             const actual = await loadPackagesFromRawConfig({

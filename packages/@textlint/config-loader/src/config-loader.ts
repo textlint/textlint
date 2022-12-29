@@ -6,14 +6,21 @@ import type { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
 
 export type TextlintConfigLoaderOptions = {
     cwd?: string;
-    configFilePath?: string;
-    // For debugging
     /**
-     * node_modules directory path
-     * Default: undefined
+     * config file path
      */
-    node_moduleDir?: string;
-    // pre process
+    configFilePath?: string;
+    /**
+     * For debugging
+     * custom node_modules directory path
+     * Default: undefined = node_modules
+     */
+    node_modulesDir?: string;
+    /**
+     * For debugging or hack
+     * @unstable
+     * @param packages
+     */
     preLoadingPackage?: (
         packages: TextlintLoadPackagesFromRawConfigOptions
     ) => TextlintLoadPackagesFromRawConfigOptions;
@@ -167,7 +174,7 @@ export const loadConfig = async (options: TextlintConfigLoaderOptions): Promise<
     }
     const packageOptions = {
         rawConfig: rawResult.rawConfig,
-        node_moduleDir: options.node_moduleDir,
+        node_moduleDir: options.node_modulesDir,
         testReplaceDefinitions: options.testReplaceDefinitions
     };
     const result = await loadPackagesFromRawConfig(

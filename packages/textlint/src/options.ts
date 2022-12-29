@@ -27,6 +27,8 @@ export type CliOptions = {
     textlintrc: boolean;
     cache: boolean;
     cacheLocation: string;
+    // custom node_module directory
+    // textlint load modules(rules/presets/plugins) from the base directory.
     rulesBaseDirectory?: string;
     ignorePath: string;
     // for command

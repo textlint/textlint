@@ -23,10 +23,10 @@ export interface TextlintKernelDescriptorArgs {
 }
 
 export class TextlintKernelDescriptor {
-    rule: TextlintRuleDescriptors;
-    filterRule: TextlintFilterRuleDescriptors;
-    plugin: TextlintPluginDescriptors;
-    configBaseDir?: string;
+    readonly rule: TextlintRuleDescriptors;
+    readonly filterRule: TextlintFilterRuleDescriptors;
+    readonly plugin: TextlintPluginDescriptors;
+    readonly configBaseDir?: string;
 
     constructor(private args: TextlintKernelDescriptorArgs) {
         this.rule = createTextlintRuleDescriptors(args.rules);
