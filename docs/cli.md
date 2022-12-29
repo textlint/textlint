@@ -68,6 +68,20 @@ $ textlint [options] file.md [file|dir|glob*]
 
 ```
 
+## Pipe to textlint
+
+textlint supports piping from other commands.
+
+```sh
+$ cat README.md | textlint --stdin --stdin-filename "README.md"
+```
+
+Note: 
+
+- `--stdin-filename` is required when using `--stdin` for recognizing the file type.
+- `--fix` is not supported when using `--stdin`
+    - Issue: <https://github.com/textlint/textlint/issues/967>
+
 ## Cache
 
 textlint supports caching for performance.
