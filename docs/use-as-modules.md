@@ -180,6 +180,16 @@ const result = await linter.lintText("TODO: fix me");
 console.log(result);
 ```
 
+Get lintable file extensions.
+`textlintrcDescriptor.availableExtensions` provide list of supported file extensions.
+
+```ts
+import { createLinter, loadTextlintrc } from "textlint";
+const textlintrcDescriptor = await loadTextlintrc();
+const availableExtensions = textlintrcDescriptor.availableExtensions;
+console.log(availableExtensions); // => [".md", ".txt"]
+```
+
 ## Testing
 
 You can use [textlint-tester](https://www.npmjs.com/package/textlint-tester) for testing your custom rule.
