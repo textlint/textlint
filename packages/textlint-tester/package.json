@@ -1,60 +1,60 @@
 {
-  "name": "textlint-tester",
-  "version": "12.2.4",
-  "description": "testing tool for textlint rule.",
-  "keywords": [
-    "test",
-    "testing",
-    "textlint"
-  ],
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-tester/",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "main": "lib/src/index.js",
-  "types": "lib/src/index.d.ts",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textlint/textlint.git"
-  },
-  "scripts": {
-    "build": "tsc -b",
-    "clean": "rimraf lib/ out/",
-    "prepack": "npm run --if-present build",
-    "test": "mocha \"test/**/*-test.{js,ts}\"",
-    "watch": "tsc -b --watch"
-  },
-  "dependencies": {
-    "@textlint/feature-flag": "^12.2.3",
-    "@textlint/kernel": "^12.2.3",
-    "textlint": "^12.2.4"
-  },
-  "devDependencies": {
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.17",
-    "analyze-desumasu-dearu": "^4.0.1",
-    "cross-env": "^7.0.3",
-    "match-index": "^1.0.3",
-    "mocha": "^10.2.0",
-    "rimraf": "^3.0.2",
-    "textlint-plugin-html": "^0.3.0",
-    "textlint-rule-helper": "^2.2.3",
-    "textlint-rule-max-number-of-lines": "^1.0.3",
-    "ts-node": "^10.9.1",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.9.4"
-  },
-  "email": "azuciao@gmail.com"
+    "name": "textlint-tester",
+    "version": "12.3.0",
+    "description": "testing tool for textlint rule.",
+    "keywords": [
+        "test",
+        "testing",
+        "textlint"
+    ],
+    "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-tester/",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "main": "lib/src/index.js",
+    "types": "lib/src/index.d.ts",
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/textlint/textlint.git"
+    },
+    "scripts": {
+        "build": "tsc -b",
+        "clean": "rimraf lib/ out/",
+        "prepack": "npm run --if-present build",
+        "test": "mocha \"test/**/*-test.{js,ts}\"",
+        "watch": "tsc -b --watch"
+    },
+    "dependencies": {
+        "@textlint/feature-flag": "^12.3.0",
+        "@textlint/kernel": "^12.3.0",
+        "textlint": "^12.3.0"
+    },
+    "devDependencies": {
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.11.17",
+        "analyze-desumasu-dearu": "^4.0.1",
+        "cross-env": "^7.0.3",
+        "match-index": "^1.0.3",
+        "mocha": "^10.2.0",
+        "rimraf": "^3.0.2",
+        "textlint-plugin-html": "^0.3.0",
+        "textlint-rule-helper": "^2.2.3",
+        "textlint-rule-max-number-of-lines": "^1.0.3",
+        "ts-node": "^10.9.1",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "~4.9.4"
+    },
+    "email": "azuciao@gmail.com"
 }

@@ -1,43 +1,43 @@
 {
-  "name": "textlint-website",
-  "version": "12.2.4",
-  "private": true,
-  "homepage": "https://github.com/textlint/textlint/",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "scripts": {
-    "build": "docusaurus-build",
-    "examples": "docusaurus-examples",
-    "publish-gh-pages": "docusaurus-publish",
-    "rename-version": "docusaurus-rename-version",
-    "start": "docusaurus-start",
-    "test": "npm-run-all textlint",
-    "textlint": "textlint --cache -c .textlintrc ../docs/ ../.github/ ../README.md -f pretty-error",
-    "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md",
-    "docusaurus-version": "docusaurus-version",
-    "write-translations": "docusaurus-write-translations"
-  },
-  "devDependencies": {
-    "conventional-changelog-angular-all": "^1.7.0",
-    "docusaurus": "^1.14.7",
-    "npm-run-all": "^4.1.5",
-    "textlint": "^12.2.4",
-    "textlint-filter-rule-comments": "^1.2.2",
-    "textlint-rule-eslint": "^4.0.0",
-    "textlint-rule-prh": "^5.3.0",
-    "textlint-rule-rousseau": "^1.4.8",
-    "textlint-rule-unexpanded-acronym": "^1.2.4"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ]
+    "name": "textlint-website",
+    "version": "12.3.0",
+    "private": true,
+    "homepage": "https://github.com/textlint/textlint/",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/textlint/textlint.git"
+    },
+    "scripts": {
+        "build": "docusaurus-build",
+        "examples": "docusaurus-examples",
+        "publish-gh-pages": "docusaurus-publish",
+        "rename-version": "docusaurus-rename-version",
+        "start": "docusaurus-start",
+        "test": "npm-run-all textlint",
+        "textlint": "textlint --cache -c .textlintrc ../docs/ ../.github/ ../README.md -f pretty-error",
+        "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md",
+        "docusaurus-version": "docusaurus-version",
+        "write-translations": "docusaurus-write-translations"
+    },
+    "devDependencies": {
+        "conventional-changelog-angular-all": "^1.7.0",
+        "docusaurus": "^1.14.7",
+        "npm-run-all": "^4.1.5",
+        "textlint": "^12.3.0",
+        "textlint-filter-rule-comments": "^1.2.2",
+        "textlint-rule-eslint": "^4.0.0",
+        "textlint-rule-prh": "^5.3.0",
+        "textlint-rule-rousseau": "^1.4.8",
+        "textlint-rule-unexpanded-acronym": "^1.2.4"
+    },
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ]
 }

@@ -1,41 +1,41 @@
 {
-  "name": "gulp-textlint",
-  "version": "12.2.4",
-  "description": "gulp plugin for textlint",
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "license": "MIT",
-  "author": "nakajmg",
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "scripts": {
-    "test": "mocha \"test/**/*.{js,ts}\""
-  },
-  "dependencies": {
-    "fancy-log": "^1.3.3",
-    "plugin-error": "^1.0.1",
-    "textlint": "^12.2.4",
-    "through2": "^2.0.5"
-  },
-  "devDependencies": {
-    "eslint": "^8.9.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "gulp": "^4.0.2",
-    "mocha": "^9.2.2",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.3.0",
-    "textlint-rule-prh": "^5.3.0"
-  }
+    "name": "gulp-textlint",
+    "version": "12.3.0",
+    "description": "gulp plugin for textlint",
+    "homepage": "https://github.com/textlint/textlint/tree/master/packages/gulp-textlint",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "license": "MIT",
+    "author": "nakajmg",
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/textlint/textlint.git"
+    },
+    "scripts": {
+        "test": "mocha \"test/**/*.{js,ts}\""
+    },
+    "dependencies": {
+        "fancy-log": "^1.3.3",
+        "plugin-error": "^1.0.1",
+        "textlint": "^12.3.0",
+        "through2": "^2.0.5"
+    },
+    "devDependencies": {
+        "eslint": "^8.9.0",
+        "eslint-plugin-prettier": "^3.4.1",
+        "gulp": "^4.0.2",
+        "mocha": "^9.2.2",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.3.0",
+        "textlint-rule-prh": "^5.3.0"
+    }
 }

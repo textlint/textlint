@@ -1,35 +1,35 @@
 {
-  "name": "textlint-example-use-as-ts-module",
-  "version": "12.2.4",
-  "private": true,
-  "license": "MIT",
-  "author": "0x6b",
-  "main": "lib/src/index.js",
-  "scripts": {
-    "prebuild": "npm-run-all clean",
-    "build": "tsc -b",
-    "clean": "rimraf lib/ module/",
-    "pretest": "npm-run-all build",
-    "test": "node lib/src/index.js fixtures/success.md",
-    "test:ci": "npm test"
-  },
-  "dependencies": {
-    "textlint": "^12.2.4",
-    "textlint-rule-no-exclamation-question-mark": "^1.0.2",
-    "textlint-rule-no-todo": "^2.0.1"
-  },
-  "devDependencies": {
-    "@types/node": "^18.7.16",
-    "cross-env": "^7.0.2",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "typescript": "~4.9.4"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ]
+    "name": "textlint-example-use-as-ts-module",
+    "version": "12.3.0",
+    "private": true,
+    "license": "MIT",
+    "author": "0x6b",
+    "main": "lib/src/index.js",
+    "scripts": {
+        "prebuild": "npm-run-all clean",
+        "build": "tsc -b",
+        "clean": "rimraf lib/ module/",
+        "pretest": "npm-run-all build",
+        "test": "node lib/src/index.js fixtures/success.md",
+        "test:ci": "npm test"
+    },
+    "dependencies": {
+        "textlint": "^12.3.0",
+        "textlint-rule-no-exclamation-question-mark": "^1.0.2",
+        "textlint-rule-no-todo": "^2.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^18.7.16",
+        "cross-env": "^7.0.2",
+        "npm-run-all": "^4.1.5",
+        "rimraf": "^3.0.2",
+        "typescript": "~4.9.4"
+    },
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ]
 }

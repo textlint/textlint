@@ -1,64 +1,64 @@
 {
-  "name": "@textlint/fixer-formatter",
-  "version": "12.2.3",
-  "description": "textlint output formatter for fixer",
-  "keywords": [
-    "AST",
-    "lint",
-    "linting",
-    "markdown",
-    "plugable",
-    "text",
-    "textlint"
-  ],
-  "homepage": "https://github.com/textlint/textlint#readme",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textlint/textlint.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "main": "lib/src/index.js",
-  "types": "lib/src/index.d.ts",
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
-    "prepack": "npm run build",
-    "test": "mocha \"test/**/*-test.{js,ts}\""
-  },
-  "dependencies": {
-    "@textlint/module-interop": "^12.2.3",
-    "@textlint/types": "^12.2.3",
-    "chalk": "^4.1.2",
-    "debug": "^4.3.4",
-    "diff": "^4.0.2",
-    "is-file": "^1.0.0",
-    "string-width": "^4.2.3",
-    "strip-ansi": "^6.0.1",
-    "text-table": "^0.2.0",
-    "try-resolve": "^1.0.1"
-  },
-  "devDependencies": {
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.17",
-    "cross-env": "^7.0.3",
-    "mocha": "^10.2.0",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.9.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@textlint/fixer-formatter",
+    "version": "12.3.0",
+    "description": "textlint output formatter for fixer",
+    "keywords": [
+        "AST",
+        "lint",
+        "linting",
+        "markdown",
+        "plugable",
+        "text",
+        "textlint"
+    ],
+    "homepage": "https://github.com/textlint/textlint#readme",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/textlint/textlint.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "main": "lib/src/index.js",
+    "types": "lib/src/index.d.ts",
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "scripts": {
+        "build": "tsc -b && tsc -b tsconfig.module.json",
+        "clean": "rimraf lib/ module/",
+        "prepack": "npm run build",
+        "test": "mocha \"test/**/*-test.{js,ts}\""
+    },
+    "dependencies": {
+        "@textlint/module-interop": "^12.3.0",
+        "@textlint/types": "^12.3.0",
+        "chalk": "^4.1.2",
+        "debug": "^4.3.4",
+        "diff": "^4.0.2",
+        "is-file": "^1.0.0",
+        "string-width": "^4.2.3",
+        "strip-ansi": "^6.0.1",
+        "text-table": "^0.2.0",
+        "try-resolve": "^1.0.1"
+    },
+    "devDependencies": {
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.11.17",
+        "cross-env": "^7.0.3",
+        "mocha": "^10.2.0",
+        "rimraf": "^3.0.2",
+        "ts-node": "^10.9.1",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "~4.9.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

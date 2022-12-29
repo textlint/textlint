@@ -1,110 +1,110 @@
 {
-  "name": "textlint",
-  "version": "12.2.4",
-  "description": "The pluggable linting tool for text and markdown.",
-  "keywords": [
-    "AST",
-    "lint",
-    "linting",
-    "markdown",
-    "pluggable",
-    "text",
-    "textlint",
-    "nlp"
-  ],
-  "homepage": "https://github.com/textlint/textlint/",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "main": "lib/src/index.js",
-  "types": "lib/src/index.d.ts",
-  "bin": {
-    "textlint": "./bin/textlint.js",
-    "textlint-esm": "./bin/textlint-esm.js"
-  },
-  "directories": {
-    "test": "test/"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
-    "prepack": "npm run build",
-    "test": "npm-run-all test:unit",
-    "test:unit": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "tsc -b --watch"
-  },
-  "dependencies": {
-    "@textlint/config-loader": "^12.2.2",
-    "@textlint/ast-node-types": "^12.2.2",
-    "@textlint/ast-traverse": "^12.2.3",
-    "@textlint/feature-flag": "^12.2.3",
-    "@textlint/fixer-formatter": "^12.2.3",
-    "@textlint/kernel": "^12.2.3",
-    "@textlint/linter-formatter": "^12.2.4",
-    "@textlint/module-interop": "^12.2.3",
-    "@textlint/textlint-plugin-markdown": "^12.2.3",
-    "@textlint/textlint-plugin-text": "^12.2.3",
-    "@textlint/types": "^12.2.3",
-    "@textlint/utils": "^12.2.3",
-    "debug": "^4.3.4",
-    "deep-equal": "^1.1.1",
-    "file-entry-cache": "^5.0.1",
-    "get-stdin": "^5.0.1",
-    "glob": "^7.2.3",
-    "is-file": "^1.0.0",
-    "md5": "^2.3.0",
-    "mkdirp": "^0.5.6",
-    "optionator": "^0.9.1",
-    "path-to-glob-pattern": "^1.0.2",
-    "rc-config-loader": "^3.0.0",
-    "read-pkg": "^1.1.0",
-    "read-pkg-up": "^3.0.0",
-    "structured-source": "^3.0.2",
-    "try-resolve": "^1.0.1",
-    "unique-concat": "^0.2.2"
-  },
-  "devDependencies": {
-    "@types/clone": "^2.1.1",
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.17",
-    "@types/shelljs": "^0.8.11",
-    "@types/read-pkg-up": "^3.0.0",
-    "clone": "^2.1.2",
-    "cpx": "^1.5.0",
-    "cross-env": "^7.0.3",
-    "mocha": "^10.2.0",
-    "npm-run-all": "^4.1.5",
-    "power-assert": "^1.6.1",
-    "rimraf": "^3.0.2",
-    "shelljs": "^0.8.5",
-    "source-map-support": "^0.5.21",
-    "textlint-plugin-html": "^0.3.0",
-    "textlint-rule-helper": "^2.2.3",
-    "textlint-rule-no-todo": "^2.0.1",
-    "textlint-rule-preset-ja-spacing": "^2.2.0",
-    "textlint-rule-preset-jtf-style": "^2.3.13",
-    "ts-node": "^10.9.1",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.9.4"
-  },
-  "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "textlint",
+    "version": "12.3.0",
+    "description": "The pluggable linting tool for text and markdown.",
+    "keywords": [
+        "AST",
+        "lint",
+        "linting",
+        "markdown",
+        "pluggable",
+        "text",
+        "textlint",
+        "nlp"
+    ],
+    "homepage": "https://github.com/textlint/textlint/",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/textlint/textlint.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "main": "lib/src/index.js",
+    "types": "lib/src/index.d.ts",
+    "bin": {
+        "textlint": "./bin/textlint.js",
+        "textlint-esm": "./bin/textlint-esm.js"
+    },
+    "directories": {
+        "test": "test/"
+    },
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "scripts": {
+        "build": "tsc -b && tsc -b tsconfig.module.json",
+        "clean": "rimraf lib/ module/",
+        "prepack": "npm run build",
+        "test": "npm-run-all test:unit",
+        "test:unit": "mocha \"test/**/*.{js,ts}\"",
+        "watch": "tsc -b --watch"
+    },
+    "dependencies": {
+        "@textlint/ast-node-types": "^12.3.0",
+        "@textlint/ast-traverse": "^12.3.0",
+        "@textlint/config-loader": "^12.3.0",
+        "@textlint/feature-flag": "^12.3.0",
+        "@textlint/fixer-formatter": "^12.3.0",
+        "@textlint/kernel": "^12.3.0",
+        "@textlint/linter-formatter": "^12.3.0",
+        "@textlint/module-interop": "^12.3.0",
+        "@textlint/textlint-plugin-markdown": "^12.3.0",
+        "@textlint/textlint-plugin-text": "^12.3.0",
+        "@textlint/types": "^12.3.0",
+        "@textlint/utils": "^12.3.0",
+        "debug": "^4.3.4",
+        "deep-equal": "^1.1.1",
+        "file-entry-cache": "^5.0.1",
+        "get-stdin": "^5.0.1",
+        "glob": "^7.2.3",
+        "is-file": "^1.0.0",
+        "md5": "^2.3.0",
+        "mkdirp": "^0.5.6",
+        "optionator": "^0.9.1",
+        "path-to-glob-pattern": "^1.0.2",
+        "rc-config-loader": "^3.0.0",
+        "read-pkg": "^1.1.0",
+        "read-pkg-up": "^3.0.0",
+        "structured-source": "^3.0.2",
+        "try-resolve": "^1.0.1",
+        "unique-concat": "^0.2.2"
+    },
+    "devDependencies": {
+        "@types/clone": "^2.1.1",
+        "@types/glob": "^8.0.0",
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.11.17",
+        "@types/read-pkg-up": "^3.0.0",
+        "@types/shelljs": "^0.8.11",
+        "clone": "^2.1.2",
+        "cpx": "^1.5.0",
+        "cross-env": "^7.0.3",
+        "mocha": "^10.2.0",
+        "npm-run-all": "^4.1.5",
+        "power-assert": "^1.6.1",
+        "rimraf": "^3.0.2",
+        "shelljs": "^0.8.5",
+        "source-map-support": "^0.5.21",
+        "textlint-plugin-html": "^0.3.0",
+        "textlint-rule-helper": "^2.2.3",
+        "textlint-rule-no-todo": "^2.0.1",
+        "textlint-rule-preset-ja-spacing": "^2.2.0",
+        "textlint-rule-preset-jtf-style": "^2.3.13",
+        "ts-node": "^10.9.1",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "~4.9.4"
+    },
+    "engines": {
+        "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

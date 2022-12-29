@@ -1,60 +1,60 @@
 {
-  "name": "@textlint/ast-tester",
-  "version": "12.2.3",
-  "description": "Compliance tests for textlint's AST(Abstract Syntax Tree).",
-  "keywords": [
-    "ast",
-    "suite",
-    "test",
-    "testing",
-    "textlint"
-  ],
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textlint/textlint.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "main": "lib/src/index.js",
-  "module": "./module/src/index.js",
-  "types": "lib/src/index.d.ts",
-  "directories": {
-    "test": "test"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
-    "prepack": "npm run --if-present build",
-    "test": "mocha \"test/**/*.{js,ts}\"",
-    "watch": "tsc -b --watch"
-  },
-  "dependencies": {
-    "@textlint/ast-node-types": "^12.2.2",
-    "debug": "^4.3.4"
-  },
-  "devDependencies": {
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.17",
-    "cross-env": "^7.0.3",
-    "mocha": "^10.2.0",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.9.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "email": "azuciao@gmail.com"
+    "name": "@textlint/ast-tester",
+    "version": "12.3.0",
+    "description": "Compliance tests for textlint's AST(Abstract Syntax Tree).",
+    "keywords": [
+        "ast",
+        "suite",
+        "test",
+        "testing",
+        "textlint"
+    ],
+    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-tester",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/textlint/textlint.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "main": "lib/src/index.js",
+    "module": "./module/src/index.js",
+    "types": "lib/src/index.d.ts",
+    "directories": {
+        "test": "test"
+    },
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "scripts": {
+        "build": "tsc -b && tsc -b tsconfig.module.json",
+        "clean": "rimraf lib/ module/",
+        "prepack": "npm run --if-present build",
+        "test": "mocha \"test/**/*.{js,ts}\"",
+        "watch": "tsc -b --watch"
+    },
+    "dependencies": {
+        "@textlint/ast-node-types": "^12.3.0",
+        "debug": "^4.3.4"
+    },
+    "devDependencies": {
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.11.17",
+        "cross-env": "^7.0.3",
+        "mocha": "^10.2.0",
+        "rimraf": "^3.0.2",
+        "ts-node": "^10.9.1",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "~4.9.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "email": "azuciao@gmail.com"
 }

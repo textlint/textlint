@@ -1,43 +1,43 @@
 {
-  "name": "integration-test",
-  "version": "12.2.4",
-  "private": true,
-  "description": "textlint testbot sandbox.",
-  "keywords": [
-    "textlint"
-  ],
-  "homepage": "https://github.com/textlint/textlint",
-  "bugs": {
-    "url": "https://github.com/textlint/testbot/issues"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "main": "./run_test.js",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "scripts": {
-    "test": "node test.js"
-  },
-  "dependencies": {
-    "semver": "^5.3.0"
-  },
-  "devDependencies": {
-    "json5": "^2.1.1",
-    "shelljs": "^0.8.3",
-    "textlint": "^12.2.4",
-    "textlintrc-to-pacakge-list": "^1.2.0"
-  },
-  "email": "azuciao@gmail.com"
+    "name": "integration-test",
+    "version": "12.3.0",
+    "private": true,
+    "description": "textlint testbot sandbox.",
+    "keywords": [
+        "textlint"
+    ],
+    "homepage": "https://github.com/textlint/textlint",
+    "bugs": {
+        "url": "https://github.com/textlint/testbot/issues"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "main": "./run_test.js",
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/textlint/textlint.git"
+    },
+    "scripts": {
+        "test": "node test.js"
+    },
+    "dependencies": {
+        "semver": "^5.3.0"
+    },
+    "devDependencies": {
+        "json5": "^2.1.1",
+        "shelljs": "^0.8.3",
+        "textlint": "^12.3.0",
+        "textlintrc-to-pacakge-list": "^1.2.0"
+    },
+    "email": "azuciao@gmail.com"
 }

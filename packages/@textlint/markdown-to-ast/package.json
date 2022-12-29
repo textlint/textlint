@@ -1,66 +1,66 @@
 {
-  "name": "@textlint/markdown-to-ast",
-  "version": "12.2.3",
-  "description": "Parse Markdown to AST with location info.",
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "main": "lib/src/index.js",
-  "module": "module/src/index.js",
-  "types": "lib/src/index.d.ts",
-  "directories": {
-    "test": "test/"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
-    "example:build": "browserify example/js/index.js -o example/app/app.js",
-    "prepack": "npm run --if-present build",
-    "test": "mocha \"test/**/*.ts\"",
-    "updateSnapshot": "npm run build && node tools/update-fixtures.js",
-    "watch": "tsc -b --watch"
-  },
-  "dependencies": {
-    "@textlint/ast-node-types": "^12.2.2",
-    "debug": "^4.3.4",
-    "mdast-util-gfm-autolink-literal": "^0.1.3",
-    "remark-footnotes": "^3.0.0",
-    "remark-frontmatter": "^3.0.0",
-    "remark-gfm": "^1.0.0",
-    "remark-parse": "^9.0.0",
-    "traverse": "^0.6.7",
-    "unified": "^9.2.2"
-  },
-  "devDependencies": {
-    "@textlint/ast-tester": "^12.2.3",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.17",
-    "@types/traverse": "^0.6.32",
-    "browserify": "^16.5.2",
-    "cross-env": "^7.0.3",
-    "mkdirp": "^1.0.4",
-    "mocha": "^10.2.0",
-    "power-assert": "^1.6.1",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.9.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@textlint/markdown-to-ast",
+    "version": "12.3.0",
+    "description": "Parse Markdown to AST with location info.",
+    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast/",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/textlint/textlint.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "main": "lib/src/index.js",
+    "module": "module/src/index.js",
+    "types": "lib/src/index.d.ts",
+    "directories": {
+        "test": "test/"
+    },
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "scripts": {
+        "build": "tsc -b && tsc -b tsconfig.module.json",
+        "clean": "rimraf lib/ module/",
+        "example:build": "browserify example/js/index.js -o example/app/app.js",
+        "prepack": "npm run --if-present build",
+        "test": "mocha \"test/**/*.ts\"",
+        "updateSnapshot": "npm run build && node tools/update-fixtures.js",
+        "watch": "tsc -b --watch"
+    },
+    "dependencies": {
+        "@textlint/ast-node-types": "^12.3.0",
+        "debug": "^4.3.4",
+        "mdast-util-gfm-autolink-literal": "^0.1.3",
+        "remark-footnotes": "^3.0.0",
+        "remark-frontmatter": "^3.0.0",
+        "remark-gfm": "^1.0.0",
+        "remark-parse": "^9.0.0",
+        "traverse": "^0.6.7",
+        "unified": "^9.2.2"
+    },
+    "devDependencies": {
+        "@textlint/ast-tester": "^12.3.0",
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.11.17",
+        "@types/traverse": "^0.6.32",
+        "browserify": "^16.5.2",
+        "cross-env": "^7.0.3",
+        "mkdirp": "^1.0.4",
+        "mocha": "^10.2.0",
+        "power-assert": "^1.6.1",
+        "rimraf": "^3.0.2",
+        "ts-node": "^10.9.1",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "~4.9.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

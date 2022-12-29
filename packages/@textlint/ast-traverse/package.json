@@ -1,56 +1,56 @@
 {
-  "name": "@textlint/ast-traverse",
-  "version": "12.2.3",
-  "description": "TxtNode traverse library",
-  "keywords": [
-    "AST",
-    "traverse"
-  ],
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-traverse",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "main": "./lib/src/index.js",
-  "module": "./module/src/index.js",
-  "types": "./lib/src/index.d.ts",
-  "directories": {
-    "test": "test/"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
-    "prepack": "npm run --if-present build",
-    "test": "mocha \"test/**/*.ts\"",
-    "watch": "tsc -b --watch"
-  },
-  "dependencies": {
-    "@textlint/ast-node-types": "^12.2.2"
-  },
-  "devDependencies": {
-    "@textlint/markdown-to-ast": "^12.2.3",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.17",
-    "cross-env": "^7.0.3",
-    "mocha": "^10.2.0",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.9.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+    "name": "@textlint/ast-traverse",
+    "version": "12.3.0",
+    "description": "TxtNode traverse library",
+    "keywords": [
+        "AST",
+        "traverse"
+    ],
+    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/ast-traverse",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/textlint/textlint.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "main": "./lib/src/index.js",
+    "module": "./module/src/index.js",
+    "types": "./lib/src/index.d.ts",
+    "directories": {
+        "test": "test/"
+    },
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "scripts": {
+        "build": "tsc -b && tsc -b tsconfig.module.json",
+        "clean": "rimraf lib/ module/",
+        "prepack": "npm run --if-present build",
+        "test": "mocha \"test/**/*.ts\"",
+        "watch": "tsc -b --watch"
+    },
+    "dependencies": {
+        "@textlint/ast-node-types": "^12.3.0"
+    },
+    "devDependencies": {
+        "@textlint/markdown-to-ast": "^12.3.0",
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.11.17",
+        "cross-env": "^7.0.3",
+        "mocha": "^10.2.0",
+        "rimraf": "^3.0.2",
+        "ts-node": "^10.9.1",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "~4.9.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
 }

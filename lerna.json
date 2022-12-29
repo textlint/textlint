@@ -1,17 +1,8 @@
 {
-  "version": "12.2.4",
-  "npmClient": "yarn",
-  "useWorkspaces": true,
-  "packages": [
-    "packages/*",
-    "examples/*",
-    "packages/@textlint/*",
-    "test/integration-test",
-    "website"
-  ],
-  "includeMergedTags": true,
-  "ignoreChanges": [
-    "**/test/**",
-    "**/*.md"
-  ]
+    "version": "12.3.0",
+    "npmClient": "yarn",
+    "useWorkspaces": true,
+    "packages": ["packages/*", "examples/*", "packages/@textlint/*", "test/integration-test", "website"],
+    "includeMergedTags": true,
+    "ignoreChanges": ["**/test/**", "**/*.md"]
 }

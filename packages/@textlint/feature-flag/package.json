@@ -1,48 +1,48 @@
 {
-  "name": "@textlint/feature-flag",
-  "version": "12.2.3",
-  "description": "textlint internal feature flag manager.",
-  "keywords": [
-    "textlint"
-  ],
-  "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/feature-flag/",
-  "bugs": {
-    "url": "https://github.com/textlint/textlint/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/textlint/textlint.git"
-  },
-  "license": "MIT",
-  "author": "azu",
-  "main": "./lib/src/index.js",
-  "types": "./lib/src/index.d.ts",
-  "module": "./module/src/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "module/",
-    "src/",
-    "!*.tsbuildinfo"
-  ],
-  "scripts": {
-    "build": "tsc -b && tsc -b tsconfig.module.json",
-    "clean": "rimraf lib/ module/",
-    "prepack": "npm run --if-present build",
-    "test": "mocha \"test/**/*.ts\"",
-    "watch": "tsc -b --watch"
-  },
-  "devDependencies": {
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.11.17",
-    "cross-env": "^7.0.3",
-    "mocha": "^10.2.0",
-    "rimraf": "^3.0.2",
-    "ts-node": "^10.9.1",
-    "ts-node-test-register": "^10.0.0",
-    "typescript": "~4.9.4"
-  }
+    "name": "@textlint/feature-flag",
+    "version": "12.3.0",
+    "description": "textlint internal feature flag manager.",
+    "keywords": [
+        "textlint"
+    ],
+    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/feature-flag/",
+    "bugs": {
+        "url": "https://github.com/textlint/textlint/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/textlint/textlint.git"
+    },
+    "license": "MIT",
+    "author": "azu",
+    "main": "./lib/src/index.js",
+    "types": "./lib/src/index.d.ts",
+    "module": "./module/src/index.js",
+    "directories": {
+        "test": "test"
+    },
+    "files": [
+        "bin/",
+        "lib/",
+        "module/",
+        "src/",
+        "!*.tsbuildinfo"
+    ],
+    "scripts": {
+        "build": "tsc -b && tsc -b tsconfig.module.json",
+        "clean": "rimraf lib/ module/",
+        "prepack": "npm run --if-present build",
+        "test": "mocha \"test/**/*.ts\"",
+        "watch": "tsc -b --watch"
+    },
+    "devDependencies": {
+        "@types/mocha": "^9.1.1",
+        "@types/node": "^18.11.17",
+        "cross-env": "^7.0.3",
+        "mocha": "^10.2.0",
+        "rimraf": "^3.0.2",
+        "ts-node": "^10.9.1",
+        "ts-node-test-register": "^10.0.0",
+        "typescript": "~4.9.4"
+    }
 }
