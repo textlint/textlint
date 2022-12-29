@@ -2,6 +2,7 @@
   "docs": {
     "User Manual": [
       "getting-started",
+      "cli",
       "configuring",
       "ignore",
       "integrations"
