@@ -15,7 +15,7 @@ export const loadTextlintrc = async ({ configFilePath, rulesBaseDirectory }: Loa
         configFilePath,
         node_moduleDir: rulesBaseDirectory
     });
-    // Built-in plugins should be loaded from same directory with textlint package
+    // Built-in plugins should be loaded from same directory with firetextlint package
     const builtInPlugins: TextlintKernelPlugin[] = [
         {
             pluginId: "@textlint/textlint-plugin-text",

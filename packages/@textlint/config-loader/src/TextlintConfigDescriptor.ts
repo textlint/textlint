@@ -1,5 +1,6 @@
 // Probably same with TextlintKernelOptions
-import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "@textlint/kernel";
+// TODO: @textlint/config-loader should be independent from @textlint/kernel
+import type { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "@textlint/kernel";
 import { TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
 
 export type TextlintConfigPlugin = TextlintKernelPlugin & { filePath: string; moduleName: string };

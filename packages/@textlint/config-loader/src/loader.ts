@@ -4,7 +4,12 @@ import { TextlintRcConfig } from "./TextlintRcConfig";
 import { moduleInterop } from "@textlint/module-interop";
 import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
 import { loadPreset } from "./preset-loader";
+import { TextlintPluginCreator } from "@textlint/types";
+import { isTextlintFilterRuleReporter, isTextlintRuleModule } from "./is";
 
+const isPluginCreator = (mod: any): mod is TextlintPluginCreator => {
+    return typeof mod === "object" && Object.prototype.hasOwnProperty.call(mod, "Processor");
+};
 export const loadPlugins = async ({
     pluginsObject,
     moduleResolver,
@@ -25,44 +30,74 @@ export const loadPlugins = async ({
     const pluginErrors: Error[] = [];
     if (Array.isArray(pluginsObject)) {
         // { plugins: ["a", "b"] }
-        pluginsObject.forEach((pluginId) => {
-            const resolvedModule = moduleResolver.resolvePluginPackageName(pluginId);
-            const plugin = moduleInterop(require(resolvedModule.filePath));
-            plugins.push({
-                pluginId,
-                plugin,
-                filePath: resolvedModule.filePath,
-                moduleName: resolvedModule.moduleName
-            });
-        });
+        await Promise.all(
+            pluginsObject.map(async (pluginId) => {
+                const resolvedModule = moduleResolver.resolvePluginPackageName(pluginId);
+                const mod = await import(resolvedModule.filePath);
+                const plugin = moduleInterop(mod.default);
+                if (!isPluginCreator(plugin)) {
+                    pluginErrors.push(
+                        new Error(`Plugin should be object that has "Processor" property. But "${pluginId}" is not.
+
+Please check "${pluginId}" is valid plugin.
+FilePath: ${resolvedModule.filePath}
+
+For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
+`)
+                    );
+                }
+                plugins.push({
+                    pluginId,
+                    plugin,
+                    filePath: resolvedModule.filePath,
+                    moduleName: resolvedModule.moduleName
+                });
+            })
+        );
     } else {
         // { plugins: { "a": true, "b": options } }
-        Object.entries(pluginsObject).forEach(([pluginId, pluginOptions]) => {
-            try {
-                // Test Replace logic
-                const replacedDefinition =
-                    testReplaceDefinitions &&
-                    testReplaceDefinitions.find((definition) => {
-                        return definition.pluginId === pluginId;
-                    });
-                if (replacedDefinition) {
-                    // for debug
-                    plugins.push(replacedDefinition);
-                } else {
-                    const resolvedPlugin = moduleResolver.resolvePluginPackageName(pluginId);
-                    const pluginModule = moduleInterop(require(resolvedPlugin.filePath));
-                    plugins.push({
-                        pluginId,
-                        plugin: pluginModule,
-                        options: pluginOptions,
-                        filePath: resolvedPlugin.filePath,
-                        moduleName: resolvedPlugin.moduleName
-                    });
+        await Promise.all(
+            Object.entries(pluginsObject).map(async ([pluginId, pluginOptions]) => {
+                try {
+                    // Test Replace logic
+                    const replacedDefinition =
+                        testReplaceDefinitions &&
+                        testReplaceDefinitions.find((definition) => {
+                            return definition.pluginId === pluginId;
+                        });
+                    if (replacedDefinition) {
+                        // for debug
+                        plugins.push(replacedDefinition);
+                    } else {
+                        const resolvedPlugin = moduleResolver.resolvePluginPackageName(pluginId);
+                        const mod = await import(resolvedPlugin.filePath);
+                        const plugin = moduleInterop(mod.default);
+                        if (!isPluginCreator(plugin)) {
+                            pluginErrors.push(
+                                new Error(`Plugin should be object that has "Processor" property. But "${pluginId}" is not.
+
+Please check "${pluginId}" is valid plugin.
+FilePath: ${resolvedPlugin.filePath}
+
+For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
+`)
+                            );
+                            return;
+                        }
+
+                        plugins.push({
+                            pluginId,
+                            plugin,
+                            options: pluginOptions,
+                            filePath: resolvedPlugin.filePath,
+                            moduleName: resolvedPlugin.moduleName
+                        });
+                    }
+                } catch (error) {
+                    pluginErrors.push(error as Error);
                 }
-            } catch (error) {
-                pluginErrors.push(error as Error);
-            }
-        });
+            })
+        );
     }
     return {
         plugins,
@@ -93,33 +128,42 @@ export const loadFilterRules = async ({
     // rules
     const rules: TextlintConfigDescriptor["filterRules"] = [];
     const ruleErrors: Error[] = [];
-    Object.entries(rulesObject).forEach(([ruleId, ruleOptions]) => {
-        try {
-            // Test Replace logic
-            const replacedDefinition =
-                testReplaceDefinitions &&
-                testReplaceDefinitions.find((definition) => {
-                    return definition.ruleId === ruleId;
-                });
-            if (replacedDefinition) {
-                // for debug
-                rules.push(replacedDefinition);
-            } else {
-                const resolvePackage = moduleResolver.resolveFilterRulePackageName(ruleId);
-                const ruleModule = moduleInterop(require(resolvePackage.filePath));
-                // rule
-                rules.push({
-                    ruleId,
-                    rule: ruleModule,
-                    options: ruleOptions,
-                    filePath: resolvePackage.filePath,
-                    moduleName: resolvePackage.moduleName
-                });
+    await Promise.all(
+        Object.entries(rulesObject).map(async ([ruleId, ruleOptions]) => {
+            try {
+                // Test Replace logic
+                const replacedDefinition =
+                    testReplaceDefinitions &&
+                    testReplaceDefinitions.find((definition) => {
+                        return definition.ruleId === ruleId;
+                    });
+                if (replacedDefinition) {
+                    // for debug
+                    rules.push(replacedDefinition);
+                } else {
+                    const resolvePackage = moduleResolver.resolveFilterRulePackageName(ruleId);
+                    const mod = await import(resolvePackage.filePath);
+                    const ruleModule = moduleInterop(mod.default);
+                    if (!isTextlintFilterRuleReporter(ruleModule)) {
+                        ruleErrors.push(
+                            new Error(`Filter rule should be object that has "filter" property. But ${ruleId} is not.`)
+                        );
+                        return;
+                    }
+                    // rule
+                    rules.push({
+                        ruleId,
+                        rule: ruleModule,
+                        options: ruleOptions,
+                        filePath: resolvePackage.filePath,
+                        moduleName: resolvePackage.moduleName
+                    });
+                }
+            } catch (error) {
+                ruleErrors.push(error as Error);
             }
-        } catch (error) {
-            ruleErrors.push(error as Error);
-        }
-    });
+        })
+    );
     return {
         filterRules: rules,
         filterRulesError:
@@ -131,6 +175,7 @@ export const loadFilterRules = async ({
                   }
     };
 };
+
 export const loadRules = async ({
     rulesObject,
     moduleResolver,
@@ -149,51 +194,64 @@ export const loadRules = async ({
     // rules
     const rules: TextlintConfigDescriptor["rules"] = [];
     const ruleErrors: Error[] = [];
-    Object.entries(rulesObject).forEach(([ruleId, ruleOptions]) => {
-        try {
-            // Test Replace logic
-            const replacedDefinition =
-                testReplaceDefinitions &&
-                testReplaceDefinitions.find((definition) => {
-                    return definition.ruleId === ruleId;
-                });
-            // if rule is disabled, skip to load
-            if (!ruleOptions) {
-                return;
-            }
-            if (replacedDefinition) {
-                // for debug
-                rules.push(replacedDefinition);
-            } else {
-                if (isPresetRuleKey(ruleId)) {
-                    // load preset
-                    // const resolvePackage = moduleResolver.resolvePresetPackageName(ruleId);
-                    // const ruleModule = moduleInterop(require(resolvePackage.filePath));
-                    const presetRulesOptions = typeof ruleOptions === "boolean" ? {} : ruleOptions;
-                    const rulesInPreset = loadPreset({
-                        presetName: ruleId,
-                        presetRulesOptions,
-                        moduleResolver
+    await Promise.all(
+        Object.entries(rulesObject).map(async ([ruleId, ruleOptions]) => {
+            try {
+                // Test Replace logic
+                const replacedDefinition =
+                    testReplaceDefinitions &&
+                    testReplaceDefinitions.find((definition) => {
+                        return definition.ruleId === ruleId;
                     });
-                    rules.push(...rulesInPreset);
-                } else {
-                    // load rule
-                    const resolvePackage = moduleResolver.resolveRulePackageName(ruleId);
-                    const ruleModule = moduleInterop(require(resolvePackage.filePath));
-                    // rule
-                    rules.push({
-                        ruleId,
-                        rule: ruleModule,
-                        options: ruleOptions,
-                        filePath: resolvePackage.filePath,
-                        moduleName: resolvePackage.moduleName
-                    });
+                // if rule is disabled, skip to load
+                if (!ruleOptions) {
+                    return;
                 }
+                if (replacedDefinition) {
+                    // for debug
+                    rules.push(replacedDefinition);
+                } else {
+                    if (isPresetRuleKey(ruleId)) {
+                        // load preset
+                        const presetRulesOptions = typeof ruleOptions === "boolean" ? {} : ruleOptions;
+                        const rulesInPreset = await loadPreset({
+                            presetName: ruleId,
+                            presetRulesOptions,
+                            moduleResolver
+                        });
+                        rules.push(...rulesInPreset);
+                    } else {
+                        // load rule
+                        const resolvePackage = moduleResolver.resolveRulePackageName(ruleId);
+                        const mod = await import(resolvePackage.filePath);
+                        const ruleModule = moduleInterop(mod.default);
+                        if (!isTextlintRuleModule(ruleModule)) {
+                            ruleErrors.push(
+                                new Error(`Rule should have "rules" and "rulesConfig" properties. But ${ruleId} is not.
+                        
+Please check ${ruleId} is valid rule.
+FilePath: ${resolvePackage.filePath}
+
+For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md                        
+`)
+                            );
+                            return;
+                        }
+                        // rule
+                        rules.push({
+                            ruleId,
+                            rule: ruleModule,
+                            options: ruleOptions,
+                            filePath: resolvePackage.filePath,
+                            moduleName: resolvePackage.moduleName
+                        });
+                    }
+                }
+            } catch (error) {
+                ruleErrors.push(error as Error);
             }
-        } catch (error) {
-            ruleErrors.push(error as Error);
-        }
-    });
+        })
+    );
     return {
         rules,
         rulesError:

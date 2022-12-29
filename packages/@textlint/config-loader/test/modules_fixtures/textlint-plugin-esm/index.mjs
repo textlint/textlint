@@ -1,9 +1,9 @@
 /** @type {import("@textlint/types").TextlintPluginCreator} **/
-module.exports = {
+export default {
     /** @type {import("@textlint/types").TextlintPluginProcessor} */
     Processor: class {
         availableExtensions() {
-            return [".custom"];
+            return [".esm"];
         }
 
         processor() {

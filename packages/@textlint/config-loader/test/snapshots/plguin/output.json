@@ -12,6 +12,7 @@
         "plugins": [
             {
                 "pluginId": "custom",
+                "plugin": {},
                 "filePath": "<MODULES_DIR>/textlint-plugin-custom/index.js",
                 "moduleName": "<MODULES_DIR>/textlint-plugin-custom"
             }
