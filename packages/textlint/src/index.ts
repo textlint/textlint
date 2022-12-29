@@ -1,10 +1,6 @@
 // LICENSE : MIT
 "use strict";
 
-// Level of abstraction(descending order)
-// cli > TextLintEngine > TextLintCore(textlint)
-// See: https://github.com/textlint/textlint/blob/master/docs/use-as-modules.md
-
 /**
  * Command line interface
  */
@@ -38,7 +34,7 @@ export { TextLintCore } from "./textlint-core";
 
 /* = New APIs */
 /**
- * Basic Usage
+ * @see {https://textlint.github.io/docs/use-as-modules.html#new-apis}
  * @example
  *
  * ```js

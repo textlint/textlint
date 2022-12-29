@@ -31,6 +31,7 @@ const { throwIfTesting } = require("@textlint/feature-flag");
 
 /**
  * @class {TextLintCore}
+ * @deprecated use new APIs https://textlint.github.io/docs/use-as-modules.html#new-apis
  */
 export class TextLintCore {
     private kernel: TextlintKernel;
