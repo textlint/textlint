@@ -136,7 +136,7 @@ const output = formatter.format(results);
 console.log(output);
 ```
 
-Fix lint results and output to console.
+Fix lint results and get the fixed text.
 
 ```ts
 import { createLinter, loadTextlintrc, loadFixerFormatter } from "textlint";
