@@ -15,7 +15,7 @@ import { Logger } from "./util/logger";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 
-const debug = debug0("textlint:engine-core");
+const debug = debug0("textlint:createTextlint");
 export const mergeDescriptors = (...descriptors: TextlintKernelDescriptor[]): TextlintKernelDescriptor => {
     if (descriptors.length <= 1) {
         return descriptors[0];
@@ -43,7 +43,8 @@ const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string =
     try {
         const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
         const toString = JSON.stringify(descriptor.toJSON());
-        return md5(`${version}-${toString}`);
+        const md5 = crypto.createHash("md5");
+        return md5.update(`${version}-${toString}`, "utf8").digest("hex");
     } catch (error) {
         // Fallback for some env
         // https://github.com/textlint/textlint/issues/597

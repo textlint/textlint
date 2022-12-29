@@ -2,7 +2,7 @@ import { AbstractBacker } from "./execute-file-backers/abstruct-backer";
 import { TextlintResult } from "@textlint/kernel";
 
 export class ExecuteFileBackerManager {
-    _backers: AbstractBacker[];
+    private _backers: AbstractBacker[];
 
     /**
      * create MessageProcessManager with backers

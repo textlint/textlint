@@ -4,6 +4,7 @@ import * as assert from "assert";
 import { cli } from "../../src/cli-new";
 import * as path from "path";
 import { Logger } from "../../src/util/logger";
+import fs from "fs";
 
 type RunContext = {
     getLogs(): string[];
@@ -269,11 +270,10 @@ describe("cli-new-test", function () {
         });
         context("when has rule", function () {
             it("should execute fixer", function () {
-                return runWithMockLog(async ({ assertNotHasLog, getLogs }) => {
+                return runWithMockLog(async ({ assertNotHasLog }) => {
                     const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
                     const targetFile = path.join(__dirname, "fixtures/test.md");
                     const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFile}`);
-                    console.log(getLogs());
                     assert.strictEqual(result, 0);
                     assertNotHasLog();
                 });
@@ -297,6 +297,27 @@ describe("cli-new-test", function () {
             const result = await cli.execute(`${targetFile}`);
             assert.strictEqual(result, 1);
             assertMatchLog(/No rules found/);
+        });
+    });
+    describe("--cache", function () {
+        const cacheLocation = path.join(__dirname, ".textlintcache");
+        afterEach(() => {
+            try {
+                fs.unlinkSync(cacheLocation);
+            } catch {
+                // nope
+            }
+        });
+        it("should cache the result and create .textlintcache", function () {
+            return runWithMockLog(async () => {
+                const targetFile = path.join(__dirname, "fixtures/test.md");
+                const ruleModuleName = "textlint-rule-no-todo";
+                const result = await cli.execute(
+                    `--cache --cache-location "${cacheLocation}" --rule "${ruleModuleName}" ${targetFile}`
+                );
+                assert.strictEqual(fs.existsSync(cacheLocation), true);
+                assert.strictEqual(result, 0);
+            });
         });
     });
     describe("--version", function () {
