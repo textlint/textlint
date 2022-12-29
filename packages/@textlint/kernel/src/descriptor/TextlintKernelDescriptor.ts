@@ -1,4 +1,9 @@
-import { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "../textlint-kernel-interface";
+import {
+    TextlintKernelFilterRule,
+    TextlintKernelOptions,
+    TextlintKernelPlugin,
+    TextlintKernelRule
+} from "../textlint-kernel-interface";
 import { TextlintRuleDescriptors } from "./TextlintRuleDescriptors";
 import { TextlintPluginDescriptors } from "./TextlintPluginDescriptors";
 import { TextlintFilterRuleDescriptors } from "./TextlintFilterRuleDescriptors";
@@ -61,6 +66,18 @@ export class TextlintKernelDescriptor {
      */
     findPluginDescriptorWithExt(ext: string): TextlintPluginDescriptor | undefined {
         return this.plugin.findPluginDescriptorWithExt(ext);
+    }
+
+    /**
+     * Convert descriptor to TextlintKernelOptions
+     */
+    toKernelOptions(): Pick<TextlintKernelOptions, "configBaseDir" | "rules" | "filterRules" | "plugins"> {
+        return {
+            configBaseDir: this.configBaseDir,
+            rules: this.rule.toKernelRulesFormat(),
+            filterRules: this.filterRule.toKernelFilterRulesFormat(),
+            plugins: this.plugin.toKernelPluginsFormat()
+        };
     }
 
     toJSON() {

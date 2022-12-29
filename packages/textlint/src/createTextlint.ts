@@ -1,14 +1,11 @@
 // LICENSE : MIT
 "use strict";
-import type { TextlintKernelOptions } from "@textlint/kernel";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
 import { findFiles, pathsToGlobPatterns, separateByAvailability } from "./util/find-util";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer";
 import path from "path";
 import crypto from "crypto";
-// @ts-expect-error no types
-import md5 from "md5";
 import pkgConf from "read-pkg-up";
 import fs from "fs/promises";
 import { Logger } from "./util/logger";
@@ -67,12 +64,7 @@ export const createLinter = (options: CreateLinterOptions) => {
     const kernel = new TextlintKernel({
         quiet: options.quiet
     });
-    const baseOptions: Pick<TextlintKernelOptions, "configBaseDir" | "plugins" | "rules" | "filterRules"> = {
-        configBaseDir: options.descriptor.configBaseDir,
-        plugins: options.descriptor.plugin.toKernelPluginsFormat(),
-        rules: options.descriptor.rule.toKernelRulesFormat(),
-        filterRules: options.descriptor.filterRule.toKernelFilterRulesFormat()
-    };
+    const baseOptions = options.descriptor.toKernelOptions();
     return {
         /**
          * Executes the current configuration on an array of file and directory names.
