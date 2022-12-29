@@ -25,7 +25,8 @@
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
   "bin": {
-    "textlint": "./bin/textlint.js"
+    "textlint": "./bin/textlint.js",
+    "textlint-esm": "./bin/textlint-esm.js"
   },
   "directories": {
     "test": "test/"

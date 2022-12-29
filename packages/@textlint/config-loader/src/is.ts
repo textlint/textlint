@@ -9,6 +9,9 @@ import { TextlintFilterRuleReporter } from "@textlint/types";
  * @returns {boolean}
  */
 export function hasLinter(ruleCreator: any): boolean {
+    if (!ruleCreator) {
+        return false;
+    }
     if (typeof ruleCreator.linter === "function") {
         return true;
     }
@@ -24,6 +27,9 @@ export function hasLinter(ruleCreator: any): boolean {
  * @returns {boolean}
  */
 function hasFixer(ruleCreator: any): boolean {
+    if (!ruleCreator) {
+        return false;
+    }
     return typeof ruleCreator.fixer === "function" && hasLinter(ruleCreator);
 }
 
