@@ -26,46 +26,46 @@ $ npx textlint docs/
 You can view all the CLI options by running `textlint --help` .
 
 ```sh
-$ npx textlint --help
-textlint [options] file.md [file|dir|glob*]
-Options:
--h, --help                  Show help.
--c, --config path::String   Use configuration from this file or sharable config.
---ignore-path path::String  Specify path to a file containing patterns that describes files to ignore. - default: .textlintignore
---init                      Create the config file if not existed. - default: false
---fix                       Automatically fix problems
---dry-run                   Enable dry-run mode for --fix. Only show result, don't change the file.
---debug                     Outputs debugging information
--v, --version               Outputs the version number.
+$ textlint [options] file.md [file|dir|glob*]
+  Options:
+    -h, --help                  Show help.
+    -c, --config path::String   Use configuration from this file or sharable config.
+    --ignore-path path::String  Specify path to a file containing patterns that describes files to ignore. - default: .textlintignore
+    --init                      Create the config file if not existed. - default: false
+    --fix                       Automatically fix problems
+    --dry-run                   Enable dry-run mode for --fix. Only show result, don't change the file.
+    --debug                     Outputs debugging information
+    -v, --version               Outputs the version number.
 
-Using stdin:
---stdin                     Lint text provided on <STDIN>. - default: false
---stdin-filename String     Specify filename to process STDIN as
+  Using stdin:
+    --stdin                     Lint text provided on <STDIN>. - default: false
+    --stdin-filename String     Specify filename to process STDIN as
 
-Output:
--o, --output-file path::String  Enable report to be written to a file.
--f, --format String         Use a specific output format.
-Available formatter          : checkstyle, compact, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
-Available formatter for --fix: compats, diff, json, stylish
---no-color                  Disable color in piped output.
---quiet                     Report errors only. - default: false
+  Output:
+    -o, --output-file path::String  Enable report to be written to a file.
+    -f, --format String         Use a specific output format.
+                                Available formatter          : checkstyle, compact, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
+                                Available formatter for --fix: compats, diff, json, stylish
+    --no-color                  Disable color in piped output.
+    --quiet                     Report errors only. - default: false
 
-Specifying rules and plugins:
---no-textlintrc             Disable .textlintrc
---plugin [String]           Set plugin package name
---rule [String]             Set rule package name
---preset [String]           Set preset package name and load rules from preset package.
---rulesdir [path::String]   Use additional rules from this directory
+  Specifying rules and plugins:
+    --no-textlintrc             Disable .textlintrc
+    --plugin [String]           Set plugin package name
+    --rule [String]             Set rule package name
+    --preset [String]           Set preset package name and load rules from preset package.
+    --rulesdir [path::String]   Use additional rules from this directory
 
-Caching:
---cache                     Only check changed files - default: false
---cache-location path::String  Path to the cache file or directory
+  Caching:
+    --cache                     Only check changed files - default: false
+    --cache-location path::String  Path to the cache file or directory
 
-Experimental:
---experimental              Enable experimental flag.Some feature use on experimental.
---rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
---parallel                  Lint files in parallel
---max-concurrency Number    maxConcurrency for --parallel
+  Experimental:
+    --experimental              Enable experimental flag.Some feature use on experimental.
+    --rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
+    --parallel                  Lint files in parallel
+    --max-concurrency Number    maxConcurrency for --parallel
+
 ```
 
 ## Exit Code
