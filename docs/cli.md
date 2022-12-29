@@ -1,3 +1,8 @@
+---
+id: cli
+title: Command Line Interface
+---
+
 # Command Line Interface
 
 The textlint Command Line Interface (CLI) is a tool for linting text from terminal.
