@@ -111,10 +111,10 @@ textlint will drop support old APIs(`textlint`, `TextLintEngine`, `TextFixEngine
 :memo: old APIs can not support ECMAScript modules, new APIs support ECMAScript modules.
 
 - `createLinter`: create linter instance
-    - `lintFiles(files)`: lint files and return linter messages
-    - `lintText(text, filePath)` lint text with virtual filePath and return linter messages
-    - `fixFiles(files` lint text and return fixer messages
-    - `fixText(text, filePath)` lint text with virtual filePath and return fixer messages
+    - `lintFiles(files): Promise<TextlintResult[]>`: lint files and return linter messages
+    - `lintText(text, filePath): Promise<TextlintResult>` lint text with virtual filePath and return linter messages
+    - `fixFiles(files): Promise<TextlintFixResult[]>` lint text and return fixer messages
+    - `fixText(text, filePath): Promise<TextlintFixResult>` lint text with virtual filePath and return fixer messages
         - `fixFiles` and `fixText` does not modify files
 - `loadTextlintrc`: load `.textlintrc` config file and return a descriptor object
 - `loadLinerFormatter` and `loadFixerFormatter`: load formatter

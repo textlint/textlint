@@ -21,3 +21,4 @@ sequenceDiagram
   - Kernel work on Browser/Node.js
 
 textlint apply [Separation of Concern](http://weblogs.asp.net/arturtrosin/separation-of-concern-vs-single-responsibility-principle-soc-vs-srp).
+
