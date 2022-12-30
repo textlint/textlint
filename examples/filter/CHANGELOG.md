@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.1](https://github.com/textlint/textlint/compare/v12.3.0...v12.3.1) (2022-12-30)
+
+**Note:** Version bump only for package textlint-example-filter
+
 # [12.3.0](https://github.com/textlint/textlint/compare/v12.2.4...v12.3.0) (2022-12-29)
 
 **Note:** Version bump only for package textlint-example-filter

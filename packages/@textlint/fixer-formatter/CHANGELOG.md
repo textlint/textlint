@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.3.1](https://github.com/textlint/textlint/compare/v12.3.0...v12.3.1) (2022-12-30)
+
+### Bug Fixes
+
+-   **textlint:** fix ESM loading issue on Windows ([#972](https://github.com/textlint/textlint/issues/972)) ([a6b9bf5](https://github.com/textlint/textlint/commit/a6b9bf56d2c792e199276b573aea1a490962670c))
+
 # [12.3.0](https://github.com/textlint/textlint/compare/v12.2.4...v12.3.0) (2022-12-29)
 
 ### Features
