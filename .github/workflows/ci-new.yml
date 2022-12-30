@@ -7,7 +7,7 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, windows]
         node: [ 14, 16, 18 ]
 
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
