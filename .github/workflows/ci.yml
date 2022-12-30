@@ -14,8 +14,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: recursive
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -26,9 +24,27 @@ jobs:
         run: |
           yarn test
           yarn test:examples
+      - name: Test New APIs # TODO: will remove
+        run: |
+          yarn test
+          yarn test:examples
+        env:
+          TEXTLINT_USE_NEW_CLI: true
+
+  e2e:
+    name: E2E
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --frozen-lockfile
       - name: Integration Tests
-        # Some E2E does not work on Windows
-        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'
         run: yarn test:integration
 
   documentation:
@@ -49,4 +65,7 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
       - run: yarn run test:docs
+      - run: yarn run test:docs # TODO: New API
+        env:
+          TEXTLINT_USE_NEW_CLI: true
       - run: yarn run website
