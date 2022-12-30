@@ -3,6 +3,15 @@ import { moduleInterop } from "@textlint/module-interop";
 import * as fs from "fs";
 import * as path from "path";
 import { TextlintKernelRule } from "@textlint/kernel";
+import { pathToFileURL } from "node:url";
+
+// import() can not load Window file path
+// convert file path to file URL before import()
+// https://github.com/nodejs/node/issues/31710
+export async function dynamicImport(targetPath: string) {
+    const fileUrl = pathToFileURL(targetPath).href;
+    return import(fileUrl);
+}
 
 /**
  * Load all rule modules from specified directory.
@@ -62,7 +71,7 @@ export async function loadFromDirAsESM(
     return Promise.all(
         ruleFiles.map(async (ruleFile) => {
             const withoutExt = path.basename(ruleFile, path.extname(ruleFile));
-            const mod = await import(path.join(rulesDirAbsolutePath, ruleFile));
+            const mod = await dynamicImport(path.join(rulesDirAbsolutePath, ruleFile));
             const ruleModule = moduleInterop(mod.default);
             const ret: TextlintKernelRule = {
                 rule: ruleModule,

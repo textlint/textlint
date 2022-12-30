@@ -11,6 +11,15 @@ import tryResolve from "try-resolve";
 // @ts-expect-error
 import isFile from "is-file";
 import debug0 from "debug";
+import { pathToFileURL } from "node:url";
+
+// import() can not load Window file path
+// convert file path to file URL before import()
+// https://github.com/nodejs/node/issues/31710
+export async function dynamicImport(targetPath: string) {
+    const fileUrl = pathToFileURL(targetPath).href;
+    return import(fileUrl);
+}
 
 const debug = debug0("textlint:@textlint/linter-formatter");
 
@@ -41,7 +50,7 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         }
     }
     try {
-        formatter = moduleInterop((await import(formatterPath)).default);
+        formatter = moduleInterop((await dynamicImport(formatterPath)).default);
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}
 ${ex}`);
