@@ -9,6 +9,15 @@ import debug0 from "debug";
 import isFile from "is-file";
 // @ts-expect-error
 import tryResolve from "try-resolve";
+import { pathToFileURL } from "node:url";
+
+// import() can not load Window file path
+// convert file path to file URL before import()
+// https://github.com/nodejs/node/issues/31710
+export async function dynamicImport(targetPath: string) {
+    const fileUrl = pathToFileURL(targetPath).href;
+    return import(fileUrl);
+}
 
 const debug = debug0("textlint:textfix-formatter");
 
@@ -36,7 +45,7 @@ export async function loadFormatter(formatterConfig: FormatterConfig) {
         }
     }
     try {
-        const moduleExports = (await import(formatterPath)).default;
+        const moduleExports = (await dynamicImport(formatterPath)).default;
         formatter = moduleInterop(moduleExports);
     } catch (ex) {
         throw new Error(`Could not find formatter ${formatterName}

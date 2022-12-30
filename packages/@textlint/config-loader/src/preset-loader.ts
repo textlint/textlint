@@ -5,6 +5,7 @@ import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
 import { TextlintRcConfig } from "./TextlintRcConfig";
 import { isPresetCreator } from "./is";
+import { dynamicImport } from "./import";
 
 export async function loadPreset({
     presetName,
@@ -16,7 +17,7 @@ export async function loadPreset({
     moduleResolver: TextLintModuleResolver;
 }): Promise<TextlintConfigDescriptor["rules"]> {
     const presetPackageName = moduleResolver.resolvePresetPackageName(presetName);
-    const mod = await import(presetPackageName.filePath);
+    const mod = await dynamicImport(presetPackageName.filePath);
     const preset = moduleInterop(mod.default);
     if (!isPresetCreator(preset)) {
         throw new Error(`preset should have rules and rulesConfig: ${presetName}`);

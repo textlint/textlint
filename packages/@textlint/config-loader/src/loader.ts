@@ -6,6 +6,7 @@ import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
 import { loadPreset } from "./preset-loader";
 import { TextlintPluginCreator } from "@textlint/types";
 import { isTextlintFilterRuleReporter, isTextlintRuleModule } from "./is";
+import { dynamicImport } from "./import";
 
 const isPluginCreator = (mod: any): mod is TextlintPluginCreator => {
     return typeof mod === "object" && Object.prototype.hasOwnProperty.call(mod, "Processor");
@@ -33,7 +34,7 @@ export const loadPlugins = async ({
         await Promise.all(
             pluginsObject.map(async (pluginId) => {
                 const resolvedModule = moduleResolver.resolvePluginPackageName(pluginId);
-                const mod = await import(resolvedModule.filePath);
+                const mod = await dynamicImport(resolvedModule.filePath);
                 const plugin = moduleInterop(mod.default);
                 if (!isPluginCreator(plugin)) {
                     pluginErrors.push(
@@ -70,7 +71,7 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                         plugins.push(replacedDefinition);
                     } else {
                         const resolvedPlugin = moduleResolver.resolvePluginPackageName(pluginId);
-                        const mod = await import(resolvedPlugin.filePath);
+                        const mod = await dynamicImport(resolvedPlugin.filePath);
                         const plugin = moduleInterop(mod.default);
                         if (!isPluginCreator(plugin)) {
                             pluginErrors.push(
@@ -142,7 +143,7 @@ export const loadFilterRules = async ({
                     rules.push(replacedDefinition);
                 } else {
                     const resolvePackage = moduleResolver.resolveFilterRulePackageName(ruleId);
-                    const mod = await import(resolvePackage.filePath);
+                    const mod = await dynamicImport(resolvePackage.filePath);
                     const ruleModule = moduleInterop(mod.default);
                     if (!isTextlintFilterRuleReporter(ruleModule)) {
                         ruleErrors.push(
@@ -223,7 +224,7 @@ export const loadRules = async ({
                     } else {
                         // load rule
                         const resolvePackage = moduleResolver.resolveRulePackageName(ruleId);
-                        const mod = await import(resolvePackage.filePath);
+                        const mod = await dynamicImport(resolvePackage.filePath);
                         const ruleModule = moduleInterop(mod.default);
                         if (!isTextlintRuleModule(ruleModule)) {
                             ruleErrors.push(
