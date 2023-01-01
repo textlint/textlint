@@ -16,6 +16,12 @@
     },
     {
       "path": "../@textlint/kernel"
+    },
+    {
+      "path": "../@textlint/textlint-plugin-text"
+    },
+    {
+      "path": "../@textlint/textlint-plugin-markdown"
     }
   ]
 }
