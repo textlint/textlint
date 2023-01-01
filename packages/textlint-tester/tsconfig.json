@@ -16,9 +16,6 @@
     },
     {
       "path": "../@textlint/kernel"
-    },
-    {
-      "path": "../textlint"
     }
   ]
 }
