@@ -1,44 +1,57 @@
-// LICENSE : MIT
-"use strict";
 import * as assert from "assert";
-import * as fs from "fs";
-import { TextLintCore } from "textlint";
+import * as fs from "fs/promises";
 import { TextlintResult } from "@textlint/kernel";
 import { TesterErrorDefinition } from "./textlint-tester";
 
+export type TestTextlintLinter = {
+    lintText(text: string, ext: string): Promise<TextlintResult>;
+    lintFile(filePath: string): Promise<TextlintResult>;
+};
+
+type TestTestArgs =
+    | {
+          inputPath: string;
+      }
+    | {
+          text: string;
+          ext: string;
+      };
+
 /**
- *
- * @param {string} [text]
- * @param {string} [inputPath]
+ * validate and get text
  * @returns {string}
  */
-function getTestText({ text, inputPath }: { text?: string; inputPath?: string }) {
-    if (typeof inputPath === "string") {
-        return fs.readFileSync(inputPath, "utf-8");
+async function getTestText(args: TestTestArgs) {
+    if ("inputPath" in args && typeof args.inputPath === "string") {
+        return fs.readFile(args.inputPath, "utf-8");
     }
-    if (typeof text === "string") {
-        return text;
+    if ("text" in args && typeof args.text === "string") {
+        return args.text;
     }
     throw new Error("should be defined { text } or { inputPath }");
 }
 
-export type InvalidPattern = {
-    textlint: TextLintCore;
-    inputPath?: string;
-    text?: string;
-    ext?: string;
-    errors: TesterErrorDefinition[];
-};
+export type InvalidPatternArgs =
+    | {
+          textlint: TestTextlintLinter;
+          inputPath: string;
+          errors: TesterErrorDefinition[];
+      }
+    | {
+          textlint: TestTextlintLinter;
+          errors: TesterErrorDefinition[];
+          text: string;
+          ext: string;
+      };
 
 /**
- * @param {TextLintCore} textlint
- * @param {string} [text]
- * @param {string} [ext]
- * @param {string} [inputPath]
- * @param {*[]} errors
+ * Test invalid pattern
+ * @param args
  */
-export function testInvalid({ textlint, inputPath, text, ext, errors }: InvalidPattern) {
-    const actualText = getTestText({ text, inputPath });
+export async function testInvalid(args: InvalidPatternArgs) {
+    const textlint = args.textlint;
+    const errors = args.errors;
+    const actualText = await getTestText(args);
     const lines = actualText.split(/\n/);
     assert.strictEqual(
         typeof actualText,
@@ -71,9 +84,10 @@ invalid : [
     );
     const errorLength = errors.length;
     let promise: Promise<TextlintResult>;
-    if (inputPath !== undefined) {
-        promise = textlint.lintFile(inputPath);
-    } else if (text !== undefined) {
+    if ("inputPath" in args && args.inputPath !== undefined) {
+        promise = textlint.lintFile(args.inputPath);
+    } else if ("text" in args && args.text !== undefined) {
+        const { text, ext } = args;
         promise = textlint.lintText(text, ext);
     } else {
         throw new Error("Should set `text` or `inputPath`");
@@ -145,27 +159,26 @@ The result's column number should be less than ${columnText.length + 1}`
     });
 }
 
-export type ValidPattern = {
-    textlint: TextLintCore;
-    inputPath?: string;
-    text?: string;
-    ext?: string;
-};
+export type ValidPatternArgs =
+    | {
+          textlint: TestTextlintLinter;
+          inputPath: string;
+      }
+    | {
+          textlint: TestTextlintLinter;
+          text: string;
+          ext: string;
+      };
 
-/**
- * @param {TextLintCore} textlint
- * @param {string} [inputPath]
- * @param {string} [text]
- * @param {string} [ext]
- */
-export function testValid({ textlint, inputPath, text, ext }: ValidPattern) {
-    const actualText = getTestText({ text, inputPath });
-    assert.strictEqual(typeof actualText, "string", "valid should has string of text.");
+export async function testValid(args: ValidPatternArgs) {
+    const { textlint } = args;
+    const actualText = await getTestText(args);
+    assert.strictEqual(typeof actualText, "string", "valid should has string or { text }.");
     let promise: Promise<TextlintResult>;
-    if (inputPath !== undefined) {
-        promise = textlint.lintFile(inputPath);
-    } else if (text !== undefined) {
-        promise = textlint.lintText(text, ext);
+    if ("inputPath" in args && args.inputPath !== undefined) {
+        promise = textlint.lintFile(args.inputPath);
+    } else if ("text" in args && args.text !== undefined) {
+        promise = textlint.lintText(args.text, args.ext);
     } else {
         throw new Error("Should set `text` or `inputPath`");
     }
