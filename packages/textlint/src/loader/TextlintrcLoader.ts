@@ -17,6 +17,26 @@ export type LoadTextlintrcOptions = {
      */
     node_modulesDir?: string;
 };
+// Built-in plugins should be loaded from same directory with `textlint` package
+export const builtInPlugins: TextlintKernelPlugin[] = [
+    {
+        pluginId: "@textlint/textlint-plugin-text",
+        plugin: textPlugin,
+        options: true
+    },
+    {
+        pluginId: "@textlint/textlint-plugin-markdown",
+        plugin: markdownPlugin,
+        options: true
+    }
+];
+export const loadBuiltinPlugins = async (): Promise<TextlintKernelDescriptor> => {
+    return new TextlintKernelDescriptor({
+        rules: [],
+        filterRules: [],
+        plugins: builtInPlugins
+    });
+};
 export const loadTextlintrc = async ({
     configFilePath,
     node_modulesDir
@@ -25,26 +45,10 @@ export const loadTextlintrc = async ({
         configFilePath,
         node_modulesDir
     });
-    // Built-in plugins should be loaded from same directory with `textlint` package
-    const builtInPlugins: TextlintKernelPlugin[] = [
-        {
-            pluginId: "@textlint/textlint-plugin-text",
-            plugin: textPlugin,
-            options: true
-        },
-        {
-            pluginId: "@textlint/textlint-plugin-markdown",
-            plugin: markdownPlugin,
-            options: true
-        }
-    ];
+
     if (!result.ok) {
         debug("loadTextlintrc failed: %o", result);
-        return new TextlintKernelDescriptor({
-            rules: [],
-            filterRules: [],
-            plugins: builtInPlugins
-        });
+        return loadBuiltinPlugins();
     }
     const { rules, plugins, filterRules } = result.config;
     return new TextlintKernelDescriptor({
