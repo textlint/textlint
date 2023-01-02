@@ -37,6 +37,7 @@ export type CliOptions = {
     fix: boolean;
     dryRun: boolean;
     debug: boolean;
+    printConfig: boolean;
     stdin: boolean;
     stdinFilename?: string;
     version: boolean;
@@ -97,6 +98,12 @@ export const options = optionator({
             type: "Boolean",
             default: false,
             description: "Outputs debugging information"
+        },
+        {
+            option: "print-config",
+            type: "Boolean",
+            default: false,
+            description: "Print the config object to stdout"
         },
         {
             option: "version",

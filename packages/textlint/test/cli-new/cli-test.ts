@@ -5,6 +5,7 @@ import { cli } from "../../src/cli-new";
 import * as path from "path";
 import { Logger } from "../../src/util/logger";
 import fs from "fs";
+import { loadBuiltinPlugins } from "../../src/loader/TextlintrcLoader";
 
 type RunContext = {
     getLogs(): string[];
@@ -36,7 +37,7 @@ const runWithMockLog = async (cb: (context: RunContext) => unknown): Promise<unk
     try {
         await cb(context);
     } catch (error) {
-        // eslint-disable-next-line no-console
+        // eslint-disablfe-next-line no-console
         console.log("Logs", context.getLogs());
         throw error;
     }
@@ -317,6 +318,77 @@ describe("cli-new-test", function () {
                 );
                 assert.strictEqual(fs.existsSync(cacheLocation), true);
                 assert.strictEqual(result, 0);
+            });
+        });
+    });
+    describe("--print-config", function () {
+        it("should print current descriptor.toJSON()", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const result = await cli.execute(`--print-config`);
+                assert.strictEqual(result, 0);
+                const expected = await loadBuiltinPlugins();
+                assert.strictEqual(getLogs()[0], JSON.stringify(expected.toJSON(), null, 4));
+            });
+        });
+        it("should print current descriptor.toJSON() with .textlintrc", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const configFile = path.join(__dirname, "fixtures/.textlintrc.json");
+                const result = await cli.execute(`--print-config --config ${configFile}`);
+                assert.strictEqual(result, 0);
+                const expected = await loadBuiltinPlugins();
+                assert.strictEqual(
+                    getLogs()[0],
+                    JSON.stringify(
+                        {
+                            ...expected.toJSON(),
+                            rule: [
+                                {
+                                    ruleId: "textlint-rule-no-todo",
+                                    options: {
+                                        severity: "warning"
+                                    }
+                                }
+                            ],
+                            configBaseDir: path.dirname(configFile)
+                        },
+                        null,
+                        4
+                    )
+                );
+            });
+        });
+        it("should print current descriptor.toJSON() when add a --rule", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const ruleModuleName = "textlint-rule-no-todo";
+                const result = await cli.execute(`--print-config --rule ${ruleModuleName}`);
+                assert.strictEqual(result, 0);
+                const expected = await loadBuiltinPlugins();
+                assert.strictEqual(
+                    getLogs()[0],
+                    JSON.stringify(
+                        {
+                            ...expected.toJSON(),
+                            rule: [
+                                {
+                                    ruleId: "no-todo",
+                                    options: true
+                                }
+                            ]
+                        },
+                        null,
+                        4
+                    )
+                );
+            });
+        });
+    });
+    describe("--no-textlint", function () {
+        it("should not load textlintrc, but load built-in plugins", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const result = await cli.execute(`--no-textlintrc --print-config`);
+                assert.strictEqual(result, 0);
+                const expected = await loadBuiltinPlugins();
+                assert.strictEqual(getLogs()[0], JSON.stringify(expected.toJSON(), null, 4));
             });
         });
     });

@@ -1,12 +1,10 @@
 // LICENSE : MIT
 import debug0 from "debug";
-// @ts-expect-error
-import mkdirp from "mkdirp";
 import { CliOptions, options } from "./options";
 import { createConfigFile } from "./config/config-initializer";
 import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
-import { loadTextlintrc } from "./loader/TextlintrcLoader";
+import { loadBuiltinPlugins, loadTextlintrc } from "./loader/TextlintrcLoader";
 import { loadCliDescriptor } from "./loader/CliLoader";
 import { createLinter } from "./createLinter";
 import { SeverityLevel } from "./shared/type/SeverityLevel";
@@ -29,6 +27,16 @@ const isStdinExecution = (executeOptions: ExceutOtptions): executeOptions is Std
     return "text" in executeOptions;
 };
 
+const loadDescriptor = async (cliOptions: CliOptions) => {
+    const cliDescriptor = await loadCliDescriptor(cliOptions);
+    const textlintrcDescriptor = cliOptions.textlintrc
+        ? await loadTextlintrc({
+              configFilePath: cliOptions.config,
+              node_modulesDir: cliOptions.rulesBaseDirectory
+          })
+        : await loadBuiltinPlugins();
+    return cliDescriptor.concat(textlintrcDescriptor);
+};
 /**
  * Encapsulates all CLI behavior for eslint. Makes it easier to test as well as
  * for other Node.js programs to effectively run the CLI.
@@ -59,6 +67,10 @@ export const cli = {
                 dir: process.cwd(),
                 verbose: !currentOptions.quiet
             });
+        } else if (currentOptions.printConfig) {
+            const descriptor = await loadDescriptor(currentOptions);
+            Logger.log(JSON.stringify(descriptor, null, 4));
+            return Promise.resolve(0);
         } else if (currentOptions.help || (!files.length && !text)) {
             Logger.log(options.generateHelp());
         } else {
@@ -91,14 +103,9 @@ export const cli = {
      */
     async executeWithOptions(executeOptions: ExceutOtptions): Promise<number> {
         const cliOptions = executeOptions.cliOptions;
-        const cliDescriptor = await loadCliDescriptor(cliOptions);
-        const textlintrcDescriptor = await loadTextlintrc({
-            configFilePath: cliOptions.config,
-            node_modulesDir: cliOptions.rulesBaseDirectory
-        });
         // cli > textlintrc
         // if cli and textlintrc have same option, cli option is prior.
-        const descriptor = cliDescriptor.concat(textlintrcDescriptor);
+        const descriptor = await loadDescriptor(cliOptions);
         const hasRuleAtLeastOne = descriptor.rule.lintableDescriptors.length > 0;
         if (!hasRuleAtLeastOne) {
             showEmptyRuleWarning();
