@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.4.0](https://github.com/textlint/textlint/compare/v12.3.1...v12.4.0) (2023-01-02)
+
+### Features
+
+-   **textlint:** add --print-config flag ([9aa400f](https://github.com/textlint/textlint/commit/9aa400f01a073389b14740bbd32cd6e23a436785))
+
 ## [12.3.1](https://github.com/textlint/textlint/compare/v12.3.0...v12.3.1) (2022-12-30)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
     "name": "textlint",
-    "version": "12.3.1",
+    "version": "12.4.0",
     "description": "The pluggable linting tool for text and markdown.",
     "keywords": [
         "AST",
@@ -51,7 +51,7 @@
         "@textlint/ast-traverse": "^12.3.0",
         "@textlint/config-loader": "^12.3.1",
         "@textlint/feature-flag": "^12.3.0",
-        "@textlint/fixer-formatter": "^12.3.1",
+        "@textlint/fixer-formatter": "^12.4.0",
         "@textlint/kernel": "^12.3.0",
         "@textlint/linter-formatter": "^12.3.1",
         "@textlint/module-interop": "^12.3.0",
