@@ -107,7 +107,7 @@ export function getFixerFormatterList(): FixerFormatterDetail[] {
         .readdirSync(path.join(__dirname, "formatters"))
         .filter((file: string) => {
             const fileName = path.extname(file);
-            return fileName === ".js" || fileName === ".ts";
+            return fileName === ".js" || (fileName === ".ts" && !file.endsWith("d.ts"));
         })
         .map((file: string) => {
             return { name: path.basename(file, path.extname(file)) };
