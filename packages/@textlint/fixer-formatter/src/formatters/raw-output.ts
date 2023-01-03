@@ -4,7 +4,7 @@ import type { TextlintFixResult } from "@textlint/types";
 
 export default function (results: TextlintFixResult[]) {
     let output = "";
-    results.forEach((result) => (output += `\n${result.output}`));
+    results.forEach((result) => (output += `${result.output}`));
 
     return output;
 }
