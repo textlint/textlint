@@ -10,6 +10,7 @@ describe("@textlint/fixer-formatter-test", function () {
                 { name: "compats" },
                 { name: "diff" },
                 { name: "json" },
+                { name: "raw-output" },
                 { name: "stylish" }
             ]);
         });
