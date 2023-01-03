@@ -54,7 +54,7 @@ Output:
 
                               Available formatter          : checkstyle, compact, jslint-xml, json, junit, pretty-error, stylish, table, tap, unix
 
-                              Available formatter for --fix: compats, diff, json, stylish - default: stylish
+                              Available formatter for --fix: compats, diff, fixed-result, json, stylish - default: stylish
   --no-color                  Disable color in piped output.
   --quiet                     Report errors only. - default: false
 
