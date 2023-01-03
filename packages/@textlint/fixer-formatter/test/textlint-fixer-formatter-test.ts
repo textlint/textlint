@@ -9,8 +9,8 @@ describe("@textlint/fixer-formatter-test", function () {
             assert.deepStrictEqual(getFixerFormatterList(), [
                 { name: "compats" },
                 { name: "diff" },
+                { name: "fixed-result" },
                 { name: "json" },
-                { name: "raw-output" },
                 { name: "stylish" }
             ]);
         });

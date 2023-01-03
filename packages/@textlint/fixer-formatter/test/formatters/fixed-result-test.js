@@ -1,13 +1,13 @@
 "use strict";
 import path from "path";
-import rawOutput from "../../src/formatters/raw-output";
+import fixedResult from "../../src/formatters/fixed-result";
 import assert from "assert";
 
 const formatter = (code) => {
-    return rawOutput(code, { color: false });
+    return fixedResult(code, { color: false });
 };
 
-describe("formatter:raw-output", function () {
+describe("formatter:fixed-result", function () {
     context("when single modified", function () {
         it("should return output", function () {
             const input = path.join(__dirname, "../fixtures", "single.md");
