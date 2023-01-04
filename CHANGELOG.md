@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.5.0](https://github.com/textlint/textlint/compare/v12.4.0...v12.5.0) (2023-01-04)
+
+### Features
+
+-   **textlint:** add raw-output option to fixer format ([755dba5](https://github.com/textlint/textlint/commit/755dba58ce058c77b794e43a8f7522550a763437)), closes [#967](https://github.com/textlint/textlint/issues/967)
+-   **textlint:** add raw-output option to fixer format ([bd6e637](https://github.com/textlint/textlint/commit/bd6e63769b83e5a58f8d3b7e712a42f8a8889cf3)), closes [#967](https://github.com/textlint/textlint/issues/967)
+-   **textlint:** add raw-output option to fixer format ([76ad72f](https://github.com/textlint/textlint/commit/76ad72f6362429661d15f50cb4f2c9d248fa2449)), closes [#967](https://github.com/textlint/textlint/issues/967)
+
 # [12.4.0](https://github.com/textlint/textlint/compare/v12.3.1...v12.4.0) (2023-01-02)
 
 ### Features
