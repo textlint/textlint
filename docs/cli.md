@@ -87,7 +87,7 @@ $ cat README.md | npx textlint --stdin --stdin-filename "README.md"
 You can get `--fix` result via `--format=fixed-result` formatter.
 
 ```sh
-cat README.md | npx textlint --stdin --stdin-filename README.md --fix --format fixed-result --output-file NEW.md
+$ cat README.md | npx textlint --stdin --stdin-filename README.md --fix --format fixed-result --output-file NEW.md
 ```
 
 Note: 
