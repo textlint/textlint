@@ -78,17 +78,22 @@ Experimental:
 
 ## Pipe to textlint
 
-textlint supports piping from other commands.
+textlint supports stdin from other commands via pipe.
 
 ```sh
 $ cat README.md | npx textlint --stdin --stdin-filename "README.md"
 ```
 
+You can get `--fix` result via `--format=fixed-result` formatter.
+
+```sh
+cat README.md | npx textlint --stdin --stdin-filename README.md --fix --format fixed-result --output-file NEW.md
+```
+
 Note: 
 
 - `--stdin-filename` is required when using `--stdin` for recognizing the file type.
-- `--fix` is not supported when using `--stdin`
-    - Issue: <https://github.com/textlint/textlint/issues/967>
+- Almost formatter output lint message, but `fixed-result` formatter output `--fix` result text.
 
 ## Cache
 
