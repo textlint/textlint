@@ -9,7 +9,7 @@ function getMessageType(message: any) {
     }
 }
 
-export function format(results: TextlintFixResult[]) {
+export default function (results: TextlintFixResult[]) {
     let output = "";
     let total = 0;
 
