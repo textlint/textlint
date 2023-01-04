@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.5.1](https://github.com/textlint/textlint/compare/v12.5.0...v12.5.1) (2023-01-04)
+
+### Bug Fixes
+
+-   **textlint:** fix an error on compats fixer formatter ([8c7d3c6](https://github.com/textlint/textlint/commit/8c7d3c65bf1658ee69c81e441111d9138cf42542)), closes [#979](https://github.com/textlint/textlint/issues/979)
+
 # [12.5.0](https://github.com/textlint/textlint/compare/v12.4.0...v12.5.0) (2023-01-04)
 
 ### Features
