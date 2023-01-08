@@ -11,7 +11,7 @@ import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descr
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
 import _debug from "debug";
 import { applyFixesToSourceCode } from "@textlint/source-code-fixer";
-import { isPluginParsedObject } from "../util/isPluginParsedObject";
+import { parseByPlugin } from "../util/parse-by-plugin";
 
 const debug = _debug("textlint:fixer-processor");
 
@@ -68,14 +68,19 @@ export default class FixerProcessor {
         // apply fixes to sourceText sequentially
         let sourceText = sourceCode.text;
         for (const ruleDescriptor of ruleDescriptors.fixableDescriptors) {
-            // create new SourceCode object
-            const preProcessResult = await preProcess(sourceText, sourceCode.filePath);
-            const isParsedObject = isPluginParsedObject(preProcessResult);
-            const textForAST = isParsedObject ? preProcessResult.text : sourceText;
-            const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
+            const parseResult = await parseByPlugin({
+                preProcess,
+                sourceText,
+                filePath: sourceCode.filePath
+            });
+            if (parseResult instanceof Error) {
+                // --fix can not report error as lint error
+                // Because fix's result has output content, It makes confuse user.
+                throw parseResult;
+            }
             const newSourceCode = new TextlintSourceCodeImpl({
-                text: textForAST,
-                ast,
+                text: parseResult.text,
+                ast: parseResult.ast,
                 filePath: resultFilePath,
                 ext: sourceCode.ext
             });
