@@ -46,7 +46,7 @@
         "@textlint/utils": "^12.5.0",
         "debug": "^4.3.4",
         "deep-equal": "^1.1.1",
-        "structured-source": "^3.0.2"
+        "structured-source": "^4.0.0"
     },
     "devDependencies": {
         "@textlint/markdown-to-ast": "^12.5.0",
@@ -54,7 +54,6 @@
         "@types/deep-equal": "^1.0.1",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.11.18",
-        "@types/structured-source": "^3.0.0",
         "cpx": "^1.5.0",
         "cross-env": "^7.0.3",
         "mocha": "^10.2.0",
