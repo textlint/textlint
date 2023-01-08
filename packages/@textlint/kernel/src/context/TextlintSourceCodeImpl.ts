@@ -7,7 +7,7 @@ import type {
 } from "@textlint/types";
 import { AnyTxtNode, ASTNodeTypes } from "@textlint/ast-node-types";
 import * as assert from "assert";
-import StructuredSource from "structured-source";
+import { StructuredSource } from "structured-source";
 
 /**
  * Validates that the given AST has the required information.
@@ -125,7 +125,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
     }
 
     /**
-     * @param {Position} pos - position indicator.
+     * @param pos - position indicator.
      * @return {number} index.
      */
     positionToIndex(pos: TextlintSourceCodePosition): number {
@@ -133,8 +133,7 @@ export class TextlintSourceCodeImpl implements TextlintSourceCode {
     }
 
     /**
-     * @param {number} index - index to the source code.
-     * @return {Position} position.
+     * @param index - index to the source code.
      */
     indexToPosition(index: number): TextlintSourceCodePosition {
         const indexToPosition = this._structuredSource.indexToPosition(index);

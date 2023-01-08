@@ -72,7 +72,7 @@
         "rc-config-loader": "^3.0.0",
         "read-pkg": "^1.1.0",
         "read-pkg-up": "^3.0.0",
-        "structured-source": "^3.0.2",
+        "structured-source": "^4.0.0",
         "try-resolve": "^1.0.1",
         "unique-concat": "^0.2.2"
     },
