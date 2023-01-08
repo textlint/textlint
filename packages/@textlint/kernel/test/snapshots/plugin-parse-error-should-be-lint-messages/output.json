@@ -22,7 +22,7 @@
                 1
             ],
             "severity": 2,
-            "ruleId": "internal-error"
+            "ruleId": "plugin-error"
         }
     ]
 }

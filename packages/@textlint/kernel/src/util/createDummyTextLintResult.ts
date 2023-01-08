@@ -28,7 +28,7 @@ export const createDummyTextLintResult = (message: string, filePath?: string): T
                 column: 0,
                 range: [0, 1],
                 severity: 2,
-                ruleId: "internal-error"
+                ruleId: "plugin-error"
             }
         ]
     };
