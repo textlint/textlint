@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import { invariant } from "../util/invariant";
 import { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintSourceCodeRange } from "@textlint/types";
 
@@ -20,7 +20,7 @@ export interface IntermediateFixCommand {
  * @private
  */
 function insertTextAt(index: number, text: string) {
-    assert.ok(text, "text must be string");
+    invariant(text, "text must be string");
     return {
         range: [index, index],
         text,
@@ -36,7 +36,7 @@ function insertTextAt(index: number, text: string) {
  * @private
  */
 function insertTextAtAbsolute(index: number, text: string) {
-    assert.ok(text, "text must be string");
+    invariant(text, "text must be string");
     return {
         range: [index, index] as const,
         text,

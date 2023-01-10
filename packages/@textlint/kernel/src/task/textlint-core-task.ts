@@ -4,9 +4,9 @@ import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
 import { PromiseEventEmitter } from "./promise-event-emitter";
 import { resolveLocation, resolveFixCommandLocation } from "../core/source-location";
 import timing from "../util/timing";
+import { invariant } from "../util/invariant";
 import MessageType from "../shared/type/MessageType";
 import { EventEmitter } from "events";
-import * as assert from "assert";
 import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import type {
     TextlintFilterRuleContext,
@@ -102,7 +102,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
     createShouldIgnore(): TextlintFilterRuleShouldIgnoreFunction {
         const shouldIgnore = (args: TextlintFilterRuleShouldIgnoreFunctionArgs) => {
             const { ruleId, range, optional } = args;
-            assert.ok(
+            invariant(
                 typeof range[0] !== "undefined" && typeof range[1] !== "undefined" && range[0] >= 0 && range[1] >= 0,
                 "ignoreRange should have actual range: " + range
             );

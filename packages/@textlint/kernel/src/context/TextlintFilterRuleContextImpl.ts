@@ -6,9 +6,9 @@ import type {
     TextlintSourceCode
 } from "@textlint/types";
 import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
-import * as assert from "assert";
 import { TextlintRuleErrorImpl } from "./TextlintRuleErrorImpl";
 import { createPaddingLocator } from "./TextlintRulePaddingLocator";
+import { invariant } from "../util/invariant";
 
 /**
  * Rule context object is passed to each rule as `context`
@@ -74,7 +74,7 @@ export class TextlintFilterRuleContextImpl implements TextlintFilterRuleContext 
     }
 
     shouldIgnore = (range: [startIndex: number, endIndex: number], optional = {}) => {
-        assert.ok(
+        invariant(
             Array.isArray(range) && typeof range[0] === "number" && typeof range[1] === "number",
             "shouldIgnore([number, number]); accept range."
         );

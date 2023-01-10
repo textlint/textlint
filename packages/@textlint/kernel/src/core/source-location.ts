@@ -6,7 +6,7 @@ import type {
     TextlintRuleErrorDetails
 } from "@textlint/types";
 import { TxtNode } from "@textlint/ast-node-types";
-import assert from "assert";
+import { invariant } from "../util/invariant";
 import { throwIfTesting } from "@textlint/feature-flag";
 import { isTextlintRuleErrorPaddingLocation } from "../context/TextlintRulePaddingLocator";
 
@@ -102,7 +102,7 @@ report(node, new RuleError("message", {
     }
     // invalid padding check
     if (padding.padding !== undefined) {
-        assert.ok(isTextlintRuleErrorPaddingLocation(padding.padding), "reported { padding } is invalid format.");
+        invariant(isTextlintRuleErrorPaddingLocation(padding.padding), "reported { padding } is invalid format.");
     }
 };
 
@@ -290,7 +290,7 @@ export const resolveFixCommandLocation = ({ node, ruleError }: { node: TxtNode; 
     if (ruleError.fix === undefined) {
         return {}; // TODO: it should be undefined?
     }
-    assert.ok(typeof ruleError.fix === "object", "fix should be FixCommand object");
+    invariant(typeof ruleError.fix === "object", "fix should be FixCommand object");
     // if absolute position return self
     if (ruleError.fix.isAbsolute) {
         return {

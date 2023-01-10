@@ -2,7 +2,6 @@
 "use strict";
 
 import type { TextlintFixResult, TextlintMessage, TextlintPluginProcessor, TextlintSourceCode } from "@textlint/types";
-import * as assert from "assert";
 import FixerTask from "../task/fixer-task";
 import TaskRunner from "../task/task-runner";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
@@ -12,6 +11,7 @@ import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
 import _debug from "debug";
 import { applyFixesToSourceCode } from "@textlint/source-code-fixer";
 import { isPluginParsedObject } from "../util/isPluginParsedObject";
+import { invariant } from "../util/invariant";
 
 const debug = _debug("textlint:fixer-processor");
 
@@ -52,7 +52,7 @@ export default class FixerProcessor {
         filterRules,
         sourceCode
     }: FixerProcessorProcessArgs): Promise<TextlintFixResult> {
-        assert.ok(sourceCode);
+        invariant(sourceCode);
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
         // messages
         let resultFilePath = sourceCode.filePath;
