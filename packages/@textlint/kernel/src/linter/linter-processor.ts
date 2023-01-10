@@ -56,7 +56,7 @@ export default class LinterProcessor {
         const result = await postProcess(messages, sourceCode.filePath);
         result.messages = this.messageProcessManager.process(result.messages);
         if (result.filePath == null) {
-            result.filePath = `<Unkown${sourceCode.ext}>`;
+            result.filePath = `<Unknown{sourceCode.ext}>`;
         }
         assert.ok(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
         return result;
