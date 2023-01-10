@@ -10,8 +10,8 @@ import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descr
 import { TextlintSourceCodeImpl } from "../context/TextlintSourceCodeImpl";
 import _debug from "debug";
 import { applyFixesToSourceCode } from "@textlint/source-code-fixer";
-import { isPluginParsedObject } from "../util/isPluginParsedObject";
 import { invariant } from "../util/invariant";
+import { parseByPlugin } from "../util/parse-by-plugin";
 
 const debug = _debug("textlint:fixer-processor");
 
@@ -45,7 +45,7 @@ export default class FixerProcessor {
      * @param {SourceCode} sourceCode
      * @returns {Promise.<TextlintFixResult>}
      */
-    process({
+    async process({
         config,
         configBaseDir,
         ruleDescriptors,
@@ -57,7 +57,7 @@ export default class FixerProcessor {
         // messages
         let resultFilePath = sourceCode.filePath;
         // applied fixing messages
-        // Revert = Sequentially apply applied message to applied output
+        // Revert = Sequentially apply message to applied output
         // SourceCodeFixer.sequentiallyApplyFixes(fixedOutput, result.applyingMessages);
         const applyingMessages: TextlintMessage[] = [];
         // not applied fixing messages
@@ -65,68 +65,63 @@ export default class FixerProcessor {
         // original means original for applyingMessages and remainingMessages
         // pre-applyingMessages + remainingMessages
         const originalMessages: TextlintMessage[] = [];
-        const fixerProcessList = ruleDescriptors.fixableDescriptors.map((ruleDescriptor) => {
-            return async (sourceText: string): Promise<string> => {
-                // create new SourceCode object
-                const preProcessResult = await Promise.resolve(preProcess(sourceText, sourceCode.filePath));
-                const isParsedObject = isPluginParsedObject(preProcessResult);
-                const textForAST = isParsedObject ? preProcessResult.text : sourceText;
-                const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
-                const newSourceCode = new TextlintSourceCodeImpl({
-                    text: textForAST,
-                    ast,
-                    filePath: resultFilePath,
-                    ext: sourceCode.ext
-                });
-                // create new Task
-                const task = new FixerTask({
-                    config,
-                    fixableRuleDescriptor: ruleDescriptor,
-                    filterRuleDescriptors: filterRules,
-                    sourceCode: newSourceCode,
-                    configBaseDir
-                });
-
-                return await TaskRunner.process(task).then(async (messages) => {
-                    const result = await Promise.resolve(postProcess(messages, sourceCode.filePath));
-                    const filteredResult = {
-                        messages: this.messageProcessManager.process(result.messages),
-                        filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
-                    };
-                    // TODO: should be removed resultFilePath
-                    resultFilePath = filteredResult.filePath;
-                    const applied = applyFixesToSourceCode(newSourceCode, filteredResult.messages);
-                    // add messages
-                    Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
-                    Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
-                    Array.prototype.push.apply(originalMessages, applied.messages);
-                    // if not fixed, still use current sourceText
-                    if (!applied.fixed) {
-                        return sourceText;
-                    }
-                    // if fixed, use fixed text at next
-                    return applied.output;
-                });
-            };
-        });
-
-        const promiseTask = fixerProcessList.reduce((promise, fixerProcess) => {
-            return promise.then((sourceText) => {
-                return fixerProcess(sourceText);
+        // apply fixes to sourceText sequentially
+        let sourceText = sourceCode.text;
+        for (const ruleDescriptor of ruleDescriptors.fixableDescriptors) {
+            const parseResult = await parseByPlugin({
+                preProcess,
+                sourceText,
+                filePath: sourceCode.filePath
             });
-        }, Promise.resolve(sourceCode.text));
+            if (parseResult instanceof Error) {
+                // --fix can not report error as lint error
+                // Because fix's result has output content, It makes confuse user.
+                throw parseResult;
+            }
+            const newSourceCode = new TextlintSourceCodeImpl({
+                text: parseResult.text,
+                ast: parseResult.ast,
+                filePath: resultFilePath,
+                ext: sourceCode.ext
+            });
+            // create new Task
+            const task = new FixerTask({
+                config,
+                fixableRuleDescriptor: ruleDescriptor,
+                filterRuleDescriptors: filterRules,
+                sourceCode: newSourceCode,
+                configBaseDir
+            });
 
-        return promiseTask.then((output) => {
-            debug(`Finish Processing: ${resultFilePath}`);
-            debug(`applyingMessages: ${applyingMessages.length}`);
-            debug(`remainingMessages: ${remainingMessages.length}`);
-            return {
-                filePath: resultFilePath ? resultFilePath : `<Unkown${sourceCode.ext}>`,
-                output,
-                messages: originalMessages,
-                applyingMessages,
-                remainingMessages
+            const messages = await TaskRunner.process(task);
+            const result = await postProcess(messages, sourceCode.filePath);
+            const filteredResult = {
+                messages: this.messageProcessManager.process(result.messages),
+                filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
             };
-        });
+            // TODO: should be removed resultFilePath
+            resultFilePath = filteredResult.filePath;
+            const applied = applyFixesToSourceCode(newSourceCode, filteredResult.messages);
+            // add messages
+            Array.prototype.push.apply(applyingMessages, applied.applyingMessages);
+            Array.prototype.push.apply(remainingMessages, applied.remainingMessages);
+            Array.prototype.push.apply(originalMessages, applied.messages);
+            // if not fixed, still use current sourceText
+            if (!applied.fixed) {
+                continue;
+            }
+            // if fixed, use fixed text at next
+            sourceText = applied.output;
+        }
+        debug(`Finish Processing: ${resultFilePath}`);
+        debug(`applyingMessages: ${applyingMessages.length}`);
+        debug(`remainingMessages: ${remainingMessages.length}`);
+        return {
+            filePath: resultFilePath ? resultFilePath : `<Unkown${sourceCode.ext}>`,
+            output: sourceText,
+            messages: originalMessages,
+            applyingMessages,
+            remainingMessages
+        };
     }
 }

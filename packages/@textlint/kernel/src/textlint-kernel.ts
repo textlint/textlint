@@ -18,6 +18,8 @@ import { invariant } from "./util/invariant";
 import { coreFlags } from "@textlint/feature-flag";
 import { isTxtAST } from "@textlint/ast-tester";
 import _debug from "debug";
+import { parseByPlugin } from "./util/parse-by-plugin";
+import { createDummyTextLintResult } from "./util/createDummyTextLintResult";
 
 const debug = _debug("textlint:kernel");
 
@@ -58,7 +60,7 @@ export class TextlintKernel {
         // this.config often is undefined.
         this.config = config;
         // Initialize Message Processor
-        // Now, It it built-in process only
+        // Now, It is built-in process only
         // filter `shouldIgnore()` results
         this.messageProcessManager = new MessageProcessManager([filterIgnoredProcess]);
         // filter duplicated messages
@@ -128,7 +130,7 @@ export class TextlintKernel {
         descriptor: TextlintKernelDescriptor;
         text: string;
         options: TextlintKernelOptions;
-    }) {
+    }): Promise<TextlintResult> {
         const { ext, filePath, configBaseDir } = options;
         const plugin = descriptor.findPluginDescriptorWithExt(ext);
         debug("available extensions: %o", descriptor.availableExtensions);
@@ -142,7 +144,22 @@ export class TextlintKernel {
             typeof preProcess === "function" && typeof postProcess === "function",
             `${plugin.id} processor should implements {preProcess, postProcess}`
         );
-        const preProcessResult = await Promise.resolve(preProcess(text, filePath));
+        const preProcessResult = await parseByPlugin({
+            preProcess,
+            sourceText: text,
+            filePath
+        });
+        if (preProcessResult instanceof Error) {
+            return createDummyTextLintResult(
+                `Failed to parse text by plugin: ${plugin.id}
+
+Please report this error with the content to plugin author.
+
+${preProcessResult.stack}            
+`,
+                filePath
+            );
+        }
         // { text, ast } or ast
         const isParsedObject = isPluginParsedObject(preProcessResult);
         const textForAST = isParsedObject ? preProcessResult.text : text;

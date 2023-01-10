@@ -33,7 +33,7 @@ export default class LinterProcessor {
     /**
      * Run linter process
      */
-    process({
+    async process({
         config,
         configBaseDir,
         ruleDescriptors,
@@ -47,22 +47,18 @@ export default class LinterProcessor {
         );
         const task = new LinterTask({
             config,
-            ruleDescriptors: ruleDescriptors,
-            filterRuleDescriptors: filterRuleDescriptors,
+            ruleDescriptors,
+            filterRuleDescriptors,
             sourceCode,
             configBaseDir
         });
-        return TaskRunner.process(task).then(async (messages) => {
-            const result = await Promise.resolve(postProcess(messages, sourceCode.filePath));
-            result.messages = this.messageProcessManager.process(result.messages);
-            if (result.filePath == null) {
-                result.filePath = `<Unkown${sourceCode.ext}>`;
-            }
-            invariant(
-                result.filePath && result.messages.length >= 0,
-                "postProcess should return { messages, filePath } "
-            );
-            return result;
-        });
+        const messages = await TaskRunner.process(task);
+        const result = await postProcess(messages, sourceCode.filePath);
+        result.messages = this.messageProcessManager.process(result.messages);
+        if (result.filePath == null) {
+            result.filePath = `<Unkown${sourceCode.ext}>`;
+        }
+        invariant(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+        return result;
     }
 }
