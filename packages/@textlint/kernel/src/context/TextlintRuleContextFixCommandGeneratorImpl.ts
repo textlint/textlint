@@ -1,6 +1,6 @@
-import * as assert from "assert";
 import { TxtNode } from "@textlint/ast-node-types";
 import type { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } from "@textlint/types";
+import { invariant } from "../util/invariant";
 
 /**
  * Creates a fix command that inserts text at the specified index in the source text.
@@ -10,7 +10,7 @@ import type { TextlintRuleContextFixCommandGenerator, TextlintSourceCodeRange } 
  * @private
  */
 function insertTextAt(index: number, text: string) {
-    assert.ok(text, "text must be string");
+    invariant(text, "text must be string");
     return {
         range: [index, index] as const,
         text,
@@ -26,7 +26,7 @@ function insertTextAt(index: number, text: string) {
  * @private
  */
 function insertTextAtAbsolute(index: number, text: string) {
-    assert.ok(text, "text must be string");
+    invariant(text, "text must be string");
     return {
         range: [index, index] as const,
         text,

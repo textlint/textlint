@@ -1,12 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import * as assert from "assert";
 import LinterTask from "../task/linter-task";
 import TaskRunner from "../task/task-runner";
 import { TextlintKernelConstructorOptions } from "../textlint-kernel-interface";
 
 import MessageProcessManager from "../messages/MessageProcessManager";
 import { TextlintFilterRuleDescriptors, TextlintRuleDescriptors } from "../descriptor";
+import { invariant } from "../util/invariant";
 import type { TextlintSourceCode, TextlintPluginProcessor, TextlintResult } from "@textlint/types";
 
 export interface LinterProcessorArgs {
@@ -41,7 +41,7 @@ export default class LinterProcessor {
         sourceCode
     }: LinterProcessorArgs): Promise<TextlintResult> {
         const { preProcess, postProcess } = this.processor.processor(sourceCode.ext);
-        assert.ok(
+        invariant(
             typeof preProcess === "function" && typeof postProcess === "function",
             "processor should implement {preProcess, postProcess}"
         );
@@ -58,7 +58,7 @@ export default class LinterProcessor {
         if (result.filePath == null) {
             result.filePath = `<Unknown{sourceCode.ext}>`;
         }
-        assert.ok(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
+        invariant(result.filePath && result.messages.length >= 0, "postProcess should return { messages, filePath } ");
         return result;
     }
 }

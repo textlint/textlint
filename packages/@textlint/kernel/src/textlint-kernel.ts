@@ -1,5 +1,4 @@
 // MIT © 2017- azu
-import * as assert from "assert";
 // sequence
 import FixerProcessor from "./fixer/fixer-processor";
 // parallel
@@ -15,6 +14,7 @@ import type { TextlintFixResult, TextlintResult } from "@textlint/types";
 import { TextlintKernelDescriptor } from "./descriptor";
 import { TextlintSourceCodeImpl } from "./context/TextlintSourceCodeImpl";
 import { isPluginParsedObject } from "./util/isPluginParsedObject";
+import { invariant } from "./util/invariant";
 import { coreFlags } from "@textlint/feature-flag";
 import { isTxtAST } from "@textlint/ast-tester";
 import _debug from "debug";
@@ -140,7 +140,7 @@ export class TextlintKernel {
         debug("use plugin: %s", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
-        assert.ok(
+        invariant(
             typeof preProcess === "function" && typeof postProcess === "function",
             `${plugin.id} processor should implements {preProcess, postProcess}`
         );
@@ -164,10 +164,10 @@ ${preProcessResult.stack}
         const isParsedObject = isPluginParsedObject(preProcessResult);
         const textForAST = isParsedObject ? preProcessResult.text : text;
         const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
-        assert.ok(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
-        assert.ok(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
+        invariant(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
+        invariant(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
         if (coreFlags.runningTester) {
-            assert.ok(
+            invariant(
                 isTxtAST(ast),
                 `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
             
@@ -224,7 +224,7 @@ See https://textlint.github.io/docs/plugin.html`
         debug("use plugin: %s", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
-        assert.ok(
+        invariant(
             typeof preProcess === "function" && typeof postProcess === "function",
             `${plugin.id} processor should implements {preProcess, postProcess}`
         );
@@ -233,10 +233,10 @@ See https://textlint.github.io/docs/plugin.html`
         const isParsedObject = isPluginParsedObject(preProcessResult);
         const textForAST = isParsedObject ? preProcessResult.text : text;
         const ast = isParsedObject ? preProcessResult.ast : preProcessResult;
-        assert.ok(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
-        assert.ok(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
+        invariant(typeof textForAST === "string", `${plugin.id} processor should return correct text`);
+        invariant(typeof ast === "object", `${plugin.id} processor should return correct AST object`);
         if (coreFlags.runningTester) {
-            assert.ok(
+            invariant(
                 isTxtAST(ast),
                 `${plugin.id} processor return invalid AST object. Please check out @textlint/ast-tester.
             
