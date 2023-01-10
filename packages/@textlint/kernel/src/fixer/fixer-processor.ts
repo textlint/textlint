@@ -97,7 +97,7 @@ export default class FixerProcessor {
             const result = await postProcess(messages, sourceCode.filePath);
             const filteredResult = {
                 messages: this.messageProcessManager.process(result.messages),
-                filePath: result.filePath ? result.filePath : `<Unkown${sourceCode.ext}>`
+                filePath: result.filePath ? result.filePath : `<Unknown{sourceCode.ext}>`
             };
             // TODO: should be removed resultFilePath
             resultFilePath = filteredResult.filePath;
@@ -117,7 +117,7 @@ export default class FixerProcessor {
         debug(`applyingMessages: ${applyingMessages.length}`);
         debug(`remainingMessages: ${remainingMessages.length}`);
         return {
-            filePath: resultFilePath ? resultFilePath : `<Unkown${sourceCode.ext}>`,
+            filePath: resultFilePath ? resultFilePath : `<Unknown{sourceCode.ext}>`,
             output: sourceText,
             messages: originalMessages,
             applyingMessages,
