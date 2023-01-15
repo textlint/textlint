@@ -14429,13 +14429,13 @@ textlint-plugin-jtf-style@^1.0.1:
     textlint-rule-helper "^1.1.3"
     textlint-rule-prh "^2.0.0"
 
-textlint-rule-eslint@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/textlint-rule-eslint/-/textlint-rule-eslint-4.0.0.tgz#9c374d067ea00bfe12931abb746b8c7abf1c0932"
-  integrity sha512-ytaeV41i9XXfo4+OQjNHADult4f3mrKnrv2LAFZ0aYu1Uk8tkNEDx65OLjBPwpyHan4H/vBWS3Yb9zoyJrS+qA==
+textlint-rule-eslint@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/textlint-rule-eslint/-/textlint-rule-eslint-4.0.1.tgz#4c48048ecfaddfd215e3a67fd2c86740d3561e16"
+  integrity sha512-ipULNcUZMJCL1T46EGCTS9lOXp1cSFWXnkZmEy6ND6fCnpjdTHRRJl4Tu49rwjsUCggv9WICupwYTAQM+el1dg==
   dependencies:
-    "@textlint/types" "^12.1.0"
-    structured-source "^3.0.2"
+    "@textlint/types" "^12.3.0"
+    structured-source "^4.0.0"
 
 textlint-rule-helper@^1.1.2, textlint-rule-helper@^1.1.3:
   version "1.2.0"
@@ -14444,13 +14444,22 @@ textlint-rule-helper@^1.1.2, textlint-rule-helper@^1.1.3:
   dependencies:
     unist-util-visit "^1.1.0"
 
-textlint-rule-helper@^2.0.0, textlint-rule-helper@^2.1.1, textlint-rule-helper@^2.2.0, textlint-rule-helper@^2.2.1, textlint-rule-helper@^2.2.3:
+textlint-rule-helper@^2.0.0, textlint-rule-helper@^2.1.1, textlint-rule-helper@^2.2.0, textlint-rule-helper@^2.2.1:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-2.2.3.tgz#23ff41790aa0d34f3bc9be3c379fb9d5bd28302f"
   integrity sha512-H499NRHVurHTFXTL+w/FI+aX6YgZD1TAFuR6kHqYDQ2ArGwkCbnRu+so+deweTFEUI4etP7EVMsrLwXP1e2Q+w==
   dependencies:
     "@textlint/ast-node-types" "^12.1.0"
     structured-source "^3.0.2"
+    unist-util-visit "^2.0.3"
+
+textlint-rule-helper@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-2.2.4.tgz#32a69a2658b2f0845ddd835c0c1f307f698e4c10"
+  integrity sha512-aQDn83+L6uG8tA6IjAsfFLWxR0/OJg51/C0k6OxNuGJnn/rgQnX+6Lh/bWh9dJ0RmOIQk7VkZ1uHUny5PXkjwQ==
+  dependencies:
+    "@textlint/ast-node-types" "^12.3.0"
+    structured-source "^4.0.0"
     unist-util-visit "^2.0.3"
 
 textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@^2.2.0:
