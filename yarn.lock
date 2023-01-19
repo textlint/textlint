@@ -9263,7 +9263,7 @@ lead@^1.0.0:
   dependencies:
     flush-write-stream "^1.0.2"
 
-lerna@^6.4.0:
+lerna@^6.4.1:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-6.4.1.tgz#a1e5abcb6c00de3367f50d75eca449e382525e0f"
   integrity sha512-0t8TSG4CDAn5+vORjvTFn/ZEGyc4LOEsyBUpzcdIxODHPKM4TVOGvbW9dBs1g40PhOrQfwhHS+3fSx/42j42dQ==
