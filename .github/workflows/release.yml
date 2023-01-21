@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       EXISTS_TAG: ${{ steps.tag_check.outputs.EXISTS_TAG }}
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout
         uses: actions/checkout@v3
