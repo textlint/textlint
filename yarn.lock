@@ -1860,18 +1860,6 @@
     npmlog "^6.0.2"
     write-file-atomic "^4.0.1"
 
-"@monorepo-utils/collect-changelog@^2.9.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@monorepo-utils/collect-changelog/-/collect-changelog-2.9.0.tgz#77d0bcac445a9bfcbcea7fb07a37c7d073a5c89e"
-  integrity sha512-gT2C7XjFqhSR3FxKz+8SebcaiZr+FEgVp3B76Nz7/knLJ0tDm22Qp62opDC6t+1jnlSm7IHDgHhXn2UwnQQKog==
-  dependencies:
-    "@monorepo-utils/package-utils" "^2.9.0"
-    cclog-parser "^1.1.1"
-    changelog-parser "^2.6.0"
-    handlebars "^4.0.12"
-    meow "^7.1.1"
-    upath "^2.0.1"
-
 "@monorepo-utils/package-utils@^2.9.0":
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/@monorepo-utils/package-utils/-/package-utils-2.9.0.tgz#a3bad49c71ecfba664e0cd8c574c816b41310aa1"
@@ -4020,11 +4008,6 @@ caw@^2.0.0, caw@^2.0.1:
     tunnel-agent "^0.6.0"
     url-to-options "^1.0.1"
 
-cclog-parser@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/cclog-parser/-/cclog-parser-1.1.1.tgz#44425a21a458f44985121c04912e5e02d1f04fab"
-  integrity sha512-IsnWRC1zqs7h5+Xoocw7cYmlL5t2ysB0/SQB6C3Arr+S2pc2Rbhzp0hXaK36Ew+428in1085slsGtxsJwQB9RA==
-
 ccount@^1.0.0, ccount@^1.0.3:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ccount/-/ccount-1.1.0.tgz#246687debb6014735131be8abab2d93898f8d043"
@@ -4093,14 +4076,6 @@ chalk@^4.0.0, chalk@^4.0.2, chalk@^4.1.0, chalk@^4.1.1, chalk@^4.1.2:
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
-
-changelog-parser@^2.6.0:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/changelog-parser/-/changelog-parser-2.8.1.tgz#1428998c275e4f7c0a855026dc60c66cde36bb87"
-  integrity sha512-tNUYFRCEeWTXmwLqoNtOEzx9wcytg72MmGQqsEs14ClYwIDln7sbQw7FJj/dulXgSlsxkemc9gpPQhZYZx1TPw==
-  dependencies:
-    line-reader "^0.2.4"
-    remove-markdown "^0.2.2"
 
 character-entities-legacy@^1.0.0:
   version "1.1.4"
@@ -7717,7 +7692,7 @@ gzip-size@5.1.1:
     duplexer "^0.1.1"
     pify "^4.0.1"
 
-handlebars@^4.0.12, handlebars@^4.7.7:
+handlebars@^4.7.7:
   version "4.7.7"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.7.tgz#9ce33416aad02dbd6c8fafa8240d5d98004945a1"
   integrity sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==
@@ -9341,11 +9316,6 @@ lilconfig@2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.6.tgz#32a384558bd58af3d4c6e077dd1ad1d397bc69d4"
   integrity sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==
-
-line-reader@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/line-reader/-/line-reader-0.2.4.tgz#c4392b587dea38580c9678570e6e8e49fce52622"
-  integrity sha512-342xzyZZS9uTiKwHJcMacopVl/WjrMMCZS1Qg4Uhl/WBknWRrGFdKOIS1Kec6SaiTcZMtmuxWvvIbPXj/+FMjA==
 
 lines-and-columns@^1.1.6:
   version "1.2.4"
@@ -13051,11 +13021,6 @@ remove-bom-stream@^1.2.0:
     remove-bom-buffer "^3.0.0"
     safe-buffer "^5.1.0"
     through2 "^2.0.3"
-
-remove-markdown@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/remove-markdown/-/remove-markdown-0.2.2.tgz#66b0ceeba9fb77ca9636bb1b0307ce21a32a12a6"
-  integrity sha512-jwgEf3Yh/xi4WodWi/vPlasa9C9pMv1kz5ITOIAGjBW7PeZ/CHZCdBfJzQnn2VX2cBvf1xCuJv0tUJqn/FCMNA==
 
 remove-trailing-separator@^1.0.1, remove-trailing-separator@^1.1.0:
   version "1.1.0"
