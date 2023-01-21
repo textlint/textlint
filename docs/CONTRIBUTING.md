@@ -318,19 +318,19 @@ After all participants on pull request are satisfied to the changes, we will mer
 A Maintainer release new version of textlint by following way.
 
 1. Create Release PR via GitHub Actions: <https://github.com/textlint/textlint/actions/workflows/create-release-pr.yml>
-  - Run workflow with `version` input
-    - You can select new version with semver(patch,minor,major)
+   - Run workflow with `version` input
+      - You can select new version with semver(patch,minor,major)
 2. [CI] Create Release PR
-  - Update `lerna.json`'s `version` and `packages/*/package.json`'s `version`
-  - Fill the Pull Request body with [Automatically generated release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes)
-  - e.g. https://github.com/azu/monorepo-github-releases/pull/18
+   - Update `lerna.json`'s `version` and `packages/*/package.json`'s `version`
+   - Fill the Pull Request body with [Automatically generated release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes)
+   - e.g. https://github.com/azu/monorepo-github-releases/pull/18
 3. Review the Release PR
-  - You can modify PR body for changelog
+   - You can modify PR body for changelog
 4. Merge the Release PR
 5. [CI] Publish new version to npm and GitHub Release
-  - The release note content is same to PR body
-  - CI copy to release note from PR body when merge the PR
-  - e.g. https://github.com/azu/monorepo-github-releases/releases/tag/v1.6.3
+   - The release note content is same to PR body
+   - CI copy to release note from PR body when merge the PR
+   - e.g. https://github.com/azu/monorepo-github-releases/releases/tag/v1.6.3
 
 > **Warning**
 > If the publishing(Step 5) is failed, you can re-run the workflow.  
