@@ -58,7 +58,7 @@ function display(data: any) {
         .slice(0, 10);
 
     rows.forEach(function (row: any) {
-        row.push(((row[1] * 100) / total).toFixed(1) + "%");
+        row.push(`${((row[1] * 100) / total).toFixed(1)}%`);
         row[1] = row[1].toFixed(3);
     });
 
@@ -114,9 +114,9 @@ export default (function () {
             data[key] = 0;
         }
 
-        return function () {
+        return async function (...args: any[]) {
             let t = process.hrtime();
-            fn.apply(null, Array.prototype.slice.call(arguments));
+            await fn(...args);
             t = process.hrtime(t);
             data[key] += t[0] * 1e3 + t[1] / 1e6;
         };
@@ -129,7 +129,7 @@ export default (function () {
     }
 
     return {
-        time: time,
-        enabled: enabled
+        time,
+        enabled
     };
 })();
