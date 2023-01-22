@@ -37,6 +37,10 @@ export class EventEmitter<T extends Listener = Listener> {
         }
     }
 
+    removeAllListeners() {
+        this.#listeners.clear();
+    }
+
     listenerCount(type: string) {
         return this.#listeners.get(type)?.size ?? 0;
     }
