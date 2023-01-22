@@ -1,12 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
-import { PromiseEventEmitter } from "./promise-event-emitter";
+import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter";
 import { resolveLocation, resolveFixCommandLocation } from "../core/source-location";
 import timing from "../util/timing";
 import { invariant } from "../util/invariant";
 import MessageType from "../shared/type/MessageType";
-import { EventEmitter } from "events";
 import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import type {
     TextlintFilterRuleContext,
@@ -262,7 +261,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         types.forEach((nodeType) => {
             this.ruleTypeEmitter.on(
                 nodeType,
-                timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType] as Function) : ruleObject[nodeType]!
+                timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType]) : ruleObject[nodeType]!
             );
         });
     }
