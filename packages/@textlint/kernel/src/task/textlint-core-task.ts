@@ -262,7 +262,7 @@ export default abstract class TextLintCoreTask extends EventEmitter {
         types.forEach((nodeType) => {
             this.ruleTypeEmitter.on(
                 nodeType,
-                timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType] as Function) : ruleObject[nodeType]!
+                timing.enabled ? timing.time(ruleContext.id, ruleObject[nodeType]) : ruleObject[nodeType]!
             );
         });
     }
