@@ -8,14 +8,14 @@ export type Listener = (...args: any[]) => void;
 export class EventEmitter<T extends Listener = Listener> {
     #listeners = new Map<string, Set<T>>();
 
-    on(type: string, listener: T) {
+    on(type: string, listener: T): void {
         const prevSet = this.#listeners.get(type);
         const listenerSet = prevSet ?? new Set<T>();
         listenerSet?.add(listener);
         this.#listeners.set(type, listenerSet);
     }
 
-    emit(type: string, ...args: any[]) {
+    emit(type: string, ...args: any[]): void {
         const listenerSet = this.#listeners.get(type);
         if (!listenerSet) {
             return;
@@ -25,7 +25,7 @@ export class EventEmitter<T extends Listener = Listener> {
         }
     }
 
-    off(type: string, listener: T) {
+    off(type: string, listener: T): void {
         const listenerSet = this.#listeners.get(type);
         if (!listenerSet) {
             return;
@@ -37,15 +37,15 @@ export class EventEmitter<T extends Listener = Listener> {
         }
     }
 
-    removeAllListeners() {
+    removeAllListeners(): void {
         this.#listeners.clear();
     }
 
-    listenerCount(type: string) {
+    listenerCount(type: string): number {
         return this.#listeners.get(type)?.size ?? 0;
     }
 
-    listeners(type: string) {
+    listeners(type: string): T[] {
         return Array.from(this.#listeners.get(type) ?? []);
     }
 }
