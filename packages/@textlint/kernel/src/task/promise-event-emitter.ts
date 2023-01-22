@@ -5,7 +5,7 @@
 
 export type Listener = (...args: any[]) => void;
 
-export class EventEmitter<T extends Listener> {
+export class EventEmitter<T extends Listener = Listener> {
     #listeners = new Map<string, Set<T>>();
 
     on(type: string, listener: T) {
@@ -15,13 +15,13 @@ export class EventEmitter<T extends Listener> {
         this.#listeners.set(type, listenerSet);
     }
 
-    emit(type: string) {
+    emit(type: string, ...args: any[]) {
         const listenerSet = this.#listeners.get(type);
         if (!listenerSet) {
             return;
         }
         for (const listenerSetElement of listenerSet) {
-            listenerSetElement.call(this);
+            listenerSetElement(...args);
         }
     }
 

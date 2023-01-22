@@ -1,12 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintRuleErrorImpl } from "../context/TextlintRuleErrorImpl";
-import { PromiseEventEmitter } from "./promise-event-emitter";
+import { EventEmitter, PromiseEventEmitter } from "./promise-event-emitter";
 import { resolveLocation, resolveFixCommandLocation } from "../core/source-location";
 import timing from "../util/timing";
 import { invariant } from "../util/invariant";
 import MessageType from "../shared/type/MessageType";
-import { EventEmitter } from "events";
 import { AnyTxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import type {
     TextlintFilterRuleContext,
