@@ -23,6 +23,7 @@ import { TextlintRuleReporter } from "../../src/index";
 
 const noop = (..._args: any[]) => {};
 export const expectType = <Type>(_: Type): void => void 0;
+// Test: each node type match to AST node type
 const report: TextlintRuleReporter = (context) => {
     const { Syntax } = context;
     return {
