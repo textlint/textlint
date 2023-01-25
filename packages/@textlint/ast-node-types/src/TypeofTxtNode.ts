@@ -1,91 +1,114 @@
-import { ASTNodeTypes, TxtNode, TxtParentNode, TxtTextNode } from "./index";
+import type { ASTNodeTypes } from "./ASTNodeTypes";
+import type {
+    AnyTxtNode,
+    TxtBlockquoteNode,
+    TxtBreakNode,
+    TxtCodeBlockNode,
+    TxtCommentNode,
+    TxtDeleteNode,
+    TxtDocumentNode,
+    TxtEmphasisNode,
+    TxtHeaderNode,
+    TxtHorizontalRuleNode,
+    TxtHtmlNode,
+    TxtImageNode,
+    TxtLinkNode,
+    TxtListItemNode,
+    TxtListNode,
+    TxtParagraphNode,
+    TxtStrNode,
+    TxtStrongNode
+} from "./NodeType";
+
 /**
- * Return TxtNode type of ASTNodeTypes | string
+ * Type utility for TxtNodeType
+ * Return TxtNode interface for the TxtNodeTYpe
  *
  * @example
- * ```
+ * ```ts
  * type NodeType = TxtNodeTypeOfNode<ASTNodeTypes.Document>;
+ * ```
  */
 export type TypeofTxtNode<T extends ASTNodeTypes | string> =
     // Root
     T extends ASTNodeTypes.Document
-        ? TxtParentNode
+        ? TxtDocumentNode
         : T extends ASTNodeTypes.DocumentExit
-        ? TxtParentNode // Paragraph Str.
+        ? TxtDocumentNode // Paragraph Str.
         : T extends ASTNodeTypes.Paragraph
-        ? TxtParentNode
+        ? TxtParagraphNode
         : T extends ASTNodeTypes.ParagraphExit
-        ? TxtParentNode // > Str
+        ? TxtParagraphNode // > Str
         : T extends ASTNodeTypes.BlockQuote
-        ? TxtParentNode
+        ? TxtBlockquoteNode
         : T extends ASTNodeTypes.BlockQuoteExit
-        ? TxtParentNode // - item
+        ? TxtBlockquoteNode // - item
         : T extends ASTNodeTypes.List
-        ? TxtParentNode
+        ? TxtListNode
         : T extends ASTNodeTypes.ListExit
-        ? TxtParentNode // - item
+        ? TxtListNode // - item
         : T extends ASTNodeTypes.ListItem
-        ? TxtParentNode
+        ? TxtListItemNode
         : T extends ASTNodeTypes.ListItemExit
-        ? TxtParentNode // # Str
+        ? TxtListItemNode // # Str
         : T extends ASTNodeTypes.Header
-        ? TxtParentNode
+        ? TxtHeaderNode
         : T extends ASTNodeTypes.HeaderExit
-        ? TxtParentNode
+        ? TxtHeaderNode
         : /* ```
-         * code
+         * code block
          * ```
          */
         T extends ASTNodeTypes.CodeBlock
-        ? TxtParentNode
+        ? TxtCodeBlockNode
         : T extends ASTNodeTypes.CodeBlockExit
-        ? TxtParentNode // <div>\n</div>
+        ? TxtCodeBlockNode // <div>\n</div>
         : T extends ASTNodeTypes.HtmlBlock
-        ? TxtParentNode
+        ? TxtHtmlNode
         : T extends ASTNodeTypes.HtmlBlockExit
-        ? TxtParentNode // [link](https://example.com)
+        ? TxtHtmlNode // [link](https://example.com)
         : T extends ASTNodeTypes.Link
-        ? TxtParentNode
+        ? TxtLinkNode
         : T extends ASTNodeTypes.LinkExit
-        ? TxtParentNode // ~~Str~~
+        ? TxtLinkNode // ~~Str~~
         : T extends ASTNodeTypes.Delete
-        ? TxtParentNode
+        ? TxtDeleteNode
         : T extends ASTNodeTypes.DeleteExit
-        ? TxtParentNode // *Str*
+        ? TxtDeleteNode // *Str*
         : T extends ASTNodeTypes.Emphasis
-        ? TxtParentNode
+        ? TxtEmphasisNode
         : T extends ASTNodeTypes.EmphasisExit
-        ? TxtParentNode // __Str__
+        ? TxtEmphasisNode // __Str__
         : T extends ASTNodeTypes.Strong
-        ? TxtParentNode
+        ? TxtStrongNode
         : T extends ASTNodeTypes.StrongExit
-        ? TxtParentNode // Str<space><space>
+        ? TxtStrongNode // Str<space><space>
         : T extends ASTNodeTypes.Break
-        ? TxtNode
+        ? TxtBreakNode
         : T extends ASTNodeTypes.BreakExit
-        ? TxtNode // ![alt](https://example.com/img)
+        ? TxtBreakNode // ![alt](https://example.com/img)
         : T extends ASTNodeTypes.Image
-        ? TxtNode
+        ? TxtImageNode
         : T extends ASTNodeTypes.ImageExit
-        ? TxtNode // ----
+        ? TxtImageNode // ----
         : T extends ASTNodeTypes.HorizontalRule
-        ? TxtNode
+        ? TxtHorizontalRuleNode
         : T extends ASTNodeTypes.HorizontalRuleExit
-        ? TxtNode // <!-- Str -->
+        ? TxtHorizontalRuleNode // <!-- Str -->
         : T extends ASTNodeTypes.Comment
-        ? TxtTextNode
+        ? TxtCommentNode
         : T extends ASTNodeTypes.CommentExit
-        ? TxtTextNode // Str
+        ? TxtCommentNode // Str
         : T extends ASTNodeTypes.Str
-        ? TxtTextNode
+        ? TxtStrNode
         : T extends ASTNodeTypes.StrExit
-        ? TxtTextNode // `code`
+        ? TxtStrNode // `code`
         : T extends ASTNodeTypes.Code
-        ? TxtTextNode
+        ? TxtCodeBlockNode
         : T extends ASTNodeTypes.CodeExit
-        ? TxtTextNode // <span>Str</span>
+        ? TxtCodeBlockNode // <span>Str</span>
         : T extends ASTNodeTypes.Html
-        ? TxtTextNode
+        ? TxtHtmlNode
         : T extends ASTNodeTypes.HtmlExit
-        ? TxtTextNode
-        : any;
+        ? TxtHtmlNode
+        : AnyTxtNode;
