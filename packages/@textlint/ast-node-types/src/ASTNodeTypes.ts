@@ -1,3 +1,11 @@
+// Notes: Add new Node types
+// 1. Add new Node type to ASTNodeTypes
+// 2. Update txtnode.md
+// 3. Add test to packages/@textlint/types/test/Rule/TxtNode-test.ts
+
+/**
+ * ASTNodeTypes is a list of ASTNode type.
+ */
 export enum ASTNodeTypes {
     Document = "Document",
     DocumentExit = "Document:exit",
