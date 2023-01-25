@@ -189,12 +189,12 @@ Other plugin has defined other node type that is not defined in `@textlint/ast-n
 ```js
 // A rule can treat "Example" node type
 export default () => {
-  return {
-    ["Example"](node){
-      // do something
-    }
-  }
-}
+    return {
+        ["Example"](node) {
+            // do something
+        }
+    };
+};
 ```
 
 ### Minimal node property
