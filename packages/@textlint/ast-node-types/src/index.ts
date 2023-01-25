@@ -1,6 +1,6 @@
 export { ASTNodeTypes } from "./ASTNodeTypes";
 export type {
-    // abstract
+    // abstract node types
     AnyTxtNode,
     TxtNode,
     TxtParentNode,

@@ -71,11 +71,11 @@ type TextNodeRange = [number, number];
     - if you want to get raw value, please use `getSource(<node>)` instead of it..
 - `loc`: location object
 - `range`: location info array like `[startIndex, endIndex]`
-- `parent`: (optional) parent node of this node. 
+- `parent`: (optional) parent node of this node.
     - It is attached in runtime
     - Parser user ignore this property
-    
-### `TxtTextNode` 
+
+### `TxtTextNode`
 
 `TxtTextNode` is inherit the `TxtNode` abstract interface.
 
@@ -97,7 +97,7 @@ interface TxtTextNode extends TxtNode {
 Example: `Str` node is a `TxtTextNode`.
 
 ### `TxtParentNode`
- 
+
 `TxtParentNode` is inherit the `TxtNode` abstract interface.
 
 ```typescript
@@ -125,6 +125,7 @@ You can use this `ASTNodeTypes` value via following way:
 
 ```js
 import { ASTNodeTypes } from "@textlint/ast-node-types";
+
 console.log(ASTNodeTypes.Str); // "Str"
 ```
 
@@ -133,55 +134,68 @@ You can get Node type for Type name by `TypeofTxtNode` in TypeScript.
 ```ts
 // In TypeScript
 import { ASTNodeTypes } from "@textlint/ast-node-types";
+
 const nodeType = TypeofTxtNode<ASTNodeTypes.Str>; // TxtTextNode
 ```
 
-These types are defined in `@textlint/ast-node-types`.
+These types are defined in [`@textlint/ast-node-types`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types).
 
-| Type name                       | Node type     | Description                          |
-| ------------------------------- | ------------- | ------------------------------------ |
-| ASTNodeTypes.Document           | TxtParentNode | Root Node                            |
-| ASTNodeTypes.DocumentExit       | TxtParentNode |                                      |
-| ASTNodeTypes.Paragraph          | TxtParentNode | Paragraph Node                       |
-| ASTNodeTypes.ParagraphExit      | TxtParentNode |                                      |
-| ASTNodeTypes.BlockQuote         | TxtParentNode | > Block Quote Node                   |
-| ASTNodeTypes.BlockQuoteExit     | TxtParentNode |                                      |
-| ASTNodeTypes.List               | TxtParentNode | List Node                            |
-| ASTNodeTypes.ListExit           | TxtParentNode |                                      |
-| ASTNodeTypes.ListItem           | TxtParentNode | List (each) item Node                |
-| ASTNodeTypes.ListItemExit       | TxtParentNode |                                      |
-| ASTNodeTypes.Header             | TxtParentNode | # Header Node                        |
-| ASTNodeTypes.HeaderExit         | TxtParentNode |                                      |
-| ASTNodeTypes.CodeBlock          | TxtParentNode | Code Block Node                      |
-| ASTNodeTypes.CodeBlockExit      | TxtParentNode |                                      |
-| ASTNodeTypes.HtmlBlock          | TxtParentNode | HTML Block Node                      |
-| ASTNodeTypes.HtmlBlockExit      | TxtParentNode |                                      |
-| ASTNodeTypes.Link               | TxtParentNode | Link Node                            |
-| ASTNodeTypes.LinkExit           | TxtParentNode |                                      |
-| ASTNodeTypes.Delete             | TxtParentNode | Delete Node(`~Str~`)                 |
-| ASTNodeTypes.DeleteExit         | TxtParentNode |                                      |
-| ASTNodeTypes.Emphasis           | TxtParentNode | Emphasis(`*Str*`)                    |
-| ASTNodeTypes.EmphasisExit       | TxtParentNode |                                      |
-| ASTNodeTypes.Strong             | TxtParentNode | Strong Node(`**Str**`)               |
-| ASTNodeTypes.StrongExit         | TxtParentNode |                                      |
-| ASTNodeTypes.Break              | TxtNode       | Hard Break Node(`Str<space><space>`) |
-| ASTNodeTypes.BreakExit          | TxtNode       |                                      |
-| ASTNodeTypes.Image              | TxtNode       | Image Node                           |
-| ASTNodeTypes.ImageExit          | TxtNode       |                                      |
-| ASTNodeTypes.HorizontalRule     | TxtNode       | Horizontal Node(`---`)               |
-| ASTNodeTypes.HorizontalRuleExit | TxtNode       |                                      |
-| ASTNodeTypes.Comment            | TxtTextNode   | Comment Node                         |
-| ASTNodeTypes.CommentExit        | TxtTextNode   |                                      |
-| ASTNodeTypes.Str                | TxtTextNode   | Str Node                             |
-| ASTNodeTypes.StrExit            | TxtTextNode   |                                      |
-| ASTNodeTypes.Code               | TxtTextNode   | Inline Code Node                     |
-| ASTNodeTypes.CodeExit           | TxtTextNode   |                                      |
-| ASTNodeTypes.Html               | TxtTextNode   | Inline HTML Node                     |
-| ASTNodeTypes.HtmlExit           | TxtTextNode   |                                      |
+| Type name                       | Node type                        | Description                          |
+|---------------------------------|----------------------------------|--------------------------------------|
+| ASTNodeTypes.Document           | TxtDocumentNode(TxtParentNode)   | Root Node                            |
+| ASTNodeTypes.DocumentExit       | TxtDocumentNode(TxtParentNode)   |                                      |
+| ASTNodeTypes.Paragraph          | TxtParagraphNode(TxtParentNode)  | Paragraph Node                       |
+| ASTNodeTypes.ParagraphExit      | TxtParagraphNode(TxtParentNode)  |                                      |
+| ASTNodeTypes.BlockQuote         | TxtBlockQuoteNode(TxtParentNode) | > Block Quote Node                   |
+| ASTNodeTypes.BlockQuoteExit     | TxtBlockQuoteNode(TxtParentNode) |                                      |
+| ASTNodeTypes.List               | TxtListNode(TxtParentNode)       | List Node                            |
+| ASTNodeTypes.ListExit           | TxtListNode(TxtParentNode)       |                                      |
+| ASTNodeTypes.ListItem           | TxtListItemNode(TxtParentNode)   | List (each) item Node                |
+| ASTNodeTypes.ListItemExit       | TxtListItemNode(TxtParentNode)   |                                      |
+| ASTNodeTypes.Header             | TxtHeaderNode(TxtParentNode)     | # Header Node                        |
+| ASTNodeTypes.HeaderExit         | TxtHeaderNode(TxtParentNode)     |                                      |
+| ASTNodeTypes.CodeBlock          | TxtCodeBlockNode(TxtParentNode)  | Code Block Node                      |
+| ASTNodeTypes.CodeBlockExit      | TxtCodeBlockNode(TxtParentNode)  |                                      |
+| ASTNodeTypes.HtmlBlock          | TxtHtmlBlockNode(TxtParentNode)  | HTML Block Node                      |
+| ASTNodeTypes.HtmlBlockExit      | TxtHtmlBlockNode(TxtParentNode)  |                                      |
+| ASTNodeTypes.Link               | TxtLinkNode(TxtParentNode)       | Link Node                            |
+| ASTNodeTypes.LinkExit           | TxtLinkNode(TxtParentNode)       |                                      |
+| ASTNodeTypes.Delete             | TxtDeleteNode(TxtParentNode)     | Delete Node(`~Str~`)                 |
+| ASTNodeTypes.DeleteExit         | TxtDeleteNode(TxtParentNode)     |                                      |
+| ASTNodeTypes.Emphasis           | TxtEmphasisNode(TxtParentNode)   | Emphasis(`*Str*`)                    |
+| ASTNodeTypes.EmphasisExit       | TxtEmphasisNode(TxtParentNode)   |                                      |
+| ASTNodeTypes.Strong             | TxtStrongNode(TxtParentNode)     | Strong Node(`**Str**`)               |
+| ASTNodeTypes.StrongExit         | TxtStrongNode(TxtParentNode)     |                                      |
+| ASTNodeTypes.Break              | TxtBreakNode                     | Hard Break Node(`Str<space><space>`) |
+| ASTNodeTypes.BreakExit          | TxtBreakNode                     |                                      |
+| ASTNodeTypes.Image              | TxtImageNode                     | Image Node                           |
+| ASTNodeTypes.ImageExit          | TxtImageNode                     |                                      |
+| ASTNodeTypes.HorizontalRule     | TxtHorizontalRuleNode            | Horizontal Node(`---`)               |
+| ASTNodeTypes.HorizontalRuleExit | TxtHorizontalRuleNode            |                                      |
+| ASTNodeTypes.Comment            | TxtCommentNode                   | Comment Node                         |
+| ASTNodeTypes.CommentExit        | TxtCommentNode                   |                                      |
+| ASTNodeTypes.Str                | TxtStrNode                       | Str Node                             |
+| ASTNodeTypes.StrExit            | TxtStrNode                       |                                      |
+| ASTNodeTypes.Code               | TxtCodeNode                      | Inline Code Node                     |
+| ASTNodeTypes.CodeExit           | TxtCodeNode                      |                                      |
+| ASTNodeTypes.Html               | TxtHtmlNode                      | Inline HTML Node                     |
+| ASTNodeTypes.HtmlExit           | TxtHtmlNode                      |                                      |
 
+For more details, see [`@textlint/ast-node-types`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types).
 
-The type is based on HTML tag and Markdown syntax.
-Other plugin has define other node type that is not defined in `@textlint/ast-node-types`, but you can specify it as just a string.
+These type are based on HTML tag and Markdown syntax.
+Other plugin has defined other node type that is not defined in `@textlint/ast-node-types`, but you can specify it as just a string.
+
+```js
+// A rule can treat "Example" node type
+export default () => {
+  return {
+    ["Example"](node){
+      // do something
+    }
+  }
+}
+```
 
 ### Minimal node property
 
@@ -205,10 +219,10 @@ But, Following node **should** have some properties.
 
 textlint has built-in parsers.
 
-| Package | Version | Description |
-|---------|---------|-------------|
-| [`@textlint/markdown-to-ast`](https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/markdown-to-ast) | markdown parser |
-| [`@textlint/text-to-ast`](https://github.com/textlint/textlint/tree/master/packages/@textlint/text-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/text-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/text-to-ast) | plain text parser |
+| Package                                                                                                            | Version                                                                                                                                         | Description       |
+|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
+| [`@textlint/markdown-to-ast`](https://github.com/textlint/textlint/tree/master/packages/@textlint/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/markdown-to-ast) | markdown parser   |
+| [`@textlint/text-to-ast`](https://github.com/textlint/textlint/tree/master/packages/@textlint/text-to-ast)         | [![npm](https://img.shields.io/npm/v/@textlint/text-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/text-to-ast)         | plain text parser |
 
 If you want to get other type, please [create new issue](https://github.com/textlint/textlint/issues/new).
 
@@ -230,17 +244,19 @@ Minimum(recommended) rules is following code:
 /**
  * @param {RuleContext} context
  */
-export default function (context) {
+export default function(context) {
     const { Syntax } = context;
     // root object
     return {
-        [Syntax.Document](node) {},
-        [Syntax.Paragraph](node) {},
-        [Syntax.Str](node) {}
+        [Syntax.Document](node) {
+        },
+        [Syntax.Paragraph](node) {
+        },
+        [Syntax.Str](node) {
+        }
     };
 }
 ```
-
 
 ### `loc`
 
@@ -284,83 +300,83 @@ Output: The AST by [AST explorer for textlint](https://textlint.github.io/astexp
 
 ```json
 {
-    "type": "Document",
-    "children": [
+  "type": "Document",
+  "children": [
+    {
+      "type": "Paragraph",
+      "children": [
         {
-            "type": "Paragraph",
-            "children": [
-                {
-                    "type": "Emphasis",
-                    "children": [
-                        {
-                            "type": "Str",
-                            "value": "text",
-                            "loc": {
-                                "start": {
-                                    "line": 1,
-                                    "column": 1
-                                },
-                                "end": {
-                                    "line": 1,
-                                    "column": 5
-                                }
-                            },
-                            "range": [
-                                1,
-                                5
-                            ],
-                            "raw": "text"
-                        }
-                    ],
-                    "loc": {
-                        "start": {
-                            "line": 1,
-                            "column": 0
-                        },
-                        "end": {
-                            "line": 1,
-                            "column": 6
-                        }
-                    },
-                    "range": [
-                        0,
-                        6
-                    ],
-                    "raw": "*text*"
-                }
-            ],
-            "loc": {
+          "type": "Emphasis",
+          "children": [
+            {
+              "type": "Str",
+              "value": "text",
+              "loc": {
                 "start": {
-                    "line": 1,
-                    "column": 0
+                  "line": 1,
+                  "column": 1
                 },
                 "end": {
-                    "line": 1,
-                    "column": 6
+                  "line": 1,
+                  "column": 5
                 }
+              },
+              "range": [
+                1,
+                5
+              ],
+              "raw": "text"
+            }
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
             },
-            "range": [
-                0,
-                6
-            ],
-            "raw": "*text*"
+            "end": {
+              "line": 1,
+              "column": 6
+            }
+          },
+          "range": [
+            0,
+            6
+          ],
+          "raw": "*text*"
         }
-    ],
-    "loc": {
+      ],
+      "loc": {
         "start": {
-            "line": 1,
-            "column": 0
+          "line": 1,
+          "column": 0
         },
         "end": {
-            "line": 1,
-            "column": 6
+          "line": 1,
+          "column": 6
         }
-    },
-    "range": [
+      },
+      "range": [
         0,
         6
-    ],
-    "raw": "*text*"
+      ],
+      "raw": "*text*"
+    }
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 1,
+      "column": 6
+    }
+  },
+  "range": [
+    0,
+    6
+  ],
+  "raw": "*text*"
 }
 ```
 
@@ -387,7 +403,7 @@ Illustration
 
 `TxtAST` have a minimum of compatibility for [unist: Universal Syntax Tree](https://github.com/syntax-tree/unist "wooorm/unist: Universal Syntax Tree").
 
-We discuss about Unist in [Compliances tests for TxtNode #141](https://github.com/textlint/textlint/issues/141 "Compliances tests for TxtNode #141").
+We discuss Unist in [Compliances tests for TxtNode #141](https://github.com/textlint/textlint/issues/141 "Compliances tests for TxtNode #141").
 
 ## For testing Processor plugin
 
