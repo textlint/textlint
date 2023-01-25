@@ -1,6 +1,11 @@
 export { ASTNodeTypes } from "./ASTNodeTypes";
 export type {
+    // abstract
     AnyTxtNode,
+    TxtNode,
+    TxtParentNode,
+    TxtTextNode,
+    // node types
     TxtBlockquoteNode,
     TxtBreakNode,
     TxtCodeBlockNode,

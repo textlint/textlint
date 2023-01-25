@@ -48,5 +48,12 @@ export enum ASTNodeTypes {
     Code = "Code",
     CodeExit = "Code:exit",
     Delete = "Delete",
-    DeleteExit = "Delete:exit"
+    DeleteExit = "Delete:exit",
+    // Table is supported in textlint v13+
+    Table = "Table",
+    TableExit = "Table:exit",
+    TableRow = "TableRow",
+    TableRowExit = "TableRow:exit",
+    TableCell = "TableCell",
+    TableCellExit = "TableCell:exit"
 }

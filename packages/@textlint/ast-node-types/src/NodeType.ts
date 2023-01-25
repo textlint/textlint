@@ -205,10 +205,6 @@ export interface TxtCodeBlockNode extends TxtTextNode {
     meta?: string | null | undefined;
 }
 
-export interface TxtYAMLNode extends TxtTextNode {
-    type: "Yaml";
-}
-
 export interface TxtDefinitionNode extends Node, TxtAssociation, TxtResource {
     type: "Definition";
 }
@@ -289,4 +285,13 @@ export interface TxtReference extends TxtAssociation {
 
 export interface TxtAlternative {
     alt?: string | null | undefined;
+}
+
+// ================================================================================
+// Markdown extension
+// It is not part of the original markdown spec, but textlint does not support it officially.
+// https://www.npmjs.com/package/@types/mdast
+// ================================================================================
+export interface TxtYAMLNode extends TxtTextNode {
+    type: "Yaml";
 }

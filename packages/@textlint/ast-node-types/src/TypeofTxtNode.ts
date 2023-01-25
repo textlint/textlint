@@ -17,7 +17,10 @@ import type {
     TxtListNode,
     TxtParagraphNode,
     TxtStrNode,
-    TxtStrongNode
+    TxtStrongNode,
+    TxtTableCellNode,
+    TxtTableNode,
+    TxtTableRowNode
 } from "./NodeType";
 
 /**
@@ -111,4 +114,16 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         ? TxtHtmlNode
         : T extends ASTNodeTypes.HtmlExit
         ? TxtHtmlNode
+        : T extends ASTNodeTypes.Table
+        ? TxtTableNode
+        : T extends ASTNodeTypes.TableExit
+        ? TxtTableNode
+        : T extends ASTNodeTypes.TableRow
+        ? TxtTableRowNode
+        : T extends ASTNodeTypes.TableRowExit
+        ? TxtTableRowNode
+        : T extends ASTNodeTypes.TableCell
+        ? TxtTableCellNode
+        : T extends ASTNodeTypes.TableCellExit
+        ? TxtTableCellNode
         : AnyTxtNode;
