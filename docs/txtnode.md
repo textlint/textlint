@@ -180,6 +180,12 @@ These types are defined in [`@textlint/ast-node-types`](https://github.com/textl
 | ASTNodeTypes.CodeExit           | TxtCodeNode                      |                                      |
 | ASTNodeTypes.Html               | TxtHtmlNode                      | Inline HTML Node                     |
 | ASTNodeTypes.HtmlExit           | TxtHtmlNode                      |                                      |
+| ASTNodeTypes.Table              | TxtTableNode                     | Table node. textlint 13+             |
+| ASTNodeTypes.TableExit          | TxtTableNode                     |                                      |
+| ASTNodeTypes.TableRow           | TxtTableRowNode                  | Table row node. textlint 13+         |
+| ASTNodeTypes.TableRowExit       | TxtTableRowNode                     |                                      |
+| ASTNodeTypes.TableCell          | TxtTableCellNode                 | Table cell node. textlint 13+        |
+| ASTNodeTypes.TableCellExit      | TxtTableCellNode                 |                                      |
 
 For more details, see [`@textlint/ast-node-types`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types).
 

@@ -23,6 +23,9 @@ export type {
     TxtParagraphNode,
     TxtCodeNode,
     TxtStrNode,
-    TxtStrongNode
+    TxtStrongNode,
+    TxtTableNode,
+    TxtTableRowNode,
+    TxtTableCellNode
 } from "./NodeType";
 export type { TypeofTxtNode } from "./TypeofTxtNode";

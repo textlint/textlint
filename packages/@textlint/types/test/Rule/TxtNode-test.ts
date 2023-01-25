@@ -19,6 +19,7 @@ import {
     TxtStrNode,
     TxtStrongNode,
 } from "@textlint/ast-node-types";
+import { TxtTableCellNode, TxtTableNode, TxtTableRowNode } from "@textlint/ast-node-types/lib/src/NodeType";
 import { TextlintRuleReporter } from "../../src/index";
 
 const noop = (..._args: any[]) => {};
@@ -134,6 +135,25 @@ const report: TextlintRuleReporter = (context) => {
         },
         [Syntax.HtmlExit](node) {
             expectType<TxtHtmlNode>(node);
+        },
+        [Syntax.Table](node) {
+            // eslint-disable-next-line no-undef
+            expectType<TxtTableNode>(node);
+        },
+        [Syntax.TableExit](node) {
+            expectType<TxtTableNode>(node);
+        },
+        [Syntax.TableRow](node) {
+            expectType<TxtTableRowNode>(node);
+        },
+        [Syntax.TableRowExit](node) {
+            expectType<TxtTableRowNode>(node);
+        },
+        [Syntax.TableCell](node) {
+            expectType<TxtTableCellNode>(node);
+        },
+        [Syntax.TableCellExit](node) {
+            expectType<TxtTableCellNode>(node);
         },
     };
 };
