@@ -6,7 +6,7 @@ export type {
     TxtParentNode,
     TxtTextNode,
     // node types
-    TxtBlockquoteNode,
+    TxtBlockQuoteNode,
     TxtBreakNode,
     TxtCodeBlockNode,
     TxtCommentNode,
@@ -21,6 +21,7 @@ export type {
     TxtListItemNode,
     TxtListNode,
     TxtParagraphNode,
+    TxtCodeNode,
     TxtStrNode,
     TxtStrongNode
 } from "./NodeType";

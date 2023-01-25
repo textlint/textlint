@@ -1,7 +1,7 @@
 import type { ASTNodeTypes } from "./ASTNodeTypes";
 import type {
     AnyTxtNode,
-    TxtBlockquoteNode,
+    TxtBlockQuoteNode,
     TxtBreakNode,
     TxtCodeBlockNode,
     TxtCommentNode,
@@ -12,6 +12,7 @@ import type {
     TxtHorizontalRuleNode,
     TxtHtmlNode,
     TxtImageNode,
+    TxtCodeNode,
     TxtLinkNode,
     TxtListItemNode,
     TxtListNode,
@@ -43,9 +44,9 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         : T extends ASTNodeTypes.ParagraphExit
         ? TxtParagraphNode
         : T extends ASTNodeTypes.BlockQuote // > Str
-        ? TxtBlockquoteNode
+        ? TxtBlockQuoteNode
         : T extends ASTNodeTypes.BlockQuoteExit
-        ? TxtBlockquoteNode
+        ? TxtBlockQuoteNode
         : T extends ASTNodeTypes.List // - item
         ? TxtListNode
         : T extends ASTNodeTypes.ListExit
@@ -107,9 +108,9 @@ export type TypeofTxtNode<T extends ASTNodeTypes | string> =
         : T extends ASTNodeTypes.StrExit
         ? TxtStrNode
         : T extends ASTNodeTypes.Code // `code`
-        ? TxtCodeBlockNode
+        ? TxtCodeNode
         : T extends ASTNodeTypes.CodeExit
-        ? TxtCodeBlockNode
+        ? TxtCodeNode
         : T extends ASTNodeTypes.Html // <span>Str</span>
         ? TxtHtmlNode
         : T extends ASTNodeTypes.HtmlExit

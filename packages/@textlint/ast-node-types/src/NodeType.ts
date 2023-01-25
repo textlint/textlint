@@ -97,7 +97,7 @@ export type BlockContent =
     | TxtParagraphNode
     | TxtHeaderNode
     | TxtHorizontalRuleNode
-    | TxtBlockquoteNode
+    | TxtBlockQuoteNode
     | TxtListNode
     | TxtTableNode
     | TxtHtmlNode
@@ -129,7 +129,7 @@ export type StaticPhrasingContent =
     | TxtStrongNode
     | TxtDeleteNode
     | TxtHtmlNode
-    | TxtInlineCodeNode
+    | TxtCodeNode
     | TxtBreakNode
     | TxtImageNode
     | TxtImageReferenceNode
@@ -155,7 +155,7 @@ export interface TxtHorizontalRuleNode extends TxtNode {
     type: "HorizontalRule";
 }
 
-export interface TxtBlockquoteNode extends TxtParentNode {
+export interface TxtBlockQuoteNode extends TxtParentNode {
     type: "Blockquote";
     children: Array<BlockContent | DefinitionContent>;
 }
@@ -233,7 +233,7 @@ export interface TxtDeleteNode extends TxtParentNode {
     children: PhrasingContent[];
 }
 
-export interface TxtInlineCodeNode extends TxtTextNode {
+export interface TxtCodeNode extends TxtTextNode {
     type: "InlineCode";
 }
 
