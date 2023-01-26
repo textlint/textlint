@@ -8,9 +8,7 @@ if (isDebug) {
     debug.enable("textlint*");
 }
 // must do this initialization *before* other requires in order to work
-const cliOld = require("../lib/src/cli").cli;
-const cliNew = require("../lib/src/cli-new").cli;
-const cli = process.env.TEXTLINT_USE_NEW_CLI ? cliNew : cliOld;
+const cli = require("../lib/src/cli").cli;
 const { coreFlags } = require("@textlint/feature-flag");
 // it is for --experimental logger
 // update state
@@ -26,6 +24,19 @@ function showError(error) {
     console.error("Stack trace");
     console.error(error.stack);
 }
+
+// Exit Status
+// 0: No Error
+// - Not found lint error
+// - --fix: found errors but fix all errors, so exit with 0
+// - --output-file: Found lint error but --output-file is specified
+// - --dryRun: Found lint error but --dryRun is specified
+// 1: Lint Error
+// - found lint error
+// - --fix: found errors and could not fix all errors, so exit with 1
+// 2: Fatal Error
+// Crash textlint process
+// Fail to load config/rule/plugin etc...
 
 // Always start as promise
 Promise.resolve()
@@ -44,15 +55,15 @@ Promise.resolve()
     })
     .catch(function (error) {
         showError(error);
-        process.exit(1);
+        process.exit(2);
     });
 
 // Catch throw error
 process.on("uncaughtException", function (error) {
     showError(error);
-    process.exit(1);
+    process.exit(2);
 });
 process.on("unhandledRejection", function (error) {
     showError(error);
-    process.exit(1);
+    process.exit(2);
 });

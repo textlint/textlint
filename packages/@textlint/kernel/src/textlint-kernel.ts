@@ -133,11 +133,13 @@ export class TextlintKernel {
     }): Promise<TextlintResult> {
         const { ext, filePath, configBaseDir } = options;
         const plugin = descriptor.findPluginDescriptorWithExt(ext);
-        debug("available extensions: %o", descriptor.availableExtensions);
         if (plugin === undefined) {
             throw new Error(`Not found available plugin for ${ext}`);
         }
-        debug("use plugin: %s", plugin.id);
+        debug("used plugin %j", {
+            pluginId: plugin.id,
+            availableExtensions: descriptor.availableExtensions
+        });
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         invariant(
@@ -182,6 +184,7 @@ See https://textlint.github.io/docs/plugin.html`
             ext,
             filePath
         });
+        debug("process file %s", filePath);
         const linterProcessor = new LinterProcessor(processor, this.messageProcessManager);
         return await linterProcessor
             .process({
@@ -217,11 +220,13 @@ See https://textlint.github.io/docs/plugin.html`
     }): Promise<TextlintFixResult> {
         const { ext, filePath, configBaseDir } = options;
         const plugin = descriptor.findPluginDescriptorWithExt(ext);
-        debug("available extensions: %o", descriptor.availableExtensions);
         if (plugin === undefined) {
             throw new Error(`Not found available plugin for ${ext}`);
         }
-        debug("use plugin: %s", plugin.id);
+        debug("used plugin %j", {
+            pluginId: plugin.id,
+            availableExtensions: descriptor.availableExtensions
+        });
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         invariant(
@@ -251,6 +256,7 @@ See https://textlint.github.io/docs/plugin.html`
             ext,
             filePath
         });
+        debug("process file %s", filePath);
         const fixerProcessor = new FixerProcessor(processor, this.messageProcessManager);
         return await fixerProcessor
             .process({
