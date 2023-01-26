@@ -342,54 +342,48 @@ $ npm install textlint --save-dev
 Minimal usage:
 
 ```js
-import { TextLintEngine } from "textlint";
-const engine = new TextLintEngine({
-    rulePaths: ["path/to/rule-dir"]
-});
-engine.executeOnFiles(["README.md"]).then((results) => {
-    console.log(results[0].filePath); // => "README.md"
-    // messages are `TextLintMessage` array.
-    console.log(results[0].messages);
-    /*
-    [
-        {
-            id: "rule-name",
-            message:"lint message",
-            line: 1, // 1-based columns(TextLintMessage)
-            column:1 // 1-based columns(TextLintMessage)
-        }
-    ]
-     */
-    if (engine.isErrorResults(results)) {
-        const output = engine.formatResults(results);
-        console.log(output);
-    }
-});
+import { createLinter, loadTextlintrc, loadLinterFormatter } from "textlint";
+const descriptor = await loadTextlintrc();
+const linter = createLinter({ descriptor });
+const results = await linter.lintFiles(["*.md"]);
+// textlint has two types formatter sets for linter and fixer
+const formatter = await loadLinterFormatter({ formatterName: "stylish" })
+const output = formatter.format(results);
+console.log(output);
 ```
 
-Low level usage:
-
-```js
-import { textlint } from "textlint";
-textlint.setupRules({
-    // rule-key : rule function(see docs/rule.md)
-    "rule-key"(context) {
-        const exports = {};
-        exports[context.Syntax.Str] = function (node) {
-            context.report(node, new context.RuleError("error message"));
-        };
-        return exports;
-    }
-});
-textlint.lintMarkdown("# title").then((results) => {
-    console.log(results[0].filePath); // => "README.md"
-    console.log(results[0].messages); // => [{message:"lint message"}]
-});
-```
-
-More details on:
+More details info, please read the following documents:
 
 - See [docs/use-as-modules.md](docs/use-as-modules.md)
+
+[@textlint/kernel](./packages/@textlint/kernel "@textlint/kernel") is a low level API for textlint.
+It is useful for the browser or non-Node.js environments.
+
+```js
+import { TextlintKernel } from "@textlint/kernel";
+const kernel = new TextlintKernel();
+const options = {
+    filePath: "/path/to/file.md",
+    ext: ".md",
+    plugins: [
+        {
+            pluginId: "markdown",
+            plugin: require("@textlint/textlint-plugin-markdown")
+        }
+    ],
+    rules: [
+        {
+            ruleId: "no-todo",
+            rule: require("textlint-rule-no-todo").default
+        }
+    ]
+};
+kernel.lintText("TODO: text", options).then(result => {
+    assert.ok(typeof result.filePath === "string");
+    assert.ok(result.messages.length === 1);
+});
+```
+
 
 
 ## Conclusion
