@@ -77,7 +77,7 @@ type TextNodeRange = [number, number];
 
 ### `TxtTextNode`
 
-`TxtTextNode` is inherit the `TxtNode` abstract interface.
+`TxtTextNode` is an abstract node that inherit `TxtNode` interface.
 
 ```typescript
 /**
@@ -98,7 +98,7 @@ Example: `Str` node is a `TxtTextNode`.
 
 ### `TxtParentNode`
 
-`TxtParentNode` is inherit the `TxtNode` abstract interface.
+`TxtParentNode` is an abstract node that inherit `TxtNode` interface.
 
 ```typescript
 /**
@@ -183,11 +183,24 @@ These types are defined in [`@textlint/ast-node-types`](https://github.com/textl
 | ASTNodeTypes.Table              | TxtTableNode                     | Table node. textlint 13+             |
 | ASTNodeTypes.TableExit          | TxtTableNode                     |                                      |
 | ASTNodeTypes.TableRow           | TxtTableRowNode                  | Table row node. textlint 13+         |
-| ASTNodeTypes.TableRowExit       | TxtTableRowNode                     |                                      |
+| ASTNodeTypes.TableRowExit       | TxtTableRowNode                  |                                      |
 | ASTNodeTypes.TableCell          | TxtTableCellNode                 | Table cell node. textlint 13+        |
 | ASTNodeTypes.TableCellExit      | TxtTableCellNode                 |                                      |
 
+Some node have additional properties.
+For example, `TxtHeaderNode` has `level` property.
+
+```ts
+export interface TxtHeaderNode extends TxtParentNode {
+    type: "Header";
+    depth: 1 | 2 | 3 | 4 | 5 | 6;
+    children: PhrasingContent[];
+}
+```
+
 For more details, see [`@textlint/ast-node-types`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types).
+
+- [`@textlint/ast-node-types/src/NodeType.ts`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types/src/NodeType.ts).
 
 These type are based on HTML tag and Markdown syntax.
 Other plugin has defined other node type that is not defined in `@textlint/ast-node-types`, but you can specify it as just a string.
@@ -430,8 +443,7 @@ test(AST); // if the AST is invalid, then throw Error
 isTxtAST(AST); // true or false
 ```
 
-## Warning
+:warning: Current `test` function does not check node specific properties.
+For example, `TxtHeaderNode` has `level` property, but `test` function does not check it.
 
-Other properties is not assured.
-
-For example, markdown's `Header` node has `level` property, but other format has not it.
+- Issue: [ast-tester should validate individual Node type · Issue #1009 · textlint/textlint](https://github.com/textlint/textlint/issues/1009)
