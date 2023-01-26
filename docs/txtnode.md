@@ -14,7 +14,7 @@ Each node has common properties like `type`, `raw`, `loc`, `range` and `parent` 
 
 Each node has own properties that is defined in each node type.
 
-[![ast-explorer fork](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
+[![textlint ast-explorer](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
 [AST explorer for textlint](https://textlint.github.io/astexplorer/ "AST explorer for textlint") is useful for understanding AST.
 
