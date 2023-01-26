@@ -9,7 +9,10 @@ TxtAST define AST(Abstract Syntax Tree) for processing in textlint.
 
 [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree "Abstract syntax tree - Wikipedia, the free encyclopedia") is a tree representation of the abstract syntactic structure of text.
 
-Each node of the tree has same interface, is called `TxtNode`.
+textlint's plugin parse text to AST. AST is a tree structure that is consist of `Txt{{Type}}Node` like `TxtParagraphNode`.
+Each node has common properties like `type`, `raw`, `loc`, `range` and `parent` that is defined in `TxtNode` interface.
+
+Additionally, each node has own properties that is defined in each node type.
 
 [![ast-explorer fork](assets/ast-explorer.png)](https://textlint.github.io/astexplorer/)
 
@@ -137,6 +140,8 @@ import { ASTNodeTypes } from "@textlint/ast-node-types";
 
 const nodeType = TypeofTxtNode<ASTNodeTypes.Str>; // TxtTextNode
 ```
+
+### All node types
 
 These types are defined in [`@textlint/ast-node-types`](https://github.com/textlint/textlint/tree/master/packages/%40textlint/ast-node-types).
 
