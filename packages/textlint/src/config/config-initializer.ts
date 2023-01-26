@@ -65,7 +65,7 @@ export interface CreateConfigFileOption {
 export const createConfigFile = (options: CreateConfigFileOption) => {
     const dir = options.dir;
     return getTextlintDependencyNames(dir).then((pkgNames) => {
-        const rcFile = `.${Config.CONFIG_FILE_NAME}rc`;
+        const rcFile = `.${Config.CONFIG_FILE_NAME}rc.json`;
         const filePath = path.resolve(dir, rcFile);
         if (isFile(filePath)) {
             Logger.error(`${rcFile} is already existed.`);
