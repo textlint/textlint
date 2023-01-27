@@ -5,9 +5,10 @@ title: Use as Node Modules
 
 ## Overview
 
-![overview](assets/architecture.png)
+`textlint` package provides some High-Level APIs.
 
-`textlint` module expose these header at [index.js](https://github.com/textlint/textlint/blob/master/packages/textlint/src/index.ts)
+- If you want to load `.textlintrc`, please use `textlint` package
+- If you do not want to load `.textlintrc`, please use `@textlint/kernel` package
 
 ### CLI(Command Line Interface)
 
