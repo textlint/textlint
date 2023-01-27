@@ -498,18 +498,19 @@ This repository is a monorepo that we manage using [Lerna](https://github.com/le
 
 These modules are parts of textlint.
 
-| Package                                  | Version                                  | Description                              |
-| :--------------------------------------- | :--------------------------------------- | :--------------------------------------- |
-| [`textlint`](./packages/textlint)        | [![npm](https://img.shields.io/npm/v/textlint.svg?style=flat-square)](https://www.npmjs.com/package/textlint) | textlint command line tool itself        |
+| Package                                  | Version                                  | Description                                             |
+| :--------------------------------------- | :--------------------------------------- |:--------------------------------------------------------|
+| [`textlint`](./packages/textlint)        | [![npm](https://img.shields.io/npm/v/textlint.svg?style=flat-square)](https://www.npmjs.com/package/textlint) | textlint command line tool itself                       |
 | [`@textlint/kernel`](./packages/@textlint/kernel) | [![npm](https://img.shields.io/npm/v/@textlint/kernel.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/kernel) | textlint main logic module. It is universal JavaScript. |
-| [`@textlint/linter-formatter`](./packages/@textlint/linter-formatter) | [![npm](https://img.shields.io/npm/v/@textlint/linter-formatter.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/linter-formatter) | textlint output formatter                |
-| [`@textlint/fixer-formatter`](./packages/@textlint/fixer-formatter) | [![npm](https://img.shields.io/npm/v/@textlint/fixer-formatter.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/fixer-formatter) | textlint output formatter for fixer      |
-| [`@textlint/textlint-plugin-markdown`](./packages/@textlint/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/@textlint/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/textlint-plugin-markdown) | markdown support for textlint            |
-| [`@textlint/textlint-plugin-text`](./packages/@textlint/textlint-plugin-text) | [![npm](https://img.shields.io/npm/v/@textlint/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/textlint-plugin-text) | plain text support for textlint          |
-| [`@textlint/ast-tester`](./packages/@textlint/ast-tester) | [![npm](https://img.shields.io/npm/v/@textlint/ast-tester.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-tester) | Compliance tests for textlint's AST      |
-| [`@textlint/markdown-to-ast`](./packages/@textlint/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/markdown-to-ast) | markdown parser                          |
-| [`@textlint/ast-traverse`](./packages/@textlint/ast-traverse) | [![npm](https://img.shields.io/npm/v/@textlint/ast-traverse.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-traverse) | TxtNode traverse library                 |
-| [`@textlint/text-to-ast`](./packages/@textlint/text-to-ast)    | [![npm](https://img.shields.io/npm/v/@textlint/text-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/text-to-ast) | plain text parser                        |
+| [`@textlint/linter-formatter`](./packages/@textlint/linter-formatter) | [![npm](https://img.shields.io/npm/v/@textlint/linter-formatter.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/linter-formatter) | textlint output formatter                               |
+| [`@textlint/fixer-formatter`](./packages/@textlint/fixer-formatter) | [![npm](https://img.shields.io/npm/v/@textlint/fixer-formatter.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/fixer-formatter) | textlint output formatter for fixer                     |
+| [`@textlint/textlint-plugin-markdown`](./packages/@textlint/textlint-plugin-markdown) | [![npm](https://img.shields.io/npm/v/@textlint/textlint-plugin-markdown.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/textlint-plugin-markdown) | markdown support for textlint                           |
+| [`@textlint/textlint-plugin-text`](./packages/@textlint/textlint-plugin-text) | [![npm](https://img.shields.io/npm/v/@textlint/textlint-plugin-text.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/textlint-plugin-text) | plain text support for textlint                         |
+| [`@textlint/ast-tester`](./packages/@textlint/ast-tester) | [![npm](https://img.shields.io/npm/v/@textlint/ast-tester.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-tester) | Compliance tests for textlint's AST                     |
+| [`@textlint/markdown-to-ast`](./packages/@textlint/markdown-to-ast) | [![npm](https://img.shields.io/npm/v/@textlint/markdown-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/markdown-to-ast) | markdown parser                                         |
+| [`@textlint/ast-traverse`](./packages/@textlint/ast-traverse) | [![npm](https://img.shields.io/npm/v/@textlint/ast-traverse.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/ast-traverse) | TxtNode traverse library                                |
+| [`@textlint/text-to-ast`](./packages/@textlint/text-to-ast)    | [![npm](https://img.shields.io/npm/v/@textlint/text-to-ast.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/text-to-ast) | plain text parser                                       |
+| [`@textlint/config-loader`](./packages/@textlint/config-loader)    | [![npm](https://img.shields.io/npm/v/@textlint/config-loader.svg?style=flat-square)](https://www.npmjs.com/package/@textlint/config-loader) | Load .textlintrc config file                            |
 
 
 ### Rule/Plugin helper
