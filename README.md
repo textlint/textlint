@@ -77,9 +77,13 @@ You can run textlint with `.textlintrc.json` config file.
 npm install --save-dev textlint-rule-no-todo
 ```
 
-`textlint --init` command create `.textlintrc.json` file from installed rules.
+`npx textlint --init` command create `.textlintrc.json` file from installed rules.
 
-`.textlintrc.json`:
+```bash
+npx textlint --init
+```
+
+`.textlintrc.json` will be created like this:
 
 ```json
 {
