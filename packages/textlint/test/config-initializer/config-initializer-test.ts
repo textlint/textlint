@@ -76,7 +76,7 @@ describe("config-initializer-test", function () {
         });
         it("should create and show message if verbose:true", function () {
             Logger.log = function mockErrorLog(message) {
-                assert.ok(/\.textlintrc is created/.test(message), "should show created message");
+                assert.ok(/\.textlintrc.json is created/.test(message), "should show created message");
             };
             return createConfigFile({
                 dir: configDir,
@@ -98,7 +98,7 @@ describe("config-initializer-test", function () {
 
         it("should be an error", function () {
             Logger.error = function mockErrorLog(message) {
-                assert.equal(message, ".textlintrc is already existed.");
+                assert.equal(message, ".textlintrc.json is already existed.");
             };
             return createConfigFile({
                 dir: configDir,
