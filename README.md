@@ -73,8 +73,8 @@ textlint has no default rules!!
 You can run textlint with `.textlintrc.json` config file.
 
 ```sh
-# Install textlint's rule into local directory
-npm install --save-dev textlint-rule-no-todo
+# Install textlint and rules into local directory
+npm install --save-dev textlint textlint-rule-no-todo
 ```
 
 `npx textlint --init` command create `.textlintrc.json` file from installed rules.
