@@ -66,7 +66,7 @@ If you've never used Node.js and npm, please see the following:
 
 textlint has no default rules!!
 
-You can run textlint with the `--rule` or `--rulesdir` flag to specify rules, or you can just use a `.textlintrc` config file.
+You can run textlint with the `--rule` or `--rulesdir` flag to specify rules, or you can just use a `.textlintrc.json` config file.
 
 ```sh
 # Install textlint's rule into local directory
@@ -80,8 +80,8 @@ Use with `textlint-rule-no-todo` rule.
 npx textlint --rule no-todo README.md
 ```
 
-:memo: We recommended using `.textlintrc` to specify rules instead of `--rule` or `--rulesdir` flags.
-Your `.textlintrc` is a great way to maintain your rules.
+:memo: We recommended using `.textlintrc.json` to specify rules instead of `--rule` or `--rulesdir` flags.
+Your `.textlintrc.json` is a great way to maintain your rules.
 
 ## CLI
 
@@ -158,7 +158,7 @@ Running textlint with the following arguments
 $ npx textlint --rule no-todo --rule very-nice-rule README.md
 ```
 
-is equivalent to running `textlint README.md` in a directory with a `.textlintrc` containing the following json
+is equivalent to running `textlint README.md` in a directory with a `.textlintrc.json` containing the following json
 
 ```json
 {
@@ -169,7 +169,7 @@ is equivalent to running `textlint README.md` in a directory with a `.textlintrc
 }
 ```
 
-You can also configure options for specific rules in your `.textlintrc` file.
+You can also configure options for specific rules in your `.textlintrc.json` file.
 
 ```json
 {
@@ -184,7 +184,7 @@ You can also configure options for specific rules in your `.textlintrc` file.
 
 For example here we pass the options ("key": "value") to `very-nice-rule`.
 
-Options can be specified in your `.textlintrc` file as follows:
+Options can be specified in your `.textlintrc.json` file as follows:
 
 <!-- textlint-disable -->
 
@@ -208,12 +208,12 @@ Options can be specified in your `.textlintrc` file as follows:
 
 A textlint plugin is a set of rules and rulesConfig or customize parser.
 
-To enable plugin, put the "plugin-name" into `.textlintrc`.
+To enable plugin, put the "plugin-name" into `.textlintrc.json`.
 
 <!-- textlint-disable -->
 
 ```js
-// `.textlintrc`
+// `.textlintrc.json`
 {
     "plugins": [
         "plugin-name"
@@ -240,7 +240,7 @@ For example, if you want to lint HTML, use [textlint-plugin-html](https://github
 
     npm install textlint-plugin-html --save-dev
 
-Add `"html"` to `.textlintrc`
+Add `"html"` to `.textlintrc.json`
 
 ```
 {

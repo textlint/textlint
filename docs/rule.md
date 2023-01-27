@@ -691,7 +691,7 @@ Run the tests:
 
 `.textlintrc` is the config file for textlint.
 
-For example, `very-nice-rule`'s option is `{ "key": "value" }` in `.textlintrc`
+For example, `very-nice-rule`'s option is `{ "key": "value" }` in `.textlintrc.json`
 
 ```json
 {
@@ -718,7 +718,7 @@ export default function (context, options) {
 
 The `options` value is `{}` (empty object) by default.
 
-For example, `very-nice-rule`'s option is `true` (enable the rule) in `.textlintrc`
+For example, `very-nice-rule`'s option is `true` (enable the rule) in `.textlintrc.json`
 
 ```json
 {

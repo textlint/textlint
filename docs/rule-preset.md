@@ -47,7 +47,7 @@ module.exports = {
 
 Usage of "textlint-rule-preset-gizmo":
 
-`.textlintrc`
+`.textlintrc.json`
 
 ```json
 {

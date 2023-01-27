@@ -15,7 +15,7 @@ You can use following file as configuration file:
 
 `.textlintrc` is a config file which is loaded as JSON, YAML or JS via [azu/rc-config-loader](https://github.com/azu/rc-config-loader).
 
-Put the config of rules into `.textlintrc`
+You can put the config of rules into `.textlintrc`
 
 Or a `textlint` field in the `package.json` can be used.
 
@@ -243,7 +243,7 @@ textlint's built-in plugins are text and markdown.
 
 These plugin support custom "extensions" options.
 
-For example, if you want to treat `.hown` as markdown, put following config to `.textlintrc`    
+For example, if you want to treat `.hown` as markdown, put following config to `.textlintrc.json`    
 
 ```json5
 {
@@ -260,7 +260,7 @@ For example, if you want to treat `.hown` as markdown, put following config to `
 
 textlint support module of configuration.
 
-- [ ] Not support `config` in `.textlintrc` yet. See https://github.com/textlint/textlint/issues/210
+- [ ] Not support `config` in `.textlintrc.json` yet. See https://github.com/textlint/textlint/issues/210
 
 Specify config module via `--config` command line option.
 

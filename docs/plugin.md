@@ -189,7 +189,7 @@ You can use Processor plugin in the same way a plugin.
 
 ### options 
 
-You can pass options to your plugin from `.textlintrc`.
+You can pass options to your plugin from `.textlintrc.json`.
 
 ```
 {
@@ -211,7 +211,7 @@ export default class YourProcessor {
 ```
 
 :memo: Processor's option value is `{}` (empty object) by default.
-If not set plugin's option in `.textlintrc`, textlint pass `{}` as `options`.
+If not set plugin's option in `.textlintrc.json`, textlint pass `{}` as `options`.
 
 ```js
 export default class YourProcessor {

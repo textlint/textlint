@@ -67,9 +67,9 @@ npx textlint --rule no-todo file.md
 
 ## Configuration
 
-We recommend using `textlint` with `.textlintrc` configuration file.
+We recommend using `textlint` with `.textlintrc.json` configuration file.
 
-Create a `.textlintrc` file in your workspace:
+Create a `.textlintrc.json` file in your workspace:
 
 ```
 npx textlint --init
@@ -86,7 +86,7 @@ In this file, you'll see some rules configured like this:
 }
 ```
 
-If there is a `.textlintrc` file in your workspace, `textlint` loads `.textlintrc` automatically. So you can run textlint without any command line options:
+If there is a `.textlintrc`(`.textlintrc.{json,js,cjs,yaml,yml}`) file in your workspace, `textlint` loads `.textlintrc` automatically. So you can run textlint without any command line options:
 
 ```
 npx textlint file.md

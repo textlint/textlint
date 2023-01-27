@@ -20,13 +20,13 @@ Maybe, you have installed `textlint` and rules into different place.
 ## Solution B
 
 1. Update `textlint` and the rule and preset, plugin.
-2. Check your `.textlintrc` option value. 
+2. Check your `.textlintrc.json` option value. 
 
 **1**: This error is caused by mismatch between `textlint` and the other(rule and preset, plugin).
 
 **2**: This error is caused by invalid config value.
 
-- Check the rule name in `.textlintrc` and `package.json`
+- Check the rule name in `.textlintrc.json` and `package.json`
 
 ```json
 {

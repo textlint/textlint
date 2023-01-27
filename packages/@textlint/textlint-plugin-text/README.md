@@ -30,7 +30,7 @@ Following config is set by default.
 - `extensions`: `string[]`
     - Additional file extensions for plain text
     
-For example, if you want to treat `.custom-ext` as text, put following config to `.textlintrc`    
+For example, if you want to treat `.custom-ext` as text, put following config to `.textlintrc.json`    
 
 ```json5
 {

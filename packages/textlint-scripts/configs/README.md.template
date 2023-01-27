@@ -10,7 +10,7 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
-Via `.textlintrc`(Recommended)
+Via `.textlintrc.json`(Recommended)
 
 ```json
 {
