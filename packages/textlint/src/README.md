@@ -4,7 +4,9 @@
 
 ```mermaid
 sequenceDiagram
-  CLI->>Linter: File*s*
+  CLI->>Loader: Load textlintrc
+  Loader->>CLI: Return TextlintDescriptor
+  CLI->>Linter: File*s* and TextlintDescriptor
   Linter->>Linter: File->Text
   Linter->>Kernel: Text
   Kernel->>Kernel: Linting text
