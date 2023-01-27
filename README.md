@@ -288,6 +288,8 @@ See [Processor Plugin List](https://github.com/textlint/textlint/wiki/Collection
 
 ### Rules list :green_heart:
 
+- Check it: [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki")
+
 textlint has not built-in rules, but there are 100+ pluggable rules:
 
 - [textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo)
@@ -296,7 +298,6 @@ textlint has not built-in rules, but there are 100+ pluggable rules:
 - [etc...](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule)
 
 See [A Collection of textlint rule · textlint/textlint Wiki](https://github.com/textlint/textlint/wiki/Collection-of-textlint-rule "Collection of textlint rule · textlint/textlint Wiki") for more details.
-
 
 If you create a new rule, and add it to the wiki :)
 
