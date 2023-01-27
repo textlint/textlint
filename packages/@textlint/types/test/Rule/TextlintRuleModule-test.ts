@@ -1,8 +1,6 @@
-import { TextlintRuleReporter } from "../../src";
-import { TextlintRuleModule, TextlintRuleOptions } from "../../src";
+import { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "../../src/index";
 
 const noop = (..._args: any[]) => {};
-
 // test any
 const report0: TextlintRuleReporter = (context, options = {}) => {
     const { Syntax } = context;
@@ -49,11 +47,13 @@ const report3: TextlintRuleReporter = (context, options = {}) => {
     const { Syntax } = context;
     console.log(options.custom);
     return {
-        [Syntax.Str]() {
+        [Syntax.Str](node) {
+            console.log(node.value);
             return;
         },
     };
 };
+
 const report3Module = { linter: report3, fixer: report3 } as TextlintRuleModule<Report3options>;
 
 noop(report0);
