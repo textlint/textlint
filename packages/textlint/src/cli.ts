@@ -1,27 +1,42 @@
 // LICENSE : MIT
-"use strict";
-import { TextlintFixResult } from "@textlint/kernel";
-import { throwWithoutExperimental } from "@textlint/feature-flag";
 import debug0 from "debug";
-import { options } from "./options";
-import { TextLintEngine } from "./textlint-engine";
-import { TextFixEngine } from "./textfix-engine";
-import { Config } from "./config/config";
+import { CliOptions, options } from "./options";
 import { createConfigFile } from "./config/config-initializer";
 import { TextLintFixer } from "./fixer/textlint-fixer";
 import { Logger } from "./util/logger";
-import { lintParallel } from "./parallel/lint-worker-master";
+import { loadBuiltinPlugins, loadTextlintrc } from "./loader/TextlintrcLoader";
+import { loadCliDescriptor } from "./loader/CliLoader";
+import { createLinter } from "./createLinter";
+import { SeverityLevel } from "./shared/type/SeverityLevel";
 import { printResults, showEmptyRuleWarning } from "./cli-util";
+import { loadFixerFormatter, loadLinterFormatter } from "./formatter";
 
 const debug = debug0("textlint:cli");
+type StdinExecuteOption = {
+    cliOptions: CliOptions;
+    text: string;
+    stdinFilename: string;
+};
+type ExecuteOptions =
+    | {
+          cliOptions: CliOptions;
+          files: string[];
+      }
+    | StdinExecuteOption;
+const isStdinExecution = (executeOptions: ExecuteOptions): executeOptions is StdinExecuteOption => {
+    return "text" in executeOptions;
+};
 
-/*
- cli.js is command line **interface**
-
- processing role is cli-engine.js.
- @see cli-engine.js
- */
-
+const loadDescriptor = async (cliOptions: CliOptions) => {
+    const cliDescriptor = await loadCliDescriptor(cliOptions);
+    const textlintrcDescriptor = cliOptions.textlintrc
+        ? await loadTextlintrc({
+              configFilePath: cliOptions.config,
+              node_modulesDir: cliOptions.rulesBaseDirectory
+          })
+        : await loadBuiltinPlugins();
+    return cliDescriptor.concat(textlintrcDescriptor);
+};
 /**
  * Encapsulates all CLI behavior for eslint. Makes it easier to test as well as
  * for other Node.js programs to effectively run the CLI.
@@ -33,10 +48,10 @@ export const cli = {
      * @param {string} [text] The text to lint (used for TTY).
      * @returns {Promise<number>} The exit code for the operation.
      */
-    execute(args: string | Array<string>, text?: string): Promise<number> {
+    async execute(args: string | Array<string>, text?: string): Promise<number> {
         let currentOptions;
         // version from package.json
-        const pkgConf = require("read-pkg-up");
+        const pkgConf = await import("read-pkg-up");
         const version = pkgConf.sync({ cwd: __dirname }).pkg.version;
         try {
             currentOptions = options.parse(args);
@@ -52,6 +67,10 @@ export const cli = {
                 dir: process.cwd(),
                 verbose: !currentOptions.quiet
             });
+        } else if (currentOptions.printConfig) {
+            const descriptor = await loadDescriptor(currentOptions);
+            Logger.log(JSON.stringify(descriptor, null, 4));
+            return Promise.resolve(0);
         } else if (currentOptions.help || (!files.length && !text)) {
             Logger.log(options.generateHelp());
         } else {
@@ -59,127 +78,98 @@ export const cli = {
             const stdinFilename = currentOptions.stdinFilename;
             debug(`textlint --version: ${version}`);
             debug(`Running on ${text ? "text" : "files"}, stdin-filename: ${stdinFilename}`);
-            if (currentOptions.parallel) {
-                debug("textlint --parallel");
-                throwWithoutExperimental(
-                    "--parallel is experimental feature. It should be used with --experimental flag"
-                );
-                return this.executeWithParallel(currentOptions, files);
+            if (text) {
+                if (!stdinFilename) {
+                    throw new Error("Please specify --stdin-filename option");
+                }
+                return this.executeWithOptions({
+                    cliOptions: currentOptions,
+                    text,
+                    stdinFilename
+                });
+            } else {
+                return this.executeWithOptions({
+                    cliOptions: currentOptions,
+                    files
+                });
             }
-            return this.executeWithOptions(currentOptions, files, text, stdinFilename);
         }
         return Promise.resolve(0);
     },
 
     /**
      * execute with cli options
-     * @param {object} cliOptions
-     * @param {string[]} files files are file path list
      * @returns {Promise<number>} exit status
      */
-    executeWithParallel(cliOptions: any, files: string[]): Promise<number> {
-        const config = Config.initWithCLIOptions(cliOptions);
-        if (cliOptions.fix) {
-            // --fix
-            const fixEngine = new TextFixEngine(config);
-            if (!fixEngine.hasRuleAtLeastOne()) {
-                showEmptyRuleWarning();
-                return Promise.resolve(1);
-            }
-            const resultsPromise = lintParallel(files, {
-                type: "fix",
-                config: config,
-                concurrency: cliOptions.maxConcurrency
-            });
-            return resultsPromise.then((results) => {
-                debug("fix results: %j", results);
-                const fixer = new TextLintFixer();
-                const output = fixEngine.formatResults(results);
-                printResults(output, cliOptions);
-                // --dry-run
-                if (cliOptions.dryRun) {
-                    debug("Enable dry-run mode");
-                    return Promise.resolve(0);
-                }
-                // modify file and return exit status
-                return fixer.write(results as TextlintFixResult[]).then(() => {
-                    return 0;
-                });
-            });
-        }
-        // lint as default
-        const lintEngine = new TextLintEngine(config);
-        if (!lintEngine.hasRuleAtLeastOne()) {
+    async executeWithOptions(executeOptions: ExecuteOptions): Promise<number> {
+        const cliOptions = executeOptions.cliOptions;
+        // cli > textlintrc
+        // if cli and textlintrc have same option, cli option is prior.
+        const descriptor = await loadDescriptor(cliOptions);
+        const hasRuleAtLeastOne = descriptor.rule.lintableDescriptors.length > 0;
+        if (!hasRuleAtLeastOne) {
             showEmptyRuleWarning();
             return Promise.resolve(1);
         }
-        const resultsPromise = lintParallel(files, {
-            type: "lint",
-            config: config,
-            concurrency: cliOptions.maxConcurrency
+        const linter = createLinter({
+            cache: cliOptions.cache,
+            cacheLocation: cliOptions.cacheLocation,
+            quiet: cliOptions.quiet,
+            descriptor
         });
-        return resultsPromise.then((results) => {
-            debug("lint results: %j", results);
-            const output = lintEngine.formatResults(results);
-            if (printResults(output, cliOptions)) {
-                return lintEngine.isErrorResults(results) ? 1 : 0;
-            } else {
-                return 1;
-            }
-        });
-    },
-
-    /**
-     * execute with cli options
-     * @param {object} cliOptions
-     * @param {string[]} files files are file path list
-     * @param {string} [text]
-     * @param {string} [stdinFilename]
-     * @returns {Promise<number>} exit status
-     */
-    executeWithOptions(cliOptions: any, files: string[], text?: string, stdinFilename?: string): Promise<number> {
-        const config = Config.initWithCLIOptions(cliOptions);
         if (cliOptions.fix) {
             // --fix
-            const fixEngine = new TextFixEngine(config);
-            if (!fixEngine.hasRuleAtLeastOne()) {
-                showEmptyRuleWarning();
-                return Promise.resolve(1);
-            }
-            const resultsPromise = text
-                ? fixEngine.executeOnText(text, stdinFilename)
-                : fixEngine.executeOnFiles(files);
-            return resultsPromise.then((results) => {
-                debug("fix results: %j", results);
-                const fixer = new TextLintFixer();
-                const output = fixEngine.formatResults(results);
-                printResults(output, cliOptions);
-                // --dry-run
-                if (cliOptions.dryRun) {
-                    debug("Enable dry-run mode");
-                    return Promise.resolve(0);
-                }
-                // modify file and return exit status
-                return fixer.write(results as TextlintFixResult[]).then(() => {
-                    return 0;
-                });
+            const results = isStdinExecution(executeOptions)
+                ? [await linter.fixText(executeOptions.text, executeOptions.stdinFilename)]
+                : await linter.fixFiles(executeOptions.files);
+            debug("fix results: %j", results);
+            const fixer = new TextLintFixer();
+            const formatter = await loadFixerFormatter({
+                formatterName: cliOptions.format,
+                color: cliOptions.color
             });
-        }
-        // lint as default
-        const lintEngine = new TextLintEngine(config);
-        if (!lintEngine.hasRuleAtLeastOne()) {
-            showEmptyRuleWarning();
-            return Promise.resolve(1);
-        }
-        const resultsPromise = text ? lintEngine.executeOnText(text, stdinFilename) : lintEngine.executeOnFiles(files);
-        return resultsPromise.then((results) => {
-            debug("lint results: %j", results);
-            const output = lintEngine.formatResults(results);
-            if (printResults(output, cliOptions)) {
-                return lintEngine.isErrorResults(results) ? 1 : 0;
-            } else {
-                return 1;
+            const output = formatter.format(results);
+            // --dry-run
+            if (cliOptions.dryRun) {
+                debug("Enable dry-run mode");
+                return Promise.resolve(0);
             }
-        });
+            // modify file and return exit status
+            await fixer.write(results);
+            if (printResults(output, cliOptions)) {
+                if (cliOptions.outputFile) {
+                    return 0; // if --output-file option is specified, exit status is always 0
+                }
+                // --fix result has remaining errors, return 1
+                const hasErrorMessage = results.some((result) => {
+                    return result.remainingMessages.some((message) => message.severity === SeverityLevel.error);
+                });
+                return hasErrorMessage ? 1 : 0;
+            } else {
+                return 2;
+            }
+        } else {
+            // lint as default
+            const results = isStdinExecution(executeOptions)
+                ? [await linter.lintText(executeOptions.text, executeOptions.stdinFilename)]
+                : await linter.lintFiles(executeOptions.files);
+            debug("lint results: %j", results);
+            const formatter = await loadLinterFormatter({
+                formatterName: cliOptions.format,
+                color: cliOptions.color
+            });
+            const output = formatter.format(results);
+            if (printResults(output, cliOptions)) {
+                if (cliOptions.outputFile) {
+                    return 0; // if --output-file option is specified, exit status is always 0
+                }
+                const hasErrorMessage = results.some((result) => {
+                    return result.messages.some((message) => message.severity === SeverityLevel.error);
+                });
+                return hasErrorMessage ? 1 : 0;
+            } else {
+                return 2;
+            }
+        }
     }
 };
