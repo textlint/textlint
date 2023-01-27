@@ -70,22 +70,32 @@ If you've never used Node.js and npm, please see the following:
 
 textlint has no default rules!!
 
-You can run textlint with the `--rule` or `--rulesdir` flag to specify rules, or you can just use a `.textlintrc.json` config file.
+You can run textlint with `.textlintrc.json` config file.
 
 ```sh
 # Install textlint's rule into local directory
 npm install --save-dev textlint-rule-no-todo
 ```
 
-Use with `textlint-rule-no-todo` rule.
-(Allow to short `textlint-rule-no-todo` to `no-todo`)
+`textlint --init` command create `.textlintrc.json` file from installed rules.
 
-```sh
-npx textlint --rule no-todo README.md
+`.textlintrc.json`:
+
+```json
+{
+    "rules": {
+        "no-todo": true
+    }
+}
 ```
 
-:memo: We recommended using `.textlintrc.json` to specify rules instead of `--rule` or `--rulesdir` flags.
-Your `.textlintrc.json` is a great way to maintain your rules.
+Lint files via textlint:
+
+```sh
+npx textlint ./README.md
+```
+
+`textlint` load `.textlintrc.json` from current directory and lint `README.md`.
 
 ## CLI
 
