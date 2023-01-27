@@ -26,7 +26,7 @@ assert.strictEqual(result, 0);
 textlint v12.3.0 introduce new APIs.
 textlint will drop support old APIs(`textlint`, `TextLintEngine`, `TextFixEngine`, and `TextLintCore`) in the future.
 
-:memo: old APIs can not support ECMAScript modules, new APIs support ECMAScript modules.
+📝 old APIs can not support ECMAScript modules, new APIs support ECMAScript modules.
 
 - `createLinter`: create linter instance
     - `lintFiles(files): Promise<TextlintResult[]>`: lint files and return linter messages
