@@ -24,12 +24,6 @@ jobs:
         run: |
           yarn test
           yarn test:examples
-      - name: Test New APIs # TODO: will remove
-        run: |
-          yarn test
-          yarn test:examples
-        env:
-          TEXTLINT_USE_NEW_CLI: true
 
   e2e:
     name: E2E
@@ -65,7 +59,4 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
       - run: yarn run test:docs
-      - run: yarn run test:docs # TODO: New API
-        env:
-          TEXTLINT_USE_NEW_CLI: true
       - run: yarn run website
