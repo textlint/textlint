@@ -59,7 +59,6 @@
         "@textlint/types": "^13.0.2",
         "@textlint/utils": "^13.0.2",
         "debug": "^4.3.4",
-        "deep-equal": "^1.1.1",
         "file-entry-cache": "^5.0.1",
         "get-stdin": "^5.0.1",
         "glob": "^7.2.3",

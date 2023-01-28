@@ -6,7 +6,7 @@ import type {
     TextlintPluginProcessor,
     TextlintPluginProcessorConstructor
 } from "@textlint/types";
-import deepEqual from "deep-equal";
+import { deepEqual } from "fast-equals";
 
 /**
  * Get instance/static `availableExtensions()` from TextlintPluginProcessor
@@ -80,12 +80,7 @@ module.exports = {
     }
 
     equals(target: this): boolean {
-        return (
-            this.plugin.plugin === target.plugin.plugin &&
-            deepEqual(this.plugin.options, target.plugin.options, {
-                strict: true
-            })
-        );
+        return this.plugin.plugin === target.plugin.plugin && deepEqual(this.plugin.options, target.plugin.options);
     }
 
     toJSON() {

@@ -29,13 +29,13 @@
         "module"
     ],
     "scripts": {
-        "build": "tsc -p . && tsc --project ./tsconfig.module.json",
+        "build": "tsc -b . && tsc -b ./tsconfig.module.json",
         "clean": "rimraf lib/ module/",
         "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
         "prepublish": "npm run --if-present build",
         "test": "mocha \"test/**/*.ts\"",
         "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
-        "watch": "tsc -p . --watch"
+        "watch": "tsc -b . --watch"
     },
     "prettier": {
         "printWidth": 120,
