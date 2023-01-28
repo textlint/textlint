@@ -8,6 +8,7 @@
 </picture>
 
 > The pluggable linting tool for text and markdown.
+
 textlint is similar to [ESLint](http://eslint.org/ "ESLint"), but it's for use with natural language.
 
 <!-- textlint-disable -->
