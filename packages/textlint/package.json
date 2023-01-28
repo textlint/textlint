@@ -67,7 +67,7 @@
         "mkdirp": "^0.5.6",
         "optionator": "^0.9.1",
         "path-to-glob-pattern": "^1.0.2",
-        "rc-config-loader": "^3.0.0",
+        "rc-config-loader": "^4.1.2",
         "read-pkg": "^1.1.0",
         "read-pkg-up": "^3.0.0",
         "structured-source": "^4.0.0",
