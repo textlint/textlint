@@ -30,7 +30,7 @@ Each node has own properties that is defined in each node type.
 interface TxtNode {
     type: string;
     raw: string;
-    range: TextNodeRange;
+    range: TxtNodeRange;
     loc: TxtNodeLineLocation;
     // parent is runtime information
     // Not need in AST
@@ -63,8 +63,7 @@ interface TxtNodePosition {
 /**
  * Range start with 0
  */
-type TextNodeRange = [number, number];
-
+export type TxtNodeRange = readonly [startIndex: number, endIndex: number];
 ```
 
 `TxtNode` **must** have these properties.
