@@ -46,12 +46,13 @@ Please install following development prerequisites. You also need a [GitHub](htt
 
 Forking a repository allows you to work with textlint codebase without special permission to the textlint repository itself.
 
-1. Navigate to [textlint](https://github.com/textlint/textlint/) repository
-2. In the top–right corner of the page, click **Fork** button
+1. Click [Fork textlint](https://github.com/textlint/textlint/fork)
+2. Fork textlint repository to your account
 3. Create a clone of the fork locally in your terminal:
 
     ```sh
-    $ git clone --recursive https://github.com/YOUR_ACCOUNT/textlint YOUR_FORKED_REPOSITORY
+    $ git clone --recursive https://github.com/YOUR_ACCOUNT/textlint
+    $ cd textlint/
     ```
 
 See [Fork A Repo: GitHub Help](https://help.github.com/articles/fork-a-repo/) for further detail.
@@ -60,16 +61,10 @@ See [Fork A Repo: GitHub Help](https://help.github.com/articles/fork-a-repo/) fo
 
 After getting your clone, you can start playing with textlint.
 
-0. Enable [Corepack](https://nodejs.org/api/corepack.html) that help with managing versions of your package managers.
+1. Enable [Corepack](https://nodejs.org/api/corepack.html) that help with managing versions of your package managers.
 
     ```sh
     $ corepack enable npm
-    ```
-
-1. Change directory to your clone:
-
-    ```sh
-    $ cd YOUR_FORKED_REPOSITORY
     ```
 
 2. Install dependencies and build packages:
