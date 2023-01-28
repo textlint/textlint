@@ -38,8 +38,7 @@ If you want to contribute to textlint, please check issues labeled [`good first 
 Please install following development prerequisites. You also need a [GitHub](https://github.com/) account for contribution.
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en/) -- we tend to use latest stable Node.js although textlint supports >= 6.0.0
-- [Yarn](https://classic.yarnpkg.com/en/) -- textlint supports [npm](https://www.npmjs.com/get-npm) >= 2.0.0, but for development purpose, we chose Yarn as package manager
+- [Node.js](https://nodejs.org/en/) -- We tend to use the latest stable Node.js
 - Text editor
 - Terminal emulator
 
@@ -70,19 +69,19 @@ After getting your clone, you can start playing with textlint.
 2. Install dependencies and build packages:
 
     ```sh
-    $ yarn install
+    $ npm install
     ```
 
 3. Build textlint:
 
     ```sh
-    $ yarn run build
+    $ npm run build
     ```
 
 4. Building website if you needed:
 
     ```sh
-    $ yarn run website
+    $ npm run website
     ```
 
 Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple packages:
@@ -96,7 +95,7 @@ Under the hood, textlint uses [Lerna](https://lerna.js.org/) to manage multiple 
 
 If you are new to Lerna, it seems to add another layer of complexity but it's simpler than you think; you can edit codes, run tests, commit changes, etc. as usual in most cases.
 
-Note that `yarn install` also builds a codebase, you can manually build by running `yarn run build`. We have separate task `yarn run website` since code and documentation have different life cycle.
+Note that `npm install` also builds a codebase, you can manually build by running `npm run build`. We have separate task `npm run website` since code and documentation have different life cycle.
 
 ### Creating a Branch for Your Work
 
@@ -119,13 +118,13 @@ This monorepo use [Project References](https://www.typescriptlang.org/docs/handb
 You can update Project References from `package.json`'s dependencies.
 
 ```
-yarn run update:projectReferences
+npm run update:projectReferences
 ```
 
 Also, You can check Project References if it is correct.
 
 ```
-yarn run test:projectReferences
+npm run test:projectReferences
 ```
 
 #### Coding Guideline
@@ -146,19 +145,19 @@ This repository uses [ESLint](https://eslint.org/) for JavaScript linter and [Pr
 - Run ESLint:
 
     ```sh
-    $ yarn eslint
+    $ npm run eslint
     ```
 
 - Run ESLint with [`--fix`](https://eslint.org/docs/user-guide/command-line-interface#--fix) feature to fix some wrong style automatically:
 
     ```sh
-    $ yarn eslint:fix
+    $ npm run eslint:fix
     ```
 
 - Run Prettier to reformat code:
 
     ```sh
-    $ yarn format
+    $ npm run format
     ```
 
 ##### Commit Message Format
@@ -250,14 +249,14 @@ All tests should be run at the top directory of your fork.
 Run tests under [`packages/`](https://github.com/textlint/textlint/tree/master/packages):
 
 ```sh
-$ yarn test
+$ npm run test
 ```
 
 While developing, it would be good to run package level unit test since it will run faster:
 
 ```sh
 $ cd packages/PACKAGE
-$ yarn test
+$ npm run test
 ```
 
 #### Example Test
@@ -265,7 +264,7 @@ $ yarn test
 Run [`examples`](https://github.com/textlint/textlint/tree/master/examples) as test:
 
 ```sh
-$ yarn test:examples
+$ npm run test:examples
 ```
 
 #### Integration Test
@@ -275,7 +274,7 @@ Run tests with [real–world documents](https://github.com/textlint/textlint/tre
 
 ```sh
 $ git submodule update --init
-$ yarn test:integration
+$ npm run test:integration
 ```
 
 #### Documentation Test
@@ -283,15 +282,15 @@ $ yarn test:integration
 Run textlint to [`docs/`](https://github.com/textlint/textlint/tree/master/docs), [`.github/`](https://github.com/textlint/textlint/tree/master/.github), and [README](https://github.com/textlint/textlint/blob/master/README.md) (we are dog–fooding!):
 
 ```sh
-$ yarn test:docs
+$ npm run test:docs
 ```
 
 #### All Tests
 
-Also you can run all of the above by:
+Also, you can run all of the above by:
 
 ```sh
-$ yarn test:all
+$ npm run test:all
 ```
 
 ### Pushing the Commit and Opening a Pull Request

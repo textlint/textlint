@@ -8,11 +8,11 @@ This run tests for real textlint use-case.
 
 ## Install
 
-    yarn 
+    npm install
 
 ## Running tests
 
-    yarn test
+    npm test
 
 ## Adding Test Case
 
