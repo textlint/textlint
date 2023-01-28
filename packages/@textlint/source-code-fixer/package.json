@@ -37,7 +37,7 @@
         "prepublishOnly": "npm run build",
         "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
         "test": "mocha \"test/**/*.ts\"",
-        "watch": "tsc -p . --watch"
+        "watch": "tsc -b . --watch"
     },
     "prettier": {
         "printWidth": 120,
