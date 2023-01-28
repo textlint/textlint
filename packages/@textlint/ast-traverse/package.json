@@ -1,6 +1,6 @@
 {
     "name": "@textlint/ast-traverse",
-    "version": "13.0.3",
+    "version": "13.0.4",
     "description": "TxtNode traverse library",
     "keywords": [
         "AST",
@@ -37,10 +37,10 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/ast-node-types": "^13.0.3"
+        "@textlint/ast-node-types": "^13.0.4"
     },
     "devDependencies": {
-        "@textlint/markdown-to-ast": "^13.0.3",
+        "@textlint/markdown-to-ast": "^13.0.4",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.11.18",
         "cross-env": "^7.0.3",
