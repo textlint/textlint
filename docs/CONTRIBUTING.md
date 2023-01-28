@@ -60,6 +60,12 @@ See [Fork A Repo: GitHub Help](https://help.github.com/articles/fork-a-repo/) fo
 
 After getting your clone, you can start playing with textlint.
 
+0. Enable [Corepack](https://nodejs.org/api/corepack.html) that help with managing versions of your package managers.
+
+    ```sh
+    $ corepack enable npm
+    ```
+
 1. Change directory to your clone:
 
     ```sh
