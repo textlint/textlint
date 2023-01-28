@@ -1,5 +1,5 @@
 [build]
   publish = "website/build/textlint"
-  command = "yarn run website"
+  command = "npm run website"
 [build.environment]
   NODE_VERSION = "18"
