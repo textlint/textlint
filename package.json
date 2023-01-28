@@ -60,6 +60,8 @@
     "packages/*",
     "examples/*",
     "packages/@textlint/*",
+    "packages/textlint-scripts/example",
+    "packages/textlint-scripts/example-ts",
     "test/integration-test",
     "website"
   ],
