@@ -42,7 +42,7 @@ export class TextlintLintableRuleDescriptor {
 
     /**
      * Return normalized rule option object.
-     * If the rule have not option, return `true` by default.
+     * If the rule have not options, return `true` by default.
      */
     get normalizedOptions(): TextlintRuleOptions {
         // default: { ruleName: true }
