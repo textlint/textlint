@@ -1,6 +1,6 @@
 {
     "name": "@textlint/ast-node-types",
-    "version": "13.0.1",
+    "version": "13.0.2",
     "description": "textlint AST node type definition.",
     "keywords": [
         "textlint"
