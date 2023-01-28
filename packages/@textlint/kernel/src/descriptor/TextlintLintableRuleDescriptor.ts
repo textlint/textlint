@@ -3,7 +3,7 @@
 import { TextlintKernelRule } from "../textlint-kernel-interface";
 import { assertRuleShape, getLinter } from "./rule-creator-helper";
 import type { TextlintRuleModule, TextlintRuleOptions, TextlintRuleReporter } from "@textlint/types";
-import deepEqual from "deep-equal";
+import { deepEqual } from "fast-equals";
 
 /**
  * Textlint Rule Descriptor.
@@ -62,12 +62,7 @@ export class TextlintLintableRuleDescriptor {
      * Return true if descriptor is same
      */
     equals(descriptor: TextlintLintableRuleDescriptor): boolean {
-        return (
-            this.rule === descriptor.rule &&
-            deepEqual(this.normalizedOptions, descriptor.normalizedOptions, {
-                strict: true
-            })
-        );
+        return this.rule === descriptor.rule && deepEqual(this.normalizedOptions, descriptor.normalizedOptions);
     }
 
     toKernel(): TextlintKernelRule {

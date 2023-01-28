@@ -26,6 +26,62 @@ describe("TextlintRuleDescriptors", function () {
             assert.deepStrictEqual(ruleDescriptors.descriptors, []);
         });
     });
+    describe("#equals", function () {
+        it("should return true if descriptors are same", function () {
+            const dummyPlugin = createDummyPlugin();
+            const descriptorA = new TextlintPluginDescriptor({
+                pluginId: "pluginA",
+                plugin: dummyPlugin,
+                options: {
+                    opt: { key: true }
+                }
+            });
+            const descriptorB = new TextlintPluginDescriptor({
+                pluginId: "pluginB",
+                plugin: dummyPlugin,
+                options: {
+                    opt: { key: true }
+                }
+            });
+            assert.ok(descriptorA.equals(descriptorB));
+        });
+        it("should return false if descriptors are not same", function () {
+            const dummyPlugin = createDummyPlugin();
+            const descriptorA = new TextlintPluginDescriptor({
+                pluginId: "pluginA",
+                plugin: dummyPlugin,
+                options: {
+                    opt: { key: true }
+                }
+            });
+            const descriptorB = new TextlintPluginDescriptor({
+                pluginId: "pluginB",
+                plugin: dummyPlugin,
+                options: {
+                    opt: { key: true, key2: "diff" }
+                }
+            });
+            assert.ok(!descriptorA.equals(descriptorB));
+        });
+        it("should return false if descriptors option type is different", function () {
+            const dummyPlugin = createDummyPlugin();
+            const descriptorA = new TextlintPluginDescriptor({
+                pluginId: "pluginA",
+                plugin: dummyPlugin,
+                options: {
+                    opt: { key: true }
+                }
+            });
+            const descriptorB = new TextlintPluginDescriptor({
+                pluginId: "pluginB",
+                plugin: dummyPlugin,
+                options: {
+                    opt: { key: 1 } // diff
+                }
+            });
+            assert.ok(!descriptorA.equals(descriptorB));
+        });
+    });
     describe("#wihtouDuplicated", function () {
         it("should filter duplicated rule and ruleConfig", function () {
             // same instance

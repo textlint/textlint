@@ -4,11 +4,11 @@ import { getFilter } from "./rule-creator-helper";
 import { TextlintKernelFilterRule } from "../textlint-kernel-interface";
 import { Descriptor } from "./Descriptor";
 import type { TextlintFilterRuleOptions, TextlintFilterRuleReporter } from "@textlint/types";
-import deepEqual from "deep-equal";
+import { deepEqual } from "fast-equals";
 
 /**
  * Textlint Rule Descriptor.
- * It handle RuleCreator and RuleOption.
+ * It handles RuleCreator and RuleOption.
  */
 export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFilterRule> {
     constructor(private kernelFilterRule: TextlintKernelFilterRule) {}
@@ -38,7 +38,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
 
     /**
      * Return normalized rule option object.
-     * If the rule have not option, return `true` by default.
+     * If the rule have not options, return `true` by default.
      */
     get normalizedOptions(): TextlintFilterRuleOptions {
         // default: { ruleName: true }
@@ -58,12 +58,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
      * Return true if descriptor is same
      */
     equals(descriptor: this): boolean {
-        return (
-            this.rule === descriptor.rule &&
-            deepEqual(this.normalizedOptions, descriptor.normalizedOptions, {
-                strict: true
-            })
-        );
+        return this.rule === descriptor.rule && deepEqual(this.normalizedOptions, descriptor.normalizedOptions);
     }
 
     toKernel() {
