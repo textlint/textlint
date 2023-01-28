@@ -38,6 +38,8 @@ jobs:
           cache: 'npm'
       - name: Install
         run: npm ci
+      - name: Build textlint
+        run: npm run build
       - name: Integration Tests
         run: npm run test:integration
 
