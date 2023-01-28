@@ -5,6 +5,7 @@ export type {
     TxtNode,
     TxtParentNode,
     TxtTextNode,
+    TxtNodeType,
     // properties
     TxtNodeRange,
     TxtNodeLocation,
