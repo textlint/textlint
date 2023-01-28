@@ -3,6 +3,7 @@ export type {
     // abstract node types
     AnyTxtNode,
     TxtNode,
+    TxtNodeType,
     TxtParentNode,
     TxtTextNode,
     // properties
