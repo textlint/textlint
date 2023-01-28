@@ -5,5 +5,10 @@
     "strict": true,
     "esModuleInterop": true,
     "noEmit": true
-  }
+  },
+  "references": [
+    {
+      "path": "../../@textlint/types"
+    }
+  ]
 }

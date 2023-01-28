@@ -1,4 +1,6 @@
 {
+  "name": "textlint-scripts-example-ts",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "textlint-scripts build",
@@ -8,9 +10,9 @@
     "prh": "^5.4.4"
   },
   "devDependencies": {
-    "textlint-scripts": "file:../",
+    "textlint-scripts": "^13.0.0",
     "typescript": "~4.9.4",
-    "ts-node": "^9.1.1",
-    "@textlint/types": "^12.5.0"
+    "ts-node": "^10.9.1",
+    "@textlint/types": "^13.0.0"
   }
 }

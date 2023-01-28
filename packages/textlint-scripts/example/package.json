@@ -1,4 +1,6 @@
 {
+  "name": "textlint-scripts-example",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "textlint-scripts build",
@@ -8,6 +10,6 @@
     "prh": "^5.4.4"
   },
   "devDependencies": {
-    "textlint-scripts": "file:../"
+    "textlint-scripts": "^13.0.0"
   }
 }
