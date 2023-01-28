@@ -16,7 +16,7 @@
         "publish-gh-pages": "docusaurus-publish",
         "rename-version": "docusaurus-rename-version",
         "start": "docusaurus-start",
-        "test": "npm-run-all textlint",
+        "test": "npm run textlint",
         "textlint": "textlint --cache -c .textlintrc ../docs/ ../.github/ ../README.md -f pretty-error",
         "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md",
         "docusaurus-version": "docusaurus-version",
@@ -25,7 +25,6 @@
     "devDependencies": {
         "conventional-changelog-angular-all": "^1.7.0",
         "docusaurus": "^1.14.7",
-        "npm-run-all": "^4.1.5",
         "textlint": "^13.0.0",
         "textlint-filter-rule-comments": "^1.2.2",
         "textlint-rule-eslint": "^4.0.1",

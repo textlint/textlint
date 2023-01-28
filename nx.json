@@ -37,6 +37,11 @@
         "{projectRoot}/lib",
         "{projectRoot}/module"
       ]
+    },
+    "test:integration": {
+      "dependsOn": [
+        "^build"
+      ]
     }
   }
 }

@@ -14,14 +14,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: "yarn"
+          node-version: 18
+          cache: "npm"
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Build
         run: |
-          yarn run build --scope textlint-website
-          yarn run website
+          npm run build --scope textlint-website
+          npm run website
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

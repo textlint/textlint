@@ -28,7 +28,6 @@
     "test:projectReferences": "workspaces-to-typescript-project-references --includesRoot --check",
     "update:projectReferences": "workspaces-to-typescript-project-references --includesRoot ",
     "type-check": "tsc -b .",
-    "yarn-check": "yarn check --integrity || (echo '=> Please run `$ yarn bootstrap`' && exit 1)",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks"
   },
@@ -65,5 +64,5 @@
     "test/integration-test",
     "website"
   ],
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "npm@9.2.0"
 }

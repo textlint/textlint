@@ -11,7 +11,7 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     assert.ok(projectDirName !== undefined, "projectDirName is not defined");
     assert.ok(sourceTarget !== undefined, "sourceTarget is not defined");
     const projectDirPath = path.resolve(currentDir, projectDirName);
-    const textlintBin = path.join(__dirname, "node_modules", ".bin", "textlint");
+    const textlintBin = require.resolve(".bin/textlint");
 
     function echo(log) {
         const blue = "\u001b[34m";
@@ -39,7 +39,7 @@ module.exports = function runLint(projectDirName, sourceTarget) {
     echo("📦 Install modules....");
     const packageListWithVersions = mapRuleWithVersion(pkg, packageList);
     console.log(packageListWithVersions.join(", "));
-    shell.exec("yarn --pure-lockfile --ignore-scripts --silent", { silent: true });
+    shell.exec("npm install --no-save --no-package-lock --ignore-scripts --silent", { silent: true });
     echo("📝 Run textlint");
     const NODE_PATH = path.join(projectDirPath, "node_modules");
     process.env.NODE_PATH = NODE_PATH;

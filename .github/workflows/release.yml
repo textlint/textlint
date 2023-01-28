@@ -61,7 +61,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          cache: 'yarn'
+          cache: 'npm'
           node-version: 18
           # for publishing packages to npm
           registry-url: https://registry.npmjs.org
@@ -75,7 +75,7 @@ jobs:
       - name: Set PACKAGE_VERSION
         run: echo "PACKAGE_VERSION=$(cat lerna.json | jq -r .version)" >> $GITHUB_ENV
       - name: Install
-        run: yarn install
+        run: npm ci
       - name: Publish
         run: npm run ci:release
         env:

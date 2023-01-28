@@ -6,8 +6,8 @@ TypeScript version of [use-as-module](https://github.com/textlint/textlint/tree/
 ## Usage
 
 ```sh
-$ yarn install
-$ yarn test # success
+$ npm install
+$ npm test # success
 ```
 
 Failure scenario:

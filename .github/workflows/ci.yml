@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node: [ 14, 16, 18 ]
+        node: [ 16, 18 ]
 
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -17,13 +17,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: 'yarn'
+          cache: 'npm'
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Test
         run: |
-          yarn test
-          yarn test:examples
+          npm test
+          npm run test:examples
 
   e2e:
     name: E2E
@@ -35,16 +35,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: 'npm'
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: npm ci
+      - name: Build textlint
+        run: npm run build
       - name: Integration Tests
-        run: yarn test:integration
+        run: npm run test:integration
 
   documentation:
     strategy:
       matrix:
-        node: [ 16 ]
+        node: [ 18 ]
 
     name: Documentation(Node ${{ matrix.node }}
     runs-on: ubuntu-latest
@@ -55,8 +57,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: 'yarn'
+          cache: 'npm'
       - name: Install
-        run: yarn install --frozen-lockfile
-      - run: yarn run test:docs
-      - run: yarn run website
+        run: npm ci
+      - run: npm run test:docs
+      - run: npm run website
