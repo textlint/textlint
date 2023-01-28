@@ -5,6 +5,10 @@ export type {
     TxtNode,
     TxtParentNode,
     TxtTextNode,
+    // properties
+    TxtNodeRange,
+    TxtNodeLocation,
+    TxtNodePosition,
     // node types
     TxtBlockQuoteNode,
     TxtBreakNode,

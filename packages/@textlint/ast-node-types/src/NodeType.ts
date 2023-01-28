@@ -33,7 +33,7 @@ export type TxtNodePosition = {
 /**
  * Location
  */
-export type TxtNodeLineLocation = {
+export type TxtNodeLocation = {
     start: TxtNodePosition;
     end: TxtNodePosition;
 };
@@ -41,7 +41,7 @@ export type TxtNodeLineLocation = {
 /**
  * Range starts with 0
  */
-export type TextNodeRange = readonly [startIndex: number, endIndex: number];
+export type TxtNodeRange = readonly [startIndex: number, endIndex: number];
 
 /**
  * TxtNode is abstract interface of AST Node.
@@ -50,8 +50,8 @@ export type TextNodeRange = readonly [startIndex: number, endIndex: number];
 export interface TxtNode {
     type: TxtNodeType;
     raw: string;
-    range: TextNodeRange;
-    loc: TxtNodeLineLocation;
+    range: TxtNodeRange;
+    loc: TxtNodeLocation;
     // `parent` is created by runtime
     parent?: TxtParentNode;
 
