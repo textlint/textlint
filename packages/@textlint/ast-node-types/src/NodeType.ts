@@ -241,11 +241,6 @@ export interface TxtResource {
     title?: string | null | undefined;
 }
 
-export interface TxtAssociation {
-    identifier: string;
-    label?: string | null | undefined;
-}
-
 export interface TxtAlternative {
     alt?: string | null | undefined;
 }
