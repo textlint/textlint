@@ -31,6 +31,7 @@ export function parse<T extends TxtNode>(text: string): T {
                 if (!replacedType) {
                     debug(`replacedType : ${replacedType} , node.type: ${node.type}`);
                 } else {
+                    // @ts-expect-error: TxtNodeType + Markdown extension type
                     node.type = replacedType;
                 }
             }
