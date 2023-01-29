@@ -4,6 +4,7 @@
 import { ASTNodeTypes, TypeofTxtNode } from "@textlint/ast-node-types";
 import { TextlintRuleOptions } from "./TextlintRuleOptions";
 import { TextlintRuleContext } from "./TextlintRuleContext";
+
 /**
  * Rule Reporter Handler object define handler for each TxtNode type.
  *
@@ -13,6 +14,7 @@ import { TextlintRuleContext } from "./TextlintRuleContext";
  * Each comment is example value of Markdown
  */
 export type TextlintRuleReportHandler = { [P in ASTNodeTypes]?: (node: TypeofTxtNode<P>) => void | Promise<any> } & {
+    // TODO: node should be AnyNodeType
     [index: string]: (node: any) => void | Promise<any>;
 };
 

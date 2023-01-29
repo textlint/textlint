@@ -37,4 +37,4 @@ export const SyntaxMap = {
      * @deprecated
      */
     ReferenceDef: ASTNodeTypes.ReferenceDef
-};
+} as const;

@@ -93,7 +93,7 @@ export class TextlintRuleContextImpl implements TextlintRuleContext {
     /**
      * report function that is called in a rule
      */
-    report = (node: TxtNode, ruleError: TextlintRuleError | TextlintRuleReportedObject, _shouldNotUsed?: any) => {
+    report = (node: TxtNode, ruleError: TextlintRuleError | TextlintRuleReportedObject, _shouldNotUsed?: never) => {
         invariant(
             !(node instanceof TextlintRuleErrorImpl),
             "1st argument should be node. Usage: `report(node, ruleError);`"
