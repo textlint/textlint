@@ -6,6 +6,9 @@ import { TextlintRuleContext, TextlintRuleReportHandler } from "@textlint/types"
 const reporter = (context: TextlintRuleContext): TextlintRuleReportHandler => {
     const { Syntax, fixer, report, getSource } = context;
     return {
+        ["test"](_node) {
+            // console.log(node);
+        },
         [Syntax.Str](node) {
             const text = getSource(node);
             if (/\.$/.test(text)) {

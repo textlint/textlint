@@ -23,5 +23,5 @@ export type TextlintRuleContextReportFunction = (args: TextlintRuleContextReport
 
 export interface TextlintRuleContext extends TextlintBaseRuleContext {
     fixer: TextlintRuleContextFixCommandGenerator;
-    report: (node: TxtNode, ruleError: TextlintRuleReportedObject | TextlintRuleError, _shouldNotUsed?: any) => void;
+    report: (node: TxtNode, ruleError: TextlintRuleReportedObject | TextlintRuleError, _shouldNotUsed?: never) => void;
 }
