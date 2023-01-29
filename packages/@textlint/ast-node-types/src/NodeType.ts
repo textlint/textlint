@@ -231,7 +231,7 @@ export interface TxtLinkNode extends TxtParentNode, TxtResource {
     children: StaticPhrasingContent[];
 }
 
-export interface TxtImageNode extends Node, TxtResource, TxtAlternative {
+export interface TxtImageNode extends TxtNode, TxtResource, TxtAlternative {
     type: "Image";
 }
 
