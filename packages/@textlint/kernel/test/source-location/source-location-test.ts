@@ -25,7 +25,7 @@ describe("source-location", function () {
     context("message only", function () {
         it("should return node's start location", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -42,7 +42,7 @@ describe("source-location", function () {
             coreFlags.runningTester = false;
 
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -60,7 +60,7 @@ describe("source-location", function () {
         context("[textlint-tester] when testing", function () {
             it("should throw error in testing.", function () {
                 const node = {
-                    type: "String",
+                    type: "Str" as const,
                     range: [10, 20] as const,
                     raw: "1234567890",
                     loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -75,7 +75,7 @@ describe("source-location", function () {
     context("[deprecated] index only", function () {
         it("should return column, line", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -91,7 +91,7 @@ describe("source-location", function () {
     context("[deprecated] index and column", function () {
         it("should throw error", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -104,7 +104,7 @@ describe("source-location", function () {
         });
         it("should throw error with RuleName", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -207,7 +207,7 @@ describe("source-location", function () {
     context("paddingObject is plain object", function () {
         it("should accept this that same as RuleError", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -235,7 +235,7 @@ describe("source-location", function () {
         });
         it("fix should accept this that same as RuleError", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -254,7 +254,7 @@ describe("source-location", function () {
     describe("resolveFixCommandLocation", function () {
         it("should return {fix}", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -270,7 +270,7 @@ describe("source-location", function () {
         });
         it("range should be absolute of value", function () {
             const node = {
-                type: "String",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "1234567890",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -287,7 +287,7 @@ describe("source-location", function () {
         });
         it("should not adjust fix command range - because it is absolute position", function () {
             const node = {
-                type: "Str",
+                type: "Str" as const,
                 range: [10, 20] as const,
                 raw: "dummy",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
@@ -302,7 +302,7 @@ describe("source-location", function () {
         });
         it("is not adjust fix command range - because it is absolute position", function () {
             const node: TxtNode = {
-                type: "Str",
+                type: "Str" as const,
                 range: [10, 20],
                 raw: "dummy",
                 loc: { start: { line: 1, column: 10 }, end: { line: 1, column: 20 } }
