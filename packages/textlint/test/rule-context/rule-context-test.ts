@@ -287,6 +287,7 @@ describe("rule-context-test", function () {
                 "rule-key"(context: TextlintRuleContext): TextlintRuleReportHandler {
                     return {
                         [context.Syntax.Str](node) {
+                            // @ts-expect-error - it is test!
                             context.report(node, new context.RuleError("message"), {
                                 index: 1
                             });
