@@ -231,7 +231,7 @@ export interface TxtLinkNode extends TxtParentNode, TxtResource {
     children: StaticPhrasingContent[];
 }
 
-export interface TxtImageNode extends Node, TxtResource, TxtAlternative {
+export interface TxtImageNode extends TxtNode, TxtResource, TxtAlternative {
     type: "Image";
 }
 
@@ -239,11 +239,6 @@ export interface TxtImageNode extends Node, TxtResource, TxtAlternative {
 export interface TxtResource {
     url: string;
     title?: string | null | undefined;
-}
-
-export interface TxtAssociation {
-    identifier: string;
-    label?: string | null | undefined;
 }
 
 export interface TxtAlternative {
