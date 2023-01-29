@@ -12,7 +12,7 @@ import type { ASTNodeTypes } from "./ASTNodeTypes";
  * Key of ASTNodeTypes or any string
  * For example, TxtNodeType is "Document".
  */
-export type TxtNodeType = keyof typeof ASTNodeTypes | string;
+export type TxtNodeType = keyof typeof ASTNodeTypes;
 
 /**
  * Any TxtNode types
@@ -86,10 +86,10 @@ export type Content = TopLevelContent | ListContent | TableContent | RowContent 
 /**
  * All node definition types.
  */
-export type TopLevelContent = BlockContent | DefinitionContent;
+export type TopLevelContent = BlockContent;
 /**
  * All node types that may be used where markdown block content is accepted.
- * These types are accepted inside block quotes, list items, footnotes, and roots.
+ * These types are accepted inside block quotes, list items, and roots.
  */
 export type BlockContent =
     | TxtParagraphNode
@@ -100,8 +100,6 @@ export type BlockContent =
     | TxtTableNode
     | TxtHtmlNode
     | TxtCodeBlockNode;
-
-export type DefinitionContent = TxtDefinitionNode | TxtFootnoteDefinitionNode;
 /**
  * All node types that are acceptable inside lists.
  */
@@ -117,7 +115,7 @@ export type RowContent = TxtTableCellNode;
 /**
  * All node types that are acceptable in a (interactive) phrasing context (so not in links).
  */
-export type PhrasingContent = TxtLinkNode | TxtLinkReferenceNode | StaticPhrasingContent;
+export type PhrasingContent = TxtLinkNode | StaticPhrasingContent;
 /**
  * All node types that are acceptable in a static phrasing context.
  */
@@ -129,10 +127,7 @@ export type StaticPhrasingContent =
     | TxtHtmlNode
     | TxtCodeNode
     | TxtBreakNode
-    | TxtImageNode
-    | TxtImageReferenceNode
-    | TxtFootnoteNode
-    | TxtFootnoteReferenceNode;
+    | TxtImageNode;
 
 export interface TxtDocumentNode extends TxtParentNode {
     type: "Document";
@@ -154,8 +149,8 @@ export interface TxtHorizontalRuleNode extends TxtNode {
 }
 
 export interface TxtBlockQuoteNode extends TxtParentNode {
-    type: "Blockquote";
-    children: Array<BlockContent | DefinitionContent>;
+    type: "BlockQuote";
+    children: BlockContent[];
 }
 
 export interface TxtListNode extends TxtParentNode {
@@ -170,7 +165,7 @@ export interface TxtListItemNode extends TxtParentNode {
     type: "ListItem";
     checked?: boolean | null | undefined;
     spread?: boolean | null | undefined;
-    children: (BlockContent | DefinitionContent)[];
+    children: BlockContent[];
 }
 
 export interface TxtTableNode extends TxtParentNode {
@@ -203,15 +198,6 @@ export interface TxtCodeBlockNode extends TxtTextNode {
     meta?: string | null | undefined;
 }
 
-export interface TxtDefinitionNode extends Node, TxtAssociation, TxtResource {
-    type: "Definition";
-}
-
-export interface TxtFootnoteDefinitionNode extends TxtParentNode, TxtAssociation {
-    type: "FootnoteDefinition";
-    children: (BlockContent | DefinitionContent)[];
-}
-
 export interface TxtStrNode extends TxtTextNode {
     type: "Str";
 }
@@ -231,8 +217,9 @@ export interface TxtDeleteNode extends TxtParentNode {
     children: PhrasingContent[];
 }
 
+// Inline Code
 export interface TxtCodeNode extends TxtTextNode {
-    type: "InlineCode";
+    type: "Code";
 }
 
 export interface TxtBreakNode extends TxtNode {
@@ -240,30 +227,12 @@ export interface TxtBreakNode extends TxtNode {
 }
 
 export interface TxtLinkNode extends TxtParentNode, TxtResource {
-    type: "link";
+    type: "Link";
     children: StaticPhrasingContent[];
 }
 
 export interface TxtImageNode extends Node, TxtResource, TxtAlternative {
     type: "Image";
-}
-
-export interface TxtLinkReferenceNode extends TxtParentNode, TxtReference {
-    type: "LinkReference";
-    children: StaticPhrasingContent[];
-}
-
-export interface TxtImageReferenceNode extends Node, TxtReference, TxtAlternative {
-    type: "ImageReference";
-}
-
-export interface TxtFootnoteNode extends TxtParentNode {
-    type: "Footnote";
-    children: PhrasingContent[];
-}
-
-export interface TxtFootnoteReferenceNode extends Node, TxtAssociation {
-    type: "FootnoteReference";
 }
 
 // Mixin
@@ -277,19 +246,6 @@ export interface TxtAssociation {
     label?: string | null | undefined;
 }
 
-export interface TxtReference extends TxtAssociation {
-    referenceType: ReferenceType;
-}
-
 export interface TxtAlternative {
     alt?: string | null | undefined;
-}
-
-// ================================================================================
-// Markdown extension
-// It is not part of the original markdown spec, but textlint does not support it officially.
-// https://www.npmjs.com/package/@types/mdast
-// ================================================================================
-export interface TxtYAMLNode extends TxtTextNode {
-    type: "Yaml";
 }
