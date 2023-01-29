@@ -1,6 +1,6 @@
 {
     "name": "textlint-example-preset",
-    "version": "13.0.4",
+    "version": "13.0.5",
     "private": true,
     "description": "",
     "license": "MIT",
@@ -12,7 +12,7 @@
         "textlint": "textlint -f pretty-error README.md"
     },
     "devDependencies": {
-        "textlint": "^13.0.4",
+        "textlint": "^13.0.5",
         "textlint-rule-preset-jtf-style": "^2.3.12"
     },
     "files": [

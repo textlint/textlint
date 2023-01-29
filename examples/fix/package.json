@@ -1,6 +1,6 @@
 {
     "name": "textlint-example-fix",
-    "version": "13.0.4",
+    "version": "13.0.5",
     "private": true,
     "description": "",
     "license": "MIT",
@@ -13,7 +13,7 @@
         "textlint-fix": "textlint --fix README.md"
     },
     "devDependencies": {
-        "textlint": "^13.0.4",
+        "textlint": "^13.0.5",
         "textlint-rule-prh": "^5.2.0"
     },
     "files": [
