@@ -8,4 +8,4 @@ export const Syntax = {
     // inline
     Str: ASTNodeTypes.Str, // must
     Break: ASTNodeTypes.Break // must
-};
+} as const;
