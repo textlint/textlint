@@ -1,7 +1,11 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "lib"
+    "outDir": "lib",
+    "lib": [
+      "esnext"
+      // "dom"
+    ]
   },
   "include": [
     "src/**/*"
