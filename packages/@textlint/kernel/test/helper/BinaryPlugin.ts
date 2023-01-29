@@ -10,7 +10,7 @@ export interface CreateBinaryPluginOptions {
     extensions?: string[];
     /**
      * Return the text instead of file content.
-     * It simulate intermediate text for a binary,
+     * It simulates intermediate text for a binary,
      */
     dummyText?: string;
 }
@@ -70,7 +70,7 @@ export const createBinaryPluginStub = (options?: CreateBinaryPluginOptions) => {
                                 preProcessArgs = { text, filePath };
                                 const dummyText = (options && options.dummyText) || "this is binary";
                                 const ast = {
-                                    type: "Document",
+                                    type: "Document" as const,
                                     raw: dummyText,
                                     range: [0, dummyText.length] as const,
                                     loc: {
