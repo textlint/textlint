@@ -93,7 +93,7 @@
         "textlint-plugin-html": "^0.3.0",
         "textlint-rule-helper": "^2.2.4",
         "textlint-rule-no-todo": "^2.0.1",
-        "textlint-rule-preset-ja-spacing": "^2.2.0",
+        "textlint-rule-preset-ja-spacing": "^2.3.0",
         "textlint-rule-preset-jtf-style": "^2.3.13",
         "ts-node": "^10.9.1",
         "ts-node-test-register": "^10.0.0",
