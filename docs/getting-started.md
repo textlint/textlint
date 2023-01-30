@@ -79,6 +79,7 @@ In this file, you'll see some rules configured like this:
 
 ```json
 {
+  "plugins": {},
   "filters": {},
   "rules": {
     "no-todo": true
