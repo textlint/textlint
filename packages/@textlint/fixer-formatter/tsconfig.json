@@ -3,6 +3,15 @@
   "compilerOptions": {
     "outDir": "lib"
   },
+  "ts-node": {
+    "compilerOptions": {
+      "noEmit": true,
+      "allowJs": true
+    },
+    "include": [
+      "./**/*"
+    ]
+  },
   "include": [
     "src/**/*"
   ],
