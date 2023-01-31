@@ -1,6 +1,6 @@
 {
     "timeout": 5000,
     "loader": "ts-node/esm",
-    "forbitOnly": true,
+    "forbidOnly": true,
     "spec": ["test/**/*.{js,ts}"]
 }

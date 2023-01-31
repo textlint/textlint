@@ -30,7 +30,7 @@ describe("config-initializer-test", function () {
             const packageFilePath = path.join(__dirname, "fixtures", "package.json");
             sh.cp(packageFilePath, configDir);
         });
-        it("should create new file with packages", function () {
+        it.only("should create new file with packages", function () {
             const configFile = path.join(configDir, ".textlintrc");
             const moduleResolver = new TextLintModuleResolver({
                 rulesBaseDirectory: configDir

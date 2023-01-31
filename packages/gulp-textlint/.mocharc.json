@@ -1,4 +1,4 @@
 {
-    "forbitOnly": true,
+    "forbidOnly": true,
     "spec": ["test/**/*.js"]
 }
