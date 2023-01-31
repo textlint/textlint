@@ -2,6 +2,6 @@
   "timeout": 5000,
   "loader": "ts-node/esm",
   "spec": [
-    "test/**/*.{js,ts}"
+    "test/**/*.ts"
   ]
 }
