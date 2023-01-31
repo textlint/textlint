@@ -22,13 +22,14 @@ const getTextlintDependencyNames = (dir: string): Promise<Array<string>> => {
             const mergedDependencies = Object.assign({}, dependencies, devDependencies);
             const pkgNames = Object.keys(mergedDependencies);
             return pkgNames.filter((pkgName) => {
-                const ruleOrFilter =
+                const ruleOrFilterOrPlugin =
                     pkgName.indexOf(TextlintPackageNamePrefix.filterRule) !== -1 ||
-                    pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1;
+                    pkgName.indexOf(TextlintPackageNamePrefix.rule) !== -1 ||
+                    pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
                 if (pkgName === "textlint-rule-helper") {
                     return false;
                 }
-                return ruleOrFilter;
+                return ruleOrFilterOrPlugin;
             });
         })
         .catch(() => {
@@ -85,7 +86,15 @@ export const createConfigFile = (options: CreateConfigFileOption) => {
             .map((filterName) => {
                 return filterName.replace(TextlintPackageNamePrefix.rule, "");
             });
+        const plugins = pkgNames
+            .filter((pkgName) => {
+                return pkgName.indexOf(TextlintPackageNamePrefix.plugin) !== -1;
+            })
+            .map((filterName) => {
+                return filterName.replace(TextlintPackageNamePrefix.plugin, "");
+            });
         const defaultTextlintRc = {
+            plugins: arrayToObject(plugins, true),
             filters: arrayToObject(filters, true),
             rules: arrayToObject(rules, true)
         };
