@@ -10,6 +10,15 @@
     ".git",
     "node_modules"
   ],
+  "ts-node": {
+    "compilerOptions": {
+      "noEmit": true,
+      "allowJs": true
+    },
+    "include": [
+      "./**/*"
+    ]
+  },
   "references": [
     {
       "path": "../@textlint/ast-node-types"

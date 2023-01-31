@@ -1,6 +1,7 @@
 {
-  "timeout": "5000",
-  "require": [
-    "ts-node-test-register"
+  "timeout": 5000,
+  "loader": "ts-node/esm",
+  "spec": [
+    "test/*/*.ts"
   ]
 }

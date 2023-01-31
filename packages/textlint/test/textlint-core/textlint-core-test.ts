@@ -55,7 +55,7 @@ describe("textlint-core", function () {
             const { plugin } = createPluginStub();
             textlint.setupPlugins({ example: plugin });
         });
-        it.only("should not throw an exception @ file", function () {
+        it("should not throw an exception @ file", function () {
             return textlint.lintFile(file).then((result) => {
                 assert.ok(result.messages.length === 0);
             });
