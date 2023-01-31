@@ -37,8 +37,8 @@
         "crlf": "eolConverter crlf test/snapshots/crlf/input.txt && eolConverter crlf test/snapshots/crlf-empty-line/input.txt",
         "prepack": "npm run --if-present build",
         "pretest": "npm run crlf",
-        "test": "mocha \"test/**/*.{js,ts}\"",
-        "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",
+        "test": "mocha",
+        "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
         "watch": "tsc -b --watch"
     },
     "dependencies": {
@@ -46,12 +46,10 @@
     },
     "devDependencies": {
         "@textlint/ast-tester": "^13.1.0",
-        "cross-env": "^7.0.3",
         "eol-converter-cli": "^1.0.8",
         "mocha": "^9.2.2",
         "power-assert": "^1.6.1",
         "rimraf": "^3.0.2",
-        "ts-node-test-register": "^10.0.0",
         "typescript": "~4.9.4"
     },
     "publishConfig": {

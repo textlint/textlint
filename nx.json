@@ -6,7 +6,6 @@
         "cacheableOperations": [
           "test",
           "build",
-          "test:unit",
           "test:build"
         ]
       }

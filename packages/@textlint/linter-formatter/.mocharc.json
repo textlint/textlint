@@ -1,7 +1,6 @@
 {
-  "require": [
-    "ts-node-test-register"
-  ],
-  "color": false,
-  "timeout": "10000"
+    "timeout": 5000,
+    "loader": "ts-node/esm",
+    "forbidOnly": true,
+    "spec": ["test/**/*.{js,ts}"]
 }

@@ -2,6 +2,7 @@
 "use strict";
 import filterMessages from "../../src/messages/filter-duplicated-process";
 import * as assert from "assert";
+import { TextlintMessage } from "@textlint/types";
 
 describe("message-filter", function () {
     context("when pass empty messages", function () {
@@ -32,7 +33,7 @@ describe("message-filter", function () {
                     },
                     severity: 2
                 }
-            ];
+            ] satisfies TextlintMessage[];
             assert.equal(filterMessages(messages).length, 1);
             assert.deepEqual(filterMessages(messages), messages);
         });
@@ -80,7 +81,7 @@ describe("message-filter", function () {
                     },
                     severity: 2
                 }
-            ];
+            ] satisfies TextlintMessage[];
             assert.equal(filterMessages(messages).length, 1);
         });
         it("should filter 3 -> 1", function () {
@@ -145,7 +146,7 @@ describe("message-filter", function () {
                     },
                     severity: 2
                 }
-            ];
+            ] satisfies TextlintMessage[];
             assert.equal(filterMessages(messages).length, 1);
         });
     });
@@ -192,7 +193,7 @@ describe("message-filter", function () {
                     },
                     severity: 2
                 }
-            ];
+            ] satisfies TextlintMessage[];
             assert.equal(filterMessages(messages).length, 1);
         });
     });
@@ -239,7 +240,7 @@ describe("message-filter", function () {
                     },
                     severity: 2
                 }
-            ];
+            ] satisfies TextlintMessage[];
             assert.equal(filterMessages(messages).length, 2);
         });
     });

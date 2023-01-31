@@ -33,9 +33,9 @@
     "scripts": {
         "build": "tsc -b",
         "clean": "rimraf lib/ module/",
-        "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
         "prepack": "npm run --if-present build",
-        "test": "tsc -b test",
+        "test": "tsc -b test/",
         "watch": "tsc -b --watch"
     },
     "prettier": {
@@ -50,12 +50,10 @@
         "@textlint/markdown-to-ast": "^13.1.0",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.11.18",
-        "cross-env": "^7.0.3",
         "mocha": "^10.2.0",
         "prettier": "^2.7.1",
         "rimraf": "^3.0.2",
         "ts-node": "^10.9.1",
-        "ts-node-test-register": "^10.0.0",
         "typescript": "~4.9.4",
         "unist-util-select": "^3.0.4"
     },

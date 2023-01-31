@@ -3,117 +3,143 @@ import * as assert from "assert";
 import { applyFixesToSourceCode, revertSourceCode, applyFixesToText } from "@textlint/source-code-fixer";
 import { parse } from "@textlint/markdown-to-ast";
 import { TextlintSourceCodeImpl } from "../../src/context/TextlintSourceCodeImpl";
+import { TextlintMessage, TextlintSourceCode } from "@textlint/types";
 
 const TEST_CODE = "var answer = 6 * 7;";
 const TEST_AST = parse(TEST_CODE);
-const INSERT_AT_END = {
+const createTextlintMessage = (
+    message: Partial<TextlintMessage> & { message: string; fix?: TextlintMessage["fix"] }
+): TextlintMessage => {
+    return {
+        // No Used
+        ruleId: "test",
+        severity: 1,
+        index: 0,
+        line: 1,
+        column: 0,
+        range: [0, 1],
+        loc: {
+            start: {
+                line: 1,
+                column: 0
+            },
+            end: {
+                line: 1,
+                column: 1
+            }
+        },
+        type: "lint",
+        ...message
+    };
+};
+const INSERT_AT_END = createTextlintMessage({
     message: "End",
     fix: {
         range: [TEST_CODE.length, TEST_CODE.length],
         text: "// end"
     }
-};
-const INSERT_AT_START = {
+});
+const INSERT_AT_START = createTextlintMessage({
     message: "Start",
     fix: {
         range: [0, 0],
         text: "// start\n"
     }
-};
-const INSERT_IN_MIDDLE = {
+});
+const INSERT_IN_MIDDLE = createTextlintMessage({
     message: "Multiply",
     fix: {
         range: [13, 13],
         text: "5 *"
     }
-};
-const REPLACE_ID = {
+});
+const REPLACE_ID = createTextlintMessage({
     message: "foo",
     fix: {
         range: [4, 10],
         text: "foo"
     }
-};
-const REPLACE_VAR = {
+});
+const REPLACE_VAR = createTextlintMessage({
     message: "let",
     fix: {
         range: [0, 3],
         text: "let"
     }
-};
-const REPLACE_NUM = {
+});
+const REPLACE_NUM = createTextlintMessage({
     message: "5",
     fix: {
         range: [13, 14],
         text: "5"
     }
-};
-const REMOVE_START = {
+});
+const REMOVE_START = createTextlintMessage({
     message: "removestart",
     fix: {
         range: [0, 4],
         text: ""
     }
-};
-const REMOVE_MIDDLE = {
+});
+const REMOVE_MIDDLE = createTextlintMessage({
     message: "removemiddle",
     fix: {
         range: [5, 10],
         text: ""
     }
-};
-const REMOVE_END = {
+});
+const REMOVE_END = createTextlintMessage({
     message: "removeend",
     fix: {
         range: [14, 18],
         text: ""
     }
-};
-const NO_FIX = {
-    message: "nofix"
-};
-const INSERT_BOM = {
+});
+const INSERT_BOM = createTextlintMessage({
     message: "insert-bom",
     fix: {
         range: [0, 0],
         text: "\uFEFF"
     }
-};
-const INSERT_BOM_WITH_TEXT = {
+});
+const INSERT_BOM_WITH_TEXT = createTextlintMessage({
     message: "insert-bom",
     fix: {
         range: [0, 0],
         text: "\uFEFF// start\n"
     }
-};
-const REMOVE_BOM = {
+});
+const REMOVE_BOM = createTextlintMessage({
     message: "remove-bom",
     fix: {
         range: [-1, 0],
         text: ""
     }
-};
-const REPLACE_BOM_WITH_TEXT = {
+});
+const REPLACE_BOM_WITH_TEXT = createTextlintMessage({
     message: "remove-bom",
     fix: {
         range: [-1, 0],
         text: "// start\n"
     }
-};
-const NO_FIX1 = {
+});
+const NO_FIX = createTextlintMessage({
+    message: "nofix"
+});
+const NO_FIX1 = createTextlintMessage({
     message: "nofix1",
     line: 1,
     column: 3
-};
-const NO_FIX2 = {
+});
+const NO_FIX2 = createTextlintMessage({
     message: "nofix2",
     line: 1,
     column: 7
-};
+});
 
 describe("SourceCodeFixer", function () {
     describe("applyFixes() with no BOM", function () {
-        let sourceCode;
+        let sourceCode: TextlintSourceCode;
 
         beforeEach(function () {
             sourceCode = new TextlintSourceCodeImpl({ text: TEST_CODE, ast: TEST_AST, ext: ".md" });
@@ -121,26 +147,26 @@ describe("SourceCodeFixer", function () {
         describe("applyFixesToText", function () {
             it("should return fixed text ", function () {
                 const output = applyFixesToText(sourceCode.text, [INSERT_AT_END]);
-                assert.strictEqual(output, TEST_CODE + INSERT_AT_END.fix.text);
+                assert.strictEqual(output, TEST_CODE + INSERT_AT_END.fix?.text);
             });
         });
         describe("Text Insertion", function () {
             it("should insert text at the end of the code", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_AT_END]);
-                assert.strictEqual(result.output, TEST_CODE + INSERT_AT_END.fix.text);
+                assert.strictEqual(result.output, TEST_CODE + INSERT_AT_END.fix?.text);
                 assert.strictEqual(result.applyingMessages.length, 1);
                 assert.strictEqual(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning of the code", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_AT_START]);
-                assert.strictEqual(result.output, INSERT_AT_START.fix.text + TEST_CODE);
+                assert.strictEqual(result.output, INSERT_AT_START.fix?.text + TEST_CODE);
                 assert.strictEqual(result.remainingMessages.length, 0);
             });
 
             it("should insert text in the middle of the code", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_IN_MIDDLE]);
-                assert.strictEqual(result.output, TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix.text}6 *`));
+                assert.strictEqual(result.output, TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix?.text}6 *`));
                 assert.strictEqual(result.remainingMessages.length, 0);
             });
 
@@ -148,9 +174,9 @@ describe("SourceCodeFixer", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_IN_MIDDLE, INSERT_AT_START, INSERT_AT_END]);
                 assert.strictEqual(
                     result.output,
-                    INSERT_AT_START.fix.text +
-                        TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix.text}6 *`) +
-                        INSERT_AT_END.fix.text
+                    INSERT_AT_START.fix?.text +
+                        TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix?.text}6 *`) +
+                        INSERT_AT_END.fix?.text
                 );
                 assert.strictEqual(result.remainingMessages.length, 0);
             });
@@ -313,7 +339,7 @@ describe("SourceCodeFixer", function () {
     // This section is almost same as "with no BOM".
     // Just `result.output` has BOM.
     describe("applyFixes() with BOM", function () {
-        let sourceCode;
+        let sourceCode: TextlintSourceCode;
 
         beforeEach(function () {
             sourceCode = new TextlintSourceCodeImpl({ text: `\uFEFF${TEST_CODE}`, ast: TEST_AST, ext: ".md" });
@@ -322,13 +348,13 @@ describe("SourceCodeFixer", function () {
         describe("Text Insertion", function () {
             it("should insert text at the end of the code", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_AT_END]);
-                assert.strictEqual(result.output, `\uFEFF${TEST_CODE}${INSERT_AT_END.fix.text}`);
+                assert.strictEqual(result.output, `\uFEFF${TEST_CODE}${INSERT_AT_END.fix?.text}`);
                 assert.strictEqual(result.remainingMessages.length, 0);
             });
 
             it("should insert text at the beginning of the code", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_AT_START]);
-                assert.strictEqual(result.output, `\uFEFF${INSERT_AT_START.fix.text}${TEST_CODE}`);
+                assert.strictEqual(result.output, `\uFEFF${INSERT_AT_START.fix?.text}${TEST_CODE}`);
                 assert.strictEqual(result.remainingMessages.length, 0);
             });
 
@@ -336,7 +362,7 @@ describe("SourceCodeFixer", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_IN_MIDDLE]);
                 assert.strictEqual(
                     result.output,
-                    `\uFEFF${TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix.text}6 *`)}`
+                    `\uFEFF${TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix?.text}6 *`)}`
                 );
                 assert.strictEqual(result.remainingMessages.length, 0);
             });
@@ -345,8 +371,8 @@ describe("SourceCodeFixer", function () {
                 const result = applyFixesToSourceCode(sourceCode, [INSERT_IN_MIDDLE, INSERT_AT_START, INSERT_AT_END]);
                 assert.strictEqual(
                     result.output,
-                    `\uFEFF${INSERT_AT_START.fix.text}${TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix.text}6 *`)}${
-                        INSERT_AT_END.fix.text
+                    `\uFEFF${INSERT_AT_START.fix?.text}${TEST_CODE.replace("6 *", `${INSERT_IN_MIDDLE.fix?.text}6 *`)}${
+                        INSERT_AT_END.fix?.text
                     }`
                 );
                 assert.strictEqual(result.remainingMessages.length, 0);
@@ -488,7 +514,7 @@ describe("SourceCodeFixer", function () {
     });
 
     describe("revert apply fixes", function () {
-        let sourceCode;
+        let sourceCode: TextlintSourceCode;
 
         beforeEach(function () {
             sourceCode = new TextlintSourceCodeImpl({ text: TEST_CODE, ast: TEST_AST, ext: ".md" });

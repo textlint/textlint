@@ -78,13 +78,8 @@ describe("find-util", () => {
     describe("separateByAvailability", () => {
         it("should find dot files", () => {
             const files = [".foo"];
-            const {
-                availableFiles,
-                unAvailableFiles
-            } = separateByAvailability(files, { extensions: [".foo"] });
-            assert.deepStrictEqual(availableFiles, [
-                ".foo"
-            ]);
+            const { availableFiles, unAvailableFiles } = separateByAvailability(files, { extensions: [".foo"] });
+            assert.deepStrictEqual(availableFiles, [".foo"]);
             assert.deepStrictEqual(unAvailableFiles, []);
         });
     });
