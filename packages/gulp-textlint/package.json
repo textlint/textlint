@@ -21,7 +21,7 @@
         "url": "https://github.com/textlint/textlint.git"
     },
     "scripts": {
-        "test": "mocha \"test/**/*.{js,ts}\""
+        "test": "mocha"
     },
     "dependencies": {
         "fancy-log": "^1.3.3",

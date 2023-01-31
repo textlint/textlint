@@ -1,12 +1,7 @@
 {
-  "extension": [
-    ".ts",
-    ".js"
-  ],
-  "require": [
-    "ts-node-test-register"
-  ],
+  "timeout": 5000,
+  "loader": "ts-node/esm",
   "spec": [
-    "test/**.{js,ts}"
+    "test/**/*.ts"
   ]
 }

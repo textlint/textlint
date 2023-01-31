@@ -34,7 +34,7 @@
         "build": "tsc -b && tsc -b tsconfig.module.json",
         "clean": "rimraf lib/ module/",
         "prepack": "npm run --if-present build",
-        "test": "mocha \"test/**/*.{js,ts}\"",
+        "test": "mocha",
         "watch": "tsc -b --watch"
     },
     "dependencies": {
@@ -47,7 +47,6 @@
         "power-assert": "^1.6.1",
         "rimraf": "^3.0.2",
         "textlint-rule-no-todo": "^2.0.1",
-        "ts-node-test-register": "^10.0.0",
         "typescript": "~4.9.4"
     },
     "publishConfig": {

@@ -19,7 +19,7 @@
         "textlint-scripts": "./bin/cmd.js"
     },
     "scripts": {
-        "test": "node test/test-example.js",
+        "test": "mocha",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
     },
     "keywords": [

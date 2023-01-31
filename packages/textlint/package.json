@@ -41,7 +41,7 @@
         "build": "tsc -b && tsc -b tsconfig.module.json",
         "clean": "rimraf lib/ module/",
         "prepack": "npm run build",
-        "test": "npm-run-all test:unit",
+        "test": "mocha",
         "test:unit": "mocha",
         "watch": "tsc -b --watch"
     },

@@ -28,7 +28,7 @@
         "url": "https://github.com/textlint/textlint.git"
     },
     "scripts": {
-        "test": "node test.js"
+        "test": "mocha"
     },
     "dependencies": {
         "semver": "^5.3.0"
