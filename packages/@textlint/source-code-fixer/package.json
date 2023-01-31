@@ -35,7 +35,7 @@
         "build": "tsc -b && tsc -b tsconfig.module.json",
         "clean": "rimraf lib/ module/",
         "prepublishOnly": "npm run build",
-        "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
         "test": "mocha",
         "watch": "tsc -b . --watch"
     },

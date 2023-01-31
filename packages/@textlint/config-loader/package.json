@@ -31,7 +31,7 @@
     "scripts": {
         "build": "tsc -b . && tsc -b ./tsconfig.module.json",
         "clean": "rimraf lib/ module/",
-        "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
         "prepublish": "npm run --if-present build",
         "test": "mocha",
         "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",

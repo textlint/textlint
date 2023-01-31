@@ -51,7 +51,6 @@
         "@types/node": "^18.11.18",
         "@types/traverse": "^0.6.32",
         "browserify": "^16.5.2",
-        "cross-env": "^7.0.3",
         "mkdirp": "^1.0.4",
         "mocha": "^10.2.0",
         "power-assert": "^1.6.1",

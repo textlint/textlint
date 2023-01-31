@@ -38,7 +38,7 @@
         "prepack": "npm run --if-present build",
         "pretest": "npm run crlf",
         "test": "mocha",
-        "updateSnapshot": "cross-env UPDATE_SNAPSHOT=1 npm test",
+        "updateSnapshot": "UPDATE_SNAPSHOT=1 npm test",
         "watch": "tsc -b --watch"
     },
     "dependencies": {
@@ -46,7 +46,6 @@
     },
     "devDependencies": {
         "@textlint/ast-tester": "^13.1.0",
-        "cross-env": "^7.0.3",
         "eol-converter-cli": "^1.0.8",
         "mocha": "^9.2.2",
         "power-assert": "^1.6.1",
