@@ -1,5 +1,4 @@
 {
-  "spec": [
-    "test/**/*.{js,ts}"
-  ]
+    "forbitOnly": true,
+    "spec": ["test/**/*.{js,ts}"]
 }

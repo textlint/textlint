@@ -1,7 +1,6 @@
 {
-  "timeout": 5000,
-  "loader": "ts-node/esm",
-  "spec": [
-    "test/**/*.{js,ts}"
-  ]
+    "timeout": 5000,
+    "loader": "ts-node/esm",
+    "forbitOnly": true,
+    "spec": ["test/**/*.{js,ts}"]
 }
