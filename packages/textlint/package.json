@@ -42,7 +42,6 @@
         "clean": "rimraf lib/ module/",
         "prepack": "npm run build",
         "test": "mocha",
-        "test:unit": "mocha",
         "watch": "tsc -b --watch"
     },
     "dependencies": {
