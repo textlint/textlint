@@ -35,7 +35,7 @@
         "clean": "rimraf lib/ module/",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
         "prepack": "npm run --if-present build",
-        "test": "tsc -b",
+        "test": "tsc -b test/",
         "watch": "tsc -b --watch"
     },
     "prettier": {
