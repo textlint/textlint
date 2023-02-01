@@ -4,8 +4,9 @@ import * as assert from "assert";
 import { cli } from "../../src/cli";
 import * as path from "path";
 import { Logger } from "../../src/util/logger";
-import fs from "fs";
+import * as fs from "fs";
 import { loadBuiltinPlugins } from "../../src/loader/TextlintrcLoader";
+import * as os from "os";
 
 type RunContext = {
     getLogs(): string[];
@@ -391,6 +392,26 @@ describe("cli-test", function () {
                 `--rule "${ruleModuleName}" "${fixtureDir}/**/*.md" --ignore-path ${ignoreFile}"`
             );
             assert.strictEqual(result, 0);
+        });
+    });
+    describe("--outputFile /path/to/output.txt", function () {
+        const tmpFilePath = path.join(os.tmpdir(), "textlint.output.txt");
+        beforeEach(() => {
+            try {
+                fs.unlinkSync(tmpFilePath);
+            } catch {
+                /*nope*/
+            }
+        });
+        it("should output lint result as file and exit 0", async function () {
+            const fixtureDir = path.posix.join(__dirname, "fixtures");
+            const ruleModuleName = "textlint-rule-no-todo";
+            const result = await cli.execute(
+                `--rule "${ruleModuleName}" "${fixtureDir}/**/*.md" --output-file ${tmpFilePath}`
+            );
+            assert.strictEqual(result, 0);
+            const outputFileContent = await fs.promises.readFile(tmpFilePath, "utf-8");
+            assert.match(outputFileContent, /\d+ problem/);
         });
     });
     describe("--no-textlint", function () {
