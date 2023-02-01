@@ -449,7 +449,7 @@ describe("cli-test", function () {
              *
              * ✖ 1 problem (1 error, 0 warnings)
              */
-            assert.match(outputFileContent, /\d+ problem/);
+            assert.match(outputFileContent, /Found TODO/);
         });
     });
     describe("--no-textlint", function () {
