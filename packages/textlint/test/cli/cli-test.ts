@@ -382,6 +382,17 @@ describe("cli-test", function () {
             });
         });
     });
+    describe("--ignore-path /path/to/.textlintignore", function () {
+        it("should ignore test.md", async function () {
+            const fixtureDir = path.posix.join(__dirname, "fixtures");
+            const ruleModuleName = "textlint-rule-no-todo";
+            const ignoreFile = path.join(__dirname, "fixtures/all-md.textlintignore");
+            const result = await cli.execute(
+                `--rule "${ruleModuleName}" "${fixtureDir}/**/*.md" --ignore-path ${ignoreFile}"`
+            );
+            assert.strictEqual(result, 0);
+        });
+    });
     describe("--no-textlint", function () {
         it("should not load textlintrc, but load built-in plugins", function () {
             return runWithMockLog(async ({ getLogs }) => {
