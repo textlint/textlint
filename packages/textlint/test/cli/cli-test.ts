@@ -4,8 +4,9 @@ import * as assert from "assert";
 import { cli } from "../../src/cli";
 import * as path from "path";
 import { Logger } from "../../src/util/logger";
-import fs from "fs";
+import * as fs from "fs";
 import { loadBuiltinPlugins } from "../../src/loader/TextlintrcLoader";
+import * as os from "os";
 
 type RunContext = {
     getLogs(): string[];
@@ -75,7 +76,7 @@ describe("cli-test", function () {
                 assert.strictEqual(result, 1);
             });
         });
-        it("should return error", function () {
+        it("should return 1 which is lint error code", function () {
             return runWithMockLog(async () => {
                 const ruleDir = path.join(__dirname, "fixtures/rules");
                 const targetFile = path.join(__dirname, "fixtures/test.md");
@@ -258,7 +259,7 @@ describe("cli-test", function () {
             });
         });
     });
-    context("When run with --fix", function () {
+    context("--fix", function () {
         context("when no rules found", function () {
             it("show suggestion message from FAQ", function () {
                 return runWithMockLog(async ({ assertMatchLog }) => {
@@ -269,7 +270,7 @@ describe("cli-test", function () {
                 });
             });
         });
-        context("when has rule", function () {
+        context("when has rule, but no fix", function () {
             it("should execute fixer", function () {
                 return runWithMockLog(async ({ assertNotHasLog }) => {
                     const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
@@ -280,7 +281,39 @@ describe("cli-test", function () {
                 });
             });
         });
+        context("when has rule and fix it", function () {
+            const targetFilePath = path.join(os.tmpdir(), "fix-input-copy-file.md");
+            beforeEach(async () => {
+                try {
+                    await fs.promises.unlink(targetFilePath);
+                } catch {
+                    /* ignore */
+                }
+            });
+            it("should modify the file", async function () {
+                const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                const inputFilePath = path.join(__dirname, "fixtures/fixer-rules/input.md");
+                const expectedFilePath = path.join(__dirname, "fixtures/fixer-rules/output.md");
+                await fs.promises.copyFile(inputFilePath, targetFilePath);
+                const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFilePath}`);
+                assert.strictEqual(result, 0);
+                const resultContent = await fs.promises.readFile(targetFilePath, "utf-8");
+                const expectedContent = await fs.promises.readFile(expectedFilePath, "utf-8");
+                assert.strictEqual(resultContent, expectedContent);
+            });
+            it("should not modify the file when --dry-run", async function () {
+                const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                const inputFilePath = path.join(__dirname, "fixtures/fixer-rules/input.md");
+                await fs.promises.copyFile(inputFilePath, targetFilePath);
+                const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFilePath} --dry-run`);
+                assert.strictEqual(result, 0);
+                const inputContent = await fs.promises.readFile(inputFilePath, "utf-8");
+                const resultContent = await fs.promises.readFile(targetFilePath, "utf-8");
+                assert.strictEqual(resultContent, inputContent);
+            });
+        });
     });
+
     context("When run with --quiet", function () {
         it("shows only errors, not warnings. as a result, it will be no error", function () {
             return runWithMockLog(async ({ assertNotHasLog }) => {
@@ -391,6 +424,32 @@ describe("cli-test", function () {
                 `--rule "${ruleModuleName}" "${fixtureDir}/**/*.md" --ignore-path ${ignoreFile}"`
             );
             assert.strictEqual(result, 0);
+        });
+    });
+    describe("--outputFile /path/to/output.txt", function () {
+        const tmpFilePath = path.join(os.tmpdir(), "textlint.output.txt");
+        beforeEach(() => {
+            try {
+                fs.unlinkSync(tmpFilePath);
+            } catch {
+                /*nope*/
+            }
+        });
+        it("should output lint result as file and exit 0", async function () {
+            const fixtureDir = path.posix.join(__dirname, "fixtures");
+            const ruleModuleName = "textlint-rule-no-todo";
+            const result = await cli.execute(
+                `--rule "${ruleModuleName}" "${fixtureDir}/**/*.md" --output-file ${tmpFilePath}`
+            );
+            assert.strictEqual(result, 0);
+            const outputFileContent = await fs.promises.readFile(tmpFilePath, "utf-8");
+            /**
+             * /textlint/textlint/packages/textlint/test/cli/fixtures/todo.md
+             *   3:3  error  Found TODO: '- [ ] TODO'  no-todo
+             *
+             * ✖ 1 problem (1 error, 0 warnings)
+             */
+            assert.match(outputFileContent, /Found TODO/);
         });
     });
     describe("--no-textlint", function () {
