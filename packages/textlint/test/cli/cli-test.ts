@@ -76,7 +76,7 @@ describe("cli-test", function () {
                 assert.strictEqual(result, 1);
             });
         });
-        it("should return error", function () {
+        it("should return 1 which is lint error code", function () {
             return runWithMockLog(async () => {
                 const ruleDir = path.join(__dirname, "fixtures/rules");
                 const targetFile = path.join(__dirname, "fixtures/test.md");
