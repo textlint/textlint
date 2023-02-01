@@ -16,7 +16,7 @@ const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {
     // You can get config descriptor from `loadTextlintrc()`
     descriptor: TextlintKernelDescriptor;
-    ignoreFile?: string;
+    ignoreFilePath?: string;
     quiet?: boolean;
     cache?: boolean;
     cacheLocation?: string;
@@ -61,7 +61,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 extensions: options.descriptor.availableExtensions
             });
             const targetFiles = findFiles(patterns, {
-                ignoreFilePath: options.ignoreFile
+                ignoreFilePath: options.ignoreFilePath
             });
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
@@ -93,7 +93,7 @@ export const createLinter = (options: CreateLinterOptions) => {
                 extensions: options.descriptor.availableExtensions
             });
             const targetFiles = findFiles(patterns, {
-                ignoreFilePath: options.ignoreFile
+                ignoreFilePath: options.ignoreFilePath
             });
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions

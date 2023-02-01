@@ -115,6 +115,7 @@ export const cli = {
             cache: cliOptions.cache,
             cacheLocation: cliOptions.cacheLocation,
             quiet: cliOptions.quiet,
+            ignoreFilePath: cliOptions.ignorePath,
             descriptor
         });
         if (cliOptions.fix) {
