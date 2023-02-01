@@ -295,7 +295,7 @@ describe("cli-test", function () {
                 const inputFilePath = path.join(__dirname, "fixtures/fixer-rules/input.md");
                 const expectedFilePath = path.join(__dirname, "fixtures/fixer-rules/output.md");
                 await fs.promises.copyFile(inputFilePath, targetFilePath);
-                const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${inputFilePath}`);
+                const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFilePath}`);
                 assert.strictEqual(result, 0);
                 const resultContent = await fs.promises.readFile(targetFilePath, "utf-8");
                 const expectedContent = await fs.promises.readFile(expectedFilePath, "utf-8");
@@ -305,7 +305,7 @@ describe("cli-test", function () {
                 const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
                 const inputFilePath = path.join(__dirname, "fixtures/fixer-rules/input.md");
                 await fs.promises.copyFile(inputFilePath, targetFilePath);
-                const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${inputFilePath} --dry-run`);
+                const result = await cli.execute(`--rulesdir ${ruleDir} --fix ${targetFilePath} --dry-run`);
                 assert.strictEqual(result, 0);
                 const inputContent = await fs.promises.readFile(inputFilePath, "utf-8");
                 const resultContent = await fs.promises.readFile(targetFilePath, "utf-8");
