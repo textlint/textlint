@@ -443,6 +443,12 @@ describe("cli-test", function () {
             );
             assert.strictEqual(result, 0);
             const outputFileContent = await fs.promises.readFile(tmpFilePath, "utf-8");
+            /**
+             * /textlint/textlint/packages/textlint/test/cli/fixtures/todo.md
+             *   3:3  error  Found TODO: '- [ ] TODO'  no-todo
+             *
+             * ✖ 1 problem (1 error, 0 warnings)
+             */
             assert.match(outputFileContent, /\d+ problem/);
         });
     });
