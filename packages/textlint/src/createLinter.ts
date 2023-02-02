@@ -66,8 +66,9 @@ export const createLinter = (options: CreateLinterOptions) => {
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
             });
-            debug("Process files", availableFiles);
-            debug("No Process files that are un-support extensions:", unAvailableFiles);
+            debug("Available extensions: %j", options.descriptor.availableExtensions);
+            debug("Process files: %j", availableFiles);
+            debug("No Process files that are un-support extensions: %j", unAvailableFiles);
             return executeFileBackerManger.process(availableFiles, async (filePath) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");
@@ -98,8 +99,9 @@ export const createLinter = (options: CreateLinterOptions) => {
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
             });
-            debug("Process files", availableFiles);
-            debug("No Process files that are un-support extensions:", unAvailableFiles);
+            debug("Available extensions: %j", options.descriptor.availableExtensions);
+            debug("Process files: %j", availableFiles);
+            debug("No Process files that are un-support extensions: %j", unAvailableFiles);
             return executeFileBackerManger.process(availableFiles, async (filePath) => {
                 const absoluteFilePath = path.resolve(process.cwd(), filePath);
                 const fileContent = await fs.readFile(filePath, "utf-8");

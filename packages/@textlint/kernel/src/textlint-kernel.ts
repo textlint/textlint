@@ -136,10 +136,7 @@ export class TextlintKernel {
         if (plugin === undefined) {
             throw new Error(`Not found available plugin for ${ext}`);
         }
-        debug("used plugin %j", {
-            pluginId: plugin.id,
-            availableExtensions: descriptor.availableExtensions
-        });
+        debug("used plugin %j", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         invariant(
@@ -223,10 +220,7 @@ See https://textlint.github.io/docs/plugin.html`
         if (plugin === undefined) {
             throw new Error(`Not found available plugin for ${ext}`);
         }
-        debug("used plugin %j", {
-            pluginId: plugin.id,
-            availableExtensions: descriptor.availableExtensions
-        });
+        debug("used plugin %j", plugin.id);
         const processor = plugin.processor;
         const { preProcess, postProcess } = processor.processor(ext);
         invariant(
