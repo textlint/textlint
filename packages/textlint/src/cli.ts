@@ -29,13 +29,17 @@ const isStdinExecution = (executeOptions: ExecuteOptions): executeOptions is Std
 
 const loadDescriptor = async (cliOptions: CliOptions) => {
     const cliDescriptor = await loadCliDescriptor(cliOptions);
+    debug("cliDescriptor: %j", cliDescriptor);
     const textlintrcDescriptor = cliOptions.textlintrc
         ? await loadTextlintrc({
               configFilePath: cliOptions.config,
               node_modulesDir: cliOptions.rulesBaseDirectory
           })
         : await loadBuiltinPlugins();
-    return cliDescriptor.concat(textlintrcDescriptor);
+    debug("textlintrcDescriptor: %j", textlintrcDescriptor);
+    const mergedDescriptor = cliDescriptor.concat(textlintrcDescriptor);
+    debug("mergedDescriptor: %j", mergedDescriptor);
+    return mergedDescriptor;
 };
 /**
  * Encapsulates all CLI behavior for eslint. Makes it easier to test as well as
@@ -60,6 +64,7 @@ export const cli = {
             return Promise.resolve(1);
         }
         const files = currentOptions._;
+        debug("cliOptions: %j", currentOptions);
         if (currentOptions.version) {
             Logger.log(`v${version}`);
         } else if (currentOptions.init) {
