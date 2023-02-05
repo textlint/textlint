@@ -68,7 +68,7 @@ export class TextlintFilterRuleDescriptor implements Descriptor<TextlintKernelFi
     toJSON() {
         return {
             id: this.id,
-            rawOptions: this.rawOptions
+            options: this.normalizedOptions
         };
     }
 }

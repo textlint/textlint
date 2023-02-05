@@ -124,17 +124,17 @@ describe("TextlintKernelDescriptor", () => {
                 plugin: [
                     {
                         id: "markdownA",
-                        rawOptions: true
+                        options: {}
                     },
                     {
                         id: "markdownB",
-                        rawOptions: true
+                        options: {}
                     }
                 ],
                 rule: [
                     {
-                        options: true,
-                        ruleId: "lintable"
+                        id: "lintable",
+                        options: {}
                     }
                 ]
             });

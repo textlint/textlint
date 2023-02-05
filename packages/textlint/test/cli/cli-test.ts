@@ -376,7 +376,7 @@ describe("cli-test", function () {
                             ...expected.toJSON(),
                             rule: [
                                 {
-                                    ruleId: "textlint-rule-no-todo",
+                                    id: "textlint-rule-no-todo",
                                     options: {
                                         severity: "warning"
                                     }
@@ -403,8 +403,8 @@ describe("cli-test", function () {
                             ...expected.toJSON(),
                             rule: [
                                 {
-                                    ruleId: "no-todo",
-                                    options: true
+                                    id: "no-todo",
+                                    options: {}
                                 }
                             ]
                         },
