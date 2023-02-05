@@ -86,7 +86,7 @@ module.exports = {
     toJSON() {
         return {
             id: this.id,
-            rawOptions: this.rawOptions
+            options: this.normalizedOptions
         };
     }
 }
