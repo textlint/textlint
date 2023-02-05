@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "preset-abc": {
+      "a": true,
+      "b": false,
+      "c": false
+    }
+  }
+}

@@ -28,6 +28,7 @@ export async function loadPreset({
         return {
             ruleId: normalizedKey,
             rule: preset.rules[ruleId],
+            // prefer .textlintrc config than preset.rulesConfig
             options: presetRulesOptions[ruleId] ?? preset.rulesConfig[ruleId],
             filePath: presetPackageName.filePath,
             moduleName: presetPackageName.moduleName

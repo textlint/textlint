@@ -1,0 +1,27 @@
+{
+    "ok": true,
+    "config": {
+        "rules": [
+            {
+                "ruleId": "abc/a",
+                "options": true,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc"
+            },
+            {
+                "ruleId": "abc/b",
+                "options": false,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc"
+            },
+            {
+                "ruleId": "abc/c",
+                "options": false,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc"
+            }
+        ],
+        "plugins": [],
+        "filterRules": []
+    }
+}
