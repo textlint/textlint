@@ -31,6 +31,9 @@ jobs:
     permissions:
       contents: write
     if: github.event_name == 'push'
+    defaults:
+      run:
+        working-directory: ./test/benchmark
     steps:
       - uses: actions/checkout@v3
         with:
@@ -43,16 +46,18 @@ jobs:
         run: npm ci
       - name: Build textlint
         run: npm run build
+        working-directory: ../../
       - name: Benchmark
         id: benchmark
         uses: blacha/hyperfine-action@v1
         with:
-          benchmark-config: 'test/benchmark/.hyperfine.json'
+          benchmark-config: '.hyperfine.json'
           count: 100
           benchmark-branch: 'gh-pages'
           benchmark-output: 'benchmarks.json'
           benchmark-html: 'benchmarks.html'
           master-branch: 'master'
+
 
   e2e:
     name: E2E
