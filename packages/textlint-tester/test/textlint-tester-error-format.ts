@@ -1,18 +1,21 @@
 // LICENSE : MIT
 "use strict";
 import * as assert from "assert";
-import { TextLintCore } from "textlint";
+import { createTestLinter, createTextlintKernelDescriptor } from "../src/textlint-tester";
 import { testValid, testInvalid } from "../src/test-util";
-import noTodo from "./fixtures/rule/no-todo";
+import rule from "./fixtures/rule/no-todo";
 
 describe("Error format", () => {
-    const textlint = new TextLintCore();
-    beforeEach(() => textlint.setupRules({ "no-todo": noTodo }));
-    afterEach(() => textlint.resetRules());
+    const textlint = createTestLinter(
+        createTextlintKernelDescriptor({
+            testName: "no-todo",
+            testRuleDefinition: rule
+        })
+    );
 
     describe("valid", () => {
         context("when w/o description", () => {
-            it(`should output error messages in a specific format`, () => {
+            it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `valid: should have no errors but had Error results:
 ===Text===:
 - [ ] test
@@ -46,19 +49,24 @@ describe("Error format", () => {
     ],
     "filePath": "<markdown>"
 }`;
-                return testValid({
-                    textlint,
-                    text: "- [ ] test",
-                    ext: ".md",
-                    description: undefined
-                }).catch((error) => {
-                    assert.ok(error.message === errorMsg);
-                });
+
+                await assert.rejects(
+                    async () => {
+                        await testValid({
+                            textlint,
+                            text: "- [ ] test",
+                            ext: ".md"
+                        });
+                    },
+                    {
+                        message: errorMsg
+                    }
+                );
             });
         });
 
         context("when w/ description", () => {
-            it(`should output error messages in a specific format`, () => {
+            it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `valid: should have no errors but had Error results:
 ===Description===:
 when valid it expects to raise an error.
@@ -95,21 +103,27 @@ when valid it expects to raise an error.
     ],
     "filePath": "<markdown>"
 }`;
-                return testValid({
-                    textlint,
-                    text: "- [ ] test",
-                    ext: ".md",
-                    description: "when valid it expects to raise an error."
-                }).catch((error) => {
-                    assert.ok(error.message === errorMsg);
-                });
+
+                await assert.rejects(
+                    async () => {
+                        await testValid({
+                            textlint,
+                            text: "- [ ] test",
+                            ext: ".md",
+                            description: "when valid it expects to raise an error."
+                        });
+                    },
+                    {
+                        message: errorMsg
+                    }
+                );
             });
         });
     });
 
     describe("invalid", () => {
         context("when w/o description", () => {
-            it(`should output error messages in a specific format`, () => {
+            it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `invalid: should have 1 errors but had 0:
 ===Text===:
 text
@@ -119,20 +133,24 @@ text
     "messages": [],
     "filePath": "<markdown>"
 }`;
-                return testInvalid({
-                    textlint,
-                    text: "text",
-                    ext: ".md",
-                    errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }],
-                    description: undefined
-                }).catch((error) => {
-                    assert.ok(error.message === errorMsg);
-                });
+                await assert.rejects(
+                    async () => {
+                        await testInvalid({
+                            textlint,
+                            text: "text",
+                            ext: ".md",
+                            errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }]
+                        });
+                    },
+                    {
+                        message: errorMsg
+                    }
+                );
             });
         });
 
         context("when w/ description", () => {
-            it(`should output error messages in a specific format`, () => {
+            it(`should output error messages in a specific format`, async () => {
                 const errorMsg = `invalid: should have 1 errors but had 0:
 ===Description===:
 when invalid it expects to raise an error.
@@ -145,15 +163,20 @@ text
     "messages": [],
     "filePath": "<markdown>"
 }`;
-                return testInvalid({
-                    textlint,
-                    text: "text",
-                    ext: ".md",
-                    errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }],
-                    description: "when invalid it expects to raise an error."
-                }).catch((error) => {
-                    assert.ok(error.message === errorMsg);
-                });
+                await assert.rejects(
+                    async () => {
+                        await testInvalid({
+                            textlint,
+                            text: "text",
+                            ext: ".md",
+                            errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }],
+                            description: "when invalid it expects to raise an error."
+                        });
+                    },
+                    {
+                        message: errorMsg
+                    }
+                );
             });
         });
     });

@@ -43,7 +43,7 @@ export type InvalidPatternArgs =
           errors: TesterErrorDefinition[];
           text: string;
           ext: string;
-          description: string | undefined;
+          description?: string;
       };
 
 /**
@@ -177,7 +177,7 @@ export type ValidPatternArgs =
           textlint: TestTextlintLinter;
           text: string;
           ext: string;
-          description: string | undefined;
+          description?: string;
       };
 
 export async function testValid(args: ValidPatternArgs) {

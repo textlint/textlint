@@ -190,7 +190,7 @@ interface CreateTextlintKernelDescriptorArgs {
     testCaseOptions?: TestConfigRule["options"];
 }
 
-const createTextlintKernelDescriptor = ({
+export const createTextlintKernelDescriptor = ({
     testName,
     testRuleDefinition,
     testCaseOptions
@@ -232,7 +232,7 @@ const createTextlintKernelDescriptor = ({
     }
 };
 
-const createTestLinter = (textlintKernelDescriptor: TextlintKernelDescriptor) => {
+export const createTestLinter = (textlintKernelDescriptor: TextlintKernelDescriptor) => {
     const kernel = new TextlintKernel();
     return {
         async lintText(text: string, ext: string) {

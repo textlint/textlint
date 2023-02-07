@@ -17,8 +17,7 @@ describe("Broken Rule", function () {
                 textlint,
                 text: "text",
                 ext: ".md",
-                errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }],
-                description: undefined
+                errors: [{ message: "Found TODO: '- [ ] string'", line: 1, column: 3 }]
             })
                 .then(() => {
                     throw new Error("WRONG");
