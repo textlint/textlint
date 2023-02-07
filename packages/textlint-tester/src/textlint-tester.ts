@@ -318,8 +318,8 @@ valid: [ "text", { text: "text" }, { inputPath: "path/to/file" } ]
         const inputPath = invalid.inputPath;
         const text = invalid.text;
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
-        const options = invalid.options !== undefined ? invalid.options : undefined;
-        const description = invalid.description !== undefined ? invalid.description : undefined;
+        const options = invalid.options;
+        const description = invalid.description;
         const textlint = createTestLinter(
             createTextlintKernelDescriptor({
                 testName,

@@ -36,7 +36,7 @@ export type InvalidPatternArgs =
           textlint: TestTextlintLinter;
           inputPath: string;
           errors: TesterErrorDefinition[];
-          description: string | undefined;
+          description?: string;
       }
     | {
           textlint: TestTextlintLinter;
@@ -171,7 +171,7 @@ export type ValidPatternArgs =
     | {
           textlint: TestTextlintLinter;
           inputPath: string;
-          description: string | undefined;
+          description?: string;
       }
     | {
           textlint: TestTextlintLinter;
