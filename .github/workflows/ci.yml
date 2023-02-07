@@ -25,6 +25,47 @@ jobs:
           npm test
           npm run test:examples
 
+  benchmark:
+    name: Benchmark
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install Hyperfine
+        run: |
+          wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+          sudo dpkg -i hyperfine_1.15.0_amd64.deb
+      - name: Install
+        run: npm ci
+      - name: Build textlint
+        run: npm run build
+      - name: Benchmark
+        run: npm run bench
+        working-directory: ./test/benchmark
+      - name: Get Previous Benchmark Results
+        uses: actions/cache@v3
+        with:
+          path: ./cache
+          key: ${{ runner.os }}-benchmark
+      - name: Save Benchmark Results
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'customSmallerIsBetter'
+          output-file-path: ./test/benchmark/output.json
+          benchmark-data-dir-path: 'benchmarks'
+          fail-on-alert: true
+          comment-on-alert: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+      - name: Output Step Summary
+        run: cat ./test/benchmark/result.md > $GITHUB_STEP_SUMMARY
+
   e2e:
     name: E2E
     runs-on: ubuntu-latest
