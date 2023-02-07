@@ -1,0 +1,18 @@
+[submodule "test/integration-test/JavaScript-Plugin-Architecture"]
+	path = test/integration-test/JavaScript-Plugin-Architecture
+	url = https://github.com/azu/JavaScript-Plugin-Architecture.git
+[submodule "test/integration-test/gitbook-starter-kit"]
+	path = test/integration-test/gitbook-starter-kit
+	url = https://github.com/azu/gitbook-starter-kit.git
+[submodule "test/integration-test/magi-hacker"]
+	path = test/integration-test/magi-hacker
+	url = https://github.com/io-monad/magi-hacker.git
+[submodule "test/integration-test/scala_text"]
+	path = test/integration-test/scala_text
+	url = https://github.com/dwango/scala_text.git
+[submodule "test/integration-test/js-primer"]
+	path = test/integration-test/js-primer
+	url = https://github.com/asciidwango/js-primer.git
+[submodule "test/integration-test/webpack-book"]
+	path = test/integration-test/webpack-book
+	url = https://github.com/survivejs/webpack-book

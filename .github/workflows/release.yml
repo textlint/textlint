@@ -1,0 +1,117 @@
+# This workflow often runs following steps when a PR is merged to main branch.
+# 1. jobs.check checks if we need to release
+# 2. jobs.release publish packages
+#
+# Note: Force publish
+# You can publish packages manually by running workflow dispatch
+# This workflow dispatch skip jobs.check process
+# 1. dispatch "release" workflow
+# 2. Open Release Page
+# 3. Generate Release Note
+name: Release
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+    types: [ closed ]
+  workflow_dispatch: # force release
+
+jobs:
+  check:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    outputs:
+      EXISTS_TAG: ${{ steps.tag_check.outputs.EXISTS_TAG }}
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set PACKAGE_VERSION
+        run: echo "PACKAGE_VERSION=$(cat lerna.json | jq -r .version)" >> $GITHUB_ENV
+      - name: Tag Check
+        id: tag_check
+        run: |
+          GET_API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG_NAME}"
+          http_status_code=$(curl -LI $GET_API_URL -o /dev/null -w '%{http_code}\n' -s \
+            -H "Authorization: token ${GITHUB_TOKEN}")
+          if [ "$http_status_code" -ne "404" ] ; then
+            echo "EXISTS_TAG=true" >> $GITHUB_OUTPUT
+          else
+            echo "EXISTS_TAG=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          TAG_NAME: v${{ env.PACKAGE_VERSION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    runs-on: ubuntu-latest
+    needs: check
+    if: always() && (needs.check.outputs.EXISTS_TAG == 'false')
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version: 18
+          # for publishing packages to npm
+          registry-url: https://registry.npmjs.org
+      - name: Git Identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set PACKAGE_VERSION
+        run: echo "PACKAGE_VERSION=$(cat lerna.json | jq -r .version)" >> $GITHUB_ENV
+      - name: Install
+        run: npm ci
+      - name: Publish
+        run: npm run ci:release
+        env:
+          # actions/setup-node create .npmrc with `NODE_AUTH_TOKEN` env if `registry-url` is defined
+          # === `echo "${ registry-url }/:_authToken=${ NODE_AUTH_TOKEN }" > .npmrc`
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # textlint-user
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Git Tag
+        uses: pkgdeps/git-tag-action@v2
+        with:
+          version: ${{ env.PACKAGE_VERSION }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repo: ${{ github.repository }}
+          git_commit_sha: ${{ github.sha }}
+          git_tag_prefix: "v"
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.PACKAGE_VERSION }}
+          # Copy Pull Request's tile and body to Release Note
+          release_name: ${{ github.event.pull_request.title }}
+          body: ${{ github.event.pull_request.body }}
+          draft: false
+          prerelease: false
+          generate_release_notes: ${{ !github.event.pull_request.body }}
+      - uses: actions/github-script@v6
+        if: github.event_name != 'workflow_dispatch'
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🎉 Release https://github.com/${{ github.repository }}/releases/tag/v${{ env.PACKAGE_VERSION }}'
+            })

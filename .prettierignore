@@ -1,0 +1,5 @@
+out/
+lib/
+module/
+node_modules/
+test/integration-test/
