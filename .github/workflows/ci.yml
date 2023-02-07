@@ -25,6 +25,34 @@ jobs:
           npm test
           npm run test:examples
 
+  benchmark:
+    name: Benchmark
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Build textlint
+        run: npm run build
+      - name: Benchmark
+        id: benchmark
+        uses: blacha/hyperfine-action@v1
+        with:
+          benchmark-config: 'test/benchmark/.hyperfine.json'
+          count: 100
+          benchmark-branch: 'gh-pages'
+          benchmark-output: 'benchmarks.json'
+          benchmark-html: 'benchmarks.html'
+          master-branch: 'master'
+
   e2e:
     name: E2E
     runs-on: ubuntu-latest

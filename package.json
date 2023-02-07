@@ -61,7 +61,7 @@
     "packages/@textlint/*",
     "packages/textlint-scripts/example",
     "packages/textlint-scripts/example-ts",
-    "test/integration-test",
+    "test/*",
     "website"
   ],
   "packageManager": "npm@9.4.0"

@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "@textlint/benchmark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "hyperfine -i 'npm run test:ja-technical-writing' 'npm run test:jtf-style'",
+    "test:jtf-style": "textlint --config .textlintrc.jtf-style.json examples/",
+    "test:technical-writing": "textlint --config .textlintrc.technical-writing.json examples/"
+  },
+  "keywords": [],
+  "author": "azu",
+  "license": "MIT",
+  "devDependencies": {
+    "textlint": "^13.1.4",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
+    "textlint-rule-preset-jtf-style": "^2.3.13"
+  }
+}
