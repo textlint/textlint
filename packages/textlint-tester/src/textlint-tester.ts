@@ -105,6 +105,7 @@ export type TesterValid =
           ext?: string;
           inputPath?: string;
           options?: any;
+          description?: string;
       };
 
 export type TesterErrorDefinition = {
@@ -140,6 +141,7 @@ export type TesterInvalid = {
     ext?: string;
     inputPath?: string;
     options?: any;
+    description?: string;
     errors: TesterErrorDefinition[];
 };
 
@@ -188,7 +190,7 @@ interface CreateTextlintKernelDescriptorArgs {
     testCaseOptions?: TestConfigRule["options"];
 }
 
-const createTextlintKernelDescriptor = ({
+export const createTextlintKernelDescriptor = ({
     testName,
     testRuleDefinition,
     testCaseOptions
@@ -230,7 +232,7 @@ const createTextlintKernelDescriptor = ({
     }
 };
 
-const createTestLinter = (textlintKernelDescriptor: TextlintKernelDescriptor) => {
+export const createTestLinter = (textlintKernelDescriptor: TextlintKernelDescriptor) => {
     const kernel = new TextlintKernel();
     return {
         async lintText(text: string, ext: string) {
@@ -278,6 +280,8 @@ export class TextLintTester {
         const inputPath = typeof valid === "object" ? valid.inputPath : undefined;
         const ext = typeof valid === "object" && valid.ext !== undefined ? valid.ext : ".md";
         const options = typeof valid === "object" && valid.options !== undefined ? valid.options : undefined;
+        const description =
+            typeof valid === "object" && valid.description !== undefined ? valid.description : undefined;
         const textlint = createTestLinter(
             createTextlintKernelDescriptor({
                 testName,
@@ -290,13 +294,15 @@ export class TextLintTester {
             if (inputPath) {
                 return testValid({
                     textlint,
-                    inputPath
+                    inputPath,
+                    description
                 });
             } else if (text && ext) {
                 return testValid({
                     textlint,
                     text,
-                    ext
+                    ext,
+                    description
                 });
             }
             throw new Error(`valid should have text or inputPath property.
@@ -312,7 +318,8 @@ valid: [ "text", { text: "text" }, { inputPath: "path/to/file" } ]
         const inputPath = invalid.inputPath;
         const text = invalid.text;
         const ext = invalid.ext !== undefined ? invalid.ext : ".md";
-        const options = invalid.options !== undefined ? invalid.options : undefined;
+        const options = invalid.options;
+        const description = invalid.description;
         const textlint = createTestLinter(
             createTextlintKernelDescriptor({
                 testName,
@@ -326,14 +333,16 @@ valid: [ "text", { text: "text" }, { inputPath: "path/to/file" } ]
                 return testInvalid({
                     textlint,
                     inputPath,
-                    errors
+                    errors,
+                    description
                 });
             } else if (text && ext) {
                 return testInvalid({
                     textlint,
                     text,
                     ext,
-                    errors
+                    errors,
+                    description
                 });
             }
             throw new Error(`invalid should have { text } or { inputPath } property. 

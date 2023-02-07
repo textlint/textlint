@@ -113,6 +113,7 @@ tester.run("rule name", {
         - `{string} text`: a text to be linted
         - `{string} ext`: an extension key. Default: `.md` (Markdown)
         - `{string} inputPath`: a test text filePath that prefer to `text` property
+        - `{string} description`: a description for the test case. This will be displayed as the result of the test.
         - `{object} options`: options to be passed to the rule. Will throw assertion error if `testConfig` is specified
 
 TypeScript declaration is for valid as follows:
@@ -123,6 +124,7 @@ export declare type TesterValid = string | {
     ext?: string;
     inputPath?: string;
     options?: any;
+    description?: string;
 };
 ```
 
@@ -155,6 +157,7 @@ test.run("test name", rule, {
         - `{string} inputPath`: a test text filePath that prefer to `text` property.
         - `{string} output`: a fixed text.
         - `{string} ext`: an extension key.
+        - `{string} description`: a description for the test case. This will be displayed as the result of the test.
         - `{object[]} errors`: an array of error objects which should be raised against the text.
         - `{object} options`: options to be passed to the rule. Will throw assertion error if `testConfig` is specified
 
@@ -167,6 +170,7 @@ export declare type TesterInvalid = {
     ext?: string;
     inputPath?: string;
     options?: any;
+    description?: string;
     errors: {
         ruleId?: string;
         range?: readonly [startIndex: number, endIndex: number];
