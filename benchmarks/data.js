@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1675780241033,
+  "lastUpdate": 1675780088972,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -28,19 +28,19 @@ window.BENCHMARK_DATA = {
           {
             "name": "npm run bench:self",
             "value": 3.8345775498999997,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.12359169699999972"
           },
           {
             "name": "npm run bench:technical-writing",
             "value": 12.0851336477,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.4181601650000015"
           },
           {
             "name": "npm run bench:jtf-style",
             "value": 1.8575204721999998,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.033057845000000086"
           }
         ]
@@ -70,19 +70,19 @@ window.BENCHMARK_DATA = {
           {
             "name": "npm run bench:self",
             "value": 3.8548361888800002,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.07973065000000013"
           },
           {
             "name": "npm run bench:technical-writing",
             "value": 12.06819284508,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.30762556600000046"
           },
           {
             "name": "npm run bench:jtf-style",
             "value": 1.87917839788,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.08097785300000004"
           }
         ]
@@ -112,19 +112,19 @@ window.BENCHMARK_DATA = {
           {
             "name": "npm run bench:self",
             "value": 4.01103544446,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.06587592199999914"
           },
           {
             "name": "npm run bench:technical-writing",
             "value": 13.59613399646,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.22879599299999853"
           },
           {
             "name": "npm run bench:jtf-style",
             "value": 1.9507084296600001,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.03219197600000001"
           }
         ]
@@ -154,62 +154,20 @@ window.BENCHMARK_DATA = {
           {
             "name": "npm run bench:self",
             "value": 4.72332604058,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.07285817599999955"
           },
           {
             "name": "npm run bench:technical-writing",
             "value": 15.651490147179999,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.5006289500000012"
           },
           {
             "name": "npm run bench:jtf-style",
             "value": 2.30099077058,
-            "unit": "s",
+            "unit": "seconds",
             "range": "± 0.047619434000000016"
-          }
-        ]
-      },
-      {
-        "commit": {
-          "author": {
-            "email": "azuciao@gmail.com",
-            "name": "azu",
-            "username": "azu"
-          },
-          "committer": {
-            "email": "azuciao@gmail.com",
-            "name": "azu",
-            "username": "azu"
-          },
-          "distinct": true,
-          "id": "beb973c48d4ea3b758622ba142a64d4e3324039b",
-          "message": "CI: add link",
-          "timestamp": "2023-02-07T23:26:51+09:00",
-          "tree_id": "d199b866a622676764ccd5e7640d0b533487274a",
-          "url": "https://github.com/textlint/textlint/commit/beb973c48d4ea3b758622ba142a64d4e3324039b"
-        },
-        "date": 1675780240320,
-        "tool": "customSmallerIsBetter",
-        "benches": [
-          {
-            "name": "npm run bench:self",
-            "value": 3.76775557824,
-            "unit": "s",
-            "range": "± 0.09563319299999984"
-          },
-          {
-            "name": "npm run bench:technical-writing",
-            "value": 11.802753021240001,
-            "unit": "s",
-            "range": "± 0.09970874200000068"
-          },
-          {
-            "name": "npm run bench:jtf-style",
-            "value": 1.85838260704,
-            "unit": "s",
-            "range": "± 0.01612891900000002"
           }
         ]
       }
