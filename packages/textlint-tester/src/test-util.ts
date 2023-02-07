@@ -36,12 +36,14 @@ export type InvalidPatternArgs =
           textlint: TestTextlintLinter;
           inputPath: string;
           errors: TesterErrorDefinition[];
+          description: string | undefined;
       }
     | {
           textlint: TestTextlintLinter;
           errors: TesterErrorDefinition[];
           text: string;
           ext: string;
+          description: string | undefined;
       };
 
 /**
@@ -93,10 +95,16 @@ invalid : [
         throw new Error("Should set `text` or `inputPath`");
     }
     return promise.then((lintResult) => {
+        const descriptionArea = args.description
+            ? `
+===Description===:
+${args.description}
+`
+            : ``;
         assert.strictEqual(
             lintResult.messages.length,
             errorLength,
-            `invalid: should have ${errorLength} errors but had ${lintResult.messages.length}:
+            `invalid: should have ${errorLength} errors but had ${lintResult.messages.length}:${descriptionArea}
 ===Text===:
 ${actualText}
 
@@ -163,11 +171,13 @@ export type ValidPatternArgs =
     | {
           textlint: TestTextlintLinter;
           inputPath: string;
+          description: string | undefined;
       }
     | {
           textlint: TestTextlintLinter;
           text: string;
           ext: string;
+          description: string | undefined;
       };
 
 export async function testValid(args: ValidPatternArgs) {
@@ -183,10 +193,16 @@ export async function testValid(args: ValidPatternArgs) {
         throw new Error("Should set `text` or `inputPath`");
     }
     return promise.then((results) => {
+        const descriptionArea = args.description
+            ? `
+===Description===:
+${args.description}
+`
+            : ``;
         assert.strictEqual(
             results.messages.length,
             0,
-            `valid: should have no errors but had Error results:
+            `valid: should have no errors but had Error results:${descriptionArea}
 ===Text===:
 ${actualText}
 
