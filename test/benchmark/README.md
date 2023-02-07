@@ -14,4 +14,4 @@ npm bench
 
 ## Continuous Benchmark
 
-- https://textlint.github.io/textlint/benchmark.html
+- https://textlint.github.io/textlint/benchmark/
