@@ -5,10 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "bench": "hyperfine --export-json result.json --export-markdown result.md -i 'npm run test:self' 'npm run test:technical-writing' 'npm run test:jtf-style' && node format-bench.mjs",
-    "test:self": "npm run test:perf -w textlint-website",
-    "test:jtf-style": "textlint --config .textlintrc.jtf-style.json examples/",
-    "test:technical-writing": "textlint --config .textlintrc.technical-writing.json examples/"
+    "bench": "hyperfine --export-json result.json --export-markdown result.md -i 'npm run bench:self' 'npm run bench:technical-writing' 'npm run bench:jtf-style' && node format-bench.mjs",
+    "bench:self": "npm run bench -w textlint-website",
+    "bench:jtf-style": "textlint --config .textlintrc.jtf-style.json examples/",
+    "bench:technical-writing": "textlint --config .textlintrc.technical-writing.json examples/"
   },
   "keywords": [],
   "author": "azu",

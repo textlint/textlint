@@ -17,7 +17,7 @@
         "rename-version": "docusaurus-rename-version",
         "start": "docusaurus-start",
         "test": "npm run textlint",
-        "test:perf": "textlint --config .textlintrc ../docs/ ../.github/ ../README.md",
+        "bench": "textlint --config .textlintrc ../docs/ ../.github/ ../README.md",
         "textlint": "textlint --cache --config .textlintrc ../docs/ ../.github/ ../README.md -f pretty-error",
         "textlint:fix": "textlint --fix --cache -c .textlintrc ../docs ../.github/ ../README.md",
         "docusaurus-version": "docusaurus-version",
