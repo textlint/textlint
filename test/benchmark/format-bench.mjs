@@ -23,7 +23,7 @@ const resultJSON = JSON.parse(fs.readFileSync("result.json", "utf8"));
 const customResults = resultJSON.results.map((result) => {
     return {
         name: result.command,
-        unit: "s",
+        unit: "seconds",
         value: result.mean,
         range: `± ${result.max - result.min}`
     };
