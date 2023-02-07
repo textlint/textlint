@@ -9,7 +9,7 @@
 
 ```sh
 npm ci
-npm test
+npm bench
 ```
 
 ## Continuous Benchmark

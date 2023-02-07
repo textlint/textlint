@@ -31,13 +31,8 @@ jobs:
     permissions:
       contents: write
     if: github.event_name == 'push'
-    defaults:
-      run:
-        working-directory: ./test/benchmark
     steps:
       - uses: actions/checkout@v3
-        with:
-          submodules: recursive
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -46,18 +41,24 @@ jobs:
         run: npm ci
       - name: Build textlint
         run: npm run build
-        working-directory: ../../
       - name: Benchmark
-        id: benchmark
-        uses: blacha/hyperfine-action@v1
+        run: npm test
+        working-directory: ./test/benchmark
+      - name: Get Previous Benchmark Results
+        uses: actions/cache@v3
         with:
-          benchmark-config: '.hyperfine.json'
-          count: 100
-          benchmark-branch: 'gh-pages'
-          benchmark-output: 'benchmarks.json'
-          benchmark-html: 'benchmarks.html'
-          master-branch: 'master'
-
+          path: ./cache
+          key: ${{ runner.os }}-benchmark
+      - name: Save Benchmark Results
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: 'customSmallerIsBetter'
+          output-file-path: ./test/benchmark/output.json
+          benchmark-data-dir-path: 'benchmarks'
+          fail-on-alert: true
+          comment-on-alert: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
 
   e2e:
     name: E2E

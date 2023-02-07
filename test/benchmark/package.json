@@ -5,7 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "hyperfine -i 'npm run test:ja-technical-writing' 'npm run test:jtf-style'",
+    "test": "hyperfine --export-json result.json --export-markdown result.md -i 'npm run test:self' 'npm run test:technical-writing' 'npm run test:jtf-style'",
+    "bench": "npm test && node format-bench.mjs",
+    "test:self": "npm run test:perf -w textlint-website",
     "test:jtf-style": "textlint --config .textlintrc.jtf-style.json examples/",
     "test:technical-writing": "textlint --config .textlintrc.technical-writing.json examples/"
   },
