@@ -13,7 +13,7 @@
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "textlint": "^13.1.4",
+    "textlint": "^13.2.0",
     "textlint-rule-preset-ja-technical-writing": "^7.0.0",
     "textlint-rule-preset-jtf-style": "^2.3.13"
   }
