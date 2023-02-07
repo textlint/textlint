@@ -37,6 +37,10 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
+      - name: Install Hyperfine
+        run: |
+          wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+          sudo dpkg -i hyperfine_1.15.0_amd64.deb
       - name: Install
         run: npm ci
       - name: Build textlint
