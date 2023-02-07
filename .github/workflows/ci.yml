@@ -64,7 +64,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
       - name: Output Step Summary
-        run: cat ./test/benchmark/output.md > $GITHUB_STEP_SUMMARY
+        run: cat ./test/benchmark/result.md > $GITHUB_STEP_SUMMARY
 
   e2e:
     name: E2E
