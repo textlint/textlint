@@ -312,7 +312,6 @@ Once a pull request has been created, it will initiate continuous integration bu
 
 After all participants on pull request are satisfied to the changes, we will merge your code into the textlint master branch. Yay!
 
-
 ## Release Flow
 
 A Maintainer release new version of textlint by following way.
