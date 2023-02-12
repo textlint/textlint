@@ -1,14 +1,33 @@
 {
-    "ok": false,
-    "error": {
-        "message": "Can not load rule",
-        "errors": [
+    "ok": true,
+    "config": {
+        "rules": [
             {
-                "code": "MODULE_NOT_FOUND",
-                "requireStack": [
-                    "<MODULES_DIR>/textlint-rule-preset-abc/index.js"
-                ]
+                "type": "RuleInPreset",
+                "ruleId": "abc/a",
+                "options": true,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc",
+                "ruleKey": "a"
+            },
+            {
+                "type": "RuleInPreset",
+                "ruleId": "abc/b",
+                "options": false,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc",
+                "ruleKey": "b"
+            },
+            {
+                "type": "RuleInPreset",
+                "ruleId": "abc/c",
+                "options": false,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc",
+                "ruleKey": "c"
             }
-        ]
+        ],
+        "plugins": [],
+        "filterRules": []
     }
 }

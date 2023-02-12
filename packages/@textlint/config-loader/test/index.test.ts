@@ -9,6 +9,9 @@ const replacer = (_key: string, value: any) => {
     if (typeof value === "string") {
         return value.replace(fixturesDir, "<FIXTURES_DIR>").replace(modulesDir, "<MODULES_DIR>");
     }
+    if (value instanceof Error) {
+        return value.message;
+    }
     return value;
 };
 describe("@textlint/config-loader", () => {
