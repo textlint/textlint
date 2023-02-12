@@ -1,6 +1,6 @@
 {
     "name": "textlint-tester",
-    "version": "13.2.0",
+    "version": "13.3.0",
     "description": "testing tool for textlint rule.",
     "keywords": [
         "test",
@@ -37,10 +37,10 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/feature-flag": "^13.2.0",
-        "@textlint/kernel": "^13.2.0",
-        "@textlint/textlint-plugin-markdown": "^13.2.0",
-        "@textlint/textlint-plugin-text": "^13.2.0"
+        "@textlint/feature-flag": "^13.3.0",
+        "@textlint/kernel": "^13.3.0",
+        "@textlint/textlint-plugin-markdown": "^13.3.0",
+        "@textlint/textlint-plugin-text": "^13.3.0"
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
