@@ -1,13 +1,16 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
-import { loadRawConfig, loadPackagesFromRawConfig } from "../src";
+import { loadRawConfig, loadPackagesFromRawConfig } from "../src/index";
 
 const fixturesDir = path.join(__dirname, "snapshots");
 const modulesDir = path.join(__dirname, "modules_fixtures");
 const replacer = (_key: string, value: any) => {
     if (typeof value === "string") {
         return value.replace(fixturesDir, "<FIXTURES_DIR>").replace(modulesDir, "<MODULES_DIR>");
+    }
+    if (value instanceof Error) {
+        return value.message;
     }
     return value;
 };

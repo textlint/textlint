@@ -3,12 +3,14 @@
     "config": {
         "rules": [
             {
+                "type": "Rule",
                 "ruleId": "a",
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
                 "moduleName": "<MODULES_DIR>/textlint-rule-a"
             },
             {
+                "type": "Rule",
                 "ruleId": "b",
                 "options": {
                     "key": "value"
@@ -17,16 +19,20 @@
                 "moduleName": "<MODULES_DIR>/textlint-rule-b"
             },
             {
+                "type": "RuleInPreset",
                 "ruleId": "c/c-sub1",
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c"
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c",
+                "ruleKey": "c-sub1"
             },
             {
+                "type": "RuleInPreset",
                 "ruleId": "c/c-sub2",
                 "options": false,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c"
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c",
+                "ruleKey": "c-sub2"
             }
         ],
         "plugins": [],

@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "preset-abc-but-unique-rule-key": {
+      "uniqueA": true,
+      "uniqueB": false,
+      "uniqueC": false
+    }
+  }
+}

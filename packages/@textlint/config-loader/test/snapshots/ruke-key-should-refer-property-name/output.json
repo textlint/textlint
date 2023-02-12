@@ -1,0 +1,33 @@
+{
+    "ok": true,
+    "config": {
+        "rules": [
+            {
+                "type": "RuleInPreset",
+                "ruleId": "abc-but-unique-rule-key/uniqueA",
+                "options": true,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key",
+                "ruleKey": "uniqueA"
+            },
+            {
+                "type": "RuleInPreset",
+                "ruleId": "abc-but-unique-rule-key/uniqueB",
+                "options": false,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key",
+                "ruleKey": "uniqueB"
+            },
+            {
+                "type": "RuleInPreset",
+                "ruleId": "abc-but-unique-rule-key/uniqueC",
+                "options": false,
+                "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
+                "moduleName": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key",
+                "ruleKey": "uniqueC"
+            }
+        ],
+        "plugins": [],
+        "filterRules": []
+    }
+}
