@@ -6,7 +6,7 @@
             {
                 "code": "MODULE_NOT_FOUND",
                 "requireStack": [
-                    "<MODULES_DIR>/textlint-rule-preset-abc/index.js"
+                    "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js"
                 ]
             }
         ]

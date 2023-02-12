@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as assert from "assert";
-import { loadRawConfig, loadPackagesFromRawConfig } from "../src";
+import { loadRawConfig, loadPackagesFromRawConfig } from "../src/index";
 
 const fixturesDir = path.join(__dirname, "snapshots");
 const modulesDir = path.join(__dirname, "modules_fixtures");

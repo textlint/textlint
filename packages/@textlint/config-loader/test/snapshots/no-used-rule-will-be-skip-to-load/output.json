@@ -1,35 +1,10 @@
 {
-    "ok": true,
-    "config": {
-        "rules": [
-            {
-                "ruleId": "a",
-                "options": true,
-                "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-a"
-            },
-            {
-                "ruleId": "b",
-                "options": {
-                    "key": "value"
-                },
-                "filePath": "<MODULES_DIR>/textlint-rule-b/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-b"
-            },
-            {
-                "ruleId": "c/c-sub1",
-                "options": true,
-                "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c"
-            },
-            {
-                "ruleId": "c/c-sub2",
-                "options": false,
-                "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c"
-            }
-        ],
-        "plugins": [],
-        "filterRules": []
+    "ok": false,
+    "error": {
+        "message": "Can not load rule",
+        "errors": [
+            {},
+            {}
+        ]
     }
 }

@@ -3,10 +3,10 @@ import { isPresetRuleKey } from "./config-util";
 import { TextlintRcConfig } from "./TextlintRcConfig";
 import { moduleInterop } from "@textlint/module-interop";
 import { TextlintConfigDescriptor } from "./TextlintConfigDescriptor";
-import { loadPreset } from "./preset-loader";
 import { TextlintPluginCreator } from "@textlint/types";
-import { isTextlintFilterRuleReporter, isTextlintRuleModule } from "./is";
+import { isPresetCreator, isTextlintFilterRuleReporter, isTextlintRuleModule } from "./is";
 import { dynamicImport } from "./import";
+import { normalizeTextlintPresetSubRuleKey } from "@textlint/utils";
 
 const isPluginCreator = (mod: any): mod is TextlintPluginCreator => {
     return typeof mod === "object" && Object.prototype.hasOwnProperty.call(mod, "Processor");
@@ -240,6 +240,7 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                         }
                         // rule
                         rules.push({
+                            type: "Rule",
                             ruleId,
                             rule: ruleModule,
                             options: ruleOptions,
@@ -264,3 +265,54 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                   }
     };
 };
+
+export async function loadPreset({
+    presetName,
+    presetRulesOptions,
+    moduleResolver
+}: {
+    presetName: string;
+    presetRulesOptions: NonNullable<TextlintRcConfig["rules"]>;
+    moduleResolver: TextLintModuleResolver;
+}): Promise<TextlintConfigDescriptor["rules"]> {
+    const presetPackageName = moduleResolver.resolvePresetPackageName(presetName);
+    const mod = await dynamicImport(presetPackageName.filePath);
+    const preset = moduleInterop(mod.default);
+    if (!isPresetCreator(preset)) {
+        throw new Error(`preset should have rules and rulesConfig: ${presetName}`);
+    }
+    // we should use preset.rules → some preset use different name actual rule
+    /*
+      // "textlint-rule-preset-example/index.js"
+      {
+        "rules": {
+
+          "a: ruleA,
+        },
+        "rulesConfig": {
+          "a": true
+        }
+      }
+
+      - type: "RuleInPreset"
+      - ruleId: "preset-example/rule-a"
+      - options: true
+      - filePath: path to "textlint-rule-preset-example/index.js"
+      - moduleName: "textlint-rule-preset-example"
+      - ruleKey: "a",
+
+     */
+    return Object.keys(preset.rules).map((ruleKey) => {
+        const normalizedKey = normalizeTextlintPresetSubRuleKey({ preset: presetName, rule: ruleKey });
+        return {
+            type: "RuleInPreset",
+            ruleId: normalizedKey,
+            // prefer .textlintrc config than preset.rulesConfig
+            rule: preset.rules[ruleKey],
+            options: presetRulesOptions[ruleKey] ?? preset.rulesConfig[ruleKey],
+            filePath: presetPackageName.filePath,
+            moduleName: presetPackageName.moduleName,
+            ruleKey
+        };
+    });
+}
