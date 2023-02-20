@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1676922788716,
+  "lastUpdate": 1676922813902,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -1218,6 +1218,48 @@ window.BENCHMARK_DATA = {
             "value": 1.7955048988800002,
             "unit": "seconds",
             "range": "± 0.028174652999999994"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "799da61c99cf8d574354feb81e45685c483b6875",
+          "message": "chore(deps): update dependency lerna to ^6.5.0",
+          "timestamp": "2023-02-20T19:50:03Z",
+          "tree_id": "627a77832eeb1a30c0129120e1b9be3c20fe1933",
+          "url": "https://github.com/textlint/textlint/commit/799da61c99cf8d574354feb81e45685c483b6875"
+        },
+        "date": 1676922813248,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.9225712276199998,
+            "unit": "seconds",
+            "range": "± 0.0186148730000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 11.874516681020001,
+            "unit": "seconds",
+            "range": "± 0.3482122850000007"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.79296044982,
+            "unit": "seconds",
+            "range": "± 0.04051490400000013"
           }
         ]
       }
