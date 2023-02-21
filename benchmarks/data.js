@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1676954569452,
+  "lastUpdate": 1676966759733,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -1512,6 +1512,48 @@ window.BENCHMARK_DATA = {
             "value": 1.8615985423199999,
             "unit": "seconds",
             "range": "± 0.02061443499999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4e93e5dbe2da5297f5d223a79180c51045ce77cf",
+          "message": "Update README.md\n\nUse npx instead of npm bin\r\n\r\nnpm/statusboard#537",
+          "timestamp": "2023-02-21T17:02:35+09:00",
+          "tree_id": "237cfcb3cc0d689c9ee5055b5aa393871b9abdf9",
+          "url": "https://github.com/textlint/textlint/commit/4e93e5dbe2da5297f5d223a79180c51045ce77cf"
+        },
+        "date": 1676966758020,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.94983867612,
+            "unit": "seconds",
+            "range": "± 0.06729150800000028"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 12.09077932452,
+            "unit": "seconds",
+            "range": "± 0.3424089160000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.7944653317200001,
+            "unit": "seconds",
+            "range": "± 0.06261565800000013"
           }
         ]
       }
