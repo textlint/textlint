@@ -683,7 +683,7 @@ Run the tests:
 
     $ npm test
     # or
-    $(npm bin)/mocha test/
+    $ npx mocha test/
 
 :information_source: Please see [textlint-rule-no-todo](https://github.com/textlint-rule/textlint-rule-no-todo) for details.
 
