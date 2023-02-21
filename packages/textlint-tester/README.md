@@ -40,7 +40,7 @@ tester.run("rule name", rule, {
 2. Run tests by [Mocha](http://mochajs.org/ "Mocha")
 
 ```sh
-$(npm bin)/mocha test/
+$ npx mocha test/
 ```
 
 ### TextLintTester
