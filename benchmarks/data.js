@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1677020329965,
+  "lastUpdate": 1677090565778,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -1722,6 +1722,48 @@ window.BENCHMARK_DATA = {
             "value": 2.19352825064,
             "unit": "seconds",
             "range": "± 0.0457245180000001"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fd483e6d36191256c482b61556c69c0d18dbb90f",
+          "message": "chore(deps): update npm to v9.5.0",
+          "timestamp": "2023-02-22T18:24:56Z",
+          "tree_id": "4ec8ab5b195cfc854c60d591f28f0edcd039afd4",
+          "url": "https://github.com/textlint/textlint/commit/fd483e6d36191256c482b61556c69c0d18dbb90f"
+        },
+        "date": 1677090564389,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 5.546807858319999,
+            "unit": "seconds",
+            "range": "± 0.23433941200000064"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 15.761862096920002,
+            "unit": "seconds",
+            "range": "± 0.2639927859999993"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.3556400969199998,
+            "unit": "seconds",
+            "range": "± 0.07618598899999984"
           }
         ]
       }
