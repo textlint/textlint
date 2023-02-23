@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1677090565778,
+  "lastUpdate": 1677110831215,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -1764,6 +1764,48 @@ window.BENCHMARK_DATA = {
             "value": 2.3556400969199998,
             "unit": "seconds",
             "range": "± 0.07618598899999984"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "7e258c2ea858bca82d271eb406128f93842019ca",
+          "message": "chore(deps): update npm to v9.5.0",
+          "timestamp": "2023-02-23T00:02:51Z",
+          "tree_id": "4ec8ab5b195cfc854c60d591f28f0edcd039afd4",
+          "url": "https://github.com/textlint/textlint/commit/7e258c2ea858bca82d271eb406128f93842019ca"
+        },
+        "date": 1677110829967,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 5.10619345942,
+            "unit": "seconds",
+            "range": "± 0.20082548799999955"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 16.253548714820003,
+            "unit": "seconds",
+            "range": "± 0.6829013310000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.27873361242,
+            "unit": "seconds",
+            "range": "± 0.20581350699999978"
           }
         ]
       }
