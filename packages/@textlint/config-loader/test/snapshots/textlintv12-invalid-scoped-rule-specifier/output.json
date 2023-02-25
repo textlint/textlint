@@ -1,0 +1,9 @@
+{
+    "ok": false,
+    "error": {
+        "message": "Can not load rule",
+        "errors": [
+            "Failed to load textlint's rule module: \"abc/a\" is not found.\nSee FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md\n"
+        ]
+    }
+}
