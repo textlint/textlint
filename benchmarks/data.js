@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1677298838969,
+  "lastUpdate": 1677311834822,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -1932,6 +1932,48 @@ window.BENCHMARK_DATA = {
             "value": 1.76531487364,
             "unit": "seconds",
             "range": "± 0.03025218400000007"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "47dc65938d3783a79cd1ddf1d949f3376661304e",
+          "message": "docs: improve failed-to-load-textlints-module.md",
+          "timestamp": "2023-02-25T16:52:22+09:00",
+          "tree_id": "6e40c05634f980e4c20de85117311a99290bbefc",
+          "url": "https://github.com/textlint/textlint/commit/47dc65938d3783a79cd1ddf1d949f3376661304e"
+        },
+        "date": 1677311834133,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 5.576889818000001,
+            "unit": "seconds",
+            "range": "± 0.544539908"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 16.253664654799998,
+            "unit": "seconds",
+            "range": "± 0.35958687599999806"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.27678657,
+            "unit": "seconds",
+            "range": "± 0.19228253100000003"
           }
         ]
       }
