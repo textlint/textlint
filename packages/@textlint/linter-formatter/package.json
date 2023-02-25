@@ -32,8 +32,8 @@
         "test": "mocha"
     },
     "dependencies": {
-        "@azu/format-text": "^1.0.1",
-        "@azu/style-format": "^1.0.0",
+        "@azu/format-text": "^1.0.2",
+        "@azu/style-format": "^1.0.1",
         "@textlint/module-interop": "^13.3.0",
         "@textlint/types": "^13.3.0",
         "chalk": "^4.1.2",
