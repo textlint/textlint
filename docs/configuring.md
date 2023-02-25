@@ -166,13 +166,13 @@ The way of configuration is same with textlint-rule.
 }
 ```
 
-Put the config of `textlint-rule-foo` rule in `text-rule-preset-bar` rule-preset.
+Put the config of `foo` rule in `text-rule-preset-example` rule-preset.
 
-```json
+```json5
 {
   "rules": {
     "preset-example": {
-        "foo": true // configuration for "textlint-rule-foo"
+        "foo": true // configuration for "textlint-rule-foo" in "textlint-rule-preset-bar"
     }
   }
 }

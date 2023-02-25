@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "preset-abc": true,
+    "abc/a": true
+  }
+}
