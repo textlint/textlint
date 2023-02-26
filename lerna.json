@@ -1,17 +1,17 @@
 {
-    "version": "13.3.0",
-    "npmClient": "npm",
-    "useWorkspaces": true,
-    "packages": [
-        "packages/*",
-        "examples/*",
-        "packages/@textlint/*",
-        "test/integration-test",
-        "website"
-    ],
-    "includeMergedTags": true,
-    "ignoreChanges": [
-        "**/test/**",
-        "**/*.md"
-    ]
+  "version": "13.3.1",
+  "npmClient": "npm",
+  "useWorkspaces": true,
+  "packages": [
+    "packages/*",
+    "examples/*",
+    "packages/@textlint/*",
+    "test/integration-test",
+    "website"
+  ],
+  "includeMergedTags": true,
+  "ignoreChanges": [
+    "**/test/**",
+    "**/*.md"
+  ]
 }
