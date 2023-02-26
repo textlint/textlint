@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1677409612858,
+  "lastUpdate": 1677414163253,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -2394,6 +2394,48 @@ window.BENCHMARK_DATA = {
             "value": 1.7877039823,
             "unit": "seconds",
             "range": "± 0.018610069999999812"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "15100604+massongit@users.noreply.github.com",
+            "name": "Masaya Suzuki",
+            "username": "massongit"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6560bf58956e6d5bf42983ce9ca0474edf7cb7d1",
+          "message": "docs: Add semicolon in code (#1094)",
+          "timestamp": "2023-02-26T21:18:50+09:00",
+          "tree_id": "a62322e997b11ba4259393c54dc37b5ea2a2fe53",
+          "url": "https://github.com/textlint/textlint/commit/6560bf58956e6d5bf42983ce9ca0474edf7cb7d1"
+        },
+        "date": 1677414162067,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.167501858740001,
+            "unit": "seconds",
+            "range": "± 0.045440153999999566"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 13.57733767434,
+            "unit": "seconds",
+            "range": "± 0.5563747789999987"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.8692577113400002,
+            "unit": "seconds",
+            "range": "± 0.047155660000000044"
           }
         ]
       }
