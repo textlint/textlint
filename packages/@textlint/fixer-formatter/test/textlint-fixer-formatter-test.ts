@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import assert from "assert";
-import { getFixerFormatterList } from "../src";
+import { getFixerFormatterList, loadFormatter } from "../src";
 
 describe("@textlint/fixer-formatter-test", function () {
     describe("getFormatterList", function () {
@@ -14,5 +14,10 @@ describe("@textlint/fixer-formatter-test", function () {
                 { name: "stylish" }
             ]);
         });
+    });
+    describe("loadFormatter", async function () {
+        assert.doesNotThrow(async () => {
+            await loadFormatter();
+        }, TypeError);
     });
 });

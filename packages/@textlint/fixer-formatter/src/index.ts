@@ -23,7 +23,7 @@ const debug = debug0("textlint:textfix-formatter");
 
 export type FormatterConfig = { color?: boolean; formatterName: string };
 
-export async function loadFormatter(formatterConfig: FormatterConfig) {
+export async function loadFormatter(formatterConfig: FormatterConfig = { formatterName: "stylish" }) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
     let formatter: (results: TextlintFixResult[], formatterConfig: FormatterConfig) => string;

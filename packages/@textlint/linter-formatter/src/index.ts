@@ -28,7 +28,7 @@ export interface FormatterConfig {
     color?: boolean;
 }
 
-export async function loadFormatter(formatterConfig: FormatterConfig) {
+export async function loadFormatter(formatterConfig: FormatterConfig = { formatterName: "stylish" }) {
     const formatterName = formatterConfig.formatterName;
     debug(`formatterName: ${formatterName}`);
     let formatter: (results: TextlintResult[], formatterConfig: FormatterConfig) => string;

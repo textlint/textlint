@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { createFormatter, getFormatterList } from "@textlint/linter-formatter";
+import { createFormatter, getFormatterList, loadFormatter } from "@textlint/linter-formatter";
 
 import * as path from "path";
 import * as assert from "assert";
@@ -201,5 +201,10 @@ describe("@textlint/linter-formatter-test", function () {
                 { name: "unix" }
             ]);
         });
+    });
+    describe("loadFormatter", async function () {
+        assert.doesNotThrow(async () => {
+            await loadFormatter();
+        }, TypeError);
     });
 });
