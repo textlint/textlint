@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1677335848639,
+  "lastUpdate": 1677407527635,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -2100,6 +2100,48 @@ window.BENCHMARK_DATA = {
             "value": 1.7455923128000002,
             "unit": "seconds",
             "range": "± 0.03036522400000008"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "15100604+massongit@users.noreply.github.com",
+            "name": "Masaya Suzuki",
+            "username": "massongit"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d914fe29098574c8eadab1f1a722b03727c09dea",
+          "message": "fix: allow missing parameters for loadTextlintrc (#1089)\n\n* fix parameters of loadTextlintrc\r\n\r\n* Fix test title",
+          "timestamp": "2023-02-26T19:27:46+09:00",
+          "tree_id": "7031c6da62863c8d07ba315aceebb0a22c4f7634",
+          "url": "https://github.com/textlint/textlint/commit/d914fe29098574c8eadab1f1a722b03727c09dea"
+        },
+        "date": 1677407526280,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 5.03406130716,
+            "unit": "seconds",
+            "range": "± 0.24292460800000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 14.74302449916,
+            "unit": "seconds",
+            "range": "± 0.7283518309999995"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.1162071429600005,
+            "unit": "seconds",
+            "range": "± 0.07366995199999993"
           }
         ]
       }
