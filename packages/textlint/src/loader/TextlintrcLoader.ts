@@ -37,13 +37,10 @@ export const loadBuiltinPlugins = async (): Promise<TextlintKernelDescriptor> =>
         plugins: builtInPlugins
     });
 };
-export const loadTextlintrc = async ({
-    configFilePath,
-    node_modulesDir
-}: LoadTextlintrcOptions): Promise<TextlintKernelDescriptor> => {
+export const loadTextlintrc = async (options?: LoadTextlintrcOptions): Promise<TextlintKernelDescriptor> => {
     const result = await loadConfig({
-        configFilePath,
-        node_modulesDir
+        configFilePath: options?.configFilePath,
+        node_modulesDir: options?.node_modulesDir
     });
 
     if (!result.ok) {
