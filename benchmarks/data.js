@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1677408308903,
+  "lastUpdate": 1677408739504,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -2226,6 +2226,48 @@ window.BENCHMARK_DATA = {
             "value": 1.8584363860800004,
             "unit": "seconds",
             "range": "± 0.036548323999999965"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9b5a786ddb792d25b7fe710160ac8229e695307e",
+          "message": "chore: use Node.js v18.14.2 and npm 9.5.0\n\nEnable CorePack in create-release-pr.yml\n\nnpm 9.3.1 break lerna\nhttps://github.com/lerna/lerna/issues/3455\nhttps://github.com/npm/cli/issues/5967",
+          "timestamp": "2023-02-26T19:48:48+09:00",
+          "tree_id": "be459de75532eb1e49ef6ce76002928d5a0fecb7",
+          "url": "https://github.com/textlint/textlint/commit/9b5a786ddb792d25b7fe710160ac8229e695307e"
+        },
+        "date": 1677408738124,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.92690933508,
+            "unit": "seconds",
+            "range": "± 0.08766764300000007"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 11.96770729648,
+            "unit": "seconds",
+            "range": "± 0.3172277019999985"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.7648916184799996,
+            "unit": "seconds",
+            "range": "± 0.06072865599999977"
           }
         ]
       }
