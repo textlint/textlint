@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1677407527635,
+  "lastUpdate": 1677407599995,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -2142,6 +2142,48 @@ window.BENCHMARK_DATA = {
             "value": 2.1162071429600005,
             "unit": "seconds",
             "range": "± 0.07366995199999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "35167423+Sean0628@users.noreply.github.com",
+            "name": "Sho Ito",
+            "username": "Sean0628"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5ddc69ad9cdba11a51b00841604cba9d26ef8501",
+          "message": "fix(textlint): fix --dry-run option (#1092)\n\nfix to print results when `--dry-run` option is specified.\r\n\r\nfixes: #1091",
+          "timestamp": "2023-02-26T19:28:49+09:00",
+          "tree_id": "1cd7a71c7731c795c77c6c8f27e69938d464ca57",
+          "url": "https://github.com/textlint/textlint/commit/5ddc69ad9cdba11a51b00841604cba9d26ef8501"
+        },
+        "date": 1677407598580,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 5.3177273105800005,
+            "unit": "seconds",
+            "range": "± 0.10944842399999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 15.887309413779999,
+            "unit": "seconds",
+            "range": "± 0.16817009800000093"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.28819998938,
+            "unit": "seconds",
+            "range": "± 0.1758341429999999"
           }
         ]
       }
