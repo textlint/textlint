@@ -43,7 +43,7 @@ Lint files and output to console.
 import { createLinter, loadTextlintrc, loadLinterFormatter } from "textlint";
 // descriptor is a structure object for linter
 // It includes rules, plugins, and options
-const descriptor = await loadTextlintrc();
+const descriptor = await loadTextlintrc({});
 const linter = createLinter({
     descriptor
 });
@@ -60,7 +60,7 @@ Fix text and get the fixed text.
 import { createLinter, loadTextlintrc, loadFixerFormatter } from "textlint";
 // descriptor is a structure object for linter
 // It includes rules, plugins, and options
-const descriptor = await loadTextlintrc();
+const descriptor = await loadTextlintrc({});
 const linter = createLinter({
     descriptor
 });
@@ -89,7 +89,7 @@ const customDescriptor = new TextlintKernelDescriptor({
         }
     ]
 });
-const textlintrcDescriptor = await loadTextlintrc();
+const textlintrcDescriptor = await loadTextlintrc({});
 const linter = createLinter({
     // merge customDescriptor and textlintrcDescriptor
     // if same ruleId or pluginId, customDescriptor is used.
@@ -104,7 +104,7 @@ Get lintable file extensions.
 
 ```ts
 import { createLinter, loadTextlintrc } from "textlint";
-const textlintrcDescriptor = await loadTextlintrc();
+const textlintrcDescriptor = await loadTextlintrc({});
 const availableExtensions = textlintrcDescriptor.availableExtensions;
 console.log(availableExtensions); // => [".md", ".txt"]
 ```
