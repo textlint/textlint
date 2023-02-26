@@ -311,6 +311,17 @@ describe("cli-test", function () {
                 const resultContent = await fs.promises.readFile(targetFilePath, "utf-8");
                 assert.strictEqual(resultContent, inputContent);
             });
+            it("should not modify the file when --dry-run and output result contents when --stdin is given", async () => {
+                return runWithMockLog(async ({ getLogs }) => {
+                    const ruleDir = path.join(__dirname, "fixtures/fixer-rules");
+                    const result = await cli.execute(
+                        `--rulesdir ${ruleDir} --fix --dry-run --stdin --stdin-filename test.md --format fixed-result`,
+                        "This is fix<REMOVE_MARK>"
+                    );
+                    assert.strictEqual(getLogs()[0], `This is fixed.`);
+                    assert.strictEqual(result, 0);
+                });
+            });
         });
     });
 

@@ -138,7 +138,7 @@ export const cli = {
             // --dry-run
             if (cliOptions.dryRun) {
                 debug("Enable dry-run mode");
-                return Promise.resolve(0);
+                return printResults(output, cliOptions) ? Promise.resolve(0) : Promise.resolve(2);
             }
             // modify file and return exit status
             await fixer.write(results);
