@@ -5,13 +5,13 @@
     "keywords": [
         "textlint"
     ],
-    "homepage": "https://github.com/textlint/editor/tree/master/packages/@textlint/config-loader/",
+    "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/config-loader/",
     "bugs": {
-        "url": "https://github.com/textlint/editor/issues"
+        "url": "https://github.com/textlint/textlint/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/textlint/editor.git"
+        "url": "https://github.com/textlint/textlint.git"
     },
     "license": "MIT",
     "author": "azu",
