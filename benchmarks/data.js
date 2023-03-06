@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1678068839522,
+  "lastUpdate": 1678110610606,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -3150,6 +3150,48 @@ window.BENCHMARK_DATA = {
             "value": 1.8367938489600004,
             "unit": "seconds",
             "range": "± 0.07643882900000021"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e6259b7a8bd5cba5f0623076a6d65810d1fe5d7d",
+          "message": "chore: remove unused devDeps (#1100)\n\n* chore: remove unused devDeps\r\n\r\n- remove power-assert\r\n- remove cpx\r\n- remove npm-run-all\r\n\r\n* chore(deps): remove source-map-support",
+          "timestamp": "2023-03-06T22:45:55+09:00",
+          "tree_id": "3268390e61280e56bfde90a18368e5817321907e",
+          "url": "https://github.com/textlint/textlint/commit/e6259b7a8bd5cba5f0623076a6d65810d1fe5d7d"
+        },
+        "date": 1678110609002,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.63960790492,
+            "unit": "seconds",
+            "range": "± 0.09691640099999965"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 14.844093141120002,
+            "unit": "seconds",
+            "range": "± 0.448264172"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.1672989395199997,
+            "unit": "seconds",
+            "range": "± 0.17088562299999976"
           }
         ]
       }
