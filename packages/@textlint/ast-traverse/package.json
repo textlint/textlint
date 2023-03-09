@@ -42,7 +42,7 @@
     "devDependencies": {
         "@textlint/markdown-to-ast": "^13.3.1",
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.14.3",
+        "@types/node": "^18.14.4",
         "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
         "ts-node": "^10.9.1",
