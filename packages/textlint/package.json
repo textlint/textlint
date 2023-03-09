@@ -77,7 +77,7 @@
         "@types/clone": "^2.1.1",
         "@types/glob": "^8.1.0",
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.14.2",
+        "@types/node": "^18.14.3",
         "@types/read-pkg-up": "^3.0.1",
         "@types/shelljs": "^0.8.11",
         "clone": "^2.1.2",
