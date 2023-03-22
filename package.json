@@ -64,5 +64,5 @@
     "test/*",
     "website"
   ],
-  "packageManager": "npm@9.6.1"
+  "packageManager": "npm@9.6.2"
 }
