@@ -3,7 +3,7 @@
  * It does transpile and type-check.
  *
  * Note: It does not babel-plugin-static-fs
- * Some behavior is a bit difference
+ * Some behavior is a bit of difference
  */
 const fs = require("fs");
 const paths = require("../configs/paths");

@@ -51,6 +51,18 @@
         "pkg-to-readme": "^1.1.2",
         "textlint-tester": "^13.3.1"
     },
+    "peerDependencies": {
+        "typescript": "*",
+        "ts-node": "*"
+    },
+    "peerDependenciesMeta": {
+        "typescript": {
+          "optional": true
+        },
+        "ts-node": {
+          "optional": true
+        }
+    },
     "prettier": {
         "singleQuote": false,
         "printWidth": 120,
