@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1679529917270,
+  "lastUpdate": 1679706045338,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -5040,6 +5040,48 @@ window.BENCHMARK_DATA = {
             "value": 2.2364291862200005,
             "unit": "seconds",
             "range": "± 0.07341850099999991"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "0b94e626d80bac4d88836a7bcb1613aa83dc959e",
+          "message": "fix(textlint-scripts): add typescript and ts-node as peerDependencies",
+          "timestamp": "2023-03-25T09:56:36+09:00",
+          "tree_id": "364970ea4423a383f26d276c532f23bc7e06a5e5",
+          "url": "https://github.com/textlint/textlint/commit/0b94e626d80bac4d88836a7bcb1613aa83dc959e"
+        },
+        "date": 1679706043766,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.69615854328,
+            "unit": "seconds",
+            "range": "± 0.08750256099999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 14.11245797768,
+            "unit": "seconds",
+            "range": "± 0.6883515490000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.9242625394800001,
+            "unit": "seconds",
+            "range": "± 0.04956839600000018"
           }
         ]
       }
