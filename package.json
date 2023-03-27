@@ -33,10 +33,10 @@
   },
   "devDependencies": {
     "@monorepo-utils/workspaces-to-typescript-project-references": "^2.9.0",
-    "@typescript-eslint/eslint-plugin": "^5.55.0",
-    "@typescript-eslint/parser": "^5.55.0",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
     "eslint": "^8.23.0",
-    "eslint-config-prettier": "^8.7.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "lerna": "^6.5.1",
     "lint-staged": "^13.2.0",
