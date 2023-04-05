@@ -51,7 +51,7 @@
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.15.10",
+        "@types/node": "^18.15.11",
         "chai": "^4.3.7",
         "mocha": "^10.2.0",
         "proxyquire": "^2.1.3",
