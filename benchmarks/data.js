@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1681339576232,
+  "lastUpdate": 1681356062843,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -6720,6 +6720,48 @@ window.BENCHMARK_DATA = {
             "value": 1.9041323081600001,
             "unit": "seconds",
             "range": "± 0.060844675000000015"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "39aac1f0ab867480cf61b1d8c13120d7a61ad565",
+          "message": "chore(deps): update npm to v9.6.4",
+          "timestamp": "2023-04-13T03:17:24Z",
+          "tree_id": "5104d7d3756f218a81ebb39382e3dedee5cd90cb",
+          "url": "https://github.com/textlint/textlint/commit/39aac1f0ab867480cf61b1d8c13120d7a61ad565"
+        },
+        "date": 1681356061467,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.23969549852,
+            "unit": "seconds",
+            "range": "± 0.10509894499999994"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 13.59578583432,
+            "unit": "seconds",
+            "range": "± 0.3127810629999992"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.90458631452,
+            "unit": "seconds",
+            "range": "± 0.038651734999999965"
           }
         ]
       }
