@@ -52,7 +52,7 @@
         "@textlint/markdown-to-ast": "^13.3.2",
         "@types/debug": "^4.1.7",
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.15.13",
+        "@types/node": "^18.16.0",
         "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
         "shelljs": "^0.8.5",
