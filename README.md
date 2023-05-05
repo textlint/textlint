@@ -280,6 +280,7 @@ Optional supported file types:
 
 - HTML: [textlint-plugin-html](https://github.com/textlint/textlint-plugin-html "textlint-plugin-html")
 - reStructuredText: [textlint-plugin-rst](https://github.com/jimo1001/textlint-plugin-rst "textlint-plugin-rst")
+  - Fork: [shiguredo/textlint-plugin-rst](https://github.com/shiguredo/textlint-plugin-rst)
 - AsciiDoc/Asciidoctor: [textlint-plugin-asciidoc-loose](https://github.com/azu/textlint-plugin-asciidoc-loose "textlint-plugin-asciidoc-loose")
 - Re:VIEW: [textlint-plugin-review](https://github.com/orangain/textlint-plugin-review "textlint-plugin-review")
 - Org-mode: [textlint-plugin-org](https://github.com/kijimaD/textlint-plugin-org "textlint-plugin-org")
