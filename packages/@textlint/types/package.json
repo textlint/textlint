@@ -49,7 +49,7 @@
     "devDependencies": {
         "@textlint/markdown-to-ast": "^13.3.2",
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.16.3",
+        "@types/node": "^18.16.4",
         "mocha": "^10.2.0",
         "prettier": "^2.7.1",
         "rimraf": "^3.0.2",
