@@ -45,7 +45,7 @@
     },
     "devDependencies": {
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.16.13",
+        "@types/node": "^18.16.14",
         "mocha": "^10.2.0",
         "prettier": "^2.7.1",
         "rimraf": "^3.0.2",
