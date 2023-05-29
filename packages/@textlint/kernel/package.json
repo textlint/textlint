@@ -50,7 +50,7 @@
     },
     "devDependencies": {
         "@textlint/markdown-to-ast": "^13.3.2",
-        "@types/debug": "^4.1.7",
+        "@types/debug": "^4.1.8",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.16.14",
         "mocha": "^10.2.0",
