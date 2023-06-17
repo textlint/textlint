@@ -34,7 +34,7 @@
     },
     "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts",
     "devDependencies": {
-        "lint-staged": "^11.2.6",
+        "lint-staged": "^13.2.2",
         "prettier": "^2.2.1",
         "shelljs": "^0.8.5"
     },
@@ -47,7 +47,7 @@
         "babel-plugin-static-fs": "^3.0.0",
         "confirmer": "^1.1.2",
         "cross-spawn": "^7.0.3",
-        "mocha": "^9.2.2",
+        "mocha": "^10.2.0",
         "pkg-to-readme": "^1.1.2",
         "textlint-tester": "^13.3.2"
     },

@@ -47,7 +47,7 @@
     "devDependencies": {
         "@textlint/ast-tester": "^13.3.2",
         "eol-converter-cli": "^1.0.8",
-        "mocha": "^9.2.2",
+        "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
         "typescript": "~4.9.4"
     },
