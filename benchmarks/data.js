@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1687306430677,
+  "lastUpdate": 1687321747310,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -10836,6 +10836,48 @@ window.BENCHMARK_DATA = {
             "value": 1.9301809859999999,
             "unit": "seconds",
             "range": "± 0.03292261200000013"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "0008d47937958b4a1dd7fce3481df4f92b4c6475",
+          "message": "fix(deps): update dependency rc-config-loader to ^4.1.3",
+          "timestamp": "2023-06-21T04:24:54Z",
+          "tree_id": "b46debf6f6ddf42036c49c048bbda72953ebe9bb",
+          "url": "https://github.com/textlint/textlint/commit/0008d47937958b4a1dd7fce3481df4f92b4c6475"
+        },
+        "date": 1687321745992,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.60865072254,
+            "unit": "seconds",
+            "range": "± 0.30542128"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 15.253299497739999,
+            "unit": "seconds",
+            "range": "± 0.4812042339999998"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.9783324017400001,
+            "unit": "seconds",
+            "range": "± 0.04565328600000007"
           }
         ]
       }
