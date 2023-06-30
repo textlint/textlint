@@ -1,6 +1,6 @@
 {
     "name": "@textlint/linter-formatter",
-    "version": "13.3.2",
+    "version": "13.3.3",
     "description": "textlint output formatter",
     "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/linter-formatter",
     "bugs": {
@@ -34,8 +34,8 @@
     "dependencies": {
         "@azu/format-text": "^1.0.2",
         "@azu/style-format": "^1.0.1",
-        "@textlint/module-interop": "^13.3.2",
-        "@textlint/types": "^13.3.2",
+        "@textlint/module-interop": "^13.3.3",
+        "@textlint/types": "^13.3.3",
         "chalk": "^4.1.2",
         "debug": "^4.3.4",
         "is-file": "^1.0.0",
