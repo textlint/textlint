@@ -41,7 +41,6 @@
         "is-file": "^1.0.0",
         "js-yaml": "^3.14.1",
         "lodash": "^4.17.21",
-        "optionator": "^0.9.1",
         "pluralize": "^2.0.0",
         "string-width": "^4.2.3",
         "strip-ansi": "^6.0.1",
