@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1687995502354,
+  "lastUpdate": 1688158945601,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -11046,6 +11046,48 @@ window.BENCHMARK_DATA = {
             "value": 2.26677804104,
             "unit": "seconds",
             "range": "± 0.04220510200000005"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "74299d07fbf8fdd5eeb294d484747446de9804e0",
+          "message": "chore(deps): remove unused optionator",
+          "timestamp": "2023-07-01T05:57:33+09:00",
+          "tree_id": "238b0327a4e9b2681b5d6d33fed1cff8fa98d8fd",
+          "url": "https://github.com/textlint/textlint/commit/74299d07fbf8fdd5eeb294d484747446de9804e0"
+        },
+        "date": 1688158943533,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 5.298496284919999,
+            "unit": "seconds",
+            "range": "± 0.15774714600000017"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 16.340021884920002,
+            "unit": "seconds",
+            "range": "± 0.24158332500000057"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.4201178595200004,
+            "unit": "seconds",
+            "range": "± 0.24469729499999993"
           }
         ]
       }
