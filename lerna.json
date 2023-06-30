@@ -1,7 +1,6 @@
 {
   "version": "13.3.2",
   "npmClient": "npm",
-  "useWorkspaces": true,
   "packages": [
     "packages/*",
     "examples/*",
