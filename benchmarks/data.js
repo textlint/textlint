@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688159495344,
+  "lastUpdate": 1688159740005,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -11172,6 +11172,48 @@ window.BENCHMARK_DATA = {
             "value": 1.9403752744600002,
             "unit": "seconds",
             "range": "± 0.023168126999999927"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "2640f33a4ee667adb7d6ea899c332cac1c1b2711",
+          "message": "chore: remove corepack",
+          "timestamp": "2023-07-01T06:11:50+09:00",
+          "tree_id": "b68364218fd36f64c425e0b258fe0ad26b018021",
+          "url": "https://github.com/textlint/textlint/commit/2640f33a4ee667adb7d6ea899c332cac1c1b2711"
+        },
+        "date": 1688159738288,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.4006865798999995,
+            "unit": "seconds",
+            "range": "± 0.13354190800000065"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 14.1864029523,
+            "unit": "seconds",
+            "range": "± 0.25357333500000045"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.9656632350999999,
+            "unit": "seconds",
+            "range": "± 0.06132479499999999"
           }
         ]
       }
