@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688735945032,
+  "lastUpdate": 1688736427517,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -11844,6 +11844,48 @@ window.BENCHMARK_DATA = {
             "value": 1.9273775199800003,
             "unit": "seconds",
             "range": "± 0.029357147000000028"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f49030463f20b80fdde5d4c502fac727745b85c0",
+          "message": "chore: remove packages from lerna.json (#1198)\n\n* chore: remove packages from lerna.json\r\n\r\n* chore(deps): update to lerna@7",
+          "timestamp": "2023-07-07T22:22:47+09:00",
+          "tree_id": "418c91fdb14e93d313c240119aac9a907ddb46d9",
+          "url": "https://github.com/textlint/textlint/commit/f49030463f20b80fdde5d4c502fac727745b85c0"
+        },
+        "date": 1688736425800,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.899952342180001,
+            "unit": "seconds",
+            "range": "± 0.32390042900000005"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 15.35945363978,
+            "unit": "seconds",
+            "range": "± 0.5014641589999993"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.1741899023799998,
+            "unit": "seconds",
+            "range": "± 0.1292489240000001"
           }
         ]
       }
