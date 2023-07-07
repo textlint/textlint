@@ -32,13 +32,13 @@
     "prepare": "git config --local core.hooksPath .githooks"
   },
   "devDependencies": {
-    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.9.0",
+    "@monorepo-utils/workspaces-to-typescript-project-references": "^2.10.2",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "lerna": "^6.6.2",
+    "lerna": "^7.1.1",
     "lint-staged": "^13.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.7.1",
