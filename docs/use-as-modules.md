@@ -57,7 +57,7 @@ console.log(output);
 Fix text and get the fixed text.
 
 ```ts
-import { createLinter, loadTextlintrc, loadFixerFormatter } from "textlint";
+import { createLinter, loadTextlintrc } from "textlint";
 // descriptor is a structure object for linter
 // It includes rules, plugins, and options
 const descriptor = await loadTextlintrc();
