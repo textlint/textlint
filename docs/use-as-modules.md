@@ -64,7 +64,7 @@ const descriptor = await loadTextlintrc();
 const linter = createLinter({
     descriptor
 });
-const result = await linter.fixText("TODO: fix me");
+const result = await linter.fixText("TODO: fix me", "DUMMY.md");
 console.log(result.output); // fixed result
 ```
 
