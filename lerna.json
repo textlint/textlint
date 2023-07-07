@@ -1,13 +1,6 @@
 {
   "version": "13.3.3",
   "npmClient": "npm",
-  "packages": [
-    "packages/*",
-    "examples/*",
-    "packages/@textlint/*",
-    "test/integration-test",
-    "website"
-  ],
   "includeMergedTags": true,
   "ignoreChanges": [
     "**/test/**",
