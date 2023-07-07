@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688545837893,
+  "lastUpdate": 1688731164926,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -11340,6 +11340,48 @@ window.BENCHMARK_DATA = {
             "value": 1.9425292284800002,
             "unit": "seconds",
             "range": "± 0.029146649000000302"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "61353435+KokiSakano@users.noreply.github.com",
+            "name": "kosakanoki",
+            "username": "KokiSakano"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0ee7fc765d5a89950771d83080f74a23a6b01d34",
+          "message": "loadFixerFormatter is not use in example. (#1195)\n\n* loadFixerFormatter is not use in example.\r\n\r\n* add DUMMY.md to fixText's second argument.",
+          "timestamp": "2023-07-07T20:55:55+09:00",
+          "tree_id": "aa5ac145b01a215bc6d5993901b64502e7444869",
+          "url": "https://github.com/textlint/textlint/commit/0ee7fc765d5a89950771d83080f74a23a6b01d34"
+        },
+        "date": 1688731163217,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.01722264614,
+            "unit": "seconds",
+            "range": "± 0.07273635899999986"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 12.058437919540001,
+            "unit": "seconds",
+            "range": "± 0.3475815579999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.8289933187400003,
+            "unit": "seconds",
+            "range": "± 0.03363789699999997"
           }
         ]
       }
