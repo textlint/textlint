@@ -2,7 +2,7 @@
 "use strict";
 import path from "path";
 import * as assert from "assert";
-import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
+import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
 
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
 const createResolve = (ruleBaseDir?: string) => {

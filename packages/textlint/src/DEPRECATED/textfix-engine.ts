@@ -2,7 +2,7 @@
 import { AbstractTextLintEngine } from "./engine/textlint-engine-core";
 import { createFormatter } from "@textlint/fixer-formatter";
 import { TextLintCore } from "./textlint-core";
-import { TextLintFormatterOption } from "./textlint-interface";
+import { TextLintFormatterOption } from "../textlint-interface";
 import { TextlintFixResult } from "@textlint/kernel";
 
 /**

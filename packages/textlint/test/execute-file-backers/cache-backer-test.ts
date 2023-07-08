@@ -6,7 +6,7 @@ import os from "os";
 import sh from "shelljs";
 import fs from "fs";
 import { CacheBacker } from "../../src/engine/execute-file-backers/cache-backer";
-import { Config } from "../../src/config/config";
+import { Config } from "../../src/DEPRECATED/config";
 import { TextlintMessage } from "@textlint/types";
 
 describe("CacheBacker", function () {

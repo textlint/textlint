@@ -4,7 +4,7 @@ import * as assert from "assert";
 import * as glob from "glob";
 import * as fs from "fs";
 import * as path from "path";
-import { Config } from "../../src/config/config";
+import { Config } from "../../src/DEPRECATED/config";
 import { moduleInterop } from "@textlint/module-interop";
 /* load config from "./config/" and match expected result */
 describe("config-as-example", function () {

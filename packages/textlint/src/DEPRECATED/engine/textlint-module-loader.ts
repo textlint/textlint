@@ -5,11 +5,11 @@ import { moduleInterop } from "@textlint/module-interop";
 const debug = require("debug")("textlint:module-loader");
 const isFile = require("is-file");
 import { isPluginRuleKey } from "../config/config-util";
-import { loadFromDir } from "./rule-loader";
-import { Logger } from "../util/logger";
+import { loadFromDir } from "../../engine/rule-loader";
+import { Logger } from "../../util/logger";
 import { TextLintModuleResolver } from "./textlint-module-resolver";
 import { TextLintModuleMapper } from "./textlint-module-mapper";
-import { Config } from "../config/config";
+import { Config } from "../config";
 import {
     normalizeTextlintFilterRuleKey,
     normalizeTextlintPluginKey,

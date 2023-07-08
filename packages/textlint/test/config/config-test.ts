@@ -2,7 +2,7 @@
 "use strict";
 import assert from "assert";
 import path from "path";
-import { Config } from "../../src/config/config";
+import { Config } from "../../src/DEPRECATED/config";
 /*
     config file test reference to config-as-example.js
  */

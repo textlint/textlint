@@ -2,9 +2,9 @@
 "use strict";
 const assert = require("assert");
 const path = require("path");
-import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
-import { loadConfig } from "../../src/config/config-loader";
-import { Config } from "../../src/config/config";
+import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
+import { loadConfig } from "../../src/DEPRECATED/config/config-loader";
+import { Config } from "../../src/DEPRECATED/config";
 
 const dummyModuleLoader = new TextLintModuleResolver({
     rulesBaseDirectory: path.join(__dirname, "fixtures")

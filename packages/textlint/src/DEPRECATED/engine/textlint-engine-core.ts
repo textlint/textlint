@@ -1,16 +1,16 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
-import { TextLintFormatterOption } from "../textlint-interface";
+import { TextLintFormatterOption } from "../../textlint-interface";
 import { TextLintCore } from "../textlint-core";
-import { RuleMap } from "./rule-map";
-import { PluginMap } from "./processor-map";
-import { Config } from "../config/config";
-import { findFiles, pathsToGlobPatterns, separateByAvailability } from "../util/find-util";
+import { RuleMap } from "../../engine/rule-map";
+import { PluginMap } from "../../engine/processor-map";
+import { Config } from "../config";
+import { findFiles, pathsToGlobPatterns, separateByAvailability } from "../../util/find-util";
 import { TextLintModuleLoader } from "./textlint-module-loader";
-import { ExecuteFileBackerManager } from "./execute-file-backer-manager";
-import { CacheBacker } from "./execute-file-backers/cache-backer";
-import { SeverityLevel } from "../shared/type/SeverityLevel";
+import { ExecuteFileBackerManager } from "../../engine/execute-file-backer-manager";
+import { CacheBacker } from "../../engine/execute-file-backers/cache-backer";
+import { SeverityLevel } from "../../shared/type/SeverityLevel";
 import { TextlintMessage, TextlintResult } from "@textlint/kernel";
 
 const path = require("path");

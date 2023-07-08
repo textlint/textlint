@@ -6,7 +6,6 @@ const fs = require("fs");
 const path = require("path");
 const isFile = require("is-file");
 const readPkg = require("read-pkg");
-import { Config } from "./config";
 import { Logger } from "../util/logger";
 
 /**
@@ -66,7 +65,7 @@ export interface CreateConfigFileOption {
 export const createConfigFile = (options: CreateConfigFileOption) => {
     const dir = options.dir;
     return getTextlintDependencyNames(dir).then((pkgNames) => {
-        const rcFile = `.${Config.CONFIG_FILE_NAME}rc.json`;
+        const rcFile = `.textlintrc.json`;
         const filePath = path.resolve(dir, rcFile);
         if (isFile(filePath)) {
             Logger.error(`${rcFile} is already existed.`);
