@@ -1,14 +1,14 @@
 // LICENSE : MIT
 "use strict";
-import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
+import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
 
 const assert = require("assert");
 const path = require("path");
 const os = require("os");
 const sh = require("shelljs");
-import { Config } from "../../src/config/config";
+import { Config } from "../../src/DEPRECATED/config";
 import { createConfigFile } from "../../src/config/config-initializer";
-import { loadConfig } from "../../src/config/config-loader";
+import { loadConfig } from "../../src/DEPRECATED/config/config-loader";
 import { Logger } from "../../src/util/logger";
 /*
  config file generate test

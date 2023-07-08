@@ -1,11 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import crypto from "crypto";
-import { loadConfig } from "./config-loader";
-import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./preset-loader";
-import { getPluginConfig, getPluginNames } from "./plugin-loader";
-import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
-import { separateEnabledOrDisabled } from "./separate-by-config-option";
+import { loadConfig } from "./config/config-loader";
+import { createFlatRulesConfigFromRawRulesConfig, loadRulesConfigFromPresets } from "./config/preset-loader";
+import { getPluginConfig, getPluginNames } from "./config/plugin-loader";
+import { TextLintModuleResolver } from "./engine/textlint-module-resolver";
+import { separateEnabledOrDisabled } from "./config/separate-by-config-option";
 import {
     normalizeTextlintFilterRuleKey,
     normalizeTextlintPluginKey,

@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { TextLintModuleMapper } from "../../src/engine/textlint-module-mapper";
+import { TextLintModuleMapper } from "../../src/DEPRECATED/engine/textlint-module-mapper";
 import configurablePlugin from "./fixtures/configurable-plugin";
 import configurableRule from "./fixtures/configurable-plugin/rules/configurable-rule";
 const assert = require("assert");

@@ -16,7 +16,7 @@ export { textlint } from "./textlint";
  * You can see engine/textlint-engine-core.js for more detail
  * @deprecated use New APIs
  */
-export { TextLintEngine } from "./textlint-engine";
+export { TextLintEngine } from "./DEPRECATED/textlint-engine";
 
 /**
  * TextFixEngine is a wrapper around `textlint` for linting **multiple** files
@@ -24,13 +24,13 @@ export { TextLintEngine } from "./textlint-engine";
  * You can see engine/textlint-engine-core.js for more detail
  * @deprecated use New APIs
  */
-export { TextFixEngine } from "./textfix-engine";
+export { TextFixEngine } from "./DEPRECATED/textfix-engine";
 
 /**
  * Core API for linting a **single** text or file.
  * @deprecated use New APIs or @textlint/kernel
  */
-export { TextLintCore } from "./textlint-core";
+export { TextLintCore } from "./DEPRECATED/textlint-core";
 
 /* = New APIs */
 /**

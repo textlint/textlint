@@ -14,19 +14,19 @@ import {
     TextlintPluginProcessorConstructor,
     TextlintResult
 } from "@textlint/kernel";
-import { readFile } from "./util/fs-promise";
-import { Config } from "./config/config";
+import fs from "fs";
+import { Config } from "./config";
 import {
     filterRulesObjectToKernelRule,
     pluginsObjectToKernelRule,
     rulesObjectToKernelRule
-} from "./util/object-to-kernel-format";
+} from "../util/object-to-kernel-format";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
 import type { TextlintKernelOptions } from "@textlint/kernel";
+import path from "path";
 
-const path = require("path");
-
+const readFile = fs.promises.readFile;
 const { throwIfTesting } = require("@textlint/feature-flag");
 
 /**
@@ -184,7 +184,7 @@ export class TextLintCore {
             ext,
             filePath: absoluteFilePath
         });
-        return readFile(absoluteFilePath).then((text: string) => {
+        return readFile(absoluteFilePath, { encoding: "utf-8" }).then((text: string) => {
             return this.kernel.lintText(text, options);
         });
     }
@@ -201,7 +201,7 @@ export class TextLintCore {
             ext,
             filePath: absoluteFilePath
         });
-        return readFile(absoluteFilePath).then((text: string) => {
+        return readFile(absoluteFilePath, { encoding: "utf-8" }).then((text: string) => {
             return this.kernel.fixText(text, options);
         });
     }

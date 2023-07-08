@@ -2,7 +2,7 @@
 "use strict";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
 import { TextLintEngine } from "../../src/";
-import { Config } from "../../src/config/config";
+import { Config } from "../../src/DEPRECATED/config";
 import assert from "assert";
 import path from "path";
 const rulesDir = path.join(__dirname, "fixtures/textlint-engine/rules");

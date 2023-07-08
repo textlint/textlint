@@ -1,10 +1,10 @@
 import os from "os";
 import { LintWorkerData, LintWorkerResults } from "./lint-worker";
-import { Config } from "../config/config";
+import { Config } from "../DEPRECATED/config";
 import { findFiles, pathsToGlobPatterns } from "../util/find-util";
 import { TextlintKernelDescriptor } from "@textlint/kernel";
 import { pluginsObjectToKernelRule } from "../util/object-to-kernel-format";
-import { TextLintModuleLoader } from "../engine/textlint-module-loader";
+import { TextLintModuleLoader } from "../DEPRECATED/engine/textlint-module-loader";
 import { PluginMap } from "../engine/processor-map";
 
 type Worker = import("worker_threads").Worker;

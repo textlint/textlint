@@ -3,7 +3,7 @@
 import assert from "assert";
 import path from "path";
 import * as fs from "fs";
-import { TextLintCore } from "../../src/textlint-core";
+import { TextLintCore } from "../../src/DEPRECATED/textlint-core";
 import ruleAdd from "./fixtures/fixer-rules/fixer-rule-add";
 import ruleReplace from "./fixtures/fixer-rules/fixer-rule-replace";
 import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";

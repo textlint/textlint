@@ -3,7 +3,7 @@
 const assert = require("assert");
 const path = require("path");
 import { TextFixEngine } from "../../src/";
-import { Config } from "../../src/config/config";
+import { Config } from "../../src/DEPRECATED/config";
 
 const rulesDir = path.join(__dirname, "fixtures/textfix-engine/fixer-rules");
 const inputTextPath = path.join(__dirname, "fixtures/textfix-engine/fixer-rules", "input.md");

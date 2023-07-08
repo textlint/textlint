@@ -6,7 +6,7 @@ import deepClone from "clone";
 import { textlint, TextLintCore } from "../../src";
 import { assertRuleContext } from "./assert-rule-context";
 import { loadFromDir } from "../../src/engine/rule-loader";
-import { Config } from "../../src/config/config";
+import { Config } from "../../src/DEPRECATED/config";
 import { TextlintRuleContext, TextlintRuleOptions } from "@textlint/types";
 
 const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));

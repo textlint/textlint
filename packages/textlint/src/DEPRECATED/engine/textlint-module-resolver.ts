@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import * as path from "path";
-import { createFullPackageName } from "./textlint-package-name-util";
+import { createFullPackageName } from "../textlint-package-name-util";
 import { PackageNamePrefix } from "../config/package-prefix";
 
 const tryResolve = require("try-resolve");

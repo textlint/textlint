@@ -2,8 +2,8 @@
 "use strict";
 import assert from "assert";
 import path from "path";
-import { loadAvailableExtensions, getPluginConfig } from "../../src/config/plugin-loader";
-import { TextLintModuleResolver } from "../../src/engine/textlint-module-resolver";
+import { loadAvailableExtensions, getPluginConfig } from "../../src/DEPRECATED/config/plugin-loader";
+import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
 
 const moduleResolver = new TextLintModuleResolver({
     rulesBaseDirectory: path.join(__dirname, "fixtures")

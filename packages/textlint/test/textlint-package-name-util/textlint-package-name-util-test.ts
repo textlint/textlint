@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { createFullPackageName, removePrefixFromPackageName } from "../../src/engine/textlint-package-name-util";
+import { createFullPackageName, removePrefixFromPackageName } from "../../src/DEPRECATED/textlint-package-name-util";
 
 describe("textlint-package-name-util", () => {
     describe("removePrefixFromPackageName", () => {

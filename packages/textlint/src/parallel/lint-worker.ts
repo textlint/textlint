@@ -1,7 +1,7 @@
 import { parentPort, threadId, isMainThread, workerData } from "worker_threads";
-import { Config } from "../config/config";
-import { TextLintEngine } from "../textlint-engine";
-import { TextFixEngine } from "../textfix-engine";
+import { Config } from "../DEPRECATED/config";
+import { TextLintEngine } from "../DEPRECATED/textlint-engine";
+import { TextFixEngine } from "../DEPRECATED/textfix-engine";
 import type { TextlintFixResult, TextlintResult } from "@textlint/types";
 
 const debug = require("debug")("textlint:parallel/lint-worker");

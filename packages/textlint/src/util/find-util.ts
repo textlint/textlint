@@ -12,7 +12,7 @@ export type FindFilesOptions = {
 };
 const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
     if (ignore.startsWith("!")) {
-        return "!" + path.posix.join(base, ignore.slice(1));
+        return `!${path.posix.join(base, ignore.slice(1))}`;
     }
     return path.posix.join(base, ignore);
 };
