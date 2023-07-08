@@ -3,11 +3,8 @@
 import assert from "assert";
 import path from "path";
 import deepClone from "clone";
-import { textlint, TextLintCore } from "../../src";
-import { assertRuleContext } from "./assert-rule-context";
+import { textlint } from "../../src";
 import { loadFromDir } from "../../src/engine/rule-loader";
-import { Config } from "../../src/DEPRECATED/config";
-import { TextlintRuleContext, TextlintRuleOptions } from "@textlint/types";
 
 const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
 describe("textlint-test", function () {
@@ -17,48 +14,6 @@ describe("textlint-test", function () {
     });
     afterEach(function () {
         textlint.resetRules();
-    });
-    describe("#setupRules", function () {
-        context("when pass only rules object", function () {
-            it("should pass RuleContext instance to Rule function", function () {
-                const rule = function (context: Readonly<TextlintRuleContext>, config: TextlintRuleOptions<never>) {
-                    assertRuleContext(context);
-                    assert.strictEqual(context.id, "rule-name");
-                    assert.strictEqual(config, undefined);
-                    return {};
-                };
-                textlint.setupRules({ "rule-name": rule });
-            });
-        });
-        context("when pass rules object and rules config", function () {
-            it("should pass RuleContext instance and RuleConfig to Rule function", function () {
-                const ruleConfig = { key: "value" };
-                const rule = function (context: Readonly<TextlintRuleContext>, config: TextlintRuleOptions) {
-                    assertRuleContext(context);
-                    assert.equal(context.id, "rule-name");
-                    assert.deepEqual(config, ruleConfig);
-                    return {};
-                };
-                textlint.setupRules({ "rule-name": rule }, { "rule-name": ruleConfig });
-            });
-        });
-        context("when pass textlintConfig to setupRules", function () {
-            it("should RuleContext has `config` object", function () {
-                const configFile = path.join(__dirname, "fixtures", ".textlintrc");
-                const textlint = new TextLintCore(new Config({ configFile }));
-                const rule = (
-                    context: Readonly<TextlintRuleContext & { config: Config }>,
-                    _config: TextlintRuleOptions
-                ) => {
-                    assertRuleContext(context);
-                    assert.ok("config" in context);
-                    assert.ok(context.config instanceof Config);
-                    assert.equal(context.config.configFile, configFile);
-                    return {};
-                };
-                textlint.setupRules({ "rule-name": rule });
-            });
-        });
     });
     describe("lintMarkdown", function () {
         it("should found error message", function () {
