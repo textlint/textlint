@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1688779655434,
+  "lastUpdate": 1688780950514,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -12096,6 +12096,48 @@ window.BENCHMARK_DATA = {
             "value": 1.9484445226800002,
             "unit": "seconds",
             "range": "± 0.021679451999999877"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "efe89cc116f213e0b21ffaec13dc42d47e260cdd",
+          "message": "refactor(textlint): move deprecated code to DEPRECATED/ dir (#1201)\n\n* refactor(textlint): move deprecated code to DEPRECATED/ dir\r\n\r\n* refactor: remove MessageType.ts",
+          "timestamp": "2023-07-08T10:45:20+09:00",
+          "tree_id": "f526aa85dd833e917042fdcc8da2dc849a134ef0",
+          "url": "https://github.com/textlint/textlint/commit/efe89cc116f213e0b21ffaec13dc42d47e260cdd"
+        },
+        "date": 1688780949094,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.2292995458,
+            "unit": "seconds",
+            "range": "± 0.07576867600000003"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 13.737026037800002,
+            "unit": "seconds",
+            "range": "± 0.2785123039999995"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.9060405956,
+            "unit": "seconds",
+            "range": "± 0.02829755399999989"
           }
         ]
       }
