@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689019814907,
+  "lastUpdate": 1689068523343,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -12516,6 +12516,48 @@ window.BENCHMARK_DATA = {
             "value": 2.31623107344,
             "unit": "seconds",
             "range": "± 0.05414112599999976"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "aec3d97e75c067e43a69f6d0f31e71cc6a4f2cbb",
+          "message": "fix(deps): update babel monorepo to ^7.22.6",
+          "timestamp": "2023-07-11T09:38:35Z",
+          "tree_id": "e2f62ace78995e2ed25c7f41936a5541f74689bc",
+          "url": "https://github.com/textlint/textlint/commit/aec3d97e75c067e43a69f6d0f31e71cc6a4f2cbb"
+        },
+        "date": 1689068522027,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.05259355744,
+            "unit": "seconds",
+            "range": "± 0.03536241400000062"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 12.04763457484,
+            "unit": "seconds",
+            "range": "± 0.27901391799999864"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.84922545024,
+            "unit": "seconds",
+            "range": "± 0.1047184000000001"
           }
         ]
       }
