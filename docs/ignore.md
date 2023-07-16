@@ -34,7 +34,7 @@ You can also specify path to a file containing patterns that describes files to 
 
 Disables all rules between comments
 
-<!-- textlint-enable -->`
+<!-- textlint-enable -->
 ```
 
 Allow to short `textlint-filter-rule-comments` to `comments`.
