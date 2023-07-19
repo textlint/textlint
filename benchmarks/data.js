@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1689786615428,
+  "lastUpdate": 1689786661537,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -13104,6 +13104,48 @@ window.BENCHMARK_DATA = {
             "value": 1.86047810602,
             "unit": "seconds",
             "range": "± 0.03860786499999991"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "62ee2c34dd83d7c40d1acfad94483b53bf54f3b5",
+          "message": "chore(deps): update dependency lerna to ^7.1.3",
+          "timestamp": "2023-07-19T17:06:01Z",
+          "tree_id": "3b9378e6f028a2143a6264c709f748003fbdf818",
+          "url": "https://github.com/textlint/textlint/commit/62ee2c34dd83d7c40d1acfad94483b53bf54f3b5"
+        },
+        "date": 1689786659814,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 6.09318318046,
+            "unit": "seconds",
+            "range": "± 0.18530532099999952"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 16.85432909466,
+            "unit": "seconds",
+            "range": "± 0.7684768899999987"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.4280301418600003,
+            "unit": "seconds",
+            "range": "± 0.03421877299999965"
           }
         ]
       }
