@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1690005512426,
+  "lastUpdate": 1690005676537,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -13230,6 +13230,48 @@ window.BENCHMARK_DATA = {
             "value": 1.9261543861600003,
             "unit": "seconds",
             "range": "± 0.03398264900000014"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ff558d26cf9d5406b8a7447cd8aec757c5692caf",
+          "message": "Update rule.md (#1213)",
+          "timestamp": "2023-07-22T14:57:21+09:00",
+          "tree_id": "4f82705d81ad3b21ba98000b1cdee57120019f47",
+          "url": "https://github.com/textlint/textlint/commit/ff558d26cf9d5406b8a7447cd8aec757c5692caf"
+        },
+        "date": 1690005675572,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.57676207228,
+            "unit": "seconds",
+            "range": "± 0.15734359699999967"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 15.66591366568,
+            "unit": "seconds",
+            "range": "± 0.24715475999999903"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.02296636048,
+            "unit": "seconds",
+            "range": "± 0.08985274899999962"
           }
         ]
       }
