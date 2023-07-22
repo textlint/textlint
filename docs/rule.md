@@ -859,7 +859,7 @@ no-start-duplicated-conjunction |     5.911 |     3.4%
 ```
 
 
-## Implementation Node :memo:
+## Implementation Notes :memo:
 
 textlint ignore duplicated message/rules by default.
 
@@ -868,3 +868,10 @@ textlint ignore duplicated message/rules by default.
 - Duplicated error message is ignored by default
     - _Duplicated error messages_ is that have same range and same message.
     - [Proposal: duplicated messages is ignored by default · Issue #209 · textlint/textlint](https://github.com/textlint/textlint/issues/209 "Proposal: duplicated messages is ignored by default · Issue #209 · textlint/textlint")
+
+## Community Notes
+
+- Japanese
+    - [textlintのインストールから新しいルール作成までやってみた - エイエイレトリック](https://eieito.hatenablog.com/entry/2022/07/29/100000)
+    - [textlintプラグインの作り方(例：オンドゥル語変換) 準備編](https://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1) 
+    - [textlintでセンテンスを扱うルールの書き方 | Web Scratch](https://efcl.info/2023/02/23/textlint-sentence-rule/)
