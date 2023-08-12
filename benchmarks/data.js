@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1691840753284,
+  "lastUpdate": 1691843121956,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -13902,6 +13902,48 @@ window.BENCHMARK_DATA = {
             "value": 1.7394497222399998,
             "unit": "seconds",
             "range": "± 0.03545839099999992"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "10562fc30f03a196b0f2c767e4670fa48606467a",
+          "message": "refactor: migrate CJS require/exports to ESM import/export",
+          "timestamp": "2023-08-12T21:21:37+09:00",
+          "tree_id": "a922a49ef1dfe286198a2b3707259a799a1e73c8",
+          "url": "https://github.com/textlint/textlint/commit/10562fc30f03a196b0f2c767e4670fa48606467a"
+        },
+        "date": 1691843120951,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.8985423737,
+            "unit": "seconds",
+            "range": "± 0.078456144"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 11.9053849555,
+            "unit": "seconds",
+            "range": "± 0.2604420470000015"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.7313225803,
+            "unit": "seconds",
+            "range": "± 0.024632938999999965"
           }
         ]
       }
