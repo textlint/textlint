@@ -19,6 +19,8 @@ import pluralize from "pluralize";
 import widthOfString from "string-width";
 
 // color set
+import { readFileSync } from "fs";
+
 const summaryColor = "yellow";
 const greenColor = "green";
 const template = style(
@@ -129,7 +131,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let warnings = 0;
     let totalFixable = 0;
     results.forEach(function (result) {
-        const code = require("fs").readFileSync(result.filePath, "utf-8");
+        const code = readFileSync(result.filePath, "utf-8");
         const messages = result.messages;
         if (messages.length === 0) {
             return;
