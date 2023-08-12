@@ -12,9 +12,10 @@ import { ExecuteFileBackerManager } from "../../engine/execute-file-backer-manag
 import { CacheBacker } from "../../engine/execute-file-backers/cache-backer";
 import { SeverityLevel } from "../../shared/type/SeverityLevel";
 import { TextlintMessage, TextlintResult } from "@textlint/kernel";
+import debug0 from "debug";
+import path from "path";
 
-const path = require("path");
-const debug = require("debug")("textlint:engine-core");
+const debug = debug0("textlint:engine-core");
 
 /**
  * Core of TextLintEngine.

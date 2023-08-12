@@ -7,8 +7,10 @@ import { pluginsObjectToKernelRule } from "../util/object-to-kernel-format";
 import { TextLintModuleLoader } from "../DEPRECATED/engine/textlint-module-loader";
 import { PluginMap } from "../engine/processor-map";
 
+import debug0 from "debug";
+
 type Worker = import("worker_threads").Worker;
-const debug = require("debug")("textlint:parallel/lint-worker-master");
+const debug = debug0("textlint:parallel/lint-worker-master");
 
 const workerPath = require.resolve("./lint-worker");
 

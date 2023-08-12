@@ -6,7 +6,7 @@
 "use strict";
 import type { TextlintResult } from "@textlint/types";
 
-const yaml = require("js-yaml");
+import yaml from "js-yaml";
 
 //------------------------------------------------------------------------------
 // Helper Functions

@@ -15,6 +15,9 @@ import { createTextlintRuleDescriptors } from "../../src/descriptor/DescriptorsF
 import { TextlintLintableRuleDescriptor } from "../../src/descriptor/TextlintLintableRuleDescriptor";
 import { TextlintFilterRuleReporter, TextlintKernelFilterRule } from "../../src/index";
 
+// @ts-expect-error
+import preset from "textlint-rule-preset-ja-spacing";
+
 /**
  * Convert rulesObject to TextlintKernelRule
  * {
@@ -166,7 +169,6 @@ describe("TextlintRuleDescriptors", function () {
         });
         // https://github.com/textlint/textlint/issues/231
         it("should not unexpected ignore testing", function () {
-            const preset = require("textlint-rule-preset-ja-spacing");
             const ruleCreatorSet = createTextlintRuleDescriptors(
                 rulesObjectToKernelRule(preset.rules, preset.rulesConfig)
             );

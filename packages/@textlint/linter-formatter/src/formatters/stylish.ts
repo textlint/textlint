@@ -7,10 +7,11 @@
 import type { TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions";
 
-const chalk = require("chalk");
-const table = require("text-table");
-const widthOfString = require("string-width");
-const stripAnsi = require("strip-ansi");
+import chalk from "chalk";
+// @ts-expect-error no types
+import table from "text-table";
+import widthOfString from "string-width";
+import stripAnsi from "strip-ansi";
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------
@@ -22,7 +23,7 @@ const stripAnsi = require("strip-ansi");
  * @returns {string} The original word with an s on the end if count is not one.
  */
 function pluralize(word: string, count: number): string {
-    return count === 1 ? word : word + "s";
+    return count === 1 ? word : `${word}s`;
 }
 
 //------------------------------------------------------------------------------
@@ -38,8 +39,8 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     let totalFixable = 0;
     let errors = 0;
     let warnings = 0;
-    let summaryColor = "yellow";
-    let greenColor = "green";
+    let summaryColor = "yellow" as "yellow" | "red";
+    const greenColor = "green";
 
     results.forEach(function (result) {
         const messages = result.messages;
@@ -49,55 +50,54 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
         }
 
         total += messages.length;
-        output += chalk.underline(result.filePath) + "\n";
+        output += `${chalk.underline(result.filePath)}\n`;
 
-        output +=
-            table(
-                messages.map(function (message) {
-                    let messageType;
-                    // fixable
-                    const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
-                    if (message.fix) {
-                        totalFixable++;
-                    }
-                    if ((message as any).fatal || message.severity === 2) {
-                        messageType = fixableIcon + chalk.red("error");
-                        summaryColor = "red";
-                        errors++;
-                    } else {
-                        messageType = fixableIcon + chalk.yellow("warning");
-                        warnings++;
-                    }
-
-                    return [
-                        "",
-                        message.line || 0,
-                        message.column || 0,
-                        messageType,
-                        message.message.replace(/\.$/, ""),
-                        chalk.gray(message.ruleId || "")
-                    ];
-                }),
-                {
-                    align: ["", "r", "l"],
-                    stringLength: function (str: string) {
-                        const lines = stripAnsi(str).split("\n");
-                        return Math.max.apply(
-                            null,
-                            lines.map(function (line: string) {
-                                return widthOfString(line);
-                            })
-                        );
-                    }
+        output += `${table(
+            messages.map(function (message) {
+                let messageType;
+                // fixable
+                const fixableIcon = message.fix ? chalk[greenColor].bold("\u2713 ") : "";
+                if (message.fix) {
+                    totalFixable++;
                 }
-            )
-                .split("\n")
-                .map(function (el: string) {
-                    return el.replace(/(\d+)\s+(\d+)/, function (_, p1, p2) {
-                        return chalk.gray(p1 + ":" + p2);
-                    });
-                })
-                .join("\n") + "\n\n";
+                if ((message as any).fatal || message.severity === 2) {
+                    messageType = fixableIcon + chalk.red("error");
+                    summaryColor = "red";
+                    errors++;
+                } else {
+                    messageType = fixableIcon + chalk.yellow("warning");
+                    warnings++;
+                }
+
+                return [
+                    "",
+                    message.line || 0,
+                    message.column || 0,
+                    messageType,
+                    message.message.replace(/\.$/, ""),
+                    chalk.gray(message.ruleId || "")
+                ];
+            }),
+            {
+                align: ["", "r", "l"],
+                stringLength(str: string) {
+                    const lines = stripAnsi(str).split("\n");
+                    return Math.max.apply(
+                        null,
+                        lines.map(function (line: string) {
+                            return widthOfString(line);
+                        })
+                    );
+                }
+            }
+        )
+            .split("\n")
+            .map(function (el: string) {
+                return el.replace(/(\d+)\s+(\d+)/, function (_, p1, p2) {
+                    return chalk.gray(`${p1}:${p2}`);
+                });
+            })
+            .join("\n")}\n\n`;
     });
 
     if (total > 0) {
@@ -118,10 +118,8 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     }
 
     if (totalFixable > 0) {
-        output += chalk[greenColor].bold(
-            "✓ " + totalFixable + " fixable " + pluralize("problem", totalFixable) + ".\n"
-        );
-        output += "Try to run: $ " + chalk.underline("textlint --fix [file]") + "\n";
+        output += chalk[greenColor].bold(`✓ ${totalFixable} fixable ${pluralize("problem", totalFixable)}.\n`);
+        output += `Try to run: $ ${chalk.underline("textlint --fix [file]")}\n`;
     }
 
     const finalOutput = total > 0 ? output : "";

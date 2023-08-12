@@ -1,10 +1,11 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
 
-const chalk = require("chalk");
-const table = require("text-table");
-const widthOfString = require("string-width");
-const stripAnsi = require("strip-ansi");
+import chalk from "chalk";
+// @ts-expect-error no types
+import table from "text-table";
+import widthOfString from "string-width";
+import stripAnsi from "strip-ansi";
 
 /**
  * Given a word and a count, append an s if count is not one.

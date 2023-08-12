@@ -12,10 +12,12 @@ import { FormatterOptions } from "../FormatterOptions";
 // Requirements
 //------------------------------------------------------------------------------
 
-const chalk = require("chalk");
+import chalk from "chalk";
+
 import { table } from "table";
-const pluralize = require("pluralize");
-const stripAnsi = require("strip-ansi");
+// @ts-expect-error no types
+import pluralize from "pluralize";
+import stripAnsi from "strip-ansi";
 //------------------------------------------------------------------------------
 // Helpers
 //------------------------------------------------------------------------------

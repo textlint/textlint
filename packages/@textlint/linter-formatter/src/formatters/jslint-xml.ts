@@ -3,10 +3,9 @@
  * @author Ian Christian Myers
  */
 "use strict";
-
 import type { TextlintResult } from "@textlint/types";
 
-const lodash = require("lodash");
+import lodash from "lodash";
 
 //------------------------------------------------------------------------------
 // Public Interface
@@ -19,25 +18,18 @@ function formatter(results: TextlintResult[]) {
     output += "<jslint>";
 
     results.forEach(function (result) {
-        var messages = result.messages;
+        const messages = result.messages;
 
-        output += '<file name="' + result.filePath + '">';
+        output += `<file name="${result.filePath}">`;
 
         messages.forEach(function (message) {
             output +=
-                '<issue line="' +
-                message.line +
-                '" ' +
-                'char="' +
-                message.column +
-                '" ' +
+                `<issue line="${message.line}" ` +
+                `char="${message.column}" ` +
                 // TODO: evidence is always empty string
                 // See: https://github.com/textlint/textlint/issues/400
-                'evidence="" ' +
-                'reason="' +
-                lodash.escape(message.message || "") +
-                (message.ruleId ? " (" + message.ruleId + ")" : "") +
-                '" />';
+                `evidence="" ` +
+                `reason="${lodash.escape(message.message || "")}${message.ruleId ? ` (${message.ruleId})` : ""}" />`;
         });
 
         output += "</file>";

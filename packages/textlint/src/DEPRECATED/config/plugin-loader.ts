@@ -1,7 +1,10 @@
 import { TextLintModuleResolver } from "../engine/textlint-module-resolver";
 import { moduleInterop } from "@textlint/module-interop";
-const debug = require("debug")("textlint:plugin-loader");
-const assert = require("assert");
+import debug0 from "debug";
+
+import assert from "assert";
+
+const debug = debug0("textlint:plugin-loader");
 
 /**
  * get plugin names from `configFileRaw` object

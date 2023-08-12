@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
-const pathToGlob = require("path-to-glob-pattern");
-const glob = require("glob");
-const path = require("path");
-const fs = require("fs");
-const debug = require("debug")("textlint:find-util");
+import { pathToGlobPattern } from "path-to-glob-pattern";
+import glob from "glob";
+import path from "path";
+import fs from "fs";
+import debug0 from "debug";
+const debug = debug0("textlint:find-util");
 const DEFAULT_IGNORE_PATTERNS = Object.freeze(["**/.git/**", "**/node_modules/**"]);
 export type FindFilesOptions = {
     cwd?: string;
@@ -33,7 +34,7 @@ export function pathsToGlobPatterns(
     patterns: string[],
     options: { extensions?: string[]; cwd?: string } = {}
 ): string[] {
-    const processPatterns = pathToGlob({
+    const processPatterns = pathToGlobPattern({
         extensions: options.extensions || [],
         cwd: options.cwd || process.cwd()
     });
