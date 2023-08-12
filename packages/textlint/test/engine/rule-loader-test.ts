@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-const path = require("path");
+import path from "path";
 import * as assert from "assert";
 import { loadFromDir } from "../../src/engine/rule-loader";
 import { TextlintLintableRuleDescriptor } from "@textlint/kernel";

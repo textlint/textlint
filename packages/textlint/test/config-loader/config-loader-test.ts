@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
+import path from "path";
 import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
 import { loadConfig } from "../../src/DEPRECATED/config/config-loader";
 import { Config } from "../../src/DEPRECATED/config";
+
+import assert from "assert";
 
 const dummyModuleLoader = new TextLintModuleResolver({
     rulesBaseDirectory: path.join(__dirname, "fixtures")

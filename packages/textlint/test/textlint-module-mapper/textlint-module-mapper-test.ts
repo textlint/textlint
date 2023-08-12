@@ -3,7 +3,8 @@
 import { TextLintModuleMapper } from "../../src/DEPRECATED/engine/textlint-module-mapper";
 import configurablePlugin from "./fixtures/configurable-plugin";
 import configurableRule from "./fixtures/configurable-plugin/rules/configurable-rule";
-const assert = require("assert");
+import assert from "assert";
+
 describe("textlint-module-mapper-test", function () {
     describe("#createRuleEntities", function () {
         it("should create [prefix/key, ruleCreator] entity form rules", function () {

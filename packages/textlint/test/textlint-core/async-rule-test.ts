@@ -1,13 +1,14 @@
 // LICENSE : MIT
 "use strict";
-const path = require("path");
-const assert = require("assert");
+import path from "path";
 import { TextLintEngine, TextLintCore } from "../../src";
-
-const { coreFlags, resetFlags } = require("@textlint/feature-flag");
+import assert from "assert";
 import { TextlintRuleModule } from "@textlint/kernel";
+import { coreFlags, resetFlags } from "@textlint/feature-flag";
 // fixture
+
 import fixtureRule from "./fixtures/rules/example-rule";
+
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
 
 describe("Async", function () {

@@ -475,7 +475,7 @@ describe("cli-test", function () {
     });
     describe("--version", function () {
         it("should output current textlint version", function () {
-            const pkg = require("../../package");
+            const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf-8"));
             return runWithMockLog(async ({ getLogs }) => {
                 const result = await cli.execute("--version");
                 assert.strictEqual(result, 0);

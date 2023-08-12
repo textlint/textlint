@@ -1,14 +1,12 @@
 // LICENSE : MIT
 "use strict";
 
-import { ASTNodeTypes, TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import { TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 import { Controller, traverse, VisitorOption } from "../src/";
-
-const { parse } = require("@textlint/markdown-to-ast");
-const Syntax = require("@textlint/markdown-to-ast").Syntax as typeof ASTNodeTypes;
+import { parse, Syntax } from "@textlint/markdown-to-ast";
 import { dump } from "./traverse-dump";
+import assert from "assert";
 
-const assert = require("assert");
 const enter = "enter";
 const leave = "leave";
 describe("txt-traverse", () => {
@@ -198,7 +196,7 @@ describe("txt-traverse", () => {
     });
     describe("#parents", () => {
         it("should return parent nodes", () => {
-            const AST = parse("Hello*world*");
+            const AST = parse<TxtParentNode>("Hello*world*");
             const controller = new Controller();
             let emParents: any[] = [];
             let documentParents: any[] = [];
@@ -224,7 +222,7 @@ describe("txt-traverse", () => {
     });
     describe("#current", () => {
         it("should return current node", () => {
-            const AST = parse("Hello*world*");
+            const AST = parse<TxtParentNode>("Hello*world*");
             const controller = new Controller();
             controller.traverse(AST, {
                 enter(node) {

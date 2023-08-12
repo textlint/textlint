@@ -4,8 +4,8 @@ import * as assert from "assert";
 import { TextLintCore } from "../../src/index";
 import * as path from "path";
 import exampleRule from "./fixtures/example-rule";
-
-const htmlPlugin = require("textlint-plugin-html");
+// @ts-ignore
+import htmlPlugin from "textlint-plugin-html";
 
 describe("HTMLPlugin", function () {
     let textlintCore: TextLintCore;

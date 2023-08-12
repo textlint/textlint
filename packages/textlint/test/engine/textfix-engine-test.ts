@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("assert");
-const path = require("path");
+import assert from "assert";
 import { TextFixEngine } from "../../src/";
 import { Config } from "../../src/DEPRECATED/config";
+
+import path from "path";
 
 const rulesDir = path.join(__dirname, "fixtures/textfix-engine/fixer-rules");
 const inputTextPath = path.join(__dirname, "fixtures/textfix-engine/fixer-rules", "input.md");
