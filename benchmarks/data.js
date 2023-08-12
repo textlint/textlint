@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1691844236998,
+  "lastUpdate": 1691844340225,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -14280,6 +14280,48 @@ window.BENCHMARK_DATA = {
             "value": 2.4004067696,
             "unit": "seconds",
             "range": "± 0.0675817310000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "6085f69e581251dbc0f57eeb984f3e3db4f9e370",
+          "message": "remove browserify from markdown-to-ast",
+          "timestamp": "2023-08-12T21:42:05+09:00",
+          "tree_id": "7c7fc4a45f5a0b090dc31e83f1f05fb4bdfd9063",
+          "url": "https://github.com/textlint/textlint/commit/6085f69e581251dbc0f57eeb984f3e3db4f9e370"
+        },
+        "date": 1691844339181,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.90477603378,
+            "unit": "seconds",
+            "range": "± 0.10901245300000006"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 12.072024989580001,
+            "unit": "seconds",
+            "range": "± 0.14782640299999983"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.7419691141800002,
+            "unit": "seconds",
+            "range": "± 0.020590740000000274"
           }
         ]
       }
