@@ -28,7 +28,6 @@
     "scripts": {
         "build": "tsc -b && tsc -b tsconfig.module.json",
         "clean": "rimraf lib/ module/",
-        "example:build": "browserify example/js/index.js -o example/app/app.js",
         "prepack": "npm run --if-present build",
         "test": "mocha",
         "updateSnapshot": "npm run build && node tools/update-fixtures.js",
@@ -50,7 +49,6 @@
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.17.3",
         "@types/traverse": "^0.6.32",
-        "browserify": "^16.5.2",
         "mkdirp": "^1.0.4",
         "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
