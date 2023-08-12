@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1691844902620,
+  "lastUpdate": 1691845283252,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -14406,6 +14406,48 @@ window.BENCHMARK_DATA = {
             "value": 2.3753876002800003,
             "unit": "seconds",
             "range": "± 0.1418646090000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d701240bbc56f4bce47ede8a32fccde62d9ce0e2",
+          "message": "refactor: migrate CJS require/exports to ESM import/export (#1221)\n\n* refactor: migrate CJS require/exports to ESM import/export\r\n\r\n* chore: remove migrate script\r\n\r\n* refactor: use import\r\n\r\n* refactor: use import\r\n\r\n* refactor: use import\r\n\r\n* fix tests\r\n\r\n* fix tests\r\n\r\n* remove browserify from markdown-to-ast\r\n\r\n* fix import\r\n\r\n* fix",
+          "timestamp": "2023-08-12T21:57:33+09:00",
+          "tree_id": "b4184d3076b976d3582faf518062eb6055aa1ae7",
+          "url": "https://github.com/textlint/textlint/commit/d701240bbc56f4bce47ede8a32fccde62d9ce0e2"
+        },
+        "date": 1691845281449,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.1366513502,
+            "unit": "seconds",
+            "range": "± 0.06241714599999959"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 14.0024035782,
+            "unit": "seconds",
+            "range": "± 0.38055478099999895"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.8644076652000003,
+            "unit": "seconds",
+            "range": "± 0.10873060099999998"
           }
         ]
       }
