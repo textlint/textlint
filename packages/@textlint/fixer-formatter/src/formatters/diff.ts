@@ -1,10 +1,17 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
-const fs = require("fs");
-const isFile = require("is-file");
-const jsdiff = require("diff");
-const chalk = require("chalk");
-const stripAnsi = require("strip-ansi");
+import fs from "fs";
+import jsdiff from "diff";
+import chalk from "chalk";
+import stripAnsi from "strip-ansi";
+const isFile = (filePath: string) => {
+    try {
+        const stats = fs.statSync(filePath);
+        return stats.isFile();
+    } catch (error) {
+        return false;
+    }
+};
 /**
  * Given a word and a count, append an s if count is not one.
  * @param {string} word A word in its singular form.
@@ -90,7 +97,7 @@ export default function (results: TextlintFixResult[], options: any) {
             }
             // green for additions, red for deletions
             // grey for common parts
-            let lineColor;
+            let lineColor: "green" | "red" | "grey";
             let diffMark = "";
             if (part.added) {
                 lineColor = "green";

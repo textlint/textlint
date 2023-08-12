@@ -5,7 +5,7 @@
 "use strict";
 import type { TextlintResult } from "@textlint/types";
 
-const lodash = require("lodash");
+import lodash from "lodash";
 
 //------------------------------------------------------------------------------
 // Helper Functions

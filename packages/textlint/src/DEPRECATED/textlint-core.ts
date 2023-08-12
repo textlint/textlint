@@ -27,7 +27,7 @@ import type { TextlintKernelOptions } from "@textlint/kernel";
 import path from "path";
 
 const readFile = fs.promises.readFile;
-const { throwIfTesting } = require("@textlint/feature-flag");
+import { throwIfTesting } from "@textlint/feature-flag";
 
 /**
  * @class {TextLintCore}

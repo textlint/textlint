@@ -2,8 +2,7 @@
 "use strict";
 import { EventEmitter } from "events";
 import { moduleInterop } from "@textlint/module-interop";
-const debug = require("debug")("textlint:module-loader");
-const isFile = require("is-file");
+import debug0 from "debug";
 import { isPluginRuleKey } from "../config/config-util";
 import { loadFromDir } from "../../engine/rule-loader";
 import { Logger } from "../../util/logger";
@@ -16,6 +15,17 @@ import {
     normalizeTextlintRuleKey,
     normalizeTextlintRulePresetKey
 } from "@textlint/utils";
+import fs from "fs";
+
+const debug = debug0("textlint:module-loader");
+
+const isFile = (filePath: string) => {
+    try {
+        return fs.statSync(filePath).isFile();
+    } catch (error) {
+        return false;
+    }
+};
 
 export class TextLintModuleLoader extends EventEmitter {
     moduleResolver: TextLintModuleResolver;

@@ -13,13 +13,14 @@ import {
     normalizeTextlintRulePresetKey
 } from "@textlint/utils";
 import { Logger } from "../util/logger";
-
-const md5 = require("md5");
-const fs = require("fs");
-const assert = require("assert");
-const concat = require("unique-concat");
-const path = require("path");
-const pkgConf = require("read-pkg-up");
+// @ts-expect-error no types. it will be removed
+import md5 from "md5";
+import fs from "fs";
+import assert from "assert";
+// @ts-expect-error no types. it will be removed
+import concat from "unique-concat";
+import path from "path";
+import pkgConf from "read-pkg-up";
 
 function applyNormalizerToList(normalizer: (name: string) => string, names: string[]) {
     return names.map((name) => {

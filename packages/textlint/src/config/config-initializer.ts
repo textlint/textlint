@@ -2,11 +2,19 @@
 "use strict";
 import { TextlintPackageNamePrefix } from "@textlint/utils";
 
-const fs = require("fs");
-const path = require("path");
-const isFile = require("is-file");
-const readPkg = require("read-pkg");
+import fs from "fs";
+import path from "path";
+// @ts-expect-error no types
+import readPkg from "read-pkg";
 import { Logger } from "../util/logger";
+
+const isFile = (filePath: string) => {
+    try {
+        return fs.statSync(filePath).isFile();
+    } catch (error) {
+        return false;
+    }
+};
 
 /**
  * read package.json if found it

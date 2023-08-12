@@ -6,16 +6,21 @@
 import type { TextlintMessage, TextlintResult } from "@textlint/types";
 import { FormatterOptions } from "../FormatterOptions";
 
-const format = require("@azu/format-text");
-const chalk = require("chalk");
-const style = require("@azu/style-format");
-const stripAnsi = require("strip-ansi");
-const pluralize = require("pluralize");
+import chalk from "chalk";
+// @ts-expect-error no types
+import format from "@azu/format-text";
+// @ts-expect-error no types
+import style from "@azu/style-format";
+import stripAnsi from "strip-ansi";
+// @ts-expect-error no types
+import pluralize from "pluralize";
+
 // width is 2
-const widthOfString = require("string-width");
+import widthOfString from "string-width";
+
 // color set
-let summaryColor = "yellow";
-let greenColor = "green";
+const summaryColor = "yellow";
+const greenColor = "green";
 const template = style(
     "{grey}{ruleId}: {red}{title}{reset}\n" +
         "{grey}{filename}{reset}\n" +
@@ -34,7 +39,7 @@ const template = style(
  * @returns {*}
  */
 function failingCode(code: string, message: TextlintMessage): any {
-    let result = [];
+    const result = [];
     const lines = code.split("\n");
     let i = message.line - 3;
     while (++i < message.line + 1) {
@@ -93,7 +98,7 @@ function prettyError(code: string, filePath: string, message: TextlintMessage): 
     return format(template, {
         ruleId: message.ruleId,
         title: message.message,
-        filename: filePath + ":" + message.line + ":" + message.column,
+        filename: `${filePath}:${message.line}:${message.column}`,
         previousLine: parsed[0].code ? parsed[0].code : "",
         previousLineNo: previousLineNo.padStart(linumlen),
         previousColNo: parsed[0].col,
@@ -143,7 +148,7 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
             }
             const r = fixableIcon + prettyError(code, result.filePath, message);
             if (r) {
-                output += r + "\n";
+                output += `${r}\n`;
             }
         });
     });
@@ -166,10 +171,8 @@ function formatter(results: TextlintResult[], options: FormatterOptions) {
     }
 
     if (totalFixable > 0) {
-        output += chalk[greenColor].bold(
-            "✓ " + totalFixable + " fixable " + pluralize("problem", totalFixable) + ".\n"
-        );
-        output += "Try to run: $ " + chalk.underline("textlint --fix [file]") + "\n";
+        output += chalk[greenColor].bold(`✓ ${totalFixable} fixable ${pluralize("problem", totalFixable)}.\n`);
+        output += `Try to run: $ ${chalk.underline("textlint --fix [file]")}\n`;
     }
 
     if (!useColor) {
