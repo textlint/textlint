@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1691845564413,
+  "lastUpdate": 1691845607192,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -14532,6 +14532,48 @@ window.BENCHMARK_DATA = {
             "value": 1.83611461876,
             "unit": "seconds",
             "range": "± 0.0920768569999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ff2146149b582fa3c04ccce27350845ef9bd8ff1",
+          "message": "chore(deps): update dependency @types/js-yaml to ^3.12.7",
+          "timestamp": "2023-08-12T13:03:11Z",
+          "tree_id": "966d441e921321f2dc8a630816597d51b3c2ce2b",
+          "url": "https://github.com/textlint/textlint/commit/ff2146149b582fa3c04ccce27350845ef9bd8ff1"
+        },
+        "date": 1691845606335,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.099349196,
+            "unit": "seconds",
+            "range": "± 0.11454992899999983"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 13.4400465268,
+            "unit": "seconds",
+            "range": "± 0.32538607599999914"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.8219487254,
+            "unit": "seconds",
+            "range": "± 0.0330246369999998"
           }
         ]
       }
