@@ -1,7 +1,7 @@
 "use strict";
 import type { TextlintFixResult } from "@textlint/types";
 import fs from "fs";
-import jsdiff from "diff";
+import { diffLines } from "diff";
 import chalk from "chalk";
 import stripAnsi from "strip-ansi";
 const isFile = (filePath: string) => {
@@ -67,7 +67,7 @@ export default function (results: TextlintFixResult[], options: any) {
         output += `${chalk.underline(result.filePath)}\n`;
 
         const originalContent = fs.readFileSync(filePath, "utf-8");
-        const diff = jsdiff.diffLines(originalContent, result.output);
+        const diff = diffLines(originalContent, result.output);
 
         diff.forEach(function (part: any, index: number) {
             const prevLine = diff[index - 1];
