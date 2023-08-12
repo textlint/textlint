@@ -3,9 +3,11 @@
 import * as path from "path";
 import { createFullPackageName } from "../textlint-package-name-util";
 import { PackageNamePrefix } from "../config/package-prefix";
+import debug0 from "debug";
+// @ts-expect-error
+import tryResolve from "try-resolve";
 
-const tryResolve = require("try-resolve");
-const debug = require("debug")("textlint:module-resolver");
+const debug = debug0("textlint:module-resolver");
 
 export interface ConfigModulePrefix {
     CONFIG_PACKAGE_PREFIX: string;

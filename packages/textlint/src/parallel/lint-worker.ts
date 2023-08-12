@@ -3,8 +3,8 @@ import { Config } from "../DEPRECATED/config";
 import { TextLintEngine } from "../DEPRECATED/textlint-engine";
 import { TextFixEngine } from "../DEPRECATED/textfix-engine";
 import type { TextlintFixResult, TextlintResult } from "@textlint/types";
-
-const debug = require("debug")("textlint:parallel/lint-worker");
+import debug0 from "debug";
+const debug = debug0("textlint:parallel/lint-worker");
 
 export interface LintWorkerData {
     files: string[];

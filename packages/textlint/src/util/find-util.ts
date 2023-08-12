@@ -4,7 +4,8 @@ import { pathToGlobPattern } from "path-to-glob-pattern";
 import glob from "glob";
 import path from "path";
 import fs from "fs";
-const debug = require("debug")("textlint:find-util");
+import debug0 from "debug";
+const debug = debug0("textlint:find-util");
 const DEFAULT_IGNORE_PATTERNS = Object.freeze(["**/.git/**", "**/node_modules/**"]);
 export type FindFilesOptions = {
     cwd?: string;
