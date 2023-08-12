@@ -20,7 +20,7 @@ describe("@textlint/ast-tester", function () {
     });
     context("when invalid case", function () {
         it("should throw with details", () => {
-            const AST = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/text-to-ast.json"), "utf-8"));
+            const AST = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/invalid-ast.json"), "utf-8"));
             assert.throws(() => {
                 test(AST);
             }, /invalid range/);
