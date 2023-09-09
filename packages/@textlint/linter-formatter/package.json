@@ -51,7 +51,7 @@
     "@types/js-yaml": "^3.12.7",
     "@types/lodash": "^4.14.197",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.17.13",
+    "@types/node": "^18.17.14",
     "chai": "^4.3.8",
     "mocha": "^10.2.0",
     "proxyquire": "^2.1.3",
