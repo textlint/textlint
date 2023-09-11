@@ -73,7 +73,7 @@
     "unique-concat": "^0.2.2"
   },
   "devDependencies": {
-    "@types/clone": "^2.1.1",
+    "@types/clone": "^2.1.2",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.17.14",
