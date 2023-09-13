@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1694560745614,
+  "lastUpdate": 1694564429849,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -16422,6 +16422,48 @@ window.BENCHMARK_DATA = {
             "value": 1.73624448594,
             "unit": "seconds",
             "range": "± 0.04290659600000013"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "edbc7859f262c3127b2df4668b64e3eecca5e15e",
+          "message": "chore(deps): update dependency @types/lodash to ^4.14.198",
+          "timestamp": "2023-09-13T00:15:44Z",
+          "tree_id": "eedc4c7ea8dfa69a2b222cee9ca7346135b83e4b",
+          "url": "https://github.com/textlint/textlint/commit/edbc7859f262c3127b2df4668b64e3eecca5e15e"
+        },
+        "date": 1694564427894,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 5.062550332919999,
+            "unit": "seconds",
+            "range": "± 0.14178113099999923"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 15.88527864592,
+            "unit": "seconds",
+            "range": "± 0.4151002020000014"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 2.25191896292,
+            "unit": "seconds",
+            "range": "± 0.09950837400000001"
           }
         ]
       }
