@@ -48,7 +48,7 @@
         "@textlint/ast-tester": "^13.3.3",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.17.15",
-        "@types/traverse": "^0.6.32",
+        "@types/traverse": "^0.6.33",
         "mkdirp": "^1.0.4",
         "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
