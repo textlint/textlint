@@ -48,7 +48,7 @@
     "try-resolve": "^1.0.1"
   },
   "devDependencies": {
-    "@types/js-yaml": "^3.12.7",
+    "@types/js-yaml": "^3.12.8",
     "@types/lodash": "^4.14.198",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.17.16",
