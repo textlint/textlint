@@ -78,7 +78,7 @@
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.17.19",
     "@types/read-pkg-up": "^3.0.1",
-    "@types/shelljs": "^0.8.12",
+    "@types/shelljs": "^0.8.13",
     "clone": "^2.1.2",
     "mocha": "^10.2.0",
     "rimraf": "^3.0.2",
