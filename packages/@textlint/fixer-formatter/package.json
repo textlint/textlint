@@ -51,7 +51,7 @@
   "devDependencies": {
     "@types/diff": "^4.0.2",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.18.0",
+    "@types/node": "^18.18.1",
     "mocha": "^10.2.0",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
