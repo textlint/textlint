@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1697589214234,
+  "lastUpdate": 1697671120937,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -18648,6 +18648,48 @@ window.BENCHMARK_DATA = {
             "value": 2.37525311116,
             "unit": "seconds",
             "range": "± 0.1157530659999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b5f1931bdd77f5304fd019f853ff72c0aee482bb",
+          "message": "fix(deps): update dependency @babel/preset-typescript to ^7.23.2",
+          "timestamp": "2023-10-18T23:14:50Z",
+          "tree_id": "6024347e429be2de8e1e12275b475b9ca99e74e0",
+          "url": "https://github.com/textlint/textlint/commit/b5f1931bdd77f5304fd019f853ff72c0aee482bb"
+        },
+        "date": 1697671119660,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.30063190148,
+            "unit": "seconds",
+            "range": "± 0.18107713599999986"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 13.94585853888,
+            "unit": "seconds",
+            "range": "± 0.48859819199999954"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.89059429488,
+            "unit": "seconds",
+            "range": "± 0.022563892999999835"
           }
         ]
       }
