@@ -7,7 +7,7 @@
  */
 const fs = require("fs");
 const paths = require("../configs/paths");
-const useTypeScript = fs.existsSync(paths.appTsConfig);
+const { useTypeScript } = require("./conditions.js");
 if (!useTypeScript) {
     throw new Error(`${paths.appTsConfig} not found.
 

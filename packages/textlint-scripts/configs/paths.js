@@ -4,5 +4,6 @@ const path = require("path");
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 module.exports = {
-    appTsConfig: resolveApp("tsconfig.json")
+    appTsConfig: resolveApp("tsconfig.json"),
+    packageJson: resolveApp("package.json")
 };
