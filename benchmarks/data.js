@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1699396621202,
+  "lastUpdate": 1699398182001,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -19992,6 +19992,48 @@ window.BENCHMARK_DATA = {
             "value": 2.4933485833200004,
             "unit": "seconds",
             "range": "± 0.104300528"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "fb63bef7e583cab8867ef0a8d4713457c8121ef8",
+          "message": "feat(textlint-script): support `import()`\n\ntextlint-script should not transpile `import()` to `require()`.\nIt will be required for ESM support.",
+          "timestamp": "2023-11-08T08:00:04+09:00",
+          "tree_id": "24a9706541f7657048f76cf19a2cddb8a5de5df0",
+          "url": "https://github.com/textlint/textlint/commit/fb63bef7e583cab8867ef0a8d4713457c8121ef8"
+        },
+        "date": 1699398180841,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1830609692199996,
+            "unit": "seconds",
+            "range": "± 0.04442305499999977"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.58351945542,
+            "unit": "seconds",
+            "range": "± 0.11136253000000007"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.3921445986199998,
+            "unit": "seconds",
+            "range": "± 0.03376498900000002"
           }
         ]
       }
