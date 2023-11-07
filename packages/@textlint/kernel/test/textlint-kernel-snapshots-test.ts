@@ -5,10 +5,14 @@ import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
 import { TextlintKernel } from "../src";
 
 const SNAPSHOTS_DIRECTORY = path.join(__dirname, "snapshots");
+// normalize based on the OS
+const normalizePath = (value: string) => {
+    return path.sep === "\\" ? value.replace(/\\/g, "/") : value;
+};
 const pathReplacer = (dirPath: string) => {
     return function replacer(key: string, value: any) {
         if (key === "filePath") {
-            return value.replace(dirPath, "<root>");
+            return normalizePath(value.replace(dirPath, "<root>"));
         }
         return value;
     };
