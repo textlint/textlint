@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1699401487515,
+  "lastUpdate": 1699401786228,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -20160,6 +20160,48 @@ window.BENCHMARK_DATA = {
             "value": 1.87066617738,
             "unit": "seconds",
             "range": "± 0.014808587999999956"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9925b621433cccf3e78dcf10b7c519223bd0f239",
+          "message": "feat(textlint-script): support `import()` (#1284)\n\n* feat(textlint-script): support `import()`\r\n\r\ntextlint-script should not transpile `import()` to `require()`.\r\nIt will be required for ESM support.\r\n\r\n* remove unused test\r\n\r\n* test: normalize path",
+          "timestamp": "2023-11-08T08:59:10+09:00",
+          "tree_id": "0c72957377b93b873fa6df02926891d09d2b2be0",
+          "url": "https://github.com/textlint/textlint/commit/9925b621433cccf3e78dcf10b7c519223bd0f239"
+        },
+        "date": 1699401784320,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 4.41431881454,
+            "unit": "seconds",
+            "range": "± 0.09805243000000008"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 14.20784154174,
+            "unit": "seconds",
+            "range": "± 0.29429817099999944"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.9148626053400002,
+            "unit": "seconds",
+            "range": "± 0.022789644000000164"
           }
         ]
       }
