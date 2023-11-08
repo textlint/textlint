@@ -1,14 +1,12 @@
 {
   "name": "textlint-scripts-example-dynamic-import",
-  "version": "13.3.2",
+  "version": "13.4.0",
   "private": true,
   "scripts": {
     "build": "textlint-scripts build",
     "test": "textlint-scripts test"
   },
-  "dependencies": {
-  },
   "devDependencies": {
-    "textlint-scripts": "^13.3.2"
+    "textlint-scripts": "^13.4.0"
   }
 }
