@@ -104,7 +104,7 @@ jobs:
           draft: false
           prerelease: false
           generate_release_notes: ${{ !github.event.pull_request.body }}
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         if: github.event_name != 'workflow_dispatch'
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
