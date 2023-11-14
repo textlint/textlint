@@ -48,10 +48,10 @@
     "try-resolve": "^1.0.1"
   },
   "devDependencies": {
-    "@types/js-yaml": "^3.12.9",
-    "@types/lodash": "^4.14.200",
+    "@types/js-yaml": "^3.12.10",
+    "@types/lodash": "^4.14.201",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.18.8",
+    "@types/node": "^18.18.9",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "proxyquire": "^2.1.3",
