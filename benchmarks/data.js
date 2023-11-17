@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1700131962291,
+  "lastUpdate": 1700185956425,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -20748,6 +20748,48 @@ window.BENCHMARK_DATA = {
             "value": 1.3942105183400002,
             "unit": "seconds",
             "range": "± 0.054045922999999885"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ccb55256fef85f064679986a6e63db3469c227b1",
+          "message": "chore(deps): update dependency @monorepo-utils/workspaces-to-typescript-project-references to ^2.10.4",
+          "timestamp": "2023-11-17T01:50:01Z",
+          "tree_id": "db93ad0a3604038a023e782a8babc60339f54423",
+          "url": "https://github.com/textlint/textlint/commit/ccb55256fef85f064679986a6e63db3469c227b1"
+        },
+        "date": 1700185955169,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.04224523378,
+            "unit": "seconds",
+            "range": "± 0.100164221"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.181165354379999,
+            "unit": "seconds",
+            "range": "± 0.22668884600000005"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.34733803818,
+            "unit": "seconds",
+            "range": "± 0.028224910000000047"
           }
         ]
       }
