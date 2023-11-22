@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1700193700754,
+  "lastUpdate": 1700670067309,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -20832,6 +20832,48 @@ window.BENCHMARK_DATA = {
             "value": 1.3952700449599997,
             "unit": "seconds",
             "range": "± 0.02824444199999987"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e9f41c613db4b85c706d8c2f233177e5517bc5cd",
+          "message": "chore(deps): update dependency node to v20",
+          "timestamp": "2023-11-22T16:18:24Z",
+          "tree_id": "6da4372b25753370f73f6ee87ecc0fab3d6f55ec",
+          "url": "https://github.com/textlint/textlint/commit/e9f41c613db4b85c706d8c2f233177e5517bc5cd"
+        },
+        "date": 1700670065407,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2521989602400003,
+            "unit": "seconds",
+            "range": "± 0.055167595999999985"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.55353066544,
+            "unit": "seconds",
+            "range": "± 0.05736861600000065"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.40002306984,
+            "unit": "seconds",
+            "range": "± 0.03782547999999997"
           }
         ]
       }
