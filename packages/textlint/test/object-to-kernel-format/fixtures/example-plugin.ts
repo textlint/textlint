@@ -1,4 +1,4 @@
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
 import { TextlintPluginProcessorConstructor } from "@textlint/kernel";
 
 class ExampleProcessor {
@@ -12,7 +12,7 @@ class ExampleProcessor {
 
     processor(_extension: string) {
         return {
-            preProcess(_text: string, _filePath: string): TxtNode {
+            preProcess(_text: string, _filePath: string): TxtDocumentNode {
                 return {
                     type: "Document",
                     children: [],

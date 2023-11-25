@@ -1,5 +1,5 @@
 // Plugin
-import { TxtNode } from "@textlint/ast-node-types";
+import { TxtDocumentNode, TxtNode } from "@textlint/ast-node-types";
 
 /**
  * textlint plugin option values is object or boolean.
@@ -9,7 +9,7 @@ export declare type TextlintPluginOptions = {
     [index: string]: any;
 };
 
-export type TextlintPluginPreProcessResult = TxtNode | { text: string; ast: TxtNode };
+export type TextlintPluginPreProcessResult = TxtDocumentNode | { text: string; ast: TxtDocumentNode };
 export type TextlintPluginPostProcessResult = { messages: Array<any>; filePath: string };
 
 export interface TextlintPluginProcessorConstructor extends Function {
