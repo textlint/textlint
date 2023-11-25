@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
 import { Syntax } from "./plaintext-syntax";
-import { TxtNode } from "@textlint/ast-node-types";
+import type { TxtBreakNode, TxtDocumentNode, TxtNode, TxtParagraphNode } from "@textlint/ast-node-types";
+import { TxtStrNode } from "@textlint/ast-node-types";
 
-function parseLine(lineText: string, lineNumber: number, startIndex: number): TxtNode {
+function parseLine(lineText: string, lineNumber: number, startIndex: number): TxtStrNode {
     // Inline Node have `value`. It it not part of TxtNode.
     // TODO: https://github.com/textlint/textlint/issues/141
     return {
@@ -29,7 +30,7 @@ function parseLine(lineText: string, lineNumber: number, startIndex: number): Tx
  * @param {TxtNode} prevNode previous node from BreakNode
  * @param lineBreakText
  */
-function createEndedBRNode({ prevNode, lineBreakText }: { prevNode: TxtNode; lineBreakText: string }): TxtNode {
+function createEndedBRNode({ prevNode, lineBreakText }: { prevNode: TxtNode; lineBreakText: string }): TxtBreakNode {
     return {
         type: Syntax.Break,
         raw: lineBreakText,
@@ -58,7 +59,7 @@ function createBRNode({
     lineBreak: string;
     lineNumber: number;
     startIndex: number;
-}): TxtNode {
+}): TxtBreakNode {
     return {
         type: Syntax.Break,
         raw: lineBreak,
@@ -81,7 +82,7 @@ function createBRNode({
  * @param {TxtNode[]} nodes
  * @returns {TxtNode} Paragraph node
  */
-function createParagraph(nodes: TxtNode[]): TxtNode {
+function createParagraph(nodes: TxtStrNode[]): TxtParagraphNode {
     const firstNode = nodes[0];
     const lastNode = nodes[nodes.length - 1];
     return {
@@ -137,7 +138,7 @@ type LineWithBreak = { text: string; lineBreak: string };
  * @param {string} text
  * @returns {TxtNode}
  */
-export function parse(text: string): TxtNode {
+export function parse(text: string): TxtDocumentNode {
     const textLineByLine = splitTextByLine(text);
     // it should be alternately Str and Break
     let startIndex = 0;
@@ -179,7 +180,7 @@ export function parse(text: string): TxtNode {
             result.push(breakNode);
         }
         return result;
-    }, [] as TxtNode[]);
+    }, [] as (TxtBreakNode | TxtParagraphNode)[]);
     const lastLine = textLineByLine[textLineByLine.length - 1];
     if (lastLine === undefined) {
         return {
