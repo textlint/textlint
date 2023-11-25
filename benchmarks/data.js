@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1700875921955,
+  "lastUpdate": 1700876441599,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -21126,6 +21126,48 @@ window.BENCHMARK_DATA = {
             "value": 1.41243526808,
             "unit": "seconds",
             "range": "± 0.04385371700000018"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "678355e5447ccb674be4cc1db60c0b9caa8ecfcf",
+          "message": "fix(ast-node-types): remove `[index:string]: any;` from `TxtNode` (#1295)\n\n* fix(ast-node-types): remove `[index:string]: any;` from `TxtNode`\r\n\r\n* fix dependence on any of TxtNode\r\n\r\n* fix tests\r\n\r\n* fix(types): plugin's preprocessor should return TxtDocumentNode\r\n\r\n* fix: plugin's preProcessor should return TxtDocumentNode",
+          "timestamp": "2023-11-25T10:38:04+09:00",
+          "tree_id": "9a9258d6b9896d732ce3092db5275586c2b4a75b",
+          "url": "https://github.com/textlint/textlint/commit/678355e5447ccb674be4cc1db60c0b9caa8ecfcf"
+        },
+        "date": 1700876440478,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.17455095292,
+            "unit": "seconds",
+            "range": "± 0.07658571400000014"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.499030499120001,
+            "unit": "seconds",
+            "range": "± 0.057075238999999556"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.3941487899200002,
+            "unit": "seconds",
+            "range": "± 0.023290401999999766"
           }
         ]
       }
