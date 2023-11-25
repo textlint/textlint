@@ -119,6 +119,7 @@ describe("source-location", function () {
     context("[deprecated] when line only", function () {
         it("should add line to the node.start", function () {
             const source = createDummySourceCode("1234567890\n\n1234567890\n", "test.md");
+            // @ts-expect-error : any node may have not children
             const node = source.ast.children[0].children[0];
             const ruleError = { line: 1, message: "error message" };
             const result = resolveLocation({ source, ruleId: "test", node, ruleError });

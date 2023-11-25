@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { AnyTxtNode, TxtNode, TxtParentNode } from "@textlint/ast-node-types";
+import type { AnyTxtNode, TxtNode, TxtParentNode } from "@textlint/ast-node-types";
 
 /**
  * is TxtNode?
@@ -148,7 +148,8 @@ class Controller {
                 let current = candidates.length;
                 while ((current -= 1) >= 0) {
                     const key = candidates[current];
-                    const candidate = node[key];
+                    // @ts-expect-error: ignore dynamic access
+                    const candidate: keyof typeof node | undefined = node[key];
                     if (!candidate) {
                         continue;
                     }

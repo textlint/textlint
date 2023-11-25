@@ -1,5 +1,6 @@
 import { SyntaxMap } from "./mapping/markdown-syntax-map";
-import { ASTNodeTypes, TxtNode } from "@textlint/ast-node-types";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
+import { ASTNodeTypes } from "@textlint/ast-node-types";
 import traverse from "traverse";
 import debug0 from "debug";
 import { parseMarkdown } from "./parse-markdown";
@@ -9,11 +10,10 @@ const debug = debug0("@textlint/markdown-to-ast");
 export { ASTNodeTypes as Syntax };
 
 /**
- * parse markdown text and return ast mapped location info.
+ * parse Markdown text and return ast mapped location info.
  * @param {string} text
- * @returns {TxtNode}
  */
-export function parse<T extends TxtNode>(text: string): T {
+export function parse(text: string): TxtDocumentNode {
     // remark-parse's AST does not consider BOM
     // AST's position does not +1 by BOM
     // So, just trim BOM and parse it for `raw` property
@@ -23,7 +23,7 @@ export function parse<T extends TxtNode>(text: string): T {
     const hasBOM = text.charCodeAt(0) === 0xfeff;
     const textWithoutBOM = hasBOM ? text.slice(1) : text;
     const ast = parseMarkdown(textWithoutBOM);
-    traverse(ast).forEach(function (node: TxtNode) {
+    traverse(ast).forEach(function (node) {
         // eslint-disable-next-line no-invalid-this
         if (this.notLeaf) {
             if (node.type) {
@@ -31,7 +31,6 @@ export function parse<T extends TxtNode>(text: string): T {
                 if (!replacedType) {
                     debug(`replacedType : ${replacedType} , node.type: ${node.type}`);
                 } else {
-                    // @ts-expect-error: TxtNodeType + Markdown extension type
                     node.type = replacedType;
                 }
             }
@@ -58,5 +57,5 @@ export function parse<T extends TxtNode>(text: string): T {
             }
         }
     });
-    return ast as T;
+    return ast as TxtDocumentNode;
 }

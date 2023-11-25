@@ -7,7 +7,7 @@ import { createBinaryPluginStub } from "./helper/BinaryPlugin";
 import { createAsyncPluginStub } from "./helper/AsyncPlugin";
 import type { TextlintRuleReporter } from "@textlint/types";
 import { TextlintKernelOptions } from "../src/textlint-kernel-interface";
-import { TxtNode } from "@textlint/ast-node-types";
+import { TxtDocumentNode } from "@textlint/ast-node-types";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 
 describe("kernel-plugin", () => {
@@ -206,7 +206,7 @@ describe("kernel-plugin", () => {
                             // THIS IS FOR TESTING
                             return {
                                 invalid: "THIS IS NOT TxtAST"
-                            } as any as TxtNode;
+                            } as any as TxtDocumentNode;
                         },
                         postProcess(messages: Array<any>, filePath?: string) {
                             return {

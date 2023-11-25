@@ -1,6 +1,7 @@
 // MIT © 2017 azu
 import { TextlintMessage } from "@textlint/kernel";
 import type { TextlintPluginCreator, TextlintPluginProcessor } from "@textlint/types";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
 
 export interface BinaryPluginProcessorOptions {
     testOption: string;
@@ -69,7 +70,7 @@ export const createBinaryPluginStub = (options?: CreateBinaryPluginOptions) => {
                             preProcess(text: string, filePath: string) {
                                 preProcessArgs = { text, filePath };
                                 const dummyText = (options && options.dummyText) || "this is binary";
-                                const ast = {
+                                const ast: TxtDocumentNode = {
                                     type: "Document" as const,
                                     raw: dummyText,
                                     range: [0, dummyText.length] as const,

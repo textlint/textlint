@@ -10,10 +10,11 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import frontmatter from "remark-frontmatter";
 import footnotes from "remark-footnotes";
+import type { Node } from "unist";
 
 const remark = unified().use(remarkParse).use(frontmatter, ["yaml"]).use(remarkGfm).use(footnotes, {
     inlineNotes: true
 });
-export const parseMarkdown = (text: string) => {
+export const parseMarkdown = (text: string): Node => {
     return remark.parse(text);
 };
