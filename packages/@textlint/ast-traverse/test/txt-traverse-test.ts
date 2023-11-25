@@ -196,7 +196,7 @@ describe("txt-traverse", () => {
     });
     describe("#parents", () => {
         it("should return parent nodes", () => {
-            const AST = parse<TxtParentNode>("Hello*world*");
+            const AST = parse("Hello*world*");
             const controller = new Controller();
             let emParents: any[] = [];
             let documentParents: any[] = [];
@@ -222,7 +222,7 @@ describe("txt-traverse", () => {
     });
     describe("#current", () => {
         it("should return current node", () => {
-            const AST = parse<TxtParentNode>("Hello*world*");
+            const AST = parse("Hello*world*");
             const controller = new Controller();
             controller.traverse(AST, {
                 enter(node) {

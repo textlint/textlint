@@ -1,5 +1,5 @@
 // Plugin
-import { TxtDocumentNode, TxtNode } from "@textlint/ast-node-types";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
 
 /**
  * textlint plugin option values is object or boolean.

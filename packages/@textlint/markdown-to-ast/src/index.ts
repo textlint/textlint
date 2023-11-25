@@ -1,5 +1,5 @@
 import { SyntaxMap } from "./mapping/markdown-syntax-map";
-import type { TxtNode } from "@textlint/ast-node-types";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
 import { ASTNodeTypes } from "@textlint/ast-node-types";
 import traverse from "traverse";
 import debug0 from "debug";
@@ -12,9 +12,8 @@ export { ASTNodeTypes as Syntax };
 /**
  * parse Markdown text and return ast mapped location info.
  * @param {string} text
- * @returns {TxtNode}
  */
-export function parse<T extends TxtNode>(text: string): T {
+export function parse(text: string): TxtDocumentNode {
     // remark-parse's AST does not consider BOM
     // AST's position does not +1 by BOM
     // So, just trim BOM and parse it for `raw` property
@@ -58,5 +57,5 @@ export function parse<T extends TxtNode>(text: string): T {
             }
         }
     });
-    return ast as T;
+    return ast as TxtDocumentNode;
 }

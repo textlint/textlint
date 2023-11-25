@@ -1,5 +1,5 @@
-import { TxtNode } from "@textlint/ast-node-types";
-import { TextlintPluginCreator, TextlintPluginOptions } from "@textlint/types";
+import type { TxtDocumentNode } from "@textlint/ast-node-types";
+import type { TextlintPluginCreator, TextlintPluginOptions } from "@textlint/types";
 
 // MIT © 2017 azu
 export class ExampleProcessor {
@@ -13,11 +13,10 @@ export class ExampleProcessor {
 
     processor(_extension: string) {
         return {
-            preProcess(_text: string, _filePath: string): TxtNode {
+            preProcess(_text: string, _filePath: string): TxtDocumentNode {
                 return {
                     type: "Document",
                     children: [],
-                    value: "",
                     raw: "",
                     range: [0, 0],
                     loc: {
