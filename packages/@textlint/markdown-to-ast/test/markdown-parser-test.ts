@@ -5,7 +5,7 @@ import { parse, Syntax } from "../src/index";
 import assert from "assert";
 import traverse from "traverse";
 
-const inspect = (obj: Record<string, unknown>) => JSON.stringify(obj, null, 4);
+const inspect = (obj: unknown) => JSON.stringify(obj, null, 4);
 
 function findFirstTypedNode(node: TxtNode, type: string, value?: string): TxtNode {
     let result: TxtNode | null = null;
