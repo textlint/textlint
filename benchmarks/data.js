@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1700874768108,
+  "lastUpdate": 1700875921955,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -21084,6 +21084,48 @@ window.BENCHMARK_DATA = {
             "value": 1.39706693764,
             "unit": "seconds",
             "range": "± 0.02211227199999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "2a4c960f05745d0fb8f9043cf437e64909532175",
+          "message": "fix: plugin's preProcessor should return TxtDocumentNode",
+          "timestamp": "2023-11-25T10:28:54+09:00",
+          "tree_id": "9a9258d6b9896d732ce3092db5275586c2b4a75b",
+          "url": "https://github.com/textlint/textlint/commit/2a4c960f05745d0fb8f9043cf437e64909532175"
+        },
+        "date": 1700875920572,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1977133246800005,
+            "unit": "seconds",
+            "range": "± 0.09427477599999978"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.59990169168,
+            "unit": "seconds",
+            "range": "± 0.20286826899999966"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.41243526808,
+            "unit": "seconds",
+            "range": "± 0.04385371700000018"
           }
         ]
       }
