@@ -54,8 +54,6 @@ export interface TxtNode {
     loc: TxtNodeLocation;
     // `parent` is created by runtime
     parent?: TxtParentNode;
-
-    [index: string]: any;
 }
 
 /**

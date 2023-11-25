@@ -36,8 +36,6 @@ interface TxtNode {
     // Not need in AST
     // For example, top Root Node like `Document` has not parent.
     parent?: TxtNode;
-
-    [index: string]: any;
 }
 
 
