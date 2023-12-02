@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1701500217781,
+  "lastUpdate": 1701508397646,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -21714,6 +21714,48 @@ window.BENCHMARK_DATA = {
             "value": 1.38393844668,
             "unit": "seconds",
             "range": "± 0.013855668999999793"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "2bcb42edd97c04d21e282c27bf2875ee07049a7b",
+          "message": "chore(deps): update dependency textlint-rule-helper to ^2.3.1",
+          "timestamp": "2023-12-02T09:10:40Z",
+          "tree_id": "d3725e20cf474ad44830579c0bcd23d24c866835",
+          "url": "https://github.com/textlint/textlint/commit/2bcb42edd97c04d21e282c27bf2875ee07049a7b"
+        },
+        "date": 1701508395784,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1902509160999997,
+            "unit": "seconds",
+            "range": "± 0.13289896599999995"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.5723590707,
+            "unit": "seconds",
+            "range": "± 0.19553931999999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.3877165057,
+            "unit": "seconds",
+            "range": "± 0.017469409000000047"
           }
         ]
       }
