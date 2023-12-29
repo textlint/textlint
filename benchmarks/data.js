@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1703726606695,
+  "lastUpdate": 1703887263195,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -22092,6 +22092,48 @@ window.BENCHMARK_DATA = {
             "value": 1.40303861538,
             "unit": "seconds",
             "range": "± 0.03742137199999984"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "39899689+hotoolong@users.noreply.github.com",
+            "name": "hotoolong",
+            "username": "hotoolong"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8254bd37ff9629c280def9e5b6f516580702a649",
+          "message": "Add v to tag_name (#1306)\n\nThe v was missing from the Full Changelog in the release information.",
+          "timestamp": "2023-12-30T06:58:21+09:00",
+          "tree_id": "48e4b083248d628b6501d9b99761143763ff272c",
+          "url": "https://github.com/textlint/textlint/commit/8254bd37ff9629c280def9e5b6f516580702a649"
+        },
+        "date": 1703887261982,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.11488348976,
+            "unit": "seconds",
+            "range": "± 0.040628388000000015"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.399578053560001,
+            "unit": "seconds",
+            "range": "± 0.13927227399999964"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.40075335556,
+            "unit": "seconds",
+            "range": "± 0.04087824800000006"
           }
         ]
       }
