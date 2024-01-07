@@ -12,6 +12,7 @@ import {
     TextlintRuleReportHandler
 } from "@textlint/types";
 import throwErrorInRule from "./fixtures/rules/throw-error-in-rule";
+// TODO: NEED? type:context
 /*
     TODO: rule-context-test has `lintText` and `fixText` test.
     These should be moved to core test

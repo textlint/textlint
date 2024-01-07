@@ -7,7 +7,11 @@ import exampleRule from "./fixtures/example-rule";
 // @ts-ignore
 import htmlPlugin from "textlint-plugin-html";
 
-describe("HTMLPlugin", function () {
+/**
+ * @deprecated
+ * old HTMLPlugin tests
+ */
+describe("@DEPRECATED: HTMLPlugin", function () {
     let textlintCore: TextLintCore;
     context("when target file is a HTML", function () {
         beforeEach(function () {

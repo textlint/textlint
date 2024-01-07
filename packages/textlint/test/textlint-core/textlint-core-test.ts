@@ -2,8 +2,8 @@ import * as assert from "assert";
 import { TextLintCore } from "../../src";
 import exampleRule from "./fixtures/rules/example-rule";
 import { createPluginStub } from "../pluguins/fixtures/example-plugin";
-
-describe("textlint-core", function () {
+// @deprecated
+describe("DEPRECATED: textlint-core", function () {
     // Test: https://github.com/textlint/textlint/issues/30
     context("when new textlint-core", function () {
         it("should be clean rule-manager", function () {

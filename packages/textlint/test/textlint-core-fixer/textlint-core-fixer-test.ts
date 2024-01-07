@@ -9,8 +9,8 @@ import ruleReplace from "./fixtures/fixer-rules/fixer-rule-replace";
 import ruleRemove from "./fixtures/fixer-rules/fixer-rule-remove";
 const inputFilePath = path.join(__dirname, "/fixtures/fixer-rules/input.md");
 const outputFilePath = path.join(__dirname, "/fixtures/fixer-rules/output.md");
-
-describe("textlint-fixer", function () {
+// DEPRECATED: textlint-fixer
+describe("DEPRECATE: textlint-fixer", function () {
     let textlint: TextLintCore;
 
     context("#fixText", function () {

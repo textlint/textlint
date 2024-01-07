@@ -11,6 +11,7 @@ import fixtureRule from "./fixtures/rules/example-rule";
 
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
 
+// TODO: NEED? type:filter
 describe("Async", function () {
     beforeEach(() => {
         coreFlags.experimental = true;

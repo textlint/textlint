@@ -5,6 +5,7 @@ import { TextLintCore } from "../../src/index";
 import { createPluginStub } from "./fixtures/example-plugin";
 import exampleRule from "./fixtures/example-rule";
 
+// TODO: NEED? type:plugin
 describe("plugin-option", () => {
     it("should load plugin options if match ext", () => {
         const textlintCore = new TextLintCore();
