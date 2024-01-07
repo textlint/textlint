@@ -15,35 +15,6 @@ export interface TextlintKernelConstructorOptions {
     quiet?: boolean;
 }
 
-// config
-export interface TextlintConfigObject {
-    // rule directories path
-    rulePaths?: string[];
-    // filter by file extensions
-    extensions?: string[];
-    // formatter file name
-    // e.g.) stylish.js => set "stylish"
-    formatterName?: string;
-    // plugin package names
-    plugins?: string[];
-    // base directory for loading {rule, config, plugin} modules
-    rulesBaseDirectory?: string;
-    // ".textlint" file path
-    configFile?: string;
-    // disabled rule package names
-    // always should start with empty
-    disabledRules?: string[];
-    // preset package names
-    // e.g.) ["preset-foo"]
-    presets?: string[];
-    // rules config object
-    rulesConfig?: Object;
-    /**
-     * quite options
-     */
-    quiet?: boolean;
-}
-
 export interface TextlintKernelPlugin {
     // plugin name as key
     // this key should be normalized
