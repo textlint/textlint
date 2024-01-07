@@ -35,7 +35,7 @@
         "clean": "tsc --build --clean",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
         "prepack": "npm run --if-present build",
-        "test": "tsc -b --noEmit",
+        "test": "tsc -b",
         "watch": "tsc -b --watch"
     },
     "prettier": {
