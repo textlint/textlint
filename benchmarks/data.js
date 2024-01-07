@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704595201121,
+  "lastUpdate": 1704599922384,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -22806,6 +22806,48 @@ window.BENCHMARK_DATA = {
             "value": 1.41739860592,
             "unit": "seconds",
             "range": "± 0.02342876099999991"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "1405c66ef97ad1f1dbabe91ddb60626befd7d71d",
+          "message": "CI: add workaround ts-node/esm\n\nhttps://github.com/TypeStrong/ts-node/issues/2094",
+          "timestamp": "2024-01-07T12:56:06+09:00",
+          "tree_id": "4199f0c715e018dc773662fcb8555b2dcda7c666",
+          "url": "https://github.com/textlint/textlint/commit/1405c66ef97ad1f1dbabe91ddb60626befd7d71d"
+        },
+        "date": 1704599920901,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1473819736399995,
+            "unit": "seconds",
+            "range": "± 0.13921133699999988"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.51429571404,
+            "unit": "seconds",
+            "range": "± 0.14769306999999987"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.39517750984,
+            "unit": "seconds",
+            "range": "± 0.009968766000000073"
           }
         ]
       }
