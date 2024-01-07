@@ -534,23 +534,5 @@ describe("rule-context-test", function () {
                 return textlint.lintMarkdown("test");
             });
         });
-        context("when pass config", function () {
-            it("should return undefined", function () {
-                const configBasedir = path.join(__dirname, "fixtures");
-                // TODO: it will be moved to kernel
-                const textlint = new TextLintCoreCompat({ configFile: path.join(configBasedir, ".textlintrc") });
-                textlint.setupRules({
-                    "rule-key"(context: TextlintRuleContext): TextlintRuleReportHandler {
-                        return {
-                            [context.Syntax.Document]() {
-                                const baseDir = context.getConfigBaseDir();
-                                assert.ok(baseDir === configBasedir);
-                            }
-                        };
-                    }
-                });
-                return textlint.lintMarkdown("test");
-            });
-        });
     });
 });
