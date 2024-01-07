@@ -1,13 +1,12 @@
-import {
+import type {
     TextlintFilterRuleReporter,
-    TextlintKernel,
-    TextlintKernelDescriptor,
     TextlintKernelFilterRule,
     TextlintKernelPlugin,
     TextlintKernelRule,
     TextlintPluginCreator,
     TextlintRuleModule
 } from "@textlint/kernel";
+import { TextlintKernel, TextlintKernelDescriptor } from "@textlint/kernel";
 import fs from "node:fs/promises";
 import path from "node:path";
 import textPlugin from "@textlint/textlint-plugin-text";
