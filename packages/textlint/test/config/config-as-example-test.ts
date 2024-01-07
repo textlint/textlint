@@ -35,7 +35,6 @@ describe("config-as-example", function () {
                 : path.join(projectDir, "expect.ts");
             const expect =
                 expectedPath.split(".").pop() == "json" ? require(expectedPath) : moduleInterop(require(expectedPath));
-            console.log(expect);
             const actual = config.toJSON();
             Object.keys(expect).forEach((key) => {
                 try {

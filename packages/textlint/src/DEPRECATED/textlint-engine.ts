@@ -4,6 +4,7 @@ import { AbstractTextLintEngine } from "./engine/textlint-engine-core";
 import { TextLintCore } from "./textlint-core";
 import { TextLintFormatterOption } from "../textlint-interface";
 import { TextlintResult } from "@textlint/kernel";
+import { Logger } from "../util/logger";
 
 /**
  * TextLintEngine a adapter for TextLintEngineCore.
@@ -11,6 +12,12 @@ import { TextlintResult } from "@textlint/kernel";
  * @deprecated use new APIs https://textlint.github.io/docs/use-as-modules.html#new-apis
  */
 export class TextLintEngine extends AbstractTextLintEngine<TextlintResult> {
+    constructor(...args: any[]) {
+        super(...args);
+        Logger.deprecate(
+            "TextLintEngine is deprecated. Please use new APIs https://textlint.github.io/blog/2023/01/27/textlint-13.html"
+        );
+    }
     /**
      * @param {TextLintCore} textlintCore
      * @returns {function()}
