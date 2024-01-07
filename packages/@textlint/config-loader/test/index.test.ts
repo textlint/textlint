@@ -5,9 +5,14 @@ import { loadRawConfig, loadPackagesFromRawConfig } from "../src/index";
 
 const fixturesDir = path.join(__dirname, "snapshots");
 const modulesDir = path.join(__dirname, "modules_fixtures");
-const replacer = (_key: string, value: any) => {
+const replacer = (key: string, value: any) => {
     if (typeof value === "string") {
         return value.replace(fixturesDir, "<FIXTURES_DIR>").replace(modulesDir, "<MODULES_DIR>");
+    }
+    // `moduleName` and `filePath` is a file path
+    // normalize the file path in cross-platform
+    if (key === "moduleName" || key === "filePath") {
+        return value.replace(/\\/g, "/");
     }
     if (value instanceof Error) {
         return value.message;

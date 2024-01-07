@@ -139,7 +139,6 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * Take package name, and return path to module.
      * @param {string} packageName
      * The user must specify preset- prefix to these `packageName`.
-     * @returns {string} return path to module
      */
     resolvePresetPackageName(packageName: string): {
         moduleName: string;
