@@ -1,14 +1,13 @@
 // MIT © 2017 azu
 "use strict";
 import assert from "assert";
-import { TextLintCore } from "../../src/index";
 import { createPluginStub } from "./fixtures/example-plugin";
 import exampleRule from "./fixtures/example-rule";
+import { TextLintCoreCompat } from "../util/TextlintCoreCompat";
 
-// TODO: NEED? type:plugin
 describe("plugin-option", () => {
     it("should load plugin options if match ext", () => {
-        const textlintCore = new TextLintCore();
+        const textlintCore = new TextLintCoreCompat();
         const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
         textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });
@@ -19,7 +18,7 @@ describe("plugin-option", () => {
         });
     });
     it("should load plugin options when does't match any ext for instance availableExtensions()", () => {
-        const textlintCore = new TextLintCore();
+        const textlintCore = new TextLintCoreCompat();
         const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
         textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });
