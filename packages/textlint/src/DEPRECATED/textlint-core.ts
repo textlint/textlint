@@ -120,7 +120,7 @@ export class TextLintCore {
      */
     setupRules(rules = {}, rulesOption = {}) {
         Logger.deprecate(
-            "TextLintCore is deprecated. Please use new APIs https://textlint.github.io/blog/2023/01/27/textlint-13.html"
+            "TextLintCore is deprecated. Please use new APIs https://github.com/textlint/textlint/issues/1310"
         );
         this.textlintKernelDescriptor = this.textlintKernelDescriptor.shallowMerge({
             rules: rulesObjectToKernelRule(rules, rulesOption)

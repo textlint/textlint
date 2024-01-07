@@ -15,7 +15,7 @@ export class TextFixEngine extends AbstractTextLintEngine<TextlintFixResult> {
     constructor(...args: any[]) {
         super(...args);
         Logger.deprecate(
-            "TextFixEngine is deprecated. Please use new APIs https://textlint.github.io/blog/2023/01/27/textlint-13.html"
+            "TextFixEngine is deprecated. Please use new APIs https://github.com/textlint/textlint/issues/1310"
         );
     }
     /**

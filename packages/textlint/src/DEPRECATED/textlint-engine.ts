@@ -15,7 +15,7 @@ export class TextLintEngine extends AbstractTextLintEngine<TextlintResult> {
     constructor(...args: any[]) {
         super(...args);
         Logger.deprecate(
-            "TextLintEngine is deprecated. Please use new APIs https://textlint.github.io/blog/2023/01/27/textlint-13.html"
+            "TextLintEngine is deprecated. Please use new APIs https://github.com/textlint/textlint/issues/1310"
         );
     }
     /**
