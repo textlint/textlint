@@ -21,10 +21,12 @@ jobs:
           cache: 'npm'
       - name: Install
         run: npm ci
+      - name: Build
+        run: npm run build
       - name: Test
-        run: |
-          npm test
-          npm run test:examples
+        run: npm test
+      - name: Test Examples
+        run: npm run test:examples
 
   benchmark:
     name: Benchmark
