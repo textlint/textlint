@@ -1,12 +1,16 @@
 // LICENSE : MIT
 import { createLinter, loadTextlintrc, loadLinterFormatter } from "textlint";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-async function lintFile(filePath: string) {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+async function lintFile(filePath) {
     // descriptor is a structure object for linter
     // It includes rules, plugins, and options
     const descriptor = await loadTextlintrc({
-        configFilePath: path.join(process.cwd(), ".textlintrc.json")
+        configFilePath: path.join(__dirname, ".textlintrc.json")
     });
     const linter = createLinter({
         descriptor
@@ -18,7 +22,7 @@ async function lintFile(filePath: string) {
     console.log(output);
 }
 
-lintFile(path.join(process.cwd(), "fixtures/success.md")).catch(function (error) {
+lintFile(__dirname + "/README.md").catch(function(error) {
     console.error(error);
     process.exit(1);
 });
