@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704600010337,
+  "lastUpdate": 1704600728810,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -22890,6 +22890,48 @@ window.BENCHMARK_DATA = {
             "value": 1.42854478774,
             "unit": "seconds",
             "range": "± 0.09027531700000013"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ca8365effb3cf916e9b033178acecf077e0927f8",
+          "message": "fix(kernel): remove unused TextlintConfigObject (#1308)\n\n* fix(kernel): remove unused TextlintConfigObject\r\n\r\n* CI: add workaround ts-node/esm\r\n\r\nhttps://github.com/TypeStrong/ts-node/issues/2094\r\n\r\n* chore: pin Node.js version 18.18.2",
+          "timestamp": "2024-01-07T13:09:32+09:00",
+          "tree_id": "937582485d6e8f20728fbdc1473b888f4d9161b4",
+          "url": "https://github.com/textlint/textlint/commit/ca8365effb3cf916e9b033178acecf077e0927f8"
+        },
+        "date": 1704600726885,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.19710635264,
+            "unit": "seconds",
+            "range": "± 0.0973987730000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.64434605104,
+            "unit": "seconds",
+            "range": "± 0.25039260399999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.41270870184,
+            "unit": "seconds",
+            "range": "± 0.022419251999999945"
           }
         ]
       }
