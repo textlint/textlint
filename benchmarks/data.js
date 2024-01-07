@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704634639363,
+  "lastUpdate": 1704637394783,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -24612,6 +24612,48 @@ window.BENCHMARK_DATA = {
             "value": 1.40725913182,
             "unit": "seconds",
             "range": "± 0.00859965099999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a703f826eb11587debe4a15a74546cc6e994f2a0",
+          "message": "feat(textlint): add deprecation warning to old APIs (#1312)\n\n* fix(textlint): add deprecation warning to old APIs\r\n\r\n`TextLintCore`, `TextFixEngine`, `TextLintEngine`, and `textlint` API is deprecated\r\n\r\n* refactor(examples): Use new APIs\r\n\r\n* refactor(examples): Use new APIs\r\n\r\n* refactor(examples): Use new APIs\r\n\r\n* chore: update lock\r\n\r\n* update message\r\n\r\n* test: add deprecated label to tests\r\n\r\n* test: add deprecated label to tests\r\n\r\n* test: use TextilntCoreCompat instead of TextlintCore\r\n\r\n* refactor: remove unneeded test\r\n\r\n* test: move to kernel\r\n\r\n* remove unused\r\n\r\n* comment\r\n\r\n* import\r\n\r\n* feat: add @textlint/legacy-textlint-core\r\n\r\n* Update packages/@textlint/legacy-textlint-core/tsconfig.json+2\r\n\r\n* remove unused test\r\n\r\n* fix: test\r\n\r\n* docs: update readme\r\n\r\n* Update package-lock.json\r\n\r\n* test: should not use DEPRECATED module\r\n\r\n* test: fix tests",
+          "timestamp": "2024-01-07T23:20:32+09:00",
+          "tree_id": "8e97d4af1665e478832895664a83cd4a40e98f5e",
+          "url": "https://github.com/textlint/textlint/commit/a703f826eb11587debe4a15a74546cc6e994f2a0"
+        },
+        "date": 1704637393555,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.12853950624,
+            "unit": "seconds",
+            "range": "± 0.034690200000000004"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.4323592096399995,
+            "unit": "seconds",
+            "range": "± 0.05035325799999946"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.38980949324,
+            "unit": "seconds",
+            "range": "± 0.017070828000000038"
           }
         ]
       }
