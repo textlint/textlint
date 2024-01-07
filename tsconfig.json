@@ -35,6 +35,9 @@
       "path": "packages/@textlint/kernel"
     },
     {
+      "path": "packages/@textlint/legacy-textlint-core"
+    },
+    {
       "path": "packages/@textlint/linter-formatter"
     },
     {

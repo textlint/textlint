@@ -16,10 +16,13 @@
   ],
   "references": [
     {
-      "path": "../ast-node-types"
+      "path": "../kernel"
     },
     {
-      "path": "../markdown-to-ast"
+      "path": "../textlint-plugin-text"
+    },
+    {
+      "path": "../textlint-plugin-markdown"
     }
   ]
 }
