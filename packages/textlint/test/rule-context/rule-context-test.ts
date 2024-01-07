@@ -2,7 +2,6 @@
 "use strict";
 import assert from "assert";
 import path from "path";
-import { TextLintCore } from "../../src/index";
 import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import {
