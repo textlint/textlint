@@ -8,7 +8,7 @@ import {
     TextlintPluginCreator,
     TextlintRuleModule
 } from "@textlint/kernel";
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import path from "node:path";
 import textPlugin from "@textlint/textlint-plugin-text";
 import markdownPlugin from "@textlint/textlint-plugin-markdown";
