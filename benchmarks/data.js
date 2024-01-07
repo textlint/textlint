@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704667977241,
+  "lastUpdate": 1704670079561,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -25116,6 +25116,48 @@ window.BENCHMARK_DATA = {
             "value": 1.3942440367400002,
             "unit": "seconds",
             "range": "± 0.0071967920000002295"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "e1f288c3f0ca22428b6717e05e00cf02cd2615b9",
+          "message": "CI: add `npm run build` before test:example\n\nnpm run test:example ignore `textlint`'s build\nIt may case \"Error: Cannot find module '../lib/src/cli'\"",
+          "timestamp": "2024-01-08T08:25:14+09:00",
+          "tree_id": "4545cd01f635b99d6b7b4d7e3cf122e8c1cd491a",
+          "url": "https://github.com/textlint/textlint/commit/e1f288c3f0ca22428b6717e05e00cf02cd2615b9"
+        },
+        "date": 1704670078249,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.13027461722,
+            "unit": "seconds",
+            "range": "± 0.0208738890000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.444528651420001,
+            "unit": "seconds",
+            "range": "± 0.1194989900000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.4275211794199998,
+            "unit": "seconds",
+            "range": "± 0.09709438500000012"
           }
         ]
       }
