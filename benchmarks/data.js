@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704638200884,
+  "lastUpdate": 1704638379702,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -24738,6 +24738,48 @@ window.BENCHMARK_DATA = {
             "value": 1.4018458076,
             "unit": "seconds",
             "range": "± 0.016445568000000188"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "c16ac4483d0115190f53a6ed45ba6396203d82d5",
+          "message": "chore!: move gulp-textlint to out of monorepo",
+          "timestamp": "2024-01-07T23:36:58+09:00",
+          "tree_id": "2efaade3034ae87111f42ce23ef663eca488cca8",
+          "url": "https://github.com/textlint/textlint/commit/c16ac4483d0115190f53a6ed45ba6396203d82d5"
+        },
+        "date": 1704638378452,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.08591973244,
+            "unit": "seconds",
+            "range": "± 0.07259335199999972"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.36602050064,
+            "unit": "seconds",
+            "range": "± 0.14000385699999995"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.36508315244,
+            "unit": "seconds",
+            "range": "± 0.060380812000000006"
           }
         ]
       }
