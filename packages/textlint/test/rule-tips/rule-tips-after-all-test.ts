@@ -2,11 +2,11 @@
 "use strict";
 import * as assert from "assert";
 import { createAfterAllRule } from "./fixtures/rules/after-all";
-import { TextLintCoreCompat } from "../util/TextlintCoreCompat";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 describe("rule-tips-after-all-test", function () {
     // Test https://github.com/textlint/textlint/issues/266#issuecomment-293192017
     it("should after-all is called at end", function () {
-        const textlint = new TextLintCoreCompat();
+        const textlint = new TextLintCore();
         const calls: string[] = [];
         const afterAllRule = createAfterAllRule(calls);
         textlint.setupRules({ "after-all": afterAllRule });

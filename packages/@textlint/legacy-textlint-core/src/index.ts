@@ -4,7 +4,7 @@ import type {
     TextlintKernelPlugin,
     TextlintKernelRule,
     TextlintPluginCreator,
-    TextlintRuleModule
+    TextlintRuleModule,
 } from "@textlint/kernel";
 import { TextlintKernel, TextlintKernelDescriptor } from "@textlint/kernel";
 import fs from "node:fs/promises";
@@ -17,13 +17,13 @@ const builtInPlugins = [
     {
         pluginId: "@textlint/textlint-plugin-text",
         plugin: textPlugin,
-        options: true
+        options: true,
     },
     {
         pluginId: "@textlint/textlint-plugin-markdown",
         plugin: markdownPlugin,
-        options: true
-    }
+        options: true,
+    },
 ];
 /**
  * Convert rulesObject to TextlintKernelRule
@@ -44,7 +44,7 @@ export const rulesObjectToKernelRule: (
         return {
             ruleId,
             rule: rules[ruleId],
-            options: rulesOption[ruleId]
+            options: rulesOption[ruleId],
         };
     });
 };
@@ -57,7 +57,7 @@ export const filterRulesObjectToKernelRule: (
         return {
             ruleId,
             rule: rules[ruleId],
-            options: rulesOption[ruleId]
+            options: rulesOption[ruleId],
         };
     });
 };
@@ -81,28 +81,32 @@ export const pluginsObjectToKernelRule = (
         return {
             pluginId,
             plugin: plugins[pluginId],
-            options: pluginsOption[pluginId]
+            options: pluginsOption[pluginId],
         };
     });
 };
 
 /**
- * Create `TextLintCore` like interface using `@textlint/kernel`
+ * Create `TextLintCore` compat interface using `@textlint/kernel`
  * It will help us to migrate to `@textlint/kernel` from `textlint`.
  */
-export class TextLintCoreCompat {
+export class TextLintCore {
     private kernelDescriptor = new TextlintKernelDescriptor({
         rules: [],
         plugins: builtInPlugins,
-        filterRules: []
+        filterRules: [],
     });
+
+    constructor(_THIS_ARG_IS_JUST_IGNORED: any[] = []) {
+        // noop
+    }
 
     setupRules(rules = {}, rulesOption = {}) {
         this.kernelDescriptor = this.kernelDescriptor.concat(
             new TextlintKernelDescriptor({
                 rules: rulesObjectToKernelRule(rules, rulesOption),
                 filterRules: [],
-                plugins: []
+                plugins: [],
             })
         );
     }
@@ -112,7 +116,7 @@ export class TextLintCoreCompat {
             new TextlintKernelDescriptor({
                 rules: [],
                 filterRules: filterRulesObjectToKernelRule(filterRules, filterRulesConfig),
-                plugins: []
+                plugins: [],
             })
         );
     }
@@ -122,7 +126,7 @@ export class TextLintCoreCompat {
             new TextlintKernelDescriptor({
                 rules: [],
                 filterRules: [],
-                plugins: pluginsObjectToKernelRule(plugins, pluginsConfig)
+                plugins: pluginsObjectToKernelRule(plugins, pluginsConfig),
             })
         );
     }
@@ -131,7 +135,7 @@ export class TextLintCoreCompat {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
             ext,
-            ...this.kernelDescriptor.toKernelOptions()
+            ...this.kernelDescriptor.toKernelOptions(),
         });
     }
 
@@ -139,7 +143,7 @@ export class TextLintCoreCompat {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
             ext: ".md",
-            ...this.kernelDescriptor.toKernelOptions()
+            ...this.kernelDescriptor.toKernelOptions(),
         });
     }
 
@@ -149,7 +153,7 @@ export class TextLintCoreCompat {
         return kernel.lintText(content, {
             ext: path.extname(filePath),
             filePath,
-            ...this.kernelDescriptor.toKernelOptions()
+            ...this.kernelDescriptor.toKernelOptions(),
         });
     }
 
@@ -157,7 +161,7 @@ export class TextLintCoreCompat {
         const kernel = new TextlintKernel();
         return kernel.fixText(text, {
             ext,
-            ...this.kernelDescriptor.toKernelOptions()
+            ...this.kernelDescriptor.toKernelOptions(),
         });
     }
 }

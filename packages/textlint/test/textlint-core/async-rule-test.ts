@@ -7,7 +7,7 @@ import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import fixtureRule from "./fixtures/rules/example-rule";
 
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
-import { TextLintCoreCompat } from "../util/TextlintCoreCompat";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 
 describe("Async Rule", function () {
     beforeEach(() => {
@@ -17,7 +17,7 @@ describe("Async Rule", function () {
         resetFlags();
     });
     it("should support async", function () {
-        const textlint = new TextLintCoreCompat();
+        const textlint = new TextLintCore();
         textlint.setupRules({
             "rule-name": function (context) {
                 const { Syntax, report, RuleError } = context;
@@ -43,7 +43,7 @@ describe("Async Rule", function () {
         });
     });
     it("should promise each messages", function () {
-        const textlint = new TextLintCoreCompat();
+        const textlint = new TextLintCore();
         // each rule throw 1 error.
         textlint.setupRules({
             "example-rule": fixtureRule,

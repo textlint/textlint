@@ -3,11 +3,11 @@
 import assert from "assert";
 import { createPluginStub } from "./fixtures/example-plugin";
 import exampleRule from "./fixtures/example-rule";
-import { TextLintCoreCompat } from "../util/TextlintCoreCompat";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 
 describe("plugin-option", () => {
     it("should load plugin options if match ext", () => {
-        const textlintCore = new TextLintCoreCompat();
+        const textlintCore = new TextLintCore();
         const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
         textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });
@@ -18,7 +18,7 @@ describe("plugin-option", () => {
         });
     });
     it("should load plugin options when does't match any ext for instance availableExtensions()", () => {
-        const textlintCore = new TextLintCoreCompat();
+        const textlintCore = new TextLintCore();
         const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };
         textlintCore.setupPlugins({ example: plugin }, { example: expectedOptions });

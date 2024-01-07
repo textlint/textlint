@@ -11,15 +11,15 @@ import {
     TextlintRuleReportHandler
 } from "@textlint/types";
 import throwErrorInRule from "./fixtures/rules/throw-error-in-rule";
-import { TextLintCoreCompat } from "../util/TextlintCoreCompat";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 /*
     TODO: rule-context-test has `lintText` and `fixText` test.
     These should be moved to core test
  */
 describe("rule-context-test", function () {
-    let textlint: TextLintCoreCompat;
+    let textlint: TextLintCore;
     beforeEach(function () {
-        textlint = new TextLintCoreCompat();
+        textlint = new TextLintCore();
     });
     context("in traverse", function () {
         let callCount: number;
