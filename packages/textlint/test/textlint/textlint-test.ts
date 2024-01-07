@@ -7,7 +7,8 @@ import { textlint } from "../../src";
 import { loadFromDir } from "../../src/engine/rule-loader";
 
 const rules = loadFromDir(path.join(__dirname, "fixtures/rules"));
-describe("textlint-test", function () {
+// DEPRECATED: textlint api
+describe("DEPRECATED: textlint-test", function () {
     beforeEach(function () {
         // This rule found `Str` Node then occur error
         textlint.setupRules(rules);

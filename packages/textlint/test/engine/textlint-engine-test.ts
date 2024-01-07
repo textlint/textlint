@@ -39,7 +39,8 @@ const getFilterRuleNames = (descriptor: TextlintKernelDescriptor) => {
     return descriptor.filterRule.allDescriptors.map((ruleDescriptor) => ruleDescriptor.id);
 };
 
-describe("textlint-engine-test", function () {
+// @deprecated engine
+describe("DEPRECATED: textlint-engine-test", function () {
     describe("Constructor", function () {
         context("when no-args", function () {
             it("config should be empty", function () {

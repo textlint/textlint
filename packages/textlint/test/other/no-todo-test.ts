@@ -3,8 +3,8 @@
 import * as assert from "assert";
 import noTodo from "./fixtures/no-todo";
 import { textlint } from "../../src/index";
-
-describe("no-todo-rule-test", function () {
+// @deprecated external rule
+describe("DEPRECATED: no-todo-rule-test", function () {
     beforeEach(function () {
         textlint.setupRules({ "no-todo": noTodo });
     });
