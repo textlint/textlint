@@ -26,13 +26,12 @@ describe("config-initializer-test", function () {
             sh.cp(packageFilePath, configDir);
         });
         it("should create new file with packages", function () {
-            const configFile = path.join(configDir, ".textlintrc");
             return createConfigFile({
                 dir: configDir,
                 verbose: false
             }).then(function (exitStatus) {
                 assert.strictEqual(exitStatus, 0);
-                const config = JSON.parse(fs.readFileSync(configFile, "utf-8"));
+                const config = JSON.parse(fs.readFileSync(path.join(configDir, ".textlintrc.json"), "utf-8"));
                 assert.equal(typeof config.filters, "object");
                 assert.equal(typeof config.rules, "object");
                 assert.equal(typeof config.plugins, "object");
@@ -44,13 +43,12 @@ describe("config-initializer-test", function () {
     });
     context("when .textlintrc is not existed", function () {
         it("should create new file", function () {
-            const configFile = path.join(configDir, ".textlintrc");
             return createConfigFile({
                 dir: configDir,
                 verbose: false
             }).then(function (exitStatus) {
                 assert.strictEqual(exitStatus, 0);
-                const config = JSON.parse(fs.readFileSync(configFile, "utf-8"));
+                const config = JSON.parse(fs.readFileSync(path.join(configDir, ".textlintrc.json"), "utf-8"));
                 assert.strictEqual(typeof config.filters, "object");
                 assert.strictEqual(typeof config.rules, "object");
                 assert.strictEqual(typeof config.plugins, "object");
