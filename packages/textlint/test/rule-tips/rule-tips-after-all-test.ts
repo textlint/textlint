@@ -3,7 +3,6 @@
 import * as assert from "assert";
 import { createAfterAllRule } from "./fixtures/rules/after-all";
 import { TextLintCoreCompat } from "../util/TextlintCoreCompat";
-// TODO: NEED? - type:context
 describe("rule-tips-after-all-test", function () {
     // Test https://github.com/textlint/textlint/issues/266#issuecomment-293192017
     it("should after-all is called at end", function () {

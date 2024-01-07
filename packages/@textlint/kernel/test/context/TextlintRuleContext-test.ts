@@ -87,4 +87,31 @@ describe("Context", function () {
                 assert.strictEqual(result.messages.length, 0);
             });
     });
+    it("context.getConfigBaseDir should return config directory path", function () {
+        const kernel = new TextlintKernel();
+        const configBaseDir = process.cwd();
+        const assertReporter: TextlintRuleModule = (context) => {
+            assert.strictEqual(context.getConfigBaseDir(), configBaseDir);
+            return {};
+        };
+        const rules = [
+            {
+                ruleId: "example-rule",
+                rule: { linter: assertReporter, fixer: assertReporter }
+            }
+        ];
+        const { plugin } = createPluginStub({
+            extensions: [".md"]
+        });
+        return kernel
+            .lintText("string", {
+                rules,
+                configBaseDir,
+                plugins: [{ pluginId: "markdown", plugin }],
+                ext: ".md"
+            })
+            .then((result) => {
+                assert.strictEqual(result.messages.length, 0);
+            });
+    });
 });

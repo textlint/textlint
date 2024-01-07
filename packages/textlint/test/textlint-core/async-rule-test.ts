@@ -9,7 +9,7 @@ import fixtureRule from "./fixtures/rules/example-rule";
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
 import { TextLintCoreCompat } from "../util/TextlintCoreCompat";
 
-describe("Async", function () {
+describe("Async Rule", function () {
     beforeEach(() => {
         coreFlags.experimental = true;
     });

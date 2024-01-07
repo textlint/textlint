@@ -538,7 +538,7 @@ describe("rule-context-test", function () {
             it("should return undefined", function () {
                 const configBasedir = path.join(__dirname, "fixtures");
                 // TODO: it will be moved to kernel
-                const textlint = new TextLintCore({ configFile: path.join(configBasedir, ".textlintrc") });
+                const textlint = new TextLintCoreCompat({ configFile: path.join(configBasedir, ".textlintrc") });
                 textlint.setupRules({
                     "rule-key"(context: TextlintRuleContext): TextlintRuleReportHandler {
                         return {
