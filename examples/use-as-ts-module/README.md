@@ -30,13 +30,5 @@ no-todo: Found TODO: 'TODO: This line should fail as well'
     7. - This line should fail!
          ^
 
-no-exclamation-question-mark: Disallow to use "!".
-/.../textlint/examples/use-as-ts-module/fixtures/failure.md:7:24
-                              v
-    6. - TODO: This line should fail as well
-    7. - This line should fail!
-    8. - `TODO`: This line should not
-                              ^
-
-✖ 3 problems (3 errors, 0 warnings)
+✖ 2 problems (2 errors, 0 warnings)
 ```
