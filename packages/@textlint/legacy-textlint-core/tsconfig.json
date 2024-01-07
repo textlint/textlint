@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "lib": [
+      "esnext"
+      // "dom"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "../kernel"
+    },
+    {
+      "path": "../textlint-plugin-text"
+    },
+    {
+      "path": "../textlint-plugin-markdown"
+    }
+  ]
+}

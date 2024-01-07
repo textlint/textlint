@@ -123,9 +123,9 @@ Both engine
 - Return an array of `TextLintResult` or `TextLintFixResult`
   - actually, return a Promise like `Promise<TextLintResult[]>`
 
-### [Deprecated] Core
+### [Deprecated] `TextlintCore`
 
-textlint's core
+You can use `@textlint/legacy-textlint-core` package instead of `TextlintCore`.
 
 - Accept configuration as object.
 - Handle a **single** file or text string.

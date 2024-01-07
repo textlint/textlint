@@ -4,9 +4,9 @@
     "private": true,
     "license": "MIT",
     "author": "azu",
-    "main": "index.js",
+    "main": "index.mjs",
     "scripts": {
-        "test": "node index.js",
+        "test": "node index.mjs",
         "test:ci": "npm test"
     },
     "dependencies": {

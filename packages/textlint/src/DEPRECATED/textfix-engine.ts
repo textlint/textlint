@@ -4,6 +4,7 @@ import { createFormatter } from "@textlint/fixer-formatter";
 import { TextLintCore } from "./textlint-core";
 import { TextLintFormatterOption } from "../textlint-interface";
 import { TextlintFixResult } from "@textlint/kernel";
+import { Logger } from "../util/logger";
 
 /**
  * TextFixEngine a adapter for TextLintEngineCore.
@@ -11,6 +12,12 @@ import { TextlintFixResult } from "@textlint/kernel";
  * @deprecated use new APIs https://textlint.github.io/docs/use-as-modules.html#new-apis
  */
 export class TextFixEngine extends AbstractTextLintEngine<TextlintFixResult> {
+    constructor(...args: any[]) {
+        super(...args);
+        Logger.deprecate(
+            "TextFixEngine is deprecated. Please use new APIs https://github.com/textlint/textlint/issues/1310"
+        );
+    }
     /**
      * @param {TextLintCore} textlintCore
      * @returns {function()}

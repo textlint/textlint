@@ -1,14 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import { TextLintModuleResolver } from "../../src/DEPRECATED/engine/textlint-module-resolver";
-import { Config } from "../../src/DEPRECATED/config";
 import { createConfigFile } from "../../src/config/config-initializer";
-import { loadConfig } from "../../src/DEPRECATED/config/config-loader";
 import { Logger } from "../../src/util/logger";
 import path from "path";
 import os from "os";
 import sh from "shelljs";
 import assert from "assert";
+import fs from "fs";
 
 describe("config-initializer-test", function () {
     let configDir: string;
@@ -28,20 +26,12 @@ describe("config-initializer-test", function () {
             sh.cp(packageFilePath, configDir);
         });
         it("should create new file with packages", function () {
-            const configFile = path.join(configDir, ".textlintrc");
-            const moduleResolver = new TextLintModuleResolver({
-                rulesBaseDirectory: configDir
-            });
             return createConfigFile({
                 dir: configDir,
                 verbose: false
             }).then(function (exitStatus) {
-                assert.equal(exitStatus, 0);
-                const { config } = loadConfig({
-                    moduleResolver,
-                    configFilePath: configFile,
-                    configFileName: Config.CONFIG_FILE_NAME
-                });
+                assert.strictEqual(exitStatus, 0);
+                const config = JSON.parse(fs.readFileSync(path.join(configDir, ".textlintrc.json"), "utf-8"));
                 assert.equal(typeof config.filters, "object");
                 assert.equal(typeof config.rules, "object");
                 assert.equal(typeof config.plugins, "object");
@@ -53,24 +43,15 @@ describe("config-initializer-test", function () {
     });
     context("when .textlintrc is not existed", function () {
         it("should create new file", function () {
-            const configFile = path.join(configDir, ".textlintrc");
-            const moduleResolver = new TextLintModuleResolver({
-                rulesBaseDirectory: configDir
-            });
-
             return createConfigFile({
                 dir: configDir,
                 verbose: false
             }).then(function (exitStatus) {
-                assert.equal(exitStatus, 0);
-                const { config } = loadConfig({
-                    moduleResolver,
-                    configFileName: Config.CONFIG_FILE_NAME,
-                    configFilePath: configFile
-                });
-                assert.equal(typeof config.filters, "object");
-                assert.equal(typeof config.rules, "object");
-                assert.equal(typeof config.plugins, "object");
+                assert.strictEqual(exitStatus, 0);
+                const config = JSON.parse(fs.readFileSync(path.join(configDir, ".textlintrc.json"), "utf-8"));
+                assert.strictEqual(typeof config.filters, "object");
+                assert.strictEqual(typeof config.rules, "object");
+                assert.strictEqual(typeof config.plugins, "object");
                 assert.ok(Object.keys(config.rules).length === 0);
             });
         });

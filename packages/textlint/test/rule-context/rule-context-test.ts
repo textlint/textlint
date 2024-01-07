@@ -2,7 +2,6 @@
 "use strict";
 import assert from "assert";
 import path from "path";
-import { TextLintCore } from "../../src/index";
 import { TextlintRuleSeverityLevelKeys } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 import {
@@ -12,6 +11,7 @@ import {
     TextlintRuleReportHandler
 } from "@textlint/types";
 import throwErrorInRule from "./fixtures/rules/throw-error-in-rule";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 /*
     TODO: rule-context-test has `lintText` and `fixText` test.
     These should be moved to core test
@@ -526,24 +526,6 @@ describe("rule-context-test", function () {
                             [context.Syntax.Document]() {
                                 const baseDir = context.getConfigBaseDir();
                                 assert.ok(baseDir === undefined);
-                            }
-                        };
-                    }
-                });
-                return textlint.lintMarkdown("test");
-            });
-        });
-        context("when pass config", function () {
-            it("should return undefined", function () {
-                const configBasedir = path.join(__dirname, "fixtures");
-                // TODO: it will be moved to kernel
-                const textlint = new TextLintCore({ configFile: path.join(configBasedir, ".textlintrc") });
-                textlint.setupRules({
-                    "rule-key"(context: TextlintRuleContext): TextlintRuleReportHandler {
-                        return {
-                            [context.Syntax.Document]() {
-                                const baseDir = context.getConfigBaseDir();
-                                assert.ok(baseDir === configBasedir);
                             }
                         };
                     }

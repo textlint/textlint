@@ -28,6 +28,7 @@ import path from "path";
 
 const readFile = fs.promises.readFile;
 import { throwIfTesting } from "@textlint/feature-flag";
+import { Logger } from "../util/logger";
 
 /**
  * @class {TextLintCore}
@@ -39,6 +40,8 @@ export class TextLintCore {
     private defaultPlugins: TextlintKernelPlugin[];
     public textlintKernelDescriptor: TextlintKernelDescriptor;
 
+    // TODO: can not show deprecated message on constructor
+    // because, constructor is called in `textlint` singleton object.
     constructor(config: Partial<Config> = {}) {
         // this.config often is undefined.
         this.config = config;
@@ -116,6 +119,9 @@ export class TextLintCore {
      * @param {object} [rulesOption] ruleConfig is object
      */
     setupRules(rules = {}, rulesOption = {}) {
+        Logger.deprecate(
+            "TextLintCore is deprecated. Please use new APIs https://github.com/textlint/textlint/issues/1310"
+        );
         this.textlintKernelDescriptor = this.textlintKernelDescriptor.shallowMerge({
             rules: rulesObjectToKernelRule(rules, rulesOption)
         });

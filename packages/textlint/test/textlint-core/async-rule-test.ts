@@ -1,17 +1,15 @@
 // LICENSE : MIT
 "use strict";
-import path from "path";
-import { TextLintEngine, TextLintCore } from "../../src";
 import assert from "assert";
 import { TextlintRuleModule } from "@textlint/kernel";
 import { coreFlags, resetFlags } from "@textlint/feature-flag";
 // fixture
-
 import fixtureRule from "./fixtures/rules/example-rule";
 
 import fixtureRuleAsync from "./fixtures/rules/async-rule";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 
-describe("Async", function () {
+describe("Async Rule", function () {
     beforeEach(() => {
         coreFlags.experimental = true;
     });
@@ -57,22 +55,6 @@ describe("Async", function () {
         return textlint.lintMarkdown("string").then((result) => {
             // filtered duplicated messages => 2 patterns
             assert.ok(result.messages.length === 2);
-        });
-    });
-    it("should promise each messages on multiple files", function () {
-        const rules = ["async-rule", "example-rule"];
-        const engine = new TextLintEngine({
-            rulesBaseDirectory: path.join(__dirname, "fixtures", "rules"),
-            rules: rules
-        });
-        const targetFile1 = path.join(__dirname, "fixtures", "test.md");
-        const targetFile2 = path.join(__dirname, "fixtures", "test2.md");
-        const files = [targetFile1, targetFile2];
-        return engine.executeOnFiles(files).then((results) => {
-            assert.equal(results.length, files.length);
-            results.forEach((result) => {
-                assert.equal(result.messages.length, rules.length);
-            });
         });
     });
 });

@@ -1,9 +1,9 @@
 // MIT © 2017 azu
 "use strict";
 import assert from "assert";
-import { TextLintCore } from "../../src/index";
 import { createPluginStub } from "./fixtures/example-plugin";
 import exampleRule from "./fixtures/example-rule";
+import { TextLintCore } from "@textlint/legacy-textlint-core";
 
 describe("plugin-option", () => {
     it("should load plugin options if match ext", () => {
