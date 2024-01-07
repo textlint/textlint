@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "test": "npm run build && node lib/src/index.js",
+    "test": "npm run build && node lib/src/index.js fixtures/success.md",
+    "fail:test": "npm run build && node lib/src/index.js fixtures/failure.md",
     "test:ci": "npm test"
   },
   "dependencies": {

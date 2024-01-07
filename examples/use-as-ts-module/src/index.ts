@@ -1,8 +1,9 @@
 // LICENSE : MIT
 import { createLinter, loadTextlintrc, loadLinterFormatter } from "textlint";
 import path from "node:path";
+import { parseArgs } from "node:util";
 
-async function lintFile(filePath: string) {
+async function lintFile(filePaths: string[]) {
     // descriptor is a structure object for linter
     // It includes rules, plugins, and options
     const descriptor = await loadTextlintrc({
@@ -11,14 +12,17 @@ async function lintFile(filePath: string) {
     const linter = createLinter({
         descriptor
     });
-    const results = await linter.lintFiles([filePath]);
+    const results = await linter.lintFiles(filePaths);
     // textlint has two types formatter sets for linter and fixer
     const formatter = await loadLinterFormatter({ formatterName: "stylish" });
     const output = formatter.format(results);
     console.log(output);
 }
 
-lintFile(path.join(process.cwd(), "fixtures/success.md")).catch(function (error) {
+const { positionals } = parseArgs({
+    allowPositionals: true
+});
+lintFile(positionals).catch(function (error) {
     console.error(error);
     process.exit(1);
 });
