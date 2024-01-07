@@ -41,14 +41,14 @@
         "remark-frontmatter": "^3.0.0",
         "remark-gfm": "^1.0.0",
         "remark-parse": "^9.0.0",
-        "traverse": "^0.6.7",
+        "traverse": "^0.6.8",
         "unified": "^9.2.2"
     },
     "devDependencies": {
         "@textlint/ast-tester": "^13.4.1",
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.18.13",
-        "@types/traverse": "^0.6.35",
+        "@types/node": "^18.18.14",
+        "@types/traverse": "^0.6.36",
         "mkdirp": "^1.0.4",
         "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
