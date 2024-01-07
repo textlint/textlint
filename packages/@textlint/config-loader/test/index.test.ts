@@ -8,7 +8,7 @@ const modulesDir = path.join(__dirname, "modules_fixtures");
 const replacer = (key: string, value: any) => {
     // `moduleName` and `filePath` is a file path
     // normalize the file path in cross-platform
-    if (key === "moduleName" || key === "filePath") {
+    if (key === "moduleName" || (key === "filePath" && typeof value === "string")) {
         return (
             value
                 .replace(/\\/g, "/")
