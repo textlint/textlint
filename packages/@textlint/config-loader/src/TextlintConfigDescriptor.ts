@@ -53,13 +53,17 @@ export type TextlintConfigRuleInPreset = TextlintKernelRule & {
     moduleName: string;
     /**
      * rule key in preset
-     * @example "{moduleName}/{ruleKey}"
+     * @example In "{moduleName}/{ruleKey}", the ruleKey is "ruleKey"
      */
     ruleKey: string;
     /**
      * Inputted module name
      * This module name is resolved by config-loader
      * The resolved module name will be `moduleName`.
+     *
+     * Difference with `ruleId` is that `ruleId` is rule identifier and includes `preset-name`.
+     * For example, `ruleId` is `preset-name/rule-key`.
+     * But, `inputModuleName` is `preset-name`.
      */
     inputModuleName: string;
 };
