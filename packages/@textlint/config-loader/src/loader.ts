@@ -306,6 +306,7 @@ export async function loadPreset({
       - filePath: path to "textlint-rule-preset-example/index.js"
       - moduleName: "textlint-rule-preset-example"
       - ruleKey: "a",
+      - inputModuleName: "preset-example"
 
      */
     return Object.keys(preset.rules).map((ruleKey) => {
