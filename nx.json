@@ -31,6 +31,14 @@
         "{projectRoot}/snapshots"
       ]
     },
+    "test:ci": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/snapshots"
+      ]
+    },
     "test:build": {
       "outputs": [
         "{projectRoot}/lib",
