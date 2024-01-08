@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704673401812,
+  "lastUpdate": 1704674141556,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -25410,6 +25410,48 @@ window.BENCHMARK_DATA = {
             "value": 1.42398262974,
             "unit": "seconds",
             "range": "± 0.033793552999999976"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a526fd335f824d182c26fbb13b7fe77131a6669c",
+          "message": "chore!: move gulp-textlint to out of monorepo (#1319)\n\n* chore!: move gulp-textlint to out of monorepo\r\n\r\n* Update package-lock.json\r\n\r\n* chore: update lock\r\n\r\n* fix type\r\n\r\n* CI: add `npm run build` before test:example\r\n\r\nnpm run test:example ignore `textlint`'s build\r\nIt may case \"Error: Cannot find module '../lib/src/cli'\"\r\n\r\n* test: fix normalize file path\r\n\r\n* test: fix normalize file path\r\n\r\n* test: fix normalize file path\r\n\r\n* test: fix normalize file path\r\n\r\n* test: fix normalize file path\r\n\r\n* CI: fix test:ci dependency",
+          "timestamp": "2024-01-08T09:32:56+09:00",
+          "tree_id": "24fc1e5c1ac3912ad3541e54f955779126f60e13",
+          "url": "https://github.com/textlint/textlint/commit/a526fd335f824d182c26fbb13b7fe77131a6669c"
+        },
+        "date": 1704674140185,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2600927470400003,
+            "unit": "seconds",
+            "range": "± 0.037976077000000164"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.728433194040001,
+            "unit": "seconds",
+            "range": "± 0.10342974699999985"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.42898169184,
+            "unit": "seconds",
+            "range": "± 0.01848219800000006"
           }
         ]
       }
