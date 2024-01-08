@@ -4,6 +4,7 @@
         "rules": [],
         "plugins": [
             {
+                "type": "Plugin",
                 "pluginId": "esm",
                 "plugin": {},
                 "options": true,
