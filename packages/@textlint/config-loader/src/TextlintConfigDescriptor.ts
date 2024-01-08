@@ -13,6 +13,12 @@ export type TextlintConfigPlugin = TextlintKernelPlugin & {
      * plugin module name
      */
     moduleName: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     */
+    inputModuleName: string;
 };
 //  a rule module
 export type TextlintConfigSingleRule = TextlintKernelRule & {
@@ -26,6 +32,12 @@ export type TextlintConfigSingleRule = TextlintKernelRule & {
      * @example "textlint-rule-example"
      */
     moduleName: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     */
+    inputModuleName: string;
 };
 // a rule in preset module
 export type TextlintConfigRuleInPreset = TextlintKernelRule & {
@@ -44,6 +56,12 @@ export type TextlintConfigRuleInPreset = TextlintKernelRule & {
      * @example "{moduleName}/{ruleKey}"
      */
     ruleKey: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     */
+    inputModuleName: string;
 };
 export type TextlintConfigRule = TextlintConfigSingleRule | TextlintConfigRuleInPreset;
 export type TextlintConfigFilterRule = TextlintKernelFilterRule & {
@@ -56,6 +74,12 @@ export type TextlintConfigFilterRule = TextlintKernelFilterRule & {
      * @example "textlint-filter-rule-example"
      */
     moduleName: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     */
+    inputModuleName: string;
 };
 export type TextlintConfigRulePreset = {
     id: string;

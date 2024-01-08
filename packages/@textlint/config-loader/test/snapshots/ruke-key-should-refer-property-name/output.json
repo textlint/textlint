@@ -8,6 +8,7 @@
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
                 "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
+                "inputModuleName": "preset-abc-but-unique-rule-key",
                 "ruleKey": "uniqueA"
             },
             {
@@ -16,6 +17,7 @@
                 "options": false,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
                 "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
+                "inputModuleName": "preset-abc-but-unique-rule-key",
                 "ruleKey": "uniqueB"
             },
             {
@@ -24,6 +26,7 @@
                 "options": false,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc-but-unique-rule-key/index.js",
                 "moduleName": "textlint-rule-preset-abc-but-unique-rule-key",
+                "inputModuleName": "preset-abc-but-unique-rule-key",
                 "ruleKey": "uniqueC"
             }
         ],

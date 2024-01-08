@@ -8,6 +8,7 @@
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
                 "moduleName": "textlint-rule-preset-abc",
+                "inputModuleName": "preset-abc",
                 "ruleKey": "a"
             },
             {
@@ -16,6 +17,7 @@
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
                 "moduleName": "textlint-rule-preset-abc",
+                "inputModuleName": "preset-abc",
                 "ruleKey": "b"
             },
             {
@@ -24,6 +26,7 @@
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-abc/index.js",
                 "moduleName": "textlint-rule-preset-abc",
+                "inputModuleName": "preset-abc",
                 "ruleKey": "c"
             }
         ],

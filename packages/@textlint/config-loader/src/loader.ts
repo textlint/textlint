@@ -52,7 +52,8 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                     pluginId,
                     plugin,
                     filePath: resolvedModule.filePath,
-                    moduleName: resolvedModule.moduleName
+                    moduleName: resolvedModule.moduleName,
+                    inputModuleName: resolvedModule.inputModuleName
                 });
             })
         );
@@ -93,7 +94,8 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                             plugin,
                             options: pluginOptions,
                             filePath: resolvedPlugin.filePath,
-                            moduleName: resolvedPlugin.moduleName
+                            moduleName: resolvedPlugin.moduleName,
+                            inputModuleName: resolvedPlugin.inputModuleName
                         });
                     }
                 } catch (error) {
@@ -159,7 +161,8 @@ export const loadFilterRules = async ({
                         rule: ruleModule,
                         options: ruleOptions,
                         filePath: resolvePackage.filePath,
-                        moduleName: resolvePackage.moduleName
+                        moduleName: resolvePackage.moduleName,
+                        inputModuleName: resolvePackage.inputModuleName
                     });
                 }
             } catch (error) {
@@ -247,7 +250,8 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                             rule: ruleModule,
                             options: ruleOptions,
                             filePath: resolvePackage.filePath,
-                            moduleName: resolvePackage.moduleName
+                            moduleName: resolvePackage.moduleName,
+                            inputModuleName: resolvePackage.inputModuleName
                         });
                     }
                 }
@@ -313,7 +317,10 @@ export async function loadPreset({
             rule: preset.rules[ruleKey],
             options: presetRulesOptions[ruleKey] ?? preset.rulesConfig[ruleKey],
             filePath: presetPackageName.filePath,
+            // preset package name
             moduleName: presetPackageName.moduleName,
+            inputModuleName: presetPackageName.inputModuleName,
+            // rule key in preset
             ruleKey
         };
     });

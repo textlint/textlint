@@ -9,7 +9,8 @@
                 "plugin": {},
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-plugin-esm/index.mjs",
-                "moduleName": "textlint-plugin-esm"
+                "moduleName": "textlint-plugin-esm",
+                "inputModuleName": "esm"
             }
         ],
         "filterRules": []

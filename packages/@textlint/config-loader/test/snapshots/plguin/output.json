@@ -7,7 +7,8 @@
                 "ruleId": "a",
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
-                "moduleName": "textlint-rule-a"
+                "moduleName": "textlint-rule-a",
+                "inputModuleName": "a"
             }
         ],
         "plugins": [
@@ -16,7 +17,8 @@
                 "pluginId": "custom",
                 "plugin": {},
                 "filePath": "<MODULES_DIR>/textlint-plugin-custom/index.js",
-                "moduleName": "textlint-plugin-custom"
+                "moduleName": "textlint-plugin-custom",
+                "inputModuleName": "custom"
             }
         ],
         "filterRules": []
