@@ -5,6 +5,9 @@ import type { TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
 
 export type TextlintConfigPlugin = TextlintKernelPlugin & {
     type: "Plugin";
+    /**
+     * Absolute file path to the rule module
+     */
     filePath: string;
     /**
      * plugin module name
@@ -14,6 +17,9 @@ export type TextlintConfigPlugin = TextlintKernelPlugin & {
 //  a rule module
 export type TextlintConfigSingleRule = TextlintKernelRule & {
     type: "Rule";
+    /**
+     * Absolute file path to the rule module
+     */
     filePath: string;
     /**
      * rule module name
@@ -24,6 +30,9 @@ export type TextlintConfigSingleRule = TextlintKernelRule & {
 // a rule in preset module
 export type TextlintConfigRuleInPreset = TextlintKernelRule & {
     type: "RuleInPreset";
+    /**
+     * Absolute file path to the rule module
+     */
     filePath: string;
     /**
      * preset module name
@@ -32,12 +41,22 @@ export type TextlintConfigRuleInPreset = TextlintKernelRule & {
     moduleName: string;
     /**
      * rule key in preset
-     * @example "{preset-name}/{rule-key}"
+     * @example "{moduleName}/{ruleKey}"
      */
     ruleKey: string;
 };
 export type TextlintConfigRule = TextlintConfigSingleRule | TextlintConfigRuleInPreset;
-export type TextlintConfigFilterRule = TextlintKernelFilterRule & { filePath: string; moduleName: string };
+export type TextlintConfigFilterRule = TextlintKernelFilterRule & {
+    /**
+     * Absolute file path to the rule module
+     */
+    filePath: string;
+    /**
+     * filter rule module name
+     * @example "textlint-filter-rule-example"
+     */
+    moduleName: string;
+};
 export type TextlintConfigRulePreset = {
     id: string;
     preset: {
