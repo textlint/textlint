@@ -5,21 +5,29 @@ import type { TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
 
 export type TextlintConfigPlugin = TextlintKernelPlugin & {
     filePath: string;
-    // TODO: moduleName is a file Path - need to rename
+    /**
+     * plugin module name
+     */
     moduleName: string;
 };
 //  a rule module
 export type TextlintConfigSingleRule = TextlintKernelRule & {
     type: "Rule";
     filePath: string;
-    // TODO: moduleName is a file Path - need to rename
+    /**
+     * rule module name
+     * @example "textlint-rule-example"
+     */
     moduleName: string;
 };
 // a rule in preset module
 export type TextlintConfigRuleInPreset = TextlintKernelRule & {
     type: "RuleInPreset";
     filePath: string;
-    // TODO: moduleName is a file Path - need to rename
+    /**
+     * preset module name
+     * @example "textlint-rule-preset-example"
+     */
     moduleName: string;
     /**
      * rule key in preset
