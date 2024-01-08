@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1704675165146,
+  "lastUpdate": 1704675761377,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -25578,6 +25578,48 @@ window.BENCHMARK_DATA = {
             "value": 1.3902864780200002,
             "unit": "seconds",
             "range": "± 0.015058416000000019"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "9c68ba47eff80c65015ff1cea6a70c03a53b6fe6",
+          "message": "feat(config-loader): add `inputModuleName`\n\nPreviously, the input module name is not defined in results.\nIn some usecase, a user want to map input to result.\n\nFor this usecase, the user can use inputModuleName <-> moduleName",
+          "timestamp": "2024-01-08T09:59:28+09:00",
+          "tree_id": "29fc2fe0c5f3aedf05f6da145f1cb664af68c640",
+          "url": "https://github.com/textlint/textlint/commit/9c68ba47eff80c65015ff1cea6a70c03a53b6fe6"
+        },
+        "date": 1704675759049,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2419773750600003,
+            "unit": "seconds",
+            "range": "± 0.07135641599999998"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.68357446426,
+            "unit": "seconds",
+            "range": "± 0.10258372299999952"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 1.4331559824600002,
+            "unit": "seconds",
+            "range": "± 0.07250750399999983"
           }
         ]
       }
