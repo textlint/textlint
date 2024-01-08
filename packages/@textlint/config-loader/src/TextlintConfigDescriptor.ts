@@ -4,6 +4,7 @@ import type { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule
 import type { TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
 
 export type TextlintConfigPlugin = TextlintKernelPlugin & {
+    type: "Plugin";
     filePath: string;
     /**
      * plugin module name

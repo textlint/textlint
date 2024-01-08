@@ -48,6 +48,7 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                     );
                 }
                 plugins.push({
+                    type: "Plugin",
                     pluginId,
                     plugin,
                     filePath: resolvedModule.filePath,
@@ -87,6 +88,7 @@ For more details, See FAQ: https://github.com/textlint/textlint/blob/master/docs
                         }
 
                         plugins.push({
+                            type: "Plugin",
                             pluginId,
                             plugin,
                             options: pluginOptions,
