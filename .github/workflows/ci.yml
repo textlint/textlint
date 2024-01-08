@@ -22,9 +22,9 @@ jobs:
       - name: Install
         run: npm ci
       - name: Test
-        run: |
-          npm test
-          npm run test:examples
+        run: npm test
+      - name: Test Examples
+        run: npm run test:examples
 
   benchmark:
     name: Benchmark

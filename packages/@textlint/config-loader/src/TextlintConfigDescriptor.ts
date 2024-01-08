@@ -3,14 +3,28 @@
 import type { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule } from "@textlint/kernel";
 import type { TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
 
-export type TextlintConfigPlugin = TextlintKernelPlugin & { filePath: string; moduleName: string };
+export type TextlintConfigPlugin = TextlintKernelPlugin & {
+    filePath: string;
+    // TODO: moduleName is a file Path - need to rename
+    moduleName: string;
+};
 //  a rule module
-export type TextlintConfigSingleRule = TextlintKernelRule & { type: "Rule"; filePath: string; moduleName: string };
+export type TextlintConfigSingleRule = TextlintKernelRule & {
+    type: "Rule";
+    filePath: string;
+    // TODO: moduleName is a file Path - need to rename
+    moduleName: string;
+};
 // a rule in preset module
 export type TextlintConfigRuleInPreset = TextlintKernelRule & {
     type: "RuleInPreset";
     filePath: string;
+    // TODO: moduleName is a file Path - need to rename
     moduleName: string;
+    /**
+     * rule key in preset
+     * @example "{preset-name}/{rule-key}"
+     */
     ruleKey: string;
 };
 export type TextlintConfigRule = TextlintConfigSingleRule | TextlintConfigRuleInPreset;
