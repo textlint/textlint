@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1705074733627,
+  "lastUpdate": 1705089256861,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -25914,6 +25914,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7364295750800001,
             "unit": "seconds",
             "range": "± 0.009730203000000048"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "a52012c18adeb4364a9aac9ec19955d5d206f110",
+          "message": "chore(deps): update dependency chai to ^4.4.0",
+          "timestamp": "2024-01-12T19:51:34Z",
+          "tree_id": "5b511ae9cb1b894f5badefbf60c48e7035be60b7",
+          "url": "https://github.com/textlint/textlint/commit/a52012c18adeb4364a9aac9ec19955d5d206f110"
+        },
+        "date": 1705089254638,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2409364272600003,
+            "unit": "seconds",
+            "range": "± 0.05954899899999999"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.97680693226,
+            "unit": "seconds",
+            "range": "± 0.2535251590000005"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.76167712486,
+            "unit": "seconds",
+            "range": "± 0.031934888999999966"
           }
         ]
       }
