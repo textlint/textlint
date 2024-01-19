@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1705508535811,
+  "lastUpdate": 1705677015096,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -26250,6 +26250,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7587139579600001,
             "unit": "seconds",
             "range": "± 0.014462979000000042"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bcee827a2e644601d15a4368f167b33f48348f24",
+          "message": "chore(deps): update dependency chai to ^4.4.1",
+          "timestamp": "2024-01-19T15:07:22Z",
+          "tree_id": "fd8062c6ef3659d216a0bb22230fe3903a0280b0",
+          "url": "https://github.com/textlint/textlint/commit/bcee827a2e644601d15a4368f167b33f48348f24"
+        },
+        "date": 1705677013002,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.4290579422999996,
+            "unit": "seconds",
+            "range": "± 0.09743192200000017"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.3605645499,
+            "unit": "seconds",
+            "range": "± 0.2145848619999997"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7980184808999999,
+            "unit": "seconds",
+            "range": "± 0.02716358200000002"
           }
         ]
       }
