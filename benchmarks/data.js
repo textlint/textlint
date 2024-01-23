@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1705911195263,
+  "lastUpdate": 1706051794204,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -26418,6 +26418,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7360447628600001,
             "unit": "seconds",
             "range": "± 0.009382682000000031"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "17c415f0804c3184b81427b72b9d1cef965cc450",
+          "message": "chore(deps): update pkgdeps/git-tag-action action to v3",
+          "timestamp": "2024-01-23T23:13:51Z",
+          "tree_id": "b1643f09edfd988f16056ea1bc95f55f96c0746c",
+          "url": "https://github.com/textlint/textlint/commit/17c415f0804c3184b81427b72b9d1cef965cc450"
+        },
+        "date": 1706051791705,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.19904408104,
+            "unit": "seconds",
+            "range": "± 0.058476511999999925"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.810262789639999,
+            "unit": "seconds",
+            "range": "± 0.1961748459999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.73765808364,
+            "unit": "seconds",
+            "range": "± 0.013181160999999997"
           }
         ]
       }
