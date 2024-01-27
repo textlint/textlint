@@ -7,7 +7,8 @@
                 "ruleId": "a",
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-a"
+                "moduleName": "textlint-rule-a",
+                "inputModuleName": "a"
             },
             {
                 "type": "Rule",
@@ -16,14 +17,16 @@
                     "key": "value"
                 },
                 "filePath": "<MODULES_DIR>/textlint-rule-b/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-b"
+                "moduleName": "textlint-rule-b",
+                "inputModuleName": "b"
             },
             {
                 "type": "RuleInPreset",
                 "ruleId": "c/c-sub1",
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c",
+                "moduleName": "textlint-rule-preset-c",
+                "inputModuleName": "preset-c",
                 "ruleKey": "c-sub1"
             },
             {
@@ -31,7 +34,8 @@
                 "ruleId": "c/c-sub2",
                 "options": false,
                 "filePath": "<MODULES_DIR>/textlint-rule-preset-c/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-preset-c",
+                "moduleName": "textlint-rule-preset-c",
+                "inputModuleName": "preset-c",
                 "ruleKey": "c-sub2"
             }
         ],

@@ -4,31 +4,87 @@ import type { TextlintKernelFilterRule, TextlintKernelPlugin, TextlintKernelRule
 import type { TextlintRuleModule, TextlintRuleOptions } from "@textlint/types";
 
 export type TextlintConfigPlugin = TextlintKernelPlugin & {
+    type: "Plugin";
+    /**
+     * Absolute file path to the rule module
+     */
     filePath: string;
-    // TODO: moduleName is a file Path - need to rename
+    /**
+     * plugin module name
+     */
     moduleName: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     */
+    inputModuleName: string;
 };
 //  a rule module
 export type TextlintConfigSingleRule = TextlintKernelRule & {
     type: "Rule";
+    /**
+     * Absolute file path to the rule module
+     */
     filePath: string;
-    // TODO: moduleName is a file Path - need to rename
+    /**
+     * rule module name
+     * @example "textlint-rule-example"
+     */
     moduleName: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     */
+    inputModuleName: string;
 };
 // a rule in preset module
 export type TextlintConfigRuleInPreset = TextlintKernelRule & {
     type: "RuleInPreset";
+    /**
+     * Absolute file path to the rule module
+     */
     filePath: string;
-    // TODO: moduleName is a file Path - need to rename
+    /**
+     * preset module name
+     * @example "textlint-rule-preset-example"
+     */
     moduleName: string;
     /**
      * rule key in preset
-     * @example "{preset-name}/{rule-key}"
+     * @example In "{moduleName}/{ruleKey}", the ruleKey is "ruleKey"
      */
     ruleKey: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     *
+     * Difference with `ruleId` is that `ruleId` is rule identifier and includes `preset-name`.
+     * For example, `ruleId` is `preset-name/rule-key`.
+     * But, `inputModuleName` is `preset-name`.
+     */
+    inputModuleName: string;
 };
 export type TextlintConfigRule = TextlintConfigSingleRule | TextlintConfigRuleInPreset;
-export type TextlintConfigFilterRule = TextlintKernelFilterRule & { filePath: string; moduleName: string };
+export type TextlintConfigFilterRule = TextlintKernelFilterRule & {
+    /**
+     * Absolute file path to the rule module
+     */
+    filePath: string;
+    /**
+     * filter rule module name
+     * @example "textlint-filter-rule-example"
+     */
+    moduleName: string;
+    /**
+     * Inputted module name
+     * This module name is resolved by config-loader
+     * The resolved module name will be `moduleName`.
+     */
+    inputModuleName: string;
+};
 export type TextlintConfigRulePreset = {
     id: string;
     preset: {

@@ -12,6 +12,12 @@ export interface ConfigModulePrefix {
     PLUGIN_NAME_PREFIX: string;
 }
 
+export type TextLintModuleResolverResolveResult = {
+    inputModuleName: string;
+    moduleName: string;
+    filePath: string;
+};
+
 /**
  * This class aim to resolve textlint's package name and get the module path.
  *
@@ -37,48 +43,44 @@ export class TextLintModuleResolver {
          */
         this.baseDirectory = config && config.rulesBaseDirectory ? config.rulesBaseDirectory : "";
     }
-    tryResolveModuleName = (
-        moduleName: string
-    ): {
-        moduleName: string;
-        filePath: string;
-    } | null => {
-        const cachedFilePath = this.moduleCache.get(moduleName);
+
+    tryResolvePackagePath = (modulePath: string): string | null => {
+        const cachedFilePath = this.moduleCache.get(modulePath);
         if (cachedFilePath) {
-            return {
-                moduleName,
-                filePath: cachedFilePath
-            };
+            return cachedFilePath;
         }
-        const ret: string | undefined = tryResolve(moduleName);
+        const ret: string | undefined = tryResolve(modulePath);
         if (ret) {
-            this.moduleCache.set(moduleName, ret);
-            return {
-                moduleName,
-                filePath: ret
-            };
+            this.moduleCache.set(modulePath, ret);
+            return ret;
         }
         return null;
     };
+
     /**
      * Take package name, and return path to module.
      * @param {string} packageName
      * @returns {string} return path to module
      */
-    resolveRulePackageName(packageName: string): {
-        moduleName: string;
-        filePath: string;
-    } {
+    resolveRulePackageName(packageName: string): TextLintModuleResolverResolveResult {
         const baseDir = this.baseDirectory;
         const fullPackageName = createFullPackageName(PackageNamePrefix.rule, packageName);
         // <rule-name> or textlint-rule-<rule-name>
-        const resultFullPackageName = this.tryResolveModuleName(path.join(baseDir, fullPackageName));
-        if (resultFullPackageName) {
-            return resultFullPackageName;
+        const resultFullPackagePath = this.tryResolvePackagePath(path.join(baseDir, fullPackageName));
+        if (resultFullPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: fullPackageName,
+                filePath: resultFullPackagePath
+            };
         }
-        const resultPackageName = this.tryResolveModuleName(path.join(baseDir, packageName));
-        if (resultPackageName) {
-            return resultPackageName;
+        const resultPackagePath = this.tryResolvePackagePath(path.join(baseDir, packageName));
+        if (resultPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: packageName,
+                filePath: resultPackagePath
+            };
         }
         throw new ReferenceError(`Failed to load textlint's rule module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
@@ -90,20 +92,25 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * @param {string} packageName
      * @returns {string} return path to module
      */
-    resolveFilterRulePackageName(packageName: string): {
-        moduleName: string;
-        filePath: string;
-    } {
+    resolveFilterRulePackageName(packageName: string): TextLintModuleResolverResolveResult {
         const baseDir = this.baseDirectory;
         const fullPackageName = createFullPackageName(PackageNamePrefix.filterRule, packageName);
         // <rule-name> or textlint-filter-rule-<rule-name> or @scope/<rule-name>
-        const resultFullPackageName = this.tryResolveModuleName(path.join(baseDir, fullPackageName));
-        if (resultFullPackageName) {
-            return resultFullPackageName;
+        const resultFullPackagePath = this.tryResolvePackagePath(path.join(baseDir, fullPackageName));
+        if (resultFullPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: fullPackageName,
+                filePath: resultFullPackagePath
+            };
         }
-        const resultPackageName = this.tryResolveModuleName(path.join(baseDir, packageName));
-        if (resultPackageName) {
-            return resultPackageName;
+        const resultPackagePath = this.tryResolvePackagePath(path.join(baseDir, packageName));
+        if (resultPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: packageName,
+                filePath: resultPackagePath
+            };
         }
         throw new ReferenceError(`Failed to load textlint's filter rule module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
@@ -115,20 +122,25 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * @param {string} packageName
      * @returns {string} return path to module
      */
-    resolvePluginPackageName(packageName: string): {
-        moduleName: string;
-        filePath: string;
-    } {
+    resolvePluginPackageName(packageName: string): TextLintModuleResolverResolveResult {
         const baseDir = this.baseDirectory;
         const fullPackageName = createFullPackageName(PackageNamePrefix.plugin, packageName);
         // <plugin-name> or textlint-plugin-<rule-name>
-        const resultFullPackageName = this.tryResolveModuleName(path.join(baseDir, fullPackageName));
-        if (resultFullPackageName) {
-            return resultFullPackageName;
+        const resultFullPackagePath = this.tryResolvePackagePath(path.join(baseDir, fullPackageName));
+        if (resultFullPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: fullPackageName,
+                filePath: resultFullPackagePath
+            };
         }
-        const resultPackageName = this.tryResolveModuleName(path.join(baseDir, packageName));
-        if (resultPackageName) {
-            return resultPackageName;
+        const resultPackagePath = this.tryResolvePackagePath(path.join(baseDir, packageName));
+        if (resultPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: packageName,
+                filePath: resultPackagePath
+            };
         }
         throw new ReferenceError(`Failed to load textlint's plugin module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md
@@ -140,10 +152,7 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
      * @param {string} packageName
      * The user must specify preset- prefix to these `packageName`.
      */
-    resolvePresetPackageName(packageName: string): {
-        moduleName: string;
-        filePath: string;
-    } {
+    resolvePresetPackageName(packageName: string): TextLintModuleResolverResolveResult {
         const baseDir = this.baseDirectory;
         const PREFIX = PackageNamePrefix.rulePreset;
         /* Implementation Note
@@ -167,24 +176,40 @@ See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-loa
         const fullPackageName = createFullPackageName(PREFIX, packageNameWithoutPreset);
         const fullFullPackageName = `${PREFIX}${packageNameWithoutPreset}`;
         // textlint-rule-preset-<preset-name> or @scope/textlint-rule-preset-<preset-name>
-        const resultFullPresetPackageName = this.tryResolveModuleName(path.join(baseDir, fullFullPackageName));
-        if (resultFullPresetPackageName) {
-            return resultFullPresetPackageName;
+        const resultFullPresetPackagePath = this.tryResolvePackagePath(path.join(baseDir, fullFullPackageName));
+        if (resultFullPresetPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: fullFullPackageName,
+                filePath: resultFullPresetPackagePath
+            };
         }
         // <preset-name>
-        const resultPresetPackageName = this.tryResolveModuleName(path.join(baseDir, packageNameWithoutPreset));
-        if (resultPresetPackageName) {
-            return resultPresetPackageName;
+        const resultPresetPackagePath = this.tryResolvePackagePath(path.join(baseDir, packageNameWithoutPreset));
+        if (resultPresetPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: packageNameWithoutPreset,
+                filePath: resultPresetPackagePath
+            };
         }
         // <rule-name>
-        const resultFullPackageName = this.tryResolveModuleName(path.join(baseDir, fullPackageName));
-        if (resultFullPackageName) {
-            return resultFullPackageName;
+        const resultFullPackagePath = this.tryResolvePackagePath(path.join(baseDir, fullPackageName));
+        if (resultFullPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: fullPackageName,
+                filePath: resultFullPackagePath
+            };
         }
         // <package-name>
-        const resultPackageName = this.tryResolveModuleName(path.join(baseDir, packageName));
-        if (resultPackageName) {
-            return resultPackageName;
+        const resultPackagePath = this.tryResolvePackagePath(path.join(baseDir, packageName));
+        if (resultPackagePath) {
+            return {
+                inputModuleName: packageName,
+                moduleName: packageName,
+                filePath: resultPackagePath
+            };
         }
         throw new ReferenceError(`Failed to load textlint's preset module: "${packageName}" is not found.
 See FAQ: https://github.com/textlint/textlint/blob/master/docs/faq/failed-to-load-textlints-module.md

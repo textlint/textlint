@@ -29,6 +29,8 @@ export interface TextlintKernelPlugin {
 export interface TextlintKernelRule {
     // rule name as key
     // this key should be normalized
+    // For example, "textlint-rule-example" => "example"
+    // In Preset rule, "rule-name" of "textlint-rule-preset-example" => "example/rule-name"
     ruleId: string;
     // rule module
     // For example, `rule: require("textlint-rule-example")`

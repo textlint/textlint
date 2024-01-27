@@ -7,15 +7,18 @@
                 "ruleId": "a",
                 "options": true,
                 "filePath": "<MODULES_DIR>/textlint-rule-a/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-rule-a"
+                "moduleName": "textlint-rule-a",
+                "inputModuleName": "a"
             }
         ],
         "plugins": [
             {
+                "type": "Plugin",
                 "pluginId": "custom",
                 "plugin": {},
                 "filePath": "<MODULES_DIR>/textlint-plugin-custom/index.js",
-                "moduleName": "<MODULES_DIR>/textlint-plugin-custom"
+                "moduleName": "textlint-plugin-custom",
+                "inputModuleName": "custom"
             }
         ],
         "filterRules": []
