@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706099239063,
+  "lastUpdate": 1706399595892,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -26544,6 +26544,48 @@ window.BENCHMARK_DATA = {
             "value": 0.74751707612,
             "unit": "seconds",
             "range": "± 0.008483037999999943"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "083e13826e472709be111e8730c1b9d0febd9a88",
+          "message": "fix(config-loader): enhance config-loader results (#1322)\n\n* fix(config-loader): `moduleName` should be package's name\r\n\r\nPreviously, moduleName is a file path.\r\n\r\n* feat(config-loader): add `type: \"Plugin\"`\r\n\r\n* Add comments\r\n\r\n* test: update snapshot\r\n\r\n* feat(config-loader): add `inputModuleName`\r\n\r\nPreviously, the input module name is not defined in results.\r\nIn some usecase, a user want to map input to result.\r\n\r\nFor this usecase, the user can use inputModuleName <-> moduleName\r\n\r\n* update comment\r\n\r\n* update comment\r\n\r\n* update comment",
+          "timestamp": "2024-01-28T08:50:46+09:00",
+          "tree_id": "3c6a1a9214cf15e8b2868d37e1f5e5d142a7bab5",
+          "url": "https://github.com/textlint/textlint/commit/083e13826e472709be111e8730c1b9d0febd9a88"
+        },
+        "date": 1706399594581,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2222195177399997,
+            "unit": "seconds",
+            "range": "± 0.020890787999999993"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.932646796739999,
+            "unit": "seconds",
+            "range": "± 0.15165510499999968"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7399218971400001,
+            "unit": "seconds",
+            "range": "± 0.009934585000000107"
           }
         ]
       }
