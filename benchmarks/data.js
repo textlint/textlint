@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706486602946,
+  "lastUpdate": 1706509077178,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -26754,6 +26754,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7560717526800002,
             "unit": "seconds",
             "range": "± 0.014509647999999986"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "771e838e12cffba454a4b3977fa63cbe63788366",
+          "message": "chore(deps): update dependency npm-run-all2 to ^5.0.2",
+          "timestamp": "2024-01-29T06:15:17Z",
+          "tree_id": "41a397808c406737fc2de593ea2f79ab0510e229",
+          "url": "https://github.com/textlint/textlint/commit/771e838e12cffba454a4b3977fa63cbe63788366"
+        },
+        "date": 1706509074787,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1345467821,
+            "unit": "seconds",
+            "range": "± 0.05591913699999962"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.7719149429,
+            "unit": "seconds",
+            "range": "± 0.09004410599999968"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7313864217000001,
+            "unit": "seconds",
+            "range": "± 0.02175434300000001"
           }
         ]
       }
