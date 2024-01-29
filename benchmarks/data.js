@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706449374466,
+  "lastUpdate": 1706486537178,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -26670,6 +26670,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7302870431799999,
             "unit": "seconds",
             "range": "± 0.013497399000000021"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f9f8556cd7cbb5cd03b676164d57c7323e9c4feb",
+          "message": "chore(deps): replace dependency npm-run-all with npm-run-all2 ^5.0.0 (#1333)\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2024-01-29T08:59:43+09:00",
+          "tree_id": "ac21dbe1dad372ea11c69864b7050d214f4a32df",
+          "url": "https://github.com/textlint/textlint/commit/f9f8556cd7cbb5cd03b676164d57c7323e9c4feb"
+        },
+        "date": 1706486535881,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1793433788599996,
+            "unit": "seconds",
+            "range": "± 0.04224524500000015"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.8552691802600005,
+            "unit": "seconds",
+            "range": "± 0.2061502389999994"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74507764186,
+            "unit": "seconds",
+            "range": "± 0.03519183800000003"
           }
         ]
       }
