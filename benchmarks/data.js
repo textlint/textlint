@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706621301291,
+  "lastUpdate": 1706622032176,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -27006,6 +27006,48 @@ window.BENCHMARK_DATA = {
             "value": 0.73097900722,
             "unit": "seconds",
             "range": "± 0.009872983000000057"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8bac1111d7329e059fc98fdd42e62c0ebac6964f",
+          "message": "CI: drop Node.js 16 (#1337)\n\n* CI: update node versions\r\n\r\n* CI: pin 18.18.2\r\n\r\n* fix: update typescript and use `import` for loading ts-node/esm\r\n\r\n* CI: update node versions\r\n\r\n* format\r\n\r\n* rm\r\n\r\n* fix\r\n\r\n* use NodeNext",
+          "timestamp": "2024-01-30T22:37:58+09:00",
+          "tree_id": "362ae0dcf7e4566e5e8612e222562769f85d4c66",
+          "url": "https://github.com/textlint/textlint/commit/8bac1111d7329e059fc98fdd42e62c0ebac6964f"
+        },
+        "date": 1706622030543,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.22472393572,
+            "unit": "seconds",
+            "range": "± 0.029036527000000145"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.915981380919999,
+            "unit": "seconds",
+            "range": "± 0.0968981960000006"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7363217395200001,
+            "unit": "seconds",
+            "range": "± 0.012215514000000094"
           }
         ]
       }
