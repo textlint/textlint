@@ -13,6 +13,6 @@
     "@textlint/types": "^13.4.1",
     "textlint-scripts": "^13.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "~4.9.4"
+    "typescript": "~5.3.3"
   }
 }

@@ -45,7 +45,7 @@
         "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
         "textlint-rule-no-todo": "^2.0.1",
-        "typescript": "~4.9.4"
+        "typescript": "~5.3.3"
     },
     "publishConfig": {
         "access": "public"
