@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "ESNext",
-"moduleResolution": "Node",
-    "outDir": "./module/",
+    "moduleResolution": "Node",
+    "outDir": "./module/"
   }
 }
