@@ -28,7 +28,7 @@
     "test:projectReferences": "workspaces-to-typescript-project-references --includesRoot --check",
     "update:projectReferences": "workspaces-to-typescript-project-references --includesRoot ",
     "type-check": "tsc -b .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\" \"**/tsconfig.module.json\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks"
   },
   "devDependencies": {
