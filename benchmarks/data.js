@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706622032176,
+  "lastUpdate": 1706622055872,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -27048,6 +27048,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7363217395200001,
             "unit": "seconds",
             "range": "± 0.012215514000000094"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "69362333+kapooraryan@users.noreply.github.com",
+            "name": "Aryan Kapoor",
+            "username": "kapooraryan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1a696e3c517cb4169c5ede04732258f72997d90a",
+          "message": "Removes CLI from @textlint/linter-formatter (#1272)",
+          "timestamp": "2024-01-30T22:38:26+09:00",
+          "tree_id": "abdc6adfb581fb1d394de467a1ef10219c7bdb8b",
+          "url": "https://github.com/textlint/textlint/commit/1a696e3c517cb4169c5ede04732258f72997d90a"
+        },
+        "date": 1706622054456,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1887571457,
+            "unit": "seconds",
+            "range": "± 0.08530550700000017"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.8296056355,
+            "unit": "seconds",
+            "range": "± 0.04934624200000037"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7437052765000001,
+            "unit": "seconds",
+            "range": "± 0.02033564100000007"
           }
         ]
       }
