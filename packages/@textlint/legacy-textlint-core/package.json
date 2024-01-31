@@ -49,7 +49,7 @@
       "@textlint/textlint-plugin-markdown": "^13.4.1"
     },
     "devDependencies": {
-        "@types/node": "^18.19.8",
+        "@types/node": "^18.19.9",
         "prettier": "^2.7.1",
         "rimraf": "^3.0.2",
         "typescript": "~5.3.3"
