@@ -1,0 +1,1 @@
+{"version":3,"file":"esm-worker.js","names":["esmWorker"],"sources":["../src/esm-worker.mjs"],"sourcesContent":["export async function esmWorker() {\n    return \"from esm\";\n}\n"],"mappings":";;;;;;AAAO,eAAeA,SAASA,CAAA,EAAG;EAC9B,OAAO,UAAU;AACrB"}
