@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = _default;
 var _path = _interopRequireDefault(require("path"));
 var _prh = require("prh");
-function _interopRequireDefault(obj) {
+function _iteropRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
 }
 function _default(text) {

@@ -22,9 +22,17 @@ const cd = (command) => {
 for (const example of examples) {
     // example
     cd(exampleDir);
-    exec("npm install");
-    exec("npm test");
+    // installed in monorepo root
+    // exec("npm install");
     exec("npm run build");
+    exec("npm test");
+    // check the git diff in ${exampleDir}
+    const diff = shell.exec(`git diff --exit-code --relative="${exampleDir}"`).code;
+    if (diff !== 0) {
+        // eslint-disable-next-line no-console
+        console.log(`git diff --exit-code in ${exampleDir} is not 0`);
+        shell.exit(1);
+    }
 }
 // exit
 shell.exit(0);
