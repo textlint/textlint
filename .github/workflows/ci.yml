@@ -8,7 +8,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        # https://github.com/TypeStrong/ts-node/issues/2094
         node: [ 18, 20 ]
 
     name: Test(Node ${{ matrix.node }} on ${{ matrix.os }})
