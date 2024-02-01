@@ -1,5 +1,14 @@
-import common from "./common";
-export default function (context, options = {}) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = _default;
+var _common = _interopRequireDefault(require("./common.js"));
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
+function _default(context, options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
@@ -10,7 +19,7 @@ export default function (context, options = {}) {
             // "Str" node
             const text = getSource(node);
             // check prh
-            const result = common(text);
+            const result = (0, _common.default)(text);
             if (result.diffs.length > 0) {
                 result.diffs.forEach((diff) => {
                     const ruleError = new RuleError(`Found ${diff.expected}!`, {
@@ -30,3 +39,4 @@ export default function (context, options = {}) {
         }
     };
 }
+//# sourceMappingURL=index.js.map

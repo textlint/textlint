@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = _default;
+exports.default = void 0;
 var _common = _interopRequireDefault(require("./common"));
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : { default: obj };
@@ -38,12 +38,12 @@ function _asyncToGenerator(fn) {
         });
     };
 }
-function _default(context) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+var report = function report(context) {
+    var _options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var { Syntax, RuleError, report, getSource } = context;
     return {
         // async test
-        [Syntax.Code](node) {
+        [Syntax.Code]() {
             return _asyncToGenerator(function* () {
                 return null;
             })();
@@ -55,7 +55,7 @@ function _default(context) {
             var result = (0, _common.default)(text);
             if (result.diffs.length > 0) {
                 result.diffs.forEach((diff) => {
-                    var ruleError = new RuleError("Found ".concat(diff.expected, "!"), {
+                    var ruleError = new RuleError("Found " + diff.expected + "!", {
                         index: diff.index // padding of index
                     });
                     report(node, ruleError);
@@ -71,5 +71,9 @@ function _default(context) {
             }
         }
     };
-}
+};
+var _default = (exports.default = {
+    linter: report,
+    fixer: report
+});
 //# sourceMappingURL=index.js.map
