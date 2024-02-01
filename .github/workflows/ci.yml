@@ -54,10 +54,6 @@ jobs:
         with:
           path: ./cache
           key: ${{ runner.os }}-benchmark
-      - name: show diff
-        run: |
-          git diff --exit-code
-          git diff --exit-code --cached
       - name: Save Benchmark Results
         uses: benchmark-action/github-action-benchmark@v1
         with:
