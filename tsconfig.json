@@ -65,7 +65,7 @@
       "path": "packages/@textlint/utils"
     },
     {
-      "path": "packages/textlint-scripts/example-ts"
+      "path": "packages/textlint-scripts/examples/example-ts"
     }
   ]
 }
