@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706755067370,
+  "lastUpdate": 1706755149429,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -27468,6 +27468,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7297348483,
             "unit": "seconds",
             "range": "± 0.014357553000000078"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "030ce31b40ee51d6e7127d5aaadc9383b7e83441",
+          "message": "BREAKING CHANGE: textlint require Node.js v18.14.0>=\n\nThe core module of Node.js may be needed in the minor version.\n\nref https://github.com/textlint/textlint/issues/1342",
+          "timestamp": "2024-02-01T11:36:47+09:00",
+          "tree_id": "d97de35586ac449938aabeaa19ec19013fbb4218",
+          "url": "https://github.com/textlint/textlint/commit/030ce31b40ee51d6e7127d5aaadc9383b7e83441"
+        },
+        "date": 1706755147930,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1534379415,
+            "unit": "seconds",
+            "range": "± 0.02569390299999963"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.795132360299999,
+            "unit": "seconds",
+            "range": "± 0.11074431400000062"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7310390759000001,
+            "unit": "seconds",
+            "range": "± 0.013508661000000033"
           }
         ]
       }
