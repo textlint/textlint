@@ -1,4 +1,4 @@
-import common from "./common";
+import common from "./common.js";
 export default function (context, options = {}) {
     const { Syntax, RuleError, report, getSource } = context;
     return {

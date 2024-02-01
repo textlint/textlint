@@ -33,6 +33,9 @@
         "url": "https://github.com/textlint/textlint/issues"
     },
     "homepage": "https://github.com/textlint/textlint/tree/master/packages/textlint-scripts",
+    "engines": {
+      "node": ">=18.19.0"
+    },
     "devDependencies": {
         "lint-staged": "^13.3.0",
         "prettier": "^2.2.1",

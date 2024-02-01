@@ -59,9 +59,7 @@
     "packages/*",
     "examples/*",
     "packages/@textlint/*",
-    "packages/textlint-scripts/example",
-    "packages/textlint-scripts/example-ts",
-    "packages/textlint-scripts/example-dynamic-import",
+    "packages/textlint-scripts/examples/*",
     "test/*",
     "website"
   ],

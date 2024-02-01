@@ -2,4 +2,5 @@ lib/
 out/
 module/
 node_modules/
+packages/textlint-scripts/examples/
 test/integration-test/

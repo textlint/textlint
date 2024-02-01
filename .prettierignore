@@ -3,3 +3,4 @@ lib/
 module/
 node_modules/
 test/integration-test/
+packages/textlint-scripts/examples/

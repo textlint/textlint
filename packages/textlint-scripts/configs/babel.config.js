@@ -7,11 +7,13 @@ module.exports = {
         [
             "@babel/env",
             {
-                // For async/await support
-                // https://babeljs.io/docs/en/babel-preset-env#targetsesmodules
                 targets: {
-                    esmodules: true
+                    // Same version with textlint's supported Node.js version
+                    node: "18.14.0"
                 },
+                // It will be defaulted in Babel 8
+                // https://babeljs.io/docs/babel-preset-env#bugfixes
+                bugfixes: true,
                 // Allow to use native `import()` for loading ESM modules
                 // https://github.com/babel/babel/issues/10194
                 // TODO: It will not required in Babel 8
