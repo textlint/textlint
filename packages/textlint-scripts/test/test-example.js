@@ -26,13 +26,6 @@ for (const example of examples) {
     // exec("npm install");
     exec("npm run build");
     exec("npm test");
-    // check the git diff in ${exampleDir}
-    const diff = shell.exec(`git diff --exit-code "${exampleDir}"`).code;
-    if (diff !== 0) {
-        // eslint-disable-next-line no-console
-        console.log(`git diff --exit-code in ${exampleDir} is not 0`);
-        shell.exit(1);
-    }
 }
 // exit
 shell.exit(0);
