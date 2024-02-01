@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706794423402,
+  "lastUpdate": 1706795866070,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -27804,6 +27804,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7248970661399999,
             "unit": "seconds",
             "range": "± 0.012865402000000081"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1db009365cb01024c61d089a4e4ffaea3f8fa0c6",
+          "message": "BREAKING CHANGE: Change textlint-scirpts output target (#1345)\n\n* test: add build files\r\n\r\n* move textlint-script example to examples/*\r\n\r\n* test: add diff check\r\n\r\n* update\r\n\r\n* update\r\n\r\n* BREAKING CHANGE: Change the output of the textlint-script to be compatible with Node.js 18 or later.\r\n\r\nIt aims to reduce output code size\r\n\r\n* Update packages/textlint-scripts/examples/example-ts/tsconfig.json+1\r\n\r\n* fix: enable `bugfixes` option\r\n\r\n* CI: test diff\r\n\r\n* remove output\r\n\r\n* update gitignore\r\n\r\n* CI: update\r\n\r\n* CI: update",
+          "timestamp": "2024-02-01T22:55:08+09:00",
+          "tree_id": "ab1a76c0c686c59551c1d79f9d729adffabdf36a",
+          "url": "https://github.com/textlint/textlint/commit/1db009365cb01024c61d089a4e4ffaea3f8fa0c6"
+        },
+        "date": 1706795863990,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2751201136199994,
+            "unit": "seconds",
+            "range": "± 0.08495783300000026"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.01854396122,
+            "unit": "seconds",
+            "range": "± 0.1627079450000002"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7471862184200001,
+            "unit": "seconds",
+            "range": "± 0.018290432999999995"
           }
         ]
       }
