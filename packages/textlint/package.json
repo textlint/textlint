@@ -93,7 +93,7 @@
     "typescript": "~5.3.3"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.14.0"
   },
   "publishConfig": {
     "access": "public"
