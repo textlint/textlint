@@ -84,7 +84,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # textlint-user
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Git Tag
-        uses: pkgdeps/git-tag-action@v2
+        uses: pkgdeps/git-tag-action@v3
         with:
           version: ${{ env.PACKAGE_VERSION }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
