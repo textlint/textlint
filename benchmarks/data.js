@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706755596548,
+  "lastUpdate": 1706776947151,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -27552,6 +27552,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7255963678399999,
             "unit": "seconds",
             "range": "± 0.01765954999999997"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f7465ce02b95492638fd35376a846885415b3f9b",
+          "message": "chore(deps): update peter-evans/create-pull-request action to v6 (#1341)\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2024-02-01T17:40:07+09:00",
+          "tree_id": "e91e02c5b57e207f8c99e3aabf4993ed74fdb28f",
+          "url": "https://github.com/textlint/textlint/commit/f7465ce02b95492638fd35376a846885415b3f9b"
+        },
+        "date": 1706776945457,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1599231122600004,
+            "unit": "seconds",
+            "range": "± 0.028716723999999694"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.78829630166,
+            "unit": "seconds",
+            "range": "± 0.1384535669999991"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7300400328600001,
+            "unit": "seconds",
+            "range": "± 0.009103277999999992"
           }
         ]
       }
