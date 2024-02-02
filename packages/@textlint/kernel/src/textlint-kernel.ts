@@ -77,18 +77,16 @@ export class TextlintKernel {
      * @param {Object} options linting options
      * @returns {Promise.<TextlintResult>}
      */
-    lintText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
-        return Promise.resolve().then(() => {
-            const descriptor = new TextlintKernelDescriptor({
-                rules: options.rules || [],
-                filterRules: options.filterRules || [],
-                plugins: options.plugins || []
-            });
-            return this._parallelProcess({
-                descriptor,
-                text,
-                options
-            });
+    async lintText(text: string, options: TextlintKernelOptions): Promise<TextlintResult> {
+        const descriptor = new TextlintKernelDescriptor({
+            rules: options.rules || [],
+            filterRules: options.filterRules || [],
+            plugins: options.plugins || []
+        });
+        return this._parallelProcess({
+            descriptor,
+            text,
+            options
         });
     }
 
@@ -98,18 +96,16 @@ export class TextlintKernel {
      * @param {Object} options lint options
      * @returns {Promise.<TextlintFixResult>}
      */
-    fixText(text: string, options: TextlintKernelOptions): Promise<TextlintFixResult> {
-        return Promise.resolve().then(() => {
-            const descriptor = new TextlintKernelDescriptor({
-                rules: options.rules || [],
-                filterRules: options.filterRules || [],
-                plugins: options.plugins || []
-            });
-            return this._sequenceProcess({
-                descriptor,
-                options,
-                text
-            });
+    async fixText(text: string, options: TextlintKernelOptions): Promise<TextlintFixResult> {
+        const descriptor = new TextlintKernelDescriptor({
+            rules: options.rules || [],
+            filterRules: options.filterRules || [],
+            plugins: options.plugins || []
+        });
+        return this._sequenceProcess({
+            descriptor,
+            options,
+            text
         });
     }
 

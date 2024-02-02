@@ -60,11 +60,17 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(files, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const targetFiles = await findFiles(patterns, {
                 ignoreFilePath: options.ignoreFilePath
             });
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
+            });
+            console.log({
+                patterns,
+                targetFiles,
+                availableFiles,
+                unAvailableFiles
             });
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
@@ -93,7 +99,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(files, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const targetFiles = await findFiles(patterns, {
                 ignoreFilePath: options.ignoreFilePath
             });
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {

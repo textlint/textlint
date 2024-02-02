@@ -492,4 +492,13 @@ describe("cli-test", function () {
             });
         });
     });
+    describe("when pass non-supported file extension", function () {
+        it("should show warning", function () {
+            return runWithMockLog(async ({ getLogs }) => {
+                const result = await cli.execute("--rule textlint-rule-no-todo /path/to/not-supported-file");
+                console.log(getLogs());
+                assert.strictEqual(result, 1);
+            });
+        });
+    });
 });

@@ -226,12 +226,12 @@ new TextLintEngine({
      * @param {String[]}  files An array of file and directory names.
      * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
      */
-    executeOnFiles(files: string[]): Promise<LintResult[]> {
+    async executeOnFiles(files: string[]): Promise<LintResult[]> {
         const execFile = this.onFile(this.textlint);
         const patterns = pathsToGlobPatterns(files, {
             extensions: this.textlintrcDescriptor.availableExtensions
         });
-        const targetFiles = findFiles(patterns, { ignoreFilePath: this.config.ignoreFile });
+        const targetFiles = await findFiles(patterns, { ignoreFilePath: this.config.ignoreFile });
         // Maybe, unAvailableFilePath should be warning.
         // But, The user can use glob pattern like `src/**/*` as arguments.
         // pathsToGlobPatterns not modified that pattern.
