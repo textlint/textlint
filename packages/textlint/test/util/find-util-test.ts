@@ -16,7 +16,8 @@ describe("find-util", () => {
             ]);
         });
         it("should find files with absolute path pattern", async () => {
-            const patterns = [path.posix.resolve(cwd, "dir/**/*.md")];
+            const patterns = [path.posix.resolve(cwd, "./dir/**/*.md")];
+            console.log("p@patterns", patterns);
             const files = await findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
@@ -26,7 +27,7 @@ describe("find-util", () => {
             ]);
         });
         it("should find dot files", async () => {
-            const patterns = [path.posix.resolve(cwd, "dir/**/*.md")];
+            const patterns = [path.posix.resolve(cwd, "./dir/**/*.md")];
             const files = await findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
