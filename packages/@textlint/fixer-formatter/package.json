@@ -41,7 +41,7 @@
     "@textlint/types": "^13.4.1",
     "chalk": "^4.1.2",
     "debug": "^4.3.4",
-    "diff": "^4.0.2",
+    "diff": "^5.1.0",
     "is-file": "^1.0.0",
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
