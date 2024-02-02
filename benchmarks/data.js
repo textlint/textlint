@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706863866296,
+  "lastUpdate": 1706864621453,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -28602,6 +28602,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7473803614200001,
             "unit": "seconds",
             "range": "± 0.010195287000000053"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "0d07d6c626d176b59d4b60b1896ad41b1aa7f4ba",
+          "message": "CI: add canary-release workflow (#1350)",
+          "timestamp": "2024-02-02T18:01:20+09:00",
+          "tree_id": "8f91e39c81b5a8982584b20ca9a1a94956d17863",
+          "url": "https://github.com/textlint/textlint/commit/0d07d6c626d176b59d4b60b1896ad41b1aa7f4ba"
+        },
+        "date": 1706864619670,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2119988499,
+            "unit": "seconds",
+            "range": "± 0.08649634800000028"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.970319414299999,
+            "unit": "seconds",
+            "range": "± 0.2513873519999992"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7538550211,
+            "unit": "seconds",
+            "range": "± 0.028640522"
           }
         ]
       }
