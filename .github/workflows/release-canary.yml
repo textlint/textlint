@@ -1,0 +1,28 @@
+name: 'canary-release'
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  canary-release:
+    name: canary-release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version: 18
+          # for publishing packages to npm
+          registry-url: https://registry.npmjs.org
+      - name: install
+        run: npm ci
+      - name: Publish
+        run: npm exec lerna publish --canary --preid next --dist-tag next --force-publish='*' --no-push --no-git-tag-version --yes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
