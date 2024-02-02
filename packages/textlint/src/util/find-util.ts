@@ -1,10 +1,11 @@
 // LICENSE : MIT
 "use strict";
 import { pathToGlobPattern } from "path-to-glob-pattern";
-import glob from "glob";
+import { globStream } from "glob";
 import path from "path";
 import fs from "fs";
 import debug0 from "debug";
+
 const debug = debug0("textlint:find-util");
 const DEFAULT_IGNORE_PATTERNS = Object.freeze(["**/.git/**", "**/node_modules/**"]);
 export type FindFilesOptions = {
@@ -47,7 +48,7 @@ export function pathsToGlobPatterns(
  * @param {FindFilesOptions} options
  * @returns {string[]} file path list
  */
-export function findFiles(patterns: string[], options: FindFilesOptions = {}): string[] {
+export async function findFiles(patterns: string[], options: FindFilesOptions = {}): Promise<string[]> {
     const cwd = options.cwd || process.cwd();
     const ignoredPatterns: string[] = [];
     ignoredPatterns.push(...DEFAULT_IGNORE_PATTERNS);
@@ -67,30 +68,24 @@ export function findFiles(patterns: string[], options: FindFilesOptions = {}): s
     }
     debug("search patterns: %o", patterns);
     debug("search ignore patterns: %o", ignoredPatterns);
-    const files: string[] = [];
-    const addFile = (filePath: string) => {
-        if (files.indexOf(filePath) === -1) {
-            files.push(filePath);
+    const fileSet: Set<string> = new Set();
+    const globsPattern = patterns.filter((pattern) => {
+        const isFilePath = isFile(path.resolve(cwd, pattern));
+        if (isFilePath) {
+            fileSet.add(path.resolve(cwd, pattern));
         }
-    };
-    patterns.forEach((pattern) => {
-        const file = path.resolve(cwd, pattern);
-        if (isFile(file)) {
-            addFile(fs.realpathSync(file));
-        } else {
-            glob.sync(pattern, {
-                cwd,
-                absolute: true,
-                nodir: true,
-                ignore: ignoredPatterns
-            }).forEach((filePath: string) => {
-                // workaround for windows
-                // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
-                addFile(path.resolve(filePath));
-            });
-        }
+        return !isFilePath;
     });
-    return files;
+    const filesStream = globStream(globsPattern, {
+        cwd,
+        absolute: true,
+        nodir: true,
+        ignore: ignoredPatterns
+    });
+    for await (const file of filesStream) {
+        fileSet.add(file);
+    }
+    return [...fileSet];
 }
 
 /**

@@ -60,7 +60,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(files, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const targetFiles = await findFiles(patterns, {
                 ignoreFilePath: options.ignoreFilePath
             });
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
@@ -93,7 +93,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             const patterns = pathsToGlobPatterns(files, {
                 extensions: options.descriptor.availableExtensions
             });
-            const targetFiles = findFiles(patterns, {
+            const targetFiles = await findFiles(patterns, {
                 ignoreFilePath: options.ignoreFilePath
             });
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
