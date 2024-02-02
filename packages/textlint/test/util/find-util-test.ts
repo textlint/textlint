@@ -4,7 +4,9 @@ import { findFiles, separateByAvailability } from "../../src/util/find-util";
 
 describe("find-util", () => {
     describe("findFiles", () => {
-        const cwd = path.posix.resolve(__dirname, "fixtures/find-util");
+        const cwd = path.resolve(__dirname, "fixtures/find-util");
+        // for glob
+        const posixCwd = path.posix.resolve(__dirname, "fixtures/find-util");
         it("should find files with relative path pattern", async () => {
             const patterns = ["dir/**/*.md"];
             const files = await findFiles(patterns, { cwd });
@@ -16,7 +18,7 @@ describe("find-util", () => {
             ]);
         });
         it("should find files with absolute path pattern", async () => {
-            const patterns = [path.posix.resolve(cwd, "./dir/**/*.md")];
+            const patterns = [path.posix.resolve(posixCwd, "./dir/**/*.md")];
             console.log("p@patterns", patterns);
             const files = await findFiles(patterns, { cwd });
             files.sort();
@@ -27,7 +29,7 @@ describe("find-util", () => {
             ]);
         });
         it("should find dot files", async () => {
-            const patterns = [path.posix.resolve(cwd, "./dir/**/*.md")];
+            const patterns = [path.posix.resolve(posixCwd, "./dir/**/*.md")];
             const files = await findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
@@ -37,7 +39,7 @@ describe("find-util", () => {
             ]);
         });
         it("should find files with multiple path patterns", async () => {
-            const patterns = ["dir/**/*.md", path.posix.resolve(cwd, "ignored/**/*.md")];
+            const patterns = ["dir/**/*.md", path.posix.resolve(posixCwd, "ignored/**/*.md")];
             const files = await findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
@@ -62,7 +64,7 @@ describe("find-util", () => {
                 ]);
             });
             it("should find files with absolute path patterns", async () => {
-                const patterns = [path.posix.resolve(cwd, "**/*.md")];
+                const patterns = [path.posix.resolve(posixCwd, "**/*.md")];
                 const files = await findFiles(patterns, {
                     cwd,
                     ignoreFilePath: ".textlintignore"
