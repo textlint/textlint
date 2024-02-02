@@ -66,12 +66,6 @@ export const createLinter = (options: CreateLinterOptions) => {
             const { availableFiles, unAvailableFiles } = separateByAvailability(targetFiles, {
                 extensions: options.descriptor.availableExtensions
             });
-            console.log({
-                patterns,
-                targetFiles,
-                availableFiles,
-                unAvailableFiles
-            });
             debug("Available extensions: %j", options.descriptor.availableExtensions);
             debug("Process files: %j", availableFiles);
             debug("No Process files that are un-support extensions: %j", unAvailableFiles);
