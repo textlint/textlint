@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706856942723,
+  "lastUpdate": 1706857176706,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -28350,6 +28350,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7574459048600001,
             "unit": "seconds",
             "range": "± 0.018456938000000034"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "f98cabe643587778a1b1059fb692ec972b295387",
+          "message": "test: use path.posix.resolve\n\nWindows test should use posix path, because glob support unix path",
+          "timestamp": "2024-02-02T15:56:47+09:00",
+          "tree_id": "ff07ce2f55e88aaf86374d3434e636e6419fc5d2",
+          "url": "https://github.com/textlint/textlint/commit/f98cabe643587778a1b1059fb692ec972b295387"
+        },
+        "date": 1706857174631,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2718438421,
+            "unit": "seconds",
+            "range": "± 0.053637187999999725"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.914593962300001,
+            "unit": "seconds",
+            "range": "± 0.11876907500000033"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7670972887000002,
+            "unit": "seconds",
+            "range": "± 0.012464081999999932"
           }
         ]
       }
