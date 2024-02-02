@@ -6,7 +6,7 @@ describe("find-util", () => {
     describe("findFiles", () => {
         const cwd = path.resolve(__dirname, "fixtures/find-util");
         // for glob
-        const posixCwd = path.posix.resolve(__dirname, "fixtures/find-util");
+        const posixCwd = path.posix.resolve(__dirname.replaceAll(path.sep, "/"), "fixtures/find-util");
         it("should find files with relative path pattern", async () => {
             const patterns = ["dir/**/*.md"];
             const files = await findFiles(patterns, { cwd });
