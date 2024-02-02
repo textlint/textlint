@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706854576896,
+  "lastUpdate": 1706856101470,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -28140,6 +28140,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7324094237800001,
             "unit": "seconds",
             "range": "± 0.014549046999999926"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "93bb0a1d716dc5955c6a7c0dc34f853837eaab08",
+          "message": "perf(textlint): use glob.stream instead of glob.sync\n\nrefs https://github.com/isaacs/node-glob/tree/97611cd366e5906a4c58df3f5214af843b0a5e63#benchmark-results\nrefs https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810",
+          "timestamp": "2024-02-02T15:38:59+09:00",
+          "tree_id": "335c99b1bff6a4eaec9803a6748b033ef86f841d",
+          "url": "https://github.com/textlint/textlint/commit/93bb0a1d716dc5955c6a7c0dc34f853837eaab08"
+        },
+        "date": 1706856099980,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2143054532199997,
+            "unit": "seconds",
+            "range": "± 0.04557212600000016"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.80944542622,
+            "unit": "seconds",
+            "range": "± 0.11838848899999999"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.76117019902,
+            "unit": "seconds",
+            "range": "± 0.01903915299999992"
           }
         ]
       }
