@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1706961314574,
+  "lastUpdate": 1706962062394,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -28938,6 +28938,48 @@ window.BENCHMARK_DATA = {
             "value": 0.733905528,
             "unit": "seconds",
             "range": "± 0.011665736000000093"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "41898282+github-actions[bot]@users.noreply.github.com",
+            "name": "github-actions[bot]",
+            "username": "github-actions[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5745a21827914da1dbc4db770b94071c9510642c",
+          "message": "v14.0.0 (#1352)\n\n* chore(release): v14.0.0\r\n\r\n* feat(blog): add v14 article\r\n\r\n* remove .nx\r\n\r\n---------\r\n\r\nCo-authored-by: azu <azu@users.noreply.github.com>\r\nCo-authored-by: azu <azuciao@gmail.com>",
+          "timestamp": "2024-02-03T21:05:06+09:00",
+          "tree_id": "2862510f69185f3aad68a48639bdaa50cea93c70",
+          "url": "https://github.com/textlint/textlint/commit/5745a21827914da1dbc4db770b94071c9510642c"
+        },
+        "date": 1706962060880,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.2052178190600005,
+            "unit": "seconds",
+            "range": "± 0.06534318199999989"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.084853602459999,
+            "unit": "seconds",
+            "range": "± 0.06683429799999985"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.74269944346,
+            "unit": "seconds",
+            "range": "± 0.01522089399999993"
           }
         ]
       }
