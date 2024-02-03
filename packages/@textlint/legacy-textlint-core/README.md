@@ -9,7 +9,7 @@ This package provides legacy `TextLintCore` compatible API.
 
 This compat package is deprecated. You should use `@textlint/kernel` or new APIs instead of it.
 
-- [Use as Node Modules · textlint](https://textlint.github.io/docs/use-as-modules.html)a
+- [Use as Node Modules · textlint](https://textlint.github.io/docs/use-as-modules.html)
 
 ## Install
 
