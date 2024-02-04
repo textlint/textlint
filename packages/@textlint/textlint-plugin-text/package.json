@@ -1,6 +1,6 @@
 {
     "name": "@textlint/textlint-plugin-text",
-    "version": "14.0.0",
+    "version": "14.0.1",
     "description": "plain text plugin for textlint",
     "homepage": "https://github.com/textlint/textlint/tree/master/packages/@textlint/textlint-plugin-text/",
     "bugs": {
@@ -33,10 +33,10 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/text-to-ast": "^14.0.0"
+        "@textlint/text-to-ast": "^14.0.1"
     },
     "devDependencies": {
-        "@textlint/kernel": "^14.0.0",
+        "@textlint/kernel": "^14.0.1",
         "@types/mocha": "9.1.1",
         "mocha": "^10.2.0",
         "rimraf": "^3.0.2",
