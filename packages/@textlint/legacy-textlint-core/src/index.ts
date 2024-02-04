@@ -121,6 +121,18 @@ export class TextLintCore {
         );
     }
 
+    /**
+     * reset defined rules
+     * reset to initial state
+     */
+    resetRules() {
+        this.kernelDescriptor = new TextlintKernelDescriptor({
+            rules: [],
+            filterRules: [],
+            plugins: builtInPlugins,
+        });
+    }
+
     setupPlugins(plugins = {}, pluginsConfig = {}) {
         this.kernelDescriptor = this.kernelDescriptor.concat(
             new TextlintKernelDescriptor({
