@@ -35,8 +35,6 @@ const results = await textlintCore.lintText("test", ".example");
 textlintCore.resetRules(); // reset setup
 ```
 
-## FAQ
-
 ## Changelog
 
 See [Releases page](https://github.com/textlint/textlint/releases).
