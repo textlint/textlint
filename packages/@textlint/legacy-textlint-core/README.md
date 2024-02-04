@@ -19,19 +19,21 @@ Install with [npm](https://www.npmjs.com/):
 
 ## Usage
 
+This package provided a procedural API.
+
 ```ts
 import { TextLintCore } from "@textlint/legacy-textlint-core";
 // example packages
 import rule from "textlint-rule-example";
 import plugin from "textlint-plugin-example";
+import { text } from "node:stream/consumers";
 
 const textlintCore = new TextLintCore();
 textlintCore.setupRules({ "example-rule": rule });
 textlintCore.setupPlugins({ "example-plugin": rule });
 const results = await textlintCore.lintText("test", ".example");
+textlintCore.resetRules(); // reset setup
 ```
-
-## FAQ
 
 ## Changelog
 

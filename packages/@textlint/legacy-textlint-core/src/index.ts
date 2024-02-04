@@ -36,7 +36,7 @@ const builtInPlugins = [
  *
  * => TextlintKernelRule
  */
-export const rulesObjectToKernelRule: (
+const rulesObjectToKernelRule: (
     rules: { [p: string]: TextlintRuleModule },
     rulesOption: { [p: string]: TextlintKernelRule["options"] }
 ) => TextlintKernelRule[] = (rules, rulesOption) => {
@@ -49,7 +49,7 @@ export const rulesObjectToKernelRule: (
     });
 };
 
-export const filterRulesObjectToKernelRule: (
+const filterRulesObjectToKernelRule: (
     rules: { [p: string]: TextlintFilterRuleReporter },
     rulesOption: { [p: string]: TextlintKernelFilterRule["options"] }
 ) => TextlintKernelFilterRule[] = (rules, rulesOption): TextlintKernelFilterRule[] => {
@@ -101,6 +101,11 @@ export class TextLintCore {
         // noop
     }
 
+    /**
+     * setup rules
+     * @param rules
+     * @param rulesOption
+     */
     setupRules(rules = {}, rulesOption = {}) {
         this.kernelDescriptor = this.kernelDescriptor.concat(
             new TextlintKernelDescriptor({
@@ -111,6 +116,11 @@ export class TextLintCore {
         );
     }
 
+    /**
+     * setup filter rules
+     * @param filterRules
+     * @param filterRulesConfig
+     */
     setupFilterRules(filterRules = {}, filterRulesConfig = {}) {
         this.kernelDescriptor = this.kernelDescriptor.concat(
             new TextlintKernelDescriptor({
@@ -121,6 +131,23 @@ export class TextLintCore {
         );
     }
 
+    /**
+     * reset defined rules
+     * reset to initial state
+     */
+    resetRules() {
+        this.kernelDescriptor = new TextlintKernelDescriptor({
+            rules: [],
+            filterRules: [],
+            plugins: builtInPlugins,
+        });
+    }
+
+    /**
+     * setup plugins
+     * @param plugins
+     * @param pluginsConfig
+     */
     setupPlugins(plugins = {}, pluginsConfig = {}) {
         this.kernelDescriptor = this.kernelDescriptor.concat(
             new TextlintKernelDescriptor({
@@ -131,6 +158,12 @@ export class TextLintCore {
         );
     }
 
+    /**
+     * lint text and return results
+     * default ext is ".txt"
+     * @param text
+     * @param ext
+     */
     async lintText(text: string, ext = ".txt") {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
@@ -139,6 +172,10 @@ export class TextLintCore {
         });
     }
 
+    /**
+     * lint text as markdown and return results
+     * @param text
+     */
     async lintMarkdown(text: string) {
         const kernel = new TextlintKernel();
         return kernel.lintText(text, {
@@ -147,6 +184,10 @@ export class TextLintCore {
         });
     }
 
+    /**
+     * lint file and return results
+     * @param filePath
+     */
     async lintFile(filePath: string) {
         const content = await fs.readFile(filePath, "utf-8");
         const kernel = new TextlintKernel();
@@ -157,6 +198,12 @@ export class TextLintCore {
         });
     }
 
+    /**
+     * fix text and return results
+     * default ext is ".txt"
+     * @param text
+     * @param ext
+     */
     async fixText(text: string, ext = ".txt") {
         const kernel = new TextlintKernel();
         return kernel.fixText(text, {
