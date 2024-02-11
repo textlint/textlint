@@ -13,7 +13,7 @@
         "!*.tsbuildinfo"
     ],
     "name": "textlint-scripts",
-    "version": "14.0.1",
+    "version": "14.0.2",
     "description": "textlint scripts help you to create textlint rule.",
     "bin": {
         "textlint-scripts": "./bin/cmd.js"
@@ -52,7 +52,7 @@
         "cross-spawn": "^7.0.3",
         "mocha": "^10.2.0",
         "pkg-to-readme": "^1.1.2",
-        "textlint-tester": "^14.0.1"
+        "textlint-tester": "^14.0.2"
     },
     "peerDependencies": {
         "ts-node": "*",

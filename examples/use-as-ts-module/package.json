@@ -1,6 +1,6 @@
 {
   "name": "textlint-example-use-as-ts-module",
-  "version": "14.0.1",
+  "version": "14.0.2",
   "private": true,
   "license": "MIT",
   "type": "module",
@@ -14,7 +14,7 @@
     "test:ci": "npm test"
   },
   "dependencies": {
-    "textlint": "^14.0.1",
+    "textlint": "^14.0.2",
     "textlint-rule-no-todo": "^2.0.1"
   },
   "devDependencies": {
