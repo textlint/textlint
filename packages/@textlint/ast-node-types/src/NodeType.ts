@@ -125,7 +125,8 @@ export type StaticPhrasingContent =
     | TxtHtmlNode
     | TxtCodeNode
     | TxtBreakNode
-    | TxtImageNode;
+    | TxtImageNode
+    | TxtCommentNode;
 
 export interface TxtDocumentNode extends TxtParentNode {
     type: "Document";
