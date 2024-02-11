@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1707416185391,
+  "lastUpdate": 1707645475889,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -29904,6 +29904,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7336062616600001,
             "unit": "seconds",
             "range": "± 0.014332626999999931"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "s.kokuryo@gmail.com",
+            "name": "Shoma Kokuryo",
+            "username": "pddg"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5c68e9d519e78e16d839d04ac2650f7a5472604e",
+          "message": "add TxtCommentNode to StaticPhrasingContent (#1357)",
+          "timestamp": "2024-02-11T18:55:38+09:00",
+          "tree_id": "7e054bbfdb4c45bbce68f70a7a3d469a111f6ffd",
+          "url": "https://github.com/textlint/textlint/commit/5c68e9d519e78e16d839d04ac2650f7a5472604e"
+        },
+        "date": 1707645474332,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1580105216200005,
+            "unit": "seconds",
+            "range": "± 0.05483505700000002"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.837435860419999,
+            "unit": "seconds",
+            "range": "± 0.0934664380000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72505126182,
+            "unit": "seconds",
+            "range": "± 0.011368924999999974"
           }
         ]
       }
