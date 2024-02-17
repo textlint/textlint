@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1708156588640,
+  "lastUpdate": 1708156916020,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -30408,6 +30408,48 @@ window.BENCHMARK_DATA = {
             "value": 0.7325427158000001,
             "unit": "seconds",
             "range": "± 0.0065678869999999945"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "aee0a63571935194c1eeac5ded6bafb4ee2678a3",
+          "message": "fix(formatter): fix missing `is-file` dependencies (#1362)\n\n- inlining `isFile` function\r\n- remove `is-file` package from dependencies",
+          "timestamp": "2024-02-17T16:59:05+09:00",
+          "tree_id": "733158773d516f8227b83b03d1bc75fa50b8bc7b",
+          "url": "https://github.com/textlint/textlint/commit/aee0a63571935194c1eeac5ded6bafb4ee2678a3"
+        },
+        "date": 1708156913567,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.3328642330999996,
+            "unit": "seconds",
+            "range": "± 0.07799663400000023"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.129342480299999,
+            "unit": "seconds",
+            "range": "± 0.12426500300000054"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7627734879000002,
+            "unit": "seconds",
+            "range": "± 0.02795051599999998"
           }
         ]
       }
