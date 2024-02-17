@@ -1,6 +1,6 @@
 {
     "name": "@textlint/types",
-    "version": "14.0.2",
+    "version": "14.0.3",
     "description": "Type definition package for textlint",
     "keywords": [
         "definition",
@@ -44,10 +44,10 @@
         "tabWidth": 4
     },
     "dependencies": {
-        "@textlint/ast-node-types": "^14.0.2"
+        "@textlint/ast-node-types": "^14.0.3"
     },
     "devDependencies": {
-        "@textlint/markdown-to-ast": "^14.0.2",
+        "@textlint/markdown-to-ast": "^14.0.3",
         "@types/mocha": "^9.1.1",
         "@types/node": "^18.19.9",
         "mocha": "^10.3.0",
