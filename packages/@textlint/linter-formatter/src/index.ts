@@ -8,11 +8,16 @@ import fs from "fs";
 import path from "path";
 // @ts-expect-error
 import tryResolve from "try-resolve";
-// @ts-expect-error
-import isFile from "is-file";
 import debug0 from "debug";
 import { pathToFileURL } from "node:url";
 
+const isFile = (filePath: string) => {
+    try {
+        return fs.statSync(filePath).isFile();
+    } catch {
+        return false;
+    }
+};
 // import() can not load Window file path
 // convert file path to file URL before import()
 // https://github.com/nodejs/node/issues/31710
