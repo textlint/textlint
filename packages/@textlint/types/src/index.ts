@@ -26,6 +26,7 @@ export type {
     TextlintRuleReportedObject,
 } from "./Rule/TextlintRuleError";
 export type { TextlintRuleSeverityLevel } from "./Rule/TextlintRuleSeverityLevel";
+export type { TextlintRuleSeverityLevelKey } from "./Rule/TextlintRuleSeverityLevelKey";
 // Rule
 export type {
     TextlintRuleContext,
