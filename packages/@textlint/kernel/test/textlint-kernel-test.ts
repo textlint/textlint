@@ -107,6 +107,52 @@ describe("textlint-kernel", () => {
                 assert.deepEqual(actualPluginOptions, expectedPluginOptions);
             });
         });
+        it("should pass severity to ruleOption", () => {
+            const kernel = new TextlintKernel();
+            const { plugin } = createPluginStub();
+            const options = {
+                filePath: "/path/to/file.md",
+                ext: ".md",
+                plugins: [{ pluginId: "example", plugin: plugin }],
+                rules: [
+                    {
+                        ruleId: "warning",
+                        rule: errorRule,
+                        options: {
+                            errors: [
+                                {
+                                    message: "warning message",
+                                    range: [5, 6]
+                                }
+                            ],
+                            severity: "warning"
+                        } as const
+                    },
+                    {
+                        ruleId: "error",
+                        rule: errorRule,
+                        options: {
+                            errors: [
+                                {
+                                    message: "error message",
+                                    range: [8, 9]
+                                }
+                            ],
+                            severity: "error"
+                        } as const
+                    }
+                ]
+            };
+            return kernel.lintText("text", options).then((result) => {
+                const warningMessage = result.messages.find((message) => message.ruleId === "warning")!;
+                assertMessage(warningMessage);
+                assert.strictEqual(warningMessage.severity, TextlintRuleSeverityLevelKeys.warning);
+
+                const errorMessage = result.messages.find((message) => message.ruleId === "error")!;
+                assertMessage(errorMessage);
+                assert.strictEqual(errorMessage.severity, TextlintRuleSeverityLevelKeys.error);
+            });
+        });
         context("when rule error is match ignoredRange and ruleId", () => {
             it("should not report these error", () => {
                 const kernel = new TextlintKernel();
