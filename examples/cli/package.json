@@ -1,6 +1,6 @@
 {
     "name": "textlint-example-cli",
-    "version": "14.0.3",
+    "version": "14.0.4",
     "private": true,
     "description": "",
     "license": "MIT",
@@ -12,7 +12,7 @@
         "textlint": "textlint --rule no-todo '*.md'"
     },
     "devDependencies": {
-        "textlint": "^14.0.3",
+        "textlint": "^14.0.4",
         "textlint-rule-no-todo": "^2.0.1"
     },
     "files": [
