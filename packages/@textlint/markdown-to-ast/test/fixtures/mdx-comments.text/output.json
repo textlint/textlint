@@ -1,0 +1,137 @@
+{
+    "type": "Document",
+    "children": [
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Str",
+                    "value": "Paragraph one.",
+                    "loc": {
+                        "start": {
+                            "line": 1,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 1,
+                            "column": 14
+                        }
+                    },
+                    "range": [
+                        0,
+                        14
+                    ],
+                    "raw": "Paragraph one."
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 1,
+                    "column": 0
+                },
+                "end": {
+                    "line": 1,
+                    "column": 14
+                }
+            },
+            "range": [
+                0,
+                14
+            ],
+            "raw": "Paragraph one."
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Html",
+                    "value": "{/* This is a simple comment */}",
+                    "loc": {
+                        "start": {
+                            "line": 3,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 3,
+                            "column": 32
+                        }
+                    },
+                    "range": [
+                        16,
+                        48
+                    ],
+                    "raw": "{/* This is a simple comment */}"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 3,
+                    "column": 0
+                },
+                "end": {
+                    "line": 3,
+                    "column": 32
+                }
+            },
+            "range": [
+                16,
+                48
+            ],
+            "raw": "{/* This is a simple comment */}"
+        },
+        {
+            "type": "Paragraph",
+            "children": [
+                {
+                    "type": "Html",
+                    "value": "{/*\nThis is another comment.\n*/}",
+                    "loc": {
+                        "start": {
+                            "line": 5,
+                            "column": 0
+                        },
+                        "end": {
+                            "line": 7,
+                            "column": 3
+                        }
+                    },
+                    "range": [
+                        50,
+                        83
+                    ],
+                    "raw": "{/*\n\tThis is another comment.\n*/}"
+                }
+            ],
+            "loc": {
+                "start": {
+                    "line": 5,
+                    "column": 0
+                },
+                "end": {
+                    "line": 7,
+                    "column": 3
+                }
+            },
+            "range": [
+                50,
+                83
+            ],
+            "raw": "{/*\n\tThis is another comment.\n*/}"
+        }
+    ],
+    "loc": {
+        "start": {
+            "line": 1,
+            "column": 0
+        },
+        "end": {
+            "line": 8,
+            "column": 0
+        }
+    },
+    "range": [
+        0,
+        84
+    ],
+    "raw": "Paragraph one.\n\n{/* This is a simple comment */}\n\n{/*\n\tThis is another comment.\n*/}\n"
+}
