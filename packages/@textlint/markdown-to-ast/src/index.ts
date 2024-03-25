@@ -49,7 +49,7 @@ export function parse(text: string): TxtDocumentNode {
                 node.raw = textWithoutBOM.slice(range[0], range[1]);
                 // MDX only supports JS comment syntax: `{/* comment */}`
                 // But Markdown parser interprets this as a `Str`.
-                if (node.type === ASTNodeTypes.Str && /({\/\*((?:.|\s)*?)\*\/})/.test(node.raw)) {
+                if (node.type === ASTNodeTypes.Str && /^({\/\*(.|\s)*\*\/})$/.test(node.raw)) {
                     node.type = ASTNodeTypes.Html;
                 }
                 // Compatible for https://github.com/syntax-tree/unist, but it is hidden
