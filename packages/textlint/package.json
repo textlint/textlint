@@ -77,7 +77,7 @@
     "@types/clone": "^2.1.4",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.19.9",
+    "@types/node": "^18.19.26",
     "@types/read-pkg-up": "^3.0.1",
     "@types/shelljs": "^0.8.15",
     "clone": "^2.1.2",
@@ -87,7 +87,7 @@
     "textlint-plugin-html": "^0.3.0",
     "textlint-rule-helper": "^2.3.1",
     "textlint-rule-no-todo": "^2.0.1",
-    "textlint-rule-preset-ja-spacing": "^2.3.0",
+    "textlint-rule-preset-ja-spacing": "^2.3.1",
     "textlint-rule-preset-jtf-style": "^2.3.14",
     "ts-node": "^10.9.2",
     "typescript": "~5.3.3"
