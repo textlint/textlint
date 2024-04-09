@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1712596238670,
+  "lastUpdate": 1712621594191,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -32928,6 +32928,48 @@ window.BENCHMARK_DATA = {
             "value": 0.77667403088,
             "unit": "seconds",
             "range": "± 0.0236751959999999"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4978f8bc15c4f5d1f28c0910aa55c768037b76c0",
+          "message": "chore(deps): update peaceiris/actions-gh-pages action to v4 (#1378)\n\nCo-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+          "timestamp": "2024-04-09T09:10:33+09:00",
+          "tree_id": "86913cd6a29bdd832a93efafd03a12c2b62c7855",
+          "url": "https://github.com/textlint/textlint/commit/4978f8bc15c4f5d1f28c0910aa55c768037b76c0"
+        },
+        "date": 1712621592191,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1367198218,
+            "unit": "seconds",
+            "range": "± 0.03383304900000006"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.611174826999999,
+            "unit": "seconds",
+            "range": "± 0.08367984299999964"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7225415772000001,
+            "unit": "seconds",
+            "range": "± 0.017544678999999896"
           }
         ]
       }
