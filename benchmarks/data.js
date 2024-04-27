@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714032274534,
+  "lastUpdate": 1714222960449,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -33432,6 +33432,48 @@ window.BENCHMARK_DATA = {
             "value": 0.8027756819,
             "unit": "seconds",
             "range": "± 0.012712590000000024"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8a3f4e9847eb10d39cd14359985a78ea5688894e",
+          "message": "chore(deps): update dependency textlint-rule-preset-ja-spacing to ^2.4.1",
+          "timestamp": "2024-04-27T13:00:01Z",
+          "tree_id": "63175d4cd5b99a9c413091369c988436ab94914e",
+          "url": "https://github.com/textlint/textlint/commit/8a3f4e9847eb10d39cd14359985a78ea5688894e"
+        },
+        "date": 1714222958602,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1924828415,
+            "unit": "seconds",
+            "range": "± 0.0562071930000001"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.687651708500001,
+            "unit": "seconds",
+            "range": "± 0.1636548839999996"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7434671925,
+            "unit": "seconds",
+            "range": "± 0.016942000000000013"
           }
         ]
       }
