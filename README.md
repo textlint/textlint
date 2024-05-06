@@ -148,8 +148,6 @@ Caching:
 Experimental:
   --experimental              Enable experimental flag.Some feature use on experimental.
   --rules-base-directory path::String  Set module base directory. textlint load modules(rules/presets/plugins) from the base directory.
-  --parallel                  Lint files in parallel
-  --max-concurrency Number    maxConcurrency for --parallel
 ```
 
 When running textlint, you can target files to lint using the glob patterns.
