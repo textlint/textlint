@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714787080660,
+  "lastUpdate": 1714953770861,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -33684,6 +33684,48 @@ window.BENCHMARK_DATA = {
             "value": 0.77316495372,
             "unit": "seconds",
             "range": "± 0.019490765999999993"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "86868255+Okabe-Junya@users.noreply.github.com",
+            "name": "Junya Okabe",
+            "username": "Okabe-Junya"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b7a9f5d4aac5300d6e412f9eb02fd10d1101ff3c",
+          "message": "fix: typo in README (#1382)",
+          "timestamp": "2024-05-06T09:00:19+09:00",
+          "tree_id": "201efa031814e2692d1d3727b273aeddbcf81c95",
+          "url": "https://github.com/textlint/textlint/commit/b7a9f5d4aac5300d6e412f9eb02fd10d1101ff3c"
+        },
+        "date": 1714953769058,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.15240149924,
+            "unit": "seconds",
+            "range": "± 0.04281289499999996"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.687691119040001,
+            "unit": "seconds",
+            "range": "± 0.154011487"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.72977598164,
+            "unit": "seconds",
+            "range": "± 0.016238905999999997"
           }
         ]
       }
