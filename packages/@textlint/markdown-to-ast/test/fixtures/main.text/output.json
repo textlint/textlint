@@ -204,7 +204,7 @@
         },
         {
             "type": "Html",
-            "value": "<aside>This will make me fail the test because\nmarkdown.js doesnt acknowledge arbitrary html blocks =/</aside>",
+            "value": "<aside>This will make me fail the test because\nmarkdown.js doesn't acknowledge arbitrary html blocks =/</aside>",
             "loc": {
                 "start": {
                     "line": 11,
@@ -219,7 +219,7 @@
                 303,
                 413
             ],
-            "raw": "<aside>This will make me fail the test because\nmarkdown.js doesnt acknowledge arbitrary html blocks =/</aside>"
+            "raw": "<aside>This will make me fail the test because\nmarkdown.js doesn't acknowledge arbitrary html blocks =/</aside>"
         },
         {
             "type": "List",
@@ -1573,5 +1573,5 @@
         0,
         1098
     ],
-    "raw": "[test]: http://google.com/ \"Google\"\n\n# A heading\n\nJust a note, I've found that I can't test my markdown parser vs others.\nFor example, both markdown.js and showdown code blocks in lists wrong. They're\nalso completely [inconsistent][test] with regards to paragraphs in list items.\n\nA link. Not anymore.\n\n<aside>This will make me fail the test because\nmarkdown.js doesnt acknowledge arbitrary html blocks =/</aside>\n\n* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3\nThe final item.\n\n* List Item 4\nThe real final item.\n\nParagraph.\n\n> * bq Item 1\n> * bq Item 2\n>   * New bq Item 1\n>   * New bq Item 2\n>   Text here\n\n* * *\n\n> Another blockquote!\n> I really need to get\n> more creative with\n> mockup text..\n> markdown.js breaks here again\n\nAnother Heading\n-------------\n\nHello *world*. Here is a [link](//hello).\nAnd an image ![alt](src \"a title\").\nAnd an image with an empty alt attribute ![](src).\n\n    Code goes here.\n    Lots of it...\n"
+    "raw": "[test]: http://google.com/ \"Google\"\n\n# A heading\n\nJust a note, I've found that I can't test my markdown parser vs others.\nFor example, both markdown.js and showdown code blocks in lists wrong. They're\nalso completely [inconsistent][test] with regards to paragraphs in list items.\n\nA link. Not anymore.\n\n<aside>This will make me fail the test because\nmarkdown.js doesn't acknowledge arbitrary html blocks =/</aside>\n\n* List Item 1\n\n* List Item 2\n  * New List Item 1\n    Hi, this is a list item.\n  * New List Item 2\n    Another item\n        Code goes here.\n        Lots of it...\n  * New List Item 3\n    The last item\n\n* List Item 3\nThe final item.\n\n* List Item 4\nThe real final item.\n\nParagraph.\n\n> * bq Item 1\n> * bq Item 2\n>   * New bq Item 1\n>   * New bq Item 2\n>   Text here\n\n* * *\n\n> Another blockquote!\n> I really need to get\n> more creative with\n> mockup text..\n> markdown.js breaks here again\n\nAnother Heading\n-------------\n\nHello *world*. Here is a [link](//hello).\nAnd an image ![alt](src \"a title\").\nAnd an image with an empty alt attribute ![](src).\n\n    Code goes here.\n    Lots of it...\n"
 }

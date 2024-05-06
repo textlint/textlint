@@ -593,7 +593,7 @@ Download from [textlint/media](https://github.com/textlint/media "textlint/media
 
 - [SCG: TextLint](http://scg.unibe.ch/research/textlint "SCG: TextLint")
 
-## Acknowledgements
+## Acknowledgments
 
 Thanks to [ESLint](https://eslint.org/ "ESLint").
 

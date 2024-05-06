@@ -1,4 +1,4 @@
-// TOOD: move test from kernel
+// TODO: move test from kernel
 import { applyFixesToText } from "../src";
 import * as assert from "assert";
 

@@ -17,7 +17,7 @@ describe("plugin-option", () => {
             assert.deepStrictEqual(actualOptions, expectedOptions);
         });
     });
-    it("should load plugin options when does't match any ext for instance availableExtensions()", () => {
+    it("should load plugin options when doesn't match any ext for instance availableExtensions()", () => {
         const textlintCore = new TextLintCore();
         const { plugin, getOptions } = createPluginStub();
         const expectedOptions = { test: "expected" };

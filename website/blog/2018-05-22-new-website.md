@@ -8,7 +8,7 @@ textlint get a new website!
 
 ![website](/blog/assets/2018-05-22-new-website.png)
 
-- [@0x6b](https://github.com/0x6b) start to work migrate exising document to website.
+- [@0x6b](https://github.com/0x6b) start to work migrate existing document to website.
 - [@uetchy](https://github.com/uetchy) design this website.
 - [@azu](https://github.com/azu) implement the design and deploy.
 

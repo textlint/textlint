@@ -37,7 +37,7 @@ export default function (context) {
 }
 ```
 
-If your rule wants to know when an `Str` node is found in the AST, then add a method called `context.Syntax.Str`, such as:
+If your rule wants to know when a `Str` node is found in the AST, then add a method called `context.Syntax.Str`, such as:
 
 ```js
 // ES2015+
@@ -59,9 +59,9 @@ module.exports = function (context) {
 };
 ```
 
-By default, the method matching a node name is called during the traversal when the node is first encountered(This is called **Enter**), on the way down the AST.
+By default, the method matching a node name is called during the traversal when the node is first encountered (This is called **Enter**), on the way down the AST.
 
-You can also specify to visit the node on the other side of the traversal, as it comes back up the tree(This is called **Leave**), but adding `Exit` to the end of the node type, such as:
+You can also specify to visit the node on the other side of the traversal, as it comes back up the tree (This is called **Leave**), but adding `Exit` to the end of the node type, such as:
 
 ```js
 export default function (context) {
@@ -96,7 +96,7 @@ In textlint@11.1.0<=, you had to write `[Syntax.Document + ":exit"]`.
 
 RuleContext object has following property:
 
-- `Syntax.*` 
+- `Syntax.*`
     - This is const values of [TxtNode type](./txtnode.md).
     - e.g.) `context.Syntax.Str`
     - [packages/@textlint/ast-node-types/src/index.ts](https://github.com/textlint/textlint/blob/master/packages/%40textlint/ast-node-types/src/index.ts)
@@ -108,7 +108,7 @@ RuleContext object has following property:
     - e.g.) `context.getSource(node); // => "text"`
 - `getFilePath(): string | undefined`
     - This method return file path that is linting target.
-    - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined` 
+    - e.g.) `context.getFilePath(): // => /path/to/file.md or undefined`
 - `getConfigBaseDir(): string | undefined`
     - New in [9.0.0](https://github.com/textlint/textlint/releases/tag/textlint%409.0.0 "9.0.0")
     - Available [@textlint/get-config-base-dir](https://github.com/textlint/get-config-base-dir "@textlint/get-config-base-dir") polyfill for backward compatibility
@@ -130,10 +130,10 @@ Use it with `report` function.
 
 - `report(node, new RuleError(<message>))`
   - report new error
-  - textlint show the `<mesage>` against `node`'s range. 
+  - textlint show the `<message>` against `node`'s range.
 - `report(node, new RuleError(<message>, { padding }))`
   - report new error with `padding`.
-  - textlint show the `<mesage>` against `node`'s range + `padding`.
+  - textlint show the `<message>` against `node`'s range + `padding`.
   - You can control correct error range by `padding` property of `RuleError`
 
 Example: report the `Str` node that is typo.
@@ -390,7 +390,7 @@ textlint prepare useful generator tool that is [create-textlint-rule](https://gi
 - [textlint/create-textlint-rule: Create textlint rule project with no configuration.](https://github.com/textlint/create-textlint-rule)
 - [textlint/textlint-scripts: textlint npm-run-scripts CLI help to create textlint rule.](https://github.com/textlint/textlint-scripts)
 
-You can setup textlint rule using [npx](https://github.com/npm/npx) that is included in `npm`:
+You can set up textlint rule using [npx](https://github.com/npm/npx) that is included in `npm`:
 
 ```sh
 # Create `textlint-rule-no-todo` project and setup!
@@ -401,7 +401,7 @@ Or use `npm install` command:
 
 ```sh
 # Install `create-textlint-rule` to global
-npm install --global create-textlint-rule 
+npm install --global create-textlint-rule
 # Create `textlint-rule-no-todo` project and setup!
 create-textlint-rule no-todo
 ```
@@ -619,7 +619,7 @@ This test script use [textlint-tester](https://www.npmjs.com/package/textlint-te
 
 -----
 
-#### Usage of textlint-tester 
+#### Usage of textlint-tester
 
 1. Write tests by using textlint-tester
 2. Run tests by Mocha
@@ -753,7 +753,7 @@ If you want to publish your textlint rule, see following documents.
 ### Package Naming Conventions
 
 textlint rule package naming should have `textlint-rule-` prefix.
- 
+
 - `textlint-rule-<name>`
 - `@scope/textlint-rule-<name>`
     - textlint supports [Scoped packages](https://docs.npmjs.com/misc/scope "Scoped packages")
@@ -789,7 +789,7 @@ The rule naming conventions for textlint are simple:
 - If your rule is disallowing something, prefix it with `no-`.
     - For example, `no-todo` disallowing `TODO:` and `no-exclamation-question-mark` for disallowing `!` and `?`.
 - If your rule is enforcing the inclusion of something, use a short name without a special prefix.
-    - If the rule for english, please uf `textlint-rule-en-` prefix.
+    - If the rule for english, please use `textlint-rule-en-` prefix.
 - Keep your rule names as short as possible, use abbreviations where appropriate.
 - Use dashes(`-`) between words.
 
@@ -873,5 +873,5 @@ textlint ignore duplicated message/rules by default.
 
 - Japanese
     - [textlintのインストールから新しいルール作成までやってみた - エイエイレトリック](https://eieito.hatenablog.com/entry/2022/07/29/100000)
-    - [textlintプラグインの作り方(例：オンドゥル語変換) 準備編](https://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1) 
+    - [textlintプラグインの作り方(例：オンドゥル語変換) 準備編](https://zenn.dev/shivase/articles/006-how-to-create-new-textlint-plugin-1)
     - [textlintでセンテンスを扱うルールの書き方 | Web Scratch](https://efcl.info/2023/02/23/textlint-sentence-rule/)
