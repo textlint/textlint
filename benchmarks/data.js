@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1714953825770,
+  "lastUpdate": 1714961132845,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -33768,6 +33768,48 @@ window.BENCHMARK_DATA = {
             "value": 0.77061890052,
             "unit": "seconds",
             "range": "± 0.027444765000000038"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "chick.p.1120@gmail.com",
+            "name": "piyo",
+            "username": "chick-p"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ff78ef2c3becf4953622de604239874808e5dbd5",
+          "message": "docs: deprecated `--parallel` and `--max-concurrency` in CLI (#1383)\n\nRelated: https://github.com/textlint/textlint/pull/1338",
+          "timestamp": "2024-05-06T11:03:02+09:00",
+          "tree_id": "258522df3348d8af2f7fa98f487b001b8684fb2d",
+          "url": "https://github.com/textlint/textlint/commit/ff78ef2c3becf4953622de604239874808e5dbd5"
+        },
+        "date": 1714961130726,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.38541285888,
+            "unit": "seconds",
+            "range": "± 0.08816370399999984"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 7.010901799279999,
+            "unit": "seconds",
+            "range": "± 0.1729908440000001"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.7717130108799999,
+            "unit": "seconds",
+            "range": "± 0.014661650999999942"
           }
         ]
       }
