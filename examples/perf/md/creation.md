@@ -8,7 +8,7 @@ There are two ways to create an `object` in JavaScript:
      // Yes, simply a pair of curly braces!
 
     ```
-    > ***Note:*** this is the **recomended** way.
+    > ***Note:*** this is the **recommended** way.
 
 2. and object-oriented
 
