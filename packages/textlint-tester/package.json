@@ -47,7 +47,7 @@
         "@types/node": "^18.19.9",
         "analyze-desumasu-dearu": "^4.0.1",
         "match-index": "^1.0.3",
-        "mocha": "^10.5.0",
+        "mocha": "^10.6.0",
         "rimraf": "^3.0.2",
         "textlint-plugin-html": "^0.3.0",
         "textlint-rule-helper": "^2.3.1",
