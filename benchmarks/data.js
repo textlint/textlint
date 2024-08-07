@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1722957771449,
+  "lastUpdate": 1723023340544,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -37044,6 +37044,48 @@ window.BENCHMARK_DATA = {
             "value": 0.67091094104,
             "unit": "seconds",
             "range": "± 0.016270423000000034"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "antonydavid945@gmail.com",
+            "name": "Antony David",
+            "username": "Jayllyz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2113ac8d6b57bfc3f2c1546ca0c6c3d55008a46d",
+          "message": "refactor(markdown-to-ast): migrate  to `neotraverse` (#1401)",
+          "timestamp": "2024-08-07T18:33:04+09:00",
+          "tree_id": "cefef71c9991ab01ddc4456d99c566034a843e7a",
+          "url": "https://github.com/textlint/textlint/commit/2113ac8d6b57bfc3f2c1546ca0c6c3d55008a46d"
+        },
+        "date": 1723023338604,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0164371675999995,
+            "unit": "seconds",
+            "range": "± 0.03757575899999965"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.471245662399999,
+            "unit": "seconds",
+            "range": "± 0.06468458700000035"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6342618142,
+            "unit": "seconds",
+            "range": "± 0.011752694000000008"
           }
         ]
       }
