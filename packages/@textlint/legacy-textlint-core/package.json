@@ -1,6 +1,6 @@
 {
     "name": "@textlint/legacy-textlint-core",
-    "version": "14.0.4",
+    "version": "14.0.5",
     "description": "Legacy TextLintCore Compatibility Layer for textlint v14+",
     "keywords": [
         "definition",
@@ -44,9 +44,9 @@
         "tabWidth": 4
     },
     "dependencies": {
-        "@textlint/kernel": "^14.0.4",
-        "@textlint/textlint-plugin-markdown": "^14.0.4",
-        "@textlint/textlint-plugin-text": "^14.0.4"
+        "@textlint/kernel": "^14.0.5",
+        "@textlint/textlint-plugin-markdown": "^14.0.5",
+        "@textlint/textlint-plugin-text": "^14.0.5"
     },
     "devDependencies": {
         "@types/node": "^18.19.9",
