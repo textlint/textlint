@@ -3,7 +3,7 @@
 import { TxtNode } from "@textlint/ast-node-types";
 import { parse, Syntax } from "../src/index";
 import assert from "assert";
-import traverse from "traverse";
+import traverse from "neotraverse/legacy";
 
 const inspect = (obj: unknown) => JSON.stringify(obj, null, 4);
 
