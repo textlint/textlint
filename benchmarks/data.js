@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723050016927,
+  "lastUpdate": 1723063840623,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -37422,6 +37422,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6344531088400001,
             "unit": "seconds",
             "range": "± 0.013314101000000078"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "committer": {
+            "email": "29139614+renovate[bot]@users.noreply.github.com",
+            "name": "renovate[bot]",
+            "username": "renovate[bot]"
+          },
+          "distinct": true,
+          "id": "80cea10d17d7b874e332fd0bc756216bb016d9f1",
+          "message": "chore(deps): update dependency eol-converter-cli to ^1.1.0",
+          "timestamp": "2024-08-07T20:48:16Z",
+          "tree_id": "a1702a5ec7a428ea55c32220c657062c5daeec1f",
+          "url": "https://github.com/textlint/textlint/commit/80cea10d17d7b874e332fd0bc756216bb016d9f1"
+        },
+        "date": 1723063838645,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0302586757,
+            "unit": "seconds",
+            "range": "± 0.08372162299999975"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.5034990499,
+            "unit": "seconds",
+            "range": "± 0.0695356570000003"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6326384167000001,
+            "unit": "seconds",
+            "range": "± 0.01290506800000002"
           }
         ]
       }
