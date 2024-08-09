@@ -44,7 +44,7 @@
         "@textlint/source-code-fixer": "^14.0.5",
         "@textlint/types": "^14.0.5",
         "@textlint/utils": "^14.0.5",
-        "debug": "^4.3.4",
+        "debug": "^4.3.6",
         "fast-equals": "^4.0.3",
         "structured-source": "^4.0.0"
     },
@@ -52,7 +52,7 @@
         "@textlint/markdown-to-ast": "^14.0.5",
         "@types/debug": "^4.1.12",
         "@types/mocha": "^9.1.1",
-        "@types/node": "^18.19.9",
+        "@types/node": "^18.19.43",
         "mocha": "^10.7.0",
         "rimraf": "^3.0.2",
         "shelljs": "^0.8.5",

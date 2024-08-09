@@ -40,7 +40,7 @@
     "@textlint/module-interop": "^14.0.5",
     "@textlint/types": "^14.0.5",
     "chalk": "^4.1.2",
-    "debug": "^4.3.4",
+    "debug": "^4.3.6",
     "diff": "^5.2.0",
     "string-width": "^4.2.3",
     "strip-ansi": "^6.0.1",
@@ -50,7 +50,7 @@
   "devDependencies": {
     "@types/diff": "^4.0.2",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^18.19.9",
+    "@types/node": "^18.19.43",
     "mocha": "^10.7.0",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.2",
