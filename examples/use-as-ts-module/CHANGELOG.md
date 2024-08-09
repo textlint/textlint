@@ -166,7 +166,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Chores
 
--   **deps:** update devDepencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
+-   **deps:** update devDependencies ([#667](https://github.com/textlint/textlint/issues/667)) ([0503af6](https://github.com/textlint/textlint/commit/0503af6))
 
 ### Code Refactoring
 

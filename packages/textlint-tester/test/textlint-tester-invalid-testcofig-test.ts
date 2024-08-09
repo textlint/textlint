@@ -96,7 +96,7 @@ const testConfigs = [
         expectedErrorMessage: "rule property not found"
     },
     {
-        description: "TestConfig has plugins proeprty which is not an array",
+        description: "TestConfig has plugins property which is not an array",
         config: {
             plugins: htmlPlugin,
             rules: [
