@@ -84,7 +84,6 @@
     line-height: 50px;
     border-radius: 100px;
     background-color: var(--textColor);
-    font-family: Lato, serif;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -111,14 +110,13 @@
 
 .Playground .Playground-copy,
 .GettingStarted .GettingStarted-copy {
-    font-family: Lato, serif;
     font-size: 18px !important;
     font-weight: 300 !important;
     text-align: center !important;
     color: var(--textColor) !important;
 }
 
-/* Hide Playground on mobile*/
+/* Hide Playground on mobile */
 @media only screen and (max-width: 736px) {
     .Playground-frame {
         display: none;
@@ -144,7 +142,7 @@
         display: none;
     }
 
-    /* Mobile shrink width*/
+    /* Mobile shrink width */
     .GettingStarted ol {
         margin-top: 32px;
         margin-left: 0;
