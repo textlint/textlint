@@ -91,7 +91,7 @@ describe("find-util", () => {
         });
     });
     describe("scanFilePath", () => {
-        it("should return false if the path is not ignored", async () => {
+        it("should return 'ok' if the path is not ignored", async () => {
             const notIgnoreFilePath = path.resolve(cwd, "dir/test.md");
             const scanResult = await scanFilePath(notIgnoreFilePath, {
                 cwd,
@@ -99,7 +99,7 @@ describe("find-util", () => {
             });
             assert.strictEqual(scanResult.status, "ok");
         });
-        it("should return true if the path is ignored", async () => {
+        it("should return 'ignored' if the path is ignored", async () => {
             const ignoreFilePath = path.resolve(cwd, "ignored/test.md");
             const scanResult = await scanFilePath(ignoreFilePath, {
                 cwd,
@@ -107,7 +107,7 @@ describe("find-util", () => {
             });
             assert.strictEqual(scanResult.status, "ignored");
         });
-        it("should return true??? if the path not found ", async () => {
+        it("should return 'error' if the ignore file is not found", async () => {
             const ignoreFilePath = path.resolve(cwd, "not_found.md");
             const scanResult = await scanFilePath(ignoreFilePath, {
                 cwd,
