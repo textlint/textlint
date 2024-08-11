@@ -28,8 +28,8 @@ describe("createLinter", () => {
                 descriptor,
                 ignoreFilePath: path.join(__dirname, "fixtures/.textlintignore")
             });
-            const result = await linter.isFilePathIgnored(path.join(__dirname, "fixtures/test-files/ignored.md"));
-            assert.strictEqual(result, true);
+            const result = await linter.scanFilePath(path.join(__dirname, "fixtures/test-files/ignored.md"));
+            assert.strictEqual(result.status, "ignored");
         });
         it("should return false if the file path is not ignored", async () => {
             const descriptor = await loadTextlintrc({
@@ -40,8 +40,8 @@ describe("createLinter", () => {
                 descriptor,
                 ignoreFilePath: path.join(__dirname, "fixtures/.textlintignore")
             });
-            const result = await linter.isFilePathIgnored(path.join(__dirname, "fixtures/test-files/test.md"));
-            assert.strictEqual(result, false);
+            const result = await linter.scanFilePath(path.join(__dirname, "fixtures/test-files/test.md"));
+            assert.strictEqual(result.status, "ok");
         });
     });
 });

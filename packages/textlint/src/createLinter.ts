@@ -12,7 +12,7 @@ import { Logger } from "./util/logger";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 import { separateByAvailability } from "./util/separate-by-availability";
-import { isFilePathIgnored } from "./util/find-util";
+import { scanFilePath, ScanFilePathResult } from "./util/find-util";
 
 const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {
@@ -22,6 +22,10 @@ export type CreateLinterOptions = {
     quiet?: boolean;
     cache?: boolean;
     cacheLocation?: string;
+    /**
+     * The current working directory
+     */
+    cwd?: string;
 };
 const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string => {
     try {
@@ -37,6 +41,7 @@ const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string =
     }
 };
 export const createLinter = (options: CreateLinterOptions) => {
+    const cwd = options.cwd ?? process.cwd();
     const executeFileBackerManger = new ExecuteFileBackerManager();
     const cacheBaker = new CacheBacker({
         cache: options.cache ?? false,
@@ -144,12 +149,18 @@ export const createLinter = (options: CreateLinterOptions) => {
             return kernel.fixText(text, kernelOptions);
         },
         /**
-         * Check the file path is ignored or not
-         * Return true if the file path is ignored by `.textlintignore` or `ignoreFilePath` option
+         * Scan file path and return result
+         * If you want to know the file is ignored by ignore file, use this function
+         * Return { status "ok" | "ignored" | "error" } object:
+         * - ok: found file and allow to lint/fix
+         * - ignored: found file, and it is ignored by ignore file
+         * - error: not found file
          * @param filePath
+         * @returns {Promise<ScanFilePathResult>}
          */
-        async isFilePathIgnored(filePath: string): Promise<boolean> {
-            return isFilePathIgnored(filePath, {
+        async scanFilePath(filePath: string): Promise<ScanFilePathResult> {
+            return scanFilePath(filePath, {
+                cwd,
                 ignoreFilePath: options.ignoreFilePath
             });
         }
