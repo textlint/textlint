@@ -36,9 +36,13 @@ export async function findFiles(patterns: string[], options: FindFilesOptions = 
     const cwd = options.cwd || process.cwd();
     const { globby } = await import("globby");
     const ignoreFiles = options.ignoreFilePath ? [options.ignoreFilePath] : [];
-    debug("find files by glob patterns", patterns);
+    // glob pattern should be used "/" as path separator
+    const globPatterns = patterns.map((pattern) => {
+        return pattern.replace(/\\/g, "/");
+    });
+    debug("find files by glob patterns", globPatterns);
     debug("ignore files %o", ignoreFiles);
-    return globby(patterns, {
+    return globby(globPatterns, {
         cwd,
         absolute: true,
         dot: true,
