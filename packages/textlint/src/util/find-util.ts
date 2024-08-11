@@ -145,6 +145,7 @@ export const scanFilePath = async (filePath: string, options: SearchFilesOptions
             status: "ignored"
         };
     }
+    console.log("scanFilePath: %o", searchResult);
     return {
         status: "ok"
     };
