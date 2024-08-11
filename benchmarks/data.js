@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723273326241,
+  "lastUpdate": 1723361615146,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -37632,6 +37632,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6325076170799999,
             "unit": "seconds",
             "range": "± 0.011824240000000041"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "joaommpalmeiro@gmail.com",
+            "name": "João Palmeiro",
+            "username": "joaopalmeiro"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5eab05f365db6e5fdf3b1981a17772f31e559d36",
+          "message": "fix(docs): remove Lato from the documentation website (#1407)",
+          "timestamp": "2024-08-10T15:57:51+09:00",
+          "tree_id": "e949e502b10bb4bcbe6e1fb4ad75791e3e92e865",
+          "url": "https://github.com/textlint/textlint/commit/5eab05f365db6e5fdf3b1981a17772f31e559d36"
+        },
+        "date": 1723361613175,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 2.98741259174,
+            "unit": "seconds",
+            "range": "± 0.04038922199999995"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.524118852939999,
+            "unit": "seconds",
+            "range": "± 0.07657666900000049"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6266947529400001,
+            "unit": "seconds",
+            "range": "± 0.015028712"
           }
         ]
       }
