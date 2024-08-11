@@ -54,6 +54,10 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     debug("search patterns: %o", normalizedPatterns);
     debug("search DEFAULT_IGNORE_PATTERNS: %o", DEFAULT_IGNORE_PATTERNS);
     debug("search ignoreFilePath: %s", options.ignoreFilePath);
+    const existsIgnoreFile = options.ignoreFilePath ? await fs.stat(options.ignoreFilePath).catch(() => null) : null;
+    if (existsIgnoreFile) {
+        console.log("search ignore file exists: %s", options.ignoreFilePath);
+    }
     const globPatterns = normalizedPatterns.map((pattern) => pattern.pattern);
     const searchResultItems = await globby(globPatterns, {
         cwd: options.cwd,
