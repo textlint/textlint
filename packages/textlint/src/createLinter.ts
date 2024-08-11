@@ -61,7 +61,7 @@ export const createLinter = (options: CreateLinterOptions) => {
         /**
          * Lint files
          * Note: lintFiles respect ignore file
-         * @param {String[]} filesOrGlobs An array of file and directory names, or globs.
+         * @param {String[]} filesOrGlobs An array of file path and directory names, or glob.
          * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
          */
         async lintFiles(filesOrGlobs: string[]): Promise<TextlintResult[]> {
@@ -91,7 +91,7 @@ export const createLinter = (options: CreateLinterOptions) => {
         /**
          * Lint text
          * Note: lintText does not respect ignore file
-         * You can detect the file path is ignored or not by `isFilePathIgnored()`
+         * You can detect the file path is ignored or not by `scanFilePath()`
          * @param text
          * @param filePath
          */
@@ -106,7 +106,7 @@ export const createLinter = (options: CreateLinterOptions) => {
         /**
          * Lint files and fix them
          * Note: fixFiles respect ignore file
-         * @param fileOrGlobs An array of file and directory names, or globs.
+         * @param fileOrGlobs An array of file path and directory names, or glob.
          * @returns {Promise<TextlintFixResult[]>} The results for all files that were linted and fixed.
          */
         async fixFiles(fileOrGlobs: string[]): Promise<TextlintFixResult[]> {
@@ -136,7 +136,7 @@ export const createLinter = (options: CreateLinterOptions) => {
         /**
          * Lint text and fix it
          * Note: fixText does not respect ignore file
-         * You can detect the file path is ignored or not by `isFilePathIgnored()`
+         * You can detect the file path is ignored or not by `scanFilePath()`
          * @param text
          * @param filePath
          */

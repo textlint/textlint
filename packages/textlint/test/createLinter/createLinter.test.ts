@@ -9,6 +9,7 @@ describe("createLinter", () => {
             node_modulesDir: path.join(__dirname, "fixtures/modules")
         });
         const linter = createLinter({
+            cwd: path.join(__dirname, "fixtures/"),
             descriptor
         });
         const results = await linter.lintText("test", "test.md");
@@ -25,6 +26,7 @@ describe("createLinter", () => {
                 node_modulesDir: path.join(__dirname, "fixtures/modules")
             });
             const linter = createLinter({
+                cwd: path.join(__dirname, "fixtures/"),
                 descriptor,
                 ignoreFilePath: path.join(__dirname, "fixtures/.textlintignore")
             });
@@ -37,6 +39,7 @@ describe("createLinter", () => {
                 node_modulesDir: path.join(__dirname, "fixtures/modules")
             });
             const linter = createLinter({
+                cwd: path.join(__dirname, "fixtures/"),
                 descriptor,
                 ignoreFilePath: path.join(__dirname, "fixtures/.textlintignore")
             });
