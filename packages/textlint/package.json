@@ -61,6 +61,7 @@
     "file-entry-cache": "^5.0.1",
     "get-stdin": "^5.0.1",
     "glob": "^7.2.3",
+    "globby": "^14.0.2",
     "md5": "^2.3.0",
     "mkdirp": "^0.5.6",
     "optionator": "^0.9.3",

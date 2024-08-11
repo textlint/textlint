@@ -1,13 +1,13 @@
 import * as assert from "assert";
 import path from "path";
-import { findFiles } from "../../src/util/find-util";
+import { findFiles } from "../../src/util/old-find-util";
 
-describe("find-util", () => {
+describe("old-find-util", () => {
     describe("findFiles", () => {
         const cwd = path.resolve(__dirname, "fixtures/find-util");
-        it("should find files with relative path pattern", async () => {
+        it("should find files with relative path pattern", () => {
             const patterns = ["dir/**/*.md"];
-            const files = await findFiles(patterns, { cwd });
+            const files = findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
                 path.resolve(cwd, "dir/ignored.md"),
@@ -15,9 +15,9 @@ describe("find-util", () => {
                 path.resolve(cwd, "dir/test.md")
             ]);
         });
-        it("should find files with absolute path pattern", async () => {
+        it("should find files with absolute path pattern", () => {
             const patterns = [path.resolve(cwd, "dir/**/*.md")];
-            const files = await findFiles(patterns, { cwd });
+            const files = findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
                 path.resolve(cwd, "dir/ignored.md"),
@@ -25,9 +25,9 @@ describe("find-util", () => {
                 path.resolve(cwd, "dir/test.md")
             ]);
         });
-        it("should find dot files", async () => {
+        it("should find dot files", () => {
             const patterns = [path.resolve(cwd, "dir/**/*.md")];
-            const files = await findFiles(patterns, { cwd });
+            const files = findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
                 path.resolve(cwd, "dir/ignored.md"),
@@ -35,9 +35,9 @@ describe("find-util", () => {
                 path.resolve(cwd, "dir/test.md")
             ]);
         });
-        it("should find files with multiple path patterns", async () => {
+        it("should find files with multiple path patterns", () => {
             const patterns = ["dir/**/*.md", path.resolve(cwd, "ignored/**/*.md")];
-            const files = await findFiles(patterns, { cwd });
+            const files = findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
                 path.resolve(cwd, "dir/ignored.md"),
@@ -48,9 +48,9 @@ describe("find-util", () => {
             ]);
         });
         context("when specify `ignoreFilePath` option", () => {
-            it("should find files with relative path patterns", async () => {
+            it("should find files with relative path patterns", () => {
                 const patterns = ["**/*.md"];
-                const files = await findFiles(patterns, {
+                const files = findFiles(patterns, {
                     cwd,
                     ignoreFilePath: ".textlintignore"
                 });
@@ -60,9 +60,9 @@ describe("find-util", () => {
                     path.resolve(cwd, "dir/test.md")
                 ]);
             });
-            it("should find files with absolute path patterns", async () => {
+            it("should find files with absolute path patterns", () => {
                 const patterns = [path.resolve(cwd, "**/*.md")];
-                const files = await findFiles(patterns, {
+                const files = findFiles(patterns, {
                     cwd,
                     ignoreFilePath: ".textlintignore"
                 });
@@ -73,14 +73,14 @@ describe("find-util", () => {
                 ]);
             });
             // Issue: https://github.com/textlint/textlint/issues/1408
-            it("should respect ignore file if pattern is absolute file path", async () => {
+            it("[bug] old find-utils does not respect ignore file if pattern is absolute file path", () => {
                 const patterns = [path.resolve(cwd, "ignored/test.md")];
-                const files = await findFiles(patterns, {
+                const files = findFiles(patterns, {
                     cwd,
                     ignoreFilePath: ".textlintignore"
                 });
                 files.sort();
-                assert.deepStrictEqual(files, []);
+                assert.deepStrictEqual(files, [path.resolve(cwd, "ignored/test.md")]);
             });
         });
     });

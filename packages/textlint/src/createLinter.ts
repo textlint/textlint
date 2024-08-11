@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { findFiles, pathsToGlobPatterns } from "./util/find-util";
+import { findFiles, pathsToGlobPatterns } from "./util/old-find-util";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer";
 import path from "path";
@@ -81,6 +81,11 @@ export const createLinter = (options: CreateLinterOptions) => {
                 return kernel.lintText(fileContent, kernelOptions);
             });
         },
+        /**
+         * Lint text
+         * @param text
+         * @param filePath
+         */
         async lintText(text: string, filePath: string): Promise<TextlintResult> {
             const kernelOptions = {
                 ext: path.extname(filePath),
@@ -89,7 +94,10 @@ export const createLinter = (options: CreateLinterOptions) => {
             };
             return kernel.lintText(text, kernelOptions);
         },
-        // fix files
+        /**
+         * Lint files and fix them
+         * @param files
+         */
         async fixFiles(files: string[]): Promise<TextlintFixResult[]> {
             const patterns = pathsToGlobPatterns(files, {
                 extensions: options.descriptor.availableExtensions
@@ -114,6 +122,11 @@ export const createLinter = (options: CreateLinterOptions) => {
                 return kernel.fixText(fileContent, kernelOptions);
             });
         },
+        /**
+         * Lint text and fix it
+         * @param text
+         * @param filePath
+         */
         async fixText(text: string, filePath: string): Promise<TextlintFixResult> {
             const kernelOptions = {
                 ext: path.extname(filePath),
