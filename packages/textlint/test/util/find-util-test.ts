@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import path from "path";
-import { findFiles, separateByAvailability } from "../../src/util/find-util";
+import { findFiles } from "../../src/util/find-util";
 
 describe("find-util", () => {
     describe("findFiles", () => {
@@ -72,15 +72,6 @@ describe("find-util", () => {
                     path.resolve(cwd, "dir/test.md")
                 ]);
             });
-        });
-    });
-
-    describe("separateByAvailability", () => {
-        it("should find dot files", () => {
-            const files = [".foo"];
-            const { availableFiles, unAvailableFiles } = separateByAvailability(files, { extensions: [".foo"] });
-            assert.deepStrictEqual(availableFiles, [".foo"]);
-            assert.deepStrictEqual(unAvailableFiles, []);
         });
     });
 });

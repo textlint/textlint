@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { findFiles, pathsToGlobPatterns, separateByAvailability } from "./util/find-util";
+import { findFiles, pathsToGlobPatterns } from "./util/find-util";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer";
 import path from "path";
@@ -11,6 +11,7 @@ import fs from "fs/promises";
 import { Logger } from "./util/logger";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
+import { separateByAvailability } from "./util/separate-by-availability";
 
 const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {

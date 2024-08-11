@@ -6,7 +6,7 @@ import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "../../engine/rule-map";
 import { PluginMap } from "../../engine/processor-map";
 import { Config } from "../config";
-import { findFiles, pathsToGlobPatterns, separateByAvailability } from "../../util/find-util";
+import { findFiles, pathsToGlobPatterns } from "../../util/find-util";
 import { TextLintModuleLoader } from "./textlint-module-loader";
 import { ExecuteFileBackerManager } from "../../engine/execute-file-backer-manager";
 import { CacheBacker } from "../../engine/execute-file-backers/cache-backer";
@@ -14,6 +14,7 @@ import { SeverityLevel } from "../../shared/type/SeverityLevel";
 import { TextlintMessage, TextlintResult } from "@textlint/kernel";
 import debug0 from "debug";
 import path from "path";
+import { separateByAvailability } from "../../util/separate-by-availability";
 
 const debug = debug0("textlint:engine-core");
 
