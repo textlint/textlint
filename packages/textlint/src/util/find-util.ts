@@ -35,13 +35,25 @@ export function pathsToGlobPatterns(
 export async function findFiles(patterns: string[], options: FindFilesOptions = {}): Promise<string[]> {
     const cwd = options.cwd || process.cwd();
     const { globby } = await import("globby");
+    const ignoreFiles = options.ignoreFilePath ? [options.ignoreFilePath] : [];
     debug("find files by glob patterns", patterns);
+    debug("ignore files %o", ignoreFiles);
     return globby(patterns, {
         cwd,
         absolute: true,
         dot: true,
         onlyFiles: true,
         ignore: DEFAULT_IGNORE_PATTERNS,
-        ignoreFiles: options.ignoreFilePath ? [options.ignoreFilePath] : []
+        ignoreFiles
     });
+}
+
+/**
+ * Check the file is ignored by ignore file like .textlintignore
+ * @param filePath
+ * @param options
+ */
+export async function isFilePathIgnored(filePath: string, options: FindFilesOptions = {}): Promise<boolean> {
+    const results = await findFiles([filePath], options);
+    return results.length === 0;
 }

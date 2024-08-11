@@ -1,10 +1,10 @@
 import * as assert from "assert";
 import path from "path";
-import { findFiles } from "../../src/util/find-util";
+import { findFiles, isFilePathIgnored } from "../../src/util/find-util";
 
+const cwd = path.resolve(__dirname, "fixtures/find-util");
 describe("find-util", () => {
     describe("findFiles", () => {
-        const cwd = path.resolve(__dirname, "fixtures/find-util");
         it("should find files with relative path pattern", async () => {
             const patterns = ["dir/**/*.md"];
             const files = await findFiles(patterns, { cwd });
@@ -82,6 +82,24 @@ describe("find-util", () => {
                 files.sort();
                 assert.deepStrictEqual(files, []);
             });
+        });
+    });
+    describe("isPathIgnored", () => {
+        it("should return false if the path is not ignored", async () => {
+            const notIgnoreFilePath = path.resolve(cwd, "dir/test.md");
+            const isIgnored = await isFilePathIgnored(notIgnoreFilePath, {
+                cwd,
+                ignoreFilePath: ".textlintignore"
+            });
+            assert.strictEqual(isIgnored, false);
+        });
+        it("should return true if the path is ignored", async () => {
+            const ignoreFilePath = path.resolve(cwd, "ignored/test.md");
+            const isIgnored = await isFilePathIgnored(ignoreFilePath, {
+                cwd,
+                ignoreFilePath: ".textlintignore"
+            });
+            assert.strictEqual(isIgnored, true);
         });
     });
 });

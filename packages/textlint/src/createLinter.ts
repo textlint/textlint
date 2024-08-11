@@ -12,6 +12,7 @@ import { Logger } from "./util/logger";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
 import { separateByAvailability } from "./util/separate-by-availability";
+import { isFilePathIgnored } from "./util/find-util";
 
 const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {
@@ -53,12 +54,13 @@ export const createLinter = (options: CreateLinterOptions) => {
     const baseOptions = options.descriptor.toKernelOptions();
     return {
         /**
-         * Executes the current configuration on an array of file and directory names.
-         * @param {String[]}  files An array of file and directory names.
+         * Lint files
+         * Note: lintFiles respect ignore file
+         * @param {String[]} filesOrGlobs An array of file and directory names, or globs.
          * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
          */
-        async lintFiles(files: string[]): Promise<TextlintResult[]> {
-            const patterns = pathsToGlobPatterns(files, {
+        async lintFiles(filesOrGlobs: string[]): Promise<TextlintResult[]> {
+            const patterns = pathsToGlobPatterns(filesOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
             const targetFiles = findFiles(patterns, {
@@ -83,6 +85,8 @@ export const createLinter = (options: CreateLinterOptions) => {
         },
         /**
          * Lint text
+         * Note: lintText does not respect ignore file
+         * You can detect the file path is ignored or not by `isFilePathIgnored()`
          * @param text
          * @param filePath
          */
@@ -96,10 +100,12 @@ export const createLinter = (options: CreateLinterOptions) => {
         },
         /**
          * Lint files and fix them
-         * @param files
+         * Note: fixFiles respect ignore file
+         * @param fileOrGlobs An array of file and directory names, or globs.
+         * @returns {Promise<TextlintFixResult[]>} The results for all files that were linted and fixed.
          */
-        async fixFiles(files: string[]): Promise<TextlintFixResult[]> {
-            const patterns = pathsToGlobPatterns(files, {
+        async fixFiles(fileOrGlobs: string[]): Promise<TextlintFixResult[]> {
+            const patterns = pathsToGlobPatterns(fileOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
             const targetFiles = findFiles(patterns, {
@@ -124,6 +130,8 @@ export const createLinter = (options: CreateLinterOptions) => {
         },
         /**
          * Lint text and fix it
+         * Note: fixText does not respect ignore file
+         * You can detect the file path is ignored or not by `isFilePathIgnored()`
          * @param text
          * @param filePath
          */
@@ -134,6 +142,16 @@ export const createLinter = (options: CreateLinterOptions) => {
                 ...baseOptions
             };
             return kernel.fixText(text, kernelOptions);
+        },
+        /**
+         * Check the file path is ignored or not
+         * Return true if the file path is ignored by `.textlintignore` or `ignoreFilePath` option
+         * @param filePath
+         */
+        async isFilePathIgnored(filePath: string): Promise<boolean> {
+            return isFilePathIgnored(filePath, {
+                ignoreFilePath: options.ignoreFilePath
+            });
         }
     };
 };

@@ -6,7 +6,7 @@ import { TextLintCore } from "../textlint-core";
 import { RuleMap } from "../../engine/rule-map";
 import { PluginMap } from "../../engine/processor-map";
 import { Config } from "../config";
-import { findFiles, pathsToGlobPatterns } from "../../util/find-util";
+import { findFiles, pathsToGlobPatterns } from "../../util/old-find-util";
 import { TextLintModuleLoader } from "./textlint-module-loader";
 import { ExecuteFileBackerManager } from "../../engine/execute-file-backer-manager";
 import { CacheBacker } from "../../engine/execute-file-backers/cache-backer";
