@@ -18,8 +18,8 @@ describe("createLinter", () => {
         assert.ok(hasESMResult, "ESM");
         assert.ok(hasCJSResult, "CJS");
     });
-    describe("linter.isFilePathIgnored", () => {
-        it("should return true if the file path is ignored", async () => {
+    describe("linter.scanFilePath", () => {
+        it("should return 'ignored' if the file path is ignored", async () => {
             const descriptor = await loadTextlintrc({
                 configFilePath: path.join(__dirname, "fixtures/.textlintrc.json"),
                 node_modulesDir: path.join(__dirname, "fixtures/modules")
@@ -31,7 +31,7 @@ describe("createLinter", () => {
             const result = await linter.scanFilePath(path.join(__dirname, "fixtures/test-files/ignored.md"));
             assert.strictEqual(result.status, "ignored");
         });
-        it("should return false if the file path is not ignored", async () => {
+        it("should return 'ok' if the file path is not ignored", async () => {
             const descriptor = await loadTextlintrc({
                 configFilePath: path.join(__dirname, "fixtures/.textlintrc.json"),
                 node_modulesDir: path.join(__dirname, "fixtures/modules")
