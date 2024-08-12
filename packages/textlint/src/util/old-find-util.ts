@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { pathToGlobPattern } from "path-to-glob-pattern";
-import * as glob from "glob";
+import glob from "glob";
 import path from "path";
 import fs from "fs";
 import debug0 from "debug";
@@ -11,6 +11,12 @@ const DEFAULT_IGNORE_PATTERNS = Object.freeze(["**/.git/**", "**/node_modules/**
 export type FindFilesOptions = {
     cwd?: string;
     ignoreFilePath?: string;
+};
+const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
+    if (ignore.startsWith("!")) {
+        return `!${path.posix.join(base, ignore.slice(1))}`;
+    }
+    return path.posix.join(base, ignore);
 };
 const isFile = (filePath: string) => {
     try {
@@ -47,14 +53,16 @@ export function findFiles(patterns: string[], options: FindFilesOptions = {}): s
     const ignoredPatterns: string[] = [];
     ignoredPatterns.push(...DEFAULT_IGNORE_PATTERNS);
     if (options.ignoreFilePath) {
+        const baseDir = path.resolve(cwd, path.dirname(options.ignoreFilePath));
         const normalizeIgnoreFilePath = path.resolve(cwd, options.ignoreFilePath);
+        debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", baseDir, normalizeIgnoreFilePath);
         if (fs.existsSync(normalizeIgnoreFilePath)) {
-            debug("findFiles ignore, normalizeIgnoreFilePath: %s", normalizeIgnoreFilePath);
             const ignored = fs
                 .readFileSync(normalizeIgnoreFilePath, "utf-8")
                 .split(/\r?\n/)
-                .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
-            debug("add ignored pattern: %o", ignored);
+                .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line))
+                .map(mapGitIgnorePatternTo(baseDir));
+            debug("ignored: %o", ignored);
             ignoredPatterns.push(...ignored);
         }
     }

@@ -1,10 +1,7 @@
 import fs from "node:fs/promises";
 import debug0 from "debug";
-import path from "path";
-import { glob } from "glob";
 
 const debug = debug0("textlint:find-util");
-const DEFAULT_IGNORE_PATTERNS = ["**/.git/**", "**/node_modules/**"];
 export type SearchFilesOptions = {
     cwd: string;
     ignoreFilePath?: string;
@@ -23,55 +20,55 @@ export type SearchFilesResult =
           ok: false;
           errors: SearchFilesResultError[];
       };
-const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promise<string[]> => {
-    try {
-        const normalizeIgnoreFilePath = path.resolve(cwd, ignoreFilePath);
-        const ignoreFileContent = await fs.readFile(normalizeIgnoreFilePath, "utf-8");
-        return ignoreFileContent.split(/\r?\n/).filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
-    } catch (error) {
-        throw new Error(`Failed to read ignore file: ${ignoreFilePath}`, {
-            cause: error
-        });
-    }
-};
 /**
  * globby wrapper that support ignore options
  * @param patterns
  * @param options
  */
 export const searchFiles = async (patterns: string[], options: SearchFilesOptions): Promise<SearchFilesResult> => {
+    const readdir = (await import("tiny-readdir-glob-gitignore")).default;
     const cwd = options.cwd ?? process.cwd();
-    const ignoredPatterns: string[] = [
-        ...DEFAULT_IGNORE_PATTERNS,
-        ...(options.ignoreFilePath ? await createIgnorePatterns(cwd, options.ignoreFilePath) : [])
-    ];
     debug("search patterns: %o", patterns);
-    debug("search ignore patterns: %o", ignoredPatterns);
-    const files = await glob(patterns, {
-        cwd,
-        absolute: true,
-        nodir: true,
-        dot: true,
-        ignore: ignoredPatterns
+    const noIgnore = !options.ignoreFilePath;
+    const filesWithoutGlob = patterns.filter((pattern) => {
+        return pattern.indexOf("*") === -1;
     });
-    if (files.length > 0) {
-        debug("found files: %o", files);
+    const filesWithGlob = patterns.filter((pattern) => {
+        return pattern.indexOf("*") !== -1;
+    });
+    const result = await readdir(filesWithGlob, {
+        cwd,
+        depth: 20, // Maximum depth to look at
+        limit: 1_000_000, // Maximum number of files explored, useful as a stop gap in some edge cases
+        followSymlinks: false, // Whether to follow symlinks or not
+        ignore: ["**/.git", "**/node_modules"], // Globs, or raw function, that if returns true will ignore this particular file or a directory and its descendants
+        ignoreFiles: noIgnore ? [] : [".textlintignore"], // List of .gitignore-like files to look for, defaults to ['.gitignore']
+        ignoreFilesFindAbove: false, // Whether to look for .gitignore-like files in parent directories also, defaults to true
+        ignoreFilesFindBetween: true, // Whether to look for .gitignore-like files between the "cwd" directory, and the actual search directories, which due to some optimizations could not be the same
+        ignoreFilesStrictly: false // Whether to strictly follow the rules in .gitignore-like files, even if they exclude the folder you are explicitly searching into, defaults to false
+    });
+    const totalFiles = [...filesWithoutGlob, ...result.files];
+    debug("results files: %o", totalFiles);
+    if (totalFiles.length > 0) {
         return {
             ok: true,
-            items: files
+            items: totalFiles
         };
     }
-    // If ignore file is matched and result is empty, it should be ignored
-    const filesWithoutIgnoreFiles = await glob(patterns, {
+    const resultWithoutIgnoreFile = await readdir(filesWithGlob, {
         cwd,
-        absolute: true,
-        nodir: true,
-        dot: true
-        // no ignore
+        depth: 20,
+        limit: 1_000_000,
+        followSymlinks: false,
+        ignore: ["**/.git", "**/node_modules"],
+        ignoreFiles: [],
+        ignoreFilesFindAbove: false, // Whether to look for .gitignore-like files in parent directories also, defaults to true
+        ignoreFilesFindBetween: false, // Whether to look for .gitignore-like files between the "cwd" directory, and the actual search directories, which due to some optimizations could not be the same
+        ignoreFilesStrictly: false // Whether to strictly follow the rules in .gitignore-like files, even if they exclude the folder you are explicitly searching into, defaults to false
     });
-    const isEmptyResultByIgnoreFile = files.length === 0 && filesWithoutIgnoreFiles.length !== 0;
+    const isEmptyResultByIgnoreFile = result.files === 0 && resultWithoutIgnoreFile.length > 0;
     if (isEmptyResultByIgnoreFile) {
-        debug("found files but it is ignored by ignore file: %o", filesWithoutIgnoreFiles);
+        debug("found files but it is ignored by ignore file: %o", result);
         return {
             ok: true,
             items: []
