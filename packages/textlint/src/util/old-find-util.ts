@@ -54,15 +54,13 @@ export function findFiles(patterns: string[], options: FindFilesOptions = {}): s
     ignoredPatterns.push(...DEFAULT_IGNORE_PATTERNS);
     if (options.ignoreFilePath) {
         const normalizeIgnoreFilePath = path.resolve(cwd, options.ignoreFilePath);
-        const posixBaseDir = path.posix.relative(cwd, path.posix.dirname(normalizeIgnoreFilePath));
-        debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", posixBaseDir, normalizeIgnoreFilePath);
         if (fs.existsSync(normalizeIgnoreFilePath)) {
+            debug("findFiles ignore, normalizeIgnoreFilePath: %s", normalizeIgnoreFilePath);
             const ignored = fs
                 .readFileSync(normalizeIgnoreFilePath, "utf-8")
                 .split(/\r?\n/)
-                .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line))
-                .map(mapGitIgnorePatternTo(posixBaseDir));
-            debug("ignored: %o", ignored);
+                .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
+            debug("add ignored pattern: %o", ignored);
             ignoredPatterns.push(...ignored);
         }
     }

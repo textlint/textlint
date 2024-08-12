@@ -24,15 +24,15 @@ export type SearchFilesResult =
           errors: SearchFilesResultError[];
       };
 const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promise<string[]> => {
-    const normalizeIgnoreFilePath = path.resolve(cwd, ignoreFilePath);
-    // baseDir is used for glob pattern
-    // Can not use absolute path because C:// is not supported by glob
-    const exists = await fs.stat(normalizeIgnoreFilePath).catch(() => null);
-    if (!exists) {
-        return [];
+    try {
+        const normalizeIgnoreFilePath = path.resolve(cwd, ignoreFilePath);
+        const ignoreFileContent = await fs.readFile(normalizeIgnoreFilePath, "utf-8");
+        return ignoreFileContent.split(/\r?\n/).filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
+    } catch (error) {
+        throw new Error(`Failed to read ignore file: ${ignoreFilePath}`, {
+            cause: error
+        });
     }
-    const ignoreFileContent = await fs.readFile(normalizeIgnoreFilePath, "utf-8");
-    return ignoreFileContent.split(/\r?\n/).filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
 };
 /**
  * globby wrapper that support ignore options
@@ -46,7 +46,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         ...(options.ignoreFilePath ? await createIgnorePatterns(cwd, options.ignoreFilePath) : [])
     ];
     debug("search patterns: %o", patterns);
-    console.debug("search ignore patterns: %o", ignoredPatterns);
+    debug("search ignore patterns: %o", ignoredPatterns);
     const files = await glob(patterns, {
         cwd,
         absolute: true,
@@ -62,24 +62,23 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         };
     }
     // If ignore file is matched and result is empty, it should be ignored
-    const isEmptyResultByIgnoreFile =
-        files.length === 0 &&
-        (
-            await glob(patterns, {
-                cwd,
-                absolute: true,
-                nodir: true,
-                dot: true
-                // no ignore
-            })
-        ).length !== 0;
+    const filesWithoutIgnoreFiles = await glob(patterns, {
+        cwd,
+        absolute: true,
+        nodir: true,
+        dot: true
+        // no ignore
+    });
+    const isEmptyResultByIgnoreFile = files.length === 0 && filesWithoutIgnoreFiles.length !== 0;
     if (isEmptyResultByIgnoreFile) {
+        debug("found files but it is ignored by ignore file: %o", filesWithoutIgnoreFiles);
         return {
             ok: true,
             items: []
         };
     }
     // Not found target file
+    debug("Not found target file");
     return {
         ok: false,
         errors: [
