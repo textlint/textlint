@@ -12,12 +12,6 @@ export type FindFilesOptions = {
     cwd?: string;
     ignoreFilePath?: string;
 };
-const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
-    if (ignore.startsWith("!")) {
-        return `!${path.posix.join(base, ignore.slice(1))}`;
-    }
-    return path.posix.join(base, ignore);
-};
 const isFile = (filePath: string) => {
     try {
         return fs.statSync(filePath).isFile();
