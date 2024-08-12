@@ -34,6 +34,7 @@ textlint will drop support old APIs(`textlint`, `TextLintEngine`, `TextFixEngine
     - `fixFiles(files): Promise<TextlintFixResult[]>` lint text and return fixer messages
     - `fixText(text, filePath): Promise<TextlintFixResult>` lint text with virtual filePath and return fixer messages
         - `fixFiles` and `fixText` does not modify files
+    - `scanFilePath(filePath): Promise<ScanFilePathResult>` check the the file path is lintable or not
 - `loadTextlintrc`: load `.textlintrc` config file and return a descriptor object
 - `loadLinerFormatter` and `loadFixerFormatter`: load formatter
 
@@ -108,6 +109,23 @@ const textlintrcDescriptor = await loadTextlintrc();
 const availableExtensions = textlintrcDescriptor.availableExtensions;
 console.log(availableExtensions); // => [".md", ".txt"]
 ```
+
+Want to know the file path is lintable or not?
+
+```ts
+import { createLinter, loadTextlintrc } from "textlint";
+const textlintrcDescriptor = await loadTextlintrc();
+const linter = createLinter({
+    descriptor: textlintrcDescriptor
+});
+const result = await linter.scanFilePath("README.md");
+// result.status is "ok" or "ignored" or "error"
+if (result.status === "ok") {
+    const lintResult = await linter.lintText("README content", "README.md");
+    console.log(lintResult);
+}
+```
+
 
 ## Deprecated APIs
 
