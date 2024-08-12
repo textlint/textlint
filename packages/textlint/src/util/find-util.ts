@@ -23,16 +23,16 @@ export type SearchFilesResult =
           ok: false;
           errors: SearchFilesResultError[];
       };
-const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
+const mapGitIgnorePatternTo = (posixBaeDir: string) => (ignore: string) => {
     if (ignore[0] === "!") {
-        return `!${path.posix.join(base, ignore.slice(1))}`;
+        return `!${path.posix.join(posixBaeDir, ignore.slice(1))}`;
     }
-    return path.posix.join(base, ignore);
+    return path.posix.join(posixBaeDir, ignore);
 };
 const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promise<string[]> => {
     const normalizeIgnoreFilePath = path.resolve(cwd, ignoreFilePath);
     // baseDir is used for glob pattern
-    const baseDir = path.posix.resolve(cwd, path.posix.dirname(ignoreFilePath));
+    const posixBaseDir = path.posix.resolve(cwd, path.posix.dirname(ignoreFilePath));
     debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", cwd, normalizeIgnoreFilePath);
     const exists = await fs.stat(normalizeIgnoreFilePath).catch(() => null);
     if (!exists) {
@@ -42,7 +42,7 @@ const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promis
     return ignoreFileContent
         .split(/\r?\n/)
         .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line))
-        .map(mapGitIgnorePatternTo(baseDir));
+        .map(mapGitIgnorePatternTo(posixBaseDir));
 };
 /**
  * globby wrapper that support ignore options
