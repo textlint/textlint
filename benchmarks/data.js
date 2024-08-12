@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723447081638,
+  "lastUpdate": 1723447521919,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -38808,6 +38808,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6592718485800001,
             "unit": "seconds",
             "range": "± 0.014263150000000002"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "df374e1f62c0dddf8381b9cb937a9049e4617260",
+          "message": "fix: add workaround for windows",
+          "timestamp": "2024-08-12T16:23:00+09:00",
+          "tree_id": "1fdde3c6c52a137bec1cc902053ffa4ee57f7a37",
+          "url": "https://github.com/textlint/textlint/commit/df374e1f62c0dddf8381b9cb937a9049e4617260"
+        },
+        "date": 1723447519772,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0104517937399997,
+            "unit": "seconds",
+            "range": "± 0.09415999499999961"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.47156074734,
+            "unit": "seconds",
+            "range": "± 0.05755344399999984"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6309522403400001,
+            "unit": "seconds",
+            "range": "± 0.02159621300000003"
           }
         ]
       }
