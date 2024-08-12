@@ -52,6 +52,8 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
             isDynamic: false
         };
     });
+    // globby's ignoreFiles support glob pattern, but textlint does not accept glob pattern for ignore file
+    const normalizedIgnoreFilePath = options.ignoreFilePath ? convertPathToPattern(options.ignoreFilePath) : null;
     debug("search patterns: %o", normalizedPatterns);
     debug("search DEFAULT_IGNORE_PATTERNS: %o", DEFAULT_IGNORE_PATTERNS);
     debug("search ignoreFilePath: %s", options.ignoreFilePath);
@@ -65,6 +67,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         console.log({
             cwd: options.cwd,
             com,
+            normalizedIgnoreFilePath,
             relativeIgnoreFilePath
         });
         console.log("existsIgnoreFile: %o", await fs.stat(com).catch(() => null));
@@ -73,7 +76,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     const searchResultItems = await globby(globPatterns, {
         cwd: options.cwd,
         ignore: DEFAULT_IGNORE_PATTERNS,
-        ignoreFiles: relativeIgnoreFilePath ? [relativeIgnoreFilePath] : undefined,
+        ignoreFiles: normalizedIgnoreFilePath ? [normalizedIgnoreFilePath] : undefined,
         dot: true,
         absolute: true,
         onlyFiles: true
