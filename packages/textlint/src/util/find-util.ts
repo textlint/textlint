@@ -59,11 +59,13 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     if (existsIgnoreFile) {
         console.log("search ignore file exists: %s", options.ignoreFilePath);
     }
+    const relativeIgnoreFilePath = options.ignoreFilePath ? path.relative(options.cwd, options.ignoreFilePath) : null;
     if (options.ignoreFilePath) {
         const com = path.relative(options.cwd, path.dirname(options.ignoreFilePath));
         console.log({
             cwd: options.cwd,
-            com
+            com,
+            relativeIgnoreFilePath
         });
         console.log("existsIgnoreFile: %o", await fs.stat(com).catch(() => null));
     }
@@ -71,7 +73,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     const searchResultItems = await globby(globPatterns, {
         cwd: options.cwd,
         ignore: DEFAULT_IGNORE_PATTERNS,
-        ignoreFiles: options.ignoreFilePath ? [options.ignoreFilePath] : undefined,
+        ignoreFiles: relativeIgnoreFilePath ? [relativeIgnoreFilePath] : undefined,
         dot: true,
         absolute: true,
         onlyFiles: true
