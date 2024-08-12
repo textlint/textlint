@@ -53,7 +53,11 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     });
     // globby's ignoreFiles support glob pattern, but textlint does not accept glob pattern for ignore file
     // textlint treat ignore file as static path
-    const normalizedIgnoreFilePath = options.ignoreFilePath ? convertPathToPattern(options.ignoreFilePath) : undefined;
+    const normalizedIgnoreFilePath = options.ignoreFilePath
+        ? convertPathToPattern(
+              process.platform === "win32" ? options.ignoreFilePath.replace(/\\/g, "/") : options.ignoreFilePath
+          )
+        : undefined;
     debug("search patterns: %o", normalizedPatterns);
     debug("search DEFAULT_IGNORE_PATTERNS: %o", DEFAULT_IGNORE_PATTERNS);
     debug("search ignoreFilePath: %s, normalized: %s", options.ignoreFilePath, normalizedIgnoreFilePath);
