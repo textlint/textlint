@@ -53,15 +53,15 @@ export function findFiles(patterns: string[], options: FindFilesOptions = {}): s
     const ignoredPatterns: string[] = [];
     ignoredPatterns.push(...DEFAULT_IGNORE_PATTERNS);
     if (options.ignoreFilePath) {
-        const baseDir = path.posix.resolve(cwd, path.posix.dirname(options.ignoreFilePath));
         const normalizeIgnoreFilePath = path.resolve(cwd, options.ignoreFilePath);
-        debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", baseDir, normalizeIgnoreFilePath);
+        const posixBaseDir = path.posix.relative(cwd, path.posix.dirname(normalizeIgnoreFilePath));
+        debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", posixBaseDir, normalizeIgnoreFilePath);
         if (fs.existsSync(normalizeIgnoreFilePath)) {
             const ignored = fs
                 .readFileSync(normalizeIgnoreFilePath, "utf-8")
                 .split(/\r?\n/)
                 .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line))
-                .map(mapGitIgnorePatternTo(baseDir));
+                .map(mapGitIgnorePatternTo(posixBaseDir));
             debug("ignored: %o", ignored);
             ignoredPatterns.push(...ignored);
         }

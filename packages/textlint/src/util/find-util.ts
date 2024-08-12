@@ -33,8 +33,13 @@ const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promis
     const normalizeIgnoreFilePath = path.resolve(cwd, ignoreFilePath);
     // baseDir is used for glob pattern
     // Can not use absolute path because C:// is not supported by glob
-    const posixBaseDir = path.posix.relative(cwd, path.posix.dirname(ignoreFilePath));
-    debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", cwd, normalizeIgnoreFilePath);
+    const posixBaseDir = path.posix.relative(cwd, path.posix.dirname(normalizeIgnoreFilePath));
+    debug(
+        "findFiles cwd: %s, ignore baseDir: %s, normalizeIgnoreFilePath: %s",
+        cwd,
+        posixBaseDir,
+        normalizeIgnoreFilePath
+    );
     const exists = await fs.stat(normalizeIgnoreFilePath).catch(() => null);
     if (!exists) {
         return [];
