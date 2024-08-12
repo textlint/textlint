@@ -2,12 +2,6 @@ import * as assert from "assert";
 import path from "path";
 import { scanFilePath, searchFiles } from "../../src/util/find-util";
 
-// absolute option replaces \ in filename to / #379
-// https://github.com/mrmlnc/fast-glob/issues/371
-// https://github.com/mrmlnc/fast-glob/issues/379
-const bugFixFastGlobInWindows = (filePaths: string[]) => {
-    return filePaths.map((filePath) => path.resolve(filePath));
-};
 const testDir = path.resolve(__dirname, "fixtures/find-util");
 const test2Dir = path.resolve(__dirname, "fixtures/(find-util)");
 describe("find-util", () => {
@@ -16,7 +10,7 @@ describe("find-util", () => {
             const patterns = ["dir/**/*.md"];
             const files = await searchFiles(patterns, { cwd: testDir });
             assert.ok(files.ok);
-            assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+            assert.deepStrictEqual(files.items.sort(), [
                 path.resolve(testDir, "dir/ignored.md"),
                 path.resolve(testDir, "dir/subdir/test.md"),
                 path.resolve(testDir, "dir/test.md")
@@ -26,7 +20,7 @@ describe("find-util", () => {
             const patterns = ["dir/**/*.md"];
             const files = await searchFiles(patterns, { cwd: testDir });
             assert.ok(files.ok);
-            assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+            assert.deepStrictEqual(files.items.sort(), [
                 path.resolve(testDir, "dir/ignored.md"),
                 path.resolve(testDir, "dir/subdir/test.md"),
                 path.resolve(testDir, "dir/test.md")
@@ -36,7 +30,7 @@ describe("find-util", () => {
             const patterns = ["dir/**/*.md"];
             const files = await searchFiles(patterns, { cwd: testDir });
             assert.ok(files.ok);
-            assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+            assert.deepStrictEqual(files.items.sort(), [
                 path.resolve(testDir, "dir/ignored.md"),
                 path.resolve(testDir, "dir/subdir/test.md"),
                 path.resolve(testDir, "dir/test.md")
@@ -46,7 +40,7 @@ describe("find-util", () => {
             const patterns = ["dir/**/*.md", "ignored/**/*.md"];
             const files = await searchFiles(patterns, { cwd: testDir });
             assert.ok(files.ok);
-            assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+            assert.deepStrictEqual(files.items.sort(), [
                 path.resolve(testDir, "dir/ignored.md"),
                 path.resolve(testDir, "dir/subdir/test.md"),
                 path.resolve(testDir, "dir/test.md"),
@@ -58,7 +52,7 @@ describe("find-util", () => {
             const patterns = ["dir/**/*.md", "ignored/**/*.md"];
             const files = await searchFiles(patterns, { cwd: test2Dir });
             assert.ok(files.ok);
-            assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+            assert.deepStrictEqual(files.items.sort(), [
                 path.resolve(test2Dir, "dir/ignored.md"),
                 path.resolve(test2Dir, "dir/subdir/test.md"),
                 path.resolve(test2Dir, "dir/test.md"),
@@ -74,7 +68,7 @@ describe("find-util", () => {
                     ignoreFilePath: ".textlintignore"
                 });
                 assert.ok(files.ok);
-                assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+                assert.deepStrictEqual(files.items.sort(), [
                     path.resolve(testDir, "dir/subdir/test.md"),
                     path.resolve(testDir, "dir/test.md")
                 ]);
@@ -86,7 +80,7 @@ describe("find-util", () => {
                     ignoreFilePath: ".textlintignore"
                 });
                 assert.ok(files.ok);
-                assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+                assert.deepStrictEqual(files.items.sort(), [
                     path.resolve(testDir, "dir/subdir/test.md"),
                     path.resolve(testDir, "dir/test.md")
                 ]);
@@ -99,7 +93,7 @@ describe("find-util", () => {
                     ignoreFilePath: ".textlintignore"
                 });
                 assert.ok(files.ok);
-                assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), []);
+                assert.deepStrictEqual(files.items.sort(), []);
             });
             it("should respect ignore file in the directory includes ( and )", async () => {
                 const patterns = ["dir/**/*.md", "ignored/**/*.md"];
@@ -108,7 +102,7 @@ describe("find-util", () => {
                     ignoreFilePath: ".textlintignore"
                 });
                 assert.ok(files.ok);
-                assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+                assert.deepStrictEqual(files.items.sort(), [
                     path.resolve(test2Dir, "dir/subdir/test.md"),
                     path.resolve(test2Dir, "dir/test.md")
                 ]);
@@ -120,7 +114,7 @@ describe("find-util", () => {
                     ignoreFilePath: path.resolve(test2Dir, ".textlintignore")
                 });
                 assert.ok(files.ok);
-                assert.deepStrictEqual(bugFixFastGlobInWindows(files.items.sort()), [
+                assert.deepStrictEqual(files.items.sort(), [
                     path.resolve(test2Dir, "README.md"),
                     path.resolve(test2Dir, "dir/subdir/test.md"),
                     path.resolve(test2Dir, "dir/test.md")

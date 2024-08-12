@@ -1,8 +1,19 @@
 import fs from "node:fs/promises";
 import debug0 from "debug";
+import path from "path";
 
 const debug = debug0("textlint:find-util");
 const DEFAULT_IGNORE_PATTERNS = ["**/.git/**", "**/node_modules/**"];
+
+// absolute option replaces \ in filename to / #379
+// https://github.com/mrmlnc/fast-glob/issues/371
+// https://github.com/mrmlnc/fast-glob/issues/379
+const bugFixFastGlobInWindows = (filePaths: string[]) => {
+    if (process.platform !== "win32") {
+        return filePaths;
+    }
+    return filePaths.map((filePath) => path.resolve(filePath));
+};
 export type SearchFilesOptions = {
     cwd: string;
     ignoreFilePath?: string;
@@ -73,7 +84,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     if (searchResultItems.length > 0) {
         return {
             ok: true,
-            items: searchResultItems
+            items: bugFixFastGlobInWindows(searchResultItems)
         };
     }
     /**
