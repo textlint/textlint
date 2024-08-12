@@ -149,7 +149,7 @@ export const createLinter = (options: CreateLinterOptions) => {
             return kernel.fixText(text, kernelOptions);
         },
         /**
-         * Scan file path and return result
+         * Scan file path and return scan result
          * If you want to know the file is ignored by ignore file, use this function
          * Return { status "ok" | "ignored" | "error" } object:
          * - ok: found file and allow to lint/fix
