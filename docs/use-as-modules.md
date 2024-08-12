@@ -96,7 +96,7 @@ const linter = createLinter({
     // if same ruleId or pluginId, customDescriptor is used.
     descriptor: customDescriptor.concat(textlintrcDescriptor)
 });
-const result = await linter.lintText("TODO: fix me");
+const result = await linter.lintText("TODO: fix me", "README.md");
 console.log(result);
 ```
 
