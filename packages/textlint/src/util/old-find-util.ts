@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { pathToGlobPattern } from "path-to-glob-pattern";
-import glob from "glob";
+import * as glob from "glob";
 import path from "path";
 import fs from "fs";
 import debug0 from "debug";
