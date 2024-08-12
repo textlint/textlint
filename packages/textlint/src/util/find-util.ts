@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import debug0 from "debug";
+import path from "path";
 
 const debug = debug0("textlint:find-util");
 const DEFAULT_IGNORE_PATTERNS = ["**/.git/**", "**/node_modules/**"];
@@ -57,6 +58,14 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     const existsIgnoreFile = options.ignoreFilePath ? await fs.stat(options.ignoreFilePath).catch(() => null) : null;
     if (existsIgnoreFile) {
         console.log("search ignore file exists: %s", options.ignoreFilePath);
+    }
+    if (options.ignoreFilePath) {
+        const com = path.relative(options.cwd, path.dirname(options.ignoreFilePath));
+        console.log({
+            cwd: options.cwd,
+            com
+        });
+        console.log("existsIgnoreFile: %o", await fs.stat(com).catch(() => null));
     }
     const globPatterns = normalizedPatterns.map((pattern) => pattern.pattern);
     const searchResultItems = await globby(globPatterns, {
