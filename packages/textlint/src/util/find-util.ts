@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import debug0 from "debug";
-import path from "path";
 
 const debug = debug0("textlint:find-util");
 const DEFAULT_IGNORE_PATTERNS = ["**/.git/**", "**/node_modules/**"];
@@ -53,25 +52,11 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         };
     });
     // globby's ignoreFiles support glob pattern, but textlint does not accept glob pattern for ignore file
-    const normalizedIgnoreFilePath = options.ignoreFilePath ? convertPathToPattern(options.ignoreFilePath) : null;
+    // textlint treat ignore file as static path
+    const normalizedIgnoreFilePath = options.ignoreFilePath ? convertPathToPattern(options.ignoreFilePath) : undefined;
     debug("search patterns: %o", normalizedPatterns);
     debug("search DEFAULT_IGNORE_PATTERNS: %o", DEFAULT_IGNORE_PATTERNS);
-    debug("search ignoreFilePath: %s", options.ignoreFilePath);
-    const existsIgnoreFile = options.ignoreFilePath ? await fs.stat(options.ignoreFilePath).catch(() => null) : null;
-    if (existsIgnoreFile) {
-        console.log("search ignore file exists: %s", options.ignoreFilePath);
-    }
-    const relativeIgnoreFilePath = options.ignoreFilePath ? path.relative(options.cwd, options.ignoreFilePath) : null;
-    if (options.ignoreFilePath) {
-        const com = path.relative(options.cwd, path.dirname(options.ignoreFilePath));
-        console.log({
-            cwd: options.cwd,
-            com,
-            normalizedIgnoreFilePath,
-            relativeIgnoreFilePath
-        });
-        console.log("existsIgnoreFile: %o", await fs.stat(com).catch(() => null));
-    }
+    debug("search ignoreFilePath: %s, normalized: %s", options.ignoreFilePath, normalizedIgnoreFilePath);
     const globPatterns = normalizedPatterns.map((pattern) => pattern.pattern);
     const searchResultItems = await globby(globPatterns, {
         cwd: options.cwd,
@@ -163,7 +148,6 @@ export const scanFilePath = async (filePath: string, options: SearchFilesOptions
             status: "ignored"
         };
     }
-    console.log("scanFilePath: %o", searchResult);
     return {
         status: "ok"
     };
