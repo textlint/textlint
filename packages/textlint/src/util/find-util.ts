@@ -59,11 +59,42 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         cwd,
         absolute: true,
         nodir: true,
+        dot: true,
         ignore: ignoredPatterns
     });
+    if (files.length > 0) {
+        debug("found files: %o", files);
+        return {
+            ok: true,
+            items: files
+        };
+    }
+    // If ignore file is matched and result is empty, it should be ignored
+    const isEmptyResultByIgnoreFile =
+        files.length === 0 &&
+        (
+            await glob(patterns, {
+                cwd,
+                absolute: true,
+                nodir: true,
+                dot: true
+                // no ignore
+            })
+        ).length !== 0;
+    if (isEmptyResultByIgnoreFile) {
+        return {
+            ok: true,
+            items: []
+        };
+    }
+    // Not found target file
     return {
-        ok: true,
-        items: files
+        ok: false,
+        errors: [
+            {
+                type: "SearchFilesNoTargetFileError"
+            }
+        ]
     };
 };
 
