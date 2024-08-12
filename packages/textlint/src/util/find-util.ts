@@ -31,6 +31,8 @@ const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
 };
 const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promise<string[]> => {
     const normalizeIgnoreFilePath = path.resolve(cwd, ignoreFilePath);
+    // baseDir is used for glob pattern
+    const baseDir = path.posix.resolve(cwd, path.posix.dirname(ignoreFilePath));
     debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", cwd, normalizeIgnoreFilePath);
     const exists = await fs.stat(normalizeIgnoreFilePath).catch(() => null);
     if (!exists) {
@@ -40,7 +42,7 @@ const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promis
     return ignoreFileContent
         .split(/\r?\n/)
         .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line))
-        .map(mapGitIgnorePatternTo(cwd));
+        .map(mapGitIgnorePatternTo(baseDir));
 };
 /**
  * globby wrapper that support ignore options

@@ -53,7 +53,7 @@ export function findFiles(patterns: string[], options: FindFilesOptions = {}): s
     const ignoredPatterns: string[] = [];
     ignoredPatterns.push(...DEFAULT_IGNORE_PATTERNS);
     if (options.ignoreFilePath) {
-        const baseDir = path.resolve(cwd, path.dirname(options.ignoreFilePath));
+        const baseDir = path.posix.resolve(cwd, path.posix.dirname(options.ignoreFilePath));
         const normalizeIgnoreFilePath = path.resolve(cwd, options.ignoreFilePath);
         debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", baseDir, normalizeIgnoreFilePath);
         if (fs.existsSync(normalizeIgnoreFilePath)) {
