@@ -24,7 +24,7 @@ export type SearchFilesResult =
           errors: SearchFilesResultError[];
       };
 const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
-    if (ignore.startsWith("!")) {
+    if (ignore[0] === "!") {
         return `!${path.posix.join(base, ignore.slice(1))}`;
     }
     return path.posix.join(base, ignore);
@@ -54,7 +54,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         ...(options.ignoreFilePath ? await createIgnorePatterns(cwd, options.ignoreFilePath) : [])
     ];
     debug("search patterns: %o", patterns);
-    debug("search ignore patterns: %o", ignoredPatterns);
+    console.debug("search ignore patterns: %o", ignoredPatterns);
     const files = await glob(patterns, {
         cwd,
         absolute: true,
