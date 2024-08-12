@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723438901827,
+  "lastUpdate": 1723439231201,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -38640,6 +38640,48 @@ window.BENCHMARK_DATA = {
             "value": 0.70960468422,
             "unit": "seconds",
             "range": "± 0.025246125000000008"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "8ec07443c2b9cce33f402524ef440d3220a7bcf5",
+          "message": "fix use absolute",
+          "timestamp": "2024-08-12T14:04:47+09:00",
+          "tree_id": "f616de1bd0c15bbac3e08f14c2f10dfa6227b9fa",
+          "url": "https://github.com/textlint/textlint/commit/8ec07443c2b9cce33f402524ef440d3220a7bcf5"
+        },
+        "date": 1723439228963,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0789134766399995,
+            "unit": "seconds",
+            "range": "± 0.07486858899999982"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.546618766239999,
+            "unit": "seconds",
+            "range": "± 0.10089289499999943"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.66510339904,
+            "unit": "seconds",
+            "range": "± 0.01662359499999999"
           }
         ]
       }
