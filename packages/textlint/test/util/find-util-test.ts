@@ -85,8 +85,26 @@ describe("find-util", () => {
                     path.resolve(testDir, "dir/test.md")
                 ]);
             });
+            it("should support file paths", async () => {
+                const patterns = ["ignored/test.md", "dir/test.md"];
+                const files = await searchFiles(patterns, {
+                    cwd: testDir,
+                    ignoreFilePath: ".textlintignore"
+                });
+                assert.ok(files.ok);
+                assert.deepStrictEqual(files.items.sort(), [path.resolve(testDir, "dir/test.md")]);
+            });
             // Issue: https://github.com/textlint/textlint/issues/1408
             it("should respect ignore file if pattern is absolute file path", async () => {
+                const patterns = [path.resolve(testDir, "ignored/test.md")];
+                const files = await searchFiles(patterns, {
+                    cwd: testDir,
+                    ignoreFilePath: ".textlintignore"
+                });
+                assert.ok(files.ok);
+                assert.deepStrictEqual(files.items.sort(), []);
+            });
+            it("should respect ignore file if pattern is relative file path", async () => {
                 const patterns = ["ignored/test.md"];
                 const files = await searchFiles(patterns, {
                     cwd: testDir,
