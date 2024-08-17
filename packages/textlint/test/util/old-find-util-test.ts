@@ -74,7 +74,7 @@ describe("old-find-util", () => {
             });
             it("should find files with absolute path patterns in the directory includes ( and )", () => {
                 const cwd = path.resolve(__dirname, "fixtures/(find-util)");
-                const patterns = [path.resolve(cwd, "**/*.md")];
+                const patterns = ["**/*.md"];
                 const files = findFiles(patterns, {
                     cwd,
                     ignoreFilePath: ".textlintignore"
@@ -88,7 +88,7 @@ describe("old-find-util", () => {
             });
             it("should find files with absolute path patterns in the directory includes ( and ) if ignoreFilePath is absolute", () => {
                 const cwd = path.resolve(__dirname, "fixtures/(find-util)");
-                const patterns = [path.resolve(cwd, "**/*.md")];
+                const patterns = ["**/*.md"];
                 const files = findFiles(patterns, {
                     cwd,
                     ignoreFilePath: path.resolve(cwd, ".textlintignore")
