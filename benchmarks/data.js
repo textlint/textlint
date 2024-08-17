@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723904048886,
+  "lastUpdate": 1723904377160,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -39186,6 +39186,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6597398320600001,
             "unit": "seconds",
             "range": "± 0.019905316000000006"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "b96e510d516c49b14dbaa93cf2c02e19c22030f3",
+          "message": "test: fix glob pattern",
+          "timestamp": "2024-08-17T23:17:15+09:00",
+          "tree_id": "9d55d973ab90f5708c8333b789f86774926a4556",
+          "url": "https://github.com/textlint/textlint/commit/b96e510d516c49b14dbaa93cf2c02e19c22030f3"
+        },
+        "date": 1723904375019,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.03176503186,
+            "unit": "seconds",
+            "range": "± 0.04900200099999985"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.48296653686,
+            "unit": "seconds",
+            "range": "± 0.10259008099999978"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6629770130600001,
+            "unit": "seconds",
+            "range": "± 0.019792593999999997"
           }
         ]
       }
