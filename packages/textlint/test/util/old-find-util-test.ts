@@ -16,7 +16,7 @@ describe("old-find-util", () => {
             ]);
         });
         it("should find files with absolute path pattern", () => {
-            const patterns = [path.resolve(cwd, "dir/**/*.md")];
+            const patterns = ["dir/**/*.md"];
             const files = findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
@@ -26,7 +26,7 @@ describe("old-find-util", () => {
             ]);
         });
         it("should find dot files", () => {
-            const patterns = [path.resolve(cwd, "dir/**/*.md")];
+            const patterns = ["dir/**/*.md"];
             const files = findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
@@ -36,7 +36,7 @@ describe("old-find-util", () => {
             ]);
         });
         it("should find files with multiple path patterns", () => {
-            const patterns = ["dir/**/*.md", path.resolve(cwd, "ignored/**/*.md")];
+            const patterns = ["dir/**/*.md", "ignored/**/*.md"];
             const files = findFiles(patterns, { cwd });
             files.sort();
             assert.deepStrictEqual(files, [
@@ -61,7 +61,7 @@ describe("old-find-util", () => {
                 ]);
             });
             it("should find files with absolute path patterns", () => {
-                const patterns = [path.resolve(cwd, "**/*.md")];
+                const patterns = ["**/*.md"];
                 const files = findFiles(patterns, {
                     cwd,
                     ignoreFilePath: ".textlintignore"
