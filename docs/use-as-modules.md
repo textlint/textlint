@@ -34,10 +34,13 @@ textlint will drop support old APIs(`textlint`, `TextLintEngine`, `TextFixEngine
     - `fixFiles(files): Promise<TextlintFixResult[]>` lint text and return fixer messages
     - `fixText(text, filePath): Promise<TextlintFixResult>` lint text with virtual filePath and return fixer messages
         - `fixFiles` and `fixText` does not modify files
+    - `scanFilePath(filePath): Promise<ScanFilePathResult>` check the the file path is lintable or not
 - `loadTextlintrc`: load `.textlintrc` config file and return a descriptor object
 - `loadLinerFormatter` and `loadFixerFormatter`: load formatter
 
-Lint files and output to console.
+## Examples
+
+### Lint files and output to console
 
 ```ts
 import { createLinter, loadTextlintrc, loadLinterFormatter } from "textlint";
@@ -54,7 +57,7 @@ const output = formatter.format(results);
 console.log(output);
 ```
 
-Fix text and get the fixed text.
+### Fix text and get the fixed text
 
 ```ts
 import { createLinter, loadTextlintrc } from "textlint";
@@ -68,7 +71,7 @@ const result = await linter.fixText("TODO: fix me", "DUMMY.md");
 console.log(result.output); // fixed result
 ```
 
-Add custom rules and plugins.
+## Add custom rules and plugins
 
 ```ts
 import { createLinter, loadTextlintrc } from "textlint";
@@ -95,11 +98,12 @@ const linter = createLinter({
     // if same ruleId or pluginId, customDescriptor is used.
     descriptor: customDescriptor.concat(textlintrcDescriptor)
 });
-const result = await linter.lintText("TODO: fix me");
+const result = await linter.lintText("TODO: fix me", "README.md");
 console.log(result);
 ```
 
-Get lintable file extensions.
+## Get lintable file extensions
+
 `textlintrcDescriptor.availableExtensions` provide list of supported file extensions.
 
 ```ts
@@ -108,6 +112,23 @@ const textlintrcDescriptor = await loadTextlintrc();
 const availableExtensions = textlintrcDescriptor.availableExtensions;
 console.log(availableExtensions); // => [".md", ".txt"]
 ```
+
+## Want to know the file path is lintable or not
+
+```ts
+import { createLinter, loadTextlintrc } from "textlint";
+const textlintrcDescriptor = await loadTextlintrc();
+const linter = createLinter({
+    descriptor: textlintrcDescriptor
+});
+const result = await linter.scanFilePath("README.md");
+// result.status is "ok" or "ignored" or "error"
+if (result.status === "ok") {
+    const lintResult = await linter.lintText("README content", "README.md");
+    console.log(lintResult);
+}
+```
+
 
 ## Deprecated APIs
 
