@@ -47,6 +47,8 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     ];
     debug("search patterns: %o", patterns);
     debug("search ignore patterns: %o", ignoredPatterns);
+    // Glob support file path, we can pass file path directly
+    // https://github.com/azu/node-glob-example
     const files = await glob(patterns, {
         cwd,
         absolute: true,
@@ -54,8 +56,8 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
         dot: true,
         ignore: ignoredPatterns
     });
+    debug("found files: %o", files);
     if (files.length > 0) {
-        debug("found files: %o", files);
         return {
             ok: true,
             items: files
@@ -71,7 +73,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     });
     const isEmptyResultByIgnoreFile = files.length === 0 && filesWithoutIgnoreFiles.length !== 0;
     if (isEmptyResultByIgnoreFile) {
-        debug("found files but it is ignored by ignore file: %o", filesWithoutIgnoreFiles);
+        debug("all files are ignored by ignore files. ignored files: %o", filesWithoutIgnoreFiles);
         return {
             ok: true,
             items: []
