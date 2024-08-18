@@ -1,8 +1,12 @@
 {
   "name": "textlint-scripts-example",
+  "description": "Example of textlint-scripts",
   "version": "14.1.0",
   "private": true,
+  "license": "MIT",
+  "author": "azu",
   "scripts": {
+    "init-readme": "textlint-scripts init --yes",
     "build": "textlint-scripts build",
     "test": "textlint-scripts test"
   },
