@@ -22,6 +22,8 @@ jobs:
         run: npm ci
       - name: Test
         run: npm test
+        env:
+          DEBUG: "textlint:*"
       - name: Test Examples
         run: npm run test:examples
 

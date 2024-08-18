@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import { TextlintKernel, TextlintKernelDescriptor, TextlintResult } from "@textlint/kernel";
-import { findFiles, pathsToGlobPatterns, separateByAvailability } from "./util/find-util";
+import { findFiles, pathsToGlobPatterns } from "./util/old-find-util";
 import { ExecuteFileBackerManager } from "./engine/execute-file-backer-manager";
 import { CacheBacker } from "./engine/execute-file-backers/cache-backer";
 import path from "path";
@@ -11,6 +11,8 @@ import fs from "fs/promises";
 import { Logger } from "./util/logger";
 import { TextlintFixResult } from "@textlint/types";
 import debug0 from "debug";
+import { separateByAvailability } from "./util/separate-by-availability";
+import { scanFilePath, ScanFilePathResult } from "./util/find-util";
 
 const debug = debug0("textlint:createTextlint");
 export type CreateLinterOptions = {
@@ -20,6 +22,10 @@ export type CreateLinterOptions = {
     quiet?: boolean;
     cache?: boolean;
     cacheLocation?: string;
+    /**
+     * The current working directory
+     */
+    cwd?: string;
 };
 const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string => {
     try {
@@ -35,6 +41,7 @@ const createHashForDescriptor = (descriptor: TextlintKernelDescriptor): string =
     }
 };
 export const createLinter = (options: CreateLinterOptions) => {
+    const cwd = options.cwd ?? process.cwd();
     const executeFileBackerManger = new ExecuteFileBackerManager();
     const cacheBaker = new CacheBacker({
         cache: options.cache ?? false,
@@ -52,12 +59,13 @@ export const createLinter = (options: CreateLinterOptions) => {
     const baseOptions = options.descriptor.toKernelOptions();
     return {
         /**
-         * Executes the current configuration on an array of file and directory names.
-         * @param {String[]}  files An array of file and directory names.
+         * Lint files
+         * Note: lintFiles respect ignore file
+         * @param {String[]} filesOrGlobs An array of file path and directory names, or glob.
          * @returns {Promise<TextlintResult[]>} The results for all files that were linted.
          */
-        async lintFiles(files: string[]): Promise<TextlintResult[]> {
-            const patterns = pathsToGlobPatterns(files, {
+        async lintFiles(filesOrGlobs: string[]): Promise<TextlintResult[]> {
+            const patterns = pathsToGlobPatterns(filesOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
             const targetFiles = findFiles(patterns, {
@@ -80,6 +88,13 @@ export const createLinter = (options: CreateLinterOptions) => {
                 return kernel.lintText(fileContent, kernelOptions);
             });
         },
+        /**
+         * Lint text
+         * Note: lintText does not respect ignore file
+         * You can detect the file path is ignored or not by `scanFilePath()`
+         * @param text
+         * @param filePath
+         */
         async lintText(text: string, filePath: string): Promise<TextlintResult> {
             const kernelOptions = {
                 ext: path.extname(filePath),
@@ -88,9 +103,14 @@ export const createLinter = (options: CreateLinterOptions) => {
             };
             return kernel.lintText(text, kernelOptions);
         },
-        // fix files
-        async fixFiles(files: string[]): Promise<TextlintFixResult[]> {
-            const patterns = pathsToGlobPatterns(files, {
+        /**
+         * Lint files and fix them
+         * Note: fixFiles respect ignore file
+         * @param fileOrGlobs An array of file path and directory names, or glob.
+         * @returns {Promise<TextlintFixResult[]>} The results for all files that were linted and fixed.
+         */
+        async fixFiles(fileOrGlobs: string[]): Promise<TextlintFixResult[]> {
+            const patterns = pathsToGlobPatterns(fileOrGlobs, {
                 extensions: options.descriptor.availableExtensions
             });
             const targetFiles = findFiles(patterns, {
@@ -113,6 +133,13 @@ export const createLinter = (options: CreateLinterOptions) => {
                 return kernel.fixText(fileContent, kernelOptions);
             });
         },
+        /**
+         * Lint text and fix it
+         * Note: fixText does not respect ignore file
+         * You can detect the file path is ignored or not by `scanFilePath()`
+         * @param text
+         * @param filePath
+         */
         async fixText(text: string, filePath: string): Promise<TextlintFixResult> {
             const kernelOptions = {
                 ext: path.extname(filePath),
@@ -120,6 +147,22 @@ export const createLinter = (options: CreateLinterOptions) => {
                 ...baseOptions
             };
             return kernel.fixText(text, kernelOptions);
+        },
+        /**
+         * Scan file path and return scan result
+         * If you want to know the file is ignored by ignore file, use this function
+         * Return { status "ok" | "ignored" | "error" } object:
+         * - ok: found file and allow to lint/fix
+         * - ignored: found file, and it is ignored by ignore file
+         * - error: not found file
+         * @param filePath
+         * @returns {Promise<ScanFilePathResult>}
+         */
+        async scanFilePath(filePath: string): Promise<ScanFilePathResult> {
+            return scanFilePath(filePath, {
+                cwd,
+                ignoreFilePath: options.ignoreFilePath
+            });
         }
     };
 };

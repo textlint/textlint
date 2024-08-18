@@ -1,125 +1,147 @@
-// LICENSE : MIT
-"use strict";
-import { pathToGlobPattern } from "path-to-glob-pattern";
-import glob from "glob";
-import path from "path";
-import fs from "fs";
+import fs from "node:fs/promises";
 import debug0 from "debug";
+import path from "path";
+import { glob } from "glob";
+
 const debug = debug0("textlint:find-util");
-const DEFAULT_IGNORE_PATTERNS = Object.freeze(["**/.git/**", "**/node_modules/**"]);
-export type FindFilesOptions = {
-    cwd?: string;
+const DEFAULT_IGNORE_PATTERNS = ["**/.git/**", "**/node_modules/**"];
+export type SearchFilesOptions = {
+    cwd: string;
     ignoreFilePath?: string;
 };
-const mapGitIgnorePatternTo = (base: string) => (ignore: string) => {
-    if (ignore.startsWith("!")) {
-        return `!${path.posix.join(base, ignore.slice(1))}`;
-    }
-    return path.posix.join(base, ignore);
+
+export type SearchFilesNoTargetFileError = {
+    type: "SearchFilesNoTargetFileError";
 };
-const isFile = (filePath: string) => {
+export type SearchFilesResultError = SearchFilesNoTargetFileError;
+export type SearchFilesResult =
+    | {
+          ok: true;
+          items: string[];
+      }
+    | {
+          ok: false;
+          errors: SearchFilesResultError[];
+      };
+const createIgnorePatterns = async (cwd: string, ignoreFilePath: string): Promise<string[]> => {
     try {
-        return fs.statSync(filePath).isFile();
+        const normalizeIgnoreFilePath = path.resolve(cwd, ignoreFilePath);
+        const ignoreFileContent = await fs.readFile(normalizeIgnoreFilePath, "utf-8");
+        return ignoreFileContent.split(/\r?\n/).filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line));
     } catch (error) {
-        return false;
+        throw new Error(`Failed to read ignore file: ${ignoreFilePath}`, {
+            cause: error
+        });
     }
 };
-
 /**
- * filter files by config
- * @param {string[]} patterns glob patterns
- * @param {{extensions?: string[], cwd?: string }} options
+ * globby wrapper that support ignore options
+ * @param patterns
+ * @param options
  */
-export function pathsToGlobPatterns(
-    patterns: string[],
-    options: { extensions?: string[]; cwd?: string } = {}
-): string[] {
-    const processPatterns = pathToGlobPattern({
-        extensions: options.extensions || [],
-        cwd: options.cwd || process.cwd()
-    });
-    return patterns.map(processPatterns);
-}
-
-/**
- * found files by glob pattern
- * @param {string[]} patterns
- * @param {FindFilesOptions} options
- * @returns {string[]} file path list
- */
-export function findFiles(patterns: string[], options: FindFilesOptions = {}): string[] {
-    const cwd = options.cwd || process.cwd();
-    const ignoredPatterns: string[] = [];
-    ignoredPatterns.push(...DEFAULT_IGNORE_PATTERNS);
-    if (options.ignoreFilePath) {
-        const baseDir = path.resolve(cwd, path.dirname(options.ignoreFilePath));
-        const normalizeIgnoreFilePath = path.resolve(cwd, options.ignoreFilePath);
-        debug("findFiles ignore baseDir: %s, normalizeIgnoreFilePath: %s", baseDir, normalizeIgnoreFilePath);
-        if (fs.existsSync(normalizeIgnoreFilePath)) {
-            const ignored = fs
-                .readFileSync(normalizeIgnoreFilePath, "utf-8")
-                .split(/\r?\n/)
-                .filter((line: string) => !/^\s*$/.test(line) && !/^\s*#/.test(line))
-                .map(mapGitIgnorePatternTo(baseDir));
-            debug("ignored: %o", ignored);
-            ignoredPatterns.push(...ignored);
-        }
-    }
+export const searchFiles = async (patterns: string[], options: SearchFilesOptions): Promise<SearchFilesResult> => {
+    const cwd = options.cwd ?? process.cwd();
+    const ignoredPatterns: string[] = [
+        ...DEFAULT_IGNORE_PATTERNS,
+        ...(options.ignoreFilePath ? await createIgnorePatterns(cwd, options.ignoreFilePath) : [])
+    ];
     debug("search patterns: %o", patterns);
     debug("search ignore patterns: %o", ignoredPatterns);
-    const files: string[] = [];
-    const addFile = (filePath: string) => {
-        if (files.indexOf(filePath) === -1) {
-            files.push(filePath);
-        }
-    };
-    patterns.forEach((pattern) => {
-        const file = path.resolve(cwd, pattern);
-        if (isFile(file)) {
-            addFile(fs.realpathSync(file));
-        } else {
-            glob.sync(pattern, {
-                cwd,
-                absolute: true,
-                nodir: true,
-                ignore: ignoredPatterns
-            }).forEach((filePath: string) => {
-                // workaround for windows
-                // https://github.com/isaacs/node-glob/issues/74#issuecomment-31548810
-                addFile(path.resolve(filePath));
-            });
-        }
+    // Glob support file path, we can pass file path directly
+    // https://github.com/azu/node-glob-example
+    // TODO: add pathsToGlobPatterns here
+    const files = await glob(patterns, {
+        cwd,
+        absolute: true,
+        nodir: true,
+        dot: true,
+        ignore: ignoredPatterns
     });
-    return files;
-}
-
-/**
- * classify files by extname
- * unAvailableFilePath will be used for warning.
- * If The user can use glob pattern like `src/*.js` as arguments, It will be expanded by shell.
- * pathsToGlobPatterns not modified that pattern.
- * So, unAvailableFilePath should be ignored silently.
- * @param {string[]} files
- * @param {{extensions?: string[]}} [options]
- * @returns {{availableFiles: string[], unAvailableFiles: string[]}}
- */
-export function separateByAvailability(
-    files: string[],
-    options: { extensions?: string[] } = {}
-): { availableFiles: string[]; unAvailableFiles: string[] } {
-    const extensions = options.extensions || [];
-    const availableFiles: string[] = [];
-    const unAvailableFiles: string[] = [];
-    files.forEach((filePath) => {
-        const extname = path.extname(filePath) || path.basename(filePath);
-        if (extensions.indexOf(extname) === -1) {
-            unAvailableFiles.push(filePath);
-        } else {
-            availableFiles.push(filePath);
-        }
+    debug("found files: %o", files);
+    if (files.length > 0) {
+        return {
+            ok: true,
+            items: files
+        };
+    }
+    // If ignore file is matched and result is empty, it should be ignored
+    const filesWithoutIgnoreFiles = await glob(patterns, {
+        cwd,
+        absolute: true,
+        nodir: true,
+        dot: true
+        // no ignore
     });
+    const isEmptyResultByIgnoreFile = files.length === 0 && filesWithoutIgnoreFiles.length !== 0;
+    if (isEmptyResultByIgnoreFile) {
+        debug("all files are ignored by ignore files. ignored files: %o", filesWithoutIgnoreFiles);
+        return {
+            ok: true,
+            items: []
+        };
+    }
+    // Not found target file
+    debug("Not found target file");
     return {
-        availableFiles,
-        unAvailableFiles
+        ok: false,
+        errors: [
+            {
+                type: "SearchFilesNoTargetFileError"
+            }
+        ]
     };
-}
+};
+
+export type ScanFilePathNoExistFilePathError = {
+    type: "ScanFilePathNoExistFilePathError";
+    filePath: string;
+};
+export type ScanFilePathResultError = ScanFilePathNoExistFilePathError | SearchFilesResultError;
+export type ScanFilePathResult =
+    | {
+          // Found target file
+          status: "ok";
+      }
+    | {
+          // Found target file but it is ignored by ignore file
+          status: "ignored";
+      }
+    | {
+          // Not found target file
+          status: "error";
+          errors: ScanFilePathResultError[];
+      };
+/**
+ * Scan file path and return the file is target or not
+ * @param filePath
+ * @param options
+ */
+export const scanFilePath = async (filePath: string, options: SearchFilesOptions): Promise<ScanFilePathResult> => {
+    const exists = await fs.stat(filePath).catch(() => null);
+    if (!exists) {
+        return {
+            status: "error",
+            errors: [
+                {
+                    type: "ScanFilePathNoExistFilePathError",
+                    filePath
+                }
+            ]
+        };
+    }
+    const searchResult = await searchFiles([filePath], options);
+    if (!searchResult.ok) {
+        return {
+            status: "error",
+            errors: searchResult.errors
+        };
+    }
+    if (searchResult.items.length === 0) {
+        return {
+            status: "ignored"
+        };
+    }
+    return {
+        status: "ok"
+    };
+};

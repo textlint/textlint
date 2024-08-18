@@ -427,7 +427,7 @@ describe("cli-test", function () {
         });
     });
     describe("--ignore-path /path/to/.textlintignore", function () {
-        it("should ignore test.md", async function () {
+        it("should ignore todo.md with glob", async function () {
             const fixtureDir = path.posix.join(__dirname, "fixtures");
             const ruleModuleName = "textlint-rule-no-todo";
             const ignoreFile = path.join(__dirname, "fixtures/all-md.textlintignore");
@@ -435,6 +435,20 @@ describe("cli-test", function () {
                 `--rule "${ruleModuleName}" "${fixtureDir}/**/*.md" --ignore-path ${ignoreFile}"`
             );
             assert.strictEqual(result, 0);
+        });
+        it("should ignore todo.md with file path", async function () {
+            const ruleModuleName = "textlint-rule-no-todo";
+            const ignoreFile = path.join(__dirname, "fixtures/all-md.textlintignore");
+            const targetFilePath = path.join(__dirname, "fixtures/todo.md");
+            const result = await cli.execute(
+                `--rule "${ruleModuleName}" "${targetFilePath}" --ignore-path ${ignoreFile}"`
+            );
+            // TODO: this test should be pass, but current implementation is not working correctly
+            // Next textlint fix this bug
+            // https://github.com/textlint/textlint/issues/1409
+            assert.throws(() => {
+                assert.strictEqual(result, 0);
+            });
         });
     });
     describe("--outputFile /path/to/output.txt", function () {

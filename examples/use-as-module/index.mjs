@@ -15,6 +15,9 @@ async function lintFile(filePath) {
     const linter = createLinter({
         descriptor
     });
+    const scanResult = await linter.scanFilePath(filePath);
+    console.log(scanResult); // { status: "ok" }
+    
     const results = await linter.lintFiles([filePath]);
     // textlint has two types formatter sets for linter and fixer
     const formatter = await loadLinterFormatter({ formatterName: "stylish" });
