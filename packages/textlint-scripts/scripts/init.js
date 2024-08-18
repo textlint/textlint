@@ -1,29 +1,33 @@
 // LICENSE : MIT
 "use strict";
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 const confirmer = require("confirmer");
-const pkgToReadme = require("pkg-to-readme");
-// Update README.md
+const process = require("node:process");
 const templatePath = path.resolve(__dirname, "..", "configs", "README.md.template");
-Promise.resolve()
-    .then(function () {
-        if (!fs.existsSync(path.resolve("README.md"))) {
-            return;
-        }
-        return confirmer("Would you overwrite README.md? (y/n)").then(function (result) {
-            return result ? Promise.resolve() : Promise.reject(new Error("Not overwrite"));
-        });
-    })
-    .then(function () {
-        return pkgToReadme({
-            template: templatePath
-        });
-    })
+//  textlint-scripts init --yes
+const isYES = process.argv.includes("--yes");
+async function init() {
+    const outputFilePath = path.join(process.cwd(), "README.md");
+    if (fs.existsSync(outputFilePath)) {
+        return;
+    }
+    const result = isYES ? true : confirmer("Would you overwrite README.md? (y/n)");
+    if (!result) {
+        throw new Error("Not overwrite README.md");
+    }
+    const { pkg2readme } = await import("pkg-to-readme");
+    await pkg2readme({
+        template: templatePath,
+        output: outputFilePath
+    });
+}
+
+init()
     .then(function () {
         console.log("Generated README.md");
     })
     .catch((error) => {
-        console.error(error.message);
+        console.error(error);
         process.exit(1);
     });
