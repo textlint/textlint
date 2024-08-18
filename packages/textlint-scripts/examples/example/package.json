@@ -1,7 +1,7 @@
 {
   "name": "textlint-scripts-example",
   "description": "Example of textlint-scripts",
-  "version": "14.1.0",
+  "version": "14.2.0",
   "private": true,
   "license": "MIT",
   "author": "azu",
@@ -14,6 +14,6 @@
     "prh": "^5.4.4"
   },
   "devDependencies": {
-    "textlint-scripts": "^14.1.0"
+    "textlint-scripts": "^14.2.0"
   }
 }
