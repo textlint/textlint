@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723945205608,
+  "lastUpdate": 1723945557547,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -39480,6 +39480,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6539892543600001,
             "unit": "seconds",
             "range": "± 0.012680385000000016"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azu@users.noreply.github.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c628f8a8cee8f7353ddab1062bd19f77144d47f4",
+          "message": " feat(textlint): Add `linter.scanFilePath` API (#1414)\n\n* refactor: curve out separateByAvailability\r\n\r\n* feat(textlint): new find-util with globby\r\n\r\n* feat: add `isFilePathIgnored`\r\n\r\n* fix\r\n\r\n* feat: add scanFilePath\r\n\r\n* test: use posix\r\n\r\n* fix lob\r\n\r\n* test: add bug fix\r\n\r\n* test: fix name\r\n\r\n* test: fix name\r\n\r\n* add cwd\r\n\r\n* add log\r\n\r\n* Add log\r\n\r\n* fix\r\n\r\n* path.resolve\r\n\r\n* test: add tests\r\n\r\n* add logs\r\n\r\n* use relativeIgnoreFilePath\r\n\r\n* use normalized ignore file path\r\n\r\n* tests: add glob test case\r\n\r\n* fix normalize\r\n\r\n* refactor: use glob insteadof globby\r\n\r\n* fix use glob\r\n\r\n* add log\r\n\r\n* use posix\r\n\r\n* fix\r\n\r\n* remove mapGitIgnorePatternTo\r\n\r\n* use relative path\r\n\r\n* fix use absolute\r\n\r\n* fix use cwd\r\n\r\n* add log\r\n\r\n* chore: remove util\r\n\r\n* docs: add example\r\n\r\n* CI: enable debug\r\n\r\n* test: fix glob pattern\r\n\r\n* test: fix glob pattern\r\n\r\n* test: add file path tests\r\n\r\n* add logs\r\n\r\n* test: fix tests\r\n\r\n* chore: add comment\r\n\r\n* test: add failed test",
+          "timestamp": "2024-08-18T10:43:38+09:00",
+          "tree_id": "afd2707d8a931a0600316a919c8870f5dafb9b37",
+          "url": "https://github.com/textlint/textlint/commit/c628f8a8cee8f7353ddab1062bd19f77144d47f4"
+        },
+        "date": 1723945555346,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0016491854800003,
+            "unit": "seconds",
+            "range": "± 0.06844188800000017"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.42430140508,
+            "unit": "seconds",
+            "range": "± 0.1671924269999998"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.66457371468,
+            "unit": "seconds",
+            "range": "± 0.024896079000000015"
           }
         ]
       }
