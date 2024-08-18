@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1723945954261,
+  "lastUpdate": 1723954380146,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -39648,6 +39648,48 @@ window.BENCHMARK_DATA = {
             "value": 0.6638106318200001,
             "unit": "seconds",
             "range": "± 0.010320151000000055"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "committer": {
+            "email": "azuciao@gmail.com",
+            "name": "azu",
+            "username": "azu"
+          },
+          "distinct": true,
+          "id": "6482a52f09c060bfcdbab609717e430d7b1aa79b",
+          "message": "fix(textlint-scripts): update to pkg-to-readme@3\n\n- Add test for `textlint-scripts init`",
+          "timestamp": "2024-08-18T13:10:25+09:00",
+          "tree_id": "989c54095178931b911177cb1514e33786335dd8",
+          "url": "https://github.com/textlint/textlint/commit/6482a52f09c060bfcdbab609717e430d7b1aa79b"
+        },
+        "date": 1723954377336,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.0062350411799996,
+            "unit": "seconds",
+            "range": "± 0.023706595000000164"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.42024927738,
+            "unit": "seconds",
+            "range": "± 0.06922335699999937"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6516732285800002,
+            "unit": "seconds",
+            "range": "± 0.009700662999999943"
           }
         ]
       }
