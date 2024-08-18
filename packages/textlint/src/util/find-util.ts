@@ -91,10 +91,11 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     };
 };
 
-export type ScanFilePathNoExistFileError = {
-    type: "ScanFilePathNoExistFileError";
+export type ScanFilePathNoExistFilePathError = {
+    type: "ScanFilePathNoExistFilePathError";
+    filePath: string;
 };
-export type ScanFilePathResultError = ScanFilePathNoExistFileError | SearchFilesResultError;
+export type ScanFilePathResultError = ScanFilePathNoExistFilePathError | SearchFilesResultError;
 export type ScanFilePathResult =
     | {
           // Found target file
@@ -121,7 +122,8 @@ export const scanFilePath = async (filePath: string, options: SearchFilesOptions
             status: "error",
             errors: [
                 {
-                    type: "ScanFilePathNoExistFileError"
+                    type: "ScanFilePathNoExistFilePathError",
+                    filePath
                 }
             ]
         };

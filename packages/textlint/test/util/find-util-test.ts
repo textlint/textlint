@@ -165,13 +165,19 @@ describe("find-util", () => {
             });
             assert.strictEqual(scanResult.status, "ignored");
         });
-        it("should return 'error' if the ignore file is not found", async () => {
+        it("should return 'error' if the file is not found", async () => {
             const ignoreFilePath = path.resolve(testDir, "not_found.md");
             const scanResult = await scanFilePath(ignoreFilePath, {
                 cwd: testDir,
                 ignoreFilePath: ".textlintignore"
             });
             assert.strictEqual(scanResult.status, "error");
+            assert.deepStrictEqual(scanResult.errors, [
+                {
+                    type: "ScanFilePathNoExistFilePathError",
+                    filePath: ignoreFilePath
+                }
+            ]);
         });
     });
 });
