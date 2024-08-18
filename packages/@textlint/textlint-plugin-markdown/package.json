@@ -1,6 +1,6 @@
 {
     "name": "@textlint/textlint-plugin-markdown",
-    "version": "14.0.5",
+    "version": "14.1.0",
     "description": "Markdown support for textlint.",
     "keywords": [
         "markdown",
@@ -38,10 +38,10 @@
         "watch": "tsc -b --watch"
     },
     "dependencies": {
-        "@textlint/markdown-to-ast": "^14.0.5"
+        "@textlint/markdown-to-ast": "^14.1.0"
     },
     "devDependencies": {
-        "@textlint/kernel": "^14.0.5",
+        "@textlint/kernel": "^14.1.0",
         "mocha": "^10.7.0",
         "rimraf": "^3.0.2",
         "textlint-rule-no-todo": "^2.0.1",
