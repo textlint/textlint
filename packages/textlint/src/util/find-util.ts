@@ -49,6 +49,7 @@ export const searchFiles = async (patterns: string[], options: SearchFilesOption
     debug("search ignore patterns: %o", ignoredPatterns);
     // Glob support file path, we can pass file path directly
     // https://github.com/azu/node-glob-example
+    // TODO: add pathsToGlobPatterns here
     const files = await glob(patterns, {
         cwd,
         absolute: true,
