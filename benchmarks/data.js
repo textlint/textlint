@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1726191346022,
+  "lastUpdate": 1727135479763,
   "repoUrl": "https://github.com/textlint/textlint",
   "entries": {
     "Benchmark": [
@@ -40656,6 +40656,48 @@ window.BENCHMARK_DATA = {
             "value": 0.66349808322,
             "unit": "seconds",
             "range": "± 0.015548844000000006"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dave@davegoesthedistance.com",
+            "name": "David Millar",
+            "username": "davmillar"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "af5120f34a31ac385bea629685dd6bb29afeb241",
+          "message": "docs(textlint): improve docs for linter.lintText (#1424)\n\n* docs(textlint): improve docs for linter.lintText\r\n\r\nAdded clarity around second argument for linter.lintText. Also\r\nadded guide for migrating from TextLintEngine to new API.\r\n\r\n* docs: fix lint error\r\n\r\n---------\r\n\r\nCo-authored-by: azu <azuciao@gmail.com>",
+          "timestamp": "2024-09-24T08:48:51+09:00",
+          "tree_id": "4fe12c77aa57ba6b1e2c130d0c492efcea1fdf86",
+          "url": "https://github.com/textlint/textlint/commit/af5120f34a31ac385bea629685dd6bb29afeb241"
+        },
+        "date": 1727135476561,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "npm run bench:self",
+            "value": 3.1210742901,
+            "unit": "seconds",
+            "range": "± 0.04462331900000027"
+          },
+          {
+            "name": "npm run bench:technical-writing",
+            "value": 6.5355118491,
+            "unit": "seconds",
+            "range": "± 0.1224507259999994"
+          },
+          {
+            "name": "npm run bench:jtf-style",
+            "value": 0.6664652817000001,
+            "unit": "seconds",
+            "range": "± 0.01688984299999996"
           }
         ]
       }
