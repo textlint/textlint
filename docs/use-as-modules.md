@@ -23,14 +23,12 @@ assert.strictEqual(result, 0);
 
 ## APIs
 
-textlint v12.3.0 introduce new APIs.
-textlint will drop support old APIs(`textlint`, `TextLintEngine`, `TextFixEngine`, and `TextLintCore`) in the future.
-
-📝 old APIs can not support ECMAScript modules, new APIs support ECMAScript modules.
+**textlint v12.3.0** introduced a new API, and textlint and will drop support for the old API (`textlint`, `TextLintEngine`, `TextFixEngine`, and `TextLintCore`) in the future. The old API does not support ECMAScript modules like the new API does. For guidance on migration, see the [migration guide](#migration-to-new-api) section below.
 
 - `createLinter`: create linter instance
     - `lintFiles(files): Promise<TextlintResult[]>`: lint files and return linter messages
     - `lintText(text, filePath): Promise<TextlintResult>` lint text with virtual filePath and return linter messages
+        - The virtual file path does not need to be a real file, rather it should hint the content type being passed to lintText. For example, if `text` is Markdown, `filePath` could be `foo.md`.
     - `fixFiles(files): Promise<TextlintFixResult[]>` lint text and return fixer messages
     - `fixText(text, filePath): Promise<TextlintFixResult>` lint text with virtual filePath and return fixer messages
         - `fixFiles` and `fixText` does not modify files
@@ -98,8 +96,12 @@ const linter = createLinter({
     // if same ruleId or pluginId, customDescriptor is used.
     descriptor: customDescriptor.concat(textlintrcDescriptor)
 });
+
+// The second param should be a filename whose extension hints at the type
+// of content being passed to lintText(), e.g. README.md for Markdown.
 const result = await linter.lintText("TODO: fix me", "README.md");
 console.log(result);
+
 ```
 
 ## Get lintable file extensions
@@ -153,7 +155,7 @@ You can use `@textlint/legacy-textlint-core` package instead of `TextlintCore`.
 - Return `TextLintResult` or `TextLintFixResult`
   - actually, return a Promise like `Promise<TextLintResult>`
 
-### Example
+### TextLintEngine Example
 
 Lint files using `TextLintEngine`:
 
@@ -187,6 +189,50 @@ lintFile(`${__dirname}/README.md`).catch(function(error) {
 });
 ```
 
+### Migration to New API
+
+To migrate to the new API from the old API, you may need to make additional changes beyond just changing to a different method.
+
+Old API:
+
+```js
+const TextLintEngine = require("textlint").TextLintEngine;
+// Rely on textlint finding the config automatically.
+const engine = new TextLintEngine();
+```
+
+New API:
+
+```js
+// Import node helpers to get the config path.
+import path from "node:path";
+import { cwd } from "node:process";
+import { createLinter, loadTextlintrc } from "textlint";
+
+// Load config using helpers to pass into createLinter().
+const descriptor = await loadTextlintrc({
+    configFilePath: path.join(cwd(), ".textlintrc.json")
+});
+const linter = createLinter({
+    descriptor
+});
+```
+
+#### engine.executeOnText
+
+Replace with `linter.lintText()`:
+
+Old API:
+```js
+const ruleText = "Tihs is my text.";
+const results = await engine.executeOnText(ruleText);
+```
+
+New API -- dummy filename to determine content type.
+```js
+const ruleText = "Tihs is my text.";
+const results = await linter.lintText(ruleText, 'dummy.txt');
+```
 
 ## Testing
 
